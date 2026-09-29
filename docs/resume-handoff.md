@@ -16,7 +16,7 @@
 
 ## 배포와 공개 검증
 
-구현2d240fc의 [CI36602848976](https://github.com/skmsmjs-netizen/study-space-generation2/actions/runs/36602848976)가 test/build/deploy 성공했습니다. 공개 `#/draft-archives` 직접 진입·새로고침·배포 asset 및 잠금 상태의 읽기 전용 보관본 경로를 확인했습니다. 다른 작성 창 잠금 때문에 공개 정상 Workspace의F08/표는 미검증입니다. 다른 작업 창은 종료하지 않았습니다. 로컬 실제 조작은 위B20–B26으로 구별합니다. 최종 문서 commit과 배포 head 일치는 저장소 밖 이번 outputs의 `final-release.json` / `final-pages-run.json`에서 확인합니다.
+구현2d240fc의 [CI36602848976](https://github.com/skmsmjs-netizen/study-space-generation2/actions/runs/36602848976)가 test/build/deploy 성공했습니다. 공개 `#/draft-archives` 직접 진입·새로고침·배포 asset 및 잠금 상태의 읽기 전용 보관본 경로를 확인했습니다. 처음 다른 창 잠금이 있었으나 사용자가 창을 닫았다는 응답 뒤 공개F08 시작→홈→새로고침→기록 복귀와 표 선택/문구의 닫기·새로고침 복원을 확인했습니다(B28). 시험 문구는 원래 빈칸으로 돌렸으며 공개 공부0회가 유지됐습니다. B27의 당시 제한은 보존하고 현재 차단으로 쓰지 않습니다. 최종 문서 commit과 배포 head 일치는 저장소 밖 이번 outputs의 `final-release.json` / `final-pages-run.json`에서 확인합니다.
 
 ## 남은 조건과 다음 실행
 

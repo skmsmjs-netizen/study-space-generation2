@@ -59,7 +59,7 @@
     "implementation_ci": "https://github.com/skmsmjs-netizen/study-space-generation2/actions/runs/36602848976",
     "status": "success",
     "public_asset": "index-CpuoAN_r.js",
-    "observed": "B27 direct archive route/reload and read-only archive access while writer locked; normal workspace actions not verified on public origin",
+    "observed": "B27 initial writer lock preserved; B28 after user closed other app: public direct archive and topic reload, study start/home/reload/record return without study event, table text/selection reopen and reload. Test text restored to blank, study count0 retained.",
     "artifact": "docs/validation/archive-code-pages-run-20260930.json"
   }
 }

@@ -19,3 +19,5 @@ Supabase는 사용자가 프로젝트를 생성했고 dashboard Healthy만 확�
 구현 `2d240fc81810a27d28db8313a6b5e4ab931a42bc`를 main에 push하고 [Actions36602848976](https://github.com/skmsmjs-netizen/study-space-generation2/actions/runs/36602848976)의 test/build/deploy 성공을 확인했습니다. [실행 응답](validation/archive-code-pages-run-20260930.json), [실제 공개 관찰 B27](validation/archive-ui-20260930.md)을 남겼습니다. 공개 직접 경로/새로고침과 `index-CpuoAN_r.js`, 잠금 상태의 읽기 전용 초안 보관본 접근·다시 읽기를 확인했습니다. 다른 작성 창 잠금 때문에 정상 Workspace의 새 F08/표 조작은 로컬 실제 브라우저 검증과 구별하여 공개 미검증으로 남겼습니다. 다른 창이나 데이터를 종료/삭제하여 우회하지 않았습니다.
 
 문서·원장 후속 commit도 main으로 배포하며 마지막 HEAD와 Actions headSha 일치는 저장소 밖 최종 release 응답에 보존합니다. 213검사/타입/빌드·1370행 원장·검증기26개 통과. 정식 Auth/온라인 저장·물리기기·새 성능 측정이 아닙니다.
+
+후속 B28: 사용자가 다른 창 종료를 알려 준 뒤 공개 Workspace에 정상 진입했습니다. 시작 안내→홈→새로고침→같은 주제 기록 복귀와 표 초안의 글/역방향선택 복원을 직접 확인했습니다. 표 시험 문구를 원래 빈칸으로 복원했고 공부 회차는0으로 유지했습니다. 공개 직접 경로 새로고침도 통과했습니다. 앞의 잠금 제한은 과거 관찰로 보존하며 현재 차단 사유가 아닙니다.
