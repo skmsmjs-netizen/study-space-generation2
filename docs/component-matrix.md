@@ -1,6 +1,6 @@
 # 공통 컴포넌트 상태·동작 계약
 
-`src/ui/index.tsx`의 구현 목록과 미구현 범위를 구분한다. 표준 HTML 속성과 이벤트를 재사용하며 Input/Textarea/Select의 `onChange`는 문자열이 아닌 React 이벤트다. 입력 컴포넌트는 값을 정규화하거나 자동 저장하지 않는다.
+`src/ui/index.tsx`에서 내보내는 구현 목록과 미검증 범위를 구분한다. 2026-09-30 NavigationBar와 ContextMenu를 추가하여 계약21종에 대응하는 구현이 존재한다. 구현 존재는 전체 상태·실제 화면·물리기기 검증 완료를 뜻하지 않는다. 표준 HTML 속성과 이벤트를 재사용하며 Input/Textarea/Select의 `onChange`는 문자열이 아닌 React 이벤트다. 입력 컴포넌트는 값을 정규화하거나 자동 저장하지 않는다.
 
 | 컴포넌트 | 상태 | 접근성·키보드·터치 | 저장·구현 경계 |
 | --- | --- | --- | --- |
@@ -23,8 +23,8 @@
 | EmptyState | first-use/filtered-empty/offline-unavailable | 제목·설명·children action | 상태별 문구와 다음 행동은 호출자가 제공 |
 | LoadingState | loading | role=status·polite | 기존 화면 삭제나 서버 완료 암시 없음 |
 | ErrorState | error/retry | 오류 role=alert, 구체 메시지, 선택적 재시도 | 내부 JSON·secret을 message에 넘기지 않음 |
-| NavigationBar | 상태 명세만 | 현재 위치·키보드·좁은폭·가로 넘침 | 화면의 sidebar/bottom-nav 구성이 먼저이므로 범용 컴포넌트를 아직 만들지 않음 |
-| ContextMenu | 상태 명세만 | ⋯ 버튼 대안, 정확한 대상, 위험 동작 분리, Esc·초점 복귀 | 실제 공통 메뉴 수요와 명령이 정해지면 구현. 빈 wrapper 없음 |
+| NavigationBar | active/inactive/focus/horizontal/vertical | nav 이름, 현재 aria-current=page, native anchor의 Tab·기본 브라우저 행동, 긴 한글 줄바꿈·최소폭0·48px높이 | `navigation-bar.tsx/css`. sidebar/bottom-nav의 실제 href/label/active를 받음. route·저장·스크롤 복원은 호출자/탐색 계층 책임. 좁은폭 실렌더·물리기기 검증은 별도 |
+| ContextMenu | closed/open/focus/disabled/danger | 대상명 표시 및 접근 가능한 이름, trigger aria-expanded/haspopup, 방향키/Home/End와 disabled 건너뜀, Esc·바깥클릭·선택·Tab 닫기, 초점복귀 | `context-menu.tsx/css`. 주제의 하위 추가·이름수정·휴지통 명령 요청. 위험 항목 색+분리선+명확한 라벨, 실제 삭제/확인창/Undo는 호출자 책임. 바깥 입력 초점은 유지. viewport 안 배치/scroll 재배치의 실제 화면 검증 필요 |
 
 ## 주요 API
 
@@ -35,6 +35,15 @@
 <Tabs items={[{ id: 'notes', label: '기록' }]} value={tab} onChange={setTab} />
 <Modal open={open} title="목차 추가" onClose={requestClose}>{form}</Modal>
 <Toast message="휴지통으로 옮겼습니다." onUndo={undo} onClose={dismiss} />
+<NavigationBar label="주 메뉴" orientation="vertical" items={[
+  { href: '#/', label: '홈', active: route === '/' },
+  { href: '#/subjects', label: '과목', active: route === '/subjects' },
+]} />
+<ContextMenu targetLabel={node.name} label="목차 관리" items={[
+  { id: 'add', label: '하위 항목 추가', onSelect: () => openDialog('node') },
+  { id: 'rename', label: '이름 수정', onSelect: () => openDialog('rename') },
+  { id: 'trash', label: '휴지통으로 이동', danger: true, onSelect: () => openDialog('trash') },
+]} />
 ```
 
 ## 상태를 나누는 책임
@@ -50,3 +59,7 @@ Modal/Sheet의 `onClose`는 초안 보관을 먼저 확인하거나 이탈 확�
 이 시험은 jsdom의 합성 이벤트이며 실제 한글 IME·모바일 키보드·터치·VoiceOver 검증이 아니다. 실제 브라우저의 각 사용 화면, Light/Dark, 좁은 창·긴 글·키보드, 물리 iPhone/iPad/Mac의 검증은 Phase 보고서에서 별도로 기록한다.
 
 2026-09-29 실행 결과: 컴포넌트 시험 8/8 통과, TypeScript 검사 통과. 처음 Modal Shift+Tab 검사에서 DOM 순서와 다른 초점 후보 순서가 검출되어, 전체 하위 DOM 순서에서 focusable 조건을 판정하도록 수정한 뒤 8개를 재실행했다. 테스트에서 확인한 초점 복귀를 실제 브라우저·실제 IME 결과로 확대하지 않는다.
+
+2026-09-30 추가 구현의 자동검증: `navigation-bar.test.tsx` 1개와 `context-menu.test.tsx` 6개, 합계7개 통과. 현재 위치 변경·native Tab 순서·정확한 대상·방향키 순환·Home/End·disabled 건너뜀·실행1회·바깥 입력·Tab/Shift+Tab 이탈·조합 중 Escape 보류·전체 disabled·기존 확인 Modal과 초점 복귀 연결을 검사했다. CSS 속성만으로 좁은폭·키보드 가림·물리 터치가 통과했다고 판정하지 않는다. 원장에는 실제 App 연결과 실제 UI 조작 결과를 추가한 뒤 해당 범위만 승격한다.
+
+00:37:05 KST에 기존 `component.test.tsx`까지 함께 실행한 공통 UI 회귀검사3파일/15개도 통과했다. 실제 브라우저·실제기기 상태는 이 합성 DOM 결과와 구별한다.

@@ -1,0 +1,36 @@
+.ui-context-menu {
+  position: fixed;
+  z-index: 30;
+  inline-size: max-content;
+  min-inline-size: min(12rem, calc(100vw - 16px));
+  max-inline-size: min(24rem, calc(100vw - 16px));
+  max-block-size: calc(100dvh - 16px);
+  overflow: auto;
+  padding: var(--space-2);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-text);
+  box-shadow: var(--shadow-overlay);
+}
+.ui-context-menu-target { margin: var(--space-1) var(--space-2) var(--space-2); color: var(--color-muted); font-size: var(--type-caption-size); overflow-wrap: anywhere; }
+.ui-context-menu-item {
+  display: block;
+  inline-size: 100%;
+  min-block-size: var(--control-height);
+  padding: var(--space-3) var(--space-2);
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: inherit;
+  text-align: start;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  font: inherit;
+  cursor: pointer;
+}
+.ui-context-menu-item:hover:not(:disabled), .ui-context-menu-item:focus { background: var(--color-secondary); }
+.ui-context-menu-item:focus-visible { outline: var(--focus-width) solid var(--color-focus); outline-offset: -2px; }
+.ui-context-menu-item:disabled { opacity: var(--state-disabled-opacity); cursor: default; }
+.ui-context-menu-item--danger { color: var(--color-danger); border-block-start: var(--border-width) solid var(--color-border); margin-block-start: var(--space-2); }
+.ui-context-menu-item--danger:hover:not(:disabled), .ui-context-menu-item--danger:focus { background: var(--color-danger-surface); }

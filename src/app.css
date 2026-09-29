@@ -512,3 +512,18 @@ nav a[aria-current="page"] {
 .feedback-banner button {
   flex-shrink: 0;
 }
+
+/* Compact home keeps the first study action above the fold; full controls remain available. */
+@media (max-width: 40rem) {
+  .small-brand { display: none; }
+  .topbar { gap: var(--space-2); }
+  .topbar .ui-field { flex: 1 1 50%; }
+  .compact-menu { width: auto; margin-left: auto; }
+  .compact-menu[open] { width: 100%; }
+  .is-home .page-heading { margin: var(--space-3) 0; }
+  .is-home .page-heading .eyebrow { display: none; }
+  .is-home .hero { padding: var(--space-4); gap: var(--space-3); }
+  .is-home .hero .eyebrow { display: none; }
+  .is-home .hero h2 { margin-bottom: var(--space-2); }
+  .is-home .dashboard-grid { margin-top: var(--space-5); }
+}

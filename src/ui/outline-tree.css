@@ -1,0 +1,23 @@
+/* Keep every depth reachable without recursively shrinking the reading width. */
+.outline-flat > li {
+  min-inline-size: 0;
+  padding-inline-start: calc(var(--outline-indent) * var(--space-3));
+}
+.outline-flat .node-link {
+  min-inline-size: 0;
+}
+.outline-flat .outline-label {
+  min-inline-size: 0;
+  flex: 1;
+}
+.outline-flat .outline-path {
+  display: block;
+  margin-block-start: var(--space-1);
+  color: var(--color-muted);
+  font-size: var(--type-caption-size);
+  font-style: normal;
+  overflow-wrap: anywhere;
+}
+.outline-flat .row-tail {
+  flex-shrink: 0;
+}

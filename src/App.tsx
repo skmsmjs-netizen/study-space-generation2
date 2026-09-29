@@ -13,6 +13,8 @@ import {
   EmptyState,
   ErrorState,
   LoadingState,
+  NavigationBar,
+  ContextMenu,
 } from "./ui";
 import type {
   AppState,
@@ -21,14 +23,19 @@ import type {
   OutlineNode,
   NarrativeKind,
   StudyRecord,
-  TraceState,
 } from "./domain/model";
-import { TRACE_ITEMS, TRACE_GROUP_LABELS } from "./domain/trace";
+import { readRescuedDraft, storeDraftSafely, clearRescuedDraft, draftHasUnstoredText, rescueWithoutOverwrite, draftReadError, rememberDraftReadError } from "./data/draft-safety";
+import { validateFormDraft } from "./data/demo-repository";
+import { useRoute, navigate as go } from "./ui/navigation-context";
+import { TraceEditor } from "./ui/trace-editor";
+import { CriteriaEditor } from "./ui/criteria-editor";
+import { resolveCriteria } from "./domain/criteria";
+import { OutlineTree } from "./ui/outline-tree";
+import { TRACE_ITEMS } from "./domain/trace";
 import {
   DemoRepository,
   localDay,
   readDraft,
-  saveDraft,
   type FormDraft,
 } from "./data/demo-repository";
 
@@ -41,23 +48,18 @@ const uid = () => crypto.randomUUID();
 const active = <T extends { deletedAt: string | null }>(items: T[]) =>
   items.filter((item) => !item.deletedAt);
 const labelRole = { unit: "단원", outline: "목차", topic: "주제" };
-const routeNow = () => decodeURIComponent(location.hash.slice(1) || "/");
-const go = (path: string) => {
-  location.hash = encodeURI(path);
-};
-function useRoute() {
-  const [route, setRoute] = useState(routeNow);
-  useEffect(() => {
-    const update = () => setRoute(routeNow());
-    addEventListener("hashchange", update);
-    return () => removeEventListener("hashchange", update);
-  }, []);
-  return route;
-}
 function message(error: unknown) {
   return error instanceof Error
     ? error.message
     : "내용을 보존했습니다. 다시 시도해 주세요.";
+}
+
+function readPreference(name: string, fallback: string) {
+  try { return sessionStorage.getItem(`study-space:demo:context:${name}`) ?? fallback; }
+  catch { return fallback; }
+}
+function writePreference(name: string, value: string) {
+  try { sessionStorage.setItem(`study-space:demo:context:${name}`, value); } catch { /* Optional view context never blocks a study draft. */ }
 }
 
 export default function App() {
@@ -137,19 +139,20 @@ export default function App() {
 function Workspace({ repository }: { repository: DemoRepository }) {
   const [data, setData] = useState(repository.getSnapshot());
   const route = useRoute();
-  const [scope, setScope] = useState("all");
-  const [query, setQuery] = useState("");
+  const [scope, setScope] = useState(() => readPreference("scope", "all"));
+  const [query, setQuery] = useState(() => readPreference("query", ""));
   const [error, setError] = useState("");
   const [notice, setNotice] = useState<{
     message: string;
     undo?: () => void;
   } | null>(null);
   const [dialog, setDialog] = useState<
-    "semester" | "subject" | "node" | "trash" | "rename" | null
+    "semester" | "subject" | "node" | "trash" | "rename" | "move" | null
   >(null);
   const [name, setName] = useState("");
+  const [moveParent, setMoveParent] = useState<string>("");
   const [role, setRole] = useState<OutlineNode["role"]>("topic");
-  const [theme, setTheme] = useState("auto");
+  const [theme, setTheme] = useState(() => readPreference("theme", "auto"));
   const [recent, setRecent] = useState<string[]>(() => {
     try {
       return JSON.parse(sessionStorage.getItem("demo:recent") || "[]");
@@ -157,6 +160,9 @@ function Workspace({ repository }: { repository: DemoRepository }) {
       return [];
     }
   });
+  useEffect(() => { writePreference("scope", scope); }, [scope]);
+  useEffect(() => { writePreference("query", query); }, [query]);
+  useEffect(() => { writePreference("theme", theme); }, [theme]);
   const quickGuard = useRef(new Set<string>());
   const nodes = active(data.nodes),
     subjects = active(data.subjects);
@@ -260,6 +266,7 @@ function Workspace({ repository }: { repository: DemoRepository }) {
   };
   const openDialog = (next: typeof dialog) => {
     setName(next === "rename" ? node?.name || "" : "");
+    if (next === "move") setMoveParent(node?.parentId || "");
     setDialog(next);
   };
   const addItem = () => {
@@ -302,8 +309,24 @@ function Workspace({ repository }: { repository: DemoRepository }) {
     }
   };
   const descendants = (id: string): OutlineNode[] => {
-    const children = nodes.filter((n) => n.parentId === id);
-    return children.flatMap((child) => [child, ...descendants(child.id)]);
+    const found: OutlineNode[] = [], seen = new Set([id]), stack = [id];
+    while (stack.length) {
+      const parent = stack.pop();
+      for (const child of nodes.filter(n => n.parentId === parent)) {
+        if (!seen.has(child.id)) { seen.add(child.id); found.push(child); stack.push(child.id); }
+      }
+    }
+    return found;
+  };
+  const moveNode = () => {
+    if (!node) return;
+    const next = commit({ type: "moveNode", id: node.id, parentId: moveParent || null, expectedVersion: node.version });
+    if (!next) return;
+    const revision = next.revisions.slice().reverse().find(r => r.collection === "nodes" && r.entityId === node.id);
+    setDialog(null);
+    setNotice({ message: "목차 위치를 옮겼습니다. 하위 항목과 기록은 같은 항목에 남습니다.", undo: revision ? () => {
+      commit({ type: "undoRevision", revisionId: revision.id, expectedVersion: revision.after.version }, "원래 위치로 되돌렸습니다.");
+    } : undefined });
   };
   const deleteNode = () => {
     if (!node) return;
@@ -338,6 +361,7 @@ function Workspace({ repository }: { repository: DemoRepository }) {
     { href: "/search", text: "찾기" },
   ];
   const recordRoute = route.startsWith("/record");
+  const freeRoute = route === "/free" || route.startsWith("/free/");
   const rootTitle =
     route === "/subjects"
       ? "공부할 범위"
@@ -345,56 +369,20 @@ function Workspace({ repository }: { repository: DemoRepository }) {
         ? "기억을 찾아서"
         : route === "/trash"
           ? "휴지통"
-          : route === "/free"
+          : route.startsWith("/free")
             ? "자유롭게 남기기"
             : recordRoute
               ? "공부한 만큼 남기기"
               : "다시, 한 걸음";
-  const tree = (parentId: string | null, depth = 0): React.ReactNode => {
-    const children = nodes
-      .filter((n) => n.subjectId === subject?.id && n.parentId === parentId)
-      .sort((a, b) => a.order - b.order);
-    return children.length ? (
-      <ul className="outline-list">
-        {children.map((n) => (
-          <li key={n.id}>
-            <a className={`node-link role-${n.role}`} href={`#/node/${n.id}`}>
-              <span className="role-label">{labelRole[n.role]}</span>
-              <span>{n.name}</span>
-              <span className="row-tail">
-                {records.filter((r) => r.targetId === n.id && r.done).length ||
-                  "—"}
-              </span>
-            </a>
-            {depth < 8
-              ? tree(n.id, depth + 1)
-              : nodes.some((child) => child.parentId === n.id) && (
-                  <a className="node-link" href={`#/node/${n.id}`}>
-                    하위 항목 펼쳐 보기
-                  </a>
-                )}
-          </li>
-        ))}
-      </ul>
-    ) : null;
-  };
+  const tree = (parentId: string | null) => nodes.some(n => n.subjectId === subject?.id && n.parentId === parentId)
+    ? <OutlineTree nodes={nodes} records={records} subjectId={subject!.id} subjectName={subject!.name} parentId={parentId} /> : null;
   return (
-    <div className="app-shell">
+    <div className={`app-shell${route === "/" ? " is-home" : ""}`}>
       <aside className="sidebar">
         <a className="brand" href="#/">
           공부의 자리<span>LEARNING SPACE</span>
         </a>
-        <nav aria-label="주 메뉴">
-          {navItems.map((item) => (
-            <a
-              key={item.href}
-              href={`#${item.href}`}
-              aria-current={route === item.href ? "page" : undefined}
-            >
-              {item.text}
-            </a>
-          ))}
-        </nav>
+        <NavigationBar label="주 메뉴" orientation="vertical" items={navItems.map(item => ({href:`#${item.href}`, label:item.text, active:route === item.href || item.href === "/record" && recordRoute || item.href === "/subjects" && Boolean(subject)}))} />
         <div className="sidebar-bottom">
           <a href="#/trash">휴지통</a>
           <Select
@@ -677,24 +665,16 @@ function Workspace({ repository }: { repository: DemoRepository }) {
                 >
                   공부 기록하기
                 </Button>
-                <details className="menu-details">
-                  <summary>목차 관리</summary>
-                  <div className="actions">
-                    <Button onClick={() => openDialog("node")}>
-                      하위 항목 추가
-                    </Button>
-                    <Button onClick={() => openDialog("rename")}>
-                      이름 수정
-                    </Button>
-                    <Button
-                      variant="danger"
-                      onClick={() => openDialog("trash")}
-                    >
-                      휴지통으로 이동
-                    </Button>
-                  </div>
-                </details>
+                <ContextMenu targetLabel={node.name} label="목차 관리" items={[
+                  {id:"add", label:"하위 항목 추가", onSelect:()=>openDialog("node")},
+                  {id:"rename", label:"이름 수정", onSelect:()=>openDialog("rename")},
+                  {id:"move", label:"위치 옮기기", onSelect:()=>openDialog("move")},
+                  {id:"trash", label:"휴지통으로 이동", danger:true, onSelect:()=>openDialog("trash")},
+                ]} />
               </div>
+              <CriteriaEditor data={data} targetId={node.id}
+                onApply={change => commit({type: "adjustCriteria", ...change}, "공부 기준을 조정했습니다.")}
+                onUndo={(revisionId, expectedVersion) => commit({type: "undoRevision", revisionId, expectedVersion}, "기준 변경을 되돌렸습니다.")} />
               {tree(node.id)}
               <NarrativeEditor
                 key={node.id}
@@ -712,7 +692,7 @@ function Workspace({ repository }: { repository: DemoRepository }) {
                     .slice()
                     .reverse()
                     .map((r) => (
-                      <RecordCard key={r.id} record={r} commit={commit} />
+                      <RecordCard key={r.id} record={r} commit={commit} allowNewWrittenReview={resolveCriteria(data, node.id).items.some(item => item.id === "Cself1" && item.mode !== "excluded")} />
                     ))
                 ) : (
                   <EmptyState
@@ -727,7 +707,7 @@ function Workspace({ repository }: { repository: DemoRepository }) {
             <RecordForm
               key={route}
               data={data}
-              initialTarget={route.split("/")[2]}
+              initialTarget={route.startsWith("/record/") ? route.slice("/record/".length) : undefined}
               commit={commit}
               onSaved={(warning) => {
                 setNotice({ message: warning || "공부 기록을 저장했습니다." });
@@ -735,27 +715,20 @@ function Workspace({ repository }: { repository: DemoRepository }) {
               }}
             />
           )}
-          {route === "/free" && (
-            <NarrativeEditor
-              data={data}
-              kind="free-note"
-              ownerId={null}
-              label="자유 기록"
-              commit={commit}
-            />
-          )}
+          {freeRoute && <FreeNotes key={route} data={data} route={route} commit={commit} />}
           {route === "/search" && (
             <>
               <Search
                 label="과목·목차·기록 검색"
                 placeholder="찾고 싶은 말"
+                defaultValue={query}
                 onQueryChange={setQuery}
               />
               <div className="card-stack section-space">
                 {query.trim() ? (
                   <>
                     {shownSubjects
-                      .filter((s) => s.name.includes(query))
+                      .filter((s) => s.name.includes(query) || active(data.narratives).some(n => n.ownerId === s.id && n.body.includes(query)))
                       .map((s) => (
                         <Card key={s.id}>
                           <a href={`#/subject/${s.id}`}>{s.name}</a>
@@ -766,6 +739,7 @@ function Workspace({ repository }: { repository: DemoRepository }) {
                       .filter(
                         (n) =>
                           n.name.includes(query) ||
+                          active(data.narratives).some(text => text.ownerId === n.id && text.body.includes(query)) ||
                           records.some(
                             (r) =>
                               r.targetId === n.id && r.body.includes(query),
@@ -775,11 +749,14 @@ function Workspace({ repository }: { repository: DemoRepository }) {
                         <Card key={n.id}>
                           <a href={`#/node/${n.id}`}>{n.name}</a>
                           <p className="muted">
-                            {subjects.find((s) => s.id === n.subjectId)?.name} ·{" "}
-                            {labelRole[n.role]}
+                            {subjects.find((s) => s.id === n.subjectId)?.name} · {topicPath(n.id).map(parent => parent.name).join(" / ")}
                           </p>
                         </Card>
                       ))}
+                    {scope === "all" && active(data.narratives).filter(n => n.kind === "free-note" && n.ownerId === null && n.body.includes(query)).map(n => <Card key={n.id}>
+                      <a href={`#/free/${n.id}`}>{n.body.trim().split("\n")[0].slice(0, 80) || "자유 기록"}</a>
+                      <p className="muted">자유 기록 · 학기 소속 없음</p>
+                    </Card>)}
                   </>
                 ) : (
                   <EmptyState
@@ -829,6 +806,7 @@ function Workspace({ repository }: { repository: DemoRepository }) {
           )}
           {!["/", "/subjects", "/search", "/trash", "/free"].includes(route) &&
             !recordRoute &&
+            !freeRoute &&
             !subject && (
               <EmptyState
                 title="이 항목을 찾을 수 없습니다"
@@ -840,17 +818,7 @@ function Workspace({ repository }: { repository: DemoRepository }) {
               </EmptyState>
             )}
         </main>
-        <nav className="bottom-nav" aria-label="빠른 이동">
-          {navItems.map((item) => (
-            <a
-              key={item.href}
-              href={`#${item.href}`}
-              aria-current={route === item.href ? "page" : undefined}
-            >
-              {item.text}
-            </a>
-          ))}
-        </nav>
+        <NavigationBar label="빠른 이동" className="bottom-nav" items={navItems.map(item => ({href:`#${item.href}`, label:item.text, active:route === item.href || item.href === "/record" && recordRoute || item.href === "/subjects" && Boolean(subject)}))} />
       </div>
       <Modal
         open={Boolean(dialog)}
@@ -859,6 +827,8 @@ function Workspace({ repository }: { repository: DemoRepository }) {
             ? "학기 추가"
             : dialog === "subject"
               ? "과목 추가"
+              : dialog === "move"
+                ? "목차 위치 옮기기"
               : dialog === "rename"
                 ? "이름 수정"
                 : dialog === "trash"
@@ -867,7 +837,16 @@ function Workspace({ repository }: { repository: DemoRepository }) {
         }
         onClose={() => setDialog(null)}
       >
-        {dialog === "trash" && node ? (
+        {dialog === "move" && node ? (
+          <div className="field-stack">
+            <p>‘{node.name}’와 하위 {descendants(node.id).length}개 항목을 같은 과목 안에서 옮깁니다. 공부 기록과 메모는 그대로 연결됩니다.</p>
+            <Select label="옮길 상위 항목" value={moveParent} onChange={e => setMoveParent(e.target.value)}>
+              <option value="">{subject?.name} · 과목 바로 아래</option>
+              {nodes.filter(candidate => candidate.subjectId === node.subjectId && candidate.id !== node.id && !descendants(node.id).some(child => child.id === candidate.id)).map(candidate => <option key={candidate.id} value={candidate.id}>{topicPath(candidate.id).map(parent => parent.name).join(" / ")}</option>)}
+            </Select>
+            <Button variant="primary" disabled={moveParent === (node.parentId || "")} onClick={moveNode}>이 위치로 옮기기</Button>
+          </div>
+        ) : dialog === "trash" && node ? (
           <>
             <p>
               ‘{node.name}’와 하위 {descendants(node.id).length}개 항목이
@@ -940,7 +919,7 @@ type Commit = (action: Action, success?: string) => AppState | null;
 function useTextDraft(key: string, initial: string, version: number) {
   const [boot] = useState(() => {
     try {
-      const raw = localStorage.getItem(key);
+      const raw = readRescuedDraft(key) ?? localStorage.getItem(key);
       if (!raw) return { body: initial, version, error: "" };
       const draft = JSON.parse(raw);
       if (
@@ -948,12 +927,13 @@ function useTextDraft(key: string, initial: string, version: number) {
         !Number.isSafeInteger(draft.version)
       )
         throw Error();
-      return { ...draft, error: "" } as {
+      return { ...draft, error: draftReadError(key) } as {
         body: string;
         version: number;
         error: string;
       };
     } catch {
+      rememberDraftReadError(key, "초안을 읽지 못했습니다. 저장된 초안을 덮어쓰지 않았습니다.");
       return {
         body: initial,
         version,
@@ -962,13 +942,13 @@ function useTextDraft(key: string, initial: string, version: number) {
     }
   });
   const [body, setBody] = useState(boot.body),
-    [error, setError] = useState(boot.error);
+    [error, setError] = useState(boot.error || (draftHasUnstoredText(key) ? "저장 실패한 입력을 이 창에서 유지하고 있습니다. 다시 저장하거나 복사해 주세요." : ""));
   const expected = useRef(boot.version);
   const change = (value: string) => {
     setBody(value);
-    if (boot.error) return;
+    if (boot.error) { rescueWithoutOverwrite(key, JSON.stringify({body: value, version: expected.current})); return; }
     try {
-      localStorage.setItem(
+      storeDraftSafely(
         key,
         JSON.stringify({ body: value, version: expected.current }),
       );
@@ -981,6 +961,7 @@ function useTextDraft(key: string, initial: string, version: number) {
   };
   const clear = (nextVersion: number) => {
     expected.current = nextVersion;
+    clearRescuedDraft(key);
     try {
       localStorage.removeItem(key);
       setError("");
@@ -996,23 +977,31 @@ function NarrativeEditor({
   ownerId,
   label,
   commit,
+  narrativeId,
+  newNote = false,
+  onSaved,
+  draftKey,
 }: {
   data: AppState;
   kind: NarrativeKind;
   ownerId: string | null;
   label: string;
   commit: Commit;
+  narrativeId?: string;
+  newNote?: boolean;
+  onSaved?: (id: string) => void;
+  draftKey?: string;
 }) {
   const original = active(data.narratives).find(
-    (n) => n.kind === kind && n.ownerId === ownerId,
+    (n) => !newNote && (narrativeId ? n.id === narrativeId : n.kind === kind && n.ownerId === ownerId),
   );
   const draft = useTextDraft(
-    `study-space:demo:narrative:${kind}:${ownerId}`,
+    draftKey || `study-space:demo:narrative:${kind}:${ownerId}`,
     original?.body || "",
     original?.version || 0,
   );
   const [saved, setSaved] = useState(false);
-  const stableId = useRef(original?.id || uid());
+  const stableId = useRef(original?.id || narrativeId || uid());
   const save = () => {
     const result = commit(
       {
@@ -1027,10 +1016,10 @@ function NarrativeEditor({
     );
     if (result) {
       draft.clear(
-        result.narratives.find((n) => n.kind === kind && n.ownerId === ownerId)!
-          .version,
+        result.narratives.find((n) => n.id === stableId.current)!.version,
       );
       setSaved(true);
+      onSaved?.(stableId.current);
     }
   };
   return (
@@ -1063,6 +1052,46 @@ function NarrativeEditor({
     </details>
   );
 }
+function FreeNotes({ data, route, commit }: { data: AppState; route: string; commit: Commit }) {
+  const notes = active(data.narratives).filter(n => n.kind === "free-note" && n.ownerId === null);
+  const [legacy] = useState(() => {
+    try {
+      const key = "study-space:demo:free-default-id";
+      const existing = localStorage.getItem(key);
+      const id = existing || notes[0]?.id || uid();
+      if (!id.trim()) throw new Error();
+      if (!existing) localStorage.setItem(key, id);
+      return { id, error: "" };
+    } catch { return { id: "", error: "자유 기록의 연결을 보관하지 못했습니다. 기존 초안을 남겨 두었습니다." }; }
+  });
+  const id = route === "/free" ? legacy.id : route.slice("/free/".length);
+  const creating = route === "/free/new";
+  const selected = notes.find(n => n.id === id);
+  if (legacy.error) return <ErrorState message={legacy.error} />;
+  return <>
+    <div className="actions">
+      <Button onClick={() => go("/free/new")}>새 자유 기록</Button>
+      {route !== "/free" && <a href="#/free">자유 기록 목록</a>}
+    </div>
+    {route !== "/free" && id !== legacy.id && !creating && !selected
+      ? <EmptyState title="이 자유 기록을 찾을 수 없습니다" />
+      : <NarrativeEditor data={data} kind="free-note" ownerId={null} label="자유 기록" commit={commit}
+          narrativeId={creating ? undefined : id} newNote={creating}
+          draftKey={creating ? "study-space:demo:narrative:free-note:new" : id === legacy.id ? "study-space:demo:narrative:free-note:null" : `study-space:demo:narrative:free-note:id:${id}`}
+          onSaved={creating ? savedId => go(`/free/${savedId}`) : undefined} />}
+    <section className="section-space" aria-label="저장한 자유 기록">
+      <h2>저장한 자유 기록</h2>
+      <p className="muted">생각을 저장해도 공부 회차는 늘어나지 않습니다. 새 기록의 초안은 ‘새 자유 기록’에서 이어 씁니다.</p>
+      <div className="card-stack">{notes.slice().reverse().map(note => <Card key={note.id}>
+        <a href={`#/free/${note.id}`} aria-current={selected?.id === note.id ? "page" : undefined}>
+          {note.body.trim().split("\n")[0].slice(0, 80) || "내용 없이 남긴 자유 기록"}
+        </a>
+        <small>{new Date(note.updatedAt).toLocaleString("ko-KR")}</small>
+      </Card>)}</div>
+    </section>
+  </>;
+}
+
 function RecordForm({
   data,
   initialTarget,
@@ -1077,8 +1106,12 @@ function RecordForm({
   const key = initialTarget || "multiple";
   const [boot] = useState(() => {
     try {
-      return { draft: readDraft(localStorage, key), error: "" };
+      const storageKey = `study-space:demo:draft:${key}`;
+      const rescued = readRescuedDraft(storageKey);
+      if (rescued) { const draft = JSON.parse(rescued); validateFormDraft(draft, key); return { draft, error: draftReadError(storageKey) }; }
+      return { draft: readDraft(localStorage, key), error: draftReadError(storageKey) };
     } catch (e) {
+      rememberDraftReadError(`study-space:demo:draft:${key}`, message(e));
       return { draft: null, error: message(e) };
     }
   });
@@ -1095,7 +1128,7 @@ function RecordForm({
       },
   );
   const currentForm = useRef(form);
-  const [draftError, setDraftError] = useState(boot.error);
+  const [draftError, setDraftError] = useState(boot.error || (draftHasUnstoredText(`study-space:demo:draft:${key}`) ? "저장에 실패한 입력을 이 창에서 유지합니다. 다시 저장하거나 복사해 주세요." : ""));
   const [filter, setFilter] = useState("");
   const guard = useRef(false);
   const nodes = active(data.nodes).filter(
@@ -1104,9 +1137,11 @@ function RecordForm({
   const change = (next: FormDraft) => {
     currentForm.current = next;
     setForm(next);
-    if (boot.error) return;
+    const storageKey = `study-space:demo:draft:${key}`;
+    if (boot.error) { rescueWithoutOverwrite(storageKey, JSON.stringify(next)); return; }
     try {
-      saveDraft(localStorage, next);
+      validateFormDraft(next, key);
+      storeDraftSafely(storageKey, JSON.stringify(next));
       setDraftError("");
     } catch {
       setDraftError(
@@ -1139,6 +1174,7 @@ function RecordForm({
     });
     if (next) {
       let warning: string | undefined;
+      clearRescuedDraft(`study-space:demo:draft:${key}`);
       try {
         localStorage.removeItem(`study-space:demo:draft:${key}`);
       } catch {
@@ -1220,6 +1256,7 @@ function RecordForm({
               placeholder="짧은 메모, 막힌 점, 긴 생각 모두 괜찮습니다."
             />
             <TraceEditor
+              definitions={data.nodes.some(node => node.id === id) ? resolveCriteria(data, id).items : undefined}
               trace={form.trace[id] || {}}
               onChange={(trace) =>
                 change({ ...form, trace: { ...form.trace, [id]: trace } })
@@ -1330,67 +1367,14 @@ function RecordForm({
     </div>
   );
 }
-function TraceEditor({
-  trace,
-  onChange,
-}: {
-  trace: TraceState;
-  onChange: (state: TraceState) => void;
-}) {
-  return (
-    <details className="trace-editor">
-      <summary>공부 방법과 체크 · 선택</summary>
-      <p className="muted">
-        순서 없이 필요한 것을 골라 해 보세요. 체크는 일부 시도와 막힘도
-        포함합니다.
-      </p>
-      {Object.entries(TRACE_GROUP_LABELS).map(([group, label]) => (
-        <fieldset key={group}>
-          <legend>{label}</legend>
-          {TRACE_ITEMS.filter((item) => item.group === group).map((item) => (
-            <div key={item.id}>
-              <Checkbox
-                label={item.label}
-                checked={trace[item.id]?.status === "checked"}
-                onChange={(e) =>
-                  onChange({
-                    ...trace,
-                    [item.id]: {
-                      ...trace[item.id],
-                      status: e.target.checked ? "checked" : "unchecked",
-                      definition: {
-                        id: item.id,
-                        group: item.group,
-                        label: item.label,
-                        version: 1,
-                        mode: item.mode,
-                      },
-                    },
-                  })
-                }
-              />
-              <p className="trace-hint">{item.question}</p>
-            </div>
-          ))}
-        </fieldset>
-      ))}
-      <details>
-        <summary>TRACE 공부 방법 안내</summary>
-        <p>
-          흐름 조망(T), 실효 정립(R), 해결 연습(A), 수행 검증(C), 본질 해석(E)은
-          왕복할 수 있는 활동입니다. 자기화 재구성은 C2에 속하고, 의인화 문답은
-          여러 활동에 활용하는 선택 기법입니다.
-        </p>
-      </details>
-    </details>
-  );
-}
 function RecordCard({
   record,
   commit,
+  allowNewWrittenReview,
 }: {
   record: StudyRecord;
   commit: Commit;
+  allowNewWrittenReview: boolean;
 }) {
   const body = useTextDraft(
     `study-space:demo:record:${record.id}`,
@@ -1469,10 +1453,19 @@ function RecordCard({
           {Object.entries(record.trace)
             .filter(([, value]) => value.status === "checked")
             .map(
-              ([id]) => TRACE_ITEMS.find((item) => item.id === id)?.label || id,
+              ([id, value]) => value.definition?.label || TRACE_ITEMS.find((item) => item.id === id)?.label || id,
             )
             .join(" · ") || "선택한 공부 방법이 없습니다."}
         </p>
+        {Object.entries(record.trace).map(([id, item]) => <details key={id}>
+          <summary>{item.definition?.label || TRACE_ITEMS.find(value => value.id === id)?.label || `이전 항목 (${id})`} · {{checked:"체크함",unchecked:"미체크",na:"해당 없음",deferred:"보류"}[item.status]}</summary>
+          {item.note !== undefined && <p className="prose">{item.note}</p>}
+          {item.repeats?.map(repeat => <div key={repeat.id}>
+            <p>{repeat.kind === "unknown" ? "반복 횟수 모름" : `${repeat.kind === "minimum" ? "최소 " : ""}${repeat.count}회 반복`}</p>
+            {repeat.note !== undefined && <p className="prose">{repeat.note}</p>}
+          </div>)}
+        </details>)}
+        {(allowNewWrittenReview || record.trace.Cself1 || answer.body) && <>
         <Textarea
           label="시험 전, 자신의 문장으로 설명하기"
           value={answer.body}
@@ -1527,6 +1520,7 @@ function RecordCard({
         <p className="muted">
           서술 점검은 실제 정확성이나 목표 달성과 별개입니다.
         </p>
+        </>}
       </details>
     </Card>
   );

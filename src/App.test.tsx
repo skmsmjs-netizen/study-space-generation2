@@ -3,6 +3,8 @@ import userEvent from '@testing-library/user-event';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import App from './App';
 import { DEMO_KEY, DemoRepository, readDraft } from './data/demo-repository';
+import { TRACE_ITEMS } from './domain/trace';
+import { clearRescuedDraft } from './data/draft-safety';
 import type { AppState } from './domain/model';
 
 /** Synthetic DOM integration, not physical IME/device/network evidence. */
@@ -215,5 +217,152 @@ describe('study flows preserve meaning and input', () => {
     await user.click(screen.getByRole('button', { name: '서술 저장' }));
     expect(checked).not.toBeChecked(); expect(checked).toBeEnabled();
     expect(currentRecords()[0].trace.Cself1.examReview?.answer).toBe('조건을 고쳐 쓴 설명입니다.');
+  });
+});
+
+
+describe('multiple free notes and search', () => {
+  it('keeps legacy unsaved text apart from a new note, with stable IDs on return', async () => {
+    localStorage.setItem('study-space:demo:narrative:free-note:null', JSON.stringify({body:'  이전 초안\n원문',version:0}));
+    const user = userEvent.setup(); await open('/free');
+    expect(screen.getByRole('textbox',{name:'자유 기록'})).toHaveValue('  이전 초안\n원문');
+    await user.click(screen.getByRole('button',{name:'새 자유 기록'}));
+    await waitFor(()=>expect(screen.getByRole('textbox',{name:'자유 기록'})).toHaveValue(''));
+    fireEvent.change(screen.getByRole('textbox',{name:'자유 기록'}),{target:{value:'별도 새 기록'}});
+    await user.click(screen.getByRole('button',{name:'내용 저장'}));
+    await waitFor(()=>expect(state().narratives.filter(n=>n.kind==='free-note')).toHaveLength(1));
+    const newId=state().narratives.find(n=>n.kind==='free-note')!.id;
+    await navigate('/free');
+    expect(screen.getByRole('textbox',{name:'자유 기록'})).toHaveValue('  이전 초안\n원문');
+    await user.click(screen.getByRole('button',{name:'내용 저장'}));
+    expect(state().narratives.filter(n=>n.kind==='free-note')).toHaveLength(2);
+    expect(state().narratives.find(n=>n.id===newId)?.body).toBe('별도 새 기록');
+    await navigate(`/free/${newId}`);
+    fireEvent.change(screen.getByRole('textbox',{name:'자유 기록'}),{target:{value:'별도 새 기록 수정 초안'}});
+    await navigate('/'); await navigate(`/free/${newId}`);
+    expect(screen.getByRole('textbox',{name:'자유 기록'})).toHaveValue('별도 새 기록 수정 초안');
+    await user.click(screen.getByRole('button',{name:'내용 저장'}));
+    expect(state().narratives.filter(n=>n.kind==='free-note')).toHaveLength(2);
+    expect(state().narratives.find(n=>n.id===newId)?.body).toBe('별도 새 기록 수정 초안');
+    expect(currentRecords()).toHaveLength(0);
+  });
+  it('finds free notes and restores search on return without publishing composition', async () => {
+    const repo=new DemoRepository(localStorage);
+    repo.execute({type:'updateNarrative',id:'note-search',kind:'free-note',ownerId:null,body:'검색 전용 자유 메모',expectedVersion:0,userId:'demo-learner',namespace:'demo',opId:'note-search-op',at:'2026-09-30T00:00:00Z'});
+    await open('/search');
+    const search=screen.getByRole('searchbox',{name:'과목·목차·기록 검색'});
+    fireEvent.compositionStart(search); fireEvent.change(search,{target:{value:'검색'}});
+    expect(screen.queryByRole('link',{name:'검색 전용 자유 메모'})).not.toBeInTheDocument();
+    fireEvent.compositionEnd(search,{data:'검색'});
+    expect(screen.getByRole('link',{name:'검색 전용 자유 메모'})).toHaveAttribute('href','#/free/note-search');
+    await navigate('/free/note-search'); await navigate('/search');
+    expect(screen.getByRole('searchbox')).toHaveValue('검색');
+    expect(screen.getByRole('link',{name:'검색 전용 자유 메모'})).toBeInTheDocument();
+  });
+});
+
+
+it('saves optional deferred activity notes and unknown repetitions without normalizing their text', async () => {
+  const user=userEvent.setup(); await open(`/record/${firstTopic}`);
+  await user.click(screen.getByText('공부 방법과 체크 · 선택',{exact:true}));
+  const group=within(screen.getByRole('checkbox',{name:'이 주제에서 답하려는 질문을 한 문장으로 적어보았다.'}).closest('.trace-activity') as HTMLElement);
+  await user.click(group.getAllByText('상태·메모·반복 · 선택',{exact:true})[0]);
+  await user.selectOptions(group.getByRole('combobox',{name:'활동 상태'}),'deferred');
+  fireEvent.change(group.getByRole('textbox',{name:'활동 메모 · 선택'}),{target:{value:'  막힌 조건\n'}});
+  await user.click(group.getByRole('button',{name:'한 번 더 함'}));
+  await user.selectOptions(group.getByRole('combobox',{name:'횟수의 기억 정도'}),'unknown');
+  fireEvent.change(group.getByRole('textbox',{name:'반복 메모 · 선택'}),{target:{value:'  횟수 미정\n'}});
+  await user.click(screen.getByRole('button',{name:'1개 주제 기록 저장'}));
+  await waitFor(()=>expect(currentRecords()).toHaveLength(1));
+  expect(currentRecords()[0].trace.Td1).toMatchObject({status:'deferred',note:'  막힌 조건\n',repeats:[{kind:'unknown',count:null,note:'  횟수 미정\n'}]});
+  await navigate(`/node/${firstTopic}`);
+  await user.click(screen.getByText('남긴 체크와 시험 전 서술 점검',{exact:true}));
+  await user.click(screen.getByText('이 주제에서 답하려는 질문을 한 문장으로 적어보았다. · 보류',{exact:true}));
+  expect(screen.getByText('반복 횟수 모름')).toBeInTheDocument();
+});
+
+
+describe('failed draft storage retains text within the current tab', () => {
+  it('rescues quota-failed study text through route changes and clears unload protection after save', async () => {
+    const user = userEvent.setup(), key = `study-space:demo:draft:${firstTopic}`;
+    await open(`/record/${firstTopic}`);
+    const originalSet = Storage.prototype.setItem;
+    const spy = vi.spyOn(Storage.prototype, 'setItem').mockImplementation(function (this: Storage, name: string, value: string) {
+      if (name === key) throw new DOMException('Quota exceeded', 'QuotaExceededError');
+      originalSet.call(this, name, value);
+    });
+    try {
+      fireEvent.change(screen.getByRole('textbox', { name: '남길 생각 · 선택' }), { target: { value: '  저장 오류 뒤에도\n입력을 보존' } });
+      expect(screen.getByRole('alert')).toHaveTextContent('초안을 보관하지 못했습니다');
+      const unload = new Event('beforeunload', { cancelable: true }); window.dispatchEvent(unload);
+      expect(unload.defaultPrevented).toBe(true);
+      await navigate('/'); await navigate(`/record/${firstTopic}`);
+      expect(screen.getByRole('textbox', { name: '남길 생각 · 선택' })).toHaveValue('  저장 오류 뒤에도\n입력을 보존');
+      expect(currentRecords()).toHaveLength(0); expect(localStorage.getItem(key)).toBeNull();
+      spy.mockRestore();
+      await user.click(screen.getByRole('button', { name: '1개 주제 기록 저장' }));
+      expect(currentRecords()[0].body).toBe('  저장 오류 뒤에도\n입력을 보존');
+      const afterSave = new Event('beforeunload', { cancelable: true }); window.dispatchEvent(afterSave);
+      expect(afterSave.defaultPrevented).toBe(false);
+    } finally { clearRescuedDraft(key); }
+  });
+
+  it('keeps new text and corrupt original draft separate after navigation', async () => {
+    const key = 'study-space:demo:narrative:free-note:null'; localStorage.setItem(key, '{broken');
+    await open('/free');
+    try {
+      fireEvent.change(screen.getByRole('textbox', { name: '자유 기록' }), { target: { value: '복사할 새 생각' } });
+      await navigate('/'); await navigate('/free');
+      expect(screen.getByRole('textbox', { name: '자유 기록' })).toHaveValue('복사할 새 생각');
+      expect(screen.getByRole('button', { name: '내용 저장' })).toBeDisabled();
+      expect(localStorage.getItem(key)).toBe('{broken');
+      expect(currentRecords()).toHaveLength(0);
+    } finally { clearRescuedDraft(key); }
+  });
+});
+
+
+describe('outline changes keep the original study identity', () => {
+  it('moves a topic with its record and undo restores the same identity and old parent', async () => {
+    const user = userEvent.setup(), repo = new DemoRepository(localStorage);
+    repo.execute({ type: 'saveRecords', sessionId: 'move-session', entries: [{ targetId: firstTopic, done: true, body: '옮겨도 남는 원문' }], dateEvidence: { kind: 'unknown' }, opId: 'move-seed', userId: 'demo-learner', namespace: 'demo', at: '2026-09-29T03:00:00.000Z' });
+    const before = state(), parentId = before.nodes.find(node => node.id === firstTopic)!.parentId;
+    await open(`/node/${firstTopic}`);
+    await user.click(screen.getByText('목차 관리', { exact: true }));
+    await user.click(screen.getByText('위치 옮기기', { exact: true }));
+    const destination = screen.getByRole('combobox', { name: '옮길 상위 항목' });
+    expect(within(destination).queryByRole('option', { name: firstName })).not.toBeInTheDocument();
+    await user.selectOptions(destination, '');
+    await user.click(screen.getByRole('button', { name: '이 위치로 옮기기' }));
+    expect(state().nodes.find(node => node.id === firstTopic)?.parentId).toBeNull();
+    expect(currentRecords()).toEqual(before.records);
+    expect(screen.getByText('옮겨도 남는 원문')).toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: '되돌리기' }));
+    expect(state().nodes.find(node => node.id === firstTopic)?.parentId).toBe(parentId);
+    expect(currentRecords()).toEqual(before.records);
+  });
+
+  it('applies a personal criterion only to new activity input without changing an old record', async () => {
+    const user = userEvent.setup(), repo = new DemoRepository(localStorage);
+    repo.execute({ type: 'saveRecords', sessionId: 'criteria-old', entries: [{ targetId: firstTopic, done: true, trace: { T1: { status: 'checked', note: '이전 정의로 시도' }, Cself1: { status: 'unchecked', note: '지난 자기화 기록' } } }], dateEvidence: { kind: 'unknown' }, opId: 'criteria-old', userId: 'demo-learner', namespace: 'demo', at: '2026-09-29T03:00:00.000Z' });
+    const before = currentRecords(); await open(`/node/${firstTopic}`);
+    await user.click(screen.getByRole('button', { name: '공부 기준 조정' }));
+    fireEvent.change(screen.getAllByRole('textbox', { name: '항목 문구' })[0], { target: { value: '질문을 그림으로 나타내 보았다.' } });
+    await user.selectOptions(screen.getAllByRole('combobox', {name:'적용 여부'})[TRACE_ITEMS.findIndex(item => item.id === 'Cself1')], 'excluded');
+    await user.click(screen.getByRole('button', { name: '기준 적용' }));
+    expect(currentRecords()).toEqual(before);
+    await user.click(screen.getByRole('button', { name: '공부 기록하기' }));
+    await waitFor(() => expect(screen.getByRole('checkbox', { name: '질문을 그림으로 나타내 보았다.' })).toBeInTheDocument());
+    expect(screen.getByRole('checkbox', { name: '질문을 그림으로 나타내 보았다.' })).not.toBeChecked();
+    await user.click(screen.getByRole('checkbox', { name: '질문을 그림으로 나타내 보았다.' }));
+    await user.click(screen.getByRole('button', { name: '1개 주제 기록 저장' }));
+    expect(currentRecords()).toHaveLength(2);
+    const newRecord = currentRecords().find(record => record.id !== before[0].id)!;
+    expect(newRecord.trace.T1).toBeUndefined();
+    expect(Object.values(newRecord.trace)[0].definition?.label).toBe('질문을 그림으로 나타내 보았다.');
+    expect(currentRecords().find(record => record.id === before[0].id)).toEqual(before[0]);
+    await navigate(`/node/${firstTopic}`);
+    for (const summary of screen.getAllByText('남긴 체크와 시험 전 서술 점검')) await user.click(summary);
+    expect(screen.getAllByRole('textbox', {name:'시험 전, 자신의 문장으로 설명하기'})).toHaveLength(1);
   });
 });

@@ -104,3 +104,6 @@ export function LoadingState({ message = '불러오고 있습니다.' }: { messa
 export function ErrorState({ title = '다시 확인해 주세요', message, onRetry }: { title?: string; message: string; onRetry?: () => void }) {
   return <section className="ui-state ui-state--error"><div role="alert"><h3 className="ui-state-title">{title}</h3><p className="ui-state-message">{message}</p></div>{onRetry && <Button onClick={onRetry}>다시 시도</Button>}</section>;
 }
+
+export { NavigationBar, type NavigationBarProps, type NavigationItem } from './navigation-bar';
+export { ContextMenu, type ContextMenuProps, type ContextMenuItem } from './context-menu';
