@@ -1,0 +1,8 @@
+
+ RUN  v5.0.2 <generation2>
+
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  02:55:11
+   Duration  22.36s (setup 60%, import 35%, environment 2%, transform 2%, tests 1%)

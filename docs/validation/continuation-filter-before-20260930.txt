@@ -1,0 +1,49 @@
+
+ RUN  v5.0.2 <generation2>
+
+ ❯ src/record-filter.test.tsx (3 tests | 2 failed) 545ms
+   ❯ record topic filter context (3)
+     × restores the filter on return and remount while preserving the same selected draft and session 274ms
+     × keeps filters separate for multiple and explicit targets and preserves deliberate clearing 101ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/record-filter.test.tsx > record topic filter context > restores the filter on return and remount while preserving the same selected draft and session
+Error: expect(element).toHaveValue(함수)
+
+Expected the element to have value:
+  함수
+Received:
+
+ ❯ src/record-filter.test.tsx:41:62
+     39|     const draft = readDraft(localStorage, 'multiple');
+     40|     await navigate('/'); await navigate('/record');
+     41|     expect(screen.getByRole('searchbox', { name: '주제 찾기' })).toHaveVal…
+       |                                                              ^
+     42|     expect(screen.getByRole('checkbox', { name: /함수는 어떤 관계일까/ })).toBe…
+     43|     expect(screen.getByRole('textbox', { name: '남길 생각 · 선택' })).toHave…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/record-filter.test.tsx > record topic filter context > keeps filters separate for multiple and explicit targets and preserves deliberate clearing
+Error: expect(element).toHaveValue(함수)
+
+Expected the element to have value:
+  함수
+Received:
+
+ ❯ src/record-filter.test.tsx:59:79
+     57|     expect(screen.getByRole('searchbox')).toHaveValue('');
+     58|     fireEvent.change(screen.getByRole('searchbox'), { target: { value:…
+     59|     await navigate(`/record/${first}`); expect(screen.getByRole('searc…
+       |                                                                               ^
+     60|     fireEvent.change(screen.getByRole('searchbox'), { target: { value:…
+     61|     await navigate('/record'); expect(screen.getByRole('searchbox')).t…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 1 passed (3)
+   Start at  03:07:02
+   Duration  1.67s (environment 39%, tests 35%, transform 13%, setup 7%, import 6%)

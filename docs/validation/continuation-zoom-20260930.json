@@ -1,0 +1,120 @@
+{
+  "verified_at": "2026-09-29T17:59:45.644137+00:00",
+  "browser": "153.0.8010.53",
+  "mode": "fresh isolated headless Chrome, actual default page zoom preference, CDP verification",
+  "passed": true,
+  "reduced_motion_emulation": {
+    "media": true,
+    "styles": {
+      "animation": "none",
+      "animationDuration": "0s",
+      "transition": "all",
+      "transitionDuration": "0s"
+    },
+    "modalClosed": true,
+    "focusRestored": true,
+    "menuClosed": true
+  },
+  "steps": [
+    {
+      "name": "menu",
+      "browser_zoom": 2,
+      "pinch_scale": 1,
+      "width": 640,
+      "scrollWidth": 640,
+      "outerWidth": 1280,
+      "devicePixelRatio": 2,
+      "active": "<summary>더 보기</summary>"
+    },
+    {
+      "name": "menu-navigation",
+      "browser_zoom": 2,
+      "pinch_scale": 1,
+      "width": 640,
+      "scrollWidth": 640,
+      "outerWidth": 1280,
+      "devicePixelRatio": 2,
+      "active": "<h1 tabindex=\"-1\">휴지통</h1>"
+    },
+    {
+      "name": "modal",
+      "browser_zoom": 2,
+      "pinch_scale": 1,
+      "width": 640,
+      "scrollWidth": 640,
+      "outerWidth": 1280,
+      "devicePixelRatio": 2,
+      "active": "<button aria-label=\"학기 추가 닫기\" title=\"학기 추가 닫기\" type=\"button\" class=\"ui-button ui-button--quiet ui-icon-button\"><span aria-hidden=\"true\">×</span></button>"
+    },
+    {
+      "name": "error",
+      "browser_zoom": 2,
+      "pinch_scale": 1,
+      "width": 640,
+      "scrollWidth": 640,
+      "outerWidth": 1280,
+      "devicePixelRatio": 2,
+      "active": "<button type=\"submit\" class=\"ui-button ui-button--primary\">추가하기</button>"
+    },
+    {
+      "name": "error-save-reachable",
+      "browser_zoom": 2,
+      "pinch_scale": 1,
+      "width": 640,
+      "scrollWidth": 640,
+      "outerWidth": 1280,
+      "devicePixelRatio": 2,
+      "active": "<button type=\"submit\" class=\"ui-button ui-button--primary\">추가하기</button>"
+    },
+    {
+      "name": "saved",
+      "browser_zoom": 2,
+      "pinch_scale": 1,
+      "width": 640,
+      "scrollWidth": 640,
+      "outerWidth": 1280,
+      "devicePixelRatio": 2,
+      "active": "<button type=\"button\" class=\"ui-button ui-button--quiet\">학기 추가</button>"
+    },
+    {
+      "name": "return",
+      "browser_zoom": 2,
+      "pinch_scale": 1,
+      "width": 640,
+      "scrollWidth": 640,
+      "outerWidth": 1280,
+      "devicePixelRatio": 2,
+      "active": "<a href=\"#/subjects\" data-navigation-focus=\"navigation-item:[&quot;#/subjects&quot;,&quot;과목&quot;]\">과목</a>"
+    },
+    {
+      "name": "reloaded",
+      "browser_zoom": 2,
+      "pinch_scale": 1,
+      "width": 640,
+      "scrollWidth": 640,
+      "outerWidth": 1280,
+      "devicePixelRatio": 2,
+      "active": "<a href=\"#/subjects\" data-navigation-focus=\"navigation-item:[&quot;#/subjects&quot;,&quot;과목&quot;]\">과목</a>"
+    },
+    {
+      "name": "reduced-modal",
+      "browser_zoom": 2,
+      "pinch_scale": 1,
+      "width": 640,
+      "scrollWidth": 640,
+      "outerWidth": 1280,
+      "devicePixelRatio": 2,
+      "active": "<button aria-label=\"학기 추가 닫기\" title=\"학기 추가 닫기\" type=\"button\" class=\"ui-button ui-button--quiet ui-icon-button\"><span aria-hidden=\"true\">×</span></button>"
+    },
+    {
+      "name": "reduced-return",
+      "browser_zoom": 2,
+      "pinch_scale": 1,
+      "width": 640,
+      "scrollWidth": 640,
+      "outerWidth": 1280,
+      "devicePixelRatio": 2,
+      "active": "<summary>더 보기</summary>"
+    }
+  ]
+}

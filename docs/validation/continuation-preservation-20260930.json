@@ -1,0 +1,19 @@
+{
+  "verified_at": "2026-09-29T18:06:28.228758+00:00",
+  "total": 1851,
+  "matching": 1849,
+  "changed": [
+    {
+      "archive": "project/AGENTS.md",
+      "before": "b1139b7d1d7e54ec386bee8723b4fafe4a8934c95affa4152cc29452c484c9a5",
+      "after": "f7d4c3ff30d8f71d57dceba2f65aec929dd6dc9e0b58282dfa9527b4f9c1a806"
+    },
+    {
+      "archive": "project/간단 인계.md",
+      "before": "25e249ef2f377855c8da6e3cfc7d0f3b981cd81f1d0048cee8ef5537f912bf3a",
+      "after": "f2ac6fd12cc14a437f1d6cf5ccfba1a2b7df11a3b4cfd7a79c7a4e53ed103b8f"
+    }
+  ],
+  "missing": [],
+  "errors": []
+}

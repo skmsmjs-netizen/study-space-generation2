@@ -132,7 +132,7 @@
     "UX_SURFACE": 32,
     "COMPONENT": 21,
     "HISTORY": 665,
-    "FOLLOWUP": 4
+    "FOLLOWUP": 8
   },
   "semantic_review": {
     "status": "미해결",
@@ -876,7 +876,9 @@
           "review": "이번 작업에서 요구 목록 재독. 실행 증거와 구별."
         }
       ],
-      "correction_dates": [],
+      "correction_dates": [
+        "2026-09-30"
+      ],
       "classification": "B",
       "classification_reason": "기존 핵심 조건을 유지하며 PHASE.06, PHASE.07의 독립 증거로 판단합니다.",
       "phase": "PHASE.06",
@@ -913,24 +915,45 @@
       },
       "implementation": {
         "files": [
-          "src/App.tsx"
+          "src/App.tsx",
+          "src/ui/navigation-context.ts"
         ],
-        "scope": "관련 구현 위치만 연결했습니다. 이 핵심 조건의 전체 충족·실제 실행 완료를 뜻하지 않습니다.",
+        "scope": "관련 구현 위치만 연결했습니다. 이 핵심 조건의 전체 충족·실제 실행 완료를 뜻하지 않습니다. 2026-09-30 이번 후속: B29–B36의 다운로드 실수신/선택글복귀/보이는메뉴초점/검색무결과 및 A최근없음/E다른범위/G후속수정의 좁은 실행. B37 실제Chrome200%·B38감소모션 emulation 추가. 전체요구/온라인/물리/학습효과 통과 아님.",
         "test_connections": [
           "src/App.test.tsx",
-          "src/domain/domain.test.ts"
+          "src/domain/domain.test.ts",
+          "src/ui/navigation-context.test.tsx",
+          "src/search.test.tsx"
         ]
       },
       "evidence": {
         "automated": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-tests-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-build-20260930.txt"
+            }
+          ],
+          "scope": "224개 도메인/jsdom 통과·성능1개 건너뜀; 해당 전체계약의 모든 자동요구 통과를 의미하지 않습니다.",
+          "verified_at": "2026-09-29T17:59:45.644137+00:00",
+          "commit": "482d302c467774307e0f798e00329f5086eb90cc"
         },
         "browser": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "browser",
+              "path": "docs/validation/continuation-ui-20260930.md"
+            }
+          ],
+          "scope": "B29–B36의 다운로드 실수신/선택글복귀/보이는메뉴초점/검색무결과 및 A최근없음/E다른범위/G후속수정의 좁은 실행. B37 실제Chrome200%·B38감소모션 emulation 추가. 전체요구/온라인/물리/학습효과 통과 아님.",
+          "verified_at": "2026-09-29T17:59:45.644137+00:00",
+          "commit": "482d302c467774307e0f798e00329f5086eb90cc"
         },
         "physical_device": {
           "status": "미검증",
@@ -970,8 +993,18 @@
       ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
-        "implementation_commits": [],
-        "artifacts": []
+        "implementation_commits": [
+          "cfbd5d8ff57811284988566d4de7866ef2cc640e",
+          "b50ab3708e9efa87c1722b6a28b01cfe0c2b0eca",
+          "06b2707db416c894fe5fd71688136e1d9b1c95c4",
+          "482d302c467774307e0f798e00329f5086eb90cc"
+        ],
+        "artifacts": [
+          "docs/validation/continuation-final-tests-20260930.txt",
+          "docs/validation/continuation-final-build-20260930.txt",
+          "docs/validation/continuation-ui-20260930.md",
+          "docs/phase-report-continuation-20260930.md"
+        ]
       },
       "owner_phases": [
         "PHASE.06",
@@ -994,7 +1027,9 @@
           "review": "이번 작업에서 요구 목록 재독. 실행 증거와 구별."
         }
       ],
-      "correction_dates": [],
+      "correction_dates": [
+        "2026-09-30"
+      ],
       "classification": "B",
       "classification_reason": "기존 핵심 조건을 유지하며 PHASE.07, PHASE.31의 독립 증거로 판단합니다.",
       "phase": "PHASE.07",
@@ -1007,7 +1042,7 @@
           "OutlineNode",
           "derived View"
         ],
-        "reason": "21계약/19공통 export를 구분하고 각 상태의 접근성 이름·키보드·초점복원·터치·모션을 실제 소비 화면에서 시험한다."
+        "reason": "21계약/21구현/16제품사용/5미사용를 구분하고 각 상태의 접근성 이름·키보드·초점복원·터치·모션을 실제 소비 화면에서 시험한다."
       },
       "ui": {
         "targets": [
@@ -1015,7 +1050,7 @@
           "UI.UI28"
         ],
         "operations": [
-          "21계약/19공통 export를 구분하고 각 상태의 접근성 이름·키보드·초점복원·터치·모션을 실제 소비 화면에서 시험한다."
+          "21계약/21구현/16제품사용/5미사용를 구분하고 각 상태의 접근성 이름·키보드·초점복원·터치·모션을 실제 소비 화면에서 시험한다."
         ],
         "states": [
           "문제인본문/위계/강조/탐색은새공통컴포넌트·View로구현",
@@ -1035,7 +1070,7 @@
           "src/ui/criteria-editor.tsx",
           "src/ui/index.tsx"
         ],
-        "scope": "관련 구현 위치만 연결했습니다. 이 핵심 조건의 전체 충족·실제 실행 완료를 뜻하지 않습니다. 2026-09-30 후속: Modal 배경 inert/Tab 후보 개선 및 기준·표 Undo route복귀; 전체 21종 중16실제호출·5미사용 경계. B12–B18. 전체 온라인/이관/기기 검증과 구별.",
+        "scope": "관련 구현 위치만 연결했습니다. 이 핵심 조건의 전체 충족·실제 실행 완료를 뜻하지 않습니다. 2026-09-30 후속: Modal 배경 inert/Tab 후보 개선 및 기준·표 Undo route복귀; 전체 21종 중16실제호출·5미사용 경계. B12–B18. 전체 온라인/이관/기기 검증과 구별. 2026-09-30 이번 후속: B29–B36의 다운로드 실수신/선택글복귀/보이는메뉴초점/검색무결과 및 A최근없음/E다른범위/G후속수정의 좁은 실행. B37 실제Chrome200%·B38감소모션 emulation 추가. 전체요구/온라인/물리/학습효과 통과 아님.",
         "test_connections": [
           "src/App.test.tsx",
           "src/domain/domain.test.ts",
@@ -1045,7 +1080,8 @@
           "src/ui/navigation-context.test.tsx",
           "src/data/draft-safety.test.ts",
           "src/ui/criteria-editor.test.tsx",
-          "src/ui/component.test.tsx"
+          "src/ui/component.test.tsx",
+          "src/search.test.tsx"
         ]
       },
       "evidence": {
@@ -1055,11 +1091,33 @@
             {
               "level": "automated",
               "path": "docs/validation/followup-final-tests-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-tests-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-build-20260930.txt"
             }
           ],
-          "scope": "Modal 배경 inert/Tab 후보 개선 및 기준·표 Undo route복귀; 전체 21종 중16실제호출·5미사용 경계. B12–B18. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
-          "verified_at": "2026-09-29T16:24:18.753341+00:00",
-          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
+          "scope": "224개 도메인/jsdom 통과·성능1개 건너뜀; 해당 전체계약의 모든 자동요구 통과를 의미하지 않습니다.",
+          "verified_at": "2026-09-29T17:59:45.644137+00:00",
+          "commit": "482d302c467774307e0f798e00329f5086eb90cc",
+          "previous_executions": [
+            {
+              "status": "수정 후 통과",
+              "scope": "Modal 배경 inert/Tab 후보 개선 및 기준·표 Undo route복귀; 전체 21종 중16실제호출·5미사용 경계. B12–B18. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+              "verified_at": "2026-09-29T16:24:18.753341+00:00",
+              "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d",
+              "artifacts": [
+                {
+                  "level": "automated",
+                  "path": "docs/validation/followup-final-tests-20260930.txt"
+                }
+              ]
+            }
+          ]
         },
         "browser": {
           "status": "수정 후 통과",
@@ -1067,11 +1125,29 @@
             {
               "level": "browser",
               "path": "docs/validation/followup-ui-20260930.md"
+            },
+            {
+              "level": "browser",
+              "path": "docs/validation/continuation-ui-20260930.md"
             }
           ],
-          "scope": "Modal 배경 inert/Tab 후보 개선 및 기준·표 Undo route복귀; 전체 21종 중16실제호출·5미사용 경계. B12–B18. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
-          "verified_at": "2026-09-29T16:24:18.753341+00:00",
-          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
+          "scope": "B29–B36의 다운로드 실수신/선택글복귀/보이는메뉴초점/검색무결과 및 A최근없음/E다른범위/G후속수정의 좁은 실행. B37 실제Chrome200%·B38감소모션 emulation 추가. 전체요구/온라인/물리/학습효과 통과 아님.",
+          "verified_at": "2026-09-29T17:59:45.644137+00:00",
+          "commit": "482d302c467774307e0f798e00329f5086eb90cc",
+          "previous_executions": [
+            {
+              "status": "수정 후 통과",
+              "scope": "Modal 배경 inert/Tab 후보 개선 및 기준·표 Undo route복귀; 전체 21종 중16실제호출·5미사용 경계. B12–B18. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+              "verified_at": "2026-09-29T16:24:18.753341+00:00",
+              "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d",
+              "artifacts": [
+                {
+                  "level": "browser",
+                  "path": "docs/validation/followup-ui-20260930.md"
+                }
+              ]
+            }
+          ]
         },
         "physical_device": {
           "status": "미검증",
@@ -1102,13 +1178,15 @@
       "status": "미검증",
       "not_applicable_reason": null,
       "remaining": [
-        "21계약/19공통 export를 구분하고 각 상태의 접근성 이름·키보드·초점복원·터치·모션을 실제 소비 화면에서 시험한다.에 대한 전체 적용 범위의 실행·의미 대조가 아직 닫히지 않았습니다."
+        "21계약/21구현/16제품사용/5미사용를 구분하고 각 상태의 접근성 이름·키보드·초점복원·터치·모션을 실제 소비 화면에서 시험한다.에 대한 전체 적용 범위의 실행·의미 대조가 아직 닫히지 않았습니다."
       ],
-      "next_action": "PHASE.07 담당 범위부터 21계약/19공통 export를 구분하고 각 상태의 접근성 이름·키보드·초점복원·터치·모션을 실제 소비 화면에서 시험한다.",
+      "next_action": "PHASE.07 담당 범위부터 21계약/21구현/16제품사용/5미사용를 구분하고 각 상태의 접근성 이름·키보드·초점복원·터치·모션을 실제 소비 화면에서 시험한다.",
       "related": [
         "WORK.R05",
         "FEATURE.F46",
-        "INV.INV21"
+        "INV.INV21",
+        "FOLLOWUP.VISIBLE_NAVIGATION_FOCUS",
+        "FOLLOWUP.SEARCH_EMPTY_FEEDBACK"
       ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
@@ -1116,22 +1194,30 @@
           "dd39f5b",
           "5e1d223",
           "752ab1e",
-          "ce6ee432bee65d184f65145414ee4a1e586c838d"
+          "ce6ee432bee65d184f65145414ee4a1e586c838d",
+          "cfbd5d8ff57811284988566d4de7866ef2cc640e",
+          "b50ab3708e9efa87c1722b6a28b01cfe0c2b0eca",
+          "06b2707db416c894fe5fd71688136e1d9b1c95c4",
+          "482d302c467774307e0f798e00329f5086eb90cc"
         ],
         "artifacts": [
           "docs/validation/followup-execution-20260930.json",
-          "docs/validation/followup-ui-20260930.md"
+          "docs/validation/followup-ui-20260930.md",
+          "docs/validation/continuation-final-tests-20260930.txt",
+          "docs/validation/continuation-final-build-20260930.txt",
+          "docs/validation/continuation-ui-20260930.md",
+          "docs/phase-report-continuation-20260930.md"
         ]
       },
       "owner_phases": [
         "PHASE.07",
         "PHASE.31"
       ],
-      "acceptance_contract": "21계약/19공통 export를 구분하고 각 상태의 접근성 이름·키보드·초점복원·터치·모션을 실제 소비 화면에서 시험한다.",
+      "acceptance_contract": "21계약/21구현/16제품사용/5미사용를 구분하고 각 상태의 접근성 이름·키보드·초점복원·터치·모션을 실제 소비 화면에서 시험한다.",
       "verification_plan": {
-        "automated": "21계약/19공통 export를 구분하고 각 상태의 접근성 이름·키보드·초점복원·터치·모션을 실제 소비 화면에서 시험한다. (자동검사/문서·코드 의미 대조)",
-        "browser": "21계약/19공통 export를 구분하고 각 상태의 접근성 이름·키보드·초점복원·터치·모션을 실제 소비 화면에서 시험한다. (실제 브라우저 조작)",
-        "physical_device": "21계약/19공통 export를 구분하고 각 상태의 접근성 이름·키보드·초점복원·터치·모션을 실제 소비 화면에서 시험한다. (물리기기 실제 입력)"
+        "automated": "21계약/21구현/16제품사용/5미사용를 구분하고 각 상태의 접근성 이름·키보드·초점복원·터치·모션을 실제 소비 화면에서 시험한다. (자동검사/문서·코드 의미 대조)",
+        "browser": "21계약/21구현/16제품사용/5미사용를 구분하고 각 상태의 접근성 이름·키보드·초점복원·터치·모션을 실제 소비 화면에서 시험한다. (실제 브라우저 조작)",
+        "physical_device": "21계약/21구현/16제품사용/5미사용를 구분하고 각 상태의 접근성 이름·키보드·초점복원·터치·모션을 실제 소비 화면에서 시험한다. (물리기기 실제 입력)"
       }
     },
     {
@@ -1145,7 +1231,9 @@
           "review": "이번 작업에서 요구 목록 재독. 실행 증거와 구별."
         }
       ],
-      "correction_dates": [],
+      "correction_dates": [
+        "2026-09-30"
+      ],
       "classification": "B",
       "classification_reason": "기존 핵심 조건을 유지하며 PHASE.08, PHASE.13, PHASE.14의 독립 증거로 판단합니다.",
       "phase": "PHASE.08",
@@ -1191,24 +1279,45 @@
         "files": [
           "src/App.tsx",
           "src/domain/commands.ts",
-          "src/domain/model.ts"
+          "src/domain/model.ts",
+          "src/ui/navigation-context.ts"
         ],
-        "scope": "관련 구현 위치만 연결했습니다. 이 핵심 조건의 전체 충족·실제 실행 완료를 뜻하지 않습니다.",
+        "scope": "관련 구현 위치만 연결했습니다. 이 핵심 조건의 전체 충족·실제 실행 완료를 뜻하지 않습니다. 2026-09-30 이번 후속: B29–B36의 다운로드 실수신/선택글복귀/보이는메뉴초점/검색무결과 및 A최근없음/E다른범위/G후속수정의 좁은 실행. B37 실제Chrome200%·B38감소모션 emulation 추가. 전체요구/온라인/물리/학습효과 통과 아님.",
         "test_connections": [
           "src/App.test.tsx",
-          "src/domain/domain.test.ts"
+          "src/domain/domain.test.ts",
+          "src/ui/navigation-context.test.tsx",
+          "src/search.test.tsx"
         ]
       },
       "evidence": {
         "automated": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-tests-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-build-20260930.txt"
+            }
+          ],
+          "scope": "224개 도메인/jsdom 통과·성능1개 건너뜀; 해당 전체계약의 모든 자동요구 통과를 의미하지 않습니다.",
+          "verified_at": "2026-09-29T17:59:45.644137+00:00",
+          "commit": "482d302c467774307e0f798e00329f5086eb90cc"
         },
         "browser": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "browser",
+              "path": "docs/validation/continuation-ui-20260930.md"
+            }
+          ],
+          "scope": "B29–B36의 다운로드 실수신/선택글복귀/보이는메뉴초점/검색무결과 및 A최근없음/E다른범위/G후속수정의 좁은 실행. B37 실제Chrome200%·B38감소모션 emulation 추가. 전체요구/온라인/물리/학습효과 통과 아님.",
+          "verified_at": "2026-09-29T17:59:45.644137+00:00",
+          "commit": "482d302c467774307e0f798e00329f5086eb90cc"
         },
         "physical_device": {
           "status": "미검증",
@@ -1254,8 +1363,18 @@
       ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
-        "implementation_commits": [],
-        "artifacts": []
+        "implementation_commits": [
+          "cfbd5d8ff57811284988566d4de7866ef2cc640e",
+          "b50ab3708e9efa87c1722b6a28b01cfe0c2b0eca",
+          "06b2707db416c894fe5fd71688136e1d9b1c95c4",
+          "482d302c467774307e0f798e00329f5086eb90cc"
+        ],
+        "artifacts": [
+          "docs/validation/continuation-final-tests-20260930.txt",
+          "docs/validation/continuation-final-build-20260930.txt",
+          "docs/validation/continuation-ui-20260930.md",
+          "docs/phase-report-continuation-20260930.md"
+        ]
       },
       "owner_phases": [
         "PHASE.08",
@@ -1279,7 +1398,9 @@
           "review": "이번 작업에서 요구 목록 재독. 실행 증거와 구별."
         }
       ],
-      "correction_dates": [],
+      "correction_dates": [
+        "2026-09-30"
+      ],
       "classification": "B",
       "classification_reason": "기존 핵심 조건을 유지하며 PHASE.18, PHASE.19, PHASE.23의 독립 증거로 판단합니다.",
       "phase": "PHASE.18",
@@ -1326,7 +1447,7 @@
           "src/ui/criteria-editor.tsx",
           "src/ui/index.tsx"
         ],
-        "scope": "저장 실패 후 라우트 이동에서 RAM rescue와 손상된 디스크 원본 분리를 추가한 코드 위치입니다. 서버/IDB/OS 강제종료 안전성으로 승격하지 않습니다. 2026-09-30 후속: 생성/이름/이동/일괄 Modal 초안 분리·닫기/reload; 손상원문 사본/실패 RAM·재시도/정리 실패; 새 자유글 ID 복구. B14/B16/B18. 실제 실패주입은 자동검사만. 전체 온라인/이관/기기 검증과 구별.",
+        "scope": "저장 실패 후 라우트 이동에서 RAM rescue와 손상된 디스크 원본 분리를 추가한 코드 위치입니다. 서버/IDB/OS 강제종료 안전성으로 승격하지 않습니다. 2026-09-30 후속: 생성/이름/이동/일괄 Modal 초안 분리·닫기/reload; 손상원문 사본/실패 RAM·재시도/정리 실패; 새 자유글 ID 복구. B14/B16/B18. 실제 실패주입은 자동검사만. 전체 온라인/이관/기기 검증과 구별. 2026-09-30 이번 후속: B29–B36의 다운로드 실수신/선택글복귀/보이는메뉴초점/검색무결과 및 A최근없음/E다른범위/G후속수정의 좁은 실행. B37 실제Chrome200%·B38감소모션 emulation 추가. 전체요구/온라인/물리/학습효과 통과 아님. B40:주제검색 함수→선택/메모→오늘/Back/reload에서 필터/선택/원문보존, 실제키로 검색어지운상태 유지, 명시대상별 분리.3회귀검사 수정전2fail→수정후통과; hint저장거부에도 기록저장 가능. 새 공부사건ID/본문키를 바꾸지 않음.",
         "test_connections": [
           "src/App.test.tsx",
           "src/domain/domain.test.ts",
@@ -1336,7 +1457,9 @@
           "src/ui/navigation-context.test.tsx",
           "src/data/draft-safety.test.ts",
           "src/ui/criteria-editor.test.tsx",
-          "src/ui/component.test.tsx"
+          "src/ui/component.test.tsx",
+          "src/search.test.tsx",
+          "src/record-filter.test.tsx"
         ]
       },
       "evidence": {
@@ -1346,11 +1469,33 @@
             {
               "level": "automated",
               "path": "docs/validation/followup-final-tests-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-tests-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-build-20260930.txt"
             }
           ],
-          "scope": "생성/이름/이동/일괄 Modal 초안 분리·닫기/reload; 손상원문 사본/실패 RAM·재시도/정리 실패; 새 자유글 ID 복구. B14/B16/B18. 실제 실패주입은 자동검사만. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
-          "verified_at": "2026-09-29T16:24:18.753341+00:00",
-          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
+          "scope": "224개 도메인/jsdom 통과·성능1개 건너뜀; 해당 전체계약의 모든 자동요구 통과를 의미하지 않습니다.",
+          "verified_at": "2026-09-29T17:59:45.644137+00:00",
+          "commit": "482d302c467774307e0f798e00329f5086eb90cc",
+          "previous_executions": [
+            {
+              "status": "수정 후 통과",
+              "scope": "생성/이름/이동/일괄 Modal 초안 분리·닫기/reload; 손상원문 사본/실패 RAM·재시도/정리 실패; 새 자유글 ID 복구. B14/B16/B18. 실제 실패주입은 자동검사만. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+              "verified_at": "2026-09-29T16:24:18.753341+00:00",
+              "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d",
+              "artifacts": [
+                {
+                  "level": "automated",
+                  "path": "docs/validation/followup-final-tests-20260930.txt"
+                }
+              ]
+            }
+          ]
         },
         "browser": {
           "status": "수정 후 통과",
@@ -1358,11 +1503,29 @@
             {
               "level": "browser",
               "path": "docs/validation/followup-ui-20260930.md"
+            },
+            {
+              "level": "browser",
+              "path": "docs/validation/continuation-ui-20260930.md"
             }
           ],
-          "scope": "생성/이름/이동/일괄 Modal 초안 분리·닫기/reload; 손상원문 사본/실패 RAM·재시도/정리 실패; 새 자유글 ID 복구. B14/B16/B18. 실제 실패주입은 자동검사만. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
-          "verified_at": "2026-09-29T16:24:18.753341+00:00",
-          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
+          "scope": "B29–B36의 다운로드 실수신/선택글복귀/보이는메뉴초점/검색무결과 및 A최근없음/E다른범위/G후속수정의 좁은 실행. B37 실제Chrome200%·B38감소모션 emulation 추가. 전체요구/온라인/물리/학습효과 통과 아님.",
+          "verified_at": "2026-09-29T17:59:45.644137+00:00",
+          "commit": "482d302c467774307e0f798e00329f5086eb90cc",
+          "previous_executions": [
+            {
+              "status": "수정 후 통과",
+              "scope": "생성/이름/이동/일괄 Modal 초안 분리·닫기/reload; 손상원문 사본/실패 RAM·재시도/정리 실패; 새 자유글 ID 복구. B14/B16/B18. 실제 실패주입은 자동검사만. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+              "verified_at": "2026-09-29T16:24:18.753341+00:00",
+              "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d",
+              "artifacts": [
+                {
+                  "level": "browser",
+                  "path": "docs/validation/followup-ui-20260930.md"
+                }
+              ]
+            }
+          ]
         },
         "physical_device": {
           "status": "미검증",
@@ -1415,7 +1578,9 @@
         "INV.INV18",
         "FOLLOWUP.DRAFT_ARCHIVE_INSPECTION",
         "FOLLOWUP.TABLE_EDITING_CONTEXT",
-        "FOLLOWUP.STUDY_LAUNCH_RETURN"
+        "FOLLOWUP.STUDY_LAUNCH_RETURN",
+        "FOLLOWUP.NARRATIVE_RETURN_ID",
+        "FOLLOWUP.RECORD_FILTER_RETURN"
       ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
@@ -1423,11 +1588,19 @@
           "dd39f5b",
           "5e1d223",
           "752ab1e",
-          "ce6ee432bee65d184f65145414ee4a1e586c838d"
+          "ce6ee432bee65d184f65145414ee4a1e586c838d",
+          "cfbd5d8ff57811284988566d4de7866ef2cc640e",
+          "b50ab3708e9efa87c1722b6a28b01cfe0c2b0eca",
+          "06b2707db416c894fe5fd71688136e1d9b1c95c4",
+          "482d302c467774307e0f798e00329f5086eb90cc"
         ],
         "artifacts": [
           "docs/validation/followup-execution-20260930.json",
-          "docs/validation/followup-ui-20260930.md"
+          "docs/validation/followup-ui-20260930.md",
+          "docs/validation/continuation-final-tests-20260930.txt",
+          "docs/validation/continuation-final-build-20260930.txt",
+          "docs/validation/continuation-ui-20260930.md",
+          "docs/phase-report-continuation-20260930.md"
         ]
       },
       "owner_phases": [
@@ -2184,7 +2357,9 @@
           "review": "이번 작업에서 요구 목록 재독. 실행 증거와 구별."
         }
       ],
-      "correction_dates": [],
+      "correction_dates": [
+        "2026-09-30"
+      ],
       "classification": "B",
       "classification_reason": "기존 핵심 조건을 유지하며 PHASE.18, PHASE.21, PHASE.29, PHASE.30의 독립 증거로 판단합니다.",
       "phase": "PHASE.18",
@@ -2250,7 +2425,7 @@
           "src/ui/criteria-editor.tsx",
           "src/ui/index.tsx"
         ],
-        "scope": "관련 구현 위치만 연결했습니다. 이 핵심 조건의 전체 충족·실제 실행 완료를 뜻하지 않습니다. 2026-09-30 후속: 생성/이름/이동/일괄 Modal 초안 분리·닫기/reload; 손상원문 사본/실패 RAM·재시도/정리 실패; 새 자유글 ID 복구. B14/B16/B18. 실제 실패주입은 자동검사만. 전체 온라인/이관/기기 검증과 구별.",
+        "scope": "관련 구현 위치만 연결했습니다. 이 핵심 조건의 전체 충족·실제 실행 완료를 뜻하지 않습니다. 2026-09-30 후속: 생성/이름/이동/일괄 Modal 초안 분리·닫기/reload; 손상원문 사본/실패 RAM·재시도/정리 실패; 새 자유글 ID 복구. B14/B16/B18. 실제 실패주입은 자동검사만. 전체 온라인/이관/기기 검증과 구별. 2026-09-30 이번 후속: B29–B36의 다운로드 실수신/선택글복귀/보이는메뉴초점/검색무결과 및 A최근없음/E다른범위/G후속수정의 좁은 실행. B37 실제Chrome200%·B38감소모션 emulation 추가. 전체요구/온라인/물리/학습효과 통과 아님.",
         "test_connections": [
           "src/App.test.tsx",
           "src/domain/domain.test.ts",
@@ -2260,7 +2435,8 @@
           "src/ui/navigation-context.test.tsx",
           "src/data/draft-safety.test.ts",
           "src/ui/criteria-editor.test.tsx",
-          "src/ui/component.test.tsx"
+          "src/ui/component.test.tsx",
+          "src/search.test.tsx"
         ]
       },
       "evidence": {
@@ -2270,11 +2446,33 @@
             {
               "level": "automated",
               "path": "docs/validation/followup-final-tests-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-tests-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-build-20260930.txt"
             }
           ],
-          "scope": "생성/이름/이동/일괄 Modal 초안 분리·닫기/reload; 손상원문 사본/실패 RAM·재시도/정리 실패; 새 자유글 ID 복구. B14/B16/B18. 실제 실패주입은 자동검사만. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
-          "verified_at": "2026-09-29T16:24:18.753341+00:00",
-          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
+          "scope": "224개 도메인/jsdom 통과·성능1개 건너뜀; 해당 전체계약의 모든 자동요구 통과를 의미하지 않습니다.",
+          "verified_at": "2026-09-29T17:59:45.644137+00:00",
+          "commit": "482d302c467774307e0f798e00329f5086eb90cc",
+          "previous_executions": [
+            {
+              "status": "수정 후 통과",
+              "scope": "생성/이름/이동/일괄 Modal 초안 분리·닫기/reload; 손상원문 사본/실패 RAM·재시도/정리 실패; 새 자유글 ID 복구. B14/B16/B18. 실제 실패주입은 자동검사만. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+              "verified_at": "2026-09-29T16:24:18.753341+00:00",
+              "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d",
+              "artifacts": [
+                {
+                  "level": "automated",
+                  "path": "docs/validation/followup-final-tests-20260930.txt"
+                }
+              ]
+            }
+          ]
         },
         "browser": {
           "status": "수정 후 통과",
@@ -2282,11 +2480,29 @@
             {
               "level": "browser",
               "path": "docs/validation/followup-ui-20260930.md"
+            },
+            {
+              "level": "browser",
+              "path": "docs/validation/continuation-ui-20260930.md"
             }
           ],
-          "scope": "생성/이름/이동/일괄 Modal 초안 분리·닫기/reload; 손상원문 사본/실패 RAM·재시도/정리 실패; 새 자유글 ID 복구. B14/B16/B18. 실제 실패주입은 자동검사만. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
-          "verified_at": "2026-09-29T16:24:18.753341+00:00",
-          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
+          "scope": "B29–B36의 다운로드 실수신/선택글복귀/보이는메뉴초점/검색무결과 및 A최근없음/E다른범위/G후속수정의 좁은 실행. B37 실제Chrome200%·B38감소모션 emulation 추가. 전체요구/온라인/물리/학습효과 통과 아님.",
+          "verified_at": "2026-09-29T17:59:45.644137+00:00",
+          "commit": "482d302c467774307e0f798e00329f5086eb90cc",
+          "previous_executions": [
+            {
+              "status": "수정 후 통과",
+              "scope": "생성/이름/이동/일괄 Modal 초안 분리·닫기/reload; 손상원문 사본/실패 RAM·재시도/정리 실패; 새 자유글 ID 복구. B14/B16/B18. 실제 실패주입은 자동검사만. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+              "verified_at": "2026-09-29T16:24:18.753341+00:00",
+              "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d",
+              "artifacts": [
+                {
+                  "level": "browser",
+                  "path": "docs/validation/followup-ui-20260930.md"
+                }
+              ]
+            }
+          ]
         },
         "physical_device": {
           "status": "미검증",
@@ -2339,7 +2555,8 @@
         "INV.INV16",
         "INV.INV20",
         "FOLLOWUP.DRAFT_ARCHIVE_INSPECTION",
-        "FOLLOWUP.TABLE_EDITING_CONTEXT"
+        "FOLLOWUP.TABLE_EDITING_CONTEXT",
+        "FOLLOWUP.NARRATIVE_RETURN_ID"
       ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
@@ -2347,11 +2564,19 @@
           "dd39f5b",
           "5e1d223",
           "752ab1e",
-          "ce6ee432bee65d184f65145414ee4a1e586c838d"
+          "ce6ee432bee65d184f65145414ee4a1e586c838d",
+          "cfbd5d8ff57811284988566d4de7866ef2cc640e",
+          "b50ab3708e9efa87c1722b6a28b01cfe0c2b0eca",
+          "06b2707db416c894fe5fd71688136e1d9b1c95c4",
+          "482d302c467774307e0f798e00329f5086eb90cc"
         ],
         "artifacts": [
           "docs/validation/followup-execution-20260930.json",
-          "docs/validation/followup-ui-20260930.md"
+          "docs/validation/followup-ui-20260930.md",
+          "docs/validation/continuation-final-tests-20260930.txt",
+          "docs/validation/continuation-final-build-20260930.txt",
+          "docs/validation/continuation-ui-20260930.md",
+          "docs/phase-report-continuation-20260930.md"
         ]
       },
       "owner_phases": [
@@ -2514,7 +2739,9 @@
           "review": "이번 작업에서 요구 목록 재독. 실행 증거와 구별."
         }
       ],
-      "correction_dates": [],
+      "correction_dates": [
+        "2026-09-30"
+      ],
       "classification": "B",
       "classification_reason": "기존 핵심 조건을 유지하며 PHASE.24, PHASE.25, PHASE.26의 독립 증거로 판단합니다.",
       "phase": "PHASE.24",
@@ -2556,24 +2783,45 @@
         "files": [
           "src/App.tsx",
           "src/domain/commands.ts",
-          "src/domain/model.ts"
+          "src/domain/model.ts",
+          "src/ui/navigation-context.ts"
         ],
-        "scope": "관련 구현 위치만 연결했습니다. 이 핵심 조건의 전체 충족·실제 실행 완료를 뜻하지 않습니다.",
+        "scope": "관련 구현 위치만 연결했습니다. 이 핵심 조건의 전체 충족·실제 실행 완료를 뜻하지 않습니다. 2026-09-30 이번 후속: B29–B36의 다운로드 실수신/선택글복귀/보이는메뉴초점/검색무결과 및 A최근없음/E다른범위/G후속수정의 좁은 실행. B37 실제Chrome200%·B38감소모션 emulation 추가. 전체요구/온라인/물리/학습효과 통과 아님.",
         "test_connections": [
           "src/App.test.tsx",
-          "src/domain/domain.test.ts"
+          "src/domain/domain.test.ts",
+          "src/ui/navigation-context.test.tsx",
+          "src/search.test.tsx"
         ]
       },
       "evidence": {
         "automated": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-tests-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-build-20260930.txt"
+            }
+          ],
+          "scope": "224개 도메인/jsdom 통과·성능1개 건너뜀; 해당 전체계약의 모든 자동요구 통과를 의미하지 않습니다.",
+          "verified_at": "2026-09-29T17:59:45.644137+00:00",
+          "commit": "482d302c467774307e0f798e00329f5086eb90cc"
         },
         "browser": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "browser",
+              "path": "docs/validation/continuation-ui-20260930.md"
+            }
+          ],
+          "scope": "B29–B36의 다운로드 실수신/선택글복귀/보이는메뉴초점/검색무결과 및 A최근없음/E다른범위/G후속수정의 좁은 실행. B37 실제Chrome200%·B38감소모션 emulation 추가. 전체요구/온라인/물리/학습효과 통과 아님.",
+          "verified_at": "2026-09-29T17:59:45.644137+00:00",
+          "commit": "482d302c467774307e0f798e00329f5086eb90cc"
         },
         "physical_device": {
           "status": "미검증",
@@ -2615,8 +2863,18 @@
       ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
-        "implementation_commits": [],
-        "artifacts": []
+        "implementation_commits": [
+          "cfbd5d8ff57811284988566d4de7866ef2cc640e",
+          "b50ab3708e9efa87c1722b6a28b01cfe0c2b0eca",
+          "06b2707db416c894fe5fd71688136e1d9b1c95c4",
+          "482d302c467774307e0f798e00329f5086eb90cc"
+        ],
+        "artifacts": [
+          "docs/validation/continuation-final-tests-20260930.txt",
+          "docs/validation/continuation-final-build-20260930.txt",
+          "docs/validation/continuation-ui-20260930.md",
+          "docs/phase-report-continuation-20260930.md"
+        ]
       },
       "owner_phases": [
         "PHASE.24",
@@ -2640,7 +2898,9 @@
           "review": "이번 작업에서 요구 목록 재독. 실행 증거와 구별."
         }
       ],
-      "correction_dates": [],
+      "correction_dates": [
+        "2026-09-30"
+      ],
       "classification": "B",
       "classification_reason": "기존 핵심 조건을 유지하며 PHASE.24, PHASE.25, PHASE.26의 독립 증거로 판단합니다.",
       "phase": "PHASE.24",
@@ -2695,7 +2955,7 @@
           "src/ui/criteria-editor.tsx",
           "src/ui/index.tsx"
         ],
-        "scope": "관련 구현 위치만 연결했습니다. 이 핵심 조건의 전체 충족·실제 실행 완료를 뜻하지 않습니다. 2026-09-30 후속: 형제 order 원자변경·그룹Undo·가변깊이/기록 보존; 장문 선택·방향·내부scroll의 route/reload 복귀. B10/B11/B14. 전체 온라인/이관/기기 검증과 구별.",
+        "scope": "관련 구현 위치만 연결했습니다. 이 핵심 조건의 전체 충족·실제 실행 완료를 뜻하지 않습니다. 2026-09-30 후속: 형제 order 원자변경·그룹Undo·가변깊이/기록 보존; 장문 선택·방향·내부scroll의 route/reload 복귀. B10/B11/B14. 전체 온라인/이관/기기 검증과 구별. 2026-09-30 이번 후속: B29–B36의 다운로드 실수신/선택글복귀/보이는메뉴초점/검색무결과 및 A최근없음/E다른범위/G후속수정의 좁은 실행. B37 실제Chrome200%·B38감소모션 emulation 추가. 전체요구/온라인/물리/학습효과 통과 아님. B40:주제검색 함수→선택/메모→오늘/Back/reload에서 필터/선택/원문보존, 실제키로 검색어지운상태 유지, 명시대상별 분리.3회귀검사 수정전2fail→수정후통과; hint저장거부에도 기록저장 가능. 새 공부사건ID/본문키를 바꾸지 않음.",
         "test_connections": [
           "src/App.test.tsx",
           "src/domain/domain.test.ts",
@@ -2705,7 +2965,9 @@
           "src/ui/navigation-context.test.tsx",
           "src/data/draft-safety.test.ts",
           "src/ui/criteria-editor.test.tsx",
-          "src/ui/component.test.tsx"
+          "src/ui/component.test.tsx",
+          "src/search.test.tsx",
+          "src/record-filter.test.tsx"
         ]
       },
       "evidence": {
@@ -2715,11 +2977,33 @@
             {
               "level": "automated",
               "path": "docs/validation/followup-final-tests-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-tests-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-build-20260930.txt"
             }
           ],
-          "scope": "형제 order 원자변경·그룹Undo·가변깊이/기록 보존; 장문 선택·방향·내부scroll의 route/reload 복귀. B10/B11/B14. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
-          "verified_at": "2026-09-29T16:24:18.753341+00:00",
-          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
+          "scope": "224개 도메인/jsdom 통과·성능1개 건너뜀; 해당 전체계약의 모든 자동요구 통과를 의미하지 않습니다.",
+          "verified_at": "2026-09-29T17:59:45.644137+00:00",
+          "commit": "482d302c467774307e0f798e00329f5086eb90cc",
+          "previous_executions": [
+            {
+              "status": "수정 후 통과",
+              "scope": "형제 order 원자변경·그룹Undo·가변깊이/기록 보존; 장문 선택·방향·내부scroll의 route/reload 복귀. B10/B11/B14. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+              "verified_at": "2026-09-29T16:24:18.753341+00:00",
+              "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d",
+              "artifacts": [
+                {
+                  "level": "automated",
+                  "path": "docs/validation/followup-final-tests-20260930.txt"
+                }
+              ]
+            }
+          ]
         },
         "browser": {
           "status": "수정 후 통과",
@@ -2727,11 +3011,29 @@
             {
               "level": "browser",
               "path": "docs/validation/followup-ui-20260930.md"
+            },
+            {
+              "level": "browser",
+              "path": "docs/validation/continuation-ui-20260930.md"
             }
           ],
-          "scope": "형제 order 원자변경·그룹Undo·가변깊이/기록 보존; 장문 선택·방향·내부scroll의 route/reload 복귀. B10/B11/B14. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
-          "verified_at": "2026-09-29T16:24:18.753341+00:00",
-          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
+          "scope": "B29–B36의 다운로드 실수신/선택글복귀/보이는메뉴초점/검색무결과 및 A최근없음/E다른범위/G후속수정의 좁은 실행. B37 실제Chrome200%·B38감소모션 emulation 추가. 전체요구/온라인/물리/학습효과 통과 아님.",
+          "verified_at": "2026-09-29T17:59:45.644137+00:00",
+          "commit": "482d302c467774307e0f798e00329f5086eb90cc",
+          "previous_executions": [
+            {
+              "status": "수정 후 통과",
+              "scope": "형제 order 원자변경·그룹Undo·가변깊이/기록 보존; 장문 선택·방향·내부scroll의 route/reload 복귀. B10/B11/B14. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+              "verified_at": "2026-09-29T16:24:18.753341+00:00",
+              "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d",
+              "artifacts": [
+                {
+                  "level": "browser",
+                  "path": "docs/validation/followup-ui-20260930.md"
+                }
+              ]
+            }
+          ]
         },
         "physical_device": {
           "status": "미검증",
@@ -2784,7 +3086,9 @@
         "FEATURE.F36",
         "INV.INV18",
         "INV.INV19",
-        "FOLLOWUP.TABLE_EDITING_CONTEXT"
+        "FOLLOWUP.TABLE_EDITING_CONTEXT",
+        "FOLLOWUP.VISIBLE_NAVIGATION_FOCUS",
+        "FOLLOWUP.RECORD_FILTER_RETURN"
       ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
@@ -2792,11 +3096,19 @@
           "dd39f5b",
           "5e1d223",
           "752ab1e",
-          "ce6ee432bee65d184f65145414ee4a1e586c838d"
+          "ce6ee432bee65d184f65145414ee4a1e586c838d",
+          "cfbd5d8ff57811284988566d4de7866ef2cc640e",
+          "b50ab3708e9efa87c1722b6a28b01cfe0c2b0eca",
+          "06b2707db416c894fe5fd71688136e1d9b1c95c4",
+          "482d302c467774307e0f798e00329f5086eb90cc"
         ],
         "artifacts": [
           "docs/validation/followup-execution-20260930.json",
-          "docs/validation/followup-ui-20260930.md"
+          "docs/validation/followup-ui-20260930.md",
+          "docs/validation/continuation-final-tests-20260930.txt",
+          "docs/validation/continuation-final-build-20260930.txt",
+          "docs/validation/continuation-ui-20260930.md",
+          "docs/phase-report-continuation-20260930.md"
         ]
       },
       "owner_phases": [
@@ -2820,7 +3132,9 @@
           "review": "이번 작업에서 요구 목록 재독. 실행 증거와 구별."
         }
       ],
-      "correction_dates": [],
+      "correction_dates": [
+        "2026-09-30"
+      ],
       "classification": "B",
       "classification_reason": "기존 핵심 조건을 유지하며 PHASE.31, PHASE.32, PHASE.34의 독립 증거로 판단합니다.",
       "phase": "PHASE.31",
@@ -2879,7 +3193,7 @@
           "src/ui/criteria-editor.tsx",
           "src/ui/index.tsx"
         ],
-        "scope": "관련 구현 위치만 연결했습니다. 이 핵심 조건의 전체 충족·실제 실행 완료를 뜻하지 않습니다. 2026-09-30 후속: 후속 Prototype 범위만170자동검사/B10–B18. 전체 상태 inventory·물리·온라인 gate는 미검증. 전체 온라인/이관/기기 검증과 구별.",
+        "scope": "관련 구현 위치만 연결했습니다. 이 핵심 조건의 전체 충족·실제 실행 완료를 뜻하지 않습니다. 2026-09-30 후속: 후속 Prototype 범위만170자동검사/B10–B18. 전체 상태 inventory·물리·온라인 gate는 미검증. 전체 온라인/이관/기기 검증과 구별. 2026-09-30 이번 후속: B29–B36의 다운로드 실수신/선택글복귀/보이는메뉴초점/검색무결과 및 A최근없음/E다른범위/G후속수정의 좁은 실행. B37 실제Chrome200%·B38감소모션 emulation 추가. 전체요구/온라인/물리/학습효과 통과 아님.",
         "test_connections": [
           "src/App.test.tsx",
           "src/domain/domain.test.ts",
@@ -2889,7 +3203,8 @@
           "src/ui/navigation-context.test.tsx",
           "src/data/draft-safety.test.ts",
           "src/ui/criteria-editor.test.tsx",
-          "src/ui/component.test.tsx"
+          "src/ui/component.test.tsx",
+          "src/search.test.tsx"
         ]
       },
       "evidence": {
@@ -2899,11 +3214,33 @@
             {
               "level": "automated",
               "path": "docs/validation/followup-final-tests-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-tests-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-build-20260930.txt"
             }
           ],
-          "scope": "후속 Prototype 범위만170자동검사/B10–B18. 전체 상태 inventory·물리·온라인 gate는 미검증. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
-          "verified_at": "2026-09-29T16:24:18.753341+00:00",
-          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
+          "scope": "224개 도메인/jsdom 통과·성능1개 건너뜀; 해당 전체계약의 모든 자동요구 통과를 의미하지 않습니다.",
+          "verified_at": "2026-09-29T17:59:45.644137+00:00",
+          "commit": "482d302c467774307e0f798e00329f5086eb90cc",
+          "previous_executions": [
+            {
+              "status": "수정 후 통과",
+              "scope": "후속 Prototype 범위만170자동검사/B10–B18. 전체 상태 inventory·물리·온라인 gate는 미검증. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+              "verified_at": "2026-09-29T16:24:18.753341+00:00",
+              "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d",
+              "artifacts": [
+                {
+                  "level": "automated",
+                  "path": "docs/validation/followup-final-tests-20260930.txt"
+                }
+              ]
+            }
+          ]
         },
         "browser": {
           "status": "수정 후 통과",
@@ -2911,11 +3248,29 @@
             {
               "level": "browser",
               "path": "docs/validation/followup-ui-20260930.md"
+            },
+            {
+              "level": "browser",
+              "path": "docs/validation/continuation-ui-20260930.md"
             }
           ],
-          "scope": "후속 Prototype 범위만170자동검사/B10–B18. 전체 상태 inventory·물리·온라인 gate는 미검증. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
-          "verified_at": "2026-09-29T16:24:18.753341+00:00",
-          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
+          "scope": "B29–B36의 다운로드 실수신/선택글복귀/보이는메뉴초점/검색무결과 및 A최근없음/E다른범위/G후속수정의 좁은 실행. B37 실제Chrome200%·B38감소모션 emulation 추가. 전체요구/온라인/물리/학습효과 통과 아님.",
+          "verified_at": "2026-09-29T17:59:45.644137+00:00",
+          "commit": "482d302c467774307e0f798e00329f5086eb90cc",
+          "previous_executions": [
+            {
+              "status": "수정 후 통과",
+              "scope": "후속 Prototype 범위만170자동검사/B10–B18. 전체 상태 inventory·물리·온라인 gate는 미검증. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+              "verified_at": "2026-09-29T16:24:18.753341+00:00",
+              "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d",
+              "artifacts": [
+                {
+                  "level": "browser",
+                  "path": "docs/validation/followup-ui-20260930.md"
+                }
+              ]
+            }
+          ]
         },
         "physical_device": {
           "status": "미검증",
@@ -2968,11 +3323,19 @@
           "dd39f5b",
           "5e1d223",
           "752ab1e",
-          "ce6ee432bee65d184f65145414ee4a1e586c838d"
+          "ce6ee432bee65d184f65145414ee4a1e586c838d",
+          "cfbd5d8ff57811284988566d4de7866ef2cc640e",
+          "b50ab3708e9efa87c1722b6a28b01cfe0c2b0eca",
+          "06b2707db416c894fe5fd71688136e1d9b1c95c4",
+          "482d302c467774307e0f798e00329f5086eb90cc"
         ],
         "artifacts": [
           "docs/validation/followup-execution-20260930.json",
-          "docs/validation/followup-ui-20260930.md"
+          "docs/validation/followup-ui-20260930.md",
+          "docs/validation/continuation-final-tests-20260930.txt",
+          "docs/validation/continuation-final-build-20260930.txt",
+          "docs/validation/continuation-ui-20260930.md",
+          "docs/phase-report-continuation-20260930.md"
         ]
       },
       "owner_phases": [
@@ -3265,7 +3628,9 @@
           "review": "이번 작업에서 요구 목록 재독. 실행 증거와 구별."
         }
       ],
-      "correction_dates": [],
+      "correction_dates": [
+        "2026-09-30"
+      ],
       "classification": "B",
       "classification_reason": "기존 핵심 조건을 유지하며 PHASE.31의 독립 증거로 판단합니다.",
       "phase": "PHASE.31",
@@ -3319,24 +3684,45 @@
         "files": [
           "src/App.tsx",
           "src/domain/commands.ts",
-          "src/domain/model.ts"
+          "src/domain/model.ts",
+          "src/ui/navigation-context.ts"
         ],
-        "scope": "관련 구현 위치만 연결했습니다. 이 핵심 조건의 전체 충족·실제 실행 완료를 뜻하지 않습니다.",
+        "scope": "관련 구현 위치만 연결했습니다. 이 핵심 조건의 전체 충족·실제 실행 완료를 뜻하지 않습니다. 2026-09-30 이번 후속: B29–B36의 다운로드 실수신/선택글복귀/보이는메뉴초점/검색무결과 및 A최근없음/E다른범위/G후속수정의 좁은 실행. B37 실제Chrome200%·B38감소모션 emulation 추가. 전체요구/온라인/물리/학습효과 통과 아님.",
         "test_connections": [
           "src/App.test.tsx",
-          "src/domain/domain.test.ts"
+          "src/domain/domain.test.ts",
+          "src/ui/navigation-context.test.tsx",
+          "src/search.test.tsx"
         ]
       },
       "evidence": {
         "automated": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-tests-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-build-20260930.txt"
+            }
+          ],
+          "scope": "224개 도메인/jsdom 통과·성능1개 건너뜀; 해당 전체계약의 모든 자동요구 통과를 의미하지 않습니다.",
+          "verified_at": "2026-09-29T17:59:45.644137+00:00",
+          "commit": "482d302c467774307e0f798e00329f5086eb90cc"
         },
         "browser": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "browser",
+              "path": "docs/validation/continuation-ui-20260930.md"
+            }
+          ],
+          "scope": "B29–B36의 다운로드 실수신/선택글복귀/보이는메뉴초점/검색무결과 및 A최근없음/E다른범위/G후속수정의 좁은 실행. B37 실제Chrome200%·B38감소모션 emulation 추가. 전체요구/온라인/물리/학습효과 통과 아님.",
+          "verified_at": "2026-09-29T17:59:45.644137+00:00",
+          "commit": "482d302c467774307e0f798e00329f5086eb90cc"
         },
         "physical_device": {
           "status": "미검증",
@@ -3380,8 +3766,18 @@
       ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
-        "implementation_commits": [],
-        "artifacts": []
+        "implementation_commits": [
+          "cfbd5d8ff57811284988566d4de7866ef2cc640e",
+          "b50ab3708e9efa87c1722b6a28b01cfe0c2b0eca",
+          "06b2707db416c894fe5fd71688136e1d9b1c95c4",
+          "482d302c467774307e0f798e00329f5086eb90cc"
+        ],
+        "artifacts": [
+          "docs/validation/continuation-final-tests-20260930.txt",
+          "docs/validation/continuation-final-build-20260930.txt",
+          "docs/validation/continuation-ui-20260930.md",
+          "docs/phase-report-continuation-20260930.md"
+        ]
       },
       "owner_phases": [
         "PHASE.31"
@@ -4171,7 +4567,9 @@
           "review": "이번 작업에서 요구 목록 재독. 실행 증거와 구별."
         }
       ],
-      "correction_dates": [],
+      "correction_dates": [
+        "2026-09-30"
+      ],
       "classification": "B",
       "classification_reason": "기존 핵심 조건을 유지하며 PHASE.31, PHASE.32의 독립 증거로 판단합니다.",
       "phase": "PHASE.31",
@@ -4216,24 +4614,45 @@
           "src/App.tsx",
           "src/data/demo-repository.ts",
           "src/domain/commands.ts",
-          "src/domain/model.ts"
+          "src/domain/model.ts",
+          "src/ui/navigation-context.ts"
         ],
-        "scope": "관련 구현 위치만 연결했습니다. 이 핵심 조건의 전체 충족·실제 실행 완료를 뜻하지 않습니다.",
+        "scope": "관련 구현 위치만 연결했습니다. 이 핵심 조건의 전체 충족·실제 실행 완료를 뜻하지 않습니다. 2026-09-30 이번 후속: B29–B36의 다운로드 실수신/선택글복귀/보이는메뉴초점/검색무결과 및 A최근없음/E다른범위/G후속수정의 좁은 실행. B37 실제Chrome200%·B38감소모션 emulation 추가. 전체요구/온라인/물리/학습효과 통과 아님.",
         "test_connections": [
           "src/App.test.tsx",
-          "src/domain/domain.test.ts"
+          "src/domain/domain.test.ts",
+          "src/ui/navigation-context.test.tsx",
+          "src/search.test.tsx"
         ]
       },
       "evidence": {
         "automated": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-tests-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-build-20260930.txt"
+            }
+          ],
+          "scope": "224개 도메인/jsdom 통과·성능1개 건너뜀; 해당 전체계약의 모든 자동요구 통과를 의미하지 않습니다.",
+          "verified_at": "2026-09-29T17:59:45.644137+00:00",
+          "commit": "482d302c467774307e0f798e00329f5086eb90cc"
         },
         "browser": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "browser",
+              "path": "docs/validation/continuation-ui-20260930.md"
+            }
+          ],
+          "scope": "B29–B36의 다운로드 실수신/선택글복귀/보이는메뉴초점/검색무결과 및 A최근없음/E다른범위/G후속수정의 좁은 실행. B37 실제Chrome200%·B38감소모션 emulation 추가. 전체요구/온라인/물리/학습효과 통과 아님.",
+          "verified_at": "2026-09-29T17:59:45.644137+00:00",
+          "commit": "482d302c467774307e0f798e00329f5086eb90cc"
         },
         "physical_device": {
           "status": "미검증",
@@ -4276,8 +4695,18 @@
       ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
-        "implementation_commits": [],
-        "artifacts": []
+        "implementation_commits": [
+          "cfbd5d8ff57811284988566d4de7866ef2cc640e",
+          "b50ab3708e9efa87c1722b6a28b01cfe0c2b0eca",
+          "06b2707db416c894fe5fd71688136e1d9b1c95c4",
+          "482d302c467774307e0f798e00329f5086eb90cc"
+        ],
+        "artifacts": [
+          "docs/validation/continuation-final-tests-20260930.txt",
+          "docs/validation/continuation-final-build-20260930.txt",
+          "docs/validation/continuation-ui-20260930.md",
+          "docs/phase-report-continuation-20260930.md"
+        ]
       },
       "owner_phases": [
         "PHASE.31",
@@ -4300,7 +4729,9 @@
           "review": "이번 작업에서 요구 목록 재독. 실행 증거와 구별."
         }
       ],
-      "correction_dates": [],
+      "correction_dates": [
+        "2026-09-30"
+      ],
       "classification": "B",
       "classification_reason": "기존 핵심 조건을 유지하며 PHASE.35의 독립 증거로 판단합니다.",
       "phase": "PHASE.35",
@@ -4354,7 +4785,7 @@
           "src/ui/criteria-editor.tsx",
           "src/ui/index.tsx"
         ],
-        "scope": "관련 구현 위치만 연결했습니다. 이 핵심 조건의 전체 충족·실제 실행 완료를 뜻하지 않습니다. 2026-09-30 후속: 후속 Prototype 범위만170자동검사/B10–B18. 전체 상태 inventory·물리·온라인 gate는 미검증. 전체 온라인/이관/기기 검증과 구별.",
+        "scope": "관련 구현 위치만 연결했습니다. 이 핵심 조건의 전체 충족·실제 실행 완료를 뜻하지 않습니다. 2026-09-30 후속: 후속 Prototype 범위만170자동검사/B10–B18. 전체 상태 inventory·물리·온라인 gate는 미검증. 전체 온라인/이관/기기 검증과 구별. 2026-09-30 이번 후속: B29–B36의 다운로드 실수신/선택글복귀/보이는메뉴초점/검색무결과 및 A최근없음/E다른범위/G후속수정의 좁은 실행. B37 실제Chrome200%·B38감소모션 emulation 추가. 전체요구/온라인/물리/학습효과 통과 아님.",
         "test_connections": [
           "src/App.test.tsx",
           "src/domain/domain.test.ts",
@@ -4364,7 +4795,8 @@
           "src/ui/navigation-context.test.tsx",
           "src/data/draft-safety.test.ts",
           "src/ui/criteria-editor.test.tsx",
-          "src/ui/component.test.tsx"
+          "src/ui/component.test.tsx",
+          "src/search.test.tsx"
         ]
       },
       "evidence": {
@@ -4374,11 +4806,33 @@
             {
               "level": "automated",
               "path": "docs/validation/followup-final-tests-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-tests-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-build-20260930.txt"
             }
           ],
-          "scope": "후속 Prototype 범위만170자동검사/B10–B18. 전체 상태 inventory·물리·온라인 gate는 미검증. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
-          "verified_at": "2026-09-29T16:24:18.753341+00:00",
-          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
+          "scope": "224개 도메인/jsdom 통과·성능1개 건너뜀; 해당 전체계약의 모든 자동요구 통과를 의미하지 않습니다.",
+          "verified_at": "2026-09-29T17:59:45.644137+00:00",
+          "commit": "482d302c467774307e0f798e00329f5086eb90cc",
+          "previous_executions": [
+            {
+              "status": "수정 후 통과",
+              "scope": "후속 Prototype 범위만170자동검사/B10–B18. 전체 상태 inventory·물리·온라인 gate는 미검증. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+              "verified_at": "2026-09-29T16:24:18.753341+00:00",
+              "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d",
+              "artifacts": [
+                {
+                  "level": "automated",
+                  "path": "docs/validation/followup-final-tests-20260930.txt"
+                }
+              ]
+            }
+          ]
         },
         "browser": {
           "status": "수정 후 통과",
@@ -4386,11 +4840,29 @@
             {
               "level": "browser",
               "path": "docs/validation/followup-ui-20260930.md"
+            },
+            {
+              "level": "browser",
+              "path": "docs/validation/continuation-ui-20260930.md"
             }
           ],
-          "scope": "후속 Prototype 범위만170자동검사/B10–B18. 전체 상태 inventory·물리·온라인 gate는 미검증. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
-          "verified_at": "2026-09-29T16:24:18.753341+00:00",
-          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
+          "scope": "B29–B36의 다운로드 실수신/선택글복귀/보이는메뉴초점/검색무결과 및 A최근없음/E다른범위/G후속수정의 좁은 실행. B37 실제Chrome200%·B38감소모션 emulation 추가. 전체요구/온라인/물리/학습효과 통과 아님.",
+          "verified_at": "2026-09-29T17:59:45.644137+00:00",
+          "commit": "482d302c467774307e0f798e00329f5086eb90cc",
+          "previous_executions": [
+            {
+              "status": "수정 후 통과",
+              "scope": "후속 Prototype 범위만170자동검사/B10–B18. 전체 상태 inventory·물리·온라인 gate는 미검증. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+              "verified_at": "2026-09-29T16:24:18.753341+00:00",
+              "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d",
+              "artifacts": [
+                {
+                  "level": "browser",
+                  "path": "docs/validation/followup-ui-20260930.md"
+                }
+              ]
+            }
+          ]
         },
         "physical_device": {
           "status": "미검증",
@@ -4437,11 +4909,19 @@
           "dd39f5b",
           "5e1d223",
           "752ab1e",
-          "ce6ee432bee65d184f65145414ee4a1e586c838d"
+          "ce6ee432bee65d184f65145414ee4a1e586c838d",
+          "cfbd5d8ff57811284988566d4de7866ef2cc640e",
+          "b50ab3708e9efa87c1722b6a28b01cfe0c2b0eca",
+          "06b2707db416c894fe5fd71688136e1d9b1c95c4",
+          "482d302c467774307e0f798e00329f5086eb90cc"
         ],
         "artifacts": [
           "docs/validation/followup-execution-20260930.json",
-          "docs/validation/followup-ui-20260930.md"
+          "docs/validation/followup-ui-20260930.md",
+          "docs/validation/continuation-final-tests-20260930.txt",
+          "docs/validation/continuation-final-build-20260930.txt",
+          "docs/validation/continuation-ui-20260930.md",
+          "docs/phase-report-continuation-20260930.md"
         ]
       },
       "owner_phases": [
@@ -4464,7 +4944,9 @@
           "review": "이번 작업에서 요구 목록 재독. 실행 증거와 구별."
         }
       ],
-      "correction_dates": [],
+      "correction_dates": [
+        "2026-09-30"
+      ],
       "classification": "B",
       "classification_reason": "기존 핵심 조건을 유지하며 PHASE.09, PHASE.31, PHASE.36의 독립 증거로 판단합니다.",
       "phase": "PHASE.09",
@@ -4491,20 +4973,45 @@
         "no_direct_surface_reason": "제품 화면 자체보다 원문·증거·완료 판정의 작업 규칙입니다. 연결 WORK의 실제 소비 화면 결과를 감사합니다."
       },
       "implementation": {
-        "files": [],
-        "scope": "관련 구현 위치만 연결했습니다. 이 핵심 조건의 전체 충족·실제 실행 완료를 뜻하지 않습니다.",
-        "test_connections": []
+        "files": [
+          "src/App.tsx",
+          "src/ui/navigation-context.ts"
+        ],
+        "scope": "관련 구현 위치만 연결했습니다. 이 핵심 조건의 전체 충족·실제 실행 완료를 뜻하지 않습니다. 2026-09-30 이번 후속: B29–B36의 다운로드 실수신/선택글복귀/보이는메뉴초점/검색무결과 및 A최근없음/E다른범위/G후속수정의 좁은 실행. B37 실제Chrome200%·B38감소모션 emulation 추가. 전체요구/온라인/물리/학습효과 통과 아님.",
+        "test_connections": [
+          "src/App.test.tsx",
+          "src/ui/navigation-context.test.tsx",
+          "src/search.test.tsx"
+        ]
       },
       "evidence": {
         "automated": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-tests-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-build-20260930.txt"
+            }
+          ],
+          "scope": "224개 도메인/jsdom 통과·성능1개 건너뜀; 해당 전체계약의 모든 자동요구 통과를 의미하지 않습니다.",
+          "verified_at": "2026-09-29T17:59:45.644137+00:00",
+          "commit": "482d302c467774307e0f798e00329f5086eb90cc"
         },
         "browser": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "browser",
+              "path": "docs/validation/continuation-ui-20260930.md"
+            }
+          ],
+          "scope": "B29–B36의 다운로드 실수신/선택글복귀/보이는메뉴초점/검색무결과 및 A최근없음/E다른범위/G후속수정의 좁은 실행. B37 실제Chrome200%·B38감소모션 emulation 추가. 전체요구/온라인/물리/학습효과 통과 아님.",
+          "verified_at": "2026-09-29T17:59:45.644137+00:00",
+          "commit": "482d302c467774307e0f798e00329f5086eb90cc"
         },
         "physical_device": {
           "status": "미검증",
@@ -4541,8 +5048,18 @@
       ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
-        "implementation_commits": [],
-        "artifacts": []
+        "implementation_commits": [
+          "cfbd5d8ff57811284988566d4de7866ef2cc640e",
+          "b50ab3708e9efa87c1722b6a28b01cfe0c2b0eca",
+          "06b2707db416c894fe5fd71688136e1d9b1c95c4",
+          "482d302c467774307e0f798e00329f5086eb90cc"
+        ],
+        "artifacts": [
+          "docs/validation/continuation-final-tests-20260930.txt",
+          "docs/validation/continuation-final-build-20260930.txt",
+          "docs/validation/continuation-ui-20260930.md",
+          "docs/phase-report-continuation-20260930.md"
+        ]
       },
       "owner_phases": [
         "PHASE.09",
@@ -4565,7 +5082,9 @@
           "review": "이번 작업에서 요구 목록 재독. 실행 증거와 구별."
         }
       ],
-      "correction_dates": [],
+      "correction_dates": [
+        "2026-09-30"
+      ],
       "classification": "B",
       "classification_reason": "기존 핵심 조건을 유지하며 PHASE.31, PHASE.36, PHASE.37의 독립 증거로 판단합니다.",
       "phase": "PHASE.31",
@@ -4592,20 +5111,45 @@
         "no_direct_surface_reason": "제품 화면 자체보다 원문·증거·완료 판정의 작업 규칙입니다. 연결 WORK의 실제 소비 화면 결과를 감사합니다."
       },
       "implementation": {
-        "files": [],
-        "scope": "관련 구현 위치만 연결했습니다. 이 핵심 조건의 전체 충족·실제 실행 완료를 뜻하지 않습니다.",
-        "test_connections": []
+        "files": [
+          "src/App.tsx",
+          "src/ui/navigation-context.ts"
+        ],
+        "scope": "관련 구현 위치만 연결했습니다. 이 핵심 조건의 전체 충족·실제 실행 완료를 뜻하지 않습니다. 2026-09-30 이번 후속: B29–B36의 다운로드 실수신/선택글복귀/보이는메뉴초점/검색무결과 및 A최근없음/E다른범위/G후속수정의 좁은 실행. B37 실제Chrome200%·B38감소모션 emulation 추가. 전체요구/온라인/물리/학습효과 통과 아님.",
+        "test_connections": [
+          "src/App.test.tsx",
+          "src/ui/navigation-context.test.tsx",
+          "src/search.test.tsx"
+        ]
       },
       "evidence": {
         "automated": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-tests-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-build-20260930.txt"
+            }
+          ],
+          "scope": "224개 도메인/jsdom 통과·성능1개 건너뜀; 해당 전체계약의 모든 자동요구 통과를 의미하지 않습니다.",
+          "verified_at": "2026-09-29T17:59:45.644137+00:00",
+          "commit": "482d302c467774307e0f798e00329f5086eb90cc"
         },
         "browser": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "browser",
+              "path": "docs/validation/continuation-ui-20260930.md"
+            }
+          ],
+          "scope": "B29–B36의 다운로드 실수신/선택글복귀/보이는메뉴초점/검색무결과 및 A최근없음/E다른범위/G후속수정의 좁은 실행. B37 실제Chrome200%·B38감소모션 emulation 추가. 전체요구/온라인/물리/학습효과 통과 아님.",
+          "verified_at": "2026-09-29T17:59:45.644137+00:00",
+          "commit": "482d302c467774307e0f798e00329f5086eb90cc"
         },
         "physical_device": {
           "status": "미검증",
@@ -4643,8 +5187,18 @@
       ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
-        "implementation_commits": [],
-        "artifacts": []
+        "implementation_commits": [
+          "cfbd5d8ff57811284988566d4de7866ef2cc640e",
+          "b50ab3708e9efa87c1722b6a28b01cfe0c2b0eca",
+          "06b2707db416c894fe5fd71688136e1d9b1c95c4",
+          "482d302c467774307e0f798e00329f5086eb90cc"
+        ],
+        "artifacts": [
+          "docs/validation/continuation-final-tests-20260930.txt",
+          "docs/validation/continuation-final-build-20260930.txt",
+          "docs/validation/continuation-ui-20260930.md",
+          "docs/phase-report-continuation-20260930.md"
+        ]
       },
       "owner_phases": [
         "PHASE.31",
@@ -4667,7 +5221,9 @@
           "review": "이번 작업에서 요구 목록 재독. 실행 증거와 구별."
         }
       ],
-      "correction_dates": [],
+      "correction_dates": [
+        "2026-09-30"
+      ],
       "classification": "B",
       "classification_reason": "기존 핵심 조건을 유지하며 PHASE.35, PHASE.36, PHASE.37의 독립 증거로 판단합니다.",
       "phase": "PHASE.35",
@@ -4694,20 +5250,45 @@
         "no_direct_surface_reason": "제품 화면 자체보다 원문·증거·완료 판정의 작업 규칙입니다. 연결 WORK의 실제 소비 화면 결과를 감사합니다."
       },
       "implementation": {
-        "files": [],
-        "scope": "관련 구현 위치만 연결했습니다. 이 핵심 조건의 전체 충족·실제 실행 완료를 뜻하지 않습니다.",
-        "test_connections": []
+        "files": [
+          "src/App.tsx",
+          "src/ui/navigation-context.ts"
+        ],
+        "scope": "관련 구현 위치만 연결했습니다. 이 핵심 조건의 전체 충족·실제 실행 완료를 뜻하지 않습니다. 2026-09-30 이번 후속: B29–B36의 다운로드 실수신/선택글복귀/보이는메뉴초점/검색무결과 및 A최근없음/E다른범위/G후속수정의 좁은 실행. B37 실제Chrome200%·B38감소모션 emulation 추가. 전체요구/온라인/물리/학습효과 통과 아님.",
+        "test_connections": [
+          "src/App.test.tsx",
+          "src/ui/navigation-context.test.tsx",
+          "src/search.test.tsx"
+        ]
       },
       "evidence": {
         "automated": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-tests-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-build-20260930.txt"
+            }
+          ],
+          "scope": "224개 도메인/jsdom 통과·성능1개 건너뜀; 해당 전체계약의 모든 자동요구 통과를 의미하지 않습니다.",
+          "verified_at": "2026-09-29T17:59:45.644137+00:00",
+          "commit": "482d302c467774307e0f798e00329f5086eb90cc"
         },
         "browser": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "browser",
+              "path": "docs/validation/continuation-ui-20260930.md"
+            }
+          ],
+          "scope": "B29–B36의 다운로드 실수신/선택글복귀/보이는메뉴초점/검색무결과 및 A최근없음/E다른범위/G후속수정의 좁은 실행. B37 실제Chrome200%·B38감소모션 emulation 추가. 전체요구/온라인/물리/학습효과 통과 아님.",
+          "verified_at": "2026-09-29T17:59:45.644137+00:00",
+          "commit": "482d302c467774307e0f798e00329f5086eb90cc"
         },
         "physical_device": {
           "status": "미검증",
@@ -4745,8 +5326,18 @@
       ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
-        "implementation_commits": [],
-        "artifacts": []
+        "implementation_commits": [
+          "cfbd5d8ff57811284988566d4de7866ef2cc640e",
+          "b50ab3708e9efa87c1722b6a28b01cfe0c2b0eca",
+          "06b2707db416c894fe5fd71688136e1d9b1c95c4",
+          "482d302c467774307e0f798e00329f5086eb90cc"
+        ],
+        "artifacts": [
+          "docs/validation/continuation-final-tests-20260930.txt",
+          "docs/validation/continuation-final-build-20260930.txt",
+          "docs/validation/continuation-ui-20260930.md",
+          "docs/phase-report-continuation-20260930.md"
+        ]
       },
       "owner_phases": [
         "PHASE.35",
@@ -5381,7 +5972,9 @@
           "review": "이번 작업에서 요구 목록 재독. 실행 증거와 구별."
         }
       ],
-      "correction_dates": [],
+      "correction_dates": [
+        "2026-09-30"
+      ],
       "classification": "B",
       "classification_reason": "기존 핵심 조건을 유지하며 PHASE.05, PHASE.36의 독립 증거로 판단합니다.",
       "phase": "PHASE.05",
@@ -5414,20 +6007,45 @@
         ]
       },
       "implementation": {
-        "files": [],
-        "scope": "관련 구현 위치만 연결했습니다. 이 핵심 조건의 전체 충족·실제 실행 완료를 뜻하지 않습니다.",
-        "test_connections": []
+        "files": [
+          "src/App.tsx",
+          "src/ui/navigation-context.ts"
+        ],
+        "scope": "관련 구현 위치만 연결했습니다. 이 핵심 조건의 전체 충족·실제 실행 완료를 뜻하지 않습니다. 2026-09-30 이번 후속: B29–B36의 다운로드 실수신/선택글복귀/보이는메뉴초점/검색무결과 및 A최근없음/E다른범위/G후속수정의 좁은 실행. B37 실제Chrome200%·B38감소모션 emulation 추가. 전체요구/온라인/물리/학습효과 통과 아님.",
+        "test_connections": [
+          "src/App.test.tsx",
+          "src/ui/navigation-context.test.tsx",
+          "src/search.test.tsx"
+        ]
       },
       "evidence": {
         "automated": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-tests-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-build-20260930.txt"
+            }
+          ],
+          "scope": "224개 도메인/jsdom 통과·성능1개 건너뜀; 해당 전체계약의 모든 자동요구 통과를 의미하지 않습니다.",
+          "verified_at": "2026-09-29T17:59:45.644137+00:00",
+          "commit": "482d302c467774307e0f798e00329f5086eb90cc"
         },
         "browser": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "browser",
+              "path": "docs/validation/continuation-ui-20260930.md"
+            }
+          ],
+          "scope": "B29–B36의 다운로드 실수신/선택글복귀/보이는메뉴초점/검색무결과 및 A최근없음/E다른범위/G후속수정의 좁은 실행. B37 실제Chrome200%·B38감소모션 emulation 추가. 전체요구/온라인/물리/학습효과 통과 아님.",
+          "verified_at": "2026-09-29T17:59:45.644137+00:00",
+          "commit": "482d302c467774307e0f798e00329f5086eb90cc"
         },
         "physical_device": {
           "status": "미검증",
@@ -5467,8 +6085,18 @@
       ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
-        "implementation_commits": [],
-        "artifacts": []
+        "implementation_commits": [
+          "cfbd5d8ff57811284988566d4de7866ef2cc640e",
+          "b50ab3708e9efa87c1722b6a28b01cfe0c2b0eca",
+          "06b2707db416c894fe5fd71688136e1d9b1c95c4",
+          "482d302c467774307e0f798e00329f5086eb90cc"
+        ],
+        "artifacts": [
+          "docs/validation/continuation-final-tests-20260930.txt",
+          "docs/validation/continuation-final-build-20260930.txt",
+          "docs/validation/continuation-ui-20260930.md",
+          "docs/phase-report-continuation-20260930.md"
+        ]
       },
       "owner_phases": [
         "PHASE.05",
@@ -5979,7 +6607,9 @@
           "review": "이번 작업에서 요구 목록 재독. 실행 증거와 구별."
         }
       ],
-      "correction_dates": [],
+      "correction_dates": [
+        "2026-09-30"
+      ],
       "classification": "B",
       "classification_reason": "기존 핵심 조건을 유지하며 PHASE.02, PHASE.35, PHASE.36의 독립 증거로 판단합니다.",
       "phase": "PHASE.02",
@@ -6007,20 +6637,45 @@
         "no_direct_surface_reason": "제품 화면 자체보다 원문·증거·완료 판정의 작업 규칙입니다. 연결 WORK의 실제 소비 화면 결과를 감사합니다."
       },
       "implementation": {
-        "files": [],
-        "scope": "관련 구현 위치만 연결했습니다. 이 핵심 조건의 전체 충족·실제 실행 완료를 뜻하지 않습니다.",
-        "test_connections": []
+        "files": [
+          "src/App.tsx",
+          "src/ui/navigation-context.ts"
+        ],
+        "scope": "관련 구현 위치만 연결했습니다. 이 핵심 조건의 전체 충족·실제 실행 완료를 뜻하지 않습니다. 2026-09-30 이번 후속: B29–B36의 다운로드 실수신/선택글복귀/보이는메뉴초점/검색무결과 및 A최근없음/E다른범위/G후속수정의 좁은 실행. B37 실제Chrome200%·B38감소모션 emulation 추가. 전체요구/온라인/물리/학습효과 통과 아님.",
+        "test_connections": [
+          "src/App.test.tsx",
+          "src/ui/navigation-context.test.tsx",
+          "src/search.test.tsx"
+        ]
       },
       "evidence": {
         "automated": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-tests-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-build-20260930.txt"
+            }
+          ],
+          "scope": "224개 도메인/jsdom 통과·성능1개 건너뜀; 해당 전체계약의 모든 자동요구 통과를 의미하지 않습니다.",
+          "verified_at": "2026-09-29T17:59:45.644137+00:00",
+          "commit": "482d302c467774307e0f798e00329f5086eb90cc"
         },
         "browser": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "browser",
+              "path": "docs/validation/continuation-ui-20260930.md"
+            }
+          ],
+          "scope": "B29–B36의 다운로드 실수신/선택글복귀/보이는메뉴초점/검색무결과 및 A최근없음/E다른범위/G후속수정의 좁은 실행. B37 실제Chrome200%·B38감소모션 emulation 추가. 전체요구/온라인/물리/학습효과 통과 아님.",
+          "verified_at": "2026-09-29T17:59:45.644137+00:00",
+          "commit": "482d302c467774307e0f798e00329f5086eb90cc"
         },
         "physical_device": {
           "status": "미검증",
@@ -6058,8 +6713,18 @@
       ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
-        "implementation_commits": [],
-        "artifacts": []
+        "implementation_commits": [
+          "cfbd5d8ff57811284988566d4de7866ef2cc640e",
+          "b50ab3708e9efa87c1722b6a28b01cfe0c2b0eca",
+          "06b2707db416c894fe5fd71688136e1d9b1c95c4",
+          "482d302c467774307e0f798e00329f5086eb90cc"
+        ],
+        "artifacts": [
+          "docs/validation/continuation-final-tests-20260930.txt",
+          "docs/validation/continuation-final-build-20260930.txt",
+          "docs/validation/continuation-ui-20260930.md",
+          "docs/phase-report-continuation-20260930.md"
+        ]
       },
       "owner_phases": [
         "PHASE.02",
@@ -6682,7 +7347,9 @@
           "review": "이번 작업에서 요구 목록 재독. 실행 증거와 구별."
         }
       ],
-      "correction_dates": [],
+      "correction_dates": [
+        "2026-09-30"
+      ],
       "classification": "B",
       "classification_reason": "원 요구의 의미를 보존하며 웹 계약과 검증을 보완합니다.",
       "phase": "PHASE.07",
@@ -6710,7 +7377,7 @@
           "src/data/draft-safety.ts",
           "src/ui/criteria-editor.tsx"
         ],
-        "scope": "계약21종 구현 존재, 공통15개자동과 B05/B09. 전체접근성 상태 미검증 2026-09-30 후속: 후속 Prototype 범위만170자동검사/B10–B18. 전체 상태 inventory·물리·온라인 gate는 미검증. 전체 온라인/이관/기기 검증과 구별.",
+        "scope": "계약21종 구현 존재, 공통15개자동과 B05/B09. 전체접근성 상태 미검증 2026-09-30 후속: 후속 Prototype 범위만170자동검사/B10–B18. 전체 상태 inventory·물리·온라인 gate는 미검증. 전체 온라인/이관/기기 검증과 구별. 2026-09-30 이번 후속: B29–B36의 다운로드 실수신/선택글복귀/보이는메뉴초점/검색무결과 및 A최근없음/E다른범위/G후속수정의 좁은 실행. B37 실제Chrome200%·B38감소모션 emulation 추가. 전체요구/온라인/물리/학습효과 통과 아님.",
         "test_connections": [
           "src/ui/component.test.tsx",
           "src/ui/context-menu.test.tsx",
@@ -6721,15 +7388,16 @@
           "src/ui/outline-table-editor.test.tsx",
           "src/ui/navigation-context.test.tsx",
           "src/data/draft-safety.test.ts",
-          "src/ui/criteria-editor.test.tsx"
+          "src/ui/criteria-editor.test.tsx",
+          "src/search.test.tsx"
         ]
       },
       "evidence": {
         "automated": {
           "status": "수정 후 통과",
-          "scope": "후속 Prototype 범위만170자동검사/B10–B18. 전체 상태 inventory·물리·온라인 gate는 미검증. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
-          "verified_at": "2026-09-29T16:24:18.753341+00:00",
-          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d",
+          "scope": "224개 도메인/jsdom 통과·성능1개 건너뜀; 해당 전체계약의 모든 자동요구 통과를 의미하지 않습니다. 마지막 전체회귀227개/타입/Pages빌드통과, opt-in성능1미실행.",
+          "verified_at": "2026-09-29T18:12:03.625144+00:00",
+          "commit": "d2e3164f97decf16485f2383240dea0be601b22f",
           "artifacts": [
             {
               "level": "automated",
@@ -6738,14 +7406,72 @@
             {
               "level": "automated",
               "path": "docs/validation/followup-final-tests-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-tests-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-build-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-227-tests-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-227-build-20260930.txt"
+            }
+          ],
+          "previous_executions": [
+            {
+              "status": "수정 후 통과",
+              "scope": "후속 Prototype 범위만170자동검사/B10–B18. 전체 상태 inventory·물리·온라인 gate는 미검증. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+              "verified_at": "2026-09-29T16:24:18.753341+00:00",
+              "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d",
+              "artifacts": [
+                {
+                  "level": "automated",
+                  "path": "docs/validation/resume-execution.json"
+                },
+                {
+                  "level": "automated",
+                  "path": "docs/validation/followup-final-tests-20260930.txt"
+                }
+              ]
+            },
+            {
+              "status": "수정 후 통과",
+              "scope": "224개 도메인/jsdom 통과·성능1개 건너뜀; 해당 전체계약의 모든 자동요구 통과를 의미하지 않습니다.",
+              "verified_at": "2026-09-29T17:59:45.644137+00:00",
+              "commit": "482d302c467774307e0f798e00329f5086eb90cc",
+              "artifacts": [
+                {
+                  "level": "automated",
+                  "path": "docs/validation/resume-execution.json"
+                },
+                {
+                  "level": "automated",
+                  "path": "docs/validation/followup-final-tests-20260930.txt"
+                },
+                {
+                  "level": "automated",
+                  "path": "docs/validation/continuation-final-tests-20260930.txt"
+                },
+                {
+                  "level": "automated",
+                  "path": "docs/validation/continuation-final-build-20260930.txt"
+                }
+              ]
             }
           ]
         },
         "browser": {
           "status": "수정 후 통과",
-          "scope": "후속 Prototype 범위만170자동검사/B10–B18. 전체 상태 inventory·물리·온라인 gate는 미검증. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
-          "verified_at": "2026-09-29T16:24:18.753341+00:00",
-          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d",
+          "scope": "B29–B36의 다운로드 실수신/선택글복귀/보이는메뉴초점/검색무결과 및 A최근없음/E다른범위/G후속수정의 좁은 실행. B37 실제Chrome200%·B38감소모션 emulation 추가. 전체요구/온라인/물리/학습효과 통과 아님.",
+          "verified_at": "2026-09-29T17:59:45.644137+00:00",
+          "commit": "482d302c467774307e0f798e00329f5086eb90cc",
           "artifacts": [
             {
               "level": "browser",
@@ -6754,6 +7480,28 @@
             {
               "level": "browser",
               "path": "docs/validation/followup-ui-20260930.md"
+            },
+            {
+              "level": "browser",
+              "path": "docs/validation/continuation-ui-20260930.md"
+            }
+          ],
+          "previous_executions": [
+            {
+              "status": "수정 후 통과",
+              "scope": "후속 Prototype 범위만170자동검사/B10–B18. 전체 상태 inventory·물리·온라인 gate는 미검증. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+              "verified_at": "2026-09-29T16:24:18.753341+00:00",
+              "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d",
+              "artifacts": [
+                {
+                  "level": "browser",
+                  "path": "docs/validation/resume-ui.md"
+                },
+                {
+                  "level": "browser",
+                  "path": "docs/validation/followup-ui-20260930.md"
+                }
+              ]
             }
           ]
         },
@@ -6785,7 +7533,8 @@
       "status": "미검증",
       "not_applicable_reason": null,
       "remaining": [
-        "이번 부분 검증을 제외한 원 계약의 전체 상태·물리/서버 조건과 선행 Phase는 미검증입니다."
+        "이번 부분 검증을 제외한 원 계약의 전체 상태·물리/서버 조건과 선행 Phase는 미검증입니다.",
+        "현재브라우저200%와 기록필터 복귀(B37/B40)는 이번에 확인. 물리기기/안전한baseline 및 필요한 나머지 소비상태는 열린 조건입니다."
       ],
       "next_action": "docs/resume-handoff.md의 다음 실행 순서와 본 행의 요구별 조건을 함께 따라 남은 범위를 실행합니다.",
       "related": [],
@@ -6797,13 +7546,21 @@
           "dd39f5b",
           "5e1d223",
           "752ab1e",
-          "ce6ee432bee65d184f65145414ee4a1e586c838d"
+          "ce6ee432bee65d184f65145414ee4a1e586c838d",
+          "cfbd5d8ff57811284988566d4de7866ef2cc640e",
+          "b50ab3708e9efa87c1722b6a28b01cfe0c2b0eca",
+          "06b2707db416c894fe5fd71688136e1d9b1c95c4",
+          "482d302c467774307e0f798e00329f5086eb90cc"
         ],
         "artifacts": [
           "docs/validation/resume-execution.json",
           "docs/validation/resume-ui.md",
           "docs/validation/followup-execution-20260930.json",
-          "docs/validation/followup-ui-20260930.md"
+          "docs/validation/followup-ui-20260930.md",
+          "docs/validation/continuation-final-tests-20260930.txt",
+          "docs/validation/continuation-final-build-20260930.txt",
+          "docs/validation/continuation-ui-20260930.md",
+          "docs/phase-report-continuation-20260930.md"
         ]
       },
       "current_progress": {
@@ -6824,7 +7581,9 @@
           "review": "이번 작업에서 요구 목록 재독. 실행 증거와 구별."
         }
       ],
-      "correction_dates": [],
+      "correction_dates": [
+        "2026-09-30"
+      ],
       "classification": "B",
       "classification_reason": "원 요구의 의미를 보존하며 웹 계약과 검증을 보완합니다.",
       "phase": "PHASE.08",
@@ -6854,7 +7613,7 @@
           "src/ui/criteria-editor.tsx",
           "src/ui/index.tsx"
         ],
-        "scope": "자동119개/실제 B01–B09 해당범위. 전체Prototype 및 개인온라인 미완 2026-09-30 후속: 후속 Prototype 범위만170자동검사/B10–B18. 전체 상태 inventory·물리·온라인 gate는 미검증. 전체 온라인/이관/기기 검증과 구별.",
+        "scope": "자동119개/실제 B01–B09 해당범위. 전체Prototype 및 개인온라인 미완 2026-09-30 후속: 후속 Prototype 범위만170자동검사/B10–B18. 전체 상태 inventory·물리·온라인 gate는 미검증. 전체 온라인/이관/기기 검증과 구별. 2026-09-30 이번 후속: B29–B36의 다운로드 실수신/선택글복귀/보이는메뉴초점/검색무결과 및 A최근없음/E다른범위/G후속수정의 좁은 실행. B37 실제Chrome200%·B38감소모션 emulation 추가. 전체요구/온라인/물리/학습효과 통과 아님.",
         "test_connections": [
           "src/App.test.tsx",
           "src/domain/outline.test.ts",
@@ -6863,15 +7622,16 @@
           "src/ui/navigation-context.test.tsx",
           "src/data/draft-safety.test.ts",
           "src/ui/criteria-editor.test.tsx",
-          "src/ui/component.test.tsx"
+          "src/ui/component.test.tsx",
+          "src/search.test.tsx"
         ]
       },
       "evidence": {
         "automated": {
           "status": "수정 후 통과",
-          "scope": "후속 Prototype 범위만170자동검사/B10–B18. 전체 상태 inventory·물리·온라인 gate는 미검증. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
-          "verified_at": "2026-09-29T16:24:18.753341+00:00",
-          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d",
+          "scope": "224개 도메인/jsdom 통과·성능1개 건너뜀; 해당 전체계약의 모든 자동요구 통과를 의미하지 않습니다. 마지막 전체회귀227개/타입/Pages빌드통과, opt-in성능1미실행.",
+          "verified_at": "2026-09-29T18:12:03.625144+00:00",
+          "commit": "d2e3164f97decf16485f2383240dea0be601b22f",
           "artifacts": [
             {
               "level": "automated",
@@ -6880,14 +7640,72 @@
             {
               "level": "automated",
               "path": "docs/validation/followup-final-tests-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-tests-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-build-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-227-tests-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-227-build-20260930.txt"
+            }
+          ],
+          "previous_executions": [
+            {
+              "status": "수정 후 통과",
+              "scope": "후속 Prototype 범위만170자동검사/B10–B18. 전체 상태 inventory·물리·온라인 gate는 미검증. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+              "verified_at": "2026-09-29T16:24:18.753341+00:00",
+              "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d",
+              "artifacts": [
+                {
+                  "level": "automated",
+                  "path": "docs/validation/resume-execution.json"
+                },
+                {
+                  "level": "automated",
+                  "path": "docs/validation/followup-final-tests-20260930.txt"
+                }
+              ]
+            },
+            {
+              "status": "수정 후 통과",
+              "scope": "224개 도메인/jsdom 통과·성능1개 건너뜀; 해당 전체계약의 모든 자동요구 통과를 의미하지 않습니다.",
+              "verified_at": "2026-09-29T17:59:45.644137+00:00",
+              "commit": "482d302c467774307e0f798e00329f5086eb90cc",
+              "artifacts": [
+                {
+                  "level": "automated",
+                  "path": "docs/validation/resume-execution.json"
+                },
+                {
+                  "level": "automated",
+                  "path": "docs/validation/followup-final-tests-20260930.txt"
+                },
+                {
+                  "level": "automated",
+                  "path": "docs/validation/continuation-final-tests-20260930.txt"
+                },
+                {
+                  "level": "automated",
+                  "path": "docs/validation/continuation-final-build-20260930.txt"
+                }
+              ]
             }
           ]
         },
         "browser": {
           "status": "수정 후 통과",
-          "scope": "후속 Prototype 범위만170자동검사/B10–B18. 전체 상태 inventory·물리·온라인 gate는 미검증. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
-          "verified_at": "2026-09-29T16:24:18.753341+00:00",
-          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d",
+          "scope": "B29–B36의 다운로드 실수신/선택글복귀/보이는메뉴초점/검색무결과 및 A최근없음/E다른범위/G후속수정의 좁은 실행. B37 실제Chrome200%·B38감소모션 emulation 추가. 전체요구/온라인/물리/학습효과 통과 아님.",
+          "verified_at": "2026-09-29T17:59:45.644137+00:00",
+          "commit": "482d302c467774307e0f798e00329f5086eb90cc",
           "artifacts": [
             {
               "level": "browser",
@@ -6896,6 +7714,28 @@
             {
               "level": "browser",
               "path": "docs/validation/followup-ui-20260930.md"
+            },
+            {
+              "level": "browser",
+              "path": "docs/validation/continuation-ui-20260930.md"
+            }
+          ],
+          "previous_executions": [
+            {
+              "status": "수정 후 통과",
+              "scope": "후속 Prototype 범위만170자동검사/B10–B18. 전체 상태 inventory·물리·온라인 gate는 미검증. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+              "verified_at": "2026-09-29T16:24:18.753341+00:00",
+              "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d",
+              "artifacts": [
+                {
+                  "level": "browser",
+                  "path": "docs/validation/resume-ui.md"
+                },
+                {
+                  "level": "browser",
+                  "path": "docs/validation/followup-ui-20260930.md"
+                }
+              ]
             }
           ]
         },
@@ -6929,9 +7769,11 @@
       "remaining": [
         "형제 정렬·표 대량관리·Modal초안·긴글 선택/내부scroll의 이번 범위는 수정 후 통과.",
         "UI38/FM40/UX112/기존32영역 전체 실조작 및665발화/141장면/460이력 의미 전수는 미해결.",
-        "물리IME·키보드·회전·VoiceOver·대량 실제UI·서버/상대기기 수신은 미검증."
+        "물리IME·키보드·회전·VoiceOver·대량 실제UI·서버/상대기기 수신은 미검증.",
+        "위 UI38/FM40/전체history·미래Canvas/Backup 잔여는 전체 마이그레이션 잔여이며 새로운 Prototype 선행조건이 아닙니다. 현Prototype R03–R06/기존UX12의 관련 상태·기기·baseline만 현재 gate로 판정합니다.",
+        "현재브라우저200%와 기록필터 복귀(B37/B40)는 이번에 확인. 물리기기/안전한baseline 및 필요한 나머지 소비상태는 열린 조건입니다."
       ],
-      "next_action": "남은 Prototype 오류/상태/접근성 조작을 원장 ID별로 대조하고 UX gate 충족 후 승인된 Supabase Auth/온라인 CRUD로 진행.",
+      "next_action": "현재제품의 RecordForm 범위표시, 소비컴포넌트 남은 상태, 필요한 실기기/안전한baseline 비교를 진행하고 P09 최소증거를 재판정. 충족후 기존Supabase Auth/온라인으로 진입.",
       "related": [
         "FOLLOWUP.DRAFT_ARCHIVE_INSPECTION",
         "FOLLOWUP.TABLE_EDITING_CONTEXT",
@@ -6945,13 +7787,21 @@
           "dd39f5b",
           "5e1d223",
           "752ab1e",
-          "ce6ee432bee65d184f65145414ee4a1e586c838d"
+          "ce6ee432bee65d184f65145414ee4a1e586c838d",
+          "cfbd5d8ff57811284988566d4de7866ef2cc640e",
+          "b50ab3708e9efa87c1722b6a28b01cfe0c2b0eca",
+          "06b2707db416c894fe5fd71688136e1d9b1c95c4",
+          "482d302c467774307e0f798e00329f5086eb90cc"
         ],
         "artifacts": [
           "docs/validation/resume-execution.json",
           "docs/validation/resume-ui.md",
           "docs/validation/followup-execution-20260930.json",
-          "docs/validation/followup-ui-20260930.md"
+          "docs/validation/followup-ui-20260930.md",
+          "docs/validation/continuation-final-tests-20260930.txt",
+          "docs/validation/continuation-final-build-20260930.txt",
+          "docs/validation/continuation-ui-20260930.md",
+          "docs/phase-report-continuation-20260930.md"
         ]
       },
       "current_progress": {
@@ -6980,7 +7830,9 @@
           "review": "이번 작업에서 요구 목록 재독. 실행 증거와 구별."
         }
       ],
-      "correction_dates": [],
+      "correction_dates": [
+        "2026-09-30"
+      ],
       "classification": "B",
       "classification_reason": "원 요구의 의미를 보존하며 웹 계약과 검증을 보완합니다.",
       "phase": "PHASE.09",
@@ -7008,7 +7860,7 @@
           "src/ui/criteria-editor.tsx",
           "src/ui/index.tsx"
         ],
-        "scope": "미구현 여부를 단정하지 않으며 아래 계약과 코드 대응을 구별합니다. 2026-09-30 후속: 후속 Prototype 범위만170자동검사/B10–B18. 전체 상태 inventory·물리·온라인 gate는 미검증. 전체 온라인/이관/기기 검증과 구별.",
+        "scope": "미구현 여부를 단정하지 않으며 아래 계약과 코드 대응을 구별합니다. 2026-09-30 후속: 후속 Prototype 범위만170자동검사/B10–B18. 전체 상태 inventory·물리·온라인 gate는 미검증. 전체 온라인/이관/기기 검증과 구별. 2026-09-30 이번 후속: B29–B36의 다운로드 실수신/선택글복귀/보이는메뉴초점/검색무결과 및 A최근없음/E다른범위/G후속수정의 좁은 실행. B37 실제Chrome200%·B38감소모션 emulation 추가. 전체요구/온라인/물리/학습효과 통과 아님.",
         "test_connections": [
           "src/App.test.tsx",
           "src/domain/outline.test.ts",
@@ -7017,7 +7869,8 @@
           "src/ui/navigation-context.test.tsx",
           "src/data/draft-safety.test.ts",
           "src/ui/criteria-editor.test.tsx",
-          "src/ui/component.test.tsx"
+          "src/ui/component.test.tsx",
+          "src/search.test.tsx"
         ]
       },
       "evidence": {
@@ -7027,11 +7880,61 @@
             {
               "level": "automated",
               "path": "docs/validation/followup-final-tests-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-tests-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-build-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-227-tests-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-227-build-20260930.txt"
             }
           ],
-          "scope": "후속 Prototype 범위만170자동검사/B10–B18. 전체 상태 inventory·물리·온라인 gate는 미검증. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
-          "verified_at": "2026-09-29T16:24:18.753341+00:00",
-          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
+          "scope": "224개 도메인/jsdom 통과·성능1개 건너뜀; 해당 전체계약의 모든 자동요구 통과를 의미하지 않습니다. 마지막 전체회귀227개/타입/Pages빌드통과, opt-in성능1미실행.",
+          "verified_at": "2026-09-29T18:12:03.625144+00:00",
+          "commit": "d2e3164f97decf16485f2383240dea0be601b22f",
+          "previous_executions": [
+            {
+              "status": "수정 후 통과",
+              "scope": "후속 Prototype 범위만170자동검사/B10–B18. 전체 상태 inventory·물리·온라인 gate는 미검증. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+              "verified_at": "2026-09-29T16:24:18.753341+00:00",
+              "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d",
+              "artifacts": [
+                {
+                  "level": "automated",
+                  "path": "docs/validation/followup-final-tests-20260930.txt"
+                }
+              ]
+            },
+            {
+              "status": "수정 후 통과",
+              "scope": "224개 도메인/jsdom 통과·성능1개 건너뜀; 해당 전체계약의 모든 자동요구 통과를 의미하지 않습니다.",
+              "verified_at": "2026-09-29T17:59:45.644137+00:00",
+              "commit": "482d302c467774307e0f798e00329f5086eb90cc",
+              "artifacts": [
+                {
+                  "level": "automated",
+                  "path": "docs/validation/followup-final-tests-20260930.txt"
+                },
+                {
+                  "level": "automated",
+                  "path": "docs/validation/continuation-final-tests-20260930.txt"
+                },
+                {
+                  "level": "automated",
+                  "path": "docs/validation/continuation-final-build-20260930.txt"
+                }
+              ]
+            }
+          ]
         },
         "browser": {
           "status": "수정 후 통과",
@@ -7039,11 +7942,29 @@
             {
               "level": "browser",
               "path": "docs/validation/followup-ui-20260930.md"
+            },
+            {
+              "level": "browser",
+              "path": "docs/validation/continuation-ui-20260930.md"
             }
           ],
-          "scope": "후속 Prototype 범위만170자동검사/B10–B18. 전체 상태 inventory·물리·온라인 gate는 미검증. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
-          "verified_at": "2026-09-29T16:24:18.753341+00:00",
-          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
+          "scope": "B29–B36의 다운로드 실수신/선택글복귀/보이는메뉴초점/검색무결과 및 A최근없음/E다른범위/G후속수정의 좁은 실행. B37 실제Chrome200%·B38감소모션 emulation 추가. 전체요구/온라인/물리/학습효과 통과 아님.",
+          "verified_at": "2026-09-29T17:59:45.644137+00:00",
+          "commit": "482d302c467774307e0f798e00329f5086eb90cc",
+          "previous_executions": [
+            {
+              "status": "수정 후 통과",
+              "scope": "후속 Prototype 범위만170자동검사/B10–B18. 전체 상태 inventory·물리·온라인 gate는 미검증. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+              "verified_at": "2026-09-29T16:24:18.753341+00:00",
+              "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d",
+              "artifacts": [
+                {
+                  "level": "browser",
+                  "path": "docs/validation/followup-ui-20260930.md"
+                }
+              ]
+            }
+          ]
         },
         "physical_device": {
           "status": "미검증",
@@ -7087,9 +8008,11 @@
       "remaining": [
         "형제 정렬·표 대량관리·Modal초안·긴글 선택/내부scroll의 이번 범위는 수정 후 통과.",
         "UI38/FM40/UX112/기존32영역 전체 실조작 및665발화/141장면/460이력 의미 전수는 미해결.",
-        "물리IME·키보드·회전·VoiceOver·대량 실제UI·서버/상대기기 수신은 미검증."
+        "물리IME·키보드·회전·VoiceOver·대량 실제UI·서버/상대기기 수신은 미검증.",
+        "위 UI38/FM40/전체history·미래Canvas/Backup 잔여는 전체 마이그레이션 잔여이며 새로운 Prototype 선행조건이 아닙니다. 현Prototype R03–R06/기존UX12의 관련 상태·기기·baseline만 현재 gate로 판정합니다.",
+        "현재브라우저200%와 기록필터 복귀(B37/B40)는 이번에 확인. 물리기기/안전한baseline 및 필요한 나머지 소비상태는 열린 조건입니다."
       ],
-      "next_action": "남은 Prototype 오류/상태/접근성 조작을 원장 ID별로 대조하고 UX gate 충족 후 승인된 Supabase Auth/온라인 CRUD로 진행.",
+      "next_action": "현재제품의 RecordForm 범위표시, 소비컴포넌트 남은 상태, 필요한 실기기/안전한baseline 비교를 진행하고 P09 최소증거를 재판정. 충족후 기존Supabase Auth/온라인으로 진입.",
       "related": [
         "FOLLOWUP.DRAFT_ARCHIVE_INSPECTION",
         "FOLLOWUP.TABLE_EDITING_CONTEXT",
@@ -7101,11 +8024,19 @@
           "dd39f5b",
           "5e1d223",
           "752ab1e",
-          "ce6ee432bee65d184f65145414ee4a1e586c838d"
+          "ce6ee432bee65d184f65145414ee4a1e586c838d",
+          "cfbd5d8ff57811284988566d4de7866ef2cc640e",
+          "b50ab3708e9efa87c1722b6a28b01cfe0c2b0eca",
+          "06b2707db416c894fe5fd71688136e1d9b1c95c4",
+          "482d302c467774307e0f798e00329f5086eb90cc"
         ],
         "artifacts": [
           "docs/validation/followup-execution-20260930.json",
-          "docs/validation/followup-ui-20260930.md"
+          "docs/validation/followup-ui-20260930.md",
+          "docs/validation/continuation-final-tests-20260930.txt",
+          "docs/validation/continuation-final-build-20260930.txt",
+          "docs/validation/continuation-ui-20260930.md",
+          "docs/phase-report-continuation-20260930.md"
         ]
       },
       "current_progress": {
@@ -10271,7 +11202,9 @@
           "review": "이번 작업에서 요구 목록 재독. 실행 증거와 구별."
         }
       ],
-      "correction_dates": [],
+      "correction_dates": [
+        "2026-09-30"
+      ],
       "classification": "B",
       "classification_reason": "원 요구의 의미를 보존하며 웹 계약과 검증을 보완합니다.",
       "phase": "PHASE.08",
@@ -10337,20 +11270,72 @@
         ]
       },
       "implementation": {
-        "files": [],
-        "scope": "미구현 여부를 단정하지 않으며 아래 계약과 코드 대응을 구별합니다.",
-        "test_connections": []
+        "files": [
+          "src/App.tsx",
+          "src/ui/navigation-context.ts"
+        ],
+        "scope": "미구현 여부를 단정하지 않으며 아래 계약과 코드 대응을 구별합니다. 2026-09-30 이번 후속: B29–B36의 다운로드 실수신/선택글복귀/보이는메뉴초점/검색무결과 및 A최근없음/E다른범위/G후속수정의 좁은 실행. B37 실제Chrome200%·B38감소모션 emulation 추가. 전체요구/온라인/물리/학습효과 통과 아님. B40:주제검색 함수→선택/메모→오늘/Back/reload에서 필터/선택/원문보존, 실제키로 검색어지운상태 유지, 명시대상별 분리.3회귀검사 수정전2fail→수정후통과; hint저장거부에도 기록저장 가능. 새 공부사건ID/본문키를 바꾸지 않음.",
+        "test_connections": [
+          "src/App.test.tsx",
+          "src/ui/navigation-context.test.tsx",
+          "src/search.test.tsx",
+          "src/record-filter.test.tsx"
+        ]
       },
       "evidence": {
         "automated": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-tests-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-build-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-227-tests-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-227-build-20260930.txt"
+            }
+          ],
+          "scope": "224개 도메인/jsdom 통과·성능1개 건너뜀; 해당 전체계약의 모든 자동요구 통과를 의미하지 않습니다. 마지막 전체회귀227개/타입/Pages빌드통과, opt-in성능1미실행.",
+          "verified_at": "2026-09-29T18:12:03.625144+00:00",
+          "commit": "d2e3164f97decf16485f2383240dea0be601b22f",
+          "previous_executions": [
+            {
+              "status": "수정 후 통과",
+              "scope": "224개 도메인/jsdom 통과·성능1개 건너뜀; 해당 전체계약의 모든 자동요구 통과를 의미하지 않습니다.",
+              "verified_at": "2026-09-29T17:59:45.644137+00:00",
+              "commit": "482d302c467774307e0f798e00329f5086eb90cc",
+              "artifacts": [
+                {
+                  "level": "automated",
+                  "path": "docs/validation/continuation-final-tests-20260930.txt"
+                },
+                {
+                  "level": "automated",
+                  "path": "docs/validation/continuation-final-build-20260930.txt"
+                }
+              ]
+            }
+          ]
         },
         "browser": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "browser",
+              "path": "docs/validation/continuation-ui-20260930.md"
+            }
+          ],
+          "scope": "B29–B36의 다운로드 실수신/선택글복귀/보이는메뉴초점/검색무결과 및 A최근없음/E다른범위/G후속수정의 좁은 실행. B37 실제Chrome200%·B38감소모션 emulation 추가. 전체요구/온라인/물리/학습효과 통과 아님.",
+          "verified_at": "2026-09-29T17:59:45.644137+00:00",
+          "commit": "482d302c467774307e0f798e00329f5086eb90cc"
         },
         "physical_device": {
           "status": "미검증",
@@ -10393,12 +11378,24 @@
         "FEATURE.F13",
         "FEATURE.F15",
         "FEATURE.F37",
-        "FOLLOWUP.STUDY_LAUNCH_RETURN"
+        "FOLLOWUP.STUDY_LAUNCH_RETURN",
+        "FOLLOWUP.NARRATIVE_RETURN_ID",
+        "FOLLOWUP.RECORD_FILTER_RETURN"
       ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
-        "implementation_commits": [],
-        "artifacts": []
+        "implementation_commits": [
+          "cfbd5d8ff57811284988566d4de7866ef2cc640e",
+          "b50ab3708e9efa87c1722b6a28b01cfe0c2b0eca",
+          "06b2707db416c894fe5fd71688136e1d9b1c95c4",
+          "482d302c467774307e0f798e00329f5086eb90cc"
+        ],
+        "artifacts": [
+          "docs/validation/continuation-final-tests-20260930.txt",
+          "docs/validation/continuation-final-build-20260930.txt",
+          "docs/validation/continuation-ui-20260930.md",
+          "docs/phase-report-continuation-20260930.md"
+        ]
       },
       "acceptance_contract": "학습 시작 안내와 실제 수행/기록의 구분, 일부 공부·막힘·바쁨·내용 없는 기록·여러 주제·긴 글·중단 후 복귀·몰아 기록·장기 미사용 복귀를 다룬다. 자유 기록을 하나의 노트로만 유지하는 현재 한계, 여러 자유 기록 관리, 과목 개요/단원 서문/주제 노트, 개인 기준·반복·메모 확장을 원 요구에 맞춰 보완한다. 기본 입력에 모든 상세를 강제하지 않는다."
     },
@@ -10413,7 +11410,9 @@
           "review": "이번 작업에서 요구 목록 재독. 실행 증거와 구별."
         }
       ],
-      "correction_dates": [],
+      "correction_dates": [
+        "2026-09-30"
+      ],
       "classification": "B",
       "classification_reason": "원 요구의 의미를 보존하며 웹 계약과 검증을 보완합니다.",
       "phase": "PHASE.15",
@@ -10455,20 +11454,72 @@
         ]
       },
       "implementation": {
-        "files": [],
-        "scope": "미구현 여부를 단정하지 않으며 아래 계약과 코드 대응을 구별합니다.",
-        "test_connections": []
+        "files": [
+          "src/App.tsx",
+          "src/ui/navigation-context.ts"
+        ],
+        "scope": "미구현 여부를 단정하지 않으며 아래 계약과 코드 대응을 구별합니다. 2026-09-30 이번 후속: B29–B36의 다운로드 실수신/선택글복귀/보이는메뉴초점/검색무결과 및 A최근없음/E다른범위/G후속수정의 좁은 실행. B37 실제Chrome200%·B38감소모션 emulation 추가. 전체요구/온라인/물리/학습효과 통과 아님. B40:주제검색 함수→선택/메모→오늘/Back/reload에서 필터/선택/원문보존, 실제키로 검색어지운상태 유지, 명시대상별 분리.3회귀검사 수정전2fail→수정후통과; hint저장거부에도 기록저장 가능. 새 공부사건ID/본문키를 바꾸지 않음.",
+        "test_connections": [
+          "src/App.test.tsx",
+          "src/ui/navigation-context.test.tsx",
+          "src/search.test.tsx",
+          "src/record-filter.test.tsx"
+        ]
       },
       "evidence": {
         "automated": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-tests-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-build-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-227-tests-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-227-build-20260930.txt"
+            }
+          ],
+          "scope": "224개 도메인/jsdom 통과·성능1개 건너뜀; 해당 전체계약의 모든 자동요구 통과를 의미하지 않습니다. 마지막 전체회귀227개/타입/Pages빌드통과, opt-in성능1미실행.",
+          "verified_at": "2026-09-29T18:12:03.625144+00:00",
+          "commit": "d2e3164f97decf16485f2383240dea0be601b22f",
+          "previous_executions": [
+            {
+              "status": "수정 후 통과",
+              "scope": "224개 도메인/jsdom 통과·성능1개 건너뜀; 해당 전체계약의 모든 자동요구 통과를 의미하지 않습니다.",
+              "verified_at": "2026-09-29T17:59:45.644137+00:00",
+              "commit": "482d302c467774307e0f798e00329f5086eb90cc",
+              "artifacts": [
+                {
+                  "level": "automated",
+                  "path": "docs/validation/continuation-final-tests-20260930.txt"
+                },
+                {
+                  "level": "automated",
+                  "path": "docs/validation/continuation-final-build-20260930.txt"
+                }
+              ]
+            }
+          ]
         },
         "browser": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "browser",
+              "path": "docs/validation/continuation-ui-20260930.md"
+            }
+          ],
+          "scope": "B29–B36의 다운로드 실수신/선택글복귀/보이는메뉴초점/검색무결과 및 A최근없음/E다른범위/G후속수정의 좁은 실행. B37 실제Chrome200%·B38감소모션 emulation 추가. 전체요구/온라인/물리/학습효과 통과 아님.",
+          "verified_at": "2026-09-29T17:59:45.644137+00:00",
+          "commit": "482d302c467774307e0f798e00329f5086eb90cc"
         },
         "physical_device": {
           "status": "미검증",
@@ -10506,12 +11557,25 @@
         "FEATURE.F03",
         "FEATURE.F04",
         "FEATURE.F41",
-        "FOLLOWUP.TABLE_EDITING_CONTEXT"
+        "FOLLOWUP.TABLE_EDITING_CONTEXT",
+        "FOLLOWUP.NARRATIVE_RETURN_ID",
+        "FOLLOWUP.VISIBLE_NAVIGATION_FOCUS",
+        "FOLLOWUP.RECORD_FILTER_RETURN"
       ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
-        "implementation_commits": [],
-        "artifacts": []
+        "implementation_commits": [
+          "cfbd5d8ff57811284988566d4de7866ef2cc640e",
+          "b50ab3708e9efa87c1722b6a28b01cfe0c2b0eca",
+          "06b2707db416c894fe5fd71688136e1d9b1c95c4",
+          "482d302c467774307e0f798e00329f5086eb90cc"
+        ],
+        "artifacts": [
+          "docs/validation/continuation-final-tests-20260930.txt",
+          "docs/validation/continuation-final-build-20260930.txt",
+          "docs/validation/continuation-ui-20260930.md",
+          "docs/phase-report-continuation-20260930.md"
+        ]
       },
       "acceptance_contract": "URL/Back/Forward/Breadcrumb/최근 항목/선택/필터/스크롤/focus/재시작 맥락을 검증한다. 제목이 같아도 ID·전체 경로로 구별한다. 깊은 목차, 노드 이동·정렬·드래그 및 키보드 대안, 표 일괄 생성·Preview·Undo, 삭제·복원까지 구현한다. 깊이8 렌더 축약이 더 깊은 자료를 접근 불가하게 만들지 않게 한다. Canvas 배열과 트리가 따로 진실이 되지 않게 한다."
     },
@@ -10526,7 +11590,9 @@
           "review": "이번 작업에서 요구 목록 재독. 실행 증거와 구별."
         }
       ],
-      "correction_dates": [],
+      "correction_dates": [
+        "2026-09-30"
+      ],
       "classification": "B",
       "classification_reason": "원 요구의 의미를 보존하며 웹 계약과 검증을 보완합니다.",
       "phase": "PHASE.07",
@@ -10559,20 +11625,71 @@
         ]
       },
       "implementation": {
-        "files": [],
-        "scope": "미구현 여부를 단정하지 않으며 아래 계약과 코드 대응을 구별합니다.",
-        "test_connections": []
+        "files": [
+          "src/App.tsx",
+          "src/ui/navigation-context.ts"
+        ],
+        "scope": "미구현 여부를 단정하지 않으며 아래 계약과 코드 대응을 구별합니다. 2026-09-30 이번 후속: B29–B36의 다운로드 실수신/선택글복귀/보이는메뉴초점/검색무결과 및 A최근없음/E다른범위/G후속수정의 좁은 실행. B37 실제Chrome200%·B38감소모션 emulation 추가. 전체요구/온라인/물리/학습효과 통과 아님.",
+        "test_connections": [
+          "src/App.test.tsx",
+          "src/ui/navigation-context.test.tsx",
+          "src/search.test.tsx"
+        ]
       },
       "evidence": {
         "automated": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-tests-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-build-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-227-tests-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-227-build-20260930.txt"
+            }
+          ],
+          "scope": "224개 도메인/jsdom 통과·성능1개 건너뜀; 해당 전체계약의 모든 자동요구 통과를 의미하지 않습니다. 마지막 전체회귀227개/타입/Pages빌드통과, opt-in성능1미실행.",
+          "verified_at": "2026-09-29T18:12:03.625144+00:00",
+          "commit": "d2e3164f97decf16485f2383240dea0be601b22f",
+          "previous_executions": [
+            {
+              "status": "수정 후 통과",
+              "scope": "224개 도메인/jsdom 통과·성능1개 건너뜀; 해당 전체계약의 모든 자동요구 통과를 의미하지 않습니다.",
+              "verified_at": "2026-09-29T17:59:45.644137+00:00",
+              "commit": "482d302c467774307e0f798e00329f5086eb90cc",
+              "artifacts": [
+                {
+                  "level": "automated",
+                  "path": "docs/validation/continuation-final-tests-20260930.txt"
+                },
+                {
+                  "level": "automated",
+                  "path": "docs/validation/continuation-final-build-20260930.txt"
+                }
+              ]
+            }
+          ]
         },
         "browser": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "browser",
+              "path": "docs/validation/continuation-ui-20260930.md"
+            }
+          ],
+          "scope": "B29–B36의 다운로드 실수신/선택글복귀/보이는메뉴초점/검색무결과 및 A최근없음/E다른범위/G후속수정의 좁은 실행. B37 실제Chrome200%·B38감소모션 emulation 추가. 전체요구/온라인/물리/학습효과 통과 아님.",
+          "verified_at": "2026-09-29T17:59:45.644137+00:00",
+          "commit": "482d302c467774307e0f798e00329f5086eb90cc"
         },
         "physical_device": {
           "status": "미검증",
@@ -10607,12 +11724,23 @@
       "next_action": "semantic color, Display/Title/Heading/Body/Label/Caption의 size/weight/line-height, spacing/radius/shadow scale, border/icon/motion/breakpoint/state를 사용한다. 화면별 임의값을 누적하지 말고 필요한 예외에는 이유를 남긴다. Button/IconButton/Input/Textarea/Select/Checkbox/Radio/Tabs/SegmentedControl/Card/ListItem/Modal/Sheet/Toast/NavigationBar/Breadcrumb/Search/Empty/Loading/Error/ContextMenu의 실제 수요와 상태 matrix를 대조한다.19종 구현과21종 계약의 차이를 숨기지 않는다. Default/Hover/Pressed/Focus/Filled/Disabled/Loading/Error/Success, 접근성 이름·키보드·초점 복원·터치·대비·감소된 모션을 실제로 확인한다.",
       "related": [
         "FEATURE.F34",
-        "FEATURE.F46"
+        "FEATURE.F46",
+        "FOLLOWUP.SEARCH_EMPTY_FEEDBACK"
       ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
-        "implementation_commits": [],
-        "artifacts": []
+        "implementation_commits": [
+          "cfbd5d8ff57811284988566d4de7866ef2cc640e",
+          "b50ab3708e9efa87c1722b6a28b01cfe0c2b0eca",
+          "06b2707db416c894fe5fd71688136e1d9b1c95c4",
+          "482d302c467774307e0f798e00329f5086eb90cc"
+        ],
+        "artifacts": [
+          "docs/validation/continuation-final-tests-20260930.txt",
+          "docs/validation/continuation-final-build-20260930.txt",
+          "docs/validation/continuation-ui-20260930.md",
+          "docs/phase-report-continuation-20260930.md"
+        ]
       },
       "acceptance_contract": "semantic color, Display/Title/Heading/Body/Label/Caption의 size/weight/line-height, spacing/radius/shadow scale, border/icon/motion/breakpoint/state를 사용한다. 화면별 임의값을 누적하지 말고 필요한 예외에는 이유를 남긴다. Button/IconButton/Input/Textarea/Select/Checkbox/Radio/Tabs/SegmentedControl/Card/ListItem/Modal/Sheet/Toast/NavigationBar/Breadcrumb/Search/Empty/Loading/Error/ContextMenu의 실제 수요와 상태 matrix를 대조한다.19종 구현과21종 계약의 차이를 숨기지 않는다. Default/Hover/Pressed/Focus/Filled/Disabled/Loading/Error/Success, 접근성 이름·키보드·초점 복원·터치·대비·감소된 모션을 실제로 확인한다."
     },
@@ -10627,7 +11755,9 @@
           "review": "이번 작업에서 요구 목록 재독. 실행 증거와 구별."
         }
       ],
-      "correction_dates": [],
+      "correction_dates": [
+        "2026-09-30"
+      ],
       "classification": "B",
       "classification_reason": "원 요구의 의미를 보존하며 웹 계약과 검증을 보완합니다.",
       "phase": "PHASE.09",
@@ -10669,20 +11799,71 @@
         ]
       },
       "implementation": {
-        "files": [],
-        "scope": "미구현 여부를 단정하지 않으며 아래 계약과 코드 대응을 구별합니다.",
-        "test_connections": []
+        "files": [
+          "src/App.tsx",
+          "src/ui/navigation-context.ts"
+        ],
+        "scope": "미구현 여부를 단정하지 않으며 아래 계약과 코드 대응을 구별합니다. 2026-09-30 이번 후속: B29–B36의 다운로드 실수신/선택글복귀/보이는메뉴초점/검색무결과 및 A최근없음/E다른범위/G후속수정의 좁은 실행. B37 실제Chrome200%·B38감소모션 emulation 추가. 전체요구/온라인/물리/학습효과 통과 아님.",
+        "test_connections": [
+          "src/App.test.tsx",
+          "src/ui/navigation-context.test.tsx",
+          "src/search.test.tsx"
+        ]
       },
       "evidence": {
         "automated": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-tests-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-build-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-227-tests-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-227-build-20260930.txt"
+            }
+          ],
+          "scope": "224개 도메인/jsdom 통과·성능1개 건너뜀; 해당 전체계약의 모든 자동요구 통과를 의미하지 않습니다. 마지막 전체회귀227개/타입/Pages빌드통과, opt-in성능1미실행.",
+          "verified_at": "2026-09-29T18:12:03.625144+00:00",
+          "commit": "d2e3164f97decf16485f2383240dea0be601b22f",
+          "previous_executions": [
+            {
+              "status": "수정 후 통과",
+              "scope": "224개 도메인/jsdom 통과·성능1개 건너뜀; 해당 전체계약의 모든 자동요구 통과를 의미하지 않습니다.",
+              "verified_at": "2026-09-29T17:59:45.644137+00:00",
+              "commit": "482d302c467774307e0f798e00329f5086eb90cc",
+              "artifacts": [
+                {
+                  "level": "automated",
+                  "path": "docs/validation/continuation-final-tests-20260930.txt"
+                },
+                {
+                  "level": "automated",
+                  "path": "docs/validation/continuation-final-build-20260930.txt"
+                }
+              ]
+            }
+          ]
         },
         "browser": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "browser",
+              "path": "docs/validation/continuation-ui-20260930.md"
+            }
+          ],
+          "scope": "B29–B36의 다운로드 실수신/선택글복귀/보이는메뉴초점/검색무결과 및 A최근없음/E다른범위/G후속수정의 좁은 실행. B37 실제Chrome200%·B38감소모션 emulation 추가. 전체요구/온라인/물리/학습효과 통과 아님.",
+          "verified_at": "2026-09-29T17:59:45.644137+00:00",
+          "commit": "482d302c467774307e0f798e00329f5086eb90cc"
         },
         "physical_device": {
           "status": "미검증",
@@ -10723,8 +11904,18 @@
       ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
-        "implementation_commits": [],
-        "artifacts": []
+        "implementation_commits": [
+          "cfbd5d8ff57811284988566d4de7866ef2cc640e",
+          "b50ab3708e9efa87c1722b6a28b01cfe0c2b0eca",
+          "06b2707db416c894fe5fd71688136e1d9b1c95c4",
+          "482d302c467774307e0f798e00329f5086eb90cc"
+        ],
+        "artifacts": [
+          "docs/validation/continuation-final-tests-20260930.txt",
+          "docs/validation/continuation-final-build-20260930.txt",
+          "docs/validation/continuation-ui-20260930.md",
+          "docs/phase-report-continuation-20260930.md"
+        ]
       },
       "acceptance_contract": "A 본문 없이 공부함, B 한 주제 메모, C 다주제 일괄, D 자유서술, E 최근 주제 복귀, F 목차 추가, G 잘못 입력 후 복구. 시작 맥락·클릭/탭·입력초점·필드·타이핑·스크롤·이동·판단을 분리한다. iPhone/iPad/Mac 맥락별 실제 증거를 남긴다.1세대는 복제/안전한 시험 환경에서 비교하고 원본을 열었을 때의 자동갱신 위험을 먼저 확인한다. 기존보다 악화되면 이유·대안·재측정 없이 승인하지 않는다. 기준선에 접근하지 못하면 비교 미검증으로 남기며 다른 독립 작업은 계속한다."
     },
@@ -14081,7 +15272,9 @@
           "review": "이번 작업에서 요구 목록 재독. 실행 증거와 구별."
         }
       ],
-      "correction_dates": [],
+      "correction_dates": [
+        "2026-09-30"
+      ],
       "classification": "A",
       "classification_reason": "안내보기는공부횟수아님;타이머자동추가금지",
       "phase": "PHASE.08",
@@ -14117,24 +15310,47 @@
       },
       "implementation": {
         "files": [
-          "src/App.tsx"
+          "src/App.tsx",
+          "src/data/study-launch.ts",
+          "src/ui/study-launch.tsx",
+          "src/ui/study-launch.css"
         ],
-        "scope": "관련 코드 존재와 일부 가짜 데이터 경로만 확인. 기능 전체·온라인·기기 완료가 아닙니다.",
+        "scope": "관련 코드 존재와 일부 가짜 데이터 경로만 확인. 기능 전체·온라인·기기 완료가 아닙니다. 2026-09-30 이번 후속: 직전F08/B26/B28 구현증거를 상향 연결. 이미 구현한 공부시작을 재구현하지 않음.",
         "test_connections": [
           "src/App.test.tsx",
-          "src/domain/domain.test.ts"
+          "src/domain/domain.test.ts",
+          "src/data/study-launch.test.ts",
+          "src/ui/study-launch.test.tsx"
         ]
       },
       "evidence": {
         "automated": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "automated",
+              "path": "docs/validation/archive-final-tests-20260930-0225.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/archive-final-build-20260930-0225.txt"
+            }
+          ],
+          "scope": "213 integration tests and type/build passed. Exact-string and preservation assertions use synthetic error injection, not physical OS/storage failure. 직전 실행의 좁은 증거 연결이며 이번 새 실측이나 전체F08 통과가 아닙니다.",
+          "verified_at": "2026-09-29T17:05:00+00:00",
+          "commit": "2d240fc81810a27d28db8313a6b5e4ab931a42bc"
         },
         "browser": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "browser",
+              "path": "docs/validation/archive-ui-20260930.md"
+            }
+          ],
+          "scope": "Actual guide->start->home->reload->record return. No new study event until record save. Already-studied input is immediately available. Clear action removes only return hint and preserves record counts. Not full F08, A-G comparative burden or learning-effect verification. 직전 실행의 좁은 증거 연결이며 이번 새 실측이나 전체F08 통과가 아닙니다.",
+          "verified_at": "2026-09-29T17:05:00+00:00",
+          "commit": "2d240fc81810a27d28db8313a6b5e4ab931a42bc"
         },
         "physical_device": {
           "status": "미검증",
@@ -14164,16 +15380,26 @@
       "status": "미검증",
       "not_applicable_reason": null,
       "remaining": [
-        "주제의 공부 시작 안내를 열고 자료 확인 후 기록으로 돌아온다. 이미 공부한 경우 안내를 건너뛰고, 열람만으로 done/session을 만들지 않는지 비교한다.의 전체 경로 실행 증거가 아직 없습니다."
+        "시작→홈/reload→기록복귀와 사건미생성은 FOLLOWUP.STUDY_LAUNCH_RETURN/B26/B28로 확인되어 기능부재가 아닙니다. 정식온라인·물리사용·전체입력맥락의 통합은 아직 미검증입니다."
       ],
-      "next_action": "담당 PHASE.08에서 주제의 공부 시작 안내를 열고 자료 확인 후 기록으로 돌아온다. 이미 공부한 경우 안내를 건너뛰고, 열람만으로 done/session을 만들지 않는지 비교한다.",
+      "next_action": "확인된 localPrototype 시작/복귀를 보존한 채 온라인/기기 통합 단계에서 해당 의미와 실패복귀를 검증합니다.",
       "related": [
         "FOLLOWUP.STUDY_LAUNCH_RETURN"
       ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
-        "implementation_commits": [],
-        "artifacts": []
+        "implementation_commits": [
+          "cfbd5d8ff57811284988566d4de7866ef2cc640e",
+          "b50ab3708e9efa87c1722b6a28b01cfe0c2b0eca",
+          "06b2707db416c894fe5fd71688136e1d9b1c95c4",
+          "482d302c467774307e0f798e00329f5086eb90cc"
+        ],
+        "artifacts": [
+          "docs/validation/continuation-final-tests-20260930.txt",
+          "docs/validation/continuation-final-build-20260930.txt",
+          "docs/validation/continuation-ui-20260930.md",
+          "docs/phase-report-continuation-20260930.md"
+        ]
       },
       "legacy_behavior": "공부시작→안내→이미공부함/기록복귀",
       "legacy_source_locator": "study-launch.js / 소스구현",
@@ -14911,7 +16137,9 @@
           "review": "이번 작업에서 요구 목록 재독. 실행 증거와 구별."
         }
       ],
-      "correction_dates": [],
+      "correction_dates": [
+        "2026-09-30"
+      ],
       "classification": "C",
       "classification_reason": "Markdown 관리구간→독립본문revision",
       "phase": "PHASE.13",
@@ -14948,24 +16176,45 @@
         "files": [
           "src/App.tsx",
           "src/domain/model.ts",
-          "src/domain/commands.ts"
+          "src/domain/commands.ts",
+          "src/ui/navigation-context.ts"
         ],
-        "scope": "관련 코드 존재와 일부 가짜 데이터 경로만 확인. 기능 전체·온라인·기기 완료가 아닙니다.",
+        "scope": "관련 코드 존재와 일부 가짜 데이터 경로만 확인. 기능 전체·온라인·기기 완료가 아닙니다. 2026-09-30 이번 후속: B29–B36의 다운로드 실수신/선택글복귀/보이는메뉴초점/검색무결과 및 A최근없음/E다른범위/G후속수정의 좁은 실행. B37 실제Chrome200%·B38감소모션 emulation 추가. 전체요구/온라인/물리/학습효과 통과 아님.",
         "test_connections": [
           "src/App.test.tsx",
-          "src/domain/domain.test.ts"
+          "src/domain/domain.test.ts",
+          "src/ui/navigation-context.test.tsx",
+          "src/search.test.tsx"
         ]
       },
       "evidence": {
         "automated": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-tests-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-build-20260930.txt"
+            }
+          ],
+          "scope": "224개 도메인/jsdom 통과·성능1개 건너뜀; 해당 전체계약의 모든 자동요구 통과를 의미하지 않습니다.",
+          "verified_at": "2026-09-29T17:59:45.644137+00:00",
+          "commit": "482d302c467774307e0f798e00329f5086eb90cc"
         },
         "browser": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "browser",
+              "path": "docs/validation/continuation-ui-20260930.md"
+            }
+          ],
+          "scope": "B29–B36의 다운로드 실수신/선택글복귀/보이는메뉴초점/검색무결과 및 A최근없음/E다른범위/G후속수정의 좁은 실행. B37 실제Chrome200%·B38감소모션 emulation 추가. 전체요구/온라인/물리/학습효과 통과 아님.",
+          "verified_at": "2026-09-29T17:59:45.644137+00:00",
+          "commit": "482d302c467774307e0f798e00329f5086eb90cc"
         },
         "physical_device": {
           "status": "미검증",
@@ -14998,11 +16247,23 @@
         "과목 개요·단원 서문·주제 노트를 각각 추가·수정하고 충돌을 주입한다. Narrative owner/kind와 원문/revision을 보존하며 공부 사건을 만들지 않는다.의 전체 경로 실행 증거가 아직 없습니다."
       ],
       "next_action": "담당 PHASE.13에서 과목 개요·단원 서문·주제 노트를 각각 추가·수정하고 충돌을 주입한다. Narrative owner/kind와 원문/revision을 보존하며 공부 사건을 만들지 않는다.",
-      "related": [],
+      "related": [
+        "FOLLOWUP.NARRATIVE_RETURN_ID"
+      ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
-        "implementation_commits": [],
-        "artifacts": []
+        "implementation_commits": [
+          "cfbd5d8ff57811284988566d4de7866ef2cc640e",
+          "b50ab3708e9efa87c1722b6a28b01cfe0c2b0eca",
+          "06b2707db416c894fe5fd71688136e1d9b1c95c4",
+          "482d302c467774307e0f798e00329f5086eb90cc"
+        ],
+        "artifacts": [
+          "docs/validation/continuation-final-tests-20260930.txt",
+          "docs/validation/continuation-final-build-20260930.txt",
+          "docs/validation/continuation-ui-20260930.md",
+          "docs/phase-report-continuation-20260930.md"
+        ]
       },
       "legacy_behavior": "해당 항목→원문편집→비교저장",
       "legacy_source_locator": "node-overview.js,node-overview-ui.js / 소스구현·Mac저장미검증",
@@ -16916,7 +18177,9 @@
         "제목·기록·자유노트·개요·서문·주제메모를 한글 검색한다. scope/date/휴지통·동명경로·조합중 Enter·취소·역순 응답·계정변경·복귀를 확인한다.의 전체 경로 실행 증거가 아직 없습니다."
       ],
       "next_action": "담당 PHASE.17에서 제목·기록·자유노트·개요·서문·주제메모를 한글 검색한다. scope/date/휴지통·동명경로·조합중 Enter·취소·역순 응답·계정변경·복귀를 확인한다.",
-      "related": [],
+      "related": [
+        "FOLLOWUP.SEARCH_EMPTY_FEEDBACK"
+      ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
         "implementation_commits": [],
@@ -41793,8 +43056,10 @@
       },
       "implementation": {
         "files": [],
-        "scope": "미구현 여부를 단정하지 않으며 아래 계약과 코드 대응을 구별합니다.",
-        "test_connections": []
+        "scope": "미구현 여부를 단정하지 않으며 아래 계약과 코드 대응을 구별합니다. B40:주제검색 함수→선택/메모→오늘/Back/reload에서 필터/선택/원문보존, 실제키로 검색어지운상태 유지, 명시대상별 분리.3회귀검사 수정전2fail→수정후통과; hint저장거부에도 기록저장 가능. 새 공부사건ID/본문키를 바꾸지 않음.",
+        "test_connections": [
+          "src/record-filter.test.tsx"
+        ]
       },
       "evidence": {
         "automated": {
@@ -41839,7 +43104,8 @@
       ],
       "next_action": "근거의 해당 항목을 읽고 목적지·UI 예외를 구현한 뒤 자동검증과 실제 조작 결과를 연결합니다.",
       "related": [
-        "FEATURE.F09"
+        "FEATURE.F09",
+        "FOLLOWUP.RECORD_FILTER_RETURN"
       ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
@@ -43071,7 +44337,7 @@
           "src/ui/criteria-editor.tsx",
           "src/ui/index.tsx"
         ],
-        "scope": "route/query/window scroll/focus의 합성검사와 실제 검색→Back B03. 내부스크롤/물리키보드 아님 2026-09-30 후속: 형제 order 원자변경·그룹Undo·가변깊이/기록 보존; 장문 선택·방향·내부scroll의 route/reload 복귀. B10/B11/B14. 전체 온라인/이관/기기 검증과 구별.",
+        "scope": "route/query/window scroll/focus의 합성검사와 실제 검색→Back B03. 내부스크롤/물리키보드 아님 2026-09-30 후속: 형제 order 원자변경·그룹Undo·가변깊이/기록 보존; 장문 선택·방향·내부scroll의 route/reload 복귀. B10/B11/B14. 전체 온라인/이관/기기 검증과 구별. B40:주제검색 함수→선택/메모→오늘/Back/reload에서 필터/선택/원문보존, 실제키로 검색어지운상태 유지, 명시대상별 분리.3회귀검사 수정전2fail→수정후통과; hint저장거부에도 기록저장 가능. 새 공부사건ID/본문키를 바꾸지 않음.",
         "test_connections": [
           "src/ui/navigation-context.test.tsx",
           "src/App.test.tsx",
@@ -43080,7 +44346,8 @@
           "src/ui/outline-table-editor.test.tsx",
           "src/data/draft-safety.test.ts",
           "src/ui/criteria-editor.test.tsx",
-          "src/ui/component.test.tsx"
+          "src/ui/component.test.tsx",
+          "src/record-filter.test.tsx"
         ]
       },
       "evidence": {
@@ -43162,7 +44429,8 @@
       "related": [
         "FEATURE.F01",
         "FEATURE.F08",
-        "FOLLOWUP.TABLE_EDITING_CONTEXT"
+        "FOLLOWUP.TABLE_EDITING_CONTEXT",
+        "FOLLOWUP.RECORD_FILTER_RETURN"
       ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
@@ -137137,11 +138405,33 @@
             {
               "level": "automated",
               "path": "docs/validation/followup-final-tests-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-227-tests-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-227-build-20260930.txt"
             }
           ],
-          "scope": "App31 중 ID복구 재현3: 정리실패 이후 편집/재진입 동일ID 저장, 동일옛본문 중복차단, 서로다른본문 양쪽보존. 170개 최종통합 회귀.",
-          "verified_at": "2026-09-29T16:24:18.753341+00:00",
-          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
+          "scope": "App31 중 ID복구 재현3: 정리실패 이후 편집/재진입 동일ID 저장, 동일옛본문 중복차단, 서로다른본문 양쪽보존. 170개 최종통합 회귀. 마지막 전체회귀227개/타입/Pages빌드통과, opt-in성능1미실행.",
+          "verified_at": "2026-09-29T18:12:03.625144+00:00",
+          "commit": "d2e3164f97decf16485f2383240dea0be601b22f",
+          "previous_executions": [
+            {
+              "status": "수정 후 통과",
+              "scope": "App31 중 ID복구 재현3: 정리실패 이후 편집/재진입 동일ID 저장, 동일옛본문 중복차단, 서로다른본문 양쪽보존. 170개 최종통합 회귀.",
+              "verified_at": "2026-09-29T16:24:18.753341+00:00",
+              "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d",
+              "artifacts": [
+                {
+                  "level": "automated",
+                  "path": "docs/validation/followup-final-tests-20260930.txt"
+                }
+              ]
+            }
+          ]
         },
         "browser": {
           "status": "미검증",
@@ -137249,7 +138539,8 @@
           "UI.UI32"
         ],
         "operations": [
-          "Actual read-only archive navigation/view; read failure retry; metadata failure preserves original and raw copy. JSON clipboard export preserves CRLF/NUL/lone surrogate exactly. Download request actual disk-file receipt remains unverified. Not formal backup, storage eviction/OS termination recovery or IndexedDB durability."
+          "Actual read-only archive navigation/view; read failure retry; metadata failure preserves original and raw copy. JSON clipboard export preserves CRLF/NUL/lone surrogate exactly. Download request actual disk-file receipt remains unverified. Not formal backup, storage eviction/OS termination recovery or IndexedDB durability.",
+          "제품 버튼→실제 Chrome153 download event→수신파일 read/JSON 재열기. 빈/228000 UTF-16단위/특수64단위 원문, CRLF/탭/NUL/서로 떨어진 고립surrogate/공백·메타데이터·식별자 정확일치. 시작실패 주입→재시도. 보호값10개 불변. IAB 자체 수신은 확인불가였으며 별도 격리된 headless Chrome 증거입니다. 정식 Backup/퇴거/OS종료/IDB 아님."
         ],
         "states": [
           "normal",
@@ -137263,15 +138554,17 @@
           "src/data/draft-archives.ts",
           "src/data/draft-safety.ts",
           "src/ui/draft-archives.tsx",
-          "src/ui/draft-archives.css"
+          "src/ui/draft-archives.css",
+          "scripts/check-archive-download.mjs"
         ],
         "test_connections": [
           "src/App.test.tsx",
           "src/data/draft-archives.test.ts",
           "src/data/draft-safety.test.ts",
-          "src/ui/draft-archives.test.tsx"
+          "src/ui/draft-archives.test.tsx",
+          "scripts/check-archive-download.mjs"
         ],
-        "scope": "손상 초안 보관본의 원문·대상·이유·시각·현재 초안 관계를 읽기 전용으로 확인하고 정확히 내보내며 기존 기록·현재 초안 덮어쓰기와 자동 삭제를 막습니다."
+        "scope": "손상 초안 보관본의 원문·대상·이유·시각·현재 초안 관계를 읽기 전용으로 확인하고 정확히 내보내며 기존 기록·현재 초안 덮어쓰기와 자동 삭제를 막습니다. 2026-09-30 이번 후속: 제품 버튼→실제 Chrome153 download event→수신파일 read/JSON 재열기. 빈/228000 UTF-16단위/특수64단위 원문, CRLF/탭/NUL/서로 떨어진 고립surrogate/공백·메타데이터·식별자 정확일치. 시작실패 주입→재시도. 보호값10개 불변. IAB 자체 수신은 확인불가였으며 별도 격리된 headless Chrome 증거입니다. 정식 Backup/퇴거/OS종료/IDB 아님."
       },
       "evidence": {
         "physical_device": {
@@ -137304,11 +138597,69 @@
             {
               "level": "automated",
               "path": "docs/validation/archive-final-build-20260930-0225.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-tests-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-build-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-227-tests-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-227-build-20260930.txt"
             }
           ],
-          "scope": "213 integration tests and type/build passed. Exact-string and preservation assertions use synthetic error injection, not physical OS/storage failure.",
-          "verified_at": "2026-09-29T17:05:00+00:00",
-          "commit": "fca7f8896a222f43f1b0c8255317cbb2c1d81c67"
+          "scope": "224개 통과, 성능1개 건너뜀; TypeScript/Vite 통과. 도메인/jsdom 합성오류와 실제브라우저 파일수신을 구별. 마지막 전체회귀227개/타입/Pages빌드통과, opt-in성능1미실행.",
+          "verified_at": "2026-09-29T18:12:03.625144+00:00",
+          "commit": "d2e3164f97decf16485f2383240dea0be601b22f",
+          "previous_executions": [
+            {
+              "status": "수정 후 통과",
+              "scope": "213 integration tests and type/build passed. Exact-string and preservation assertions use synthetic error injection, not physical OS/storage failure.",
+              "verified_at": "2026-09-29T17:05:00+00:00",
+              "commit": "fca7f8896a222f43f1b0c8255317cbb2c1d81c67",
+              "artifacts": [
+                {
+                  "level": "automated",
+                  "path": "docs/validation/archive-final-tests-20260930-0225.txt"
+                },
+                {
+                  "level": "automated",
+                  "path": "docs/validation/archive-final-build-20260930-0225.txt"
+                }
+              ]
+            },
+            {
+              "status": "수정 후 통과",
+              "scope": "224개 통과, 성능1개 건너뜀; TypeScript/Vite 통과. 도메인/jsdom 합성오류와 실제브라우저 파일수신을 구별.",
+              "verified_at": "2026-09-29T17:59:45.644137+00:00",
+              "commit": "482d302c467774307e0f798e00329f5086eb90cc",
+              "artifacts": [
+                {
+                  "level": "automated",
+                  "path": "docs/validation/archive-final-tests-20260930-0225.txt"
+                },
+                {
+                  "level": "automated",
+                  "path": "docs/validation/archive-final-build-20260930-0225.txt"
+                },
+                {
+                  "level": "automated",
+                  "path": "docs/validation/continuation-final-tests-20260930.txt"
+                },
+                {
+                  "level": "automated",
+                  "path": "docs/validation/continuation-final-build-20260930.txt"
+                }
+              ]
+            }
+          ]
         },
         "browser": {
           "status": "수정 후 통과",
@@ -137316,23 +138667,43 @@
             {
               "level": "browser",
               "path": "docs/validation/archive-ui-20260930.md"
+            },
+            {
+              "level": "browser",
+              "path": "docs/validation/continuation-ui-20260930.md"
+            },
+            {
+              "level": "browser",
+              "path": "docs/validation/continuation-download-20260930.json"
             }
           ],
-          "scope": "Actual read-only archive navigation/view; read failure retry; metadata failure preserves original and raw copy. JSON clipboard export preserves CRLF/NUL/lone surrogate exactly. Download request actual disk-file receipt remains unverified. Not formal backup, storage eviction/OS termination recovery or IndexedDB durability.",
-          "verified_at": "2026-09-29T17:05:00+00:00",
-          "commit": "fca7f8896a222f43f1b0c8255317cbb2c1d81c67"
+          "scope": "제품 버튼→실제 Chrome153 download event→수신파일 read/JSON 재열기. 빈/228000 UTF-16단위/특수64단위 원문, CRLF/탭/NUL/서로 떨어진 고립surrogate/공백·메타데이터·식별자 정확일치. 시작실패 주입→재시도. 보호값10개 불변. IAB 자체 수신은 확인불가였으며 별도 격리된 headless Chrome 증거입니다. 정식 Backup/퇴거/OS종료/IDB 아님.",
+          "verified_at": "2026-09-29T17:59:45.644137+00:00",
+          "commit": "482d302c467774307e0f798e00329f5086eb90cc",
+          "previous_executions": [
+            {
+              "status": "수정 후 통과",
+              "scope": "Actual read-only archive navigation/view; read failure retry; metadata failure preserves original and raw copy. JSON clipboard export preserves CRLF/NUL/lone surrogate exactly. Download request actual disk-file receipt remains unverified. Not formal backup, storage eviction/OS termination recovery or IndexedDB durability.",
+              "verified_at": "2026-09-29T17:05:00+00:00",
+              "commit": "fca7f8896a222f43f1b0c8255317cbb2c1d81c67",
+              "artifacts": [
+                {
+                  "level": "browser",
+                  "path": "docs/validation/archive-ui-20260930.md"
+                }
+              ]
+            }
+          ]
         }
       },
       "required_evidence": [
         "automated",
         "browser"
       ],
-      "status": "미검증",
+      "status": "수정 후 통과",
       "not_applicable_reason": null,
-      "remaining": [
-        "다운로드한 실제 파일 수신과 디스크 파일 원문 일치는 아직 확인하지 못했습니다."
-      ],
-      "next_action": "Verify the remaining scope and repeat this preservation contract when integrating online/durable local storage; do not infer parent Phase completion.",
+      "remaining": [],
+      "next_action": "정식 저장소 통합 때 동일 원문·식별자/현재초안 불변계약을 재검증. 상위P08/Backup/OS복구로 승격하지 않습니다.",
       "related": [
         "CORE.C10",
         "CORE.C17",
@@ -137345,18 +138716,26 @@
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
         "implementation_commits": [
-          "fca7f8896a222f43f1b0c8255317cbb2c1d81c67"
+          "fca7f8896a222f43f1b0c8255317cbb2c1d81c67",
+          "cfbd5d8ff57811284988566d4de7866ef2cc640e",
+          "b50ab3708e9efa87c1722b6a28b01cfe0c2b0eca",
+          "06b2707db416c894fe5fd71688136e1d9b1c95c4",
+          "482d302c467774307e0f798e00329f5086eb90cc"
         ],
         "artifacts": [
           "docs/validation/archive-final-tests-20260930-0225.txt",
           "docs/validation/archive-final-build-20260930-0225.txt",
-          "docs/validation/archive-ui-20260930.md"
+          "docs/validation/archive-ui-20260930.md",
+          "docs/validation/continuation-final-tests-20260930.txt",
+          "docs/validation/continuation-final-build-20260930.txt",
+          "docs/validation/continuation-ui-20260930.md",
+          "docs/phase-report-continuation-20260930.md"
         ]
       },
       "acceptance_contract": "손상 초안 보관본의 원문·대상·이유·시각·현재 초안 관계를 읽기 전용으로 확인하고 정확히 내보내며 기존 기록·현재 초안 덮어쓰기와 자동 삭제를 막습니다.",
       "verification_plan": {
         "automated": "Exact raw strings, stable IDs, failure/retry and no unintended record writes in the executed integration suite.",
-        "browser": "Actual read-only archive navigation/view; read failure retry; metadata failure preserves original and raw copy. JSON clipboard export preserves CRLF/NUL/lone surrogate exactly. Download request actual disk-file receipt remains unverified. Not formal backup, storage eviction/OS termination recovery or IndexedDB durability."
+        "browser": "제품 버튼→실제 Chrome153 download event→수신파일 read/JSON 재열기. 빈/228000 UTF-16단위/특수64단위 원문, CRLF/탭/NUL/서로 떨어진 고립surrogate/공백·메타데이터·식별자 정확일치. 시작실패 주입→재시도. 보호값10개 불변. IAB 자체 수신은 확인불가였으며 별도 격리된 headless Chrome 증거입니다. 정식 Backup/퇴거/OS종료/IDB 아님."
       }
     },
     {
@@ -137444,11 +138823,37 @@
             {
               "level": "automated",
               "path": "docs/validation/archive-final-build-20260930-0225.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-227-tests-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-227-build-20260930.txt"
             }
           ],
-          "scope": "213 integration tests and type/build passed. Exact-string and preservation assertions use synthetic error injection, not physical OS/storage failure.",
-          "verified_at": "2026-09-29T17:05:00+00:00",
-          "commit": "e154a4556f65029af0c6ef0aeb50c8eefd0da53f"
+          "scope": "213 integration tests and type/build passed. Exact-string and preservation assertions use synthetic error injection, not physical OS/storage failure. 마지막 전체회귀227개/타입/Pages빌드통과, opt-in성능1미실행.",
+          "verified_at": "2026-09-29T18:12:03.625144+00:00",
+          "commit": "d2e3164f97decf16485f2383240dea0be601b22f",
+          "previous_executions": [
+            {
+              "status": "수정 후 통과",
+              "scope": "213 integration tests and type/build passed. Exact-string and preservation assertions use synthetic error injection, not physical OS/storage failure.",
+              "verified_at": "2026-09-29T17:05:00+00:00",
+              "commit": "e154a4556f65029af0c6ef0aeb50c8eefd0da53f",
+              "artifacts": [
+                {
+                  "level": "automated",
+                  "path": "docs/validation/archive-final-tests-20260930-0225.txt"
+                },
+                {
+                  "level": "automated",
+                  "path": "docs/validation/archive-final-build-20260930-0225.txt"
+                }
+              ]
+            }
+          ]
         },
         "browser": {
           "status": "수정 후 통과",
@@ -137586,11 +138991,37 @@
             {
               "level": "automated",
               "path": "docs/validation/archive-final-build-20260930-0225.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-227-tests-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-227-build-20260930.txt"
             }
           ],
-          "scope": "213 integration tests and type/build passed. Exact-string and preservation assertions use synthetic error injection, not physical OS/storage failure.",
-          "verified_at": "2026-09-29T17:05:00+00:00",
-          "commit": "2d240fc81810a27d28db8313a6b5e4ab931a42bc"
+          "scope": "213 integration tests and type/build passed. Exact-string and preservation assertions use synthetic error injection, not physical OS/storage failure. 마지막 전체회귀227개/타입/Pages빌드통과, opt-in성능1미실행.",
+          "verified_at": "2026-09-29T18:12:03.625144+00:00",
+          "commit": "d2e3164f97decf16485f2383240dea0be601b22f",
+          "previous_executions": [
+            {
+              "status": "수정 후 통과",
+              "scope": "213 integration tests and type/build passed. Exact-string and preservation assertions use synthetic error injection, not physical OS/storage failure.",
+              "verified_at": "2026-09-29T17:05:00+00:00",
+              "commit": "2d240fc81810a27d28db8313a6b5e4ab931a42bc",
+              "artifacts": [
+                {
+                  "level": "automated",
+                  "path": "docs/validation/archive-final-tests-20260930-0225.txt"
+                },
+                {
+                  "level": "automated",
+                  "path": "docs/validation/archive-final-build-20260930-0225.txt"
+                }
+              ]
+            }
+          ]
         },
         "browser": {
           "status": "수정 후 통과",
@@ -137637,6 +139068,645 @@
         "automated": "Exact raw strings, stable IDs, failure/retry and no unintended record writes in the executed integration suite.",
         "browser": "Actual guide->start->home->reload->record return. No new study event until record save. Already-studied input is immediately available. Clear action removes only return hint and preserves record counts. Not full F08, A-G comparative burden or learning-effect verification."
       }
+    },
+    {
+      "id": "FOLLOWUP.NARRATIVE_RETURN_ID",
+      "meaning": "과목 개요·단원 서문·주제메모의 미저장 최초 초안 ID와 선택 펼침/닫힘을 복귀·새로고침에서 보존합니다.",
+      "sources": [
+        {
+          "path": "outputs/20260930-gen2-next-execution/다음-작업-명령문.md",
+          "kind": "current_user_instruction",
+          "review": "Section4 remaining Prototype UX; no parent promotion."
+        },
+        {
+          "path": "generation2/docs/validation/continuation-ui-20260930.md",
+          "kind": "current_execution_record",
+          "review": "B31 및 최초초안ID/타대상격리/힌트손상·거부 자동회귀. 단원 실제 복귀·reload·저장0회차·접기 유지. 과목/주제별 실제 조작 전범위와 물리기기는 이 좁은 증거에 포함하지 않습니다."
+        }
+      ],
+      "correction_dates": [
+        "2026-09-30"
+      ],
+      "classification": "B",
+      "classification_reason": "Preserve original text, stable IDs, optional input and study-event semantics while repairing the local Prototype flow. Do not promote parent requirements.",
+      "phase": "PHASE.08",
+      "prerequisites": [],
+      "destination": {
+        "decision": "adopt",
+        "entities": [
+          "Narrative",
+          "Draft.entityId",
+          "NarrativeDisclosureHint"
+        ],
+        "reason": "과목 개요·단원 서문·주제메모의 미저장 최초 초안 ID와 선택 펼침/닫힘을 복귀·새로고침에서 보존합니다."
+      },
+      "ui": {
+        "targets": [
+          "UI.UI05",
+          "UI.UI09",
+          "UI.UI23"
+        ],
+        "operations": [
+          "B31 및 최초초안ID/타대상격리/힌트손상·거부 자동회귀. 단원 실제 복귀·reload·저장0회차·접기 유지. 과목/주제별 실제 조작 전범위와 물리기기는 이 좁은 증거에 포함하지 않습니다."
+        ],
+        "states": [
+          "return",
+          "empty/error",
+          "preservation"
+        ]
+      },
+      "implementation": {
+        "files": [
+          "src/App.tsx"
+        ],
+        "test_connections": [
+          "src/App.test.tsx"
+        ],
+        "scope": "B31 및 최초초안ID/타대상격리/힌트손상·거부 자동회귀. 단원 실제 복귀·reload·저장0회차·접기 유지. 과목/주제별 실제 조작 전범위와 물리기기는 이 좁은 증거에 포함하지 않습니다."
+      },
+      "evidence": {
+        "physical_device": {
+          "status": "미검증",
+          "artifacts": [],
+          "scope": "이번 새 물리/서버/성능/장기사용 증거 없음."
+        },
+        "server_peer": {
+          "status": "미검증",
+          "artifacts": [],
+          "scope": "이번 새 물리/서버/성능/장기사용 증거 없음."
+        },
+        "performance": {
+          "status": "미검증",
+          "artifacts": [],
+          "scope": "이번 새 물리/서버/성능/장기사용 증거 없음."
+        },
+        "long_term": {
+          "status": "미검증",
+          "artifacts": [],
+          "scope": "이번 새 물리/서버/성능/장기사용 증거 없음."
+        },
+        "automated": {
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-tests-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-build-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-227-tests-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-227-build-20260930.txt"
+            }
+          ],
+          "scope": "224개 합성DOM/도메인 통합통과, 관련 실패회귀. 성능1개 건너뜀. 마지막 전체회귀227개/타입/Pages빌드통과, opt-in성능1미실행.",
+          "verified_at": "2026-09-29T18:12:03.625144+00:00",
+          "commit": "d2e3164f97decf16485f2383240dea0be601b22f",
+          "previous_executions": [
+            {
+              "status": "수정 후 통과",
+              "scope": "224개 합성DOM/도메인 통합통과, 관련 실패회귀. 성능1개 건너뜀.",
+              "verified_at": "2026-09-29T17:59:45.644137+00:00",
+              "commit": "cfbd5d8ff57811284988566d4de7866ef2cc640e",
+              "artifacts": [
+                {
+                  "level": "automated",
+                  "path": "docs/validation/continuation-final-tests-20260930.txt"
+                },
+                {
+                  "level": "automated",
+                  "path": "docs/validation/continuation-final-build-20260930.txt"
+                }
+              ]
+            }
+          ]
+        },
+        "browser": {
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "browser",
+              "path": "docs/validation/continuation-ui-20260930.md"
+            }
+          ],
+          "scope": "B31 및 최초초안ID/타대상격리/힌트손상·거부 자동회귀. 단원 실제 복귀·reload·저장0회차·접기 유지. 과목/주제별 실제 조작 전범위와 물리기기는 이 좁은 증거에 포함하지 않습니다.",
+          "verified_at": "2026-09-29T17:59:45.644137+00:00",
+          "commit": "cfbd5d8ff57811284988566d4de7866ef2cc640e"
+        }
+      },
+      "required_evidence": [
+        "automated",
+        "browser"
+      ],
+      "status": "수정 후 통과",
+      "not_applicable_reason": null,
+      "remaining": [],
+      "next_action": "향후 저장/탐색 구조 통합 때 이 좁은 계약을 재검증하고 상위Phase와 실물 조건은 별도 판정합니다.",
+      "related": [
+        "CORE.C10",
+        "CORE.C17",
+        "FEATURE.F15",
+        "WORK.R03",
+        "WORK.R04"
+      ],
+      "commit_artifacts": {
+        "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
+        "implementation_commits": [
+          "cfbd5d8ff57811284988566d4de7866ef2cc640e"
+        ],
+        "artifacts": [
+          "docs/validation/continuation-final-tests-20260930.txt",
+          "docs/validation/continuation-final-build-20260930.txt",
+          "docs/validation/continuation-ui-20260930.md",
+          "docs/phase-report-continuation-20260930.md"
+        ]
+      },
+      "acceptance_contract": "과목 개요·단원 서문·주제메모의 미저장 최초 초안 ID와 선택 펼침/닫힘을 복귀·새로고침에서 보존합니다.",
+      "verification_plan": {
+        "automated": "동일 실패 재현 후 보존·초점·복귀 회귀",
+        "browser": "B31 및 최초초안ID/타대상격리/힌트손상·거부 자동회귀. 단원 실제 복귀·reload·저장0회차·접기 유지. 과목/주제별 실제 조작 전범위와 물리기기는 이 좁은 증거에 포함하지 않습니다."
+      }
+    },
+    {
+      "id": "FOLLOWUP.VISIBLE_NAVIGATION_FOCUS",
+      "meaning": "뒤로 돌아왔을 때 같은 href의 브랜드나 숨은 메뉴가 아니라 실제로 눌렀던 표시 메뉴 항목에 초점을 복원합니다.",
+      "sources": [
+        {
+          "path": "outputs/20260930-gen2-next-execution/다음-작업-명령문.md",
+          "kind": "current_user_instruction",
+          "review": "Section4 remaining Prototype UX; no parent promotion."
+        },
+        {
+          "path": "generation2/docs/validation/continuation-ui-20260930.md",
+          "kind": "current_execution_record",
+          "review": "B32:1280/390에서 오늘→Back 후 실제 오늘메뉴 초점. 브랜드와 중복href·넓고좁은 hidden복사 회귀. 물리VoiceOver 미검증."
+        }
+      ],
+      "correction_dates": [
+        "2026-09-30"
+      ],
+      "classification": "B",
+      "classification_reason": "Preserve original text, stable IDs, optional input and study-event semantics while repairing the local Prototype flow. Do not promote parent requirements.",
+      "phase": "PHASE.08",
+      "prerequisites": [],
+      "destination": {
+        "decision": "adopt",
+        "entities": [
+          "NavigationContext"
+        ],
+        "reason": "뒤로 돌아왔을 때 같은 href의 브랜드나 숨은 메뉴가 아니라 실제로 눌렀던 표시 메뉴 항목에 초점을 복원합니다."
+      },
+      "ui": {
+        "targets": [
+          "UI.UI23"
+        ],
+        "operations": [
+          "B32:1280/390에서 오늘→Back 후 실제 오늘메뉴 초점. 브랜드와 중복href·넓고좁은 hidden복사 회귀. 물리VoiceOver 미검증."
+        ],
+        "states": [
+          "return",
+          "empty/error",
+          "preservation"
+        ]
+      },
+      "implementation": {
+        "files": [
+          "src/ui/navigation-bar.tsx",
+          "src/ui/navigation-context.ts"
+        ],
+        "test_connections": [
+          "src/ui/navigation-bar.test.tsx",
+          "src/ui/navigation-context.test.tsx"
+        ],
+        "scope": "B32:1280/390에서 오늘→Back 후 실제 오늘메뉴 초점. 브랜드와 중복href·넓고좁은 hidden복사 회귀. 물리VoiceOver 미검증."
+      },
+      "evidence": {
+        "physical_device": {
+          "status": "미검증",
+          "artifacts": [],
+          "scope": "이번 새 물리/서버/성능/장기사용 증거 없음."
+        },
+        "server_peer": {
+          "status": "미검증",
+          "artifacts": [],
+          "scope": "이번 새 물리/서버/성능/장기사용 증거 없음."
+        },
+        "performance": {
+          "status": "미검증",
+          "artifacts": [],
+          "scope": "이번 새 물리/서버/성능/장기사용 증거 없음."
+        },
+        "long_term": {
+          "status": "미검증",
+          "artifacts": [],
+          "scope": "이번 새 물리/서버/성능/장기사용 증거 없음."
+        },
+        "automated": {
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-tests-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-build-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-227-tests-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-227-build-20260930.txt"
+            }
+          ],
+          "scope": "224개 합성DOM/도메인 통합통과, 관련 실패회귀. 성능1개 건너뜀. 마지막 전체회귀227개/타입/Pages빌드통과, opt-in성능1미실행.",
+          "verified_at": "2026-09-29T18:12:03.625144+00:00",
+          "commit": "d2e3164f97decf16485f2383240dea0be601b22f",
+          "previous_executions": [
+            {
+              "status": "수정 후 통과",
+              "scope": "224개 합성DOM/도메인 통합통과, 관련 실패회귀. 성능1개 건너뜀.",
+              "verified_at": "2026-09-29T17:59:45.644137+00:00",
+              "commit": "b50ab3708e9efa87c1722b6a28b01cfe0c2b0eca",
+              "artifacts": [
+                {
+                  "level": "automated",
+                  "path": "docs/validation/continuation-final-tests-20260930.txt"
+                },
+                {
+                  "level": "automated",
+                  "path": "docs/validation/continuation-final-build-20260930.txt"
+                }
+              ]
+            }
+          ]
+        },
+        "browser": {
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "browser",
+              "path": "docs/validation/continuation-ui-20260930.md"
+            }
+          ],
+          "scope": "B32:1280/390에서 오늘→Back 후 실제 오늘메뉴 초점. 브랜드와 중복href·넓고좁은 hidden복사 회귀. 물리VoiceOver 미검증.",
+          "verified_at": "2026-09-29T17:59:45.644137+00:00",
+          "commit": "b50ab3708e9efa87c1722b6a28b01cfe0c2b0eca"
+        }
+      },
+      "required_evidence": [
+        "automated",
+        "browser"
+      ],
+      "status": "수정 후 통과",
+      "not_applicable_reason": null,
+      "remaining": [],
+      "next_action": "향후 저장/탐색 구조 통합 때 이 좁은 계약을 재검증하고 상위Phase와 실물 조건은 별도 판정합니다.",
+      "related": [
+        "CORE.C08",
+        "CORE.C20",
+        "WORK.R04"
+      ],
+      "commit_artifacts": {
+        "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
+        "implementation_commits": [
+          "b50ab3708e9efa87c1722b6a28b01cfe0c2b0eca"
+        ],
+        "artifacts": [
+          "docs/validation/continuation-final-tests-20260930.txt",
+          "docs/validation/continuation-final-build-20260930.txt",
+          "docs/validation/continuation-ui-20260930.md",
+          "docs/phase-report-continuation-20260930.md"
+        ]
+      },
+      "acceptance_contract": "뒤로 돌아왔을 때 같은 href의 브랜드나 숨은 메뉴가 아니라 실제로 눌렀던 표시 메뉴 항목에 초점을 복원합니다.",
+      "verification_plan": {
+        "automated": "동일 실패 재현 후 보존·초점·복귀 회귀",
+        "browser": "B32:1280/390에서 오늘→Back 후 실제 오늘메뉴 초점. 브랜드와 중복href·넓고좁은 hidden복사 회귀. 물리VoiceOver 미검증."
+      }
+    },
+    {
+      "id": "FOLLOWUP.SEARCH_EMPTY_FEEDBACK",
+      "meaning": "비어있지 않은 검색어의 현재 범위 결과가 없으면 입력/필터/원문을 유지하며 검색어·범위 변경을 안내합니다.",
+      "sources": [
+        {
+          "path": "outputs/20260930-gen2-next-execution/다음-작업-명령문.md",
+          "kind": "current_user_instruction",
+          "review": "Section4 remaining Prototype UX; no parent promotion."
+        },
+        {
+          "path": "generation2/docs/validation/continuation-ui-20260930.md",
+          "kind": "current_execution_record",
+          "review": "B36:없는말→함수→독립범위→전체→결과/Back/빈query.390dark 가로넘침없음.2자동검사로 무변경/합성조합/복귀. 서버stale검색·nativeIME 미검증."
+        }
+      ],
+      "correction_dates": [
+        "2026-09-30"
+      ],
+      "classification": "B",
+      "classification_reason": "Preserve original text, stable IDs, optional input and study-event semantics while repairing the local Prototype flow. Do not promote parent requirements.",
+      "phase": "PHASE.08",
+      "prerequisites": [],
+      "destination": {
+        "decision": "adopt",
+        "entities": [
+          "SearchQuery",
+          "NavigationContext",
+          "derived SearchResults"
+        ],
+        "reason": "비어있지 않은 검색어의 현재 범위 결과가 없으면 입력/필터/원문을 유지하며 검색어·범위 변경을 안내합니다."
+      },
+      "ui": {
+        "targets": [
+          "UI.UI22"
+        ],
+        "operations": [
+          "B36:없는말→함수→독립범위→전체→결과/Back/빈query.390dark 가로넘침없음.2자동검사로 무변경/합성조합/복귀. 서버stale검색·nativeIME 미검증."
+        ],
+        "states": [
+          "return",
+          "empty/error",
+          "preservation"
+        ]
+      },
+      "implementation": {
+        "files": [
+          "src/App.tsx"
+        ],
+        "test_connections": [
+          "src/search.test.tsx"
+        ],
+        "scope": "B36:없는말→함수→독립범위→전체→결과/Back/빈query.390dark 가로넘침없음.2자동검사로 무변경/합성조합/복귀. 서버stale검색·nativeIME 미검증."
+      },
+      "evidence": {
+        "physical_device": {
+          "status": "미검증",
+          "artifacts": [],
+          "scope": "이번 새 물리/서버/성능/장기사용 증거 없음."
+        },
+        "server_peer": {
+          "status": "미검증",
+          "artifacts": [],
+          "scope": "이번 새 물리/서버/성능/장기사용 증거 없음."
+        },
+        "performance": {
+          "status": "미검증",
+          "artifacts": [],
+          "scope": "이번 새 물리/서버/성능/장기사용 증거 없음."
+        },
+        "long_term": {
+          "status": "미검증",
+          "artifacts": [],
+          "scope": "이번 새 물리/서버/성능/장기사용 증거 없음."
+        },
+        "automated": {
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-tests-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-build-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-227-tests-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-227-build-20260930.txt"
+            }
+          ],
+          "scope": "224개 합성DOM/도메인 통합통과, 관련 실패회귀. 성능1개 건너뜀. 마지막 전체회귀227개/타입/Pages빌드통과, opt-in성능1미실행.",
+          "verified_at": "2026-09-29T18:12:03.625144+00:00",
+          "commit": "d2e3164f97decf16485f2383240dea0be601b22f",
+          "previous_executions": [
+            {
+              "status": "수정 후 통과",
+              "scope": "224개 합성DOM/도메인 통합통과, 관련 실패회귀. 성능1개 건너뜀.",
+              "verified_at": "2026-09-29T17:59:45.644137+00:00",
+              "commit": "482d302c467774307e0f798e00329f5086eb90cc",
+              "artifacts": [
+                {
+                  "level": "automated",
+                  "path": "docs/validation/continuation-final-tests-20260930.txt"
+                },
+                {
+                  "level": "automated",
+                  "path": "docs/validation/continuation-final-build-20260930.txt"
+                }
+              ]
+            }
+          ]
+        },
+        "browser": {
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "browser",
+              "path": "docs/validation/continuation-ui-20260930.md"
+            }
+          ],
+          "scope": "B36:없는말→함수→독립범위→전체→결과/Back/빈query.390dark 가로넘침없음.2자동검사로 무변경/합성조합/복귀. 서버stale검색·nativeIME 미검증.",
+          "verified_at": "2026-09-29T17:59:45.644137+00:00",
+          "commit": "482d302c467774307e0f798e00329f5086eb90cc"
+        }
+      },
+      "required_evidence": [
+        "automated",
+        "browser"
+      ],
+      "status": "수정 후 통과",
+      "not_applicable_reason": null,
+      "remaining": [],
+      "next_action": "향후 저장/탐색 구조 통합 때 이 좁은 계약을 재검증하고 상위Phase와 실물 조건은 별도 판정합니다.",
+      "related": [
+        "CORE.C08",
+        "WORK.R05",
+        "FEATURE.F33"
+      ],
+      "commit_artifacts": {
+        "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
+        "implementation_commits": [
+          "482d302c467774307e0f798e00329f5086eb90cc"
+        ],
+        "artifacts": [
+          "docs/validation/continuation-final-tests-20260930.txt",
+          "docs/validation/continuation-final-build-20260930.txt",
+          "docs/validation/continuation-ui-20260930.md",
+          "docs/phase-report-continuation-20260930.md"
+        ]
+      },
+      "acceptance_contract": "비어있지 않은 검색어의 현재 범위 결과가 없으면 입력/필터/원문을 유지하며 검색어·범위 변경을 안내합니다.",
+      "verification_plan": {
+        "automated": "동일 실패 재현 후 보존·초점·복귀 회귀",
+        "browser": "B36:없는말→함수→독립범위→전체→결과/Back/빈query.390dark 가로넘침없음.2자동검사로 무변경/합성조합/복귀. 서버stale검색·nativeIME 미검증."
+      }
+    },
+    {
+      "id": "FOLLOWUP.RECORD_FILTER_RETURN",
+      "meaning": "공부 기록의 주제 찾기 검색어를 같은 초안의 이탈·복귀·새로고침에 유지하고 명시적 다른 대상과 분리합니다.",
+      "sources": [
+        {
+          "path": "outputs/20260930-gen2-next-execution/다음-작업-명령문.md",
+          "kind": "current_user_instruction",
+          "review": "Section4 remaining Prototype UX; no parent promotion."
+        },
+        {
+          "path": "generation2/docs/validation/continuation-ui-20260930.md",
+          "kind": "current_execution_record",
+          "review": "B40:주제검색 함수→선택/메모→오늘/Back/reload에서 필터/선택/원문보존, 실제키로 검색어지운상태 유지, 명시대상별 분리.3회귀검사 수정전2fail→수정후통과; hint저장거부에도 기록저장 가능. 새 공부사건ID/본문키를 바꾸지 않음."
+        }
+      ],
+      "correction_dates": [
+        "2026-09-30"
+      ],
+      "classification": "B",
+      "classification_reason": "Preserve original text, stable IDs, optional input and study-event semantics while repairing the local Prototype flow. Do not promote parent requirements.",
+      "phase": "PHASE.08",
+      "prerequisites": [],
+      "destination": {
+        "decision": "adopt",
+        "entities": [
+          "RecordFilterHint",
+          "NavigationContext"
+        ],
+        "reason": "공부 기록의 주제 찾기 검색어를 같은 초안의 이탈·복귀·새로고침에 유지하고 명시적 다른 대상과 분리합니다."
+      },
+      "ui": {
+        "targets": [
+          "UI.UI10",
+          "UI.UI23"
+        ],
+        "operations": [
+          "B40:주제검색 함수→선택/메모→오늘/Back/reload에서 필터/선택/원문보존, 실제키로 검색어지운상태 유지, 명시대상별 분리.3회귀검사 수정전2fail→수정후통과; hint저장거부에도 기록저장 가능. 새 공부사건ID/본문키를 바꾸지 않음."
+        ],
+        "states": [
+          "return",
+          "explicit clear",
+          "hint storage denied"
+        ]
+      },
+      "implementation": {
+        "files": [
+          "src/App.tsx"
+        ],
+        "test_connections": [
+          "src/record-filter.test.tsx",
+          "src/App.test.tsx"
+        ],
+        "scope": "B40:주제검색 함수→선택/메모→오늘/Back/reload에서 필터/선택/원문보존, 실제키로 검색어지운상태 유지, 명시대상별 분리.3회귀검사 수정전2fail→수정후통과; hint저장거부에도 기록저장 가능. 새 공부사건ID/본문키를 바꾸지 않음."
+      },
+      "evidence": {
+        "physical_device": {
+          "status": "미검증",
+          "artifacts": [],
+          "scope": "이번 새 물리/서버/성능/장기사용 증거 없음."
+        },
+        "server_peer": {
+          "status": "미검증",
+          "artifacts": [],
+          "scope": "이번 새 물리/서버/성능/장기사용 증거 없음."
+        },
+        "performance": {
+          "status": "미검증",
+          "artifacts": [],
+          "scope": "이번 새 물리/서버/성능/장기사용 증거 없음."
+        },
+        "long_term": {
+          "status": "미검증",
+          "artifacts": [],
+          "scope": "이번 새 물리/서버/성능/장기사용 증거 없음."
+        },
+        "automated": {
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-227-tests-20260930.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/continuation-final-227-build-20260930.txt"
+            }
+          ],
+          "scope": "최종227pass/성능1skip. domain/jsdom이며 실물IME 아님. 마지막 전체회귀227개/타입/Pages빌드통과, opt-in성능1미실행.",
+          "verified_at": "2026-09-29T18:12:03.625144+00:00",
+          "commit": "d2e3164f97decf16485f2383240dea0be601b22f",
+          "previous_executions": [
+            {
+              "status": "수정 후 통과",
+              "scope": "최종227pass/성능1skip. domain/jsdom이며 실물IME 아님.",
+              "verified_at": "2026-09-29T18:12:03.625144+00:00",
+              "commit": "d2e3164f97decf16485f2383240dea0be601b22f",
+              "artifacts": [
+                {
+                  "level": "automated",
+                  "path": "docs/validation/continuation-final-227-tests-20260930.txt"
+                },
+                {
+                  "level": "automated",
+                  "path": "docs/validation/continuation-final-227-build-20260930.txt"
+                }
+              ]
+            }
+          ]
+        },
+        "browser": {
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "browser",
+              "path": "docs/validation/continuation-ui-20260930.md"
+            }
+          ],
+          "scope": "B40:주제검색 함수→선택/메모→오늘/Back/reload에서 필터/선택/원문보존, 실제키로 검색어지운상태 유지, 명시대상별 분리.3회귀검사 수정전2fail→수정후통과; hint저장거부에도 기록저장 가능. 새 공부사건ID/본문키를 바꾸지 않음.",
+          "verified_at": "2026-09-29T18:12:03.625144+00:00",
+          "commit": "d2e3164f97decf16485f2383240dea0be601b22f"
+        }
+      },
+      "required_evidence": [
+        "automated",
+        "browser"
+      ],
+      "status": "수정 후 통과",
+      "not_applicable_reason": null,
+      "remaining": [],
+      "next_action": "향후 저장/탐색 구조 통합 때 이 좁은 계약을 재검증하고 상위Phase와 실물 조건은 별도 판정합니다.",
+      "related": [
+        "WORK.R04",
+        "WORK.R03",
+        "CORE.C10",
+        "CORE.C20",
+        "UI.UI10",
+        "UI.UI23"
+      ],
+      "commit_artifacts": {
+        "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
+        "implementation_commits": [
+          "d2e3164f97decf16485f2383240dea0be601b22f"
+        ],
+        "artifacts": [
+          "docs/validation/continuation-final-227-tests-20260930.txt",
+          "docs/validation/continuation-final-227-build-20260930.txt",
+          "docs/validation/continuation-ui-20260930.md"
+        ]
+      },
+      "acceptance_contract": "공부 기록의 주제 찾기 검색어를 같은 초안의 이탈·복귀·새로고침에 유지하고 명시적 다른 대상과 분리합니다.",
+      "verification_plan": {
+        "automated": "같은초안/명시대상격리/힌트실패시비차단",
+        "browser": "B40:주제검색 함수→선택/메모→오늘/Back/reload에서 필터/선택/원문보존, 실제키로 검색어지운상태 유지, 명시대상별 분리.3회귀검사 수정전2fail→수정후통과; hint저장거부에도 기록저장 가능. 새 공부사건ID/본문키를 바꾸지 않음."
+      }
     }
   ],
   "public_artifact_boundary": {
@@ -137645,5 +139715,5 @@
     "semantic_limit": "요구 의미와 원목록 경로를 공개 코드 명세로 포함하지만 개인 입력 내용·발화 원문은 포함하지 않습니다."
   },
   "last_refined_at": "2026-09-29T16:30:19.258568+00:00",
-  "last_integrated_at": "2026-09-29T17:05:00+00:00"
+  "last_integrated_at": "2026-09-29T18:12:03.625144+00:00"
 }

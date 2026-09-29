@@ -1,3 +1,7 @@
+# 이번 실행 원장 연결 — 2026-09-30 다운로드·복귀 보완
+
+[최신 인계](resume-handoff.md), [Phase·CORE45 보고](phase-report-continuation-20260930.md), [B29–B40](validation/continuation-ui-20260930.md)를 우선합니다. 앱d2e3164, 최종227개/성능1skip·타입/Pages빌드통과. 실제 파일수신/200%zoom·서문ID/펼침·메뉴초점·검색빈결과·기록필터 복귀를 처리했습니다. 원장1374행, 보존1849동일/기존문서2추가/누락0. P07/P08/P09 전체와 Auth/온라인·물리기기는 미검증입니다. 아래 이전기록은 역사적 상태이며 전체통과나 현재차단으로 읽지 않습니다.
+
 # 2세대 실행 원장
 
 작성: 2026-09-29T15:22:02.335348+00:00. 코드 기준: `7f813c251770ba2fda3face8fc971dac782c0817`.
@@ -39,7 +43,7 @@
 | UX | 112 | 각 원래 ID 보존 |
 | UX_SURFACE | 32 | 각 원래 ID 보존 |
 | COMPONENT | 21 | 각 원래 ID 보존 |
-| FOLLOWUP | 4 | 기존 실패 경계와 새 보관본·표 복귀·공부 시작의 좁은 요구 |
+| FOLLOWUP | 8 | 기존4개와 이번 Narrative/메뉴초점/검색무결과/기록필터4개 |
 | HISTORY | 665 | 과거 원문 위치 색인, 모두 독립 요구 또는 원문 정독이라고 판정하지 않음 |
 
 ## 현재 열린 조건
@@ -790,6 +794,17 @@ WORK.R07에는 기존 commit의 GitHub/Pages 배포 진전, WORK.R08에는 사�
 | ID | 요구 의미 | Phase | 목적지 | 상태 |
 |---|---|---|---|---|
 | FOLLOWUP.FREE_ID_RECOVERY | 로컬 자유기록 정리 실패 뒤 같은 ID·양쪽 본문 보존 | PHASE.08 | Draft/Narrative | 수정 후 통과 |
-| FOLLOWUP.DRAFT_ARCHIVE_INSPECTION | 보관본 읽기·정확한 원문 내보내기·실패 보존, 실제 다운로드 수신 미확인 | PHASE.08 | DraftArchive / DraftArchiveExport | 미검증 |
+| FOLLOWUP.DRAFT_ARCHIVE_INSPECTION | 보관본 읽기·정확한 원문 내보내기·실패 보존; 이번 실제Chrome3파일수신·재열기 B29/B30 | PHASE.08 | DraftArchive / DraftArchiveExport | 수정 후 통과 |
 | FOLLOWUP.TABLE_EDITING_CONTEXT | 긴 표의 안정된 필드·선택·방향·내부 스크롤 복귀 | PHASE.08 | ModalEditingContext / OutlineTableDraft | 수정 후 통과 |
 | FOLLOWUP.STUDY_LAUNCH_RETURN | 선택적 공부 시작·복귀 힌트, 저장 전 공부 사건 비생성 | PHASE.08 | StudyLaunchHint | 수정 후 통과 |
+
+## 이번 추가 후속행과 검증
+
+| ID | 좁은 완료 범위 | 상태 |
+|---|---|---|
+| FOLLOWUP.NARRATIVE_RETURN_ID | 선택글 최초초안ID·펼침/접기·복귀 | 수정 후 통과 |
+| FOLLOWUP.VISIBLE_NAVIGATION_FOCUS | 실제 표시된 메뉴초점복귀 | 수정 후 통과 |
+| FOLLOWUP.SEARCH_EMPTY_FEEDBACK | 검색어 있음/결과0 안내·범위/검색어보존 | 수정 후 통과 |
+| FOLLOWUP.RECORD_FILTER_RETURN | 같은작성초안 주제필터복귀·명시대상분리 | 수정 후 통과 |
+
+[1374행 previous/source 검사](validation/continuation-ledger-20260930.json), [26검증기](validation/continuation-validator-tests-20260930.txt), [최종실행](validation/continuation-execution-20260930.json). 위8후속행의 좁은 통과와 달리 CORE45/P07–09 등 전체요구는 미검증입니다. 과거 미수신 증거는 JSON previous_executions와 과거 artifact에 보존했습니다.

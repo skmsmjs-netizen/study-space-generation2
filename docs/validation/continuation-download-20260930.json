@@ -1,0 +1,41 @@
+{
+  "verified_at": "2026-09-29T17:42:42.605Z",
+  "browser": "153.0.8010.53",
+  "mode": "fresh headless Chrome; actual product button, download event, file receipt and reopen",
+  "results": [
+    {
+      "kind": "empty",
+      "filename": "study-draft-archive-93902966-b6d4-44fd-a72b-56f490a17de7.json",
+      "bytes": 616,
+      "utf16Length": 0,
+      "sha256": "e5a50b64ef54164e80895de517b9b91d8a562932b9bf827a4dbd4d4627eec1c0",
+      "exactRaw": true,
+      "exactMetadataAndIds": true,
+      "receivedFrom": "blob:"
+    },
+    {
+      "kind": "long",
+      "filename": "study-draft-archive-d3819fc0-d777-4790-8361-b8d1289649e3.json",
+      "bytes": 552611,
+      "utf16Length": 228000,
+      "sha256": "e86d22831b35b25deba0653771adeed28f28ebca75ab68249cf694ffa14eda05",
+      "exactRaw": true,
+      "exactMetadataAndIds": true,
+      "receivedFrom": "blob:"
+    },
+    {
+      "kind": "special",
+      "filename": "study-draft-archive-9de07032-a45a-4790-b173-aaa585961041.json",
+      "bytes": 718,
+      "utf16Length": 64,
+      "sha256": "4b37584f03538ce18a203aba9a792db371f21224e89cc8affa4f496644caf15a",
+      "exactRaw": true,
+      "exactMetadataAndIds": true,
+      "receivedFrom": "blob:"
+    }
+  ],
+  "passed": true,
+  "startFailureShown": true,
+  "protectedValuesUnchanged": 10,
+  "syntheticFailureRetry": "download received after retry; source/current draft/records unchanged"
+}

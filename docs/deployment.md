@@ -21,3 +21,7 @@ Supabase는 사용자가 프로젝트를 생성했고 dashboard Healthy만 확�
 문서·원장 후속 commit도 main으로 배포하며 마지막 HEAD와 Actions headSha 일치는 저장소 밖 최종 release 응답에 보존합니다. 213검사/타입/빌드·1370행 원장·검증기26개 통과. 정식 Auth/온라인 저장·물리기기·새 성능 측정이 아닙니다.
 
 후속 B28: 사용자가 다른 창 종료를 알려 준 뒤 공개 Workspace에 정상 진입했습니다. 시작 안내→홈→새로고침→같은 주제 기록 복귀와 표 초안의 글/역방향선택 복원을 직접 확인했습니다. 표 시험 문구를 원래 빈칸으로 복원했고 공부 회차는0으로 유지했습니다. 공개 직접 경로 새로고침도 통과했습니다. 앞의 잠금 제한은 과거 관찰로 보존하며 현재 차단 사유가 아닙니다.
+
+## 2026-09-30 실제수신·복귀 후속 배포
+
+cfbd5d8/b50ab37/06b2707/482d302의 main [Actions36608519492](https://github.com/skmsmjs-netizen/study-space-generation2/actions/runs/36608519492) 성공과 공개자산/직접경로/펼침/검색/메뉴초점 B39를 확인했습니다. 이어 d2e3164 기록필터 복귀와 문서원장을 함께 main 배포합니다. 최종227개 통합·Pages base빌드통과. 최종문서까지 HEAD=remoteMain=ActionsheadSha·실제asset 확인은 프로젝트 저장소밖 `outputs/gen2-execution-20260930-023030/final-release.json` / `final-pages-run.json` 정본을 따릅니다. 앱의 최종JS는 index-EUgNU2i0.js, CSS index-BAib381D.css입니다. 과거 로그인/잠금상태를 현재차단으로 쓰지 않으며 Auth/CRUD/RLS/물리수신은 여전히 미검증입니다.

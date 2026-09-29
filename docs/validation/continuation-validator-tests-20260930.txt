@@ -1,0 +1,31 @@
+test_adoption_without_named_entity_is_rejected (__main__.RejectedCorruption) ... ok
+test_bare_pass_without_execution_is_rejected (__main__.RejectedCorruption) ... ok
+test_browser_evidence_cannot_be_promoted_to_physical (__main__.RejectedCorruption) ... ok
+test_classification_change_needs_authority_and_reason (__main__.RejectedCorruption) ... ok
+test_core_cannot_return_to_unmapped_template (__main__.RejectedCorruption) ... ok
+test_core_without_direct_surface_needs_applicability_reason (__main__.RejectedCorruption) ... ok
+test_current_inventory_and_real_source_sets (__main__.RejectedCorruption) ... ok
+test_dependency_cycle (__main__.RejectedCorruption) ... ok
+test_destination_requires_reason (__main__.RejectedCorruption) ... ok
+test_duplicate_is_rejected (__main__.RejectedCorruption) ... ok
+test_fixed_total_cannot_hide_a_renumbered_input (__main__.RejectedCorruption) ... ok
+test_historical_pass_is_not_current_evidence (__main__.RejectedCorruption) ... ok
+test_implementation_needs_test_connection (__main__.RejectedCorruption) ... ok
+test_input_r01_cannot_disappear_even_with_work_r01_present (__main__.RejectedCorruption) ... ok
+test_na_requires_reason (__main__.RejectedCorruption) ... ok
+test_orphan_ui_reference (__main__.RejectedCorruption) ... ok
+test_out_of_range_fixed_id_is_rejected (__main__.RejectedCorruption) ... ok
+test_pdf_page_count_does_not_hide_missing_atomic_requirement (__main__.RejectedCorruption) ... ok
+test_phase_cannot_remove_online_dependency_to_skip_gate (__main__.RejectedCorruption) ... ok
+test_previous_evidence_is_kept_or_explicitly_superseded (__main__.RejectedCorruption) ... ok
+test_previous_extra_discovery_is_not_lost (__main__.RejectedCorruption) ... ok
+test_public_ledger_rejects_conversation_text (__main__.RejectedCorruption) ... ok
+test_public_ledger_rejects_private_machine_locator (__main__.RejectedCorruption) ... ok
+test_retired_input_cannot_lose_original_fields (__main__.RejectedCorruption) ... ok
+test_stable_release_requires_physical_peer_and_long_term_evidence (__main__.RejectedCorruption) ... ok
+test_test_source_cannot_be_substituted_for_execution_artifact (__main__.RejectedCorruption) ... ok
+
+----------------------------------------------------------------------
+Ran 26 tests in 4.186s
+
+OK

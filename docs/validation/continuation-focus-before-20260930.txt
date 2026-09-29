@@ -1,0 +1,45 @@
+
+> study-space-generation2@0.1.0 test
+> vitest run src/ui/navigation-context.test.tsx -t clicked menu
+
+
+ RUN  v5.0.2 <generation2>
+
+ ❯ src/ui/navigation-context.test.tsx (13 tests | 2 failed | 11 skipped) 105ms
+   ❯ route context (12)
+     × restores the clicked menu rather than the same-href brand, narrow=false 87ms
+     × restores the clicked menu rather than the same-href brand, narrow=true 17ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/ui/navigation-context.test.tsx > route context > restores the clicked menu rather than the same-href brand, narrow=false
+ FAIL  src/ui/navigation-context.test.tsx > route context > restores the clicked menu rather than the same-href brand, narrow=true
+Error: expect(element).toHaveFocus()
+
+Expected element with focus:
+  <a
+  href="#/second"
+>
+  오늘
+</a>
+Received element with focus:
+  <a
+  href="#/second"
+>
+  공부의 자리
+</a>
+ ❯ src/ui/navigation-context.test.tsx:175:21
+    173|     await act(async () => window.dispatchEvent(new HashChangeEvent('ha…
+    174|     traversal('#/first');
+    175|     expect(clicked).toHaveFocus();
+       |                     ^
+    176|     expect(screen.getByRole('link', { name: '공부의 자리' })).not.toHaveFoc…
+    177|     // A breakpoint can change which copy is shown while visiting anot…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 11 skipped (13)
+   Start at  02:40:01
+   Duration  706ms (environment 57%, tests 17%, setup 11%, transform 8%, import 7%)

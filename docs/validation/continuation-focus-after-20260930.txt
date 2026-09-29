@@ -1,0 +1,12 @@
+
+> study-space-generation2@0.1.0 test
+> vitest run src/ui/navigation-context.test.tsx src/ui/navigation-bar.test.tsx src/App.test.tsx
+
+
+ RUN  v5.0.2 <generation2>
+
+
+ Test Files  3 passed (3)
+      Tests  54 passed (54)
+   Start at  02:40:27
+   Duration  7.43s (tests 76%, environment 14%, transform 5%, setup 3%, import 2%)

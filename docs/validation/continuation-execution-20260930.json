@@ -1,0 +1,58 @@
+{
+  "verified_at": "2026-09-29T18:13:04.663352+00:00",
+  "start_head": "b783fb434a480211a4ca5d7ca5ead29165510cd1",
+  "code_head": "d2e3164f97decf16485f2383240dea0be601b22f",
+  "branch": "codex/gen2-foundation",
+  "automated": {
+    "passed": 227,
+    "skipped_performance": 1,
+    "files_passed": 21,
+    "files_skipped": 1,
+    "typecheck": "passed",
+    "pages_build": "passed",
+    "log": "continuation-final-227-tests-20260930.txt"
+  },
+  "browser": {
+    "in_app": "B31-B36/B39/B40",
+    "isolated_chrome": "B29/B30 actual receipt and B37/B38 actual zoom/reduced-motion emulation",
+    "download_files": 3,
+    "raw_and_metadata_exact": true,
+    "zoom": 2
+  },
+  "physical_device": {
+    "status": "미검증",
+    "prior_report": "P01 iPhone17Pro two lines preserved; not repeated",
+    "new_long_table_response": "not received"
+  },
+  "server_peer": {
+    "status": "미검증",
+    "current_dashboard": "existing project authenticated/Healthy; no app Auth/CRUD/RLS"
+  },
+  "performance": {
+    "status": "미검증",
+    "reason": "opt-in not run"
+  },
+  "preservation": {
+    "total": 1851,
+    "same": 1849,
+    "existing_document_additions": 2,
+    "missing": 0,
+    "errors": 0
+  },
+  "ledger": {
+    "rows": 1374,
+    "prior_rows_preserved": 1370,
+    "new_rows": 4,
+    "source_hashes_changed": false,
+    "validator_tests": 26,
+    "parent_phases_promoted": false
+  },
+  "final_deployment_record": "project outputs/gen2-execution-20260930-023030/final-release.json and final-pages-run.json",
+  "limits": [
+    "P07/P08/P09 remain unverified",
+    "Original migration through1.0 is not complete",
+    "Physical/IME/accessibility/baseline and current component conditions remain",
+    "RecordForm global scope display clarity remains open",
+    "HISTORY665/141/460 full semantic review remains open"
+  ]
+}

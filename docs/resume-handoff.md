@@ -1,3 +1,42 @@
+# 2026-09-30 다운로드 수신·Prototype 복귀 후속 실행 인계
+
+현재 앱 코드는 **d2e3164**입니다. 시작점b783fb4 clean에서 이어 갔고 브랜치는 `codex/gen2-foundation`입니다. 원래 전체 실행명령문을 끝까지 읽고 실제 다운로드부터 시작했으며 이미 구현된 보관본/긴표/F08를 재작성하지 않았습니다. 아래 과거 문단의 수치·미구현 문구는 당시 기록입니다.
+
+| commit | 실제 변경/확인 |
+|---|---|
+| cfbd5d8 | 과목개요/단원서문/주제메모 최초 미저장 초안ID 복귀, 선택 펼침/접힘 상태 유지 |
+| b50ab37 | 같은href 브랜드와 숨은메뉴를 피하고 실제 누른 메뉴에 초점 복원 |
+| 06b2707 | 제품 다운로드 event→실제 수신파일→재열기/정확원문 비교의 격리된 Chrome 회귀실행기 |
+| 482d302 | 비어있지 않은 검색의 결과0 안내와 검색어/범위 변경 행동 제공 |
+| d2e3164 | 기록 작성의 주제찾기 필터를 기존 form대상별 보관, 이탈/reload/명시적지우기 복원 |
+
+[Phase별 필수보고·CORE45](phase-report-continuation-20260930.md), [실제 조작 B29–B40](validation/continuation-ui-20260930.md), [최종227검사](validation/continuation-final-227-tests-20260930.txt), [Pages base 타입/빌드](validation/continuation-final-227-build-20260930.txt)를 확인합니다.227개/21파일pass, opt-in성능1개/1파일skip. 새 성능 측정이 아닙니다. 이전224개 통합결과와 실패재현 로그도 보존했습니다. shell 기본 Node의 worker시작timeout은 기존 bundled Node 실행으로 통과했고 환경원인 자체를 확정하지 않았습니다.
+
+## 실제 증거와 보존
+
+- **다운로드 수신 완료(좁은 기능):** 새 headless Chrome153 제품버튼으로 빈/긴228000단위/특수64단위 JSON3파일 수신·디스크재열기. raw/metadata/식별자/CRLF/탭/NUL/고립surrogate/공백 일치, 보호값10불변. 시작실패주입→재시도도 수신했습니다. IAB eventtimeout은 별도 한계로 보존하며 clipboard/직접생성파일로 대체하지 않았습니다. 정식백업/OS복구/IDB는 아닙니다.
+- **실제200% 완료(해당경로):** 동일1280×900 Chrome에서 CDP browserzoom1→2, pinchscale1, root16px, CSS폭640. 메뉴/모달/공백이름오류/세로스크롤/수정저장/복귀/reload, 가로넘침없음. reduced-motion media모사시 해당Modal0s/닫기초점복원. 물리OS설정/IME/VoiceOver/전체화면 통과는 아닙니다.
+- **실제 IAB:** 서문 원문/선택펼침 복귀와 저장0회차,1280/390 메뉴초점, 최근없는A/다른범위E/후속본문수정G, 검색무결과/필터Back, 작성 주제검색·선택·메모의Back/reload·분리·명시적지우기. 상세 조작비용과 미실행B/C/D/F는 UI보고에 구분했습니다.
+- **원본:**1851개 중1849동일·기존AGENTS/간단인계 추가2·누락0/오류0. 이번03:07 재검사와 tar diff는 이전본문보존/도구·문서안내 추가만 확인. 원복·Vault쓰기 없음. 해시는 의미이관·학습효과가 아닙니다.
+- **원장:**이번 시작 snapshot `outputs/gen2-execution-20260930-023030/ledger-before.json`의1370행/기존증거 보존+이번4후속행=1374. baseline1366/분류/선행조건/sourcehash 유지. source문서 자체를 변경하지 않았습니다. 새 ledger/26검증기 로그를 validation에 연결합니다. 이전 실패로그/보고 보존.
+
+## 배포와 최종 해시
+
+공개 [앱](https://skmsmjs-netizen.github.io/study-space-generation2/)과 승인된 main을 사용합니다.482d302의 [Actions36608519492](https://github.com/skmsmjs-netizen/study-space-generation2/actions/runs/36608519492) 성공 및 index-V5tCOMeA.js 공개실조작 B39 확인. 마지막 d2e3164·문서 commit도 main에 배포합니다. 최종 localHEAD=remoteMain=ActionsheadSha·clean·실제asset 일치는 **저장소 밖 프로젝트 `outputs/gen2-execution-20260930-023030/final-release.json`과 `final-pages-run.json`**을 정본으로 확인합니다. 자기참조 해시를 문서에 반복 커밋하지 않습니다. 마지막 코드의 JS는 index-EUgNU2i0.js/CSS BAib381D입니다.
+
+## 남은 요구와 가장 먼저 이어 할 일
+
+1. P07/P08/P09 전체는 미검증입니다. 지금 반복할 필요가 없는 항목은 파일수신, 실제200%의 위경로, 긴표 기존회귀, F08 재구현입니다. **다음 첫 독립 작업은 RecordForm 상단 선택범위와 실제 전체주제목록의 표시계약을 원 R03/R04·복수범위 StudySession 원문에 맞춰 명확히 하고, 현재제품 소비상태의 대비·키보드·실제필요조건을 검사하는 일**입니다. 전체주제목록을 선택scope로 강제 축소하지 않습니다. 이번 필터복귀는 이미 수정했습니다.
+2. A–G의 아직 다른 시작조건/기기별 입력·판단비용과 안전한1세대 복제 baseline을 확보해 비교합니다. 이번 A/E/G 숫자를 B/C/D/F나 물리탭으로 복제하지 않습니다. 실제 Vault를 시험용으로 열지 않았습니다.
+3. 기존 P01 iPhone17Pro 한글두줄보고는 유지합니다. 긴표 마지막칸→닫기/복귀/reload 및 글/위치/키보드가림 요청의 **새 답변 미수신**입니다. 창을닫았다는 과거응답으로 대체하지 않았고 이번비동기 질문에 답이 오면 그 범위만 기록합니다. 물리IME/회전/SplitView/VoiceOver와 macOS접근성은 별도입니다. Computer Use 접근은 허용되지 않아 우회하지 않았습니다.
+4. 로그인/과거잠금은 현재차단이 아닙니다. gh인증과 기존Supabase `lbuiwotjisbzgflixjvg` 로그인/Healthy를 다시 확인했습니다. P09의 원래 최소 automated/browser/physical_device와 관련 UX조건이 충족되면 기존프로젝트의 Auth→온라인CRUD/FK/RLS/owner거부/revision/version/중복op/응답유실/세션실패를 실제 시험합니다. secret/DB비밀번호/service-role은 읽거나 게시하지 않았습니다.
+5. 이후 기존 IndexedDB→queue→Sync→Conflict→Canvas/PWA→기기/Dashboard/통계→Backup/Import→QA/E2E/성능→후보판→1.0을 이어갑니다. 미래 UI38/FM40/Canvas/Backup 전체를 Prototype 새선행조건으로 만들지 않습니다. F04개별칸/F05파서, F22파생지도,F47선택도구,F49정책전 영구삭제비노출 유지.
+6. HISTORY665 기계일치와 의미전수를 구별합니다.141장면/460이력/13첨부내용전체/181부재를 완료로 바꾸지 않습니다. 이번 관련 원문REQUEST.R32/H642 및 최초요청·감사문서는 실제 읽었지만 전체역사 의미검토는 미완입니다.
+
+이 인계는 실제 구현·검증·작은커밋·배포를 마친 **중간 도달점**입니다. 전체 마이그레이션을 완료하지 않았고 독립작업 전부가 차단되었다고도 보고하지 않습니다. 위 구체적 잔여와 원래 실행명령문 Section9를 유지합니다. 기존실행기/증거는 해당 outputs에 있고 localhost포트4187/CLI경로는 재개시 현재상태를 다시 확인합니다.
+
+---
+
 # 2026-09-30 보관본·긴 표 복귀·공부 시작 실행 인계
 
 최신 구현은 `2d240fc`입니다. 시작 HEAD `462365d57479a72d6166415c3b60c283982709ac`와 원격 main이 같은 clean 상태에서 시작했습니다. 과거 코드를 reset하거나 완성된 표 기능을 다시 만들지 않았습니다. 브랜치는 `codex/gen2-foundation`입니다.

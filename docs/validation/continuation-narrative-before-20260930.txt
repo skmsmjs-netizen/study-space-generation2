@@ -1,0 +1,61 @@
+
+> study-space-generation2@0.1.0 test
+> vitest run src/App.test.tsx -t first unsaved|collapsed unit narrative
+
+
+ RUN  v5.0.2 <generation2>
+
+ ❯ src/App.test.tsx (40 tests | 4 failed | 36 skipped) 435ms
+   ❯ study flows preserve meaning and input (17)
+     × keeps an explicitly collapsed unit narrative collapsed after navigation and remount 287ms
+     × keeps the first unsaved subject-overview identity through return and remount before saving once 47ms
+     × keeps the first unsaved unit-introduction identity through return and remount before saving once 50ms
+     × keeps the first unsaved topic-note identity through return and remount before saving once 49ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/App.test.tsx > study flows preserve meaning and input > keeps an explicitly collapsed unit narrative collapsed after navigation and remount
+Error: expect(element).toHaveValue(닫아 두어도 남을 초안)
+
+Expected the element to have value:
+  닫아 두어도 남을 초안
+Received:
+
+ ❯ src/App.test.tsx:204:60
+    202|     expect(screen.getByText('단원 서문 · 선택').closest('details')).not.toHa…
+    203|     await user.click(screen.getByText('단원 서문 · 선택'));
+    204|     expect(screen.getByRole('textbox', { name: '단원 서문' })).toHaveValue…
+       |                                                            ^
+    205|     expect(currentRecords()).toHaveLength(0);
+    206|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  src/App.test.tsx > study flows preserve meaning and input > keeps the first unsaved subject-overview identity through return and remount before saving once
+ FAIL  src/App.test.tsx > study flows preserve meaning and input > keeps the first unsaved unit-introduction identity through return and remount before saving once
+ FAIL  src/App.test.tsx > study flows preserve meaning and input > keeps the first unsaved topic-note identity through return and remount before saving once
+Error: expect(element).toHaveValue(  처음 쓴 원문
+아직 저장 전
+)
+
+Expected the element to have value:
+    처음 쓴 원문
+  아직 저장 전
+
+Received:
+
+ ❯ src/App.test.tsx:238:58
+    236|     const draft = JSON.parse(localStorage.getItem(key)!);
+    237|     await navigate('/'); await navigate(route);
+    238|     expect(screen.getByRole('textbox', { name: label })).toHaveValue(d…
+       |                                                          ^
+    239|     expect(screen.getByRole('button', { name: '내용 저장' })).toBeEnabled(…
+    240|     view.unmount(); await waitFor(() => expect(locked).toBe(false));
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  4 failed | 36 skipped (40)
+   Start at  02:34:10
+   Duration  1.33s (tests 35%, environment 32%, transform 19%, import 8%, setup 5%)

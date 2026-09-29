@@ -1,0 +1,35 @@
+{
+  "purpose": "ledger structure/integrity only; not semantic completeness or product completion",
+  "executed_at": "2026-09-29T18:12:03.971963+00:00",
+  "passed": true,
+  "rows": 1374,
+  "counts": {
+    "CORE": 45,
+    "PHASE": 38,
+    "UNFINISHED": 9,
+    "WORK": 26,
+    "FEATURE": 49,
+    "INPUT": 92,
+    "REQUEST": 67,
+    "INV": 22,
+    "FAILURE": 40,
+    "UI": 38,
+    "PUI": 20,
+    "PDF": 90,
+    "UX": 112,
+    "UX_SURFACE": 32,
+    "COMPONENT": 21,
+    "HISTORY": 665,
+    "FOLLOWUP": 8
+  },
+  "source_comparison_executed": true,
+  "previous_comparison_executed": true,
+  "ledger_sha256": "8a3e253112f01722b26cd8b5e78bb197e97ad5b2a991bde70c1e5ee85247611a",
+  "errors": [],
+  "product_status": "미해결",
+  "limitations": [
+    "과거 접근 불가181경로는 현재도181개 없음. 나머지13파일은1바이트 가독성만 확인했고 내용 재분석 미완.",
+    "665행의 원문위치·텍스트 일치 확인과 별도로 전수 의미 대조는 미완. 표 정정4건을 직접 반영.",
+    "141장면/460이력 의미 전수·전체 UI/물리/온라인 수신/장기사용 미검증."
+  ]
+}
