@@ -63,3 +63,33 @@ Modal/Sheet의 `onClose`는 초안 보관을 먼저 확인하거나 이탈 확�
 2026-09-30 추가 구현의 자동검증: `navigation-bar.test.tsx` 1개와 `context-menu.test.tsx` 6개, 합계7개 통과. 현재 위치 변경·native Tab 순서·정확한 대상·방향키 순환·Home/End·disabled 건너뜀·실행1회·바깥 입력·Tab/Shift+Tab 이탈·조합 중 Escape 보류·전체 disabled·기존 확인 Modal과 초점 복귀 연결을 검사했다. CSS 속성만으로 좁은폭·키보드 가림·물리 터치가 통과했다고 판정하지 않는다. 원장에는 실제 App 연결과 실제 UI 조작 결과를 추가한 뒤 해당 범위만 승격한다.
 
 00:37:05 KST에 기존 `component.test.tsx`까지 함께 실행한 공통 UI 회귀검사3파일/15개도 통과했다. 실제 브라우저·실제기기 상태는 이 합성 DOM 결과와 구별한다.
+
+## 2026-09-30 Prototype 후속 검증
+
+기존 21종 계약을 보존합니다. production JSX 호출과 실제 브라우저를 구별하여 확인했습니다. 직접·내부 호출이 있는 것은 16종이며 Radio/Tabs/SegmentedControl/ListItem/Sheet 5종은 현재 App 호출처가 없습니다. 계약을 맞추려고 불필요한 화면을 추가하지 않았으며 실사용·전체 상태는 미검증입니다.
+
+| 컴포넌트 | 현재 사용처 | 이번 실제 확인 또는 남은 상태 | 판정 |
+|---|---|---|---|
+| Button | 저장·목차 정렬·표 Preview/생성 | disabled 경계, 390px 표 생성48px, Undo | 수정 후 통과 |
+| IconButton | Modal 닫기·Toast 닫기 | Escape/Tab 순환과 닫기 초점 | 수정 후 통과 |
+| Input | 생성/이름/개인기준/표 셀 | 입력·공백·닫기/reload; 실제 IME 별도 | 수정 후 통과 |
+| Textarea | 자유글·메모·공부 기록·활동 메모 | 80줄3190자 선택방향/내부scroll 복귀 | 수정 후 통과 |
+| Select | 학기·테마·이동·표 재사용 | 과목/단원 단계별 선택, 밝기 | 통과 |
+| Checkbox | 공부 대상·활동 | 전체 기준 적용 후 새 활동 미체크 확인 | 통과 |
+| Radio | 없음 | 실제 사용 수요와 상태 미확인 | 미검증 |
+| Tabs | 없음 | 자동 keyboard 검사만; 실제 패널 연계 없음 | 미검증 |
+| SegmentedControl | 없음 | 실제 사용 수요와 상태 미확인 | 미검증 |
+| Card | 과목·표 입력 블록 | 넓고 좁은 표·긴 이름, 횡넘침 없음 | 통과 |
+| ListItem | 없음 | 실제 사용 수요와 상태 미확인 | 미검증 |
+| Modal | 생성/이름/이동/기준/표 | 배경 inert, 숨은/disabled/음수 tabindex 배제; B16/B18 | 수정 후 통과 |
+| Sheet | 없음 | 공통 구현만 있으며 detent 미구현 | 미검증 |
+| Toast | Workspace Undo | 기준/생성 뒤 route 이동에도 Undo; 성공 알림 유지 | 수정 후 통과 |
+| Breadcrumb | 과목·주제 경로 | 상위 이동 뒤 입력맥락 복귀 | 통과 |
+| Search | 찾기 | 기존 검색 회귀 자동검사; 이번 전상태 실조작 없음 | 미검증 |
+| EmptyState | 기록 없음·없어진 항목 | 표 생성 Undo 뒤 없어진 항목의 과목 복귀 | 통과 |
+| LoadingState | 앱 시작 | 조건부 호출 존재, 이번 느린 시작 실관찰 없음 | 미검증 |
+| ErrorState | 저장/복구/손상 초안 | 오류주입은 자동검사, 실제 용량실패 미주입 | 미검증 |
+| NavigationBar | 넓은 sidebar·좁은 하단 | route 복귀·좁은390px 이동 | 통과 |
+| ContextMenu | 주제 목차 관리 | rename/move/bulk 진입; 이전 keyboard 회귀 유지 | 통과 |
+
+표 판정은 적힌 이번 조작 범위에만 적용됩니다. 모든 hover/pressed/대비/고대비/200%확대/VoiceOver/터치/물리IME를 통과로 판정하지 않습니다. Modal은 배경의 이전 inert 상태를 보존·복원하고 숨은 조상, disabled fieldset, tabindex=-1 후보를 탭 순환에서 배제합니다. component.test.tsx 9개 및 이번 통합 로그, [실제 UI 기록](validation/followup-ui-20260930.md)을 연결합니다.

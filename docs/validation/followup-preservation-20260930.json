@@ -1,0 +1,9 @@
+{
+  "executed_at": "2026-09-29T16:19:52.549932+00:00",
+  "scope": "1851 preserved generation1 file bytes, not semantic migration or runtime proof",
+  "count": 1851,
+  "same": 1851,
+  "changed": 0,
+  "missing": 0,
+  "manifest_sha256": "b89d73bbd246910e53d68ade24e1beead07358287f55bcd5b5c687bb38fcd411"
+}

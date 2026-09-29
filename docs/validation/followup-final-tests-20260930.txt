@@ -1,0 +1,17 @@
+
+> study-space-generation2@0.1.0 test
+> vitest run
+
+
+ RUN  v5.0.2 <generation2>
+
+
+ Test Files  15 passed | 1 skipped (16)
+      Tests  170 passed | 1 skipped (171)
+   Start at  01:20:43
+   Duration  8.56s (environment 46%, tests 40%, setup 6%, transform 5%, import 3%)
+
+Environment  jsdom was created 16 times · 17.79s total, 46% of tracked time
+             create it once per worker with pool: 'vmThreads' (keeps per-file isolation) or isolate: false (shares it across files)
+             learn more: https://vitest.dev/guide/improving-performance#test-environments
+

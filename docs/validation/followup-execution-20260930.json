@@ -1,0 +1,87 @@
+{
+  "executed_at": "2026-09-29T16:24:18.753341+00:00",
+  "implementation_commit": "ce6ee432bee65d184f65145414ee4a1e586c838d",
+  "implementation_commits": [
+    "dd39f5b",
+    "5e1d223",
+    "752ab1e",
+    "ce6ee432bee65d184f65145414ee4a1e586c838d"
+  ],
+  "baseline_commit": "4907d8e4ef8249eceb9a2743f0ca5057c4bdebe3",
+  "automated": {
+    "status": "통과",
+    "tests_passed": 170,
+    "tests_skipped": 1,
+    "skipped_reason": "opt-in domain performance benchmark not requested in normal run",
+    "test_files_passed": 15,
+    "artifact": "docs/validation/followup-final-tests-20260930.txt",
+    "scope": "domain and synthetic jsdom; physical/server/long-term not included"
+  },
+  "build": {
+    "status": "통과",
+    "artifact": "docs/validation/followup-final-build-20260930.txt",
+    "js": "index-3OU7fg4T.js",
+    "css": "index-D8qUfbxB.css",
+    "scope": "TypeScript and Vite production build"
+  },
+  "browser": {
+    "status": "수정 후 통과",
+    "artifact": "docs/validation/followup-ui-20260930.md",
+    "cases": [
+      "B10",
+      "B11",
+      "B12",
+      "B13",
+      "B14",
+      "B15",
+      "B16",
+      "B17",
+      "B18",
+      "B19"
+    ],
+    "scope": "named local demo interactions; not all product surfaces"
+  },
+  "physical_device": {
+    "status": "미검증",
+    "previous_user_report": "resume-ui.md P01 retained; no repeated request",
+    "scope": "no new direct physical device observations"
+  },
+  "server_peer": {
+    "status": "미검증",
+    "scope": "Supabase dashboard Healthy/access confirmed; no app Auth/CRUD/RLS or peer receipt"
+  },
+  "performance": {
+    "status": "미검증",
+    "scope": "500-row invariant test is not timing or long-term performance"
+  },
+  "long_term": {
+    "status": "미검증",
+    "scope": "not executed"
+  },
+  "ledger_validation": "docs/validation/followup-ledger-final2-20260930.json",
+  "deployment": {
+    "status": "통과",
+    "implementation_commit": "ce6ee432bee65d184f65145414ee4a1e586c838d",
+    "run_id": 36597203248,
+    "url": "https://github.com/skmsmjs-netizen/study-space-generation2/actions/runs/36597203248",
+    "pages": "https://skmsmjs-netizen.github.io/study-space-generation2/",
+    "public_browser": {
+      "status": "통과",
+      "verified_at": "2026-09-29T16:29:29.289699+00:00",
+      "asset": "/study-space-generation2/assets/index-3OU7fg4T.js",
+      "table_entry": true,
+      "deep_link_reload": "#/node/demo-topic-function",
+      "order_control_after_reload": true,
+      "console_errors_observed": 0
+    },
+    "scope": "implementation Actions test/build/deploy and named public browser observations; final documentation CI tracked separately"
+  },
+  "open_scope": "Prototype QA and full historical semantic comparison remain; no claim of full migration completion or 1.0",
+  "ledger_tests": {
+    "status": "수정 후 통과",
+    "passed": 26,
+    "artifact": "docs/validation/followup-ledger-final2-tests-20260930.txt",
+    "earlier_failure": "docs/validation/followup-ledger-tests-20260930.txt",
+    "reason": "validator caught changed component-matrix before source manifest refresh; diff reviewed and prior hash/reason retained"
+  }
+}

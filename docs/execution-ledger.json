@@ -67,10 +67,17 @@
     },
     {
       "path": "generation2/docs/component-matrix.md",
-      "sha256": "30587f9a45cb3862ff45e4b13bf5e1a1ba1aa783c47a668bcdda4244be59291b",
+      "sha256": "57f17d35bc6d7b40daf97c95480f3b1bbdd67643d77a1e79a3e4f8ca63783730",
       "role": "inventory integrity only; not semantic completion",
-      "previous_sha256": "6b783e804f098f9408da69b23adb4042dd8bf61299b805fce8e0159de2d0906e",
-      "change_reason": "기존 미구현2종을 실제코드·계약·시험으로 갱신; 원21개목록 보존"
+      "previous_sha256": "30587f9a45cb3862ff45e4b13bf5e1a1ba1aa783c47a668bcdda4244be59291b",
+      "change_reason": "diff 직접 확인: 기존21계약 그대로 두고16실제호출/5미사용과 Modal inert 및 실제검증 범위 표 추가.",
+      "hash_history": [
+        {
+          "sha256": "30587f9a45cb3862ff45e4b13bf5e1a1ba1aa783c47a668bcdda4244be59291b",
+          "previous_sha256": "6b783e804f098f9408da69b23adb4042dd8bf61299b805fce8e0159de2d0906e",
+          "change_reason": "기존 미구현2종을 실제코드·계약·시험으로 갱신; 원21개목록 보존"
+        }
+      ]
     },
     {
       "path": "outputs/20260923-advanced-visual-research/ux/ux-catalog.json",
@@ -101,6 +108,11 @@
       "path": "outputs/20260930-gen2-resume/audit.md",
       "sha256": "53f7ee86d94ba6adf753db29267acc9ab8c29a839c631c25498a456e7396cae6",
       "role": "inventory integrity only; not semantic completion"
+    },
+    {
+      "path": "docs/과목·목차 표 입력.md",
+      "sha256": "c55b12b15b43b2f554c438e9cb9298301a8c1f72d38f15ac0e1afd0d73b14905",
+      "role": "F04 direct legacy contract; newly linked after full read; not product completion"
     }
   ],
   "counts": {
@@ -119,15 +131,16 @@
     "UX": 112,
     "UX_SURFACE": 32,
     "COMPONENT": 21,
-    "HISTORY": 665
+    "HISTORY": 665,
+    "FOLLOWUP": 1
   },
   "semantic_review": {
     "status": "미해결",
-    "scope": "명령문 전체·54개 요구·13개 정정·92입력·49기능·33PDF요구·112UX 후보·32영역·21계약 목록을 읽고 연결했습니다. 원본 과거 발화665개 모든 세부의 의미 판정은 미완입니다. PDF 33개 이미지는 별도 audit 담당자가 이번에 전부 확인하여 source_review로 연결했습니다.",
+    "scope": "2026-09-30 후속: 전체 실행명령문·최신인계·현재Phase상태·UI38/FM40 목록과 관련원문/1세대소스를 읽었습니다. 원장/baseline 전수 파싱·ID/source비교는 의미정독과 별개입니다. 표 정정H472/474/475/476을 직접 반영. 이전 PDF33이미지 검토는 역사적 근거이며 이번 전수재독이 아닙니다.",
     "blockers": [
-      "181개 과거 접근 불가 경로의 현재 접근/내용 판정 필요",
-      "141장면 초기 조사 원답·460개 이력의 의미 전수 대응 미완",
-      "iPhone 17 Pro 입력/복귀 일부 사용자 보고만 있음; 전체 물리·온라인 수신·장기사용 미검증"
+      "과거 접근 불가181경로는 현재도181개 없음. 나머지13파일은1바이트 가독성만 확인했고 내용 재분석 미완.",
+      "665행의 원문위치·텍스트 일치 확인과 별도로 전수 의미 대조는 미완. 표 정정4건을 직접 반영.",
+      "141장면/460이력 의미 전수·전체 UI/물리/온라인 수신/장기사용 미검증."
     ],
     "human_checks": [
       "INPUT.R01 / REQUEST.R01 / WORK.R01을 별도로 유지",
@@ -135,7 +148,12 @@
       "C2 평소 체크와 시험 전 서술 점검은 INPUT.T01 / INPUT.T13 및 INV08로 분리",
       "PDF 페이지와 페이지 안 요구를 별도 행·양방향 연결",
       "COMPONENT.NavigationBar/ContextMenu 실제 구현·사용 추가;21종 존재와 전상태 검증 구별",
-      "UX pending을 미구현·제품 채택으로 환산하지 않음"
+      "UX pending을 미구현·제품 채택으로 환산하지 않음",
+      "F04 3단계 표 입력과 일반 가변깊이 트리 및 F05 원문파싱 구별.",
+      "Modal/표/장문복귀와 로컬실패 자동검사 범위를 분리; 공통21 exports 대 실제16호출 구별."
+    ],
+    "previous_scope": [
+      "명령문 전체·54개 요구·13개 정정·92입력·49기능·33PDF요구·112UX 후보·32영역·21계약 목록을 읽고 연결했습니다. 원본 과거 발화665개 모든 세부의 의미 판정은 미완입니다. PDF 33개 이미지는 별도 audit 담당자가 이번에 전부 확인하여 source_review로 연결했습니다."
     ]
   },
   "rows": [
@@ -1008,24 +1026,52 @@
       },
       "implementation": {
         "files": [
-          "src/App.tsx"
+          "src/App.tsx",
+          "src/domain/commands.ts",
+          "src/domain/outline.ts",
+          "src/ui/outline-table-editor.tsx",
+          "src/ui/navigation-context.ts",
+          "src/data/draft-safety.ts",
+          "src/ui/criteria-editor.tsx",
+          "src/ui/index.tsx"
         ],
-        "scope": "관련 구현 위치만 연결했습니다. 이 핵심 조건의 전체 충족·실제 실행 완료를 뜻하지 않습니다.",
+        "scope": "관련 구현 위치만 연결했습니다. 이 핵심 조건의 전체 충족·실제 실행 완료를 뜻하지 않습니다. 2026-09-30 후속: Modal 배경 inert/Tab 후보 개선 및 기준·표 Undo route복귀; 전체 21종 중16실제호출·5미사용 경계. B12–B18. 전체 온라인/이관/기기 검증과 구별.",
         "test_connections": [
           "src/App.test.tsx",
-          "src/domain/domain.test.ts"
+          "src/domain/domain.test.ts",
+          "src/domain/outline.test.ts",
+          "src/domain/outline-table.test.ts",
+          "src/ui/outline-table-editor.test.tsx",
+          "src/ui/navigation-context.test.tsx",
+          "src/data/draft-safety.test.ts",
+          "src/ui/criteria-editor.test.tsx",
+          "src/ui/component.test.tsx"
         ]
       },
       "evidence": {
         "automated": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "automated",
+              "path": "docs/validation/followup-final-tests-20260930.txt"
+            }
+          ],
+          "scope": "Modal 배경 inert/Tab 후보 개선 및 기준·표 Undo route복귀; 전체 21종 중16실제호출·5미사용 경계. B12–B18. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
         },
         "browser": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "browser",
+              "path": "docs/validation/followup-ui-20260930.md"
+            }
+          ],
+          "scope": "Modal 배경 inert/Tab 후보 개선 및 기준·표 Undo route복귀; 전체 21종 중16실제호출·5미사용 경계. B12–B18. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
         },
         "physical_device": {
           "status": "미검증",
@@ -1066,8 +1112,16 @@
       ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
-        "implementation_commits": [],
-        "artifacts": []
+        "implementation_commits": [
+          "dd39f5b",
+          "5e1d223",
+          "752ab1e",
+          "ce6ee432bee65d184f65145414ee4a1e586c838d"
+        ],
+        "artifacts": [
+          "docs/validation/followup-execution-20260930.json",
+          "docs/validation/followup-ui-20260930.md"
+        ]
       },
       "owner_phases": [
         "PHASE.07",
@@ -1262,24 +1316,52 @@
       "implementation": {
         "files": [
           "src/App.tsx",
-          "src/data/demo-repository.ts"
+          "src/data/demo-repository.ts",
+          "src/domain/commands.ts",
+          "src/domain/outline.ts",
+          "src/ui/outline-table-editor.tsx",
+          "src/ui/navigation-context.ts",
+          "src/data/draft-safety.ts",
+          "src/ui/criteria-editor.tsx",
+          "src/ui/index.tsx"
         ],
-        "scope": "저장 실패 후 라우트 이동에서 RAM rescue와 손상된 디스크 원본 분리를 추가한 코드 위치입니다. 서버/IDB/OS 강제종료 안전성으로 승격하지 않습니다.",
+        "scope": "저장 실패 후 라우트 이동에서 RAM rescue와 손상된 디스크 원본 분리를 추가한 코드 위치입니다. 서버/IDB/OS 강제종료 안전성으로 승격하지 않습니다. 2026-09-30 후속: 생성/이름/이동/일괄 Modal 초안 분리·닫기/reload; 손상원문 사본/실패 RAM·재시도/정리 실패; 새 자유글 ID 복구. B14/B16/B18. 실제 실패주입은 자동검사만. 전체 온라인/이관/기기 검증과 구별.",
         "test_connections": [
           "src/App.test.tsx",
-          "src/domain/domain.test.ts"
+          "src/domain/domain.test.ts",
+          "src/domain/outline.test.ts",
+          "src/domain/outline-table.test.ts",
+          "src/ui/outline-table-editor.test.tsx",
+          "src/ui/navigation-context.test.tsx",
+          "src/data/draft-safety.test.ts",
+          "src/ui/criteria-editor.test.tsx",
+          "src/ui/component.test.tsx"
         ]
       },
       "evidence": {
         "automated": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "automated",
+              "path": "docs/validation/followup-final-tests-20260930.txt"
+            }
+          ],
+          "scope": "생성/이름/이동/일괄 Modal 초안 분리·닫기/reload; 손상원문 사본/실패 RAM·재시도/정리 실패; 새 자유글 ID 복구. B14/B16/B18. 실제 실패주입은 자동검사만. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
         },
         "browser": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "browser",
+              "path": "docs/validation/followup-ui-20260930.md"
+            }
+          ],
+          "scope": "생성/이름/이동/일괄 Modal 초안 분리·닫기/reload; 손상원문 사본/실패 RAM·재시도/정리 실패; 새 자유글 ID 복구. B14/B16/B18. 실제 실패주입은 자동검사만. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
         },
         "physical_device": {
           "status": "미검증",
@@ -1333,8 +1415,16 @@
       ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
-        "implementation_commits": [],
-        "artifacts": []
+        "implementation_commits": [
+          "dd39f5b",
+          "5e1d223",
+          "752ab1e",
+          "ce6ee432bee65d184f65145414ee4a1e586c838d"
+        ],
+        "artifacts": [
+          "docs/validation/followup-execution-20260930.json",
+          "docs/validation/followup-ui-20260930.md"
+        ]
       },
       "owner_phases": [
         "PHASE.18",
@@ -2147,24 +2237,51 @@
           "src/App.tsx",
           "src/data/demo-repository.ts",
           "src/domain/commands.ts",
-          "src/domain/model.ts"
+          "src/domain/model.ts",
+          "src/domain/outline.ts",
+          "src/ui/outline-table-editor.tsx",
+          "src/ui/navigation-context.ts",
+          "src/data/draft-safety.ts",
+          "src/ui/criteria-editor.tsx",
+          "src/ui/index.tsx"
         ],
-        "scope": "관련 구현 위치만 연결했습니다. 이 핵심 조건의 전체 충족·실제 실행 완료를 뜻하지 않습니다.",
+        "scope": "관련 구현 위치만 연결했습니다. 이 핵심 조건의 전체 충족·실제 실행 완료를 뜻하지 않습니다. 2026-09-30 후속: 생성/이름/이동/일괄 Modal 초안 분리·닫기/reload; 손상원문 사본/실패 RAM·재시도/정리 실패; 새 자유글 ID 복구. B14/B16/B18. 실제 실패주입은 자동검사만. 전체 온라인/이관/기기 검증과 구별.",
         "test_connections": [
           "src/App.test.tsx",
-          "src/domain/domain.test.ts"
+          "src/domain/domain.test.ts",
+          "src/domain/outline.test.ts",
+          "src/domain/outline-table.test.ts",
+          "src/ui/outline-table-editor.test.tsx",
+          "src/ui/navigation-context.test.tsx",
+          "src/data/draft-safety.test.ts",
+          "src/ui/criteria-editor.test.tsx",
+          "src/ui/component.test.tsx"
         ]
       },
       "evidence": {
         "automated": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "automated",
+              "path": "docs/validation/followup-final-tests-20260930.txt"
+            }
+          ],
+          "scope": "생성/이름/이동/일괄 Modal 초안 분리·닫기/reload; 손상원문 사본/실패 RAM·재시도/정리 실패; 새 자유글 ID 복구. B14/B16/B18. 실제 실패주입은 자동검사만. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
         },
         "browser": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "browser",
+              "path": "docs/validation/followup-ui-20260930.md"
+            }
+          ],
+          "scope": "생성/이름/이동/일괄 Modal 초안 분리·닫기/reload; 손상원문 사본/실패 RAM·재시도/정리 실패; 새 자유글 ID 복구. B14/B16/B18. 실제 실패주입은 자동검사만. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
         },
         "physical_device": {
           "status": "미검증",
@@ -2219,8 +2336,16 @@
       ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
-        "implementation_commits": [],
-        "artifacts": []
+        "implementation_commits": [
+          "dd39f5b",
+          "5e1d223",
+          "752ab1e",
+          "ce6ee432bee65d184f65145414ee4a1e586c838d"
+        ],
+        "artifacts": [
+          "docs/validation/followup-execution-20260930.json",
+          "docs/validation/followup-ui-20260930.md"
+        ]
       },
       "owner_phases": [
         "PHASE.18",
@@ -2555,24 +2680,51 @@
           "src/App.tsx",
           "src/data/demo-repository.ts",
           "src/domain/commands.ts",
-          "src/domain/model.ts"
+          "src/domain/model.ts",
+          "src/domain/outline.ts",
+          "src/ui/outline-table-editor.tsx",
+          "src/ui/navigation-context.ts",
+          "src/data/draft-safety.ts",
+          "src/ui/criteria-editor.tsx",
+          "src/ui/index.tsx"
         ],
-        "scope": "관련 구현 위치만 연결했습니다. 이 핵심 조건의 전체 충족·실제 실행 완료를 뜻하지 않습니다.",
+        "scope": "관련 구현 위치만 연결했습니다. 이 핵심 조건의 전체 충족·실제 실행 완료를 뜻하지 않습니다. 2026-09-30 후속: 형제 order 원자변경·그룹Undo·가변깊이/기록 보존; 장문 선택·방향·내부scroll의 route/reload 복귀. B10/B11/B14. 전체 온라인/이관/기기 검증과 구별.",
         "test_connections": [
           "src/App.test.tsx",
-          "src/domain/domain.test.ts"
+          "src/domain/domain.test.ts",
+          "src/domain/outline.test.ts",
+          "src/domain/outline-table.test.ts",
+          "src/ui/outline-table-editor.test.tsx",
+          "src/ui/navigation-context.test.tsx",
+          "src/data/draft-safety.test.ts",
+          "src/ui/criteria-editor.test.tsx",
+          "src/ui/component.test.tsx"
         ]
       },
       "evidence": {
         "automated": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "automated",
+              "path": "docs/validation/followup-final-tests-20260930.txt"
+            }
+          ],
+          "scope": "형제 order 원자변경·그룹Undo·가변깊이/기록 보존; 장문 선택·방향·내부scroll의 route/reload 복귀. B10/B11/B14. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
         },
         "browser": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "browser",
+              "path": "docs/validation/followup-ui-20260930.md"
+            }
+          ],
+          "scope": "형제 order 원자변경·그룹Undo·가변깊이/기록 보존; 장문 선택·방향·내부scroll의 route/reload 복귀. B10/B11/B14. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
         },
         "physical_device": {
           "status": "미검증",
@@ -2628,8 +2780,16 @@
       ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
-        "implementation_commits": [],
-        "artifacts": []
+        "implementation_commits": [
+          "dd39f5b",
+          "5e1d223",
+          "752ab1e",
+          "ce6ee432bee65d184f65145414ee4a1e586c838d"
+        ],
+        "artifacts": [
+          "docs/validation/followup-execution-20260930.json",
+          "docs/validation/followup-ui-20260930.md"
+        ]
       },
       "owner_phases": [
         "PHASE.24",
@@ -2703,24 +2863,51 @@
           "src/App.tsx",
           "src/data/demo-repository.ts",
           "src/domain/commands.ts",
-          "src/domain/model.ts"
+          "src/domain/model.ts",
+          "src/domain/outline.ts",
+          "src/ui/outline-table-editor.tsx",
+          "src/ui/navigation-context.ts",
+          "src/data/draft-safety.ts",
+          "src/ui/criteria-editor.tsx",
+          "src/ui/index.tsx"
         ],
-        "scope": "관련 구현 위치만 연결했습니다. 이 핵심 조건의 전체 충족·실제 실행 완료를 뜻하지 않습니다.",
+        "scope": "관련 구현 위치만 연결했습니다. 이 핵심 조건의 전체 충족·실제 실행 완료를 뜻하지 않습니다. 2026-09-30 후속: 후속 Prototype 범위만170자동검사/B10–B18. 전체 상태 inventory·물리·온라인 gate는 미검증. 전체 온라인/이관/기기 검증과 구별.",
         "test_connections": [
           "src/App.test.tsx",
-          "src/domain/domain.test.ts"
+          "src/domain/domain.test.ts",
+          "src/domain/outline.test.ts",
+          "src/domain/outline-table.test.ts",
+          "src/ui/outline-table-editor.test.tsx",
+          "src/ui/navigation-context.test.tsx",
+          "src/data/draft-safety.test.ts",
+          "src/ui/criteria-editor.test.tsx",
+          "src/ui/component.test.tsx"
         ]
       },
       "evidence": {
         "automated": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "automated",
+              "path": "docs/validation/followup-final-tests-20260930.txt"
+            }
+          ],
+          "scope": "후속 Prototype 범위만170자동검사/B10–B18. 전체 상태 inventory·물리·온라인 gate는 미검증. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
         },
         "browser": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "browser",
+              "path": "docs/validation/followup-ui-20260930.md"
+            }
+          ],
+          "scope": "후속 Prototype 범위만170자동검사/B10–B18. 전체 상태 inventory·물리·온라인 gate는 미검증. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
         },
         "physical_device": {
           "status": "미검증",
@@ -2769,8 +2956,16 @@
       ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
-        "implementation_commits": [],
-        "artifacts": []
+        "implementation_commits": [
+          "dd39f5b",
+          "5e1d223",
+          "752ab1e",
+          "ce6ee432bee65d184f65145414ee4a1e586c838d"
+        ],
+        "artifacts": [
+          "docs/validation/followup-execution-20260930.json",
+          "docs/validation/followup-ui-20260930.md"
+        ]
       },
       "owner_phases": [
         "PHASE.31",
@@ -4143,24 +4338,51 @@
           "src/App.tsx",
           "src/data/demo-repository.ts",
           "src/domain/commands.ts",
-          "src/domain/model.ts"
+          "src/domain/model.ts",
+          "src/domain/outline.ts",
+          "src/ui/outline-table-editor.tsx",
+          "src/ui/navigation-context.ts",
+          "src/data/draft-safety.ts",
+          "src/ui/criteria-editor.tsx",
+          "src/ui/index.tsx"
         ],
-        "scope": "관련 구현 위치만 연결했습니다. 이 핵심 조건의 전체 충족·실제 실행 완료를 뜻하지 않습니다.",
+        "scope": "관련 구현 위치만 연결했습니다. 이 핵심 조건의 전체 충족·실제 실행 완료를 뜻하지 않습니다. 2026-09-30 후속: 후속 Prototype 범위만170자동검사/B10–B18. 전체 상태 inventory·물리·온라인 gate는 미검증. 전체 온라인/이관/기기 검증과 구별.",
         "test_connections": [
           "src/App.test.tsx",
-          "src/domain/domain.test.ts"
+          "src/domain/domain.test.ts",
+          "src/domain/outline.test.ts",
+          "src/domain/outline-table.test.ts",
+          "src/ui/outline-table-editor.test.tsx",
+          "src/ui/navigation-context.test.tsx",
+          "src/data/draft-safety.test.ts",
+          "src/ui/criteria-editor.test.tsx",
+          "src/ui/component.test.tsx"
         ]
       },
       "evidence": {
         "automated": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "automated",
+              "path": "docs/validation/followup-final-tests-20260930.txt"
+            }
+          ],
+          "scope": "후속 Prototype 범위만170자동검사/B10–B18. 전체 상태 inventory·물리·온라인 gate는 미검증. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
         },
         "browser": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "browser",
+              "path": "docs/validation/followup-ui-20260930.md"
+            }
+          ],
+          "scope": "후속 Prototype 범위만170자동검사/B10–B18. 전체 상태 inventory·물리·온라인 gate는 미검증. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
         },
         "physical_device": {
           "status": "미검증",
@@ -4203,8 +4425,16 @@
       ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
-        "implementation_commits": [],
-        "artifacts": []
+        "implementation_commits": [
+          "dd39f5b",
+          "5e1d223",
+          "752ab1e",
+          "ce6ee432bee65d184f65145414ee4a1e586c838d"
+        ],
+        "artifacts": [
+          "docs/validation/followup-execution-20260930.json",
+          "docs/validation/followup-ui-20260930.md"
+        ]
       },
       "owner_phases": [
         "PHASE.35"
@@ -6463,37 +6693,59 @@
       },
       "implementation": {
         "files": [
-          "src/ui/index.tsx"
+          "src/ui/index.tsx",
+          "src/App.tsx",
+          "src/domain/commands.ts",
+          "src/domain/outline.ts",
+          "src/ui/outline-table-editor.tsx",
+          "src/ui/navigation-context.ts",
+          "src/data/draft-safety.ts",
+          "src/ui/criteria-editor.tsx"
         ],
-        "scope": "계약21종 구현 존재, 공통15개자동과 B05/B09. 전체접근성 상태 미검증",
+        "scope": "계약21종 구현 존재, 공통15개자동과 B05/B09. 전체접근성 상태 미검증 2026-09-30 후속: 후속 Prototype 범위만170자동검사/B10–B18. 전체 상태 inventory·물리·온라인 gate는 미검증. 전체 온라인/이관/기기 검증과 구별.",
         "test_connections": [
           "src/ui/component.test.tsx",
           "src/ui/context-menu.test.tsx",
-          "src/ui/navigation-bar.test.tsx"
+          "src/ui/navigation-bar.test.tsx",
+          "src/App.test.tsx",
+          "src/domain/outline.test.ts",
+          "src/domain/outline-table.test.ts",
+          "src/ui/outline-table-editor.test.tsx",
+          "src/ui/navigation-context.test.tsx",
+          "src/data/draft-safety.test.ts",
+          "src/ui/criteria-editor.test.tsx"
         ]
       },
       "evidence": {
         "automated": {
-          "status": "통과",
-          "scope": "계약21종 구현 존재, 공통15개자동과 B05/B09. 전체접근성 상태 미검증",
-          "verified_at": "2026-09-29T15:46:42.223149+00:00",
-          "commit": "7b911a4630b4e0783dcf728482c91f307ea14812",
+          "status": "수정 후 통과",
+          "scope": "후속 Prototype 범위만170자동검사/B10–B18. 전체 상태 inventory·물리·온라인 gate는 미검증. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d",
           "artifacts": [
             {
               "level": "automated",
               "path": "docs/validation/resume-execution.json"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/followup-final-tests-20260930.txt"
             }
           ]
         },
         "browser": {
-          "status": "통과",
-          "scope": "계약21종 구현 존재, 공통15개자동과 B05/B09. 전체접근성 상태 미검증",
-          "verified_at": "2026-09-29T15:46:42.223149+00:00",
-          "commit": "7b911a4630b4e0783dcf728482c91f307ea14812",
+          "status": "수정 후 통과",
+          "scope": "후속 Prototype 범위만170자동검사/B10–B18. 전체 상태 inventory·물리·온라인 gate는 미검증. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d",
           "artifacts": [
             {
               "level": "browser",
               "path": "docs/validation/resume-ui.md"
+            },
+            {
+              "level": "browser",
+              "path": "docs/validation/followup-ui-20260930.md"
             }
           ]
         },
@@ -6533,11 +6785,17 @@
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
         "implementation_commits": [
           "17bba77",
-          "7b911a4630b4e0783dcf728482c91f307ea14812"
+          "7b911a4630b4e0783dcf728482c91f307ea14812",
+          "dd39f5b",
+          "5e1d223",
+          "752ab1e",
+          "ce6ee432bee65d184f65145414ee4a1e586c838d"
         ],
         "artifacts": [
           "docs/validation/resume-execution.json",
-          "docs/validation/resume-ui.md"
+          "docs/validation/resume-ui.md",
+          "docs/validation/followup-execution-20260930.json",
+          "docs/validation/followup-ui-20260930.md"
         ]
       },
       "current_progress": {
@@ -6579,35 +6837,57 @@
       },
       "implementation": {
         "files": [
-          "src/App.tsx"
+          "src/App.tsx",
+          "src/domain/commands.ts",
+          "src/domain/outline.ts",
+          "src/ui/outline-table-editor.tsx",
+          "src/ui/navigation-context.ts",
+          "src/data/draft-safety.ts",
+          "src/ui/criteria-editor.tsx",
+          "src/ui/index.tsx"
         ],
-        "scope": "자동119개/실제 B01–B09 해당범위. 전체Prototype 및 개인온라인 미완",
+        "scope": "자동119개/실제 B01–B09 해당범위. 전체Prototype 및 개인온라인 미완 2026-09-30 후속: 후속 Prototype 범위만170자동검사/B10–B18. 전체 상태 inventory·물리·온라인 gate는 미검증. 전체 온라인/이관/기기 검증과 구별.",
         "test_connections": [
-          "src/App.test.tsx"
+          "src/App.test.tsx",
+          "src/domain/outline.test.ts",
+          "src/domain/outline-table.test.ts",
+          "src/ui/outline-table-editor.test.tsx",
+          "src/ui/navigation-context.test.tsx",
+          "src/data/draft-safety.test.ts",
+          "src/ui/criteria-editor.test.tsx",
+          "src/ui/component.test.tsx"
         ]
       },
       "evidence": {
         "automated": {
-          "status": "통과",
-          "scope": "자동119개/실제 B01–B09 해당범위. 전체Prototype 및 개인온라인 미완",
-          "verified_at": "2026-09-29T15:46:42.223149+00:00",
-          "commit": "7b911a4630b4e0783dcf728482c91f307ea14812",
+          "status": "수정 후 통과",
+          "scope": "후속 Prototype 범위만170자동검사/B10–B18. 전체 상태 inventory·물리·온라인 gate는 미검증. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d",
           "artifacts": [
             {
               "level": "automated",
               "path": "docs/validation/resume-execution.json"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/followup-final-tests-20260930.txt"
             }
           ]
         },
         "browser": {
-          "status": "통과",
-          "scope": "자동119개/실제 B01–B09 해당범위. 전체Prototype 및 개인온라인 미완",
-          "verified_at": "2026-09-29T15:46:42.223149+00:00",
-          "commit": "7b911a4630b4e0783dcf728482c91f307ea14812",
+          "status": "수정 후 통과",
+          "scope": "후속 Prototype 범위만170자동검사/B10–B18. 전체 상태 inventory·물리·온라인 gate는 미검증. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d",
           "artifacts": [
             {
               "level": "browser",
               "path": "docs/validation/resume-ui.md"
+            },
+            {
+              "level": "browser",
+              "path": "docs/validation/followup-ui-20260930.md"
             }
           ]
         },
@@ -6639,19 +6919,27 @@
       "status": "미검증",
       "not_applicable_reason": null,
       "remaining": [
-        "이번 부분 검증을 제외한 원 계약의 전체 상태·물리/서버 조건과 선행 Phase는 미검증입니다."
+        "형제 정렬·표 대량관리·Modal초안·긴글 선택/내부scroll의 이번 범위는 수정 후 통과.",
+        "UI38/FM40/UX112/기존32영역 전체 실조작 및665발화/141장면/460이력 의미 전수는 미해결.",
+        "물리IME·키보드·회전·VoiceOver·대량 실제UI·서버/상대기기 수신은 미검증."
       ],
-      "next_action": "docs/resume-handoff.md의 다음 실행 순서와 본 행의 요구별 조건을 함께 따라 남은 범위를 실행합니다.",
+      "next_action": "남은 Prototype 오류/상태/접근성 조작을 원장 ID별로 대조하고 UX gate 충족 후 승인된 Supabase Auth/온라인 CRUD로 진행.",
       "related": [],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
         "implementation_commits": [
           "17bba77",
-          "7b911a4630b4e0783dcf728482c91f307ea14812"
+          "7b911a4630b4e0783dcf728482c91f307ea14812",
+          "dd39f5b",
+          "5e1d223",
+          "752ab1e",
+          "ce6ee432bee65d184f65145414ee4a1e586c838d"
         ],
         "artifacts": [
           "docs/validation/resume-execution.json",
-          "docs/validation/resume-ui.md"
+          "docs/validation/resume-ui.md",
+          "docs/validation/followup-execution-20260930.json",
+          "docs/validation/followup-ui-20260930.md"
         ]
       },
       "current_progress": {
@@ -6659,7 +6947,15 @@
         "scope": "실제 구현/배포/부분UI 검증 완료, 전체 gate 미승격",
         "report": "docs/phase-report-20260930.md",
         "commit": "7b911a4630b4e0783dcf728482c91f307ea14812"
-      }
+      },
+      "remaining_history": [
+        {
+          "at": "2026-09-29T16:24:18.753341+00:00",
+          "remaining": [
+            "이번 부분 검증을 제외한 원 계약의 전체 상태·물리/서버 조건과 선행 Phase는 미검증입니다."
+          ]
+        }
+      ]
     },
     {
       "id": "PHASE.09",
@@ -6690,20 +6986,52 @@
         "states": []
       },
       "implementation": {
-        "files": [],
-        "scope": "미구현 여부를 단정하지 않으며 아래 계약과 코드 대응을 구별합니다.",
-        "test_connections": []
+        "files": [
+          "src/App.tsx",
+          "src/domain/commands.ts",
+          "src/domain/outline.ts",
+          "src/ui/outline-table-editor.tsx",
+          "src/ui/navigation-context.ts",
+          "src/data/draft-safety.ts",
+          "src/ui/criteria-editor.tsx",
+          "src/ui/index.tsx"
+        ],
+        "scope": "미구현 여부를 단정하지 않으며 아래 계약과 코드 대응을 구별합니다. 2026-09-30 후속: 후속 Prototype 범위만170자동검사/B10–B18. 전체 상태 inventory·물리·온라인 gate는 미검증. 전체 온라인/이관/기기 검증과 구별.",
+        "test_connections": [
+          "src/App.test.tsx",
+          "src/domain/outline.test.ts",
+          "src/domain/outline-table.test.ts",
+          "src/ui/outline-table-editor.test.tsx",
+          "src/ui/navigation-context.test.tsx",
+          "src/data/draft-safety.test.ts",
+          "src/ui/criteria-editor.test.tsx",
+          "src/ui/component.test.tsx"
+        ]
       },
       "evidence": {
         "automated": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "automated",
+              "path": "docs/validation/followup-final-tests-20260930.txt"
+            }
+          ],
+          "scope": "후속 Prototype 범위만170자동검사/B10–B18. 전체 상태 inventory·물리·온라인 gate는 미검증. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
         },
         "browser": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "browser",
+              "path": "docs/validation/followup-ui-20260930.md"
+            }
+          ],
+          "scope": "후속 Prototype 범위만170자동검사/B10–B18. 전체 상태 inventory·물리·온라인 gate는 미검증. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
         },
         "physical_device": {
           "status": "미검증",
@@ -6745,21 +7073,39 @@
       "status": "미검증",
       "not_applicable_reason": null,
       "remaining": [
-        "원문·정정과 현재 구현의 의미 대조 및 담당 범위 실행 증거가 필요합니다."
+        "형제 정렬·표 대량관리·Modal초안·긴글 선택/내부scroll의 이번 범위는 수정 후 통과.",
+        "UI38/FM40/UX112/기존32영역 전체 실조작 및665발화/141장면/460이력 의미 전수는 미해결.",
+        "물리IME·키보드·회전·VoiceOver·대량 실제UI·서버/상대기기 수신은 미검증."
       ],
-      "next_action": "docs/resume-handoff.md의 다음 실행 순서와 본 행의 요구별 조건을 함께 따라 남은 범위를 실행합니다.",
+      "next_action": "남은 Prototype 오류/상태/접근성 조작을 원장 ID별로 대조하고 UX gate 충족 후 승인된 Supabase Auth/온라인 CRUD로 진행.",
       "related": [],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
-        "implementation_commits": [],
-        "artifacts": []
+        "implementation_commits": [
+          "dd39f5b",
+          "5e1d223",
+          "752ab1e",
+          "ce6ee432bee65d184f65145414ee4a1e586c838d"
+        ],
+        "artifacts": [
+          "docs/validation/followup-execution-20260930.json",
+          "docs/validation/followup-ui-20260930.md"
+        ]
       },
       "current_progress": {
         "at": "2026-09-29T15:46:42.223149+00:00",
         "scope": "실제 구현/배포/부분UI 검증 완료, 전체 gate 미승격",
         "report": "docs/phase-report-20260930.md",
         "commit": "7b911a4630b4e0783dcf728482c91f307ea14812"
-      }
+      },
+      "remaining_history": [
+        {
+          "at": "2026-09-29T16:24:18.753341+00:00",
+          "remaining": [
+            "원문·정정과 현재 구현의 의미 대조 및 담당 범위 실행 증거가 필요합니다."
+          ]
+        }
+      ]
     },
     {
       "id": "PHASE.10",
@@ -7202,20 +7548,52 @@
         "states": []
       },
       "implementation": {
-        "files": [],
-        "scope": "미구현 여부를 단정하지 않으며 아래 계약과 코드 대응을 구별합니다.",
-        "test_connections": []
+        "files": [
+          "src/App.tsx",
+          "src/domain/commands.ts",
+          "src/domain/outline.ts",
+          "src/ui/outline-table-editor.tsx",
+          "src/ui/navigation-context.ts",
+          "src/data/draft-safety.ts",
+          "src/ui/criteria-editor.tsx",
+          "src/ui/index.tsx"
+        ],
+        "scope": "미구현 여부를 단정하지 않으며 아래 계약과 코드 대응을 구별합니다. 2026-09-30 후속: 후속 Prototype 범위만170자동검사/B10–B18. 전체 상태 inventory·물리·온라인 gate는 미검증. 전체 온라인/이관/기기 검증과 구별.",
+        "test_connections": [
+          "src/App.test.tsx",
+          "src/domain/outline.test.ts",
+          "src/domain/outline-table.test.ts",
+          "src/ui/outline-table-editor.test.tsx",
+          "src/ui/navigation-context.test.tsx",
+          "src/data/draft-safety.test.ts",
+          "src/ui/criteria-editor.test.tsx",
+          "src/ui/component.test.tsx"
+        ]
       },
       "evidence": {
         "automated": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "automated",
+              "path": "docs/validation/followup-final-tests-20260930.txt"
+            }
+          ],
+          "scope": "후속 Prototype 범위만170자동검사/B10–B18. 전체 상태 inventory·물리·온라인 gate는 미검증. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
         },
         "browser": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "browser",
+              "path": "docs/validation/followup-ui-20260930.md"
+            }
+          ],
+          "scope": "후속 Prototype 범위만170자동검사/B10–B18. 전체 상태 inventory·물리·온라인 gate는 미검증. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
         },
         "physical_device": {
           "status": "미검증",
@@ -7245,15 +7623,33 @@
       "status": "미검증",
       "not_applicable_reason": null,
       "remaining": [
-        "원문·정정과 현재 구현의 의미 대조 및 담당 범위 실행 증거가 필요합니다."
+        "형제 정렬·표 대량관리·Modal초안·긴글 선택/내부scroll의 이번 범위는 수정 후 통과.",
+        "UI38/FM40/UX112/기존32영역 전체 실조작 및665발화/141장면/460이력 의미 전수는 미해결.",
+        "물리IME·키보드·회전·VoiceOver·대량 실제UI·서버/상대기기 수신은 미검증."
       ],
-      "next_action": "근거의 해당 항목을 읽고 목적지·UI 예외를 구현한 뒤 자동검증과 실제 조작 결과를 연결합니다.",
+      "next_action": "남은 Prototype 오류/상태/접근성 조작을 원장 ID별로 대조하고 UX gate 충족 후 승인된 Supabase Auth/온라인 CRUD로 진행.",
       "related": [],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
-        "implementation_commits": [],
-        "artifacts": []
-      }
+        "implementation_commits": [
+          "dd39f5b",
+          "5e1d223",
+          "752ab1e",
+          "ce6ee432bee65d184f65145414ee4a1e586c838d"
+        ],
+        "artifacts": [
+          "docs/validation/followup-execution-20260930.json",
+          "docs/validation/followup-ui-20260930.md"
+        ]
+      },
+      "remaining_history": [
+        {
+          "at": "2026-09-29T16:24:18.753341+00:00",
+          "remaining": [
+            "원문·정정과 현재 구현의 의미 대조 및 담당 범위 실행 증거가 필요합니다."
+          ]
+        }
+      ]
     },
     {
       "id": "PHASE.16",
@@ -12795,25 +13191,51 @@
         "files": [
           "src/App.tsx",
           "src/domain/navigation.ts",
-          "src/ui/navigation-context.ts"
+          "src/ui/navigation-context.ts",
+          "src/domain/commands.ts",
+          "src/domain/outline.ts",
+          "src/ui/outline-table-editor.tsx",
+          "src/data/draft-safety.ts",
+          "src/ui/criteria-editor.tsx",
+          "src/ui/index.tsx"
         ],
-        "scope": "현재 탐색 hook의 가짜 자료 경로·저장된 route/scroll/focus 힌트만 연결합니다. FM08 화면 이동/FM10 재실행/FM29 scroll jump의 일부 범위이며 서버/물리키보드 검증이 아닙니다.",
+        "scope": "현재 탐색 hook의 가짜 자료 경로·저장된 route/scroll/focus 힌트만 연결합니다. FM08 화면 이동/FM10 재실행/FM29 scroll jump의 일부 범위이며 서버/물리키보드 검증이 아닙니다. 2026-09-30 후속: 형제 order 원자변경·그룹Undo·가변깊이/기록 보존; 장문 선택·방향·내부scroll의 route/reload 복귀. B10/B11/B14. 전체 온라인/이관/기기 검증과 구별.",
         "test_connections": [
           "src/App.test.tsx",
           "src/domain/domain.test.ts",
-          "src/ui/navigation-context.test.tsx"
+          "src/ui/navigation-context.test.tsx",
+          "src/domain/outline.test.ts",
+          "src/domain/outline-table.test.ts",
+          "src/ui/outline-table-editor.test.tsx",
+          "src/data/draft-safety.test.ts",
+          "src/ui/criteria-editor.test.tsx",
+          "src/ui/component.test.tsx"
         ]
       },
       "evidence": {
         "automated": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "automated",
+              "path": "docs/validation/followup-final-tests-20260930.txt"
+            }
+          ],
+          "scope": "형제 order 원자변경·그룹Undo·가변깊이/기록 보존; 장문 선택·방향·내부scroll의 route/reload 복귀. B10/B11/B14. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
         },
         "browser": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "browser",
+              "path": "docs/validation/followup-ui-20260930.md"
+            }
+          ],
+          "scope": "형제 order 원자변경·그룹Undo·가변깊이/기록 보존; 장문 선택·방향·내부scroll의 route/reload 복귀. B10/B11/B14. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
         },
         "physical_device": {
           "status": "미검증",
@@ -12849,8 +13271,16 @@
       "related": [],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
-        "implementation_commits": [],
-        "artifacts": []
+        "implementation_commits": [
+          "dd39f5b",
+          "5e1d223",
+          "752ab1e",
+          "ce6ee432bee65d184f65145414ee4a1e586c838d"
+        ],
+        "artifacts": [
+          "docs/validation/followup-execution-20260930.json",
+          "docs/validation/followup-ui-20260930.md"
+        ]
       },
       "legacy_behavior": "11탭·뒤로·찾기·화면도구→각 화면",
       "legacy_source_locator": "app-shell.js,navigation-context.js,study-navigation.js / 소스+Mac 일부탭 진입",
@@ -13023,25 +13453,52 @@
           "src/domain/model.ts",
           "src/domain/navigation.ts",
           "src/ui/outline-tree.css",
-          "src/ui/outline-tree.tsx"
+          "src/ui/outline-tree.tsx",
+          "src/domain/outline.ts",
+          "src/ui/outline-table-editor.tsx",
+          "src/ui/navigation-context.ts",
+          "src/data/draft-safety.ts",
+          "src/ui/criteria-editor.tsx",
+          "src/ui/index.tsx"
         ],
-        "scope": "깊은 트리 접근·동명 경로·키보드 탐색 코드 연결. 이동/드래그/일괄생성 전체 완료를 뜻하지 않습니다.",
+        "scope": "깊은 트리 접근·동명 경로·키보드 탐색 코드 연결. 이동/드래그/일괄생성 전체 완료를 뜻하지 않습니다. 2026-09-30 후속: 형제 order 원자변경·그룹Undo·가변깊이/기록 보존; 장문 선택·방향·내부scroll의 route/reload 복귀. B10/B11/B14. 전체 온라인/이관/기기 검증과 구별.",
         "test_connections": [
           "src/App.test.tsx",
           "src/domain/domain.test.ts",
-          "src/ui/outline-tree.test.tsx"
+          "src/ui/outline-tree.test.tsx",
+          "src/domain/outline.test.ts",
+          "src/domain/outline-table.test.ts",
+          "src/ui/outline-table-editor.test.tsx",
+          "src/ui/navigation-context.test.tsx",
+          "src/data/draft-safety.test.ts",
+          "src/ui/criteria-editor.test.tsx",
+          "src/ui/component.test.tsx"
         ]
       },
       "evidence": {
         "automated": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "automated",
+              "path": "docs/validation/followup-final-tests-20260930.txt"
+            }
+          ],
+          "scope": "형제 order 원자변경·그룹Undo·가변깊이/기록 보존; 장문 선택·방향·내부scroll의 route/reload 복귀. B10/B11/B14. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
         },
         "browser": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "browser",
+              "path": "docs/validation/followup-ui-20260930.md"
+            }
+          ],
+          "scope": "형제 order 원자변경·그룹Undo·가변깊이/기록 보존; 장문 선택·방향·내부scroll의 route/reload 복귀. B10/B11/B14. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
         },
         "physical_device": {
           "status": "미검증",
@@ -13077,8 +13534,16 @@
       "related": [],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
-        "implementation_commits": [],
-        "artifacts": []
+        "implementation_commits": [
+          "dd39f5b",
+          "5e1d223",
+          "752ab1e",
+          "ce6ee432bee65d184f65145414ee4a1e586c838d"
+        ],
+        "artifacts": [
+          "docs/validation/followup-execution-20260930.json",
+          "docs/validation/followup-ui-20260930.md"
+        ]
       },
       "legacy_behavior": "추가/이름수정/자식추가/이동/정렬/삭제/복원",
       "legacy_source_locator": "outline.js,outline-manager.js,outline-operations.js / 소스 구현",
@@ -13099,9 +13564,16 @@
           "line": 10,
           "kind": "source_inventory",
           "review": "이번 작업에서 요구 목록 재독. 실행 증거와 구별."
+        },
+        {
+          "path": "docs/과목·목차 표 입력.md",
+          "kind": "legacy_contract_direct_read",
+          "review": "전체 본문 및 HISTORY.H472/H474/H475/H476 원문 직접 대조. 공개 원장에는 개인 발화 복제 없음."
         }
       ],
-      "correction_dates": [],
+      "correction_dates": [
+        "2026-09-23"
+      ],
       "classification": "B",
       "classification_reason": "3단계/4단계역할충돌해소·중복opId",
       "phase": "PHASE.15",
@@ -13135,20 +13607,52 @@
         ]
       },
       "implementation": {
-        "files": [],
-        "scope": "미구현 여부를 단정하지 않으며 아래 계약과 코드 대응을 구별합니다.",
-        "test_connections": []
+        "files": [
+          "src/App.tsx",
+          "src/domain/commands.ts",
+          "src/domain/outline.ts",
+          "src/ui/outline-table-editor.tsx",
+          "src/ui/navigation-context.ts",
+          "src/data/draft-safety.ts",
+          "src/ui/criteria-editor.tsx",
+          "src/ui/index.tsx"
+        ],
+        "scope": "미구현 여부를 단정하지 않으며 아래 계약과 코드 대응을 구별합니다. 2026-09-30 후속: 3단계 전체 표: 개별칸/Enter/삭제20Undo/동명 선택/Preview stale/원자 생성/재시도 동일ID/전체Undo. B17. 전체 온라인/이관/기기 검증과 구별.",
+        "test_connections": [
+          "src/App.test.tsx",
+          "src/domain/outline.test.ts",
+          "src/domain/outline-table.test.ts",
+          "src/ui/outline-table-editor.test.tsx",
+          "src/ui/navigation-context.test.tsx",
+          "src/data/draft-safety.test.ts",
+          "src/ui/criteria-editor.test.tsx",
+          "src/ui/component.test.tsx"
+        ]
       },
       "evidence": {
         "automated": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "automated",
+              "path": "docs/validation/followup-final-tests-20260930.txt"
+            }
+          ],
+          "scope": "3단계 전체 표: 개별칸/Enter/삭제20Undo/동명 선택/Preview stale/원자 생성/재시도 동일ID/전체Undo. B17. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
         },
         "browser": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "browser",
+              "path": "docs/validation/followup-ui-20260930.md"
+            }
+          ],
+          "scope": "3단계 전체 표: 개별칸/Enter/삭제20Undo/동명 선택/Preview stale/원자 생성/재시도 동일ID/전체Undo. B17. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
         },
         "physical_device": {
           "status": "미검증",
@@ -13178,14 +13682,27 @@
       "status": "미검증",
       "not_applicable_reason": null,
       "remaining": [
-        "표의 행·셀을 편집하고 중복명·빈값·부분 오류를 Preview에서 식별한다. 적용 전 원본 무변경, 한 번 적용, 행 삭제 Undo와 적용 Undo를 구별한다.의 전체 경로 실행 증거가 아직 없습니다."
+        "3단계 표 Prototype은 부분 실제검증됨. 온라인 원자 저장·다기기·물리IME/키보드 및 전체 요구 연결은 미검증."
       ],
-      "next_action": "담당 PHASE.15에서 표의 행·셀을 편집하고 중복명·빈값·부분 오류를 Preview에서 식별한다. 적용 전 원본 무변경, 한 번 적용, 행 삭제 Undo와 적용 Undo를 구별한다.",
-      "related": [],
+      "next_action": "UI07 오류주입과 native IME/긴 표 실제 조작을 추가한 뒤 UX gate에 반영. F05 원문파싱과 혼합하지 않음.",
+      "related": [
+        "HISTORY.H472",
+        "HISTORY.H474",
+        "HISTORY.H475",
+        "HISTORY.H476"
+      ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
-        "implementation_commits": [],
-        "artifacts": []
+        "implementation_commits": [
+          "dd39f5b",
+          "5e1d223",
+          "752ab1e",
+          "ce6ee432bee65d184f65145414ee4a1e586c838d"
+        ],
+        "artifacts": [
+          "docs/validation/followup-execution-20260930.json",
+          "docs/validation/followup-ui-20260930.md"
+        ]
       },
       "legacy_behavior": "과목/단원/주제 셀→Preview→한번에생성; 행삭제Undo",
       "legacy_source_locator": "outline-table.js,outline-table-ui.js / 소스+문서;현재실행미검증",
@@ -13284,14 +13801,17 @@
       "status": "미검증",
       "not_applicable_reason": null,
       "remaining": [
-        "실제 자료 복제의 목차 원문과 파싱 후보를 나란히 검수한다. 번호 제거/기존항목 재사용/제외를 명시하고 미지원·누락을 성공으로 처리하지 않는다.의 전체 경로 실행 증거가 아직 없습니다."
+        "실제 자료 복제의 목차 원문과 파싱 후보를 나란히 검수한다. 번호 제거/기존항목 재사용/제외를 명시하고 미지원·누락을 성공으로 처리하지 않는다.의 전체 경로 실행 증거가 아직 없습니다.",
+        "2026-09-30 원문 감사: 원문을 보존한 파싱→검수 후보 도구의 채택 미정. F04 개별칸 표와 별도이므로 현재 표 구현을 막지 않음."
       ],
-      "next_action": "담당 PHASE.15에서 실제 자료 복제의 목차 원문과 파싱 후보를 나란히 검수한다. 번호 제거/기존항목 재사용/제외를 명시하고 미지원·누락을 성공으로 처리하지 않는다.",
+      "next_action": "원문을 보존한 파싱→검수 후보 도구의 채택 미정. F04 개별칸 표와 별도이므로 현재 표 구현을 막지 않음.",
       "related": [],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
         "implementation_commits": [],
-        "artifacts": []
+        "artifacts": [
+          "docs/validation/followup-audit-20260930.json"
+        ]
       },
       "legacy_behavior": "자료에서 목차 입력/파싱/검수→등록",
       "legacy_source_locator": "intake-parser.js,intake-ui.js / 기존경로존재,일부새입력퇴역",
@@ -13919,25 +14439,52 @@
           "src/App.tsx",
           "src/domain/commands.ts",
           "src/domain/model.ts",
-          "src/ui/trace-editor.tsx"
+          "src/ui/trace-editor.tsx",
+          "src/domain/outline.ts",
+          "src/ui/outline-table-editor.tsx",
+          "src/ui/navigation-context.ts",
+          "src/data/draft-safety.ts",
+          "src/ui/criteria-editor.tsx",
+          "src/ui/index.tsx"
         ],
-        "scope": "활동 상태·선택 메모·반복·이전 정의 snapshot 편집 코드 연결. 온라인 저장이나 주제/과목/전역 개인 기준 전체 완료가 아닙니다.",
+        "scope": "활동 상태·선택 메모·반복·이전 정의 snapshot 편집 코드 연결. 온라인 저장이나 주제/과목/전역 개인 기준 전체 완료가 아닙니다. 2026-09-30 후속: 개인기준 과목/전체 적용과 다른 route의 전역Undo. B12/B13. 전체 온라인/이관/기기 검증과 구별.",
         "test_connections": [
           "src/App.test.tsx",
           "src/domain/domain.test.ts",
-          "src/ui/trace-editor.test.tsx"
+          "src/ui/trace-editor.test.tsx",
+          "src/domain/outline.test.ts",
+          "src/domain/outline-table.test.ts",
+          "src/ui/outline-table-editor.test.tsx",
+          "src/ui/navigation-context.test.tsx",
+          "src/data/draft-safety.test.ts",
+          "src/ui/criteria-editor.test.tsx",
+          "src/ui/component.test.tsx"
         ]
       },
       "evidence": {
         "automated": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "automated",
+              "path": "docs/validation/followup-final-tests-20260930.txt"
+            }
+          ],
+          "scope": "개인기준 과목/전체 적용과 다른 route의 전역Undo. B12/B13. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
         },
         "browser": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "browser",
+              "path": "docs/validation/followup-ui-20260930.md"
+            }
+          ],
+          "scope": "개인기준 과목/전체 적용과 다른 route의 전역Undo. B12/B13. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
         },
         "physical_device": {
           "status": "미검증",
@@ -13973,8 +14520,16 @@
       "related": [],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
-        "implementation_commits": [],
-        "artifacts": []
+        "implementation_commits": [
+          "dd39f5b",
+          "5e1d223",
+          "752ab1e",
+          "ce6ee432bee65d184f65145414ee4a1e586c838d"
+        ],
+        "artifacts": [
+          "docs/validation/followup-execution-20260930.json",
+          "docs/validation/followup-ui-20260930.md"
+        ]
       },
       "legacy_behavior": "묶음안내/하위체크/선택메모/상태/기준조정",
       "legacy_source_locator": "trace.js,trace-ui.js,trace-basis.js / 현행문서·소스",
@@ -15158,14 +15713,17 @@
       "status": "미검증",
       "not_applicable_reason": null,
       "remaining": [
-        "트리 탐색/Canvas와 관계 지도의 목적·추가 조작 비용을 비교한다. WebGL 실패·모바일 대체 목록·읽기 전용을 시험하고 원본 관계·좌표를 수정하지 않는다.의 전체 경로 실행 증거가 아직 없습니다."
+        "트리 탐색/Canvas와 관계 지도의 목적·추가 조작 비용을 비교한다. WebGL 실패·모바일 대체 목록·읽기 전용을 시험하고 원본 관계·좌표를 수정하지 않는다.의 전체 경로 실행 증거가 아직 없습니다.",
+        "2026-09-30 원문 감사: 기존 containment-only 읽기 구조지도를 웹에 채택할 효용·모바일대안을 판단. 새 의미관계/기록 자동생성 금지."
       ],
-      "next_action": "담당 PHASE.22에서 트리 탐색/Canvas와 관계 지도의 목적·추가 조작 비용을 비교한다. WebGL 실패·모바일 대체 목록·읽기 전용을 시험하고 원본 관계·좌표를 수정하지 않는다.",
+      "next_action": "기존 containment-only 읽기 구조지도를 웹에 채택할 효용·모바일대안을 판단. 새 의미관계/기록 자동생성 금지.",
       "related": [],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
         "implementation_commits": [],
-        "artifacts": []
+        "artifacts": [
+          "docs/validation/followup-audit-20260930.json"
+        ]
       },
       "legacy_behavior": "주제관계/입체지도/탐색",
       "legacy_source_locator": "structure-graph.js,structure-graph-ui.js / 구현후보/소스·WebGL기기미검증",
@@ -17877,14 +18435,17 @@
       "status": "미검증",
       "not_applicable_reason": null,
       "remaining": [
-        "선택 사고 도구별 답할 질문·입력비용·실제 사용처를 연구한다. 생활 동역학 계수/가정을 확정 이론이나 일상 필수입력으로 승격하지 않는다.의 전체 경로 실행 증거가 아직 없습니다."
+        "선택 사고 도구별 답할 질문·입력비용·실제 사용처를 연구한다. 생활 동역학 계수/가정을 확정 이론이나 일상 필수입력으로 승격하지 않는다.의 전체 경로 실행 증거가 아직 없습니다.",
+        "2026-09-30 원문 감사: 공란에서 원할 때 채우는 선택 사고도구 발상. 기본기록/일상입력 필수로 승격하지 않으며 효과채택 미정."
       ],
-      "next_action": "담당 PHASE.27에서 선택 사고 도구별 답할 질문·입력비용·실제 사용처를 연구한다. 생활 동역학 계수/가정을 확정 이론이나 일상 필수입력으로 승격하지 않는다.",
+      "next_action": "공란에서 원할 때 채우는 선택 사고도구 발상. 기본기록/일상입력 필수로 승격하지 않으며 효과채택 미정.",
       "related": [],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
         "implementation_commits": [],
-        "artifacts": []
+        "artifacts": [
+          "docs/validation/followup-audit-20260930.json"
+        ]
       },
       "legacy_behavior": "만다라트/SWOT/의사결정/생활탐색",
       "legacy_source_locator": "docs/reference/learning-life-dynamics-v2.0-provisional/README.md / 구상/일부이론·제품채택미확정",
@@ -18097,14 +18658,17 @@
       "status": "미검증",
       "not_applicable_reason": null,
       "remaining": [
-        "사용자에게 원문·이력·백업·첨부·오프라인 부활의 보존 정책을 좁혀 제시한다. 결정 전 purge를 UI에 노출하지 않고 휴지통/복원과 위험 동작을 분리한다.의 전체 경로 실행 증거가 아직 없습니다."
+        "사용자에게 원문·이력·백업·첨부·오프라인 부활의 보존 정책을 좁혀 제시한다. 결정 전 purge를 UI에 노출하지 않고 휴지통/복원과 위험 동작을 분리한다.의 전체 경로 실행 증거가 아직 없습니다.",
+        "2026-09-30 원문 감사: 영구삭제의 원문/revision/첨부 범위·백업보존·오프라인 tombstone수신을 정책으로 확정하기 전 UI노출 금지. 휴지통/복원은 독립."
       ],
-      "next_action": "담당 PHASE.29에서 사용자에게 원문·이력·백업·첨부·오프라인 부활의 보존 정책을 좁혀 제시한다. 결정 전 purge를 UI에 노출하지 않고 휴지통/복원과 위험 동작을 분리한다.",
+      "next_action": "영구삭제의 원문/revision/첨부 범위·백업보존·오프라인 tombstone수신을 정책으로 확정하기 전 UI노출 금지. 휴지통/복원은 독립.",
       "related": [],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
         "implementation_commits": [],
-        "artifacts": []
+        "artifacts": [
+          "docs/validation/followup-audit-20260930.json"
+        ]
       },
       "legacy_behavior": "삭제영향→재인증/확인→서버purge→각기기",
       "legacy_source_locator": "PDF30·현재요청 / 정책미정·미구현",
@@ -21413,9 +21977,16 @@
           "line": 51,
           "kind": "source_inventory",
           "review": "이번 작업에서 요구 목록 재독. 실행 증거와 구별."
+        },
+        {
+          "path": "docs/과목·목차 표 입력.md",
+          "kind": "legacy_contract_direct_read",
+          "review": "전체 본문 및 HISTORY.H472/H474/H475/H476 원문 직접 대조. 공개 원장에는 개인 발화 복제 없음."
         }
       ],
-      "correction_dates": [],
+      "correction_dates": [
+        "2026-09-23"
+      ],
       "classification": "B",
       "classification_reason": "원 요구의 의미를 보존하며 웹 계약과 검증을 보완합니다.",
       "phase": "PHASE.15",
@@ -21442,20 +22013,52 @@
         ]
       },
       "implementation": {
-        "files": [],
-        "scope": "미구현 여부를 단정하지 않으며 아래 계약과 코드 대응을 구별합니다.",
-        "test_connections": []
+        "files": [
+          "src/App.tsx",
+          "src/domain/commands.ts",
+          "src/domain/outline.ts",
+          "src/ui/outline-table-editor.tsx",
+          "src/ui/navigation-context.ts",
+          "src/data/draft-safety.ts",
+          "src/ui/criteria-editor.tsx",
+          "src/ui/index.tsx"
+        ],
+        "scope": "미구현 여부를 단정하지 않으며 아래 계약과 코드 대응을 구별합니다. 2026-09-30 후속: 3단계 전체 표: 개별칸/Enter/삭제20Undo/동명 선택/Preview stale/원자 생성/재시도 동일ID/전체Undo. B17. 전체 온라인/이관/기기 검증과 구별.",
+        "test_connections": [
+          "src/App.test.tsx",
+          "src/domain/outline.test.ts",
+          "src/domain/outline-table.test.ts",
+          "src/ui/outline-table-editor.test.tsx",
+          "src/ui/navigation-context.test.tsx",
+          "src/data/draft-safety.test.ts",
+          "src/ui/criteria-editor.test.tsx",
+          "src/ui/component.test.tsx"
+        ]
       },
       "evidence": {
         "automated": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "automated",
+              "path": "docs/validation/followup-final-tests-20260930.txt"
+            }
+          ],
+          "scope": "3단계 전체 표: 개별칸/Enter/삭제20Undo/동명 선택/Preview stale/원자 생성/재시도 동일ID/전체Undo. B17. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
         },
         "browser": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "browser",
+              "path": "docs/validation/followup-ui-20260930.md"
+            }
+          ],
+          "scope": "3단계 전체 표: 개별칸/Enter/삭제20Undo/동명 선택/Preview stale/원자 생성/재시도 동일ID/전체Undo. B17. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
         },
         "physical_device": {
           "status": "미검증",
@@ -21485,14 +22088,27 @@
       "status": "미검증",
       "not_applicable_reason": null,
       "remaining": [
-        "원래 필드 term; courses[].name/units[].name/topics[].name; duplicate choices; legacySource의 파싱·목적지 매핑·왕복 보존 시험이 필요합니다."
+        "3단계 표 Prototype은 부분 실제검증됨. 온라인 원자 저장·다기기·물리IME/키보드 및 전체 요구 연결은 미검증."
       ],
-      "next_action": "원본 입력의 저장 위치와 최신 퇴역 정정을 대조하고 이 필드의 Import 및 UI 예외 fixture를 추가합니다.",
-      "related": [],
+      "next_action": "UI07 오류주입과 native IME/긴 표 실제 조작을 추가한 뒤 UX gate에 반영. F05 원문파싱과 혼합하지 않음.",
+      "related": [
+        "HISTORY.H472",
+        "HISTORY.H474",
+        "HISTORY.H475",
+        "HISTORY.H476"
+      ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
-        "implementation_commits": [],
-        "artifacts": []
+        "implementation_commits": [
+          "dd39f5b",
+          "5e1d223",
+          "752ab1e",
+          "ce6ee432bee65d184f65145414ee4a1e586c838d"
+        ],
+        "artifacts": [
+          "docs/validation/followup-execution-20260930.json",
+          "docs/validation/followup-ui-20260930.md"
+        ]
       },
       "original_fields": "term; courses[].name/units[].name/topics[].name; duplicate choices; legacySource",
       "historical_statistics_scope": "1–6 범위",
@@ -36819,23 +37435,51 @@
       "implementation": {
         "files": [
           "src/domain/navigation.ts",
-          "src/ui/navigation-context.ts"
+          "src/ui/navigation-context.ts",
+          "src/App.tsx",
+          "src/domain/commands.ts",
+          "src/domain/outline.ts",
+          "src/ui/outline-table-editor.tsx",
+          "src/data/draft-safety.ts",
+          "src/ui/criteria-editor.tsx",
+          "src/ui/index.tsx"
         ],
-        "scope": "현재 탐색 hook의 가짜 자료 경로·저장된 route/scroll/focus 힌트만 연결합니다. FM08 화면 이동/FM10 재실행/FM29 scroll jump의 일부 범위이며 서버/물리키보드 검증이 아닙니다.",
+        "scope": "현재 탐색 hook의 가짜 자료 경로·저장된 route/scroll/focus 힌트만 연결합니다. FM08 화면 이동/FM10 재실행/FM29 scroll jump의 일부 범위이며 서버/물리키보드 검증이 아닙니다. 2026-09-30 후속: 생성/이름/이동/일괄 Modal 초안 분리·닫기/reload; 손상원문 사본/실패 RAM·재시도/정리 실패; 새 자유글 ID 복구. B14/B16/B18. 실제 실패주입은 자동검사만. 전체 온라인/이관/기기 검증과 구별.",
         "test_connections": [
-          "src/ui/navigation-context.test.tsx"
+          "src/ui/navigation-context.test.tsx",
+          "src/App.test.tsx",
+          "src/domain/outline.test.ts",
+          "src/domain/outline-table.test.ts",
+          "src/ui/outline-table-editor.test.tsx",
+          "src/data/draft-safety.test.ts",
+          "src/ui/criteria-editor.test.tsx",
+          "src/ui/component.test.tsx"
         ]
       },
       "evidence": {
         "automated": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "automated",
+              "path": "docs/validation/followup-final-tests-20260930.txt"
+            }
+          ],
+          "scope": "생성/이름/이동/일괄 Modal 초안 분리·닫기/reload; 손상원문 사본/실패 RAM·재시도/정리 실패; 새 자유글 ID 복구. B14/B16/B18. 실제 실패주입은 자동검사만. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
         },
         "browser": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "browser",
+              "path": "docs/validation/followup-ui-20260930.md"
+            }
+          ],
+          "scope": "생성/이름/이동/일괄 Modal 초안 분리·닫기/reload; 손상원문 사본/실패 RAM·재시도/정리 실패; 새 자유글 ID 복구. B14/B16/B18. 실제 실패주입은 자동검사만. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
         },
         "physical_device": {
           "status": "미검증",
@@ -36888,8 +37532,16 @@
       ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
-        "implementation_commits": [],
-        "artifacts": []
+        "implementation_commits": [
+          "dd39f5b",
+          "5e1d223",
+          "752ab1e",
+          "ce6ee432bee65d184f65145414ee4a1e586c838d"
+        ],
+        "artifacts": [
+          "docs/validation/followup-execution-20260930.json",
+          "docs/validation/followup-ui-20260930.md"
+        ]
       },
       "acceptance_contract": "대상 ID에 저장하고 새 화면을 이전 응답으로 덮지 않음",
       "injection": "A 저장중 B 이동",
@@ -37031,23 +37683,51 @@
       "implementation": {
         "files": [
           "src/domain/navigation.ts",
-          "src/ui/navigation-context.ts"
+          "src/ui/navigation-context.ts",
+          "src/App.tsx",
+          "src/domain/commands.ts",
+          "src/domain/outline.ts",
+          "src/ui/outline-table-editor.tsx",
+          "src/data/draft-safety.ts",
+          "src/ui/criteria-editor.tsx",
+          "src/ui/index.tsx"
         ],
-        "scope": "현재 탐색 hook의 가짜 자료 경로·저장된 route/scroll/focus 힌트만 연결합니다. FM08 화면 이동/FM10 재실행/FM29 scroll jump의 일부 범위이며 서버/물리키보드 검증이 아닙니다.",
+        "scope": "현재 탐색 hook의 가짜 자료 경로·저장된 route/scroll/focus 힌트만 연결합니다. FM08 화면 이동/FM10 재실행/FM29 scroll jump의 일부 범위이며 서버/물리키보드 검증이 아닙니다. 2026-09-30 후속: 생성/이름/이동/일괄 Modal 초안 분리·닫기/reload; 손상원문 사본/실패 RAM·재시도/정리 실패; 새 자유글 ID 복구. B14/B16/B18. 실제 실패주입은 자동검사만. 전체 온라인/이관/기기 검증과 구별.",
         "test_connections": [
-          "src/ui/navigation-context.test.tsx"
+          "src/ui/navigation-context.test.tsx",
+          "src/App.test.tsx",
+          "src/domain/outline.test.ts",
+          "src/domain/outline-table.test.ts",
+          "src/ui/outline-table-editor.test.tsx",
+          "src/data/draft-safety.test.ts",
+          "src/ui/criteria-editor.test.tsx",
+          "src/ui/component.test.tsx"
         ]
       },
       "evidence": {
         "automated": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "automated",
+              "path": "docs/validation/followup-final-tests-20260930.txt"
+            }
+          ],
+          "scope": "생성/이름/이동/일괄 Modal 초안 분리·닫기/reload; 손상원문 사본/실패 RAM·재시도/정리 실패; 새 자유글 ID 복구. B14/B16/B18. 실제 실패주입은 자동검사만. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
         },
         "browser": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "browser",
+              "path": "docs/validation/followup-ui-20260930.md"
+            }
+          ],
+          "scope": "생성/이름/이동/일괄 Modal 초안 분리·닫기/reload; 손상원문 사본/실패 RAM·재시도/정리 실패; 새 자유글 ID 복구. B14/B16/B18. 실제 실패주입은 자동검사만. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
         },
         "physical_device": {
           "status": "미검증",
@@ -37088,8 +37768,16 @@
       ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
-        "implementation_commits": [],
-        "artifacts": []
+        "implementation_commits": [
+          "dd39f5b",
+          "5e1d223",
+          "752ab1e",
+          "ce6ee432bee65d184f65145414ee4a1e586c838d"
+        ],
+        "artifacts": [
+          "docs/validation/followup-execution-20260930.json",
+          "docs/validation/followup-ui-20260930.md"
+        ]
       },
       "acceptance_contract": "pending 작업과 draft 소유권·baseVersion 복구, 새 기록 중복 생성 금지",
       "injection": "종료 직후 재실행",
@@ -37134,23 +37822,51 @@
       "implementation": {
         "files": [
           "src/App.tsx",
-          "src/data/demo-repository.ts"
+          "src/data/demo-repository.ts",
+          "src/domain/commands.ts",
+          "src/domain/outline.ts",
+          "src/ui/outline-table-editor.tsx",
+          "src/ui/navigation-context.ts",
+          "src/data/draft-safety.ts",
+          "src/ui/criteria-editor.tsx",
+          "src/ui/index.tsx"
         ],
-        "scope": "저장 실패 후 라우트 이동에서 RAM rescue와 손상된 디스크 원본 분리를 추가한 코드 위치입니다. 서버/IDB/OS 강제종료 안전성으로 승격하지 않습니다.",
+        "scope": "저장 실패 후 라우트 이동에서 RAM rescue와 손상된 디스크 원본 분리를 추가한 코드 위치입니다. 서버/IDB/OS 강제종료 안전성으로 승격하지 않습니다. 2026-09-30 후속: 생성/이름/이동/일괄 Modal 초안 분리·닫기/reload; 손상원문 사본/실패 RAM·재시도/정리 실패; 새 자유글 ID 복구. B14/B16/B18. 실제 실패주입은 자동검사만. 전체 온라인/이관/기기 검증과 구별.",
         "test_connections": [
-          "src/App.test.tsx"
+          "src/App.test.tsx",
+          "src/domain/outline.test.ts",
+          "src/domain/outline-table.test.ts",
+          "src/ui/outline-table-editor.test.tsx",
+          "src/ui/navigation-context.test.tsx",
+          "src/data/draft-safety.test.ts",
+          "src/ui/criteria-editor.test.tsx",
+          "src/ui/component.test.tsx"
         ]
       },
       "evidence": {
         "automated": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "automated",
+              "path": "docs/validation/followup-final-tests-20260930.txt"
+            }
+          ],
+          "scope": "생성/이름/이동/일괄 Modal 초안 분리·닫기/reload; 손상원문 사본/실패 RAM·재시도/정리 실패; 새 자유글 ID 복구. B14/B16/B18. 실제 실패주입은 자동검사만. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
         },
         "browser": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "browser",
+              "path": "docs/validation/followup-ui-20260930.md"
+            }
+          ],
+          "scope": "생성/이름/이동/일괄 Modal 초안 분리·닫기/reload; 손상원문 사본/실패 RAM·재시도/정리 실패; 새 자유글 ID 복구. B14/B16/B18. 실제 실패주입은 자동검사만. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
         },
         "physical_device": {
           "status": "미검증",
@@ -37191,8 +37907,16 @@
       ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
-        "implementation_commits": [],
-        "artifacts": []
+        "implementation_commits": [
+          "dd39f5b",
+          "5e1d223",
+          "752ab1e",
+          "ce6ee432bee65d184f65145414ee4a1e586c838d"
+        ],
+        "artifacts": [
+          "docs/validation/followup-execution-20260930.json",
+          "docs/validation/followup-ui-20260930.md"
+        ]
       },
       "acceptance_contract": "성공 표시 금지, 편집 내용 유지, 재시도/안전 내보내기 안내",
       "injection": "transaction abort·quota",
@@ -40264,20 +40988,52 @@
         ]
       },
       "implementation": {
-        "files": [],
-        "scope": "미구현 여부를 단정하지 않으며 아래 계약과 코드 대응을 구별합니다.",
-        "test_connections": []
+        "files": [
+          "src/App.tsx",
+          "src/domain/commands.ts",
+          "src/domain/outline.ts",
+          "src/ui/outline-table-editor.tsx",
+          "src/ui/navigation-context.ts",
+          "src/data/draft-safety.ts",
+          "src/ui/criteria-editor.tsx",
+          "src/ui/index.tsx"
+        ],
+        "scope": "미구현 여부를 단정하지 않으며 아래 계약과 코드 대응을 구별합니다. 2026-09-30 후속: 생성/이름/이동/일괄 Modal 초안 분리·닫기/reload; 손상원문 사본/실패 RAM·재시도/정리 실패; 새 자유글 ID 복구. B14/B16/B18. 실제 실패주입은 자동검사만. 전체 온라인/이관/기기 검증과 구별.",
+        "test_connections": [
+          "src/App.test.tsx",
+          "src/domain/outline.test.ts",
+          "src/domain/outline-table.test.ts",
+          "src/ui/outline-table-editor.test.tsx",
+          "src/ui/navigation-context.test.tsx",
+          "src/data/draft-safety.test.ts",
+          "src/ui/criteria-editor.test.tsx",
+          "src/ui/component.test.tsx"
+        ]
       },
       "evidence": {
         "automated": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "automated",
+              "path": "docs/validation/followup-final-tests-20260930.txt"
+            }
+          ],
+          "scope": "생성/이름/이동/일괄 Modal 초안 분리·닫기/reload; 손상원문 사본/실패 RAM·재시도/정리 실패; 새 자유글 ID 복구. B14/B16/B18. 실제 실패주입은 자동검사만. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
         },
         "browser": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "browser",
+              "path": "docs/validation/followup-ui-20260930.md"
+            }
+          ],
+          "scope": "생성/이름/이동/일괄 Modal 초안 분리·닫기/reload; 손상원문 사본/실패 RAM·재시도/정리 실패; 새 자유글 ID 복구. B14/B16/B18. 실제 실패주입은 자동검사만. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
         },
         "physical_device": {
           "status": "미검증",
@@ -40315,8 +41071,16 @@
       ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
-        "implementation_commits": [],
-        "artifacts": []
+        "implementation_commits": [
+          "dd39f5b",
+          "5e1d223",
+          "752ab1e",
+          "ce6ee432bee65d184f65145414ee4a1e586c838d"
+        ],
+        "artifacts": [
+          "docs/validation/followup-execution-20260930.json",
+          "docs/validation/followup-ui-20260930.md"
+        ]
       }
     },
     {
@@ -40538,23 +41302,53 @@
         "files": [
           "src/domain/navigation.ts",
           "src/ui/outline-tree.css",
-          "src/ui/outline-tree.tsx"
+          "src/ui/outline-tree.tsx",
+          "src/App.tsx",
+          "src/domain/commands.ts",
+          "src/domain/outline.ts",
+          "src/ui/outline-table-editor.tsx",
+          "src/ui/navigation-context.ts",
+          "src/data/draft-safety.ts",
+          "src/ui/criteria-editor.tsx",
+          "src/ui/index.tsx"
         ],
-        "scope": "깊은 트리 접근·동명 경로·키보드 탐색 코드 연결. 이동/드래그/일괄생성 전체 완료를 뜻하지 않습니다.",
+        "scope": "깊은 트리 접근·동명 경로·키보드 탐색 코드 연결. 이동/드래그/일괄생성 전체 완료를 뜻하지 않습니다. 2026-09-30 후속: 형제 order 원자변경·그룹Undo·가변깊이/기록 보존; 장문 선택·방향·내부scroll의 route/reload 복귀. B10/B11/B14. 전체 온라인/이관/기기 검증과 구별.",
         "test_connections": [
-          "src/ui/outline-tree.test.tsx"
+          "src/ui/outline-tree.test.tsx",
+          "src/App.test.tsx",
+          "src/domain/outline.test.ts",
+          "src/domain/outline-table.test.ts",
+          "src/ui/outline-table-editor.test.tsx",
+          "src/ui/navigation-context.test.tsx",
+          "src/data/draft-safety.test.ts",
+          "src/ui/criteria-editor.test.tsx",
+          "src/ui/component.test.tsx"
         ]
       },
       "evidence": {
         "automated": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "automated",
+              "path": "docs/validation/followup-final-tests-20260930.txt"
+            }
+          ],
+          "scope": "형제 order 원자변경·그룹Undo·가변깊이/기록 보존; 장문 선택·방향·내부scroll의 route/reload 복귀. B10/B11/B14. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
         },
         "browser": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "browser",
+              "path": "docs/validation/followup-ui-20260930.md"
+            }
+          ],
+          "scope": "형제 order 원자변경·그룹Undo·가변깊이/기록 보존; 장문 선택·방향·내부scroll의 route/reload 복귀. B10/B11/B14. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
         },
         "physical_device": {
           "status": "미검증",
@@ -40592,8 +41386,16 @@
       ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
-        "implementation_commits": [],
-        "artifacts": []
+        "implementation_commits": [
+          "dd39f5b",
+          "5e1d223",
+          "752ab1e",
+          "ce6ee432bee65d184f65145414ee4a1e586c838d"
+        ],
+        "artifacts": [
+          "docs/validation/followup-execution-20260930.json",
+          "docs/validation/followup-ui-20260930.md"
+        ]
       }
     },
     {
@@ -40605,9 +41407,16 @@
           "line": 24,
           "kind": "source_inventory",
           "review": "이번 작업에서 요구 목록 재독. 실행 증거와 구별."
+        },
+        {
+          "path": "docs/과목·목차 표 입력.md",
+          "kind": "legacy_contract_direct_read",
+          "review": "전체 본문 및 HISTORY.H472/H474/H475/H476 원문 직접 대조. 공개 원장에는 개인 발화 복제 없음."
         }
       ],
-      "correction_dates": [],
+      "correction_dates": [
+        "2026-09-23"
+      ],
       "classification": "B",
       "classification_reason": "원 요구의 의미를 보존하며 웹 계약과 검증을 보완합니다.",
       "phase": "PHASE.15",
@@ -40631,20 +41440,52 @@
         ]
       },
       "implementation": {
-        "files": [],
-        "scope": "미구현 여부를 단정하지 않으며 아래 계약과 코드 대응을 구별합니다.",
-        "test_connections": []
+        "files": [
+          "src/App.tsx",
+          "src/domain/commands.ts",
+          "src/domain/outline.ts",
+          "src/ui/outline-table-editor.tsx",
+          "src/ui/navigation-context.ts",
+          "src/data/draft-safety.ts",
+          "src/ui/criteria-editor.tsx",
+          "src/ui/index.tsx"
+        ],
+        "scope": "미구현 여부를 단정하지 않으며 아래 계약과 코드 대응을 구별합니다. 2026-09-30 후속: 3단계 전체 표: 개별칸/Enter/삭제20Undo/동명 선택/Preview stale/원자 생성/재시도 동일ID/전체Undo. B17. 전체 온라인/이관/기기 검증과 구별.",
+        "test_connections": [
+          "src/App.test.tsx",
+          "src/domain/outline.test.ts",
+          "src/domain/outline-table.test.ts",
+          "src/ui/outline-table-editor.test.tsx",
+          "src/ui/navigation-context.test.tsx",
+          "src/data/draft-safety.test.ts",
+          "src/ui/criteria-editor.test.tsx",
+          "src/ui/component.test.tsx"
+        ]
       },
       "evidence": {
         "automated": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "automated",
+              "path": "docs/validation/followup-final-tests-20260930.txt"
+            }
+          ],
+          "scope": "3단계 전체 표: 개별칸/Enter/삭제20Undo/동명 선택/Preview stale/원자 생성/재시도 동일ID/전체Undo. B17. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
         },
         "browser": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "browser",
+              "path": "docs/validation/followup-ui-20260930.md"
+            }
+          ],
+          "scope": "3단계 전체 표: 개별칸/Enter/삭제20Undo/동명 선택/Preview stale/원자 생성/재시도 동일ID/전체Undo. B17. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
         },
         "physical_device": {
           "status": "미검증",
@@ -40674,16 +41515,28 @@
       "status": "미검증",
       "not_applicable_reason": null,
       "remaining": [
-        "원문·정정과 현재 구현의 의미 대조 및 담당 범위 실행 증거가 필요합니다."
+        "3단계 표 Prototype은 부분 실제검증됨. 온라인 원자 저장·다기기·물리IME/키보드 및 전체 요구 연결은 미검증."
       ],
-      "next_action": "근거의 해당 항목을 읽고 목적지·UI 예외를 구현한 뒤 자동검증과 실제 조작 결과를 연결합니다.",
+      "next_action": "UI07 오류주입과 native IME/긴 표 실제 조작을 추가한 뒤 UX gate에 반영. F05 원문파싱과 혼합하지 않음.",
       "related": [
-        "FEATURE.F04"
+        "FEATURE.F04",
+        "HISTORY.H472",
+        "HISTORY.H474",
+        "HISTORY.H475",
+        "HISTORY.H476"
       ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
-        "implementation_commits": [],
-        "artifacts": []
+        "implementation_commits": [
+          "dd39f5b",
+          "5e1d223",
+          "752ab1e",
+          "ce6ee432bee65d184f65145414ee4a1e586c838d"
+        ],
+        "artifacts": [
+          "docs/validation/followup-execution-20260930.json",
+          "docs/validation/followup-ui-20260930.md"
+        ]
       }
     },
     {
@@ -41004,20 +41857,52 @@
         ]
       },
       "implementation": {
-        "files": [],
-        "scope": "미구현 여부를 단정하지 않으며 아래 계약과 코드 대응을 구별합니다.",
-        "test_connections": []
+        "files": [
+          "src/App.tsx",
+          "src/domain/commands.ts",
+          "src/domain/outline.ts",
+          "src/ui/outline-table-editor.tsx",
+          "src/ui/navigation-context.ts",
+          "src/data/draft-safety.ts",
+          "src/ui/criteria-editor.tsx",
+          "src/ui/index.tsx"
+        ],
+        "scope": "미구현 여부를 단정하지 않으며 아래 계약과 코드 대응을 구별합니다. 2026-09-30 후속: 생성/이름/이동/일괄 Modal 초안 분리·닫기/reload; 손상원문 사본/실패 RAM·재시도/정리 실패; 새 자유글 ID 복구. B14/B16/B18. 실제 실패주입은 자동검사만. 전체 온라인/이관/기기 검증과 구별.",
+        "test_connections": [
+          "src/App.test.tsx",
+          "src/domain/outline.test.ts",
+          "src/domain/outline-table.test.ts",
+          "src/ui/outline-table-editor.test.tsx",
+          "src/ui/navigation-context.test.tsx",
+          "src/data/draft-safety.test.ts",
+          "src/ui/criteria-editor.test.tsx",
+          "src/ui/component.test.tsx"
+        ]
       },
       "evidence": {
         "automated": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "automated",
+              "path": "docs/validation/followup-final-tests-20260930.txt"
+            }
+          ],
+          "scope": "생성/이름/이동/일괄 Modal 초안 분리·닫기/reload; 손상원문 사본/실패 RAM·재시도/정리 실패; 새 자유글 ID 복구. B14/B16/B18. 실제 실패주입은 자동검사만. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
         },
         "browser": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "browser",
+              "path": "docs/validation/followup-ui-20260930.md"
+            }
+          ],
+          "scope": "생성/이름/이동/일괄 Modal 초안 분리·닫기/reload; 손상원문 사본/실패 RAM·재시도/정리 실패; 새 자유글 ID 복구. B14/B16/B18. 실제 실패주입은 자동검사만. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
         },
         "physical_device": {
           "status": "미검증",
@@ -41055,8 +41940,16 @@
       ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
-        "implementation_commits": [],
-        "artifacts": []
+        "implementation_commits": [
+          "dd39f5b",
+          "5e1d223",
+          "752ab1e",
+          "ce6ee432bee65d184f65145414ee4a1e586c838d"
+        ],
+        "artifacts": [
+          "docs/validation/followup-execution-20260930.json",
+          "docs/validation/followup-ui-20260930.md"
+        ]
       }
     },
     {
@@ -41375,20 +42268,52 @@
         ]
       },
       "implementation": {
-        "files": [],
-        "scope": "미구현 여부를 단정하지 않으며 아래 계약과 코드 대응을 구별합니다.",
-        "test_connections": []
+        "files": [
+          "src/App.tsx",
+          "src/domain/commands.ts",
+          "src/domain/outline.ts",
+          "src/ui/outline-table-editor.tsx",
+          "src/ui/navigation-context.ts",
+          "src/data/draft-safety.ts",
+          "src/ui/criteria-editor.tsx",
+          "src/ui/index.tsx"
+        ],
+        "scope": "미구현 여부를 단정하지 않으며 아래 계약과 코드 대응을 구별합니다. 2026-09-30 후속: 개인기준 과목/전체 적용과 다른 route의 전역Undo. B12/B13. 전체 온라인/이관/기기 검증과 구별.",
+        "test_connections": [
+          "src/App.test.tsx",
+          "src/domain/outline.test.ts",
+          "src/domain/outline-table.test.ts",
+          "src/ui/outline-table-editor.test.tsx",
+          "src/ui/navigation-context.test.tsx",
+          "src/data/draft-safety.test.ts",
+          "src/ui/criteria-editor.test.tsx",
+          "src/ui/component.test.tsx"
+        ]
       },
       "evidence": {
         "automated": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "automated",
+              "path": "docs/validation/followup-final-tests-20260930.txt"
+            }
+          ],
+          "scope": "개인기준 과목/전체 적용과 다른 route의 전역Undo. B12/B13. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
         },
         "browser": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "browser",
+              "path": "docs/validation/followup-ui-20260930.md"
+            }
+          ],
+          "scope": "개인기준 과목/전체 적용과 다른 route의 전역Undo. B12/B13. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
         },
         "physical_device": {
           "status": "미검증",
@@ -41426,8 +42351,16 @@
       ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
-        "implementation_commits": [],
-        "artifacts": []
+        "implementation_commits": [
+          "dd39f5b",
+          "5e1d223",
+          "752ab1e",
+          "ce6ee432bee65d184f65145414ee4a1e586c838d"
+        ],
+        "artifacts": [
+          "docs/validation/followup-execution-20260930.json",
+          "docs/validation/followup-ui-20260930.md"
+        ]
       }
     },
     {
@@ -42103,36 +43036,56 @@
       "implementation": {
         "files": [
           "src/ui/navigation-context.ts",
-          "src/App.tsx"
+          "src/App.tsx",
+          "src/domain/commands.ts",
+          "src/domain/outline.ts",
+          "src/ui/outline-table-editor.tsx",
+          "src/data/draft-safety.ts",
+          "src/ui/criteria-editor.tsx",
+          "src/ui/index.tsx"
         ],
-        "scope": "route/query/window scroll/focus의 합성검사와 실제 검색→Back B03. 내부스크롤/물리키보드 아님",
+        "scope": "route/query/window scroll/focus의 합성검사와 실제 검색→Back B03. 내부스크롤/물리키보드 아님 2026-09-30 후속: 형제 order 원자변경·그룹Undo·가변깊이/기록 보존; 장문 선택·방향·내부scroll의 route/reload 복귀. B10/B11/B14. 전체 온라인/이관/기기 검증과 구별.",
         "test_connections": [
           "src/ui/navigation-context.test.tsx",
-          "src/App.test.tsx"
+          "src/App.test.tsx",
+          "src/domain/outline.test.ts",
+          "src/domain/outline-table.test.ts",
+          "src/ui/outline-table-editor.test.tsx",
+          "src/data/draft-safety.test.ts",
+          "src/ui/criteria-editor.test.tsx",
+          "src/ui/component.test.tsx"
         ]
       },
       "evidence": {
         "automated": {
-          "status": "통과",
-          "scope": "route/query/window scroll/focus의 합성검사와 실제 검색→Back B03. 내부스크롤/물리키보드 아님",
-          "verified_at": "2026-09-29T15:46:42.223149+00:00",
-          "commit": "7b911a4630b4e0783dcf728482c91f307ea14812",
+          "status": "수정 후 통과",
+          "scope": "형제 order 원자변경·그룹Undo·가변깊이/기록 보존; 장문 선택·방향·내부scroll의 route/reload 복귀. B10/B11/B14. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d",
           "artifacts": [
             {
               "level": "automated",
               "path": "docs/validation/resume-execution.json"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/followup-final-tests-20260930.txt"
             }
           ]
         },
         "browser": {
-          "status": "통과",
-          "scope": "route/query/window scroll/focus의 합성검사와 실제 검색→Back B03. 내부스크롤/물리키보드 아님",
-          "verified_at": "2026-09-29T15:46:42.223149+00:00",
-          "commit": "7b911a4630b4e0783dcf728482c91f307ea14812",
+          "status": "수정 후 통과",
+          "scope": "형제 order 원자변경·그룹Undo·가변깊이/기록 보존; 장문 선택·방향·내부scroll의 route/reload 복귀. B10/B11/B14. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d",
           "artifacts": [
             {
               "level": "browser",
               "path": "docs/validation/resume-ui.md"
+            },
+            {
+              "level": "browser",
+              "path": "docs/validation/followup-ui-20260930.md"
             }
           ]
         },
@@ -42187,11 +43140,17 @@
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
         "implementation_commits": [
           "17bba77",
-          "7b911a4630b4e0783dcf728482c91f307ea14812"
+          "7b911a4630b4e0783dcf728482c91f307ea14812",
+          "dd39f5b",
+          "5e1d223",
+          "752ab1e",
+          "ce6ee432bee65d184f65145414ee4a1e586c838d"
         ],
         "artifacts": [
           "docs/validation/resume-execution.json",
-          "docs/validation/resume-ui.md"
+          "docs/validation/resume-ui.md",
+          "docs/validation/followup-execution-20260930.json",
+          "docs/validation/followup-ui-20260930.md"
         ]
       }
     },
@@ -42967,20 +43926,52 @@
         ]
       },
       "implementation": {
-        "files": [],
-        "scope": "미구현 여부를 단정하지 않으며 아래 계약과 코드 대응을 구별합니다.",
-        "test_connections": []
+        "files": [
+          "src/App.tsx",
+          "src/domain/commands.ts",
+          "src/domain/outline.ts",
+          "src/ui/outline-table-editor.tsx",
+          "src/ui/navigation-context.ts",
+          "src/data/draft-safety.ts",
+          "src/ui/criteria-editor.tsx",
+          "src/ui/index.tsx"
+        ],
+        "scope": "미구현 여부를 단정하지 않으며 아래 계약과 코드 대응을 구별합니다. 2026-09-30 후속: 생성/이름/이동/일괄 Modal 초안 분리·닫기/reload; 손상원문 사본/실패 RAM·재시도/정리 실패; 새 자유글 ID 복구. B14/B16/B18. 실제 실패주입은 자동검사만. 전체 온라인/이관/기기 검증과 구별.",
+        "test_connections": [
+          "src/App.test.tsx",
+          "src/domain/outline.test.ts",
+          "src/domain/outline-table.test.ts",
+          "src/ui/outline-table-editor.test.tsx",
+          "src/ui/navigation-context.test.tsx",
+          "src/data/draft-safety.test.ts",
+          "src/ui/criteria-editor.test.tsx",
+          "src/ui/component.test.tsx"
+        ]
       },
       "evidence": {
         "automated": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "automated",
+              "path": "docs/validation/followup-final-tests-20260930.txt"
+            }
+          ],
+          "scope": "생성/이름/이동/일괄 Modal 초안 분리·닫기/reload; 손상원문 사본/실패 RAM·재시도/정리 실패; 새 자유글 ID 복구. B14/B16/B18. 실제 실패주입은 자동검사만. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
         },
         "browser": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "browser",
+              "path": "docs/validation/followup-ui-20260930.md"
+            }
+          ],
+          "scope": "생성/이름/이동/일괄 Modal 초안 분리·닫기/reload; 손상원문 사본/실패 RAM·재시도/정리 실패; 새 자유글 ID 복구. B14/B16/B18. 실제 실패주입은 자동검사만. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
         },
         "physical_device": {
           "status": "미검증",
@@ -43019,8 +44010,16 @@
       ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
-        "implementation_commits": [],
-        "artifacts": []
+        "implementation_commits": [
+          "dd39f5b",
+          "5e1d223",
+          "752ab1e",
+          "ce6ee432bee65d184f65145414ee4a1e586c838d"
+        ],
+        "artifacts": [
+          "docs/validation/followup-execution-20260930.json",
+          "docs/validation/followup-ui-20260930.md"
+        ]
       }
     },
     {
@@ -43058,20 +44057,52 @@
         ]
       },
       "implementation": {
-        "files": [],
-        "scope": "미구현 여부를 단정하지 않으며 아래 계약과 코드 대응을 구별합니다.",
-        "test_connections": []
+        "files": [
+          "src/App.tsx",
+          "src/domain/commands.ts",
+          "src/domain/outline.ts",
+          "src/ui/outline-table-editor.tsx",
+          "src/ui/navigation-context.ts",
+          "src/data/draft-safety.ts",
+          "src/ui/criteria-editor.tsx",
+          "src/ui/index.tsx"
+        ],
+        "scope": "미구현 여부를 단정하지 않으며 아래 계약과 코드 대응을 구별합니다. 2026-09-30 후속: 개인기준 과목/전체 적용과 다른 route의 전역Undo. B12/B13. 전체 온라인/이관/기기 검증과 구별.",
+        "test_connections": [
+          "src/App.test.tsx",
+          "src/domain/outline.test.ts",
+          "src/domain/outline-table.test.ts",
+          "src/ui/outline-table-editor.test.tsx",
+          "src/ui/navigation-context.test.tsx",
+          "src/data/draft-safety.test.ts",
+          "src/ui/criteria-editor.test.tsx",
+          "src/ui/component.test.tsx"
+        ]
       },
       "evidence": {
         "automated": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "automated",
+              "path": "docs/validation/followup-final-tests-20260930.txt"
+            }
+          ],
+          "scope": "개인기준 과목/전체 적용과 다른 route의 전역Undo. B12/B13. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
         },
         "browser": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "browser",
+              "path": "docs/validation/followup-ui-20260930.md"
+            }
+          ],
+          "scope": "개인기준 과목/전체 적용과 다른 route의 전역Undo. B12/B13. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
         },
         "physical_device": {
           "status": "미검증",
@@ -43109,8 +44140,16 @@
       ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
-        "implementation_commits": [],
-        "artifacts": []
+        "implementation_commits": [
+          "dd39f5b",
+          "5e1d223",
+          "752ab1e",
+          "ce6ee432bee65d184f65145414ee4a1e586c838d"
+        ],
+        "artifacts": [
+          "docs/validation/followup-execution-20260930.json",
+          "docs/validation/followup-ui-20260930.md"
+        ]
       }
     },
     {
@@ -68257,23 +69296,51 @@
       "implementation": {
         "files": [
           "src/ui/index.tsx",
-          "src/ui/components.css"
+          "src/ui/components.css",
+          "src/App.tsx",
+          "src/domain/commands.ts",
+          "src/domain/outline.ts",
+          "src/ui/outline-table-editor.tsx",
+          "src/ui/navigation-context.ts",
+          "src/data/draft-safety.ts",
+          "src/ui/criteria-editor.tsx"
         ],
-        "scope": "공통 export가 존재합니다. 모든 상태의 실제 검증 완료가 아닙니다.",
+        "scope": "공통 export가 존재합니다. 모든 상태의 실제 검증 완료가 아닙니다. 2026-09-30 후속: Modal 배경 inert/Tab 후보 개선 및 기준·표 Undo route복귀; 전체 21종 중16실제호출·5미사용 경계. B12–B18. 전체 온라인/이관/기기 검증과 구별.",
         "test_connections": [
-          "src/ui/component.test.tsx"
+          "src/ui/component.test.tsx",
+          "src/App.test.tsx",
+          "src/domain/outline.test.ts",
+          "src/domain/outline-table.test.ts",
+          "src/ui/outline-table-editor.test.tsx",
+          "src/ui/navigation-context.test.tsx",
+          "src/data/draft-safety.test.ts",
+          "src/ui/criteria-editor.test.tsx"
         ]
       },
       "evidence": {
         "automated": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "automated",
+              "path": "docs/validation/followup-final-tests-20260930.txt"
+            }
+          ],
+          "scope": "Modal 배경 inert/Tab 후보 개선 및 기준·표 Undo route복귀; 전체 21종 중16실제호출·5미사용 경계. B12–B18. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
         },
         "browser": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "browser",
+              "path": "docs/validation/followup-ui-20260930.md"
+            }
+          ],
+          "scope": "Modal 배경 inert/Tab 후보 개선 및 기준·표 Undo route복귀; 전체 21종 중16실제호출·5미사용 경계. B12–B18. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
         },
         "physical_device": {
           "status": "미검증",
@@ -68309,8 +69376,16 @@
       "related": [],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
-        "implementation_commits": [],
-        "artifacts": []
+        "implementation_commits": [
+          "dd39f5b",
+          "5e1d223",
+          "752ab1e",
+          "ce6ee432bee65d184f65145414ee4a1e586c838d"
+        ],
+        "artifacts": [
+          "docs/validation/followup-execution-20260930.json",
+          "docs/validation/followup-ui-20260930.md"
+        ]
       },
       "common_export_present": true
     },
@@ -68349,23 +69424,51 @@
       "implementation": {
         "files": [
           "src/ui/index.tsx",
-          "src/ui/components.css"
+          "src/ui/components.css",
+          "src/App.tsx",
+          "src/domain/commands.ts",
+          "src/domain/outline.ts",
+          "src/ui/outline-table-editor.tsx",
+          "src/ui/navigation-context.ts",
+          "src/data/draft-safety.ts",
+          "src/ui/criteria-editor.tsx"
         ],
-        "scope": "공통 export가 존재합니다. 모든 상태의 실제 검증 완료가 아닙니다.",
+        "scope": "공통 export가 존재합니다. 모든 상태의 실제 검증 완료가 아닙니다. 2026-09-30 후속: Modal 배경 inert/Tab 후보 개선 및 기준·표 Undo route복귀; 전체 21종 중16실제호출·5미사용 경계. B12–B18. 전체 온라인/이관/기기 검증과 구별.",
         "test_connections": [
-          "src/ui/component.test.tsx"
+          "src/ui/component.test.tsx",
+          "src/App.test.tsx",
+          "src/domain/outline.test.ts",
+          "src/domain/outline-table.test.ts",
+          "src/ui/outline-table-editor.test.tsx",
+          "src/ui/navigation-context.test.tsx",
+          "src/data/draft-safety.test.ts",
+          "src/ui/criteria-editor.test.tsx"
         ]
       },
       "evidence": {
         "automated": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "automated",
+              "path": "docs/validation/followup-final-tests-20260930.txt"
+            }
+          ],
+          "scope": "Modal 배경 inert/Tab 후보 개선 및 기준·표 Undo route복귀; 전체 21종 중16실제호출·5미사용 경계. B12–B18. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
         },
         "browser": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "browser",
+              "path": "docs/validation/followup-ui-20260930.md"
+            }
+          ],
+          "scope": "Modal 배경 inert/Tab 후보 개선 및 기준·표 Undo route복귀; 전체 21종 중16실제호출·5미사용 경계. B12–B18. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
         },
         "physical_device": {
           "status": "미검증",
@@ -68401,8 +69504,16 @@
       "related": [],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
-        "implementation_commits": [],
-        "artifacts": []
+        "implementation_commits": [
+          "dd39f5b",
+          "5e1d223",
+          "752ab1e",
+          "ce6ee432bee65d184f65145414ee4a1e586c838d"
+        ],
+        "artifacts": [
+          "docs/validation/followup-execution-20260930.json",
+          "docs/validation/followup-ui-20260930.md"
+        ]
       },
       "common_export_present": true
     },
@@ -69085,23 +70196,51 @@
       "implementation": {
         "files": [
           "src/ui/index.tsx",
-          "src/ui/components.css"
+          "src/ui/components.css",
+          "src/App.tsx",
+          "src/domain/commands.ts",
+          "src/domain/outline.ts",
+          "src/ui/outline-table-editor.tsx",
+          "src/ui/navigation-context.ts",
+          "src/data/draft-safety.ts",
+          "src/ui/criteria-editor.tsx"
         ],
-        "scope": "공통 export가 존재합니다. 모든 상태의 실제 검증 완료가 아닙니다.",
+        "scope": "공통 export가 존재합니다. 모든 상태의 실제 검증 완료가 아닙니다. 2026-09-30 후속: Modal 배경 inert/Tab 후보 개선 및 기준·표 Undo route복귀; 전체 21종 중16실제호출·5미사용 경계. B12–B18. 전체 온라인/이관/기기 검증과 구별.",
         "test_connections": [
-          "src/ui/component.test.tsx"
+          "src/ui/component.test.tsx",
+          "src/App.test.tsx",
+          "src/domain/outline.test.ts",
+          "src/domain/outline-table.test.ts",
+          "src/ui/outline-table-editor.test.tsx",
+          "src/ui/navigation-context.test.tsx",
+          "src/data/draft-safety.test.ts",
+          "src/ui/criteria-editor.test.tsx"
         ]
       },
       "evidence": {
         "automated": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "automated",
+              "path": "docs/validation/followup-final-tests-20260930.txt"
+            }
+          ],
+          "scope": "Modal 배경 inert/Tab 후보 개선 및 기준·표 Undo route복귀; 전체 21종 중16실제호출·5미사용 경계. B12–B18. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
         },
         "browser": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "browser",
+              "path": "docs/validation/followup-ui-20260930.md"
+            }
+          ],
+          "scope": "Modal 배경 inert/Tab 후보 개선 및 기준·표 Undo route복귀; 전체 21종 중16실제호출·5미사용 경계. B12–B18. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
         },
         "physical_device": {
           "status": "미검증",
@@ -69137,8 +70276,16 @@
       "related": [],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
-        "implementation_commits": [],
-        "artifacts": []
+        "implementation_commits": [
+          "dd39f5b",
+          "5e1d223",
+          "752ab1e",
+          "ce6ee432bee65d184f65145414ee4a1e586c838d"
+        ],
+        "artifacts": [
+          "docs/validation/followup-execution-20260930.json",
+          "docs/validation/followup-ui-20260930.md"
+        ]
       },
       "common_export_present": true
     },
@@ -69269,23 +70416,51 @@
       "implementation": {
         "files": [
           "src/ui/index.tsx",
-          "src/ui/components.css"
+          "src/ui/components.css",
+          "src/App.tsx",
+          "src/domain/commands.ts",
+          "src/domain/outline.ts",
+          "src/ui/outline-table-editor.tsx",
+          "src/ui/navigation-context.ts",
+          "src/data/draft-safety.ts",
+          "src/ui/criteria-editor.tsx"
         ],
-        "scope": "공통 export가 존재합니다. 모든 상태의 실제 검증 완료가 아닙니다.",
+        "scope": "공통 export가 존재합니다. 모든 상태의 실제 검증 완료가 아닙니다. 2026-09-30 후속: Modal 배경 inert/Tab 후보 개선 및 기준·표 Undo route복귀; 전체 21종 중16실제호출·5미사용 경계. B12–B18. 전체 온라인/이관/기기 검증과 구별.",
         "test_connections": [
-          "src/ui/component.test.tsx"
+          "src/ui/component.test.tsx",
+          "src/App.test.tsx",
+          "src/domain/outline.test.ts",
+          "src/domain/outline-table.test.ts",
+          "src/ui/outline-table-editor.test.tsx",
+          "src/ui/navigation-context.test.tsx",
+          "src/data/draft-safety.test.ts",
+          "src/ui/criteria-editor.test.tsx"
         ]
       },
       "evidence": {
         "automated": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "automated",
+              "path": "docs/validation/followup-final-tests-20260930.txt"
+            }
+          ],
+          "scope": "Modal 배경 inert/Tab 후보 개선 및 기준·표 Undo route복귀; 전체 21종 중16실제호출·5미사용 경계. B12–B18. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
         },
         "browser": {
-          "status": "미검증",
-          "artifacts": [],
-          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "browser",
+              "path": "docs/validation/followup-ui-20260930.md"
+            }
+          ],
+          "scope": "Modal 배경 inert/Tab 후보 개선 및 기준·표 Undo route복귀; 전체 21종 중16실제호출·5미사용 경계. B12–B18. 자동은 domain/jsdom, browser는 B10–B18의 명시된 조작만. 다른 증거 수준으로 확대하지 않음.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
         },
         "physical_device": {
           "status": "미검증",
@@ -69321,8 +70496,16 @@
       "related": [],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
-        "implementation_commits": [],
-        "artifacts": []
+        "implementation_commits": [
+          "dd39f5b",
+          "5e1d223",
+          "752ab1e",
+          "ce6ee432bee65d184f65145414ee4a1e586c838d"
+        ],
+        "artifacts": [
+          "docs/validation/followup-execution-20260930.json",
+          "docs/validation/followup-ui-20260930.md"
+        ]
       },
       "common_export_present": true
     },
@@ -135870,6 +137053,136 @@
         "PDF.PAGE33"
       ],
       "acceptance_contract": "초심자가 화면 목적/다음 행동을 구별할 수 있고 빈번한 행동이 보이는지, 반복 선택·이동·확인·설명이 과도한지 A–G별 시작 맥락과 조작으로 평가한다. 자동 숫자만으로 이해도 개선을 주장하지 않는다."
+    },
+    {
+      "id": "FOLLOWUP.FREE_ID_RECOVERY",
+      "meaning": "새 자유기록 저장 성공 뒤 초안 정리 실패/재실행에서 같은 기록 ID를 유지하고 옛 초안으로 복제·덮어쓰기하지 않는다.",
+      "sources": [
+        {
+          "path": "generation2/docs/validation/followup-ui-20260930.md",
+          "kind": "current_failure_audit",
+          "review": "정리 실패 이후 후속수정/route재진입 ID 상실 및 재시작 옛disk초안 중복 위험을 코드와 재현3검사로 확인."
+        }
+      ],
+      "correction_dates": [],
+      "classification": "B",
+      "classification_reason": "발견된 로컬 Prototype ID 연결 결함 수정. 온라인 전체 요구는 부모행 미검증으로 유지.",
+      "phase": "PHASE.08",
+      "prerequisites": [],
+      "destination": {
+        "decision": "process",
+        "entities": [
+          "Draft",
+          "SyncOperation"
+        ],
+        "reason": "입력→초안 commit 전/후에 이탈·강제종료·quota·재시작을 주입하고 저장 단계 표시와 실제 보존 원문을 대조한다."
+      },
+      "ui": {
+        "targets": [
+          "UI.UI32"
+        ],
+        "operations": [
+          "입력→초안 commit 전/후에 이탈·강제종료·quota·재시작을 주입하고 저장 단계 표시와 실제 보존 원문을 대조한다."
+        ],
+        "states": [
+          "IDB tx·저장단계표시·강제종료gate",
+          "기기/사용자/대상/세션구별",
+          "시험 namespace",
+          "실패/취소/재시도",
+          "이전값 보존"
+        ]
+      },
+      "implementation": {
+        "files": [
+          "src/App.tsx"
+        ],
+        "test_connections": [
+          "src/App.test.tsx"
+        ],
+        "scope": "로컬 가짜 자유기록 ID 복구와 원문 보존에 한정"
+      },
+      "evidence": {
+        "automated": {
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "automated",
+              "path": "docs/validation/followup-final-tests-20260930.txt"
+            }
+          ],
+          "scope": "App31 중 ID복구 재현3: 정리실패 이후 편집/재진입 동일ID 저장, 동일옛본문 중복차단, 서로다른본문 양쪽보존. 170개 최종통합 회귀.",
+          "verified_at": "2026-09-29T16:24:18.753341+00:00",
+          "commit": "ce6ee432bee65d184f65145414ee4a1e586c838d"
+        },
+        "browser": {
+          "status": "미검증",
+          "artifacts": [],
+          "scope": "이 실패를 실제 브라우저에서 주입하지 않았음. 정상 저장은 별도 브라우저 증거."
+        },
+        "physical_device": {
+          "status": "미검증",
+          "artifacts": [],
+          "scope": "부분 사용자 보고 P01 수신. 전체요구의 물리기기 검증은 미검증.",
+          "observations": [
+            {
+              "device": "iPhone 17 Pro",
+              "source": "user-reported physical test in this task",
+              "requested_browser": "Safari",
+              "browser_version": "not supplied",
+              "result": "한글 두 줄 입력 후 화면 이동과 복귀에서 글·줄바꿈 유지 보고. 키보드 가림은 없어 보인다는 제한적 관찰.",
+              "verified_at": "2026-09-29T15:48:09.143607+00:00",
+              "scope_status": "통과",
+              "remaining": "정확한 OS/브라우저버전·회전·장문·강제종료 미검증"
+            }
+          ]
+        },
+        "server_peer": {
+          "status": "미검증",
+          "artifacts": [],
+          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+        },
+        "performance": {
+          "status": "미검증",
+          "artifacts": [],
+          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+        },
+        "long_term": {
+          "status": "미검증",
+          "artifacts": [],
+          "scope": "이번 원장 작성은 이 수준의 실행 검증이 아닙니다."
+        }
+      },
+      "required_evidence": [
+        "automated"
+      ],
+      "status": "수정 후 통과",
+      "not_applicable_reason": null,
+      "remaining": [],
+      "next_action": "온라인 저장 및 정식 IDB로 옮길 때 같은 실패 순서를 서버/기기 경계에서 별도 회귀 검증한다.",
+      "related": [
+        "CORE.C10",
+        "UI.UI11",
+        "FAILURE.FM06",
+        "FAILURE.FM10",
+        "FAILURE.FM11"
+      ],
+      "commit_artifacts": {
+        "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
+        "implementation_commits": [
+          "dd39f5b",
+          "5e1d223",
+          "752ab1e",
+          "ce6ee432bee65d184f65145414ee4a1e586c838d"
+        ],
+        "artifacts": [
+          "docs/validation/followup-execution-20260930.json",
+          "docs/validation/followup-ui-20260930.md"
+        ]
+      },
+      "acceptance_contract": "새 자유기록 저장 성공 뒤 초안 정리 실패/재실행에서 같은 기록 ID를 유지하고 옛 초안으로 복제·덮어쓰기하지 않는다.",
+      "verification_plan": {
+        "automated": "App31 중 ID복구 재현3: 정리실패 이후 편집/재진입 동일ID 저장, 동일옛본문 중복차단, 서로다른본문 양쪽보존. 170개 최종통합 회귀."
+      }
     }
   ],
   "public_artifact_boundary": {
@@ -135877,6 +137190,6 @@
     "originals": "원본·Vault·backup·PDF bytes·대화·사용자 응답·비밀키는 코드 저장소에 복제하지 않습니다.",
     "semantic_limit": "요구 의미와 원목록 경로를 공개 코드 명세로 포함하지만 개인 입력 내용·발화 원문은 포함하지 않습니다."
   },
-  "last_refined_at": "2026-09-29T15:31:07.495225+00:00",
-  "last_integrated_at": "2026-09-29T15:46:42.223149+00:00"
+  "last_refined_at": "2026-09-29T16:30:19.258568+00:00",
+  "last_integrated_at": "2026-09-29T16:24:18.753341+00:00"
 }

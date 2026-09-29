@@ -1,0 +1,48 @@
+{
+  "executed_at": "2026-09-29T16:24:18.753341+00:00",
+  "preservation": "followup-preservation-20260930.json",
+  "history": {
+    "count": 665,
+    "locator_text_matches": 665,
+    "semantic_review_status": "미해결",
+    "scope": "원 rollout 물리줄과 재구성 사용자 텍스트의 동일성 검사. 전수 의미 판정 아님.",
+    "reviewed_ids": [
+      "HISTORY.H472",
+      "HISTORY.H474",
+      "HISTORY.H475",
+      "HISTORY.H476"
+    ],
+    "application": "F04 표 입력은 개별 칸/3단계이며 F05 원문파싱과 별도. 일반 가변깊이 트리는 보존."
+  },
+  "historical_attachments": {
+    "checked": 194,
+    "readable_one_byte_only": 13,
+    "still_missing": 181,
+    "previous_missing": 181,
+    "content_review_status": "미검증"
+  },
+  "initial_research": {
+    "scenes": 141,
+    "history_items": 460,
+    "full_semantic_review": "미해결"
+  },
+  "components": {
+    "contract": 21,
+    "exports": 21,
+    "production_call_sites": 16,
+    "without_app_call": [
+      "Radio",
+      "Tabs",
+      "SegmentedControl",
+      "ListItem",
+      "Sheet"
+    ],
+    "all_states": "미검증"
+  },
+  "open_decisions": {
+    "FEATURE.F05": "원문 보존 파싱 후보 도구. 표 입력과 독립, 채택 결정 유지.",
+    "FEATURE.F22": "기존 graph는 containment-only 파생 읽기화면. 새 의미관계 자동창작 안 함.",
+    "FEATURE.F47": "공란에서 선택 사용하는 사고도구 발상. 기본 기록 필수 입력 아님.",
+    "FEATURE.F49": "영구삭제 정책 전 UI 노출 금지. soft delete/restore는 별도."
+  }
+}

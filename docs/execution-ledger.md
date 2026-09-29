@@ -6,6 +6,12 @@
 
 정본은 [execution-ledger.json](execution-ledger.json), 최초 목록 비교 기준은 [execution-ledger-baseline.json](execution-ledger-baseline.json)입니다. 검사기는 목록 소실·고아 참조·목적지·분류 변경·근거 없는 승격·Phase 선행조건을 검사합니다. 수량과 SHA-256은 내용의 완전성을 증명하지 않습니다.
 
+## 2026-09-30 Prototype 후속 실행
+
+이번 구현은 ce6ee43 및 앞선 dd39f5b/5e1d223/752ab1e입니다. [170개 자동검사·빌드](validation/followup-execution-20260930.json), [실제 B10–B18](validation/followup-ui-20260930.md), [원본·접근·의미감사 경계](validation/followup-audit-20260930.json)를 연결합니다. 기존 1,366행은 모두 보존했고 새 자유기록 ID 복구 결함 1행을 추가하여 1,367행입니다. 상위 Phase/전체 요구 상태를 일괄 통과로 바꾸지 않았습니다.
+
+형제 정렬·3단계 표·Modal초안·긴글 선택/내부scroll·기준 범위Undo를 구현/검증했습니다. 손상/실패는 자동 오류주입과 실제 정상조작 증거를 나누었습니다. 과거 접근불가181경로는 현재도 없으며13기존파일은 가독성만 확인했습니다. HISTORY665 위치/텍스트 일치는 의미전수 완료가 아닙니다. 아래 예전 열린 조건은 당시 기록이며 최신 남은 조건은 JSON과 resume-handoff.md를 따릅니다.
+
 ## 집합과 경계
 
 | 집합 | 행 수 | 경계 |
@@ -25,6 +31,7 @@
 | UX | 112 | 각 원래 ID 보존 |
 | UX_SURFACE | 32 | 각 원래 ID 보존 |
 | COMPONENT | 21 | 각 원래 ID 보존 |
+| FOLLOWUP | 1 | 새로 발견한 로컬 실패 경계 |
 | HISTORY | 665 | 과거 원문 위치 색인, 모두 독립 요구 또는 원문 정독이라고 판정하지 않음 |
 
 ## 현재 열린 조건
@@ -769,3 +776,9 @@ C01–C45의 담당 Phase·선행조건·연결 WORK/FEATURE/INV·데이터 목�
 WORK.R07에는 기존 commit의 GitHub/Pages 배포 진전, WORK.R08에는 사용자가 준비한 Supabase 프로젝트 Healthy 상태를 별도 current_progress로 기록했습니다. 최종 변경 코드 배포·Auth/CRUD·callback 검증은 아직 열린 상태입니다.
 
 개별 연결 보완 뒤 [원목록·이전 원장 비교](validation/ledger-refined-20260930-003500.json)와 [26개 검증기 fixture](validation/ledger-negative-fixtures-20260930-003400.txt)를 실행했습니다. 공개 원장에 사용자 절대경로/세션파일 위치/대화 본문이 재유입되거나 CORE가 빈 검증 템플릿으로 퇴행하는 경우도 거부합니다. 이 기록 다음에 원장을 수정하면 새 시점 결과를 다시 남깁니다.
+
+## 추가로 발견한 실패 경계
+
+| ID | 요구 의미 | Phase | 목적지 | 상태 |
+|---|---|---|---|---|
+| FOLLOWUP.FREE_ID_RECOVERY | 로컬 자유기록 정리 실패 뒤 같은 ID·양쪽 본문 보존 | PHASE.08 | Draft/Narrative | 수정 후 통과 |

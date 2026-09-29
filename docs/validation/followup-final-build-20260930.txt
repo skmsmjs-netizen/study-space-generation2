@@ -1,0 +1,14 @@
+
+> study-space-generation2@0.1.0 build
+> tsc --noEmit && vite build
+
+vite v8.3.1 building client environment for production...
+transforming...
+✓ 39 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.50 kB │ gzip:   0.36 kB
+dist/assets/index-D8qUfbxB.css   24.05 kB │ gzip:   5.03 kB
+dist/assets/index-3OU7fg4T.js   342.66 kB │ gzip: 103.79 kB
+
+✓ built in 170ms
