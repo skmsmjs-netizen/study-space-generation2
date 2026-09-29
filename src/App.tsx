@@ -24,12 +24,14 @@ import type {
   NarrativeKind,
   StudyRecord,
 } from "./domain/model";
-import { readRescuedDraft, storeDraftSafely, clearRescuedDraft, draftHasUnstoredText, rescueWithoutOverwrite, draftReadError, rememberDraftReadError } from "./data/draft-safety";
+import { readRescuedDraft, storeDraftSafely, draftHasUnstoredText, rescueWithoutOverwrite, draftReadError, rememberDraftReadError, archiveDamagedDraft, clearStoredDraft } from "./data/draft-safety";
 import { validateFormDraft } from "./data/demo-repository";
 import { useRoute, navigate as go } from "./ui/navigation-context";
 import { TraceEditor } from "./ui/trace-editor";
 import { CriteriaEditor } from "./ui/criteria-editor";
 import { resolveCriteria } from "./domain/criteria";
+import { outlineRevisionToken, previewOutlineEntries } from "./domain/outline";
+import { OutlineTableEditor } from "./ui/outline-table-editor";
 import { OutlineTree } from "./ui/outline-tree";
 import { TRACE_ITEMS } from "./domain/trace";
 import {
@@ -142,16 +144,24 @@ function Workspace({ repository }: { repository: DemoRepository }) {
   const [scope, setScope] = useState(() => readPreference("scope", "all"));
   const [query, setQuery] = useState(() => readPreference("query", ""));
   const [error, setError] = useState("");
+  const [cleanupKeys, setCleanupKeys] = useState<string[]>([]);
   const [notice, setNotice] = useState<{
     message: string;
     undo?: () => void;
   } | null>(null);
   const [dialog, setDialog] = useState<
-    "semester" | "subject" | "node" | "trash" | "rename" | "move" | null
+    "semester" | "subject" | "node" | "bulk" | "trash" | "rename" | "move" | null
   >(null);
   const [name, setName] = useState("");
   const [moveParent, setMoveParent] = useState<string>("");
   const [role, setRole] = useState<OutlineNode["role"]>("topic");
+  const [modalKey, setModalKey] = useState("");
+  const [modalError, setModalError] = useState("");
+  const [modalBlocked, setModalBlocked] = useState(false);
+  const [bulkNames, setBulkNames] = useState<string[]>(["", "", ""]);
+  const [duplicateChoice, setDuplicateChoice] = useState<"" | "reuse" | "create">("");
+  const [bulkPreview, setBulkPreview] = useState(false);
+  const [outlineToken, setOutlineToken] = useState("");
   const [theme, setTheme] = useState(() => readPreference("theme", "auto"));
   const [recent, setRecent] = useState<string[]>(() => {
     try {
@@ -193,12 +203,12 @@ function Workspace({ repository }: { repository: DemoRepository }) {
     }
     return result;
   };
-  const commit = (action: Action, success?: string): AppState | null => {
+  const commit = (action: Action, success?: string, operation?: { opId: string; at: string }): AppState | null => {
     try {
       const next = repository.execute({
         ...action,
-        opId: uid(),
-        at: new Date().toISOString(),
+        opId: operation?.opId || uid(),
+        at: operation?.at || new Date().toISOString(),
         userId: data.userId,
         namespace: "demo",
       } as Command);
@@ -208,6 +218,7 @@ function Workspace({ repository }: { repository: DemoRepository }) {
       return next;
     } catch (e) {
       setError(message(e));
+      if (dialog) setModalError(message(e));
       return null;
     }
   };
@@ -264,12 +275,60 @@ function Workspace({ repository }: { repository: DemoRepository }) {
         : undefined,
     });
   };
+  useEffect(() => { setDialog(null); }, [route, scope]);
+  const modalValue = (patch: Record<string, unknown> = {}) => ({ name, moveParent, role, bulkNames, ...patch });
+  const persistModal = (patch: Record<string, unknown>) => {
+    const raw = JSON.stringify(modalValue(patch));
+    if (modalBlocked) { rescueWithoutOverwrite(modalKey, raw); return; }
+    try { storeDraftSafely(modalKey, raw); setModalError(""); }
+    catch { setModalError("초안을 이 기기에 보관하지 못했습니다. 입력은 현재 창에만 남아 있습니다. 다시 보관하거나 복사한 뒤 창을 닫아 주세요."); }
+  };
+  const recoverModal = () => {
+    try {
+      if (modalBlocked) archiveDamagedDraft(modalKey);
+      storeDraftSafely(modalKey, JSON.stringify(modalValue()));
+      setModalBlocked(false); setModalError("");
+    } catch { setModalError("초안을 보관하지 못했습니다. 원본과 현재 창의 입력은 유지했습니다. 저장 공간을 확인한 뒤 다시 시도해 주세요."); }
+  };
+  const finishModal = () => {
+    try { clearStoredDraft(modalKey); setModalError(""); }
+    catch {
+      setCleanupKeys(keys => [...new Set([...keys, modalKey])]);
+      setError("변경은 저장했지만 초안을 정리하지 못했습니다. 이 창에서는 다시 적용하지 않습니다. 새로 열기 전에 초안 정리를 다시 시도해 주세요.");
+    }
+    setDialog(null);
+  };
   const openDialog = (next: typeof dialog) => {
-    setName(next === "rename" ? node?.name || "" : "");
-    if (next === "move") setMoveParent(node?.parentId || "");
+    const key = `study-space:demo:modal:${next}:${next === "semester" ? "global" : next === "subject" ? scope : node?.id || subject?.id || "missing"}`;
+    setModalKey(key); setModalError(""); setModalBlocked(false); setBulkPreview(false); setDuplicateChoice("");
+    let values = { name: next === "rename" ? node?.name || "" : "", moveParent: node?.parentId || "", role: "topic" as OutlineNode["role"], bulkNames: ["", "", ""] };
+    if (next !== "trash") {
+      try {
+        const raw = readRescuedDraft(key) ?? localStorage.getItem(key);
+        if (raw) {
+          const saved = JSON.parse(raw);
+          if (!saved || typeof saved.name !== "string" || typeof saved.moveParent !== "string" || !["unit", "outline", "topic"].includes(saved.role) || !Array.isArray(saved.bulkNames) || saved.bulkNames.length > 500 || !saved.bulkNames.every((value: unknown) => typeof value === "string")) throw Error();
+          values = saved;
+        }
+        if (draftReadError(key)) { setModalBlocked(true); setModalError(draftReadError(key)); }
+        else if (draftHasUnstoredText(key)) setModalError("저장에 실패한 초안을 현재 창에서 이어 쓰고 있습니다. 새로고침 전 다시 보관해 주세요.");
+      } catch {
+        rememberDraftReadError(key, "기존 초안을 읽지 못했습니다. 원본을 덮어쓰지 않았습니다. 원본 사본을 보관한 뒤 현재 입력을 새 초안으로 보관할 수 있습니다.");
+        setModalBlocked(true); setModalError("기존 초안을 읽지 못했습니다. 원본을 덮어쓰지 않았습니다. 원본 사본을 보관한 뒤 현재 입력을 새 초안으로 보관할 수 있습니다.");
+      }
+    }
+    setName(values.name); setMoveParent(values.moveParent); setRole(values.role); setBulkNames(values.bulkNames);
+    if (subject) setOutlineToken(outlineRevisionToken(data, subject.id, node?.id || null));
     setDialog(next);
   };
+  const bulkExisting = nodes.filter(item => item.subjectId === subject?.id && item.parentId === (node?.id || null) && previewOutlineEntries(bulkNames).entries.some(entry => entry.name === item.name)).sort((a, b) => a.order - b.order);
+  const bulkEntries = previewOutlineEntries(bulkNames).entries.filter(entry => duplicateChoice !== "reuse" || !bulkExisting.some(item => item.name === entry.name));
   const addItem = () => {
+    if (modalBlocked) return;
+    if (dialog === "bulk" && (!bulkPreview || previewOutlineEntries(bulkNames).issues.length || (bulkExisting.length > 0 && !duplicateChoice))) return;
+    if (dialog === "bulk" && duplicateChoice === "reuse" && !bulkEntries.length) {
+      finishModal(); setNotice({ message: "같은 이름의 기존 항목을 유지했습니다. 새 항목이나 공부 기록은 만들지 않았습니다." }); return;
+    }
     let next: AppState | null = null;
     const id = uid();
     if (dialog === "semester") next = commit({ type: "addSemester", id, name });
@@ -294,6 +353,9 @@ function Workspace({ repository }: { repository: DemoRepository }) {
         subjectId: subject.id,
         parentId: node?.id || null,
       });
+    if (dialog === "bulk" && subject)
+      next = commit({ type: "addNodes", subjectId: subject.id, parentId: node?.id || null, role,
+        entries: bulkEntries.map(value => ({ id: uid(), name: value.name })), expectedToken: outlineToken, ...(duplicateChoice === "create" ? { duplicateNames: "create" as const } : {}) });
     if (dialog === "rename" && node)
       next = commit({
         type: "renameNode",
@@ -302,8 +364,9 @@ function Workspace({ repository }: { repository: DemoRepository }) {
         expectedVersion: node.version,
       });
     if (next) {
-      setDialog(null);
-      setNotice({ message: "저장했습니다." });
+      finishModal();
+      const revision = dialog === "bulk" ? next.revisions.at(-1) : undefined;
+      setNotice({ message: "저장했습니다.", undo: revision ? () => { commit({ type: "undoRevision", revisionId: revision.id, expectedVersion: revision.after.version }, "추가한 목차를 되돌렸습니다."); } : undefined });
       if (dialog === "semester") setScope(id);
       if (dialog === "subject") go(`/subject/${id}`);
     }
@@ -319,11 +382,11 @@ function Workspace({ repository }: { repository: DemoRepository }) {
     return found;
   };
   const moveNode = () => {
-    if (!node) return;
+    if (!node || modalBlocked) return;
     const next = commit({ type: "moveNode", id: node.id, parentId: moveParent || null, expectedVersion: node.version });
     if (!next) return;
     const revision = next.revisions.slice().reverse().find(r => r.collection === "nodes" && r.entityId === node.id);
-    setDialog(null);
+    finishModal();
     setNotice({ message: "목차 위치를 옮겼습니다. 하위 항목과 기록은 같은 항목에 남습니다.", undo: revision ? () => {
       commit({ type: "undoRevision", revisionId: revision.id, expectedVersion: revision.after.version }, "원래 위치로 되돌렸습니다.");
     } : undefined });
@@ -354,6 +417,18 @@ function Workspace({ repository }: { repository: DemoRepository }) {
       });
     }
   };
+  const reorderNode = (direction: -1 | 1) => {
+    if (!node || !subject) return;
+    const siblings = nodes.filter(item => item.subjectId === subject.id && item.parentId === node.parentId).sort((a, b) => a.order - b.order);
+    const index = siblings.findIndex(item => item.id === node.id), other = index + direction;
+    if (other < 0 || other >= siblings.length) return;
+    [siblings[index], siblings[other]] = [siblings[other], siblings[index]];
+    const next = commit({ type: "reorderNodes", subjectId: subject.id, parentId: node.parentId, ids: siblings.map(item => item.id), expectedToken: outlineRevisionToken(data, subject.id, node.parentId) });
+    const revision = next?.revisions.at(-1);
+    if (revision) setNotice({ message: "형제 항목의 순서를 바꿨습니다.", undo: () => { commit({ type: "undoRevision", revisionId: revision.id, expectedVersion: revision.after.version }, "목차 순서를 되돌렸습니다."); } });
+  };
+  const siblings = node ? nodes.filter(item => item.subjectId === node.subjectId && item.parentId === node.parentId).sort((a,b) => a.order - b.order) : [];
+  const siblingIndex = siblings.findIndex(item => item.id === node?.id);
   const navItems = [
     { href: "/", text: "오늘" },
     { href: "/subjects", text: "과목" },
@@ -453,15 +528,25 @@ function Workspace({ repository }: { repository: DemoRepository }) {
                   : []),
             ]}
           />
-          {error && <ErrorState title="저장하지 못했습니다" message={error} />}
+          {error && <ErrorState title={cleanupKeys.length ? "저장 후 초안 정리가 남았습니다" : "저장하지 못했습니다"} message={error} />}
+          {cleanupKeys.length > 0 && <Button onClick={() => {
+            const remaining = cleanupKeys.filter(key => {
+              // A later edit replaces the empty committed marker; never clear that new input.
+              if (readRescuedDraft(key) !== "") return false;
+              try { clearStoredDraft(key); return false; } catch { return true; }
+            });
+            setCleanupKeys(remaining);
+            if (!remaining.length) { setError(""); setNotice({ message: "저장된 내용은 유지하고 이전 초안만 정리했습니다." }); }
+          }}>저장한 초안 정리 다시 시도</Button>}
           {notice && (!notice.undo || recordRoute) && (
             <div className="feedback-banner">
               <span role="status">{notice.message}</span>
               {notice.undo && (
                 <Button
                   onClick={() => {
-                    notice.undo?.();
+                    const undo = notice.undo;
                     setNotice(null);
+                    undo?.();
                   }}
                 >
                   되돌리기
@@ -488,7 +573,7 @@ function Workspace({ repository }: { repository: DemoRepository }) {
               <h1>{node?.name || subject?.name || rootTitle}</h1>
             </div>
             {subject && !node && (
-              <Button onClick={() => openDialog("node")}>목차 추가</Button>
+              <div className="actions"><Button onClick={() => openDialog("node")}>목차 추가</Button><Button onClick={() => openDialog("bulk")}>여러 항목 추가</Button></div>
             )}
           </div>
           {route === "/" && (
@@ -597,6 +682,15 @@ function Workspace({ repository }: { repository: DemoRepository }) {
                 <Button variant="primary" onClick={() => openDialog("subject")}>
                   과목 추가
                 </Button>
+                <OutlineTableEditor data={data}
+                  initialScope={scope === "independent" ? { kind: "independent" } : scope === "all" || scope === "unassigned" ? { kind: "unassigned" } : { kind: "semester", semesterId: scope }}
+                  onApply={command => {
+                    const result = commit(command, undefined, { opId: command.opId, at: command.at });
+                    const revision = result?.revisions.filter(item => item.operationId === command.opId).at(-1);
+                    if (result) setNotice({ message: "표의 과목과 목차를 저장했습니다.", undo: revision ? () => { commit({ type: "undoRevision", revisionId: revision.id, expectedVersion: revision.after.version }, "표에서 생성한 항목을 되돌렸습니다."); } : undefined });
+                    return result;
+                  }}
+                  onUndo={(revisionId, expectedVersion) => commit({ type: "undoRevision", revisionId, expectedVersion }, "표에서 생성한 항목을 되돌렸습니다.")} />
                 <span className="muted">현재 선택한 범위에 추가됩니다.</span>
               </div>
               <div className="subject-grid">
@@ -667,14 +761,28 @@ function Workspace({ repository }: { repository: DemoRepository }) {
                 </Button>
                 <ContextMenu targetLabel={node.name} label="목차 관리" items={[
                   {id:"add", label:"하위 항목 추가", onSelect:()=>openDialog("node")},
+                  {id:"bulk", label:"여러 하위 항목 추가", onSelect:()=>openDialog("bulk")},
                   {id:"rename", label:"이름 수정", onSelect:()=>openDialog("rename")},
                   {id:"move", label:"위치 옮기기", onSelect:()=>openDialog("move")},
                   {id:"trash", label:"휴지통으로 이동", danger:true, onSelect:()=>openDialog("trash")},
                 ]} />
               </div>
+              <div className="actions" aria-label="형제 항목 순서">
+                <Button disabled={siblingIndex <= 0} onClick={() => reorderNode(-1)}>순서 위로</Button>
+                <Button disabled={siblingIndex < 0 || siblingIndex >= siblings.length - 1} onClick={() => reorderNode(1)}>순서 아래로</Button>
+              </div>
               <CriteriaEditor data={data} targetId={node.id}
-                onApply={change => commit({type: "adjustCriteria", ...change}, "공부 기준을 조정했습니다.")}
-                onUndo={(revisionId, expectedVersion) => commit({type: "undoRevision", revisionId, expectedVersion}, "기준 변경을 되돌렸습니다.")} />
+                onApply={change => {
+                  const result = commit({type: "adjustCriteria", ...change});
+                  const revision = result?.revisions.find(item => item.collection === "criteria" && item.entityId === change.id);
+                  if (revision) setNotice({ message: "공부 기준을 조정했습니다.", undo: () => { commit({type: "undoRevision", revisionId: revision.id, expectedVersion: revision.after.version}, "기준 변경을 되돌렸습니다."); } });
+                  return result;
+                }}
+                onUndo={(revisionId, expectedVersion) => {
+                  const result = commit({type: "undoRevision", revisionId, expectedVersion});
+                  if (result) setNotice({ message: "기준 변경을 되돌렸습니다." });
+                  return result;
+                }} />
               {tree(node.id)}
               <NarrativeEditor
                 key={node.id}
@@ -709,13 +817,17 @@ function Workspace({ repository }: { repository: DemoRepository }) {
               data={data}
               initialTarget={route.startsWith("/record/") ? route.slice("/record/".length) : undefined}
               commit={commit}
-              onSaved={(warning) => {
+              onSaved={(warning, cleanupKey) => {
+                if (cleanupKey) { setCleanupKeys(keys => [...new Set([...keys, cleanupKey])]); setError(warning || "초안 정리를 다시 시도해 주세요."); }
                 setNotice({ message: warning || "공부 기록을 저장했습니다." });
                 go("/");
               }}
             />
           )}
-          {freeRoute && <FreeNotes key={route} data={data} route={route} commit={commit} />}
+          {freeRoute && <FreeNotes key={route} data={data} route={route} commit={commit} onCleanupFailure={key => {
+            setCleanupKeys(keys => [...new Set([...keys, key])]);
+            setError("자유 기록은 저장했습니다. 이전 초안 정리가 남았습니다. 창을 닫기 전에 다시 시도해 주세요.");
+          }} />}
           {route === "/search" && (
             <>
               <Search
@@ -837,14 +949,16 @@ function Workspace({ repository }: { repository: DemoRepository }) {
         }
         onClose={() => setDialog(null)}
       >
+        {modalError && <ErrorState message={modalError} onRetry={recoverModal} />}
+        {modalBlocked && <Button onClick={recoverModal}>원본 사본 보관 후 입력 이어가기</Button>}
         {dialog === "move" && node ? (
           <div className="field-stack">
             <p>‘{node.name}’와 하위 {descendants(node.id).length}개 항목을 같은 과목 안에서 옮깁니다. 공부 기록과 메모는 그대로 연결됩니다.</p>
-            <Select label="옮길 상위 항목" value={moveParent} onChange={e => setMoveParent(e.target.value)}>
+            <Select label="옮길 상위 항목" value={moveParent} onChange={e => { setMoveParent(e.target.value); persistModal({ moveParent: e.target.value }); }}>
               <option value="">{subject?.name} · 과목 바로 아래</option>
               {nodes.filter(candidate => candidate.subjectId === node.subjectId && candidate.id !== node.id && !descendants(node.id).some(child => child.id === candidate.id)).map(candidate => <option key={candidate.id} value={candidate.id}>{topicPath(candidate.id).map(parent => parent.name).join(" / ")}</option>)}
             </Select>
-            <Button variant="primary" disabled={moveParent === (node.parentId || "")} onClick={moveNode}>이 위치로 옮기기</Button>
+            <Button variant="primary" disabled={modalBlocked || moveParent === (node.parentId || "")} onClick={moveNode}>이 위치로 옮기기</Button>
           </div>
         ) : dialog === "trash" && node ? (
           <>
@@ -859,25 +973,47 @@ function Workspace({ repository }: { repository: DemoRepository }) {
           </>
         ) : (
           <form
+            onKeyDown={event => {
+              if (event.key === "Enter" && (event.nativeEvent.isComposing || event.keyCode === 229)) event.preventDefault();
+            }}
             onSubmit={(e) => {
               e.preventDefault();
               addItem();
             }}
           >
             <div className="field-stack">
-              <Input
+              {dialog === "bulk" ? <>
+                <p>같은 위치에 항목을 하나씩 적어 주세요. 빈 행은 제외하며, 입력 행끼리 같은 이름은 한 번만 추가합니다. 기존 항목과 같은 이름을 새로 만들 때는 미리보기에서 선택해 주세요.</p>
+                {bulkNames.map((value, index) => <Input key={index} label={`항목 ${index + 1} 이름`} value={value} maxLength={180}
+                  onKeyDown={event => {
+                    if (event.key !== "Enter" || event.nativeEvent.isComposing || event.keyCode === 229) return;
+                    event.preventDefault();
+                    if (index === bulkNames.length - 1 && bulkNames.length < 500) {
+                      const next = [...bulkNames, ""]; setBulkNames(next); setBulkPreview(false); persistModal({ bulkNames: next });
+                    }
+                    requestAnimationFrame(() => document.querySelectorAll<HTMLInputElement>('[data-editing-context]').forEach(input => {
+                      if (input.dataset.editingContext === `${modalKey}:row:${index + 1}`) input.focus();
+                    }));
+                  }}
+                  data-editing-context={`${modalKey}:row:${index}`} onChange={event => {
+                    const next = bulkNames.map((name, row) => row === index ? event.target.value : name);
+                    setBulkNames(next); setBulkPreview(false); persistModal({ bulkNames: next });
+                  }} />)}
+                <Button disabled={bulkNames.length >= 500} onClick={() => { const next = [...bulkNames, ""]; setBulkNames(next); setBulkPreview(false); persistModal({ bulkNames: next }); }}>입력 행 추가</Button>
+              </> : <Input
                 label="이름"
                 value={name}
-                onChange={(e) => setName(e.target.value)}
+                data-editing-context={`${modalKey}:name`}
+                onChange={(e) => { setName(e.target.value); persistModal({ name: e.target.value }); }}
                 required
-              />
-              {dialog === "node" && (
+              />}
+              {(dialog === "node" || dialog === "bulk") && (
                 <Select
                   label="항목 종류"
                   value={role}
-                  onChange={(e) =>
-                    setRole(e.target.value as OutlineNode["role"])
-                  }
+                  onChange={(e) => {
+                    setRole(e.target.value as OutlineNode["role"]); setBulkPreview(false); persistModal({ role: e.target.value });
+                  }}
                 >
                   <option value="topic">주제</option>
                   <option value="outline">목차</option>
@@ -890,9 +1026,23 @@ function Workspace({ repository }: { repository: DemoRepository }) {
                   선택하세요.
                 </p>
               )}
-              <Button type="submit" variant="primary">
+              {dialog === "bulk" && <>
+                <Button disabled={!bulkNames.some(value => value.trim())} onClick={() => { if (subject) setOutlineToken(outlineRevisionToken(data, subject.id, node?.id || null)); setBulkPreview(true); }}>추가할 항목 미리보기</Button>
+                {bulkPreview && <section aria-label="추가할 목차 미리보기"><p>{node?.name || subject?.name} 바로 아래에 {previewOutlineEntries(bulkNames).entries.length}개 {labelRole[role]}를 추가합니다.</p><ol>{previewOutlineEntries(bulkNames).entries.map(({name},index) => <li key={index}>{name}</li>)}</ol>
+                  {previewOutlineEntries(bulkNames).issues.map((issue,index) => <p role="alert" key={index}>{issue.line}행: {issue.message}</p>)}
+                  {bulkExisting.length > 0 && <>
+                    <Select label="같은 이름의 기존 항목 처리" value={duplicateChoice} onChange={event => setDuplicateChoice(event.target.value as typeof duplicateChoice)}>
+                      <option value="">처리 방법을 선택해 주세요</option><option value="reuse">기존 항목 사용</option><option value="create">같은 이름으로 새 항목 만들기</option>
+                    </Select>
+                    <ul>{bulkExisting.map((item, index) => <li key={item.id}>{item.name} · 현재 목록의 {index + 1}번째 항목</li>)}</ul>
+                    {duplicateChoice === "reuse" && <p>위 기존 항목은 그대로 사용하고 나머지 {bulkEntries.length}개만 추가합니다.</p>}
+                  </>}
+                </section>}
+              </>}
+              <Button type="submit" variant="primary" disabled={modalBlocked || (dialog === "bulk" && (!bulkPreview || !previewOutlineEntries(bulkNames).entries.length || previewOutlineEntries(bulkNames).issues.length > 0 || (bulkExisting.length > 0 && !duplicateChoice)))}>
                 {dialog === "rename" ? "이름 저장" : "추가하기"}
               </Button>
+              <p className="muted">닫아도 초안을 보관합니다. 같은 위치에서 다시 열어 이어 쓸 수 있습니다.</p>
             </div>
           </form>
         )}
@@ -903,8 +1053,9 @@ function Workspace({ repository }: { repository: DemoRepository }) {
           onUndo={
             notice.undo
               ? () => {
-                  notice.undo?.();
+                  const undo = notice.undo;
                   setNotice(null);
+                  undo?.();
                 }
               : undefined
           }
@@ -916,21 +1067,24 @@ function Workspace({ repository }: { repository: DemoRepository }) {
 }
 
 type Commit = (action: Action, success?: string) => AppState | null;
-function useTextDraft(key: string, initial: string, version: number) {
+function useTextDraft(key: string, initial: string, version: number, identity?: { entityId: string; restoreIdentity: boolean }) {
   const [boot] = useState(() => {
     try {
       const raw = readRescuedDraft(key) ?? localStorage.getItem(key);
-      if (!raw) return { body: initial, version, error: "" };
+      if (!raw) return { body: initial, version, error: "", entityId: identity?.entityId };
       const draft = JSON.parse(raw);
       if (
         typeof draft.body !== "string" ||
-        !Number.isSafeInteger(draft.version)
+        !Number.isSafeInteger(draft.version) ||
+        (draft.entityId !== undefined && (typeof draft.entityId !== "string" || !draft.entityId.trim())) ||
+        (identity && !identity.restoreIdentity && draft.entityId !== undefined && draft.entityId !== identity.entityId)
       )
         throw Error();
-      return { ...draft, error: draftReadError(key) } as {
+      return { ...draft, entityId: draft.entityId || identity?.entityId, error: draftReadError(key) } as {
         body: string;
         version: number;
         error: string;
+        entityId?: string;
       };
     } catch {
       rememberDraftReadError(key, "초안을 읽지 못했습니다. 저장된 초안을 덮어쓰지 않았습니다.");
@@ -938,19 +1092,23 @@ function useTextDraft(key: string, initial: string, version: number) {
         body: initial,
         version,
         error: "초안을 읽지 못했습니다. 저장된 초안을 덮어쓰지 않았습니다.",
+        entityId: identity?.entityId,
       };
     }
   });
   const [body, setBody] = useState(boot.body),
     [error, setError] = useState(boot.error || (draftHasUnstoredText(key) ? "저장 실패한 입력을 이 창에서 유지하고 있습니다. 다시 저장하거나 복사해 주세요." : ""));
+  const [blocked, setBlocked] = useState(Boolean(boot.error));
+  const [cleanupPending, setCleanupPending] = useState(false);
   const expected = useRef(boot.version);
   const change = (value: string) => {
+    setCleanupPending(false);
     setBody(value);
-    if (boot.error) { rescueWithoutOverwrite(key, JSON.stringify({body: value, version: expected.current})); return; }
+    if (blocked) { rescueWithoutOverwrite(key, JSON.stringify({body: value, version: expected.current, ...(identity ? { entityId: boot.entityId } : {})})); return; }
     try {
       storeDraftSafely(
         key,
-        JSON.stringify({ body: value, version: expected.current }),
+        JSON.stringify({ body: value, version: expected.current, ...(identity ? { entityId: boot.entityId } : {}) }),
       );
       setError("");
     } catch {
@@ -961,15 +1119,25 @@ function useTextDraft(key: string, initial: string, version: number) {
   };
   const clear = (nextVersion: number) => {
     expected.current = nextVersion;
-    clearRescuedDraft(key);
     try {
-      localStorage.removeItem(key);
-      setError("");
+      clearStoredDraft(key);
+      setCleanupPending(false); setError("");
+      return true;
     } catch {
-      setError("저장했지만 이전 초안 정리를 못했습니다.");
+      setCleanupPending(true);
+      setError("내용은 저장했지만 이전 초안 정리를 못했습니다. 창을 닫기 전에 다시 시도해 주세요.");
+      return false;
     }
   };
-  return { body, change, error, blocked: Boolean(boot.error), expected, clear };
+  const retry = () => {
+    try {
+      if (cleanupPending) { clearStoredDraft(key); setCleanupPending(false); setError(""); return; }
+      if (blocked) archiveDamagedDraft(key);
+      storeDraftSafely(key, JSON.stringify({ body, version: expected.current, ...(identity ? { entityId: boot.entityId } : {}) }));
+      setBlocked(false); setError("");
+    } catch { setError("초안을 보관하지 못했습니다. 원본과 현재 창의 입력은 유지했습니다. 저장 공간을 확인한 뒤 다시 시도해 주세요."); }
+  };
+  return { body, change, error, blocked, expected, clear, retry, cleanupPending, entityId: boot.entityId };
 }
 function NarrativeEditor({
   data,
@@ -989,24 +1157,29 @@ function NarrativeEditor({
   commit: Commit;
   narrativeId?: string;
   newNote?: boolean;
-  onSaved?: (id: string) => void;
+  onSaved?: (id: string, cleanupKey?: string) => void;
   draftKey?: string;
 }) {
   const original = active(data.narratives).find(
     (n) => !newNote && (narrativeId ? n.id === narrativeId : n.kind === kind && n.ownerId === ownerId),
   );
-  const draft = useTextDraft(
-    draftKey || `study-space:demo:narrative:${kind}:${ownerId}`,
-    original?.body || "",
-    original?.version || 0,
-  );
+  const initialId = useRef(original?.id || narrativeId || uid());
+  const storageKey = draftKey || `study-space:demo:narrative:${kind}:${ownerId}`;
+  const draft = useTextDraft(storageKey, original?.body || "", original?.version || 0,
+    { entityId: initialId.current, restoreIdentity: newNote });
   const [saved, setSaved] = useState(false);
-  const stableId = useRef(original?.id || narrativeId || uid());
+  const stableId = draft.entityId || initialId.current;
+  const alreadyCreated = newNote ? active(data.narratives).find(item => item.id === stableId && item.kind === kind && item.ownerId === ownerId) : undefined;
   const save = () => {
+    // A previous successful create may have outlived draft cleanup. Reuse that identity.
+    if (alreadyCreated && alreadyCreated.body === draft.body) {
+      const cleaned = draft.clear(alreadyCreated.version);
+      setSaved(true); onSaved?.(stableId, cleaned ? undefined : storageKey); return;
+    }
     const result = commit(
       {
         type: "updateNarrative",
-        id: stableId.current,
+        id: stableId,
         kind,
         ownerId,
         body: draft.body,
@@ -1015,11 +1188,11 @@ function NarrativeEditor({
       `${label}을 저장했습니다.`,
     );
     if (result) {
-      draft.clear(
-        result.narratives.find((n) => n.id === stableId.current)!.version,
+      const cleaned = draft.clear(
+        result.narratives.find((n) => n.id === stableId)!.version,
       );
       setSaved(true);
-      onSaved?.(stableId.current);
+      onSaved?.(stableId, cleaned ? undefined : storageKey);
     }
   };
   return (
@@ -1031,6 +1204,7 @@ function NarrativeEditor({
       <div className="field-stack">
         <Textarea
           label={label}
+          data-editing-context={draftKey || `narrative:${kind}:${ownerId}`}
           value={draft.body}
           onChange={(e) => {
             draft.change(e.target.value);
@@ -1044,7 +1218,11 @@ function NarrativeEditor({
             ? "이 기기에 저장했습니다."
             : "입력은 이 기기의 초안으로 보관됩니다. 내용 저장을 누르면 수정 이력에 남습니다."}
         </p>
-        {draft.error && <ErrorState message={draft.error} />}
+        {alreadyCreated && alreadyCreated.body !== draft.body && draft.expected.current !== alreadyCreated.version && <>
+          <p role="alert">이 초안의 자유 기록은 이미 저장되어 있습니다. 현재 초안과 저장된 글이 달라 원문을 유지했습니다. 저장된 글을 확인해 주세요.</p>
+          <a href={`#/free/${stableId}`}>저장된 자유 기록 열기</a>
+        </>}
+        {draft.error && <><ErrorState message={draft.error} /><Button onClick={draft.retry}>{draft.blocked ? "원본 사본 보관 후 입력 이어가기" : draft.cleanupPending ? "저장한 초안 정리 다시 시도" : "초안 다시 보관"}</Button></>}
         <Button disabled={draft.blocked} onClick={save}>
           내용 저장
         </Button>
@@ -1052,7 +1230,7 @@ function NarrativeEditor({
     </details>
   );
 }
-function FreeNotes({ data, route, commit }: { data: AppState; route: string; commit: Commit }) {
+function FreeNotes({ data, route, commit, onCleanupFailure }: { data: AppState; route: string; commit: Commit; onCleanupFailure: (key: string) => void }) {
   const notes = active(data.narratives).filter(n => n.kind === "free-note" && n.ownerId === null);
   const [legacy] = useState(() => {
     try {
@@ -1078,7 +1256,7 @@ function FreeNotes({ data, route, commit }: { data: AppState; route: string; com
       : <NarrativeEditor data={data} kind="free-note" ownerId={null} label="자유 기록" commit={commit}
           narrativeId={creating ? undefined : id} newNote={creating}
           draftKey={creating ? "study-space:demo:narrative:free-note:new" : id === legacy.id ? "study-space:demo:narrative:free-note:null" : `study-space:demo:narrative:free-note:id:${id}`}
-          onSaved={creating ? savedId => go(`/free/${savedId}`) : undefined} />}
+          onSaved={creating ? (savedId, cleanupKey) => { if (cleanupKey) onCleanupFailure(cleanupKey); go(`/free/${savedId}`); } : undefined} />}
     <section className="section-space" aria-label="저장한 자유 기록">
       <h2>저장한 자유 기록</h2>
       <p className="muted">생각을 저장해도 공부 회차는 늘어나지 않습니다. 새 기록의 초안은 ‘새 자유 기록’에서 이어 씁니다.</p>
@@ -1101,13 +1279,14 @@ function RecordForm({
   data: AppState;
   initialTarget?: string;
   commit: Commit;
-  onSaved: (warning?: string) => void;
+  onSaved: (warning?: string, cleanupKey?: string) => void;
 }) {
   const key = initialTarget || "multiple";
   const [boot] = useState(() => {
     try {
       const storageKey = `study-space:demo:draft:${key}`;
       const rescued = readRescuedDraft(storageKey);
+      if (rescued === "") return { draft: null, error: "" };
       if (rescued) { const draft = JSON.parse(rescued); validateFormDraft(draft, key); return { draft, error: draftReadError(storageKey) }; }
       return { draft: readDraft(localStorage, key), error: draftReadError(storageKey) };
     } catch (e) {
@@ -1129,6 +1308,7 @@ function RecordForm({
   );
   const currentForm = useRef(form);
   const [draftError, setDraftError] = useState(boot.error || (draftHasUnstoredText(`study-space:demo:draft:${key}`) ? "저장에 실패한 입력을 이 창에서 유지합니다. 다시 저장하거나 복사해 주세요." : ""));
+  const [draftBlocked, setDraftBlocked] = useState(Boolean(boot.error));
   const [filter, setFilter] = useState("");
   const guard = useRef(false);
   const nodes = active(data.nodes).filter(
@@ -1138,7 +1318,7 @@ function RecordForm({
     currentForm.current = next;
     setForm(next);
     const storageKey = `study-space:demo:draft:${key}`;
-    if (boot.error) { rescueWithoutOverwrite(storageKey, JSON.stringify(next)); return; }
+    if (draftBlocked) { rescueWithoutOverwrite(storageKey, JSON.stringify(next)); return; }
     try {
       validateFormDraft(next, key);
       storeDraftSafely(storageKey, JSON.stringify(next));
@@ -1158,7 +1338,7 @@ function RecordForm({
       done: checked ? { ...form.done, [id]: form.done[id] ?? true } : form.done,
     });
   const submit = () => {
-    if (guard.current || boot.error) return;
+    if (guard.current || draftBlocked) return;
     guard.current = true;
     const form = currentForm.current;
     const next = commit({
@@ -1174,14 +1354,13 @@ function RecordForm({
     });
     if (next) {
       let warning: string | undefined;
-      clearRescuedDraft(`study-space:demo:draft:${key}`);
       try {
-        localStorage.removeItem(`study-space:demo:draft:${key}`);
+        clearStoredDraft(`study-space:demo:draft:${key}`);
       } catch {
         warning =
           "기록은 저장했습니다. 초안 정리에 실패해 이전 초안이 남아 있을 수 있습니다.";
       }
-      onSaved(warning);
+      onSaved(warning, warning ? `study-space:demo:draft:${key}` : undefined);
     } else guard.current = false;
   };
   return (
@@ -1245,6 +1424,7 @@ function RecordForm({
             />
             <Textarea
               label="남길 생각 · 선택"
+              data-editing-context={`record-draft:${key}:${id}`}
               value={form.bodies[id] || ""}
               rows={3}
               onChange={(e) =>
@@ -1256,6 +1436,7 @@ function RecordForm({
               placeholder="짧은 메모, 막힌 점, 긴 생각 모두 괜찮습니다."
             />
             <TraceEditor
+              contextKey={`record-draft:${key}:${form.sessionId}:${id}`}
               definitions={data.nodes.some(node => node.id === id) ? resolveCriteria(data, id).items : undefined}
               trace={form.trace[id] || {}}
               onChange={(trace) =>
@@ -1346,7 +1527,15 @@ function RecordForm({
             </>
           )}
         </details>
-        {draftError && <ErrorState message={draftError} />}
+        {draftError && <><ErrorState message={draftError} /><Button onClick={() => {
+          const storageKey = `study-space:demo:draft:${key}`;
+          try {
+            if (draftBlocked) archiveDamagedDraft(storageKey);
+            validateFormDraft(currentForm.current, key);
+            storeDraftSafely(storageKey, JSON.stringify(currentForm.current));
+            setDraftBlocked(false); setDraftError("");
+          } catch { setDraftError("초안을 보관하지 못했습니다. 원본과 현재 창의 입력은 유지했습니다. 저장 공간을 확인한 뒤 다시 시도해 주세요."); }
+        }}>{draftBlocked ? "원본 사본 보관 후 입력 이어가기" : "초안 다시 보관"}</Button></>}
         <div className="save-bar">
           <span className="muted">
             {boot.draft
@@ -1355,7 +1544,7 @@ function RecordForm({
           </span>
           <Button
             variant="primary"
-            disabled={!form.selectedIds.length || Boolean(boot.error)}
+            disabled={!form.selectedIds.length || draftBlocked}
             onClick={submit}
           >
             {form.selectedIds.length
@@ -1407,6 +1596,7 @@ function RecordCard({
         <>
           <Textarea
             label="기록 수정"
+            data-editing-context={`record:${record.id}`}
             value={body.body}
             onChange={(e) => body.change(e.target.value)}
           />
@@ -1446,7 +1636,7 @@ function RecordCard({
           </Button>
         </>
       )}
-      {body.error && <ErrorState message={body.error} />}
+      {body.error && <><ErrorState message={body.error} /><Button onClick={body.retry}>{body.blocked ? "원본 사본 보관 후 입력 이어가기" : body.cleanupPending ? "저장한 초안 정리 다시 시도" : "초안 다시 보관"}</Button></>}
       <details>
         <summary>남긴 체크와 시험 전 서술 점검</summary>
         <p>
@@ -1468,6 +1658,7 @@ function RecordCard({
         {(allowNewWrittenReview || record.trace.Cself1 || answer.body) && <>
         <Textarea
           label="시험 전, 자신의 문장으로 설명하기"
+          data-editing-context={`review:${record.id}`}
           value={answer.body}
           onChange={(e) => answer.change(e.target.value)}
         />
@@ -1516,7 +1707,7 @@ function RecordCard({
             }
           }}
         />
-        {answer.error && <ErrorState message={answer.error} />}
+        {answer.error && <><ErrorState message={answer.error} /><Button onClick={answer.retry}>{answer.blocked ? "원본 사본 보관 후 입력 이어가기" : answer.cleanupPending ? "저장한 초안 정리 다시 시도" : "초안 다시 보관"}</Button></>}
         <p className="muted">
           서술 점검은 실제 정확성이나 목표 달성과 별개입니다.
         </p>

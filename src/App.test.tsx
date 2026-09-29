@@ -182,7 +182,7 @@ describe('study flows preserve meaning and input', () => {
     expect(currentRecords()).toHaveLength(0);
   });
 
-  it('keeps the committed result visible when clearing its draft fails', async () => {
+  it('uses an empty marker when draft removal fails so a committed result never returns as input', async () => {
     const user = userEvent.setup(); await open(`/record/${firstTopic}`);
     fireEvent.change(screen.getByRole('textbox', { name: '남길 생각 · 선택' }), { target: { value: '저장할 본문' } });
     const originalRemove = Storage.prototype.removeItem;
@@ -193,8 +193,10 @@ describe('study flows preserve meaning and input', () => {
     await user.click(screen.getByRole('button', { name: '1개 주제 기록 저장' }));
     expect(currentRecords()).toHaveLength(1);
     expect(currentRecords()[0].body).toBe('저장할 본문');
-    expect(readDraft(localStorage, firstTopic)?.bodies[firstTopic]).toBe('저장할 본문');
-    expect(await screen.findByText(/초안.*정리/)).toBeInTheDocument();
+    expect(readDraft(localStorage, firstTopic)).toBeNull();
+    await navigate(`/record/${firstTopic}`);
+    expect(screen.getByRole('textbox', { name: '남길 생각 · 선택' })).toHaveValue('');
+    expect(currentRecords()).toHaveLength(1);
   });
 
   it('allows written-review unchecking without deleting the answer and reopens the check after editing', async () => {
@@ -365,4 +367,217 @@ describe('outline changes keep the original study identity', () => {
     for (const summary of screen.getAllByText('남긴 체크와 시험 전 서술 점검')) await user.click(summary);
     expect(screen.getAllByRole('textbox', {name:'시험 전, 자신의 문장으로 설명하기'})).toHaveLength(1);
   });
+});
+
+
+describe('input modals keep separate drafts through close and restart', () => {
+  it('keeps semester and subject text separate and clears only the successfully created modal draft', async () => {
+    const user = userEvent.setup(); let view = await open('/subjects');
+    await user.click(screen.getByRole('button', { name: '학기 추가' }));
+    fireEvent.change(screen.getByRole('textbox', { name: '이름' }), { target: { value: '  다음 학기 초안' } });
+    await user.keyboard('{Escape}');
+    await user.click(screen.getByRole('button', { name: '과목 추가' }));
+    expect(screen.getByRole('textbox', { name: '이름' })).toHaveValue('');
+    fireEvent.change(screen.getByRole('textbox', { name: '이름' }), { target: { value: '새 과목 입력' } });
+    await navigate('/');
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+    view.unmount(); await waitFor(() => expect(locked).toBe(false));
+    view = await open('/subjects');
+    await user.click(screen.getByRole('button', { name: '학기 추가' }));
+    expect(screen.getByRole('textbox', { name: '이름' })).toHaveValue('  다음 학기 초안');
+    await user.keyboard('{Escape}');
+    await user.click(screen.getByRole('button', { name: '과목 추가' }));
+    expect(screen.getByRole('textbox', { name: '이름' })).toHaveValue('새 과목 입력');
+    await user.click(screen.getByRole('button', { name: '추가하기' }));
+    await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument());
+    await navigate('/subjects'); await user.click(screen.getByRole('button', { name: '과목 추가' }));
+    expect(screen.getByRole('textbox', { name: '이름' })).toHaveValue('');
+    expect(state().subjects.filter(subject => subject.name === '새 과목 입력')).toHaveLength(1);
+  });
+
+  it('keeps rename drafts scoped to their node and preserves a failed modal write in RAM until retry', async () => {
+    const user = userEvent.setup(); await open(`/node/${firstTopic}`);
+    await user.click(screen.getByText('목차 관리', { exact: true })); await user.click(screen.getByText('이름 수정', { exact: true }));
+    const key = `study-space:demo:modal:rename:${firstTopic}`, original = Storage.prototype.setItem;
+    const spy = vi.spyOn(Storage.prototype, 'setItem').mockImplementation(function(this: Storage, name, value) { if (name === key) throw Error('quota'); original.call(this, name, value); });
+    fireEvent.change(screen.getByRole('textbox', { name: '이름' }), { target: { value: '실패 뒤 남길 이름' } });
+    await user.keyboard('{Escape}'); await navigate(`/node/${secondTopic}`);
+    await user.click(screen.getByText('목차 관리', { exact: true })); await user.click(screen.getByText('이름 수정', { exact: true }));
+    expect(screen.getByRole('textbox', { name: '이름' })).toHaveValue(secondName);
+    await user.keyboard('{Escape}'); await navigate(`/node/${firstTopic}`);
+    await user.click(screen.getByText('목차 관리', { exact: true })); await user.click(screen.getByText('이름 수정', { exact: true }));
+    expect(screen.getByRole('textbox', { name: '이름' })).toHaveValue('실패 뒤 남길 이름');
+    spy.mockRestore(); await user.click(within(screen.getByRole('dialog')).getByRole('button', { name: '다시 시도' }));
+    expect(localStorage.getItem(key)).toContain('실패 뒤 남길 이름');
+    await user.click(screen.getByRole('button', { name: '이름 저장' }));
+    expect(state().nodes.find(node => node.id === firstTopic)?.name).toBe('실패 뒤 남길 이름');
+    expect(localStorage.getItem(key)).toBeNull();
+  });
+
+  it('archives damaged study bytes before enabling current input, then survives restart and saves once', async () => {
+    const user = userEvent.setup(), key = `study-space:demo:draft:${firstTopic}`, broken = '{unfinished original';
+    localStorage.setItem(key, broken); const view = await open(`/record/${firstTopic}`);
+    fireEvent.change(screen.getByRole('textbox', { name: '남길 생각 · 선택' }), { target: { value: '복구한 현재 글\n원문' } });
+    await user.click(screen.getByRole('button', { name: '원본 사본 보관 후 입력 이어가기' }));
+    const archive = Object.keys(localStorage).find(name => name.startsWith(`${key}:recovery:`));
+    expect(archive).toBeTruthy(); expect(localStorage.getItem(archive!)).toBe(broken);
+    view.unmount(); await waitFor(() => expect(locked).toBe(false)); await open(`/record/${firstTopic}`);
+    expect(screen.getByRole('textbox', { name: '남길 생각 · 선택' })).toHaveValue('복구한 현재 글\n원문');
+    await user.click(screen.getByRole('button', { name: '1개 주제 기록 저장' }));
+    expect(currentRecords()).toHaveLength(1); expect(currentRecords()[0].body).toBe('복구한 현재 글\n원문');
+    expect(localStorage.getItem(archive!)).toBe(broken);
+  });
+
+  it('previews individual bulk cells, deduplicates repeated new names and atomically undoes the addition', async () => {
+    const user = userEvent.setup(); await open('/subject/demo-subject-math');
+    await user.click(screen.getByRole('button', { name: '여러 항목 추가' }));
+    fireEvent.change(screen.getByRole('textbox', { name: '항목 1 이름' }), { target: { value: '첫 항목' } });
+    fireEvent.change(screen.getByRole('textbox', { name: '항목 2 이름' }), { target: { value: '다음 항목' } });
+    fireEvent.change(screen.getByRole('textbox', { name: '항목 3 이름' }), { target: { value: '첫 항목' } });
+    expect(screen.getByRole('button', { name: '추가하기' })).toBeDisabled();
+    await user.keyboard('{Escape}'); await user.click(screen.getByRole('button', { name: '여러 항목 추가' }));
+    expect(screen.getByRole('textbox', { name: '항목 2 이름' })).toHaveValue('다음 항목');
+    await user.click(screen.getByRole('button', { name: '추가할 항목 미리보기' }));
+    expect(screen.getByRole('region', { name: '추가할 목차 미리보기' })).toHaveTextContent('2개 주제');
+    await user.click(screen.getByRole('button', { name: '추가하기' }));
+    expect(state().nodes.filter(node => !node.deletedAt && ['첫 항목', '다음 항목'].includes(node.name))).toHaveLength(2);
+    await user.click(screen.getByRole('button', { name: '되돌리기' }));
+    expect(state().nodes.filter(node => !node.deletedAt && ['첫 항목', '다음 항목'].includes(node.name))).toHaveLength(0);
+    expect(currentRecords()).toHaveLength(0);
+  });
+});
+
+it('keeps a move destination after close and remount, then clears it after a successful move', async () => {
+  const user = userEvent.setup(), view = await open(`/node/${firstTopic}`);
+  await user.click(screen.getByText('목차 관리', { exact: true })); await user.click(screen.getByText('위치 옮기기', { exact: true }));
+  await user.selectOptions(screen.getByRole('combobox', { name: '옮길 상위 항목' }), '');
+  await user.keyboard('{Escape}'); view.unmount(); await waitFor(() => expect(locked).toBe(false)); await open(`/node/${firstTopic}`);
+  await user.click(screen.getByText('목차 관리', { exact: true })); await user.click(screen.getByText('위치 옮기기', { exact: true }));
+  expect(screen.getByRole('combobox', { name: '옮길 상위 항목' })).toHaveValue('');
+  await user.click(screen.getByRole('button', { name: '이 위치로 옮기기' }));
+  expect(state().nodes.find(node => node.id === firstTopic)?.parentId).toBeNull();
+  expect(localStorage.getItem(`study-space:demo:modal:move:${firstTopic}`)).toBeNull();
+});
+
+it('never silently replaces a corrupt modal draft across close, and enables recovery only after archiving it', async () => {
+  const user = userEvent.setup(), key = 'study-space:demo:modal:semester:global';
+  localStorage.setItem(key, '{ damaged original'); await open();
+  await user.click(screen.getByRole('button', { name: '학기 추가' }));
+  fireEvent.change(screen.getByRole('textbox', { name: '이름' }), { target: { value: '복구할 학기 이름' } });
+  await user.keyboard('{Escape}'); await user.click(screen.getByRole('button', { name: '학기 추가' }));
+  expect(screen.getByRole('textbox', { name: '이름' })).toHaveValue('복구할 학기 이름');
+  expect(screen.getByRole('button', { name: '추가하기' })).toBeDisabled();
+  expect(localStorage.getItem(key)).toBe('{ damaged original');
+  await user.click(screen.getByRole('button', { name: '원본 사본 보관 후 입력 이어가기' }));
+  const archived = Object.keys(localStorage).find(name => name.startsWith(`${key}:recovery:`));
+  expect(localStorage.getItem(archived!)).toBe('{ damaged original');
+  await user.click(screen.getByRole('button', { name: '추가하기' }));
+  expect(state().semesters.filter(semester => semester.name === '복구할 학기 이름')).toHaveLength(1);
+});
+
+it('preserves same-parent order across UI reorder and undo without changing records or descendants', async () => {
+  const user = userEvent.setup(); await open(`/node/${firstTopic}`);
+  const before = state(), original = before.nodes.find(node => node.id === firstTopic)!;
+  const sibling = before.nodes.find(node => node.id === secondTopic)!;
+  await user.click(screen.getByRole('button', { name: '순서 아래로' }));
+  expect(state().nodes.find(node => node.id === firstTopic)!.order).toBeGreaterThan(state().nodes.find(node => node.id === secondTopic)!.order);
+  expect(state().nodes.find(node => node.id === firstTopic)!.parentId).toBe(original.parentId);
+  expect(currentRecords()).toEqual(before.records);
+  await user.click(screen.getByRole('button', { name: '되돌리기' }));
+  expect(state().nodes.find(node => node.id === firstTopic)!.order).toBe(original.order);
+  expect(state().nodes.find(node => node.id === secondTopic)!.order).toBe(sibling.order);
+});
+
+it('retries failed committed-draft cleanup without erasing a later new draft', async () => {
+  const user = userEvent.setup(), key = `study-space:demo:draft:${firstTopic}`;
+  await open(`/record/${firstTopic}`);
+  fireEvent.change(screen.getByRole('textbox', { name: '남길 생각 · 선택' }), { target: { value: '처음 저장할 글' } });
+  const originalSet = Storage.prototype.setItem, originalRemove = Storage.prototype.removeItem;
+  const write = vi.spyOn(Storage.prototype, 'setItem').mockImplementation(function(this: Storage, name, value) { if (name === key) throw Error('full'); originalSet.call(this, name, value); });
+  const remove = vi.spyOn(Storage.prototype, 'removeItem').mockImplementation(function(this: Storage, name) { if (name === key) throw Error('denied'); originalRemove.call(this, name); });
+  await user.click(screen.getByRole('button', { name: '1개 주제 기록 저장' }));
+  expect(currentRecords()).toHaveLength(1);
+  await waitFor(() => expect(screen.getByRole('button', { name: '저장한 초안 정리 다시 시도' })).toBeInTheDocument());
+  write.mockRestore(); remove.mockRestore();
+  await navigate(`/record/${firstTopic}`);
+  expect(screen.getByRole('textbox', { name: '남길 생각 · 선택' })).toHaveValue('');
+  fireEvent.change(screen.getByRole('textbox', { name: '남길 생각 · 선택' }), { target: { value: '다음 공부의 새 글' } });
+  await user.click(screen.getByRole('button', { name: '저장한 초안 정리 다시 시도' }));
+  expect(readDraft(localStorage, firstTopic)?.bodies[firstTopic]).toBe('다음 공부의 새 글');
+  expect(currentRecords()).toHaveLength(1);
+});
+
+it('connects the full course table to the active scope and keeps batch undo available after route changes', async () => {
+  const user = userEvent.setup(); await open('/subjects');
+  await user.selectOptions(screen.getByRole('combobox', { name: '학기와 공부 범위' }), 'independent');
+  await user.click(screen.getByRole('button', { name: '표로 한 번에 만들기' }));
+  fireEvent.change(screen.getByRole('textbox', { name: '1번째 과목명' }), { target: { value: '표의 독립 과목' } });
+  fireEvent.change(screen.getByRole('textbox', { name: '1번째 과목 1번째 단원' }), { target: { value: '첫 단원' } });
+  fireEvent.change(screen.getByRole('textbox', { name: '1번째 과목 1번째 단원 1번째 주제' }), { target: { value: '한 주제' } });
+  await user.click(screen.getByRole('button', { name: '생성할 구조 확인' }));
+  await user.click(screen.getByRole('button', { name: '한 번에 생성' }));
+  const subject = state().subjects.find(row => row.name === '표의 독립 과목')!;
+  expect(subject.scope).toEqual({ kind: 'independent' });
+  expect(state().nodes.filter(node => node.subjectId === subject.id && !node.deletedAt)).toHaveLength(2);
+  await navigate('/');
+  await user.click(screen.getByRole('button', { name: '되돌리기' }));
+  expect(state().subjects.find(row => row.id === subject.id)?.deletedAt).toBeTruthy();
+  expect(state().nodes.filter(node => node.subjectId === subject.id && !node.deletedAt)).toHaveLength(0);
+  expect(currentRecords()).toHaveLength(0);
+});
+
+it('routes a committed new free note to its saved identity even when both cleanup paths fail, preserving later edits', async () => {
+  const user = userEvent.setup(), key = 'study-space:demo:narrative:free-note:new';
+  await open('/free/new');
+  fireEvent.change(screen.getByRole('textbox', { name: '자유 기록' }), { target: { value: '최초 자유 글' } });
+  const draftId = JSON.parse(localStorage.getItem(key)!).entityId;
+  const originalSet = Storage.prototype.setItem, originalRemove = Storage.prototype.removeItem;
+  const write = vi.spyOn(Storage.prototype, 'setItem').mockImplementation(function(this: Storage, name, value) { if (name === key) throw Error('full'); originalSet.call(this, name, value); });
+  const remove = vi.spyOn(Storage.prototype, 'removeItem').mockImplementation(function(this: Storage, name) { if (name === key) throw Error('denied'); originalRemove.call(this, name); });
+  await user.click(screen.getByRole('button', { name: '내용 저장' }));
+  await waitFor(() => expect(location.hash).toBe(`#/free/${draftId}`));
+  expect(screen.getByRole('button', { name: '저장한 초안 정리 다시 시도' })).toBeInTheDocument();
+  expect(state().narratives.filter(row => row.kind === 'free-note')).toHaveLength(1);
+  write.mockRestore(); remove.mockRestore();
+  fireEvent.change(screen.getByRole('textbox', { name: '자유 기록' }), { target: { value: '최초 글을 이어 수정' } });
+  await navigate('/'); await navigate(`/free/${draftId}`);
+  expect(screen.getByRole('textbox', { name: '자유 기록' })).toHaveValue('최초 글을 이어 수정');
+  await user.click(screen.getByRole('button', { name: '저장한 초안 정리 다시 시도' }));
+  await user.click(screen.getByRole('button', { name: '내용 저장' }));
+  expect(state().narratives.filter(row => row.kind === 'free-note')).toHaveLength(1);
+  expect(state().narratives.find(row => row.id === draftId)?.body).toBe('최초 글을 이어 수정');
+});
+
+it('does not duplicate an already committed new free note after its old disk draft reappears on restart', async () => {
+  const user = userEvent.setup(), key = 'study-space:demo:narrative:free-note:new';
+  const view = await open('/free/new');
+  fireEvent.change(screen.getByRole('textbox', { name: '자유 기록' }), { target: { value: '재실행 후에도 같은 기록' } });
+  const oldDraft = localStorage.getItem(key)!, id = JSON.parse(oldDraft).entityId;
+  await user.click(screen.getByRole('button', { name: '내용 저장' }));
+  await waitFor(() => expect(location.hash).toBe(`#/free/${id}`));
+  view.unmount(); await waitFor(() => expect(locked).toBe(false));
+  localStorage.setItem(key, oldDraft); clearRescuedDraft(key);
+  await open('/free/new'); await user.click(screen.getByRole('button', { name: '내용 저장' }));
+  await waitFor(() => expect(location.hash).toBe(`#/free/${id}`));
+  expect(state().narratives.filter(row => row.kind === 'free-note')).toHaveLength(1);
+  expect(localStorage.getItem(key)).toBeNull();
+});
+
+it('keeps a differing resurrected free draft apart from the saved record instead of duplicating or overwriting it', async () => {
+  const user = userEvent.setup(), key = 'study-space:demo:narrative:free-note:new';
+  const view = await open('/free/new');
+  fireEvent.change(screen.getByRole('textbox', { name: '자유 기록' }), { target: { value: '초기의 초안' } });
+  const oldDraft = localStorage.getItem(key)!, id = JSON.parse(oldDraft).entityId;
+  await user.click(screen.getByRole('button', { name: '내용 저장' }));
+  await waitFor(() => expect(location.hash).toBe(`#/free/${id}`));
+  fireEvent.change(screen.getByRole('textbox', { name: '자유 기록' }), { target: { value: '나중에 저장한 글' } });
+  await user.click(screen.getByRole('button', { name: '내용 저장' }));
+  view.unmount(); await waitFor(() => expect(locked).toBe(false));
+  localStorage.setItem(key, oldDraft); clearRescuedDraft(key); await open('/free/new');
+  expect(screen.getByRole('textbox', { name: '자유 기록' })).toHaveValue('초기의 초안');
+  expect(screen.getByRole('link', { name: '저장된 자유 기록 열기' })).toHaveAttribute('href', `#/free/${id}`);
+  await user.click(screen.getByRole('button', { name: '내용 저장' }));
+  expect(state().narratives.filter(row => row.kind === 'free-note')).toHaveLength(1);
+  expect(state().narratives.find(row => row.id === id)?.body).toBe('나중에 저장한 글');
+  expect(localStorage.getItem(key)).toBe(oldDraft);
 });

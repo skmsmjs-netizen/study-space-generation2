@@ -1,7 +1,7 @@
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { NAVIGATION_CONTEXT_KEY, navigate, readRouteHash, useRoute } from './navigation-context';
+import { NAVIGATION_CONTEXT_KEY, EDITING_CONTEXT_KEY, navigate, readRouteHash, useRoute } from './navigation-context';
 
 let x = 0, y = 0;
 const scrollTo = vi.fn((options: ScrollToOptions | number, top?: number) => {
@@ -130,8 +130,8 @@ describe('route context', () => {
     render(<Harness />);
     traversal('#/second');
     expect(screen.getByRole('heading')).toHaveTextContent('/second');
-    expect(get.mock.calls.every(call => call[0] === NAVIGATION_CONTEXT_KEY)).toBe(true);
-    expect(set.mock.calls.every(call => call[0] === NAVIGATION_CONTEXT_KEY)).toBe(true);
+    expect(get.mock.calls.every(call => [NAVIGATION_CONTEXT_KEY, EDITING_CONTEXT_KEY].includes(call[0]))).toBe(true);
+    expect(set.mock.calls.every(call => [NAVIGATION_CONTEXT_KEY, EDITING_CONTEXT_KEY].includes(call[0]))).toBe(true);
   });
 
   it('ignores corrupt hints and falls back when the saved focus control was removed', () => {
@@ -154,4 +154,24 @@ describe('route context', () => {
     expect(screen.getByRole('button')).toHaveFocus();
     expect(screen.getByRole('heading')).toHaveTextContent('/first');
   });
+});
+
+it('restores long text selection direction and internal scroll through route replacement and remount', async () => {
+  function EditorHarness() {
+    const route = useRoute();
+    return <main key={route}><h1>{route}</h1>{route === '/first' && <textarea aria-label="긴 글" data-editing-context="narrative:stable" defaultValue={'가나다라마바사\n'.repeat(100)} />}</main>;
+  }
+  const view = render(<EditorHarness />);
+  let editor = screen.getByRole('textbox') as HTMLTextAreaElement;
+  editor.focus(); editor.setSelectionRange(22, 58, 'backward'); editor.scrollTop = 340; editor.scrollLeft = 12;
+  fireEvent.select(editor); fireEvent.scroll(editor);
+  const saved = sessionStorage.getItem(EDITING_CONTEXT_KEY)!;
+  expect(saved).not.toContain('가나다');
+  traversal('#/second'); traversal('#/first');
+  await act(async () => await Promise.resolve());
+  editor = screen.getByRole('textbox') as HTMLTextAreaElement;
+  expect([editor.selectionStart, editor.selectionEnd, editor.selectionDirection, editor.scrollTop, editor.scrollLeft]).toEqual([22, 58, 'backward', 340, 12]);
+  fireEvent(window, new Event('pagehide')); view.unmount();
+  render(<EditorHarness />); editor = screen.getByRole('textbox') as HTMLTextAreaElement;
+  expect([editor.selectionStart, editor.selectionEnd, editor.selectionDirection, editor.scrollTop]).toEqual([22, 58, 'backward', 340]);
 });

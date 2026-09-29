@@ -3,7 +3,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 // Navigation hints only. Never place study text, drafts, credentials or server state here.
 export const NAVIGATION_CONTEXT_KEY = 'study-space:demo:navigation-context:v1';
 const BEFORE_NAVIGATE = 'study-space:before-navigate';
-type FocusTarget = { kind: 'key' | 'id' | 'href'; value: string };
+type FocusTarget = { kind: 'key' | 'id' | 'href' | 'editor'; value: string };
 type Position = { x: number; y: number; focus?: FocusTarget };
 type NavigationContext = { version: 1; route: string; positions: Record<string, Position> };
 
@@ -35,7 +35,7 @@ function readContext(): NavigationContext {
         !Number.isFinite(candidate.x) || !Number.isFinite(candidate.y) || candidate.x < 0 || candidate.y < 0) continue;
       const focus = candidate.focus;
       positions[route] = { x: candidate.x, y: candidate.y,
-        ...(focus && ['key', 'id', 'href'].includes(focus.kind) &&
+        ...(focus && ['key', 'id', 'href', 'editor'].includes(focus.kind) &&
           typeof focus.value === 'string' && focus.value.length <= 4096 ? { focus } : {}) };
     }
     return { version: 1, route: raw.route, positions };
@@ -49,6 +49,7 @@ function writeContext(context: NavigationContext) {
 
 function identifyFocus(element: Element | null): FocusTarget | undefined {
   if (!(element instanceof HTMLElement) || element === document.body) return undefined;
+  if (element.dataset.editingContext) return { kind: 'editor', value: element.dataset.editingContext };
   const key = element.dataset.navigationFocus;
   if (key) return { kind: 'key', value: key };
   if (element.id) return { kind: 'id', value: element.id };
@@ -59,7 +60,7 @@ function identifyFocus(element: Element | null): FocusTarget | undefined {
 
 function findFocus(target: FocusTarget): HTMLElement | undefined {
   // Compare attributes as values, rather than injecting original IDs into a selector.
-  const attr = target.kind === 'key' ? 'data-navigation-focus' : target.kind === 'id' ? 'id' : 'href';
+  const attr = target.kind === 'key' ? 'data-navigation-focus' : target.kind === 'id' ? 'id' : target.kind === 'editor' ? 'data-editing-context' : 'href';
   return Array.from(document.querySelectorAll<HTMLElement>(`[${attr}]`))
     .find(element => element.getAttribute(attr) === target.value &&
       !element.closest('[hidden], [inert]') && !element.matches(':disabled'));
@@ -89,6 +90,7 @@ export function navigate(path: string) {
  * Session hints are tab-local and are not account data or a substitute for drafts.
  */
 export function useRoute(): string {
+  useEditingContext();
   const [initial] = useState(() => readContext());
   const [route, setRoute] = useState(() => window.location.hash ? readRouteHash() : initial.route);
   const context = useRef(initial);
@@ -167,4 +169,54 @@ export function useRoute(): string {
     if (window.scrollX !== x || window.scrollY !== y) window.scrollTo({ left: x, top: y, behavior: 'instant' });
   }, [route]);
   return route;
+}
+
+// Cursor/scroll hints contain no written content. Stable keys belong to an entity and field.
+export const EDITING_CONTEXT_KEY = 'study-space:demo:editing-context:v1';
+type EditingPosition = { start: number; end: number; direction: 'forward' | 'backward' | 'none'; top: number; left: number };
+function useEditingContext() {
+  useLayoutEffect(() => {
+    let positions: Record<string, EditingPosition> = {};
+    try {
+      const raw: unknown = JSON.parse(sessionStorage.getItem(EDITING_CONTEXT_KEY) || '{}');
+      if (raw && typeof raw === 'object') for (const [key, value] of Object.entries(raw).slice(-200)) {
+        if (!value || typeof value !== 'object') continue;
+        const p = value as EditingPosition;
+        if ([p.start, p.end, p.top, p.left].every(n => Number.isFinite(n) && n >= 0) && ['forward', 'backward', 'none'].includes(p.direction)) positions[key] = p;
+      }
+    } catch { /* Invalid view hints never block original text. */ }
+    const restored = new WeakSet<Element>();
+    const field = (target: EventTarget | null) => (target instanceof HTMLTextAreaElement || target instanceof HTMLInputElement) && target.dataset.editingContext ? target : null;
+    const save = (element: HTMLTextAreaElement | HTMLInputElement) => {
+      const key = element.dataset.editingContext!;
+      if (element.selectionStart === null || element.selectionEnd === null) return;
+      positions[key] = { start: element.selectionStart, end: element.selectionEnd, direction: element.selectionDirection || 'none', top: element.scrollTop, left: element.scrollLeft };
+      const entries = Object.entries(positions);
+      if (entries.length > 200) positions = Object.fromEntries(entries.slice(-200));
+      try { sessionStorage.setItem(EDITING_CONTEXT_KEY, JSON.stringify(positions)); } catch { /* In-tab hints remain available. */ }
+    };
+    const capture = (event: Event) => { const element = field(event.target); if (element) save(element); };
+    const captureActive = () => { const element = field(document.activeElement); if (element) save(element); };
+    const restore = () => document.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('[data-editing-context]').forEach(element => {
+      if (restored.has(element)) return;
+      restored.add(element);
+      const p = positions[element.dataset.editingContext!];
+      if (!p) return;
+      try { element.setSelectionRange(Math.min(p.start, element.value.length), Math.min(p.end, element.value.length), p.direction); } catch { return; }
+      element.scrollTop = p.top; element.scrollLeft = p.left;
+    });
+    restore();
+    const observer = new MutationObserver(restore);
+    observer.observe(document.body, { childList: true, subtree: true });
+    const events = ['select', 'keyup', 'pointerup', 'input', 'scroll', 'focusout'];
+    events.forEach(name => document.addEventListener(name, capture, true));
+    window.addEventListener('pagehide', captureActive);
+    window.addEventListener(BEFORE_NAVIGATE, captureActive);
+    return () => {
+      captureActive(); observer.disconnect();
+      events.forEach(name => document.removeEventListener(name, capture, true));
+      window.removeEventListener('pagehide', captureActive);
+      window.removeEventListener(BEFORE_NAVIGATE, captureActive);
+    };
+  }, []);
 }
