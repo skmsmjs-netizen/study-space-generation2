@@ -52,6 +52,8 @@ export type Command = CommandContext & (
   | { type: 'addSemester'; id: string; name: string }
   | { type: 'addSubject'; id: string; name: string; scope: Scope }
   | { type: 'addNode'; id: string; subjectId: string; parentId: string | null; role: OutlineNode['role']; name: string }
+  | { type: 'addNodes'; subjectId: string; parentId: string | null; role: OutlineNode['role']; entries: { id: string; name: string }[]; expectedToken: string; duplicateNames?: 'create' }
+  | { type: 'reorderNodes'; subjectId: string; parentId: string | null; ids: string[]; expectedToken: string }
   | { type: 'renameNode'; id: string; name: string; expectedVersion: number }
   | { type: 'moveNode'; id: string; parentId: string | null; order?: number; expectedVersion: number }
   | { type: 'trashNode' | 'restoreNode'; id: string; expectedVersion: number }

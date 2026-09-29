@@ -1,6 +1,7 @@
 import { DomainError, type AppState, type Command, type CriteriaAssignment, type DateEvidence, type DomainEntity, type EntityCollection, type Narrative, type OutlineNode, type Revision, type Scope, type StudyRecord, type TraceDefinition, type TraceState } from './model';
 import { TRACE_ITEMS, WRITTEN_REVIEW_ITEM_ID } from './trace';
 import { criteriaRevisionToken, criteriaScopeTargets, defaultCriteriaItems, validateTraceDefinition } from './criteria';
+import { MAX_OUTLINE_ROWS, outlineRevisionToken, previewOutlineEntries } from './outline';
 
 const collections: EntityCollection[] = ['semesters', 'subjects', 'nodes', 'sessions', 'records', 'narratives', 'criteria', 'criteriaAssignments'];
 const clone = <T>(value: T): T => structuredClone(value);
@@ -190,7 +191,34 @@ export function applyCommand(state: AppState, command: Command): AppState {
       if (!['unit', 'outline', 'topic'].includes(command.role)) fail('INVALID_ROLE', '목차 항목의 역할을 확인해 주세요.');
       if (command.parentId !== null && targetSubject(next, command.parentId) !== command.subjectId) fail('SUBJECT_MISMATCH', '부모 항목의 과목이 다릅니다.');
       if (command.parentId !== null) find(next.nodes, command.parentId);
-      write('nodes', { ...common(command.id), subjectId: command.subjectId, parentId: command.parentId, role: command.role, name: title(command.name), order: next.nodes.filter(n => n.subjectId === command.subjectId && n.parentId === command.parentId).length }); break;
+      const order = Math.max(-1, ...next.nodes.filter(n => n.subjectId === command.subjectId && n.parentId === command.parentId).map(n => n.order)) + 1;
+      write('nodes', { ...common(command.id), subjectId: command.subjectId, parentId: command.parentId, role: command.role, name: title(command.name), order }); break;
+    }
+    case 'addNodes': case 'reorderNodes': {
+      find(next.subjects, command.subjectId);
+      if (command.parentId !== null) {
+        const parent = find(next.nodes, command.parentId);
+        if (targetSubject(next, parent.id) !== command.subjectId) fail('SUBJECT_MISMATCH', '부모 항목의 과목이 다릅니다.');
+      }
+      if (command.expectedToken !== outlineRevisionToken(next, command.subjectId, command.parentId)) fail('OUTLINE_STALE', '목차가 변경되었습니다. 입력은 유지하고 현재 구조를 다시 확인해 주세요.');
+      const siblings = next.nodes.filter(row => row.subjectId === command.subjectId && row.parentId === command.parentId && !row.deletedAt);
+      if (command.type === 'reorderNodes') {
+        if (!Array.isArray(command.ids) || command.ids.length !== siblings.length || new Set(command.ids).size !== command.ids.length) fail('INVALID_ORDER', '같은 위치의 항목 전체를 한 번씩 정렬해 주세요.');
+        const byId = new Map(siblings.map(row => [row.id, row]));
+        for (const id of command.ids) { identity(id); if (!byId.has(id)) fail('INVALID_ORDER', '같은 과목과 부모 아래의 항목만 정렬할 수 있습니다.'); }
+        command.ids.forEach((id, order) => write('nodes', { ...byId.get(id)!, order }));
+      } else {
+        if (!['unit', 'outline', 'topic'].includes(command.role)) fail('INVALID_ROLE', '목차 항목의 역할을 확인해 주세요.');
+        if (!Array.isArray(command.entries) || !command.entries.length || command.entries.length > MAX_OUTLINE_ROWS || command.entries.some(entry => !entry || typeof entry !== 'object')) fail('INVALID_OUTLINE_ROWS', `추가할 항목을 1개부터 ${MAX_OUTLINE_ROWS}개까지 확인해 주세요.`);
+        const preview = previewOutlineEntries(command.entries.map(entry => entry.name));
+        if (preview.issues.length || preview.entries.length !== command.entries.length) fail('INVALID_OUTLINE_ROWS', '빈 이름·반복된 이름·길이를 미리보기에서 확인해 주세요.', preview.issues);
+        if (command.duplicateNames !== 'create' && preview.entries.some(entry => siblings.some(row => row.name === entry.name))) fail('DUPLICATE_NAME_CHOICE', '같은 이름의 항목이 있습니다. 기존 항목을 사용할지 새로 만들지 골라 주세요.');
+        const ids = new Set<string>();
+        for (const entry of command.entries) { fresh(entry.id); if (ids.has(entry.id)) fail('DUPLICATE_ID', '추가할 항목의 식별자가 겹쳤습니다.'); ids.add(entry.id); }
+        let order = Math.max(-1, ...next.nodes.filter(row => row.subjectId === command.subjectId && row.parentId === command.parentId).map(row => row.order)) + 1;
+        command.entries.forEach((entry, index) => write('nodes', { ...common(entry.id), subjectId: command.subjectId, parentId: command.parentId, role: command.role, name: preview.entries[index].name, order: order++ }));
+      }
+      break;
     }
     case 'renameNode': { const row = node(command.id, command.expectedVersion); write('nodes', { ...row, name: title(command.name) }); break; }
     case 'moveNode': {
