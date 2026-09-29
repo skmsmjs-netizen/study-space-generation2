@@ -3,6 +3,7 @@ import type { AppState, Command, OutlineTableCourse, OutlineTableInput, OutlineT
 import { outlineTableToken, previewOutlineTable } from '../domain/outline';
 import { DraftArchiveError, archiveDamagedDraft, clearStoredDraft, draftHasUnstoredText, readRescuedDraft, storeDraftSafely } from '../data/draft-safety';
 import { Button, ErrorState, Input, Modal, Select } from './index';
+import { useModalEditingContext } from './modal-context';
 import './outline-table-editor.css';
 
 type CreateCommand = Extract<Command, { type: 'createOutlineTable' }>;
@@ -65,6 +66,8 @@ function TableEditor({ data, initialScope, onApply, onUndo }: Props) {
   const [error, setError] = useState(boot.error ? '표 초안을 읽지 못했습니다. 원문을 덮어쓰지 않았습니다.' : draftHasUnstoredText(key) ? '초안 저장에 실패한 입력을 이 창에서 유지합니다. 창을 닫기 전에 저장을 다시 시도해 주세요.' : '');
   const [message, setMessage] = useState(''), [undo, setUndo] = useState<{ revisionId: string; expectedVersion: number } | null>(null);
   const fields = useRef(new Map<string, HTMLInputElement>()), focusNext = useRef<string | null>(null), creating = useRef(false);
+  const modalAnchor = useRef<HTMLParagraphElement>(null);
+  useModalEditingContext(open, key, modalAnchor, fields);
   useLayoutEffect(() => { if (focusNext.current) { fields.current.get(focusNext.current)?.focus(); focusNext.current = null; } }, [draft]);
   const persist = (next: TableDraft): boolean => {
     setDraft(next);
@@ -134,13 +137,13 @@ function TableEditor({ data, initialScope, onApply, onUndo }: Props) {
     const all = draft?.courses.flatMap(c => [c.key, ...c.units.flatMap(u => [u.key, ...u.topics.map(t => t.key)])]) ?? [];
     fields.current.get(all[all.indexOf(rowKey) + 1])?.focus();
   };
-  const field = (row: OutlineTableTopic, label: string, onChange: (value: string) => void, lastTopic?: { courseKey: string; unitKey: string }) => <Input label={label} value={row.name} maxLength={180} disabled={locked} data-editing-context={`outline-table:${row.key}`} ref={element => { if (element) fields.current.set(row.key, element); else fields.current.delete(row.key); }} onChange={event => onChange(event.target.value)} onKeyDown={event => enter(event, row.key, lastTopic)} />;
+  const field = (row: OutlineTableTopic, label: string, onChange: (value: string) => void, lastTopic?: { courseKey: string; unitKey: string }) => <Input label={label} value={row.name} maxLength={180} disabled={locked} data-table-cell={row.key} data-editing-context={`outline-table:${row.key}`} ref={element => { if (element) fields.current.set(row.key, element); else fields.current.delete(row.key); }} onChange={event => onChange(event.target.value)} onKeyDown={event => enter(event, row.key, lastTopic)} />;
   return <>
     <Button onClick={launch}>표로 한 번에 만들기{draft ? ' · 작성 이어가기' : ''}</Button>
     {undo && onUndo && <Button onClick={() => { try { const result = onUndo(undo.revisionId, undo.expectedVersion); if (result) { setUndo(null); setMessage('표에서 생성한 항목을 되돌렸습니다.'); } else setError('그 뒤 연결되거나 수정한 내용이 있어 되돌리지 못했습니다. 현재 자료를 유지했습니다.'); } catch (reason) { setError(reason instanceof Error ? reason.message : '되돌리지 못했습니다. 현재 자료를 유지했습니다.'); } }}>표 생성 되돌리기</Button>}
     {message && <p role="status">{message}</p>}{!open && error && <ErrorState message={error} />}
     <Modal open={open} title="과목·단원·주제 한 번에 만들기" onClose={() => setOpen(false)} className="outline-table-modal">
-      <p>과목명을 적고, 표에서 단원과 주제를 채우세요. 입력은 이 기기의 초안으로 보관합니다.</p>
+      <p ref={modalAnchor}>과목명을 적고, 표에서 단원과 주제를 채우세요. 입력은 이 기기의 초안으로 보관합니다.</p>
       {error && <ErrorState message={error} />}
       {blocked && <div className="field-stack"><Button onClick={() => { try { const restored = readDraft(key, data); setBlocked(false); setError(''); setDraft(restored); if (!restored) persist(blank(initialScope)); } catch { setError('초안을 다시 읽지 못했습니다. 기존 원문을 유지했습니다.'); } }}>표 초안 다시 읽기</Button><Button onClick={() => { try { archiveDamagedDraft(key); setBlocked(false); persist(blank(initialScope)); } catch (reason) { setError(reason instanceof DraftArchiveError ? reason.message : '원본 사본을 보관하지 못했습니다. 기존 원문을 유지했습니다.'); } }}>원문 보관 후 새 표 시작</Button></div>}
       {draft && !blocked && <div className="field-stack">

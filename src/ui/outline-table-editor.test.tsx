@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { act, fireEvent, render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { applyCommand } from '../domain/commands';
@@ -7,10 +7,11 @@ import { createDemoState } from '../domain/fixtures';
 import type { AppState, Command } from '../domain/model';
 import { clearRescuedDraft } from '../data/draft-safety';
 import { OutlineTableEditor, outlineTableDraftKey } from './outline-table-editor';
+import { modalEditingContextKey } from './modal-context';
 
 const initialScope = { kind: 'semester' as const, semesterId: 'demo-semester-current' };
 const key = outlineTableDraftKey(createDemoState());
-beforeEach(() => { localStorage.clear(); clearRescuedDraft(key); });
+beforeEach(() => { localStorage.clear(); sessionStorage.clear(); clearRescuedDraft(key); });
 afterEach(() => { vi.restoreAllMocks(); clearRescuedDraft(key); });
 const change = (label: string, value: string) => fireEvent.change(screen.getByLabelText(label), { target: { value } });
 const start = async () => userEvent.click(screen.getByRole('button', { name: /^표로 한 번에 만들기/ }));
@@ -33,6 +34,79 @@ function fixture(mode: 'normal' | 'fail' | 'lost-response' = 'normal') {
 }
 
 describe('full subject/unit/topic table editor', () => {
+  it('restores the last cell, selection direction, inner input scroll and modal scroll after close and reload', async () => {
+    const form = fixture(); await start(); fill();
+    const field = screen.getByLabelText('1번째 과목 1번째 단원 1번째 주제') as HTMLInputElement;
+    await userEvent.click(field);
+    field.setSelectionRange(1, 4, 'backward'); field.scrollLeft = 18;
+    const dialog = screen.getByRole('dialog');
+    // Browsers report no scroll offset for detached elements; jsdom otherwise
+    // keeps the assigned number and concealed the close/unmount regression.
+    let connectedTop = 520, connectedLeft = 12;
+    Object.defineProperties(dialog, {
+      scrollTop: { configurable: true, get: () => dialog.isConnected ? connectedTop : 0, set: value => { connectedTop = value; } },
+      scrollLeft: { configurable: true, get: () => dialog.isConnected ? connectedLeft : 0, set: value => { connectedLeft = value; } },
+    });
+    fireEvent.select(field); fireEvent.scroll(dialog);
+    await userEvent.keyboard('{Escape}'); await start();
+    const restored = screen.getByLabelText('1번째 과목 1번째 단원 1번째 주제') as HTMLInputElement;
+    await waitFor(() => expect(restored).toHaveFocus());
+    expect([restored.selectionStart, restored.selectionEnd, restored.selectionDirection, restored.scrollLeft]).toEqual([1, 4, 'backward', 18]);
+    expect(screen.getByRole('dialog').scrollTop).toBe(520);
+    expect(screen.getByRole('dialog').scrollLeft).toBe(12);
+    // pagehide and remount model the event/persistence boundary; no OS crash claim.
+    fireEvent(window, new Event('pagehide')); form.view.unmount(); fixture(); await start();
+    const afterReload = screen.getByLabelText('1번째 과목 1번째 단원 1번째 주제') as HTMLInputElement;
+    await waitFor(() => expect(afterReload).toHaveFocus());
+    expect([afterReload.selectionStart, afterReload.selectionEnd, afterReload.selectionDirection]).toEqual([1, 4, 'backward']);
+    expect(screen.getByRole('dialog').scrollTop).toBe(520);
+    const hint = sessionStorage.getItem(modalEditingContextKey(key))!;
+    expect(hint).not.toContain('주제 하나'); expect(hint).not.toContain('새 과목');
+  });
+  it('ignores a removed cell and never applies its position to the next row', async () => {
+    fixture(); await start(); fill(); await userEvent.click(screen.getByRole('button', { name: '주제 추가' }));
+    const second = screen.getByLabelText('1번째 과목 1번째 단원 2번째 주제');
+    await userEvent.click(second); screen.getByRole('dialog').scrollTop = 600; fireEvent.scroll(screen.getByRole('dialog'));
+    await userEvent.click(screen.getByRole('button', { name: '1번째 과목 1번째 단원 2번째 주제 삭제' }));
+    await userEvent.keyboard('{Escape}'); await start();
+    await waitFor(() => expect(sessionStorage.getItem(modalEditingContextKey(key))).toBeNull());
+    expect(screen.getByLabelText('1번째 과목 1번째 단원 1번째 주제')).not.toHaveFocus();
+    expect(screen.getByRole('dialog').scrollTop).toBe(0);
+  });
+  it('does not carry a finished table position into newly generated row IDs', async () => {
+    fixture(); await start(); fill();
+    const previous = screen.getByLabelText('1번째 과목 1번째 단원 1번째 주제');
+    await userEvent.click(previous); screen.getByRole('dialog').scrollTop = 600; fireEvent.scroll(screen.getByRole('dialog'));
+    await userEvent.click(screen.getByRole('button', { name: '생성할 구조 확인' })); await userEvent.click(screen.getByRole('button', { name: '한 번에 생성' }));
+    await start();
+    const fresh = screen.getByLabelText('1번째 과목 1번째 단원 1번째 주제');
+    expect(fresh.getAttribute('data-table-cell')).not.toBe(previous.getAttribute('data-table-cell'));
+    await waitFor(() => expect(sessionStorage.getItem(modalEditingContextKey(key))).toBeNull());
+    expect(fresh).not.toHaveFocus(); expect(fresh).toHaveValue(''); expect(screen.getByRole('dialog').scrollTop).toBe(0);
+  });
+  it('keeps input saving and in-editor position recovery working when optional session storage fails', async () => {
+    const form = fixture(); await start(); fill();
+    const original = Storage.prototype.setItem;
+    vi.spyOn(Storage.prototype, 'setItem').mockImplementation(function (this: Storage, name, value) {
+      if (this === sessionStorage) throw new Error('quota'); original.call(this, name, value);
+    });
+    const field = screen.getByLabelText('1번째 과목 1번째 단원 1번째 주제') as HTMLInputElement;
+    await userEvent.click(field); field.setSelectionRange(1, 3, 'forward'); screen.getByRole('dialog').scrollTop = 400; fireEvent.select(field);
+    change('1번째 과목 1번째 단원 1번째 주제', '보존할 입력'); field.setSelectionRange(1, 3, 'forward'); fireEvent.select(field);
+    await userEvent.keyboard('{Escape}'); await start();
+    const restored = screen.getByLabelText('1번째 과목 1번째 단원 1번째 주제');
+    await waitFor(() => expect(restored).toHaveFocus());
+    expect(restored).toHaveValue('보존할 입력'); expect(screen.getByRole('dialog').scrollTop).toBe(400);
+    expect(localStorage.getItem(key)).toContain('보존할 입력'); expect(form.requests).toHaveLength(0);
+  });
+  it('ignores malformed or unavailable optional position storage while restoring the raw draft', async () => {
+    const form = fixture(); await start(); fill(); await userEvent.keyboard('{Escape}'); form.view.unmount();
+    sessionStorage.setItem(modalEditingContextKey(key), '{broken');
+    const get = Storage.prototype.getItem;
+    vi.spyOn(Storage.prototype, 'getItem').mockImplementation(function (this: Storage, name) { if (this === sessionStorage) throw new Error('denied'); return get.call(this, name); });
+    fixture(); await start(); expect(screen.getByLabelText('1번째 과목명')).toHaveValue('  새 과목  ');
+    expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+  });
   it('creates multiple courses from individual cells after preview and supports whole-operation undo', async () => {
     const form = fixture(); await start(); fill();
     expect(screen.getByLabelText('표의 과목을 등록할 학기')).toHaveValue('demo-semester-current');
