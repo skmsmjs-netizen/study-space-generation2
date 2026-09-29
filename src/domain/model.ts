@@ -47,6 +47,10 @@ export interface AppState {
   appliedOps: Record<string, string>;
 }
 export interface CommandContext { opId: string; at: string; userId: string; namespace?: Namespace }
+export interface OutlineTableTopic { key: string; name: string }
+export interface OutlineTableUnit { key: string; name: string; topics: OutlineTableTopic[] }
+export interface OutlineTableCourse { key: string; name: string; units: OutlineTableUnit[] }
+export interface OutlineTableInput { scope: Scope; courses: OutlineTableCourse[]; choices: Record<string, string> }
 export type RecordEntry = { targetId: string; subjectId?: string; done: boolean; body?: string; trace?: TraceState; expectedVersion?: number };
 export type Command = CommandContext & (
   | { type: 'addSemester'; id: string; name: string }
@@ -54,6 +58,7 @@ export type Command = CommandContext & (
   | { type: 'addNode'; id: string; subjectId: string; parentId: string | null; role: OutlineNode['role']; name: string }
   | { type: 'addNodes'; subjectId: string; parentId: string | null; role: OutlineNode['role']; entries: { id: string; name: string }[]; expectedToken: string; duplicateNames?: 'create' }
   | { type: 'reorderNodes'; subjectId: string; parentId: string | null; ids: string[]; expectedToken: string }
+  | ({ type: 'createOutlineTable'; expectedToken: string; ids: Record<string, string> } & OutlineTableInput)
   | { type: 'renameNode'; id: string; name: string; expectedVersion: number }
   | { type: 'moveNode'; id: string; parentId: string | null; order?: number; expectedVersion: number }
   | { type: 'trashNode' | 'restoreNode'; id: string; expectedVersion: number }

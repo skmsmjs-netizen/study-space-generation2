@@ -1,0 +1,11 @@
+.outline-table-modal { width: min(100%, var(--layout-sheet)); }
+.outline-input-table { width: 100%; table-layout: fixed; border-collapse: collapse; }
+.outline-input-table th { text-align: left; font-weight: var(--type-label-weight); }
+.outline-input-table th:first-child { width: 40%; }
+.outline-input-table :is(th, td) { padding: var(--space-2); vertical-align: top; overflow-wrap: anywhere; }
+.outline-input-table tbody { border-block-start: var(--border-width) solid var(--color-border); }
+.outline-input-table td + td { border-inline-start: var(--border-width) solid var(--color-border); }
+.outline-input-table .ui-field { min-width: 0; }
+.outline-input-table :is(input, button) { max-width: 100%; }
+.outline-input-table button { white-space: normal; }
+.outline-table-modal .ui-card { padding: var(--space-3); }

@@ -1,7 +1,7 @@
 import { DomainError, type AppState, type Command, type CriteriaAssignment, type DateEvidence, type DomainEntity, type EntityCollection, type Narrative, type OutlineNode, type Revision, type Scope, type StudyRecord, type TraceDefinition, type TraceState } from './model';
 import { TRACE_ITEMS, WRITTEN_REVIEW_ITEM_ID } from './trace';
 import { criteriaRevisionToken, criteriaScopeTargets, defaultCriteriaItems, validateTraceDefinition } from './criteria';
-import { MAX_OUTLINE_ROWS, outlineRevisionToken, previewOutlineEntries } from './outline';
+import { MAX_OUTLINE_ROWS, outlineRevisionToken, outlineTableToken, previewOutlineEntries, previewOutlineTable } from './outline';
 
 const collections: EntityCollection[] = ['semesters', 'subjects', 'nodes', 'sessions', 'records', 'narratives', 'criteria', 'criteriaAssignments'];
 const clone = <T>(value: T): T => structuredClone(value);
@@ -186,6 +186,31 @@ export function applyCommand(state: AppState, command: Command): AppState {
   switch (command.type) {
     case 'addSemester': fresh(command.id); write('semesters', { ...common(command.id), name: title(command.name), order: next.semesters.length }); break;
     case 'addSubject': fresh(command.id); verifyScope(next, command.scope); write('subjects', { ...common(command.id), name: title(command.name), scope: clone(command.scope), order: next.subjects.length }); break;
+    case 'createOutlineTable': {
+      if (command.expectedToken !== outlineTableToken(next)) fail('OUTLINE_STALE', '목차가 변경되었습니다. 입력은 유지하고 생성할 구조를 다시 확인해 주세요.');
+      const preview = previewOutlineTable(next, command);
+      if (!preview.ready) fail('OUTLINE_CHOICE_REQUIRED', '같은 이름의 항목을 어떻게 사용할지 먼저 골라 주세요.');
+      if (!preview.newCount) fail('EMPTY_OUTLINE_TABLE', '새로 만들 항목이 없습니다. 기존 항목 연결을 확인해 주세요.');
+      if (!command.ids || typeof command.ids !== 'object' || Array.isArray(command.ids)) fail('INVALID_ID', '새 항목의 식별자를 확인해 주세요.');
+      const used = new Set<string>(), resolved = new Map<string, string>();
+      for (const entry of preview.entries) if (entry.status === 'new') {
+        if (!Object.hasOwn(command.ids, entry.key)) fail('INVALID_ID', '새 항목의 식별자를 확인해 주세요.');
+        const id = command.ids[entry.key]; fresh(id);
+        if (used.has(id)) fail('DUPLICATE_ID', '추가할 항목의 식별자가 겹쳤습니다.'); used.add(id);
+      }
+      for (const entry of preview.entries) {
+        if (entry.status === 'reuse') { resolved.set(entry.key, entry.id!); continue; }
+        const id = command.ids[entry.key];
+        if (entry.kind === 'subject') write('subjects', { ...common(id), name: entry.name, scope: clone(command.scope), order: Math.max(-1, ...next.subjects.map(row => row.order)) + 1 });
+        else {
+          const subjectId = resolved.get(entry.subjectKey)!, parentId = entry.kind === 'unit' ? null : resolved.get(entry.parentKey!)!;
+          const order = Math.max(-1, ...next.nodes.filter(row => row.subjectId === subjectId && row.parentId === parentId).map(row => row.order)) + 1;
+          write('nodes', { ...common(id), name: entry.name, subjectId, parentId, role: entry.kind, order });
+        }
+        resolved.set(entry.key, id);
+      }
+      break;
+    }
     case 'addNode': {
       fresh(command.id); find(next.subjects, command.subjectId);
       if (!['unit', 'outline', 'topic'].includes(command.role)) fail('INVALID_ROLE', '목차 항목의 역할을 확인해 주세요.');
