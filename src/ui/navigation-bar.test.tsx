@@ -13,11 +13,14 @@ describe('NavigationBar', () => {
     expect(links[0]).toHaveAttribute('aria-current', 'page');
     expect(links[1]).not.toHaveAttribute('aria-current');
     expect(links[1]).toHaveAttribute('href', '#/subjects');
+    const homeFocus = links[0].getAttribute('data-navigation-focus');
+    expect(homeFocus).toBeTruthy();
     await user.tab(); expect(links[0]).toHaveFocus();
     await user.tab(); expect(links[1]).toHaveFocus();
     view.rerender(<NavigationBar label="빠른 이동" className="bottom-nav" items={items.map(item => ({ ...item, active: item.href === '#/subjects' }))} />);
     expect(screen.getByRole('navigation', { name: '빠른 이동' })).toHaveClass('bottom-nav');
     expect(screen.getByRole('link', { name: '홈' })).not.toHaveAttribute('aria-current');
+    expect(screen.getByRole('link', { name: '홈' })).toHaveAttribute('data-navigation-focus', homeFocus);
     expect(screen.getByRole('link', { name: items[1].label })).toHaveAttribute('aria-current', 'page');
   });
 });

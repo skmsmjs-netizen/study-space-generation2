@@ -2,6 +2,7 @@ import { act, fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { NAVIGATION_CONTEXT_KEY, EDITING_CONTEXT_KEY, navigate, readRouteHash, useRoute } from './navigation-context';
+import { NavigationBar } from './navigation-bar';
 
 let x = 0, y = 0;
 const scrollTo = vi.fn((options: ScrollToOptions | number, top?: number) => {
@@ -153,6 +154,33 @@ describe('route context', () => {
     await user.keyboard('{Alt>}{ArrowLeft}{/Alt}');
     expect(screen.getByRole('button')).toHaveFocus();
     expect(screen.getByRole('heading')).toHaveTextContent('/first');
+  });
+
+  it.each([false, true])('restores the clicked menu rather than the same-href brand, narrow=%s', async narrow => {
+    function MenuHarness({ narrow }: { narrow: boolean }) {
+      const route = useRoute();
+      const items = [{ href: '#/second', label: '오늘' }];
+      return <>
+        <a href="#/second">공부의 자리</a>
+        <aside style={{ display: narrow ? 'none' : 'block' }}><NavigationBar label="주 메뉴" items={items} /></aside>
+        <div style={{ display: narrow ? 'block' : 'none' }}><NavigationBar label="빠른 이동" items={items} /></div>
+        <main key={route}><h1>{route}</h1></main>
+      </>;
+    }
+    const user = userEvent.setup(), view = render(<MenuHarness narrow={narrow} />);
+    const clicked = screen.getByRole('navigation', { name: narrow ? '빠른 이동' : '주 메뉴' }).querySelector('a')!;
+    await user.click(clicked);
+    await act(async () => window.dispatchEvent(new HashChangeEvent('hashchange')));
+    traversal('#/first');
+    expect(clicked).toHaveFocus();
+    expect(screen.getByRole('link', { name: '공부의 자리' })).not.toHaveFocus();
+    // A breakpoint can change which copy is shown while visiting another route.
+    clicked.focus(); traversal('#/second');
+    view.rerender(<MenuHarness narrow={!narrow} />);
+    traversal('#/first');
+    const visible = screen.getByRole('navigation', { name: narrow ? '주 메뉴' : '빠른 이동' }).querySelector('a')!;
+    expect(visible).toBeVisible(); expect(visible).toHaveFocus();
+    expect(clicked).not.toBeVisible(); expect(clicked).not.toHaveFocus();
   });
 });
 

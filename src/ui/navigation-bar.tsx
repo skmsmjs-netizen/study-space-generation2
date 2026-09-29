@@ -11,6 +11,8 @@ export type NavigationBarProps = {
 /** Route links retain native Tab, modifier-click and browser history behavior. */
 export function NavigationBar({ label, items, orientation = 'horizontal', className = '' }: NavigationBarProps) {
   return <nav aria-label={label} className={`ui-navigation-bar ui-navigation-bar--${orientation} ${className}`}>
-    {items.map(item => <a key={item.href} href={item.href} aria-current={item.active ? 'page' : undefined}>{item.label}</a>)}
+    {items.map(item => <a key={item.href} href={item.href}
+      data-navigation-focus={`navigation-item:${JSON.stringify([item.href, item.label])}`}
+      aria-current={item.active ? 'page' : undefined}>{item.label}</a>)}
   </nav>;
 }

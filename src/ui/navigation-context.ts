@@ -63,7 +63,17 @@ function findFocus(target: FocusTarget): HTMLElement | undefined {
   const attr = target.kind === 'key' ? 'data-navigation-focus' : target.kind === 'id' ? 'id' : target.kind === 'editor' ? 'data-editing-context' : 'href';
   return Array.from(document.querySelectorAll<HTMLElement>(`[${attr}]`))
     .find(element => element.getAttribute(attr) === target.value &&
-      !element.closest('[hidden], [inert]') && !element.matches(':disabled'));
+      !element.closest('[hidden], [inert]') && !element.matches(':disabled') && isDisplayed(element));
+}
+
+function isDisplayed(element: HTMLElement): boolean {
+  const visibility = getComputedStyle(element).visibility;
+  if (visibility === 'hidden' || visibility === 'collapse') return false;
+  // Wide and narrow navigation share an identity; restore only the displayed copy.
+  for (let ancestor: HTMLElement | null = element; ancestor; ancestor = ancestor.parentElement) {
+    if (getComputedStyle(ancestor).display === 'none') return false;
+  }
+  return true;
 }
 
 function editingOrDialogOwnsFocus(): boolean {
