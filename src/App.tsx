@@ -1336,7 +1336,8 @@ function RecordForm({
   const currentForm = useRef(form);
   const [draftError, setDraftError] = useState(boot.error || (draftHasUnstoredText(`study-space:demo:draft:${key}`) ? "저장에 실패한 입력을 이 창에서 유지합니다. 다시 저장하거나 복사해 주세요." : ""));
   const [draftBlocked, setDraftBlocked] = useState(Boolean(boot.error));
-  const [filter, setFilter] = useState("");
+  const [filter, setFilter] = useState(() => readPreference(`record-filter:${key}`, ""));
+  useEffect(() => { writePreference(`record-filter:${key}`, filter); }, [key, filter]);
   const guard = useRef(false);
   const nodes = active(data.nodes).filter(
     (n) => n.role === "topic" || n.id === initialTarget,
@@ -1394,7 +1395,7 @@ function RecordForm({
     <div className="record-layout">
       <section className="topic-picker">
         <h2>공부한 주제</h2>
-        <Search label="주제 찾기" onQueryChange={setFilter} />
+        <Search label="주제 찾기" defaultValue={filter} onQueryChange={setFilter} />
         {nodes
           .filter((n) => n.name.includes(filter))
           .map((n) => (
