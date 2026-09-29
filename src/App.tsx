@@ -34,6 +34,7 @@ import { outlineRevisionToken, previewOutlineEntries } from "./domain/outline";
 import { OutlineTableEditor } from "./ui/outline-table-editor";
 import { OutlineTree } from "./ui/outline-tree";
 import { DraftArchives } from "./ui/draft-archives";
+import { StudyLaunch } from "./ui/study-launch";
 import { TRACE_ITEMS } from "./domain/trace";
 import {
   DemoRepository,
@@ -604,6 +605,7 @@ function Workspace({ repository }: { repository: DemoRepository }) {
                   <Button onClick={() => go("/free")}>자유롭게 쓰기</Button>
                 </div>
               </Card>
+              <StudyLaunch data={data} />
               <div className="dashboard-grid">
                 <section>
                   <div className="section-heading">
@@ -761,6 +763,7 @@ function Workspace({ repository }: { repository: DemoRepository }) {
           )}
           {node && (
             <>
+              {node.role === "topic" && <StudyLaunch data={data} nodeId={node.id} />}
               <div className="actions">
                 <Button
                   variant="primary"

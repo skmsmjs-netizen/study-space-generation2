@@ -1,0 +1,3 @@
+.study-launch { display: grid; gap: var(--space-3); min-width: 0; }
+.study-launch-return, .study-launch-guide { display: grid; gap: var(--space-3); min-width: 0; overflow-wrap: anywhere; }
+.study-launch-return :is(h2, p), .study-launch-guide p { margin: 0; }
