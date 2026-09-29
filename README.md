@@ -6,7 +6,9 @@
 
 ## 현재 사용 가능한 것
 
-가짜 자료로 동작하는 0.1.0 Prototype입니다. 홈, 학기·과목·목차, 여러 주제 기록, 선택 TRACE 체크, C2 서술 점검, 초안, 수정 이력, 목차 휴지통·복원, 기본 검색을 포함합니다. 실제 학습자료를 넣는 단계가 아닙니다. 일반 화면 너비에서는 왼쪽 탐색, 좁은 창에서는 하단 탐색을 사용합니다.
+가짜 자료로 동작하는 Prototype입니다. 홈, 학기·과목·깊이 제한 없는 목차, 여러 주제 기록, 개인 공부 기준, 활동별 예외·메모·반복, C2 서술 점검, 여러 자유 기록, 초안, 수정 이력, 목차 이동·Undo·휴지통·복원, 검색과 탐색 복원을 포함합니다. 실제 학습자료를 넣는 단계가 아닙니다. 일반 화면 너비에서는 왼쪽 탐색, 좁은 창에서는 하단 탐색을 사용합니다.
+
+[배포된 시연 앱](https://skmsmjs-netizen.github.io/study-space-generation2/) · [현재 실행 원장](docs/execution-ledger.md) · [정확한 다음 실행 위치](docs/resume-handoff.md)
 
 ```sh
 npm ci
@@ -24,4 +26,4 @@ npm run preview -- --port 4173
 - [디자인 시스템](docs/design-system.md), [공통 컴포넌트](docs/component-matrix.md)
 - [실패 행렬](docs/failure-matrix.md), [도메인 성능 측정](docs/domain-performance.md)
 
-GitHub Pages workflow는 준비되어 있으나 원격 저장소와 공개 배포는 미완료입니다. Supabase/Auth/RLS/온라인 데이터, 정식 IndexedDB/Offline/Sync/Conflict, PWA, 실제 Obsidian Import는 연결 전입니다. 실제 기기/IME/다기기 검증은 별도 gate로 남깁니다.
+2026-09-30: 공개 GitHub/Pages 배포와 실제 상세 URL 새로고침을 확인했습니다. 자동검사119개 통과/성능1개 미실행이며, 실제 브라우저와 iPhone 17 Pro 사용자 보고의 범위는 [이번 검증](docs/validation/resume-ui.md)에 분리했습니다. Supabase는 프로젝트 생성·Healthy만 확인했습니다. Auth/RLS/온라인 데이터, 정식 IndexedDB/Offline/Sync/Conflict, PWA, 실제 Obsidian Import는 연결 전입니다. 전체 물리기기/IME/다기기 검증은 별도 gate입니다.

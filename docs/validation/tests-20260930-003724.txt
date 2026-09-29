@@ -1,0 +1,13 @@
+
+> study-space-generation2@0.1.0 test
+> vitest run
+
+
+ RUN  v5.0.2 <generation2>
+
+
+ Test Files  11 passed | 1 skipped (12)
+      Tests  119 passed | 1 skipped (120)
+   Start at  00:37:24
+   Duration  5.34s (tests 40%, environment 39%, setup 8%, transform 8%, import 6%)
+

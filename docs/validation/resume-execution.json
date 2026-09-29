@@ -1,0 +1,51 @@
+{
+  "executed_at": "2026-09-29T15:42:35.547905+00:00",
+  "commit": "7b911a4630b4e0783dcf728482c91f307ea14812",
+  "automated": {
+    "status": "통과",
+    "command": "npm test",
+    "passed": 119,
+    "skipped": 1,
+    "skipped_reason": "domain performance benchmark requires explicit opt-in; not rerun in this UX batch",
+    "artifact": "docs/validation/tests-20260930-003724.txt"
+  },
+  "build": {
+    "status": "통과",
+    "command": "npm run build",
+    "javascript": "index-zY2OiPS1.js",
+    "css": "index-Dgb-AMeX.css"
+  },
+  "pages": {
+    "status": "통과",
+    "url": "https://skmsmjs-netizen.github.io/study-space-generation2/",
+    "commit": "7b911a4630b4e0783dcf728482c91f307ea14812",
+    "actions_url": "https://github.com/skmsmjs-netizen/study-space-generation2/actions/runs/36591993097",
+    "deep_link_reload": "/#/node/demo-topic-function",
+    "rendered_script": "/study-space-generation2/assets/index-zY2OiPS1.js"
+  },
+  "supabase": {
+    "status": "미검증",
+    "scope": "Project exists and dashboard Healthy confirmed; Auth/CRUD/RLS and app integration not executed"
+  },
+  "physical_device": {
+    "status": "미검증",
+    "observations": [
+      {
+        "device": "iPhone 17 Pro",
+        "source": "user-reported physical test in this task",
+        "requested_browser": "Safari",
+        "browser_version": "not supplied",
+        "result": "한글 두 줄 입력 후 화면 이동과 복귀에서 글·줄바꿈 유지 보고. 키보드 가림은 없어 보인다는 제한적 관찰.",
+        "verified_at": "2026-09-29T15:48:09.143607+00:00",
+        "scope_status": "통과",
+        "remaining": "정확한 OS/브라우저버전·회전·장문·강제종료 미검증"
+      }
+    ]
+  },
+  "server_peer": {
+    "status": "미검증"
+  },
+  "long_term": {
+    "status": "미검증"
+  }
+}
