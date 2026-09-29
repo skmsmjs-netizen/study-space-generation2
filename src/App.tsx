@@ -196,6 +196,15 @@ function Workspace({ repository }: { repository: DemoRepository }) {
   );
   const topics = shownNodes.filter((n) => n.role === "topic");
   const records = active(data.records);
+  const searching = route === "/search" && Boolean(query.trim());
+  const searchNarratives = searching ? active(data.narratives) : [];
+  const matchingSubjects = searching ? shownSubjects.filter(s =>
+    s.name.includes(query) || searchNarratives.some(n => n.ownerId === s.id && n.body.includes(query))) : [];
+  const matchingNodes = searching ? shownNodes.filter(n =>
+    n.name.includes(query) || searchNarratives.some(text => text.ownerId === n.id && text.body.includes(query)) ||
+    records.some(r => r.targetId === n.id && r.body.includes(query))) : [];
+  const matchingFreeNotes = searching && scope === "all" ? searchNarratives.filter(n =>
+    n.kind === "free-note" && n.ownerId === null && n.body.includes(query)) : [];
   const recentTopics = recent
     .map((id) => topics.find((t) => t.id === id))
     .filter(Boolean) as OutlineNode[];
@@ -851,25 +860,13 @@ function Workspace({ repository }: { repository: DemoRepository }) {
               <div className="card-stack section-space">
                 {query.trim() ? (
                   <>
-                    {shownSubjects
-                      .filter((s) => s.name.includes(query) || active(data.narratives).some(n => n.ownerId === s.id && n.body.includes(query)))
-                      .map((s) => (
+                    {matchingSubjects.map((s) => (
                         <Card key={s.id}>
                           <a href={`#/subject/${s.id}`}>{s.name}</a>
                           <p className="muted">과목</p>
                         </Card>
                       ))}
-                    {shownNodes
-                      .filter(
-                        (n) =>
-                          n.name.includes(query) ||
-                          active(data.narratives).some(text => text.ownerId === n.id && text.body.includes(query)) ||
-                          records.some(
-                            (r) =>
-                              r.targetId === n.id && r.body.includes(query),
-                          ),
-                      )
-                      .map((n) => (
+                    {matchingNodes.map((n) => (
                         <Card key={n.id}>
                           <a href={`#/node/${n.id}`}>{n.name}</a>
                           <p className="muted">
@@ -877,10 +874,14 @@ function Workspace({ repository }: { repository: DemoRepository }) {
                           </p>
                         </Card>
                       ))}
-                    {scope === "all" && active(data.narratives).filter(n => n.kind === "free-note" && n.ownerId === null && n.body.includes(query)).map(n => <Card key={n.id}>
+                    {matchingFreeNotes.map(n => <Card key={n.id}>
                       <a href={`#/free/${n.id}`}>{n.body.trim().split("\n")[0].slice(0, 80) || "자유 기록"}</a>
                       <p className="muted">자유 기록 · 학기 소속 없음</p>
                     </Card>)}
+                    {!matchingSubjects.length && !matchingNodes.length && !matchingFreeNotes.length && <EmptyState
+                      title="일치하는 내용을 찾지 못했습니다"
+                      message="검색어를 줄이거나 상단 공부 범위를 바꿔 보세요."
+                    />}
                   </>
                 ) : (
                   <EmptyState
