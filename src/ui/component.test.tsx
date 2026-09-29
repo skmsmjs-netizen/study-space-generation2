@@ -62,4 +62,17 @@ describe('modal focus contract', () => {
     const close = vi.fn(); render(<Modal open title="기록" onClose={close}><Input label="기록 내용" /></Modal>);
     fireEvent.keyDown(document, { key: 'Escape', isComposing: true }); expect(close).not.toHaveBeenCalled();
   });
+  it('isolates background interaction, excludes hidden and negative-tab targets, and restores previous inert state', async () => {
+    const existing = document.createElement('aside'); existing.setAttribute('inert', ''); document.body.append(existing);
+    function Fixture() { const [open, setOpen] = useState(false); return <><Button onClick={() => setOpen(true)}>열기</Button><Modal open={open} title="편집" onClose={() => setOpen(false)}><Button>마지막 조작</Button><Button tabIndex={-1}>프로그램 전용</Button><div style={{ display: 'none' }}><Button>숨긴 조작</Button></div><fieldset disabled><Input label="비활성 입력" /></fieldset></Modal></>; }
+    const user = userEvent.setup(), view = render(<Fixture />);
+    await user.click(screen.getByRole('button', { name: '열기' }));
+    expect(view.container).toHaveAttribute('inert');
+    await user.keyboard('{Shift>}{Tab}{/Shift}');
+    expect(screen.getByRole('button', { name: '마지막 조작' })).toHaveFocus();
+    await user.keyboard('{Escape}');
+    expect(view.container).not.toHaveAttribute('inert'); expect(existing).toHaveAttribute('inert');
+    expect(screen.getByRole('button', { name: '열기' })).toHaveFocus();
+    existing.remove();
+  });
 });

@@ -12,8 +12,9 @@ type Definition = NonNullable<TraceItem['definition']>;
 type Repeat = NonNullable<TraceItem['repeats']>[number];
 
 /** Activity edits preserve the definition used at the time and every unrelated field. */
-export function TraceEditor({ trace, onChange, definitions = defaultCriteriaItems() }: {
+export function TraceEditor({ trace, onChange, contextKey, definitions = defaultCriteriaItems() }: {
   trace: TraceState;
+  contextKey?: string;
   onChange: (state: TraceState) => void;
   definitions?: readonly Definition[];
 }) {
@@ -24,7 +25,7 @@ export function TraceEditor({ trace, onChange, definitions = defaultCriteriaItem
     const item = trace[id] ?? { status: 'unchecked' as const };
     const stored = item.definition ?? definition;
     return (
-      <ActivityEditor key={id} id={id} item={item} definition={stored}
+      <ActivityEditor key={id} id={id} item={item} definition={stored} contextKey={contextKey ? `${contextKey}:${id}` : undefined}
         question={item.definition && (item.definition.label !== definition?.label || item.definition.group !== definition?.group) ? undefined : question}
         onChange={patch => onChange({
           ...trace,
@@ -60,11 +61,12 @@ export function TraceEditor({ trace, onChange, definitions = defaultCriteriaItem
   );
 }
 
-function ActivityEditor({ id, item, definition, question, onChange }: {
+function ActivityEditor({ id, item, definition, question, contextKey, onChange }: {
   id: string;
   item: TraceItem;
   definition?: Definition;
   question?: string;
+  contextKey?: string;
   onChange: (patch: Partial<TraceItem>) => void;
 }) {
   const label = definition?.label ?? `이전 항목 (${id})`;
@@ -87,7 +89,7 @@ function ActivityEditor({ id, item, definition, question, onChange }: {
             onChange={event => onChange({ status: event.target.value as ActivityStatus })}>
             {Object.entries(statuses).map(([value, text]) => <option key={value} value={value} disabled={confirmed && value !== 'checked'}>{text}</option>)}
           </Select>
-          <Textarea label="활동 메모 · 선택" value={item.note ?? ''} rows={3}
+          <Textarea label="활동 메모 · 선택" data-editing-context={contextKey ? `${contextKey}:note` : undefined} value={item.note ?? ''} rows={3}
             placeholder="막힌 부분이나 이어서 할 일을 필요한 만큼 남기세요."
             onChange={event => onChange({ note: event.target.value })} />
           {definition && <p className="muted">당시 기준: {modes[definition.mode]}</p>}
@@ -108,7 +110,7 @@ function ActivityEditor({ id, item, definition, question, onChange }: {
                   {repeat.kind !== 'unknown' && <Input label="반복 횟수" type="number" inputMode="numeric" min={1} step={1}
                     value={repeat.count ?? ''} error={invalid ? '기억나는 횟수를 1 이상의 정수로 입력하거나 횟수 모름을 선택해 주세요.' : undefined}
                     onChange={event => changeRepeat(repeat.id, { count: event.target.value === '' ? null : Number(event.target.value) })} />}
-                  <Textarea label="반복 메모 · 선택" value={repeat.note ?? ''} rows={2}
+                  <Textarea label="반복 메모 · 선택" data-editing-context={contextKey ? `${contextKey}:repeat:${repeat.id}` : undefined} value={repeat.note ?? ''} rows={2}
                     onChange={event => changeRepeat(repeat.id, { note: event.target.value })} />
                   <Button variant="quiet" onClick={() => {
                     setRemoved(previous => [...previous, { repeat, index, nextId: item.repeats?.[index + 1]?.id }]);

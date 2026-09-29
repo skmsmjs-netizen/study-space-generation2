@@ -21,3 +21,25 @@ export function clearRescuedDraft(key: string): void { pending.delete(key); reta
 export function rememberDraftReadError(key: string, error: string): void { retainedReadErrors.set(key, error); }
 export function draftReadError(key: string): string { return pending.has(key) ? retainedReadErrors.get(key) ?? '' : ''; }
 export function rescueWithoutOverwrite(key: string, value: string): void { pending.set(key, value); }
+
+/** Copy the exact unreadable bytes before allowing a replacement. Never delete the archive. */
+export function archiveDamagedDraft(key: string): string | null {
+  const raw = localStorage.getItem(key);
+  if (raw === null) return null;
+  const archiveKey = `${key}:recovery:${crypto.randomUUID()}`;
+  localStorage.setItem(archiveKey, raw);
+  if (localStorage.getItem(archiveKey) !== raw) throw new Error('원본 초안 사본을 확인하지 못했습니다. 원본을 유지했습니다.');
+  retainedReadErrors.delete(key);
+  return archiveKey;
+}
+
+/** Write an empty marker first so a failed removal cannot resurrect a committed draft. */
+export function clearStoredDraft(key: string): void {
+  let marked = false;
+  try { localStorage.setItem(key, ''); marked = true; } catch { /* Removal can still succeed. */ }
+  try { localStorage.removeItem(key); clearRescuedDraft(key); }
+  catch (error) {
+    clearRescuedDraft(key);
+    if (!marked) { pending.set(key, ''); throw error; }
+  }
+}

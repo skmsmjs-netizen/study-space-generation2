@@ -105,6 +105,38 @@ describe('criteria adjustment controls', () => {
     expect(JSON.parse(localStorage.getItem(draftKey)!).rows[0].label).toBe('첫 주제의 초안');
   });
 
+  it('archives unreadable bytes before restarting and refuses to restart when that archive cannot be stored', async () => {
+    const raw = '{broken-original\n  keep all whitespace'; localStorage.setItem(draftKey, raw);
+    const user = userEvent.setup(); render(<CriteriaEditor data={createDemoState()} targetId={targetId} onApply={() => null} />);
+    await user.click(screen.getByRole('button', { name: '공부 기준 조정' }));
+    expect(screen.getByRole('alert')).not.toHaveTextContent('SyntaxError');
+    const fail = vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => { throw Error('quota'); });
+    await user.click(screen.getByRole('button', { name: '원문 보관 후 새 초안 시작' }));
+    expect(screen.queryAllByLabelText('항목 문구')).toHaveLength(0); expect(localStorage.getItem(draftKey)).toBe(raw);
+    fail.mockRestore();
+    await user.click(screen.getByRole('button', { name: '원문 보관 후 새 초안 시작' }));
+    expect(screen.getAllByLabelText('항목 문구')).toHaveLength(15);
+    const archived = Object.keys(localStorage).find(key => key.startsWith(`${draftKey}:recovery:`));
+    expect(archived).toBeTruthy(); expect(localStorage.getItem(archived!)).toBe(raw);
+    expect(JSON.parse(localStorage.getItem(draftKey)!).targetId).toBe(targetId);
+  });
+
+  it('retries cleanup without applying the same criteria again after both marker and removal fail', async () => {
+    const user = userEvent.setup(), form = fixture();
+    await user.click(screen.getByRole('button', { name: '공부 기준 조정' }));
+    fireEvent.change(screen.getAllByLabelText('항목 문구')[0], { target: { value: '적용은 한 번만' } });
+    const failWrite = vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => { throw Error('quota'); });
+    const failRemove = vi.spyOn(Storage.prototype, 'removeItem').mockImplementation(() => { throw Error('blocked'); });
+    await user.click(screen.getByRole('button', { name: '기준 적용' }));
+    const revisionCount = form.state().revisions.length;
+    expect(resolveCriteria(form.state(), targetId).items[0].label).toBe('적용은 한 번만');
+    await user.click(screen.getByRole('button', { name: '공부 기준 조정' }));
+    expect(screen.queryByRole('button', { name: '기준 적용' })).not.toBeInTheDocument();
+    failWrite.mockRestore(); failRemove.mockRestore();
+    await user.click(screen.getByRole('button', { name: '초안 정리 다시 시도' }));
+    expect(localStorage.getItem(draftKey)).toBeNull(); expect(form.state().revisions).toHaveLength(revisionCount);
+  });
+
   it('rescues quota-failed input across route unmount without presenting it as durable storage', async () => {
     const data = createDemoState(), apply = vi.fn(() => null), user = userEvent.setup();
     const view = render(<CriteriaEditor data={data} targetId={targetId} onApply={apply} />);

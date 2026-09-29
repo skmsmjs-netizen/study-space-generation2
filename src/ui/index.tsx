@@ -68,8 +68,21 @@ export function Modal({ open, title, onClose, children, className }: ModalProps)
     const original = document.activeElement instanceof HTMLElement ? document.activeElement : null;
     const overflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
-    const available = () => [...(dialog.current?.querySelectorAll<HTMLElement>('*') || [])].filter(el => el.matches(focusableSelector) && !el.closest('[hidden], [inert]') && el.getAttribute('aria-hidden') !== 'true' && getComputedStyle(el).display !== 'none' && getComputedStyle(el).visibility !== 'hidden');
+    const background = [...document.body.children].filter(el => el !== dialog.current?.parentElement);
+    const previousInert = background.map(el => el.getAttribute('inert'));
+    background.forEach(el => el.setAttribute('inert', ''));
+    const available = () => [...(dialog.current?.querySelectorAll<HTMLElement>('*') || [])].filter(el => {
+      if (!el.matches(focusableSelector) || el.tabIndex < 0 || el.matches(':disabled') || el.closest('[hidden], [inert], [aria-hidden="true"]')) return false;
+      for (let ancestor: HTMLElement | null = el; ancestor && ancestor !== dialog.current; ancestor = ancestor.parentElement) {
+        const style = getComputedStyle(ancestor);
+        if (style.display === 'none' || style.visibility === 'hidden') return false;
+      }
+      return true;
+    });
     (available()[0] || dialog.current).focus();
+    const onFocus = (event: FocusEvent) => {
+      if (event.target instanceof Node && !dialog.current?.contains(event.target)) (available()[0] || dialog.current)?.focus();
+    };
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape' && !event.isComposing) { event.preventDefault(); event.stopPropagation(); close.current(); }
       if (event.key !== 'Tab') return;
@@ -79,7 +92,12 @@ export function Modal({ open, title, onClose, children, className }: ModalProps)
       else if (!event.shiftKey && (document.activeElement === last || !dialog.current?.contains(document.activeElement))) { event.preventDefault(); first.focus(); }
     };
     document.addEventListener('keydown', onKeyDown);
-    return () => { document.removeEventListener('keydown', onKeyDown); document.body.style.overflow = overflow; if (original?.isConnected) original.focus(); };
+    document.addEventListener('focusin', onFocus);
+    return () => {
+      document.removeEventListener('keydown', onKeyDown); document.removeEventListener('focusin', onFocus);
+      background.forEach((el, index) => { const before = previousInert[index]; if (before === null) el.removeAttribute('inert'); else el.setAttribute('inert', before); });
+      document.body.style.overflow = overflow; if (original?.isConnected) original.focus();
+    };
   }, [open]);
   if (!open) return null;
   return createPortal(<div className="ui-overlay" onMouseDown={event => { if (event.target === event.currentTarget) onClose(); }}><div ref={dialog} role="dialog" aria-modal="true" aria-labelledby={titleId} tabIndex={-1} className={classes('ui-modal', className)}><header className="ui-modal-header"><h2 className="ui-modal-title" id={titleId}>{title}</h2><IconButton label={`${title} 닫기`} onClick={onClose}>×</IconButton></header>{children}</div></div>, document.body);
