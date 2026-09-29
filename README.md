@@ -3,3 +3,25 @@
 1세대 연구와 기록 의미를 계승하는 독립형 학습 웹앱입니다. 현재 개발 단계와 미검증 범위는 docs/phase-status.md에 기록합니다.
 
 실제 사용자 자료·대화·Vault·인증 비밀·원본 백업은 이 저장소에 포함하지 않습니다. 가짜 데이터는 demo namespace에서만 사용합니다. 1세대는 별도로 보존되어 있으며 이 앱에서 변경하지 않습니다.
+
+## 현재 사용 가능한 것
+
+가짜 자료로 동작하는 0.1.0 Prototype입니다. 홈, 학기·과목·목차, 여러 주제 기록, 선택 TRACE 체크, C2 서술 점검, 초안, 수정 이력, 목차 휴지통·복원, 기본 검색을 포함합니다. 실제 학습자료를 넣는 단계가 아닙니다. 일반 화면 너비에서는 왼쪽 탐색, 좁은 창에서는 하단 탐색을 사용합니다.
+
+```sh
+npm ci
+npm test
+npm run build
+npm run preview -- --port 4173
+```
+
+브라우저에서 `http://127.0.0.1:4173/`을 엽니다. 개발은 `npm run dev`입니다. 개발 중 자동 재로딩과 단일 작성 창 잠금이 겹치면 페이지를 완전히 새로고침합니다. 시연 저장소의 동시 덮어쓰기를 막기 위해 한 번에 한 창에서 작성합니다.
+
+- [검증 기록과 A–G 조작 비용](docs/prototype-validation.md)
+- [Phase0–37와 C01–C45](docs/phase-status.md)
+- [49개 기능 마이그레이션 계약](docs/migration-spec.md)
+- [데이터 계약·22개 불변조건](docs/data-contract.md)
+- [디자인 시스템](docs/design-system.md), [공통 컴포넌트](docs/component-matrix.md)
+- [실패 행렬](docs/failure-matrix.md), [도메인 성능 측정](docs/domain-performance.md)
+
+GitHub Pages workflow는 준비되어 있으나 원격 저장소와 공개 배포는 미완료입니다. Supabase/Auth/RLS/온라인 데이터, 정식 IndexedDB/Offline/Sync/Conflict, PWA, 실제 Obsidian Import는 연결 전입니다. 실제 기기/IME/다기기 검증은 별도 gate로 남깁니다.
