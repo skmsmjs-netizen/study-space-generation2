@@ -15,9 +15,10 @@ export type DateEvidence = { kind: 'exact'; date: string } | { kind: 'range'; fr
 export interface StudySession extends Entity { dateEvidence: DateEvidence; legacyPayload?: unknown }
 export type ActivityStatus = 'unchecked' | 'checked' | 'na' | 'deferred';
 export interface WrittenReview { answer: string; checked: boolean; updatedAt: string }
+export interface TraceDefinition { id: string; group: string; label: string; version: number; mode: 'required' | 'optional' | 'excluded' }
 export interface TraceItem {
   status: ActivityStatus; note?: string; examReview?: WrittenReview;
-  definition?: { id: string; group: string; label: string; version: number; mode: 'required' | 'optional' | 'excluded' };
+  definition?: TraceDefinition;
   repeats?: { id: string; kind: 'exact' | 'minimum' | 'unknown'; count: number | null; note?: string; dateEvidence?: DateEvidence }[];
 }
 export type TraceState = Record<string, TraceItem>;
@@ -27,8 +28,11 @@ export interface StudyRecord extends Entity {
 }
 export type NarrativeKind = 'subject-overview' | 'unit-introduction' | 'topic-note' | 'free-note';
 export interface Narrative extends Entity { kind: NarrativeKind; ownerId: string | null; body: string }
-export type EntityCollection = 'semesters' | 'subjects' | 'nodes' | 'sessions' | 'records' | 'narratives';
-export type DomainEntity = Semester | Subject | OutlineNode | StudySession | StudyRecord | Narrative;
+export interface Criteria extends Entity { items: TraceDefinition[] }
+export interface CriteriaAssignment extends Entity { scope: 'topic' | 'subject' | 'global'; ownerId: string | null; criteriaId: string }
+export interface CriteriaChange { id: string; targetId: string; scope: 'topic' | 'subject' | 'all'; expectedToken: string; items: TraceDefinition[] }
+export type EntityCollection = 'semesters' | 'subjects' | 'nodes' | 'sessions' | 'records' | 'narratives' | 'criteria' | 'criteriaAssignments';
+export type DomainEntity = Semester | Subject | OutlineNode | StudySession | StudyRecord | Narrative | Criteria | CriteriaAssignment;
 export interface Revision extends Entity {
   collection: EntityCollection; entityId: string; operationId: string; parentRevisionId: string | null;
   before: DomainEntity | null; after: DomainEntity; reversesRevisionId?: string;
@@ -37,6 +41,8 @@ export interface AppState {
   schemaVersion: 1; userId: string; namespace: Namespace;
   semesters: Semester[]; subjects: Subject[]; nodes: OutlineNode[]; sessions: StudySession[];
   records: StudyRecord[]; narratives: Narrative[]; revisions: Revision[];
+  /** Optional for existing schema-1 demo snapshots; reading never rewrites them. */
+  criteria?: Criteria[]; criteriaAssignments?: CriteriaAssignment[];
   /** Canonical operation payloads make repeated requests idempotent. */
   appliedOps: Record<string, string>;
 }
@@ -52,6 +58,7 @@ export type Command = CommandContext & (
   | { type: 'saveRecords'; sessionId: string; entries: RecordEntry[]; dateEvidence: DateEvidence }
   | { type: 'updateRecord'; id: string; expectedVersion: number; patch: Partial<Pick<StudyRecord, 'body' | 'done' | 'dateEvidence' | 'trace'>> }
   | { type: 'updateNarrative'; id: string; kind: NarrativeKind; ownerId: string | null; body: string; expectedVersion: number }
+  | ({ type: 'adjustCriteria' } & CriteriaChange)
   | { type: 'editWrittenReview'; recordId: string; expectedVersion: number; answer: string }
   | { type: 'confirmWrittenReview' | 'unconfirmWrittenReview'; recordId: string; expectedVersion: number }
   | { type: 'undoRevision'; revisionId: string; expectedVersion: number }

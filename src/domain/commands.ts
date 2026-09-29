@@ -1,7 +1,8 @@
-import { DomainError, type AppState, type Command, type DateEvidence, type DomainEntity, type EntityCollection, type Narrative, type OutlineNode, type Revision, type Scope, type StudyRecord, type TraceState } from './model';
+import { DomainError, type AppState, type Command, type CriteriaAssignment, type DateEvidence, type DomainEntity, type EntityCollection, type Narrative, type OutlineNode, type Revision, type Scope, type StudyRecord, type TraceDefinition, type TraceState } from './model';
 import { TRACE_ITEMS, WRITTEN_REVIEW_ITEM_ID } from './trace';
+import { criteriaRevisionToken, criteriaScopeTargets, defaultCriteriaItems, validateTraceDefinition } from './criteria';
 
-const collections: EntityCollection[] = ['semesters', 'subjects', 'nodes', 'sessions', 'records', 'narratives'];
+const collections: EntityCollection[] = ['semesters', 'subjects', 'nodes', 'sessions', 'records', 'narratives', 'criteria', 'criteriaAssignments'];
 const clone = <T>(value: T): T => structuredClone(value);
 function fail(code: string, message: string, details?: unknown): never { throw new DomainError(code, message, details); }
 function canonical(value: unknown): string {
@@ -45,6 +46,7 @@ function verifyTrace(trace: TraceState): void {
     identity(id);
     if (!/^[TRACE][A-Za-z0-9_-]*$/.test(id)) fail('INVALID_TRACE_ID', '활동의 원래 식별자를 확인해 주세요.');
     if (!item || !['checked', 'unchecked', 'na', 'deferred'].includes(item.status) || item.note !== undefined && typeof item.note !== 'string') fail('INVALID_TRACE', '활동 상태와 메모를 확인해 주세요.');
+    if (item.definition !== undefined) validateTraceDefinition(item.definition, id);
     if (item.examReview && (typeof item.examReview.answer !== 'string' || typeof item.examReview.checked !== 'boolean' || item.examReview.checked && (!item.examReview.answer.trim() || item.status !== 'checked'))) fail('INVALID_WRITTEN_REVIEW', '점검하려면 자기 문장으로 서술을 남겨 주세요.');
     if (item.repeats) {
       const ids = new Set<string>();
@@ -62,7 +64,7 @@ function mergeTrace(previous: TraceState, patch: TraceState): TraceState {
   for (const [id, item] of Object.entries(patch)) {
     // A normal activity update cannot silently replace or confirm a written review.
     if (item.examReview && canonical(item.examReview) !== canonical(previous[id]?.examReview ?? null)) fail('REVIEW_COMMAND_REQUIRED', '서술 수정과 점검 확인은 해당 조작을 사용해 주세요.');
-    const definition = previous[id]?.definition || (() => { const original = TRACE_ITEMS.find(t => t.id === id); return original ? { id, group: original.group, label: original.label, mode: original.mode, version: 1 } : undefined; })();
+    const definition = previous[id]?.definition ?? item.definition ?? (() => { const original = TRACE_ITEMS.find(t => t.id === id); return original ? { id, group: original.group, label: original.label, mode: original.mode, version: 1 } : undefined; })();
     next[id] = { ...previous[id], ...clone(item), ...(definition ? { definition } : {}) };
     if (next[id].status !== 'checked' && next[id].examReview) next[id].examReview = { ...next[id].examReview!, checked: false };
   }
@@ -74,14 +76,17 @@ export function assertState(state: AppState): void {
   if (state.schemaVersion !== 1 || !['demo', 'personal', 'test'].includes(state.namespace)) fail('INVALID_STATE', '자료 형식을 확인해 주세요.');
   identity(state.userId);
   const globallyUnique = new Set<string>();
-  for (const name of collections) for (const row of state[name]) {
+  for (const name of collections) {
+    if (state[name] !== undefined && !Array.isArray(state[name])) fail('INVALID_STATE', '자료 목록의 형식을 확인해 주세요.');
+    for (const row of state[name] ?? []) {
     identity(row.id);
     if (globallyUnique.has(row.id)) fail('DUPLICATE_ID', '같은 식별자가 중복되어 있습니다.', { id: row.id }); globallyUnique.add(row.id);
     if (row.userId !== state.userId || row.namespace !== state.namespace) fail('OWNERSHIP', '다른 사용자나 시험 공간의 자료를 함께 처리할 수 없습니다.');
     if (!Number.isInteger(row.version) || row.version < 1) fail('INVALID_VERSION', '수정 순서를 확인해 주세요.');
+    }
   }
   // Validate large snapshots through indexes; repeated array scans made record checks quadratic.
-  const index = new Map(collections.flatMap(name => state[name].map(row => [row.id, row] as const)));
+  const index = new Map(collections.flatMap(name => (state[name] ?? []).map(row => [row.id, row] as const)));
   const subjectIds = new Set(state.subjects.map(row => row.id));
   const sessionIds = new Set(state.sessions.map(row => row.id));
   const semesterIds = new Set(state.semesters.map(row => row.id));
@@ -116,6 +121,28 @@ export function assertState(state: AppState): void {
     if (row.ownerId !== null && !index.has(row.ownerId)) fail('NOT_FOUND', '본문의 원래 대상을 찾을 수 없습니다.');
     verifyNarrative(state, row);
   }
+  const definitions = new Map<string, TraceDefinition>(defaultCriteriaItems().map(item => [item.id, item]));
+  for (const criteria of state.criteria ?? []) {
+    if (!Array.isArray(criteria.items) || criteria.items.length > 100 || new Set(criteria.items.map(item => item.id)).size !== criteria.items.length) fail('INVALID_CRITERIA', '기준의 항목과 중복 여부를 확인해 주세요.');
+    for (const item of criteria.items) {
+      validateTraceDefinition(item);
+      const prior = definitions.get(item.id);
+      if (prior && (prior.label !== item.label || prior.group !== item.group || prior.mode !== item.mode || prior.version !== item.version)) fail('CRITERIA_ID_REUSED', '뜻이나 적용 기준이 바뀐 활동은 새 항목으로 구별해 주세요.');
+      definitions.set(item.id, item);
+    }
+  }
+  const assignments = new Set<string>();
+  for (const assignment of state.criteriaAssignments ?? []) {
+    if (!['topic', 'subject', 'global'].includes(assignment.scope)
+      || assignment.scope === 'global' && assignment.ownerId !== null
+      || assignment.scope === 'subject' && !subjectIds.has(assignment.ownerId ?? '')
+      || assignment.scope === 'topic' && !nodeIndex.has(assignment.ownerId ?? '')) fail('CRITERIA_OWNER', '기준을 적용할 소속을 확인해 주세요.');
+    const key = JSON.stringify([assignment.scope, assignment.ownerId]);
+    if (assignments.has(key)) fail('DUPLICATE_CRITERIA_ASSIGNMENT', '같은 항목에 기준 연결이 중복되어 있습니다.');
+    assignments.add(key);
+    const target = state.criteria?.find(criteria => criteria.id === assignment.criteriaId);
+    if (!target || !assignment.deletedAt && target.deletedAt) fail('CRITERIA_REFERENCE', '기준의 원문 연결을 확인해 주세요.');
+  }
   for (const row of state.revisions) if (row.userId !== state.userId || row.namespace !== state.namespace) fail('OWNERSHIP', '수정 이력의 소유자가 다릅니다.');
 }
 function verifyNarrative(state: AppState, row: Pick<Narrative, 'ownerId' | 'kind' | 'body'>): void {
@@ -141,8 +168,10 @@ export function applyCommand(state: AppState, command: Command): AppState {
   }
   const next = clone(state);
   const common = (id: string) => ({ id, userId: state.userId, namespace: state.namespace, createdAt: command.at, updatedAt: command.at, version: 1, deletedAt: null });
-  const fresh = (id: string) => { identity(id); if (collections.some(k => next[k].some(v => v.id === id))) fail('DUPLICATE_ID', '이미 있는 식별자입니다.', { id }); };
+  const fresh = (id: string) => { identity(id); if (collections.some(k => (next[k] ?? []).some(v => v.id === id))) fail('DUPLICATE_ID', '이미 있는 식별자입니다.', { id }); };
   function write(collection: EntityCollection, entity: DomainEntity, reversesRevisionId?: string): void {
+    if (collection === 'criteria') next.criteria ??= [];
+    if (collection === 'criteriaAssignments') next.criteriaAssignments ??= [];
     const list = next[collection] as DomainEntity[];
     const index = list.findIndex(v => v.id === entity.id), before = index < 0 ? null : clone(list[index]);
     if (before && canonical(before) === canonical(entity)) return;
@@ -216,6 +245,33 @@ export function applyCommand(state: AppState, command: Command): AppState {
       const value = { ...(old ?? common(command.id)), kind: command.kind, ownerId: command.ownerId, body: command.body };
       verifyNarrative(next, value); write('narratives', value); break;
     }
+    case 'adjustCriteria': {
+      find(next.nodes, command.targetId); targetSubject(next, command.targetId);
+      if (command.expectedToken !== criteriaRevisionToken(next)) fail('CRITERIA_STALE', '기준이나 목차가 변경되었습니다. 입력은 유지하고 현재 범위를 다시 확인해 주세요.');
+      fresh(command.id);
+      if (!Array.isArray(command.items) || command.items.length > 100 || new Set(command.items.map(item => item.id)).size !== command.items.length) fail('INVALID_CRITERIA', '기준은 서로 다른 항목 100개까지 조정할 수 있습니다.');
+      const known = new Map<string, TraceDefinition>(defaultCriteriaItems().map(item => [item.id, item]));
+      for (const criteria of next.criteria ?? []) for (const item of criteria.items) known.set(item.id, item);
+      for (const item of command.items) {
+        validateTraceDefinition(item);
+        if (item.label.length > 180) fail('INVALID_CRITERIA', '항목 문구는 180자 이내로 입력해 주세요.');
+        const old = known.get(item.id);
+        if (old && canonical(old) !== canonical(item)) fail('CRITERIA_ID_REUSED', '뜻이나 적용 기준이 바뀐 활동은 새 항목으로 구별해 주세요.');
+      }
+      const targets = criteriaScopeTargets(next, command.targetId, command.scope);
+      write('criteria', { ...common(command.id), items: clone(command.items) });
+      for (const target of targets) {
+        const old = next.criteriaAssignments?.find(row => row.scope === target.scope && row.ownerId === target.ownerId);
+        let suffix = next.revisions.length;
+        while (!old && collections.some(collection => (next[collection] ?? []).some(row => row.id === `criteria-assignment:${suffix}`))) suffix++;
+        const id = old?.id ?? `criteria-assignment:${suffix}`;
+        if (!old) fresh(id);
+        const assignment: CriteriaAssignment = { ...(old ?? common(id)), ...target, criteriaId: command.id, deletedAt: null };
+        delete assignment.deletionBatchId;
+        write('criteriaAssignments', assignment);
+      }
+      break;
+    }
     case 'editWrittenReview': case 'confirmWrittenReview': case 'unconfirmWrittenReview': {
       const row = find(next.records, command.recordId); expected(row, command.expectedVersion, command);
       const trace = clone(row.trace), item = trace[WRITTEN_REVIEW_ITEM_ID] ?? { status: 'unchecked' as const };
@@ -233,27 +289,28 @@ export function applyCommand(state: AppState, command: Command): AppState {
     case 'undoRevision': {
       const revision = next.revisions.find(r => r.id === command.revisionId);
       if (!revision) fail('NOT_FOUND', '되돌릴 수정 이력을 찾을 수 없습니다.');
-      const row = find(next[revision.collection] as DomainEntity[], revision.entityId, false);
+      const row = find((next[revision.collection] ?? []) as DomainEntity[], revision.entityId, false);
       expected(row, command.expectedVersion, command);
       const latest = [...next.revisions].reverse().find(r => r.collection === revision.collection && r.entityId === revision.entityId);
       if (latest?.id !== revision.id) fail('UNDO_CONFLICT', '그 뒤의 변경이 있습니다. 현재 원문과 이력을 비교해 주세요.');
       // Undo the entire operation atomically; never partly revert a bulk edit.
       const group = next.revisions.filter(r => r.operationId === revision.operationId);
-      const createdInGroup = new Set(group.filter(r => r.before === null).map(r => r.entityId));
+      const affectedInGroup = new Set(group.map(r => r.entityId));
       for (const item of group) {
         if (item.before === null) {
-          const external = (row: DomainEntity) => !row.deletedAt && !createdInGroup.has(row.id);
+          const external = (row: DomainEntity) => !row.deletedAt && !affectedInGroup.has(row.id);
           const referenced = next.subjects.some(s => external(s) && s.scope.kind === 'semester' && s.scope.semesterId === item.entityId)
             || next.nodes.some(n => external(n) && (n.subjectId === item.entityId || n.parentId === item.entityId))
             || next.records.some(r => external(r) && (r.sessionId === item.entityId || r.targetId === item.entityId))
-            || next.narratives.some(n => external(n) && n.ownerId === item.entityId);
+            || next.narratives.some(n => external(n) && n.ownerId === item.entityId)
+            || (next.criteriaAssignments ?? []).some(assignment => external(assignment) && (assignment.criteriaId === item.entityId || assignment.ownerId === item.entityId));
           if (referenced) fail('UNDO_DEPENDENCY', '그 뒤 연결된 내용이 있습니다. 항목을 지우지 않고 현재 자료를 보존했습니다.');
         }
-        const current = find(next[item.collection] as DomainEntity[], item.entityId, false);
+        const current = find((next[item.collection] ?? []) as DomainEntity[], item.entityId, false);
         if (current.version !== item.after.version || [...next.revisions].reverse().find(r => r.collection === item.collection && r.entityId === item.entityId)?.id !== item.id) fail('UNDO_CONFLICT', '함께 변경한 항목이 다시 수정되어 자동으로 되돌릴 수 없습니다.');
       }
       for (const item of group) {
-        const current = find(next[item.collection] as DomainEntity[], item.entityId, false);
+        const current = find((next[item.collection] ?? []) as DomainEntity[], item.entityId, false);
         const restored = item.before ? { ...clone(item.before), version: current.version } : { ...current, deletedAt: command.at, deletionBatchId: command.opId };
         write(item.collection, restored, item.id);
       }
