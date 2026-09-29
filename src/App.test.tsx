@@ -50,6 +50,27 @@ function recordArea(title: string) {
 }
 
 describe('prototype write ownership', () => {
+  it('keeps archive reading available when the main demo cannot be opened', async () => {
+    localStorage.setItem(DEMO_KEY, '{broken workspace');
+    localStorage.setItem('study-space:demo:draft:multiple:recovery:qa-boot', '  damaged source\r\n');
+    render(<App />);
+    await screen.findByRole('heading', { name: '시연 자료를 열지 못했습니다' });
+    await userEvent.click(screen.getByRole('button', { name: '초안 보관본 확인' }));
+    expect(screen.getByRole('heading', { name: '1. 여러 주제 공부 기록' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: '원문 내보내기' })).toBeEnabled();
+    expect(localStorage.getItem(DEMO_KEY)).toBe('{broken workspace');
+  });
+
+  it('opens archive direct routes without a missing-item message and retains both drafts', async () => {
+    const key = 'study-space:demo:draft:multiple';
+    localStorage.setItem(`${key}:recovery:qa-route`, '{broken original'); localStorage.setItem(key, 'current draft');
+    await open('/draft-archives');
+    expect(screen.getByRole('heading', { name: '초안 보관본', level: 1 })).toBeInTheDocument();
+    expect(screen.queryByRole('heading', { name: '이 항목을 찾을 수 없습니다' })).toBeNull();
+    expect(localStorage.getItem(`${key}:recovery:qa-route`)).toBe('{broken original');
+    expect(localStorage.getItem(key)).toBe('current draft');
+  });
+
   it('rejects a second writer without initializing or changing storage', async () => {
     const repo = new DemoRepository(localStorage), before = localStorage.getItem(DEMO_KEY);
     expect(repo.getSnapshot().namespace).toBe('demo'); locked = true;

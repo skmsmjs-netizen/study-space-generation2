@@ -1,0 +1,8 @@
+.draft-archives { display: grid; gap: var(--space-4); min-width: 0; }
+.draft-archives .ui-card { min-width: 0; overflow-wrap: anywhere; }
+.draft-archives h2 { font-size: var(--type-heading-size); line-height: var(--type-heading-line); }
+.archive-meta { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-1); }
+.archive-meta dt { font-weight: var(--type-label-weight); margin-block-start: var(--space-2); }
+.archive-meta dd { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.draft-archives summary { cursor: pointer; padding-block: var(--space-3); }
+.draft-archives .actions { margin-block-start: var(--space-3); }

@@ -1,7 +1,7 @@
 import { useLayoutEffect, useRef, useState, type KeyboardEvent } from 'react';
 import type { AppState, Command, OutlineTableCourse, OutlineTableInput, OutlineTableTopic, OutlineTableUnit, Scope } from '../domain/model';
 import { outlineTableToken, previewOutlineTable } from '../domain/outline';
-import { archiveDamagedDraft, clearStoredDraft, draftHasUnstoredText, readRescuedDraft, storeDraftSafely } from '../data/draft-safety';
+import { DraftArchiveError, archiveDamagedDraft, clearStoredDraft, draftHasUnstoredText, readRescuedDraft, storeDraftSafely } from '../data/draft-safety';
 import { Button, ErrorState, Input, Modal, Select } from './index';
 import './outline-table-editor.css';
 
@@ -142,7 +142,7 @@ function TableEditor({ data, initialScope, onApply, onUndo }: Props) {
     <Modal open={open} title="과목·단원·주제 한 번에 만들기" onClose={() => setOpen(false)} className="outline-table-modal">
       <p>과목명을 적고, 표에서 단원과 주제를 채우세요. 입력은 이 기기의 초안으로 보관합니다.</p>
       {error && <ErrorState message={error} />}
-      {blocked && <div className="field-stack"><Button onClick={() => { try { const restored = readDraft(key, data); setBlocked(false); setError(''); setDraft(restored); if (!restored) persist(blank(initialScope)); } catch { setError('초안을 다시 읽지 못했습니다. 기존 원문을 유지했습니다.'); } }}>표 초안 다시 읽기</Button><Button onClick={() => { try { archiveDamagedDraft(key); setBlocked(false); persist(blank(initialScope)); } catch { setError('원본 사본을 보관하지 못했습니다. 기존 원문을 유지했습니다.'); } }}>원문 보관 후 새 표 시작</Button></div>}
+      {blocked && <div className="field-stack"><Button onClick={() => { try { const restored = readDraft(key, data); setBlocked(false); setError(''); setDraft(restored); if (!restored) persist(blank(initialScope)); } catch { setError('초안을 다시 읽지 못했습니다. 기존 원문을 유지했습니다.'); } }}>표 초안 다시 읽기</Button><Button onClick={() => { try { archiveDamagedDraft(key); setBlocked(false); persist(blank(initialScope)); } catch (reason) { setError(reason instanceof DraftArchiveError ? reason.message : '원본 사본을 보관하지 못했습니다. 기존 원문을 유지했습니다.'); } }}>원문 보관 후 새 표 시작</Button></div>}
       {draft && !blocked && <div className="field-stack">
         <Select label="표의 과목을 등록할 학기" disabled={locked} value={draft.scope.kind === 'semester' ? draft.scope.semesterId : draft.scope.kind} onChange={event => edit(next => { next.scope = ['independent', 'unassigned'].includes(event.target.value) ? { kind: event.target.value as 'independent' | 'unassigned' } : { kind: 'semester', semesterId: event.target.value }; })}>
           <option value="unassigned">학기 미지정</option><option value="independent">독립 공부</option>{data.semesters.filter(row => !row.deletedAt).map(row => <option key={row.id} value={row.id}>{row.name}</option>)}

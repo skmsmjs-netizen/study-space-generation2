@@ -2,7 +2,7 @@ import { useState } from 'react';
 import type { AppState, CriteriaChange, TraceDefinition } from '../domain/model';
 import { criteriaRevisionToken, criteriaScopeTargets, prepareCriteriaItems, resolveCriteria, validateTraceDefinition, type CriteriaEditRow } from '../domain/criteria';
 import { TRACE_GROUP_LABELS } from '../domain/trace';
-import { archiveDamagedDraft, clearStoredDraft, draftHasUnstoredText, readRescuedDraft, storeDraftSafely } from '../data/draft-safety';
+import { DraftArchiveError, archiveDamagedDraft, clearStoredDraft, draftHasUnstoredText, readRescuedDraft, storeDraftSafely } from '../data/draft-safety';
 import { Button, ErrorState, Input, Modal, Select } from './index';
 
 interface Draft {
@@ -108,7 +108,7 @@ function CriteriaEditorForTarget({ data, targetId, onApply, onUndo }: CriteriaEd
           <p className="muted">읽지 못한 원문을 이 기기에 별도 보관한 뒤, 현재 기준으로 새 초안을 시작할 수 있습니다. 원문 사본 저장에 실패하면 새로 시작하지 않습니다.</p>
           <Button onClick={() => {
             try { archiveDamagedDraft(key); setBlocked(false); update(freshDraft()); }
-            catch { setError('원본 초안 사본을 보관하지 못했습니다. 기존 원문을 유지했습니다. 저장 공간을 확보한 뒤 다시 시도해 주세요.'); }
+            catch (reason) { setError(reason instanceof DraftArchiveError ? reason.message : '원본 초안 사본을 보관하지 못했습니다. 기존 원문을 유지했습니다. 저장 공간을 확보한 뒤 다시 시도해 주세요.'); }
           }}>원문 보관 후 새 초안 시작</Button>
         </div>}
         {!blocked && draft && error && !cleanupPending && <Button onClick={() => update(draft)}>초안 저장 다시 시도</Button>}

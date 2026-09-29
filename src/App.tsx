@@ -24,7 +24,7 @@ import type {
   NarrativeKind,
   StudyRecord,
 } from "./domain/model";
-import { readRescuedDraft, storeDraftSafely, draftHasUnstoredText, rescueWithoutOverwrite, draftReadError, rememberDraftReadError, archiveDamagedDraft, clearStoredDraft } from "./data/draft-safety";
+import { DraftArchiveError, readRescuedDraft, storeDraftSafely, draftHasUnstoredText, rescueWithoutOverwrite, draftReadError, rememberDraftReadError, archiveDamagedDraft, clearStoredDraft } from "./data/draft-safety";
 import { validateFormDraft } from "./data/demo-repository";
 import { useRoute, navigate as go } from "./ui/navigation-context";
 import { TraceEditor } from "./ui/trace-editor";
@@ -33,6 +33,7 @@ import { resolveCriteria } from "./domain/criteria";
 import { outlineRevisionToken, previewOutlineEntries } from "./domain/outline";
 import { OutlineTableEditor } from "./ui/outline-table-editor";
 import { OutlineTree } from "./ui/outline-tree";
+import { DraftArchives } from "./ui/draft-archives";
 import { TRACE_ITEMS } from "./domain/trace";
 import {
   DemoRepository,
@@ -65,6 +66,7 @@ function writePreference(name: string, value: string) {
 }
 
 export default function App() {
+  const [showBootArchives, setShowBootArchives] = useState(false);
   const [boot, setBoot] = useState<{
     repo: DemoRepository | null;
     error: string;
@@ -134,6 +136,8 @@ export default function App() {
           message={boot.error}
           onRetry={() => location.reload()}
         />
+        <Button onClick={() => setShowBootArchives(value => !value)}>초안 보관본 확인</Button>
+        {showBootArchives && <DraftArchives />}
       </main>
     );
   return <Workspace repository={boot.repo} />;
@@ -288,7 +292,7 @@ function Workspace({ repository }: { repository: DemoRepository }) {
       if (modalBlocked) archiveDamagedDraft(modalKey);
       storeDraftSafely(modalKey, JSON.stringify(modalValue()));
       setModalBlocked(false); setModalError("");
-    } catch { setModalError("초안을 보관하지 못했습니다. 원본과 현재 창의 입력은 유지했습니다. 저장 공간을 확인한 뒤 다시 시도해 주세요."); }
+    } catch (reason) { setModalError(reason instanceof DraftArchiveError ? reason.message : "초안을 보관하지 못했습니다. 원본과 현재 창의 입력은 유지했습니다. 저장 공간을 확인한 뒤 다시 시도해 주세요."); }
   };
   const finishModal = () => {
     try { clearStoredDraft(modalKey); setModalError(""); }
@@ -438,7 +442,9 @@ function Workspace({ repository }: { repository: DemoRepository }) {
   const recordRoute = route.startsWith("/record");
   const freeRoute = route === "/free" || route.startsWith("/free/");
   const rootTitle =
-    route === "/subjects"
+    route === "/draft-archives"
+      ? "초안 보관본"
+      : route === "/subjects"
       ? "공부할 범위"
       : route === "/search"
         ? "기억을 찾아서"
@@ -460,6 +466,7 @@ function Workspace({ repository }: { repository: DemoRepository }) {
         <NavigationBar label="주 메뉴" orientation="vertical" items={navItems.map(item => ({href:`#${item.href}`, label:item.text, active:route === item.href || item.href === "/record" && recordRoute || item.href === "/subjects" && Boolean(subject)}))} />
         <div className="sidebar-bottom">
           <a href="#/trash">휴지통</a>
+          <a href="#/draft-archives">초안 보관본</a>
           <Select
             label="화면 밝기"
             value={theme}
@@ -500,6 +507,7 @@ function Workspace({ repository }: { repository: DemoRepository }) {
           <details className="compact-menu">
             <summary>더 보기</summary>
             <a href="#/trash">휴지통</a>
+            <a href="#/draft-archives">초안 보관본</a>
             <Select
               label="화면 밝기"
               value={theme}
@@ -576,6 +584,7 @@ function Workspace({ repository }: { repository: DemoRepository }) {
               <div className="actions"><Button onClick={() => openDialog("node")}>목차 추가</Button><Button onClick={() => openDialog("bulk")}>여러 항목 추가</Button></div>
             )}
           </div>
+          {route === "/draft-archives" && <DraftArchives data={data} />}
           {route === "/" && (
             <>
               <Card className="hero">
@@ -916,7 +925,7 @@ function Workspace({ repository }: { repository: DemoRepository }) {
                 ))}
             </>
           )}
-          {!["/", "/subjects", "/search", "/trash", "/free"].includes(route) &&
+          {!["/", "/subjects", "/search", "/trash", "/free", "/draft-archives"].includes(route) &&
             !recordRoute &&
             !freeRoute &&
             !subject && (
@@ -1135,7 +1144,7 @@ function useTextDraft(key: string, initial: string, version: number, identity?: 
       if (blocked) archiveDamagedDraft(key);
       storeDraftSafely(key, JSON.stringify({ body, version: expected.current, ...(identity ? { entityId: boot.entityId } : {}) }));
       setBlocked(false); setError("");
-    } catch { setError("초안을 보관하지 못했습니다. 원본과 현재 창의 입력은 유지했습니다. 저장 공간을 확인한 뒤 다시 시도해 주세요."); }
+    } catch (reason) { setError(reason instanceof DraftArchiveError ? reason.message : "초안을 보관하지 못했습니다. 원본과 현재 창의 입력은 유지했습니다. 저장 공간을 확인한 뒤 다시 시도해 주세요."); }
   };
   return { body, change, error, blocked, expected, clear, retry, cleanupPending, entityId: boot.entityId };
 }
@@ -1534,7 +1543,7 @@ function RecordForm({
             validateFormDraft(currentForm.current, key);
             storeDraftSafely(storageKey, JSON.stringify(currentForm.current));
             setDraftBlocked(false); setDraftError("");
-          } catch { setDraftError("초안을 보관하지 못했습니다. 원본과 현재 창의 입력은 유지했습니다. 저장 공간을 확인한 뒤 다시 시도해 주세요."); }
+          } catch (reason) { setDraftError(reason instanceof DraftArchiveError ? reason.message : "초안을 보관하지 못했습니다. 원본과 현재 창의 입력은 유지했습니다. 저장 공간을 확인한 뒤 다시 시도해 주세요."); }
         }}>{draftBlocked ? "원본 사본 보관 후 입력 이어가기" : "초안 다시 보관"}</Button></>}
         <div className="save-bar">
           <span className="muted">
