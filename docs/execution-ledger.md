@@ -6,6 +6,14 @@
 
 정본은 [execution-ledger.json](execution-ledger.json), 최초 목록 비교 기준은 [execution-ledger-baseline.json](execution-ledger-baseline.json)입니다. 검사기는 목록 소실·고아 참조·목적지·분류 변경·근거 없는 승격·Phase 선행조건을 검사합니다. 수량과 SHA-256은 내용의 완전성을 증명하지 않습니다.
 
+## 2026-09-30 보관본·긴 표 복귀·공부 시작 후속 실행
+
+이번 코드 변경은 `fca7f88`(초안 보관본 확인·내보내기), `e154a45`(긴 표 편집 위치 복원), `2d240fc`(선택적 공부 시작·기록 복귀)입니다. 기존 1,367행을 유지하고 좁은 후속 요구 3행을 추가하여 **1,370행**입니다. [새 자동 실행](validation/archive-final-tests-20260930-0225.txt)은 213개 통과·선택 성능 1개 건너뜀, [타입·빌드](validation/archive-final-build-20260930-0225.txt)는 통과입니다. [실제 브라우저 증거](validation/archive-ui-20260930.md)와 자동·물리·서버·성능 증거를 구별합니다.
+
+보관본의 원문·대상·이유·시각·현재 초안 관계를 읽기 전용으로 확인합니다. 읽기·메타데이터 실패와 재시도에서 원본과 사본을 유지했고 특수 문자를 포함한 JSON 클립보드 복사의 원문 일치를 확인했습니다. **다운로드한 실제 파일 수신은 미검증**이므로 이 요구 전체는 미검증입니다. 정식 백업·데이터 삭제 복구·강제종료·IndexedDB 영구 보존 완료가 아닙니다.
+
+긴 표는 1280px/390px 브라우저에서 닫기·재열기·새로고침 뒤 같은 필드·선택·내부 스크롤을 복원했습니다. 선택적 공부 시작 안내는 홈·새로고침 뒤 기록 복귀로 이어지며 저장 전 공부 사건을 만들지 않습니다. 이 두 좁은 흐름만 수정 후 통과이며 F08 전체, CORE C10/C17, 상위 Phase는 승격하지 않았습니다. 기존 P01 사용자 보고를 이번 직접 실기기 증거로 복제하지 않았습니다.
+
 ## 2026-09-30 Prototype 후속 실행
 
 이번 구현은 ce6ee43 및 앞선 dd39f5b/5e1d223/752ab1e입니다. [170개 자동검사·빌드](validation/followup-execution-20260930.json), [실제 B10–B18](validation/followup-ui-20260930.md), [원본·접근·의미감사 경계](validation/followup-audit-20260930.json)를 연결합니다. 기존 1,366행은 모두 보존했고 새 자유기록 ID 복구 결함 1행을 추가하여 1,367행입니다. 상위 Phase/전체 요구 상태를 일괄 통과로 바꾸지 않았습니다.
@@ -31,7 +39,7 @@
 | UX | 112 | 각 원래 ID 보존 |
 | UX_SURFACE | 32 | 각 원래 ID 보존 |
 | COMPONENT | 21 | 각 원래 ID 보존 |
-| FOLLOWUP | 1 | 새로 발견한 로컬 실패 경계 |
+| FOLLOWUP | 4 | 기존 실패 경계와 새 보관본·표 복귀·공부 시작의 좁은 요구 |
 | HISTORY | 665 | 과거 원문 위치 색인, 모두 독립 요구 또는 원문 정독이라고 판정하지 않음 |
 
 ## 현재 열린 조건
@@ -782,3 +790,6 @@ WORK.R07에는 기존 commit의 GitHub/Pages 배포 진전, WORK.R08에는 사�
 | ID | 요구 의미 | Phase | 목적지 | 상태 |
 |---|---|---|---|---|
 | FOLLOWUP.FREE_ID_RECOVERY | 로컬 자유기록 정리 실패 뒤 같은 ID·양쪽 본문 보존 | PHASE.08 | Draft/Narrative | 수정 후 통과 |
+| FOLLOWUP.DRAFT_ARCHIVE_INSPECTION | 보관본 읽기·정확한 원문 내보내기·실패 보존, 실제 다운로드 수신 미확인 | PHASE.08 | DraftArchive / DraftArchiveExport | 미검증 |
+| FOLLOWUP.TABLE_EDITING_CONTEXT | 긴 표의 안정된 필드·선택·방향·내부 스크롤 복귀 | PHASE.08 | ModalEditingContext / OutlineTableDraft | 수정 후 통과 |
+| FOLLOWUP.STUDY_LAUNCH_RETURN | 선택적 공부 시작·복귀 힌트, 저장 전 공부 사건 비생성 | PHASE.08 | StudyLaunchHint | 수정 후 통과 |

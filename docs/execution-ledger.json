@@ -132,7 +132,7 @@
     "UX_SURFACE": 32,
     "COMPONENT": 21,
     "HISTORY": 665,
-    "FOLLOWUP": 1
+    "FOLLOWUP": 4
   },
   "semantic_review": {
     "status": "미해결",
@@ -1249,7 +1249,8 @@
         "FEATURE.F11",
         "INV.INV06",
         "INV.INV08",
-        "INV.INV22"
+        "INV.INV22",
+        "FOLLOWUP.STUDY_LAUNCH_RETURN"
       ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
@@ -1411,7 +1412,10 @@
         "WORK.R13",
         "FEATURE.F36",
         "FEATURE.F37",
-        "INV.INV18"
+        "INV.INV18",
+        "FOLLOWUP.DRAFT_ARCHIVE_INSPECTION",
+        "FOLLOWUP.TABLE_EDITING_CONTEXT",
+        "FOLLOWUP.STUDY_LAUNCH_RETURN"
       ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
@@ -2034,7 +2038,8 @@
         "FEATURE.F42",
         "FEATURE.F48",
         "INV.INV18",
-        "INV.INV20"
+        "INV.INV20",
+        "FOLLOWUP.DRAFT_ARCHIVE_INSPECTION"
       ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
@@ -2332,7 +2337,9 @@
         "INV.INV12",
         "INV.INV15",
         "INV.INV16",
-        "INV.INV20"
+        "INV.INV20",
+        "FOLLOWUP.DRAFT_ARCHIVE_INSPECTION",
+        "FOLLOWUP.TABLE_EDITING_CONTEXT"
       ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
@@ -2776,7 +2783,8 @@
         "FEATURE.F33",
         "FEATURE.F36",
         "INV.INV18",
-        "INV.INV19"
+        "INV.INV19",
+        "FOLLOWUP.TABLE_EDITING_CONTEXT"
       ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
@@ -6924,7 +6932,11 @@
         "물리IME·키보드·회전·VoiceOver·대량 실제UI·서버/상대기기 수신은 미검증."
       ],
       "next_action": "남은 Prototype 오류/상태/접근성 조작을 원장 ID별로 대조하고 UX gate 충족 후 승인된 Supabase Auth/온라인 CRUD로 진행.",
-      "related": [],
+      "related": [
+        "FOLLOWUP.DRAFT_ARCHIVE_INSPECTION",
+        "FOLLOWUP.TABLE_EDITING_CONTEXT",
+        "FOLLOWUP.STUDY_LAUNCH_RETURN"
+      ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
         "implementation_commits": [
@@ -7078,7 +7090,11 @@
         "물리IME·키보드·회전·VoiceOver·대량 실제UI·서버/상대기기 수신은 미검증."
       ],
       "next_action": "남은 Prototype 오류/상태/접근성 조작을 원장 ID별로 대조하고 UX gate 충족 후 승인된 Supabase Auth/온라인 CRUD로 진행.",
-      "related": [],
+      "related": [
+        "FOLLOWUP.DRAFT_ARCHIVE_INSPECTION",
+        "FOLLOWUP.TABLE_EDITING_CONTEXT",
+        "FOLLOWUP.STUDY_LAUNCH_RETURN"
+      ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
         "implementation_commits": [
@@ -10376,7 +10392,8 @@
         "FEATURE.F12",
         "FEATURE.F13",
         "FEATURE.F15",
-        "FEATURE.F37"
+        "FEATURE.F37",
+        "FOLLOWUP.STUDY_LAUNCH_RETURN"
       ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
@@ -10488,7 +10505,8 @@
         "FEATURE.F01",
         "FEATURE.F03",
         "FEATURE.F04",
-        "FEATURE.F41"
+        "FEATURE.F41",
+        "FOLLOWUP.TABLE_EDITING_CONTEXT"
       ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
@@ -12242,7 +12260,8 @@
         "FEATURE.F38",
         "FEATURE.F41",
         "FEATURE.F42",
-        "FEATURE.F49"
+        "FEATURE.F49",
+        "FOLLOWUP.DRAFT_ARCHIVE_INSPECTION"
       ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
@@ -13689,7 +13708,8 @@
         "HISTORY.H472",
         "HISTORY.H474",
         "HISTORY.H475",
-        "HISTORY.H476"
+        "HISTORY.H476",
+        "FOLLOWUP.TABLE_EDITING_CONTEXT"
       ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
@@ -14147,7 +14167,9 @@
         "주제의 공부 시작 안내를 열고 자료 확인 후 기록으로 돌아온다. 이미 공부한 경우 안내를 건너뛰고, 열람만으로 done/session을 만들지 않는지 비교한다.의 전체 경로 실행 증거가 아직 없습니다."
       ],
       "next_action": "담당 PHASE.08에서 주제의 공부 시작 안내를 열고 자료 확인 후 기록으로 돌아온다. 이미 공부한 경우 안내를 건너뛰고, 열람만으로 done/session을 만들지 않는지 비교한다.",
-      "related": [],
+      "related": [
+        "FOLLOWUP.STUDY_LAUNCH_RETURN"
+      ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
         "implementation_commits": [],
@@ -37764,7 +37786,8 @@
       "next_action": "종료 직후 재실행를 demo/test 공간에서 주입하고 pending 작업과 draft 소유권·baseVersion 복구, 새 기록 중복 생성 금지 여부를 관찰합니다.",
       "related": [
         "INV.INV10",
-        "INV.INV18"
+        "INV.INV18",
+        "FOLLOWUP.DRAFT_ARCHIVE_INSPECTION"
       ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
@@ -37903,7 +37926,8 @@
       "next_action": "transaction abort·quota를 demo/test 공간에서 주입하고 성공 표시 금지, 편집 내용 유지, 재시도/안전 내보내기 안내 여부를 관찰합니다.",
       "related": [
         "INV.INV18",
-        "INV.INV20"
+        "INV.INV20",
+        "FOLLOWUP.DRAFT_ARCHIVE_INSPECTION"
       ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
@@ -40855,7 +40879,8 @@
         "FEATURE.F29",
         "FEATURE.F30",
         "FEATURE.F31",
-        "FEATURE.F32"
+        "FEATURE.F32",
+        "FOLLOWUP.STUDY_LAUNCH_RETURN"
       ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
@@ -41382,7 +41407,8 @@
       ],
       "next_action": "근거의 해당 항목을 읽고 목적지·UI 예외를 구현한 뒤 자동검증과 실제 조작 결과를 연결합니다.",
       "related": [
-        "FEATURE.F03"
+        "FEATURE.F03",
+        "FOLLOWUP.TABLE_EDITING_CONTEXT"
       ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
@@ -41936,7 +41962,8 @@
       ],
       "next_action": "근거의 해당 항목을 읽고 목적지·UI 예외를 구현한 뒤 자동검증과 실제 조작 결과를 연결합니다.",
       "related": [
-        "FEATURE.F10"
+        "FEATURE.F10",
+        "FOLLOWUP.STUDY_LAUNCH_RETURN"
       ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
@@ -43134,7 +43161,8 @@
       "next_action": "근거의 해당 항목을 읽고 목적지·UI 예외를 구현한 뒤 자동검증과 실제 조작 결과를 연결합니다.",
       "related": [
         "FEATURE.F01",
-        "FEATURE.F08"
+        "FEATURE.F08",
+        "FOLLOWUP.TABLE_EDITING_CONTEXT"
       ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
@@ -44006,7 +44034,8 @@
       "next_action": "근거의 해당 항목을 읽고 목적지·UI 예외를 구현한 뒤 자동검증과 실제 조작 결과를 연결합니다.",
       "related": [
         "FEATURE.F36",
-        "FEATURE.F37"
+        "FEATURE.F37",
+        "FOLLOWUP.DRAFT_ARCHIVE_INSPECTION"
       ],
       "commit_artifacts": {
         "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
@@ -137183,6 +137212,431 @@
       "verification_plan": {
         "automated": "App31 중 ID복구 재현3: 정리실패 이후 편집/재진입 동일ID 저장, 동일옛본문 중복차단, 서로다른본문 양쪽보존. 170개 최종통합 회귀."
       }
+    },
+    {
+      "id": "FOLLOWUP.DRAFT_ARCHIVE_INSPECTION",
+      "meaning": "손상 초안 보관본의 원문·대상·이유·시각·현재 초안 관계를 읽기 전용으로 확인하고 정확히 내보내며 기존 기록·현재 초안 덮어쓰기와 자동 삭제를 막습니다.",
+      "sources": [
+        {
+          "path": "outputs/20260929-gen2-handoff/새-채팅-실행-명령문.md",
+          "kind": "current_user_instruction",
+          "review": "WORK.R03/R04/R13/R20 and latest 2026-09-30 Prototype continuation priority."
+        },
+        {
+          "path": "generation2/docs/validation/archive-ui-20260930.md",
+          "kind": "current_execution_record",
+          "review": "Current scoped implementation, browser observations and remaining verification."
+        }
+      ],
+      "correction_dates": [
+        "2026-09-30"
+      ],
+      "classification": "B",
+      "classification_reason": "Preserve original text, stable IDs, optional input and study-event semantics while repairing the local Prototype flow. Do not promote parent requirements.",
+      "phase": "PHASE.08",
+      "prerequisites": [],
+      "destination": {
+        "decision": "adopt",
+        "entities": [
+          "DraftArchive.raw",
+          "DraftArchive.metadata",
+          "DraftArchiveExport"
+        ],
+        "reason": "손상 초안 보관본의 원문·대상·이유·시각·현재 초안 관계를 읽기 전용으로 확인하고 정확히 내보내며 기존 기록·현재 초안 덮어쓰기와 자동 삭제를 막습니다."
+      },
+      "ui": {
+        "targets": [
+          "UI.UI32"
+        ],
+        "operations": [
+          "Actual read-only archive navigation/view; read failure retry; metadata failure preserves original and raw copy. JSON clipboard export preserves CRLF/NUL/lone surrogate exactly. Download request actual disk-file receipt remains unverified. Not formal backup, storage eviction/OS termination recovery or IndexedDB durability."
+        ],
+        "states": [
+          "normal",
+          "failure and retry",
+          "original/current data preserved"
+        ]
+      },
+      "implementation": {
+        "files": [
+          "src/App.tsx",
+          "src/data/draft-archives.ts",
+          "src/data/draft-safety.ts",
+          "src/ui/draft-archives.tsx",
+          "src/ui/draft-archives.css"
+        ],
+        "test_connections": [
+          "src/App.test.tsx",
+          "src/data/draft-archives.test.ts",
+          "src/data/draft-safety.test.ts",
+          "src/ui/draft-archives.test.tsx"
+        ],
+        "scope": "손상 초안 보관본의 원문·대상·이유·시각·현재 초안 관계를 읽기 전용으로 확인하고 정확히 내보내며 기존 기록·현재 초안 덮어쓰기와 자동 삭제를 막습니다."
+      },
+      "evidence": {
+        "physical_device": {
+          "status": "미검증",
+          "artifacts": [],
+          "scope": "No new physical-device verification; prior P01 is not new evidence."
+        },
+        "server_peer": {
+          "status": "미검증",
+          "artifacts": [],
+          "scope": "Local Prototype only; no server/peer receipt verification."
+        },
+        "performance": {
+          "status": "미검증",
+          "artifacts": [],
+          "scope": "213 tests are not performance measurement; one opt-in performance test skipped."
+        },
+        "long_term": {
+          "status": "미검증",
+          "artifacts": [],
+          "scope": "No long-term or learning-effect evidence."
+        },
+        "automated": {
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "automated",
+              "path": "docs/validation/archive-final-tests-20260930-0225.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/archive-final-build-20260930-0225.txt"
+            }
+          ],
+          "scope": "213 integration tests and type/build passed. Exact-string and preservation assertions use synthetic error injection, not physical OS/storage failure.",
+          "verified_at": "2026-09-29T17:05:00+00:00",
+          "commit": "fca7f8896a222f43f1b0c8255317cbb2c1d81c67"
+        },
+        "browser": {
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "browser",
+              "path": "docs/validation/archive-ui-20260930.md"
+            }
+          ],
+          "scope": "Actual read-only archive navigation/view; read failure retry; metadata failure preserves original and raw copy. JSON clipboard export preserves CRLF/NUL/lone surrogate exactly. Download request actual disk-file receipt remains unverified. Not formal backup, storage eviction/OS termination recovery or IndexedDB durability.",
+          "verified_at": "2026-09-29T17:05:00+00:00",
+          "commit": "fca7f8896a222f43f1b0c8255317cbb2c1d81c67"
+        }
+      },
+      "required_evidence": [
+        "automated",
+        "browser"
+      ],
+      "status": "미검증",
+      "not_applicable_reason": null,
+      "remaining": [
+        "다운로드한 실제 파일 수신과 디스크 파일 원문 일치는 아직 확인하지 못했습니다."
+      ],
+      "next_action": "Verify the remaining scope and repeat this preservation contract when integrating online/durable local storage; do not infer parent Phase completion.",
+      "related": [
+        "CORE.C10",
+        "CORE.C17",
+        "CORE.C15",
+        "UI.UI32",
+        "FAILURE.FM10",
+        "FAILURE.FM11",
+        "WORK.R20"
+      ],
+      "commit_artifacts": {
+        "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
+        "implementation_commits": [
+          "fca7f8896a222f43f1b0c8255317cbb2c1d81c67"
+        ],
+        "artifacts": [
+          "docs/validation/archive-final-tests-20260930-0225.txt",
+          "docs/validation/archive-final-build-20260930-0225.txt",
+          "docs/validation/archive-ui-20260930.md"
+        ]
+      },
+      "acceptance_contract": "손상 초안 보관본의 원문·대상·이유·시각·현재 초안 관계를 읽기 전용으로 확인하고 정확히 내보내며 기존 기록·현재 초안 덮어쓰기와 자동 삭제를 막습니다.",
+      "verification_plan": {
+        "automated": "Exact raw strings, stable IDs, failure/retry and no unintended record writes in the executed integration suite.",
+        "browser": "Actual read-only archive navigation/view; read failure retry; metadata failure preserves original and raw copy. JSON clipboard export preserves CRLF/NUL/lone surrogate exactly. Download request actual disk-file receipt remains unverified. Not formal backup, storage eviction/OS termination recovery or IndexedDB durability."
+      }
+    },
+    {
+      "id": "FOLLOWUP.TABLE_EDITING_CONTEXT",
+      "meaning": "긴 과목·목차 표의 닫기·재열기·새로고침에서 안정된 필드 ID와 선택 범위·방향·내부 스크롤을 복원하고 개별 칸의 기존 내용을 보존합니다.",
+      "sources": [
+        {
+          "path": "outputs/20260929-gen2-handoff/새-채팅-실행-명령문.md",
+          "kind": "current_user_instruction",
+          "review": "WORK.R03/R04/R13/R20 and latest 2026-09-30 Prototype continuation priority."
+        },
+        {
+          "path": "generation2/docs/validation/archive-ui-20260930.md",
+          "kind": "current_execution_record",
+          "review": "Current scoped implementation, browser observations and remaining verification."
+        }
+      ],
+      "correction_dates": [
+        "2026-09-30"
+      ],
+      "classification": "B",
+      "classification_reason": "Preserve original text, stable IDs, optional input and study-event semantics while repairing the local Prototype flow. Do not promote parent requirements.",
+      "phase": "PHASE.08",
+      "prerequisites": [],
+      "destination": {
+        "decision": "adopt",
+        "entities": [
+          "ModalEditingContext",
+          "OutlineTableDraft"
+        ],
+        "reason": "긴 과목·목차 표의 닫기·재열기·새로고침에서 안정된 필드 ID와 선택 범위·방향·내부 스크롤을 복원하고 개별 칸의 기존 내용을 보존합니다."
+      },
+      "ui": {
+        "targets": [
+          "UI.UI06",
+          "UI.UI23"
+        ],
+        "operations": [
+          "Actual 1280px/390px browser close/reopen/reload: same stable field, selection16-17 backward, scrollTop4910.5/5752 restored. Enter creates36th row; Tab/close returns focus. This is not physical Korean IME or phone software keyboard evidence."
+        ],
+        "states": [
+          "normal",
+          "failure and retry",
+          "original/current data preserved"
+        ]
+      },
+      "implementation": {
+        "files": [
+          "src/ui/modal-context.ts",
+          "src/ui/outline-table-editor.tsx"
+        ],
+        "test_connections": [
+          "src/ui/outline-table-editor.test.tsx"
+        ],
+        "scope": "긴 과목·목차 표의 닫기·재열기·새로고침에서 안정된 필드 ID와 선택 범위·방향·내부 스크롤을 복원하고 개별 칸의 기존 내용을 보존합니다."
+      },
+      "evidence": {
+        "physical_device": {
+          "status": "미검증",
+          "artifacts": [],
+          "scope": "No new physical-device verification; prior P01 is not new evidence."
+        },
+        "server_peer": {
+          "status": "미검증",
+          "artifacts": [],
+          "scope": "Local Prototype only; no server/peer receipt verification."
+        },
+        "performance": {
+          "status": "미검증",
+          "artifacts": [],
+          "scope": "213 tests are not performance measurement; one opt-in performance test skipped."
+        },
+        "long_term": {
+          "status": "미검증",
+          "artifacts": [],
+          "scope": "No long-term or learning-effect evidence."
+        },
+        "automated": {
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "automated",
+              "path": "docs/validation/archive-final-tests-20260930-0225.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/archive-final-build-20260930-0225.txt"
+            }
+          ],
+          "scope": "213 integration tests and type/build passed. Exact-string and preservation assertions use synthetic error injection, not physical OS/storage failure.",
+          "verified_at": "2026-09-29T17:05:00+00:00",
+          "commit": "e154a4556f65029af0c6ef0aeb50c8eefd0da53f"
+        },
+        "browser": {
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "browser",
+              "path": "docs/validation/archive-ui-20260930.md"
+            }
+          ],
+          "scope": "Actual 1280px/390px browser close/reopen/reload: same stable field, selection16-17 backward, scrollTop4910.5/5752 restored. Enter creates36th row; Tab/close returns focus. This is not physical Korean IME or phone software keyboard evidence.",
+          "verified_at": "2026-09-29T17:05:00+00:00",
+          "commit": "e154a4556f65029af0c6ef0aeb50c8eefd0da53f"
+        }
+      },
+      "required_evidence": [
+        "automated",
+        "browser"
+      ],
+      "status": "수정 후 통과",
+      "not_applicable_reason": null,
+      "remaining": [],
+      "next_action": "Verify the remaining scope and repeat this preservation contract when integrating online/durable local storage; do not infer parent Phase completion.",
+      "related": [
+        "CORE.C10",
+        "CORE.C17",
+        "CORE.C20",
+        "FEATURE.F04",
+        "WORK.R04",
+        "UI.UI06",
+        "UI.UI23"
+      ],
+      "commit_artifacts": {
+        "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
+        "implementation_commits": [
+          "e154a4556f65029af0c6ef0aeb50c8eefd0da53f"
+        ],
+        "artifacts": [
+          "docs/validation/archive-final-tests-20260930-0225.txt",
+          "docs/validation/archive-final-build-20260930-0225.txt",
+          "docs/validation/archive-ui-20260930.md"
+        ]
+      },
+      "acceptance_contract": "긴 과목·목차 표의 닫기·재열기·새로고침에서 안정된 필드 ID와 선택 범위·방향·내부 스크롤을 복원하고 개별 칸의 기존 내용을 보존합니다.",
+      "verification_plan": {
+        "automated": "Exact raw strings, stable IDs, failure/retry and no unintended record writes in the executed integration suite.",
+        "browser": "Actual 1280px/390px browser close/reopen/reload: same stable field, selection16-17 backward, scrollTop4910.5/5752 restored. Enter creates36th row; Tab/close returns focus. This is not physical Korean IME or phone software keyboard evidence."
+      }
+    },
+    {
+      "id": "FOLLOWUP.STUDY_LAUNCH_RETURN",
+      "meaning": "선택한 주제의 선택적 공부 시작 안내와 화면 이동·새로고침 뒤 기록 복귀를 연결하되 안내·시작·힌트 지우기로 공부 사건을 만들지 않고 이미 공부한 내용은 바로 기록합니다.",
+      "sources": [
+        {
+          "path": "outputs/20260929-gen2-handoff/새-채팅-실행-명령문.md",
+          "kind": "current_user_instruction",
+          "review": "WORK.R03/R04/R13/R20 and latest 2026-09-30 Prototype continuation priority."
+        },
+        {
+          "path": "generation2/docs/validation/archive-ui-20260930.md",
+          "kind": "current_execution_record",
+          "review": "Current scoped implementation, browser observations and remaining verification."
+        }
+      ],
+      "correction_dates": [
+        "2026-09-30"
+      ],
+      "classification": "B",
+      "classification_reason": "Preserve original text, stable IDs, optional input and study-event semantics while repairing the local Prototype flow. Do not promote parent requirements.",
+      "phase": "PHASE.08",
+      "prerequisites": [],
+      "destination": {
+        "decision": "adopt",
+        "entities": [
+          "StudyLaunchHint",
+          "OutlineNode reference"
+        ],
+        "reason": "선택한 주제의 선택적 공부 시작 안내와 화면 이동·새로고침 뒤 기록 복귀를 연결하되 안내·시작·힌트 지우기로 공부 사건을 만들지 않고 이미 공부한 내용은 바로 기록합니다."
+      },
+      "ui": {
+        "targets": [
+          "UI.UI01",
+          "UI.UI11"
+        ],
+        "operations": [
+          "Actual guide->start->home->reload->record return. No new study event until record save. Already-studied input is immediately available. Clear action removes only return hint and preserves record counts. Not full F08, A-G comparative burden or learning-effect verification."
+        ],
+        "states": [
+          "normal",
+          "failure and retry",
+          "original/current data preserved"
+        ]
+      },
+      "implementation": {
+        "files": [
+          "src/App.tsx",
+          "src/data/study-launch.ts",
+          "src/ui/study-launch.tsx",
+          "src/ui/study-launch.css"
+        ],
+        "test_connections": [
+          "src/data/study-launch.test.ts",
+          "src/ui/study-launch.test.tsx",
+          "src/App.test.tsx"
+        ],
+        "scope": "선택한 주제의 선택적 공부 시작 안내와 화면 이동·새로고침 뒤 기록 복귀를 연결하되 안내·시작·힌트 지우기로 공부 사건을 만들지 않고 이미 공부한 내용은 바로 기록합니다."
+      },
+      "evidence": {
+        "physical_device": {
+          "status": "미검증",
+          "artifacts": [],
+          "scope": "No new physical-device verification; prior P01 is not new evidence."
+        },
+        "server_peer": {
+          "status": "미검증",
+          "artifacts": [],
+          "scope": "Local Prototype only; no server/peer receipt verification."
+        },
+        "performance": {
+          "status": "미검증",
+          "artifacts": [],
+          "scope": "213 tests are not performance measurement; one opt-in performance test skipped."
+        },
+        "long_term": {
+          "status": "미검증",
+          "artifacts": [],
+          "scope": "No long-term or learning-effect evidence."
+        },
+        "automated": {
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "automated",
+              "path": "docs/validation/archive-final-tests-20260930-0225.txt"
+            },
+            {
+              "level": "automated",
+              "path": "docs/validation/archive-final-build-20260930-0225.txt"
+            }
+          ],
+          "scope": "213 integration tests and type/build passed. Exact-string and preservation assertions use synthetic error injection, not physical OS/storage failure.",
+          "verified_at": "2026-09-29T17:05:00+00:00",
+          "commit": "2d240fc81810a27d28db8313a6b5e4ab931a42bc"
+        },
+        "browser": {
+          "status": "수정 후 통과",
+          "artifacts": [
+            {
+              "level": "browser",
+              "path": "docs/validation/archive-ui-20260930.md"
+            }
+          ],
+          "scope": "Actual guide->start->home->reload->record return. No new study event until record save. Already-studied input is immediately available. Clear action removes only return hint and preserves record counts. Not full F08, A-G comparative burden or learning-effect verification.",
+          "verified_at": "2026-09-29T17:05:00+00:00",
+          "commit": "2d240fc81810a27d28db8313a6b5e4ab931a42bc"
+        }
+      },
+      "required_evidence": [
+        "automated",
+        "browser"
+      ],
+      "status": "수정 후 통과",
+      "not_applicable_reason": null,
+      "remaining": [],
+      "next_action": "Verify the remaining scope and repeat this preservation contract when integrating online/durable local storage; do not infer parent Phase completion.",
+      "related": [
+        "FEATURE.F08",
+        "CORE.C09",
+        "CORE.C10",
+        "WORK.R03",
+        "UI.UI01",
+        "UI.UI11"
+      ],
+      "commit_artifacts": {
+        "baseline_commit": "7f813c251770ba2fda3face8fc971dac782c0817",
+        "implementation_commits": [
+          "2d240fc81810a27d28db8313a6b5e4ab931a42bc"
+        ],
+        "artifacts": [
+          "docs/validation/archive-final-tests-20260930-0225.txt",
+          "docs/validation/archive-final-build-20260930-0225.txt",
+          "docs/validation/archive-ui-20260930.md"
+        ]
+      },
+      "acceptance_contract": "선택한 주제의 선택적 공부 시작 안내와 화면 이동·새로고침 뒤 기록 복귀를 연결하되 안내·시작·힌트 지우기로 공부 사건을 만들지 않고 이미 공부한 내용은 바로 기록합니다.",
+      "verification_plan": {
+        "automated": "Exact raw strings, stable IDs, failure/retry and no unintended record writes in the executed integration suite.",
+        "browser": "Actual guide->start->home->reload->record return. No new study event until record save. Already-studied input is immediately available. Clear action removes only return hint and preserves record counts. Not full F08, A-G comparative burden or learning-effect verification."
+      }
     }
   ],
   "public_artifact_boundary": {
@@ -137191,5 +137645,5 @@
     "semantic_limit": "요구 의미와 원목록 경로를 공개 코드 명세로 포함하지만 개인 입력 내용·발화 원문은 포함하지 않습니다."
   },
   "last_refined_at": "2026-09-29T16:30:19.258568+00:00",
-  "last_integrated_at": "2026-09-29T16:24:18.753341+00:00"
+  "last_integrated_at": "2026-09-29T17:05:00+00:00"
 }

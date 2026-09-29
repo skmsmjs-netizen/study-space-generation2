@@ -1,0 +1,14 @@
+{
+  "verified_at": "2026-09-29T17:07:30.283213+00:00",
+  "files": 1851,
+  "matching": 1849,
+  "changed": 2,
+  "missing": 0,
+  "errors": 0,
+  "known_changes": [
+    "AGENTS.md: document guide and design validation adoption additions",
+    "간단 인계.md: document guide introduction additions"
+  ],
+  "unexpected_changes": 0,
+  "scope": "Existing additive instructions retained after baseline tar diff review. No 1851-byte-identity or semantic migration claim. No source/Vault writes in this run."
+}

@@ -1,3 +1,36 @@
+# 2026-09-30 보관본·긴 표 복귀·공부 시작 실행 인계
+
+최신 구현은 `2d240fc`입니다. 시작 HEAD `462365d57479a72d6166415c3b60c283982709ac`와 원격 main이 같은 clean 상태에서 시작했습니다. 과거 코드를 reset하거나 완성된 표 기능을 다시 만들지 않았습니다. 브랜치는 `codex/gen2-foundation`입니다.
+
+| 커밋 | 실제 사용자 동작 |
+|---|---|
+| fca7f88 | 초안 보관본 목록·원문 확인·현재 대상/초안 관계·JSON 다운로드 요청/정확한 복사 내보내기·읽기/메타데이터 실패 재시도 |
+| e154a45 | 긴 과목 표의 칸 ID·선택 방향·입력 내부/모달 스크롤을 닫기/새로고침 후 복원; 분리된 DOM의0값 덮기 회귀 수정 |
+| 2d240fc | 선택한 주제의 공부 시작 안내·이미 공부한 경우 즉시 기록·홈에서 같은 주제 복귀. 시작만으로 회차/체크를 만들지 않음 |
+
+[이번 Phase 보고·CORE45](phase-report-archive-20260930.md), [B20–B26와 A–G 대표 실조작](validation/archive-ui-20260930.md), [최종 자동검사](validation/archive-final-tests-20260930-0225.txt), [빌드](validation/archive-final-build-20260930-0225.txt)를 확인합니다. 213개 통과/성능1개 건너뜀, TypeScript/Vite 통과입니다. 실패였던390표 스크롤 캡처를 지우지 않고 수정 후 증거를 새 파일로 남겼습니다.
+
+보존1851개 중1849동일·이미 존재한 안내 문서 추가2·누락0/오류0입니다. 두 변경은 루트 AGENTS와 간단 인계의 문서 안내·도구 지침 추가이며 과거 내용이 그대로인 것을 보존 tar와 비교했습니다. 이번 작업은 원본·Vault를 수정하지 않았습니다. 보존 해시는 의미 이관이나 실행 호환성의 증거가 아닙니다.
+
+원장 수정 직전 snapshot은 저장소 밖 `outputs/gen2-archive-20260930-014507/ledger-before.json`입니다. 원래1367행/분류/증거를 유지하고3행을 더해1370행입니다. [snapshot/source 검사](validation/archive-ledger-20260930-0210.json)와 [검증기26검사](validation/archive-validator-tests-20260930-0210.txt)가 통과했습니다. 비공개 원문 경로·대화·키는 공개 저장소에 넣지 않습니다. 기존 실패 증거와 이전 보고서는 아래와 별도 파일에 보존합니다.
+
+## 배포와 공개 검증
+
+구현2d240fc의 [CI36602848976](https://github.com/skmsmjs-netizen/study-space-generation2/actions/runs/36602848976)가 test/build/deploy 성공했습니다. 공개 `#/draft-archives` 직접 진입·새로고침·배포 asset 및 잠금 상태의 읽기 전용 보관본 경로를 확인했습니다. 다른 작성 창 잠금 때문에 공개 정상 Workspace의F08/표는 미검증입니다. 다른 작업 창은 종료하지 않았습니다. 로컬 실제 조작은 위B20–B26으로 구별합니다. 최종 문서 commit과 배포 head 일치는 저장소 밖 이번 outputs의 `final-release.json` / `final-pages-run.json`에서 확인합니다.
+
+## 남은 조건과 다음 실행
+
+1. 보관본의 화면 접근·원문 복사/JSON 정확성·읽기 및 metadata 오류 후 재시도는 확인했습니다. 다운로드 요청 이후 실제 파일 수신·다시 열기는 아직 확인하지 못했습니다. localStorage 사본이지 정식 Backup/브라우저 삭제 복구/OS 강제종료/IDB 영구 보존이 아닙니다.
+2. 긴 표의1280/390, light/dark, 닫기·새로고침·Enter·Tab은 실제 브라우저로 확인했습니다. 글자200% 시험은 브라우저 자체 확대가 아닙니다. 실제 한국어 IME·기기 키보드·회전/Split View·VoiceOver는 남습니다. 기존P01 두 줄 사용보고는 반복하지 않았고, 긴 표 마지막 칸→닫기/복귀→새로고침의 글/위치/키보드 가림만 새 최소 사례로 요청했습니다.
+3. A–G 대표 시작점은 이번 실제 조작을 기록했습니다. 모든 시작상태·기기별 입력 부담·1세대 안전 복제 비교는 남습니다. 비교 기준 없이 개선 효과를 주장하지 않습니다. 가장 먼저 다운로드 파일 수신과 브라우저 자체200% 확대를 확인하고, 현재 구현의 남은 실패·조건부 상태를 실제 UI에 연결합니다.
+4. 21종 계약과 export 유지, 제품16종 사용·5종 미사용(Radio/Tabs/SegmentedControl/ListItem/Sheet). 숫자를 채우기 위한 화면은 만들지 않았습니다. 미래 모든UI38/FM40을 Prototype의 추가 선행조건으로 만들지 않습니다. 다만 원래 P09의 최소 automated/browser/physical_device 조건을 삭제하거나 무시하지 않습니다.
+5. gh 인증·기존 Supabase Healthy와 로그인 상태를 이번에 재확인했습니다. 로그인 불가를 차단 사유로 쓰지 않습니다. P09의 필요한 선행 증거를 채운 뒤 기존 프로젝트 `lbuiwotjisbzgflixjvg`의 Auth→CRUD/RLS/소유자거부/revision/version→세션만료/실패재시도를 구분해 실제 서버로 검증합니다. 새 프로젝트 생성이나 개인 자료 업로드는 하지 않습니다. 공개 URL/publishable key만 프런트에 사용합니다.
+6. 이후 원래 IndexedDB→오프라인큐→Sync→Conflict→Canvas/PWA→기기/대시보드/통계→Backup/Import→QA/E2E/성능→후보/1.0 의존관계를 유지합니다. F05/F22/F47/F49 조건, 원본/이력/첨부/backup/offline 삭제복제 정책 전 영구삭제 비노출을 유지합니다. HISTORY665의 기계 일치와 전체 의미 검토를 혼동하지 않습니다. 141/460 의미·13첨부 내용 전체 검토도 완료가 아닙니다.
+
+이번 배포는 중간 실행 결과입니다. 전체 요청 완료나 Prototype/P09/1.0 통과가 아니며, 위 독립 작업과 원래 나머지 요구가 계속 남아 있습니다. 아래 이전 인계의 구현·배포·검사 수치는 당시 기록입니다.
+
+---
+
 # 2026-09-30 Prototype 후속 실행 인계
 
 최신 앱 구현은 **ce6ee432bee65d184f65145414ee4a1e586c838d**입니다. 시작점4907d8e를 reset하지 않고 아래 작은 commit을 추가했습니다. branch는 `codex/gen2-foundation`, 공개 main에 push했습니다. 원격은 [study-space-generation2](https://github.com/skmsmjs-netizen/study-space-generation2), [Pages](https://skmsmjs-netizen.github.io/study-space-generation2/)입니다. 최초7f813c2/tag는 역사적 출발점입니다.

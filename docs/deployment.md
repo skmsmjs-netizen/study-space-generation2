@@ -13,3 +13,9 @@ Supabase는 사용자가 프로젝트를 생성했고 dashboard Healthy만 확�
 현재 앱 구현 `ce6ee432bee65d184f65145414ee4a1e586c838d`를 승인된 main에 push했고 [Actions36597203248](https://github.com/skmsmjs-netizen/study-space-generation2/actions/runs/36597203248)의 test/build/deploy 성공을 확인했습니다. 공개 Pages에서 `index-3OU7fg4T.js`, 전체표 입력 진입, 주제상세 reload/형제순서 조작을 확인했습니다. 최종 문서 commit의 후속 CI는 Git/Actions 이력 및 별도 인계 출력에 남깁니다. 자동170개와 opt-in 성능1개 미실행, 실제브라우저 B10–B19를 구별합니다.
 
 이번 실행에서 gh인증과 기존 Supabase프로젝트 Healthy를 재확인했습니다. Auth/CRUD/RLS·서버/상대기기 수신은 미구현/미검증이며 로그인만의 차단이 아닙니다. 선행 Prototype UX gate 뒤 온라인을 진행합니다.
+
+## 2026-09-30 보관본·표 복귀·공부 시작 배포
+
+구현 `2d240fc81810a27d28db8313a6b5e4ab931a42bc`를 main에 push하고 [Actions36602848976](https://github.com/skmsmjs-netizen/study-space-generation2/actions/runs/36602848976)의 test/build/deploy 성공을 확인했습니다. [실행 응답](validation/archive-code-pages-run-20260930.json), [실제 공개 관찰 B27](validation/archive-ui-20260930.md)을 남겼습니다. 공개 직접 경로/새로고침과 `index-CpuoAN_r.js`, 잠금 상태의 읽기 전용 초안 보관본 접근·다시 읽기를 확인했습니다. 다른 작성 창 잠금 때문에 정상 Workspace의 새 F08/표 조작은 로컬 실제 브라우저 검증과 구별하여 공개 미검증으로 남겼습니다. 다른 창이나 데이터를 종료/삭제하여 우회하지 않았습니다.
+
+문서·원장 후속 commit도 main으로 배포하며 마지막 HEAD와 Actions headSha 일치는 저장소 밖 최종 release 응답에 보존합니다. 213검사/타입/빌드·1370행 원장·검증기26개 통과. 정식 Auth/온라인 저장·물리기기·새 성능 측정이 아닙니다.

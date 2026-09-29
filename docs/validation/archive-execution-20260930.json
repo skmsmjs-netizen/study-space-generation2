@@ -1,0 +1,65 @@
+{
+  "verified_at": "2026-09-29T17:09:19.157976+00:00",
+  "start_head": "462365d57479a72d6166415c3b60c283982709ac",
+  "implementation_head": "2d240fc81810a27d28db8313a6b5e4ab931a42bc",
+  "branch": "codex/gen2-foundation",
+  "commits": {
+    "fca7f88": "fca7f8896a222f43f1b0c8255317cbb2c1d81c67",
+    "e154a45": "e154a4556f65029af0c6ef0aeb50c8eefd0da53f",
+    "2d240fc": "2d240fc81810a27d28db8313a6b5e4ab931a42bc"
+  },
+  "automatic": {
+    "tests_passed": 213,
+    "tests_skipped": 1,
+    "files_passed": 19,
+    "files_skipped": 1,
+    "log": "docs/validation/archive-final-tests-20260930-0225.txt",
+    "performance_measured": false
+  },
+  "build": {
+    "status": "통과",
+    "log": "docs/validation/archive-final-build-20260930-0225.txt",
+    "local_js": "index-CpuoAN_r.js"
+  },
+  "browser": {
+    "status": "통과",
+    "scope": "B20-B26 and representative A-G paths only; download request observed, clipboard raw equality confirmed; no file receipt proof",
+    "artifact": "docs/validation/archive-ui-20260930.md"
+  },
+  "physical_device": {
+    "status": "미검증",
+    "scope": "New long-table case asked; no response. Historical P01 preserved, not repeated."
+  },
+  "server_peer": {
+    "status": "미검증",
+    "scope": "Existing Supabase Healthy/sign-in observed; no app Auth/CRUD/RLS/version/server receipt run."
+  },
+  "preservation": "docs/validation/archive-preservation-20260930.json",
+  "phase_status": {
+    "07": "미검증",
+    "08": "미검증",
+    "09": "미검증"
+  },
+  "limitations": [
+    "download receipt and reopen",
+    "browser zoom and physical IME/VoiceOver",
+    "all A-G starting contexts and first-generation comparator",
+    "full historical semantic review",
+    "Auth and online storage not implemented"
+  ],
+  "ledger": {
+    "rows": 1370,
+    "prior_rows_preserved": 1367,
+    "added": 3,
+    "validator_tests": 26,
+    "source_and_previous_passed": true,
+    "artifact": "docs/validation/archive-ledger-20260930-0210.json"
+  },
+  "deployment": {
+    "implementation_ci": "https://github.com/skmsmjs-netizen/study-space-generation2/actions/runs/36602848976",
+    "status": "success",
+    "public_asset": "index-CpuoAN_r.js",
+    "observed": "B27 direct archive route/reload and read-only archive access while writer locked; normal workspace actions not verified on public origin",
+    "artifact": "docs/validation/archive-code-pages-run-20260930.json"
+  }
+}
