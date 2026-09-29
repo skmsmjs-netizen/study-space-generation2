@@ -170,6 +170,104 @@ describe('study flows preserve meaning and input', () => {
     expect(currentRecords()).toHaveLength(0);
   });
 
+  it('returns to the expanded subject narrative with its draft, selection and separate subject state', async () => {
+    const user = userEvent.setup(); await open('/subject/demo-subject-math');
+    const before = state();
+    const summary = screen.getByText('과목 개요 · 작성한 내용 있음');
+    await user.click(summary);
+    const editor = screen.getByRole('textbox', { name: '과목 개요' }) as HTMLTextAreaElement;
+    fireEvent.change(editor, { target: { value: '  돌아와서 이어 쓸 생각\n두 번째 줄\n' } });
+    editor.focus(); editor.setSelectionRange(3, 11, 'backward'); fireEvent.select(editor);
+    await navigate('/subject/demo-subject-science');
+    expect(screen.getByText('과목 개요 · 선택').closest('details')).not.toHaveAttribute('open');
+    await navigate('/subject/demo-subject-math');
+    const returned = screen.getByRole('textbox', { name: '과목 개요' }) as HTMLTextAreaElement;
+    expect(returned).toBeVisible(); expect(returned).toHaveFocus();
+    expect(returned).toHaveValue('  돌아와서 이어 쓸 생각\n두 번째 줄\n');
+    expect([returned.selectionStart, returned.selectionEnd, returned.selectionDirection]).toEqual([3, 11, 'backward']);
+    expect(state()).toEqual(before);
+  });
+
+  it('keeps an explicitly collapsed unit narrative collapsed after navigation and remount', async () => {
+    const user = userEvent.setup(), view = await open('/node/demo-unit-functions');
+    await user.click(screen.getByText('단원 서문 · 선택'));
+    fireEvent.change(screen.getByRole('textbox', { name: '단원 서문' }), { target: { value: '닫아 두어도 남을 초안' } });
+    await navigate('/'); await navigate('/node/demo-unit-functions');
+    expect(screen.getByRole('textbox', { name: '단원 서문' })).toBeVisible();
+    await user.click(screen.getByText('단원 서문 · 선택'));
+    await navigate('/'); await navigate('/node/demo-unit-functions');
+    expect(screen.getByText('단원 서문 · 선택').closest('details')).not.toHaveAttribute('open');
+    view.unmount(); await waitFor(() => expect(locked).toBe(false));
+    await open('/node/demo-unit-functions');
+    expect(screen.getByText('단원 서문 · 선택').closest('details')).not.toHaveAttribute('open');
+    await user.click(screen.getByText('단원 서문 · 선택'));
+    expect(screen.getByRole('textbox', { name: '단원 서문' })).toHaveValue('닫아 두어도 남을 초안');
+    expect(currentRecords()).toHaveLength(0);
+  });
+
+  it('keeps narrative editing and saving usable when disclosure hints are corrupt or storage is denied', async () => {
+    const hintKey = 'study-space:demo:narrative-disclosure:study-space:demo:narrative:subject-overview:demo-subject-math';
+    sessionStorage.setItem(hintKey, '{invalid');
+    const user = userEvent.setup(); await open('/subject/demo-subject-math');
+    expect(screen.getByText('과목 개요 · 작성한 내용 있음').closest('details')).not.toHaveAttribute('open');
+    const nativeSet = Storage.prototype.setItem;
+    vi.spyOn(Storage.prototype, 'setItem').mockImplementation(function (this: Storage, key: string, value: string) {
+      if (this === sessionStorage && key.startsWith('study-space:demo:narrative-disclosure:')) throw new DOMException('denied', 'SecurityError');
+      nativeSet.call(this, key, value);
+    });
+    await user.click(screen.getByText('과목 개요 · 작성한 내용 있음'));
+    const editor = screen.getByRole('textbox', { name: '과목 개요' });
+    fireEvent.change(editor, { target: { value: '보기 힌트 실패에도 저장할 원문\n' } });
+    await user.click(screen.getByRole('button', { name: '내용 저장' }));
+    expect(editor).toBeVisible(); expect(editor).toHaveValue('보기 힌트 실패에도 저장할 원문\n');
+    expect(state().narratives.find(n => n.id === 'demo-overview-math')?.body).toBe('보기 힌트 실패에도 저장할 원문\n');
+    expect(sessionStorage.getItem(hintKey)).toBe('{invalid');
+    expect(currentRecords()).toHaveLength(0);
+  });
+
+  it.each([
+    { route: '/subject/demo-subject-science', kind: 'subject-overview', owner: 'demo-subject-science', label: '과목 개요' },
+    { route: '/node/demo-unit-functions', kind: 'unit-introduction', owner: 'demo-unit-functions', label: '단원 서문' },
+    { route: `/node/${firstTopic}`, kind: 'topic-note', owner: firstTopic, label: '주제 메모' },
+  ])('keeps the first unsaved $kind identity through return and remount before saving once', async ({ route, kind, owner, label }) => {
+    const key = `study-space:demo:narrative:${kind}:${owner}`, user = userEvent.setup(), view = await open(route);
+    await user.click(screen.getByText(`${label} · 선택`));
+    fireEvent.change(screen.getByRole('textbox', { name: label }), { target: { value: '  처음 쓴 원문\n아직 저장 전\n' } });
+    const draft = JSON.parse(localStorage.getItem(key)!);
+    await navigate('/'); await navigate(route);
+    expect(screen.getByRole('textbox', { name: label })).toHaveValue(draft.body);
+    expect(screen.getByRole('button', { name: '내용 저장' })).toBeEnabled();
+    view.unmount(); await waitFor(() => expect(locked).toBe(false));
+    await open(route);
+    expect(screen.getByRole('textbox', { name: label })).toHaveValue(draft.body);
+    await user.click(screen.getByRole('button', { name: '내용 저장' }));
+    expect(state().narratives.filter(n => n.kind === kind && n.ownerId === owner)).toEqual([
+      expect.objectContaining({ id: draft.entityId, kind, ownerId: owner, body: draft.body, version: 1 }),
+    ]);
+    expect(localStorage.getItem(key)).toBeNull();
+    expect(currentRecords()).toHaveLength(0);
+  });
+
+  it('does not attach a mismatched draft identity to an existing narrative or another owner', async () => {
+    const repo = new DemoRepository(localStorage), before = repo.getSnapshot();
+    const key = 'study-space:demo:narrative:subject-overview:demo-subject-math';
+    const raw = JSON.stringify({ body: '다른 대상의 초안', version: 0, entityId: 'other-narrative' });
+    localStorage.setItem(key, raw);
+    const user = userEvent.setup(); await open('/subject/demo-subject-math');
+    await user.click(screen.getByText('과목 개요 · 작성한 내용 있음'));
+    expect(screen.getByRole('button', { name: '내용 저장' })).toBeDisabled();
+    expect(localStorage.getItem(key)).toBe(raw); expect(state()).toEqual(before);
+    await navigate('/subject/demo-subject-science');
+    const otherKey = 'study-space:demo:narrative:subject-overview:demo-subject-science';
+    localStorage.setItem(otherKey, JSON.stringify({ body: '소속이 다른 글', version: 1, entityId: 'demo-overview-math' }));
+    await navigate('/'); await navigate('/subject/demo-subject-science');
+    await user.click(screen.getByText('과목 개요 · 선택'));
+    await user.click(screen.getByRole('button', { name: '내용 저장' }));
+    expect(state()).toEqual(before);
+    expect(localStorage.getItem(otherKey)).toContain('소속이 다른 글');
+    expect(screen.getByRole('alert')).toBeInTheDocument();
+  });
+
   it('reports stale persistence without clearing or committing the study draft', async () => {
     const user = userEvent.setup(); await open(`/record/${firstTopic}`);
     fireEvent.change(screen.getByRole('textbox', { name: '남길 생각 · 선택' }), { target: { value: '실패해도 남아야 하는 글' } });

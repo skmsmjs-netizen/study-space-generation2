@@ -1177,8 +1177,17 @@ function NarrativeEditor({
   );
   const initialId = useRef(original?.id || narrativeId || uid());
   const storageKey = draftKey || `study-space:demo:narrative:${kind}:${ownerId}`;
+  // Tab-local presentation only; the existing draft remains the owner of text.
+  const disclosureKey = `study-space:demo:narrative-disclosure:${storageKey}`;
+  const [expanded, setExpanded] = useState(() => {
+    try {
+      const saved = sessionStorage.getItem(disclosureKey);
+      if (saved === "open" || saved === "closed") return saved === "open";
+    } catch { /* A missing view hint must not block writing. */ }
+    return kind === "free-note";
+  });
   const draft = useTextDraft(storageKey, original?.body || "", original?.version || 0,
-    { entityId: initialId.current, restoreIdentity: newNote });
+    { entityId: initialId.current, restoreIdentity: newNote || (!original && !narrativeId) });
   const [saved, setSaved] = useState(false);
   const stableId = draft.entityId || initialId.current;
   const alreadyCreated = newNote ? active(data.narratives).find(item => item.id === stableId && item.kind === kind && item.ownerId === ownerId) : undefined;
@@ -1208,8 +1217,13 @@ function NarrativeEditor({
     }
   };
   return (
-    <details className="narrative-editor" open={kind === "free-note"}>
-      <summary>
+    <details className="narrative-editor" open={expanded} onToggle={(event) => {
+      const open = event.currentTarget.open;
+      setExpanded(open);
+      try { sessionStorage.setItem(disclosureKey, open ? "open" : "closed"); }
+      catch { /* Keep the current interaction usable if view-hint storage is denied. */ }
+    }}>
+      <summary data-navigation-focus={`${storageKey}:disclosure`}>
         {label}
         {original?.body ? " · 작성한 내용 있음" : " · 선택"}
       </summary>
