@@ -1,0 +1,74 @@
+# 데이터 모델과 불변조건 · 구현 기준
+
+모든 도메인 ID는 문자열이다. 새 ID는 UUID를 써도 기존 ID를 UUID로 강제 교체하지 않는다. User ID만 Supabase Auth UUID와 대응한다. 공통 필드는 id, userId, namespace, createdAt, updatedAt, version, deletedAt이며 필요한 엔터티는 order를 가진다. syncState는 기기 로컬 상태이며 서버 원문 필드와 구별한다. demo/test와 personal namespace는 명시적으로 분리한다.
+
+## 모델
+
+| 엔터티 | 소속·관계·의미 |
+|---|---|
+| User | Auth 사용자. 개인 정보는 코드/fixture에 포함하지 않음 |
+| Scope | semester/independent/unassigned. 과거 학기 미지정과 독립 공부를 임의 학기로 배정하지 않음 |
+| Semester | 사용자 소유의 실제 학기. Scope의 semester 종류와 연결 |
+| Subject | user+scope에 소속, order. 다른 학기 만들기가 기존 Subject의 scope를 변경하지 않음 |
+| Unit/OutlineNode/Topic | 하나의 가변 깊이 트리. role=unit/outline/topic/legacy-unknown, 같은 Subject의 부모만 허용. 단원도 자체 기록 가능 |
+| StudySession | 하나의 공부 사건과 원래 ID. 기존 복수 과목/학기 세션을 자동 분할하지 않음. 원문 payload와 수정 이력 유지 |
+| StudyRecord | session과 하나의 대상(node 또는 subject)의 연결. 해당 대상의 Subject/Scope는 일치해야 함. done/본문/날짜근거/TRACE를 기록하며 본문만으로 공부 횟수 증가하지 않음 |
+| DateEvidence | exact/range/unknown. createdAt을 실제 공부 날짜로 대체하지 않음 |
+| ActivityDefinition/Checklist | ID·정의 version·원문·group·label·required/optional/excluded. 사용자 조정 및 옛14/5/6체계 별도 보존 |
+| ActivityAttempt/Repeat | checked/unchecked/na/deferred, note, exact/minimum/unknown 반복. 재체크/저장 재시도는 새 반복 아님 |
+| WrittenReview | Cself1의 시험 전 자기 서술. 공백 거부, 글 수정 시 checked=false, 글과 일반 C2 체크 보존 |
+| Narrative | subject-overview/unit-introduction/topic-note/free-note. body와 version/revision. 원문 공백도 보존 |
+| Question/Memo/Relation | Canvas의 의미 있는 원문과 연결. 배치와 별개 ID; 체크가 자동으로 메모를 생성하지 않음 |
+| ViewLayout | view 및 노드별 x/y/size/color/edge. 사용자 배치와 자동 계산 결과를 분리 |
+| Schedule/ExamDate | 정확/미정 기한·시간대·변경 이력. 계획은 실제 수행과 다름 |
+| Task/Assignment | 종류·Subject·준비/실제 제출·완료일·취소·보관을 구별 |
+| OnlineLecture | 재생·필기하며 학습·출석 인정 확인을 독립 상태로 보존 |
+| Material/MaterialLink/OutlineReview | 원자료·판본·가용성·목차연결·쪽수·목차검수. 등록은 공부 아님 |
+| PerformanceItem/Attempt | 문제 동일성·도움·첫 시도·결과·시점·근거. TRACE 체크와 독립 |
+| ExamPlan/Response/Score | 범위·시험 시도·채점·공식 점수 및 불확실성 |
+| AnkiCard/Review | 자체 복습 카드·서술·again/hard/good/easy·기한·Undo. 일반 어려움과 별개 |
+| Guidance/Preference | WHY/HOW/WHAT, 선택적 안내와 후보 숨김. 퇴역 설문은 legacy로 보존 |
+| Draft | user/device/entity/session별 소유권, baseVersion, 원문. 다른 세션 draft 자동 적용 금지 |
+| Revision | entity와 부모 revision, 이전/새 원문 또는 원본 snapshot, 원인 operation |
+| Conflict | base/local/server와 상태. timestamp만으로 긴 글을 폐기하지 않음 |
+| SyncOperation/State | opId, payloadHash, baseVersion, attempts, pending/syncing/synced/conflict/error. 중복 적용 거부 |
+| AppSettings | 공유 또는 기기별 scope. 글꼴·간격·색·후보 설정의 의미 보존 |
+| Attachment | hash·원 bytes·mime·참조. 마지막 참조와 삭제 정책 검증 전 blob 삭제 금지 |
+| ImportBatch/SourceMap/LegacyArchive | sourceInstance+oldId+type+hash. 반복 import 재사용, 같은ID 다른원문 충돌. unmapped도 버리지 않음 |
+
+## 절대 깨지면 안 되는 조건
+
+- INV01: 모든 대상은 같은 user/namespace에 속한다. 다른 사용자의 읽기·쓰기를 거부한다.
+- INV02: Subject의 Scope는 명시 명령 없이 바뀌지 않는다. 새 학기 생성은 기존 학기 무변경이다.
+- INV03: 노드 부모는 같은 Subject이며 자기/후손 밑으로 이동할 수 없다. 동명은 중복 ID가 아니다.
+- INV04: StudySession은 원 ID와 실제 사건 의미를 유지한다. 대상별 Record 소속은 검증하되 과거 복수 범위 세션을 쪼개지 않는다.
+- INV05: Topic 휴지통 이동은 StudyRecord/본문/Revision을 삭제하지 않는다. 복원은 같은 ID로 한다.
+- INV06: done 또는 실제 활동 체크와 메모/조회/자료 열기를 구별한다. 여러 활동을 한 사건의 여러 회차로 세지 않는다.
+- INV07: TRACE 순서 잠금·자동 숙련 판정·옛 체크의 새 항목 전체 환산을 하지 않는다.
+- INV08: C2 평소 체크에는 글이 필수가 아니다. 시험 전 점검만 nonblank를 요구하고 글 수정 시 재확인한다.
+- INV09: 정확/최소/미정·날짜 범위·미응답은 0이나 확정값이 되지 않는다.
+- INV10: 같은 opId+같은 payload는 한 번만 적용한다. 같은 opId+다른 payload는 오류다.
+- INV11: 수정은 expectedVersion과 실제 version을 비교한다. 충돌 시 양쪽 본문을 남긴다.
+- INV12: Undo도 새 수정 이력이다. 그 뒤 다른 변경을 조용히 되감지 않는다.
+- INV13: Canvas/layout 명령은 도메인 트리나 기록을 변경할 수 없다.
+- INV14: 사용자 배치는 자동 재계산으로 덮어쓰지 않는다. Canvas 자동 생성은 필요 시 열기 후보를 검증 후 채택한다.
+- INV15: 중복 공부 페이지는 읽기 보류/충돌로 보존한다. 이름이 같다는 이유로 자동 병합하거나 덮어쓰지 않는다.
+- INV16: 같은 import의 재실행은 동일 source map을 재사용한다. 깨진/누락 원문을 건너뛰고 성공으로 표시하지 않는다.
+- INV17: 테스트 데이터는 demo/test namespace에서만 만들며 개인 통계에 합산하지 않는다.
+- INV18: 저장 성공 표시는 실제 저장 단계와 일치한다. 미전송 원본은 캐시 삭제 대상이 아니다.
+- INV19: stale 응답은 user/scope/request identity가 일치할 때만 반영한다.
+- INV20: Export/복원은 ID·원문·draft·revision·설정·배치·연결·첨부를 검증한다.
+- INV21: 위험 조작은 자주 쓰는 조작과 분리한다. 휴지통과 영구삭제를 같은 버튼으로 숨기지 않는다.
+- INV22: 일반 입력의 퇴역 필드를 자동 복원하지 않는다. 별도 수행/시험/Anki 입력과 legacy 원문은 보존한다.
+
+## 삭제 결정
+
+현재 구현 범위에서는 soft delete와 restore만 제공한다. 부모 삭제는 하위 노드의 논리 삭제 묶음을 만들고 기록/원문/이력/첨부는 보존한다. 다른 시점에 이미 삭제된 자식은 그 묶음 복원으로 되살리지 않는다. 영구삭제는 원문·이력·백업 보존 범위의 사용자 정책이 정해지기 전 노출하지 않는다. 이것은 기능 제거가 아니라 정책 미확정 상태다.
+
+## 구현 순서
+
+먼저 가짜 데이터에서 명령/화면 계약을 검증한다. 온라인 Auth/CRUD를 검증한 후 IndexedDB/outbox를 추가하고, 동기화 뒤 conflict, 그 뒤 Canvas/PWA/실제 Import로 진행한다. 테스트 설계가 있다는 이유로 뒤 단계의 통과를 주장하지 않는다.
+
+## 일정 세부 보존
+
+approximate 기한은 anchorDate+days를 유지하며 오늘 기준으로 매번 미루지 않는다. available date/time, dueMeaning(출석/개인목표/시청/미정), 메모 필요 여부·수강/메모/출석 개수를 분리한다. 시험일 unknown/scheduled/none, previousDate, trackStart와 기기 prompted/drafts도 Import manifest에 포함한다.
