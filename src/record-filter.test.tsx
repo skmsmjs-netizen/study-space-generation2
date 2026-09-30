@@ -1,3 +1,4 @@
+import { decodeStoredText } from './data/storage-codec';
 import { act, cleanup, fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -79,7 +80,7 @@ describe('record topic filter context', () => {
     await user.click(screen.getByRole('checkbox', { name: /함수는 어떤 관계일까/ }));
     fireEvent.change(screen.getByRole('textbox', { name: '남길 생각 · 선택' }), { target: { value: '검색 힌트 실패에도 남길 원문' } });
     await user.click(screen.getByRole('button', { name: '1개 주제 기록 저장' }));
-    const data = JSON.parse(localStorage.getItem(DEMO_KEY)!).data;
+    const data = JSON.parse(decodeStoredText(localStorage.getItem(DEMO_KEY)!)).data;
     expect(data.records).toHaveLength(1);
     expect(data.records[0]).toMatchObject({ targetId: first, body: '검색 힌트 실패에도 남길 원문' });
   });

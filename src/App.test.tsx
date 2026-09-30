@@ -1,3 +1,4 @@
+import { decodeStoredText } from './data/storage-codec';
 import { act, cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -12,7 +13,7 @@ const firstTopic = 'demo-topic-function';
 const secondTopic = 'demo-topic-graph';
 const firstName = '함수는 어떤 관계일까?';
 const secondName = '그래프에서 변화 읽기';
-const state = (): AppState => JSON.parse(localStorage.getItem(DEMO_KEY)!).data;
+const state = (): AppState => JSON.parse(decodeStoredText(localStorage.getItem(DEMO_KEY)!)).data;
 const currentRecords = () => state().records.filter(record => !record.deletedAt);
 let locked = false;
 let lockRequest: ReturnType<typeof vi.fn>;

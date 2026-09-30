@@ -2,6 +2,7 @@ import type { AppState, Command } from '../domain/model';
 import { DomainError } from '../domain/model';
 import { applyCommand, validateState } from '../domain/commands';
 import { createDemoState } from '../domain/fixtures';
+import { decodeStoredText, encodeStoredText } from './storage-codec';
 
 export const DEMO_KEY = 'study-space:demo:v1';
 interface Envelope { sequence: number; data: AppState }
@@ -9,18 +10,27 @@ interface Envelope { sequence: number; data: AppState }
 export class DemoRepository {
   private sequence = 0;
   private state: AppState;
+  private persisted: string;
   constructor(private storage: Pick<Storage, 'getItem' | 'setItem'>) {
     const raw = storage.getItem(DEMO_KEY);
     if (raw) {
       let envelope: Envelope;
-      try { envelope = JSON.parse(raw); validateState(envelope.data); }
+      try { envelope = JSON.parse(decodeStoredText(raw)); validateState(envelope.data); }
       catch { throw new DomainError('CORRUPT_DEMO', '시연 자료를 읽지 못했습니다. 저장된 내용을 지우지 않았습니다.'); }
       if (envelope.data.namespace !== 'demo' || !Number.isSafeInteger(envelope.sequence)) throw new DomainError('WRONG_NAMESPACE', '개인 자료를 시연 화면에 불러오지 않습니다.');
       this.sequence = envelope.sequence; this.state = envelope.data;
+      // Atomic replacement only after exact decode verification. No history is pruned.
+      const compact = encodeStoredText(decodeStoredText(raw));
+      this.persisted = raw;
+      if (compact !== raw) {
+        try { storage.setItem(DEMO_KEY, compact); this.persisted = compact; }
+        catch { /* Keep readable old data; an explicit edit can retry persistence. */ }
+      }
     } else {
       this.state = createDemoState();
       validateState(this.state);
-      storage.setItem(DEMO_KEY, JSON.stringify({ sequence: 0, data: this.state }));
+      this.persisted = encodeStoredText(JSON.stringify({ sequence: 0, data: this.state }));
+      storage.setItem(DEMO_KEY, this.persisted);
     }
   }
   getSnapshot() { return this.state; }
@@ -28,11 +38,13 @@ export class DemoRepository {
     // Detect a snapshot made stale before this call. Atomic multi-tab exclusion
     // is owned by the app lifetime Web Lock; this check alone is not a mutex.
     const latest = this.storage.getItem(DEMO_KEY);
-    if (!latest || (JSON.parse(latest) as Envelope).sequence !== this.sequence) throw new DomainError('STALE_DEMO', '다른 창에서 시연 자료가 바뀌었습니다. 작성 내용은 두고 새로고침해 주세요.');
+    if (latest !== this.persisted) throw new DomainError('STALE_DEMO', '다른 창에서 시연 자료가 바뀌었습니다. 작성 내용은 두고 새로고침해 주세요.');
     const next = applyCommand(this.state, command);
     if (next === this.state) return this.state;
     const envelope = { sequence: this.sequence + 1, data: next };
-    this.storage.setItem(DEMO_KEY, JSON.stringify(envelope)); // Publish only after storage succeeds.
+    const encoded = encodeStoredText(JSON.stringify(envelope));
+    this.storage.setItem(DEMO_KEY, encoded); // Publish only after storage succeeds.
+    this.persisted = encoded;
     this.sequence = envelope.sequence; this.state = next;
     return next;
   }

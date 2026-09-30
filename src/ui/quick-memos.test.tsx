@@ -10,15 +10,15 @@ let repo: DemoRepository;
 function Harness() { const [data,setData] = useState<AppState>(repo.getSnapshot()); return <QuickMemos data={data} repository={repo} onSaved={setData} />; }
 beforeEach(() => { localStorage.clear(); repo = new DemoRepository(localStorage); });
 afterEach(() => { vi.restoreAllMocks(); });
-const add = () => fireEvent.click(screen.getByRole('button',{ name:'메모 추가' }));
+const add = () => { fireEvent.click(screen.getByRole('button',{ name:'메모 추가' })); fireEvent.click(screen.getByText('글·연결·입력 설정')); };
 describe('quick memo editor recovery', () => {
   it('autosaves exact text and restores after close/reload without adding a study record', async () => {
     const view = render(<Harness />); add();
     const body = '  결론 한 줄\n아직 의문  ';
     fireEvent.change(screen.getByRole('textbox',{name:'짧은 글'}),{target:{value:body}});
     const key = memoDraftKey(repo.getSnapshot(), repo.getSnapshot().memos![0].id);
-    expect(JSON.parse(localStorage.getItem(key)!).body).toBe(body);
-    await waitFor(() => expect(repo.getSnapshot().memos![0].body).toBe(body));
+    await waitFor(() => expect(JSON.parse(localStorage.getItem(key)!).body).toBe(body));
+    await waitFor(() => expect(repo.getSnapshot().memos![0].body).toBe(body), {timeout:2500});
     fireEvent.click(screen.getByRole('button',{name:'닫기'}));
     view.unmount(); repo = new DemoRepository(localStorage); render(<Harness />);
     fireEvent.click(screen.getByRole('button',{name:/메모 1 열기/}));
@@ -54,5 +54,38 @@ describe('quick memo editor recovery', () => {
     expect(screen.queryByRole('button',{name:/메모 1 열기/})).not.toBeInTheDocument();
     fireEvent.click(screen.getByRole('button',{name:'메모 복원'}));
     expect(repo.getSnapshot().memos![0]).toMatchObject({id,body:'휴지통에서도 남김',deletedAt:null});
+  });
+});
+
+describe('iPad feedback repairs', () => {
+  it('erases intersecting lines during a single sweep immediately, and undo restores their exact coordinates before persistence', () => {
+    const data = repo.getSnapshot();
+    const strokes = [100,300].map((y,i)=>({id:`line-${i}`,ink:'ink' as const,width:3.5,points:[{x:100,y,pressure:.23},{x:500,y,pressure:.76}]}));
+    repo.execute({type:'saveMemo',id:'eraser',ownerId:null,body:'',strokes,expectedVersion:0,opId:'eraser-create',at:new Date().toISOString(),userId:data.userId,namespace:data.namespace});
+    render(<Harness/>); fireEvent.click(screen.getByRole('button',{name:/메모 1 열기/}));
+    const svg = screen.getByRole('img',{name:'메모 스케치 영역'});
+    Object.defineProperty(svg,'setPointerCapture',{value:vi.fn()});
+    vi.spyOn(svg,'getBoundingClientRect').mockReturnValue({left:0,top:0,width:900,height:600,right:900,bottom:600,x:0,y:0,toJSON:()=>({})});
+    fireEvent.click(screen.getByRole('button',{name:'지우개'}));
+    fireEvent.pointerDown(svg,{pointerId:1,pointerType:'pen',button:0,clientX:200,clientY:100});
+    fireEvent.pointerMove(svg,{pointerId:1,pointerType:'pen',clientX:200,clientY:300});
+    fireEvent.pointerUp(svg,{pointerId:1,pointerType:'pen',clientX:200,clientY:300});
+    expect(svg.querySelectorAll('path[d]').length).toBe(0);
+    expect(repo.getSnapshot().memos![0].strokes).toEqual(strokes);
+    fireEvent.click(screen.getByRole('button',{name:'그림 되돌리기'}));
+    expect(svg.querySelectorAll('path[d]').length).toBe(2);
+    fireEvent.click(screen.getByRole('button',{name:'닫기'}));
+    expect(repo.getSnapshot().memos![0].strokes).toEqual(strokes);
+  });
+  it('reports volatile input honestly when both draft and main writes fail and retains the editor', () => {
+    render(<Harness/>); add();
+    vi.spyOn(Storage.prototype,'setItem').mockImplementation(()=>{throw new DOMException('The quota has been exceeded.','QuotaExceededError');});
+    fireEvent.change(screen.getByRole('textbox',{name:'짧은 글'}),{target:{value:' 현재 창 원문\n '}});
+    fireEvent.click(screen.getByRole('button',{name:'닫기'}));
+    expect(screen.getByRole('alert')).toHaveTextContent('현재 창에만');
+    expect(screen.getByRole('alert')).not.toHaveTextContent('초안에 보관');
+    expect(screen.getByRole('button',{name:'메모 파일로 보관'})).toBeEnabled();
+    expect(screen.getByRole('textbox',{name:'짧은 글'})).toHaveValue(' 현재 창 원문\n ');
+    expect(screen.getByRole('dialog')).toBeInTheDocument();
   });
 });
