@@ -84,14 +84,14 @@ export function validateFormDraft(value: unknown, key: string): asserts value is
     throw new DomainError('CORRUPT_DRAFT', '이 초안을 읽지 못했습니다. 다른 내용으로 덮어쓰지 않았습니다.');
   }
 }
-export function readDraft(storage: Pick<Storage,'getItem'>, key: string): FormDraft | null {
-  const raw = storage.getItem(`study-space:demo:draft:${key}`);
+export function readDraft(storage: Pick<Storage,'getItem'>, key: string, prefix = 'study-space:demo'): FormDraft | null {
+  const raw = storage.getItem(`${prefix}:draft:${key}`);
   if (!raw) return null;
   try { const d: unknown = JSON.parse(raw); validateFormDraft(d, key); return d; }
   catch { throw new DomainError('CORRUPT_DRAFT', '이 초안을 읽지 못했습니다. 다른 내용으로 덮어쓰지 않았습니다.'); }
 }
-export function saveDraft(storage: Pick<Storage,'setItem'>, draft: FormDraft) {
+export function saveDraft(storage: Pick<Storage,'setItem'>, draft: FormDraft, prefix = 'study-space:demo') {
   validateFormDraft(draft, draft.key);
-  storage.setItem(`study-space:demo:draft:${draft.key}`, JSON.stringify(draft));
+  storage.setItem(`${prefix}:draft:${draft.key}`, JSON.stringify(draft));
 }
 export function localDay(date = new Date()) { return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`; }

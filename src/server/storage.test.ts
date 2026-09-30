@@ -1,0 +1,90 @@
+// @vitest-environment node
+import { beforeAll, beforeEach, afterAll, describe, expect, it } from 'vitest';
+import { PGlite } from '@electric-sql/pglite';
+import { readFile } from 'node:fs/promises';
+import { packServerState, unpackServerState } from './state-codec';
+import { handleCommand, type CommandBackend } from './command-handler';
+import { applyCommand } from '../domain/commands';
+import { emptyState, type Command } from '../domain/model';
+const a = '10000000-0000-4000-8000-000000000001', b = '10000000-0000-4000-8000-000000000002';
+let db: PGlite;
+const command = (patch: Partial<Command> = {}) => ({ type: 'addSubject', id: 'subject-1', name: '검증 과목', scope: { kind: 'independent' }, userId: a, namespace: 'test', at: '2026-09-30T01:00:00.000Z', opId: 'op-1', ...patch } as Command);
+const backend: CommandBackend = {
+  async authenticate(token) { return token === 'a' ? a : token === 'b' ? b : ''; },
+  async read(userId, namespace) { const result = await db.query<{ sequence: number; state: ReturnType<typeof emptyState> }>('select sequence,state from study_workspaces where user_id=$1 and namespace=$2', [userId, namespace]); return result.rows.length ? { sequence: Number(result.rows[0].sequence), data: unpackServerState(result.rows[0].state) } : null; },
+  async commit(userId, namespace, base, op, next) { const result = await db.query<{ result: any }>('select study_commit($1,$2,$3,$4,$5,$6) result', [userId, namespace, base, op.opId, next.appliedOps[op.opId], packServerState(next,op.opId)]); return { sequence: result.rows[0].result.sequence, data: unpackServerState(result.rows[0].result.data) }; },
+};
+function request(body: unknown, token = 'a') { return handleCommand(new Request('http://test/functions/v1/study-command', { method: 'POST', headers: { Authorization: `Bearer ${token}` }, body: JSON.stringify(body) }), backend); }
+beforeAll(async () => {
+  db = new PGlite();
+  await db.exec(`create schema auth; create table auth.users(id uuid primary key); create role anon; create role authenticated; create role service_role bypassrls; grant usage on schema public,auth to authenticated,service_role,anon; create function auth.uid() returns uuid language sql as $$ select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid $$; insert into auth.users values('${a}'),('${b}');`);
+  await db.exec(await readFile(new URL('../../supabase/migrations/202609300001_study_storage.sql', import.meta.url), 'utf8'));
+});
+beforeEach(async () => { await db.exec('reset role; truncate study_operations,study_workspaces;'); });
+afterAll(async () => { await db.close(); });
+describe('server authentication, domain commands and real PostgreSQL transactions', () => {
+  it('stores, reloads and preserves original writing and revision identity', async () => {
+    expect((await request({ action: 'execute', namespace: 'test', baseSequence: 0, command: command() })).status).toBe(200);
+    const write = command({ type: 'updateNarrative', id: 'text-1', kind: 'subject-overview', ownerId: 'subject-1', body: '원문\r\n  이유와 예외\t', expectedVersion: 0, opId: 'op-2' } as Partial<Command>);
+    expect((await request({ action: 'execute', namespace: 'test', baseSequence: 1, command: write })).status).toBe(200);
+    const loaded = await (await request({ action: 'load', namespace: 'test' })).json();
+    expect(loaded.sequence).toBe(2); expect(loaded.data.narratives[0].body).toBe(write.type === 'updateNarrative' ? write.body : ''); expect(loaded.data.revisions).toHaveLength(2);
+  });
+  it('preserves NUL, lone surrogate, CRLF and literal escape text through PostgreSQL', async () => {
+    await request({ action: 'execute', namespace: 'test', baseSequence: 0, command: command() });
+    const body = '원문\u0000\ud800\r\n\t  \\u0000';
+    const write = command({ type: 'updateNarrative', id: 'raw-1', kind: 'subject-overview', ownerId: 'subject-1', body, expectedVersion: 0, opId: 'op-raw' } as Partial<Command>);
+    const response = await request({ action: 'execute', namespace: 'test', baseSequence: 1, command: write }); expect(response.status).toBe(200);
+    expect((await backend.read(a,'test'))?.data.narratives[0].body).toBe(body);
+  });
+  it('retries a lost response exactly once and rejects the same id with changed content', async () => {
+    const body = { action: 'execute', namespace: 'test', baseSequence: 0, command: command() };
+    await request(body); expect((await request(body)).status).toBe(200);
+    expect((await backend.read(a, 'test'))?.sequence).toBe(1);
+    expect((await request({ ...body, command: command({ name: '다른 원문' } as Partial<Command>) })).status).toBe(400);
+  });
+  it('rejects stale workspace updates without changing either source', async () => {
+    await request({ action: 'execute', namespace: 'test', baseSequence: 0, command: command() });
+    const response = await request({ action: 'execute', namespace: 'test', baseSequence: 0, command: command({ id: 'subject-2', opId: 'op-2' }) });
+    expect(response.status).toBe(409); expect((await response.json()).server.data.subjects).toHaveLength(1);
+  });
+  it('denies unauthenticated requests and forged owners and demo uploads', async () => {
+    expect((await request({ action: 'load', namespace: 'test' }, 'expired')).status).toBe(401);
+    expect((await request({ action: 'execute', namespace: 'test', baseSequence: 0, command: command({ userId: b }) })).status).toBe(403);
+    expect((await request({ action: 'load', namespace: 'demo' })).status).toBe(400);
+  });
+  it('validates hierarchy on the server even when browser checks are bypassed', async () => {
+    const op = command({ type: 'addNode', subjectId: 'missing', parentId: null, role: 'topic' } as Partial<Command>);
+    expect((await request({ action: 'execute', namespace: 'test', baseSequence: 0, command: op })).status).toBe(400);
+    expect(await backend.read(a, 'test')).toBeNull();
+  });
+  it('enforces entity versions, keeps both attempted and server writing', async () => {
+    await request({ action: 'execute', namespace: 'test', baseSequence: 0, command: command() });
+    const write = command({ type: 'updateNarrative', id: 'text-1', kind: 'subject-overview', ownerId: 'subject-1', body: '서버 원문', expectedVersion: 0, opId: 'op-2' } as Partial<Command>);
+    await request({ action: 'execute', namespace: 'test', baseSequence: 1, command: write });
+    const attempted = { ...write, body: '내 수정', opId: 'op-3' };
+    expect((await request({ action: 'execute', namespace: 'test', baseSequence: 2, command: attempted })).status).toBe(409);
+    expect((await backend.read(a,'test'))?.data.narratives[0].body).toBe('서버 원문'); expect(attempted.body).toBe('내 수정');
+  });
+  it('SQL compare-and-swap rejects a second racing write and rolls back the receipt', async () => {
+    const op = command(), next = applyCommand(emptyState(a,'test'),op);
+    await backend.commit(a,'test',0,op,next);
+    const other = command({ opId: 'op-2', id: 'subject-2' }), second = applyCommand(emptyState(a,'test'),other);
+    await expect(backend.commit(a,'test',0,other,second)).rejects.toThrow('VERSION_CONFLICT');
+    expect((await db.query('select * from study_operations')).rows).toHaveLength(1);
+  });
+  it('RLS exposes only the authenticated owner and refuses direct writes/RPC', async () => {
+    await request({ action: 'execute', namespace: 'test', baseSequence: 0, command: command() });
+    await db.exec(`set role authenticated; set request.jwt.claim.sub = '${b}';`);
+    expect((await db.query('select * from study_workspaces')).rows).toHaveLength(0);
+    await db.exec(`set request.jwt.claim.sub = '${a}';`);
+    expect((await db.query('select * from study_workspaces')).rows).toHaveLength(1);
+    await expect(db.exec("update study_workspaces set sequence=99")).rejects.toThrow('permission denied');
+    await expect(db.query('select study_commit($1,$2,$3,$4,$5,$6)',[a,'test',1,'x','x',{}])).rejects.toThrow('permission denied');
+    await db.exec('reset role');
+  });
+  it('database ownership checks reject mixed-owner entity snapshots', async () => {
+    const op = command(), next = applyCommand(emptyState(a,'test'),op); next.subjects[0].userId = b;
+    await expect(backend.commit(a,'test',0,op,next)).rejects.toThrow(); expect(await backend.read(a,'test')).toBeNull();
+  });
+});

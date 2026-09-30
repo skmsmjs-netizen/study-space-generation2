@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { storagePrefix } from '../data/repository';
 import type { AppState } from '../domain/model';
 import { listDraftArchives, serializeDraftArchive, type DraftArchive } from '../data/draft-archives';
 import { Button, Card, EmptyState, ErrorState, Textarea } from './index';
@@ -6,7 +7,7 @@ import './draft-archives.css';
 
 /** Resolve only the storage key. Never interpret damaged content as an entity. */
 export function archiveTarget(sourceKey: string, data?: AppState): { label: string; relation: string; href?: string } {
-  const prefix = 'study-space:demo:';
+  const prefix = data ? `${storagePrefix(data)}:` : 'study-space:demo:';
   const key = sourceKey.startsWith(prefix) ? sourceKey.slice(prefix.length) : sourceKey;
   let targetId: string | undefined, label = '대상을 확인할 수 없는 초안';
   let href: string | undefined;
@@ -56,10 +57,11 @@ const currentRelation = {
 };
 
 export function DraftArchives({ data }: { data?: AppState }) {
-  const [result, setResult] = useState(() => listDraftArchives());
+  const prefix = data ? `${storagePrefix(data)}:` : 'study-space:demo:';
+  const [result, setResult] = useState(() => listDraftArchives(undefined, prefix));
   const [notice, setNotice] = useState(''), [exportError, setExportError] = useState('');
-  const refresh = () => { setResult(listDraftArchives()); setNotice('보관본 목록을 다시 읽었습니다.'); };
-  const archives = result.archives.filter(item => item.sourceKey.startsWith('study-space:demo:'));
+  const refresh = () => { setResult(listDraftArchives(undefined, prefix)); setNotice('보관본 목록을 다시 읽었습니다.'); };
+  const archives = result.archives.filter(item => item.sourceKey.startsWith(prefix));
   const download = (archive: DraftArchive) => {
     let url: string | undefined;
     try {

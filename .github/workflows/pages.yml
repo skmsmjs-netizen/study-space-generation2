@@ -21,6 +21,7 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm test
+      - run: npm run build:backend
       - run: npm run build
         env:
           PAGES_BASE: /${{ github.event.repository.name }}/

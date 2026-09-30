@@ -2,14 +2,14 @@ import { memo as memoComponent, useEffect, useRef, useState, type PointerEvent a
 import { Button, Checkbox, EmptyState, ErrorState, IconButton, Modal, Select, Textarea } from './index';
 import type { AppState, Command, MemoInk, MemoPoint, MemoStroke, QuickMemo } from '../domain/model';
 import { MEMO_WIDTH, MEMO_HEIGHT, memoPath } from '../domain/memo';
-import { DemoRepository } from '../data/demo-repository';
+import type { StudyRepository } from '../data/repository';
 import { memoDraftKey, readMemoDraft, sameMemo, writeMemoDraft, type MemoDraft } from '../data/memo-draft';
 import { archiveDamagedDraft, clearStoredDraft, draftHasUnstoredText, rescueWithoutOverwrite } from '../data/draft-safety';
 import { navigate } from './navigation-context';
 import './quick-memos.css';
 
 type Content = Pick<QuickMemo, 'body' | 'ownerId' | 'strokes'>;
-type Props = { data: AppState; repository: DemoRepository; onSaved: (next: AppState) => void; ownerId?: string; memoId?: string; compact?: boolean; trash?: boolean };
+type Props = { data: AppState; repository: StudyRepository; onSaved: (next: AppState) => void; ownerId?: string; memoId?: string; compact?: boolean; trash?: boolean };
 const inks: Record<MemoInk, { label: string; color: string }> = {
   ink: { label: '기본색', color: 'var(--color-text)' },
   blue: { label: '파랑', color: 'var(--color-hierarchy-outline)' },
@@ -74,7 +74,7 @@ export function QuickMemos({ data, repository, onSaved, ownerId, memoId, compact
   </section>;
 }
 
-function MemoEditor({ memo, data, repository, onSaved, onClose, onCopy }: { memo: QuickMemo; data: AppState; repository: DemoRepository; onSaved: Props['onSaved']; onClose: () => void; onCopy: (id: string) => void }) {
+function MemoEditor({ memo, data, repository, onSaved, onClose, onCopy }: { memo: QuickMemo; data: AppState; repository: StudyRepository; onSaved: Props['onSaved']; onClose: () => void; onCopy: (id: string) => void }) {
   const key = memoDraftKey(data, memo.id);
   const [initial] = useState(() => {
     try {

@@ -22,10 +22,10 @@ export function readRouteHash(hash = window.location.hash): string {
   } catch { return '/'; }
 }
 
-function readContext(): NavigationContext {
+function readContext(key = NAVIGATION_CONTEXT_KEY): NavigationContext {
   const fallback: NavigationContext = { version: 1, route: '/', positions: {} };
   try {
-    const value: unknown = JSON.parse(sessionStorage.getItem(NAVIGATION_CONTEXT_KEY) || 'null');
+    const value: unknown = JSON.parse(sessionStorage.getItem(key) || 'null');
     if (!value || typeof value !== 'object') return fallback;
     const raw = value as Partial<NavigationContext>;
     if (raw.version !== 1 || !validRoute(raw.route) || !raw.positions || typeof raw.positions !== 'object') return fallback;
@@ -42,8 +42,8 @@ function readContext(): NavigationContext {
   } catch { return fallback; }
 }
 
-function writeContext(context: NavigationContext) {
-  try { sessionStorage.setItem(NAVIGATION_CONTEXT_KEY, JSON.stringify(context)); }
+function writeContext(context: NavigationContext, key = NAVIGATION_CONTEXT_KEY) {
+  try { sessionStorage.setItem(key, JSON.stringify(context)); }
   catch { /* History and in-memory restoration stay usable when storage is unavailable. */ }
 }
 
@@ -99,9 +99,10 @@ export function navigate(path: string) {
  * that no longer exists falls back to a route heading. Live input/dialog focus wins.
  * Session hints are tab-local and are not account data or a substitute for drafts.
  */
-export function useRoute(): string {
-  useEditingContext();
-  const [initial] = useState(() => readContext());
+export function useRoute(prefix = 'study-space:demo'): string {
+  const navigationKey = `${prefix}:navigation-context:v1`;
+  useEditingContext(`${prefix}:editing-context:v1`);
+  const [initial] = useState(() => readContext(navigationKey));
   const [route, setRoute] = useState(() => window.location.hash ? readRouteHash() : initial.route);
   const context = useRef(initial);
   const current = useRef(route);
@@ -123,7 +124,7 @@ export function useRoute(): string {
       const entries = Object.entries(context.current.positions);
       if (entries.length > 100) context.current.positions = Object.fromEntries(entries.slice(-100));
       context.current.route = current.current;
-      writeContext(context.current);
+      writeContext(context.current, navigationKey);
     };
     const beforeNavigate = () => { capture(); departed.current = true; };
     const update = () => {
@@ -134,7 +135,7 @@ export function useRoute(): string {
       hasNavigated.current = true;
       current.current = next;
       context.current.route = next;
-      writeContext(context.current);
+      writeContext(context.current, navigationKey);
       setRoute(next);
     };
     const click = (event: MouseEvent) => {
@@ -184,11 +185,11 @@ export function useRoute(): string {
 // Cursor/scroll hints contain no written content. Stable keys belong to an entity and field.
 export const EDITING_CONTEXT_KEY = 'study-space:demo:editing-context:v1';
 type EditingPosition = { start: number; end: number; direction: 'forward' | 'backward' | 'none'; top: number; left: number };
-function useEditingContext() {
+function useEditingContext(storageKey = EDITING_CONTEXT_KEY) {
   useLayoutEffect(() => {
     let positions: Record<string, EditingPosition> = {};
     try {
-      const raw: unknown = JSON.parse(sessionStorage.getItem(EDITING_CONTEXT_KEY) || '{}');
+      const raw: unknown = JSON.parse(sessionStorage.getItem(storageKey) || '{}');
       if (raw && typeof raw === 'object') for (const [key, value] of Object.entries(raw).slice(-200)) {
         if (!value || typeof value !== 'object') continue;
         const p = value as EditingPosition;
@@ -203,7 +204,7 @@ function useEditingContext() {
       positions[key] = { start: element.selectionStart, end: element.selectionEnd, direction: element.selectionDirection || 'none', top: element.scrollTop, left: element.scrollLeft };
       const entries = Object.entries(positions);
       if (entries.length > 200) positions = Object.fromEntries(entries.slice(-200));
-      try { sessionStorage.setItem(EDITING_CONTEXT_KEY, JSON.stringify(positions)); } catch { /* In-tab hints remain available. */ }
+      try { sessionStorage.setItem(storageKey, JSON.stringify(positions)); } catch { /* In-tab hints remain available. */ }
     };
     const capture = (event: Event) => { const element = field(event.target); if (element) save(element); };
     const captureActive = () => { const element = field(document.activeElement); if (element) save(element); };

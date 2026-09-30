@@ -24,9 +24,9 @@ type ArchiveStorage = Pick<Storage, 'length' | 'key' | 'getItem'>;
 const marker = ':recovery:';
 export const draftArchiveMetadataKey = (archiveKey: string): string => `study-space:draft-archive-metadata:v1:${archiveKey}`;
 
-function sourceKeyFor(archiveKey: string): string {
+function sourceKeyFor(archiveKey: string, prefix = 'study-space:demo:'): string {
   const split = archiveKey.lastIndexOf(marker);
-  if (!archiveKey.startsWith('study-space:demo:') || split < 'study-space:demo:'.length || !archiveKey.slice(split + marker.length) || archiveKey.slice(split + marker.length).includes(':')) {
+  if (!archiveKey.startsWith(prefix) || split < prefix.length || !archiveKey.slice(split + marker.length) || archiveKey.slice(split + marker.length).includes(':')) {
     throw new Error('초안 보관본의 위치가 아닙니다. 현재 기록과 초안은 변경하지 않았습니다.');
   }
   return archiveKey.slice(0, split);
@@ -40,8 +40,8 @@ function validMetadata(value: unknown, archiveKey: string, sourceKey: string): v
     typeof data.reason === 'string' && data.reason.trim().length > 0;
 }
 
-export function readDraftArchive(archiveKey: string, providedStorage?: ArchiveStorage): DraftArchive {
-  const sourceKey = sourceKeyFor(archiveKey);
+export function readDraftArchive(archiveKey: string, providedStorage?: ArchiveStorage, prefix = 'study-space:demo:'): DraftArchive {
+  const sourceKey = sourceKeyFor(archiveKey, prefix);
   const result: DraftArchive = { archiveKey, sourceKey, raw: null, metadata: null, currentDraft: 'unreadable', issues: [] };
   let storage: ArchiveStorage;
   try { storage = providedStorage ?? localStorage; }
@@ -74,7 +74,7 @@ export function readDraftArchive(archiveKey: string, providedStorage?: ArchiveSt
   return result;
 }
 
-export function listDraftArchives(providedStorage?: ArchiveStorage): { archives: DraftArchive[]; issues: ArchiveIssue[]; complete: boolean } {
+export function listDraftArchives(providedStorage?: ArchiveStorage, prefix = 'study-space:demo:'): { archives: DraftArchive[]; issues: ArchiveIssue[]; complete: boolean } {
   const archives: DraftArchive[] = [], issues: ArchiveIssue[] = [];
   let storage: ArchiveStorage, length: number;
   try { storage = providedStorage ?? localStorage; length = storage.length; }
@@ -93,8 +93,8 @@ export function listDraftArchives(providedStorage?: ArchiveStorage): { archives:
     }
     if (seen.has(key)) continue;
     seen.add(key);
-    try { sourceKeyFor(key); } catch { continue; }
-    const archive = readDraftArchive(key, storage);
+    try { sourceKeyFor(key, prefix); } catch { continue; }
+    const archive = readDraftArchive(key, storage, prefix);
     archives.push(archive);
     issues.push(...archive.issues);
   }

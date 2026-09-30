@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, Suspense, lazy, type ReactNode } from "react";
 import {
   Button,
   Input,
@@ -38,6 +38,8 @@ import { QuickMemos } from "./ui/quick-memos";
 import { StudyLaunch } from "./ui/study-launch";
 import { NextStudy } from "./ui/next-study";
 import { TopicRecall } from "./ui/topic-recall";
+const PersonalSpace = lazy(() => import("./ui/personal-space").then(module => ({ default: module.PersonalSpace })));
+import { storagePrefix, type StudyRepository } from "./data/repository";
 import { TRACE_ITEMS } from "./domain/trace";
 import {
   DemoRepository,
@@ -61,15 +63,22 @@ function message(error: unknown) {
     : "내용을 보존했습니다. 다시 시도해 주세요.";
 }
 
-function readPreference(name: string, fallback: string) {
-  try { return sessionStorage.getItem(`study-space:demo:context:${name}`) ?? fallback; }
+function readPreference(name: string, fallback: string, prefix = "study-space:demo") {
+  try { return sessionStorage.getItem(`${prefix}:context:${name}`) ?? fallback; }
   catch { return fallback; }
 }
-function writePreference(name: string, value: string) {
-  try { sessionStorage.setItem(`study-space:demo:context:${name}`, value); } catch { /* Optional view context never blocks a study draft. */ }
+function writePreference(name: string, value: string, prefix = "study-space:demo") {
+  try { sessionStorage.setItem(`${prefix}:context:${name}`, value); } catch { /* Optional view context never blocks a study draft. */ }
 }
 
 export default function App() {
+  const [personal, setPersonal] = useState(() => { try { return (location.hash === '#/account' || new URLSearchParams(location.search).get('space') === 'personal') || sessionStorage.getItem('study-space:active-space') === 'personal'; } catch { return location.hash === '#/account' || new URLSearchParams(location.search).get('space') === 'personal'; } });
+  useEffect(() => { if (location.hash === '#/account') { try { sessionStorage.setItem('study-space:active-space', 'personal'); } catch { /* Space stays open for this visit. */ } location.hash = '#/'; } }, []);
+  const choose = (value: boolean) => { const url = new URL(location.href); url.searchParams.delete('space'); history.replaceState(null, '', url); try { sessionStorage.setItem('study-space:active-space', value ? 'personal' : 'demo'); } catch { /* In-memory space choice remains usable. */ } location.hash = '#/'; setPersonal(value); };
+  return personal ? <Suspense fallback={<main className="boot"><LoadingState /></main>}><PersonalSpace onDemo={() => choose(false)} renderWorkspace={(repo, controls) => <Workspace key={repo.getSnapshot().userId} repository={repo} accountControls={controls} />} /></Suspense>
+    : <DemoApp accountControls={<Button variant="quiet" onClick={() => choose(true)}>내 공부 공간</Button>} />;
+}
+function DemoApp({ accountControls }: { accountControls: ReactNode }) {
   const [showBootArchives, setShowBootArchives] = useState(false);
   const [boot, setBoot] = useState<{
     repo: DemoRepository | null;
@@ -144,13 +153,15 @@ export default function App() {
         {showBootArchives && <DraftArchives />}
       </main>
     );
-  return <Workspace repository={boot.repo} />;
+  return <Workspace repository={boot.repo} accountControls={accountControls} />;
 }
-function Workspace({ repository }: { repository: DemoRepository }) {
+export function Workspace({ repository, accountControls }: { repository: StudyRepository; accountControls?: ReactNode }) {
   const [data, setData] = useState(repository.getSnapshot());
-  const route = useRoute();
-  const [scope, setScope] = useState(() => readPreference("scope", "all"));
-  const [query, setQuery] = useState(() => readPreference("query", ""));
+  useEffect(() => repository.subscribe?.(() => setData(repository.getSnapshot())), [repository]);
+  const prefix = storagePrefix(data);
+  const route = useRoute(prefix);
+  const [scope, setScope] = useState(() => readPreference("scope", "all", prefix));
+  const [query, setQuery] = useState(() => readPreference("query", "", prefix));
   const [error, setError] = useState("");
   const [cleanupKeys, setCleanupKeys] = useState<string[]>([]);
   const [notice, setNotice] = useState<{
@@ -170,17 +181,17 @@ function Workspace({ repository }: { repository: DemoRepository }) {
   const [duplicateChoice, setDuplicateChoice] = useState<"" | "reuse" | "create">("");
   const [bulkPreview, setBulkPreview] = useState(false);
   const [outlineToken, setOutlineToken] = useState("");
-  const [theme, setTheme] = useState(() => readPreference("theme", "auto"));
+  const [theme, setTheme] = useState(() => readPreference("theme", "auto", prefix));
   const [recent, setRecent] = useState<string[]>(() => {
     try {
-      return JSON.parse(sessionStorage.getItem("demo:recent") || "[]");
+      return JSON.parse(sessionStorage.getItem(data.namespace === "demo" ? "demo:recent" : `${prefix}:recent`) || "[]");
     } catch {
       return [];
     }
   });
-  useEffect(() => { writePreference("scope", scope); }, [scope]);
-  useEffect(() => { writePreference("query", query); }, [query]);
-  useEffect(() => { writePreference("theme", theme); }, [theme]);
+  useEffect(() => { writePreference("scope", scope, prefix); }, [scope]);
+  useEffect(() => { writePreference("query", query, prefix); }, [query]);
+  useEffect(() => { writePreference("theme", theme, prefix); }, [theme]);
   const quickGuard = useRef(new Set<string>());
   const nodes = active(data.nodes),
     subjects = active(data.subjects);
@@ -237,7 +248,7 @@ function Workspace({ repository }: { repository: DemoRepository }) {
         opId: operation?.opId || uid(),
         at: operation?.at || new Date().toISOString(),
         userId: data.userId,
-        namespace: "demo",
+        namespace: data.namespace,
       } as Command);
       setData(next);
       setError("");
@@ -257,7 +268,7 @@ function Workspace({ repository }: { repository: DemoRepository }) {
         6,
       );
       try {
-        sessionStorage.setItem("demo:recent", JSON.stringify(next));
+        sessionStorage.setItem(data.namespace === "demo" ? "demo:recent" : `${prefix}:recent`, JSON.stringify(next));
       } catch {}
       return next;
     });
@@ -326,7 +337,7 @@ function Workspace({ repository }: { repository: DemoRepository }) {
     setDialog(null);
   };
   const openDialog = (next: typeof dialog) => {
-    const key = `study-space:demo:modal:${next}:${next === "semester" ? "global" : next === "subject" ? scope : node?.id || subject?.id || "missing"}`;
+    const key = `${prefix}:modal:${next}:${next === "semester" ? "global" : next === "subject" ? scope : node?.id || subject?.id || "missing"}`;
     setModalKey(key); setModalError(""); setModalBlocked(false); setBulkPreview(false); setDuplicateChoice("");
     let values = { name: next === "rename" ? node?.name || "" : "", moveParent: node?.parentId || "", role: "topic" as OutlineNode["role"], bulkNames: ["", "", ""] };
     if (next !== "trash") {
@@ -510,10 +521,10 @@ function Workspace({ repository }: { repository: DemoRepository }) {
       </aside>
       <div className="workspace">
         <div className="demo-banner">
-          가짜 자료로 살펴보는 시연 공간 · 이 기기에만 저장됩니다
+          {data.namespace === "demo" ? "가짜 자료로 살펴보는 시연 공간 · 이 기기에만 저장됩니다" : "내 공부 공간"}
         </div>
         <header className="topbar">
-          <span className="small-brand">공부의 자리</span>
+          <span className="small-brand">공부의 자리</span>{accountControls}
           <Select
             label="학기와 공부 범위"
             value={scope}
@@ -1213,9 +1224,9 @@ function NarrativeEditor({
     (n) => !newNote && (narrativeId ? n.id === narrativeId : n.kind === kind && n.ownerId === ownerId),
   );
   const initialId = useRef(original?.id || narrativeId || uid());
-  const storageKey = draftKey || `study-space:demo:narrative:${kind}:${ownerId}`;
+  const storageKey = draftKey || `${storagePrefix(data)}:narrative:${kind}:${ownerId}`;
   // Tab-local presentation only; the existing draft remains the owner of text.
-  const disclosureKey = `study-space:demo:narrative-disclosure:${storageKey}`;
+  const disclosureKey = `${storagePrefix(data)}:narrative-disclosure:${storageKey}`;
   const [expanded, setExpanded] = useState(() => {
     try {
       const saved = sessionStorage.getItem(disclosureKey);
@@ -1297,7 +1308,7 @@ function FreeNotes({ data, route, commit, onCleanupFailure }: { data: AppState; 
   const notes = active(data.narratives).filter(n => n.kind === "free-note" && n.ownerId === null);
   const [legacy] = useState(() => {
     try {
-      const key = "study-space:demo:free-default-id";
+      const key = `${storagePrefix(data)}:free-default-id`;
       const existing = localStorage.getItem(key);
       const id = existing || notes[0]?.id || uid();
       if (!id.trim()) throw new Error();
@@ -1318,7 +1329,7 @@ function FreeNotes({ data, route, commit, onCleanupFailure }: { data: AppState; 
       ? <EmptyState title="이 자유 기록을 찾을 수 없습니다" />
       : <NarrativeEditor data={data} kind="free-note" ownerId={null} label="자유 기록" commit={commit}
           narrativeId={creating ? undefined : id} newNote={creating}
-          draftKey={creating ? "study-space:demo:narrative:free-note:new" : id === legacy.id ? "study-space:demo:narrative:free-note:null" : `study-space:demo:narrative:free-note:id:${id}`}
+          draftKey={creating ? `${storagePrefix(data)}:narrative:free-note:new` : id === legacy.id ? `${storagePrefix(data)}:narrative:free-note:null` : `${storagePrefix(data)}:narrative:free-note:id:${id}`}
           onSaved={creating ? (savedId, cleanupKey) => { if (cleanupKey) onCleanupFailure(cleanupKey); go(`/free/${savedId}`); } : undefined} />}
     <section className="section-space" aria-label="저장한 자유 기록">
       <h2>저장한 자유 기록</h2>
@@ -1347,13 +1358,13 @@ function RecordForm({
   const key = initialTarget || "multiple";
   const [boot] = useState(() => {
     try {
-      const storageKey = `study-space:demo:draft:${key}`;
+      const storageKey = `${storagePrefix(data)}:draft:${key}`;
       const rescued = readRescuedDraft(storageKey);
       if (rescued === "") return { draft: null, error: "" };
       if (rescued) { const draft = JSON.parse(rescued); validateFormDraft(draft, key); return { draft, error: draftReadError(storageKey) }; }
-      return { draft: readDraft(localStorage, key), error: draftReadError(storageKey) };
+      return { draft: readDraft(localStorage, key, storagePrefix(data)), error: draftReadError(storageKey) };
     } catch (e) {
-      rememberDraftReadError(`study-space:demo:draft:${key}`, message(e));
+      rememberDraftReadError(`${storagePrefix(data)}:draft:${key}`, message(e));
       return { draft: null, error: message(e) };
     }
   });
@@ -1370,10 +1381,10 @@ function RecordForm({
       },
   );
   const currentForm = useRef(form);
-  const [draftError, setDraftError] = useState(boot.error || (draftHasUnstoredText(`study-space:demo:draft:${key}`) ? "저장에 실패한 입력을 이 창에서 유지합니다. 다시 저장하거나 복사해 주세요." : ""));
+  const [draftError, setDraftError] = useState(boot.error || (draftHasUnstoredText(`${storagePrefix(data)}:draft:${key}`) ? "저장에 실패한 입력을 이 창에서 유지합니다. 다시 저장하거나 복사해 주세요." : ""));
   const [draftBlocked, setDraftBlocked] = useState(Boolean(boot.error));
-  const [filter, setFilter] = useState(() => readPreference(`record-filter:${key}`, ""));
-  useEffect(() => { writePreference(`record-filter:${key}`, filter); }, [key, filter]);
+  const [filter, setFilter] = useState(() => readPreference(`record-filter:${key}`, "", storagePrefix(data)));
+  useEffect(() => { writePreference(`record-filter:${key}`, filter, storagePrefix(data)); }, [key, filter]);
   const guard = useRef(false);
   const nodes = active(data.nodes).filter(
     (n) => n.role === "topic" || n.id === initialTarget,
@@ -1381,7 +1392,7 @@ function RecordForm({
   const change = (next: FormDraft) => {
     currentForm.current = next;
     setForm(next);
-    const storageKey = `study-space:demo:draft:${key}`;
+    const storageKey = `${storagePrefix(data)}:draft:${key}`;
     if (draftBlocked) { rescueWithoutOverwrite(storageKey, JSON.stringify(next)); return; }
     try {
       validateFormDraft(next, key);
@@ -1419,12 +1430,12 @@ function RecordForm({
     if (next) {
       let warning: string | undefined;
       try {
-        clearStoredDraft(`study-space:demo:draft:${key}`);
+        clearStoredDraft(`${storagePrefix(data)}:draft:${key}`);
       } catch {
         warning =
           "기록은 저장했습니다. 초안 정리에 실패해 이전 초안이 남아 있을 수 있습니다.";
       }
-      onSaved(warning, warning ? `study-space:demo:draft:${key}` : undefined);
+      onSaved(warning, warning ? `${storagePrefix(data)}:draft:${key}` : undefined);
     } else guard.current = false;
   };
   return (
@@ -1592,7 +1603,7 @@ function RecordForm({
           )}
         </details>
         {draftError && <><ErrorState message={draftError} /><Button onClick={() => {
-          const storageKey = `study-space:demo:draft:${key}`;
+          const storageKey = `${storagePrefix(data)}:draft:${key}`;
           try {
             if (draftBlocked) archiveDamagedDraft(storageKey);
             validateFormDraft(currentForm.current, key);
@@ -1630,13 +1641,13 @@ function RecordCard({
   allowNewWrittenReview: boolean;
 }) {
   const body = useTextDraft(
-    `study-space:demo:record:${record.id}`,
+    `${storagePrefix(record)}:record:${record.id}`,
     record.body,
     record.version,
   );
   const review = record.trace.Cself1?.examReview;
   const answer = useTextDraft(
-    `study-space:demo:review:${record.id}`,
+    `${storagePrefix(record)}:review:${record.id}`,
     review?.answer || "",
     record.version,
   );

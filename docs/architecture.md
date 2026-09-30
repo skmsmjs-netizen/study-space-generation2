@@ -30,3 +30,7 @@ IndexedDB는 온라인 기본 CRUD를 검증한 다음 추가한다. 캐시와 �
 - [WebKit 저장 정책](https://webkit.org/blog/14403/updates-to-storage-policy/)
 
 이 문서에 실제 사용자 자료·계정 비밀·비공개 대화는 포함하지 않는다.
+
+## 2026-09-30 실제 온라인 구현
+
+이제 StudyRepository 경계에서 demo와 personal 구현을 분리하고 기존 입력 화면을 재사용합니다. 개인 명령은 local journal에 먼저 보관한 뒤 인증 API·도메인 명령·PostgreSQL CAS transaction에 연결됩니다. 서버 승인 snapshot/sequence와 미전송 원문을 구별합니다. [온라인 저장 계약](online-storage.md)에 실제 적용·권한·보존·검증·직접 잔여를 기록했습니다. 현재는 사용자 단위 snapshot 원장이며 엔터티별 서버 정규화, IndexedDB 및 자동 다기기 Sync 완료를 뜻하지 않습니다.

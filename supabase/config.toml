@@ -1,0 +1,5 @@
+project_id = "study-space-generation2"
+[functions.study-command]
+# Every non-preflight request is verified against Auth /user by command-handler.
+# Legacy-secret-only gateway verification cannot accept current asymmetric JWTs.
+verify_jwt = false
