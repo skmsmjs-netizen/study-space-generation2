@@ -11,6 +11,7 @@ export function archiveTarget(sourceKey: string, data?: AppState): { label: stri
   const key = sourceKey.startsWith(prefix) ? sourceKey.slice(prefix.length) : sourceKey;
   let targetId: string | undefined, label = '대상을 확인할 수 없는 초안';
   let href: string | undefined;
+  if (key === 'canvas-draft:main') return { label: 'Canvas 배치', relation: '원래 카드 좌표·연결의 초안입니다. 저장된 배치와 합치기 전에 원문을 확인해 주세요.', href: '#/canvas' };
   if (key.startsWith('draft:')) {
     targetId = key.slice('draft:'.length);
     label = targetId === 'multiple' ? '여러 주제 공부 기록' : '공부 기록';

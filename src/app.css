@@ -577,3 +577,22 @@ nav a[aria-current="page"] {
   .topbar > .ui-field { margin-inline-start: auto; }
   .topbar > .ui-field .ui-label { display: none; }
 }
+
+/* 사진 1·2·4·5 재분석: 역할과 소속을 읽는 순서로 묶습니다. */
+.record-topic-group { border: 0; padding: var(--space-3) 0; margin: 0; border-block-start: var(--border-width) solid var(--color-border); }
+.record-topic-group legend { font-size: var(--type-label-size); padding-inline-end: var(--space-3); }
+.record-unit-heading { margin-block: var(--space-3) var(--space-1); color: var(--color-muted); font-size: var(--type-caption-size); }
+.record-entry-heading { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); }
+.record-entry-heading h2 { margin: 0; }
+.record-entry .ui-field { margin-block-start: var(--space-4); }
+.recent-study-list article { padding-block: var(--space-4); border-block-end: var(--border-width) solid var(--color-border); }
+.recent-study-list h3 { margin-block: 0 var(--space-1); font-size: var(--type-heading-size); }
+.recent-study-list .prose { margin-block: var(--space-2); }
+.recent-study-list .record-source { font-size: var(--type-caption-size); color: var(--color-muted); }
+.recent-study-list footer { display: flex; flex-wrap: wrap; gap: var(--space-4); font-size: var(--type-caption-size); }
+.outline-flat > li { position: relative; }
+.outline-flat > li[style]:before { content: ''; position: absolute; left: calc(var(--outline-indent) * var(--space-3)); top: 0; bottom: 0; border-inline-start: var(--border-width) solid var(--color-border); }
+.outline-flat .node-link { padding-inline-start: var(--space-3); }
+
+/* 주제 제목과 역할 라벨은 구별하고, 제목은 정체로 읽습니다. */
+.outline-flat .role-topic > .outline-label { font-style: normal; }

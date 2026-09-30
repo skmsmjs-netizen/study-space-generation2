@@ -19,10 +19,31 @@ beforeAll(async () => {
   db = new PGlite();
   await db.exec(`create schema auth; create table auth.users(id uuid primary key); create role anon; create role authenticated; create role service_role bypassrls; grant usage on schema public,auth to authenticated,service_role,anon; create function auth.uid() returns uuid language sql as $$ select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid $$; insert into auth.users values('${a}'),('${b}');`);
   await db.exec(await readFile(new URL('../../supabase/migrations/202609300001_study_storage.sql', import.meta.url), 'utf8'));
+  await db.exec(await readFile(new URL('../../supabase/migrations/202610010002_learning_plans.sql', import.meta.url), 'utf8'));
+  await db.exec(await readFile(new URL('../../supabase/migrations/202610010003_canvas_layouts.sql', import.meta.url), 'utf8'));
 });
 beforeEach(async () => { await db.exec('reset role; truncate study_operations,study_workspaces;'); });
 afterAll(async () => { await db.close(); });
 describe('server authentication, domain commands and real PostgreSQL transactions', () => {
+  it('preserves Canvas references, geometry and raw memo through server reload and idempotent retry', async () => {
+    await request({ action: 'execute', namespace: 'test', baseSequence: 0, command: command() });
+    const node = command({ type: 'addNode', id: 'topic-1', subjectId: 'subject-1', parentId: null, role: 'topic', name: '주제', opId: 'canvas-node' } as Partial<Command>);
+    expect((await request({ action: 'execute', namespace: 'test', baseSequence: 1, command: node })).status).toBe(200);
+    const memo = command({ type: 'saveMemo', id: 'memo-1', ownerId: 'topic-1', body: '  원문\r\n\u0000\ud800 ', strokes: [], expectedVersion: 0, opId: 'canvas-memo' } as Partial<Command>);
+    expect((await request({ action: 'execute', namespace: 'test', baseSequence: 2, command: memo })).status).toBe(200);
+    const layout = command({ type: 'saveCanvasLayout', id: 'canvas:main', positions: { 'node:topic-1': { x: -42.5, y: 18 }, 'memo:memo-1': { x: 450, y: 28 } }, links: [{ id: 'personal-edge', source: 'node:topic-1', target: 'memo:memo-1', label: ' 原文\u0000\ud800 ' }], viewport: { x: 3, y: 4, zoom: .75 }, expectedVersion: 0, opId: 'canvas-layout' } as Partial<Command>);
+    const write = { action: 'execute', namespace: 'test', baseSequence: 3, command: layout };
+    expect((await request(write)).status).toBe(200); expect((await request(write)).status).toBe(200);
+    const loaded = await (await request({ action: 'load', namespace: 'test' })).json();
+    expect(loaded.supportedCommands).toContain('saveCanvasLayout');
+    const data = loaded.data;
+    expect(data.canvasLayouts[0]).toMatchObject({ positions: layout.type === 'saveCanvasLayout' ? layout.positions : {}, links: layout.type === 'saveCanvasLayout' ? layout.links : [], version: 1 });
+    expect(data.memos[0].body).toBe(memo.type === 'saveMemo' ? memo.body : '');
+    expect(data.records).toEqual([]); expect(data.sessions).toEqual([]);
+    expect((await backend.read(a, 'test'))!.sequence).toBe(4);
+    const forged = packServerState(data, layout.opId); (forged as unknown as {canvasLayouts:{userId:string}[]}).canvasLayouts[0].userId = b;
+    await expect(db.query('select study_commit($1,$2,$3,$4,$5,$6)', [a, 'test', 4, 'forged-canvas', 'x', {...forged, appliedOps:{'forged-canvas':'x'}}])).rejects.toThrow('OWNERSHIP');
+  });
   it('stores, reloads and preserves original writing and revision identity', async () => {
     expect((await request({ action: 'execute', namespace: 'test', baseSequence: 0, command: command() })).status).toBe(200);
     const write = command({ type: 'updateNarrative', id: 'text-1', kind: 'subject-overview', ownerId: 'subject-1', body: '원문\r\n  이유와 예외\t', expectedVersion: 0, opId: 'op-2' } as Partial<Command>);

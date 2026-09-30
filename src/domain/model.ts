@@ -37,8 +37,12 @@ export interface Criteria extends Entity { items: TraceDefinition[] }
 export interface CriteriaAssignment extends Entity { scope: 'topic' | 'subject' | 'global'; ownerId: string | null; criteriaId: string }
 export interface CriteriaChange { id: string; targetId: string; scope: 'topic' | 'subject' | 'all'; expectedToken: string; items: TraceDefinition[] }
 export interface LearningPlan extends Entity { workspace: import('./recommendation-workspace').RecommendationWorkspace }
-export type EntityCollection = 'semesters' | 'subjects' | 'nodes' | 'sessions' | 'records' | 'narratives' | 'criteria' | 'criteriaAssignments' | 'memos' | 'learningPlans';
-export type DomainEntity = Semester | Subject | OutlineNode | StudySession | StudyRecord | Narrative | Criteria | CriteriaAssignment | QuickMemo | LearningPlan;
+export interface CanvasPosition { x: number; y: number }
+export interface CanvasLink { id: string; source: string; target: string; label: string }
+/** Only presentation is stored here. Names, text and drawings remain in their original entities. */
+export interface CanvasLayout extends Entity { positions: Record<string, CanvasPosition>; links: CanvasLink[]; viewport?: { x: number; y: number; zoom: number } }
+export type EntityCollection = 'semesters' | 'subjects' | 'nodes' | 'sessions' | 'records' | 'narratives' | 'criteria' | 'criteriaAssignments' | 'memos' | 'learningPlans' | 'canvasLayouts';
+export type DomainEntity = Semester | Subject | OutlineNode | StudySession | StudyRecord | Narrative | Criteria | CriteriaAssignment | QuickMemo | LearningPlan | CanvasLayout;
 export interface Revision extends Entity {
   collection: EntityCollection; entityId: string; operationId: string; parentRevisionId: string | null;
   before: DomainEntity | null; after: DomainEntity; reversesRevisionId?: string;
@@ -51,6 +55,7 @@ export interface AppState {
   criteria?: Criteria[]; criteriaAssignments?: CriteriaAssignment[];
   memos?: QuickMemo[];
   learningPlans?: LearningPlan[];
+  canvasLayouts?: CanvasLayout[];
   /** Canonical operation payloads make repeated requests idempotent. */
   appliedOps: Record<string, string>;
 }
@@ -76,6 +81,7 @@ export type Command = CommandContext & (
   | { type: 'saveMemo'; id: string; ownerId: string | null; body: string; strokes: MemoStroke[]; expectedVersion: number }
   | { type: 'trashMemo' | 'restoreMemo'; id: string; expectedVersion: number }
   | { type: 'saveLearningPlan'; id: string; expectedVersion: number; workspace: import('./recommendation-workspace').RecommendationWorkspace }
+  | { type: 'saveCanvasLayout'; id: string; expectedVersion: number; positions: CanvasLayout['positions']; links: CanvasLink[]; viewport?: CanvasLayout['viewport'] }
   | ({ type: 'adjustCriteria' } & CriteriaChange)
   | { type: 'editWrittenReview'; recordId: string; expectedVersion: number; answer: string }
   | { type: 'confirmWrittenReview' | 'unconfirmWrittenReview'; recordId: string; expectedVersion: number }

@@ -28,9 +28,9 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 
-// ../../../Users/manseeksong/Documents/ChatGPT/학습 시스템 설계 프로젝트/generation2/node_modules/lz-string/libs/lz-string.js
+// node_modules/lz-string/libs/lz-string.js
 var require_lz_string = __commonJS({
-  "../../../Users/manseeksong/Documents/ChatGPT/\uD559\uC2B5 \uC2DC\uC2A4\uD15C \uC124\uACC4 \uD504\uB85C\uC81D\uD2B8/generation2/node_modules/lz-string/libs/lz-string.js"(exports, module) {
+  "node_modules/lz-string/libs/lz-string.js"(exports, module) {
     var LZString2 = (function() {
       var f = String.fromCharCode;
       var keyStrBase64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
@@ -868,6 +868,19 @@ function validateRecommendations(value, data) {
   if (w.termDraft && (typeof w.termDraft.semesterId !== "string" || typeof w.termDraft.start !== "string" || typeof w.termDraft.end !== "string")) throw Error("\uC791\uC131 \uC911\uC778 \uD559\uAE30 \uAE30\uAC04\uC744 \uC77D\uC9C0 \uBABB\uD588\uC2B5\uB2C8\uB2E4.");
 }
 
+// src/domain/canvas.ts
+function validateCanvasLayout(value) {
+  const validKey = (id) => typeof id === "string" && /^(subject|node|memo|narrative):.+/.test(id) && id.length <= 300 && !/[\u0000-\u001f]/.test(id);
+  const position = (p) => p && Number.isFinite(p.x) && Number.isFinite(p.y) && Math.abs(p.x) <= 1e7 && Math.abs(p.y) <= 1e7;
+  if (!value.positions || typeof value.positions !== "object" || Array.isArray(value.positions) || !Object.entries(value.positions).every(([id, p]) => validKey(id) && position(p)) || !Array.isArray(value.links)) throw new DomainError("INVALID_CANVAS", "Canvas \uBC30\uCE58\uC640 \uC5F0\uACB0\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694. \uC6D0\uBB38\uC740 \uC720\uC9C0\uD588\uC2B5\uB2C8\uB2E4.");
+  const ids = /* @__PURE__ */ new Set();
+  for (const link of value.links) {
+    if (!link || typeof link.id !== "string" || !link.id.trim() || link.id.length > 256 || ids.has(link.id) || link.id.startsWith("auto:") || !validKey(link.source) || !validKey(link.target) || typeof link.label !== "string" || link.label.length > 300) throw new DomainError("INVALID_CANVAS", "Canvas \uC5F0\uACB0\uC758 \uC2DD\uBCC4\uC790\uC640 \uC6D0\uBB38\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+    ids.add(link.id);
+  }
+  if (value.viewport && (!position(value.viewport) || !Number.isFinite(value.viewport.zoom) || value.viewport.zoom < 0.1 || value.viewport.zoom > 2)) throw new DomainError("INVALID_CANVAS", "Canvas \uD655\uB300 \uC704\uCE58\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+}
+
 // src/domain/commands.ts
 function verifyLearningPlan(workspace, state) {
   try {
@@ -876,7 +889,7 @@ function verifyLearningPlan(workspace, state) {
     throw new DomainError("INVALID_LEARNING_PLAN", error instanceof Error ? error.message : "\uD559\uC2B5 \uC77C\uC815\uC758 \uB0B4\uC6A9\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
   }
 }
-var collections = ["semesters", "subjects", "nodes", "sessions", "records", "narratives", "criteria", "criteriaAssignments", "memos", "learningPlans"];
+var collections = ["semesters", "subjects", "nodes", "sessions", "records", "narratives", "criteria", "criteriaAssignments", "memos", "learningPlans", "canvasLayouts"];
 var clone = (value) => structuredClone(value);
 function fail(code, message, details) {
   throw new DomainError(code, message, details);
@@ -1017,6 +1030,7 @@ function assertState(state) {
   for (const row of state.sessions) validateDateEvidence(row.dateEvidence);
   if ((state.learningPlans ?? []).filter((row) => !row.deletedAt).length > 1) fail("DUPLICATE_PLAN", "\uD559\uC2B5 \uC77C\uC815\uC758 \uC6D0\uB798 \uC5F0\uACB0\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
   for (const row of state.learningPlans ?? []) verifyLearningPlan(row.workspace, state);
+  for (const row of state.canvasLayouts ?? []) validateCanvasLayout(row);
   for (const row of state.memos ?? []) {
     validateMemoContent(row);
     if (row.ownerId !== null && !subjectIds.has(row.ownerId) && !nodeIndex.has(row.ownerId)) fail("NOT_FOUND", "\uBA54\uBAA8\uC758 \uC6D0\uB798 \uC5F0\uACB0 \uB300\uC0C1\uC744 \uCC3E\uC744 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
@@ -1080,6 +1094,7 @@ function applyCommand(state, command) {
     if (collection === "criteriaAssignments") next.criteriaAssignments ??= [];
     if (collection === "memos") next.memos ??= [];
     if (collection === "learningPlans") next.learningPlans ??= [];
+    if (collection === "canvasLayouts") next.canvasLayouts ??= [];
     const list = next[collection];
     const index = list.findIndex((v) => v.id === entity.id), before = index < 0 ? null : clone(list[index]);
     if (before && canonical(before) === canonical(entity)) return;
@@ -1096,6 +1111,19 @@ function applyCommand(state, command) {
     return found;
   };
   switch (command.type) {
+    case "saveCanvasLayout": {
+      validateCanvasLayout(command);
+      const old = next.canvasLayouts?.find((row) => row.id === command.id);
+      if (old) {
+        find(next.canvasLayouts, old.id);
+        expected(old, command.expectedVersion, command);
+      } else {
+        if (command.expectedVersion !== 0) fail("VERSION_CONFLICT", "Canvas \uBC30\uCE58\uC758 \uC218\uC815 \uC21C\uC11C\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+        fresh(command.id);
+      }
+      write("canvasLayouts", { ...old ?? common(command.id), positions: clone(command.positions), links: clone(command.links), ...command.viewport ? { viewport: clone(command.viewport) } : {} });
+      break;
+    }
     case "saveLearningPlan": {
       verifyLearningPlan(command.workspace, next);
       const row = next.learningPlans?.find((item) => item.id === command.id);
@@ -1383,7 +1411,7 @@ function packServerState(state, operationId) {
   validateState(state);
   const raw = JSON.stringify(state), encoded = import_lz_string.default.compressToBase64(raw);
   if (import_lz_string.default.decompressFromBase64(encoded) !== raw) throw new DomainError("ENCODING", "\uC6D0\uBB38 \uBCF4\uC874\uC744 \uD655\uC778\uD558\uC9C0 \uBABB\uD588\uC2B5\uB2C8\uB2E4. \uC800\uC7A5\uD558\uC9C0 \uC54A\uC558\uC2B5\uB2C8\uB2E4.");
-  const collections2 = ["semesters", "subjects", "nodes", "sessions", "records", "narratives", "criteria", "criteriaAssignments", "memos", "learningPlans", "revisions"];
+  const collections2 = ["semesters", "subjects", "nodes", "sessions", "records", "narratives", "criteria", "criteriaAssignments", "memos", "learningPlans", "canvasLayouts", "revisions"];
   return {
     userId: state.userId,
     namespace: state.namespace,
@@ -1430,7 +1458,7 @@ async function handleCommand(request, backend) {
     const current = await backend.read(userId, namespace) ?? { sequence: 0, data: emptyState(userId, namespace) };
     validateState(current.data);
     if (current.data.userId !== userId || current.data.namespace !== namespace) throw new DomainError("OWNERSHIP", "\uC774 \uACF5\uAC04\uC5D0 \uC811\uADFC\uD560 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
-    if (body.action === "load") return json({ ...current, supportedCommands: ["saveLearningPlan"] });
+    if (body.action === "load") return json({ ...current, supportedCommands: ["saveLearningPlan", "saveCanvasLayout"] });
     if (body.action !== "execute" || !body.command) throw new DomainError("INVALID_REQUEST", "\uC800\uC7A5 \uC694\uCCAD\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
     const command = body.command;
     if (typeof command.opId !== "string" || !command.opId.trim() || command.opId.length > 256 || /[\u0000-\u001f\u007f]/.test(command.opId)) throw new DomainError("INVALID_ID", "\uC800\uC7A5 \uC694\uCCAD\uC758 \uC2DD\uBCC4\uC790\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
@@ -1438,11 +1466,11 @@ async function handleCommand(request, backend) {
     if (!Number.isSafeInteger(body.baseSequence) || body.baseSequence < 0) throw new DomainError("INVALID_VERSION", "\uC800\uC7A5 \uC21C\uC11C\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
     if (current.data.appliedOps[command.opId]) {
       applyCommand(current.data, command);
-      return json({ ...current, supportedCommands: ["saveLearningPlan"] });
+      return json({ ...current, supportedCommands: ["saveLearningPlan", "saveCanvasLayout"] });
     }
     if (body.baseSequence !== current.sequence) return json({ code: "VERSION_CONFLICT", message: "\uB2E4\uB978 \uAE30\uAE30\uC758 \uBCC0\uACBD\uACFC \uC791\uC131 \uB0B4\uC6A9\uC744 \uBAA8\uB450 \uBCF4\uC874\uD588\uC2B5\uB2C8\uB2E4.", server: current }, 409);
     const next = applyCommand(current.data, command);
-    return json({ ...await backend.commit(userId, namespace, current.sequence, command, next), supportedCommands: ["saveLearningPlan"] });
+    return json({ ...await backend.commit(userId, namespace, current.sequence, command, next), supportedCommands: ["saveLearningPlan", "saveCanvasLayout"] });
   } catch (error) {
     const code = error instanceof DomainError ? error.code : "SERVER_ERROR";
     const status = code === "AUTH_REQUIRED" ? 401 : code === "OWNERSHIP" ? 403 : /CONFLICT/.test(code) ? 409 : error instanceof DomainError || error instanceof SyntaxError ? 400 : 503;

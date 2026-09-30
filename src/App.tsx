@@ -30,15 +30,17 @@ import { useRoute, navigate as go } from "./ui/navigation-context";
 import { TraceEditor } from "./ui/trace-editor";
 import { CriteriaEditor } from "./ui/criteria-editor";
 import { resolveCriteria } from "./domain/criteria";
+import { recallPath } from "./domain/topic-recall";
 import { outlineRevisionToken, previewOutlineEntries } from "./domain/outline";
 import { OutlineTableEditor } from "./ui/outline-table-editor";
 import { OutlineTree } from "./ui/outline-tree";
 import { DraftArchives } from "./ui/draft-archives";
 import { QuickMemos } from "./ui/quick-memos";
 import { StudyLaunch } from "./ui/study-launch";
-import { NextStudy } from "./ui/next-study";
+const NextStudy = lazy(() => import("./ui/next-study").then(module => ({ default: module.NextStudy })));
 import { StudyStatistics } from "./ui/statistics";
 import { TopicRecall } from "./ui/topic-recall";
+const StudyCanvas = lazy(() => import("./ui/study-canvas").then(module => ({ default: module.StudyCanvas })));
 const PersonalSpace = lazy(() => import("./ui/personal-space").then(module => ({ default: module.PersonalSpace })));
 import { storagePrefix, type StudyRepository } from "./data/repository";
 import { TRACE_ITEMS } from "./domain/trace";
@@ -113,6 +115,8 @@ function DemoApp({ accountControls }: { accountControls: ReactNode }) {
             });
             return;
           }
+          // Register release before publishing the mounted workspace, including refresh cleanup.
+          const held = new Promise<void>((resolve) => { release = resolve; });
           try {
             setBoot({
               repo: new DemoRepository(localStorage),
@@ -122,9 +126,7 @@ function DemoApp({ accountControls }: { accountControls: ReactNode }) {
           } catch (e) {
             setBoot({ repo: null, error: message(e), loading: false });
           }
-          await new Promise<void>((resolve) => {
-            release = resolve;
-          });
+          await held;
         },
       )
       .catch((e) => {
@@ -476,6 +478,7 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
     { href: "/record", text: "기록" },
     { href: "/memos", text: "메모" },
     { href: "/recall", text: "주제 카드" },
+    { href: "/canvas", text: "Canvas" },
     { href: "/search", text: "찾기" },
   ];
   const recordRoute = route.startsWith("/record");
@@ -483,7 +486,9 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
   const freeRoute = route === "/free" || route.startsWith("/free/");
   const rootTitle =
     route === "/statistics" ? "공부 통계" :
-    route === "/recall"
+    route === "/canvas"
+      ? "Canvas"
+      : route === "/recall"
       ? "주제 카드"
       : memoRoute
       ? "작은 메모"
@@ -503,7 +508,7 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
   const tree = (parentId: string | null) => nodes.some(n => n.subjectId === subject?.id && n.parentId === parentId)
     ? <OutlineTree nodes={nodes} records={records} subjectId={subject!.id} subjectName={subject!.name} parentId={parentId} /> : null;
   return (
-    <div className={`app-shell${route === "/" ? " is-home" : ""}`}>
+    <div className={`app-shell${route === "/" ? " is-home" : route === "/canvas" ? " is-canvas" : ""}`}>
       <aside className="sidebar">
         <a className="brand" href="#/">
           공부의 자리<span>LEARNING SPACE</span>
@@ -628,7 +633,7 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
             )}
           </div>
           {route === "/draft-archives" && <DraftArchives data={data} />}
-          {route === "/statistics" && <StudyStatistics key={scope} data={data} subjectIds={shownSubjects.map(subject=>subject.id)} />}
+          {route === "/statistics" && <StudyStatistics key={scope} data={data} subjectIds={shownSubjects.map(subject => subject.id)} />}
           {route === "/" && (
             <>
               <Card className="hero">
@@ -644,10 +649,19 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
                   <Button onClick={() => go("/recall")}>주제 카드로 설명하기</Button>
                 </div>
               </Card>
+              {records.some(record => shownSubjects.some(subject => subject.id === record.subjectId)) && <section className="recent-study-list section-space" aria-label="최근 남긴 공부 기록">
+                <h2>최근 남긴 기록</h2>
+                {records.filter(record => shownSubjects.some(subject => subject.id === record.subjectId)).slice().sort((a, b) => b.createdAt.localeCompare(a.createdAt)).slice(0, 3).map(record => <article key={record.id}>
+                  <h3><a href={`#/node/${encodeURIComponent(record.targetId)}`}>{nodes.find(node => node.id === record.targetId)?.name ?? subjects.find(subject => subject.id === record.targetId)?.name ?? '보관된 공부 주제'}</a></h3>
+                  <div className="record-source">{subjects.find(subject => subject.id === record.subjectId)?.name} · {record.dateEvidence.kind === 'exact' ? record.dateEvidence.date : record.dateEvidence.kind === 'range' ? `${record.dateEvidence.from}~${record.dateEvidence.to}` : '공부한 날짜 미정'}</div>
+                  {record.body && <p className="prose">{record.body}</p>}
+                  <footer><a href={`#/node/${encodeURIComponent(record.targetId)}`}>기록 열기</a><a href={`#/record/${encodeURIComponent(record.targetId)}`}>이 주제에 새 기록</a></footer>
+                </article>)}
+              </section>}
               <QuickMemos data={data} repository={repository} onSaved={setData} compact />
               <StudyLaunch data={data} />
-              <StudyStatistics key={`statistics:${scope}`} compact data={data} subjectIds={shownSubjects.map(subject=>subject.id)} />
-              <NextStudy key={`${data.namespace}:${data.userId}`} repository={repository} onSaved={setData} data={data} subjectIds={shownSubjects.map(subject => subject.id)} semesterId={scope} />
+              <StudyStatistics key={`statistics:${scope}`} compact data={data} subjectIds={shownSubjects.map(subject => subject.id)} />
+              <Suspense fallback={<LoadingState message="다음 공부를 여는 중입니다." />}><NextStudy key={`${data.namespace}:${data.userId}`} repository={repository} onSaved={setData} data={data} subjectIds={shownSubjects.map(subject => subject.id)} semesterId={scope} /></Suspense>
               <div className="dashboard-grid">
                 <section>
                   <div className="section-heading">
@@ -799,7 +813,7 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
                 commit={commit}
               />
               <section className="section-space">
-                <h2>목차</h2>
+                <div className="section-heading"><h2>목차</h2><a href="#/canvas">Canvas에서 함께 보기 ↗</a></div>
                 {tree(null) || (
                   <EmptyState
                     title="목차가 아직 없습니다"
@@ -890,6 +904,10 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
             setCleanupKeys(keys => [...new Set([...keys, key])]);
             setError("자유 기록은 저장했습니다. 이전 초안 정리가 남았습니다. 창을 닫기 전에 다시 시도해 주세요.");
           }} />}
+          {route === "/canvas" && <Suspense fallback={<LoadingState message="Canvas를 여는 중입니다." />}><StudyCanvas key={`${data.namespace}:${data.userId}`} data={data} repository={repository} onSaved={setData} subjectIds={shownSubjects.map(subject => subject.id)} renderNarrative={(ownerId, narrative) => {
+            const target = data.nodes.find(node => node.id === ownerId);
+            return <NarrativeEditor key={narrative?.id ?? ownerId} data={data} ownerId={ownerId} narrativeId={narrative?.id} kind={narrative?.kind ?? (target ? target.role === 'unit' ? 'unit-introduction' : 'topic-note' : 'subject-overview')} label={narrative ? '메모' : '새 메모'} commit={commit} inline />;
+          }} /></Suspense>}
           {route === "/recall" && <TopicRecall key={`${data.namespace}:${data.userId}`} data={data} repository={repository} onSaved={setData} subjectIds={shownSubjects.map(subject => subject.id)} />}
           {memoRoute && <QuickMemos key={route} data={data} repository={repository} onSaved={setData} memoId={route.startsWith("/memos/") ? route.slice("/memos/".length) : undefined} />}
           {route === "/search" && (
@@ -974,7 +992,7 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
             </>
           )}
           {route === "/trash" && <QuickMemos data={data} repository={repository} onSaved={setData} trash />}
-          {!["/", "/subjects", "/search", "/trash", "/free", "/draft-archives", "/recall", "/statistics"].includes(route) &&
+          {!["/", "/subjects", "/search", "/trash", "/free", "/draft-archives", "/recall", "/canvas", "/statistics"].includes(route) &&
             !recordRoute &&
             !memoRoute &&
             !freeRoute &&
@@ -1208,6 +1226,7 @@ function NarrativeEditor({
   newNote = false,
   onSaved,
   draftKey,
+  inline = false,
 }: {
   data: AppState;
   kind: NarrativeKind;
@@ -1218,6 +1237,7 @@ function NarrativeEditor({
   newNote?: boolean;
   onSaved?: (id: string, cleanupKey?: string) => void;
   draftKey?: string;
+  inline?: boolean;
 }) {
   const original = active(data.narratives).find(
     (n) => !newNote && (narrativeId ? n.id === narrativeId : n.kind === kind && n.ownerId === ownerId),
@@ -1227,6 +1247,7 @@ function NarrativeEditor({
   // Tab-local presentation only; the existing draft remains the owner of text.
   const disclosureKey = `${storagePrefix(data)}:narrative-disclosure:${storageKey}`;
   const [expanded, setExpanded] = useState(() => {
+    if (inline) return true;
     try {
       const saved = sessionStorage.getItem(disclosureKey);
       if (saved === "open" || saved === "closed") return saved === "open";
@@ -1442,23 +1463,15 @@ function RecordForm({
       <section className="topic-picker">
         <h2>공부한 주제</h2>
         <Search label="주제 찾기" defaultValue={filter} onQueryChange={setFilter} />
-        {nodes
-          .filter((n) => n.name.includes(filter))
-          .map((n) => (
-            <Checkbox
-              key={n.id}
-              label={
-                <>
-                  <span>{n.name}</span>
-                  <small>
-                    {data.subjects.find((s) => s.id === n.subjectId)?.name}
-                  </small>
-                </>
-              }
-              checked={form.selectedIds.includes(n.id)}
-              onChange={(e) => select(n.id, e.target.checked)}
-            />
-          ))}
+        {active(data.subjects).map(subject => {
+          const matching = nodes.filter(node => node.subjectId === subject.id && node.name.includes(filter));
+          if (!matching.length) return null;
+          const groups = [...new Set(matching.map(node => node.parentId))];
+          return <fieldset className="record-topic-group" key={subject.id}><legend>{subject.name}</legend>{groups.map(parentId => <div key={parentId ?? 'root'}>
+            {parentId && <h3 className="record-unit-heading">{recallPath(data.nodes, parentId).map(node => node.name).join(' / ')}</h3>}
+            {matching.filter(node => node.parentId === parentId).map(node => <Checkbox key={node.id} label={node.name} checked={form.selectedIds.includes(node.id)} onChange={event => select(node.id, event.target.checked)} />)}
+          </div>)}</fieldset>;
+        })}
       </section>
       <section className="record-compose">
         {form.selectedIds.length > 0 && <p className="muted record-help">일부만 했거나 막혔어도 남겨 주세요. 글은 선택입니다.</p>}
@@ -1481,7 +1494,7 @@ function RecordForm({
         )}
         {form.selectedIds.map((id) => (
           <Card key={id} className="record-entry">
-            <h2>
+            <div className="record-entry-heading"><h2>
               {nodes.find((n) => n.id === id)?.name || "현재 목록에 없는 주제"}
             </h2>
             <Checkbox
@@ -1494,8 +1507,9 @@ function RecordForm({
                 })
               }
             />
+            </div>
             <Textarea
-              label="남길 생각 · 선택"
+              label="메모" hint="선택 입력"
               data-editing-context={`record-draft:${key}:${id}`}
               value={form.bodies[id] || ""}
               rows={3}

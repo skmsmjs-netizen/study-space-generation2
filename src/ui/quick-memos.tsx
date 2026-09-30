@@ -74,7 +74,7 @@ export function QuickMemos({ data, repository, onSaved, ownerId, memoId, compact
   </section>;
 }
 
-function MemoEditor({ memo, data, repository, onSaved, onClose, onCopy }: { memo: QuickMemo; data: AppState; repository: StudyRepository; onSaved: Props['onSaved']; onClose: () => void; onCopy: (id: string) => void }) {
+export function MemoEditor({ memo, data, repository, onSaved, onClose, onCopy, embedded = false }: { memo: QuickMemo; data: AppState; repository: StudyRepository; onSaved: Props['onSaved']; onClose: () => void; onCopy: (id: string) => void; embedded?: boolean }) {
   const key = memoDraftKey(data, memo.id);
   const [initial] = useState(() => {
     try {
@@ -239,7 +239,7 @@ function MemoEditor({ memo, data, repository, onSaved, onClose, onCopy }: { memo
       setStatus('파일 저장 위치를 확인해 주세요');
     } catch { setError('파일을 만들지 못했습니다. 입력은 현재 창에 유지했습니다.'); }
   };
-  return <Modal open title="작은 메모" onClose={close} className="memo-editor">
+  const editor = <>
     <div className="memo-toolbar" role="group" aria-label="그림 도구">
       <Button aria-pressed={tool === 'pen'} onClick={() => setTool('pen')} disabled={isBlocked}>펜</Button>
       <Button aria-pressed={tool === 'eraser'} onClick={() => setTool('eraser')} disabled={isBlocked}>지우개</Button>
@@ -274,5 +274,6 @@ function MemoEditor({ memo, data, repository, onSaved, onClose, onCopy }: { memo
     }}>초안 원문 보관 후 편집</Button>}
     {isBlocked && <a href="#/draft-archives" onClick={onClose}>초안 보관본 확인</a>}
     <footer className="memo-save-bar"><span role="status">{isBlocked ? '초안 확인 필요' : status}</span><div className="actions"><Button variant="quiet" onClick={exportMemo}>메모 파일로 보관</Button>{!isBlocked && <Button onClick={flush}>지금 저장</Button>}<Button variant="primary" onClick={close}>닫기</Button></div></footer>
-  </Modal>;
+  </>;
+  return embedded ? <div className="memo-editor canvas-memo-editor nodrag nopan nowheel">{editor}</div> : <Modal open title="작은 메모" onClose={close} className="memo-editor">{editor}</Modal>;
 }

@@ -1,0 +1,36 @@
+.app-shell.is-canvas .main-content { max-width: none; padding: var(--space-5); }
+.app-shell.is-canvas .page-heading { margin-block-end: var(--space-3); }
+.study-canvas { --xy-background-color: var(--color-background); --xy-node-color: var(--color-text); --xy-node-background-color: var(--color-surface); --xy-edge-stroke: var(--color-border-strong); --xy-edge-label-color: var(--color-muted); --xy-edge-label-background-color: var(--color-background); --xy-controls-button-background-color: var(--color-surface); --xy-controls-button-background-color-hover: var(--color-surface-inset); --xy-controls-button-color: var(--color-text); --xy-controls-button-border-color: var(--color-border); }
+.canvas-toolbar, .canvas-position-tools, .canvas-link-editor { display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-3); margin-block-end: var(--space-3); }
+.canvas-toolbar .ui-field { min-inline-size: 12rem; }
+.canvas-toolbar a { margin-inline-start: auto; font-size: var(--type-caption-size); }
+.canvas-stage { height: max(520px, calc(100dvh - 240px)); border: var(--border-width) solid var(--color-border); border-radius: var(--radius-sm); overflow: hidden; }
+.canvas-card { width: 300px; color: var(--color-text); background: var(--color-surface); border: var(--border-width) solid var(--color-border-strong); border-radius: var(--radius-sm); box-shadow: var(--shadow-none); }
+.canvas-card.is-selected { outline: var(--focus-width) solid var(--color-focus); }
+.canvas-card.is-editing { width: 520px; }
+.canvas-drag-handle { cursor: grab; padding: var(--space-4); border-block-end: var(--border-width) solid var(--color-border); }
+.canvas-drag-handle h2 { font-size: var(--type-heading-size); margin: 0; font-style: normal; overflow-wrap: anywhere; }
+.canvas-role { display: block; color: var(--color-muted); font-size: var(--type-caption-size); margin-block-end: var(--space-1); }
+.canvas-kind-subject .canvas-drag-handle { border-inline-start: var(--space-1) solid var(--color-hierarchy-subject); }
+.canvas-kind-unit .canvas-drag-handle { border-inline-start: var(--space-1) solid var(--color-hierarchy-unit); }
+.canvas-kind-outline .canvas-drag-handle { border-inline-start: var(--space-1) solid var(--color-hierarchy-outline); }
+.canvas-kind-topic .canvas-drag-handle { border-inline-start: var(--space-1) solid var(--color-hierarchy-topic); }
+.canvas-kind-memo { background: var(--color-surface-inset); }
+.canvas-card-body { padding: var(--space-3) var(--space-4); max-block-size: 70dvh; overflow-y: auto; }
+.canvas-original { white-space: pre-wrap; overflow-wrap: anywhere; font-family: var(--font-reading); margin-block-end: var(--space-3); }
+.canvas-sketch { width: 100%; display: block; background: var(--color-surface); }
+.canvas-card-actions { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); }
+.canvas-card-actions a { font-size: var(--type-caption-size); }
+.canvas-memo-editor { padding: 0; width: auto; max-height: none; }
+.canvas-memo-editor .memo-save-bar { position: static; flex-wrap: wrap; }
+.canvas-memo-editor .memo-paper { overflow: auto; }
+.canvas-memo-editor .memo-notice { min-height: 0; }
+.canvas-memo-editor .memo-toolbar { flex-wrap: wrap; }
+.canvas-narrative-editor .narrative-editor { margin: 0; }
+.canvas-position-tools { margin-block-start: var(--space-3); }
+.canvas-position-tools span { margin-inline-end: auto; }
+.canvas-auto-edge .react-flow__edge-path { stroke-dasharray: 5 4; }
+.canvas-user-edge .react-flow__edge-path { stroke: var(--color-focus); }
+.study-canvas .react-flow__handle { width: 12px; height: 12px; background: var(--color-surface); border: var(--border-width) solid var(--color-focus); }
+.canvas-help { color: var(--color-muted); font-size: var(--type-caption-size); }
+@media (max-width: 40rem) { .app-shell.is-canvas .main-content { padding: var(--space-3); } .canvas-stage { height: 65dvh; } .canvas-toolbar a { margin-inline-start: 0; } }

@@ -109,15 +109,16 @@ describe('study flows preserve meaning and input', () => {
 
   it('keeps individual notes through bulk study marking and selection changes', async () => {
     const user = userEvent.setup(); await open('/record');
-    await user.click(screen.getByRole('checkbox', { name: `${firstName}수학의 기초` }));
-    await user.click(screen.getByRole('checkbox', { name: `${secondName}수학의 기초` }));
-    fireEvent.change(recordArea(firstName).getByRole('textbox', { name: '남길 생각 · 선택' }), { target: { value: '  첫 주제의 생각\n두 번째 줄' } });
-    fireEvent.change(recordArea(secondName).getByRole('textbox', { name: '남길 생각 · 선택' }), { target: { value: '다른 주제의 생각' } });
+    expect(screen.getByRole('heading', { name: '변화와 관계 / 함수의 표현' })).toBeVisible();
+    await user.click(screen.getByRole('checkbox', { name: firstName }));
+    await user.click(screen.getByRole('checkbox', { name: secondName }));
+    fireEvent.change(recordArea(firstName).getByRole('textbox', { name: '메모' }), { target: { value: '  첫 주제의 생각\n두 번째 줄' } });
+    fireEvent.change(recordArea(secondName).getByRole('textbox', { name: '메모' }), { target: { value: '다른 주제의 생각' } });
     await user.click(recordArea(firstName).getByRole('checkbox', { name: '공부함' }));
     await user.click(screen.getByRole('button', { name: '선택한 주제 모두 공부함' }));
-    await user.click(screen.getByRole('checkbox', { name: `${secondName}수학의 기초` }));
-    await user.click(screen.getByRole('checkbox', { name: `${secondName}수학의 기초` }));
-    expect(recordArea(secondName).getByRole('textbox', { name: '남길 생각 · 선택' })).toHaveValue('다른 주제의 생각');
+    await user.click(screen.getByRole('checkbox', { name: secondName }));
+    await user.click(screen.getByRole('checkbox', { name: secondName }));
+    expect(recordArea(secondName).getByRole('textbox', { name: '메모' })).toHaveValue('다른 주제의 생각');
     await user.click(screen.getByRole('button', { name: '2개 주제 기록 저장' }));
     await waitFor(() => expect(currentRecords()).toHaveLength(2));
     expect(currentRecords().find(record => record.targetId === firstTopic)?.body).toBe('  첫 주제의 생각\n두 번째 줄');
@@ -128,13 +129,13 @@ describe('study flows preserve meaning and input', () => {
 
   it('restores the same unfinished study draft after unmount without creating a study event', async () => {
     const user = userEvent.setup(), first = await open(`/record/${firstTopic}`);
-    fireEvent.change(screen.getByRole('textbox', { name: '남길 생각 · 선택' }), { target: { value: '아직 마치지 않은 메모\n원문' } });
+    fireEvent.change(screen.getByRole('textbox', { name: '메모' }), { target: { value: '아직 마치지 않은 메모\n원문' } });
     await user.click(screen.getByRole('checkbox', { name: '공부함' }));
     const originalDraft = readDraft(localStorage, firstTopic)!;
     expect(currentRecords()).toHaveLength(0);
     first.unmount(); await waitFor(() => expect(locked).toBe(false));
     await open(`/record/${firstTopic}`);
-    expect(screen.getByRole('textbox', { name: '남길 생각 · 선택' })).toHaveValue('아직 마치지 않은 메모\n원문');
+    expect(screen.getByRole('textbox', { name: '메모' })).toHaveValue('아직 마치지 않은 메모\n원문');
     expect(screen.getByRole('checkbox', { name: '공부함' })).not.toBeChecked();
     expect(readDraft(localStorage, firstTopic)?.sessionId).toBe(originalDraft.sessionId);
     expect(currentRecords()).toHaveLength(0);
@@ -271,12 +272,12 @@ describe('study flows preserve meaning and input', () => {
 
   it('reports stale persistence without clearing or committing the study draft', async () => {
     const user = userEvent.setup(); await open(`/record/${firstTopic}`);
-    fireEvent.change(screen.getByRole('textbox', { name: '남길 생각 · 선택' }), { target: { value: '실패해도 남아야 하는 글' } });
+    fireEvent.change(screen.getByRole('textbox', { name: '메모' }), { target: { value: '실패해도 남아야 하는 글' } });
     const external = new DemoRepository(localStorage);
     external.execute({ type: 'addSemester', id: 'outside', name: '외부 시연 변경', opId: 'outside-op', userId: 'demo-learner', namespace: 'demo', at: '2026-09-29T03:00:00.000Z' });
     await user.click(screen.getByRole('button', { name: '1개 주제 기록 저장' }));
     expect(screen.getByRole('alert')).toHaveTextContent('다른 창');
-    expect(screen.getByRole('textbox', { name: '남길 생각 · 선택' })).toHaveValue('실패해도 남아야 하는 글');
+    expect(screen.getByRole('textbox', { name: '메모' })).toHaveValue('실패해도 남아야 하는 글');
     expect(readDraft(localStorage, firstTopic)?.bodies[firstTopic]).toBe('실패해도 남아야 하는 글');
     expect(currentRecords()).toHaveLength(0);
   });
@@ -304,7 +305,7 @@ describe('study flows preserve meaning and input', () => {
 
   it('uses an empty marker when draft removal fails so a committed result never returns as input', async () => {
     const user = userEvent.setup(); await open(`/record/${firstTopic}`);
-    fireEvent.change(screen.getByRole('textbox', { name: '남길 생각 · 선택' }), { target: { value: '저장할 본문' } });
+    fireEvent.change(screen.getByRole('textbox', { name: '메모' }), { target: { value: '저장할 본문' } });
     const originalRemove = Storage.prototype.removeItem;
     vi.spyOn(Storage.prototype, 'removeItem').mockImplementation(function (this: Storage, key: string) {
       if (key === `study-space:demo:draft:${firstTopic}`) throw new Error('초안 정리 실패');
@@ -315,7 +316,7 @@ describe('study flows preserve meaning and input', () => {
     expect(currentRecords()[0].body).toBe('저장할 본문');
     expect(readDraft(localStorage, firstTopic)).toBeNull();
     await navigate(`/record/${firstTopic}`);
-    expect(screen.getByRole('textbox', { name: '남길 생각 · 선택' })).toHaveValue('');
+    expect(screen.getByRole('textbox', { name: '메모' })).toHaveValue('');
     expect(currentRecords()).toHaveLength(1);
   });
 
@@ -414,12 +415,12 @@ describe('failed draft storage retains text within the current tab', () => {
       originalSet.call(this, name, value);
     });
     try {
-      fireEvent.change(screen.getByRole('textbox', { name: '남길 생각 · 선택' }), { target: { value: '  저장 오류 뒤에도\n입력을 보존' } });
+      fireEvent.change(screen.getByRole('textbox', { name: '메모' }), { target: { value: '  저장 오류 뒤에도\n입력을 보존' } });
       expect(screen.getByRole('alert')).toHaveTextContent('초안을 보관하지 못했습니다');
       const unload = new Event('beforeunload', { cancelable: true }); window.dispatchEvent(unload);
       expect(unload.defaultPrevented).toBe(true);
       await navigate('/'); await navigate(`/record/${firstTopic}`);
-      expect(screen.getByRole('textbox', { name: '남길 생각 · 선택' })).toHaveValue('  저장 오류 뒤에도\n입력을 보존');
+      expect(screen.getByRole('textbox', { name: '메모' })).toHaveValue('  저장 오류 뒤에도\n입력을 보존');
       expect(currentRecords()).toHaveLength(0); expect(localStorage.getItem(key)).toBeNull();
       spy.mockRestore();
       await user.click(screen.getByRole('button', { name: '1개 주제 기록 저장' }));
@@ -537,12 +538,12 @@ describe('input modals keep separate drafts through close and restart', () => {
   it('archives damaged study bytes before enabling current input, then survives restart and saves once', async () => {
     const user = userEvent.setup(), key = `study-space:demo:draft:${firstTopic}`, broken = '{unfinished original';
     localStorage.setItem(key, broken); const view = await open(`/record/${firstTopic}`);
-    fireEvent.change(screen.getByRole('textbox', { name: '남길 생각 · 선택' }), { target: { value: '복구한 현재 글\n원문' } });
+    fireEvent.change(screen.getByRole('textbox', { name: '메모' }), { target: { value: '복구한 현재 글\n원문' } });
     await user.click(screen.getByRole('button', { name: '원본 사본 보관 후 입력 이어가기' }));
     const archive = Object.keys(localStorage).find(name => name.startsWith(`${key}:recovery:`));
     expect(archive).toBeTruthy(); expect(localStorage.getItem(archive!)).toBe(broken);
     view.unmount(); await waitFor(() => expect(locked).toBe(false)); await open(`/record/${firstTopic}`);
-    expect(screen.getByRole('textbox', { name: '남길 생각 · 선택' })).toHaveValue('복구한 현재 글\n원문');
+    expect(screen.getByRole('textbox', { name: '메모' })).toHaveValue('복구한 현재 글\n원문');
     await user.click(screen.getByRole('button', { name: '1개 주제 기록 저장' }));
     expect(currentRecords()).toHaveLength(1); expect(currentRecords()[0].body).toBe('복구한 현재 글\n원문');
     expect(localStorage.getItem(archive!)).toBe(broken);
@@ -611,7 +612,7 @@ it('preserves same-parent order across UI reorder and undo without changing reco
 it('retries failed committed-draft cleanup without erasing a later new draft', async () => {
   const user = userEvent.setup(), key = `study-space:demo:draft:${firstTopic}`;
   await open(`/record/${firstTopic}`);
-  fireEvent.change(screen.getByRole('textbox', { name: '남길 생각 · 선택' }), { target: { value: '처음 저장할 글' } });
+  fireEvent.change(screen.getByRole('textbox', { name: '메모' }), { target: { value: '처음 저장할 글' } });
   const originalSet = Storage.prototype.setItem, originalRemove = Storage.prototype.removeItem;
   const write = vi.spyOn(Storage.prototype, 'setItem').mockImplementation(function(this: Storage, name, value) { if (name === key) throw Error('full'); originalSet.call(this, name, value); });
   const remove = vi.spyOn(Storage.prototype, 'removeItem').mockImplementation(function(this: Storage, name) { if (name === key) throw Error('denied'); originalRemove.call(this, name); });
@@ -620,8 +621,8 @@ it('retries failed committed-draft cleanup without erasing a later new draft', a
   await waitFor(() => expect(screen.getByRole('button', { name: '저장한 초안 정리 다시 시도' })).toBeInTheDocument());
   write.mockRestore(); remove.mockRestore();
   await navigate(`/record/${firstTopic}`);
-  expect(screen.getByRole('textbox', { name: '남길 생각 · 선택' })).toHaveValue('');
-  fireEvent.change(screen.getByRole('textbox', { name: '남길 생각 · 선택' }), { target: { value: '다음 공부의 새 글' } });
+  expect(screen.getByRole('textbox', { name: '메모' })).toHaveValue('');
+  fireEvent.change(screen.getByRole('textbox', { name: '메모' }), { target: { value: '다음 공부의 새 글' } });
   await user.click(screen.getByRole('button', { name: '저장한 초안 정리 다시 시도' }));
   expect(readDraft(localStorage, firstTopic)?.bodies[firstTopic]).toBe('다음 공부의 새 글');
   expect(currentRecords()).toHaveLength(1);
