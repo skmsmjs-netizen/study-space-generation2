@@ -36,12 +36,12 @@ describe('record topic filter context', () => {
     fireEvent.compositionEnd(input, { data: '함수' });
     expect(screen.queryByRole('checkbox', { name: /그래프에서 변화 읽기/ })).toBeNull();
     await user.click(screen.getByRole('checkbox', { name: /함수는 어떤 관계일까/ }));
-    fireEvent.change(screen.getByRole('textbox', { name: '남길 생각 · 선택' }), { target: { value: '  일부만 본 뒤\n이어서 기록할 원문\n' } });
+    fireEvent.change(screen.getByRole('textbox', { name: '메모' }), { target: { value: '  일부만 본 뒤\n이어서 기록할 원문\n' } });
     const draft = readDraft(localStorage, 'multiple');
     await navigate('/'); await navigate('/record');
     expect(screen.getByRole('searchbox', { name: '주제 찾기' })).toHaveValue('함수');
     expect(screen.getByRole('checkbox', { name: /함수는 어떤 관계일까/ })).toBeChecked();
-    expect(screen.getByRole('textbox', { name: '남길 생각 · 선택' })).toHaveValue(draft!.bodies[first]);
+    expect(screen.getByRole('textbox', { name: '메모' })).toHaveValue(draft!.bodies[first]);
     view.unmount(); await Promise.resolve(); await open();
     expect(screen.getByRole('searchbox', { name: '주제 찾기' })).toHaveValue('함수');
     expect(readDraft(localStorage, 'multiple')).toEqual(draft);
@@ -78,7 +78,7 @@ describe('record topic filter context', () => {
     const user = userEvent.setup(); await open();
     fireEvent.change(screen.getByRole('searchbox'), { target: { value: '함수' } });
     await user.click(screen.getByRole('checkbox', { name: /함수는 어떤 관계일까/ }));
-    fireEvent.change(screen.getByRole('textbox', { name: '남길 생각 · 선택' }), { target: { value: '검색 힌트 실패에도 남길 원문' } });
+    fireEvent.change(screen.getByRole('textbox', { name: '메모' }), { target: { value: '검색 힌트 실패에도 남길 원문' } });
     await user.click(screen.getByRole('button', { name: '1개 주제 기록 저장' }));
     const data = JSON.parse(decodeStoredText(localStorage.getItem(DEMO_KEY)!)).data;
     expect(data.records).toHaveLength(1);

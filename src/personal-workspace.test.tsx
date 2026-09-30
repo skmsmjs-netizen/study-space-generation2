@@ -30,7 +30,7 @@ describe('existing input screens connected to the personal repository', () => {
     const f = fixture(), user = userEvent.setup(), view = render(<Workspace repository={f.repository} />);
     await user.click(screen.getByRole('checkbox',{name:/검증용 주제/}));
     const body = '  남길 원문\n일부 수행과 이유\n';
-    fireEvent.change(screen.getByRole('textbox',{name:'남길 생각 · 선택'}),{target:{value:body}});
+    fireEvent.change(screen.getByRole('textbox',{name:'메모'}),{target:{value:body}});
     expect(localStorage.getItem(`${storagePrefix(f.repository.getSnapshot())}:draft:multiple`)).toContain('남길 원문');
     await user.click(screen.getByRole('button',{name:'1개 주제 기록 저장'}));
     await act(async () => { await f.repository.flush(); });
@@ -42,7 +42,7 @@ describe('existing input screens connected to the personal repository', () => {
   it('retains written records after session expiry and retries the same operation', async () => {
     const f = fixture(), user = userEvent.setup(); f.fail(); render(<Workspace repository={f.repository} />);
     await user.click(screen.getByRole('checkbox',{name:/검증용 주제/}));
-    fireEvent.change(screen.getByRole('textbox',{name:'남길 생각 · 선택'}),{target:{value:'만료되어도 보존할 원문'}});
+    fireEvent.change(screen.getByRole('textbox',{name:'메모'}),{target:{value:'만료되어도 보존할 원문'}});
     await user.click(screen.getByRole('button',{name:'1개 주제 기록 저장'}));
     await act(async () => { await f.repository.flush(); });
     expect(f.server().data.records).toHaveLength(0); expect(f.repository.getStatus().phase).toBe('error'); expect(f.repository.getSnapshot().records[0].body).toBe('만료되어도 보존할 원문');
