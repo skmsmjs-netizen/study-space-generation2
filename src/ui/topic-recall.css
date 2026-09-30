@@ -1,0 +1,19 @@
+.topic-recall { max-inline-size: 48rem; margin-inline: auto; }
+.recall-filters { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4); margin-block: var(--space-5); }
+.recall-topic { padding: var(--space-6); text-align: center; }
+.recall-topic h2 { margin-block: var(--space-5); font-size: var(--type-title-size); overflow-wrap: anywhere; }
+.recall-path, .recall-topic p { overflow-wrap: anywhere; }
+.recall-progress { margin-block-start: var(--space-5); }
+.recall-editor { margin-block-start: var(--space-6); }
+.recall-editor textarea { min-block-size: 11rem; resize: vertical; }
+.recall-actions { flex-wrap: wrap; margin-block: var(--space-4); }
+.recall-history { margin-block: var(--space-5); border-block-start: 1px solid var(--color-border); padding-block-start: var(--space-4); }
+.recall-history summary { cursor: pointer; }
+.recall-history article { padding-block: var(--space-4); border-block-end: 1px solid var(--color-border); }
+.recall-history article p { white-space: pre-wrap; overflow-wrap: anywhere; }
+.recall-note { margin-block-start: var(--space-6); }
+@media (max-width: 600px) {
+  .recall-filters { grid-template-columns: 1fr; }
+  .recall-topic { padding: var(--space-5); }
+  .recall-actions > button { inline-size: 100%; }
+}

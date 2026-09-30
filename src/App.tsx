@@ -37,6 +37,7 @@ import { DraftArchives } from "./ui/draft-archives";
 import { QuickMemos } from "./ui/quick-memos";
 import { StudyLaunch } from "./ui/study-launch";
 import { NextStudy } from "./ui/next-study";
+import { TopicRecall } from "./ui/topic-recall";
 import { TRACE_ITEMS } from "./domain/trace";
 import {
   DemoRepository,
@@ -460,13 +461,16 @@ function Workspace({ repository }: { repository: DemoRepository }) {
     { href: "/subjects", text: "과목" },
     { href: "/record", text: "기록" },
     { href: "/memos", text: "메모" },
+    { href: "/recall", text: "주제 카드" },
     { href: "/search", text: "찾기" },
   ];
   const recordRoute = route.startsWith("/record");
   const memoRoute = route === "/memos" || route.startsWith("/memos/");
   const freeRoute = route === "/free" || route.startsWith("/free/");
   const rootTitle =
-    memoRoute
+    route === "/recall"
+      ? "주제 카드로 설명하기"
+      : memoRoute
       ? "작은 메모"
       : route === "/draft-archives"
       ? "초안 보관본"
@@ -628,6 +632,7 @@ function Workspace({ repository }: { repository: DemoRepository }) {
                     공부 기록하기
                   </Button>
                   <Button onClick={() => go("/free")}>자유롭게 쓰기</Button>
+                  <Button onClick={() => go("/recall")}>주제 카드로 설명하기</Button>
                 </div>
               </Card>
               <QuickMemos data={data} repository={repository} onSaved={setData} compact />
@@ -875,6 +880,7 @@ function Workspace({ repository }: { repository: DemoRepository }) {
             setCleanupKeys(keys => [...new Set([...keys, key])]);
             setError("자유 기록은 저장했습니다. 이전 초안 정리가 남았습니다. 창을 닫기 전에 다시 시도해 주세요.");
           }} />}
+          {route === "/recall" && <TopicRecall key={`${data.namespace}:${data.userId}`} data={data} repository={repository} onSaved={setData} subjectIds={shownSubjects.map(subject => subject.id)} />}
           {memoRoute && <QuickMemos key={route} data={data} repository={repository} onSaved={setData} memoId={route.startsWith("/memos/") ? route.slice("/memos/".length) : undefined} />}
           {route === "/search" && (
             <>
@@ -958,7 +964,7 @@ function Workspace({ repository }: { repository: DemoRepository }) {
             </>
           )}
           {route === "/trash" && <QuickMemos data={data} repository={repository} onSaved={setData} trash />}
-          {!["/", "/subjects", "/search", "/trash", "/free", "/draft-archives"].includes(route) &&
+          {!["/", "/subjects", "/search", "/trash", "/free", "/draft-archives", "/recall"].includes(route) &&
             !recordRoute &&
             !memoRoute &&
             !freeRoute &&
