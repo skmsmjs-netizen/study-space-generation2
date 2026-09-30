@@ -6,6 +6,8 @@
 
 격리 배포본 자동324개 통과/성능1개 미실행, 타입/Pages base/backend build 통과. 실제 운영 DB의 격리된 test rollback에서 중복/버전/owner/RLS 쓰기 거부 확인. 실제 개인 로그인·저장·재열기와 물리 기기 검증은 아직 별도이며, IndexedDB/오프라인 시작/자동 다기기 Sync/병합·Canvas/PWA·일정/시험/과제/출석·자료 가져오기 등 전체 잔여를 유지합니다. 다음 구현은 온라인 흐름의 실제 사용자 확인과 기기 내 데이터/미전송 명령의 IndexedDB 원자적 보관입니다. 과거 인계의 Prototype 검증을 서버 개발의 전체 차단 조건으로 재사용하지 않습니다.
 
+기능 commit5cf7aa6의 Actions36730752681 test/backend build/Pages 배포 성공과 공개 개인 로그인 화면을 확인했습니다. 기존 시연 창의 writer 잠금에서도 개인 공간에 진입할 수 있도록 오류 화면에 진입 버튼을 유지하고 직접#/account·이메일 복귀·재진입 회귀3개를 추가했습니다. 실제 개인 로그인은 미실행이며 제품 전체 완료로 보고하지 않습니다.
+
 이번 배포와 API/공개 화면의 최종 증거는 프로젝트 outputs/20260930-implementation-transition/verification.json에 남깁니다.
 
 ## 2026-09-30 iPad 메모 사진 피드백 수정

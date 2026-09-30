@@ -1,6 +1,6 @@
 # 개인 공부 공간의 실제 서버 저장 · 2026-09-30
 
-사용자의 구현 전환 요청에 따라 기존 입력 화면을 인증된 개인 공간에 연결했습니다. 공개 앱 `#/account` 또는 시연 공간의 ‘내 공부 공간’에서 시작합니다. Supabase 프로젝트 lbuiwotjisbzgflixjvg의 study-command 함수와 PostgreSQL 원장을 사용합니다. 시연 자료를 개인 자료에 자동으로 가져오지 않습니다.
+사용자의 구현 전환 요청에 따라 기존 입력 화면을 인증된 개인 공간에 연결했습니다. 공개 앱 `#/account` 또는 시연 공간의 ‘내 공부 공간’에서 시작합니다. Supabase 프로젝트 lbuiwotjisbzgflixjvg의 study-command 함수와 PostgreSQL 원장을 사용합니다. 시연 자료를 개인 자료에 자동으로 가져오지 않습니다. 이메일 확인의 Site URL/허용 redirect를 공개 앱의 ?space=personal로 적용했으며 새 탭에서도 개인 공간으로 돌아옵니다.
 
 ## 실제 연결
 
@@ -15,9 +15,9 @@
 
 migration 202609300001_study_storage.sql을 기존 프로젝트에 추가 적용했습니다. 실제 운영 DB에서 가짜 test UUID를 BEGIN/ROLLBACK으로 격리해 중복 저장 1회, stale sequence 거부, 다른 사용자 읽기 거부, 브라우저 쓰기/RPC 거부를 확인했습니다. 실제 사용자 자료를 업로드하지 않았습니다.
 
-Edge Function 코드는 npm run build:backend로 만들며 index.ts 생성물을 함께 보관합니다. Dashboard 배포 당시 편집기 중복 코드로 BOOT_ERROR가 발생했고, 전체 교체 후 OPTIONS 204와 미인증/잘못된 토큰 401을 실제 URL에서 다시 확인합니다. 레거시 JWT gateway 검증은 비활성화되어 있으나 함수 자체에서 모든 실제 요청을 Auth /user로 확인합니다.
+Edge Function 코드는 npm run build:backend로 만들며 index.ts 생성물을 함께 보관합니다. Dashboard 배포 당시 편집기 중복 코드로 BOOT_ERROR가 발생했고, 전체 교체 후 OPTIONS 204와 미인증/잘못된 토큰 401을 실제 URL에서 확인했습니다. 레거시 JWT gateway 검증은 비활성화되어 있으나 함수 자체에서 모든 실제 요청을 Auth /user로 확인합니다.
 
-격리 배포본에서 324개 자동검사 통과/선택 성능1개 미실행과 타입·Pages base·backend build를 확인했습니다. 그중 저장소/실제 PostgreSQL WASM/입력 화면 통합18개는 원문 보존, 원자성, 재시도, 충돌, 세션 실패, 사용자 분리를 다룹니다. 운영 DB test와 자동검사를 실제 개인 계정의 전체 로그인→저장→새로고침 확인으로 확대하지 않습니다.
+격리 배포본의 기존 자동324개 통과/선택 성능1개 미실행에 개인 진입 회귀3개를 추가했습니다. 진입·입력 통합5개와 타입·Pages base·backend build를 확인했고 최종 전체 수치는 배포 CI와 verification.json을 따릅니다. 그중 저장소/실제 PostgreSQL WASM/입력 화면 및 진입 통합21개는 원문 보존, 원자성, 재시도, 충돌, 세션 실패, 사용자 분리를 다룹니다. 운영 DB test와 자동검사를 실제 개인 계정의 전체 로그인→저장→새로고침 확인으로 확대하지 않습니다.
 
 ## 직접 남은 구현과 확인
 

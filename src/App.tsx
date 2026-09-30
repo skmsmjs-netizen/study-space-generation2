@@ -150,6 +150,7 @@ function DemoApp({ accountControls }: { accountControls: ReactNode }) {
           onRetry={() => location.reload()}
         />
         <Button onClick={() => setShowBootArchives(value => !value)}>초안 보관본 확인</Button>
+        {accountControls}
         {showBootArchives && <DraftArchives />}
       </main>
     );
