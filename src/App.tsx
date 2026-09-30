@@ -35,6 +35,7 @@ import { OutlineTableEditor } from "./ui/outline-table-editor";
 import { OutlineTree } from "./ui/outline-tree";
 import { DraftArchives } from "./ui/draft-archives";
 import { StudyLaunch } from "./ui/study-launch";
+import { NextStudy } from "./ui/next-study";
 import { TRACE_ITEMS } from "./domain/trace";
 import {
   DemoRepository,
@@ -615,6 +616,7 @@ function Workspace({ repository }: { repository: DemoRepository }) {
                 </div>
               </Card>
               <StudyLaunch data={data} />
+              <NextStudy key={`${data.namespace}:${data.userId}`} data={data} subjectIds={shownSubjects.map(subject => subject.id)} semesterId={scope} />
               <div className="dashboard-grid">
                 <section>
                   <div className="section-heading">

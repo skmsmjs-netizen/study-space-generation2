@@ -1,0 +1,18 @@
+export interface Requirement { id: string; targetId: string; facet: string; rubricVersion: string; novelty: 'same' | 'new'; minDelayDays: number; refreshDays?: number | null }
+export interface Assessment { id: string; weight: number | null; status: 'active' | 'ended'; opensAt: string | null; dueAt: string | null; requirementIds: string[] }
+export interface RecommendationModel { schemaVersion: number; term: { start: string; end: string; timezone: string } | null; targets: { id: string; name?: string; prerequisites: string[]; materialAvailable?: boolean }[]; requirements: Requirement[]; assessments: Assessment[]; tasks: { id: string; assessmentId: string; kind: string; status: 'active' | 'ended'; opensAt: string | null; dueAt: string | null; required?: boolean; weight?: number | null }[]; views?: { id: string; targetIds: string[] }[] }
+export interface EvidenceEvent { id: string; revision: number; sequence: number; occurredAt: string | null; knownAt: string; targetId: string; facet: string; rubricVersion: string; kind: 'activity' | 'assessment' | 'correction' | 'task_completed'; assistance?: 'none' | 'notes' | 'unknown'; result?: 'pass' | 'fail' | 'unknown' | 'disputed'; novelty?: 'same' | 'new' | 'unknown'; deleted?: boolean; errorEventId?: string; taskId?: string; answer?: string; sourceRecordId?: string; sourceDateEvidence?: unknown; authority?: 'local'; delayDays?: number; delayVerified?: boolean }
+export interface RequirementState { status: 'confirmed' | 'error_open' | 'corrected_pending' | 'disputed' | 'activity_only' | 'unobserved'; evidenceIds: string[]; current: boolean; ageDays?: number }
+export interface GuidanceControl { snoozeUntil?: string; completed?: boolean; assessmentEnded?: boolean }
+export interface Candidate { id: string; targetId: string | null; requirementId?: string; action: string; tier: number; score: number; dueAt: string | null; relatedIds: string[]; reasons: string[]; evidenceIds: string[] }
+export interface RecommendationCard extends Candidate { groupId: string; requirements: string[]; alternatives: { id: string; action: string; requirementId: string | null }[] }
+export interface RecommendationResult { schemaVersion: number; policyVersion: string; now: string; knowledgeAt: string; termDays: number | null; termConfigured: boolean; phase: string; calendarWeek: number | null; progress: number | null; states: Record<string, RequirementState>; candidates: Candidate[]; cards: RecommendationCard[]; warnings: { code: string; targetId?: string; assessmentId?: string }[] }
+export const DAY: number;
+export const POLICY: Readonly<{ version: string; criticalFraction: number; emphasisFraction: number; refreshFraction: number; freezeFraction: number; maxCards: number; shrinkage: number; minPairs: number; maxPairs: number; maxMissingFraction: number; maxAdaptiveLift: number }>;
+export function validateModel(model: RecommendationModel): true;
+export function canonicalEvents(events: EvidenceEvent[], knowledgeAt: string, now: string): EvidenceEvent[];
+export function reduceRequirement(requirement: Requirement, events: EvidenceEvent[], now: string): RequirementState;
+export function recommend(model: RecommendationModel, events: EvidenceEvent[], now: string, knowledgeAt?: string, controls?: Record<string, GuidanceControl>): RecommendationResult;
+export function guidance(candidate: Candidate | null, now: string, termDays: number, controls?: GuidanceControl): { level: number; visible: boolean; reason: string };
+export function urgency(now: string, dueAt: string, horizonDays: number): number;
+export function snapshot(result: RecommendationResult, modelVersion: string, inputHash: string): RecommendationResult & { modelVersion: string; inputHash: string };

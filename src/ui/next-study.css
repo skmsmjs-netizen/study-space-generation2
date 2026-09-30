@@ -1,0 +1,10 @@
+.next-study { margin-block: var(--space-6); }
+.next-study-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); gap: var(--space-4); }
+.next-study .section-heading { flex-wrap: wrap; gap: var(--space-3); }
+.next-study h3 { margin-block: var(--space-2); overflow-wrap: anywhere; }
+.next-study-goal { margin-block: var(--space-4); padding-block: var(--space-3); border-block-end: 1px solid var(--color-border); overflow-wrap: anywhere; }
+.next-study details { margin-block: var(--space-3); }
+.next-study summary { cursor: pointer; padding-block: var(--space-2); }
+.next-study-answer { white-space: pre-wrap; overflow-wrap: anywhere; }
+.next-study-evidence { border-inline-start: 2px solid var(--color-border); padding-inline-start: var(--space-3); }
+.next-study p { white-space: pre-wrap; overflow-wrap: anywhere; }
