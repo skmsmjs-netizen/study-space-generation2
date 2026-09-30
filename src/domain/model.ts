@@ -28,11 +28,16 @@ export interface StudyRecord extends Entity {
 }
 export type NarrativeKind = 'subject-overview' | 'unit-introduction' | 'topic-note' | 'free-note';
 export interface Narrative extends Entity { kind: NarrativeKind; ownerId: string | null; body: string }
+export type MemoInk = 'ink' | 'blue' | 'green';
+export interface MemoPoint { x: number; y: number; pressure: number }
+export interface MemoStroke { id: string; ink: MemoInk; width: number; points: MemoPoint[] }
+/** Fixed logical paper coordinates keep sketches intact when the screen resizes. */
+export interface QuickMemo extends Entity { ownerId: string | null; body: string; strokes: MemoStroke[] }
 export interface Criteria extends Entity { items: TraceDefinition[] }
 export interface CriteriaAssignment extends Entity { scope: 'topic' | 'subject' | 'global'; ownerId: string | null; criteriaId: string }
 export interface CriteriaChange { id: string; targetId: string; scope: 'topic' | 'subject' | 'all'; expectedToken: string; items: TraceDefinition[] }
-export type EntityCollection = 'semesters' | 'subjects' | 'nodes' | 'sessions' | 'records' | 'narratives' | 'criteria' | 'criteriaAssignments';
-export type DomainEntity = Semester | Subject | OutlineNode | StudySession | StudyRecord | Narrative | Criteria | CriteriaAssignment;
+export type EntityCollection = 'semesters' | 'subjects' | 'nodes' | 'sessions' | 'records' | 'narratives' | 'criteria' | 'criteriaAssignments' | 'memos';
+export type DomainEntity = Semester | Subject | OutlineNode | StudySession | StudyRecord | Narrative | Criteria | CriteriaAssignment | QuickMemo;
 export interface Revision extends Entity {
   collection: EntityCollection; entityId: string; operationId: string; parentRevisionId: string | null;
   before: DomainEntity | null; after: DomainEntity; reversesRevisionId?: string;
@@ -43,6 +48,7 @@ export interface AppState {
   records: StudyRecord[]; narratives: Narrative[]; revisions: Revision[];
   /** Optional for existing schema-1 demo snapshots; reading never rewrites them. */
   criteria?: Criteria[]; criteriaAssignments?: CriteriaAssignment[];
+  memos?: QuickMemo[];
   /** Canonical operation payloads make repeated requests idempotent. */
   appliedOps: Record<string, string>;
 }
@@ -65,6 +71,8 @@ export type Command = CommandContext & (
   | { type: 'saveRecords'; sessionId: string; entries: RecordEntry[]; dateEvidence: DateEvidence }
   | { type: 'updateRecord'; id: string; expectedVersion: number; patch: Partial<Pick<StudyRecord, 'body' | 'done' | 'dateEvidence' | 'trace'>> }
   | { type: 'updateNarrative'; id: string; kind: NarrativeKind; ownerId: string | null; body: string; expectedVersion: number }
+  | { type: 'saveMemo'; id: string; ownerId: string | null; body: string; strokes: MemoStroke[]; expectedVersion: number }
+  | { type: 'trashMemo' | 'restoreMemo'; id: string; expectedVersion: number }
   | ({ type: 'adjustCriteria' } & CriteriaChange)
   | { type: 'editWrittenReview'; recordId: string; expectedVersion: number; answer: string }
   | { type: 'confirmWrittenReview' | 'unconfirmWrittenReview'; recordId: string; expectedVersion: number }

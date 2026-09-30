@@ -19,6 +19,7 @@
 | WrittenReview | Cself1의 시험 전 자기 서술. 공백 거부, 글 수정 시 checked=false, 글과 일반 C2 체크 보존 |
 | Narrative | subject-overview/unit-introduction/topic-note/free-note. body와 version/revision. 원문 공백도 보존 |
 | Question/Memo/Relation | Canvas의 의미 있는 원문과 연결. 배치와 별개 ID; 체크가 자동으로 메모를 생성하지 않음 |
+| QuickMemo | 선택적 memos 컬렉션. 제목 없는 직사각형 메모의 body·ownerId·벡터 선 원문·version·휴지통/복원·수정 이력. 메모는 공부 회차를 만들지 않음 |
 | ViewLayout | view 및 노드별 x/y/size/color/edge. 사용자 배치와 자동 계산 결과를 분리 |
 | Schedule/ExamDate | 정확/미정 기한·시간대·변경 이력. 계획은 실제 수행과 다름 |
 | Task/Assignment | 종류·Subject·준비/실제 제출·완료일·취소·보관을 구별 |

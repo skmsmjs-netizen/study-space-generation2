@@ -2,8 +2,9 @@ import { DomainError, type AppState, type Command, type CriteriaAssignment, type
 import { TRACE_ITEMS, WRITTEN_REVIEW_ITEM_ID } from './trace';
 import { criteriaRevisionToken, criteriaScopeTargets, defaultCriteriaItems, validateTraceDefinition } from './criteria';
 import { MAX_OUTLINE_ROWS, outlineRevisionToken, outlineTableToken, previewOutlineEntries, previewOutlineTable } from './outline';
+import { validateMemoContent } from './memo';
 
-const collections: EntityCollection[] = ['semesters', 'subjects', 'nodes', 'sessions', 'records', 'narratives', 'criteria', 'criteriaAssignments'];
+const collections: EntityCollection[] = ['semesters', 'subjects', 'nodes', 'sessions', 'records', 'narratives', 'criteria', 'criteriaAssignments', 'memos'];
 const clone = <T>(value: T): T => structuredClone(value);
 function fail(code: string, message: string, details?: unknown): never { throw new DomainError(code, message, details); }
 function canonical(value: unknown): string {
@@ -118,6 +119,10 @@ export function assertState(state: AppState): void {
     if (typeof row.body !== 'string' || typeof row.done !== 'boolean') fail('INVALID_RECORD', '공부 기록의 입력을 확인해 주세요.');
   }
   for (const row of state.sessions) validateDateEvidence(row.dateEvidence);
+  for (const row of state.memos ?? []) {
+    validateMemoContent(row);
+    if (row.ownerId !== null && !subjectIds.has(row.ownerId) && !nodeIndex.has(row.ownerId)) fail('NOT_FOUND', '메모의 원래 연결 대상을 찾을 수 없습니다.');
+  }
   for (const row of state.narratives) {
     if (row.ownerId !== null && !index.has(row.ownerId)) fail('NOT_FOUND', '본문의 원래 대상을 찾을 수 없습니다.');
     verifyNarrative(state, row);
@@ -173,6 +178,7 @@ export function applyCommand(state: AppState, command: Command): AppState {
   function write(collection: EntityCollection, entity: DomainEntity, reversesRevisionId?: string): void {
     if (collection === 'criteria') next.criteria ??= [];
     if (collection === 'criteriaAssignments') next.criteriaAssignments ??= [];
+    if (collection === 'memos') next.memos ??= [];
     const list = next[collection] as DomainEntity[];
     const index = list.findIndex(v => v.id === entity.id), before = index < 0 ? null : clone(list[index]);
     if (before && canonical(before) === canonical(entity)) return;
@@ -298,6 +304,20 @@ export function applyCommand(state: AppState, command: Command): AppState {
       const value = { ...(old ?? common(command.id)), kind: command.kind, ownerId: command.ownerId, body: command.body };
       verifyNarrative(next, value); write('narratives', value); break;
     }
+    case 'saveMemo': {
+      const old = next.memos?.find(row => row.id === command.id);
+      if (old) { find(next.memos!, old.id); expected(old, command.expectedVersion, command); }
+      else { if (command.expectedVersion !== 0) fail('VERSION_CONFLICT', '메모의 저장 상태를 확인해 주세요.'); fresh(command.id); }
+      validateMemoContent(command);
+      if (command.ownerId !== null) targetSubject(next, command.ownerId, old?.ownerId !== command.ownerId);
+      write('memos', { ...(old ?? common(command.id)), ownerId: command.ownerId, body: command.body, strokes: clone(command.strokes) });
+      break;
+    }
+    case 'trashMemo': case 'restoreMemo': {
+      const row = find(next.memos ?? [], command.id, command.type === 'trashMemo'); expected(row, command.expectedVersion, command);
+      write('memos', { ...row, deletedAt: command.type === 'trashMemo' ? command.at : null });
+      break;
+    }
     case 'adjustCriteria': {
       find(next.nodes, command.targetId); targetSubject(next, command.targetId);
       if (command.expectedToken !== criteriaRevisionToken(next)) fail('CRITERIA_STALE', '기준이나 목차가 변경되었습니다. 입력은 유지하고 현재 범위를 다시 확인해 주세요.');
@@ -356,6 +376,7 @@ export function applyCommand(state: AppState, command: Command): AppState {
             || next.nodes.some(n => external(n) && (n.subjectId === item.entityId || n.parentId === item.entityId))
             || next.records.some(r => external(r) && (r.sessionId === item.entityId || r.targetId === item.entityId))
             || next.narratives.some(n => external(n) && n.ownerId === item.entityId)
+            || (next.memos ?? []).some(memo => external(memo) && memo.ownerId === item.entityId)
             || (next.criteriaAssignments ?? []).some(assignment => external(assignment) && (assignment.criteriaId === item.entityId || assignment.ownerId === item.entityId));
           if (referenced) fail('UNDO_DEPENDENCY', '그 뒤 연결된 내용이 있습니다. 항목을 지우지 않고 현재 자료를 보존했습니다.');
         }

@@ -34,6 +34,7 @@ import { outlineRevisionToken, previewOutlineEntries } from "./domain/outline";
 import { OutlineTableEditor } from "./ui/outline-table-editor";
 import { OutlineTree } from "./ui/outline-tree";
 import { DraftArchives } from "./ui/draft-archives";
+import { QuickMemos } from "./ui/quick-memos";
 import { StudyLaunch } from "./ui/study-launch";
 import { NextStudy } from "./ui/next-study";
 import { TRACE_ITEMS } from "./domain/trace";
@@ -206,6 +207,8 @@ function Workspace({ repository }: { repository: DemoRepository }) {
     records.some(r => r.targetId === n.id && r.body.includes(query))) : [];
   const matchingFreeNotes = searching && scope === "all" ? searchNarratives.filter(n =>
     n.kind === "free-note" && n.ownerId === null && n.body.includes(query)) : [];
+  const matchingMemos = searching ? active(data.memos ?? []).filter(memo => memo.body.includes(query) &&
+    (memo.ownerId === null ? scope === "all" : shownSubjects.some(s => s.id === memo.ownerId) || shownNodes.some(n => n.id === memo.ownerId))) : [];
   const recentTopics = recent
     .map((id) => topics.find((t) => t.id === id))
     .filter(Boolean) as OutlineNode[];
@@ -448,12 +451,16 @@ function Workspace({ repository }: { repository: DemoRepository }) {
     { href: "/", text: "오늘" },
     { href: "/subjects", text: "과목" },
     { href: "/record", text: "기록" },
+    { href: "/memos", text: "메모" },
     { href: "/search", text: "찾기" },
   ];
   const recordRoute = route.startsWith("/record");
+  const memoRoute = route === "/memos" || route.startsWith("/memos/");
   const freeRoute = route === "/free" || route.startsWith("/free/");
   const rootTitle =
-    route === "/draft-archives"
+    memoRoute
+      ? "작은 메모"
+      : route === "/draft-archives"
       ? "초안 보관본"
       : route === "/subjects"
       ? "공부할 범위"
@@ -474,7 +481,7 @@ function Workspace({ repository }: { repository: DemoRepository }) {
         <a className="brand" href="#/">
           공부의 자리<span>LEARNING SPACE</span>
         </a>
-        <NavigationBar label="주 메뉴" orientation="vertical" items={navItems.map(item => ({href:`#${item.href}`, label:item.text, active:route === item.href || item.href === "/record" && recordRoute || item.href === "/subjects" && Boolean(subject)}))} />
+        <NavigationBar label="주 메뉴" orientation="vertical" items={navItems.map(item => ({href:`#${item.href}`, label:item.text, active:route === item.href || item.href === "/record" && recordRoute || item.href === "/memos" && memoRoute || item.href === "/subjects" && Boolean(subject)}))} />
         <div className="sidebar-bottom">
           <a href="#/trash">휴지통</a>
           <a href="#/draft-archives">초안 보관본</a>
@@ -615,6 +622,7 @@ function Workspace({ repository }: { repository: DemoRepository }) {
                   <Button onClick={() => go("/free")}>자유롭게 쓰기</Button>
                 </div>
               </Card>
+              <QuickMemos data={data} repository={repository} onSaved={setData} compact />
               <StudyLaunch data={data} />
               <NextStudy key={`${data.namespace}:${data.userId}`} data={data} subjectIds={shownSubjects.map(subject => subject.id)} semesterId={scope} />
               <div className="dashboard-grid">
@@ -770,6 +778,7 @@ function Workspace({ repository }: { repository: DemoRepository }) {
                   />
                 )}
               </section>
+              <QuickMemos key={`memo:${subject.id}`} data={data} repository={repository} onSaved={setData} ownerId={subject.id} />
             </>
           )}
           {node && (
@@ -815,6 +824,7 @@ function Workspace({ repository }: { repository: DemoRepository }) {
                 label={node.role === "unit" ? "단원 서문" : "주제 메모"}
                 commit={commit}
               />
+              <QuickMemos key={`memo:${node.id}`} data={data} repository={repository} onSaved={setData} ownerId={node.id} />
               <section className="section-space">
                 <h2>공부 기록</h2>
                 {records.filter((r) => r.targetId === node.id).length ? (
@@ -851,6 +861,7 @@ function Workspace({ repository }: { repository: DemoRepository }) {
             setCleanupKeys(keys => [...new Set([...keys, key])]);
             setError("자유 기록은 저장했습니다. 이전 초안 정리가 남았습니다. 창을 닫기 전에 다시 시도해 주세요.");
           }} />}
+          {memoRoute && <QuickMemos key={route} data={data} repository={repository} onSaved={setData} memoId={route.startsWith("/memos/") ? route.slice("/memos/".length) : undefined} />}
           {route === "/search" && (
             <>
               <Search
@@ -880,7 +891,8 @@ function Workspace({ repository }: { repository: DemoRepository }) {
                       <a href={`#/free/${n.id}`}>{n.body.trim().split("\n")[0].slice(0, 80) || "자유 기록"}</a>
                       <p className="muted">자유 기록 · 학기 소속 없음</p>
                     </Card>)}
-                    {!matchingSubjects.length && !matchingNodes.length && !matchingFreeNotes.length && <EmptyState
+                    {matchingMemos.map(memo => <Card key={memo.id}><a href={`#/memos/${memo.id}`}>{memo.body.trim().split("\n")[0].slice(0, 80) || "메모 스케치"}</a><p className="muted">메모</p></Card>)}
+                    {!matchingSubjects.length && !matchingNodes.length && !matchingFreeNotes.length && !matchingMemos.length && <EmptyState
                       title="일치하는 내용을 찾지 못했습니다"
                       message="검색어를 줄이거나 상단 공부 범위를 바꿔 보세요."
                     />}
@@ -900,7 +912,7 @@ function Workspace({ repository }: { repository: DemoRepository }) {
                 목차를 복원하면 연결된 기록을 다시 볼 수 있습니다. 기록 본문은
                 삭제하지 않았습니다.
               </p>
-              {!data.nodes.some((n) => n.deletedAt) && (
+              {!data.nodes.some((n) => n.deletedAt) && !(data.memos ?? []).some(memo => memo.deletedAt) && (
                 <EmptyState title="휴지통이 비어 있습니다" />
               )}
               {data.nodes
@@ -931,8 +943,10 @@ function Workspace({ repository }: { repository: DemoRepository }) {
                 ))}
             </>
           )}
+          {route === "/trash" && <QuickMemos data={data} repository={repository} onSaved={setData} trash />}
           {!["/", "/subjects", "/search", "/trash", "/free", "/draft-archives"].includes(route) &&
             !recordRoute &&
+            !memoRoute &&
             !freeRoute &&
             !subject && (
               <EmptyState
@@ -945,7 +959,7 @@ function Workspace({ repository }: { repository: DemoRepository }) {
               </EmptyState>
             )}
         </main>
-        <NavigationBar label="빠른 이동" className="bottom-nav" items={navItems.map(item => ({href:`#${item.href}`, label:item.text, active:route === item.href || item.href === "/record" && recordRoute || item.href === "/subjects" && Boolean(subject)}))} />
+        <NavigationBar label="빠른 이동" className="bottom-nav" items={navItems.map(item => ({href:`#${item.href}`, label:item.text, active:route === item.href || item.href === "/record" && recordRoute || item.href === "/memos" && memoRoute || item.href === "/subjects" && Boolean(subject)}))} />
       </div>
       <Modal
         open={Boolean(dialog)}
