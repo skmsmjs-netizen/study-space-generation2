@@ -34,7 +34,9 @@ export function NextStudy({ data, subjectIds, semesterId }: { data: AppState; su
   if (!blocked) try { result = nextStudy(data, workspace, now, subjectIds, semesterId); } catch { calculationError = '추천 조건을 확인하지 못했습니다.'; }
   const write = (change: (w: RecommendationWorkspace) => RecommendationWorkspace, retainInput = false) => {
     if (blocked) return false;
-    const next = { ...change(current.current), revision: current.current.revision + 1 };
+    const changed = change(current.current);
+    if (changed === current.current) return true;
+    const next = { ...changed, revision: current.current.revision + 1 };
     try { raw.current = saveRecommendations(data, next, raw.current); current.current = next; setWorkspace(next); setError(''); return true; }
     catch (e) { if (retainInput) { current.current = next; setWorkspace(next); } setError(e instanceof Error && !(e instanceof DOMException) ? e.message : '추천 내용을 저장하지 못했습니다. 작성 중인 내용은 화면에 유지합니다. 다시 저장해 주세요.'); return false; }
   };
@@ -53,6 +55,7 @@ export function NextStudy({ data, subjectIds, semesterId }: { data: AppState; su
   };
   const draft = workspace.draft;
   const termDraft = workspace.termDraft ?? { semesterId: '', start: '', end: '' };
+  const termChange = (field: 'start' | 'end', value: string) => write(w => (w.termDraft ?? termDraft)[field] === value ? w : { ...w, termDraft: { ...(w.termDraft ?? termDraft), [field]: value } }, true);
   const semesters = data.semesters.filter(s => !s.deletedAt && s.userId === data.userId && s.namespace === data.namespace);
   const saveTerm = () => {
     const d = current.current.termDraft;
@@ -133,8 +136,8 @@ export function NextStudy({ data, subjectIds, semesterId }: { data: AppState; su
     <Modal open={termOpen} title="학기 기간" onClose={() => setTermOpen(false)}>
       <p>기간은 선택 사항입니다. 해당 학기를 보고 있을 때만 추천의 시간 기준으로 사용합니다. 모르면 둘 다 비워 두세요.</p>
       <Select label="기간을 남길 학기" value={termDraft.semesterId} onChange={e => { const id = e.target.value, dates = workspace.terms?.[id] ?? { start: '', end: '' }; write(w => ({ ...w, termDraft: { semesterId: id, ...dates } }), true); }}><option value="">학기 선택</option>{semesters.map(s => <option key={s.id} value={s.id}>{s.name}</option>)}</Select>
-      <Input label="학기 시작일 · 선택" type="date" value={termDraft.start} onChange={e => write(w => ({ ...w, termDraft: { ...(w.termDraft ?? termDraft), start: e.target.value } }), true)} />
-      <Input label="학기 종료일 · 선택" type="date" value={termDraft.end} onChange={e => write(w => ({ ...w, termDraft: { ...(w.termDraft ?? termDraft), end: e.target.value } }), true)} />
+      <Input label="학기 시작일 · 선택" type="date" value={termDraft.start} onInput={e => termChange('start', e.currentTarget.value)} onChange={e => termChange('start', e.target.value)} />
+      <Input label="학기 종료일 · 선택" type="date" value={termDraft.end} onInput={e => termChange('end', e.currentTarget.value)} onChange={e => termChange('end', e.target.value)} />
       {error && <p role="alert">{error}</p>}<Button variant="primary" onClick={saveTerm}>학기 기간 저장</Button>
     </Modal>
     <Modal open={Boolean(responseId)} title="지금 확인한 결과" onClose={() => setResponseId(null)}>
