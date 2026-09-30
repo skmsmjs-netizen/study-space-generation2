@@ -51,6 +51,7 @@ export class PersonalRepository implements StudyRepository {
     this.raw = raw; this.envelope = next;
   }
   getSnapshot() { return this.envelope.local; }
+  getCapabilities = () => this.envelope.base.supportedCommands ?? [];
   getStatus = () => this.status;
   subscribe = (listener: () => void) => { this.listeners.add(listener); return () => { this.listeners.delete(listener); }; };
   private update(status: SaveStatus) { this.status = status; this.listeners.forEach(listener => listener()); }

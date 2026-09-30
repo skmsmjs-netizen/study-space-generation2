@@ -6,6 +6,7 @@ export interface StudyRepository {
   flush?(): Promise<void>;
   subscribe?(listener: () => void): () => void;
   getStatus?(): SaveStatus;
+  getCapabilities?(): string[];
 }
 export interface SaveStatus { phase: 'saved' | 'pending' | 'saving' | 'error' | 'conflict'; pending: number; message: string }
 export function storagePrefix(data: Pick<AppState, 'namespace' | 'userId'>) {

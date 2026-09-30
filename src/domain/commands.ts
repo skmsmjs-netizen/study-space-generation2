@@ -3,8 +3,10 @@ import { TRACE_ITEMS, WRITTEN_REVIEW_ITEM_ID } from './trace';
 import { criteriaRevisionToken, criteriaScopeTargets, defaultCriteriaItems, validateTraceDefinition } from './criteria';
 import { MAX_OUTLINE_ROWS, outlineRevisionToken, outlineTableToken, previewOutlineEntries, previewOutlineTable } from './outline';
 import { validateMemoContent } from './memo';
+import { validateRecommendations } from './recommendation-workspace';
+function verifyLearningPlan(workspace:unknown,state:AppState) {try {validateRecommendations(workspace,state);} catch(error) {throw new DomainError('INVALID_LEARNING_PLAN',error instanceof Error ? error.message : '학습 일정의 내용을 확인해 주세요.');}}
 
-const collections: EntityCollection[] = ['semesters', 'subjects', 'nodes', 'sessions', 'records', 'narratives', 'criteria', 'criteriaAssignments', 'memos'];
+const collections: EntityCollection[] = ['semesters', 'subjects', 'nodes', 'sessions', 'records', 'narratives', 'criteria', 'criteriaAssignments', 'memos', 'learningPlans'];
 const clone = <T>(value: T): T => structuredClone(value);
 function fail(code: string, message: string, details?: unknown): never { throw new DomainError(code, message, details); }
 function canonical(value: unknown): string {
@@ -119,6 +121,8 @@ export function assertState(state: AppState): void {
     if (typeof row.body !== 'string' || typeof row.done !== 'boolean') fail('INVALID_RECORD', '공부 기록의 입력을 확인해 주세요.');
   }
   for (const row of state.sessions) validateDateEvidence(row.dateEvidence);
+  if ((state.learningPlans ?? []).filter(row => !row.deletedAt).length > 1) fail('DUPLICATE_PLAN', '학습 일정의 원래 연결을 확인해 주세요.');
+  for (const row of state.learningPlans ?? []) verifyLearningPlan(row.workspace, state);
   for (const row of state.memos ?? []) {
     validateMemoContent(row);
     if (row.ownerId !== null && !subjectIds.has(row.ownerId) && !nodeIndex.has(row.ownerId)) fail('NOT_FOUND', '메모의 원래 연결 대상을 찾을 수 없습니다.');
@@ -179,6 +183,7 @@ export function applyCommand(state: AppState, command: Command): AppState {
     if (collection === 'criteria') next.criteria ??= [];
     if (collection === 'criteriaAssignments') next.criteriaAssignments ??= [];
     if (collection === 'memos') next.memos ??= [];
+    if (collection === 'learningPlans') next.learningPlans ??= [];
     const list = next[collection] as DomainEntity[];
     const index = list.findIndex(v => v.id === entity.id), before = index < 0 ? null : clone(list[index]);
     if (before && canonical(before) === canonical(entity)) return;
@@ -190,6 +195,14 @@ export function applyCommand(state: AppState, command: Command): AppState {
   }
   const node = (id: string, version: number, active = true) => { const found = find(next.nodes, id, active); expected(found, version, command); return found; };
   switch (command.type) {
+    case 'saveLearningPlan': {
+      verifyLearningPlan(command.workspace,next);
+      const row=next.learningPlans?.find(item=>item.id===command.id);
+      if(row)expected(row,command.expectedVersion,command);
+      else {if(command.expectedVersion!==0)fail('VERSION_CONFLICT','학습 일정이 바뀌었습니다. 작성 내용을 유지했습니다.');fresh(command.id);}
+      write('learningPlans',{...(row??common(command.id)),workspace:clone(command.workspace)});
+      break;
+    }
     case 'addSemester': fresh(command.id); write('semesters', { ...common(command.id), name: title(command.name), order: next.semesters.length }); break;
     case 'addSubject': fresh(command.id); verifyScope(next, command.scope); write('subjects', { ...common(command.id), name: title(command.name), scope: clone(command.scope), order: next.subjects.length }); break;
     case 'createOutlineTable': {

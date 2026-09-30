@@ -6,7 +6,7 @@ export interface RequirementState { status: 'confirmed' | 'error_open' | 'correc
 export interface GuidanceControl { snoozeUntil?: string; completed?: boolean; assessmentEnded?: boolean }
 export interface Candidate { id: string; targetId: string | null; requirementId?: string; action: string; tier: number; score: number; dueAt: string | null; relatedIds: string[]; reasons: string[]; evidenceIds: string[] }
 export interface RecommendationCard extends Candidate { groupId: string; requirements: string[]; alternatives: { id: string; action: string; requirementId: string | null }[] }
-export interface RecommendationResult { schemaVersion: number; policyVersion: string; now: string; knowledgeAt: string; termDays: number | null; termConfigured: boolean; phase: string; calendarWeek: number | null; progress: number | null; states: Record<string, RequirementState>; candidates: Candidate[]; cards: RecommendationCard[]; warnings: { code: string; targetId?: string; assessmentId?: string }[] }
+export interface RecommendationResult { schemaVersion: number; policyVersion: string; now: string; knowledgeAt: string; termDays: number | null; termConfigured: boolean; phase: string; calendarWeek: number | null; progress: number | null; adaptations?: {goalId:string;action:string;lower:number;upper:number;lift:number;pairIds:string[]}[]; states: Record<string, RequirementState>; candidates: Candidate[]; cards: RecommendationCard[]; warnings: { code: string; targetId?: string; assessmentId?: string }[] }
 export const DAY: number;
 export const POLICY: Readonly<{ version: string; criticalFraction: number; emphasisFraction: number; refreshFraction: number; freezeFraction: number; maxCards: number; shrinkage: number; minPairs: number; maxPairs: number; maxMissingFraction: number; maxAdaptiveLift: number }>;
 export function validateModel(model: RecommendationModel): true;
@@ -16,3 +16,7 @@ export function recommend(model: RecommendationModel, events: EvidenceEvent[], n
 export function guidance(candidate: Candidate | null, now: string, termDays: number, controls?: GuidanceControl): { level: number; visible: boolean; reason: string };
 export function urgency(now: string, dueAt: string, horizonDays: number): number;
 export function snapshot(result: RecommendationResult, modelVersion: string, inputHash: string): RecommendationResult & { modelVersion: string; inputHash: string };
+export interface SupportPair { id:string; stratumKey:string; action:string; performed:boolean; outcomeDueAt:string; before:number; after:number|null; independent:boolean; rubricMatched:boolean; attributionBundle:boolean }
+export interface ActivitySupport { lower:number; upper:number; mean:number|null; total:number; observed:number; eligible:boolean; lift:number; stratumKey:string; action:string; pairIds:string[] }
+export function activitySupport(pairs:SupportPair[],stratumKey:string,action:string,now:string):ActivitySupport;
+export function robustWinner(items:{id:string;lower:number;upper:number}[],incumbentId?:string|null):{id:string;reason:string}|null;

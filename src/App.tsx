@@ -37,6 +37,7 @@ import { DraftArchives } from "./ui/draft-archives";
 import { QuickMemos } from "./ui/quick-memos";
 import { StudyLaunch } from "./ui/study-launch";
 import { NextStudy } from "./ui/next-study";
+import { StudyStatistics } from "./ui/statistics";
 import { TopicRecall } from "./ui/topic-recall";
 const PersonalSpace = lazy(() => import("./ui/personal-space").then(module => ({ default: module.PersonalSpace })));
 import { storagePrefix, type StudyRepository } from "./data/repository";
@@ -470,6 +471,7 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
   const siblingIndex = siblings.findIndex(item => item.id === node?.id);
   const navItems = [
     { href: "/", text: "오늘" },
+    { href: "/statistics", text: "통계" },
     { href: "/subjects", text: "과목" },
     { href: "/record", text: "기록" },
     { href: "/memos", text: "메모" },
@@ -480,6 +482,7 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
   const memoRoute = route === "/memos" || route.startsWith("/memos/");
   const freeRoute = route === "/free" || route.startsWith("/free/");
   const rootTitle =
+    route === "/statistics" ? "공부 통계" :
     route === "/recall"
       ? "주제 카드"
       : memoRoute
@@ -625,6 +628,7 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
             )}
           </div>
           {route === "/draft-archives" && <DraftArchives data={data} />}
+          {route === "/statistics" && <StudyStatistics key={scope} data={data} subjectIds={shownSubjects.map(subject=>subject.id)} />}
           {route === "/" && (
             <>
               <Card className="hero">
@@ -642,7 +646,8 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
               </Card>
               <QuickMemos data={data} repository={repository} onSaved={setData} compact />
               <StudyLaunch data={data} />
-              <NextStudy key={`${data.namespace}:${data.userId}`} data={data} subjectIds={shownSubjects.map(subject => subject.id)} semesterId={scope} />
+              <StudyStatistics key={`statistics:${scope}`} compact data={data} subjectIds={shownSubjects.map(subject=>subject.id)} />
+              <NextStudy key={`${data.namespace}:${data.userId}`} repository={repository} onSaved={setData} data={data} subjectIds={shownSubjects.map(subject => subject.id)} semesterId={scope} />
               <div className="dashboard-grid">
                 <section>
                   <div className="section-heading">
@@ -969,7 +974,7 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
             </>
           )}
           {route === "/trash" && <QuickMemos data={data} repository={repository} onSaved={setData} trash />}
-          {!["/", "/subjects", "/search", "/trash", "/free", "/draft-archives", "/recall"].includes(route) &&
+          {!["/", "/subjects", "/search", "/trash", "/free", "/draft-archives", "/recall", "/statistics"].includes(route) &&
             !recordRoute &&
             !memoRoute &&
             !freeRoute &&

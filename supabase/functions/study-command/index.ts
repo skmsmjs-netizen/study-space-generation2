@@ -28,9 +28,9 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 
-// node_modules/lz-string/libs/lz-string.js
+// ../../../Users/manseeksong/Documents/ChatGPT/학습 시스템 설계 프로젝트/generation2/node_modules/lz-string/libs/lz-string.js
 var require_lz_string = __commonJS({
-  "node_modules/lz-string/libs/lz-string.js"(exports, module) {
+  "../../../Users/manseeksong/Documents/ChatGPT/\uD559\uC2B5 \uC2DC\uC2A4\uD15C \uC124\uACC4 \uD504\uB85C\uC81D\uD2B8/generation2/node_modules/lz-string/libs/lz-string.js"(exports, module) {
     var LZString2 = (function() {
       var f = String.fromCharCode;
       var keyStrBase64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
@@ -771,8 +771,112 @@ function validateMemoContent(value) {
   }
 }
 
+// src/domain/learning-schedule.ts
+var day = (s) => s === "" || /^\d{4}-\d{2}-\d{2}$/.test(s) && Number.isFinite(Date.parse(s)) && new Date(s).toISOString().slice(0, 10) === s;
+function validateScheduleExtensions(w, data) {
+  const node = new Map(data.nodes.map((n) => [n.id, n])), ids = /* @__PURE__ */ new Set();
+  for (const s of w.schedules ?? []) {
+    if (!s || typeof s.id !== "string" || !s.id || ids.has(s.id) || !data.subjects.some((p) => p.id === s.subjectId) || typeof s.name !== "string" || !s.name.trim() || !["exam", "quiz", "assignment", "lecture"].includes(s.kind) || !["active", "ended"].includes(s.status) || !["exam", "submission", "attendance", "personal", "unknown"].includes(s.dueMeaning) || typeof s.note !== "string" || !day(s.dueDate) || !day(s.opensDate) || s.opensDate && s.dueDate && s.opensDate > s.dueDate || s.weight !== null && (!Number.isFinite(s.weight) || s.weight < 0 || s.weight > 1) || !Array.isArray(s.goalIds) || !Array.isArray(s.targetIds) || !s.states || typeof s.states !== "object" || Object.values(s.states).some((v) => !["unknown", "not-done", "done"].includes(v))) throw Error("\uC77C\uC815\uC758 \uB0A0\uC9DC\xB7\uBC94\uC704\xB7\uC0C1\uD0DC\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+    ids.add(s.id);
+    if (s.targetIds.some((id) => node.get(id)?.subjectId !== s.subjectId) || s.goalIds.some((id) => !w.goals.some((g) => g.id === id && node.get(g.targetId)?.subjectId === s.subjectId))) throw Error("\uC77C\uC815\uACFC \uC8FC\uC81C\uC758 \uACFC\uBAA9\uC774 \uB2E4\uB985\uB2C8\uB2E4.");
+  }
+  const conditions = /* @__PURE__ */ new Map();
+  for (const c of w.conditions ?? []) {
+    if (!c || !node.has(c.targetId) || conditions.has(c.targetId) || !Array.isArray(c.prerequisiteIds) || new Set(c.prerequisiteIds).size !== c.prerequisiteIds.length || ![null, true, false].includes(c.materialAvailable) || c.prerequisiteIds.some((id) => !node.has(id) || node.get(id)?.subjectId !== node.get(c.targetId)?.subjectId)) throw Error("\uC120\uD589 \uAD00\uACC4\uC640 \uC790\uB8CC \uC5EC\uBD80\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+    conditions.set(c.targetId, c);
+  }
+  const seen = /* @__PURE__ */ new Set(), active = /* @__PURE__ */ new Set();
+  function visit(id) {
+    if (active.has(id)) throw Error("\uC120\uD589 \uAD00\uACC4\uAC00 \uC11C\uB85C \uC21C\uD658\uD569\uB2C8\uB2E4. \uAD00\uACC4\uB97C \uB2E4\uC2DC \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+    if (seen.has(id)) return;
+    active.add(id);
+    for (const p of conditions.get(id)?.prerequisiteIds ?? []) visit(p);
+    active.delete(id);
+    seen.add(id);
+  }
+  for (const id of conditions.keys()) visit(id);
+  const pairIds = /* @__PURE__ */ new Set();
+  for (const p of w.comparisons ?? []) {
+    if (!p || !p.id || pairIds.has(p.id) || !node.has(p.targetId) || typeof p.action !== "string" || !p.action.trim() || !w.goals.some((g) => g.id === p.goalId && g.targetId === p.targetId) || !Number.isFinite(Date.parse(p.registeredAt)) || !Number.isFinite(Date.parse(p.outcomeDueAt)) || Date.parse(p.registeredAt) >= Date.parse(p.outcomeDueAt) || !Number.isFinite(p.before) || p.before < 0 || p.before > 1 || p.after !== null && (!Number.isFinite(p.after) || p.after < 0 || p.after > 1) || p.after !== null && !p.performed || ![p.independent, p.rubricMatched, p.attributionBundle, p.performed].every((v) => typeof v === "boolean") || typeof p.note !== "string") throw Error("\uBE44\uAD50 \uAE30\uB85D\uC758 \uAE30\uC900\xB7\uC810\uC218\xB7\uC2DC\uC810\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+    pairIds.add(p.id);
+  }
+  if (w.snapshots !== void 0 && (!Array.isArray(w.snapshots) || w.snapshots.some((s) => !s || typeof s.id !== "string" || !Number.isFinite(Date.parse(s.createdAt)) || typeof s.dataVersion !== "string" || typeof s.policyVersion !== "string" || !Number.isSafeInteger(s.workspaceRevision)))) throw Error("\uCD94\uCC9C \uC774\uB825\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+}
+
+// src/domain/recommendation-kernel.mjs
+var POLICY = Object.freeze({
+  version: "rules-2-webapp",
+  criticalFraction: 0.1,
+  emphasisFraction: 0.2,
+  refreshFraction: 0.1,
+  freezeFraction: 0.1,
+  maxCards: 3,
+  shrinkage: 8,
+  minPairs: 8,
+  maxPairs: 20,
+  maxMissingFraction: 0.2,
+  maxAdaptiveLift: 0.2
+});
+
+// src/domain/recommendation-workspace.ts
+function validISO(value) {
+  return typeof value === "string" && /(?:Z|[+-]\d\d:\d\d)$/.test(value) && Number.isFinite(Date.parse(value));
+}
+function dateDeadline(date) {
+  if (!date) return null;
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(date) || (/* @__PURE__ */ new Date(`${date}T00:00:00Z`)).toISOString().slice(0, 10) !== date) throw Error("\uAE30\uD55C\uC744 \uB2E4\uC2DC \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+  return (/* @__PURE__ */ new Date(`${date}T23:59:59.999+09:00`)).toISOString();
+}
+function termPeriod(dates) {
+  if (!dates.start && !dates.end) return null;
+  if (!dates.start || !dates.end) throw Error("\uD559\uAE30 \uC2DC\uC791\uC77C\uACFC \uC885\uB8CC\uC77C\uC744 \uD568\uAED8 \uB0A8\uAE30\uAC70\uB098 \uB458 \uB2E4 \uBE44\uC6CC \uC8FC\uC138\uC694.");
+  dateDeadline(dates.start);
+  const end = dateDeadline(dates.end);
+  const start = (/* @__PURE__ */ new Date(`${dates.start}T00:00:00+09:00`)).toISOString();
+  if (Date.parse(end) < Date.parse(start)) throw Error("\uC885\uB8CC\uC77C\uC740 \uC2DC\uC791\uC77C\uBCF4\uB2E4 \uC55E\uC124 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
+  return { start, end: new Date(Date.parse(end) + 1).toISOString(), timezone: "Asia/Seoul" };
+}
+function validateRecommendations(value, data) {
+  const w = value;
+  if (!w || w.version !== 1 || w.userId !== data.userId || w.namespace !== data.namespace || !Number.isSafeInteger(w.revision) || w.revision < 0 || !Array.isArray(w.goals) || !Array.isArray(w.events) || !w.controls || typeof w.controls !== "object" || !w.responses || typeof w.responses !== "object" || !w.draft || typeof w.draft.targetId !== "string" || typeof w.draft.label !== "string" || typeof w.draft.dueDate !== "string" || !["same", "new"].includes(w.draft.novelty)) throw Error("\uCD94\uCC9C \uB0B4\uC6A9\uC744 \uC77D\uC9C0 \uBABB\uD588\uC2B5\uB2C8\uB2E4. \uC6D0\uB798 \uB0B4\uC6A9\uC740 \uBCF4\uC874\uD588\uC2B5\uB2C8\uB2E4.");
+  const ids = /* @__PURE__ */ new Set();
+  for (const goal of w.goals) {
+    if (!data.nodes.some((n) => n.id === goal.targetId && n.role === "topic") || typeof goal.id !== "string" || !goal.id || ids.has(goal.id) || typeof goal.targetId !== "string" || typeof goal.label !== "string" || !goal.label.trim() || typeof goal.dueDate !== "string" || typeof goal.ended !== "boolean" || !validISO(goal.createdAt) || !["same", "new"].includes(goal.novelty)) throw Error("\uD655\uC778\uD560 \uB0B4\uC6A9\uC758 \uD615\uC2DD\uC744 \uB2E4\uC2DC \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+    if (goal.minDelayDays !== void 0 && (!Number.isFinite(goal.minDelayDays) || goal.minDelayDays < 0) || goal.refreshDays != null && (!Number.isFinite(goal.refreshDays) || goal.refreshDays <= 0)) throw Error("\uC7AC\uD655\uC778 \uAC04\uACA9\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+    ids.add(goal.id);
+    dateDeadline(goal.dueDate);
+  }
+  for (const e of w.events) {
+    if (!e.id || !Number.isSafeInteger(e.revision) || e.revision < 1 || !Number.isSafeInteger(e.sequence) || !validISO(e.knownAt) || !validISO(e.occurredAt) || !w.goals.some((g) => g.id === e.facet && g.targetId === e.targetId) || e.rubricVersion !== "self-check-1" || !["assessment", "correction"].includes(e.kind) || !["none", "notes", "unknown"].includes(e.assistance ?? "") || !["pass", "fail", "unknown", "disputed"].includes(e.result ?? "") || !["same", "new", "unknown"].includes(e.novelty ?? "") || typeof e.answer !== "string" || e.authority !== "local") throw Error("\uC218\uD589 \uACB0\uACFC\uC758 \uC5F0\uACB0\uC744 \uD655\uC778\uD558\uC9C0 \uBABB\uD588\uC2B5\uB2C8\uB2E4.");
+  }
+  for (const e of w.events) {
+    if (e.delayDays !== void 0 && (!Number.isFinite(e.delayDays) || e.delayDays < 0) || e.delayVerified !== void 0 && typeof e.delayVerified !== "boolean") throw Error("\uC2E4\uC81C \uC218\uD589 \uAC04\uACA9\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+    if (e.kind === "correction" && !w.events.some((f) => f.id === e.errorEventId && f.facet === e.facet && f.result === "fail")) throw Error("\uAD50\uC815\uC5D0 \uC5F0\uACB0\uB41C \uC2E4\uD328\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+  }
+  for (const response of Object.values(w.responses)) {
+    if (!response || !["pass", "fail", "unknown", "disputed"].includes(response.result) || !["none", "notes", "unknown"].includes(response.assistance) || !["same", "new", "unknown"].includes(response.novelty) || typeof response.answer !== "string") throw Error("\uC791\uC131 \uC911\uC778 \uACB0\uACFC\uB97C \uC77D\uC9C0 \uBABB\uD588\uC2B5\uB2C8\uB2E4.");
+  }
+  for (const control of Object.values(w.controls)) if (!control || control.snoozeUntil && !validISO(control.snoozeUntil)) throw Error("\uBCF4\uB958 \uC2DC\uC810\uC744 \uC77D\uC9C0 \uBABB\uD588\uC2B5\uB2C8\uB2E4.");
+  if (w.terms !== void 0) {
+    if (!w.terms || Array.isArray(w.terms) || typeof w.terms !== "object") throw Error("\uD559\uAE30 \uAE30\uAC04\uC744 \uC77D\uC9C0 \uBABB\uD588\uC2B5\uB2C8\uB2E4.");
+    for (const dates of Object.values(w.terms)) {
+      if (typeof dates.start !== "string" || typeof dates.end !== "string") throw Error("\uD559\uAE30 \uAE30\uAC04\uC744 \uC77D\uC9C0 \uBABB\uD588\uC2B5\uB2C8\uB2E4.");
+      termPeriod(dates);
+    }
+  }
+  validateScheduleExtensions(w, data);
+  if (w.termDraft && (typeof w.termDraft.semesterId !== "string" || typeof w.termDraft.start !== "string" || typeof w.termDraft.end !== "string")) throw Error("\uC791\uC131 \uC911\uC778 \uD559\uAE30 \uAE30\uAC04\uC744 \uC77D\uC9C0 \uBABB\uD588\uC2B5\uB2C8\uB2E4.");
+}
+
 // src/domain/commands.ts
-var collections = ["semesters", "subjects", "nodes", "sessions", "records", "narratives", "criteria", "criteriaAssignments", "memos"];
+function verifyLearningPlan(workspace, state) {
+  try {
+    validateRecommendations(workspace, state);
+  } catch (error) {
+    throw new DomainError("INVALID_LEARNING_PLAN", error instanceof Error ? error.message : "\uD559\uC2B5 \uC77C\uC815\uC758 \uB0B4\uC6A9\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+  }
+}
+var collections = ["semesters", "subjects", "nodes", "sessions", "records", "narratives", "criteria", "criteriaAssignments", "memos", "learningPlans"];
 var clone = (value) => structuredClone(value);
 function fail(code, message, details) {
   throw new DomainError(code, message, details);
@@ -789,8 +893,8 @@ function title(name) {
   if (typeof name !== "string" || !name.trim()) fail("EMPTY_NAME", "\uC774\uB984\uC744 \uC785\uB825\uD574 \uC8FC\uC138\uC694.");
   return name.trim();
 }
-function validDay(day) {
-  return typeof day === "string" && /^\d{4}-\d{2}-\d{2}$/.test(day) && Number.isFinite(Date.parse(day)) && new Date(day).toISOString().slice(0, 10) === day;
+function validDay(day2) {
+  return typeof day2 === "string" && /^\d{4}-\d{2}-\d{2}$/.test(day2) && Number.isFinite(Date.parse(day2)) && new Date(day2).toISOString().slice(0, 10) === day2;
 }
 function validateDateEvidence(value) {
   if (!value || !["exact", "range", "unknown"].includes(value.kind)) fail("INVALID_DATE", "\uACF5\uBD80\uD55C \uB0A0\uC9DC\uC758 \uAE30\uC5B5 \uC815\uB3C4\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
@@ -911,6 +1015,8 @@ function assertState(state) {
     if (typeof row.body !== "string" || typeof row.done !== "boolean") fail("INVALID_RECORD", "\uACF5\uBD80 \uAE30\uB85D\uC758 \uC785\uB825\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
   }
   for (const row of state.sessions) validateDateEvidence(row.dateEvidence);
+  if ((state.learningPlans ?? []).filter((row) => !row.deletedAt).length > 1) fail("DUPLICATE_PLAN", "\uD559\uC2B5 \uC77C\uC815\uC758 \uC6D0\uB798 \uC5F0\uACB0\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+  for (const row of state.learningPlans ?? []) verifyLearningPlan(row.workspace, state);
   for (const row of state.memos ?? []) {
     validateMemoContent(row);
     if (row.ownerId !== null && !subjectIds.has(row.ownerId) && !nodeIndex.has(row.ownerId)) fail("NOT_FOUND", "\uBA54\uBAA8\uC758 \uC6D0\uB798 \uC5F0\uACB0 \uB300\uC0C1\uC744 \uCC3E\uC744 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
@@ -973,6 +1079,7 @@ function applyCommand(state, command) {
     if (collection === "criteria") next.criteria ??= [];
     if (collection === "criteriaAssignments") next.criteriaAssignments ??= [];
     if (collection === "memos") next.memos ??= [];
+    if (collection === "learningPlans") next.learningPlans ??= [];
     const list = next[collection];
     const index = list.findIndex((v) => v.id === entity.id), before = index < 0 ? null : clone(list[index]);
     if (before && canonical(before) === canonical(entity)) return;
@@ -989,6 +1096,17 @@ function applyCommand(state, command) {
     return found;
   };
   switch (command.type) {
+    case "saveLearningPlan": {
+      verifyLearningPlan(command.workspace, next);
+      const row = next.learningPlans?.find((item) => item.id === command.id);
+      if (row) expected(row, command.expectedVersion, command);
+      else {
+        if (command.expectedVersion !== 0) fail("VERSION_CONFLICT", "\uD559\uC2B5 \uC77C\uC815\uC774 \uBC14\uB00C\uC5C8\uC2B5\uB2C8\uB2E4. \uC791\uC131 \uB0B4\uC6A9\uC744 \uC720\uC9C0\uD588\uC2B5\uB2C8\uB2E4.");
+        fresh(command.id);
+      }
+      write("learningPlans", { ...row ?? common(command.id), workspace: clone(command.workspace) });
+      break;
+    }
     case "addSemester":
       fresh(command.id);
       write("semesters", { ...common(command.id), name: title(command.name), order: next.semesters.length });
@@ -1265,7 +1383,7 @@ function packServerState(state, operationId) {
   validateState(state);
   const raw = JSON.stringify(state), encoded = import_lz_string.default.compressToBase64(raw);
   if (import_lz_string.default.decompressFromBase64(encoded) !== raw) throw new DomainError("ENCODING", "\uC6D0\uBB38 \uBCF4\uC874\uC744 \uD655\uC778\uD558\uC9C0 \uBABB\uD588\uC2B5\uB2C8\uB2E4. \uC800\uC7A5\uD558\uC9C0 \uC54A\uC558\uC2B5\uB2C8\uB2E4.");
-  const collections2 = ["semesters", "subjects", "nodes", "sessions", "records", "narratives", "criteria", "criteriaAssignments", "memos", "revisions"];
+  const collections2 = ["semesters", "subjects", "nodes", "sessions", "records", "narratives", "criteria", "criteriaAssignments", "memos", "learningPlans", "revisions"];
   return {
     userId: state.userId,
     namespace: state.namespace,
@@ -1312,7 +1430,7 @@ async function handleCommand(request, backend) {
     const current = await backend.read(userId, namespace) ?? { sequence: 0, data: emptyState(userId, namespace) };
     validateState(current.data);
     if (current.data.userId !== userId || current.data.namespace !== namespace) throw new DomainError("OWNERSHIP", "\uC774 \uACF5\uAC04\uC5D0 \uC811\uADFC\uD560 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
-    if (body.action === "load") return json(current);
+    if (body.action === "load") return json({ ...current, supportedCommands: ["saveLearningPlan"] });
     if (body.action !== "execute" || !body.command) throw new DomainError("INVALID_REQUEST", "\uC800\uC7A5 \uC694\uCCAD\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
     const command = body.command;
     if (typeof command.opId !== "string" || !command.opId.trim() || command.opId.length > 256 || /[\u0000-\u001f\u007f]/.test(command.opId)) throw new DomainError("INVALID_ID", "\uC800\uC7A5 \uC694\uCCAD\uC758 \uC2DD\uBCC4\uC790\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
@@ -1320,11 +1438,11 @@ async function handleCommand(request, backend) {
     if (!Number.isSafeInteger(body.baseSequence) || body.baseSequence < 0) throw new DomainError("INVALID_VERSION", "\uC800\uC7A5 \uC21C\uC11C\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
     if (current.data.appliedOps[command.opId]) {
       applyCommand(current.data, command);
-      return json(current);
+      return json({ ...current, supportedCommands: ["saveLearningPlan"] });
     }
     if (body.baseSequence !== current.sequence) return json({ code: "VERSION_CONFLICT", message: "\uB2E4\uB978 \uAE30\uAE30\uC758 \uBCC0\uACBD\uACFC \uC791\uC131 \uB0B4\uC6A9\uC744 \uBAA8\uB450 \uBCF4\uC874\uD588\uC2B5\uB2C8\uB2E4.", server: current }, 409);
     const next = applyCommand(current.data, command);
-    return json(await backend.commit(userId, namespace, current.sequence, command, next));
+    return json({ ...await backend.commit(userId, namespace, current.sequence, command, next), supportedCommands: ["saveLearningPlan"] });
   } catch (error) {
     const code = error instanceof DomainError ? error.code : "SERVER_ERROR";
     const status = code === "AUTH_REQUIRED" ? 401 : code === "OWNERSHIP" ? 403 : /CONFLICT/.test(code) ? 409 : error instanceof DomainError || error instanceof SyntaxError ? 400 : 503;

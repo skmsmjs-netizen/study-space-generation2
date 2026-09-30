@@ -36,8 +36,9 @@ export interface QuickMemo extends Entity { ownerId: string | null; body: string
 export interface Criteria extends Entity { items: TraceDefinition[] }
 export interface CriteriaAssignment extends Entity { scope: 'topic' | 'subject' | 'global'; ownerId: string | null; criteriaId: string }
 export interface CriteriaChange { id: string; targetId: string; scope: 'topic' | 'subject' | 'all'; expectedToken: string; items: TraceDefinition[] }
-export type EntityCollection = 'semesters' | 'subjects' | 'nodes' | 'sessions' | 'records' | 'narratives' | 'criteria' | 'criteriaAssignments' | 'memos';
-export type DomainEntity = Semester | Subject | OutlineNode | StudySession | StudyRecord | Narrative | Criteria | CriteriaAssignment | QuickMemo;
+export interface LearningPlan extends Entity { workspace: import('./recommendation-workspace').RecommendationWorkspace }
+export type EntityCollection = 'semesters' | 'subjects' | 'nodes' | 'sessions' | 'records' | 'narratives' | 'criteria' | 'criteriaAssignments' | 'memos' | 'learningPlans';
+export type DomainEntity = Semester | Subject | OutlineNode | StudySession | StudyRecord | Narrative | Criteria | CriteriaAssignment | QuickMemo | LearningPlan;
 export interface Revision extends Entity {
   collection: EntityCollection; entityId: string; operationId: string; parentRevisionId: string | null;
   before: DomainEntity | null; after: DomainEntity; reversesRevisionId?: string;
@@ -49,6 +50,7 @@ export interface AppState {
   /** Optional for existing schema-1 demo snapshots; reading never rewrites them. */
   criteria?: Criteria[]; criteriaAssignments?: CriteriaAssignment[];
   memos?: QuickMemo[];
+  learningPlans?: LearningPlan[];
   /** Canonical operation payloads make repeated requests idempotent. */
   appliedOps: Record<string, string>;
 }
@@ -73,6 +75,7 @@ export type Command = CommandContext & (
   | { type: 'updateNarrative'; id: string; kind: NarrativeKind; ownerId: string | null; body: string; expectedVersion: number }
   | { type: 'saveMemo'; id: string; ownerId: string | null; body: string; strokes: MemoStroke[]; expectedVersion: number }
   | { type: 'trashMemo' | 'restoreMemo'; id: string; expectedVersion: number }
+  | { type: 'saveLearningPlan'; id: string; expectedVersion: number; workspace: import('./recommendation-workspace').RecommendationWorkspace }
   | ({ type: 'adjustCriteria' } & CriteriaChange)
   | { type: 'editWrittenReview'; recordId: string; expectedVersion: number; answer: string }
   | { type: 'confirmWrittenReview' | 'unconfirmWrittenReview'; recordId: string; expectedVersion: number }
