@@ -13,7 +13,7 @@
 .memo-card-footer { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); font-size: var(--type-caption-size); color: var(--color-muted); }
 .memo-card-footer > span { overflow-wrap: anywhere; }
 .ui-overlay:has(.memo-editor) { align-items: flex-start; }
-.memo-editor { width: min(100%, 64rem); height: calc(100dvh - var(--space-6)); border-radius: var(--radius-md); }
+.memo-editor { width: min(100%, 64rem); height: min(calc(100dvh - var(--space-6)), calc(min(100vw, 64rem) * .66667 + 24rem)); border-radius: var(--radius-md); }
 .memo-editor .ui-modal-header { margin-block-end: var(--space-2); align-items: center; }
 .memo-editor .ui-modal-title { font-size: var(--type-label-size); }
 .memo-toolbar { display: flex; align-items: center; gap: var(--space-2); flex-wrap: wrap; margin-bottom: var(--space-3); }
