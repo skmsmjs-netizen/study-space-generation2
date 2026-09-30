@@ -19,7 +19,7 @@ function fixture(initial: TraceState = {}) {
   fireEvent.click(screen.getByText('공부 방법과 체크 · 선택'));
   return { current: () => latest, change };
 }
-function activity(label: string = TRACE_ITEMS[0].label) {
+function activity(label: string = '이 주제의 질문 한 문장 적기') {
   const checkbox = screen.getByRole('checkbox', { name: label });
   const row = within(checkbox.closest('.trace-activity') as HTMLElement);
   fireEvent.click(row.getByText(/상태·메모·반복/));
@@ -120,7 +120,7 @@ describe('TRACE optional activity detail', () => {
   it('never edits or confirms C2 examReview through ordinary status, note or repeat controls', () => {
     const review = { answer: '  자기 문장\n원문  ', checked: true, updatedAt: '2026-09-29T10:00:00Z' };
     const form = fixture({ Cself1: { status: 'checked', examReview: review } });
-    const { row, checkbox } = activity(TRACE_ITEMS.find(item => item.id === 'Cself1')!.label);
+    const { row, checkbox } = activity('내 말·그림으로 바꾸고 배운 내용 연결하기');
     expect(checkbox).toBeDisabled();
     expect(row.getByRole('option', { name: '해당 없음' })).toBeDisabled();
     fireEvent.change(row.getByLabelText('활동 메모 · 선택'), { target: { value: '별도 선택 메모' } });

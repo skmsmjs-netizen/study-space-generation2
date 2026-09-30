@@ -9,3 +9,12 @@
 .outline-input-table :is(input, button) { max-width: 100%; }
 .outline-input-table button { white-space: normal; }
 .outline-table-modal .ui-card { padding: var(--space-3); }
+
+.outline-row-menu { margin-inline-start: auto; inline-size: fit-content; position: relative; }
+.outline-row-menu > summary { display: flex; align-items: center; justify-content: center; min-inline-size: var(--icon-target); padding: 0; list-style: none; }
+.outline-row-menu > summary::-webkit-details-marker { display: none; }
+.outline-row-menu[open] > button { white-space: nowrap; }
+.outline-input-table .ui-label { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); }
+.outline-table-modal .ui-card { background: transparent; box-shadow: var(--shadow-none); border: 0; border-block-start: var(--border-width) solid var(--color-border); border-radius: 0; padding: var(--space-3) 0; }
+.ui-overlay:has(.outline-table-modal) { align-items: flex-start; }
+.outline-table-modal { max-block-size: calc(100dvh - var(--space-6)); }

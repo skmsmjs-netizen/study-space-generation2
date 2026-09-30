@@ -540,3 +540,40 @@ nav a[aria-current="page"] {
   .is-home .hero h2 { margin-bottom: var(--space-2); }
   .is-home .dashboard-grid { margin-top: var(--space-5); }
 }
+
+/* 2026-09-30 marked iPad areas: compact shell and readable study actions. */
+.topbar { align-items: center; justify-content: flex-start; padding-block: var(--space-3); gap: var(--space-3); }
+.topbar .demo-banner { margin-inline-end: auto; padding: 0; text-align: start; background: transparent; }
+.topbar > .ui-field { display: flex; align-items: center; gap: var(--space-2); }
+.topbar > .ui-field .ui-label { white-space: nowrap; }
+.topbar > .ui-field select { inline-size: auto; max-inline-size: 14rem; }
+.workspace-tools { margin-top: auto; }
+.workspace-tools > summary { font-size: var(--type-label-size); color: var(--color-muted); }
+.workspace-tools-content { display: grid; gap: var(--space-3); padding-block: var(--space-2); }
+.workspace-tools-content > a { min-block-size: var(--icon-target); display: flex; align-items: center; }
+.page-heading { margin-block: var(--space-4) var(--space-5); }
+.page-heading .eyebrow:empty { display: none; }
+.page-heading h1 { font-size: var(--type-title-size); }
+.record-compose .ui-empty { padding: var(--space-5); text-align: start; border-inline-start: var(--border-width) solid var(--color-border); }
+.trace-editor > fieldset { border: 0; border-block-start: var(--border-width) solid var(--color-border); border-radius: 0; padding-inline: 0; }
+.trace-activity { padding-block: var(--space-2); }
+.trace-activity + .trace-activity { border-block-start: var(--border-width) solid var(--color-border); }
+.trace-activity > .ui-choice { align-items: flex-start; }
+.trace-activity > .ui-choice span { word-break: keep-all; overflow-wrap: anywhere; }
+.trace-activity > details { margin-inline-start: var(--space-6); }
+.trace-activity > details > summary { color: var(--color-muted); font-size: var(--type-caption-size); font-weight: normal; padding-block: var(--space-2); }
+.trace-activity > details .trace-hint { margin-inline-start: 0; }
+.record-entry { background: transparent; border: 0; border-block-start: var(--border-width) solid var(--color-border); border-radius: 0; padding-inline: 0; }
+.save-bar { box-shadow: var(--shadow-none); }
+@media (min-width: 40.01rem) and (max-width: 64rem) {
+  .app-shell { grid-template-columns: 12rem minmax(0, 1fr); }
+  .sidebar { padding: var(--space-6) var(--space-4); gap: var(--space-5); }
+  .topbar, .main-content { padding-inline: var(--space-5); }
+  .record-layout { grid-template-columns: minmax(10rem, .7fr) minmax(0, 1.5fr); gap: var(--space-5); }
+}
+@media (max-width: 40rem) {
+  .topbar { flex-wrap: wrap; padding-inline: var(--space-4); }
+  .topbar .demo-banner { order: 5; flex-basis: 100%; }
+  .topbar > .ui-field { margin-inline-start: auto; }
+  .topbar > .ui-field .ui-label { display: none; }
+}

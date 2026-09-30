@@ -109,7 +109,7 @@ describe('full subject/unit/topic table editor', () => {
   });
   it('creates multiple courses from individual cells after preview and supports whole-operation undo', async () => {
     const form = fixture(); await start(); fill();
-    expect(screen.getByLabelText('표의 과목을 등록할 학기')).toHaveValue('demo-semester-current');
+    expect(screen.getByLabelText('학기')).toHaveValue('demo-semester-current');
     await userEvent.click(screen.getByRole('button', { name: '과목 추가' }));
     change('2번째 과목명', '둘째 과목'); change('2번째 과목 1번째 단원', '둘째 단원'); change('2번째 과목 1번째 단원 1번째 주제', '둘째 주제');
     expect(screen.getByRole('button', { name: '한 번에 생성' })).toBeDisabled();

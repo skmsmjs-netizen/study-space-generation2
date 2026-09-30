@@ -11,11 +11,27 @@ function Harness() {
   const [data, setData] = useState<AppState>(repo.getSnapshot());
   return <TopicRecall data={data} repository={repo} onSaved={setData} subjectIds={data.subjects.filter(row => !row.deletedAt).map(row => row.id)} />;
 }
-const editor = () => screen.getByRole('textbox', { name: '나의 설명' });
-const save = () => fireEvent.click(screen.getByRole('button', { name: '메모 저장 후 다음 주제' }));
+const editor = () => {
+  const toggle = screen.getByText(/글로 쓰기/);
+  if (!toggle.parentElement!.hasAttribute('open')) fireEvent.click(toggle);
+  return screen.getByRole('textbox', { name: '글' });
+};
+const save = () => fireEvent.click(screen.getByRole('button', { name: '저장하고 다음' }));
 beforeEach(() => { localStorage.clear(); repo = new DemoRepository(localStorage); clearRescuedDraft(recallKey(repo.getSnapshot())); vi.spyOn(Math, 'random').mockReturnValue(0); });
 afterEach(() => vi.restoreAllMocks());
 describe('topic explanation cards', () => {
+  it('starts with memo paper above a collapsed text option and preserves text through toggling', () => {
+    render(<Harness />);
+    const toggle = screen.getByText(/글로 쓰기/);
+    expect(toggle.parentElement).not.toHaveAttribute('open');
+    expect(screen.getByRole('textbox', { name: '글' })).not.toBeVisible();
+    const pad = screen.getByRole('region', { name: '펜으로 설명하기' });
+    expect(pad.compareDocumentPosition(toggle) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    fireEvent.change(editor(), { target: { value: '  접어도 보존\n ' } });
+    fireEvent.click(screen.getByText(/글로 쓰기/));
+    expect(screen.getByRole('textbox', { name: '글' })).not.toBeVisible();
+    expect(editor()).toHaveValue('  접어도 보존\n ');
+  });
   it('saves exact explanation as a linked new memo and advances without study records', () => {
     render(<Harness />);
     const topic = readRecall(repo.getSnapshot()).currentId, original = repo.getSnapshot();
@@ -69,11 +85,11 @@ describe('topic explanation cards', () => {
   });
   it('preserves previous answers as distinct memos on repeated explanation', () => {
     render(<Harness />);
-    fireEvent.change(screen.getByRole('combobox', { name: '카드 과목' }), { target: { value: 'demo-subject-math' } });
+    fireEvent.change(screen.getByRole('combobox', { name: '과목' }), { target: { value: 'demo-subject-math' } });
     const topic = readRecall(repo.getSnapshot()).currentId;
     fireEvent.change(editor(), { target: { value: '첫 설명' } }); save();
     while (readRecall(repo.getSnapshot()).currentId !== topic) fireEvent.click(screen.getByRole('button', { name: '건너뛰기' }));
-    expect(screen.getByText('이 주제의 이전 메모 1개')).toBeInTheDocument();
+    expect(screen.getByText('이전 메모 1개')).toBeInTheDocument();
     fireEvent.change(editor(), { target: { value: '새 설명' } }); save();
     expect(repo.getSnapshot().memos?.filter(row => row.ownerId === topic).map(row => row.body)).toEqual(['첫 설명', '새 설명']);
   });
@@ -81,7 +97,7 @@ describe('topic explanation cards', () => {
     const view = render(<Harness />), topic = readRecall(repo.getSnapshot()).currentId;
     fireEvent.compositionStart(editor()); fireEvent.change(editor(), { target: { value: '한글 조합' } });
     expect(screen.getByRole('button', { name: '건너뛰기' })).toBeDisabled();
-    expect(screen.getByRole('button', { name: '메모 저장 후 다음 주제' })).toBeDisabled();
+    expect(screen.getByRole('button', { name: '저장하고 다음' })).toBeDisabled();
     expect(readRecall(repo.getSnapshot()).currentId).toBe(topic);
     fireEvent.compositionEnd(editor()); view.unmount();
     const key = recallKey(repo.getSnapshot()); localStorage.setItem(key, '{원래 손상 원문');

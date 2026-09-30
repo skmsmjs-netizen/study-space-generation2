@@ -4,6 +4,17 @@ import { TRACE_GROUP_LABELS, TRACE_ITEMS } from '../domain/trace';
 import { defaultCriteriaItems } from '../domain/criteria';
 import { Button, Checkbox, Input, Select, Textarea } from './index';
 
+const TRACE_ACTION_LABELS: Record<string, string> = {
+  Td1: '이 주제의 질문 한 문장 적기', Td2: '설명 순서와 앞서 배운 개념 짚기',
+  Rd1: '정의·공식·결론 정리하기', Rd2: '기호의 뜻·사용 조건을 원문과 맞춰 보기',
+  Ad1: '대표 문제 풀고 풀이를 고른 이유 말하기', Ad2: '막힌 곳 보완하고 다시 풀기',
+  Cd1: '자료 덮고 떠올린 뒤 원문과 맞춰 보기', Cself1: '내 말·그림으로 바꾸고 배운 내용 연결하기',
+  Cd3: '조건이 바뀌거나 섞인 새 문제 풀기', Cd4: '정의·공식·조건을 백지에 쓰고 원문과 맞춰 보기',
+  Cd5: '확인한 결과와 다음에 할 일 적기', Ed1: '이 개념이 필요한 이유 말하기',
+  Ed2: '예시에서 주어진 것과 구할 것 짚기', Ed3: '내 말과 예시로 설명하고 원문과 맞춰 보기',
+  Ed4: '조건을 바꿔 보고 새 결론 찾아보기',
+};
+
 const statuses: Record<ActivityStatus, string> = {
   unchecked: '미체크', checked: '체크함', na: '해당 없음', deferred: '보류',
 };
@@ -26,6 +37,7 @@ export function TraceEditor({ trace, onChange, contextKey, definitions = default
     const stored = item.definition ?? definition;
     return (
       <ActivityEditor key={id} id={id} item={item} definition={stored} contextKey={contextKey ? `${contextKey}:${id}` : undefined}
+        useAction={currentIds.has(id)}
         question={item.definition && (item.definition.label !== definition?.label || item.definition.group !== definition?.group) ? undefined : question}
         onChange={patch => onChange({
           ...trace,
@@ -61,15 +73,18 @@ export function TraceEditor({ trace, onChange, contextKey, definitions = default
   );
 }
 
-function ActivityEditor({ id, item, definition, question, contextKey, onChange }: {
+function ActivityEditor({ id, item, definition, question, contextKey, onChange, useAction }: {
   id: string;
   item: TraceItem;
   definition?: Definition;
   question?: string;
+  useAction?: boolean;
   contextKey?: string;
   onChange: (patch: Partial<TraceItem>) => void;
 }) {
   const label = definition?.label ?? `이전 항목 (${id})`;
+  const original = TRACE_ITEMS.find(row => row.id === id);
+  const action = useAction && original && original.label === label && original.group === definition?.group ? TRACE_ACTION_LABELS[id] : undefined;
   const confirmed = Boolean(item.examReview?.checked);
   const [removed, setRemoved] = useState<{ repeat: Repeat; index: number; nextId?: string }[]>([]);
   const changeRepeat = (id: string, patch: Partial<Repeat>) => onChange({
@@ -77,14 +92,15 @@ function ActivityEditor({ id, item, definition, question, contextKey, onChange }
   });
   return (
     <div className="trace-activity">
-      <Checkbox label={label} checked={item.status === 'checked'} disabled={confirmed}
+      <Checkbox label={action ?? label} checked={item.status === 'checked'} disabled={confirmed}
         onChange={event => onChange({ status: event.target.checked ? 'checked' : 'unchecked' })} />
-      {question && <p className="trace-hint">{question}</p>}
       {(item.status === 'na' || item.status === 'deferred') && <p className="trace-hint">{statuses[item.status]}</p>}
       {confirmed && <p className="trace-hint">시험 전 점검을 확인한 기록입니다. 상태를 바꾸려면 원기록에서 점검을 먼저 해제해 주세요. 서술은 그대로 남습니다.</p>}
       <details>
         <summary>{`상태·메모·반복${item.note || item.repeats?.length ? ' · 입력 있음' : ' · 선택'}`}</summary>
         <div className="field-stack">
+          {action && <p className="muted">{label}</p>}
+          {question && <p className="trace-hint">{question}</p>}
           <Select label="활동 상태" value={item.status}
             onChange={event => onChange({ status: event.target.value as ActivityStatus })}>
             {Object.entries(statuses).map(([value, text]) => <option key={value} value={value} disabled={confirmed && value !== 'checked'}>{text}</option>)}

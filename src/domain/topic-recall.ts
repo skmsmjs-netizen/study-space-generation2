@@ -1,6 +1,6 @@
-import type { AppState, OutlineNode } from './model';
+import type { AppState, MemoStroke, OutlineNode } from './model';
 
-export interface RecallDraft { memoId: string; body: string }
+export interface RecallDraft { memoId: string; body: string; strokes?: MemoStroke[] }
 export interface RecallSession {
   version: 1; subjectId: string; unitId: string; currentId: string | null;
   seen: string[]; round: number; drafts: Record<string, RecallDraft>;

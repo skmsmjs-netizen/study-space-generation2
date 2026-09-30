@@ -8,3 +8,5 @@
 .next-study-answer { white-space: pre-wrap; overflow-wrap: anywhere; }
 .next-study-evidence { border-inline-start: 2px solid var(--color-border); padding-inline-start: var(--space-3); }
 .next-study p { white-space: pre-wrap; overflow-wrap: anywhere; }
+
+.next-study .section-heading { justify-content: flex-start; }

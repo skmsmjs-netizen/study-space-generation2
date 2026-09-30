@@ -47,14 +47,14 @@ describe('search result states', () => {
     fireEvent.compositionEnd(search, { data: '없는말시험' });
     expect(screen.getByRole('heading', { name: '일치하는 내용을 찾지 못했습니다' })).toBeInTheDocument();
     fireEvent.change(search, { target: { value: '함수' } });
-    await user.selectOptions(screen.getByRole('combobox', { name: '학기와 공부 범위' }), 'independent');
+    await user.selectOptions(screen.getByRole('combobox', { name: '공부 범위' }), 'independent');
     expect(screen.getByRole('heading', { name: '일치하는 내용을 찾지 못했습니다' })).toBeInTheDocument();
     await act(async () => { history.replaceState(null, '', '/#/'); window.dispatchEvent(new HashChangeEvent('hashchange')); });
     await act(async () => { history.replaceState(null, '', '/#/search'); window.dispatchEvent(new HashChangeEvent('hashchange')); });
     expect(screen.getByRole('searchbox')).toHaveValue('함수');
-    expect(screen.getByRole('combobox', { name: '학기와 공부 범위' })).toHaveValue('independent');
+    expect(screen.getByRole('combobox', { name: '공부 범위' })).toHaveValue('independent');
     expect(screen.getByRole('heading', { name: '일치하는 내용을 찾지 못했습니다' })).toBeInTheDocument();
-    await user.selectOptions(screen.getByRole('combobox', { name: '학기와 공부 범위' }), 'all');
+    await user.selectOptions(screen.getByRole('combobox', { name: '공부 범위' }), 'all');
     expect(screen.getByRole('link', { name: '함수는 어떤 관계일까?' })).toBeInTheDocument();
     expect(screen.queryByRole('heading', { name: '일치하는 내용을 찾지 못했습니다' })).toBeNull();
   });

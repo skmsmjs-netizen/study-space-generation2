@@ -39,7 +39,7 @@ afterEach(async () => {
 async function open(path = '/') {
   history.replaceState(null, '', `/#${path}`);
   const view = render(<App />);
-  await screen.findByText('가짜 자료로 살펴보는 시연 공간 · 이 기기에만 저장됩니다');
+  await screen.findByText('시연 자료 · 이 기기에 저장');
   return view;
 }
 async function navigate(path: string) {
@@ -387,7 +387,7 @@ describe('multiple free notes and search', () => {
 it('saves optional deferred activity notes and unknown repetitions without normalizing their text', async () => {
   const user=userEvent.setup(); await open(`/record/${firstTopic}`);
   await user.click(screen.getByText('공부 방법과 체크 · 선택',{exact:true}));
-  const group=within(screen.getByRole('checkbox',{name:'이 주제에서 답하려는 질문을 한 문장으로 적어보았다.'}).closest('.trace-activity') as HTMLElement);
+  const group=within(screen.getByRole('checkbox',{name:'이 주제의 질문 한 문장 적기'}).closest('.trace-activity') as HTMLElement);
   await user.click(group.getAllByText('상태·메모·반복 · 선택',{exact:true})[0]);
   await user.selectOptions(group.getByRole('combobox',{name:'활동 상태'}),'deferred');
   fireEvent.change(group.getByRole('textbox',{name:'활동 메모 · 선택'}),{target:{value:'  막힌 조건\n'}});
@@ -629,7 +629,7 @@ it('retries failed committed-draft cleanup without erasing a later new draft', a
 
 it('connects the full course table to the active scope and keeps batch undo available after route changes', async () => {
   const user = userEvent.setup(); await open('/subjects');
-  await user.selectOptions(screen.getByRole('combobox', { name: '학기와 공부 범위' }), 'independent');
+  await user.selectOptions(screen.getByRole('combobox', { name: '공부 범위' }), 'independent');
   await user.click(screen.getByRole('button', { name: '표로 한 번에 만들기' }));
   fireEvent.change(screen.getByRole('textbox', { name: '1번째 과목명' }), { target: { value: '표의 독립 과목' } });
   fireEvent.change(screen.getByRole('textbox', { name: '1번째 과목 1번째 단원' }), { target: { value: '첫 단원' } });

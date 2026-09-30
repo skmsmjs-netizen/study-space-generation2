@@ -481,7 +481,7 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
   const freeRoute = route === "/free" || route.startsWith("/free/");
   const rootTitle =
     route === "/recall"
-      ? "주제 카드로 설명하기"
+      ? "주제 카드"
       : memoRoute
       ? "작은 메모"
       : route === "/draft-archives"
@@ -495,8 +495,8 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
           : route.startsWith("/free")
             ? "자유롭게 남기기"
             : recordRoute
-              ? "공부한 만큼 남기기"
-              : "다시, 한 걸음";
+              ? "공부 기록"
+              : "오늘";
   const tree = (parentId: string | null) => nodes.some(n => n.subjectId === subject?.id && n.parentId === parentId)
     ? <OutlineTree nodes={nodes} records={records} subjectId={subject!.id} subjectName={subject!.name} parentId={parentId} /> : null;
   return (
@@ -506,7 +506,7 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
           공부의 자리<span>LEARNING SPACE</span>
         </a>
         <NavigationBar label="주 메뉴" orientation="vertical" items={navItems.map(item => ({href:`#${item.href}`, label:item.text, active:route === item.href || item.href === "/record" && recordRoute || item.href === "/memos" && memoRoute || item.href === "/subjects" && Boolean(subject)}))} />
-        <div className="sidebar-bottom">
+        <details className="sidebar-bottom workspace-tools"><summary>보관함·화면 설정</summary><div className="workspace-tools-content">
           <a href="#/trash">휴지통</a>
           <a href="#/draft-archives">초안 보관본</a>
           <Select
@@ -518,16 +518,14 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
             <option value="light">밝게</option>
             <option value="dark">어둡게</option>
           </Select>
-        </div>
+        </div></details>
       </aside>
       <div className="workspace">
-        <div className="demo-banner">
-          {data.namespace === "demo" ? "가짜 자료로 살펴보는 시연 공간 · 이 기기에만 저장됩니다" : "내 공부 공간"}
-        </div>
         <header className="topbar">
-          <span className="small-brand">공부의 자리</span>{accountControls}
+          <span className="small-brand">공부의 자리</span>
+          <span className="demo-banner">{data.namespace === "demo" ? "시연 자료 · 이 기기에 저장" : "내 공부 공간"}</span>{accountControls}
           <Select
-            label="학기와 공부 범위"
+            label="공부 범위"
             value={scope}
             onChange={(e) => {
               setScope(e.target.value);
@@ -562,7 +560,7 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
           </details>
         </header>
         <main id="main" className="main-content">
-          <Breadcrumb
+          {route !== "/" && <Breadcrumb
             items={[
               { label: "오늘", href: "#/" },
               ...(subject
@@ -577,7 +575,7 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
                   ? [{ label: rootTitle }]
                   : []),
             ]}
-          />
+          />}
           {error && <ErrorState title={cleanupKeys.length ? "저장 후 초안 정리가 남았습니다" : "저장하지 못했습니다"} message={error} />}
           {cleanupKeys.length > 0 && <Button onClick={() => {
             const remaining = cleanupKeys.filter(key => {
@@ -618,7 +616,7 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
                   ? labelRole[node.role]
                   : subject
                     ? "과목"
-                    : "나의 학습 공간"}
+                    : ""}
               </p>
               <h1>{node?.name || subject?.name || rootTitle}</h1>
             </div>
@@ -631,13 +629,8 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
             <>
               <Card className="hero">
                 <div>
-                  <p className="eyebrow">오늘 남길 작은 변화</p>
-                  <h2>공부했다면, 그 사실만으로도.</h2>
-                  <p>
-                    짧게 체크하고 돌아가도 됩니다.
-                    <br />
-                    생각이 있다면 같은 자리에서 이어 써 보세요.
-                  </p>
+                  <h2>오늘 공부한 것을 남겨 주세요.</h2>
+                  <p>주제를 고르고 공부함을 체크하세요. 글은 필요할 때 함께 남길 수 있습니다.</p>
                 </div>
                 <div className="actions">
                   <Button variant="primary" onClick={() => go("/record")}>
@@ -1463,9 +1456,7 @@ function RecordForm({
           ))}
       </section>
       <section className="record-compose">
-        <p className="muted">
-          내용 없이 저장해도 됩니다. 일부만 했거나 막힌 것도 공부한 기록입니다.
-        </p>
+        {form.selectedIds.length > 0 && <p className="muted record-help">일부만 했거나 막혔어도 남겨 주세요. 글은 선택입니다.</p>}
         {form.selectedIds.length > 1 && (
           <Button
             onClick={() =>
@@ -1523,8 +1514,8 @@ function RecordForm({
         ))}
         {!form.selectedIds.length && (
           <EmptyState
-            title="주제를 고르면 바로 기록할 수 있습니다"
-            message="여러 주제를 함께 골라도 글과 체크는 각 주제에 남습니다."
+            title="공부한 주제를 골라 주세요"
+            message="여러 주제를 함께 기록할 수 있습니다. 글 없이 공부함만 남겨도 됩니다."
           />
         )}
         <details className="date-details">
