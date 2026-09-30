@@ -50,9 +50,10 @@ export function PersonalSpace({ onDemo, renderWorkspace }: { onDemo: () => void;
   </Card></main>;
 }
 function SignIn({ client }: { client: SupabaseClient }) {
-  const [email, setEmail] = useState(''), [password, setPassword] = useState(''), [busy, setBusy] = useState(false), [error, setError] = useState(''), [notice, setNotice] = useState('');
+  const [email, setEmail] = useState(''), [password, setPassword] = useState(''), [creating, setCreating] = useState(false), [busy, setBusy] = useState(false), [error, setError] = useState(''), [notice, setNotice] = useState('');
   async function submit(create = false) {
     if (busy) return;
+    if (create && password.length < 6) { setError('비밀번호를 6자 이상 입력해 주세요.'); return; }
     setBusy(true); setError(''); setNotice('');
     try {
       const { data, error } = create ? await client.auth.signUp({ email, password, options: { emailRedirectTo: `${location.origin}${import.meta.env.BASE_URL}?space=personal` } }) : await client.auth.signInWithPassword({ email, password });
@@ -62,10 +63,11 @@ function SignIn({ client }: { client: SupabaseClient }) {
     } catch { setError(create ? '가입하지 못했습니다. 이메일·비밀번호를 확인하거나 잠시 후 다시 시도해 주세요.' : '로그인하지 못했습니다. 이메일·비밀번호와 연결 상태를 확인해 주세요.'); }
     finally { setBusy(false); }
   }
-  return <form onSubmit={event => { event.preventDefault(); void submit(); }}><p>로그인하면 이 공간의 기록을 서버에 저장합니다. 시연 기록은 자동으로 옮기지 않습니다.</p>
+  return <form onSubmit={event => { event.preventDefault(); void submit(creating); }}><p>로그인하면 이 공간의 기록을 서버에 저장합니다. 시연 기록은 자동으로 옮기지 않습니다.</p>
+    {creating && <p>이메일과 6자 이상 비밀번호로 계정을 만듭니다. 가입 후 이메일로 받은 확인 링크를 열어 주세요.</p>}
     <Input label="이메일" type="email" autoComplete="email" required value={email} onChange={event => setEmail(event.target.value)} />
-    <Input label="비밀번호" type="password" autoComplete="current-password" required minLength={6} value={password} onChange={event => setPassword(event.target.value)} />
-    <div className="actions"><Button variant="primary" type="submit" disabled={busy}>{busy ? '연결 중…' : '로그인'}</Button><Button type="button" disabled={busy || !email || password.length < 6} onClick={() => { void submit(true); }}>처음 사용하기</Button></div>
+    <Input label={creating ? "비밀번호 (6자 이상)" : "비밀번호"} type="password" autoComplete={creating ? "new-password" : "current-password"} required minLength={creating ? 6 : undefined} value={password} onChange={event => setPassword(event.target.value)} />
+    <div className="actions"><Button variant="primary" type="submit" disabled={busy}>{busy ? '연결 중…' : creating ? '계정 만들기' : '로그인'}</Button><Button type="button" disabled={busy} onClick={() => { setCreating(value => !value); setError(''); setNotice(''); }}>{creating ? '로그인으로 돌아가기' : '처음 사용하기'}</Button></div>
     {error && <p role="alert">{error}</p>}{notice && <p role="status">{notice}</p>}
   </form>;
 }

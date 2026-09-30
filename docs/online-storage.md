@@ -4,7 +4,7 @@
 
 ## 실제 연결
 
-- 프론트엔드: 이메일 로그인/가입, 사용자별 공간·초안·최근 위치 분리, 기존 과목/목차/공부 기록/서술/메모 입력, 서버 저장 상태·재시도·다시 불러오기·보관본 다운로드·로그아웃.
+- 프론트엔드: 이메일 로그인/가입(‘처음 사용하기’ 즉시 진입·계정 만들기 제출에서 검증), 사용자별 공간·초안·최근 위치 분리, 기존 과목/목차/공부 기록/서술/메모 입력, 서버 저장 상태·재시도·다시 불러오기·보관본 다운로드·로그아웃.
 - 명령: UI는 StudyRepository.execute로 먼저 변경과 미전송 명령을 같은 로컬 저장에 보관합니다. 서버 응답을 받은 뒤만 ‘서버에 저장했습니다’로 표시합니다. 임의 snapshot을 서버에 보내 덮어쓰지 않습니다.
 - 서버: Auth /user가 확인한 userId만 사용하고 personal/test namespace만 허용합니다. 동일 도메인 명령·버전 검사를 거쳐 study_commit 트랜잭션에서 사용자/namespace 잠금, sequence 조건, opId별 동일 payload, 원장과 operation receipt를 함께 저장합니다.
 - DB: auth.users FK, 두 테이블의 owner RLS, authenticated 직접 쓰기/RPC 권한 거부, service_role만 commit 허용. service_role은 서버 환경 변수에서만 사용하고 프론트에는 공개 URL·publishable key만 있습니다.
