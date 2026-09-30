@@ -214,6 +214,19 @@ nav a[aria-current="page"] {
 .quick-topic p {
   margin-bottom: var(--space-1);
 }
+.quick-topic > div {
+  min-inline-size: 0;
+  flex: 1;
+}
+.recent-record-preview {
+  display: block;
+  margin-block-start: var(--space-1);
+  color: var(--color-muted);
+  font-size: var(--type-caption-size);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 .quick-topic button {
   flex-shrink: 0;
 }

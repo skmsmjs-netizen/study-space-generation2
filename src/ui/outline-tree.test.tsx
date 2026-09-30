@@ -69,9 +69,16 @@ describe('outline navigation', () => {
       ...node(id, null), targetId: 'topic', body: '원문', sessionId: id,
       done, dateEvidence: { kind: 'unknown' }, trace: {},
     });
-    renderTree([node('topic', null)], [makeRecord('done', true), makeRecord('note', false),
-      { ...makeRecord('deleted', true), deletedAt: '2026-09-30' }]);
-    expect(screen.getByRole('link')).toHaveAccessibleName('주제 수학 / topic · 공부함 기록 1회');
+    renderTree([node('topic', null), node('note-only', null), node('check-only', null), node('deleted-only', null)], [
+      makeRecord('done', true), makeRecord('note', false),
+      { ...makeRecord('only-note', false), targetId: 'note-only' },
+      { ...makeRecord('only-check', false), targetId: 'check-only', body: '', trace: { R1: { status: 'checked' } } },
+      { ...makeRecord('deleted', true), targetId: 'deleted-only', deletedAt: '2026-09-30' },
+    ]);
+    expect(screen.getByRole('link', { name: '주제 수학 / topic · 기록 있음 · 공부함 기록 1회' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: '주제 수학 / note-only · 기록 있음 · 공부함 기록 0회' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: '주제 수학 / check-only · 기록 있음 · 공부함 기록 0회' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: '주제 수학 / deleted-only · 공부함 기록 0회' })).not.toHaveTextContent('기록 있음');
   });
 
   it('preserves empty-state rendering and URL-encodes original stable IDs', () => {

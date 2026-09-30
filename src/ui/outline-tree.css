@@ -21,3 +21,9 @@
 .outline-flat .row-tail {
   flex-shrink: 0;
 }
+.outline-flat .outline-record-presence {
+  flex-shrink: 0;
+  color: var(--color-muted);
+  font-size: var(--type-caption-size);
+  white-space: nowrap;
+}

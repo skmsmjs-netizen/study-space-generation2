@@ -198,6 +198,14 @@ function Workspace({ repository }: { repository: DemoRepository }) {
   );
   const topics = shownNodes.filter((n) => n.role === "topic");
   const records = active(data.records);
+  // Preview registered writing; editing an older record does not make it a new study.
+  const latestWrittenRecords = new Map<string, StudyRecord>();
+  for (const record of records) {
+    if (!record.body.trim()) continue;
+    const previous = latestWrittenRecords.get(record.targetId);
+    if (!previous || record.createdAt >= previous.createdAt)
+      latestWrittenRecords.set(record.targetId, record);
+  }
   const searching = route === "/search" && Boolean(query.trim());
   const searchNarratives = searching ? active(data.narratives) : [];
   const matchingSubjects = searching ? shownSubjects.filter(s =>
@@ -648,6 +656,12 @@ function Workspace({ repository }: { repository: DemoRepository }) {
                           <a className="topic-title" href={`#/node/${t.id}`}>
                             {t.name}
                           </a>
+                          {latestWrittenRecords.has(t.id) && (
+                            <a className="recent-record-preview" href={`#/node/${encodeURIComponent(t.id)}`}
+                              aria-label={`${t.name} 최근 남긴 글 보기`}>
+                              최근 남긴 글: {latestWrittenRecords.get(t.id)!.body.trim().replace(/\s+/g, " ")}
+                            </a>
+                          )}
                         </div>
                         <Button
                           onClick={() =>

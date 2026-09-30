@@ -23,19 +23,23 @@ export function OutlineTree({ nodes, records, subjectId, subjectName, parentId =
     }
     return result;
   }, [records, subjectId]);
+  const recorded = useMemo(() => new Set(records
+    .filter(record => !record.deletedAt && record.subjectId === subjectId)
+    .map(record => record.targetId)), [records, subjectId]);
   if (!rows.length) return empty;
   return (
     <ul ref={list} className="outline-list outline-flat" aria-label={`${subjectName} 목차`}>
       {rows.map(({ node, depth, path, duplicateName, duplicatePath }, index) => {
         const fullPath = [subjectName, ...path].join(' / ');
         const count = counts.get(node.id) ?? 0;
+        const hasRecord = node.role === 'topic' && recorded.has(node.id);
         return (
           <li key={node.id} style={{ '--outline-indent': Math.min(depth, 3) } as CSSProperties}>
             <a
               className={`node-link role-${node.role}`}
               href={`#/node/${encodeURIComponent(node.id)}`}
               title={fullPath}
-              aria-label={`${roleLabels[node.role]} ${fullPath}${duplicatePath ? ` · 구분 ID: ${node.id}` : ''} · 공부함 기록 ${count}회`}
+              aria-label={`${roleLabels[node.role]} ${fullPath}${duplicatePath ? ` · 구분 ID: ${node.id}` : ''}${hasRecord ? ' · 기록 있음' : ''} · 공부함 기록 ${count}회`}
               onKeyDown={event => {
                 if (event.nativeEvent.isComposing || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
                 let next: number | undefined;
@@ -56,6 +60,7 @@ export function OutlineTree({ nodes, records, subjectId, subjectName, parentId =
                 {(duplicateName || depth >= 3) && <span className="outline-path">{fullPath}</span>}
                 {duplicatePath && <span className="outline-path">구분 ID: {node.id}</span>}
               </span>
+              {hasRecord && <span className="outline-record-presence" aria-hidden="true">기록 있음</span>}
               <span className="row-tail" aria-hidden="true">{count || '—'}</span>
             </a>
           </li>
