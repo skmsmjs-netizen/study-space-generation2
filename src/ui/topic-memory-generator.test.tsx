@@ -195,3 +195,28 @@ it('retains a completed response after leaving the screen instead of starting a 
   expect(screen.getByLabelText('1번 질문')).toHaveValue('늦게 도착한 질문');
   expect(generateTopicMemory).toHaveBeenCalledTimes(1);
 });
+
+it('reports an empty diagnostic without claiming answers were made and preserves it after reopening', async () => {
+  vi.mocked(generateTopicMemory).mockImplementation(async (_owner, input) => ({
+    id: 'missing-scope',
+    at: '2026-10-01T00:00:00Z',
+    model: 'test',
+    input,
+    cards: [],
+    diagnostics: [{ kind: 'insufficient-evidence', message: '교수님의 시험 공지가 없어 출제 확정을 확인할 수 없습니다.', questions: ['시험 공지를 확인해 주세요.'] }],
+  }));
+  const repo = repository();
+  let view = render(<Harness repo={repo} />);
+  fireEvent.click(screen.getByRole('button', { name: 'GPT로 암기항목 만들기' }));
+  fireEvent.click(screen.getByRole('button', { name: '이 목차로 생성' }));
+  await screen.findByText('등록할 문항을 만들지 않았습니다. 아래 안내를 확인해 주세요.');
+  expect(screen.queryByText('질문과 기준 답안을 만들었습니다. 확인한 항목을 등록해 주세요.')).toBeNull();
+  expect(screen.queryByText('일반 지식으로 만든 답안입니다. 수업의 표기와 조건에 맞는지 확인하거나 고쳐 주세요.')).toBeNull();
+  expect(screen.getByRole('button', { name: '확인한 항목 등록' })).toBeDisabled();
+  view.unmount();
+  view = render(<Harness repo={repo} />);
+  expect(screen.getByText('교수님의 시험 공지가 없어 출제 확정을 확인할 수 없습니다.')).toBeInTheDocument();
+  expect(screen.getByRole('button', { name: '확인한 항목 등록' })).toBeDisabled();
+  expect(repo.getSnapshot().memoryCards ?? []).toHaveLength(0);
+  expect(generateTopicMemory).toHaveBeenCalledTimes(1);
+});

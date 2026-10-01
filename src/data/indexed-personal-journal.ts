@@ -1,3 +1,4 @@
+import { isStorageQuotaError } from './storage-errors';
 import { DomainError } from '../domain/model';
 import { PersonalRepository, personalJournalKey, type OnlineTransport, type PersonalJournal, type JournalRecovery } from './personal-repository';
 import type { ServerSnapshot } from '../server/command-handler';
@@ -13,10 +14,14 @@ export class IndexedPersonalJournal implements PersonalJournal {
   private flight: Promise<void> | null = null;
   private fallback: string | null;
   private preservePrevious: boolean;
+  private indexedOnly = false;
+  private legacyAtFallback: string | null = null;
   private constructor(private db: IDBDatabase, private storage: Pick<Storage, 'getItem' | 'setItem'>,
     private key: string, private committed: string | null, private recoveries: JournalRecovery[]) {
     const legacy = storage.getItem(key);
     this.fallback = legacy === null ? committed : null;
+    this.indexedOnly = legacy === null && committed !== null;
+    this.legacyAtFallback = legacy;
     this.preservePrevious = legacy !== null && committed !== null && legacy !== committed;
   }
   static async open(storage: Pick<Storage, 'getItem' | 'setItem'>, key: string, factory: IDBFactory = indexedDB) {
@@ -49,13 +54,21 @@ export class IndexedPersonalJournal implements PersonalJournal {
   }
   getItem(key: string) {
     if (key !== this.key) throw new DomainError('OWNERSHIP', '이 공간의 저장 키가 아닙니다.');
-    return this.storage.getItem(key) ?? this.fallback;
+    const legacy = this.storage.getItem(key);
+    if (this.indexedOnly && legacy === this.legacyAtFallback) return this.fallback;
+    return legacy ?? this.fallback;
   }
   setItem(key: string, value: string) {
     if (key !== this.key) throw new DomainError('OWNERSHIP', '이 공간의 저장 키가 아닙니다.');
-    // A failed legacy write must not publish or enqueue a new DB snapshot.
-    this.storage.setItem(key, value);
-    this.fallback = null;
+    if (!this.indexedOnly) {
+      try { this.storage.setItem(key, value); this.fallback = null; }
+      catch (error) {
+        if (!isStorageQuotaError(error)) throw error;
+        this.legacyAtFallback = this.storage.getItem(key);
+        this.indexedOnly = true;
+      }
+    }
+    if (this.indexedOnly) this.fallback = value;
     this.desired = value;
     void this.flush().catch(() => { /* Repository reports errors and retries. */ });
   }
@@ -63,6 +76,24 @@ export class IndexedPersonalJournal implements PersonalJournal {
     if (this.flight) return this.flight;
     this.flight = this.drain().finally(() => { this.flight = null; });
     return this.flight;
+  }
+  isDurable = () => this.desired === null || this.desired === this.committed;
+  /** Only release a legacy slot after the complete original/outbox is committed. */
+  async relocateLegacy() {
+    const raw = this.storage.getItem(this.key);
+    if (raw === null) return;
+    this.indexedOnly = true; this.legacyAtFallback = raw;
+    this.fallback = raw; this.desired = raw;
+    await this.flush();
+    this.releaseLegacySlot();
+  }
+  private releaseLegacySlot() {
+    const storage = this.storage as Pick<Storage, 'getItem' | 'setItem'> & Partial<Pick<Storage, 'removeItem'>>;
+    if (this.indexedOnly && this.legacyAtFallback !== null && storage.getItem(this.key) === this.legacyAtFallback) {
+      // No awaits between comparison and removal; newer originals are never removed.
+      storage.removeItem?.(this.key);
+      this.legacyAtFallback = storage.getItem(this.key);
+    }
   }
   getRecoveryCopies() { return this.recoveries.slice(); }
   private async drain() {
@@ -90,9 +121,25 @@ export class IndexedPersonalJournal implements PersonalJournal {
       this.committed = raw;
       if (recovery) this.recoveries.push(recovery);
       this.preservePrevious = false;
+      this.releaseLegacySlot();
     }
   }
   close() { void this.flush().finally(() => this.db.close()).catch(() => {}); }
+}
+
+/** Discover this owner's DB-only outboxes as well as legacy localStorage keys. */
+export async function indexedPersonalKeys(prefix: string, factory: IDBFactory | undefined = globalThis.indexedDB): Promise<string[]> {
+  if (!factory) return [];
+  const db = await new Promise<IDBDatabase>((resolve, reject) => {
+    const request = factory.open(DATABASE, 1);
+    request.onupgradeneeded = () => { request.result.createObjectStore(STORE); request.result.createObjectStore(RECOVERY); };
+    request.onsuccess = () => resolve(request.result); request.onerror = () => reject(request.error);
+  });
+  try { return await new Promise<string[]>((resolve, reject) => {
+    const transaction = db.transaction(STORE, 'readonly'), request = transaction.objectStore(STORE).getAllKeys();
+    transaction.oncomplete = () => resolve(request.result.filter((key): key is string => typeof key === 'string' && key.startsWith(prefix)));
+    transaction.onabort = () => reject(transaction.error);
+  }); } finally { db.close(); }
 }
 
 export async function openPersonalRepository(storage: Pick<Storage, 'getItem' | 'setItem'>, transport: OnlineTransport,
