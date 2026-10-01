@@ -69,7 +69,9 @@ export class PersonalRepository implements StudyRepository {
         if (saved.conflict) this.verify(saved.conflict);
         const replay = saved.pending.reduce((state, command) => applyCommand(state, command), saved.base.data);
         if (JSON.stringify(replay) !== JSON.stringify(saved.local)) throw Error();
-        if (saved.restoredBackup && JSON.stringify(saved.local) !== JSON.stringify(server.data)) {
+        if (saved.restoredBackup && cached) {
+          this.envelope = { ...saved, conflict: undefined };
+        } else if (saved.restoredBackup && JSON.stringify(saved.local) !== JSON.stringify(server.data)) {
           // Explicit local backup restoration must not disappear on the first online load,
           // or upload old data automatically. Keep both versions for the normal conflict UI.
           this.envelope = { ...saved, conflict: server };
@@ -77,6 +79,7 @@ export class PersonalRepository implements StudyRepository {
           // Recover acknowledged operations after closing during a lost response.
           this.envelope = this.recoverAcknowledged(saved, server) ?? this.rebaseWindow(saved, server) ?? { ...saved, conflict: server };
         } else this.envelope = saved.pending.length ? saved : { ...saved, base: server, local: server.data, conflict: undefined };
+        if (!cached && this.envelope.restoredBackup && !this.envelope.conflict && JSON.stringify(this.envelope.local) === JSON.stringify(server.data)) this.envelope = { ...this.envelope, restoredBackup: undefined };
       } catch { throw new DomainError('CORRUPT_PERSONAL', '이 기기의 개인 자료를 읽지 못했습니다. 저장된 원문을 덮어쓰지 않았습니다.'); }
     }
     this.status = this.envelope.conflict ? { phase: 'conflict', pending: this.envelope.pending.length, message: '다른 기기의 변경과 이 기기의 글을 모두 보존했습니다.' } : this.envelope.pending.length ? { phase: 'pending', pending: this.envelope.pending.length, message: '이 기기에 저장됨 · 서버 전송 대기' } : { phase: 'saved', pending: 0, message: '서버에서 불러옴' };
@@ -168,6 +171,7 @@ export class PersonalRepository implements StudyRepository {
   private update(status: SaveStatus, changed = false) { if (!changed && JSON.stringify(this.status) === JSON.stringify(status)) return; this.status = status; this.listeners.forEach(listener => listener()); }
   execute(command: Command): AppState {
     if (this.restoring) throw Error('백업을 복원하고 있습니다. 복원한 공간을 다시 연 뒤 작성해 주세요.');
+    if (this.envelope.restoredBackup && !this.envelope.conflict) throw Error('복원한 백업과 서버 자료를 확인하고 있습니다. 저장 상태를 확인한 뒤 작성해 주세요.');
     const started = performance.now();
     let success = false;
     try {
@@ -191,6 +195,12 @@ export class PersonalRepository implements StudyRepository {
   /** Refresh and writes share one flight. A response can never replace edits made while it was in transit. */
   private acceptServer(server: ServerSnapshot) {
     this.verify(server);
+    if (this.envelope.restoredBackup && JSON.stringify(this.envelope.local) !== JSON.stringify(server.data)) {
+      this.persist({ ...this.envelope, conflict: server });
+      this.update({ phase: 'conflict', pending: this.envelope.pending.length, message: '복원한 백업과 서버 자료를 모두 보존했습니다. 저장 상태에서 확인해 주세요.' }, true);
+      return;
+    }
+    if (this.envelope.restoredBackup) this.envelope = { ...this.envelope, restoredBackup: undefined };
     if (server.sequence < this.envelope.base.sequence) throw new DomainError('STALE_SERVER', '서버의 최신 기록을 확인하지 못했습니다. 이 기기의 글은 남아 있습니다.');
     if (this.envelope.pending.length) {
       if (server.sequence === this.envelope.base.sequence) return;
