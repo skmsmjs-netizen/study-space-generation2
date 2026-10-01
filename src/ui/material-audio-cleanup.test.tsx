@@ -39,7 +39,7 @@ it('preserves legacy raw audio and exact text through failed save, remount and s
   await writeTranscriptionCheckpoint(state, { version: TRANSCRIPTION_VERSION, audioHash: audio.sha256,
     duration: 30, nextWindow: 1, complete: true, segments: [{ start: 0, end: 30, text: '기계 전사문' }], editedText: '확인한 전사문 · 조건과 예외' });
   await writeMaterialDraft(state, 'new', { materialId: 'synthetic-material', baseVersion: 0,
-    updatedAt: '2026-10-01T00:00:00Z', content: { title: '합성 전사 정리', subjectId: 'synthetic-subject', topicId: null, sourceText: '기존 원문\n예외 보존', audio, results: [] } });
+    updatedAt: '2026-10-01T00:00:00Z', audioCleanup: { audio, text: '확인한 전사문 · 조건과 예외' }, content: { title: '합성 전사 정리', subjectId: 'synthetic-subject', topicId: null, sourceText: '기존 원문\n예외 보존', audio, results: [] } });
   let view = render(<StudyMaterials data={state} repository={repository} onSaved={() => undefined} materialId="new" />);
   await screen.findByDisplayValue('합성 전사 정리');
   expect(screen.queryByRole('button', { name: '합성 전사 확인' })).toBeNull();
@@ -51,6 +51,7 @@ it('preserves legacy raw audio and exact text through failed save, remount and s
   await screen.findByText('합성 서버 저장 실패');
   expect(await readAudio(state, audio)).not.toBeNull();
   expect((await readMaterialDraft(state, 'new'))?.content.audio?.sha256).toBe(audio.sha256);
+  expect((await readMaterialDraft(state, 'new'))?.audioCleanup?.audio.sha256).toBe(audio.sha256);
   view.unmount();
   view = render(<StudyMaterials data={state} repository={repository} onSaved={() => undefined} materialId="new" />);
   await screen.findByDisplayValue('합성 전사 정리');
