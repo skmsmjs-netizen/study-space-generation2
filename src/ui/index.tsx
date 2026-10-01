@@ -65,14 +65,14 @@ const focusableSelector = 'button:not(:disabled), [href], input:not(:disabled):n
 export function Modal({ open, title, onClose, children, className }: ModalProps) {
   const titleId = useId(), dialog = useRef<HTMLDivElement>(null), close = useRef(onClose);
   const backdropPress = useRef<{ id: number; x: number; y: number; moved: boolean } | null>(null);
-  const openingControl = useRef<HTMLElement | null>(null);
+  const openingControl = useRef<HTMLElement | SVGElement | null>(null);
   close.current = onClose;
   useEffect(() => {
     if (open) return;
     openingControl.current = null;
     const remember = (event: PointerEvent) => {
       const target = event.target instanceof Element ? event.target.closest(focusableSelector) : null;
-      openingControl.current = target instanceof HTMLElement ? target : null;
+      openingControl.current = target instanceof HTMLElement || target instanceof SVGElement ? target : null;
     };
     const clear = () => { openingControl.current = null; };
     // Safari touch activation need not focus the button that opens a dialog.
@@ -88,7 +88,7 @@ export function Modal({ open, title, onClose, children, className }: ModalProps)
   useEffect(() => {
     if (!open || !dialog.current) return;
     const original = openingControl.current?.isConnected ? openingControl.current
-      : document.activeElement instanceof HTMLElement ? document.activeElement : null;
+      : document.activeElement instanceof HTMLElement || document.activeElement instanceof SVGElement ? document.activeElement : null;
     openingControl.current = null;
     const overflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
