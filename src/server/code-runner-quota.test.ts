@@ -16,7 +16,7 @@ beforeAll(async () => {
       'utf8',
     ),
   );
-  await db.exec(await readFile(new URL('../../supabase/migrations/20261001160000_code_terminal_lease.sql', import.meta.url), 'utf8'));
+  await db.exec(await readFile(new URL('../../supabase/migrations/20261001083558_code_terminal_lease.sql', import.meta.url), 'utf8'));
 });
 beforeEach(async () => {
   await db.exec(
