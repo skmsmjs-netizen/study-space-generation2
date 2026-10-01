@@ -64,13 +64,13 @@ function mockResult() {
     ],
   }));
 }
-it('opens subscription settings in place and preserves the selected scope and guidance without generating', async () => {
+it('opens API settings in place and preserves the selected scope and guidance without generating', async () => {
   const repo = repository();
   render(<Harness repo={repo} />);
   fireEvent.click(screen.getByRole('button', { name: 'GPT로 암기항목 만들기' }));
   fireEvent.change(screen.getByLabelText('출제 초점·난도 (선택)'), { target: { value: '공식의 적용 조건' } });
   fireEvent.click(screen.getByRole('button', { name: 'GPT 연결 확인' }));
-  expect(await screen.findByRole('region', { name: 'GPT 연결 설정' })).toHaveTextContent('Study Space');
+  expect(await screen.findByRole('region', { name: 'GPT 연결 설정' })).toHaveTextContent('OpenAI API');
   expect(screen.getByLabelText('출제 초점·난도 (선택)')).toHaveValue('공식의 적용 조건');
   expect(screen.getByLabelText('GPT 출제 주제')).toHaveValue('t');
   expect(generateTopicMemory).not.toHaveBeenCalled();
