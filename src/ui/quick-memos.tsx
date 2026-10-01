@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Button, EmptyState, ErrorState, Modal, Select, Textarea } from './index';
+import { isViewPage, isViewText, useViewContext } from './use-view-context';
 import type { AppState, Command, MemoStroke, QuickMemo } from '../domain/model';
 import { MEMO_WIDTH, MEMO_HEIGHT } from '../domain/memo';
 import { storagePrefix, type StudyRepository } from '../data/repository';
@@ -24,8 +25,8 @@ export function QuickMemos({ data, repository, onSaved, ownerId, memoId, compact
   const [editing, setEditing] = useState<string | null>(memoId ?? null);
   const [error, setError] = useState('');
   const view = `memos:${trash ? 'trash' : 'active'}:${ownerId ?? 'all'}`;
-  const [query,setQuery]=useState('');
-  const [limit,setLimit]=useState(40);
+  const [query, setQuery] = useViewContext(data, `${view}:query`, '', isViewText);
+  const [limit, setLimit] = useViewContext(data, `${view}:limit`, 40, isViewPage);
   const [trashId, setTrashId] = useState<string | null>(null);
   const [restored, setRestored] = useState<string | null>(null);
   const all = (data.memos ?? []).filter(memo => Boolean(memo.deletedAt) === trash && (ownerId === undefined || memo.ownerId === ownerId))

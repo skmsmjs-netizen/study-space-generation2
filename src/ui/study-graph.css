@@ -6,7 +6,7 @@
 }
 .graph-toolbar {
   display: grid;
-  grid-template-columns: minmax(0, 2fr) repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
   align-items: end;
   gap: var(--space-3);
 }
@@ -17,24 +17,10 @@
   grid-column: 1 / -1;
 }
 .graph-toolbar select.ui-input {
-  /* Linux WebKit's native widget can paint its intrinsic option width outside
-     an otherwise bounded grid cell. Keep native select behavior and size its
-     surface in CSS; the shared grid row supplies its decorative arrow. */
-  appearance: none;
+  /* Bound native option text in WebKit while keeping the full option list usable. */
+  max-inline-size: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-inline-size: 100%;
-  padding-inline-end: var(--space-6);
-  grid-column: 1;
-  grid-row: 2;
-}
-.graph-toolbar .ui-field:has(select.ui-input)::after {
-  content: '⌄';
-  grid-column: 1;
-  grid-row: 2;
-  place-self: center end;
-  margin-inline-end: var(--space-3);
-  pointer-events: none;
 }
 .graph-actions {
   display: flex;
@@ -54,6 +40,8 @@
   overflow: hidden;
 }
 .graph-stage {
+  contain: layout paint;
+  overflow: hidden;
   min-inline-size: 0;
   height: min(65vh, 680px);
   min-height: 390px;

@@ -21,6 +21,7 @@ export function WorkspaceSearch({
   onAllScopes: () => void;
 }) {
   const [attempt, setAttempt] = useState(0);
+  // biome-ignore lint/correctness/useExhaustiveDependencies: Explicit retry rereads retained storage even when the AppState reference is unchanged.
   const projection = useMemo(() => {
     try {
       return { entries: buildWorkspaceSearch(data, readLearningPlan(data).workspace), error: '' };

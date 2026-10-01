@@ -21,7 +21,7 @@ it('preserves pause and selected scenes after remount without changing study dat
   render(<StudyLandscapes data={data} />);
   expect(screen.getByRole('button', { name: '풍경 움직이기' })).toBeInTheDocument();
   expect(screen.getByRole('checkbox', { name: '물가' })).not.toBeChecked();
-  expect(document.querySelectorAll('.landscape-card')).toHaveLength(2);
+  expect(document.querySelectorAll('.pixel-layer')).toHaveLength(2);
   expect(data).toEqual(original);
 });
 it('separates owners and offers recovery when display preference storage fails', () => {
@@ -50,9 +50,9 @@ it('respects reduced motion and allows hiding every scene and restoring them', (
   expect(screen.getByRole('button', { name: '정지된 풍경' })).toBeDisabled();
   for (const name of ['작은 뜰', '물가', '산책길'])
     fireEvent.click(screen.getByRole('checkbox', { name }));
-  expect(document.querySelectorAll('.landscape-card')).toHaveLength(0);
+  expect(document.querySelectorAll('.pixel-layer')).toHaveLength(0);
   fireEvent.click(screen.getByRole('button', { name: '기본 풍경으로' }));
-  expect(document.querySelectorAll('.landscape-card')).toHaveLength(3);
+  expect(document.querySelectorAll('.pixel-layer')).toHaveLength(3);
 });
 
 it('also preserves the existing app motion preference', () => {

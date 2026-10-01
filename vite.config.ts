@@ -1,4 +1,5 @@
 import { configDefaults, defineConfig } from 'vitest/config';
+import { realpathSync } from 'node:fs';
 import { localStudyAIPlugin } from './scripts/study-ai-dev.ts';
 import react from '@vitejs/plugin-react';
 import { localCodeRunnerPlugin } from './scripts/code-runner.mjs';
@@ -9,7 +10,11 @@ export default defineConfig({
   plugins: [react(), localCodeRunnerPlugin(), localStudyAIPlugin()],
   base: process.env.PAGES_BASE || '/',
   // Verification copies and generated reports must not reload a live input form.
-  server: { watch: { ignored: ['**/work/**', '**/outputs/**'] } },
+  server: {
+    // Worker imports can belong to an installed dependency runtime outside this checkout.
+    fs: { allow: ['.', realpathSync(new URL('./node_modules', import.meta.url))] },
+    watch: { ignored: ['**/work/**', '**/outputs/**'] },
+  },
   test: { environment: 'jsdom', setupFiles: ['./src/test-setup.ts'], css: true, hookTimeout: 60000,
     exclude: [...configDefaults.exclude, '**/work/**', '**/outputs/**'] },
 });

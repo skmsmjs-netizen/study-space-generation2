@@ -118,7 +118,7 @@ export function buildWorkspaceSearch(
   const plans = (data.learningPlans ?? []).filter(alive);
   const workspaces = plans.length
     ? plans.map((plan) => plan.workspace)
-    : legacyWorkspace
+    : legacyWorkspace?.userId === data.userId && legacyWorkspace.namespace === data.namespace
       ? [legacyWorkspace]
       : [];
   const codeOwners = new Map<string, string[]>();
