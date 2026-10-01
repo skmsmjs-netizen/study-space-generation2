@@ -9,9 +9,8 @@ import { compileProgram, profile, processEnvironment } from './code-runner.mjs';
 // node-pty is a terminal, not a security boundary: keep the existing OS sandbox.
 const MAX_INPUT = 200_000,
   MAX_OUTPUT = 100_000;
-export function attachCodeTerminal(server, { acquire, release, executionTimeoutMs = 120_000 }) {
-  if (!server) return;
-  // npm's macOS prebuilt helper is packaged without its executable bit.
+function ensurePtyHelperExecutable() {
+  // npm reinstall can replace this helper while the preview server remains running.
   if (process.platform === 'darwin') {
     const require = createRequire(import.meta.url);
     const helper = path.join(
@@ -22,6 +21,10 @@ export function attachCodeTerminal(server, { acquire, release, executionTimeoutM
     );
     if (existsSync(helper)) chmodSync(helper, 0o755);
   }
+}
+export function attachCodeTerminal(server, { acquire, release, executionTimeoutMs = 120_000 }) {
+  if (!server) return;
+  ensurePtyHelperExecutable();
   const sockets = new WebSocketServer({
     noServer: true,
     maxPayload: 1_500_000,
@@ -122,6 +125,7 @@ export function attachCodeTerminal(server, { acquire, release, executionTimeoutM
             execute: ({ command, args, directory, signal }) =>
               new Promise((resolve, reject) => {
                 try {
+                  ensurePtyHelperExecutable();
                   const sandboxArgs = [
                     '-p',
                     profile(directory, false),

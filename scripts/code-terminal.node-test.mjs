@@ -3,7 +3,8 @@ import assert from 'node:assert/strict';
 import { createServer } from 'node:http';
 import { WebSocket } from 'ws';
 import { attachCodeTerminal } from './code-terminal.mjs';
-import { mkdtemp, rm, writeFile } from 'node:fs/promises';
+import { chmod, mkdtemp, rm, writeFile } from 'node:fs/promises';
+import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 
@@ -34,8 +35,8 @@ test(
         const timer = setTimeout(() => {
           ws.terminate();
           reject(Error('Terminal test timed out'));
-        // The runner permits 30 seconds for compilation before PTY execution.
-        // Let that bounded result arrive instead of aborting a valid cold compile.
+          // The runner permits 30 seconds for compilation before PTY execution.
+          // Let that bounded result arrive instead of aborting a valid cold compile.
         }, 45000);
         let output = '',
           step = 0;
@@ -64,7 +65,29 @@ test(
         });
       });
     try {
+      await t.test(
+        'repairs a replaced PTY helper before another run without restarting the server',
+        async () => {
+          const require = createRequire(import.meta.url);
+          const helper = path.join(
+            path.dirname(require.resolve('node-pty/package.json')),
+            'prebuilds',
+            `darwin-${process.arch}`,
+            'spawn-helper',
+          );
+          try {
+            await chmod(helper, 0o644);
+            const result = await run('c', 'int main(){return 0;}');
+            assert.equal(result.outcome, 'success', result.error);
+          } finally {
+            await chmod(helper, 0o755);
+          }
+        },
+      );
       const examples = {
+        python: 'a=int(input("FIRST: ")); b=int(input("SECOND: ")); print("SUM="+str(a+b))',
+        javascript:
+          'const a=Number(prompt("FIRST: "));const b=Number(prompt("SECOND: "));console.log("SUM="+(a+b));',
         c: '#include <stdio.h>\nint main(){int a,b;printf("FIRST: ");scanf("%d",&a);printf("SECOND: ");scanf("%d",&b);printf("SUM=%d\\n",a+b);}',
         cpp: '#include <iostream>\nint main(){int a,b;std::cout<<"FIRST: ";std::cin>>a;std::cout<<"SECOND: ";std::cin>>b;std::cout<<"SUM="<<a+b<<std::endl;}',
         csharp:
@@ -91,6 +114,51 @@ test(
             assert.equal(result.mode, 'terminal');
           },
         );
+      for (const language of ['python', 'javascript']) {
+        await t.test(`${language}: Korean, EOF, syntax error, stop and recovery`, async () => {
+          const code =
+            language === 'python'
+              ? 'name=input("NAME: "); print("안녕하세요, "+name); print("EOF="+str(input() if False else not __import__("sys").stdin.read(1)))'
+              : 'const name=prompt("NAME: ");console.log("안녕하세요, "+name);console.log("EOF="+(readline()===null));';
+          const result = await run(language, code, (text, send, step) => {
+            if (!step && text.includes('NAME: ')) {
+              send({ type: 'input', text: '연습자\r' });
+              return 1;
+            }
+            if (step === 1 && text.includes('안녕하세요, 연습자')) {
+              send({ type: 'input', text: '\u0004' });
+              return 2;
+            }
+            return step;
+          });
+          assert.equal(result.outcome, 'success', result.error);
+          assert.match(result.output, /안녕하세요, 연습자/);
+          assert.match(result.output, /EOF=(True|true)/);
+          assert.equal(result.code, code);
+          const bad = await run(
+            language,
+            language === 'python' ? 'if True\n print(1)' : 'const value = ;',
+          );
+          assert.equal(bad.outcome, 'error');
+          assert.match(bad.error, /SyntaxError/);
+          const waiting = await run(
+            language,
+            language === 'python' ? 'input("WAIT: ")' : 'prompt("WAIT: ");',
+            (text, send, step) => {
+              if (!step && text.includes('WAIT:')) {
+                send({ type: 'cancel' });
+                return 1;
+              }
+              return step;
+            },
+          );
+          assert.equal(waiting.outcome, 'stopped');
+          assert.equal(
+            (await run(language, language === 'python' ? 'print(7)' : 'console.log(7);')).outcome,
+            'success',
+          );
+        });
+      }
       await t.test('UTF-8, terminal backspace and EOF reach the live process', async () => {
         const result = await run(
           'c',
@@ -197,6 +265,25 @@ test(
           }
         },
       );
+      for (const language of ['python', 'javascript']) {
+        await t.test(`${language}: denies private files, subprocesses and network`, async () => {
+          const fixture = await mkdtemp(path.join(tmpdir(), 'study-scripting-denied-'));
+          const file = path.join(fixture, 'private.txt');
+          try {
+            await writeFile(file, 'synthetic private data');
+            const code =
+              language === 'python'
+                ? `import os,socket\ndef denied(label, action):\n try:\n  action()\n  print(label+"=ALLOWED")\n except OSError:\n  print(label+"=DENIED")\ndenied("PRIVATE",lambda:open(${JSON.stringify(file)}).read())\ndenied("FORK",lambda:os.fork())\ndenied("NETWORK",lambda:socket.create_connection(("127.0.0.1",${server.address().port}),timeout=1))`
+                : `import {readFileSync} from 'node:fs';import {spawnSync} from 'node:child_process';import {createConnection} from 'node:net';\ntry {readFileSync(${JSON.stringify(file)});console.log('PRIVATE=ALLOWED');} catch {console.log('PRIVATE=DENIED');}\nconsole.log('FORK='+ (spawnSync('/usr/bin/true').error ? 'DENIED':'ALLOWED'));\nawait new Promise(resolve=>{const socket=createConnection({host:'127.0.0.1',port:${server.address().port}});socket.on('error',()=>{console.log('NETWORK=DENIED');resolve();});socket.on('connect',()=>{console.log('NETWORK=ALLOWED');socket.destroy();resolve();});});`;
+            const result = await run(language, code);
+            assert.equal(result.outcome, 'success', result.error);
+            for (const label of ['PRIVATE', 'FORK', 'NETWORK'])
+              assert.match(result.output, new RegExp(`${label}=DENIED`));
+          } finally {
+            await rm(fixture, { recursive: true, force: true });
+          }
+        });
+      }
     } finally {
       await new Promise((resolve) => server.close(resolve));
     }

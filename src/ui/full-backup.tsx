@@ -3,15 +3,32 @@ import type { StudyRepository } from '../data/repository';
 import { checkFullBackup, createFullBackup, priorRestoreBackups, recoverInterruptedBackup, stageFullBackup, cancelPlannedBackup, type CheckedBackup } from '../data/full-backup';
 import { Button, Card, Checkbox, ErrorState, Input, LoadingState } from './index';
 
-function download(file: Blob, name: string) {
-  const url = URL.createObjectURL(file), anchor = document.createElement('a');
-  anchor.href = url; anchor.download = name; anchor.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
+function requestDownload(url: string, name: string) {
+  const anchor = document.createElement('a');
+  anchor.href = url; anchor.download = name;
+  document.body.append(anchor);
+  try { anchor.click(); } finally { anchor.remove(); }
 }
 const errorText = (error: unknown) => error instanceof Error ? error.message : '자료를 보관하지 못했습니다. 원본은 유지했습니다. 다시 시도해 주세요.';
 export function FullBackup({ repository }: { repository: StudyRepository }) {
   const owner = repository.getSnapshot();
   const [busy, setBusy] = useState(false), [error, setError] = useState(''), [notice, setNotice] = useState('');
   const [checked, setChecked] = useState<CheckedBackup | null>(null), [confirmed, setConfirmed] = useState(false), [restored, setRestored] = useState(false);
+  const ownerKey = `${owner.userId}:${owner.namespace}`;
+  const [prepared, setPrepared] = useState<{ url: string; name: string; ownerKey: string } | null>(null);
+  // A blocked download can be retried from a real link without rebuilding the archive.
+  // Keep its URL alive until replacement/unmount; never infer disk persistence from a click.
+  useEffect(() => () => { if (prepared) URL.revokeObjectURL(prepared.url); }, [prepared]);
+  useEffect(() => {
+    if (prepared && prepared.ownerKey !== ownerKey) setPrepared(null);
+  }, [ownerKey, prepared]);
+  function download(file: Blob, name: string) {
+    const url = URL.createObjectURL(file);
+    setPrepared({ url, name, ownerKey });
+    setNotice('백업 파일을 준비했습니다. 다운로드 목록에서 저장을 확인해 주세요. 파일이 없으면 아래에서 다시 저장할 수 있습니다.');
+    try { requestDownload(url, name); }
+    catch { setNotice('백업 파일을 준비했습니다. 아래에서 파일을 저장해 주세요.'); }
+  }
   useEffect(() => {
     const areas = Array.from(document.querySelectorAll<HTMLElement>('.sidebar, .topbar, .bottom-nav'));
     for (const area of areas) area.inert = busy || restored;
@@ -27,7 +44,7 @@ export function FullBackup({ repository }: { repository: StudyRepository }) {
   async function backup() {
     setBusy(true); setError(''); setNotice('');
     let resume: (() => void) | undefined;
-    try { resume = await repository.pauseForRestore?.(); const bytes = await createFullBackup(owner, undefined, repository.getBackupKey?.()); download(new Blob([bytes.slice().buffer], { type: 'application/zip' }), `study-backup-${new Date().toISOString().slice(0,10)}.zip`); setNotice('공부 기록·첨부·초안·기기 설정을 한 파일로 내려받았습니다.'); }
+    try { resume = await repository.pauseForRestore?.(); const bytes = await createFullBackup(owner, undefined, repository.getBackupKey?.()); download(new Blob([bytes.slice().buffer], { type: 'application/zip' }), `study-backup-${new Date().toISOString().slice(0,10)}.zip`); }
     catch (error) { setError(errorText(error)); } finally { resume?.(); setBusy(false); }
   }
   async function review(file: File) {
@@ -62,6 +79,11 @@ export function FullBackup({ repository }: { repository: StudyRepository }) {
     </Card>}
     {busy && <LoadingState message="자료를 확인하고 보관하고 있습니다…" />}
     {error && <p role="alert">{error}</p>}{notice && <p role="status">{notice}</p>}
+    {prepared?.ownerKey === ownerKey && !busy && !restored && <Card><h2>준비된 백업 파일</h2>
+      <p>{prepared.name}</p>
+      <a className="ui-button ui-button--secondary" href={prepared.url} download={prepared.name}>백업 파일 다시 저장</a>
+      <p>이 화면에서 같은 파일을 다시 저장할 수 있습니다. 다운로드를 지원하지 않는 앱에서는 Safari나 Chrome으로 공부 공간을 열어 주세요.</p>
+    </Card>}
     {restored && <Button onClick={() => location.reload()}>다시 열어 복원하기</Button>}
     {prior.length > 0 && <Card><h2>복원 전 보관본</h2><p>복원하기 전 이 기기에 있던 자료입니다. 필요할 때 내려받아 같은 복원 절차로 되돌릴 수 있습니다.</p>{prior.map(row => <p key={row.id}><Button disabled={busy} variant="quiet" onClick={() => download(row.file, `study-before-restore-${row.id}.zip`)}>{new Date(row.createdAt).toLocaleString('ko-KR')} 보관본 내려받기</Button></p>)}</Card>}
   </section>;

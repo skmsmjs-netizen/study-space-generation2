@@ -613,10 +613,16 @@ export function CodeExampleEditor({
         </option>
         <option value="batch">입력값을 미리 적어 실행</option>
       </Select>
-      {!terminalAvailable && ['c', 'cpp', 'csharp'].includes(content.language) && (
+      {!terminalAvailable && (
         <p className="ui-hint">
-          현재 접속에서는 입력값을 미리 적어 실행할 수 있습니다. 실행 중 입력은 터미널 서버 연결이
-          필요합니다.
+          현재 접속에서는 입력값을 미리 적어 실행할 수 있습니다. 실행 중 입력하는 터미널은
+          Mac의 로컬 코딩 화면에서 사용합니다.
+        </p>
+      )}
+      {interactive && content.language === 'javascript' && (
+        <p className="ui-hint">
+          console.log()로 출력하고 prompt('입력 안내') 또는 readline()으로 값을 받습니다.
+          Node.js의 표준 입출력도 사용할 수 있습니다.
         </p>
       )}
       <div className="code-input-section" ref={inputSection}>
@@ -629,7 +635,7 @@ export function CodeExampleEditor({
           hint={
             interactive
               ? '터미널 실행에서는 아래 터미널에 직접 입력합니다. 여기에 적어 둔 값은 보관되며 자동 전송하지 않습니다.'
-              : '실행 전에 입력값을 적어 주세요. scanf·cin·Console.ReadLine 등에 전달합니다.'
+              : '실행 전에 입력값을 적어 주세요. scanf·cin·Console.ReadLine·input·prompt 등에 전달합니다.'
           }
           onChange={(event) => update({ ...current.current, stdin: event.target.value })}
           data-editing-context={`code:${example.id}:stdin`}
@@ -762,6 +768,12 @@ export function CodeExampleEditor({
           <p className="ui-hint">
             터미널 기록입니다. 프로그램 출력과 입력한 내용의 표시가 함께 포함됩니다.
           </p>
+        )}
+        {lastRun?.mode === 'terminal' && lastRun.stdin && (
+          <details open={lastRun.outcome !== 'success'}>
+            <summary>보낸 입력</summary>
+            <pre>{lastRun.stdin.replace(/\r\n?/g, '\n').replace(/\u0003/g, '〔중지〕').replace(/\u0004/g, '〔입력 끝〕')}</pre>
+          </details>
         )}
         {lastRun && !currentCodeRun(content) && (
           <p className="code-stale-result">

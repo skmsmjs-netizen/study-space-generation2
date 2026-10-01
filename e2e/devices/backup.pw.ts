@@ -2,6 +2,33 @@ import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { readFile } from 'node:fs/promises';
 
+test('a blocked automatic download retains a real link and can save the same archive twice', async ({ page }, testInfo) => {
+  // Block only programmatic anchor.click; pointer activation of the visible link is native.
+  await page.addInitScript(() => {
+    HTMLAnchorElement.prototype.click = function () {};
+  });
+  await page.goto('?space=demo#/backup');
+  await page.getByRole('button', { name: '전체 백업 내려받기', exact: true }).click();
+  const retry = page.getByRole('link', { name: '백업 파일 다시 저장', exact: true });
+  await expect(retry).toBeVisible();
+  await expect(page.getByRole('status')).toContainText('준비했습니다');
+  await expect(page.getByRole('status')).not.toContainText('내려받았습니다');
+  // The old one-second URL cleanup must not invalidate a later user retry.
+  await page.waitForTimeout(1500);
+  const firstPromise = page.waitForEvent('download');
+  await retry.click();
+  const first = await firstPromise;
+  const firstPath = testInfo.outputPath('manual-retry-1.zip');
+  await first.saveAs(firstPath);
+  const secondPromise = page.waitForEvent('download');
+  await retry.click();
+  const second = await secondPromise;
+  const secondPath = testInfo.outputPath('manual-retry-2.zip');
+  await second.saveAs(secondPath);
+  expect(await readFile(secondPath)).toEqual(await readFile(firstPath));
+  await expect(retry).toBeVisible();
+});
+
 test('whole backup downloads and restores records, attachments, unfinished text and pre-restore copies on a clean device', async ({ page, browser }, testInfo) => {
   await page.goto('?space=demo#/record');
   await page.getByRole('checkbox', { name: '함수는 어떤 관계일까?', exact: true }).check();

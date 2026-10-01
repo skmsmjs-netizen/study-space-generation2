@@ -9,7 +9,7 @@ export interface CodeTerminalExecution extends CodeExecution {
 }
 export function canUseCodeTerminal(language: string) {
   return (
-    ['c', 'cpp', 'csharp'].includes(language) &&
+    ['c', 'cpp', 'csharp', 'python', 'javascript'].includes(language) &&
     ['localhost', '127.0.0.1'].includes(location.hostname)
   );
 }

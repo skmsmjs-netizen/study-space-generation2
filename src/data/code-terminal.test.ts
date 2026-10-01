@@ -1,5 +1,5 @@
 import { afterEach, expect, it, vi } from 'vitest';
-import { executeCodeTerminal } from './code-terminal';
+import { canUseCodeTerminal, executeCodeTerminal } from './code-terminal';
 import { currentCodeRun, validateCodeContent } from '../domain/code-example';
 import type { CodeExampleContent } from '../domain/model';
 
@@ -35,6 +35,16 @@ afterEach(() => {
   vi.useRealTimers();
 });
 const source = { language: 'c' as const, code: '// 당시 원문\nint main(){}' };
+it('offers all five terminal languages on loopback, without offering a remote terminal', () => {
+  for (const hostname of ['127.0.0.1', 'localhost']) {
+    vi.stubGlobal('location', { hostname });
+    for (const language of ['c', 'cpp', 'csharp', 'python', 'javascript'])
+      expect(canUseCodeTerminal(language)).toBe(true);
+  }
+  vi.stubGlobal('location', { hostname: 'skmsmjs-netizen.github.io' });
+  for (const language of ['c', 'cpp', 'csharp', 'python', 'javascript'])
+    expect(canUseCodeTerminal(language)).toBe(false);
+});
 function start() {
   vi.stubGlobal('WebSocket', Socket);
   const output = vi.fn(),

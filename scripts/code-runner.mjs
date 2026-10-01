@@ -1,4 +1,5 @@
 import { spawn } from 'node:child_process';
+import { existsSync, realpathSync } from 'node:fs';
 import { mkdtemp, writeFile, rm, realpath, readdir } from 'node:fs/promises';
 import { tmpdir, homedir } from 'node:os';
 import path from 'node:path';
@@ -10,6 +11,13 @@ const sdk =
   process.env.STUDY_CODE_DOTNET ||
   path.join(homedir(), '.local/share/study-code-runner/dotnet/dotnet');
 const sdkRoot = path.dirname(sdk);
+const bundledPython = path.join(
+  homedir(),
+  '.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3',
+);
+const python =
+  process.env.STUDY_CODE_PYTHON || (existsSync(bundledPython) ? bundledPython : '/usr/bin/python3');
+const pythonRoot = existsSync(python) ? path.dirname(path.dirname(realpathSync(python))) : '/usr';
 // Local Mac development only. Never expose this adapter as a public service.
 // Compilation and execution both use a deny-by-default filesystem/network sandbox.
 export function profile(directory, compile) {
@@ -23,6 +31,7 @@ export function profile(directory, compile) {
     '/private/etc',
     '/private/var/select',
     sdkRoot,
+    pythonRoot,
     directory,
   ];
   return `(version 1) (deny default) (import "system.sb")
@@ -127,7 +136,7 @@ export async function compileProgram(input, { signal, execute } = {}) {
     );
   if (
     !input ||
-    !['c', 'cpp', 'csharp'].includes(input.language) ||
+    !['c', 'cpp', 'csharp', 'python', 'javascript'].includes(input.language) ||
     typeof input.code !== 'string' ||
     typeof input.stdin !== 'string' ||
     input.code.length > maxText ||
@@ -137,7 +146,51 @@ export async function compileProgram(input, { signal, execute } = {}) {
   const directory = await realpath(await mkdtemp(path.join(tmpdir(), 'study-code-')));
   try {
     let command, args, executeCommand, executeArgs;
-    if (input.language === 'csharp') {
+    if (input.language === 'python') {
+      await writeFile(path.join(directory, 'main.py'), input.code);
+      command = python;
+      args = [
+        '-I',
+        '-B',
+        '-X',
+        'utf8',
+        '-c',
+        'import ast,pathlib; ast.parse(pathlib.Path("main.py").read_text(encoding="utf-8"),filename="main.py")',
+      ];
+      executeCommand = python;
+      executeArgs = ['-I', '-B', '-u', '-X', 'utf8', 'main.py'];
+    } else if (input.language === 'javascript') {
+      await writeFile(path.join(directory, 'main.mjs'), input.code);
+      // Use native Node stdin and preserve the browser runner's synchronous prompt/readline API.
+      // Student source stays unchanged in a separate module.
+      await writeFile(
+        path.join(directory, 'console.mjs'),
+        `import { readSync } from 'node:fs';
+import { StringDecoder } from 'node:string_decoder';
+const decoder = new StringDecoder('utf8');
+const buffer = Buffer.alloc(4096);
+let pending = '', ended = false;
+function readLine() {
+  while (!pending.includes('\\n') && !ended) {
+    const count = readSync(0, buffer, 0, buffer.length, null);
+    if (count === 0) { ended = true; pending += decoder.end(); }
+    else pending += decoder.write(buffer.subarray(0, count));
+  }
+  const newline = pending.indexOf('\\n');
+  if (newline >= 0) { const line = pending.slice(0, newline); pending = pending.slice(newline + 1); return line.replace(/\\r$/, ''); }
+  if (!pending) return null;
+  const line = pending; pending = ''; return line;
+}
+globalThis.readline = readLine;
+globalThis.prompt = (text = '') => { if (text) process.stdout.write(String(text)); return readLine(); };
+await import('./main.mjs');
+`,
+      );
+      command = process.execPath;
+      args = ['--check', 'main.mjs'];
+      executeCommand = process.execPath;
+      executeArgs = ['console.mjs'];
+    } else if (input.language === 'csharp') {
       await writeFile(path.join(directory, 'Program.cs'), input.code);
       const latest = (values) =>
         values.sort((a, b) => a.localeCompare(b, undefined, { numeric: true })).at(-1);
@@ -219,7 +272,7 @@ export async function compileProgram(input, { signal, execute } = {}) {
 export function localCodeRunnerPlugin() {
   let busy = false;
   const middleware = async (req, res, next) => {
-    if (req.url !== '/__code-runner') return next();
+    if (!['/__code-runner', '/__code-runner/status'].includes(req.url)) return next();
     const host = req.headers.host || '';
     const local = /^(127\.0\.0\.1|localhost):\d+$/.test(host);
     const origin = req.headers.origin;
@@ -229,6 +282,17 @@ export function localCodeRunnerPlugin() {
       (req.headers['sec-fetch-site'] && req.headers['sec-fetch-site'] !== 'same-origin')
     ) {
       res.writeHead(403).end();
+      return;
+    }
+    if (req.url === '/__code-runner/status' && req.method === 'GET') {
+      res.setHeader('Content-Type', 'application/json');
+      res.setHeader('Cache-Control', 'no-store');
+      res.end(
+        JSON.stringify({
+          localCodeRunner: 1,
+          languages: ['c', 'cpp', 'csharp', 'python', 'javascript'],
+        }),
+      );
       return;
     }
     if (req.method !== 'POST' || !req.headers['content-type']?.startsWith('application/json')) {
