@@ -9,3 +9,5 @@
 적용 경로는 personal-draft-window.ts, experience-state.ts, brand-experience.tsx입니다. 관련 단위 검사는 다른 창/이전 사본/정확한 다음 행동 원문/저장 실패/재시도/손상 자료/백업·계정 정리를 확인하고, personal-settings.pw.ts는 다섯 화면 환경에서 개인 공간 두 창의 읽기 폭/재접속/이전 원문 사본/공부 쓰기0을 확인합니다. physical device·OS IME·Pencil·VoiceOver의 결과와 구별합니다.
 
 기준은 [Storage.getItem의 null과 문자열 구별](https://developer.mozilla.org/en-US/docs/Web/API/Storage/getItem), 기존 draft rescue와 소유자별 저장 계약, 기기별 preference/창별 draft의 분리입니다. 새 패키지를 추가하지 않습니다.
+
+전체 백업은 화면에 적용할 창별 값을 대신 쓰지 않고 기기에 저장된 원문과 각 recovery 키를 그대로 보관합니다. 실패한 쓰기의 메모리 원문만 기존 device-scope rescue로 재사용합니다. 다른 창의 빈 표시와 정상 창별 표시 사본이 primary 원문을 대체하던 사례를 실제로 재현한 뒤 수정했으며, full-backup-window-settings 검사는 primary·window-author·각 창 사본의 정확한 백업/복원과 고립 UTF16을 확인합니다. 백업 원문 손상 재현 전 로그와 수정 후 검사 결과는 work/settings-repair-20261001에 보존합니다.

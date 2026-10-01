@@ -65,7 +65,9 @@ function storageRows(storage: Storage, owner: BackupOwner, area: 'local' | 'sess
   for (let i = 0; i < storage.length; i++) {
     const key = storage.key(i); if (key === null) fail('보관 자료 목록이 바뀌었습니다. 다시 백업해 주세요.');
     if (!ownsRow(owner, { area, store: '', key })) continue;
-    const value = area === 'local' ? readRescuedDraft(key) ?? storage.getItem(key) : storage.getItem(key);
+    // Backups preserve device originals and each explicit window-copy key.
+    // A view's empty foreign-window marker is never a saved original.
+    const value = area === 'local' ? readRescuedDraft(key, { scope: 'device' }) ?? storage.getItem(key) : storage.getItem(key);
     if (value === null) fail('보관 자료가 바뀌었습니다. 다시 백업해 주세요.'); rows.push({ area, store: '', key, value });
   }
   if (area === 'local') for (const [key, value] of rescuedDraftEntries()) if (ownsBackupKey(owner, key) && !rows.some(row => row.key === key)) rows.push({ area, store: '', key, value });
