@@ -64,7 +64,10 @@ export async function startLinuxExecution(source, { signal, onOutput, onPhase, o
     onPhase('loading');
     const compilation = await runProcess(ISOLATE, [...flags('compile'), '--run', '--', ...compiler], { signal, onOutput });
     if (signal.aborted) return { outcome: 'stopped', error: '실행을 중지했습니다.' };
-    if (compilation.code !== 0 || compilation.overflow) return { outcome: 'error', error: compilation.overflow ? '컴파일 출력 한도를 넘었습니다.' : '컴파일하지 못했습니다. 위 오류 내용을 확인해 주세요.' };
+    if (compilation.code !== 0 || compilation.overflow) {
+      const details = await readFile(`${scratch}/compile.meta`, 'utf8').catch(() => '');
+      return { outcome: 'error', error: compilation.overflow ? '컴파일 출력 한도를 넘었습니다.' : `컴파일하지 못했습니다. 위 오류 내용을 확인해 주세요.\n${details}` };
+    }
     const executable = source.language === 'csharp' ? ['/usr/bin/dotnet', '/box/Main.dll'] : ['/box/main'];
     const args = [...flags('run'), '--tty-hack', '--run', '--', ...executable];
     const exit = await new Promise((resolve, reject) => {
