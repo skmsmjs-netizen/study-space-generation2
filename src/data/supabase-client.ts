@@ -62,7 +62,20 @@ export function onlineTransport(client: SupabaseClient, namespace: Namespace = '
     }
     return data as ServerSnapshot;
   }
+  async function notificationRequest<T>(body:Record<string,unknown>):Promise<T>{
+    const {data:session,error:authError}=await client.auth.getSession();
+    if(authError||!session.session)throw new DomainError('AUTH_REQUIRED','내 공부 공간에 다시 로그인해 주세요.');
+    const {data,error}=await client.functions.invoke('study-notifications',{timeout:20000,body});
+    if(error){let message='알림 서버에 연결하지 못했습니다. 다시 시도해 주세요.';try{if(error.context instanceof Response){const result=await error.context.json();if(typeof result.message==='string')message=result.message;}}catch{/* Preserve the subscription state. */}throw Error(message);}
+    return data as T;
+  }
   return {
+    scheduleNotifications: namespace === 'personal' ? {
+      config: () => notificationRequest<{publicKey:string}>({action:'config'}),
+      subscribe: subscription => notificationRequest<void>({action:'subscribe',subscription}),
+      unsubscribe: endpoint => notificationRequest<void>({action:'unsubscribe',endpoint}),
+      status: endpoint => notificationRequest<{enabled:boolean}>({action:'status',endpoint}),
+    } : undefined,
     load: known => measureRequest('sync-load', () => request('load', undefined, undefined, known)),
     execute: (command, sequence) => measureRequest('sync-execute', () => request('execute', command, sequence)),
     executeBatch: (commands, sequence) => measureRequest('sync-batch', () => request('execute-batch', undefined, sequence, undefined, commands)),

@@ -493,6 +493,7 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
   const navItems = [
     { href: "/", text: "오늘" },
     { href: "/statistics", text: "통계" },
+    { href: "/schedules", text: "일정·과제" },
     { href: "/subjects", text: "과목" },
     { href: "/record", text: "기록" },
     { href: "/memos", text: "메모" },
@@ -513,6 +514,7 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
   const practiceRoute = route === "/practice" || route.startsWith("/practice/");
   const freeRoute = route === "/free" || route.startsWith("/free/");
   const rootTitle =
+    route === "/schedules" ? "일정·과제·온라인 강의" :
     memoryTestRoute ? "암기시험" : route === "/material-cards" ? "자료 카드" :
     codeRoute ? "코딩 연습" :
     practiceRoute ? "시험 연습" : route === "/statistics" ? "공부 통계" :
@@ -666,6 +668,7 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
             )}
           </div>
           {route === "/draft-archives" && <DraftArchives data={data} />}
+          {route === "/schedules" && <Suspense fallback={<LoadingState message="일정을 여는 중입니다." />}><NextStudy onlySchedules repository={repository} onSaved={setData} data={data} subjectIds={shownSubjects.map(subject=>subject.id)} semesterId={scope}/></Suspense>}
           {route === "/statistics" && <StudyStatistics key={scope} data={data} subjectIds={shownSubjects.map(subject => subject.id)} />}
           {route === "/" && (
             <>
@@ -1036,7 +1039,7 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
           )}
           {route === "/trash" && <Suspense fallback={<LoadingState />}><CodePractice data={data} repository={repository} onSaved={setData} trash /></Suspense>}
           {route === "/trash" && <QuickMemos data={data} repository={repository} onSaved={setData} trash />}
-          {!["/", "/subjects", "/search", "/trash", "/free", "/draft-archives", "/material-cards", "/recall", "/recall/scheduled", "/canvas", "/graph", "/board", "/statistics"].includes(route) &&
+          {!["/", "/subjects", "/search", "/trash", "/free", "/draft-archives", "/material-cards", "/recall", "/recall/scheduled", "/canvas", "/graph", "/board", "/statistics", "/schedules"].includes(route) &&
             !recordRoute &&
             !memoRoute &&
             !codeRoute && !memoryTestRoute &&

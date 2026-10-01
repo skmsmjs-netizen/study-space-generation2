@@ -2464,11 +2464,27 @@ function recallPreview(memory, at, options, reviews = []) {
 }
 
 // src/domain/learning-schedule.ts
+var validSource = (s) => {
+  try {
+    const url2 = new URL(s);
+    return ["http:", "https:"].includes(url2.protocol) && !/[\r\n]/.test(s);
+  } catch {
+    return false;
+  }
+};
 var day = (s) => s === "" || /^\d{4}-\d{2}-\d{2}$/.test(s) && Number.isFinite(Date.parse(s)) && new Date(s).toISOString().slice(0, 10) === s;
 function validateScheduleExtensions(w, data) {
   const node = new Map(data.nodes.map((n) => [n.id, n])), ids = /* @__PURE__ */ new Set();
   for (const s of w.schedules ?? []) {
-    if (!s || typeof s.id !== "string" || !s.id || ids.has(s.id) || !data.subjects.some((p) => p.id === s.subjectId) || typeof s.name !== "string" || !s.name.trim() || !["exam", "quiz", "assignment", "lecture"].includes(s.kind) || !["active", "ended"].includes(s.status) || !["exam", "submission", "attendance", "personal", "unknown"].includes(s.dueMeaning) || typeof s.note !== "string" || !day(s.dueDate) || !day(s.opensDate) || s.opensDate && s.dueDate && s.opensDate > s.dueDate || s.weight !== null && (!Number.isFinite(s.weight) || s.weight < 0 || s.weight > 1) || !Array.isArray(s.goalIds) || !Array.isArray(s.targetIds) || !s.states || typeof s.states !== "object" || Object.values(s.states).some((v) => !["unknown", "not-done", "done"].includes(v))) throw Error("\uC77C\uC815\uC758 \uB0A0\uC9DC\xB7\uBC94\uC704\xB7\uC0C1\uD0DC\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+    if (!s || typeof s.id !== "string" || !s.id || ids.has(s.id) || !data.subjects.some((p) => p.id === s.subjectId) || typeof s.name !== "string" || !s.name.trim() || !["exam", "quiz", "assignment", "lecture", "class"].includes(s.kind) || !["active", "ended"].includes(s.status) || !["exam", "submission", "attendance", "personal", "unknown"].includes(s.dueMeaning) || typeof s.note !== "string" || !day(s.dueDate) || !day(s.opensDate) || s.opensDate && s.dueDate && s.opensDate > s.dueDate || s.weight !== null && (!Number.isFinite(s.weight) || s.weight < 0 || s.weight > 1) || !Array.isArray(s.goalIds) || !Array.isArray(s.targetIds) || !s.states || typeof s.states !== "object" || Object.values(s.states).some((v) => !["unknown", "not-done", "done"].includes(v))) throw Error("\uC77C\uC815\uC758 \uB0A0\uC9DC\xB7\uBC94\uC704\xB7\uC0C1\uD0DC\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+    const time = (v) => v === void 0 || v === "" || typeof v === "string" && /^([01]\d|2[0-3]):[0-5]\d$/.test(v);
+    if (s.notesRequired !== void 0 && typeof s.notesRequired !== "boolean" || !time(s.dueTime) || !time(s.opensTime) || s.reviewDate !== void 0 && !day(s.reviewDate) || [s.taskText, s.sourceUrl, s.seriesId].some((v) => v !== void 0 && typeof v !== "string") || s.sourceUrl && !validSource(s.sourceUrl) || s.week !== void 0 && (!Number.isSafeInteger(s.week) || s.week < 1) || s.deletedAt !== void 0 && s.deletedAt !== null && !Number.isFinite(Date.parse(s.deletedAt))) throw Error("\uC77C\uC815\uC758 \uC2DC\uAC04\xB7\uD655\uC778\uC77C\xB7\uACF5\uC9C0 \uC8FC\uC18C\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+    if (s.dueDate && s.opensDate && scheduleDeadline(s) < scheduleOpening(s)) throw Error("\uC2DC\uC791 \uAC00\uB2A5 \uC2DC\uAC01\uC740 \uAE30\uD55C\uBCF4\uB2E4 \uB2A6\uC744 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
+    if (s.history !== void 0 && (!Array.isArray(s.history) || s.history.some((h) => !h || !Number.isFinite(Date.parse(h.at)) || typeof h.reason !== "string" || !h.previous || h.previous.id !== s.id || typeof h.previous.note !== "string"))) throw Error("\uC77C\uC815 \uBCC0\uACBD \uC774\uB825\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+    for (const h of s.history ?? []) {
+      if ("history" in h.previous) throw Error("\uC77C\uC815 \uBCC0\uACBD \uC774\uB825\uC774 \uC911\uCCA9\uB418\uC5B4 \uC788\uC2B5\uB2C8\uB2E4.");
+      validateScheduleExtensions({ goals: w.goals, schedules: [h.previous] }, data);
+    }
     ids.add(s.id);
     if (s.targetIds.some((id) => node.get(id)?.subjectId !== s.subjectId) || s.goalIds.some((id) => !w.goals.some((g) => g.id === id && node.get(g.targetId)?.subjectId === s.subjectId))) throw Error("\uC77C\uC815\uACFC \uC8FC\uC81C\uC758 \uACFC\uBAA9\uC774 \uB2E4\uB985\uB2C8\uB2E4.");
   }
@@ -2493,6 +2509,13 @@ function validateScheduleExtensions(w, data) {
     pairIds.add(p.id);
   }
   if (w.snapshots !== void 0 && (!Array.isArray(w.snapshots) || w.snapshots.some((s) => !s || typeof s.id !== "string" || !Number.isFinite(Date.parse(s.createdAt)) || typeof s.dataVersion !== "string" || typeof s.policyVersion !== "string" || !Number.isSafeInteger(s.workspaceRevision)))) throw Error("\uCD94\uCC9C \uC774\uB825\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+  if (w.scheduleChecks !== void 0 && (!Array.isArray(w.scheduleChecks) || new Set(w.scheduleChecks.map((c) => c?.id)).size !== w.scheduleChecks.length || w.scheduleChecks.some((c) => !c || typeof c.id !== "string" || !c.id || !data.subjects.some((s) => s.id === c.subjectId) || !Number.isFinite(Date.parse(c.at))))) throw Error("\uACFC\uBAA9 \uACF5\uC9C0 \uD655\uC778 \uAE30\uB85D\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+}
+function scheduleDeadline(s) {
+  return s.dueDate ? (/* @__PURE__ */ new Date(`${s.dueDate}T${s.dueTime || "23:59:59.999"}+09:00`)).toISOString() : null;
+}
+function scheduleOpening(s) {
+  return s.opensDate ? (/* @__PURE__ */ new Date(`${s.opensDate}T${s.opensTime || "00:00"}+09:00`)).toISOString() : null;
 }
 
 // src/domain/recommendation-kernel.mjs

@@ -1,5 +1,5 @@
 import { validateLearningLinks, type CodeTopicLink } from './learning-evidence';
-import { validateScheduleExtensions, scheduleSteps, type LearningSchedule, type TargetCondition, type ComparisonPlan, type RecommendationSnapshot } from './learning-schedule';
+import { validateScheduleExtensions, scheduleSteps, scheduleDeadline, scheduleOpening, type LearningSchedule, type TargetCondition, type ComparisonPlan, type RecommendationSnapshot } from './learning-schedule';
 import type { AppState } from './model';
 import { recommend, activitySupport, robustWinner, type EvidenceEvent, type GuidanceControl, type RecommendationModel, type RecommendationResult } from './recommendation-kernel.mjs';
 
@@ -7,7 +7,7 @@ export interface CheckGoal { id: string; targetId: string; label: string; dueDat
 export interface GoalDraft { targetId: string; label: string; dueDate: string; novelty: 'same' | 'new'; minDelayDays?: number; refreshDays?: number | null }
 export interface ResponseDraft { result: 'pass' | 'fail' | 'unknown' | 'disputed'; assistance: 'none' | 'notes' | 'unknown'; novelty: 'same' | 'new' | 'unknown'; answer: string; delayDays?: number; delayVerified?: boolean }
 export interface TermDates { start: string; end: string }
-export interface RecommendationWorkspace { codeLinks?: CodeTopicLink[]; version: 1; userId: string; namespace: AppState['namespace']; revision: number; goals: CheckGoal[]; events: EvidenceEvent[]; controls: Record<string, GuidanceControl>; draft: GoalDraft; responses: Record<string, ResponseDraft>; terms?: Record<string, TermDates>; termDraft?: TermDates & { semesterId: string }; schedules?: LearningSchedule[]; conditions?: TargetCondition[]; comparisons?: ComparisonPlan[]; snapshots?: RecommendationSnapshot[] }
+export interface RecommendationWorkspace { codeLinks?: CodeTopicLink[]; version: 1; userId: string; namespace: AppState['namespace']; revision: number; goals: CheckGoal[]; events: EvidenceEvent[]; controls: Record<string, GuidanceControl>; draft: GoalDraft; responses: Record<string, ResponseDraft>; terms?: Record<string, TermDates>; termDraft?: TermDates & { semesterId: string }; schedules?: LearningSchedule[]; conditions?: TargetCondition[]; comparisons?: ComparisonPlan[]; snapshots?: RecommendationSnapshot[]; scheduleChecks?:{id:string;subjectId:string;at:string}[] }
 export const recommendationKey = (data: AppState) => `study-space:${data.namespace}:recommendations:${data.userId}:v1`;
 export const emptyResponse = (): ResponseDraft => ({ result: 'unknown', assistance: 'unknown', novelty: 'unknown', answer: '' });
 export function emptyRecommendations(data: AppState): RecommendationWorkspace {
@@ -68,10 +68,10 @@ export function recommendationInput(data: AppState, workspace: RecommendationWor
     requirements: goals.map(g => ({ id: g.id, targetId: g.targetId, facet: g.id, rubricVersion: 'self-check-1', novelty: g.novelty, minDelayDays: g.minDelayDays ?? 0, ...(g.refreshDays !== undefined ? { refreshDays:g.refreshDays } : {}) })),
     assessments: goals.map(g => ({ id: `check:${g.id}`, weight: null, status: g.ended ? 'ended' : 'active', opensAt: null, dueAt: dateDeadline(g.dueDate), requirementIds: [g.id] })), tasks: [] };
   for (const schedule of workspace.schedules ?? []) {
-    if (!subjects.some(s => s.id === schedule.subjectId)) continue;
+    if (schedule.deletedAt || !subjects.some(s => s.id === schedule.subjectId)) continue;
     const requirements = goals.filter(g => !g.ended && (schedule.goalIds.includes(g.id) || schedule.targetIds.includes(g.targetId))).map(g => g.id);
-    model.assessments.push({ id:schedule.id, weight:schedule.weight, status:schedule.status, opensAt:schedule.opensDate ? new Date(`${schedule.opensDate}T00:00:00+09:00`).toISOString() : null, dueAt:dateDeadline(schedule.dueDate), requirementIds:requirements });
-    for (const step of scheduleSteps(schedule.kind)) model.tasks.push({ id:`${schedule.id}:${step}`, assessmentId:schedule.id, kind:step, status:schedule.states[step] === 'done' || schedule.status === 'ended' ? 'ended' : 'active', opensAt:schedule.opensDate ? new Date(`${schedule.opensDate}T00:00:00+09:00`).toISOString() : null, dueAt:schedule.dueDate && (step === 'submit' && schedule.dueMeaning === 'submission' || step === 'attendance' && schedule.dueMeaning === 'attendance') ? dateDeadline(schedule.dueDate) : null, required:step === 'submit' || step === 'attendance', weight:schedule.weight ?? undefined });
+    model.assessments.push({ id:schedule.id, weight:schedule.weight, status:schedule.status, opensAt:scheduleOpening(schedule), dueAt:scheduleDeadline(schedule), requirementIds:requirements });
+    for (const step of scheduleSteps(schedule.kind)) model.tasks.push({ id:`${schedule.id}:${step}`, assessmentId:schedule.id, kind:step, status:schedule.states[step] === 'done' || schedule.status === 'ended' ? 'ended' : 'active', opensAt:scheduleOpening(schedule), dueAt:schedule.dueDate && (step === 'submit' && schedule.dueMeaning === 'submission' || step === 'attendance' && schedule.dueMeaning === 'attendance') ? scheduleDeadline(schedule) : null, required:step === 'submit' || step === 'attendance', weight:schedule.weight ?? undefined });
   }
   const events: EvidenceEvent[] = workspace.events.filter(e => goals.some(g => g.id === e.facet)).map(e => ({ ...e }));
   // One study record remains one activity reference. Its date uncertainty stays intact.

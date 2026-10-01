@@ -11,6 +11,7 @@ import { AccountSettings } from './account-settings';
 import { clearWithdrawnAccount } from '../data/account-cleanup';
 import { validateAccountName } from '../server/account-access';
 import { AccountAdministration } from './account-administration';
+import { stopLocalSchedulePush } from '../data/schedule-notifications';
 import './personal-space.css';
 const errorText = (error: unknown) => error instanceof Error ? error.message : '개인 공간을 열지 못했습니다.';
 export function PersonalSpace({ renderWorkspace }: { renderWorkspace: (repo: PersonalRepository, controls: ReactNode) => ReactNode }) {
@@ -27,7 +28,7 @@ export function PersonalSpace({ renderWorkspace }: { renderWorkspace: (repo: Per
     if (!client) { setAuthReady(true); return; }
     let alive = true;
     let authVersion = 0;
-    const { data } = client.auth.onAuthStateChange((_event, session) => { authVersion++; if (alive) { setUserId(session?.user.id ?? null); setAuthReady(true); } });
+    const { data } = client.auth.onAuthStateChange((_event, session) => { if(_event==='SIGNED_OUT')void stopLocalSchedulePush().catch(()=>{if(alive)setError('로그아웃했습니다. 기기의 알림 해제를 확인하지 못했으니 브라우저 알림 설정을 확인해 주세요.');}); authVersion++; if (alive) { setUserId(session?.user.id ?? null); setAuthReady(true); } });
     const version = authVersion;
     // Restore the local session; the API still authenticates and authorizes every request.
     client.auth.getSession().then(({ data, error }) => { if (alive && version === authVersion) { if (error) setError('로그인 상태를 확인하지 못했습니다. 다시 로그인해 주세요.'); setUserId(data.session?.user.id ?? null); setAuthReady(true); } });

@@ -77,3 +77,11 @@ approximate 기한은 anchorDate+days를 유지하며 오늘 기준으로 매번
 ## 덱·빈칸·Anki 가져오기 선택 필드
 
 `recallPreferences.deckName`이 없는 기존 행은 기본 설정, 있는 행은 ID별 덱 설정입니다. `RecallOptions.burySiblings`가 없으면 형제 카드 미루기를 사용합니다. `recallCards.deckId`가 없는 기존 카드는 기본 덱에 남으며 `cloze`는 원문/노트ID/번호, `suspended`와 `clozeRemoved`는 수동 보관과 번호 삭제를 구별합니다. `importSource`는 GUID/ordinal 원본 키·필드·태그·템플릿과 최초 표시 내용을 보존합니다. 새 컬렉션이나 기존 ID/메모/이력의 이관은 없습니다. `saveRecallCloze`는 형제 전체 버전을 확인하고 `importRecallCards`는 요청마다 최대100개와 원본 키 중복을 확인합니다. 세부 보존과 한도는 [덱·빈칸·가져오기 계약](recall-decks-import.md)을 따릅니다.
+
+
+## 2026-10-01 일정 관리 확장과 기기 알림
+
+학습 계획의 `schedules`에 주차별 강의 kind `class`와 선택 속성 `dueTime`·`opensTime`·`reviewDate`·`taskText`·`sourceUrl`·`notesRequired`·`week`·`seriesId`·`deletedAt`·`history`를 추가했다. 기존 ID·상태·원문·저장 키·날짜 미정과 시각 미정을 유지한다. history의 previous는 history를 제외한 이전 일정 전체이며 복원도 현재 원문을 새 이력에 남긴다. `scheduleChecks`는 독립 ID/subjectId/at의 실제 과목 공지 확인 기록이며 제출·출석·새 과제 없음의 근거로 자동 환산하지 않는다. 기존 학습 계획 command/sequence/opId/packed-state 경로로 서버에 저장한다.
+
+기기 구독은 새 서버 전용 `study_push_subscriptions`에 따로 보관한다. 서버는 Auth owner와 가입 승인·구독 키·허용된 provider endpoint를 확인하며 service role만 RPC/테이블을 사용한다. 일반 client role 직접 조회·수정은 거부한다. 하루 발송 claim/완료/재시도와 만료 비활성화는 일정 원문과 별개이며 FK는 계정 삭제 시 구독을 정리한다. 알림 활성화 전 개인 대기 기록의 서버 저장을 확인하고 로그아웃 시 이 기기의 구독을 끈다. 키·cron 설정과 실제 수신은 운영 적용 후 별도 확인이다. 상세 동작·보존·근거·한도·운영 적용은 [일정 관리](schedule-management.md)를 따른다.
+

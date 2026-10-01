@@ -3,3 +3,7 @@ project_id = "study-space-generation2"
 # Every non-preflight request is verified against Auth /user by command-handler.
 # Legacy-secret-only gateway verification cannot accept current asymmetric JWTs.
 verify_jwt = false
+
+[functions.study-notifications]
+# Auth /user on account requests; a distinct secret on cron dispatch.
+verify_jwt = false

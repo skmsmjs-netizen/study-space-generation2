@@ -6,7 +6,8 @@ import { encodeStoredText, decodeStoredText } from './storage-codec';
 import type { CodeRemoteRunner } from './code-runner';
 import { MAX_SYNC_BATCH, MAX_SYNC_BATCH_CHARS } from '../domain/sync-protocol';
 import { recordRequestPerformance } from './request-performance';
-export interface OnlineTransport { load(known?: ServerSnapshot): Promise<ServerSnapshot>; execute(command: Command, baseSequence: number): Promise<ServerSnapshot>; executeBatch?(commands: Command[], baseSequence: number): Promise<ServerSnapshot>; runCode?: CodeRemoteRunner }
+import type { ScheduleNotificationPort } from './schedule-notifications';
+export interface OnlineTransport { load(known?: ServerSnapshot): Promise<ServerSnapshot>; execute(command: Command, baseSequence: number): Promise<ServerSnapshot>; executeBatch?(commands: Command[], baseSequence: number): Promise<ServerSnapshot>; runCode?: CodeRemoteRunner; scheduleNotifications?: ScheduleNotificationPort }
 export interface PreservedConflict { base: ServerSnapshot; local: AppState; pending: Command[]; server: ServerSnapshot; savedAt: string }
 interface LocalEnvelope { format: 1; base: ServerSnapshot; local: AppState; pending: Command[]; conflict?: ServerSnapshot; archives: PreservedConflict[] }
 /** Read only this authenticated owner's cache; never treat it as a server acknowledgement. */
@@ -29,6 +30,16 @@ export class PersonalRepository implements StudyRepository {
   private status: SaveStatus;
   private needsRefresh = false;
   readonly key: string;
+  private notificationPort?: ScheduleNotificationPort;
+  getScheduleNotifications = () => {
+    const port=this.transport.scheduleNotifications;
+    if(!port)return undefined;
+    return this.notificationPort??=( {...port,subscribe:async subscription=>{
+      await this.flush();
+      if(this.status.phase!=='saved')throw Error('일정을 서버에 저장하지 못했습니다. 이 기기의 기록을 보존했습니다. 저장 상태를 확인한 뒤 알림을 켜 주세요.');
+      await port.subscribe(subscription);
+    }} );
+  };
   getCodeRunner = () => this.transport.runCode;
   constructor(private storage: Pick<Storage, 'getItem' | 'setItem'> & { flush?(): Promise<void> }, private transport: OnlineTransport, server: ServerSnapshot, cached = false) {
     this.needsRefresh = cached;

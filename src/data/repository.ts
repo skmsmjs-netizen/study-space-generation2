@@ -1,4 +1,5 @@
 import type { AppState, Command } from '../domain/model';
+import type { ScheduleNotificationPort } from './schedule-notifications';
 import type { CodeRemoteRunner } from './code-runner';
 /** execute commits locally; flush resolves only after the server acknowledges. */
 export interface StudyRepository {
@@ -9,6 +10,7 @@ export interface StudyRepository {
   getStatus?(): SaveStatus;
   getCapabilities?(): string[];
   getCodeRunner?(): CodeRemoteRunner | undefined;
+  getScheduleNotifications?(): ScheduleNotificationPort | undefined;
 }
 export interface SaveStatus { phase: 'checking' | 'saved' | 'pending' | 'saving' | 'error' | 'conflict'; pending: number; message: string }
 export function storagePrefix(data: Pick<AppState, 'namespace' | 'userId'>) {
