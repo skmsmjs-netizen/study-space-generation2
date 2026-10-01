@@ -26,6 +26,26 @@ beforeAll(async () => {
 beforeEach(async () => { await db.exec('reset role; truncate study_operations,study_workspaces;'); });
 afterAll(async () => { await db.close(); });
 describe('server authentication, domain commands and real PostgreSQL transactions', () => {
+  it('commits ordered batches to PostgreSQL once per operation, including original UTF16 and history', async () => {
+    const subject = command();
+    const write = command({ type: 'updateNarrative', id: 'batch-text', kind: 'subject-overview', ownerId: 'subject-1', body: '原文\u0000\ud800\r\n  조건', expectedVersion: 0, opId: 'batch-body' } as Partial<Command>);
+    const body = { action: 'execute-batch', namespace: 'test', baseSequence: 0, commands: [subject, write] };
+    expect((await request(body)).status).toBe(200);
+    expect((await request(body)).status).toBe(200);
+    const saved = await backend.read(a, 'test');
+    expect(saved!.sequence).toBe(2); expect(saved!.data.revisions).toHaveLength(2);
+    expect(saved!.data.narratives[0].body).toBe(write.type === 'updateNarrative' ? write.body : '');
+    expect((await db.query('select * from study_operations')).rows).toHaveLength(2);
+    const unchanged = await (await request({ action: 'load', namespace: 'test', knownSequence: 2 })).json();
+    expect(unchanged.unchanged).toBe(true); expect(unchanged.data).toBeUndefined();
+  });
+  it('recovers a prefix committed before a batch interruption without duplicating PostgreSQL receipts', async () => {
+    const first = command(), second = command({ id: 'subject-2', opId: 'op-2' });
+    await request({ action: 'execute', namespace: 'test', baseSequence: 0, command: first });
+    expect((await request({ action: 'execute-batch', namespace: 'test', baseSequence: 0, commands: [first, second] })).status).toBe(200);
+    expect((await backend.read(a, 'test'))!.sequence).toBe(2);
+    expect((await db.query('select * from study_operations')).rows).toHaveLength(2);
+  });
   it('preserves Canvas references, geometry and raw memo through server reload and idempotent retry', async () => {
     await request({ action: 'execute', namespace: 'test', baseSequence: 0, command: command() });
     const node = command({ type: 'addNode', id: 'topic-1', subjectId: 'subject-1', parentId: null, role: 'topic', name: '주제', opId: 'canvas-node' } as Partial<Command>);

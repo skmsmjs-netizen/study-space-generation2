@@ -30,3 +30,6 @@ Edge Function 코드는 npm run build:backend로 만들며 index.ts 생성물을
 실제 사용자의 이메일 로그인과 저장·재열기는 아직 확인하지 않았습니다. 대시보드 로그인은 앱 로그인과 다릅니다. 현재 초안·추천 설정은 기기 저장이며 IndexedDB, 완전한 오프라인 시작, 자동 다기기 동기화, 충돌 병합, 정식 복구/가져오기는 다음 구현입니다. 큰 원장 전체를 매번 전송하는 현재 snapshot 방식은 대규모 개인 데이터에 맞춘 정규화/증분 API로 발전시켜야 합니다. Canvas/PWA, 일정·시험·과제·출석 원장, 자료 가져오기 등 기존 전체 잔여를 이번 완료로 바꾸지 않습니다.
 
 비밀 키·DB 비밀번호·사용자 세션 토큰을 작업 자료에 넣지 않습니다. 실제 배포 head/CI/API·화면 증거는 저장소 밖 outputs/20260930-implementation-transition/verification.json에 기록합니다.
+
+
+호출 감소와 복구 기준: [동기화 성능](sync-performance.md).

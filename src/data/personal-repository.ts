@@ -4,7 +4,9 @@ import type { SaveStatus, StudyRepository } from './repository';
 import type { ServerSnapshot } from '../server/command-handler';
 import { encodeStoredText, decodeStoredText } from './storage-codec';
 import type { CodeRemoteRunner } from './code-runner';
-export interface OnlineTransport { load(): Promise<ServerSnapshot>; execute(command: Command, baseSequence: number): Promise<ServerSnapshot>; runCode?: CodeRemoteRunner }
+import { MAX_SYNC_BATCH, MAX_SYNC_BATCH_CHARS } from '../domain/sync-protocol';
+import { recordRequestPerformance } from './request-performance';
+export interface OnlineTransport { load(known?: ServerSnapshot): Promise<ServerSnapshot>; execute(command: Command, baseSequence: number): Promise<ServerSnapshot>; executeBatch?(commands: Command[], baseSequence: number): Promise<ServerSnapshot>; runCode?: CodeRemoteRunner }
 export interface PreservedConflict { base: ServerSnapshot; local: AppState; pending: Command[]; server: ServerSnapshot; savedAt: string }
 interface LocalEnvelope { format: 1; base: ServerSnapshot; local: AppState; pending: Command[]; conflict?: ServerSnapshot; archives: PreservedConflict[] }
 /** Read only this authenticated owner's cache; never treat it as a server acknowledgement. */
@@ -45,10 +47,7 @@ export class PersonalRepository implements StudyRepository {
         if (JSON.stringify(replay) !== JSON.stringify(saved.local)) throw Error();
         if (saved.pending.length && server.sequence !== saved.base.sequence) {
           // Recover acknowledged operations after closing during a lost response.
-          const acknowledged = saved.pending.filter(command => server.data.appliedOps[command.opId] === saved.local.appliedOps[command.opId]);
-          acknowledged.forEach(command => applyCommand(server.data, command));
-          if (acknowledged.length === saved.pending.length) this.envelope = { ...saved, base: server, local: server.data, pending: [], conflict: undefined };
-          else this.envelope = { ...saved, conflict: server };
+          this.envelope = this.recoverAcknowledged(saved, server) ?? { ...saved, conflict: server };
         } else this.envelope = saved.pending.length ? saved : { ...saved, base: server, local: server.data, conflict: undefined };
       } catch { throw new DomainError('CORRUPT_PERSONAL', '이 기기의 개인 자료를 읽지 못했습니다. 저장된 원문을 덮어쓰지 않았습니다.'); }
     }
@@ -57,31 +56,57 @@ export class PersonalRepository implements StudyRepository {
     this.persist(this.envelope);
   }
   private verify(value: ServerSnapshot) {
-    validateState(value.data);
+    // A conditional response reuses the already validated base by identity.
+    // New server data still receives the complete integrity check.
+    if (value.data !== this.envelope.base.data) validateState(value.data);
     const owner = this.envelope.base.data;
     if (!Number.isSafeInteger(value.sequence) || value.sequence < 0 || value.data.userId !== owner.userId || value.data.namespace !== owner.namespace) throw new DomainError('OWNERSHIP', '이 공간의 자료가 아닙니다.');
   }
-  private persist(next: LocalEnvelope) {
-    if (this.storage.getItem(this.key) !== this.raw) throw new DomainError('STALE_PERSONAL', '다른 창에서 이 기기의 자료가 바뀌었습니다. 작성 내용은 두고 다시 열어 주세요.');
-    const raw = encodeStoredText(JSON.stringify(next));
-    if (raw !== this.raw) this.storage.setItem(this.key, raw);
-    this.raw = raw; this.envelope = next;
+  private recoverAcknowledged(saved: LocalEnvelope, server: ServerSnapshot): LocalEnvelope | null {
+    let count = 0;
+    for (const command of saved.pending) {
+      if (server.data.appliedOps[command.opId] !== saved.local.appliedOps[command.opId]) break;
+      applyCommand(server.data, command); // Check the receipt payload, not just its ID.
+      count++;
+    }
+    if (!count || (count < saved.pending.length && server.sequence !== saved.base.sequence + count)) return null;
+    const pending = saved.pending.slice(count);
+    // A matching sequence and contiguous receipts establish that only our prefix
+    // was committed. Any unrelated device change still requires conflict handling.
+    const local = pending.reduce((state, command) => applyCommand(state, command), server.data);
+    return { ...saved, base: server, local, pending, conflict: undefined };
   }
-  async close() { await this.flight; }
+  private persist(next: LocalEnvelope) {
+    const started = performance.now();
+    let success = false;
+    try {
+      if (this.storage.getItem(this.key) !== this.raw) throw new DomainError('STALE_PERSONAL', '다른 창에서 이 기기의 자료가 바뀌었습니다. 작성 내용은 두고 다시 열어 주세요.');
+      const raw = encodeStoredText(JSON.stringify(next));
+      if (raw !== this.raw) this.storage.setItem(this.key, raw);
+      this.raw = raw; this.envelope = next;
+      success = true;
+    } finally { recordRequestPerformance('local-journal', started, success); }
+  }
   getSnapshot() { return this.envelope.local; }
+  async close() { await this.flight; }
   getCapabilities = () => this.envelope.base.supportedCommands ?? [];
   getStatus = () => this.status;
   subscribe = (listener: () => void) => { this.listeners.add(listener); return () => { this.listeners.delete(listener); }; };
   private update(status: SaveStatus, changed = false) { if (!changed && JSON.stringify(this.status) === JSON.stringify(status)) return; this.status = status; this.listeners.forEach(listener => listener()); }
   execute(command: Command): AppState {
-    if (this.envelope.conflict) throw new DomainError('VERSION_CONFLICT', '두 자료를 보존했습니다. 저장 상태에서 충돌 내용을 먼저 확인해 주세요.');
-    const local = applyCommand(this.envelope.local, command);
-    if (local === this.envelope.local) return local;
-    this.persist({ ...this.envelope, local, pending: [...this.envelope.pending, command] });
-    this.update({ phase: 'pending', pending: this.envelope.pending.length, message: '이 기기에 저장됨 · 서버 전송 대기' });
-    // Local durability is synchronous; server acknowledgement is separately observable.
-    void this.flush();
-    return local;
+    const started = performance.now();
+    let success = false;
+    try {
+      if (this.envelope.conflict) throw new DomainError('VERSION_CONFLICT', '두 자료를 보존했습니다. 저장 상태에서 충돌 내용을 먼저 확인해 주세요.');
+      const local = applyCommand(this.envelope.local, command);
+      if (local === this.envelope.local) { success = true; return local; }
+      this.persist({ ...this.envelope, local, pending: [...this.envelope.pending, command] });
+      this.update({ phase: 'pending', pending: this.envelope.pending.length, message: '이 기기에 저장됨 · 서버 전송 대기' });
+      // Local durability is synchronous; server acknowledgement is separately observable.
+      void this.flush();
+      success = true;
+      return local;
+    } finally { recordRequestPerformance('local-command', started, success); }
   }
   flush(): Promise<void> {
     if (this.flight) return this.flight;
@@ -94,14 +119,18 @@ export class PersonalRepository implements StudyRepository {
     if (server.sequence < this.envelope.base.sequence) throw new DomainError('STALE_SERVER', '서버의 최신 기록을 확인하지 못했습니다. 이 기기의 글은 남아 있습니다.');
     if (this.envelope.pending.length) {
       if (server.sequence === this.envelope.base.sequence) return;
-      const acknowledged = this.envelope.pending.filter(command => server.data.appliedOps[command.opId] === this.envelope.local.appliedOps[command.opId]);
-      acknowledged.forEach(command => applyCommand(server.data, command));
-      if (acknowledged.length !== this.envelope.pending.length) {
+      const recovered = this.recoverAcknowledged(this.envelope, server);
+      if (!recovered) {
         this.persist({ ...this.envelope, conflict: server });
         this.update({ phase: 'conflict', pending: this.envelope.pending.length, message: '다른 기기의 변경과 이 기기의 글을 모두 보존했습니다.' });
         return;
       }
-    } else if (server.sequence === this.envelope.base.sequence && JSON.stringify(server.supportedCommands) === JSON.stringify(this.envelope.base.supportedCommands)) return;
+      this.persist(recovered);
+      this.update(recovered.pending.length
+        ? { phase: 'pending', pending: recovered.pending.length, message: '이 기기에 저장됨 · 서버 전송 대기' }
+        : { phase: 'saved', pending: 0, message: '서버에서 불러옴' }, true);
+      return;
+    } else if (server.sequence === this.envelope.base.sequence && JSON.stringify(server.supportedCommands) === JSON.stringify(this.envelope.base.supportedCommands) && JSON.stringify(server.syncCapabilities) === JSON.stringify(this.envelope.base.syncCapabilities)) return;
     this.persist({ ...this.envelope, base: server, local: server.data, pending: [], conflict: undefined });
     this.update({ phase: 'saved', pending: 0, message: '서버에서 불러옴' }, true);
   }
@@ -110,7 +139,7 @@ export class PersonalRepository implements StudyRepository {
       await this.storage.flush?.();
       if (this.envelope.conflict) return;
       if (this.needsRefresh) {
-        const server = await this.transport.load();
+        const server = await this.transport.load(this.envelope.base);
         this.acceptServer(server);
         this.needsRefresh = false;
         await this.storage.flush?.();
@@ -120,11 +149,26 @@ export class PersonalRepository implements StudyRepository {
         await this.storage.flush?.();
         if (!this.envelope.pending.length) break;
         this.update({ phase: 'saving', pending: this.envelope.pending.length, message: '이 기기에 저장됨 · 서버에 저장 중' });
-        const command = this.envelope.pending[0];
-        const server = await this.transport.execute(command, this.envelope.base.sequence);
+        let commands = this.envelope.pending.slice(0, 1);
+        const executeBatch = this.transport.executeBatch;
+        if (this.envelope.base.syncCapabilities?.batchCommands && executeBatch) {
+          // Bound payload/count without serializing the entire ledger. Never discard
+          // an intermediate edit or wait for more input before sending a ready batch.
+          const batch: Command[] = [];
+          let chars = 256;
+          for (const command of this.envelope.pending.slice(0, MAX_SYNC_BATCH)) {
+            chars += JSON.stringify(command).length + 1;
+            if (chars > MAX_SYNC_BATCH_CHARS) break;
+            batch.push(command);
+          }
+          if (batch.length > 1) commands = batch;
+        }
+        const server = commands.length > 1 && executeBatch
+          ? await executeBatch.call(this.transport, commands, this.envelope.base.sequence)
+          : await this.transport.execute(commands[0], this.envelope.base.sequence);
         this.verify(server);
-        if (server.data.appliedOps[command.opId] !== this.envelope.local.appliedOps[command.opId]) throw new DomainError('INVALID_ACK', '서버 저장 확인을 받지 못했습니다. 원문을 보존했습니다.');
-        const pending = this.envelope.pending.slice(1);
+        if (commands.some(command => server.data.appliedOps[command.opId] !== this.envelope.local.appliedOps[command.opId])) throw new DomainError('INVALID_ACK', '서버 저장 확인을 받지 못했습니다. 원문을 보존했습니다.');
+        const pending = this.envelope.pending.slice(commands.length);
         let local: AppState;
         try { local = pending.reduce((state, item) => applyCommand(state, item), server.data); }
         catch { this.persist({ ...this.envelope, conflict: server }); this.update({ phase: 'conflict', pending: this.envelope.pending.length, message: '다른 기기의 변경과 이 기기의 글을 모두 보존했습니다.' }); return; }

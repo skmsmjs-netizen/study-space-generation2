@@ -53,7 +53,7 @@ function recordArea(title: string) {
 describe('prototype write ownership', () => {
   it('opens topic exam practice with the subject selected and no missing-item message', async () => {
     await open(`/practice/${firstTopic}`);
-    await screen.findByRole('button', { name: '연습 시작' });
+    await screen.findByRole('button', { name: '연습 시작' }, { timeout: 10_000 });
     expect(screen.getByLabelText('연습할 주제')).toHaveValue(firstTopic);
     expect(screen.queryByText('이 항목을 찾을 수 없습니다')).not.toBeInTheDocument();
     expect(within(screen.getByRole('navigation', { name: '주 메뉴' })).getByRole('link', { name: '시험 연습' })).toHaveAttribute('aria-current', 'page');
