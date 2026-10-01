@@ -30,7 +30,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaHTMLAttributes<H
 });
 export const Select = forwardRef<HTMLSelectElement, SelectHTMLAttributes<HTMLSelectElement> & FieldProps>(function Select({ label, hint, error, id: givenId, className, 'aria-describedby': describedBy, children, ...props }, ref) {
   const generatedId = useId(), id = givenId || generatedId;
-  return <Field id={id} label={label} hint={hint} error={error}><select {...props} ref={ref} id={id} className={classes('ui-input', className)} aria-invalid={error ? true : props['aria-invalid']} aria-describedby={description(id, hint, error, describedBy)}>{children}</select></Field>;
+  return <Field id={id} label={label} hint={hint} error={error}><span className="ui-select"><select {...props} ref={ref} id={id} className={classes('ui-input', className)} aria-invalid={error ? true : props['aria-invalid']} aria-describedby={description(id, hint, error, describedBy)}>{children}</select></span></Field>;
 });
 export type ChoiceProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> & { label: ReactNode };
 export function Checkbox({ label, className, indeterminate = false, ...props }: ChoiceProps & { indeterminate?: boolean }) {
