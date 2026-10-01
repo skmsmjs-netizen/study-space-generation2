@@ -2,7 +2,8 @@ import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import type { SupabaseClient } from '@supabase/supabase-js';
 import { Button, Card, ErrorState, Input, LoadingState, Modal } from './index';
 import { createStudyClient, onlineTransport, readServerConfig } from '../data/supabase-client';
-import { PersonalRepository } from '../data/personal-repository';
+import { PersonalRepository, readCachedPersonalSnapshot } from '../data/personal-repository';
+import { startPersonalSync } from '../data/personal-sync';
 import type { SaveStatus } from '../data/repository';
 import './personal-space.css';
 const errorText = (error: unknown) => error instanceof Error ? error.message : '개인 공간을 열지 못했습니다.';
@@ -16,8 +17,11 @@ export function PersonalSpace({ onDemo, renderWorkspace }: { onDemo: () => void;
   useEffect(() => {
     if (!client) { setAuthReady(true); return; }
     let alive = true;
-    const { data } = client.auth.onAuthStateChange((_event, session) => { if (alive) { setUserId(session?.user.id ?? null); setAuthReady(true); } });
-    client.auth.getUser().then(({ data, error }) => { if (alive) { if (error && error.name !== 'AuthSessionMissingError') setError('로그인 상태를 확인하지 못했습니다. 다시 로그인해 주세요.'); setUserId(data.user?.id ?? null); setAuthReady(true); } });
+    let authVersion = 0;
+    const { data } = client.auth.onAuthStateChange((_event, session) => { authVersion++; if (alive) { setUserId(session?.user.id ?? null); setAuthReady(true); } });
+    const version = authVersion;
+    // Restore the local session; the API still authenticates and authorizes every request.
+    client.auth.getSession().then(({ data, error }) => { if (alive && version === authVersion) { if (error) setError('로그인 상태를 확인하지 못했습니다. 다시 로그인해 주세요.'); setUserId(data.session?.user.id ?? null); setAuthReady(true); } });
     return () => { alive = false; data.subscription.unsubscribe(); };
   }, [client]);
   useEffect(() => {
@@ -49,24 +53,29 @@ export function PersonalSpace({ onDemo, renderWorkspace }: { onDemo: () => void;
       await navigator.locks.request(`study-space:personal:${userId}:writer`, { ifAvailable: true }, async lock => {
         if (disposed) return;
         if (!lock) { setOtherWriter(true); setError('다른 창에서 내 공부 공간을 사용 중입니다. 그 창의 입력을 마친 뒤 다시 열어 주세요.'); setOpening(false); return; }
+        let opened: PersonalRepository | undefined;
         try {
           const transport = onlineTransport(client);
-          const server = await Promise.race([transport.load(), closed.then(() => null)]);
+          const cached = readCachedPersonalSnapshot(localStorage, userId);
+          const server = cached ?? await Promise.race([transport.load(), closed.then(() => null)]);
           if (disposed || !server) return;
           if (server.data.userId !== userId || server.data.namespace !== 'personal') throw Error('로그인한 사용자의 자료가 아닙니다.');
-          const repository = new PersonalRepository(localStorage, transport, server);
+          const repository = new PersonalRepository(localStorage, transport, server, Boolean(cached));
+          opened = repository;
           setRepo(repository); setOpening(false); void repository.flush();
         } catch (error) {
           if (!disposed) { setError(errorText(error)); setOpening(false); }
           return; // An error screen is not a writer; release before retrying.
         }
         await closed;
+        await opened?.close();
       });
     })();
     writerTask.current = task;
     void task.catch(error => { if (!disposed) { setError(errorText(error)); setOpening(false); } });
     return () => { disposed = true; finish(); };
   }, [client, userId, retry]);
+  useEffect(() => repo ? startPersonalSync(repo) : undefined, [repo]);
   if (repo && client) return renderWorkspace(repo, <ServerStatus repository={repo} client={client} onDemo={onDemo} />);
   return <main className="boot personal-entry"><Card><h1>내 공부 공간</h1>
     {!configured ? <ErrorState title="서버 연결 설정이 필요합니다" message="시연 기록은 그대로 남아 있습니다. 서버 공개 설정을 적용한 뒤 개인 공간을 열 수 있습니다." />
@@ -106,7 +115,7 @@ export function ServerStatus({ repository, client, onDemo }: { repository: Perso
   function download() { try { const blob = new Blob([repository.exportPreserved()], { type: 'application/json' }); const url = URL.createObjectURL(blob); const anchor = document.createElement('a'); anchor.href = url; anchor.download = 'study-preserved-records.json'; anchor.click(); setTimeout(() => URL.revokeObjectURL(url), 1000); } catch { setError('보관본을 내려받지 못했습니다. 원문은 그대로 남아 있습니다. 다시 시도해 주세요.'); } }
   return <><Button variant="quiet" onClick={() => setOpen(true)}>{status.message}{status.pending ? ` (${status.pending}건)` : ''}</Button>
     <Modal open={open} title="내 기록의 저장 상태" onClose={() => setOpen(false)}><p role={status.phase === 'error' || status.phase === 'conflict' ? 'alert' : 'status'}>{status.message}</p>
-      <p>기록·목차·서술·메모는 서버 저장과 연결됩니다. 작성 중인 초안과 추천 설정은 현재 기기에 보관됩니다.</p>
+      <p>기록·목차·서술·메모는 서버 저장과 연결됩니다. 다른 기기의 저장된 기록을 자동으로 확인하며, 화면으로 돌아오면 바로 확인합니다. 작성 중인 초안은 현재 기기에 보관됩니다.</p>
       <div className="actions"><Button onClick={() => { void repository.flush(); }}>서버 저장 다시 시도</Button><Button onClick={() => { void repository.refresh().catch(error => setError(errorText(error))); }}>서버 기록 다시 불러오기</Button><Button onClick={download}>이 기기의 기록·보관본 내려받기</Button></div>
       {conflict && <section><h2>두 자료를 확인해 주세요</h2><p>서버 저장 {conflict.server.sequence}회 · 이 기기의 미전송 변경 {conflict.pending.length}건</p>
         <details><summary>이 기기에서 작성한 내용</summary><pre>{JSON.stringify(conflict.pending, null, 2)}</pre></details>

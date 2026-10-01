@@ -8,7 +8,7 @@ vi.mock('./data/supabase-client', () => ({
   readServerConfig: () => ({url:'https://example.supabase.co',publishableKey:'sb_publishable_test'}),
   createStudyClient: () => ({auth:{
     onAuthStateChange: (callback: (event:string,session:null)=>void) => {callback('INITIAL_SESSION',null); return {data:{subscription:{unsubscribe(){}}}};},
-    getUser: async () => ({data:{user:null},error:null}), signUp: authCalls.signUp,
+    getSession: async () => ({data:{session:null},error:null}), signUp: authCalls.signUp,
   }}), onlineTransport: vi.fn(),
 }));
 const nativeLocks=Object.getOwnPropertyDescriptor(navigator,'locks');

@@ -8,7 +8,7 @@ export interface StudyRepository {
   getStatus?(): SaveStatus;
   getCapabilities?(): string[];
 }
-export interface SaveStatus { phase: 'saved' | 'pending' | 'saving' | 'error' | 'conflict'; pending: number; message: string }
+export interface SaveStatus { phase: 'checking' | 'saved' | 'pending' | 'saving' | 'error' | 'conflict'; pending: number; message: string }
 export function storagePrefix(data: Pick<AppState, 'namespace' | 'userId'>) {
   return data.namespace === 'demo' ? 'study-space:demo' : `study-space:${data.namespace}:${encodeURIComponent(data.userId)}`;
 }

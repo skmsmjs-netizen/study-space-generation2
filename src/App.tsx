@@ -38,7 +38,7 @@ import { DraftArchives } from "./ui/draft-archives";
 import { QuickMemos } from "./ui/quick-memos";
 import { StudyLaunch } from "./ui/study-launch";
 const NextStudy = lazy(() => import("./ui/next-study").then(module => ({ default: module.NextStudy })));
-import { StudyStatistics } from "./ui/statistics";
+const StudyStatistics = lazy(() => import("./ui/statistics").then(module => ({ default: module.StudyStatistics })));
 import { TopicRecall } from "./ui/topic-recall";
 const StudyCanvas = lazy(() => import("./ui/study-canvas").then(module => ({ default: module.StudyCanvas })));
 const PersonalSpace = lazy(() => import("./ui/personal-space").then(module => ({ default: module.PersonalSpace })));

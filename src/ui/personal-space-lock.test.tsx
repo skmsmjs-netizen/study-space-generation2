@@ -1,6 +1,7 @@
 import { act, cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import { PersonalSpace } from './personal-space';
+import { PersonalRepository } from '../data/personal-repository';
 import { emptyState } from '../domain/model';
 const fake = vi.hoisted(() => ({
   id: '70000000-0000-4000-8000-000000000001', load: vi.fn(),
@@ -10,7 +11,7 @@ vi.mock('../data/supabase-client', () => ({
   readServerConfig: () => ({ url: 'https://example.supabase.co', publishableKey: 'sb_publishable_test' }),
   createStudyClient: () => ({ auth: {
     onAuthStateChange: (callback: typeof fake.callback) => { fake.callback = callback; callback?.('INITIAL_SESSION', { user: { id: fake.id } }); return { data: { subscription: { unsubscribe() {} } } }; },
-    getUser: async () => ({ data: { user: { id: fake.id } }, error: null }),
+    getSession: async () => ({ data: { session: { user: { id: fake.id } } }, error: null }),
   } }),
   onlineTransport: () => ({ load: fake.load }),
 }));
@@ -69,4 +70,13 @@ it('does not reopen or release an active writer on token refresh or hiding the p
   const visible = vi.spyOn(document, 'visibilityState', 'get'); open(); await screen.findByText(`개인 자료 열림 ${fake.id}`);
   await act(async () => { fake.callback?.('TOKEN_REFRESHED', { user: { id: fake.id } }); visible.mockReturnValue('hidden'); document.dispatchEvent(new Event('visibilitychange')); });
   expect(request).toHaveBeenCalledTimes(1); expect(owned).toBe(true);
+});
+
+it('renders a validated cache while the first server load is still pending', async () => {
+ const data = emptyState(fake.id, 'personal');
+ new PersonalRepository(localStorage, {load: fake.load, execute: async () => {throw Error('unused')}}, {sequence:0,data});
+ const response = deferred<{sequence:number;data:typeof data}>(); fake.load.mockReturnValueOnce(response.promise);
+ const view = open();
+ try { await screen.findByText(`개인 자료 열림 ${fake.id}`); await waitFor(()=>expect(fake.load).toHaveBeenCalledTimes(1)); }
+ finally { response.resolve({sequence:0,data}); view.unmount(); }
 });
