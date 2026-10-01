@@ -16,17 +16,46 @@ import {
 export const EXPERIENCE_CHANGED = 'study-space:experience-changed';
 export const experienceKey = (data: Pick<AppState, 'namespace' | 'userId'>) =>
   `study-space:${data.namespace}:${encodeURIComponent(data.userId)}:experience:v1`;
+export const experienceReadingWidthKey = (data: Pick<AppState, 'namespace' | 'userId'>) =>
+  `${experienceKey(data)}:reading-width:v1`;
+
+function readingWidth(
+  data: Pick<AppState, 'namespace' | 'userId'>,
+  fallback: ExperienceState['readingWidth'],
+  inheritLegacy: boolean,
+): ExperienceState['readingWidth'] {
+  const key = experienceReadingWidthKey(data);
+  const saved = readRescuedDraft(key) ?? localStorage.getItem(key);
+  if (saved === 'normal' || saved === 'wide') return saved;
+  if (saved !== null)
+    throw Error(
+      '본문 읽기 폭을 확인하지 못했습니다. 원래 설정을 보존했습니다. 다시 시도해 주세요.',
+    );
+  if (!inheritLegacy) return fallback;
+  // Reuse only the saved preference from the legacy shared value, never its
+  // next-action text or draft. Reading does not rewrite or remove old copies.
+  const legacy = localStorage.getItem(experienceKey(data));
+  if (legacy === null || legacy === '') return 'normal';
+  const state: unknown = JSON.parse(legacy);
+  validateExperience(state);
+  return state.readingWidth;
+}
 export function readExperience(data: Pick<AppState, 'namespace' | 'userId'>): ExperienceState {
   const raw = readRescuedDraft(experienceKey(data)) ?? localStorage.getItem(experienceKey(data));
   // Draft safety uses an empty marker for this window when another window owns
   // the shared value. Do not parse that marker or adopt the other window's text.
-  if (raw === null || raw === '') return emptyExperience();
   try {
-    const value: unknown = JSON.parse(raw);
+    const value: unknown = raw === null || raw === '' ? emptyExperience() : JSON.parse(raw);
     validateExperience(value);
-    return value;
+    // A failed local write stays visible for exact retry. Otherwise use the
+    // shared reading preference while preserving this window's other fields.
+    return draftHasUnstoredText(experienceKey(data))
+      ? value
+      : { ...value, readingWidth: readingWidth(data, value.readingWidth, raw === '') };
   } catch {
-    throw Error('이어가기 정보를 읽지 못했습니다. 저장된 원문은 그대로 보존했습니다. 다시 시도해 주세요.');
+    throw Error(
+      '이어가기 정보를 읽지 못했습니다. 저장된 원문은 그대로 보존했습니다. 다시 시도해 주세요.',
+    );
   }
 }
 /** Keep failed writes in the shared draft rescue; do not replace unreadable prior data. */
@@ -42,6 +71,10 @@ export function updateExperience(
     storeDraftSafely(key, raw);
     if (localStorage.getItem(key) !== raw)
       throw Error('이어가기 정보의 저장을 확인하지 못했습니다.');
+    const widthKey = experienceReadingWidthKey(data);
+    storeDraftSafely(widthKey, next.readingWidth);
+    if (localStorage.getItem(widthKey) !== next.readingWidth)
+      throw Error('본문 읽기 폭의 저장을 확인하지 못했습니다.');
   } catch (error) {
     rescueWithoutOverwrite(key, raw);
     throw error;
