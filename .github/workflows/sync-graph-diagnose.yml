@@ -1,0 +1,24 @@
+name: Diagnose graph reflow
+on:
+  push:
+    branches: [codex/sync-graph-diagnose]
+permissions:
+  contents: read
+jobs:
+  graph:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+        env:
+          PAGES_BASE: /study-space-generation2/
+      - run: npx playwright install --with-deps webkit
+      - run: npx playwright test --config playwright.devices.config.ts e2e/devices/screens.pw.ts --grep 'graph filters' --project iPhone-17-Pro-landscape --project iPad-Pro-13-portrait
+        env:
+          PAGES_BASE: /study-space-generation2/
+          CI: true

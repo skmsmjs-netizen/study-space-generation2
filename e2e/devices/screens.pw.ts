@@ -76,6 +76,16 @@ test('graph filters remain usable with larger text without horizontal overflow',
   await connections.selectOption('all');
   await expect(connections).toHaveValue('all');
   await expect(page.getByLabel('그래프 과목', { exact: true })).toBeVisible();
+  console.log('GRAPH_REFLOW', JSON.stringify(await page.evaluate(() => ({
+    viewport: innerWidth, pageWidth: document.documentElement.scrollWidth,
+    overflowing: [...document.querySelectorAll<HTMLElement>('body *')]
+      .filter(el => !el.closest('.react-flow') && (el.scrollWidth > el.clientWidth + 1 || el.getBoundingClientRect().right > innerWidth + 1))
+      .map(el => { const box = el.getBoundingClientRect(), css = getComputedStyle(el); return {
+        tag: el.tagName, className: el.className, text: el.textContent?.slice(0, 60),
+        left: box.left, right: box.right, width: box.width, client: el.clientWidth, scroll: el.scrollWidth,
+        display: css.display, grid: css.gridTemplateColumns, minWidth: css.minWidth, overflow: css.overflow,
+      }; }).slice(0, 35),
+  }))));
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(
     await page.evaluate(() => innerWidth + 1),
   );
