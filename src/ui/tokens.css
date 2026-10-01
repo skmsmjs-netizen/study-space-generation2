@@ -197,6 +197,7 @@
   --type-caption-line: 1.6;
   /* Existing specialized text roles: preserve their rendered dimensions. */
   --type-detail-size: .9rem;
+  --type-math-size: 1.08em;
   --type-metric-size: 1.5rem;
   --type-chart-size: 12px;
   --type-title-tracking: -.035em;

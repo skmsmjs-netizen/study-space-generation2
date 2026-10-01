@@ -6,7 +6,7 @@
   line-height: var(--type-body-line);
 }
 .study-result-formula .katex {
-  font-size: 1.08em;
+  font-size: var(--type-math-size);
 }
 .study-result-formula--display {
   display: block;
