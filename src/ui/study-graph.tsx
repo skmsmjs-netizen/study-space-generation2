@@ -132,14 +132,23 @@ export function StudyGraph({ data, subjectIds }: { data: AppState; subjectIds: s
   );
   useEffect(() => {
     if (!stage.current) return;
+    let pendingFrame = 0;
     const observer = new ResizeObserver(([entry]) => {
+      if (!entry) return;
       const width = Math.round(entry.contentRect.width),
         height = Math.round(entry.contentRect.height);
-      if (width > 0 && height > 0)
+      if (width <= 0 || height <= 0) return;
+      // Layout updates run after ResizeObserver delivery to avoid a resize loop.
+      cancelAnimationFrame(pendingFrame);
+      pendingFrame = requestAnimationFrame(() => {
         setFrame((old) => (old.width === width && old.height === height ? old : { width, height }));
+      });
     });
     observer.observe(stage.current);
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(pendingFrame);
+    };
   }, []);
   useEffect(() => {
     const options = { frame, spacing, previous: previous.current, pinned };

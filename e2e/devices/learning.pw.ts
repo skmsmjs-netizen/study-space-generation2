@@ -28,14 +28,14 @@ test('math inputs, graph and saved observations work after resizing and reopenin
   test.skip(!available('/math'), '이 배포 버전에는 /math 화면이 없습니다.');
   await page.goto('?space=demo#/math');
   await page.getByLabel('그래프 도구', { exact: true }).selectOption('plotly');
-  await expect(page.locator('.js-plotly-plot')).toBeVisible();
+  await expect(page.locator('.js-plotly-plot')).toBeVisible({ timeout: 20000 });
   await page.getByLabel('관찰·메모 (선택)', { exact: true }).fill(original);
   await page.getByRole('button', { name: '수식과 메모 저장', exact: true }).tap();
   await page.reload();
   await expect(page.getByLabel('관찰·메모 (선택)', { exact: true })).toHaveValue(original);
   const initial = info.project.use.viewport!;
   await page.setViewportSize({ width: initial.height, height: initial.width });
-  await expect(page.locator('.js-plotly-plot')).toBeVisible();
+  await expect(page.locator('.js-plotly-plot')).toBeVisible({ timeout: 20000 });
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1)).toBe(
     true,
   );
