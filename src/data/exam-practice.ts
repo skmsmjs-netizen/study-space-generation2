@@ -1,4 +1,4 @@
-import type { AppState } from '../domain/model';
+import type { AppState, QuickMemo } from '../domain/model';
 import type { StudyRepository } from './repository';
 import { storagePrefix } from './repository';
 import {
@@ -23,6 +23,7 @@ export interface ExamPracticeDraft {
   answer: string;
   reflection: string;
   nextStep: string;
+  previous?: { memoId: string; reflection: string; nextStep: string; timeKnown: boolean };
 }
 export const EXAM_MEMO_PREFIX = 'exam-practice:';
 export function freshExamPractice(topicId = ''): ExamPracticeDraft {
@@ -71,10 +72,55 @@ function validate(value: unknown): asserts value is ExamPracticeDraft {
     ) ||
     !(d.runningSince === null || (Number.isFinite(d.runningSince) && d.runningSince >= 0)) ||
     (d.phase === 'running') !== (d.runningSince !== null) ||
-    (d.phase !== 'setup' && (!d.startedAt || !d.topicId))
+    (d.phase !== 'setup' && (!d.startedAt || !d.topicId)) ||
+    (d.previous !== undefined &&
+      (!d.previous ||
+        typeof d.previous.memoId !== 'string' ||
+        typeof d.previous.reflection !== 'string' ||
+        typeof d.previous.nextStep !== 'string' ||
+        typeof d.previous.timeKnown !== 'boolean'))
   ) {
     throw Error('연습 내용을 읽지 못했습니다. 원문은 보존했습니다.');
   }
+}
+/** Only read the recognizable memo template. Ambiguous/edited sections stay in the original memo. */
+export function repeatExamPractice(memo: QuickMemo): ExamPracticeDraft {
+  if (!memo.id.startsWith(EXAM_MEMO_PREFIX) || memo.deletedAt || !memo.ownerId)
+    throw Error('연습할 주제를 다시 선택해 주세요. 이전 메모는 그대로 남아 있습니다.');
+  const lines = memo.body.split('\n');
+  const header =
+    /^시험 연습 · /.test(lines[0] ?? '') &&
+    /^시작: /.test(lines[1] ?? '') &&
+    /^종료: /.test(lines[2] ?? '');
+  const time = header
+    ? /^연습 시간: \d+분 \d+초 · (정한 시간 (10|25|50)분|시간 제한 없음)$/.exec(lines[3] ?? '')
+    : null;
+  const sections = [...memo.body.matchAll(/\n\n(풀이·답안|막힌 곳|다음에 해 볼 것)\n/g)];
+  const order = ['풀이·답안', '막힌 곳', '다음에 해 볼 것'];
+  const safe =
+    header &&
+    sections.every(
+      (section, i) => i === 0 || order.indexOf(section[1]) > order.indexOf(sections[i - 1][1]),
+    );
+  const read = (name: string) => {
+    if (!safe) return '';
+    const i = sections.findIndex((section) => section[1] === name);
+    if (i < 0) return '';
+    return memo.body.slice(
+      sections[i].index! + sections[i][0].length,
+      sections[i + 1]?.index ?? memo.body.length,
+    );
+  };
+  return {
+    ...freshExamPractice(memo.ownerId),
+    minutes: time ? Number(time[2] ?? 0) : 25,
+    previous: {
+      memoId: memo.id,
+      reflection: read('막힌 곳'),
+      nextStep: read('다음에 해 볼 것'),
+      timeKnown: Boolean(time),
+    },
+  };
 }
 export function readPracticeDraft(key: string) {
   const raw = readRescuedDraft(key) ?? localStorage.getItem(key);

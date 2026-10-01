@@ -8,12 +8,53 @@ import {
   writePracticeDraft,
   savePracticeMemo,
   preservePracticeDraft,
+  repeatExamPractice,
 } from './exam-practice';
 import { readRescuedDraft } from './draft-safety';
 
 beforeEach(() => {
   localStorage.clear();
   sessionStorage.clear();
+});
+it('repeats from the recorded topic and time with a new identity, no answer copy and exact prior reflections', () => {
+  const repo = new DemoRepository(localStorage),
+    prior = finished();
+  prior.minutes = 50;
+  const memo = savePracticeMemo(repo, prior).memos!.find((m) => m.id === prior.id)!;
+  const repeat = repeatExamPractice(memo);
+  expect(repeat).toMatchObject({
+    topicId: prior.topicId,
+    minutes: 50,
+    phase: 'setup',
+    answer: '',
+    elapsedMs: 0,
+    previous: {
+      memoId: memo.id,
+      reflection: prior.reflection,
+      nextStep: prior.nextStep,
+      timeKnown: true,
+    },
+  });
+  expect(repeat.id).not.toBe(prior.id);
+  expect(repo.getSnapshot().memos!.find((m) => m.id === prior.id)).toEqual(memo);
+  const key = practiceDraftKey(repo.getSnapshot());
+  writePracticeDraft(key, repeat, null);
+  expect(readPracticeDraft(key).draft).toEqual(repeat);
+  expect(
+    repeatExamPractice({ ...memo, body: memo.body.replace('정한 시간 50분', '시간 제한 없음') })
+      .minutes,
+  ).toBe(0);
+});
+it('keeps ambiguous memo sections in the original instead of showing them as a prior reflection', () => {
+  const repo = new DemoRepository(localStorage),
+    prior = finished();
+  prior.answer += '\n\n막힌 곳\n답안 안에 쓴 구절';
+  const memo = savePracticeMemo(repo, prior).memos!.find((m) => m.id === prior.id)!;
+  expect(repeatExamPractice(memo).previous).toMatchObject({ reflection: '', nextStep: '' });
+  expect(repeatExamPractice({ ...memo, body: '자유롭게 수정한 메모' }).previous!.timeKnown).toBe(
+    false,
+  );
+  expect(() => repeatExamPractice({ ...memo, ownerId: null })).toThrow('주제');
 });
 const finished = () => ({
   ...freshExamPractice('demo-topic-function'),

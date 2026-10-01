@@ -11,6 +11,7 @@ import {
   clearPracticeDraft,
   preservePracticeDraft,
   savePracticeMemo,
+  repeatExamPractice,
   type ExamPracticeDraft,
 } from '../data/exam-practice';
 import { Button, EmptyState, Select, Textarea } from './index';
@@ -75,7 +76,7 @@ export function ExamPractice({
     return () => window.clearInterval(tick);
   }, [draft.phase]);
   useEffect(() => {
-    heading.current?.focus({ preventScroll: true });
+    if (draft.phase !== 'setup') heading.current?.focus({ preventScroll: true });
   }, [draft.phase]);
   const persist = (next: ExamPracticeDraft) => {
     if (blocked) return false;
@@ -148,6 +149,18 @@ export function ExamPractice({
     )
     .slice()
     .sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+  const repeat = (memo: (typeof history)[number]) => {
+    if (blocked || composing || !['setup', 'saved'].includes(draft.phase)) return;
+    if (draft.phase === 'setup' && draft.answer) {
+      setError('작성 중인 연습을 먼저 마쳐 주세요. 현재 내용은 유지했습니다.');
+      return;
+    }
+    try {
+      persist(repeatExamPractice(memo));
+    } catch (e) {
+      setError(message(e));
+    }
+  };
   return (
     <section
       className="exam-practice"
@@ -184,6 +197,30 @@ export function ExamPractice({
         </div>
       )}
       {notice && <p role="status">{notice}</p>}
+      {draft.previous && draft.phase !== 'saved' && (
+        <aside className="practice-previous" aria-label="지난 연습에서 남긴 것">
+          <p>지난 연습에서 남긴 것</p>
+          {draft.previous.reflection && (
+            <>
+              <strong>막힌 곳</strong>
+              <p>{draft.previous.reflection}</p>
+            </>
+          )}
+          {draft.previous.nextStep && (
+            <>
+              <strong>다음에 해 볼 것</strong>
+              <p>{draft.previous.nextStep}</p>
+            </>
+          )}
+          {!draft.previous.reflection && !draft.previous.nextStep && (
+            <p>복기는 이전 메모에서 확인할 수 있습니다.</p>
+          )}
+          {!draft.previous.timeKnown && (
+            <p>이전 시간을 확인할 수 없어 25분으로 준비했습니다. 바꿔도 됩니다.</p>
+          )}
+          <a href={`#/memos/${encodeURIComponent(draft.previous.memoId)}`}>이전 메모 열기</a>
+        </aside>
+      )}
       {draft.phase === 'setup' ? (
         <>
           <p className="practice-intro">책이나 다른 앱의 문제를 보며 풀어 보세요.</p>
@@ -203,7 +240,13 @@ export function ExamPractice({
                 label="연습할 주제"
                 value={draft.topicId}
                 disabled={blocked}
-                onChange={(e) => persist({ ...draft, topicId: e.target.value })}
+                onChange={(e) =>
+                  persist({
+                    ...draft,
+                    topicId: e.target.value,
+                    previous: e.target.value === draft.topicId ? draft.previous : undefined,
+                  })
+                }
               >
                 <option value="">주제 선택</option>
                 {subjects.map((subject) => (
@@ -253,6 +296,7 @@ export function ExamPractice({
               </p>
               <p
                 className="practice-timer"
+                role="timer"
                 aria-label={draft.minutes ? (expired ? '초과한 시간' : '남은 시간') : '연습한 시간'}
               >
                 {clock(draft.minutes ? Math.abs(draft.minutes * 60000 - elapsed) : elapsed)}
@@ -368,6 +412,18 @@ export function ExamPractice({
                   {memo.body.split('\n')[0] || '연습 메모'}
                 </a>
                 <span>{new Date(memo.createdAt).toLocaleDateString('ko-KR')}</span>
+                <Button
+                  variant="quiet"
+                  disabled={
+                    blocked ||
+                    composing ||
+                    !['setup', 'saved'].includes(draft.phase) ||
+                    !topics.some((row) => row.id === memo.ownerId)
+                  }
+                  onClick={() => repeat(memo)}
+                >
+                  같은 주제로 다시 연습
+                </Button>
               </li>
             ))}
           </ul>

@@ -1,9 +1,10 @@
 import { DomainError, type AppState, type CanvasLayout, type CanvasLink, type CanvasPosition } from './model';
+import { conceptText, isConceptMemo } from './canvas-concept';
 
 export const CANVAS_ID = 'canvas:main';
 export type CanvasContent = Pick<CanvasLayout, 'positions' | 'links' | 'viewport'>;
 export const canvasKey = (kind: 'subject' | 'node' | 'memo' | 'narrative', id: string) => `${kind}:${id}`;
-export interface CanvasCard { id: string; entityId: string; kind: 'subject' | 'unit' | 'outline' | 'topic' | 'memo' | 'narrative'; name: string; ownerId: string | null; position: CanvasPosition }
+export interface CanvasCard { id: string; entityId: string; kind: 'subject' | 'unit' | 'outline' | 'topic' | 'memo' | 'narrative' | 'concept'; name: string; ownerId: string | null; position: CanvasPosition }
 
 export function validateCanvasLayout(value: CanvasContent) {
   const validKey = (id: unknown): id is string => typeof id === 'string' && /^(subject|node|memo|narrative):.+/.test(id) && id.length <= 300 && !/[\u0000-\u001f]/.test(id);
@@ -18,7 +19,7 @@ export function validateCanvasLayout(value: CanvasContent) {
 }
 
 /** Read projection, never a second copy of study text. Hidden cards keep their saved geometry. */
-export function projectCanvas(state: AppState, subjectIds?: readonly string[], layout: CanvasContent | undefined = state.canvasLayouts?.find(row => row.id === CANVAS_ID && !row.deletedAt)): { cards: CanvasCard[]; links: CanvasLink[] } {
+export function projectCanvas(state: AppState, subjectIds?: readonly string[], layout: CanvasContent | undefined = state.canvasLayouts?.find(row => row.id === CANVAS_ID && !row.deletedAt), includeUnscopedConcepts = true): { cards: CanvasCard[]; links: CanvasLink[] } {
   const cards: CanvasCard[] = [], links: CanvasLink[] = [];
   const positions = layout?.positions ?? {};
   const occupied = Object.values(positions).map(p => ({ ...p }));
@@ -34,7 +35,7 @@ export function projectCanvas(state: AppState, subjectIds?: readonly string[], l
     cards.push({ ...card, position });
   };
   const notes = (ownerId: string, parent: string, depth: number) => {
-    for (const memo of (state.memos ?? []).filter(m => !m.deletedAt && m.ownerId === ownerId)) {
+    for (const memo of (state.memos ?? []).filter(m => !m.deletedAt && m.ownerId === ownerId && !isConceptMemo(m))) {
       const id = canvasKey('memo', memo.id);
       add({ id, entityId: memo.id, kind: 'memo', name: '내 설명', ownerId }, depth);
       autoLink(parent, id, '내 설명');
@@ -64,5 +65,10 @@ export function projectCanvas(state: AppState, subjectIds?: readonly string[], l
     row++;
   }
   const visible = new Set(cards.map(card => card.id));
+  for (const memo of (state.memos ?? []).filter(m => !m.deletedAt && isConceptMemo(m) && (m.ownerId === null ? includeUnscopedConcepts : visible.has(canvasKey('subject', m.ownerId)) || visible.has(canvasKey('node', m.ownerId))))) {
+    const id = canvasKey('memo', memo.id);
+    add({ id, entityId: memo.id, kind: 'concept', name: conceptText(memo.body).name || '개념', ownerId: memo.ownerId }, 0);
+    visible.add(id); row++;
+  }
   return { cards, links: [...links, ...(layout?.links ?? []).filter(link => visible.has(link.source) && visible.has(link.target))] };
 }

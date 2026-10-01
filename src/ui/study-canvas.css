@@ -33,6 +33,12 @@
 .canvas-user-edge .react-flow__edge-path { stroke: var(--color-focus); }
 .study-canvas .react-flow__handle { width: 12px; height: 12px; background: var(--color-surface); border: var(--border-width) solid var(--color-focus); }
 .canvas-help { color: var(--color-muted); font-size: var(--type-caption-size); }
+.canvas-concept-editor { display: grid; gap: var(--space-3); padding: var(--space-4); border: var(--border-width) solid var(--color-border); margin-block-end: var(--space-3); max-inline-size: 40rem; }
+.canvas-concept-editor h2 { margin: 0; font-size: var(--type-heading-size); }
+.canvas-concept-editor summary { cursor: pointer; padding-block: var(--space-2); }
+.canvas-concept-editor .actions { flex-wrap: wrap; }
+.canvas-concept-editor p { color: var(--color-muted); margin: 0; }
+.canvas-card-body .canvas-concept-editor { border: 0; padding: 0; margin: 0; }
 .canvas-concept-form { padding: var(--space-4); margin-block-end: var(--space-4); border-block: var(--border-width) solid var(--color-border); }
 .canvas-concept-form h2 { font-size: var(--type-heading-size); margin-block-end: var(--space-3); }
 .canvas-concept-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-3); }

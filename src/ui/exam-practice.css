@@ -52,3 +52,15 @@
 .exam-practice .actions {
   flex-wrap: wrap;
 }
+.practice-previous {
+  border-inline-start: var(--border-width) solid var(--color-border-strong);
+  padding-inline-start: var(--space-4);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.practice-previous p {
+  margin-block: var(--space-2);
+}
+.practice-previous a {
+  font-size: var(--type-caption-size);
+}
