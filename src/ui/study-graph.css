@@ -17,8 +17,10 @@
   grid-column: 1 / -1;
 }
 .graph-toolbar select.ui-input {
-  /* WebKit can paint a native option beyond its grid cell when text grows. */
+  /* Bound native option text in WebKit while keeping the full option list usable. */
+  max-inline-size: 100%;
   overflow: hidden;
+  text-overflow: ellipsis;
 }
 .graph-actions {
   display: flex;
