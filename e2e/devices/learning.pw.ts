@@ -36,9 +36,9 @@ test('math inputs, graph and saved observations work after resizing and reopenin
   const initial = info.project.use.viewport!;
   await page.setViewportSize({ width: initial.height, height: initial.width });
   await expect(page.locator('.js-plotly-plot')).toBeVisible({ timeout: 20000 });
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1)).toBe(
-    true,
-  );
+  // Plotly's ResizeObserver updates asynchronously after viewport rotation.
+  // Verify that the final layout settles without overflow, not the first stale frame.
+  await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1)).toBe(true);
   await expect(page.getByLabel('관찰·메모 (선택)', { exact: true })).toHaveValue(original);
 });
 
