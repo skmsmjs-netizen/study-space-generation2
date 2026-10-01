@@ -10,3 +10,5 @@
 - Pages의 다섯 프로필은 [GitHub Actions matrix](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/run-job-variations)에서 같은 단일 빌드를 각각 검증한다. 다섯 프로필의 모든 검사가 성공해야 Pages 업로드/배포가 실행된다. 기기별 보고서·실패 trace·빌드 해시를 보관하며 제외나 실패 허용을 추가하지 않는다.
 
 최종 배포 commit·Actions·검사 수·공개 HTML/JS/CSS 해시와 화면은 공통 프로젝트의 outputs/20261001-pages-deploy/verification.json에 기록한다. 물리 기기·한국어 IME·VoiceOver·학습 효과와 자동 검사의 범위를 구별한다.
+
+최종 Linux WebKit CI에서는 macOS 검사와 달리 확대된 기본 입력 요소의 내부 폭이 암기 필터/Canvas/그래프 도구 모음 밖으로 전파됐다. 공유 Field의 열을 minmax(0,1fr)로 명시하고 입력 자체에 inline-size containment를 적용한다. native select의 전체 선택 목록을 유지하며 선택값의 표시 폭만 제한한다. 기존 선택·원문·크기·사용자 배치는 보존한다. 통계 접근성 회귀는 실제 선택 조작으로 column을 표시한 후 SVG의 버튼 역할과 키보드 근거 보기를 검사하도록 맞춘다.

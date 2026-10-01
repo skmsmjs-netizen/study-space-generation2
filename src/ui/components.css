@@ -22,9 +22,9 @@ a { color: var(--color-primary); text-underline-offset: .2em; }
 .ui-button--danger:not(:disabled):active { background: var(--color-destructive-button-pressed); }
 .ui-icon-button { min-width: var(--icon-target); min-height: var(--icon-target); padding: var(--space-2); }
 .ui-icon-button svg { width: var(--icon-size); height: var(--icon-size); stroke-width: var(--icon-stroke); }
-.ui-field { display: grid; gap: var(--space-2); min-width: 0; }
+.ui-field { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-2); min-width: 0; }
 .ui-label { font: var(--type-label-weight) var(--type-label-size)/var(--type-label-line) var(--font-interface); }
-.ui-input { width: 100%; min-width: 0; min-height: var(--control-height); padding: var(--space-2) var(--space-3); border: var(--border-width) solid var(--color-border-strong); border-radius: var(--radius-sm); background: var(--color-surface); color: var(--color-text); font-size: var(--input-font-size); line-height: var(--type-body-line); }
+.ui-input { contain: inline-size; width: 100%; min-width: 0; min-height: var(--control-height); padding: var(--space-2) var(--space-3); border: var(--border-width) solid var(--color-border-strong); border-radius: var(--radius-sm); background: var(--color-surface); color: var(--color-text); font-size: var(--input-font-size); line-height: var(--type-body-line); }
 textarea.ui-input { min-height: calc(var(--control-height) * 3); resize: vertical; }
 .ui-input::placeholder { color: var(--color-placeholder); opacity: 1; }
 .ui-input[aria-invalid="true"] { border-color: var(--color-invalid-border); }
@@ -91,3 +91,6 @@ textarea.ui-input { min-height: calc(var(--control-height) * 3); resize: vertica
 .ui-button, .ui-input, .ui-choice { max-inline-size: 100%; }
 .ui-choice > span { min-inline-size: 0; overflow-wrap: anywhere; }
 .ui-field, .ui-label { overflow-wrap: anywhere; }
+
+/* Preserve native option menus while bounding the selected text in enlarged, narrow fields. */
+select.ui-input { overflow: hidden; text-overflow: ellipsis; }
