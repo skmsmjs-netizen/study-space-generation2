@@ -41,7 +41,7 @@ it('round trips exact records, raw UTF16 drafts, settings, original bytes and un
   expect(second.local.getItem('study-space:demo:draft:form')).toBe('  미완 초안\n\udfff ');
   expect(second.session.getItem('study-space:demo:context:theme')).toBe('dark');
   expect(second.local.getItem('study-space:auth:v1')).toBeNull(); expect(second.local.getItem('study-space:personal:other:online:v1')).toBeNull();
-  expect(await readMaterialDraft(owner, 'draft')).toEqual(draft); expect(await (await readAudio(owner, audio))!.text()).toBe('원본 음성'); expect(await (await recoverRecording(owner, 'unfinished'))!.text()).toBe('첫 조각');
+  expect(await readMaterialDraft(owner, 'draft')).toEqual(draft); expect(await (await readAudio(owner, audio))?.text()).toBe('원본 음성'); expect(await (await recoverRecording(owner, 'unfinished'))?.text()).toBe('첫 조각');
   expect(new DemoRepository(second.local).getSnapshot().records[0].done).toBe(false);
 });
 it('rejects corrupted bytes and foreign ownership before any restoration', async () => {
@@ -97,7 +97,16 @@ it('preserves a personal backup differing from the server as a conflict and neve
   const different = { sequence: 1, data: applyCommand(data, { type: 'addSubject', id: 'server-subject', name: '서버 과목', scope: { kind: 'independent' }, opId: 'server-op', at: '2026-10-01T04:00:00Z', userId: data.userId, namespace: 'personal' }) };
   const opened = new PersonalRepository(target.local, { load: async () => different, execute: send }, different);
   expect(opened.getStatus().phase).toBe('conflict'); expect(opened.getSnapshot()).toEqual(repository.getSnapshot()); await opened.flush(); expect(send).not.toHaveBeenCalled();
-  expect(JSON.parse(decodeStoredText(target.local.getItem('study-space:personal:owner:online:v1')!)).restoredBackup).toBe(true);
+  expect(JSON.parse(decodeStoredText(target.local.getItem('study-space:personal:owner:online:v1') ?? '')).restoredBackup).toBe(true);
   await clearBackupCopiesForOwner('another', target.factory); expect(await priorRestoreBackups(data, target)).toHaveLength(1);
   await clearBackupCopiesForOwner('owner', target.factory); expect(await priorRestoreBackups(data, target)).toHaveLength(0);
+});
+it('checks the actual server after a cached reopen without dropping or transmitting the restored version', async () => {
+  const first = env(), data = emptyState('owner', 'personal'), oldServer = { sequence: 0, data }, send = vi.fn();
+  new PersonalRepository(first.local, { load: async () => oldServer, execute: send }, oldServer);
+  const checked = await checkFullBackup(await createFullBackup(data, first), data), target = env(); await restoreFullBackup(checked, data, target);
+  const next = { sequence: 1, data: applyCommand(data, { type: 'addSubject', id: 'later', name: '새 서버 과목', scope: { kind: 'independent' }, opId: 'later-op', at: '2026-10-01T04:00:00Z', userId: data.userId, namespace: 'personal' }) };
+  const opened = new PersonalRepository(target.local, { load: async () => next, execute: send }, oldServer, true);
+  expect(opened.getStatus().phase).toBe('checking'); await opened.flush();
+  expect(opened.getStatus().phase).toBe('conflict'); expect(opened.getSnapshot()).toEqual(data); expect(opened.getConflict()?.server.data).toEqual(next.data); expect(send).not.toHaveBeenCalled();
 });

@@ -4,6 +4,7 @@ import { applyCommand, validateState } from '../domain/commands';
 import { storagePrefix } from './repository';
 import { decodeStoredText, encodeStoredText } from './storage-codec';
 import { readRescuedDraft, rescuedDraftEntries, clearRescuedDraft } from './draft-safety';
+import { encodeBinary, decodeBinary } from './binary-storage';
 
 export type BackupOwner = Pick<AppState, 'namespace' | 'userId'>;
 type Area = 'local' | 'session' | 'materials' | 'journals';
@@ -53,7 +54,7 @@ async function rowsInDB(env: BackupEnvironment, area: 'materials' | 'journals', 
     const rows: BackupRow[] = [], tx = db.transaction([...stores], 'readonly');
     for (const store of stores) {
       const request = tx.objectStore(store).openCursor();
-      request.onsuccess = () => { const cursor = request.result; if (!cursor) return; const row = { area, store, key: String(cursor.key), value: cursor.value };
+      request.onsuccess = () => { const cursor = request.result; if (!cursor) return; const row = { area, store, key: String(cursor.key), value: decodeBinary(cursor.value) };
         if (ownsRow(owner, row, row.value)) rows.push(row); cursor.continue(); };
     }
     tx.oncomplete = () => resolve(rows); tx.onabort = () => reject(tx.error); tx.onerror = () => {};
@@ -105,7 +106,14 @@ function sourceReferences(rows: BackupRow[], data: AppState) {
     }
     for (const nested of Object.values(value)) visit(nested, depth + 1);
   }
-  visit(data); for (const row of rows) if (row.area === 'materials' && row.store === 'drafts') visit(row.value);
+  visit(data);
+  for (const row of rows) {
+    if (row.area === 'materials' && row.store === 'drafts') visit(row.value);
+    if ((row.area === 'local' || row.area === 'journals') && typeof row.value === 'string') {
+      let parsed: unknown; try { parsed = JSON.parse(decodeStoredText(row.value)); } catch { continue; }
+      visit(parsed);
+    }
+  }
   return [...refs.values()];
 }
 async function verifySources(rows: BackupRow[], data: AppState, owner: BackupOwner) {
@@ -135,10 +143,12 @@ export async function createFullBackup(owner: BackupOwner, env = environment(), 
   await verifySources(rows, data, owner);
   const bytes = await pack(owner, rows, ledgerKey);
   // Check durable inputs again after hashing/compression; a sync cannot silently mix two versions.
-  const latest = await collect(owner, env);
-  if (latest.length !== rows.length) fail('백업 중 자료 목록이 바뀌었습니다. 다시 백업해 주세요.');
+  // Capture session view preferences without treating scroll/focus changes as edits.
+  const latest = (await collect(owner, env)).filter(row => row.area !== 'session');
+  const durable = rows.filter(row => row.area !== 'session');
+  if (latest.length !== durable.length) fail('백업 중 자료 목록이 바뀌었습니다. 다시 백업해 주세요.');
   const current = new Map(latest.map(row => [identity(row), row]));
-  for (const row of rows) {
+  for (const row of durable) {
     const next = current.get(identity(row));
     if (!next || await hash(await rowBytes(next)) !== await hash(await rowBytes(row))) fail('백업 중 공부 자료가 바뀌었습니다. 다시 백업해 주세요.');
   }
@@ -180,10 +190,11 @@ export async function checkFullBackup(bytes: Uint8Array, owner: BackupOwner): Pr
 async function writeRows(rows: BackupRow[], env: BackupEnvironment) {
   for (const area of ['materials', 'journals'] as const) {
     const selected = rows.filter(row => row.area === area); if (!selected.length) continue;
+    const durable = await Promise.all(selected.map(async row => ({ ...row, value: await encodeBinary(row.value) })));
     const [name, stores] = DATABASES[area], db = await openDB(env.factory, name, stores);
     try { await new Promise<void>((resolve, reject) => {
       const tx = db.transaction([...stores], 'readwrite');
-      for (const row of selected) { const store = tx.objectStore(row.store); if (row.value === undefined) store.delete(row.key); else store.put(row.value, row.key); }
+      for (const row of durable) { const store = tx.objectStore(row.store); if (row.value === undefined) store.delete(row.key); else store.put(row.value, row.key); }
       tx.oncomplete = () => resolve(); tx.onabort = () => reject(tx.error); tx.onerror = () => {};
     }); } finally { db.close(); }
   }
@@ -196,7 +207,7 @@ async function backupStore<T>(env: BackupEnvironment, store: 'pending' | 'restor
   const db = await openDB(env.factory, BACKUP_DB, ['pending', 'restores']);
   try { return await new Promise((resolve, reject) => {
     const tx = db.transaction(store, mode), request = fn(tx.objectStore(store)); let result: T;
-    request.onsuccess = () => { result = request.result; }; tx.oncomplete = () => resolve(result); tx.onabort = () => reject(tx.error); tx.onerror = () => {};
+    request.onsuccess = () => { result = decodeBinary<T>(request.result); }; tx.oncomplete = () => resolve(result); tx.onabort = () => reject(tx.error); tx.onerror = () => {};
   }); } finally { db.close(); }
 }
 export async function restoreFullBackup(checked: CheckedBackup, owner: BackupOwner, env = environment()) {
@@ -219,8 +230,9 @@ export async function restoreFullBackup(checked: CheckedBackup, owner: BackupOwn
   });
   const previousKey = previousRows.find(row => row.area === 'session' && row.key === `${storagePrefix(owner)}:online:v1:current-window`)?.value;
   const id = crypto.randomUUID(), journal: RestoreJournal = { id, owner, before, after, previousBackup: new Blob([(await pack(owner, previousRows, typeof previousKey === 'string' ? previousKey : defaultLedgerKey(owner))).slice().buffer], { type: 'application/zip' }), createdAt: new Date().toISOString() };
-  await backupStore(env, 'restores', 'readwrite', store => store.put(journal, id));
-  await backupStore(env, 'pending', 'readwrite', store => store.put(journal, 'active'));
+  const durableJournal = await encodeBinary(journal);
+  await backupStore(env, 'restores', 'readwrite', store => store.put(durableJournal, id));
+  await backupStore(env, 'pending', 'readwrite', store => store.put(durableJournal, 'active'));
   try { await writeRows(after, env); await backupStore(env, 'pending', 'readwrite', store => store.delete('active')); for (const row of after) if (row.area === 'local') clearRescuedDraft(row.key); }
   catch { try { await writeRows(before, env); await backupStore(env, 'pending', 'readwrite', store => store.delete('active')); } catch { fail('복원을 마치지 못했습니다. 복원 전 사본을 보관했습니다. 다른 창을 닫고 다시 열면 기존 자료 복구를 이어갑니다.'); }
     fail('복원에 실패해 기존 자료로 되돌렸습니다. 저장 공간을 확인한 뒤 다시 시도해 주세요.'); }
@@ -237,7 +249,8 @@ export async function recoverInterruptedBackup(env = environment()) {
   const journal = await backupStore<RestoreJournal | undefined>(env, 'pending', 'readonly', store => store.get('active'));
   const plan = await backupStore<RestorePlan | undefined>(env, 'pending', 'readonly', store => store.get('planned'));
   if (!journal && !plan) return false;
-  const owner = (journal ?? plan)!.owner;
+  const active = journal ?? plan; if (!active) return false;
+  const owner = active.owner;
   const recover = async () => {
     if (journal) {
       await writeRows(journal.before, env); await backupStore(env, 'pending', 'readwrite', store => store.delete('active'));
@@ -264,7 +277,7 @@ export async function recoverInterruptedBackup(env = environment()) {
 }
 export async function priorRestoreBackups(owner: BackupOwner, env = environment()): Promise<Array<{ id: string; createdAt: string; file: Blob }>> {
   const rows = await backupStore<RestoreJournal[]>(env, 'restores', 'readonly', store => store.getAll());
-  return rows.filter(row => row.owner.userId === owner.userId && row.owner.namespace === owner.namespace).map(row => ({ id: row.id, createdAt: row.createdAt, file: row.previousBackup }));
+  return rows.filter(row => row.owner.userId === owner.userId && row.owner.namespace === owner.namespace).map(row => ({ id: row.id, createdAt: row.createdAt, file: row.previousBackup })).sort((a, b) => b.createdAt.localeCompare(a.createdAt));
 }
 export async function clearBackupCopiesForOwner(userId: string, factory: IDBFactory) {
   const db = await openDB(factory, BACKUP_DB, ['pending', 'restores']);
