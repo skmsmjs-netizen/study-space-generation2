@@ -31,10 +31,10 @@ test('every public screen has usable names, contrast and reflow in light, dark a
         await expect(page.locator('main [data-ui-loading]')).toHaveCount(0, { timeout: 30000 });
         const normal = await new AxeBuilder({ page }).withTags(['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa']).analyze();
         const zoomStyle = await page.addStyleTag({ content: 'html { font-size: 200% !important; }' });
+        await expect.configure({ soft: true }).poll(() => page.evaluate(() => document.documentElement.scrollWidth - innerWidth), { timeout: 5000, message: `${mode} ${route}: 200% page reflow` }).toBeLessThanOrEqual(1);
         const width = await page.evaluate(() => ({ actual: document.documentElement.scrollWidth, available: innerWidth, heading: document.querySelector('main h1')?.textContent, offenders: document.documentElement.scrollWidth > innerWidth + 1 ? [...document.querySelectorAll('main *, header *, .topbar *')].map(el => ({el, rect: el.getBoundingClientRect()})).filter(({rect}) => rect.right > innerWidth + 1 && rect.width > 0).slice(0,40).map(({el,rect}) => ({tag:el.tagName,classes:String(el.className),text:el.textContent?.slice(0,80),width:rect.width,right:rect.right})) : [] }));
         findings.push({ mode, route, width, violations: normal.violations.map(v => ({id:v.id,impact:v.impact,help:v.help,nodes:v.nodes.map(n=>({target:n.target,html:n.html,summary:n.failureSummary}))})), incomplete:normal.incomplete.map(v=>v.id) });
         await zoomStyle.evaluate(el => el.remove());
-        expect.soft(width.actual, `${mode} ${route}: 200% page reflow`).toBeLessThanOrEqual(width.available + 1);
         expect.soft(normal.violations, `${mode} ${route}: accessibility`).toEqual([]);
       }
     }

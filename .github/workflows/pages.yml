@@ -29,15 +29,49 @@ jobs:
       - run: npm run build
         env:
           PAGES_BASE: /${{ github.event.repository.name }}/
-      - run: npx playwright install --with-deps webkit
-      - name: Verify all agreed device environments
-        run: npm run test:devices
+      - uses: actions/upload-artifact@v4
+        with:
+          name: verified-build
+          path: dist
+          include-hidden-files: true
+          compression-level: 1
+          retention-days: 1
+  devices:
+    name: Verify ${{ matrix.project }}
+    needs: build
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        project:
+          - iPhone-17-Pro-portrait
+          - iPhone-17-Pro-landscape
+          - iPad-Pro-13-portrait
+          - iPad-Pro-13-landscape
+          - iPad-Pro-13-half-window
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
         env:
+          ONNXRUNTIME_NODE_INSTALL: skip
+      - uses: actions/download-artifact@v4
+        with:
+          name: verified-build
+          path: dist
+      - run: npx playwright install --with-deps webkit
+      - name: Verify all checks for this device environment
+        run: npm run test:devices -- --project="$DEVICE_PROJECT"
+        env:
+          DEVICE_PROJECT: ${{ matrix.project }}
           PAGES_BASE: /${{ github.event.repository.name }}/
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: device-verification
+          name: device-verification-${{ matrix.project }}
           path: |
             work/device-report
             work/device-results.json
@@ -47,17 +81,21 @@ jobs:
             work/device-runs/**/traces/**
             work/device-runs/**/build-manifest.json
           retention-days: 14
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: dist
   deploy:
-    needs: build
+    needs: [build, devices]
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: verified-build
+          path: dist
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
