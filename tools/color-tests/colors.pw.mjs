@@ -46,6 +46,11 @@ test('released app themes, routes and saved Korean text',async({page},info)=>{
     await expect(bar).toBeFocused();
    }
    await expect(page.locator('main [data-ui-loading]')).toHaveCount(0,{timeout:30000});
+   if(route==='#/graph'){
+    await expect(page.locator('.graph-stage')).toHaveAttribute('aria-busy','false');
+    // Audit the completed layout, after its queued viewport fit has painted.
+    await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
+   }
    const width=await overflow(page);if(width.overflows)writeFileSync(new URL('./'+info.project.name+'-overflow-app.json',import.meta.url),JSON.stringify({route,...width},null,2));expect(width.scrollWidth,route).toBeLessThanOrEqual(width.width+1);
    result.push({setting,scheme,route,...width,...await contrast(page,'#root')});
    if(route.startsWith('#/record')&&setting!=='auto')await page.screenshot({path:fileURLToPath(new URL('./'+info.project.name+'-'+setting+'.png',import.meta.url)),fullPage:true});

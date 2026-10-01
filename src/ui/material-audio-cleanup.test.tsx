@@ -11,10 +11,6 @@ import { StudyMaterials } from './study-materials';
 
 vi.mock('./gpt-connection-panel', () => ({ GPTConnectionPanel: () => null }));
 vi.mock('./material-sources', () => ({ MaterialSources: () => null }));
-vi.mock('./material-transcription', () => ({
-  MaterialTranscription: ({ onAppend }: { onAppend: (text: string, remove: boolean) => Promise<void> }) =>
-    <button onClick={() => void onAppend('확인한 전사문 · 조건과 예외', true)}>합성 전사 확인</button>,
-}));
 beforeEach(() => {
   localStorage.clear();
   vi.stubGlobal('indexedDB', new IDBFactory());
@@ -26,7 +22,7 @@ beforeEach(() => {
   });
   Element.prototype.scrollIntoView = vi.fn();
 });
-it('keeps raw audio on failed server save, recovers the cleanup intent, then removes only audio after acknowledgement without duplicating text or revisions', async () => {
+it('preserves legacy raw audio and exact text through failed save, remount and successful retry without recording or transcription controls', async () => {
   let state = applyCommand(emptyState(AI_OWNER_USER_ID, 'personal'), {
     type: 'addSubject', id: 'synthetic-subject', name: '합성 과목', scope: { kind: 'independent' },
     userId: AI_OWNER_USER_ID, namespace: 'personal', opId: 'subject', at: '2026-10-01T00:00:00Z',
@@ -46,24 +42,26 @@ it('keeps raw audio on failed server save, recovers the cleanup intent, then rem
     updatedAt: '2026-10-01T00:00:00Z', content: { title: '합성 전사 정리', subjectId: 'synthetic-subject', topicId: null, sourceText: '기존 원문\n예외 보존', audio, results: [] } });
   let view = render(<StudyMaterials data={state} repository={repository} onSaved={() => undefined} materialId="new" />);
   await screen.findByDisplayValue('합성 전사 정리');
-  fireEvent.click(screen.getByRole('button', { name: '합성 전사 확인' }));
-  await waitFor(async () => expect((await readMaterialDraft(state, 'new'))?.audioCleanup?.audio.sha256).toBe(audio.sha256));
+  expect(screen.queryByRole('button', { name: '합성 전사 확인' })).toBeNull();
+  expect(screen.queryByRole('button', { name: '녹음 시작' })).toBeNull();
+  fireEvent.change(screen.getByLabelText('강의 내용·필기'), { target: { value: '기존 원문\n예외 보존\n\n확인한 전사문 · 조건과 예외' } });
+  await waitFor(async () => expect((await readMaterialDraft(state, 'new'))?.content.sourceText).toContain('확인한 전사문'));
   expect(await readAudio(state, audio)).not.toBeNull();
   fireEvent.click(screen.getByRole('button', { name: '자료 저장' }));
   await screen.findByText('합성 서버 저장 실패');
   expect(await readAudio(state, audio)).not.toBeNull();
-  expect((await readMaterialDraft(state, 'new'))?.audioCleanup).toBeDefined();
+  expect((await readMaterialDraft(state, 'new'))?.content.audio?.sha256).toBe(audio.sha256);
   view.unmount();
   view = render(<StudyMaterials data={state} repository={repository} onSaved={() => undefined} materialId="new" />);
   await screen.findByDisplayValue('합성 전사 정리');
   fail = false;
   fireEvent.click(screen.getByRole('button', { name: '자료 저장' }));
-  await screen.findByText('전사문을 저장하고 이 앱의 녹음 파일을 정리했습니다.');
-  expect(await readAudio(state, audio)).toBeNull();
+  await waitFor(async () => expect(await readMaterialDraft(state, 'new')).toBeUndefined());
+  expect(await readAudio(state, audio)).not.toBeNull();
   expect(await readMaterialDraft(state, 'new')).toBeUndefined();
   expect(state.studyMaterials).toHaveLength(1);
   expect(state.studyMaterials![0].version).toBe(1);
-  expect(state.studyMaterials![0].audio).toBeNull();
+  expect(state.studyMaterials![0].audio).toEqual(audio);
   expect(state.studyMaterials![0].sourceText).toBe('기존 원문\n예외 보존\n\n확인한 전사문 · 조건과 예외');
   view.unmount();
 });

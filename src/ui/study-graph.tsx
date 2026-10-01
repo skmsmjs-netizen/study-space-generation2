@@ -123,6 +123,7 @@ export function StudyGraph({ data, subjectIds }: { data: AppState; subjectIds: s
   const [pinned, setPinned] = useState<Record<string, CanvasPosition>>({});
   const fitSignature = useRef('');
   const [fitRevision, setFitRevision] = useState(0);
+  const [fitting, setFitting] = useState(false);
   const [busy, setBusy] = useState(false),
     [error, setError] = useState('');
   const [zoom, setZoom] = useState(1);
@@ -161,6 +162,7 @@ export function StudyGraph({ data, subjectIds }: { data: AppState; subjectIds: s
       setPositions(next);
       if (needsFit) {
         fitSignature.current = nextFitSignature;
+        setFitting(true);
         setFitRevision((n) => n + 1);
       }
       setBusy(false);
@@ -179,12 +181,14 @@ export function StudyGraph({ data, subjectIds }: { data: AppState; subjectIds: s
       else {
         setError(event.data.error || '배치를 다시 맞춰 주세요.');
         setBusy(false);
+        setFitting(false);
       }
       worker.terminate();
     };
     worker.onerror = () => {
       setError('배치를 계산하지 못했습니다. 다시 맞추기를 눌러 주세요.');
       setBusy(false);
+      setFitting(false);
       worker.terminate();
     };
     worker.postMessage({ ...input, options });
@@ -210,14 +214,25 @@ export function StudyGraph({ data, subjectIds }: { data: AppState; subjectIds: s
   );
   const [nodes, setNodes] = useState(initial);
   useEffect(() => {
-    setNodes(initial);
+    setNodes((previous) => {
+      const measured = new Map(previous.map((node) => [node.id, node.measured]));
+      // Position updates must retain React Flow's completed DOM measurements.
+      // Clearing them restarts observation and can leave a queued fit unresolved.
+      return initial.map((node) => ({ ...node, measured: measured.get(node.id) }));
+    });
   }, [initial]);
   useEffect(() => {
     if (flow && fitRevision > 0) {
+      let active = true;
       const id = requestAnimationFrame(() => {
-        void flow.fitView({ padding: 0.3, minZoom: 0.02, maxZoom: 1.2 });
+        void flow.fitView({ padding: 0.3, minZoom: 0.02, maxZoom: 1.2 }).then(() => {
+          if (active) setFitting(false);
+        });
       });
-      return () => cancelAnimationFrame(id);
+      return () => {
+        active = false;
+        cancelAnimationFrame(id);
+      };
     }
   }, [flow, fitRevision]);
   const neighbourIds = new Set(
@@ -325,10 +340,10 @@ export function StudyGraph({ data, subjectIds }: { data: AppState; subjectIds: s
           setPreferencesBlocked(false); setPreferenceError('');
         } catch (e) { setPreferenceError(e instanceof Error ? e.message : '설정 초기화를 완료하지 못했습니다. 현재 설정은 유지했습니다.'); }
       }}>보기 설정 초기화</Button></div>
-      {busy && <span role="status">관계 배치를 맞추고 있습니다.</span>}
       {error && <p role="alert">{error}</p>}
       <div className="graph-layout">
-        <div className="graph-stage" ref={stage}>
+        <div className="graph-stage" ref={stage} aria-busy={busy || (fitting && nodes.length > 0)}>
+          {(busy || (fitting && nodes.length > 0)) && <span className="graph-layout-status" role="status">관계 배치를 맞추고 있습니다.</span>}
           {nodes.length ? (
             <ReactFlow<GraphNode>
               nodes={nodes.map((n) => ({
@@ -355,6 +370,7 @@ export function StudyGraph({ data, subjectIds }: { data: AppState; subjectIds: s
               minZoom={0.02}
               maxZoom={3}
               fitView
+              fitViewOptions={{ padding: 0.3, minZoom: 0.02, maxZoom: 1.2 }}
               aria-label="주제와 개념의 연결 그래프"
             >
               <Controls showInteractive={false} />

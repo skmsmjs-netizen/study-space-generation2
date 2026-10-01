@@ -4,7 +4,7 @@ import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { createRequire } from 'node:module';
 const root = process.cwd();
-const output = path.join(root, 'work/device-ai-fixture');
+const output = process.env.DEVICE_RUN_DIR ? path.join(process.env.DEVICE_RUN_DIR, 'fixture') : path.join(root, 'work/device-ai-fixture');
 const fixtureRequire = createRequire(path.join(root, 'package.json'));
 await mkdir(output, { recursive: true });
 await build({

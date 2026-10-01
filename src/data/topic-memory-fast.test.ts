@@ -4,7 +4,7 @@ import { AI_OWNER_USER_ID } from '../domain/ai-access';
 import { TOPIC_MEMORY_WAIT_MS, type TopicMemoryInput } from '../domain/topic-memory';
 import { generateTopicMemory } from './study-ai';
 vi.mock('./supabase-client', () => ({
-  readServerConfig: () => ({ url: 'http://isolated', publicKey: 'synthetic' }),
+  readServerConfig: () => ({ url: 'http://isolated', publishableKey: 'synthetic' }),
   createStudyClient: () => ({
     auth: {
       async getSession() {
@@ -28,7 +28,12 @@ const input: TopicMemoryInput = {
   count: 3,
   guidance: '',
 };
-const status = { local: true, configured: true, creditsConfirmed: true, model: 'listed' };
+const status = {
+  local: false, provider: 'openai-api', configured: true, model: 'gpt-6-luna',
+  models: [{ slug: 'gpt-6-luna', displayName: 'GPT-6 Luna' }],
+  connectionError: '',
+  billing: { configured: true, enabled: true, limitMicro: 10_000_000, usedMicro: 0, pendingMicro: 0, month: '2026-10' },
+};
 const response = () =>
   Response.json({
     result: {

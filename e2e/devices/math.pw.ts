@@ -339,5 +339,13 @@ test('math integer grid and coordinate guides retain the point through repeated 
   await expect(page.getByRole('img', { name: '함수 그래프와 현재 점', exact: true })).toBeVisible();
   await expect(page.locator('.math-plot .scatterlayer .trace')).toHaveCount(3);
   await expect(page.locator('.math-plot .xtick text').first()).not.toContainText('.');
-  await expect(page.locator('.math-plot .gridlayer .xgrid').first()).toBeVisible();
+  // A vertical SVG path has a zero-width geometry box even when its stroke is painted.
+  const gridLine = page.locator('.math-plot .gridlayer .xgrid').first();
+  expect(await gridLine.evaluate(node => {
+    const style = getComputedStyle(node);
+    return style.display !== 'none' && style.visibility === 'visible' &&
+      style.stroke !== 'none' && Number.parseFloat(style.strokeWidth) > 0 &&
+      (node as SVGGeometryElement).getTotalLength() > 0 &&
+      node.getBoundingClientRect().height > 0;
+  })).toBe(true);
 });
