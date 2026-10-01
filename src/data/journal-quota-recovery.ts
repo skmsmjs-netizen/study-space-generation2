@@ -27,7 +27,7 @@ export async function recoverPersonalJournalQuota(storage: Storage = localStorag
         if (JSON.stringify(saved.pending.reduce((state: AppState, command: Command) => applyCommand(state, command), saved.base.data)) !== JSON.stringify(data)) return;
       } catch { return; } // Damaged/unknown originals remain untouched.
       const journal = await IndexedPersonalJournal.open(storage, key, factory);
-      try { await journal.relocateLegacy(); if (storage.getItem(key) === null) moved++; }
+      try { await journal.relocateLegacy(raw); if (storage.getItem(key) === null) moved++; }
       finally { journal.close(); }
     };
     if (locks) await locks.request(`study-space:journal:${key}`, { ifAvailable: true }, async lock => {
