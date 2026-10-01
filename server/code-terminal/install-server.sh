@@ -11,7 +11,7 @@ if systemctl cat study-code-terminal.service >/dev/null 2>&1; then
   systemctl stop study-code-terminal.service
 fi
 apt-get update
-apt-get install -y --no-install-recommends curl ca-certificates xz-utils caddy dotnet-sdk-8.0
+apt-get install -y --no-install-recommends curl ca-certificates xz-utils caddy dotnet-sdk-10.0
 bash "$source_dir/install-isolate.sh"
 # Download the official Node 24 build and check its published checksum.
 node_arch=$(uname -m)

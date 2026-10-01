@@ -6,13 +6,15 @@
 
 ## 실행 경로와 채택한 도구
 
-브라우저의 기존 xterm 터미널과 모바일 입력란 → 로그인 토큰을 첫 WebSocket 프레임에 전달 → Linux gateway → 기존 Supabase의 `study-code-terminal` 인증·승인·quota → isolate 안에서 GCC(C17), G++(C++20), .NET 8/Roslyn(C#12) 컴파일·PTY 실행 → 기존 예제의 원문·입력·출력·설명 저장.
+브라우저의 기존 xterm 터미널과 모바일 입력란 → 로그인 토큰을 첫 WebSocket 프레임에 전달 → Linux gateway → 기존 Supabase의 `study-code-terminal` 인증·승인·quota → isolate 안에서 GCC(C17), G++(C++20), .NET 10/Roslyn(C#14) 컴파일·PTY 실행 → 기존 예제의 원문·입력·출력·설명 저장.
 
 UI는 `StudyRepository.getCodeTerminal` 포트를 사용한다. Supabase SDK와 토큰 갱신은 데이터 어댑터에 둔다. 실행 gateway에는 공개 Supabase 연결 값만 둔다. service-role 키는 Supabase 함수 안에만 있으며, 사용자 프로그램의 파일·환경·인자로 전달하지 않는다. 토큰은 URL·실행 결과·예제 저장·로그에 넣지 않는다.
 
 [IOI isolate 공식 문서](https://github.com/ioi/isolate)는 Linux namespace/cgroup을 이용하는 기존 실행 격리 도구이다. `8f185bb37f3f23e29b33b0c7727c91c13429abe3`에 고정한다. Piston의 공개 API는 대화형 입력을 제공하지 않으며 기존 컨테이너 이미지의 오래된 Node 기반과 입력/종료 보완이 필요해, 이번에는 isolate와 기존 PTY를 직접 연결했다. 격리 자체를 새로 설계하지 않았다. [isolate 매뉴얼](https://github.com/ioi/isolate/blob/master/isolate.1.txt)의 cgroup v2·systemd 설치 방법을 따른다. 컨테이너보다 전용 Linux VM을 사용한다.
 
-C#은 SDK의 공식 Roslyn 컴파일러와 .NET 8 reference pack을 직접 호출한다. NuGet 다운로드와 SDK 최초 설정을 거치지 않는다. JIT의 큰 memfd가 파일 한도에 걸리므로 공식 런타임 설정 `DOTNET_EnableWriteXorExecute=0`을 지정한다. 메모리·파일·프로세스·namespace 제한은 유지한다. 별도 패키지 추가와 외부 네트워크, host 파일 접근은 지원하지 않는다.
+장기 운영의 기본 런타임은 2028-11-14까지 지원되는 .NET10 LTS로 정했다. [Microsoft 지원 정책](https://dotnet.microsoft.com/en-us/platform/support/policy)과 [Ubuntu24.04 공식 설치 안내](https://learn.microsoft.com/en-us/dotnet/core/install/linux-ubuntu-install?pivots=os-linux-ubuntu-2404&tabs=dotnet10)를 적용한다.
+
+C#은 SDK의 공식 Roslyn 컴파일러와 .NET 10 reference pack을 직접 호출한다. NuGet 다운로드와 SDK 최초 설정을 거치지 않는다. JIT의 큰 memfd가 파일 한도에 걸리므로 공식 런타임 설정 `DOTNET_EnableWriteXorExecute=0`을 지정한다. 메모리·파일·프로세스·namespace 제한은 유지한다. 별도 패키지 추가와 외부 네트워크, host 파일 접근은 지원하지 않는다.
 
 ## 반복 사용과 보존
 
@@ -25,7 +27,7 @@ C#은 SDK의 공식 Roslyn 컴파일러와 .NET 8 reference pack을 직접 호�
 
 ## 준비된 설치와 연결
 
-`server/code-terminal/install-server.sh`는 전용 Ubuntu24.04 VM에서 isolate, 공식 Node24(체크섬 확인), GCC/G++, .NET8, Caddy, systemd 서비스와 bounded tmpfs를 설치한다. 기존 Caddy 사이트가 있으면 덮어쓰지 않고 중단한다. 서비스 환경 설정도 기존 파일을 보존한다. 신규 서버를 생성하거나 결제하는 스크립트가 아니다.
+`server/code-terminal/install-server.sh`는 전용 Ubuntu24.04 VM에서 isolate, 공식 Node24(체크섬 확인), GCC/G++, .NET10, Caddy, systemd 서비스와 bounded tmpfs를 설치한다. 기존 Caddy 사이트가 있으면 덮어쓰지 않고 중단한다. 서비스 환경 설정도 기존 파일을 보존한다. 신규 서버를 생성하거나 결제하는 스크립트가 아니다.
 
 1. 사용자 계정이 있는 전용 Ubuntu24.04 서버와 그 서버로 연결되는 호스트 이름을 정한다. 현재 연결된 계정은 없다.
 2. 이번 배포 묶음의 `server/code-terminal`을 서버로 전달하고 root로 `bash install-server.sh <서버 호스트 이름>`을 실행한다. SSH·80/443만 외부에 열고 gateway8090은 loopback에 유지한다.

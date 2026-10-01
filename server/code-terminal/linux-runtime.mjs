@@ -31,15 +31,15 @@ const runProcess = (command, args, { signal, onOutput = () => {} } = {}) => new 
 });
 async function csharpCompiler(directory) {
   // Invoke the SDK's Roslyn compiler directly: no NuGet, migration locks or network restore.
-  const latest8 = names => names.filter(name => /^8\.0\.\d+$/.test(name)).sort((a, b) => b.localeCompare(a, 'en', { numeric: true }))[0];
-  const sdk = latest8(await readdir('/usr/share/dotnet/sdk'));
-  const pack = latest8(await readdir('/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref'));
-  if (!sdk || !pack) throw Error('.NET 8 컴파일 도구를 먼저 설치해 주세요.');
-  const references = `/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/${pack}/ref/net8.0`;
+  const latest10 = names => names.filter(name => /^10\.0\.\d+$/.test(name)).sort((a, b) => b.localeCompare(a, 'en', { numeric: true }))[0];
+  const sdk = latest10(await readdir('/usr/share/dotnet/sdk'));
+  const pack = latest10(await readdir('/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref'));
+  if (!sdk || !pack) throw Error('.NET 10 컴파일 도구를 먼저 설치해 주세요.');
+  const references = `/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/${pack}/ref/net10.0`;
   const files = (await readdir(references)).filter(name => /^[A-Za-z0-9_.-]+\.dll$/.test(name));
   await writeFile(path.join(directory, 'GlobalUsings.cs'), ['System', 'System.Collections.Generic', 'System.IO', 'System.Linq', 'System.Net.Http', 'System.Threading', 'System.Threading.Tasks'].map(name => `global using ${name};`).join('\n'), { mode: 0o644 });
-  await writeFile(path.join(directory, 'compiler.rsp'), ['-noconfig', '-nostdlib+', '-nologo', '-target:exe', '-langversion:12', '-out:Main.dll', ...files.map(name => `-reference:${references}/${name}`), 'GlobalUsings.cs', 'Main.cs'].join('\n'), { mode: 0o644 });
-  await writeFile(path.join(directory, 'Main.runtimeconfig.json'), JSON.stringify({ runtimeOptions: { tfm: 'net8.0', framework: { name: 'Microsoft.NETCore.App', version: '8.0.0' } } }), { mode: 0o644 });
+  await writeFile(path.join(directory, 'compiler.rsp'), ['-noconfig', '-nostdlib+', '-nologo', '-target:exe', '-langversion:14', '-out:Main.dll', ...files.map(name => `-reference:${references}/${name}`), 'GlobalUsings.cs', 'Main.cs'].join('\n'), { mode: 0o644 });
+  await writeFile(path.join(directory, 'Main.runtimeconfig.json'), JSON.stringify({ runtimeOptions: { tfm: 'net10.0', framework: { name: 'Microsoft.NETCore.App', version: '10.0.0' } } }), { mode: 0o644 });
   return ['/usr/bin/dotnet', `/usr/share/dotnet/sdk/${sdk}/Roslyn/bincore/csc.dll`, '@compiler.rsp'];
 }
 
@@ -110,7 +110,7 @@ export async function checkLinuxRuntime() {
     for (const command of ['/usr/bin/gcc', '/usr/bin/g++', '/usr/bin/dotnet']) {
       if ((await runProcess(command, ['--version'])).code !== 0) return false;
     }
-    if (!(await readdir('/usr/share/dotnet/sdk')).some(name => /^8\.0\.\d+$/.test(name))) return false;
+    if (!(await readdir('/usr/share/dotnet/sdk')).some(name => /^10\.0\.\d+$/.test(name))) return false;
     const base = ['--cg', '--box-id=7'];
     const box = await runProcess(ISOLATE, [...base, '--init']);
     if (box.code !== 0) return false;
