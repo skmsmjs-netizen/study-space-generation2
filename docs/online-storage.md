@@ -1,5 +1,11 @@
 # 개인 공부 공간의 실제 서버 저장 · 2026-09-30
 
+## 2026-10-01 계획·Canvas 실제 인증 왕복 확인
+
+기존 허용 서버에 계획/Canvas migration2개와 `study-command` version3을 적용했습니다. 사용자별 권한·현재 함수 Auth 확인은 유지합니다. 격리된 가상 Auth 계정의 `test` 공간에서 현재 공개 SDK·저장 어댑터로 로그인→공부 기록/원문/계획/Canvas 저장→새 로그인 세션·빈 로컬 저장소에서 재열기를 확인했습니다. 중복 요청/버전·타인 접근·브라우저 직접 쓰기/RPC 거부도 실제 HTTP/SDK로 확인했습니다. 시험 계정과 원장은 정리 완료했으며 실제 개인 기록은 사용하지 않았습니다. 결과는 프로젝트 `outputs/20261001-server-authenticated/verification.json`입니다.
+
+앞 절의 'CLI 인증 보류·운영 추가 migration/함수 미적용'은 이번 반영 이전 상태입니다. 실제 사용자 계정의 물리 기기 확인·자동 다기기 Sync·IndexedDB 단독 전환/PWA 등 독립적인 미완은 그대로입니다.
+
 사용자의 구현 전환 요청에 따라 기존 입력 화면을 인증된 개인 공간에 연결했습니다. 공개 앱 `#/account` 또는 시연 공간의 ‘내 공부 공간’에서 시작합니다. Supabase 프로젝트 lbuiwotjisbzgflixjvg의 study-command 함수와 PostgreSQL 원장을 사용합니다. 시연 자료를 개인 자료에 자동으로 가져오지 않습니다. 이메일 확인의 Site URL/허용 redirect를 공개 앱의 ?space=personal로 적용했으며 새 탭에서도 개인 공간으로 돌아옵니다.
 
 ## 실제 연결
