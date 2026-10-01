@@ -22,9 +22,10 @@ vi.mock('../data/study-ai', () => ({
   connectLocalAI: vi.fn(), updateGPTConnection: vi.fn(),
   CHATGPT_USAGE_URL:'https://chatgpt.com/settings/usage',
 }));
-vi.mock('../data/indexed-personal-journal', async () => {
+vi.mock('../data/indexed-personal-journal', async importOriginal => {
+  const actual = await importOriginal<typeof import('../data/indexed-personal-journal')>();
   const { PersonalRepository } = await import('../data/personal-repository');
-  return { openPersonalRepository: async (storage: Storage, transport: any, server: any, _factory: unknown, cached: boolean, key: string) => new PersonalRepository(storage, transport, server, cached, key) };
+  return { ...actual, openPersonalRepository: async (storage: Storage, transport: any, server: any, _factory: unknown, cached: boolean, key: string) => new PersonalRepository(storage, transport, server, cached, key) };
 });
 function deferred<T>() { let resolve!: (value: T | PromiseLike<T>) => void; const promise = new Promise<T>(done => { resolve = done; }); return { promise, resolve }; }
 const nativeLocks = Object.getOwnPropertyDescriptor(navigator, 'locks');

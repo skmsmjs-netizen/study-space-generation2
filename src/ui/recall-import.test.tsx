@@ -32,6 +32,7 @@ it('preserves the exact failed batch across remount, retries idempotently, and i
   view.unmount(); failed = false; view = render(<Harness />); fireEvent.click(screen.getByText('Anki 파일 가져오기'));
   fireEvent.click(screen.getByRole('button', { name: '보존한 가져오기 다시 시도' }));
   await waitFor(() => expect(readRecall(repo.getSnapshot()).pendingImport).toBeUndefined()); expect(repo.getSnapshot().recallCards).toHaveLength(2);
+  await waitFor(() => expect(screen.getByLabelText('Anki 파일 선택')).toBeEnabled());
   await selectFile(); fireEvent.click(screen.getByRole('button', { name: '확인한 카드 가져오기' }));
   await screen.findByText(/카드 2개를 처리했습니다/); expect(repo.getSnapshot().recallCards).toHaveLength(2); expect(repo.getSnapshot().recallCards![0].reference).toBe(' 답변 0\n ');
 });
