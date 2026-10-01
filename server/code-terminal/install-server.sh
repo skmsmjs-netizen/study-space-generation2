@@ -7,7 +7,9 @@ source_dir=$(cd -- "$(dirname -- "$0")" && pwd)
 if [[ -e /etc/caddy/Caddyfile ]] && ! grep -q '^# study-terminal-managed$' /etc/caddy/Caddyfile; then
   echo 'Existing Caddy configuration requires a separate reviewed installation.' >&2; exit 1
 fi
-systemctl stop study-code-terminal.service 2>/dev/null || true
+if systemctl cat study-code-terminal.service >/dev/null 2>&1; then
+  systemctl stop study-code-terminal.service
+fi
 apt-get update
 apt-get install -y --no-install-recommends curl ca-certificates xz-utils caddy dotnet-sdk-8.0
 bash "$source_dir/install-isolate.sh"

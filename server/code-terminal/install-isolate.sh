@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 [[ $(uname -s) == Linux && $EUID == 0 ]] || { echo 'Run as root on a dedicated Linux server.' >&2; exit 1; }
+if [[ -e /usr/local/etc/isolate ]] && ! grep -q '^# study-terminal-managed$' /usr/local/etc/isolate; then
+  echo 'Existing isolate configuration requires a separate reviewed installation.' >&2; exit 1
+fi
 apt-get update
 apt-get install -y --no-install-recommends git gcc g++ make pkg-config libcap-dev libseccomp-dev libsystemd-dev
 source_dir=$(mktemp -d /tmp/study-isolate-build.XXXXXX)
@@ -16,5 +19,6 @@ sed -i 's/^subid_user = isolate/# subid_user = isolate/; s/^# first_uid = 60000/
 install -m 644 "$(dirname "$0")/var-local-lib-isolate.mount" /etc/systemd/system/var-local-lib-isolate.mount
 systemctl daemon-reload
 systemctl enable --now var-local-lib-isolate.mount
+printf '\n# study-terminal-managed\n' >> /usr/local/etc/isolate
 systemctl enable --now isolate.service
 /usr/local/bin/isolate --check-config

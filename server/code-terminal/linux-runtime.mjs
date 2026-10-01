@@ -37,7 +37,8 @@ async function csharpCompiler(directory) {
   if (!sdk || !pack) throw Error('.NET 8 컴파일 도구를 먼저 설치해 주세요.');
   const references = `/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/${pack}/ref/net8.0`;
   const files = (await readdir(references)).filter(name => /^[A-Za-z0-9_.-]+\.dll$/.test(name));
-  await writeFile(path.join(directory, 'compiler.rsp'), ['-noconfig', '-nostdlib+', '-nologo', '-target:exe', '-langversion:12', '-out:Main.dll', ...files.map(name => `-reference:${references}/${name}`), 'Main.cs'].join('\n'), { mode: 0o644 });
+  await writeFile(path.join(directory, 'GlobalUsings.cs'), ['System', 'System.Collections.Generic', 'System.IO', 'System.Linq', 'System.Net.Http', 'System.Threading', 'System.Threading.Tasks'].map(name => `global using ${name};`).join('\n'), { mode: 0o644 });
+  await writeFile(path.join(directory, 'compiler.rsp'), ['-noconfig', '-nostdlib+', '-nologo', '-target:exe', '-langversion:12', '-out:Main.dll', ...files.map(name => `-reference:${references}/${name}`), 'GlobalUsings.cs', 'Main.cs'].join('\n'), { mode: 0o644 });
   await writeFile(path.join(directory, 'Main.runtimeconfig.json'), JSON.stringify({ runtimeOptions: { tfm: 'net8.0', framework: { name: 'Microsoft.NETCore.App', version: '8.0.0' } } }), { mode: 0o644 });
   return ['/usr/bin/dotnet', `/usr/share/dotnet/sdk/${sdk}/Roslyn/bincore/csc.dll`, '@compiler.rsp'];
 }

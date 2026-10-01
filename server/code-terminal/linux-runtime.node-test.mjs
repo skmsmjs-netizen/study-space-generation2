@@ -45,6 +45,10 @@ test('compile errors remain visible, then a new clean execution succeeds', { tim
   const next = await execution('c', '#include <stdio.h>\nint main(){puts("clean");}');
   assert.equal(next.outcome, 'success', JSON.stringify(next)); assert.match(next.output, /clean/);
 });
+test('Csharp top-level statements retain the SDK console template implicit imports', { timeout: 60000 }, async () => {
+  const result = await execution('csharp', 'Console.WriteLine("한글 기본 가져오기");');
+  assert.equal(result.outcome, 'success', JSON.stringify(result)); assert.match(result.output, /한글 기본 가져오기/);
+});
 test('EOF reaches scanf and stop kills even a SIGTERM-ignoring child', { timeout: 60000 }, async () => {
   let eof = false;
   const result = await execution('c', '#include <stdio.h>\nint main(){int x;printf("input: ");printf("result=%d\\n",scanf("%d",&x));}', ({ output, terminal }) => {
