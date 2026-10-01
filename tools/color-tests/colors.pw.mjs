@@ -4,7 +4,7 @@ import {readFileSync,writeFileSync} from 'node:fs';
 const axe=readFileSync(new URL('./node_modules/axe-core/axe.min.js',import.meta.url),'utf8');
 const url='/study-space-generation2/?space=demo';
 const note='컬러 배포 확인용 합성 기록입니다. 이유와 예외를 보존합니다.\n줄바꿈과 한국어 원문도 그대로 남습니다.';
-async function overflow(page){return page.evaluate(()=>({width:innerWidth,scrollWidth:document.documentElement.scrollWidth}));}
+async function overflow(page){return page.evaluate(()=>({width:innerWidth,scrollWidth:document.documentElement.scrollWidth,...(document.documentElement.scrollWidth>innerWidth+1?{overflows:Array.from(document.querySelectorAll('#root *')).map(e=>{const b=e.getBoundingClientRect(),s=getComputedStyle(e);return{tag:e.tagName,className:e.getAttribute('class'),left:b.left,right:b.right,width:b.width,minWidth:s.minWidth,grid:s.gridTemplateColumns,overflow:s.overflow};}).filter(e=>e.right>innerWidth+1&&e.width>0)}:{})}));}
 async function theme(page,value){
  let summary=page.locator('.workspace-tools > summary');
  if(!await summary.isVisible())summary=page.locator('.compact-menu > summary');
@@ -40,7 +40,7 @@ test('released app themes, routes and saved Korean text',async({page},info)=>{
     await expect(bar).toBeFocused();
    }
    await expect(page.locator('main [data-ui-loading]')).toHaveCount(0,{timeout:30000});
-   const width=await overflow(page);expect(width.scrollWidth,route).toBeLessThanOrEqual(width.width+1);
+   const width=await overflow(page);if(width.overflows)writeFileSync(new URL('./'+info.project.name+'-overflow-app.json',import.meta.url),JSON.stringify({route,...width},null,2));expect(width.scrollWidth,route).toBeLessThanOrEqual(width.width+1);
    result.push({setting,scheme,route,...width,...await contrast(page,'#root')});
    if(route.startsWith('#/record')&&setting!=='auto')await page.screenshot({path:fileURLToPath(new URL('./'+info.project.name+'-'+setting+'.png',import.meta.url)),fullPage:true});
   }
