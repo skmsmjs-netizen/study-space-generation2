@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { createDemoState } from '../domain/fixtures';
-import { recommendationKey, readRecommendations } from '../data/recommendations';
+import { emptyRecommendations, recommendationKey, readRecommendations, saveRecommendations } from '../data/recommendations';
 import { NextStudy } from './next-study';
 const data = createDemoState(), subjects = ['demo-subject-math', 'demo-subject-science'];
 const show = () => render(<NextStudy data={data} subjectIds={subjects} semesterId="demo-semester-current" />);
@@ -13,6 +13,33 @@ const newGoal = () => {
 };
 beforeEach(() => { localStorage.clear(); sessionStorage.clear(); });
 describe('next study UI persistence and meaning', () => {
+  it('opens and focuses schedule controls without changing saved evidence', () => {
+    const workspace = emptyRecommendations(data);
+    workspace.schedules = [{ id: 'ux-schedule', subjectId: subjects[0], name: 'UX 확인용 과제', kind: 'assignment', goalIds: [], targetIds: [], dueDate: '2026-10-08', opensDate: '', weight: null, status: 'active', states: {}, dueMeaning: 'submission', note: '  이유와 예외\n원문 보존  ' }];
+    const saved = saveRecommendations(data, workspace, null);
+    const scroll = vi.fn(), originalScroll = HTMLElement.prototype.scrollIntoView;
+    HTMLElement.prototype.scrollIntoView = scroll;
+    try {
+      const view = show();
+      const panel = view.container.querySelector<HTMLDetailsElement>('#learning-schedules')!;
+      const summary = panel.querySelector('summary')!;
+      const jump = screen.getAllByRole('link', { name: '일정에서 확인하기' })[0];
+      expect(panel.open).toBe(false);
+      fireEvent.click(jump);
+      expect(panel.open).toBe(true);
+      expect(summary).toHaveFocus();
+      expect(scroll).toHaveBeenCalledWith({ block: 'start' });
+      panel.open = false;
+      fireEvent.click(jump);
+      expect(panel.open).toBe(true);
+      expect(summary).toHaveFocus();
+      expect(localStorage.getItem(recommendationKey(data))).toBe(saved);
+      view.unmount();
+      const reopened = show();
+      expect(reopened.container.querySelector<HTMLDetailsElement>('#learning-schedules')?.open).toBe(false);
+      expect(readRecommendations(data).workspace.schedules).toEqual(workspace.schedules);
+    } finally { HTMLElement.prototype.scrollIntoView = originalScroll; }
+  });
   it('connects failure to correction and independent recheck without creating a study record', () => {
     const original = JSON.stringify(data); show(); newGoal();
     fireEvent.click(screen.getByRole('button', { name: '확인한 결과 남기기' }));

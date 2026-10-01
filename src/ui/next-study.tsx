@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import type { StudyRepository } from '../data/repository';
 import { readLearningPlan, saveLearningPlan, readLegacyPersonalPlan } from '../data/learning-plan';
 import { LearningScheduleEditor } from './learning-schedule';
+import { openLearningSchedules } from './learning-schedule-navigation';
 import type { AppState } from '../domain/model';
 import { DAY, type RequirementState } from '../domain/recommendation-kernel.mjs';
 import { dateDeadline, termPeriod, emptyRecommendations, emptyResponse, makeResultEvent, recommendationInput, nextStudy, readRecommendations, saveRecommendations, type CheckGoal, type RecommendationWorkspace, type ResponseDraft } from '../data/recommendations';
@@ -126,7 +127,7 @@ export function NextStudy({ data, subjectIds, semesterId, repository, onSaved }:
     <div className="next-study-list">
       {!blocked && !calculationError && visible.map(card => {
         const node = nodes.find(n => n.id === card.targetId);
-        if (!node) { const schedule=workspace.schedules?.find(s=>card.id.startsWith(`task:${s.id}:`)); return schedule && <Card key={card.groupId}><h3>{schedule.name}</h3><p>{({ prepare:"과제 준비", submit:"과제 제출", watch:"강의 재생", learn:"강의 학습", attendance:"출석 확인" } as Record<string,string>)[card.action] ?? card.action} 상태를 확인해 주세요.</p><p className="muted">{schedule.dueDate || "기한 미정"} · 완료는 일정에서 직접 남겨 주세요.</p><a href="#learning-schedules" onClick={e=>{e.preventDefault();document.getElementById("learning-schedules")?.scrollIntoView({block:"start"});}}>일정에서 확인하기</a></Card>; }
+        if (!node) { const schedule=workspace.schedules?.find(s=>card.id.startsWith(`task:${s.id}:`)); return schedule && <Card key={card.groupId}><h3>{schedule.name}</h3><p>{({ prepare:"과제 준비", submit:"과제 제출", watch:"강의 재생", learn:"강의 학습", attendance:"출석 확인" } as Record<string,string>)[card.action] ?? card.action} 상태를 확인해 주세요.</p><p className="muted">{schedule.dueDate || "기한 미정"} · 완료는 일정에서 직접 남겨 주세요.</p><a className="schedule-navigation" href="#learning-schedules" onClick={e=>{e.preventDefault();openLearningSchedules();}}>일정에서 확인하기</a></Card>; }
         return node && <Card key={card.groupId}>
           <p className="muted">{data.subjects.find(s => s.id === node.subjectId)?.name}</p>
           <h3>{node.name}</h3>
