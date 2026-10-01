@@ -45,9 +45,24 @@ describe('recall server transactions', () => {
     expect((await request({ ...write, command: { ...command, opId: 'stale' } })).status).toBe(409);
     expect((await request(write, 'stranger')).status).toBe(401);
   });
+  it('undoes an evaluation atomically, preserves memos across server reload and retries once', async () => {
+    const initial = await (await request({ action: 'load', namespace: 'test' })).json();
+    const card = initial.data.recallCards[0], review = card.reviews.at(-1);
+    const command = cmd({ type: 'undoRecallReview', id: card.id, reviewId: review.id, expectedVersion: card.version });
+    const write = { action: 'execute', namespace: 'test', baseSequence: initial.sequence, command };
+    expect((await request(write)).status).toBe(200); expect((await request(write)).status).toBe(200);
+    const loaded = await (await request({ action: 'load', namespace: 'test' })).json();
+    expect(loaded.supportedCommands).toContain('undoRecallReview'); expect(loaded.sequence).toBe(initial.sequence + 1);
+    expect(loaded.data.recallCards[0].memory).toEqual(review.before);
+    expect(loaded.data.recallCards[0].reviews).toHaveLength(0); expect(loaded.data.memos).toEqual(initial.data.memos);
+    expect(loaded.data.revisions.at(-1).reversesRevisionId).toBe(initial.data.revisions.at(-1).id);
+    expect((await request({ ...write, command: { ...command, opId: crypto.randomUUID(), userId: 'other' } })).status).toBe(403);
+    expect((await request({ ...write, command: { ...command, opId: crypto.randomUUID() } })).status).toBe(409);
+  });
   it('checks new collection ownership inside PostgreSQL without modifying any existing workspace', async () => {
     const forged = { ...packServerState(emptyState(user, 'test'), 'op'), appliedOps: { op: 'payload' }, recallCards: [{ userId: 'other', namespace: 'test' }] };
-    await expect(db.query('select study_commit_internal($1,$2,$3,$4,$5,$6)', [user, 'test', 3, 'op', 'payload', forged])).rejects.toThrow('OWNERSHIP');
-    expect((await backend.read(user, 'test'))!.sequence).toBe(3);
+    const sequence = (await backend.read(user, 'test'))!.sequence;
+    await expect(db.query('select study_commit_internal($1,$2,$3,$4,$5,$6)', [user, 'test', sequence, 'op', 'payload', forged])).rejects.toThrow('OWNERSHIP');
+    expect((await backend.read(user, 'test'))!.sequence).toBe(sequence);
   });
 });

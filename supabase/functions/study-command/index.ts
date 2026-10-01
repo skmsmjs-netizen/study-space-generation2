@@ -881,6 +881,50 @@ function validateCanvasLayout(value) {
   if (value.viewport && (!position(value.viewport) || !Number.isFinite(value.viewport.zoom) || value.viewport.zoom < 0.1 || value.viewport.zoom > 2)) throw new DomainError("INVALID_CANVAS", "Canvas \uD655\uB300 \uC704\uCE58\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
 }
 
+// src/domain/code-example.ts
+var CODE_LANGUAGES = {
+  c: "C",
+  cpp: "C++",
+  csharp: "C#",
+  python: "Python",
+  javascript: "JavaScript"
+};
+var MAX_CODE_TEXT = 2e5;
+var MAX_CODE_OUTPUT = 1e5;
+function validateCodeContent(value) {
+  const fail2 = () => {
+    throw new DomainError(
+      "INVALID_CODE_EXAMPLE",
+      "\uCF54\uB4DC \uC608\uC81C\uC758 \uC81C\uBAA9\xB7\uCF54\uB4DC\xB7\uC124\uBA85\xB7\uC2E4\uD589 \uACB0\uACFC\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694."
+    );
+  };
+  if (!value || typeof value !== "object" || Array.isArray(value)) return fail2();
+  const content = value;
+  if (!Object.hasOwn(CODE_LANGUAGES, content.language)) return fail2();
+  for (const name of ["title", "code", "stdin", "notes"]) {
+    if (typeof content[name] !== "string" || content[name].length > MAX_CODE_TEXT) return fail2();
+  }
+  if (content.lastRun !== void 0) {
+    const run = content.lastRun;
+    if (!run || !Object.hasOwn(CODE_LANGUAGES, run.language) || !["success", "error", "stopped"].includes(run.outcome) || typeof run.at !== "string" || !Number.isFinite(Date.parse(run.at)))
+      return fail2();
+    for (const name of ["code", "stdin", "output", "error"]) {
+      if (typeof run[name] !== "string" || run[name].length > (name === "output" || name === "error" ? MAX_CODE_OUTPUT : MAX_CODE_TEXT))
+        return fail2();
+    }
+  }
+}
+function codeContent(row) {
+  return {
+    title: row.title,
+    language: row.language,
+    code: row.code,
+    stdin: row.stdin,
+    notes: row.notes,
+    ...row.lastRun ? { lastRun: row.lastRun } : {}
+  };
+}
+
 // ../../../../../ChatGPT/학습 시스템 설계 프로젝트/generation2/node_modules/ts-fsrs/dist/index.mjs
 var FSRSError = class _FSRSError extends Error {
   constructor(message = "FSRS Error") {
@@ -2777,7 +2821,7 @@ function verifyLearningPlan(workspace, state) {
     throw new DomainError("INVALID_LEARNING_PLAN", error instanceof Error ? error.message : "\uD559\uC2B5 \uC77C\uC815\uC758 \uB0B4\uC6A9\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
   }
 }
-var collections = ["semesters", "subjects", "nodes", "sessions", "records", "narratives", "criteria", "criteriaAssignments", "memos", "learningPlans", "canvasLayouts", "recallCards", "recallPreferences"];
+var collections = ["semesters", "subjects", "nodes", "sessions", "records", "narratives", "criteria", "criteriaAssignments", "memos", "learningPlans", "canvasLayouts", "recallCards", "recallPreferences", "codeExamples"];
 var clone = (value) => structuredClone(value);
 function fail(code, message, details) {
   throw new DomainError(code, message, details);
@@ -2920,6 +2964,7 @@ function assertState(state) {
   for (const row of state.learningPlans ?? []) verifyLearningPlan(row.workspace, state);
   for (const row of state.canvasLayouts ?? []) validateCanvasLayout(row);
   const recallTopics = /* @__PURE__ */ new Set();
+  for (const row of state.codeExamples ?? []) validateCodeContent(row);
   for (const row of state.recallCards ?? []) {
     validateRecallCard(row, state);
     if (!row.deletedAt) {
@@ -2993,6 +3038,7 @@ function applyCommand(state, command) {
     if (collection === "memos") next.memos ??= [];
     if (collection === "learningPlans") next.learningPlans ??= [];
     if (collection === "canvasLayouts") next.canvasLayouts ??= [];
+    if (collection === "codeExamples") next.codeExamples ??= [];
     if (collection === "recallCards") next.recallCards ??= [];
     if (collection === "recallPreferences") next.recallPreferences ??= [];
     const list = next[collection];
@@ -3022,6 +3068,17 @@ function applyCommand(state, command) {
         fresh(command.id);
       }
       write("recallPreferences", { ...old ?? common(command.id), options: clone(command.options) });
+      break;
+    }
+    case "undoRecallReview": {
+      const card = find(next.recallCards ?? [], command.id);
+      expected(card, command.expectedVersion, command);
+      const review = card.reviews.at(-1);
+      const revision = [...next.revisions].reverse().find((row) => row.collection === "recallCards" && row.entityId === card.id);
+      if (!review || review.id !== command.reviewId || revision?.operationId !== command.reviewId || revision.reversesRevisionId)
+        fail("UNDO_CONFLICT", "\uD3C9\uAC00 \uD6C4 \uB2E4\uB978 \uBCC0\uACBD\uC774 \uC788\uC2B5\uB2C8\uB2E4. \uD604\uC7AC \uB0B4\uC6A9\uACFC \uC774\uB825\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+      const restored = revision.before;
+      write("recallCards", restored ?? { ...card, memory: clone(review.before), reviews: card.reviews.slice(0, -1) }, revision.id);
       break;
     }
     case "saveRecallReference":
@@ -3064,6 +3121,26 @@ function applyCommand(state, command) {
         const { manualDue: _manualDue, ...base } = card;
         write("recallCards", { ...base, memory, reviews: [...card.reviews, { id: command.opId, at: command.at, rating: command.rating, memoId, before: clone(card.memory), after: clone(memory), options: clone(options) }] });
       }
+      break;
+    }
+    case "saveCodeExample": {
+      validateCodeContent(command.content);
+      const old = next.codeExamples?.find((row) => row.id === command.id);
+      if (old) {
+        find(next.codeExamples, old.id);
+        expected(old, command.expectedVersion, command);
+      } else {
+        if (command.expectedVersion !== 0) fail("VERSION_CONFLICT", "\uCF54\uB4DC \uC608\uC81C\uC758 \uC218\uC815 \uC21C\uC11C\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+        fresh(command.id);
+      }
+      write("codeExamples", { ...old ?? common(command.id), ...clone(codeContent(command.content)) });
+      break;
+    }
+    case "trashCodeExample":
+    case "restoreCodeExample": {
+      const row = find(next.codeExamples ?? [], command.id, command.type === "trashCodeExample");
+      expected(row, command.expectedVersion, command);
+      write("codeExamples", { ...row, deletedAt: command.type === "trashCodeExample" ? command.at : null });
       break;
     }
     case "saveCanvasLayout": {
@@ -3366,7 +3443,7 @@ function packServerState(state, operationId) {
   validateState(state);
   const raw = JSON.stringify(state), encoded = import_lz_string.default.compressToBase64(raw);
   if (import_lz_string.default.decompressFromBase64(encoded) !== raw) throw new DomainError("ENCODING", "\uC6D0\uBB38 \uBCF4\uC874\uC744 \uD655\uC778\uD558\uC9C0 \uBABB\uD588\uC2B5\uB2C8\uB2E4. \uC800\uC7A5\uD558\uC9C0 \uC54A\uC558\uC2B5\uB2C8\uB2E4.");
-  const collections2 = ["semesters", "subjects", "nodes", "sessions", "records", "narratives", "criteria", "criteriaAssignments", "memos", "learningPlans", "canvasLayouts", "recallCards", "recallPreferences", "revisions"];
+  const collections2 = ["semesters", "subjects", "nodes", "sessions", "records", "narratives", "criteria", "criteriaAssignments", "memos", "learningPlans", "canvasLayouts", "recallCards", "recallPreferences", "codeExamples", "revisions"];
   return {
     userId: state.userId,
     namespace: state.namespace,
@@ -3460,7 +3537,7 @@ async function handleCommand(request, backend) {
     const current = await backend.read(userId, namespace) ?? { sequence: 0, data: emptyState(userId, namespace) };
     validateState(current.data);
     if (current.data.userId !== userId || current.data.namespace !== namespace) throw new DomainError("OWNERSHIP", "\uC774 \uACF5\uAC04\uC5D0 \uC811\uADFC\uD560 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
-    if (body.action === "load") return json({ ...current, supportedCommands: ["saveLearningPlan", "saveCanvasLayout", "saveRecallReference", "reviewRecallCard", "setRecallDue", "saveRecallPreferences"] });
+    if (body.action === "load") return json({ ...current, supportedCommands: ["saveLearningPlan", "saveCanvasLayout", "saveCodeExample", "trashCodeExample", "restoreCodeExample", "saveRecallReference", "reviewRecallCard", "undoRecallReview", "setRecallDue", "saveRecallPreferences"] });
     if (body.action !== "execute" || !body.command) throw new DomainError("INVALID_REQUEST", "\uC800\uC7A5 \uC694\uCCAD\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
     const command = body.command;
     if (typeof command.opId !== "string" || !command.opId.trim() || command.opId.length > 256 || /[\u0000-\u001f\u007f]/.test(command.opId)) throw new DomainError("INVALID_ID", "\uC800\uC7A5 \uC694\uCCAD\uC758 \uC2DD\uBCC4\uC790\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
@@ -3468,11 +3545,11 @@ async function handleCommand(request, backend) {
     if (!Number.isSafeInteger(body.baseSequence) || body.baseSequence < 0) throw new DomainError("INVALID_VERSION", "\uC800\uC7A5 \uC21C\uC11C\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
     if (current.data.appliedOps[command.opId]) {
       applyCommand(current.data, command);
-      return json({ ...current, supportedCommands: ["saveLearningPlan", "saveCanvasLayout", "saveRecallReference", "reviewRecallCard", "setRecallDue", "saveRecallPreferences"] });
+      return json({ ...current, supportedCommands: ["saveLearningPlan", "saveCanvasLayout", "saveCodeExample", "trashCodeExample", "restoreCodeExample", "saveRecallReference", "reviewRecallCard", "undoRecallReview", "setRecallDue", "saveRecallPreferences"] });
     }
     if (body.baseSequence !== current.sequence) return json({ code: "VERSION_CONFLICT", message: "\uB2E4\uB978 \uAE30\uAE30\uC758 \uBCC0\uACBD\uACFC \uC791\uC131 \uB0B4\uC6A9\uC744 \uBAA8\uB450 \uBCF4\uC874\uD588\uC2B5\uB2C8\uB2E4.", server: current }, 409);
     const next = applyCommand(current.data, command);
-    return json({ ...await backend.commit(userId, namespace, current.sequence, command, next), supportedCommands: ["saveLearningPlan", "saveCanvasLayout", "saveRecallReference", "reviewRecallCard", "setRecallDue", "saveRecallPreferences"] });
+    return json({ ...await backend.commit(userId, namespace, current.sequence, command, next), supportedCommands: ["saveLearningPlan", "saveCanvasLayout", "saveCodeExample", "trashCodeExample", "restoreCodeExample", "saveRecallReference", "reviewRecallCard", "undoRecallReview", "setRecallDue", "saveRecallPreferences"] });
   } catch (error) {
     const code = error instanceof DomainError ? error.code : "SERVER_ERROR";
     const status = code === "AUTH_REQUIRED" ? 401 : ["OWNERSHIP", "ACCESS_DENIED", "ADMIN_REQUIRED", "ADMIN_PROTECTED", "LAST_ADMIN"].includes(code) ? 403 : /CONFLICT/.test(code) ? 409 : error instanceof DomainError || error instanceof SyntaxError ? 400 : 503;

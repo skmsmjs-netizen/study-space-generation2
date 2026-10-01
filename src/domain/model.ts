@@ -42,6 +42,17 @@ export interface RecallReview { id: string; at: string; rating: 1 | 2 | 3 | 4; m
 /** Self-reported recall schedules are separate from study checks and correctness. */
 export interface RecallCard extends Entity { topicId: string; reference: string; memory: RecallMemory; reviews: RecallReview[]; manualDue?: string }
 export interface RecallPreferences extends Entity { options: RecallOptions }
+export type CodeLanguage = 'c' | 'cpp' | 'csharp' | 'python' | 'javascript';
+export interface CodeRun {
+  language: CodeLanguage; code: string; stdin: string; at: string;
+  outcome: 'success' | 'error' | 'stopped'; output: string; error: string;
+}
+export interface CodeExampleContent {
+  title: string; language: CodeLanguage; code: string; stdin: string; notes: string;
+  lastRun?: CodeRun;
+}
+/** Execution is an observation, never an automatic study check or score. */
+export interface CodeExample extends Entity, CodeExampleContent {}
 export interface Criteria extends Entity { items: TraceDefinition[] }
 export interface CriteriaAssignment extends Entity { scope: 'topic' | 'subject' | 'global'; ownerId: string | null; criteriaId: string }
 export interface CriteriaChange { id: string; targetId: string; scope: 'topic' | 'subject' | 'all'; expectedToken: string; items: TraceDefinition[] }
@@ -50,8 +61,8 @@ export interface CanvasPosition { x: number; y: number }
 export interface CanvasLink { id: string; source: string; target: string; label: string }
 /** Only presentation is stored here. Names, text and drawings remain in their original entities. */
 export interface CanvasLayout extends Entity { positions: Record<string, CanvasPosition>; links: CanvasLink[]; viewport?: { x: number; y: number; zoom: number } }
-export type EntityCollection = 'semesters' | 'subjects' | 'nodes' | 'sessions' | 'records' | 'narratives' | 'criteria' | 'criteriaAssignments' | 'memos' | 'learningPlans' | 'canvasLayouts' | 'recallCards' | 'recallPreferences';
-export type DomainEntity = Semester | Subject | OutlineNode | StudySession | StudyRecord | Narrative | Criteria | CriteriaAssignment | QuickMemo | LearningPlan | CanvasLayout | RecallCard | RecallPreferences;
+export type EntityCollection = 'semesters' | 'subjects' | 'nodes' | 'sessions' | 'records' | 'narratives' | 'criteria' | 'criteriaAssignments' | 'memos' | 'learningPlans' | 'canvasLayouts' | 'recallCards' | 'recallPreferences' | 'codeExamples';
+export type DomainEntity = Semester | Subject | OutlineNode | StudySession | StudyRecord | Narrative | Criteria | CriteriaAssignment | QuickMemo | LearningPlan | CanvasLayout | RecallCard | RecallPreferences | CodeExample;
 export interface Revision extends Entity {
   collection: EntityCollection; entityId: string; operationId: string; parentRevisionId: string | null;
   before: DomainEntity | null; after: DomainEntity; reversesRevisionId?: string;
@@ -67,6 +78,7 @@ export interface AppState {
   canvasLayouts?: CanvasLayout[];
   recallCards?: RecallCard[];
   recallPreferences?: RecallPreferences[];
+  codeExamples?: CodeExample[];
   /** Canonical operation payloads make repeated requests idempotent. */
   appliedOps: Record<string, string>;
 }
@@ -92,9 +104,12 @@ export type Command = CommandContext & (
   | { type: 'saveMemo'; id: string; ownerId: string | null; body: string; strokes: MemoStroke[]; expectedVersion: number }
   | { type: 'saveRecallReference'; id: string; topicId: string; reference: string; expectedVersion: number }
   | { type: 'reviewRecallCard'; id: string; topicId: string; expectedVersion: number; rating: 1 | 2 | 3 | 4; memo?: { id: string; body: string; strokes: MemoStroke[] } }
+  | { type: 'undoRecallReview'; id: string; reviewId: string; expectedVersion: number }
   | { type: 'setRecallDue'; id: string; topicId: string; expectedVersion: number; due: string }
   | { type: 'saveRecallPreferences'; id: string; expectedVersion: number; options: RecallOptions }
   | { type: 'trashMemo' | 'restoreMemo'; id: string; expectedVersion: number }
+  | { type: 'saveCodeExample'; id: string; expectedVersion: number; content: CodeExampleContent }
+  | { type: 'trashCodeExample' | 'restoreCodeExample'; id: string; expectedVersion: number }
   | { type: 'saveLearningPlan'; id: string; expectedVersion: number; workspace: import('./recommendation-workspace').RecommendationWorkspace }
   | { type: 'saveCanvasLayout'; id: string; expectedVersion: number; positions: CanvasLayout['positions']; links: CanvasLink[]; viewport?: CanvasLayout['viewport'] }
   | ({ type: 'adjustCriteria' } & CriteriaChange)

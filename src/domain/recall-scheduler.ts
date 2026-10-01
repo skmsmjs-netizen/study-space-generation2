@@ -50,18 +50,22 @@ export function intervalLabel(due: Date, at: string) {
   const minutes = Math.max(1, Math.round((due.getTime() - Date.parse(at)) / 60000));
   return minutes < 60 ? `${minutes}분` : minutes < 1440 ? `${Math.round(minutes / 60)}시간` : `${Math.round(minutes / 1440)}일`;
 }
-function localDay(at: string) { const d = new Date(at); return `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`; }
-export function recallQueue(data: AppState, topics: OutlineNode[], at: string) {
+export function recallDay(at: string) { const d = new Date(at); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; }
+export function recallQueue(data: AppState, topics: OutlineNode[], at: string, excluded: readonly string[] = []) {
   const options = recallOptions(data), end = new Date(at); end.setHours(23, 59, 59, 999);
-  const today = localDay(at);
+  const today = recallDay(at);
   // Count first actual reviews across the whole account, rather than resetting with a filter.
-  const introduced = (data.recallCards ?? []).filter(row => !row.deletedAt && row.reviews.length && localDay(row.reviews[0].at) === today).length;
+  const introduced = (data.recallCards ?? []).filter(row => !row.deletedAt && row.reviews.length && recallDay(row.reviews[0].at) === today).length;
   const due = topics.filter(topic => {
     const card = recallCard(data, topic.id);
-    if (!card || card.memory.state === 0 && !card.manualDue) return false;
+    if (excluded.includes(topic.id) || !card || card.memory.state === 0 && !card.manualDue) return false;
     return Date.parse(card.manualDue ?? card.memory.due) <= (card.manualDue || card.memory.state !== 2 ? Date.parse(at) : end.getTime());
-  }).sort((a, b) => Date.parse(recallCard(data, a.id)!.manualDue ?? recallCard(data, a.id)!.memory.due) - Date.parse(recallCard(data, b.id)!.manualDue ?? recallCard(data, b.id)!.memory.due));
-  const newTopics = topics.filter(topic => { const card = recallCard(data, topic.id); return !card || card.memory.state === 0 && !card.manualDue; });
+  }).sort((a, b) => {
+    const left = recallCard(data, a.id)!, right = recallCard(data, b.id)!;
+    const learning = (card: RecallCard) => !card.manualDue && [1, 3].includes(card.memory.state) ? 0 : 1;
+    return learning(left) - learning(right) || Date.parse(left.manualDue ?? left.memory.due) - Date.parse(right.manualDue ?? right.memory.due);
+  });
+  const newTopics = topics.filter(topic => { const card = recallCard(data, topic.id); return !excluded.includes(topic.id) && (!card || card.memory.state === 0 && !card.manualDue); });
   return { due, fresh: newTopics.slice(0, Math.max(0, options.newPerDay - introduced)), newRemaining: newTopics.length,
     nextDue: topics.map(topic => recallCard(data, topic.id)).filter((card): card is RecallCard => !!card && (!!card.manualDue || card.memory.state !== 0))
       .map(card => card.manualDue ?? card.memory.due).filter(d => Date.parse(d) > Date.parse(at)).sort()[0] };

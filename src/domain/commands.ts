@@ -6,9 +6,10 @@ import { validateMemoContent } from './memo';
 import { validateRecommendations } from './recommendation-workspace';
 function verifyLearningPlan(workspace: unknown, state: AppState) { try { validateRecommendations(workspace,state); } catch(error) { throw new DomainError('INVALID_LEARNING_PLAN',error instanceof Error ? error.message : '학습 일정의 내용을 확인해 주세요.'); } }
 import { validateCanvasLayout } from './canvas';
+import { codeContent, validateCodeContent } from './code-example';
 import { newRecallMemory, recallOptions, recallPreview, serializeMemory, validateRecallCard, validateRecallOptions } from './recall-scheduler';
 
-const collections: EntityCollection[] = ['semesters', 'subjects', 'nodes', 'sessions', 'records', 'narratives', 'criteria', 'criteriaAssignments', 'memos', 'learningPlans', 'canvasLayouts', 'recallCards', 'recallPreferences'];
+const collections: EntityCollection[] = ['semesters', 'subjects', 'nodes', 'sessions', 'records', 'narratives', 'criteria', 'criteriaAssignments', 'memos', 'learningPlans', 'canvasLayouts', 'recallCards', 'recallPreferences', 'codeExamples'];
 const clone = <T>(value: T): T => structuredClone(value);
 function fail(code: string, message: string, details?: unknown): never { throw new DomainError(code, message, details); }
 function canonical(value: unknown): string {
@@ -127,6 +128,7 @@ export function assertState(state: AppState): void {
   for (const row of state.learningPlans ?? []) verifyLearningPlan(row.workspace, state);
   for (const row of state.canvasLayouts ?? []) validateCanvasLayout(row);
   const recallTopics = new Set<string>();
+  for (const row of state.codeExamples ?? []) validateCodeContent(row);
   for (const row of state.recallCards ?? []) {
     validateRecallCard(row, state);
     if (!row.deletedAt) { if (recallTopics.has(row.topicId)) fail('DUPLICATE_RECALL', '주제의 복습 카드가 중복되어 있습니다.'); recallTopics.add(row.topicId); }
@@ -195,6 +197,7 @@ export function applyCommand(state: AppState, command: Command): AppState {
     if (collection === 'memos') next.memos ??= [];
     if (collection === 'learningPlans') next.learningPlans ??= [];
     if (collection === 'canvasLayouts') next.canvasLayouts ??= [];
+    if (collection === 'codeExamples') next.codeExamples ??= [];
     if (collection === 'recallCards') next.recallCards ??= [];
     if (collection === 'recallPreferences') next.recallPreferences ??= [];
     const list = next[collection] as DomainEntity[];
@@ -214,6 +217,17 @@ export function applyCommand(state: AppState, command: Command): AppState {
       if (old) { find(next.recallPreferences!, old.id); expected(old, command.expectedVersion, command); }
       else { if (command.expectedVersion !== 0) fail('VERSION_CONFLICT', '복습 설정의 수정 순서를 확인해 주세요.'); fresh(command.id); }
       write('recallPreferences', { ...(old ?? common(command.id)), options: clone(command.options) }); break;
+    }
+    case 'undoRecallReview': {
+      const card = find(next.recallCards ?? [], command.id); expected(card, command.expectedVersion, command);
+      const review = card.reviews.at(-1);
+      const revision = [...next.revisions].reverse().find(row => row.collection === 'recallCards' && row.entityId === card.id);
+      if (!review || review.id !== command.reviewId || revision?.operationId !== command.reviewId || revision.reversesRevisionId)
+        fail('UNDO_CONFLICT', '평가 후 다른 변경이 있습니다. 현재 내용과 이력을 확인해 주세요.');
+      // Retain the original memo and evaluation in the revision log; restore only this card.
+      const restored = revision.before as import('./model').RecallCard | null;
+      write('recallCards', restored ?? { ...card, memory: clone(review.before), reviews: card.reviews.slice(0, -1) }, revision.id);
+      break;
     }
     case 'saveRecallReference': case 'setRecallDue': case 'reviewRecallCard': {
       const topic = find(next.nodes, command.topicId); targetSubject(next, topic.id);
@@ -242,6 +256,19 @@ export function applyCommand(state: AppState, command: Command): AppState {
         const { manualDue: _manualDue, ...base } = card;
         write('recallCards', { ...base, memory, reviews: [...card.reviews, { id: command.opId, at: command.at, rating: command.rating, memoId, before: clone(card.memory), after: clone(memory), options: clone(options) }] });
       }
+      break;
+    }
+    case 'saveCodeExample': {
+      validateCodeContent(command.content);
+      const old = next.codeExamples?.find(row => row.id === command.id);
+      if (old) { find(next.codeExamples!, old.id); expected(old, command.expectedVersion, command); }
+      else { if (command.expectedVersion !== 0) fail('VERSION_CONFLICT', '코드 예제의 수정 순서를 확인해 주세요.'); fresh(command.id); }
+      write('codeExamples', { ...(old ?? common(command.id)), ...clone(codeContent(command.content)) });
+      break;
+    }
+    case 'trashCodeExample': case 'restoreCodeExample': {
+      const row = find(next.codeExamples ?? [], command.id, command.type === 'trashCodeExample'); expected(row, command.expectedVersion, command);
+      write('codeExamples', { ...row, deletedAt: command.type === 'trashCodeExample' ? command.at : null });
       break;
     }
     case 'saveCanvasLayout': {

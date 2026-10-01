@@ -58,17 +58,17 @@ export async function handleCommand(request: Request, backend: CommandBackend): 
     const current = await backend.read(userId, namespace) ?? { sequence: 0, data: emptyState(userId, namespace) };
     validateState(current.data);
     if (current.data.userId !== userId || current.data.namespace !== namespace) throw new DomainError('OWNERSHIP', '이 공간에 접근할 수 없습니다.');
-    if (body.action === 'load') return json({ ...current, supportedCommands: ['saveLearningPlan', 'saveCanvasLayout', 'saveRecallReference', 'reviewRecallCard', 'setRecallDue', 'saveRecallPreferences'] });
+    if (body.action === 'load') return json({ ...current, supportedCommands: ['saveLearningPlan', 'saveCanvasLayout', 'saveCodeExample', 'trashCodeExample', 'restoreCodeExample', 'saveRecallReference', 'reviewRecallCard', 'undoRecallReview', 'setRecallDue', 'saveRecallPreferences'] });
     if (body.action !== 'execute' || !body.command) throw new DomainError('INVALID_REQUEST', '저장 요청을 확인해 주세요.');
     const command = body.command as Command;
     if (typeof command.opId !== 'string' || !command.opId.trim() || command.opId.length > 256 || /[\u0000-\u001f\u007f]/.test(command.opId)) throw new DomainError('INVALID_ID', '저장 요청의 식별자를 확인해 주세요.');
     if (command.userId !== userId || command.namespace !== namespace) throw new DomainError('OWNERSHIP', '다른 사용자의 자료를 변경할 수 없습니다.');
     if (!Number.isSafeInteger(body.baseSequence) || body.baseSequence < 0) throw new DomainError('INVALID_VERSION', '저장 순서를 확인해 주세요.');
     // Idempotent retries survive a lost response even if another command followed it.
-    if (current.data.appliedOps[command.opId]) { applyCommand(current.data, command); return json({ ...current, supportedCommands: ['saveLearningPlan', 'saveCanvasLayout', 'saveRecallReference', 'reviewRecallCard', 'setRecallDue', 'saveRecallPreferences'] }); }
+    if (current.data.appliedOps[command.opId]) { applyCommand(current.data, command); return json({ ...current, supportedCommands: ['saveLearningPlan', 'saveCanvasLayout', 'saveCodeExample', 'trashCodeExample', 'restoreCodeExample', 'saveRecallReference', 'reviewRecallCard', 'undoRecallReview', 'setRecallDue', 'saveRecallPreferences'] }); }
     if (body.baseSequence !== current.sequence) return json({ code: 'VERSION_CONFLICT', message: '다른 기기의 변경과 작성 내용을 모두 보존했습니다.', server: current }, 409);
     const next = applyCommand(current.data, command);
-    return json({ ...await backend.commit(userId, namespace, current.sequence, command, next), supportedCommands: ['saveLearningPlan', 'saveCanvasLayout', 'saveRecallReference', 'reviewRecallCard', 'setRecallDue', 'saveRecallPreferences'] });
+    return json({ ...await backend.commit(userId, namespace, current.sequence, command, next), supportedCommands: ['saveLearningPlan', 'saveCanvasLayout', 'saveCodeExample', 'trashCodeExample', 'restoreCodeExample', 'saveRecallReference', 'reviewRecallCard', 'undoRecallReview', 'setRecallDue', 'saveRecallPreferences'] });
   } catch (error) {
     const code = error instanceof DomainError ? error.code : 'SERVER_ERROR';
     const status = code === 'AUTH_REQUIRED' ? 401 : ['OWNERSHIP', 'ACCESS_DENIED', 'ADMIN_REQUIRED', 'ADMIN_PROTECTED', 'LAST_ADMIN'].includes(code) ? 403 : /CONFLICT/.test(code) ? 409 : error instanceof DomainError || error instanceof SyntaxError ? 400 : 503;

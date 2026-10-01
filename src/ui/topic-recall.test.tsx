@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen } from '@testing-library/react';
 import { TopicRecall } from './topic-recall';
 import { DemoRepository, DEMO_KEY } from '../data/demo-repository';
 import { recallKey, readRecall, writeRecall } from '../data/topic-recall';
 import { clearRescuedDraft } from '../data/draft-safety';
 import type { AppState } from '../domain/model';
 import { freshRecall } from '../domain/topic-recall';
+import { DEFAULT_RECALL_OPTIONS, recallDay, recallQueue } from '../domain/recall-scheduler';
 let repo: DemoRepository;
 function Harness() {
   const [data, setData] = useState<AppState>(repo.getSnapshot());
@@ -21,6 +22,86 @@ const save = () => fireEvent.click(screen.getByRole('button', { name: '저장하
 beforeEach(() => { localStorage.clear(); repo = new DemoRepository(localStorage); clearRescuedDraft(recallKey(repo.getSnapshot())); writeRecall(repo.getSnapshot(), { ...readRecall(repo.getSnapshot()), mode: 'random' }); vi.spyOn(Math, 'random').mockReturnValue(0); });
 afterEach(() => vi.restoreAllMocks());
 describe('topic explanation cards', () => {
+  it('releases overdue skipped cards while the screen stays open across a day boundary', () => {
+    vi.useFakeTimers(); vi.setSystemTime(new Date('2026-10-01T12:00:00'));
+    try {
+      const data = repo.getSnapshot(), topics = data.nodes.filter(n => n.role === 'topic');
+      for (const topic of topics) repo.execute({ type: 'reviewRecallCard', id: crypto.randomUUID(), topicId: topic.id, expectedVersion: 0, rating: 4, at: '2026-09-01T03:00:00.000Z', opId: crypto.randomUUID(), userId: data.userId, namespace: data.namespace });
+      writeRecall(repo.getSnapshot(), freshRecall()); const view = render(<Harness />);
+      for (const _topic of topics) fireEvent.click(screen.getByRole('button', { name: '건너뛰기' }));
+      expect(screen.getByText('지금 복습할 주제가 없습니다')).toBeInTheDocument();
+      act(() => { vi.setSystemTime(new Date('2026-10-02T12:00:00')); vi.advanceTimersByTime(15000); });
+      expect(readRecall(data).currentId).not.toBeNull(); expect(readRecall(data).skipped).toEqual([]);
+      expect(screen.getByRole('button', { name: '설명 확인하고 평가' })).toBeInTheDocument(); view.unmount();
+    } finally { vi.useRealTimers(); }
+  });
+  it('keeps an original saved answer when the restored answer is edited and evaluated again', () => {
+    writeRecall(repo.getSnapshot(), freshRecall()); render(<Harness />);
+    fireEvent.change(editor(), { target: { value: '처음 답변' } });
+    fireEvent.click(screen.getByRole('button', { name: '설명 확인하고 평가' })); fireEvent.click(screen.getByRole('button', { name: /^쉬움/ }));
+    fireEvent.click(screen.getByRole('button', { name: '마지막 평가 되돌리기' }));
+    fireEvent.change(editor(), { target: { value: '수정한 새 답변' } });
+    fireEvent.click(screen.getByRole('button', { name: /^다시\s*1분$/ }));
+    expect(repo.getSnapshot().memos?.map(row => row.body)).toEqual(['처음 답변', '수정한 새 답변']);
+    expect(repo.getSnapshot().recallCards![0].reviews).toMatchObject([{ rating: 1 }]);
+  });
+  it('continues to the next fresh topic after skipping with new/day=1', () => {
+    const data = repo.getSnapshot();
+    repo.execute({ type: 'saveRecallPreferences', id: 'prefs', expectedVersion: 0, options: { ...DEFAULT_RECALL_OPTIONS, newPerDay: 1 }, userId: data.userId, namespace: data.namespace, opId: crypto.randomUUID(), at: new Date().toISOString() });
+    writeRecall(repo.getSnapshot(), freshRecall()); render(<Harness />);
+    const first = readRecall(data).currentId;
+    fireEvent.click(screen.getByRole('button', { name: '건너뛰기' }));
+    expect(readRecall(data).currentId).not.toBeNull(); expect(readRecall(data).currentId).not.toBe(first);
+    expect(repo.getSnapshot().recallCards ?? []).toHaveLength(0);
+  });
+  it('releases yesterday\'s hidden cards on reload while retaining raw text and ink drafts', () => {
+    const data = repo.getSnapshot(), topic = data.nodes.find(row => row.role === 'topic')!;
+    const strokes = [{ id: 'ink-day', ink: 'blue' as const, width: 3, points: [{ x: 3, y: 4, pressure: .5 }] }];
+    writeRecall(data, { ...freshRecall(), studyDay: '2000-01-01', skipped: data.nodes.filter(n => n.role === 'topic').map(n => n.id), seen: [topic.id], drafts: { [topic.id]: { memoId: 'day-draft', body: '  다음 날도 보존\r\n ', strokes } } });
+    render(<Harness />);
+    expect(readRecall(data).currentId).not.toBeNull();
+    expect(readRecall(data)).toMatchObject({ studyDay: recallDay(new Date().toISOString()), skipped: [], drafts: { [topic.id]: { body: '  다음 날도 보존\r\n ', strokes } } });
+  });
+  it('restores the rated topic and exact answer after reload, keeps the next topic draft and corrects without duplicate memos', () => {
+    writeRecall(repo.getSnapshot(), freshRecall()); const view = render(<Harness />);
+    const first = readRecall(repo.getSnapshot()).currentId!;
+    fireEvent.change(editor(), { target: { value: '  원래 설명\n ' } });
+    fireEvent.click(screen.getByRole('button', { name: '설명 확인하고 평가' }));
+    fireEvent.click(screen.getByRole('button', { name: /^쉬움/ }));
+    const next = readRecall(repo.getSnapshot()).currentId!;
+    fireEvent.change(editor(), { target: { value: '다음 카드 초안' } });
+    view.unmount(); const second = render(<Harness />);
+    fireEvent.change(screen.getByRole('combobox', { name: '과목' }), { target: { value: 'demo-subject-science' } });
+    fireEvent.click(screen.getByRole('button', { name: '마지막 평가 되돌리기' }));
+    expect(screen.getByRole('combobox', { name: '과목' })).toHaveValue('all');
+    expect(readRecall(repo.getSnapshot()).currentId).toBe(first);
+    expect(editor()).toHaveValue('  원래 설명\n ');
+    expect(readRecall(repo.getSnapshot()).drafts[next].body).toBe('다음 카드 초안');
+    expect(repo.getSnapshot().memos).toHaveLength(1);
+    expect(repo.getSnapshot().recallCards![0].reviews).toHaveLength(0);
+    second.unmount(); render(<Harness />);
+    fireEvent.click(screen.getByRole('button', { name: '설명 확인하고 평가' }));
+    fireEvent.click(screen.getByRole('button', { name: /^다시\s*1분$/ }));
+    expect(repo.getSnapshot().memos).toHaveLength(1);
+    expect(repo.getSnapshot().recallCards![0].reviews).toMatchObject([{ rating: 1 }]);
+  });
+  it('retries a committed undo after draft cleanup failure without a second rollback or lost answer', () => {
+    writeRecall(repo.getSnapshot(), freshRecall()); const view = render(<Harness />);
+    const first = readRecall(repo.getSnapshot()).currentId;
+    fireEvent.change(editor(), { target: { value: '되돌리기 원문' } });
+    fireEvent.click(screen.getByRole('button', { name: '설명 확인하고 평가' }));
+    fireEvent.click(screen.getByRole('button', { name: /^쉬움/ }));
+    const key = recallKey(repo.getSnapshot()), original = Storage.prototype.setItem; let writes = 0;
+    const failed = vi.spyOn(Storage.prototype, 'setItem').mockImplementation(function(this: Storage, candidate, value) {
+      if (candidate === key && ++writes > 1) throw Error('되돌리기 초안정리 실패'); original.call(this, candidate, value);
+    });
+    fireEvent.click(screen.getByRole('button', { name: '마지막 평가 되돌리기' }));
+    expect(repo.getSnapshot().recallCards![0].reviews).toHaveLength(0); const version = repo.getSnapshot().recallCards![0].version;
+    failed.mockRestore(); clearRescuedDraft(key); view.unmount(); render(<Harness />);
+    fireEvent.click(screen.getByRole('button', { name: '평가 되돌리기 다시 시도' }));
+    expect(repo.getSnapshot().recallCards![0].version).toBe(version);
+    expect(readRecall(repo.getSnapshot()).currentId).toBe(first); expect(editor()).toHaveValue('되돌리기 원문');
+  });
   it('reveals reference before four ratings and stores one exact memo with a future schedule', () => {
     writeRecall(repo.getSnapshot(), freshRecall()); render(<Harness />);
     const topic = readRecall(repo.getSnapshot()).currentId;

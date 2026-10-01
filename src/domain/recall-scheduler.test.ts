@@ -11,6 +11,44 @@ function fixture() {
   return { data, command };
 }
 describe('FSRS topic recall schedules', () => {
+  it('fills a new-card quota after excluding skipped topics and prioritizes due learning over overdue review', () => {
+    const { data, command } = fixture();
+    let saved = applyCommand(data, command({ type: 'saveRecallPreferences', id: 'prefs', expectedVersion: 0, options: { ...DEFAULT_RECALL_OPTIONS, newPerDay: 1 } }));
+    expect(recallQueue(saved, saved.nodes, at, ['one']).fresh.map(t => t.id)).toEqual(['two']);
+    saved = applyCommand(saved, command({ type: 'reviewRecallCard', id: 'old', topicId: 'one', expectedVersion: 0, rating: 4, at: '2026-09-01T03:00:00.000Z' }));
+    saved = applyCommand(saved, command({ type: 'reviewRecallCard', id: 'learning', topicId: 'two', expectedVersion: 0, rating: 1 }));
+    expect(recallQueue(saved, saved.nodes, '2026-10-01T03:01:00.000Z').due.map(t => t.id)).toEqual(['two', 'one']);
+    expect(recallQueue(saved, saved.nodes, at).due.map(t => t.id)).toEqual(['one']);
+  });
+  it('undoes only the last unchanged evaluation, preserving exact memos and the original evaluation revision', () => {
+    const { data, command } = fixture();
+    const reference = applyCommand(data, command({ type: 'saveRecallReference', id: 'card', topicId: 'one', reference: '원래 참고 설명', expectedVersion: 0 }));
+    const manual = applyCommand(reference, command({ type: 'setRecallDue', id: 'card', topicId: 'one', due: at, expectedVersion: 1 }));
+    const review = command({ type: 'reviewRecallCard', id: 'card', topicId: 'one', expectedVersion: 2, rating: 4, memo: { id: 'answer', body: '  원문\r\n\u0000\ud800 ', strokes: [] } });
+    const saved = applyCommand(manual, review);
+    const undo = command({ type: 'undoRecallReview', id: 'card', reviewId: review.opId, expectedVersion: 3 });
+    const restored = applyCommand(saved, undo);
+    expect(restored.recallCards![0]).toMatchObject({ memory: manual.recallCards![0].memory, manualDue: at, reference: '원래 참고 설명', reviews: [], version: 4 });
+    expect(restored.memos).toEqual(saved.memos);
+    expect(restored.revisions).toHaveLength(saved.revisions.length + 1);
+    expect(restored.revisions.at(-1)?.reversesRevisionId).toBe(saved.revisions.at(-1)?.id);
+    expect(applyCommand(restored, undo)).toBe(restored);
+    expect(recallQueue(restored, restored.nodes, at).due.map(t => t.id)).toEqual(['one']);
+    expect(() => applyCommand(saved, command({ ...undo, opId: 'foreign', userId: 'other' }))).toThrow();
+    const changed = applyCommand(saved, command({ type: 'setRecallDue', id: 'card', topicId: 'one', due: at, expectedVersion: 3 }));
+    expect(() => applyCommand(changed, command({ ...undo, opId: 'stale' }))).toThrow();
+    expect(() => applyCommand(changed, command({ ...undo, opId: 'bypass', expectedVersion: 4 }))).toThrow();
+  });
+  it('undoes a first evaluation without retiring its card ID or consuming the daily introduction quota', () => {
+    const { data, command } = fixture();
+    const review = command({ type: 'reviewRecallCard', id: 'card', topicId: 'one', expectedVersion: 0, rating: 4 });
+    const saved = applyCommand(data, review);
+    const restored = applyCommand(saved, command({ type: 'undoRecallReview', id: 'card', reviewId: review.opId, expectedVersion: 1 }));
+    expect(restored.recallCards![0]).toMatchObject({ id: 'card', deletedAt: null, memory: { state: 0 }, reviews: [] });
+    expect(recallQueue(restored, restored.nodes, at).fresh.map(t => t.id)).toEqual(['one', 'two']);
+    const corrected = applyCommand(restored, command({ type: 'reviewRecallCard', id: 'card', topicId: 'one', expectedVersion: 2, rating: 1 }));
+    expect(corrected.recallCards).toHaveLength(1); expect(corrected.recallCards![0].reviews).toHaveLength(1);
+  });
   it('calculates genuine four-grade FSRS intervals and stores memo, history and schedule atomically', () => {
     const { data, command } = fixture();
     const preview = recallPreview(undefined, at, DEFAULT_RECALL_OPTIONS);

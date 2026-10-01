@@ -18,6 +18,15 @@ function validate(value: unknown): asserts value is RecallSession {
   }
   if (row.mode !== undefined && !['scheduled', 'random'].includes(row.mode)) throw new Error('복습 방식의 초안을 읽지 못했습니다.');
   if (row.skipped !== undefined && (!Array.isArray(row.skipped) || !row.skipped.every(id => typeof id === 'string'))) throw new Error('건너뛴 주제 초안을 읽지 못했습니다.');
+  if (row.studyDay !== undefined && (typeof row.studyDay !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(row.studyDay))) throw new Error('복습 날짜 초안을 읽지 못했습니다.');
+  if (row.lastReview && (row.lastReview.command?.type !== 'reviewRecallCard' || typeof row.lastReview.command.id !== 'string'
+    || typeof row.lastReview.command.topicId !== 'string' || typeof row.lastReview.command.opId !== 'string'
+    || !Number.isSafeInteger(row.lastReview.expectedVersion) || row.lastReview.expectedVersion < 1
+    || row.lastReview.subjectId !== undefined && typeof row.lastReview.subjectId !== 'string'
+    || row.lastReview.unitId !== undefined && typeof row.lastReview.unitId !== 'string')) throw new Error('되돌릴 평가 초안을 읽지 못했습니다.');
+  if (row.pendingUndo && (row.pendingUndo.type !== 'undoRecallReview' || typeof row.pendingUndo.id !== 'string'
+    || typeof row.pendingUndo.reviewId !== 'string' || typeof row.pendingUndo.opId !== 'string'
+    || !row.lastReview || row.pendingUndo.id !== row.lastReview.command.id || row.pendingUndo.reviewId !== row.lastReview.command.opId)) throw new Error('평가 되돌리기 초안을 읽지 못했습니다.');
   if (row.pendingReview && (row.pendingReview.type !== 'reviewRecallCard' || row.pendingReview.topicId !== row.currentId || typeof row.pendingReview.opId !== 'string' || ![1,2,3,4].includes(row.pendingReview.rating))) throw new Error('저장 중인 자기 평가의 초안을 읽지 못했습니다.');
   if (row.references && (typeof row.references !== 'object' || Array.isArray(row.references) || !Object.values(row.references).every(ref => ref && typeof ref.body === 'string' && typeof ref.cardId === 'string' && Number.isSafeInteger(ref.expectedVersion) && ref.expectedVersion >= 0))) throw new Error('참고 설명의 초안을 읽지 못했습니다.');
   for (const draft of Object.values(row.drafts)) validateMemoContent({ body: draft.body, ownerId: null, strokes: draft.strokes ?? [] });

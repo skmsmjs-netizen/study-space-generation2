@@ -1,15 +1,24 @@
 import type { AppState, Command, MemoStroke, OutlineNode } from './model';
+import { recallDay } from './recall-scheduler';
 
 export interface RecallDraft { memoId: string; body: string; strokes?: MemoStroke[] }
 export interface RecallSession {
   version: 1; subjectId: string; unitId: string; currentId: string | null;
   mode?: 'scheduled' | 'random';
   skipped?: string[];
+  studyDay?: string;
   pendingReview?: Extract<Command, { type: 'reviewRecallCard' }>;
+  lastReview?: { command: Extract<Command, { type: 'reviewRecallCard' }>; expectedVersion: number; subjectId?: string; unitId?: string };
+  pendingUndo?: Extract<Command, { type: 'undoRecallReview' }>;
   references?: Record<string, { body: string; cardId: string; expectedVersion: number }>;
   seen: string[]; round: number; drafts: Record<string, RecallDraft>;
 }
 export const freshRecall = (): RecallSession => ({ version: 1, mode: 'scheduled', subjectId: 'all', unitId: 'all', currentId: null, seen: [], round: 1, drafts: {} });
+/** Day changes release hidden cards without removing answers, references or pending writes. */
+export function recallForDay(session: RecallSession, at: string): RecallSession {
+  const day = recallDay(at);
+  return session.mode !== 'scheduled' || session.studyDay === day ? session : { ...session, studyDay: day, seen: [], skipped: [] };
+}
 export function recallPath(nodes: OutlineNode[], id: string): OutlineNode[] {
   const path: OutlineNode[] = [], visited = new Set<string>();
   let node = nodes.find(row => row.id === id);
