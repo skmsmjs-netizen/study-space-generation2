@@ -1196,7 +1196,7 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
 }
 
 type Commit = (action: Action, success?: string) => AppState | null;
-function useTextDraft(key: string, initial: string, version: number, identity?: { entityId: string; restoreIdentity: boolean }) {
+export function useTextDraft(key: string, initial: string, version: number, identity?: { entityId: string; restoreIdentity: boolean }) {
   const [boot] = useState(() => {
     try {
       const raw = readRescuedDraft(key) ?? localStorage.getItem(key);
@@ -1230,7 +1230,16 @@ function useTextDraft(key: string, initial: string, version: number, identity?: 
   const [blocked, setBlocked] = useState(Boolean(boot.error));
   const [cleanupPending, setCleanupPending] = useState(false);
   const expected = useRef(boot.version);
+  // A remote refresh may replace only a clean editor. Restored or unsaved text
+  // keeps its original version so a later save still detects a conflict.
+  const dirty = useRef(boot.body !== initial || boot.version !== version || Boolean(boot.error) || draftHasUnstoredText(key));
+  useEffect(() => {
+    if (dirty.current || blocked || cleanupPending || error || version < expected.current) return;
+    expected.current = version;
+    setBody(initial);
+  }, [initial, version, blocked, cleanupPending, error]);
   const change = (value: string) => {
+    dirty.current = true;
     setCleanupPending(false);
     setBody(value);
     if (blocked) { rescueWithoutOverwrite(key, JSON.stringify({body: value, version: expected.current, ...(identity ? { entityId: boot.entityId } : {})})); return; }
@@ -1248,6 +1257,7 @@ function useTextDraft(key: string, initial: string, version: number, identity?: 
   };
   const clear = (nextVersion: number) => {
     expected.current = nextVersion;
+    dirty.current = false;
     try {
       clearStoredDraft(key);
       setCleanupPending(false); setError("");
