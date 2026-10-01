@@ -1516,7 +1516,7 @@ var anon = Deno.env.get("SUPABASE_ANON_KEY");
 var service = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
 async function admin(path, options = {}) {
   const response = await fetch(`${url}/rest/v1/${path}`, { ...options, headers: { apikey: service, Authorization: `Bearer ${service}`, "Content-Type": "application/json", ...options.headers } });
-  const result = await response.json();
+  const result = response.status === 204 ? null : await response.json();
   if (!response.ok) {
     const code = ["ACCESS_DENIED", "ADMIN_REQUIRED", "ADMIN_PROTECTED", "ACCESS_CONFLICT", "VERSION_CONFLICT", "EMAIL_UNCONFIRMED"].find((code2) => result.message?.includes(code2)) ?? "SERVER_ERROR";
     const message = code === "ACCESS_DENIED" ? "\uAD00\uB9AC\uC790 \uC2B9\uC778\uC774 \uD544\uC694\uD558\uAC70\uB098 \uC774\uC6A9\uC774 \uC911\uC9C0\uB418\uC5B4 \uC788\uC2B5\uB2C8\uB2E4. \uC791\uC131 \uB0B4\uC6A9\uC740 \uC774 \uAE30\uAE30\uC5D0 \uB0A8\uC544 \uC788\uC2B5\uB2C8\uB2E4." : code === "ACCESS_CONFLICT" ? "\uACC4\uC815 \uC0C1\uD0DC\uAC00 \uBCC0\uACBD\uB418\uC5C8\uC2B5\uB2C8\uB2E4. \uBAA9\uB85D\uC744 \uB2E4\uC2DC \uBD88\uB7EC\uC640 \uC8FC\uC138\uC694." : code === "EMAIL_UNCONFIRMED" ? "\uC774\uBA54\uC77C \uD655\uC778\uC774 \uB05D\uB09C \uACC4\uC815\uB9CC \uC2B9\uC778\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4." : "\uC11C\uBC84\uC5D0\uC11C \uBCC0\uACBD\uC744 \uC2B9\uC778\uD558\uC9C0 \uC54A\uC558\uC2B5\uB2C8\uB2E4. \uC6D0\uBB38\uC744 \uBCF4\uC874\uD588\uC2B5\uB2C8\uB2E4.";

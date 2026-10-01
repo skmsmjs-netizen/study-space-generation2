@@ -9,7 +9,9 @@ const anon = Deno.env.get('SUPABASE_ANON_KEY')!;
 const service = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
 async function admin(path: string, options: RequestInit = {}) {
   const response = await fetch(`${url}/rest/v1/${path}`, { ...options, headers: { apikey: service, Authorization: `Bearer ${service}`, 'Content-Type': 'application/json', ...options.headers } });
-  const result = await response.json();
+  // PostgREST returns 204 for a successful void RPC. The permission change
+  // has already committed; an empty response must not become a save failure.
+  const result = response.status === 204 ? null : await response.json();
   if (!response.ok) {
     const code = ['ACCESS_DENIED','ADMIN_REQUIRED','ADMIN_PROTECTED','ACCESS_CONFLICT','VERSION_CONFLICT','EMAIL_UNCONFIRMED'].find(code => result.message?.includes(code)) ?? 'SERVER_ERROR';
     const message = code === 'ACCESS_DENIED' ? '관리자 승인이 필요하거나 이용이 중지되어 있습니다. 작성 내용은 이 기기에 남아 있습니다.' : code === 'ACCESS_CONFLICT' ? '계정 상태가 변경되었습니다. 목록을 다시 불러와 주세요.' : code === 'EMAIL_UNCONFIRMED' ? '이메일 확인이 끝난 계정만 승인할 수 있습니다.' : '서버에서 변경을 승인하지 않았습니다. 원문을 보존했습니다.';
