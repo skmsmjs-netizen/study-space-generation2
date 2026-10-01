@@ -4,11 +4,12 @@ import { beforeEach, expect, it, vi } from 'vitest';
 import { AI_OWNER_USER_ID } from '../domain/ai-access';
 import { applyCommand } from '../domain/commands';
 import { emptyState, type Command } from '../domain/model';
-import { generateTopicMemory } from '../data/study-ai';
+import { configureOpenAIAPI, generateTopicMemory } from '../data/study-ai';
 import { MemoryTests } from './memory-test';
 import { memoryDraftKey, readMemoryDraft } from '../data/memory-test';
 vi.mock('../data/study-ai', () => ({
   generateTopicMemory: vi.fn(),
+  configureOpenAIAPI: vi.fn(),
   CHATGPT_USAGE_URL: 'https://chatgpt.com/settings/usage',
   localAIStatus: vi.fn(async () => ({ configured: false, local: true, model: '', creditsConfirmed: false })),
 }));
@@ -74,6 +75,7 @@ it('opens API settings in place and preserves the selected scope and guidance wi
   expect(screen.getByLabelText('출제 초점·난도 (선택)')).toHaveValue('공식의 적용 조건');
   expect(screen.getByLabelText('GPT 출제 주제')).toHaveValue('t');
   expect(generateTopicMemory).not.toHaveBeenCalled();
+  expect(configureOpenAIAPI).not.toHaveBeenCalled();
   fireEvent.click(screen.getByRole('button', { name: 'GPT 연결 닫기' }));
   expect(screen.queryByRole('region', { name: 'GPT 연결 설정' })).toBeNull();
   expect(readMemoryDraft(memoryDraftKey(repo.getSnapshot())).draft?.generation?.input.guidance).toBe('공식의 적용 조건');
