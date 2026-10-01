@@ -425,7 +425,7 @@ nav a[aria-current="page"] {
   }
   .main-content {
     padding: var(--space-4) var(--space-4)
-      calc(var(--space-8) + env(safe-area-inset-bottom));
+      calc(var(--control-height) + var(--space-4) + var(--space-4) + env(safe-area-inset-bottom));
   }
   .page-heading {
     margin-top: var(--space-5);
@@ -447,6 +447,9 @@ nav a[aria-current="page"] {
   }
   .bottom-nav {
     display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -458,8 +461,11 @@ nav a[aria-current="page"] {
     gap: var(--space-2);
     z-index: 10;
   }
-  .bottom-nav a {
-    flex: 1;
+  .bottom-nav.ui-navigation-bar a {
+    flex: 1 0 auto;
+    min-inline-size: var(--control-height);
+    white-space: nowrap;
+    overflow-wrap: normal;
     text-align: center;
     padding: var(--space-3) var(--space-2);
     border-radius: var(--radius-sm);
