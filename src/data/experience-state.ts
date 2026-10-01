@@ -44,11 +44,20 @@ function readingWidth(
   return state.readingWidth;
 }
 export function readExperience(data: Pick<AppState, 'namespace' | 'userId'>): ExperienceState {
-  const raw = readRescuedDraft(experienceKey(data)) ?? localStorage.getItem(experienceKey(data));
+  const key = experienceKey(data);
+  const raw = readRescuedDraft(key) ?? localStorage.getItem(key);
   // Draft safety uses an empty marker for this window when another window owns
   // the shared value. Do not parse that marker or adopt the other window's text.
   try {
-    const marker = raw === '' && localStorage.getItem(experienceKey(data)) !== '';
+    const windowId = personalDraftWindow(key);
+    const author = raw === '' ? localStorage.getItem(`${key}:window-author`) : null;
+    const marker = raw === '' && !draftHasUnstoredText(key) && Boolean(windowId) &&
+      author !== null && author !== windowId &&
+      localStorage.getItem(`${key}:recovery:window-${windowId}`) === null;
+    if (marker) {
+      const saved = localStorage.getItem(key);
+      if (saved !== null) validateExperience(JSON.parse(saved));
+    }
     const value: unknown = raw === null || marker ? emptyExperience() : JSON.parse(raw);
     validateExperience(value);
     // A failed local write stays visible for exact retry. Otherwise use the

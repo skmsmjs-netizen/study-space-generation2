@@ -160,3 +160,13 @@ it('preserves damaged reading-width strings and rejects a width changed after in
   expect(readExperience(data).readingWidth).toBe('wide');
   expect(inspectExperienceRecovery(data).widthArchives.some(archive => archive.raw === '  damaged-width-original\n')).toBe(true);
 });
+
+
+it('does not treat an empty current-window copy or a failed empty write as a foreign-window marker', () => {
+  savedSetting(); const validRaw = localStorage.getItem(`${key}:recovery:window-saved-window`)!;
+  localStorage.setItem(key, validRaw);
+  localStorage.setItem(`${key}:recovery:window-saved-window`, '');
+  expect(() => updateExperience(data, state => state)).toThrow('저장된 원문은 그대로 보존했습니다');
+  expect(localStorage.getItem(`${key}:recovery:window-saved-window`)).toBe('');
+  expect(localStorage.getItem(key)).toBe(validRaw);
+});
