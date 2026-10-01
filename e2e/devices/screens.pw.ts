@@ -147,7 +147,9 @@ test('unsupported notifications explain the device path without requesting permi
   await expect(page.getByText(/Safari의 공유 메뉴에서 홈 화면에 추가/)).toBeVisible();
 });
 
-test('missing microphone API retains a usable file import and notes path', async ({ page }) => {
+test('missing microphone API retains transcript import and exact notes after reload', async ({
+  page,
+}) => {
   test.skip(!primaryRoutes.includes('/materials'), '이 버전에는 강의 자료 화면이 없습니다.');
   await page.addInitScript(() => {
     Object.defineProperty(navigator, 'mediaDevices', {
@@ -157,7 +159,17 @@ test('missing microphone API retains a usable file import and notes path', async
   });
   await page.goto('?space=demo#/materials');
   await page.getByRole('button', { name: '자료 추가', exact: true }).tap();
-  await expect(page.getByRole('button', { name: '녹음 시작', exact: true })).toBeDisabled();
-  await expect(page.getByRole('button', { name: '녹음 파일 가져오기', exact: true })).toBeEnabled();
-  await expect(page.getByText(/기기의 녹음 앱에서 녹음한 뒤/)).toBeVisible();
+  await expect(page.getByRole('button', { name: '녹음 시작', exact: true })).toHaveCount(0);
+  await expect(
+    page.getByRole('button', { name: '학습 자료 파일', exact: true }),
+  ).toBeEnabled();
+  await expect(page.getByRole('link', { name: '클로바노트 열기', exact: true })).toBeVisible();
+  const original = '  화자 1 · 00:12\n조건과 예외를 그대로 보관  ';
+  const notes = page.getByRole('textbox', { name: '강의 내용·필기', exact: true });
+  await notes.fill(original);
+  await page.reload();
+  await expect(notes).toHaveValue(original);
+  await expect(
+    page.getByRole('button', { name: '학습 자료 파일', exact: true }),
+  ).toBeEnabled();
 });

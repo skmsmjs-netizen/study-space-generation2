@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "node scripts/prepare-material-tools.mjs && node scripts/prepare-math-tools.mjs && node scripts/build-recall-optimizer.mjs && vite --host 127.0.0.1",
     "build": "node scripts/prepare-material-tools.mjs && node scripts/prepare-math-tools.mjs && node scripts/build-recall-optimizer.mjs && tsc --noEmit && vite build",
-    "preview": "vite preview --host 127.0.0.1",
+    "preview": "node scripts/preview-app.mjs",
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
     "build:backend": "node scripts/build-backend.mjs",
@@ -32,11 +32,12 @@
     "test:design": "node --test scripts/design-tokens.node-test.mjs",
     "predev": "npm run check:design",
     "prebuild": "npm run check:design",
-    "pretest": "npm run test:design",
+    "pretest": "npm run test:design && npm run test:device-run",
     "setup:gpt-local": "node scripts/setup-local-gpt.mjs",
     "test:code-terminal": "node --test scripts/code-terminal.node-test.mjs",
     "prepare:math-tools": "node scripts/prepare-math-tools.mjs",
-    "test:devices": "playwright test --config playwright.devices.config.ts"
+    "test:devices": "node scripts/test-device-environments.mjs",
+    "test:device-run": "node --test scripts/device-run.node-test.mjs"
   },
   "dependencies": {
     "@codemirror/autocomplete": "6.20.3",
