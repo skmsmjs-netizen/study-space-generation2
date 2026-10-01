@@ -21,21 +21,16 @@ import {
 import type { StudyRepository } from '../data/repository';
 import { generateStudyMaterial } from '../data/study-ai';
 import { GPTConnectionPanel } from './gpt-connection-panel';
-import { MaterialTranscription } from './material-transcription';
 import { MaterialSources } from './material-sources';
 import { MaterialQuiz } from './material-quiz';
 import { MaterialTutor } from './material-tutor';
 import { addMaterialMapToCanvas } from '../data/material-map-canvas';
 import { documentSegments, materialSourceIdentity } from '../domain/material-source';
-import { uploadMaterialFile, removeMaterialAudio } from '../data/material-cloud';
+import { uploadMaterialFile } from '../data/material-cloud';
 import { StudyAIContextPicker } from './study-ai-context-picker';
 import {
   clearMaterialDraft,
-  removeTranscribedAudio,
-  readTranscriptionCheckpoint,
   type MaterialDraft,
-  keepAudio,
-  keepRecordingChunk,
   readAudio,
   readDocumentFile,
   readMaterialDraft,
@@ -108,7 +103,7 @@ export function StudyMaterials(props: Props) {
       <div className="material-toolbar">
         <p>
           {aiAllowed
-            ? '문서·사진·자막·녹음에서 원문을 모으고, 요약·카드·퀴즈로 공부하세요.'
+            ? '문서·사진·자막·전사문에서 원문을 모으고, 요약·카드·퀴즈로 공부하세요.'
             : '강의 자료의 원문과 파일을 과목별로 보관하세요.'}
         </p>
         {!trash && (
@@ -127,8 +122,8 @@ export function StudyMaterials(props: Props) {
             items.length ? '공부 범위를 바꾸면 다른 과목에 저장한 자료를 확인할 수 있습니다.' : trash
               ? '원본은 직접 삭제하기 전까지 보존됩니다.'
               : aiAllowed
-                ? '문서·사진·자막·녹음 파일을 가져오거나 강의 내용을 붙여 넣어 시작할 수 있습니다.'
-                : '녹음 파일이나 강의 필기를 과목과 함께 저장할 수 있습니다.'
+                ? '문서·사진·자막·전사문 파일을 가져오거나 강의 내용을 붙여 넣어 시작할 수 있습니다.'
+                : '전사문이나 강의 필기를 과목과 함께 저장할 수 있습니다.'
           }
         />
       )}
@@ -197,8 +192,6 @@ function MaterialEditor({
     [notice, setNotice] = useState(''),
     [busy, setBusy] = useState(false),
     [importing, setImporting] = useState(false),
-    [transcribing, setTranscribing] = useState(false),
-    [auto, setAuto] = useState(aiAllowed && import.meta.env.DEV),
     [count, setCount] = useState(10);
   const [audioURL, setAudioURL] = useState(''),
     [missingAudio, setMissingAudio] = useState(false),
@@ -210,6 +203,7 @@ function MaterialEditor({
     [answer, setAnswer] = useState(content.learningView?.activeDisclosure === 'revealed' ? `${content.learningView.resultId}:${content.learningView.cardId}` : ''),
     [editingCard, setEditingCard] = useState('');
   const [editingResult, setEditingResult] = useState(false);
+  const [sourceOpen, setSourceOpen] = useState(false);
   const generationFlight = useRef(false);
   const savingFlight = useRef(false);
   const stableMaterialId = useRef(selected?.id ?? crypto.randomUUID());
@@ -219,13 +213,7 @@ function MaterialEditor({
     retain({ ...current.current, aiRequest: { task, ...current.current.aiRequest, ...patch } });
   }
   const [keyPanel, setKeyPanel] = useState(false);
-  const [recording, setRecording] = useState(false),
-    [recovery, setRecovery] = useState(false);
-  const recorder = useRef<MediaRecorder | null>(null),
-    recorderStream = useRef<MediaStream | null>(null),
-    chunks = useRef<Blob[]>([]),
-    chunkFlight = useRef<Promise<unknown>>(Promise.resolve()),
-    fileInput = useRef<HTMLInputElement>(null);
+  const [recovery, setRecovery] = useState(false);
   const result = content.results[resultIndex],
     cards = result?.cards.filter((card) => !card.excluded) ?? [],
     card = cards[cardIndex];
@@ -233,7 +221,7 @@ function MaterialEditor({
   const viewState = useRef<MaterialView>(content.learningView ?? { tab: 'summary', revealed: [], helped: [] });
   const draftRevision = useRef(0);
   const [draftState, setDraftState] = useState<'saved' | 'pending' | 'failed'>('saved');
-  const ranges = useMemo(() => { try { return planMaterialRanges(content, activeStudyAIRequest(content.aiRequest)); } catch { return null; } }, [content.sourceText, content.documents, content.aiRequest]);
+  const ranges = useMemo(() => { try { return planMaterialRanges({ ...content, audio: null }, activeStudyAIRequest(content.aiRequest)); } catch { return null; } }, [content.sourceText, content.documents, content.aiRequest, content.audio, content.results]);
   const rangeIndex = ranges && content.generationProgress?.sourceIdentity === ranges.sourceIdentity ? content.generationProgress.index : 0;
   function revealCard() {
     if (!cardKey) return;
@@ -254,6 +242,7 @@ function MaterialEditor({
   useEffect(() => {
     if (!ready) return;
     setEditingCard('');
+    setSourceOpen(false);
     viewState.current = { ...viewState.current, resultId: result?.id, cardId: card?.id, tab, activeDisclosure: answer === cardKey && cardKey ? 'revealed' : 'hidden' };
     retain(current.current);
   }, [ready, result?.id, card?.id, tab]);
@@ -337,10 +326,6 @@ function MaterialEditor({
     return () => {
       mounted.current = false;
       generationController.current?.abort();
-      if (recorder.current?.state === 'recording') recorder.current.stop();
-      recorderStream.current?.getTracks().forEach((track) => {
-        track.stop();
-      });
     };
   }, [owner, draftId, aiAllowed]);
   const audioFile = content.audio;
@@ -383,7 +368,7 @@ function MaterialEditor({
   }, [result, audioFile?.sha256]);
   useEffect(() => {
     const before = (event: BeforeUnloadEvent) => {
-      if (recording || busy || transcribing || importing || draftState !== 'saved') {
+      if (busy || importing || draftState !== 'saved') {
         event.preventDefault();
         event.returnValue = '';
       }
@@ -402,9 +387,9 @@ function MaterialEditor({
     window.addEventListener('click', leave, true);
     window.addEventListener('beforeunload', before);
     return () => { window.removeEventListener('click', leave, true); window.removeEventListener('beforeunload', before); };
-  }, [recording, busy, transcribing, importing, draftState]);
+  }, [busy, importing, draftState]);
   async function analyze(source = current.current) {
-    if (!aiAllowed || generationFlight.current || busy || recording || transcribing || importing) return;
+    if (!aiAllowed || generationFlight.current || busy || importing) return;
     if (source.results.length >= 30) {
       setError(
         '이 자료의 생성 결과 30개를 모두 보관했습니다. 내보내거나 새 자료에 필요한 원문을 넣어 이어가 주세요.',
@@ -438,6 +423,7 @@ function MaterialEditor({
         return;
       }
       // Source editing is disabled during generation. Existing results remain in order.
+      if (result?.quiz && current.current.quizAttempts?.some(a => a.resultId === result.id && !a.submittedAt)) recordHelp();
       const next = { ...current.current, results: [...current.current.results, generated],
         ...(generated.range ? { generationProgress: { sourceIdentity: generated.range.sourceIdentity, index: generated.range.index, completed: [...(current.current.generationProgress?.sourceIdentity === generated.range.sourceIdentity ? current.current.generationProgress.completed : []), ...(!generated.diagnostics?.length ? [{ index: generated.range.index, resultId: generated.id }] : [])] } } : {}) };
       setEditingCard('');
@@ -467,133 +453,18 @@ function MaterialEditor({
       if (mounted.current) setBusy(false);
     }
   }
-  async function importAudio(file: File, run = auto, sourceRecordingId?: string) {
-    try {
-      setError('');
-      const audio = await keepAudio(data, file);
-      if (!mounted.current) return;
-      const next = {
-        ...current.current,
-        audio,
-        title: current.current.title || file.name.replace(/\.[^.]+$/, ''),
-      };
-      recordingId.current = undefined;
-      audioRecordingId.current = sourceRecordingId;
-      audioCleanup.current = undefined;
-      retain(next);
-      setRecovery(false);
-      await draftFlight.current;
-      setNotice('원본 음성을 이 기기에 보관했습니다.');
-      if (aiAllowed && run) await analyze(next);
-      return true;
-    } catch (error) {
-      if (mounted.current) setError(message(error));
-      return false;
-    }
-  }
-  const recordingSupported = Boolean(navigator.mediaDevices?.getUserMedia) && typeof MediaRecorder !== 'undefined';
-  async function startRecording() {
-    try {
-      if (!navigator.mediaDevices?.getUserMedia || typeof MediaRecorder === 'undefined')
-        throw Error(
-          '이 브라우저에서 직접 녹음할 수 없습니다. 기기의 녹음 앱에서 녹음한 뒤 파일을 가져와 주세요.',
-        );
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true }).catch((cause: unknown) => {
-        const name = cause instanceof DOMException ? cause.name : '';
-        if (name === 'NotAllowedError' || name === 'SecurityError') throw Error('마이크 사용이 허용되지 않았습니다. 기기의 브라우저 마이크 설정을 확인하거나 녹음 파일을 가져와 주세요. 작성한 필기는 유지했습니다.');
-        if (name === 'NotFoundError' || name === 'NotReadableError') throw Error('마이크를 사용할 수 없습니다. 연결과 다른 앱의 사용 여부를 확인하거나 녹음 파일을 가져와 주세요.');
-        throw cause;
-      });
-      if (!mounted.current) {
-        stream.getTracks().forEach((track) => {
-          track.stop();
-        });
-        return;
-      }
-      recorderStream.current = stream;
-      const type = ['audio/webm;codecs=opus', 'audio/mp4', 'audio/ogg;codecs=opus'].find((type) =>
-        MediaRecorder.isTypeSupported(type),
-      );
-      const instance = new MediaRecorder(stream, type ? { mimeType: type } : undefined),
-        id = crypto.randomUUID();
-      recordingId.current = id;
-      retain(current.current);
-      await draftFlight.current;
-      recorder.current = instance;
-      chunks.current = [];
-      chunkFlight.current = Promise.resolve();
-      setRecording(true);
-      setError('');
-      instance.ondataavailable = (event) => {
-        if (!event.data.size) return;
-        const index = chunks.current.length;
-        chunks.current.push(event.data);
-        chunkFlight.current = chunkFlight.current
-          .then(() => keepRecordingChunk(data, id, index, event.data))
-          .catch((error) => {
-            if (mounted.current) setError(message(error));
-          });
-        if (
-          chunks.current.reduce((sum, blob) => sum + blob.size, 0) > 49 * 1024 * 1024 &&
-          instance.state === 'recording'
-        ) {
-          instance.stop();
-          if (mounted.current) setNotice('파일 크기에 맞춰 녹음을 마쳤습니다.');
-        }
-      };
-      instance.onerror = () => {
-        if (mounted.current)
-          setError('녹음이 중단되었습니다. 남은 음성은 녹음 복구에서 가져올 수 있습니다.');
-        if (instance.state !== 'inactive') instance.stop();
-      };
-      instance.onstop = async () => {
-        stream.getTracks().forEach((track) => {
-          track.stop();
-        });
-        await chunkFlight.current;
-        if (!mounted.current) return;
-        setRecording(false);
-        setRecovery(true);
-        const blob = new Blob(chunks.current, { type: instance.mimeType });
-        const retained = await importAudio(
-          new File(
-            [blob],
-            `강의 녹음-${new Date().toISOString().slice(0, 10)}.${instance.mimeType.includes('mp4') ? 'm4a' : instance.mimeType.includes('ogg') ? 'ogg' : 'webm'}`,
-            { type: instance.mimeType },
-          ),
-          false,
-          id,
-        );
-        // Let the state clear before starting automatic AI processing.
-        if (retained && auto)
-          setTimeout(() => {
-            if (mounted.current) void analyze(current.current);
-          }, 0);
-      };
-      instance.start(5000);
-    } catch (error) {
-      recorderStream.current?.getTracks().forEach((track) => {
-        track.stop();
-      });
-      setRecording(false);
-      setError(message(error));
-    }
-  }
   async function recover() {
     try {
       if (!recordingId.current) return;
       const blob = await recoverRecording(data, recordingId.current);
-      if (!blob) throw Error('복구할 녹음 구간이 없습니다. 원본 파일을 가져와 주세요.');
-      await importAudio(
-        new File([blob], `복구한 강의.${blob.type.includes('mp4') ? 'm4a' : 'webm'}`, {
-          type: blob.type,
-        }),
-        false,
-        recordingId.current,
-      );
-    } catch (error) {
-      setError(message(error));
-    }
+      if (!blob) throw Error('이 기기에 이전 녹음 구간이 없습니다. 원본을 보관한 기기에서 확인해 주세요.');
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `이전 녹음.${blob.type.includes('mp4') ? 'm4a' : blob.type.includes('ogg') ? 'ogg' : 'webm'}`;
+      link.click();
+      setTimeout(() => URL.revokeObjectURL(url), 60_000);
+    } catch (cause) { setError(message(cause)); }
   }
   async function save() {
     if (savingFlight.current) return false;
@@ -606,25 +477,7 @@ function MaterialEditor({
           '자료를 서버에 저장할 연결이 아직 없습니다. 초안과 원본은 이 기기에 보관했습니다.',
         );
       await draftFlight.current;
-      let cleanup = audioCleanup.current;
-      if (cleanup && (await readTranscriptionCheckpoint(owner, cleanup.audio.sha256))?.retainAudio) {
-        audioCleanup.current = undefined;
-        cleanup = undefined;
-      }
-      if (cleanup && (!current.current.sourceText.includes(cleanup.text) ||
-          (current.current.audio && current.current.audio.sha256 !== cleanup.audio.sha256))) {
-        audioCleanup.current = undefined;
-        cleanup = undefined;
-      }
       if (data.namespace === 'personal' && current.current.originalStorage === 'private-server') {
-        const source = current.current;
-        if (source.audio && !source.audio.cloudPath && !cleanup) {
-          setNotice('원본 음성을 비공개로 서버에 보관하고 있습니다.');
-          const blob = await readAudio(owner, source.audio);
-          if (!blob) throw Error('이 기기에 원본 음성이 없습니다. 같은 파일을 다시 가져와 주세요.');
-          const audio = await uploadMaterialFile(owner, 'audio', source.audio, blob);
-          retain({ ...current.current, audio }); await draftFlight.current;
-        }
         for (const doc of current.current.documents ?? []) {
           if (!doc.file || doc.file.cloudPath) continue;
           setNotice(`${doc.name} 원본을 비공개로 서버에 보관하고 있습니다.`);
@@ -637,7 +490,7 @@ function MaterialEditor({
       const id = stableMaterialId.current;
       const previous = repository.getSnapshot();
       const existing = previous.studyMaterials?.find((row) => row.id === id);
-      const saveContent = cleanup ? { ...current.current, audio: null } : current.current;
+      const saveContent = current.current;
       const unchanged =
         existing?.version === baseVersion.current &&
         JSON.stringify(materialContent(existing)) === JSON.stringify(saveContent);
@@ -661,27 +514,14 @@ function MaterialEditor({
       const status = repository.getStatus?.();
       if (data.namespace !== 'demo' && status && (status.phase !== 'saved' || status.pending))
         throw Error(status.message || '서버 저장을 확인하지 못했습니다. 초안은 유지했습니다.');
-      let audioRemoved: boolean | undefined;
-      if (cleanup) {
-        if (data.namespace !== 'demo' && (!repository.flush || !status))
-          throw Error('전사문의 서버 저장 확인이 필요해 녹음을 남겼습니다. 다시 자료 저장을 눌러 주세요.');
-        audioRemoved = await removeTranscribedAudio(owner, cleanup.audio, cleanup.text, draftId,
-          next.studyMaterials?.some(row => row.id !== id && row.audio?.key === cleanup.audio.key) ?? false,
-          cleanup.recordingId);
-        if (audioRemoved) await removeMaterialAudio(owner, cleanup.audio);
-        audioCleanup.current = undefined;
-        audioRecordingId.current = undefined;
-        chunks.current = [];
-        retain(saveContent);
-        await draftFlight.current;
-      }
-      await clearMaterialDraft(data, draftId);
+      // Preserve the only reference to old interrupted recording chunks for download recovery.
+      if (recordingId.current) {
+        const legacyDraft = await readMaterialDraft(owner, draftId);
+        if (legacyDraft) await writeMaterialDraft(owner, id, legacyDraft);
+        if (draftId !== id) await clearMaterialDraft(data, draftId);
+      } else await clearMaterialDraft(data, draftId);
       setNotice(
-        audioRemoved !== undefined
-          ? audioRemoved
-            ? '전사문을 저장하고 이 앱의 녹음 파일을 정리했습니다.'
-            : '전사문을 저장했습니다. 같은 녹음을 쓰는 다른 자료가 있어 파일은 남겼습니다.'
-          : data.namespace === 'demo'
+        data.namespace === 'demo'
           ? '자료를 이 기기에 저장했습니다.'
           : status
             ? '자료를 서버에 저장했습니다.'
@@ -786,7 +626,7 @@ function MaterialEditor({
         <GPTConnectionPanel
           userId={owner.userId}
           namespace={owner.namespace}
-          busy={busy || transcribing}
+          busy={busy}
         />
       )}
       {error && <ErrorState message={error} />}
@@ -799,8 +639,10 @@ function MaterialEditor({
         </p>
       )}
       {!ready && !error && <p>보관한 자료를 불러오고 있습니다.</p>}
+      <details className="material-source-region" open={tab !== 'quiz' || !result?.quiz || sourceOpen} onToggle={event => { if (tab === 'quiz' && result?.quiz) { const opened = event.currentTarget.open; setSourceOpen(opened); if (opened) recordHelp(); } }}>
+      <summary>{tab === 'quiz' && result?.quiz ? '원문·자료 열기 · 퀴즈 도움으로 보관' : '자료와 원문'}</summary>
       <fieldset
-        disabled={!ready || busy || saving || recording || transcribing || importing}
+        disabled={!ready || busy || saving || importing}
         className="material-fields"
       >
         <Input
@@ -842,33 +684,10 @@ function MaterialEditor({
               ))}
           </Select>
         </div>
-        <div className="material-actions">
-          <Button onClick={() => fileInput.current?.click()}>녹음 파일 가져오기</Button>
-          <Button disabled={!recordingSupported} onClick={() => void startRecording()}>녹음 시작</Button>
-          <input
-            ref={fileInput}
-            className="material-file-input"
-            aria-label="강의 녹음 파일"
-            type="file"
-            accept="audio/*,.m4a,.webm"
-            onChange={(event) => {
-              const file = event.target.files?.[0];
-              if (file) void importAudio(file);
-              event.target.value = '';
-            }}
-          />
-        </div>
-        {!recordingSupported && <p className="material-hint">이 브라우저에서는 직접 녹음할 수 없습니다. 기기의 녹음 앱에서 녹음한 뒤 ‘녹음 파일 가져오기’로 보관해 주세요. 필기는 그대로 입력·저장할 수 있습니다.</p>}
-        {aiAllowed && (
-          <Checkbox
-            label="녹음을 가져오거나 마친 뒤 자동 정리"
-            checked={auto}
-            onChange={(event) => setAuto(event.target.checked)}
-          />
-        )}
+        <p className="material-hint"><a href="https://clovanote.naver.com/" target="_blank" rel="noreferrer">클로바노트 열기</a>에서 녹음·전사한 뒤, 음성 기록을 복사하거나 내려받은 전사문 파일을 아래에서 가져와 주세요.</p>
         <Textarea
           label="강의 내용·필기"
-          hint="필기를 붙여 넣어 정리할 수 있습니다. 음성과 함께 넣으면 보충 자료로 사용합니다."
+          hint="클로바노트 전사문을 붙여 넣고 필요한 필기를 덧붙여 주세요. 화자·시간·조건·예외를 포함한 원문을 보관합니다. 붙여넣기는 15만 자까지이며, 더 긴 전사문은 파일로 가져와 주세요."
           value={content.sourceText}
           maxLength={MAX_SOURCE_TEXT}
           rows={5}
@@ -879,7 +698,7 @@ function MaterialEditor({
             data={data}
             subjectId={content.subjectId}
             text={content.sourceText}
-            disabled={!ready || busy || saving || recording || transcribing || importing}
+            disabled={!ready || busy || saving || importing}
             onApply={async (sourceText) => {
               retain({ ...current.current, sourceText });
               await draftFlight.current;
@@ -887,22 +706,14 @@ function MaterialEditor({
           />
         )}
       </fieldset>
-      <MaterialSources owner={owner} documents={content.documents ?? []} disabled={!ready || busy || saving || recording || transcribing}
+      <MaterialSources owner={owner} documents={content.documents ?? []} disabled={!ready || busy || saving}
         onBusy={setImporting} onChange={async documents => {
           retain({ ...current.current, documents, title: current.current.title || documents[0]?.name.replace(/\.[^.]+$/, '') || '' });
           await draftFlight.current;
         }}/>
-      {data.namespace === 'personal' && <Checkbox label="자료 저장할 때 원본 파일도 비공개 서버에 보관" checked={content.originalStorage === 'private-server'} disabled={!ready || busy || saving || recording || transcribing || importing} onChange={e => retain({ ...current.current, originalStorage: e.target.checked ? 'private-server' : 'device' })}/>}
+      {data.namespace === 'personal' && <Checkbox label="자료 저장할 때 원본 파일도 비공개 서버에 보관" checked={content.originalStorage === 'private-server'} disabled={!ready || busy || saving || importing} onChange={e => retain({ ...current.current, originalStorage: e.target.checked ? 'private-server' : 'device' })}/>}
       {content.originalStorage === 'private-server' && <p className="material-hint">원본은 본인 계정으로만 열 수 있습니다. 다른 기기에서 자료를 열면 원본 파일을 가져옵니다. 기존 자료는 이 선택을 켜고 저장할 때 보관하며, 선택을 꺼도 이미 보관한 파일은 삭제하지 않습니다.</p>}
-      {recording && (
-        <div className="material-recording" role="status">
-          <span>녹음 중 · 5초마다 이 기기에 보관합니다.</span>
-          <Button variant="primary" onClick={() => recorder.current?.stop()}>
-            녹음 마치기
-          </Button>
-        </div>
-      )}
-      {recovery && !recording && <Button onClick={() => void recover()}>중단된 녹음 복구</Button>}
+      {recovery && <Button onClick={() => void recover()}>이전에 중단한 녹음 내려받기</Button>}
       {content.audio && (
         <div className="material-audio">
           <span>
@@ -926,40 +737,19 @@ function MaterialEditor({
           )}
           {missingAudio && (
             <p role="alert">
-              이 기기에 원본 음성이 없습니다. 다른 기기에서 원본을 내려받아 같은 파일을 가져와
-              주세요.
+              이 기기에 이전 원본 음성이 없습니다. 원본을 보관한 기기에서 내려받아 주세요.
             </p>
           )}
         </div>
       )}
-      {aiAllowed && content.audio && (
-        <MaterialTranscription
-          key={content.audio.sha256}
-          owner={owner}
-          audio={content.audio}
-          existingText={content.sourceText}
-          disabled={!ready || busy || saving || recording}
-          onBusy={setTranscribing}
-          onAppend={async (text, removeAudio) => {
-            const nextText =
-              current.current.sourceText + (current.current.sourceText ? '\n\n' : '') + text;
-            if (nextText.length > MAX_SOURCE_TEXT)
-              throw Error('필기와 받아쓴 내용이 15만 자를 넘습니다. 자료를 나누어 보관해 주세요.');
-            audioCleanup.current = removeAudio && current.current.audio
-              ? { audio: current.current.audio, text, recordingId: audioRecordingId.current }
-              : undefined;
-            retain({ ...current.current, sourceText: nextText });
-            await draftFlight.current;
-          }}
-        />
-      )}
+      </details>
       <div className="material-actions">
         {aiAllowed && (
           <>
             <Select
               label="GPT 작업"
               value={task}
-              disabled={!ready || busy || saving || recording || transcribing || importing}
+              disabled={!ready || busy || saving || importing}
               onChange={(event) => requestPatch({ task: event.target.value as StudyAITask })}
             >
               {Object.entries(STUDY_AI_TASKS).map(([value, option]) => (
@@ -971,7 +761,7 @@ function MaterialEditor({
             <Select
               label="카드 개수"
               value={count}
-              disabled={busy || saving || recording || transcribing || importing}
+              disabled={busy || saving || importing}
               onChange={(event) => setCount(Number(event.target.value))}
             >
               {[5, 10, 20, 30].map((value) => (
@@ -986,11 +776,9 @@ function MaterialEditor({
                 !ready ||
                 busy ||
                 saving ||
-                recording ||
-                transcribing ||
                 importing ||
                 !content.subjectId ||
-                (!content.audio && !content.sourceText.trim() && !content.documents?.some(doc => doc.blocks.some(b => b.included && b.text.trim())))
+                (!content.sourceText.trim() && !content.documents?.some(doc => doc.blocks.some(b => b.included && b.text.trim())))
               }
               onClick={() => void analyze()}
             >
@@ -1005,7 +793,7 @@ function MaterialEditor({
           </>
         )}
         <Button
-          disabled={!ready || busy || saving || recording || transcribing || importing}
+          disabled={!ready || busy || saving || importing}
           onClick={() => void save()}
         >
           {saving ? '저장 중…' : '자료 저장'}
@@ -1014,10 +802,11 @@ function MaterialEditor({
       {aiAllowed && ranges && ranges.batches.length > 1 && <div className="material-fields"><p>선택 원문이 한 번의 처리 범위를 넘습니다. 전체 {ranges.batches.length}개 범위 중 하나씩 생성합니다. 원문과 먼저 만든 결과는 유지됩니다.</p><Select label="처리할 원문 범위" value={Math.min(rangeIndex, ranges.batches.length - 1)} disabled={busy || saving} onChange={event => retain({ ...current.current, generationProgress: { sourceIdentity: ranges.sourceIdentity, index: Number(event.target.value), completed: current.current.generationProgress?.sourceIdentity === ranges.sourceIdentity ? current.current.generationProgress.completed : [] } })}>{ranges.batches.map((batch, index) => <option key={index} value={index}>{index + 1} / {ranges.batches.length} · {batch[0]?.label ?? batch[0]?.id}–{batch.at(-1)?.label ?? batch.at(-1)?.id} · {batch.reduce((n, s) => n + s.text.length, 0).toLocaleString('ko-KR')}자{content.generationProgress?.sourceIdentity === ranges.sourceIdentity && content.generationProgress.completed.some(c => c.index === index) ? ' · 결과 보관됨' : ''}</option>)}</Select></div>}
       {aiAllowed && task !== 'summary' && (
         <fieldset
-          disabled={!ready || busy || saving || recording || transcribing || importing}
+          disabled={!ready || busy || saving || importing}
           className="material-fields"
         >
 <Select label="설명 도움 수준" value={content.aiRequest?.support ?? 'full'} onChange={event => requestPatch({ support: event.target.value as StudyAIRequest['support'] })}><option value="full">판단과 이유 충분히</option><option value="key">핵심 갈림길 중심</option><option value="check">결과와 점검 중심</option></Select>
+          <Select label="사고 보조 장치" value={content.aiRequest?.externalization ?? 'auto'} onChange={event => requestPatch({ externalization: event.target.value as StudyAIRequest['externalization'] })}><option value="auto">복잡도와 막힘에 맞춰</option><option value="full">묻는 것부터 점검까지 모두</option><option value="off">장치 형식 없이 설명</option></Select>
           <Textarea
             label={task === 'tutor' ? '내 자료에서 확인할 질문' : '보조할 내용·범위 · 선택'}
             hint={
@@ -1058,8 +847,8 @@ function MaterialEditor({
       )}
       {aiAllowed && (
         <p className="material-hint">
-          선택한 원문 구간과 필기를 GPT에 보냅니다. 녹음은 기기에서 받아쓴 내용을 확인해 필기에 추가할 수 있습니다. ChatGPT 포함
-          사용량을 쓰며 한도에 도달하면 새 생성을 멈춥니다.
+          선택한 전사문·원문 구간과 필기만 GPT에 보냅니다. 별도 API 요금이 발생하며
+          이 앱의 월 상한을 넘는 요청은 보내지 않습니다.
         </p>
       )}
       {result && (
@@ -1127,7 +916,7 @@ function MaterialEditor({
             ))}
           </fieldset>
           {tab === 'quiz' && result.quiz && <MaterialQuiz key={result.id} resultId={result.id} questions={result.quiz} attempts={content.quizAttempts ?? []} disabled={busy || saving || importing}
-            evidence={evidence} onChange={quizAttempts => retain({ ...current.current, quizAttempts })}/>}
+            selectedId={viewState.current.quizAttemptId} onSelected={quizAttemptId => { viewState.current = { ...viewState.current, quizAttemptId }; retain(current.current); }} evidence={evidence} onChange={quizAttempts => retain({ ...current.current, quizAttempts })}/>}
           {tab === 'map' && result.map && <Suspense fallback={<p>개념도를 불러오고 있습니다.</p>}><MaterialMap key={result.id} map={result.map} originalMap={result.originalMap} disabled={busy || saving || importing} evidence={evidence}
             onChange={map => retain({ ...current.current, results: current.current.results.map(row => row.id === result.id ? { ...row, originalMap: row.originalMap ?? structuredClone(row.map), map } : row) })}
             onCanvas={async () => { try { if (!await save()) return; const next = await addMaterialMapToCanvas(repository, current.current, result); onSaved(next); setNotice('개념도를 Canvas에 추가했습니다. 기존 카드와 배치는 유지했습니다.'); } catch (error) { setError(message(error)); } }}/></Suspense>}
@@ -1294,7 +1083,7 @@ function MaterialEditor({
                   cardId={card.id}
                   unsaved={
                     !selected ||
-                    JSON.stringify(materialContent(selected)) !== JSON.stringify(content)
+                    JSON.stringify({ ...materialContent(selected), learningView: undefined }) !== JSON.stringify({ ...content, learningView: undefined })
                   }
                 />
                 <div className="material-actions">
@@ -1374,12 +1163,12 @@ function MaterialEditor({
           )}
         </fieldset>
       )}
-      {aiAllowed && <MaterialTutor onHelp={recordHelp} turns={content.results.filter(row => row.request?.task === 'tutor' || row.request?.task === 'source-qa')} currentSource={content} question={content.tutorDraft ?? ''} disabled={!ready || busy || saving || recording || transcribing || importing}
+      {aiAllowed && <MaterialTutor key={`${result?.id}:${tab === 'quiz' ? 'quiz' : 'read'}`} onHelp={recordHelp} turns={content.results.filter(row => row.request?.task === 'tutor' || row.request?.task === 'source-qa')} currentSource={content} question={content.tutorDraft ?? ''} disabled={!ready || busy || saving || importing}
         onChange={tutorDraft => retain({ ...current.current, tutorDraft })}
         onAsk={async () => {
           const source = current.current;
-          const sameSources = (row: typeof source.results[number]) => row.source !== undefined && materialSourceIdentity(row.source) === materialSourceIdentity(source);
-          const history = source.results.filter(row => row.request?.task === 'tutor' && sameSources(row)).slice(-6).map(row => ({ question: row.request?.focus ?? '', answer: row.summary.map(line => line.text).join('\n\n') }));
+          const sameSources = (row: typeof source.results[number]) => row.source !== undefined && materialSourceIdentity(row.source) === materialSourceIdentity({ ...source, audio: null });
+          const history = source.results.filter(row => (row.request?.task === 'tutor' || row.request?.task === 'source-qa') && sameSources(row)).slice(-6).map(row => ({ question: row.request?.focus ?? '', answer: row.summary.map(line => line.text).join('\n\n') }));
           while (history.length && (JSON.stringify(history).length > 40000 || history.some(t => t.answer.length > 20000))) history.shift();
           await analyze({ ...source, aiRequest: { task: 'tutor', focus: source.tutorDraft ?? '', history } });
         }}
@@ -1398,7 +1187,7 @@ function MaterialEditor({
           </p>
           <Button
             variant="quiet"
-            disabled={busy || saving || recording}
+            disabled={busy || saving}
             onClick={() => {
               try {
                 const next = repository.execute({

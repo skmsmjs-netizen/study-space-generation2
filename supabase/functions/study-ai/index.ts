@@ -112,6 +112,7 @@ function validateStudyAIRequest(value, complete = true) {
   ) || JSON.stringify(row.history).length > 4e4))
     throw new DomainError("INVALID_AI_REQUEST", "\uC774\uC804 \uC9C8\uBB38\uC758 \uBC94\uC704\uB97C \uB098\uB204\uC5B4 \uC8FC\uC138\uC694.");
   if (row.support !== void 0 && !["full", "key", "check"].includes(row.support)) throw new DomainError("INVALID_AI_REQUEST", "\uC124\uBA85 \uB3C4\uC6C0 \uC218\uC900\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+  if (row.externalization !== void 0 && !["auto", "full", "off"].includes(row.externalization)) throw new DomainError("INVALID_AI_REQUEST", "\uC0AC\uACE0 \uBCF4\uC870 \uC7A5\uCE58 \uC120\uD0DD\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
   if (!complete) return;
   if (["tutor", "source-qa"].includes(row.task) && !row.focus?.trim())
     throw new DomainError("INVALID_AI_REQUEST", "\uC790\uB8CC\uC5D0 \uBB3C\uC5B4\uBCFC \uC9C8\uBB38\uC744 \uB123\uC5B4 \uC8FC\uC138\uC694.");
@@ -229,6 +230,7 @@ function validateMaterialResult(value) {
   if (result.range !== void 0 && (!Number.isSafeInteger(result.range.index) || !Number.isSafeInteger(result.range.count) || result.range.index < 0 || result.range.count < 1 || result.range.index >= result.range.count || !text(result.range.sourceIdentity, 160) || !result.range.sourceIdentity || !Number.isSafeInteger(result.range.totalSegments) || result.range.totalSegments < 0 || !Array.isArray(result.range.sourceIds) || !result.range.sourceIds.length || result.range.sourceIds.length > 6e3 || result.range.sourceIds.some((id) => !ids.has(id)))) invalid("\uCC98\uB9AC \uBC94\uC704\uC640 \uC6D0\uBB38 \uC704\uCE58\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
   if (result.range?.overlapIds !== void 0 && (!Array.isArray(result.range.overlapIds) || result.range.overlapIds.some((id) => !result.range.sourceIds.includes(id)))) invalid("\uACB9\uCE58\uB294 \uC6D0\uBB38 \uAD6C\uAC04\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
   if (result.contractVersion !== void 0 && result.contractVersion !== MATERIAL_CONTRACT_VERSION) invalid("\uACB0\uACFC \uACC4\uC57D \uBC84\uC804\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+  if (result.status !== void 0 && !["complete", "needs-input", "insufficient-evidence", "partial"].includes(result.status)) invalid("\uC0DD\uC131 \uCC98\uB9AC \uC0C1\uD0DC\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
   const cards = /* @__PURE__ */ new Set();
   for (const card of result.cards) {
     if (!text(card.id, 256) || !card.id || cards.has(card.id) || !text(card.question, 4e3) || !card.question.trim() || !text(card.answer, 1e4) || !card.answer.trim() || !references(card.sourceIds) || typeof card.excluded !== "boolean")
@@ -267,9 +269,9 @@ function aiResponse(body, status = 200) {
   });
 }
 async function boundedBody(request) {
-  const limit = MAX_AUDIO_BYTES + MAX_SOURCE_TEXT * 12 + 2e5;
+  const limit = MAX_SOURCE_TEXT * 12 + 2e5;
   if (Number(request.headers.get("content-length")) > limit)
-    throw new DomainError("TOO_LARGE", "\uC74C\uC131\uC740 50MB \uC774\uD558\uB85C \uB123\uC5B4 \uC8FC\uC138\uC694.");
+    throw new DomainError("TOO_LARGE", "\uC120\uD0DD\uD55C \uC804\uC0AC\uBB38\uACFC \uC9C8\uBB38\uC758 \uBC94\uC704\uB97C \uB098\uB204\uC5B4 \uC8FC\uC138\uC694.");
   const reader = request.body?.getReader();
   if (!reader) throw new DomainError("INVALID_REQUEST", "\uBD84\uC11D\uD560 \uC790\uB8CC\uB97C \uB123\uC5B4 \uC8FC\uC138\uC694.");
   const chunks = [];
@@ -280,7 +282,7 @@ async function boundedBody(request) {
     size += value.length;
     if (size > limit) {
       await reader.cancel();
-      throw new DomainError("TOO_LARGE", "\uC74C\uC131\uC740 50MB \uC774\uD558\uB85C \uB123\uC5B4 \uC8FC\uC138\uC694.");
+      throw new DomainError("TOO_LARGE", "\uC120\uD0DD\uD55C \uC804\uC0AC\uBB38\uACFC \uC9C8\uBB38\uC758 \uBC94\uC704\uB97C \uB098\uB204\uC5B4 \uC8FC\uC138\uC694.");
     }
     chunks.push(value);
   }
@@ -306,13 +308,12 @@ async function handleStudyAI(request, backend) {
     const form = await boundedBody(request), namespace = String(form.get("namespace") ?? "");
     if (form.get("userId") !== identity.userId || identity.namespace !== void 0 && namespace !== identity.namespace || !["personal", "test", "demo"].includes(namespace))
       throw new DomainError("OWNERSHIP", "\uC774 \uACF5\uAC04\uC758 \uC790\uB8CC\uB9CC \uBD84\uC11D\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.");
-    const text2 = form.has("textJSON") ? JSON.parse(String(form.get("textJSON"))) : form.get("text") ?? "", audio = form.get("audio"), cardCount = Number(form.get("cardCount") ?? 10);
+    if (form.has("audio")) throw new DomainError("AUDIO_NOT_SUPPORTED", "\uD074\uB85C\uBC14\uB178\uD2B8 \uC804\uC0AC\uBB38\uC744 \uBD99\uC5EC \uB123\uAC70\uB098 \uC804\uC0AC\uBB38 \uD30C\uC77C\uC744 \uAC00\uC838\uC640 \uC8FC\uC138\uC694.");
+    const text2 = form.has("textJSON") ? JSON.parse(String(form.get("textJSON"))) : form.get("text") ?? "", audio = null, cardCount = Number(form.get("cardCount") ?? 10);
     if (typeof text2 !== "string" || text2.length > MAX_SOURCE_TEXT || !Number.isInteger(cardCount) || cardCount < 1 || cardCount > 30)
       throw new DomainError("INVALID_REQUEST", "\uAC15\uC758 \uB0B4\uC6A9\uACFC \uCE74\uB4DC \uAC1C\uC218\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
-    if (audio !== null && (!(audio instanceof Blob) || !audio.size || audio.size > MAX_AUDIO_BYTES || !/^audio\/(mpeg|mp4|wav|webm|ogg|aac|flac)$/.test(audio.type)))
-      throw new DomainError("INVALID_AUDIO", "\uC9C0\uC6D0\uB418\uB294 50MB \uC774\uD558 \uC74C\uC131 \uD30C\uC77C\uC744 \uB123\uC5B4 \uC8FC\uC138\uC694.");
     if (!audio && !text2.trim() && !form.has("segmentsJSON"))
-      throw new DomainError("INVALID_REQUEST", "\uB179\uC74C \uD30C\uC77C\uC774\uB098 \uAC15\uC758 \uB0B4\uC6A9\uC744 \uB123\uC5B4 \uC8FC\uC138\uC694.");
+      throw new DomainError("INVALID_REQUEST", "\uC804\uC0AC\uBB38\uC774\uB098 \uAC15\uC758 \uB0B4\uC6A9\uC744 \uB123\uC5B4 \uC8FC\uC138\uC694.");
     const aiRequest = form.has("requestJSON") ? JSON.parse(String(form.get("requestJSON"))) : void 0;
     if (aiRequest !== void 0) validateStudyAIRequest(aiRequest);
     const sourceSegments = form.has("segmentsJSON") ? JSON.parse(String(form.get("segmentsJSON"))) : void 0;
@@ -333,7 +334,7 @@ async function handleStudyAI(request, backend) {
     const result = await backend.generate({
       text: text2,
       audio,
-      audioName: audio instanceof File ? audio.name : "lecture",
+      audioName: "",
       cardCount,
       ...aiRequest ? { request: aiRequest } : {},
       ...sourceSegments ? { sourceSegments } : {},

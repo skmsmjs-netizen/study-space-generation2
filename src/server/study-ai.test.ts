@@ -63,3 +63,13 @@ for (const identity of [
   expect(await response.json()).toMatchObject({ code: 'AI_OWNER_REQUIRED' });
   expect(api.reserve).not.toHaveBeenCalled(); expect(api.generate).not.toHaveBeenCalled();
 });
+
+it('rejects new audio submissions before quota and provider calls while accepting transcript text', async () => {
+  const api = backend();
+  const response = await handleStudyAI(request(AI_OWNER_USER_ID, { audio: 'synthetic retired audio' }), api);
+  expect(response.status).toBe(400);
+  expect(await response.json()).toMatchObject({ code: 'AUDIO_NOT_SUPPORTED' });
+  expect(api.reserve).not.toHaveBeenCalled(); expect(api.generate).not.toHaveBeenCalled();
+  expect((await handleStudyAI(request(), api)).status).toBe(200);
+  expect(api.generate).toHaveBeenCalledWith(expect.objectContaining({ audio: null }));
+});
