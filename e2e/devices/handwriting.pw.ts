@@ -1,8 +1,15 @@
 import { test, expect, type Page } from '@playwright/test';
 
+async function showPaper(page: Page) {
+  const viewport = page.locator('.ink-pad-paper');
+  await viewport.scrollIntoViewIfNeeded();
+  // Keep native pointer gestures inside the clipped paper in short landscape windows.
+  await viewport.evaluate(element => { element.scrollTop = 0; element.scrollLeft = 0; });
+}
+
 async function line(page: Page) {
   const paper = page.getByRole('img', { name: '메모 스케치 영역', exact: true });
-  await paper.scrollIntoViewIfNeeded();
+  await showPaper(page);
   const box = (await paper.boundingBox())!;
   // Real browser mouse events, with coordinates chosen from the current rendered paper.
   const x = box.x + box.width * 0.2,
@@ -25,7 +32,7 @@ test('ink pages, partial erasing, settings and undo survive saving and reopening
   const first = await paths.first().getAttribute('d');
   await page.getByRole('button', { name: '지우개', exact: true }).tap();
   const paper = page.getByRole('img', { name: '메모 스케치 영역', exact: true });
-  await paper.scrollIntoViewIfNeeded();
+  await showPaper(page);
   const box = (await paper.boundingBox())!;
   // The toolbar can reflow when the eraser selector appears.
   await page.mouse.click(box.x + box.width * 0.325, box.y + box.height * 0.15 + 4);
@@ -35,7 +42,7 @@ test('ink pages, partial erasing, settings and undo survive saving and reopening
   await expect(paths.first()).toHaveAttribute('d', first!);
   await page.getByRole('button', {name:'선택',exact:true}).tap();
   await page.getByLabel('선택 모양',{exact:true}).selectOption('lasso');
-  await paper.scrollIntoViewIfNeeded(); const lassoBox=(await paper.boundingBox())!;
+  await showPaper(page); const lassoBox=(await paper.boundingBox())!;
   const around=[[.1,.12],[.6,.12],[.6,.24],[.1,.24],[.1,.12]];
   await page.mouse.move(lassoBox.x+lassoBox.width*around[0][0],lassoBox.y+lassoBox.height*around[0][1]);await page.mouse.down();
   for(const [x,y] of around.slice(1)) await page.mouse.move(lassoBox.x+lassoBox.width*x,lassoBox.y+lassoBox.height*y,{steps:5});

@@ -335,10 +335,10 @@ export function StudyGraph({ data, subjectIds }: { data: AppState; subjectIds: s
           setPreferencesBlocked(false); setPreferenceError('');
         } catch (e) { setPreferenceError(e instanceof Error ? e.message : '설정 초기화를 완료하지 못했습니다. 현재 설정은 유지했습니다.'); }
       }}>보기 설정 초기화</Button></div>
-      {(busy || (fitting && nodes.length > 0)) && <span role="status">관계 배치를 맞추고 있습니다.</span>}
       {error && <p role="alert">{error}</p>}
       <div className="graph-layout">
         <div className="graph-stage" ref={stage} aria-busy={busy || (fitting && nodes.length > 0)}>
+          {(busy || (fitting && nodes.length > 0)) && <span className="graph-layout-status" role="status">관계 배치를 맞추고 있습니다.</span>}
           {nodes.length ? (
             <ReactFlow<GraphNode>
               nodes={nodes.map((n) => ({
