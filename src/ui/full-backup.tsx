@@ -82,7 +82,8 @@ export function FullBackup({ repository }: { repository: StudyRepository }) {
     {prepared?.ownerKey === ownerKey && !busy && !restored && <Card><h2>준비된 백업 파일</h2>
       <p>{prepared.name}</p>
       <a className="ui-button ui-button--secondary" href={prepared.url} download={prepared.name}>백업 파일 다시 저장</a>
-      <p>이 화면에서 같은 파일을 다시 저장할 수 있습니다. 다운로드를 지원하지 않는 앱에서는 Safari나 Chrome으로 공부 공간을 열어 주세요.</p>
+      <p>이 화면을 열어 둔 동안 같은 파일을 다시 저장할 수 있습니다.</p>
+      <p>다운로드를 지원하지 않는 앱에서는 Safari나 Chrome이 필요합니다. 이곳의 미전송 기록·초안은 다른 브라우저로 자동으로 옮겨지지 않으므로, 저장을 확인하기 전에는 이 화면을 유지해 주세요.</p>
     </Card>}
     {restored && <Button onClick={() => location.reload()}>다시 열어 복원하기</Button>}
     {prior.length > 0 && <Card><h2>복원 전 보관본</h2><p>복원하기 전 이 기기에 있던 자료입니다. 필요할 때 내려받아 같은 복원 절차로 되돌릴 수 있습니다.</p>{prior.map(row => <p key={row.id}><Button disabled={busy} variant="quiet" onClick={() => download(row.file, `study-before-restore-${row.id}.zip`)}>{new Date(row.createdAt).toLocaleString('ko-KR')} 보관본 내려받기</Button></p>)}</Card>}
