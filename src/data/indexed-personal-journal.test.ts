@@ -124,4 +124,30 @@ describe('IndexedDB personal journal connected before server acknowledgement', (
     finally { setItem.mockRestore(); }
     await repo.flush(); expect(await rows(factory)).toEqual(before); expect(f.get().sequence).toBe(0); await repo.close();
   });
+  it('uses the DB when localStorage is full, keeps outbox durable before transport, and resumes without its legacy mirror', async () => {
+    const factory = new IDBFactory(), legacy = storage(), f = serverFixture();
+    const repo = await openPersonalRepository(legacy, f.transport, f.get(), factory);
+    const write = vi.spyOn(legacy, 'setItem').mockImplementation(() => { throw new DOMException('full', 'QuotaExceededError'); });
+    repo.execute(command('overflow')); expect(repo.getStatus().message).toContain('보관 중');
+    await repo.flush(); expect(f.get().sequence).toBe(1); expect(repo.getStatus().phase).toBe('saved');
+    expect(JSON.parse(decodeStoredText((await rows(factory))[0] as string)).local.memos[0].body).toBe(originalBody);
+    await repo.close();
+    const reopened = await openPersonalRepository(legacy, f.transport, f.get(), factory);
+    expect(reopened.getSnapshot().memos?.[0].body).toBe(originalBody);
+    reopened.execute(command('overflow-next')); await reopened.flush();
+    expect(reopened.getStatus().phase).toBe('saved'); expect(f.get().sequence).toBe(2);
+    write.mockRestore(); await reopened.close();
+  });
+  it('never sends an overflowing edit when the DB commit also aborts', async () => {
+    const factory = new IDBFactory(), legacy = storage(), f = serverFixture();
+    const repo = await openPersonalRepository(legacy, f.transport, f.get(), factory), before = await rows(factory);
+    const write = vi.spyOn(legacy, 'setItem').mockImplementation(() => { throw new DOMException('full', 'QuotaExceededError'); });
+    const put = vi.spyOn(IDBObjectStore.prototype, 'put').mockImplementation(function(this: IDBObjectStore) { this.transaction.abort(); return {} as IDBRequest; });
+    repo.execute(command('both-full')); await repo.flush();
+    expect(repo.getStatus().phase).toBe('error'); expect(f.get().sequence).toBe(0); expect(await rows(factory)).toEqual(before);
+    expect(repo.getSnapshot().memos?.[0].body).toBe(originalBody);
+    put.mockRestore(); await repo.flush(); expect(repo.getStatus().phase).toBe('saved'); expect(f.get().sequence).toBe(1);
+    write.mockRestore(); await repo.close();
+  });
+
 });

@@ -1,3 +1,6 @@
+import { IDBFactory } from 'fake-indexeddb';
+import { emptyState } from '../domain/model';
+import { IndexedPersonalJournal } from './indexed-personal-journal';
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import { AUTH_KEY, loginStorageOptions, readLoginPersistence } from './auth-session';
 import { createStudyClient, signInStudyClient } from './supabase-client';
@@ -78,3 +81,22 @@ it('does not send credentials or fall back to persistent storage when temporary 
     expect(request).not.toHaveBeenCalled(); expect(localStorage.getItem(AUTH_KEY)).toBeNull();
   } finally { blocked.mockRestore(); }
 });
+
+ it('repairs a full persistent store before sending credentials while retaining originals and remembered login', async () => {
+  const factory=new IDBFactory();vi.stubGlobal('indexedDB',factory);
+  const data=emptyState('synthetic-user','personal'),key='study-space:personal:synthetic-user:online:v1:window:quota';
+  const raw=JSON.stringify({format:1,base:{sequence:0,data},local:data,pending:[],archives:[]});
+  localStorage.setItem(key,raw);localStorage.setItem('synthetic-draft','  原文\r\n例外  ');
+  const client=makeClient();await client.auth.getSession();
+  const original=Storage.prototype.setItem;
+  const blocked=vi.spyOn(Storage.prototype,'setItem').mockImplementation(function(this:Storage,k,v){
+   if(this===localStorage&&localStorage.getItem(key)!==null&&k.startsWith(AUTH_KEY))throw new DOMException('full','QuotaExceededError');
+   original.call(this,k,v);
+  });
+  try {
+   const signedIn=await signInStudyClient(client,credentials,true);clients.push(signedIn);
+   expect(request).toHaveBeenCalledTimes(1);expect(localStorage.getItem(AUTH_KEY)).toContain('synthetic-refresh');
+   expect(localStorage.getItem(key)).toBeNull();expect(localStorage.getItem('synthetic-draft')).toBe('  原文\r\n例外  ');
+   const journal=await IndexedPersonalJournal.open(localStorage,key,factory);expect(journal.getItem(key)).toBe(raw);journal.close();
+  }finally{blocked.mockRestore();}
+ });

@@ -1,3 +1,4 @@
+import { storageErrorText } from '../data/storage-errors';
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import type { SupabaseClient } from '@supabase/supabase-js';
 import { Button, Card, Checkbox, ErrorState, Input, LoadingState, Modal } from './index';
@@ -22,7 +23,7 @@ function exportWindowRecords(repository: PersonalRepository) {
   return JSON.stringify({ ...JSON.parse(repository.exportPreserved()),
     windowRecovery: personalWindowCopies(repository.getSnapshot().userId, repository.key) }, null, 2);
 }
-const errorText = (error: unknown) => error instanceof Error ? error.message : '개인 공간을 열지 못했습니다.';
+const errorText = (error: unknown) => storageErrorText(error, '개인 공간을 열지 못했습니다.');
 export function PersonalSpace({ renderWorkspace }: { renderWorkspace: (repo: PersonalRepository, controls: ReactNode) => ReactNode }) {
   const [configured] = useState(readServerConfig);
   const [client, setClient] = useState(() => configured ? createStudyClient(configured) : null);

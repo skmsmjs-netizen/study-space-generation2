@@ -1,3 +1,4 @@
+import { storageErrorText } from './storage-errors';
 import { applyCommand, validateState } from '../domain/commands';
 import { DomainError, type AppState, type Command } from '../domain/model';
 import type { SaveStatus, StudyRepository } from './repository';
@@ -9,7 +10,7 @@ import { MAX_SYNC_BATCH, MAX_SYNC_BATCH_CHARS } from '../domain/sync-protocol';
 import { recordRequestPerformance } from './request-performance';
 export interface OnlineTransport { load(known?: ServerSnapshot): Promise<ServerSnapshot>; execute(command: Command, baseSequence: number): Promise<ServerSnapshot>; executeBatch?(commands: Command[], baseSequence: number): Promise<ServerSnapshot>; runCode?: CodeRemoteRunner; scheduleNotifications?:ScheduleNotificationPort }
 export interface JournalRecovery { key: string; raw: string; savedAt: string }
-export interface PersonalJournal extends Pick<Storage, 'getItem' | 'setItem'> { flush?(): Promise<void>; close?(): void; getRecoveryCopies?(): JournalRecovery[] }
+export interface PersonalJournal extends Pick<Storage, 'getItem' | 'setItem'> { flush?(): Promise<void>; close?(): void; getRecoveryCopies?(): JournalRecovery[]; isDurable?(): boolean }
 export const personalJournalKey = (data: Pick<AppState, 'namespace' | 'userId'>) => `study-space:${data.namespace}:${encodeURIComponent(data.userId)}:online:v1`;
 export interface PreservedConflict { base: ServerSnapshot; local: AppState; pending: Command[]; server: ServerSnapshot; savedAt: string }
 interface LocalEnvelope { format: 1; base: ServerSnapshot; local: AppState; pending: Command[]; conflict?: ServerSnapshot; archives: PreservedConflict[]; restoredBackup?: boolean }
@@ -179,8 +180,8 @@ export class PersonalRepository implements StudyRepository {
       const local = applyCommand(this.envelope.local, command);
       if (local === this.envelope.local) { success = true; return local; }
       this.persist({ ...this.envelope, local, pending: [...this.envelope.pending, command] });
-      this.update({ phase: 'pending', pending: this.envelope.pending.length, message: '이 기기에 저장됨 · 서버 전송 대기' });
-      // Local durability is synchronous; server acknowledgement is separately observable.
+      this.update({ phase: 'pending', pending: this.envelope.pending.length, message: this.storage.isDurable?.() === false ? '기기에 보관 중 · 서버 전송 대기' : '이 기기에 저장됨 · 서버 전송 대기' });
+      // IndexedDB completion is awaited before transport; pending in-memory work is not reported as durable.
       void this.flush();
       success = true;
       return local;
@@ -281,7 +282,7 @@ export class PersonalRepository implements StudyRepository {
         // acknowledgement. Reconcile receipts before the next write, including
         // retries in this same session. Keep every draft while offline.
         this.needsRefresh = true;
-        this.update({ phase: 'error', pending: this.envelope.pending.length, message: error instanceof Error ? error.message : '서버에 저장하지 못했습니다. 이 기기의 원문은 남아 있습니다.' });
+        this.update({ phase: 'error', pending: this.envelope.pending.length, message: storageErrorText(error, '서버에 저장하지 못했습니다. 이 기기의 원문은 남아 있습니다.') });
       }
     }
   }

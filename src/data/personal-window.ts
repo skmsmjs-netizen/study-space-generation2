@@ -1,7 +1,7 @@
 import { personalJournalKey, readCachedPersonalSnapshot, type JournalRecovery } from './personal-repository';
 import { decodeStoredText } from './storage-codec';
 import type { ServerSnapshot } from '../server/command-handler';
-import { IndexedPersonalJournal } from './indexed-personal-journal';
+import { IndexedPersonalJournal, indexedPersonalKeys } from './indexed-personal-journal';
 import { registerPersonalDraftWindow } from './personal-draft-window';
 
 export interface PersonalWindow {
@@ -21,20 +21,26 @@ export async function claimPersonalWindow(userId: string, storage: Storage = loc
   const sessionKey = `${root}:current-window`;
   let previous: string | null = null;
   try { previous = session.getItem(sessionKey); } catch { /* A fresh isolated window still works. */ }
+  const storedKeys = Array.from({ length: storage.length }, (_, index) => storage.key(index));
+  const keys = [...new Set([...storedKeys, ...await indexedPersonalKeys(prefix, factory)])].filter((key): key is string => !!key && key.startsWith(prefix));
+  const readJournal = async (key: string) => {
+    if (!factory) return { raw: storage.getItem(key), cached: readCachedPersonalSnapshot(storage, userId, key) };
+    const journal = await IndexedPersonalJournal.open(storage, key, factory);
+    try { return { raw: journal.getItem(key), cached: readCachedPersonalSnapshot(journal, userId, key) }; }
+    finally { journal.close(); }
+  };
   const candidates: string[] = [];
   if (previous?.startsWith(prefix)) candidates.push(previous);
   // A new visit can resume an abandoned outbox, but never writes into a live one.
-  for (let index = 0; index < storage.length; index++) {
-    const key = storage.key(index);
-    if (!key?.startsWith(prefix) || candidates.includes(key)) continue;
+  for (const key of keys) {
+    if (candidates.includes(key)) continue;
     try {
-      const raw = storage.getItem(key);
+      const { raw } = await readJournal(key);
       if (raw) {
-        readCachedPersonalSnapshot(storage, userId, key);
         if (JSON.parse(decodeStoredText(raw)).pending?.length) candidates.splice(previous ? 1 : 0, 0, key);
         else candidates.push(key);
       }
-    } catch { /* Preserve damaged originals; they remain in the recovery export. */ }
+    } catch { /* Damaged originals remain in the recovery export. */ }
   }
   if (!locks) candidates.length = 0; // Without a lease, never reuse another writer's key.
   candidates.push(`${prefix}${crypto.randomUUID()}`);
@@ -55,32 +61,28 @@ export async function claimPersonalWindow(userId: string, storage: Storage = loc
     void task.catch(() => granted(false));
     if (!await ready) { await task; continue; }
     try {
-      // Copy legacy input once without changing the legacy key or the old tab.
-      // Its operation IDs still deduplicate a lost acknowledgement on the server.
-      if (storage.getItem(key) === null) {
-        let legacy = storage.getItem(root);
-        if (factory) {
-          // A tab reload must also recover its IndexedDB-only copy. Read the
-          // old journal without publishing or rewriting either original.
-          const oldKey = key === previous ? key : root;
-          const oldJournal = await IndexedPersonalJournal.open(storage, oldKey, factory);
-          try { legacy = oldJournal.getItem(oldKey) ?? legacy; } finally { oldJournal.close(); }
-        }
-        if (legacy !== null) {
-          readCachedPersonalSnapshot({ getItem: () => legacy }, userId, root);
-          storage.setItem(key, legacy);
+      // Reuse DB-only window copies after a quota relocation; never overwrite
+      // them with an older root or recreate the large localStorage mirror.
+      let saved = await readJournal(key);
+      if (saved.raw === null) {
+        const legacy = await readJournal(root);
+        if (legacy.raw !== null) {
+          if (factory) {
+            const journal = await IndexedPersonalJournal.open(storage, key, factory);
+            try { journal.setItem(key, legacy.raw); await journal.flush(); } finally { journal.close(); }
+          } else storage.setItem(key, legacy.raw);
+          saved = await readJournal(key);
         }
       }
-      let cached = readCachedPersonalSnapshot(storage, userId, key);
-      // For a new/clean window, use the highest acknowledged server sequence on
-      // this device. Foreign unacknowledged text stays in its original journal.
-      for (let index = 0; index < storage.length; index++) {
-        const other = storage.key(index);
-        if (!other?.startsWith(prefix) || other === key) continue;
+      let cached = saved.cached;
+      // Unacknowledged text stays in its own outbox. Only a validated base
+      // snapshot can improve a new window's initial server sequence.
+      for (const other of keys) {
+        if (other === key) continue;
         try {
-          const snapshot = readCachedPersonalSnapshot(storage, userId, other);
+          const { cached: snapshot } = await readJournal(other);
           if (snapshot && (!cached || snapshot.sequence > cached.sequence)) cached = snapshot;
-        } catch { /* Do not erase or automatically apply another window's invalid copy. */ }
+        } catch { /* Keep every invalid/unknown original. */ }
       }
       try { session.setItem(sessionKey, key); } catch { /* Journal is durable independently. */ }
       const unregisterDrafts = registerPersonalDraftWindow(userId, key.slice(prefix.length));

@@ -4,6 +4,7 @@ import { DomainError, type Command, type Namespace } from '../domain/model';
 import type { OnlineTransport } from './personal-repository';
 import type { ServerSnapshot } from '../server/command-handler';
 import { loginStorageOptions, readLoginPersistence, saveLoginPersistence } from './auth-session';
+import { writeLoginStorage } from './journal-quota-recovery';
 import { measureRequest } from './request-performance';
 export interface PublicServerConfig { url: string; publishableKey: string }
 export function readServerConfig(): PublicServerConfig | null {
@@ -14,7 +15,7 @@ export function readServerConfig(): PublicServerConfig | null {
 const loginClients = new WeakMap<SupabaseClient, { config: PublicServerConfig; remember: boolean }>();
 export function createStudyClient(config: PublicServerConfig, remember = readLoginPersistence()) {
   if (!/^https:\/\/[a-z0-9]+\.supabase\.co$/.test(config.url) || !config.publishableKey.startsWith('sb_publishable_')) throw Error('공개 서버 설정을 확인해 주세요.');
-  const client = createClient(config.url, config.publishableKey, { auth: { persistSession: true, autoRefreshToken: true, ...loginStorageOptions(remember) } });
+  const client = createClient(config.url, config.publishableKey, { auth: { persistSession: true, autoRefreshToken: true, ...loginStorageOptions(remember), ...(remember ? { storage: { getItem: (key: string) => localStorage.getItem(key), setItem: (key: string, value: string) => writeLoginStorage(localStorage, key, value), removeItem: (key: string) => localStorage.removeItem(key) } } : {}) } });
   loginClients.set(client, { config, remember });
   return client;
 }
@@ -23,7 +24,7 @@ export async function signInStudyClient(client: SupabaseClient, credentials: { e
   if (!current) throw Error('로그인 연결을 다시 확인해 주세요.');
   let next: SupabaseClient;
   try { next = current.remember === remember ? client : createStudyClient(current.config, remember); }
-  catch { throw new DomainError('AUTH_STORAGE', '로그인 정보를 이 기기에 보관하지 못했습니다. 브라우저의 저장 허용 설정을 확인한 뒤 다시 로그인해 주세요.'); }
+  catch { throw new DomainError('AUTH_STORAGE', '로그인 정보를 이 기기에 보관하지 못했습니다. 이 기기의 저장 공간이 부족하거나 저장이 차단돼 있습니다. 다른 공부 창을 닫고 다시 로그인해 주세요. 이 창에서만 로그인하려면 ‘로그인 상태 유지’를 끄고 다시 시도해 주세요.'); }
   const previousRemember = readLoginPersistence();
   try {
     // Check the chosen storage before transmitting credentials. Never fall back
@@ -32,9 +33,11 @@ export async function signInStudyClient(client: SupabaseClient, credentials: { e
       const options = loginStorageOptions(remember);
       const storage = options.storage ?? localStorage;
       const probe = `${options.storageKey}:check`;
-      storage.setItem(probe, '1'); storage.removeItem(probe);
+      if (remember) await writeLoginStorage(storage, probe, ' '.repeat(16384));
+      else storage.setItem(probe, ' '.repeat(16384));
+      storage.removeItem(probe);
       saveLoginPersistence(remember);
-    } catch { throw new DomainError('AUTH_STORAGE', '로그인 정보를 이 기기에 보관하지 못했습니다. 브라우저의 저장 허용 설정을 확인한 뒤 다시 로그인해 주세요.'); }
+    } catch { throw new DomainError('AUTH_STORAGE', '로그인 정보를 이 기기에 보관하지 못했습니다. 이 기기의 저장 공간이 부족하거나 저장이 차단돼 있습니다. 다른 공부 창을 닫고 다시 로그인해 주세요. 이 창에서만 로그인하려면 ‘로그인 상태 유지’를 끄고 다시 시도해 주세요.'); }
     const { error } = await next.auth.signInWithPassword(credentials);
     if (error) throw error;
     if (next !== client) client.auth.dispose();
