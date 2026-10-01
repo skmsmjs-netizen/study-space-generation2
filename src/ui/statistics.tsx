@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import { canonicalEvents } from '../domain/recommendation-kernel.mjs';
 import type { AppState } from '../domain/model';
 import { datePlacement, koreanDay, shiftDay, statisticBounds, statistics, validPeriod, type MetricId, type StatisticItem } from '../domain/statistics';
 import { readLearningPlan } from '../data/learning-plan';
@@ -33,7 +34,7 @@ export function StudyStatistics({ data, subjectIds, compact = false }: { data: A
   const maximum = Math.max(2,...bins.flatMap(b => [b.current.lower,compare?b.prev.lower:0]));
   useEffect(() => { if(!playing||reduceMotion) {if(reduceMotion)setPlaying(false);return;}const timer=window.setInterval(()=>setCursor(i=>{const next=(i??-1)+1;if(next>=bins.length){setPlaying(false);return bins.length-1;}return next;}),900);return()=>window.clearInterval(timer);}, [playing,reduceMotion,bins.length]);
   const selection = frozen ?? selected;
-  const sourceData = frozen?.source ?? data, sourceEvents = frozen?.events ?? workspace.events;
+  const sourceData = frozen?.source ?? data, sourceEvents = canonicalEvents(frozen?.events ?? workspace.events, new Date().toISOString(), new Date().toISOString());
   const openEvidence = (label:string, items:StatisticItem[]) => { if(compact){location.hash='#/statistics';return;} setFrozen(null); setSelected({label,items}); };
   const dateLabel = (i:StatisticItem) => i.date.kind === 'unknown' ? '공부 날짜 미정' : i.date.kind === 'exact' ? i.date.date : `${i.date.from}–${i.date.to} 사이`;
   if (compact) return <Card className="study-statistics"><div className="section-heading"><h2>공부 기록의 변화</h2><a href="#/statistics">통계와 그래프 보기</a></div><p className="muted">최근 14일 · 공부 회차입니다. 체크는 이해나 정답 판정이 아닙니다.</p>{chart()}{!metric.items.length && <p className="muted">공부를 남기면 이곳에 변화가 보입니다.</p>}</Card>;

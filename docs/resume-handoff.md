@@ -2,7 +2,7 @@
 
 사용자 ‘로컬 자동화인거지…할작업들 다수행해’ 요청으로 답안→명시적 수행 결과/추천·통계, 오늘→예약 복습/일정/자유 선택, 확인한 자료 카드→암기 항목/시험, 코드 예제↔공부 주제 연결을 구현했습니다. [연결 범위와 반복 사용 조건](automation-connections.md)에 원문 버전·초안/CAS·재등록 보존·누적 목록·동일 답안 중복 방지·실제 확인 범위를 남겼습니다. 외부 AI 호출·새 입력 의무·체크/맞음/실행의 숙달 환산은 추가하지 않습니다.
 
-최신 공개 변경을 합친 격리 release 전체522검사·디자인27검사·CSS20파일 위반0, 관련14검사/타입·Pages build/backend bundle 및 합성 Browser 핵심 경로를 확인했습니다. 기존 Supabase에 소유권 metadata migration 20261001060816과 study-command를 적용했고 시험 계정/test namespace 저장10회·원문/판정 revision·중복 재시도·위조/충돌/타인/미인증 거부·재조회를 확인했습니다. 계정2개·원장·operation 정리 후 잔여0입니다. 공유 코드의 병행 미공개 기능은 배포에 임의 포함하지 않고 기존 공개 최신 변경을 보존합니다. 공개 commit/Actions/자산과 최종 서버 버전은 프로젝트 outputs/20261001-automation-connections/verification.json에 기록합니다. 물리 기기·실제 학습 효과·더 넓은 수리 모형/전체 잔여를 완료로 승격하지 않습니다.
+최신 공개 변경을 합친 격리 release 전체522검사·디자인27검사·CSS20파일 위반0, 관련14검사/타입·Pages build/backend bundle 및 합성 Browser 핵심 경로를 확인했습니다. 기존 Supabase에 소유권 metadata migration 20261001060816과 study-command를 적용했고 시험 계정/test namespace 저장10회·원문/판정 revision·중복 재시도·위조/충돌/타인/미인증 거부·재조회를 확인했습니다. 계정2개·원장·operation 정리 후 잔여0입니다. 공유 코드의 병행 미공개 기능은 배포에 임의 포함하지 않고 기존 공개 최신 변경을 보존합니다. 통계 원기록에서도 최신 판정을 표시하고 근거 고정 시 당시 판정을 유지하도록 보완했으며 관련9검사/타입 포함 Pages build가 통과했습니다. 공개 commit/Actions/자산과 최종 서버 버전은 프로젝트 outputs/20261001-automation-connections/verification.json에 기록합니다. 물리 기기·실제 학습 효과·더 넓은 수리 모형/전체 잔여를 완료로 승격하지 않습니다.
 
 ## 2026-10-01 질문 카드 여러 개와 개인별 FSRS 최적화
 
