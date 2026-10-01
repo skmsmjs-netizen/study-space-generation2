@@ -53,5 +53,5 @@
 @media (max-width: 40rem) { .canvas-concept-fields { grid-template-columns: minmax(0, 1fr); } }
 @media (max-width: 40rem) { .app-shell.is-canvas .main-content { padding: var(--space-3); } .canvas-stage { height: 65dvh; } .canvas-toolbar a { margin-inline-start: 0; } }
 
-.canvas-position-tools .ui-field { max-inline-size: 100%; }
+.canvas-position-tools .ui-field { min-inline-size: 0; max-inline-size: 100%; }
 .canvas-position-tools a { display: inline-flex; align-items: center; min-block-size: var(--control-height); padding-inline: var(--space-3); }

@@ -12,6 +12,9 @@ const routes = [...new Set([
   '/backup', '/draft-archives', '/trash', '/free', '/help', '/about', '/my-progress',
   '/subject/demo-subject-math', '/node/demo-topic-function', '/record/demo-topic-function',
 ])];
+const selectedRoutes = process.env.UX_TEST_ROUTES?.split(',');
+const checkedRoutes = selectedRoutes ? routes.filter(route => selectedRoutes.includes(route)) : routes;
+if (!checkedRoutes.length) throw Error('확인할 화면 경로가 없습니다.');
 
 test('every public screen has usable names, contrast and reflow in light, dark and 200% text', async ({ page }, info) => {
   test.setTimeout(600000);
@@ -20,13 +23,15 @@ test('every public screen has usable names, contrast and reflow in light, dark a
   try {
     for (const mode of ['light', 'dark'] as const) {
       await page.emulateMedia({ colorScheme: mode, reducedMotion: 'reduce' });
-      for (const route of routes) {
+      for (const route of checkedRoutes) {
         await page.goto(`?space=demo#${route}`);
+        await expect(page.locator('.app-shell')).toBeVisible({ timeout: 30000 });
         await expect(page.locator('main h1').first()).toBeVisible();
+        await expect(page.getByRole('heading', {name:'이 화면을 열지 못했습니다',exact:true})).toHaveCount(0);
         await expect(page.locator('main [data-ui-loading]')).toHaveCount(0, { timeout: 30000 });
         const normal = await new AxeBuilder({ page }).withTags(['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa']).analyze();
         const zoomStyle = await page.addStyleTag({ content: 'html { font-size: 200% !important; }' });
-        const width = await page.evaluate(() => ({ actual: document.documentElement.scrollWidth, available: innerWidth }));
+        const width = await page.evaluate(() => ({ actual: document.documentElement.scrollWidth, available: innerWidth, heading: document.querySelector('main h1')?.textContent, offenders: document.documentElement.scrollWidth > innerWidth + 1 ? [...document.querySelectorAll('main *, header *, .topbar *')].map(el => ({el, rect: el.getBoundingClientRect()})).filter(({rect}) => rect.right > innerWidth + 1 && rect.width > 0).slice(0,40).map(({el,rect}) => ({tag:el.tagName,classes:String(el.className),text:el.textContent?.slice(0,80),width:rect.width,right:rect.right})) : [] }));
         findings.push({ mode, route, width, violations: normal.violations.map(v => ({id:v.id,impact:v.impact,help:v.help,nodes:v.nodes.map(n=>({target:n.target,html:n.html,summary:n.failureSummary}))})), incomplete:normal.incomplete.map(v=>v.id) });
         await zoomStyle.evaluate(el => el.remove());
         expect.soft(width.actual, `${mode} ${route}: 200% page reflow`).toBeLessThanOrEqual(width.available + 1);
@@ -35,7 +40,7 @@ test('every public screen has usable names, contrast and reflow in light, dark a
     }
     expect(errors).toEqual([]);
   } finally {
-    await info.attach('all-screen-ux', { body: JSON.stringify({routes,findings,errors},null,2),contentType:'application/json' });
+    await info.attach('all-screen-ux', { body: JSON.stringify({routes:checkedRoutes,findings,errors},null,2),contentType:'application/json' });
   }
 });
 

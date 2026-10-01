@@ -60,7 +60,7 @@
 .math-start .ui-field,
 .math-interval .ui-field {
   flex: 1;
-  min-width: 8rem;
+  min-inline-size: min(100%, 8rem);
 }
 .math-inputs {
   display: grid;
@@ -122,12 +122,15 @@
   justify-self: start;
 }
 .math-slider {
+  min-inline-size: 0;
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--space-2);
 }
 .math-slider-heading,
 .math-slider-limits {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   gap: var(--space-4);
 }
@@ -135,7 +138,7 @@
   align-items: center;
 }
 .math-slider-heading .ui-field {
-  width: 7rem;
+  inline-size: min(100%, 7rem);
 }
 .math-slider-heading .ui-label {
   position: absolute;
@@ -155,6 +158,7 @@
 }
 .math-slider input[type='range'] {
   width: 100%;
+  min-inline-size: 0;
   margin: 0;
   min-height: 44px;
   accent-color: var(--color-primary);
@@ -256,7 +260,28 @@
   inset-block-end: calc(var(--space-4) * 2 + var(--control-height));
 }
 
+@container study-content (max-width: 40rem) {
+  .math-workspace { grid-template-columns: minmax(0, 1fr); }
+  .math-controls {
+    border-inline-start: 0;
+    padding-inline-start: 0;
+    border-block-start: var(--border-width) solid var(--color-border);
+    padding-block-start: var(--space-3);
+  }
+}
+
 /* Native keyboard helpers live inside a zero-sized, absolutely placed parent. */
 .math-geogebra-host .accessibilityView {
   position: static !important;
+}
+
+.math-slider-heading { flex-wrap: wrap; }
+.math-slider-heading .ui-field { max-inline-size: 100%; }
+.math-start .ui-field, .math-interval .ui-field { min-inline-size: min(8rem, 100%); }
+
+.math-equation { display: block; min-inline-size: 0; }
+@container workspace-content (max-width: 40rem) {
+  .math-workspace { grid-template-columns: minmax(0, 1fr); }
+  .math-controls { border-inline-start: 0; padding-inline-start: 0; border-block-start: var(--border-width) solid var(--color-border); padding-block-start: var(--space-3); }
+  .math-sliders { grid-template-columns: minmax(0, 1fr); }
 }

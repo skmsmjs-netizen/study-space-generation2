@@ -194,3 +194,5 @@
   color: var(--color-text);
   pointer-events: none;
 }
+
+.graph-toolbar .ui-field { min-inline-size: min(12rem, 100%); max-inline-size: 100%; }
