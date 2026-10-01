@@ -3,9 +3,10 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { TopicRecall } from './topic-recall';
 import { DemoRepository, DEMO_KEY } from '../data/demo-repository';
-import { recallKey, readRecall } from '../data/topic-recall';
+import { recallKey, readRecall, writeRecall } from '../data/topic-recall';
 import { clearRescuedDraft } from '../data/draft-safety';
 import type { AppState } from '../domain/model';
+import { freshRecall } from '../domain/topic-recall';
 let repo: DemoRepository;
 function Harness() {
   const [data, setData] = useState<AppState>(repo.getSnapshot());
@@ -17,9 +18,64 @@ const editor = () => {
   return screen.getByRole('textbox', { name: '글' });
 };
 const save = () => fireEvent.click(screen.getByRole('button', { name: '저장하고 다음' }));
-beforeEach(() => { localStorage.clear(); repo = new DemoRepository(localStorage); clearRescuedDraft(recallKey(repo.getSnapshot())); vi.spyOn(Math, 'random').mockReturnValue(0); });
+beforeEach(() => { localStorage.clear(); repo = new DemoRepository(localStorage); clearRescuedDraft(recallKey(repo.getSnapshot())); writeRecall(repo.getSnapshot(), { ...readRecall(repo.getSnapshot()), mode: 'random' }); vi.spyOn(Math, 'random').mockReturnValue(0); });
 afterEach(() => vi.restoreAllMocks());
 describe('topic explanation cards', () => {
+  it('reveals reference before four ratings and stores one exact memo with a future schedule', () => {
+    writeRecall(repo.getSnapshot(), freshRecall()); render(<Harness />);
+    const topic = readRecall(repo.getSnapshot()).currentId;
+    expect(screen.queryByRole('button', { name: /^쉬움/ })).not.toBeInTheDocument();
+    fireEvent.change(editor(), { target: { value: '  한글 설명\n 1 2 3 4 ' } });
+    fireEvent.click(screen.getByRole('button', { name: '설명 확인하고 평가' }));
+    expect(screen.getByRole('button', { name: /^다시\s*1분$/ })).toHaveTextContent('1분');
+    fireEvent.click(screen.getByRole('button', { name: /^쉬움/ }));
+    expect(repo.getSnapshot().memos![0].body).toBe('  한글 설명\n 1 2 3 4 ');
+    expect(repo.getSnapshot().recallCards![0]).toMatchObject({ topicId: topic, reviews: [{ rating: 4 }] });
+    expect(readRecall(repo.getSnapshot()).currentId).not.toBe(topic);
+    expect(screen.queryByRole('button', { name: /^쉬움/ })).not.toBeInTheDocument();
+  });
+  it('keeps reference edits as drafts, preserves composition and does not expose the saved reference before reveal', () => {
+    writeRecall(repo.getSnapshot(), freshRecall()); const view = render(<Harness />);
+    fireEvent.click(screen.getByText('카드 내용·날짜'));
+    const input = screen.getByRole('textbox', { name: '참고 설명 입력' });
+    fireEvent.compositionStart(input); fireEvent.change(input, { target: { value: '  참고 설명\n ' } });
+    expect(input).not.toBeDisabled(); expect(screen.getByRole('button', { name: '참고 설명 저장' })).toBeDisabled();
+    fireEvent.compositionEnd(input); view.unmount(); render(<Harness />);
+    fireEvent.click(screen.getByText('카드 내용·날짜'));
+    expect(screen.getByRole('textbox', { name: '참고 설명 입력' })).toHaveValue('  참고 설명\n ');
+    fireEvent.click(screen.getByRole('button', { name: '참고 설명 저장' }));
+    expect(repo.getSnapshot().recallCards![0].reference).toBe('  참고 설명\n ');
+    fireEvent.click(screen.getByRole('button', { name: '설명 확인하고 평가' }));
+    expect(screen.getByText('참고 설명', { selector: 'h3' })).toBeInTheDocument();
+    expect(repo.getSnapshot().recallCards![0].reviews).toHaveLength(0);
+  });
+  it('retries a committed rating after draft cleanup failure and reload without doubling the interval or answer', () => {
+    writeRecall(repo.getSnapshot(), freshRecall()); const view = render(<Harness />);
+    fireEvent.change(editor(), { target: { value: '평가 재시도 원문' } });
+    fireEvent.click(screen.getByRole('button', { name: '설명 확인하고 평가' }));
+    const key = recallKey(repo.getSnapshot()), original = Storage.prototype.setItem;
+    let writes = 0;
+    const failed = vi.spyOn(Storage.prototype, 'setItem').mockImplementation(function(this: Storage, candidate, value) {
+      if (candidate === key && ++writes > 1) throw Error('초안정리 실패'); original.call(this, candidate, value);
+    });
+    fireEvent.click(screen.getByRole('button', { name: /^쉬움/ }));
+    expect(repo.getSnapshot().recallCards![0].reviews).toHaveLength(1); const due = repo.getSnapshot().recallCards![0].memory.due;
+    failed.mockRestore(); clearRescuedDraft(key); view.unmount(); render(<Harness />);
+    fireEvent.click(screen.getByRole('button', { name: '자기 평가 저장 다시 시도' }));
+    expect(repo.getSnapshot().recallCards![0].reviews).toHaveLength(1);
+    expect(repo.getSnapshot().recallCards![0].memory.due).toBe(due); expect(repo.getSnapshot().memos).toHaveLength(1);
+  });
+  it('waits when all cards are in the future and allows ungraded random practice', () => {
+    writeRecall(repo.getSnapshot(), freshRecall()); render(<Harness />);
+    const count = repo.getSnapshot().nodes.filter(row => row.role === 'topic').length;
+    for (let i = 0; i < count; i++) { fireEvent.click(screen.getByRole('button', { name: '설명 확인하고 평가' })); fireEvent.click(screen.getByRole('button', { name: /^쉬움/ })); }
+    expect(screen.getByText('지금 복습할 주제가 없습니다')).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: '설명 확인하고 평가' })).not.toBeInTheDocument();
+    expect(repo.getSnapshot().memos ?? []).toHaveLength(0);
+    fireEvent.click(screen.getByRole('button', { name: '무작위 연습' }));
+    expect(screen.getByRole('button', { name: '건너뛰기' })).toBeInTheDocument();
+    expect(repo.getSnapshot().recallCards).toHaveLength(count);
+  });
   it('starts with memo paper above a collapsed text option and preserves text through toggling', () => {
     render(<Harness />);
     const toggle = screen.getByText(/글로 쓰기/);

@@ -1,11 +1,15 @@
-import type { AppState, MemoStroke, OutlineNode } from './model';
+import type { AppState, Command, MemoStroke, OutlineNode } from './model';
 
 export interface RecallDraft { memoId: string; body: string; strokes?: MemoStroke[] }
 export interface RecallSession {
   version: 1; subjectId: string; unitId: string; currentId: string | null;
+  mode?: 'scheduled' | 'random';
+  skipped?: string[];
+  pendingReview?: Extract<Command, { type: 'reviewRecallCard' }>;
+  references?: Record<string, { body: string; cardId: string; expectedVersion: number }>;
   seen: string[]; round: number; drafts: Record<string, RecallDraft>;
 }
-export const freshRecall = (): RecallSession => ({ version: 1, subjectId: 'all', unitId: 'all', currentId: null, seen: [], round: 1, drafts: {} });
+export const freshRecall = (): RecallSession => ({ version: 1, mode: 'scheduled', subjectId: 'all', unitId: 'all', currentId: null, seen: [], round: 1, drafts: {} });
 export function recallPath(nodes: OutlineNode[], id: string): OutlineNode[] {
   const path: OutlineNode[] = [], visited = new Set<string>();
   let node = nodes.find(row => row.id === id);

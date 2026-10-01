@@ -33,6 +33,15 @@ export interface MemoPoint { x: number; y: number; pressure: number }
 export interface MemoStroke { id: string; ink: MemoInk; width: number; points: MemoPoint[] }
 /** Fixed logical paper coordinates keep sketches intact when the screen resizes. */
 export interface QuickMemo extends Entity { ownerId: string | null; body: string; strokes: MemoStroke[] }
+export interface RecallOptions { retention: number; newPerDay: number; learningMinutes: number[]; relearningMinutes: number[]; maximumDays: number }
+export interface RecallMemory {
+  due: string; stability: number; difficulty: number; elapsed_days: number; scheduled_days: number;
+  learning_steps: number; reps: number; lapses: number; state: number; last_review?: string;
+}
+export interface RecallReview { id: string; at: string; rating: 1 | 2 | 3 | 4; memoId: string | null; before: RecallMemory; after: RecallMemory; options: RecallOptions }
+/** Self-reported recall schedules are separate from study checks and correctness. */
+export interface RecallCard extends Entity { topicId: string; reference: string; memory: RecallMemory; reviews: RecallReview[]; manualDue?: string }
+export interface RecallPreferences extends Entity { options: RecallOptions }
 export interface Criteria extends Entity { items: TraceDefinition[] }
 export interface CriteriaAssignment extends Entity { scope: 'topic' | 'subject' | 'global'; ownerId: string | null; criteriaId: string }
 export interface CriteriaChange { id: string; targetId: string; scope: 'topic' | 'subject' | 'all'; expectedToken: string; items: TraceDefinition[] }
@@ -41,8 +50,8 @@ export interface CanvasPosition { x: number; y: number }
 export interface CanvasLink { id: string; source: string; target: string; label: string }
 /** Only presentation is stored here. Names, text and drawings remain in their original entities. */
 export interface CanvasLayout extends Entity { positions: Record<string, CanvasPosition>; links: CanvasLink[]; viewport?: { x: number; y: number; zoom: number } }
-export type EntityCollection = 'semesters' | 'subjects' | 'nodes' | 'sessions' | 'records' | 'narratives' | 'criteria' | 'criteriaAssignments' | 'memos' | 'learningPlans' | 'canvasLayouts';
-export type DomainEntity = Semester | Subject | OutlineNode | StudySession | StudyRecord | Narrative | Criteria | CriteriaAssignment | QuickMemo | LearningPlan | CanvasLayout;
+export type EntityCollection = 'semesters' | 'subjects' | 'nodes' | 'sessions' | 'records' | 'narratives' | 'criteria' | 'criteriaAssignments' | 'memos' | 'learningPlans' | 'canvasLayouts' | 'recallCards' | 'recallPreferences';
+export type DomainEntity = Semester | Subject | OutlineNode | StudySession | StudyRecord | Narrative | Criteria | CriteriaAssignment | QuickMemo | LearningPlan | CanvasLayout | RecallCard | RecallPreferences;
 export interface Revision extends Entity {
   collection: EntityCollection; entityId: string; operationId: string; parentRevisionId: string | null;
   before: DomainEntity | null; after: DomainEntity; reversesRevisionId?: string;
@@ -56,6 +65,8 @@ export interface AppState {
   memos?: QuickMemo[];
   learningPlans?: LearningPlan[];
   canvasLayouts?: CanvasLayout[];
+  recallCards?: RecallCard[];
+  recallPreferences?: RecallPreferences[];
   /** Canonical operation payloads make repeated requests idempotent. */
   appliedOps: Record<string, string>;
 }
@@ -79,6 +90,10 @@ export type Command = CommandContext & (
   | { type: 'updateRecord'; id: string; expectedVersion: number; patch: Partial<Pick<StudyRecord, 'body' | 'done' | 'dateEvidence' | 'trace'>> }
   | { type: 'updateNarrative'; id: string; kind: NarrativeKind; ownerId: string | null; body: string; expectedVersion: number }
   | { type: 'saveMemo'; id: string; ownerId: string | null; body: string; strokes: MemoStroke[]; expectedVersion: number }
+  | { type: 'saveRecallReference'; id: string; topicId: string; reference: string; expectedVersion: number }
+  | { type: 'reviewRecallCard'; id: string; topicId: string; expectedVersion: number; rating: 1 | 2 | 3 | 4; memo?: { id: string; body: string; strokes: MemoStroke[] } }
+  | { type: 'setRecallDue'; id: string; topicId: string; expectedVersion: number; due: string }
+  | { type: 'saveRecallPreferences'; id: string; expectedVersion: number; options: RecallOptions }
   | { type: 'trashMemo' | 'restoreMemo'; id: string; expectedVersion: number }
   | { type: 'saveLearningPlan'; id: string; expectedVersion: number; workspace: import('./recommendation-workspace').RecommendationWorkspace }
   | { type: 'saveCanvasLayout'; id: string; expectedVersion: number; positions: CanvasLayout['positions']; links: CanvasLink[]; viewport?: CanvasLayout['viewport'] }

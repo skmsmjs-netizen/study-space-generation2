@@ -6,8 +6,9 @@ import { validateMemoContent } from './memo';
 import { validateRecommendations } from './recommendation-workspace';
 function verifyLearningPlan(workspace: unknown, state: AppState) { try { validateRecommendations(workspace,state); } catch(error) { throw new DomainError('INVALID_LEARNING_PLAN',error instanceof Error ? error.message : '학습 일정의 내용을 확인해 주세요.'); } }
 import { validateCanvasLayout } from './canvas';
+import { newRecallMemory, recallOptions, recallPreview, serializeMemory, validateRecallCard, validateRecallOptions } from './recall-scheduler';
 
-const collections: EntityCollection[] = ['semesters', 'subjects', 'nodes', 'sessions', 'records', 'narratives', 'criteria', 'criteriaAssignments', 'memos', 'learningPlans', 'canvasLayouts'];
+const collections: EntityCollection[] = ['semesters', 'subjects', 'nodes', 'sessions', 'records', 'narratives', 'criteria', 'criteriaAssignments', 'memos', 'learningPlans', 'canvasLayouts', 'recallCards', 'recallPreferences'];
 const clone = <T>(value: T): T => structuredClone(value);
 function fail(code: string, message: string, details?: unknown): never { throw new DomainError(code, message, details); }
 function canonical(value: unknown): string {
@@ -125,6 +126,13 @@ export function assertState(state: AppState): void {
   if ((state.learningPlans ?? []).filter(row => !row.deletedAt).length > 1) fail('DUPLICATE_PLAN', '학습 일정의 원래 연결을 확인해 주세요.');
   for (const row of state.learningPlans ?? []) verifyLearningPlan(row.workspace, state);
   for (const row of state.canvasLayouts ?? []) validateCanvasLayout(row);
+  const recallTopics = new Set<string>();
+  for (const row of state.recallCards ?? []) {
+    validateRecallCard(row, state);
+    if (!row.deletedAt) { if (recallTopics.has(row.topicId)) fail('DUPLICATE_RECALL', '주제의 복습 카드가 중복되어 있습니다.'); recallTopics.add(row.topicId); }
+  }
+  if ((state.recallPreferences ?? []).filter(row => !row.deletedAt).length > 1) fail('DUPLICATE_RECALL', '복습 설정이 중복되어 있습니다.');
+  for (const row of state.recallPreferences ?? []) validateRecallOptions(row.options);
   for (const row of state.memos ?? []) {
     validateMemoContent(row);
     if (row.ownerId !== null && !subjectIds.has(row.ownerId) && !nodeIndex.has(row.ownerId)) fail('NOT_FOUND', '메모의 원래 연결 대상을 찾을 수 없습니다.');
@@ -187,6 +195,8 @@ export function applyCommand(state: AppState, command: Command): AppState {
     if (collection === 'memos') next.memos ??= [];
     if (collection === 'learningPlans') next.learningPlans ??= [];
     if (collection === 'canvasLayouts') next.canvasLayouts ??= [];
+    if (collection === 'recallCards') next.recallCards ??= [];
+    if (collection === 'recallPreferences') next.recallPreferences ??= [];
     const list = next[collection] as DomainEntity[];
     const index = list.findIndex(v => v.id === entity.id), before = index < 0 ? null : clone(list[index]);
     if (before && canonical(before) === canonical(entity)) return;
@@ -198,6 +208,42 @@ export function applyCommand(state: AppState, command: Command): AppState {
   }
   const node = (id: string, version: number, active = true) => { const found = find(next.nodes, id, active); expected(found, version, command); return found; };
   switch (command.type) {
+    case 'saveRecallPreferences': {
+      validateRecallOptions(command.options);
+      const old = next.recallPreferences?.find(row => row.id === command.id);
+      if (old) { find(next.recallPreferences!, old.id); expected(old, command.expectedVersion, command); }
+      else { if (command.expectedVersion !== 0) fail('VERSION_CONFLICT', '복습 설정의 수정 순서를 확인해 주세요.'); fresh(command.id); }
+      write('recallPreferences', { ...(old ?? common(command.id)), options: clone(command.options) }); break;
+    }
+    case 'saveRecallReference': case 'setRecallDue': case 'reviewRecallCard': {
+      const topic = find(next.nodes, command.topicId); targetSubject(next, topic.id);
+      if (topic.role !== 'topic') fail('INVALID_RECALL', '복습 카드는 공부 주제에 연결해 주세요.');
+      const old = next.recallCards?.find(row => row.id === command.id);
+      if (old) { find(next.recallCards!, old.id); expected(old, command.expectedVersion, command); if (old.topicId !== topic.id) fail('INVALID_RECALL', '복습 카드의 원래 주제를 보존해 주세요.'); }
+      else { if (command.expectedVersion !== 0) fail('VERSION_CONFLICT', '복습 카드의 수정 순서를 확인해 주세요.'); fresh(command.id); }
+      const card = old ?? { ...common(command.id), topicId: topic.id, reference: '', memory: newRecallMemory(command.at), reviews: [] };
+      if (command.type === 'saveRecallReference') write('recallCards', { ...card, reference: command.reference });
+      else if (command.type === 'setRecallDue') {
+        if (typeof command.due !== 'string' || !Number.isFinite(Date.parse(command.due))) fail('INVALID_RECALL', '다음 복습 날짜를 확인해 주세요.');
+        write('recallCards', { ...card, manualDue: command.due });
+      } else {
+        if (![1, 2, 3, 4].includes(command.rating)) fail('INVALID_RECALL', '자기 평가를 선택해 주세요.');
+        if (card.memory.last_review && Date.parse(command.at) < Date.parse(card.memory.last_review)) fail('INVALID_TIME', '지난 복습 이후의 시각으로 기록해 주세요.');
+        let memoId: string | null = null;
+        if (command.memo) {
+          validateMemoContent({ ...command.memo, ownerId: topic.id });
+          if (!command.memo.body.trim() && !command.memo.strokes.length) fail('INVALID_RECALL', '빈 메모 대신 자기 평가만 저장해 주세요.');
+          memoId = command.memo.id;
+          const saved = next.memos?.find(row => row.id === memoId);
+          if (saved) { if (saved.deletedAt || saved.ownerId !== topic.id || saved.body !== command.memo.body || canonical(saved.strokes) !== canonical(command.memo.strokes)) fail('VERSION_CONFLICT', '답변 메모가 바뀌었습니다. 초안을 보존했습니다.'); }
+          else { fresh(memoId); write('memos', { ...common(memoId), ownerId: topic.id, body: command.memo.body, strokes: clone(command.memo.strokes) }); }
+        }
+        const options = recallOptions(next), memory = serializeMemory(recallPreview(card.memory, command.at, options)[command.rating].card);
+        const { manualDue: _manualDue, ...base } = card;
+        write('recallCards', { ...base, memory, reviews: [...card.reviews, { id: command.opId, at: command.at, rating: command.rating, memoId, before: clone(card.memory), after: clone(memory), options: clone(options) }] });
+      }
+      break;
+    }
     case 'saveCanvasLayout': {
       validateCanvasLayout(command);
       const old = next.canvasLayouts?.find(row => row.id === command.id);
@@ -401,6 +447,7 @@ export function applyCommand(state: AppState, command: Command): AppState {
             || next.records.some(r => external(r) && (r.sessionId === item.entityId || r.targetId === item.entityId))
             || next.narratives.some(n => external(n) && n.ownerId === item.entityId)
             || (next.memos ?? []).some(memo => external(memo) && memo.ownerId === item.entityId)
+            || (next.recallCards ?? []).some(card => external(card) && (card.topicId === item.entityId || card.reviews.some(review => review.memoId === item.entityId)))
             || (next.criteriaAssignments ?? []).some(assignment => external(assignment) && (assignment.criteriaId === item.entityId || assignment.ownerId === item.entityId));
           if (referenced) fail('UNDO_DEPENDENCY', '그 뒤 연결된 내용이 있습니다. 항목을 지우지 않고 현재 자료를 보존했습니다.');
         }
