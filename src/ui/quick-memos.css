@@ -54,6 +54,7 @@
 .memo-card-menu { position: relative; }
 .memo-card-menu > summary { display: flex; align-items: center; justify-content: center; min-inline-size: var(--icon-target); list-style: none; padding: 0; }
 .memo-card-menu > summary::-webkit-details-marker { display: none; }
-.memo-card-menu[open] > button { position: absolute; inset-inline-end: 0; top: 100%; z-index: 2; background: var(--color-surface); border: var(--border-width) solid var(--color-border); white-space: nowrap; }
+/* Keep expanded native details content in layout so its painted and pointer bounds agree. */
+.memo-card-menu[open] > button { display: flex; margin-block-start: var(--space-1); background: var(--color-surface); border: var(--border-width) solid var(--color-border); white-space: nowrap; }
 .quick-memos > .section-heading { justify-content: flex-start; gap: var(--space-4); margin-block-end: var(--space-3); }
 .quick-memos > .section-heading .actions { margin-inline-start: 0; }

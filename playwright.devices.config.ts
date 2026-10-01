@@ -1,8 +1,10 @@
 import { existsSync } from 'node:fs';
+import path from 'node:path';
 import { defineConfig } from '@playwright/test';
 import { deviceEnvironments } from './e2e/devices/environments';
 const base = process.env.PAGES_BASE || '/';
 const reportRoot = process.env.DEVICE_REPORT_ROOT || 'work';
+const runDirectory = process.env.DEVICE_RUN_DIR;
 const port = process.env.DEVICE_PORT || '5237';
 const fixturePort = Number(process.env.DEVICE_FIXTURE_PORT || String(Number(port) + 1));
 const startFixture = existsSync('src/ui/study-materials.tsx') && !process.env.STUDY_AI_FIXTURE_URL;
@@ -19,10 +21,10 @@ export default defineConfig({
   workers: process.env.CI ? 2 : 1,
   reporter: [
     ['list'],
-    ['html', { outputFolder: `${reportRoot}/device-report`, open: 'never' }],
-    ['json', { outputFile: `${reportRoot}/device-results.json` }],
+    ['html', { outputFolder: runDirectory ? path.join(runDirectory, 'report') : `${reportRoot}/device-report`, open: 'never' }],
+    ['json', { outputFile: runDirectory ? path.join(runDirectory, 'results.json') : `${reportRoot}/device-results.json` }],
   ],
-  outputDir: `${reportRoot}/device-traces`,
+  outputDir: runDirectory ? path.join(runDirectory, 'traces') : `${reportRoot}/device-traces`,
   use: {
     baseURL: `http://127.0.0.1:${port}${base}`,
     locale: 'ko-KR',
@@ -33,7 +35,7 @@ export default defineConfig({
   projects: deviceEnvironments,
   webServer: [
     {
-      command: `npm run preview -- --port ${port} --strictPort`,
+      command: 'node scripts/device-preview.mjs',
       url: `http://127.0.0.1:${port}${base}`,
       reuseExistingServer: false,
     },

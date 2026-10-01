@@ -214,7 +214,12 @@ export function StudyGraph({ data, subjectIds }: { data: AppState; subjectIds: s
   );
   const [nodes, setNodes] = useState(initial);
   useEffect(() => {
-    setNodes(initial);
+    setNodes((previous) => {
+      const measured = new Map(previous.map((node) => [node.id, node.measured]));
+      // Position updates must retain React Flow's completed DOM measurements.
+      // Clearing them restarts observation and can leave a queued fit unresolved.
+      return initial.map((node) => ({ ...node, measured: measured.get(node.id) }));
+    });
   }, [initial]);
   useEffect(() => {
     if (flow && fitRevision > 0) {
