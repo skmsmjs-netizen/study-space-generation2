@@ -1,3 +1,4 @@
+import { validateInkWorkspace } from './ink-workspace';
 import { validateMaterialCardSource } from './learning-evidence';
 import { boardContent, validateBoard, verifyBoardTopics } from './study-board';
 import { DomainError, type AppState, type Command, type CriteriaAssignment, type DateEvidence, type DomainEntity, type EntityCollection, type Narrative, type OutlineNode, type Revision, type Scope, type StudyRecord, type TraceDefinition, type TraceState } from './model';
@@ -14,7 +15,7 @@ import { codeContent, validateCodeContent } from './code-example';
 import { clozeNumbers, renderCloze } from './recall-cloze';
 import { newRecallMemory, recallOptions, recallPreview, serializeMemory, validateRecallCard, validateRecallOptions } from './recall-scheduler';
 
-const collections: EntityCollection[] = ['studyBoards', 'semesters', 'subjects', 'nodes', 'sessions', 'records', 'narratives', 'criteria', 'criteriaAssignments', 'memos', 'learningPlans', 'canvasLayouts', 'codeExamples', 'recallCards', 'recallPreferences', 'studyMaterials', 'memoryCards', 'memoryTests'];
+const collections: EntityCollection[] = ['studyBoards', 'semesters', 'subjects', 'nodes', 'sessions', 'records', 'narratives', 'criteria', 'criteriaAssignments', 'memos', 'learningPlans', 'canvasLayouts', 'codeExamples', 'recallCards', 'recallPreferences', 'studyMaterials', 'memoryCards', 'memoryTests', 'inkWorkspaces'];
 const clone = <T>(value: T): T => structuredClone(value);
 function fail(code: string, message: string, details?: unknown): never { throw new DomainError(code, message, details); }
 function canonical(value: unknown): string {
@@ -128,6 +129,8 @@ export function assertState(state: AppState): void {
     validateDateEvidence(row.dateEvidence); verifyTrace(row.trace);
     if (typeof row.body !== 'string' || typeof row.done !== 'boolean') fail('INVALID_RECORD', '공부 기록의 입력을 확인해 주세요.');
   }
+  const inkKeys = new Set<string>();
+  for (const row of state.inkWorkspaces ?? []) { if (typeof row.key !== 'string' || !row.key || row.key.length > 512 || inkKeys.has(row.key)) fail('INVALID_INK_WORKSPACE', '필기 설정의 연결을 확인해 주세요.'); inkKeys.add(row.key); validateInkWorkspace(row.content); }
   for (const row of state.sessions) validateDateEvidence(row.dateEvidence);
   if ((state.learningPlans ?? []).filter(row => !row.deletedAt).length > 1) fail('DUPLICATE_PLAN', '학습 일정의 원래 연결을 확인해 주세요.');
   for (const row of state.learningPlans ?? []) verifyLearningPlan(row.workspace, state);
@@ -210,7 +213,10 @@ export function applyCommand(state: AppState, command: Command): AppState {
     if (state.appliedOps[command.opId] !== payload) fail('OPERATION_REUSED', '같은 요청 식별자에 다른 내용이 들어 있습니다.');
     return state;
   }
-  const next = clone(state);
+  const next = { ...state, revisions: state.revisions.slice(), appliedOps: { ...state.appliedOps } };
+  for (const collection of collections) {
+    if (state[collection] !== undefined) (next[collection] as DomainEntity[]) = (state[collection] as DomainEntity[]).slice();
+  }
   const common = (id: string) => ({ id, userId: state.userId, namespace: state.namespace, createdAt: command.at, updatedAt: command.at, version: 1, deletedAt: null });
   const fresh = (id: string) => { identity(id); if (collections.some(k => (next[k] ?? []).some(v => v.id === id))) fail('DUPLICATE_ID', '이미 있는 식별자입니다.', { id }); };
   function write(collection: EntityCollection, entity: DomainEntity, reversesRevisionId?: string): void {
@@ -225,6 +231,7 @@ export function applyCommand(state: AppState, command: Command): AppState {
     if (collection === 'studyMaterials') next.studyMaterials ??= [];
     if (collection === 'codeExamples') next.codeExamples ??= [];
     if (collection === 'recallCards') next.recallCards ??= [];
+    if (collection === 'inkWorkspaces') next.inkWorkspaces ??= [];
     if (collection === 'recallPreferences') next.recallPreferences ??= [];
     const list = next[collection] as DomainEntity[];
     const index = list.findIndex(v => v.id === entity.id), before = index < 0 ? null : clone(list[index]);
@@ -531,14 +538,27 @@ export function applyCommand(state: AppState, command: Command): AppState {
       const value = { ...(old ?? common(command.id)), kind: command.kind, ownerId: command.ownerId, body: command.body };
       verifyNarrative(next, value); write('narratives', value); break;
     }
+    case 'saveInkWorkspace': {
+      const old = next.inkWorkspaces?.find(row => row.id === command.id);
+      if (old) { find(next.inkWorkspaces!, old.id); expected(old, command.expectedVersion, command); if (old.key !== command.key) fail('OWNER_CHANGED', '필기 설정의 연결을 바꿀 수 없습니다.'); }
+      else { if (command.expectedVersion !== 0) fail('VERSION_CONFLICT', '필기 설정의 저장 상태를 확인해 주세요.'); fresh(command.id); }
+      if (typeof command.key !== 'string' || !command.key || command.key.length > 512 || (next.inkWorkspaces ?? []).some(row => row.id !== command.id && row.key === command.key)) fail('INVALID_INK_WORKSPACE', '필기 설정의 연결을 확인해 주세요.');
+      validateInkWorkspace(command.content);
+      write('inkWorkspaces', { ...(old ?? common(command.id)), key: command.key, content: clone(command.content) }); break;
+    }
     case 'saveMemo': {
       const old = next.memos?.find(row => row.id === command.id);
       if (old) { find(next.memos!, old.id); expected(old, command.expectedVersion, command); }
       else { if (command.expectedVersion !== 0) fail('VERSION_CONFLICT', '메모의 저장 상태를 확인해 주세요.'); fresh(command.id); }
       validateMemoContent(command);
+      if (command.document) {
+        const f=command.document.file, prefix=next.namespace==='demo'?'study-space:demo':`study-space:${next.namespace}:${encodeURIComponent(next.userId)}`;
+        if(f.key!==`${prefix}:material:${encodeURIComponent(`document:${f.sha256}`)}` || f.cloudPath!==undefined && f.cloudPath!==`${next.userId}/${next.namespace}/document/${f.sha256}`) fail('OWNERSHIP','다른 공간의 PDF 원본을 연결할 수 없습니다.');
+        if(old?.document && old.document.file.sha256!==f.sha256) fail('OWNER_CHANGED','기존 PDF 원본을 유지합니다. 다른 PDF는 새 메모에 연결해 주세요.');
+      }
       if (command.ownerId !== null) targetSubject(next, command.ownerId, old?.ownerId !== command.ownerId);
       if (command.recallCardId !== undefined && !(next.recallCards ?? []).some(card => !card.deletedAt && card.id === command.recallCardId && card.topicId === command.ownerId)) fail('INVALID_MEMO', '답변 메모의 카드 연결을 확인해 주세요.');
-      write('memos', { ...(old ?? common(command.id)), ...(command.recallCardId ? { recallCardId: command.recallCardId } : {}), ownerId: command.ownerId, body: command.body, strokes: clone(command.strokes) });
+      write('memos', { ...(old ?? common(command.id)), ...(command.recallCardId ? { recallCardId: command.recallCardId } : {}), ownerId: command.ownerId, body: command.body, strokes: clone(command.strokes), ...(command.document ? { document: clone(command.document) } : {}) });
       break;
     }
     case 'trashMemo': case 'restoreMemo': {

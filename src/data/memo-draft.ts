@@ -3,7 +3,7 @@ import { validateMemoContent } from '../domain/memo';
 import { readRescuedDraft, storeDraftSafely } from './draft-safety';
 import { decodeStoredText, encodeStoredText } from './storage-codec';
 
-export interface MemoDraft { id: string; baseVersion: number; ownerId: string | null; body: string; strokes: QuickMemo['strokes'] }
+export interface MemoDraft { id: string; baseVersion: number; ownerId: string | null; body: string; strokes: QuickMemo['strokes']; document?: QuickMemo['document'] }
 export function memoDraftKey(data: Pick<AppState, 'namespace' | 'userId'>, id: string) {
   return `study-space:${data.namespace}:draft:quick-memo:${encodeURIComponent(data.userId)}:${encodeURIComponent(id)}`;
 }
@@ -19,6 +19,6 @@ export function writeMemoDraft(key: string, draft: MemoDraft) {
   validateMemoContent(draft);
   storeDraftSafely(key, encodeStoredText(JSON.stringify(draft)));
 }
-export function sameMemo(a: Pick<QuickMemo, 'body' | 'strokes' | 'ownerId'>, b: Pick<QuickMemo, 'body' | 'strokes' | 'ownerId'>) {
-  return a.body === b.body && a.ownerId === b.ownerId && JSON.stringify(a.strokes) === JSON.stringify(b.strokes);
+export function sameMemo(a: Pick<QuickMemo, 'body' | 'strokes' | 'ownerId' | 'document'>, b: Pick<QuickMemo, 'body' | 'strokes' | 'ownerId' | 'document'>) {
+  return a.body === b.body && a.ownerId === b.ownerId && JSON.stringify(a.strokes) === JSON.stringify(b.strokes) && JSON.stringify(a.document) === JSON.stringify(b.document);
 }

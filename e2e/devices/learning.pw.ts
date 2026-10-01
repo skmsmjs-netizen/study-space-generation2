@@ -172,6 +172,7 @@ test('memo text, finger option and export remain reachable after reload', async 
   await page.getByRole('button', { name: '메모 추가', exact: true }).tap();
   await page.getByText('글·연결·입력 설정', { exact: true }).tap();
   await page.getByLabel('짧은 글', { exact: true }).fill(original);
+  await page.getByText('필기 설정', { exact: true }).tap();
   await page.getByLabel('손가락으로도 그리기', { exact: true }).check();
   await page.getByRole('img', { name: '메모 스케치 영역', exact: true }).tap();
   await expect(

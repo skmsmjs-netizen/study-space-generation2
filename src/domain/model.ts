@@ -30,9 +30,10 @@ export type NarrativeKind = 'subject-overview' | 'unit-introduction' | 'topic-no
 export interface Narrative extends Entity { kind: NarrativeKind; ownerId: string | null; body: string }
 export type MemoInk = 'ink' | 'blue' | 'green';
 export interface MemoPoint { x: number; y: number; pressure: number }
-export interface MemoStroke { id: string; ink: MemoInk; width: number; points: MemoPoint[] }
+export interface MemoStroke { id: string; ink: MemoInk; width: number; points: MemoPoint[]; page?: number; pressureSensitive?: boolean }
+export interface MemoDocument { file: import('./material-source').MaterialFile; pages: number; startPage: number }
 /** Fixed logical paper coordinates keep sketches intact when the screen resizes. */
-export interface QuickMemo extends Entity { recallCardId?: string; ownerId: string | null; body: string; strokes: MemoStroke[] }
+export interface QuickMemo extends Entity { recallCardId?: string; ownerId: string | null; body: string; strokes: MemoStroke[]; document?: MemoDocument }
 export interface RecallOptions { burySiblings?: boolean; retention: number; newPerDay: number; learningMinutes: number[]; relearningMinutes: number[]; maximumDays: number; parameters?: number[]; optimizedAt?: string; optimizedReviews?: number }
 export interface RecallMemory {
   due: string; stability: number; difficulty: number; elapsed_days: number; scheduled_days: number;
@@ -66,8 +67,8 @@ export interface CanvasPosition { x: number; y: number }
 export interface CanvasLink { id: string; source: string; target: string; label: string }
 /** Only presentation is stored here. Names, text and drawings remain in their original entities. */
 export interface CanvasLayout extends Entity { positions: Record<string, CanvasPosition>; links: CanvasLink[]; viewport?: { x: number; y: number; zoom: number } }
-export type EntityCollection = 'studyBoards' | 'semesters' | 'subjects' | 'nodes' | 'sessions' | 'records' | 'narratives' | 'criteria' | 'criteriaAssignments' | 'memos' | 'learningPlans' | 'canvasLayouts' | 'codeExamples' | 'recallCards' | 'recallPreferences' | 'studyMaterials' | 'memoryCards' | 'memoryTests';
-export type DomainEntity = import('./study-board').StudyBoard | Semester | Subject | OutlineNode | StudySession | StudyRecord | Narrative | Criteria | CriteriaAssignment | QuickMemo | LearningPlan | CanvasLayout | CodeExample | RecallCard | RecallPreferences | import('./study-material').StudyMaterial | import('./memory-test').MemoryCard | import('./memory-test').MemoryTest;
+export type EntityCollection = 'studyBoards' | 'semesters' | 'subjects' | 'nodes' | 'sessions' | 'records' | 'narratives' | 'criteria' | 'criteriaAssignments' | 'memos' | 'learningPlans' | 'canvasLayouts' | 'codeExamples' | 'recallCards' | 'recallPreferences' | 'studyMaterials' | 'memoryCards' | 'memoryTests' | 'inkWorkspaces';
+export type DomainEntity = import('./study-board').StudyBoard | Semester | Subject | OutlineNode | StudySession | StudyRecord | Narrative | Criteria | CriteriaAssignment | QuickMemo | LearningPlan | CanvasLayout | CodeExample | RecallCard | RecallPreferences | import('./study-material').StudyMaterial | import('./memory-test').MemoryCard | import('./memory-test').MemoryTest | import('./ink-workspace').SyncedInkWorkspace;
 export interface Revision extends Entity {
   collection: EntityCollection; entityId: string; operationId: string; parentRevisionId: string | null;
   before: DomainEntity | null; after: DomainEntity; reversesRevisionId?: string;
@@ -79,6 +80,7 @@ export interface AppState {
   /** Optional for existing schema-1 demo snapshots; reading never rewrites them. */
   criteria?: Criteria[]; criteriaAssignments?: CriteriaAssignment[];
   memos?: QuickMemo[];
+  inkWorkspaces?: import('./ink-workspace').SyncedInkWorkspace[];
   learningPlans?: LearningPlan[];
   canvasLayouts?: CanvasLayout[];
   studyBoards?: import('./study-board').StudyBoard[];
@@ -110,7 +112,8 @@ export type Command = CommandContext & (
   | { type: 'saveRecords'; sessionId: string; entries: RecordEntry[]; dateEvidence: DateEvidence }
   | { type: 'updateRecord'; id: string; expectedVersion: number; patch: Partial<Pick<StudyRecord, 'body' | 'done' | 'dateEvidence' | 'trace'>> }
   | { type: 'updateNarrative'; id: string; kind: NarrativeKind; ownerId: string | null; body: string; expectedVersion: number }
-  | { type: 'saveMemo'; recallCardId?: string; id: string; ownerId: string | null; body: string; strokes: MemoStroke[]; expectedVersion: number }
+  | { type: 'saveMemo'; document?: MemoDocument; recallCardId?: string; id: string; ownerId: string | null; body: string; strokes: MemoStroke[]; expectedVersion: number }
+  | { type: 'saveInkWorkspace'; id: string; key: string; content: import('./ink-workspace').InkWorkspaceContent; expectedVersion: number }
   | { type: 'saveRecallCard'; deckId?: string; id: string; topicId: string; front: string; reference: string; expectedVersion: number }
   | { type: 'saveRecallCloze'; noteId: string; topicId: string; source: string; reference: string; deckId?: string; cards: { id: string; number: number; expectedVersion: number }[] }
   | { type: 'importRecallCards'; items: RecallImportItem[]; updateUnedited: boolean }
