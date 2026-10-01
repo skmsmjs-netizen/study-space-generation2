@@ -60,9 +60,10 @@ jobs:
         with:
           node-version: '24'
           cache: npm
-      - run: npm ci
-        env:
-          ONNXRUNTIME_NODE_INSTALL: skip
+      # The build job already compiles the app and native terminal dependency.
+      # This job serves that immutable web build and only needs browser test tools.
+      - run: npm ci --ignore-scripts
+      - run: npm rebuild esbuild
       - uses: actions/download-artifact@v4
         with:
           name: verified-build
