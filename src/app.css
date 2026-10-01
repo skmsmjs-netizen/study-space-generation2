@@ -707,3 +707,13 @@ nav a[aria-current="page"] {
   .topbar > .ui-field { inline-size: 100%; }
   .topbar > .ui-field select { max-inline-size: 100%; }
 }
+
+/* Adapt to the content column, including enlarged text beside the sidebar. */
+.main-content { container-name: study-content workspace-content; container-type: inline-size; }
+.record-topic-group { min-inline-size: 0; }
+.save-bar { flex-wrap: wrap; }
+.save-bar > * { min-inline-size: 0; max-inline-size: 100%; }
+@container workspace-content (max-width: 40rem) {
+  .record-layout { grid-template-columns: minmax(0, 1fr); }
+  .topic-picker { position: static; max-block-size: none; overflow: visible; }
+}

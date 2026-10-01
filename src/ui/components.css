@@ -87,3 +87,7 @@ textarea.ui-input { min-height: calc(var(--control-height) * 3); resize: vertica
 /* Keep graph library attribution readable on the current surface in either theme. */
 .react-flow .react-flow__attribution { background: var(--color-surface); }
 .react-flow .react-flow__attribution a { color: var(--color-text); display: inline-flex; align-items: center; min-block-size: var(--space-6); padding-inline: var(--space-2); }
+
+.ui-button, .ui-input, .ui-choice { max-inline-size: 100%; }
+.ui-choice > span { min-inline-size: 0; overflow-wrap: anywhere; }
+.ui-field, .ui-label { overflow-wrap: anywhere; }

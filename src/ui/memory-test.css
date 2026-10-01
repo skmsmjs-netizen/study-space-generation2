@@ -195,3 +195,6 @@
 .memory-tests > h2[tabindex='-1']:focus {
   outline: none;
 }
+
+.memory-filters { grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr)); }
+.memory-summary dl > div { white-space: normal; flex-wrap: wrap; min-inline-size: 0; overflow-wrap: anywhere; }

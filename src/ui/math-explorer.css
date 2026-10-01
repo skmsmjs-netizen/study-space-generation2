@@ -274,3 +274,14 @@
 .math-geogebra-host .accessibilityView {
   position: static !important;
 }
+
+.math-slider-heading { flex-wrap: wrap; }
+.math-slider-heading .ui-field { max-inline-size: 100%; }
+.math-start .ui-field, .math-interval .ui-field { min-inline-size: min(8rem, 100%); }
+
+.math-equation { display: block; min-inline-size: 0; }
+@container workspace-content (max-width: 40rem) {
+  .math-workspace { grid-template-columns: minmax(0, 1fr); }
+  .math-controls { border-inline-start: 0; padding-inline-start: 0; border-block-start: var(--border-width) solid var(--color-border); padding-block-start: var(--space-3); }
+  .math-sliders { grid-template-columns: minmax(0, 1fr); }
+}
