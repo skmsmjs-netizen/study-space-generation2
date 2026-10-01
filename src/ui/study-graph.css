@@ -17,8 +17,21 @@
   grid-column: 1 / -1;
 }
 .graph-toolbar select.ui-input {
-  /* WebKit can paint a native option beyond its grid cell when text grows. */
-  overflow: hidden;
+  /* Linux WebKit's native widget can paint its intrinsic option width outside
+     an otherwise bounded grid cell. Keep native select behavior and size its
+     surface in CSS; the shared grid row supplies its decorative arrow. */
+  appearance: none;
+  padding-inline-end: var(--space-6);
+  grid-column: 1;
+  grid-row: 2;
+}
+.graph-toolbar .ui-field:has(select.ui-input)::after {
+  content: '⌄';
+  grid-column: 1;
+  grid-row: 2;
+  place-self: center end;
+  margin-inline-end: var(--space-3);
+  pointer-events: none;
 }
 .graph-actions {
   display: flex;
