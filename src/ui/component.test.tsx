@@ -2,11 +2,23 @@ import { useState } from 'react';
 import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { Button, Checkbox, Input, Modal, Search, Tabs, Textarea, Toast } from './index';
+import { Button, Checkbox, Input, Modal, Search, ScreenBoundary, Tabs, Textarea, Toast } from './index';
 
 afterEach(cleanup);
 
 describe('shared controls', () => {
+  it('keeps other navigation usable after a screen failure and recovers on another route', async () => {
+    const consoleError = vi.spyOn(console, 'error').mockImplementation(() => {});
+    const retry = vi.fn();
+    function Broken(): null { throw Error('isolated screen chunk failure'); }
+    const view = render(<><a href="#/subjects">과목으로 이동</a><ScreenBoundary key="failed" onRetry={retry}><Broken /></ScreenBoundary></>);
+    expect(screen.getByRole('alert')).toHaveTextContent('이미 저장된 기록과 초안은 지우지 않습니다');
+    expect(screen.getByRole('link', { name: '과목으로 이동' })).toBeVisible();
+    await userEvent.setup().click(screen.getByRole('button', { name: '다시 시도' })); expect(retry).toHaveBeenCalledOnce();
+    view.rerender(<><a href="#/subjects">과목으로 이동</a><ScreenBoundary key="subjects"><p>정상 화면</p></ScreenBoundary></>);
+    expect(screen.getByText('정상 화면')).toBeVisible(); expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+    consoleError.mockRestore();
+  });
   it('busy buttons keep their action label and prevent pointer and keyboard execution', async () => {
     const click = vi.fn(), user = userEvent.setup();
     render(<Button busy onClick={click}>공부함 기록</Button>);
@@ -61,6 +73,47 @@ describe('modal focus contract', () => {
   it('does not intercept Escape during IME composition', () => {
     const close = vi.fn(); render(<Modal open title="기록" onClose={close}><Input label="기록 내용" /></Modal>);
     fireEvent.keyDown(document, { key: 'Escape', isComposing: true }); expect(close).not.toHaveBeenCalled();
+  });
+  it('closes on a completed backdrop click, while press and cancelled gestures preserve the editor', async () => {
+    const close = vi.fn(), user = userEvent.setup();
+    render(<Modal open title="기록" onClose={close}><Input label="기록 내용" defaultValue="원래 글" /></Modal>);
+    const overlay = screen.getByRole('dialog').parentElement!;
+    await user.pointer({ keys: '[MouseLeft>]', target: overlay });
+    expect(close).not.toHaveBeenCalled();
+    fireEvent.pointerCancel(overlay);
+    await user.pointer({ keys: '[/MouseLeft]', target: overlay });
+    expect(close).not.toHaveBeenCalled();
+    expect(screen.getByLabelText('기록 내용')).toHaveValue('원래 글');
+    await user.click(overlay);
+    expect(close).toHaveBeenCalledOnce();
+  });
+  it('does not dismiss after a drag from dialog content or across the backdrop', async () => {
+    const close = vi.fn(), user = userEvent.setup();
+    render(<Modal open title="기록" onClose={close}><Input label="기록 내용" /></Modal>);
+    const overlay = screen.getByRole('dialog').parentElement!;
+    await user.pointer([{ keys: '[MouseLeft>]', target: screen.getByLabelText('기록 내용') }, { keys: '[/MouseLeft]', target: overlay }]);
+    expect(close).not.toHaveBeenCalled();
+    await user.pointer([{ keys: '[MouseLeft>]', target: overlay, coords: { x: 10, y: 10 } }, { target: overlay, coords: { x: 50, y: 50 } }, { keys: '[/MouseLeft]', target: overlay }]);
+    expect(close).not.toHaveBeenCalled();
+  });
+  it('returns to a touch opener even when the browser does not focus it on activation', () => {
+    function Fixture() { const [open, setOpen] = useState(false); return <><Button onClick={() => setOpen(true)}>터치로 열기</Button><Modal open={open} title="기록" onClose={() => setOpen(false)}><Input label="기록 내용" /></Modal></>; }
+    render(<Fixture />);
+    const trigger = screen.getByRole('button', { name: '터치로 열기' });
+    fireEvent.pointerDown(trigger); fireEvent.click(trigger);
+    expect(screen.getByRole('dialog')).toBeVisible();
+    fireEvent.keyDown(document, { key: 'Escape' });
+    expect(trigger).toHaveFocus();
+  });
+  it('returns focus to the trigger without scrolling the underlying page', async () => {
+    function Fixture() { const [open, setOpen] = useState(false); return <><Button onClick={() => setOpen(true)}>기록 열기</Button><Modal open={open} title="기록" onClose={() => setOpen(false)}><Input label="기록 내용" /></Modal></>; }
+    const user = userEvent.setup(); render(<Fixture />);
+    const trigger = screen.getByRole('button', { name: '기록 열기' });
+    const focus = vi.spyOn(trigger, 'focus');
+    await user.click(trigger); focus.mockClear();
+    await user.keyboard('{Escape}');
+    expect(focus).toHaveBeenLastCalledWith({ preventScroll: true });
+    expect(trigger).toHaveFocus(); focus.mockRestore();
   });
   it('isolates background interaction, excludes hidden and negative-tab targets, and restores previous inert state', async () => {
     const existing = document.createElement('aside'); existing.setAttribute('inert', ''); document.body.append(existing);

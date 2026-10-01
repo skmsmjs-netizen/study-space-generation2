@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useId, useRef, type ButtonHTMLAttributes, type HTMLAttributes, type InputHTMLAttributes, type ReactNode, type SelectHTMLAttributes, type TextareaHTMLAttributes } from 'react';
+import { Component, forwardRef, useEffect, useId, useRef, type ButtonHTMLAttributes, type HTMLAttributes, type InputHTMLAttributes, type ReactNode, type SelectHTMLAttributes, type TextareaHTMLAttributes } from 'react';
 import { createPortal } from 'react-dom';
 import './tokens.css';
 import './components.css';
@@ -64,10 +64,32 @@ export type ModalProps = { open: boolean; title: string; onClose: () => void; ch
 const focusableSelector = 'button:not(:disabled), [href], input:not(:disabled):not([type="hidden"]), select:not(:disabled), textarea:not(:disabled), [tabindex]:not([tabindex="-1"])';
 export function Modal({ open, title, onClose, children, className }: ModalProps) {
   const titleId = useId(), dialog = useRef<HTMLDivElement>(null), close = useRef(onClose);
+  const backdropPress = useRef<{ id: number; x: number; y: number; moved: boolean } | null>(null);
+  const openingControl = useRef<HTMLElement | null>(null);
   close.current = onClose;
   useEffect(() => {
+    if (open) return;
+    openingControl.current = null;
+    const remember = (event: PointerEvent) => {
+      const target = event.target instanceof Element ? event.target.closest(focusableSelector) : null;
+      openingControl.current = target instanceof HTMLElement ? target : null;
+    };
+    const clear = () => { openingControl.current = null; };
+    // Safari touch activation need not focus the button that opens a dialog.
+    document.addEventListener('pointerdown', remember, true);
+    document.addEventListener('pointercancel', clear, true);
+    document.addEventListener('keydown', clear, true);
+    return () => {
+      document.removeEventListener('pointerdown', remember, true);
+      document.removeEventListener('pointercancel', clear, true);
+      document.removeEventListener('keydown', clear, true);
+    };
+  }, [open]);
+  useEffect(() => {
     if (!open || !dialog.current) return;
-    const original = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    const original = openingControl.current?.isConnected ? openingControl.current
+      : document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    openingControl.current = null;
     const overflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
     const background = [...document.body.children].filter(el => el !== dialog.current?.parentElement);
@@ -81,7 +103,8 @@ export function Modal({ open, title, onClose, children, className }: ModalProps)
       }
       return true;
     });
-    (available()[0] || dialog.current).focus();
+    backdropPress.current = null;
+    (available()[0] || dialog.current).focus({ preventScroll: true });
     const onFocus = (event: FocusEvent) => {
       if (event.target instanceof Node && !dialog.current?.contains(event.target)) (available()[0] || dialog.current)?.focus();
     };
@@ -98,11 +121,34 @@ export function Modal({ open, title, onClose, children, className }: ModalProps)
     return () => {
       document.removeEventListener('keydown', onKeyDown); document.removeEventListener('focusin', onFocus);
       background.forEach((el, index) => { const before = previousInert[index]; if (before === null) el.removeAttribute('inert'); else el.setAttribute('inert', before); });
-      document.body.style.overflow = overflow; if (original?.isConnected) original.focus();
+      document.body.style.overflow = overflow;
+      if (original?.isConnected && !original.closest('[hidden], [inert]') && !original.matches(':disabled')) original.focus({ preventScroll: true });
     };
   }, [open]);
   if (!open) return null;
-  return createPortal(<div className="ui-overlay" onMouseDown={event => { if (event.target === event.currentTarget) onClose(); }}><div ref={dialog} role="dialog" aria-modal="true" aria-labelledby={titleId} tabIndex={-1} className={classes('ui-modal', className)}><header className="ui-modal-header"><h2 className="ui-modal-title" id={titleId}>{title}</h2><IconButton label={`${title} 닫기`} onClick={onClose}>×</IconButton></header>{children}</div></div>, document.body);
+  // biome-ignore lint/a11y/noStaticElementInteractions: Backdrop dismissal is optional; the labelled close button and Escape provide keyboard access.
+  // biome-ignore lint/a11y/useKeyWithClickEvents: The modal's document key handler owns Escape; the backdrop is not a second tab stop.
+  return createPortal(<div className="ui-overlay"
+    onPointerDown={event => {
+      backdropPress.current = event.target === event.currentTarget && event.button === 0
+        ? { id: event.pointerId, x: event.clientX, y: event.clientY, moved: false } : null;
+    }}
+    onPointerMove={event => {
+      const press = backdropPress.current;
+      // Eight CSS pixels is a local tap tolerance, not a universal gesture standard.
+      if (press && (event.target !== event.currentTarget || Math.hypot(event.clientX - press.x, event.clientY - press.y) > 8)) press.moved = true;
+    }}
+    onPointerUp={event => {
+      // Touch may implicitly capture the pointer; its event target can remain the
+      // backdrop even after the finger has crossed into the dialog.
+      const hit = document.elementFromPoint?.(event.clientX, event.clientY);
+      if (event.target !== event.currentTarget || (hit && hit !== event.currentTarget) || event.pointerId !== backdropPress.current?.id) backdropPress.current = null;
+    }}
+    onPointerCancel={() => { backdropPress.current = null; }}
+    onClick={event => {
+      const press = backdropPress.current; backdropPress.current = null;
+      if (event.target === event.currentTarget && press && !press.moved) onClose();
+    }}><div ref={dialog} role="dialog" aria-modal="true" aria-labelledby={titleId} tabIndex={-1} className={classes('ui-modal', className)}><header className="ui-modal-header"><h2 className="ui-modal-title" id={titleId}>{title}</h2><IconButton label={`${title} 닫기`} onClick={onClose}>×</IconButton></header>{children}</div></div>, document.body);
 }
 export function Sheet(props: ModalProps) { return <Modal {...props} className={classes('ui-sheet', props.className)} />; }
 export function Toast({ message, onUndo, onClose }: { message: string; onUndo?: () => void; onClose?: () => void }) {
@@ -123,6 +169,20 @@ export function EmptyState({ title, message, children }: { title: string; messag
 export function LoadingState({ message = '불러오고 있습니다.' }: { message?: string }) { return <div role="status" aria-live="polite" aria-busy="true" data-ui-loading="" className="ui-loading"><BusyDots />{message}</div>; }
 export function ErrorState({ title = '다시 확인해 주세요', message, onRetry }: { title?: string; message: string; onRetry?: () => void }) {
   return <section className="ui-state ui-state--error"><div role="alert"><h3 className="ui-state-title">{title}</h3><p className="ui-state-message">{message}</p></div>{onRetry && <Button onClick={onRetry}>다시 시도</Button>}</section>;
+}
+
+/** Key by workspace and route so one failed screen cannot disable other navigation. */
+export class ScreenBoundary extends Component<{ children: ReactNode; onRetry?: () => void }, { failed: boolean }> {
+  state = { failed: false };
+  static getDerivedStateFromError() { return { failed: true }; }
+  render() {
+    if (!this.state.failed) return this.props.children;
+    return <section data-route-heading="" tabIndex={-1} aria-label="화면을 열지 못했습니다">
+      <ErrorState title="이 화면을 열지 못했습니다"
+        message="연결을 확인한 뒤 다시 시도해 주세요. 다른 메뉴로 이동할 수도 있습니다. 이미 저장된 기록과 초안은 지우지 않습니다."
+        onRetry={this.props.onRetry || (() => window.location.reload())} />
+    </section>;
+  }
 }
 
 export { NavigationBar, type NavigationBarProps, type NavigationItem } from './navigation-bar';

@@ -1,4 +1,5 @@
 *, *::before, *::after { box-sizing: border-box; }
+html { scrollbar-gutter: stable; }
 body { margin: 0; background: var(--color-background); color: var(--color-text); font: var(--type-body-weight) var(--type-body-size)/var(--type-body-line) var(--font-reading); }
 button, input, select, textarea { font: inherit; }
 button, a, input, select, textarea { -webkit-tap-highlight-color: transparent; }

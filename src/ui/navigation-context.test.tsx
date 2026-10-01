@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { NAVIGATION_CONTEXT_KEY, EDITING_CONTEXT_KEY, navigate, readRouteHash, useRoute } from './navigation-context';
 import { NavigationBar } from './navigation-bar';
+import { LoadingState } from './index';
 
 let x = 0, y = 0;
 const scrollTo = vi.fn((options: ScrollToOptions | number, top?: number) => {
@@ -43,6 +44,45 @@ beforeEach(() => {
 afterEach(() => vi.restoreAllMocks());
 
 describe('route context', () => {
+  function DelayedHarness({ ready = false }: { ready?: boolean }) {
+    const route = useRoute();
+    return <><a href="#/third">다른 화면</a><main key={route}><h1>{route}</h1>{route === '/second' && !ready ? <LoadingState /> : <button data-navigation-focus="late:control">늦게 열린 조작</button>}</main></>;
+  }
+  const seedDelayedPosition = () => sessionStorage.setItem(NAVIGATION_CONTEXT_KEY, JSON.stringify({ version: 1, route: '/first', positions: {
+    '/second': { x: 0, y: 740, focus: { kind: 'key', value: 'late:control' } },
+  } }));
+  it('restores scroll and the original control after a lazy screen finishes loading', async () => {
+    seedDelayedPosition(); const view = render(<DelayedHarness />);
+    traversal('#/second');
+    expect(scrollTo).not.toHaveBeenCalled();
+    view.rerender(<DelayedHarness ready />);
+    await act(async () => await Promise.resolve());
+    expect(screen.getByRole('button', { name: '늦게 열린 조작' })).toHaveFocus(); expect(y).toBe(740);
+  });
+  it('does not overwrite a loading screen saved offset when navigating away early', () => {
+    seedDelayedPosition(); render(<DelayedHarness />); traversal('#/second'); traversal('#/third');
+    const saved = JSON.parse(sessionStorage.getItem(NAVIGATION_CONTEXT_KEY)!);
+    expect(saved.positions['/second'].y).toBe(740);
+    expect(screen.getByRole('heading')).toHaveTextContent('/third');
+  });
+  it('does not jump or refocus after the user interacts during deferred restoration', async () => {
+    seedDelayedPosition(); const view = render(<DelayedHarness />); traversal('#/second');
+    fireEvent.wheel(document.body); y = 90; scrollTo.mockClear();
+    view.rerender(<DelayedHarness ready />); await act(async () => await Promise.resolve());
+    expect(y).toBe(90); expect(scrollTo).not.toHaveBeenCalled();
+    expect(screen.getByRole('button')).not.toHaveFocus();
+  });
+  it('resumes position capture after a cancelled loading navigation gesture', async () => {
+    seedDelayedPosition(); const view = render(<DelayedHarness />); traversal('#/second');
+    fireEvent.pointerDown(screen.getByRole('link'));
+    // The pointer gesture is cancelled and never activates the link.
+    fireEvent.pointerCancel(screen.getByRole('link'));
+    view.rerender(<DelayedHarness ready />); await act(async () => await Promise.resolve());
+    expect(scrollTo).not.toHaveBeenCalled();
+    y = 130; fireEvent(window, new Event('pagehide'));
+    const saved = JSON.parse(sessionStorage.getItem(NAVIGATION_CONTEXT_KEY)!);
+    expect(saved.positions['/second'].y).toBe(130);
+  });
   it('handles malformed URI, unsafe routes, percent signs and original Korean IDs without throwing', () => {
     expect(readRouteHash('#/node/%E0%A4%A')).toBe('/');
     expect(readRouteHash('#javascript:alert(1)')).toBe('/');
@@ -83,6 +123,17 @@ describe('route context', () => {
     expect(saved.positions['/first']).toEqual({ x: 0, y: 150, focus: { kind: 'key', value: 'topic:keep' } });
     act(() => window.dispatchEvent(new HashChangeEvent('hashchange')));
     expect(screen.getByRole('heading')).toHaveTextContent('/second');
+  });
+  it('preserves reading position from before pointer focus scrolls the menu into view', async () => {
+    render(<Harness />); const link = screen.getByRole('link');
+    y = 840;
+    fireEvent.pointerDown(link, { button: 0 });
+    y = 895; link.focus();
+    fireEvent.click(link, { button: 0, detail: 1 });
+    const saved = JSON.parse(sessionStorage.getItem(NAVIGATION_CONTEXT_KEY)!);
+    expect(saved.positions['/first'].y).toBe(840);
+    expect(saved.positions['/first'].focus).toEqual({ kind: 'href', value: '#/second' });
+    await screen.findByRole('heading', { name: '/second' });
   });
 
   it('recovers current route and position only when restart URL has no hash', () => {

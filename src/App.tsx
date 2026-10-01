@@ -17,6 +17,7 @@ import {
   EmptyState,
   ErrorState,
   LoadingState,
+  ScreenBoundary,
   NavigationBar,
   ContextMenu,
 } from "./ui";
@@ -603,6 +604,7 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
           </details>
         </header>
         <main id="main" className="main-content">
+          <ScreenBoundary key={`${data.namespace}:${data.userId}:${route}`}>
           {route !== "/" && <Breadcrumb
             items={[
               { label: "오늘", href: "#/" },
@@ -1055,6 +1057,7 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
                 </Button>
               </EmptyState>
             )}
+          </ScreenBoundary>
         </main>
         <NavigationBar label="빠른 이동" className="bottom-nav" items={navItems.map(item => ({href:`#${item.href}`, label:item.text, active:route === item.href || item.href === "/record" && recordRoute || item.href === "/code" && codeRoute || item.href === "/memos" && memoRoute || item.href === "/practice" && practiceRoute || item.href === "/memory-test" && memoryTestRoute || item.href === "/recall" && route === "/recall/scheduled" || item.href === "/subjects" && Boolean(subject)}))} />
       </div>

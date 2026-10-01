@@ -83,6 +83,17 @@ function editingOrDialogOwnsFocus(): boolean {
       Boolean(element.closest('[role="dialog"], dialog[open]')));
 }
 
+function restoreFocus(element: HTMLElement) {
+  element.focus({ preventScroll: true });
+  const navigation = element.closest<HTMLElement>('.ui-navigation-bar');
+  if (!navigation || navigation.scrollWidth <= navigation.clientWidth) return;
+  const item = element.getBoundingClientRect(), area = navigation.getBoundingClientRect();
+  // Reveal a returned menu item inside its own horizontal strip only. Native
+  // scrollIntoView would also move the restored reading position of the page.
+  if (item.left < area.left) navigation.scrollLeft += item.left - area.left;
+  else if (item.right > area.right) navigation.scrollLeft += item.right - area.right;
+}
+
 /** Use this for imperative navigation so the departing page is captured before the hash changes. */
 export function navigate(path: string) {
   if (!validRoute(path) || path === readRouteHash()) return;
@@ -108,6 +119,7 @@ export function useRoute(prefix = 'study-space:demo'): string {
   const current = useRef(route);
   const departed = useRef(false);
   const hasNavigated = useRef(false);
+  const restorationPending = useRef(false);
 
   useEffect(() => {
     const previousScrollRestoration = window.history.scrollRestoration;
@@ -118,14 +130,28 @@ export function useRoute(prefix = 'study-space:demo'): string {
       // Preserve every other owner's history state and the current pathname/query.
       window.history.replaceState(window.history.state, '', `${window.location.pathname}${window.location.search}#${encodeURI(route)}`);
     }
-    const capture = () => {
-      const position: Position = { x: Math.max(0, window.scrollX), y: Math.max(0, window.scrollY), focus: identifyFocus(document.activeElement) };
+    const capturePosition = (hint?: Position) => {
+      // A loading fallback can clamp scroll before the saved page is mounted.
+      if (restorationPending.current) return;
+      const position: Position = hint || { x: Math.max(0, window.scrollX), y: Math.max(0, window.scrollY), focus: identifyFocus(document.activeElement) };
       context.current.positions[current.current] = position;
       const entries = Object.entries(context.current.positions);
       if (entries.length > 100) context.current.positions = Object.fromEntries(entries.slice(-100));
       context.current.route = current.current;
       writeContext(context.current, navigationKey);
     };
+    const capture = () => capturePosition();
+    let pointerDeparture: { route: string; anchor: HTMLAnchorElement; position: Position } | null = null;
+    const pointer = (event: PointerEvent) => {
+      pointerDeparture = null;
+      if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+      const anchor = event.target instanceof Element ? event.target.closest('a[href]') : null;
+      if (anchor instanceof HTMLAnchorElement) pointerDeparture = {
+        route: current.current, anchor,
+        position: { x: Math.max(0, window.scrollX), y: Math.max(0, window.scrollY), focus: identifyFocus(anchor) },
+      };
+    };
+    const cancelPointer = () => { pointerDeparture = null; };
     const beforeNavigate = () => { capture(); departed.current = true; };
     const update = () => {
       const next = readRouteHash();
@@ -145,13 +171,22 @@ export function useRoute(prefix = 'study-space:demo'): string {
         (anchor.target && anchor.target !== '_self')) return;
       const url = new URL(anchor.href, window.location.href);
       if (url.origin === window.location.origin && url.pathname === window.location.pathname &&
-        url.search === window.location.search && url.hash && readRouteHash(url.hash) !== current.current) beforeNavigate();
+        url.search === window.location.search && url.hash && readRouteHash(url.hash) !== current.current) {
+        // Pointer focus can scroll a narrow navigation strip into view before
+        // click. Save the reading position from press, but commit only on click.
+        const hint = event.detail > 0 && pointerDeparture?.route === current.current && pointerDeparture.anchor === anchor
+          ? pointerDeparture.position : undefined;
+        capturePosition(hint); departed.current = true;
+      }
+      pointerDeparture = null;
     };
     window.addEventListener(BEFORE_NAVIGATE, beforeNavigate);
     window.addEventListener('hashchange', update);
     window.addEventListener('popstate', update);
     window.addEventListener('pagehide', capture);
     document.addEventListener('click', click);
+    document.addEventListener('pointerdown', pointer, true);
+    document.addEventListener('pointercancel', cancelPointer, true);
     return () => {
       capture();
       window.removeEventListener(BEFORE_NAVIGATE, beforeNavigate);
@@ -159,6 +194,8 @@ export function useRoute(prefix = 'study-space:demo'): string {
       window.removeEventListener('popstate', update);
       window.removeEventListener('pagehide', capture);
       document.removeEventListener('click', click);
+      document.removeEventListener('pointerdown', pointer, true);
+      document.removeEventListener('pointercancel', cancelPointer, true);
       if (window.history.scrollRestoration === 'manual') window.history.scrollRestoration = previousScrollRestoration;
     };
     // One listener owns the lifetime of this workspace; mutable route lives in current.
@@ -167,17 +204,48 @@ export function useRoute(prefix = 'study-space:demo'): string {
 
   useLayoutEffect(() => {
     const position = context.current.positions[route];
-    if (editingOrDialogOwnsFocus()) return;
-    const target = position?.focus && findFocus(position.focus);
-    const heading = !target && hasNavigated.current
-      ? document.querySelector<HTMLElement>('[data-route-heading], main h1, main h2') : null;
-    if (target) target.focus({ preventScroll: true });
-    else if (heading) {
-      if (!heading.hasAttribute('tabindex')) heading.tabIndex = -1;
-      heading.focus({ preventScroll: true });
-    }
-    const x = position?.x ?? 0, y = position?.y ?? 0;
-    if (window.scrollX !== x || window.scrollY !== y) window.scrollTo({ left: x, top: y, behavior: 'instant' });
+    let stopped = false;
+    const restore = () => {
+      if (stopped || current.current !== route) return;
+      if (editingOrDialogOwnsFocus()) { restorationPending.current = false; return; }
+      if (document.querySelector('main [data-ui-loading]')) { restorationPending.current = true; return; }
+      restorationPending.current = false;
+      const target = position?.focus && findFocus(position.focus);
+      const heading = !target && hasNavigated.current
+        ? document.querySelector<HTMLElement>('[data-route-heading], main h1, main h2') : null;
+      if (target) restoreFocus(target);
+      else if (heading) {
+        if (!heading.hasAttribute('tabindex')) heading.tabIndex = -1;
+        heading.focus({ preventScroll: true });
+      }
+      const x = position?.x ?? 0, y = position?.y ?? 0;
+      if (window.scrollX !== x || window.scrollY !== y) window.scrollTo({ left: x, top: y, behavior: 'instant' });
+      stopped = true;
+    };
+    restore();
+    if (!restorationPending.current) return;
+    // Observe only while a route is loading. Never refocus on normal data updates.
+    const observer = new MutationObserver(() => {
+      // A cancelled link/history gesture may never leave this route. Release
+      // capture suppression when it finishes loading without restoring focus.
+      if (stopped && !document.querySelector('main [data-ui-loading]')) restorationPending.current = false;
+      else if (!stopped) restore();
+      if (!restorationPending.current) observer.disconnect();
+    });
+    observer.observe(document.querySelector('main') || document.body, { childList: true, subtree: true });
+    const interact = (event: Event) => {
+      stopped = true;
+      const anchor = event.target instanceof Element ? event.target.closest('a[href]') : null;
+      const historyKey = event instanceof KeyboardEvent && (event.altKey || event.metaKey || event.ctrlKey);
+      // Departing during loading must retain the earlier page position, not its fallback.
+      if (!anchor && !historyKey) { restorationPending.current = false; observer.disconnect(); }
+    };
+    const events = ['pointerdown', 'keydown', 'wheel', 'touchmove'];
+    events.forEach(name => { document.addEventListener(name, interact, { capture: true, passive: true }); });
+    return () => {
+      stopped = true; observer.disconnect();
+      events.forEach(name => { document.removeEventListener(name, interact, true); });
+    };
   }, [route]);
   return route;
 }
