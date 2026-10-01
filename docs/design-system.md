@@ -59,3 +59,17 @@
 기본 터치 영역44/48px·입력16px·포커스 표시·모션 감소·서체/테마 설정 경로를 유지합니다. 출제 가능성/확정·계층·오류 의미색은 바꾸지 않습니다. 초록 펜은 브랜드 primary와 분리한 color-memo-green으로 기존 밝게/어둡게 색을 그대로 사용합니다. 저장 키·ID·원문·선 좌표·필압·수정 이력·Canvas 배치·입력 동작은 바꾸지 않습니다.
 
 이는 기존 핵심 흐름의 실제 화면에 공통 표현을 반영한 결과입니다. 56개 정의의 모든 상태·물리기기·서버/Sync·실사용 만족까지 완료했다는 판정은 아닙니다. 이번 브라우저·자동검사·배포 범위는 최신 인계의 같은 날짜 항목을 따릅니다.
+
+
+## 2026-10-01 토큰 준수 검사와 기존 표현 보존
+
+첨부 `436.heic` 등 9장의 Color·Typography·Component·State·Spacing·Radius·Shadow 원칙은 이 문서의 공통 역할과 부품으로 적용합니다. 사진의 색상값이나 도구 화면을 그대로 복제하지 않습니다. `npm run check:design`은 `src/**/*.css`를 읽기 전용으로 확인하고, 위반의 파일·줄·속성을 출력하며 오류 시 종료 코드 1을 반환합니다. 개발 시작·앱 빌드·lint에 연결되어 있고 `npm run test:design`은 허용/거부 경계를 검증합니다. `npm test`는 이 검사기의 회귀를 먼저 실행합니다. 기존 Pages workflow의 npm test·npm run build가 두 검사를 실행합니다.
+
+- 확인: 색상 직접 값·색 함수, 글꼴/크기/굵기/행간/자간 직접 값, 절대 간격·모서리·그림자 직접 값, 정의되지 않은 디자인 토큰, 변수 fallback 안의 직접 값. 지역 별칭으로 우회한 값도 소비 속성의 역할을 따라 확인합니다. 공통 `src/ui/tokens.css`는 실제 값의 정의를 소유합니다.
+- 허용: 0·0px, inherit/normal/none/auto/transparent/currentColor 등 기본 CSS 의미, 토큰의 계산식·단위 없는 배율, 비율 간격, env 안전 영역, 이미지 URL, 미디어 조건. 폭·높이·위치·변환·격자 치수·SVG stroke-width·기존 경계 두께 등 도형/레이아웃 값은 이 좁은 검사의 대상이 아닙니다. 강제 색상 모드의 시스템 색은 그 미디어 조건 안에서 허용합니다. 런타임 목차 깊이 `--outline-indent`는 디자인 토큰으로 오인하지 않습니다.
+- 국소 예외: 필요할 때 바로 앞에 `/* design-token-exception: padding -- 외부 임베드가 요구하는 고정 여백 */`처럼 **다음 한 선언의 속성과 구체적인 이유**를 적습니다. 전체 파일의 검사를 끄지 않으며, 예외로 토큰 오타나 파싱 오류를 숨기지 않습니다. 예외 수는 결과에 표시됩니다. 새 토큰·예외의 필요성과 역할 적합성은 작업자가 판단합니다.
+- 한계: TSX 인라인 스타일·외부 라이브러리의 CSS는 검사하지 않습니다. 토큰이 실제 선택자/테마에서 제공되는지, 같은 역할의 부품을 재사용했는지, 상태의 실제 의미·접근성·저장 신뢰·시각적 만족은 정적 검사만으로 보장하지 않습니다. 관련 공통 부품과 실제 앱에서 확인합니다.
+
+공개 화면의 기존 크기를 보존하기 위해 metric(통계 숫자 `1.5rem`), chart(차트 글자 `12px`), title/brand tracking(`-.035em`/`.12em`)을 역할 토큰으로 옮겼습니다. 개인 진입의 16/24/48px 간격, 시험 타이머·주제 카드의 글자 역할은 같은 값의 기존 토큰을 참조합니다. 시험 화면의 compact 폭은 기존 fallback과 같은 40rem입니다. 메모 오류 문구의 존재하지 않던 `--color-error`는 기존 오류 의미색 `--color-danger`로 수정합니다. 저장·ID·초안·원문·배치를 바꾸지 않습니다. 다른 개발 작업의 자료·그래프·수식 기능과 색상 체계 변경은 이번 공개 배포에 포함하지 않습니다.
+
+도구 선택은 [PostCSS](https://github.com/postcss/postcss/blob/main/docs/api.md)와 [postcss-value-parser](https://github.com/postcss/postcss-value-parser)의 공개 파싱 API를 재사용하고, **프로젝트의 토큰 정책만 작은 검사로 구현**했습니다. 기존 Vite의 PostCSS 8.5.28을 직접 개발 의존성으로 명시하고 값 파서 4.2.0을 추가합니다. [Stylelint 기본 규칙](https://stylelint.io/user-guide/rules/)과 [declaration-strict-value](https://github.com/AndyOGo/stylelint-declaration-strict-value)는 일반 CSS 검사/변수 사용 강제 후보로 확인했습니다. 이번에는 이미 있는 파서를 이용하여 토큰 정의·fallback·지역 별칭·선언별 예외를 하나의 제한된 검사로 다루고, 기존 공개 앱의 Vitest·TypeScript·Vite와 Pages 배포 경로를 유지합니다. 이 자체 정책을 공인 표준이나 전체 CSS 검증으로 표현하지 않습니다. 더 넓은 CSS 문법·관례 검사 필요가 생기면 Stylelint 도입을 해당 요구에서 다시 판단합니다.

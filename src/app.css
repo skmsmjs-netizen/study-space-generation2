@@ -25,7 +25,7 @@ p {
 h1 {
   font-size: var(--type-display-size);
   line-height: var(--type-display-line);
-  letter-spacing: -0.035em;
+  letter-spacing: var(--type-title-tracking);
   overflow-wrap: anywhere;
 }
 h2 {
@@ -87,7 +87,7 @@ hr {
 .brand span {
   display: block;
   font-size: var(--type-caption-size);
-  letter-spacing: 0.12em;
+  letter-spacing: var(--type-brand-tracking);
   color: var(--color-muted);
   margin-top: var(--space-1);
 }

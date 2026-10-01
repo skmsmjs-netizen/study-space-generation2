@@ -1,9 +1,9 @@
-.personal-entry { max-width: 32rem; margin: 3rem auto; padding: var(--space-4, 1rem); }
-.personal-entry form { display: grid; gap: 1rem; }
-.personal-entry .card { padding: 1.5rem; }
+.personal-entry { max-width: 32rem; margin: var(--space-7) auto; padding: var(--space-4); }
+.personal-entry form { display: grid; gap: var(--space-4); }
+.personal-entry .card { padding: var(--space-5); }
 .personal-entry h1 { margin-top: 0; }
-.personal-entry + .actions { margin-top: 1rem; }
+.personal-entry + .actions { margin-top: var(--space-4); }
 pre { max-width: 100%; overflow: auto; white-space: pre-wrap; overflow-wrap: anywhere; }
 
-.account-list { list-style: none; padding: 0; display: grid; gap: var(--space-4, 1rem); }
+.account-list { list-style: none; padding: 0; display: grid; gap: var(--space-4); }
 .account-list li, .account-decision { padding: var(--space-4); border: var(--border-width) solid var(--color-border); border-radius: var(--radius-md); overflow-wrap: anywhere; }

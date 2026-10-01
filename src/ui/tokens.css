@@ -44,6 +44,11 @@
   --type-caption-size: .875rem;
   --type-caption-weight: 400;
   --type-caption-line: 1.6;
+  --type-metric-size: 1.5rem;
+  --type-chart-size: 12px;
+  --type-title-tracking: -.035em;
+  --type-brand-tracking: .12em;
+  --layout-compact: 40rem;
   --space-0: 0;
   --space-1: .25rem;
   --space-2: .5rem;

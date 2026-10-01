@@ -28,7 +28,7 @@
 .memo-details summary::before { content: '+'; margin-right: var(--space-2); }
 .memo-details[open] summary::before { content: '−'; }
 .memo-notice { height: 4.5em; overflow: auto; margin-top: var(--space-2); font-size: var(--type-caption-size); }
-.memo-notice p { margin: 0; color: var(--color-error); }
+.memo-notice p { margin: 0; color: var(--color-danger); }
 .memo-drawing { display: block; width: 100%; height: 100%; touch-action: none; user-select: none; -webkit-user-select: none; cursor: crosshair; }
 .memo-drawing path { pointer-events: none; }
 .memo-drawing .memo-erase-target { pointer-events: stroke; cursor: pointer; }
