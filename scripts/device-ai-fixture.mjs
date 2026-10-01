@@ -22,6 +22,7 @@ await build({
     {
       name: 'isolated-gpt-client',
       setup(api) {
+        api.onResolve({ filter: /data\/photo-outline(?:\.ts)?$/ }, () => ({ path: path.join(root, 'e2e/fixtures/photo-outline-client.ts') }));
         api.onResolve({ filter: /data\/study-ai(?:\.ts)?$/ }, () => ({
           path: path.join(root, 'e2e/fixtures/study-ai-client.ts'),
         }));

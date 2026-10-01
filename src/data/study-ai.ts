@@ -64,7 +64,7 @@ async function requestTopicMemory(
   return receiveTopicMemoryResponse(response, input);
 }
 
-async function ownerAuthHeaders(
+export async function ownerAuthHeaders(
   owner: Pick<AppState, 'userId' | 'namespace'>,
 ): Promise<Record<string, string>> {
   requireOwnerAI(owner);
@@ -97,7 +97,7 @@ export interface GPTConnectionStatus {
   connectionError: string;
 }
 export const CHATGPT_USAGE_URL = 'https://chatgpt.com/settings/usage';
-async function studyAIRequestTarget(owner: Pick<AppState, 'userId' | 'namespace'>, connection: GPTConnectionStatus, path: string) {
+export async function studyAIRequestTarget(owner: Pick<AppState, 'userId' | 'namespace'>, connection: GPTConnectionStatus, path: string) {
   const headers = await ownerAuthHeaders(owner);
   if (connection.local) return { url: `/api/study-ai${path}`, headers };
   const config = readServerConfig();

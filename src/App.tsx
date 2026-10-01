@@ -792,7 +792,7 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
                 <Button variant="primary" onClick={() => openDialog("subject")}>
                   과목 추가
                 </Button>
-                <OutlineTableEditor data={data}
+                <OutlineTableEditor data={data} repository={repository} onSaved={setData}
                   initialScope={scope === "independent" ? { kind: "independent" } : scope === "all" || scope === "unassigned" ? { kind: "unassigned" } : { kind: "semester", semesterId: scope }}
                   onApply={command => {
                     const result = commit(command, undefined, { opId: command.opId, at: command.at });

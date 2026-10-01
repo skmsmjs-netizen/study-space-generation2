@@ -1,3 +1,4 @@
+import { studyOutputFormat } from './study-output-format';
 import { DomainError } from '../domain/model';
 import type { GPTMaterialRuntime } from './gpt-material';
 
@@ -14,7 +15,7 @@ export function createOpenAIAPIRuntime(budget: APIBudget, requestFetch: typeof f
   return { async streamResponse(options) {
     if (options.model !== API_MODEL) throw new DomainError('AI_MODEL', '사용할 API 모델을 확인해 주세요.');
     options.signal.throwIfAborted();
-    const inputBound = new TextEncoder().encode(options.input + options.instructions).length + 4096;
+    const inputBound = new TextEncoder().encode(options.input + options.instructions).length + 4096 + (options.images?.length ?? 0) * 16384;
     const ceiling = budgetCost(inputBound, API_MAX_OUTPUT_TOKENS);
     const id = crypto.randomUUID();
     const { key } = await budget.reserve(id, ceiling);
@@ -27,8 +28,9 @@ export function createOpenAIAPIRuntime(budget: APIBudget, requestFetch: typeof f
         method: 'POST', headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
         redirect: 'error', signal: options.signal,
         body: JSON.stringify({ model: API_MODEL, instructions: options.instructions,
-          input: [{ role: 'user', content: options.input }], store: false, stream: false,
-          service_tier: 'default', reasoning: { effort: 'low' }, max_output_tokens: API_MAX_OUTPUT_TOKENS }),
+          input: [{ role: 'user', content: options.images?.length ? [{type:'input_text',text:options.input}, ...options.images.map(image_url=>({type:'input_image',image_url,detail:'high'}))] : options.input }], store: false, stream: false,
+          service_tier: 'default', reasoning: { effort: 'low' },
+          text: { format: studyOutputFormat(options.outputFormat) }, max_output_tokens: API_MAX_OUTPUT_TOKENS }),
       });
       if (!response.ok) {
         // No raw supplier error: it may contain request text or credentials.

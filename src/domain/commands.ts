@@ -5,6 +5,7 @@ import { boardContent, validateBoard, verifyBoardTopics } from './study-board';
 import { DomainError, type AppState, type Command, type CriteriaAssignment, type DateEvidence, type DomainEntity, type EntityCollection, type Narrative, type OutlineNode, type Revision, type Scope, type StudyRecord, type TraceDefinition, type TraceState } from './model';
 import { TRACE_ITEMS, WRITTEN_REVIEW_ITEM_ID } from './trace';
 import { criteriaRevisionToken, criteriaScopeTargets, defaultCriteriaItems, validateTraceDefinition } from './criteria';
+import { previewPhotoOutline } from './photo-outline';
 import { MAX_OUTLINE_ROWS, outlineRevisionToken, outlineTableToken, previewOutlineEntries, previewOutlineTable } from './outline';
 import { validateMemoryCard, validateMemoryTest } from './memory-test';
 import { validateMemoContent } from './memo';
@@ -444,6 +445,28 @@ export function applyCommand(state: AppState, command: Command): AppState {
     }
     case 'addSemester': fresh(command.id); write('semesters', { ...common(command.id), name: title(command.name), order: next.semesters.length }); break;
     case 'addSubject': fresh(command.id); verifyScope(next, command.scope); write('subjects', { ...common(command.id), name: title(command.name), scope: clone(command.scope), order: next.subjects.length }); break;
+    case 'importPhotoOutline': {
+      find(next.subjects, command.subjectId);
+      if (command.parentId !== null) { find(next.nodes, command.parentId); if (targetSubject(next,command.parentId)!==command.subjectId) fail('SUBJECT_MISMATCH','등록할 상위 항목의 과목을 확인해 주세요.'); }
+      const plan=previewPhotoOutline(next,command.subjectId,command.parentId,command.rows,command.choices);
+      if (command.expectedToken!==plan.expectedToken) fail('OUTLINE_STALE','목차가 바뀌었습니다. 사진 초안은 유지했습니다. 현재 목차와 다시 확인해 주세요.');
+      if (!plan.ready) fail('OUTLINE_CHOICE_REQUIRED','같은 이름의 항목을 연결할지 새로 만들지 선택해 주세요.');
+      validateMaterialContent(command.content);
+      if (command.content.subjectId!==command.subjectId || command.content.topicId!==null) fail('SUBJECT_MISMATCH','사진 자료와 목차의 과목을 확인해 주세요.');
+      if (!command.ids || !command.memoIds || typeof command.ids!=='object' || typeof command.memoIds!=='object') fail('INVALID_ID','등록할 항목의 식별자를 확인해 주세요.');
+      const used=new Set<string>(); const checkFresh=(id:string)=>{fresh(id);if(used.has(id))fail('DUPLICATE_ID','등록할 항목의 식별자가 겹쳤습니다.');used.add(id);};
+      checkFresh(command.materialId);
+      for(const p of plan.entries){if(p.status==='new')checkFresh(command.ids[p.row.id]);if(p.row.content.trim())checkFresh(command.memoIds[p.row.id]);}
+      const resolved=new Map<string,string>();
+      for(const p of plan.entries){
+        const parentId=p.parentKey===null?command.parentId:resolved.get(p.parentKey)!;
+        const id=p.status==='reuse'?p.id!:command.ids[p.row.id];
+        if(p.status==='new')write('nodes',{...common(id),subjectId:command.subjectId,parentId,role:p.role,name:title(p.row.name),order:Math.max(-1,...next.nodes.filter(n=>n.subjectId===command.subjectId&&n.parentId===parentId).map(n=>n.order))+1});
+        resolved.set(p.row.id,id);
+        if(p.row.content.trim()) { const body=p.row.content+`\n\n사진에서 가져온 내용 · ${command.content.title}${p.row.page ? ` · ${p.row.page}` : ''}`; validateMemoContent({body,ownerId:id,strokes:[]});write('memos',{...common(command.memoIds[p.row.id]),ownerId:id,body,strokes:[]}); }
+      }
+      write('studyMaterials',{...common(command.materialId),...clone(command.content)});break;
+    }
     case 'createOutlineTable': {
       if (command.expectedToken !== outlineTableToken(next)) fail('OUTLINE_STALE', '목차가 변경되었습니다. 입력은 유지하고 생성할 구조를 다시 확인해 주세요.');
       const preview = previewOutlineTable(next, command);

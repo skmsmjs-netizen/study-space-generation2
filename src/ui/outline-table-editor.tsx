@@ -2,6 +2,8 @@ import { useLayoutEffect, useRef, useState, type KeyboardEvent } from 'react';
 import type { AppState, Command, OutlineTableCourse, OutlineTableInput, OutlineTableTopic, OutlineTableUnit, Scope } from '../domain/model';
 import { outlineTableToken, previewOutlineTable } from '../domain/outline';
 import { DraftArchiveError, archiveDamagedDraft, clearStoredDraft, draftHasUnstoredText, readRescuedDraft, storeDraftSafely } from '../data/draft-safety';
+import { PhotoOutlineImport } from './photo-outline-import';
+import type { StudyRepository } from '../data/repository';
 import { Button, ErrorState, Input, Modal, Select } from './index';
 import { useModalEditingContext } from './modal-context';
 import './outline-table-editor.css';
@@ -52,14 +54,14 @@ function readDraft(key: string, data: AppState): TableDraft | null {
 }
 
 interface Props {
-  data: AppState; initialScope: Scope;
+  data: AppState; initialScope: Scope; repository?: StudyRepository; onSaved?: (data: AppState) => void;
   onApply: (command: CreateCommand) => AppState | null;
   onUndo?: (revisionId: string, expectedVersion: number) => AppState | null;
 }
 export function OutlineTableEditor(props: Props) {
   return <TableEditor key={`${props.data.namespace}:${props.data.userId}`} {...props} />;
 }
-function TableEditor({ data, initialScope, onApply, onUndo }: Props) {
+function TableEditor({ data, initialScope, onApply, onUndo, repository, onSaved }: Props) {
   const key = outlineTableDraftKey(data);
   const [boot] = useState(() => { try { return { draft: readDraft(key, data), error: '' }; } catch { return { draft: null, error: '표 초안을 읽지 못했습니다.' }; } });
   const [draft, setDraft] = useState<TableDraft | null>(boot.draft), [open, setOpen] = useState(false), [blocked, setBlocked] = useState(Boolean(boot.error));
@@ -68,6 +70,7 @@ function TableEditor({ data, initialScope, onApply, onUndo }: Props) {
   const fields = useRef(new Map<string, HTMLInputElement>()), focusNext = useRef<string | null>(null), creating = useRef(false);
   const modalAnchor = useRef<HTMLParagraphElement>(null);
   useModalEditingContext(open, key, modalAnchor, fields);
+  // biome-ignore lint/correctness/useExhaustiveDependencies(draft): A newly mounted draft field receives the requested focus after React renders it.
   useLayoutEffect(() => { if (focusNext.current) { fields.current.get(focusNext.current)?.focus(); focusNext.current = null; } }, [draft]);
   const persist = (next: TableDraft): boolean => {
     setDraft(next);
@@ -139,6 +142,7 @@ function TableEditor({ data, initialScope, onApply, onUndo }: Props) {
   };
   const field = (row: OutlineTableTopic, label: string, onChange: (value: string) => void, lastTopic?: { courseKey: string; unitKey: string }) => <Input label={label} placeholder={label.includes('주제') ? '주제명' : label.includes('단원') ? '단원명' : '과목명'} value={row.name} maxLength={180} disabled={locked} data-table-cell={row.key} data-editing-context={`outline-table:${row.key}`} ref={element => { if (element) fields.current.set(row.key, element); else fields.current.delete(row.key); }} onChange={event => onChange(event.target.value)} onKeyDown={event => enter(event, row.key, lastTopic)} />;
   return <>
+    {repository && onSaved && <PhotoOutlineImport data={data} repository={repository} onSaved={onSaved} />}
     <Button onClick={launch}>표로 한 번에 만들기{draft ? ' · 작성 이어가기' : ''}</Button>
     {undo && onUndo && <Button onClick={() => { try { const result = onUndo(undo.revisionId, undo.expectedVersion); if (result) { setUndo(null); setMessage('표에서 생성한 항목을 되돌렸습니다.'); } else setError('그 뒤 연결되거나 수정한 내용이 있어 되돌리지 못했습니다. 현재 자료를 유지했습니다.'); } catch (reason) { setError(reason instanceof Error ? reason.message : '되돌리지 못했습니다. 현재 자료를 유지했습니다.'); } }}>표 생성 되돌리기</Button>}
     {message && <p role="status">{message}</p>}{!open && error && <ErrorState message={error} />}

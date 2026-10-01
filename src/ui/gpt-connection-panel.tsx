@@ -60,7 +60,7 @@ export function GPTConnectionPanel({ userId, namespace = 'personal', busy = fals
     <div className="material-connection">
       <h2>GPT 연결</h2>
       <p>OpenAI API로 {purpose === 'memory' ? '암기항목을' : '요약·카드·퀴즈를'} 만듭니다. ChatGPT Plus 구독과 별도로 사용한 만큼 요금이 발생합니다.</p>
-      <p>GPT-6 Luna · 기본 월 상한 US$10. 전사문 가져오기와 기기 OCR은 API 비용을 쓰지 않습니다.</p>
+      <p>GPT-6 Luna · 기본 월 상한 US$10. 전사문 가져오기는 API 비용을 쓰지 않습니다. 사진 분석은 생성 버튼을 누를 때 API 비용이 듭니다.</p>
       <p>새 API 계정은 최소 US$5 선충전이 필요합니다. 매달 내는 구독료가 아니며 잔액은 1년 동안 사용합니다. 결제 화면에서 자동 충전은 꺼 주세요. <a href="https://help.openai.com/en/articles/8264644-setting-up-and-managing-prepaid-api-billing" target="_blank" rel="noreferrer">충전 안내</a></p>
       <div className="material-actions">
         <a href="https://platform.openai.com/api-keys" target="_blank" rel="noreferrer">API 키 만들기</a>

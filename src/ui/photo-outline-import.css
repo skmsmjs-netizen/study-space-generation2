@@ -1,0 +1,60 @@
+.photo-outline-import {
+  display: grid;
+  gap: var(--space-4);
+  min-width: 0;
+}
+.photo-outline-target {
+  display: grid;
+  gap: var(--space-3);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+}
+.photo-outline-photos {
+  display: grid;
+  gap: var(--space-3);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+}
+.photo-outline-photos figure {
+  margin: 0;
+  min-width: 0;
+}
+.photo-outline-photos img {
+  display: block;
+  width: 100%;
+  max-height: 22rem;
+  object-fit: contain;
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+.photo-outline-photos figcaption {
+  overflow-wrap: anywhere;
+  color: var(--color-muted);
+  margin-block: var(--space-2);
+}
+.photo-outline-row {
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  min-width: 0;
+}
+.photo-outline-row summary {
+  overflow-wrap: anywhere;
+  cursor: pointer;
+}
+.photo-outline-row[open] > :not(summary) {
+  margin-block-start: var(--space-3);
+}
+.photo-outline-original {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  max-height: 30rem;
+  overflow: auto;
+  font-size: var(--type-caption-size);
+}
+
+.photo-outline-hierarchy {
+  padding-inline-start: var(--space-5);
+  overflow-wrap: anywhere;
+}
+.photo-outline-hierarchy li {
+  margin-block: var(--space-2);
+}

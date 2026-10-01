@@ -108,6 +108,7 @@ export type Command = CommandContext & (
   | { type: 'addNode'; id: string; subjectId: string; parentId: string | null; role: OutlineNode['role']; name: string }
   | { type: 'addNodes'; subjectId: string; parentId: string | null; role: OutlineNode['role']; entries: { id: string; name: string }[]; expectedToken: string; duplicateNames?: 'create' }
   | { type: 'reorderNodes'; subjectId: string; parentId: string | null; ids: string[]; expectedToken: string }
+  | { type: 'importPhotoOutline'; subjectId: string; parentId: string | null; rows: import('./photo-outline').PhotoOutlineRow[]; choices: Record<string,string>; ids: Record<string,string>; memoIds: Record<string,string>; expectedToken: string; materialId: string; content: import('./study-material').MaterialContent }
   | ({ type: 'createOutlineTable'; expectedToken: string; ids: Record<string, string> } & OutlineTableInput)
   | { type: 'renameNode'; id: string; name: string; expectedVersion: number }
   | { type: 'moveNode'; id: string; parentId: string | null; order?: number; expectedVersion: number }

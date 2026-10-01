@@ -11,8 +11,9 @@ import { buildMaterialGPTInstructions, STUDY_GPT_PROMPT_VERSION } from './study-
 
 export interface GPTMaterialRuntime {
   streamResponse(options: {
-    outputFormat?: 'material' | 'quiz' | 'mindmap' | 'topic-memory' | 'study-pack';
+    outputFormat?: 'material' | 'quiz' | 'mindmap' | 'topic-memory' | 'study-pack' | 'photo-outline';
     model: string;
+    images?: string[];
     input: string;
     instructions: string;
     signal: AbortSignal;

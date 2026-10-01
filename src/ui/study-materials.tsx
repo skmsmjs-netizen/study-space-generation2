@@ -21,6 +21,7 @@ import {
 import type { StudyRepository } from '../data/repository';
 import { generateStudyMaterial } from '../data/study-ai';
 import { GPTConnectionPanel } from './gpt-connection-panel';
+import { PhotoOutlineImport } from './photo-outline-import';
 import { MaterialSources } from './material-sources';
 import { MaterialQuiz } from './material-quiz';
 import { MaterialTutor } from './material-tutor';
@@ -209,7 +210,8 @@ function MaterialEditor({
   const savingFlight = useRef(false);
   const stableMaterialId = useRef(selected?.id ?? crypto.randomUUID());
   const [saving, setSaving] = useState(false);
-  const task = canonicalStudyTask(content.aiRequest?.task ?? 'summary');
+  const storedTask = canonicalStudyTask(content.aiRequest?.task ?? 'summary');
+  const task = ['tutor','source-qa'].includes(storedTask) ? 'summary' : storedTask;
   function requestPatch(patch: Partial<StudyAIRequest>) {
     retain({ ...current.current, aiRequest: { task, ...current.current.aiRequest, ...patch } });
   }
@@ -246,11 +248,10 @@ function MaterialEditor({
       setTab('summary');
       return;
     }
-    setEditingCard('');
-    setSourceOpen(false);
     viewState.current = { ...viewState.current, resultId: result?.id, cardId: card?.id, tab, activeDisclosure: answer === cardKey && cardKey ? 'revealed' : 'hidden' };
     retain(current.current);
   }, [ready, result?.id, card?.id, tab]);
+  useEffect(() => {setEditingCard('');setSourceOpen(false);},[result?.id,card?.id,tab]);
   const capable =
     data.namespace === 'demo' || repository.getCapabilities?.().includes('saveStudyMaterial');
   function retain(next: MaterialContent) {
@@ -716,6 +717,7 @@ function MaterialEditor({
           />
         )}
       </fieldset>
+      {aiAllowed && <PhotoOutlineImport data={data} repository={repository} onSaved={onSaved} initialSubjectId={content.subjectId ?? undefined} />}
       <MaterialSources owner={owner} documents={content.documents ?? []} disabled={!ready || busy || saving}
         onBusy={setImporting} onChange={async documents => {
           retain({ ...current.current, documents, title: current.current.title || documents[0]?.name.replace(/\.[^.]+$/, '') || '' });
@@ -762,7 +764,7 @@ function MaterialEditor({
               disabled={!ready || busy || saving || importing}
               onChange={(event) => requestPatch({ task: event.target.value as StudyAITask })}
             >
-              {Object.entries(STUDY_AI_TASKS).map(([value, option]) => (
+              {Object.entries(STUDY_AI_TASKS).filter(([value]) => !['tutor','source-qa'].includes(value)).map(([value, option]) => (
                 <option key={value} value={value}>
                   {option.label}
                 </option>
@@ -1175,15 +1177,7 @@ function MaterialEditor({
           )}
         </fieldset>
       )}
-      {aiAllowed && <MaterialTutor key={`${result?.id}:${tab === 'quiz' ? 'quiz' : 'read'}`} onHelp={recordHelp} turns={content.results.filter(row => row.request?.task === 'tutor' || row.request?.task === 'source-qa')} currentSource={content} question={content.tutorDraft ?? ''} disabled={!ready || busy || saving || importing}
-        onChange={tutorDraft => retain({ ...current.current, tutorDraft })}
-        onAsk={async () => {
-          const source = current.current;
-          const sameSources = (row: typeof source.results[number]) => row.source !== undefined && materialSourceIdentity(row.source) === materialSourceIdentity({ ...source, audio: null });
-          const history = source.results.filter(row => (row.request?.task === 'tutor' || row.request?.task === 'source-qa') && sameSources(row)).slice(-6).map(row => ({ question: row.request?.focus ?? '', answer: row.summary.map(line => line.text).join('\n\n') }));
-          while (history.length && (JSON.stringify(history).length > 40000 || history.some(t => t.answer.length > 20000))) history.shift();
-          await analyze({ ...source, aiRequest: { task: 'tutor', focus: source.tutorDraft ?? '', history } });
-        }}
+      {aiAllowed && <MaterialTutor key={`${result?.id}:${tab === 'quiz' ? 'quiz' : 'read'}`} onHelp={recordHelp} turns={content.results.filter(row => row.request?.task === 'tutor' || row.request?.task === 'source-qa')} currentSource={content}
         onEvidence={(resultId, id) => { const index = current.current.results.findIndex(r => r.id === resultId); if (index >= 0) { recordHelp(); setResultIndex(index); setAnswer(''); setEditingCard(''); setTab('transcript'); setTimeout(() => document.getElementById(`material-segment-${id}`)?.scrollIntoView({ block: 'nearest' }), 0); } }}/ >}
       {selected && (
         <details className="material-history">
