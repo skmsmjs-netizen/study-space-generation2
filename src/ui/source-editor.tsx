@@ -69,6 +69,7 @@ export function SourceEditor({
   callbacks.current = { onChange, onRun };
   const [tabMovesFocus, setTabMovesFocus] = useState(false);
   const checker = useRef<Worker | null>(null), checkId = useRef(0);
+  const checkUnavailable = useRef(false);
   const [syntax, setSyntax] = useState<'empty' | 'checking' | 'ready' | 'unavailable'>('empty');
   const [diagnostics, setDiagnostics] = useState<SyntaxDiagnostic[]>([]);
   const [retry, setRetry] = useState(0);
@@ -152,20 +153,24 @@ export function SourceEditor({
       editor.current.executeEdits('restore', [{ range: model.getFullModelRange(), text: value }]);
   }, [value]);
   useEffect(() => {
-    const worker = new SyntaxWorker();
+    checkUnavailable.current = false;
+    let worker: Worker;
+    try { worker = new SyntaxWorker(); }
+    catch { checkUnavailable.current = true; setSyntax('unavailable'); return; }
     checker.current = worker;
     worker.onmessage = (event: MessageEvent<{ id: number; diagnostics?: SyntaxDiagnostic[]; unavailable?: boolean }>) => {
       if (event.data.id !== checkId.current) return;
       const model = editor.current?.getModel();
       if (!model) return;
       const issues = event.data.diagnostics ?? [];
+      checkUnavailable.current = Boolean(event.data.unavailable);
       setDiagnostics(issues);
       setSyntax(event.data.unavailable ? 'unavailable' : 'ready');
       monaco.editor.setModelMarkers(model, 'study-syntax', issues.map(issue => ({
         ...issue, severity: monaco.MarkerSeverity.Error, source: '문법 검사',
       })));
     };
-    worker.onerror = () => { setSyntax('unavailable'); };
+    worker.onerror = () => { checkUnavailable.current = true; setSyntax('unavailable'); };
     return () => { checker.current = null; worker.terminate(); };
   }, [retry]);
   useEffect(() => {
@@ -173,9 +178,12 @@ export function SourceEditor({
     const model = editor.current?.getModel();
     if (model) monaco.editor.setModelMarkers(model, 'study-syntax', []);
     setDiagnostics([]);
-    setSyntax(value.trim() ? 'checking' : 'empty');
-    if (!value.trim()) return;
-    const timer = setTimeout(() => checker.current?.postMessage({ id, code: value, language }), 350);
+    setSyntax(value.trim() ? checkUnavailable.current ? 'unavailable' : 'checking' : 'empty');
+    if (!value.trim() || checkUnavailable.current) return;
+    const timer = setTimeout(() => {
+      try { checker.current?.postMessage({ id, code: value, language }); }
+      catch { checkUnavailable.current = true; setSyntax('unavailable'); }
+    }, 350);
     return () => clearTimeout(timer);
   }, [value, language, retry]);
   return (
