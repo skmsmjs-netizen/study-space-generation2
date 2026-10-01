@@ -466,7 +466,8 @@ describe('outline changes keep the original study identity', () => {
     await user.click(screen.getByRole('button', { name: '이 위치로 옮기기' }));
     expect(state().nodes.find(node => node.id === firstTopic)?.parentId).toBeNull();
     expect(currentRecords()).toEqual(before.records);
-    expect(screen.getByText('옮겨도 남는 원문')).toBeInTheDocument();
+    const savedRecords = screen.getByRole('heading', { name: '공부 기록', level: 2 }).closest('section')!;
+    expect(within(savedRecords).getByText('옮겨도 남는 원문')).toBeVisible();
     await user.click(screen.getByRole('button', { name: '되돌리기' }));
     expect(state().nodes.find(node => node.id === firstTopic)?.parentId).toBe(parentId);
     expect(currentRecords()).toEqual(before.records);
