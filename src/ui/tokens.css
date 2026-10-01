@@ -245,6 +245,7 @@
 
 :root[data-theme="dark"] {
   color-scheme: dark;
+  --color-text-secondary: var(--color-muted);
   --color-secondary-button-background: var(--color-surface);
   --color-secondary-button-hover: var(--color-surface);
   --color-secondary-button-pressed: var(--color-surface);
@@ -287,6 +288,7 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]):not([data-theme="dark"]) {
     color-scheme: dark;
+    --color-text-secondary: var(--color-muted);
     --color-secondary-button-background: var(--color-surface);
     --color-secondary-button-hover: var(--color-surface);
     --color-secondary-button-pressed: var(--color-surface);
