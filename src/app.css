@@ -101,8 +101,8 @@ hr {
   border-radius: var(--radius-sm);
 }
 nav a[aria-current="page"] {
-  background: var(--color-secondary);
-  color: var(--color-primary);
+  background: var(--color-selected);
+  color: var(--color-text);
   font-weight: var(--type-label-weight);
 }
 .sidebar-bottom {
@@ -336,6 +336,10 @@ nav a[aria-current="page"] {
   padding: var(--space-3) 0;
   border-bottom: var(--border-width) solid var(--color-border);
   align-items: start;
+}
+.topic-picker .ui-choice:has(input:checked) {
+  background: var(--color-selected);
+  border-radius: var(--radius-sm);
 }
 .record-compose {
   min-width: 0;

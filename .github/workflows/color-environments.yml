@@ -1,0 +1,44 @@
+name: Verify color environments
+on:
+  push:
+    branches: [main, codex/vibecoding-colors]
+    paths:
+      - 'src/**'
+      - 'docs/color-system.json'
+      - 'scripts/sync-color-tokens.mjs'
+      - 'tools/color-tests/**'
+      - 'package*.json'
+      - '.github/workflows/color-environments.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  colors:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npm ci
+        working-directory: tools/color-tests
+      - run: npx playwright install --with-deps chromium firefox webkit
+        working-directory: tools/color-tests
+      - run: npm run build
+        env:
+          PAGES_BASE: /study-space-generation2/
+      - run: npm run build:fixture
+        working-directory: tools/color-tests
+      - run: npm test
+        working-directory: tools/color-tests
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: color-environment-results
+          path: |
+            tools/color-tests/artifacts/
+            tools/color-tests/*-app.json
+            tools/color-tests/*-fields.json
+            tools/color-tests/*.png

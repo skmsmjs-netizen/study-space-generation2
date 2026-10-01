@@ -18,8 +18,8 @@
 }
 .ui-navigation-bar--horizontal a { flex: 1 1 0; justify-content: center; text-align: center; }
 .ui-navigation-bar a[aria-current="page"] {
-  background: var(--color-secondary);
-  color: var(--color-primary);
+  background: var(--color-selected);
+  color: var(--color-text);
   font-weight: var(--type-label-weight);
 }
 .ui-navigation-bar a:focus-visible { outline: var(--focus-width) solid var(--color-focus); outline-offset: var(--focus-offset); }

@@ -4,6 +4,8 @@
 
 ## 구현과 적용
 
+2026-10-01 브랜드/중립색과 Primitive·Semantic 연결은 [Vibecoding 컬러 시스템](vibecoding-colors.md)을 따릅니다.
+
 `src/ui/tokens.css`는 값을, `components.css`는 공통 역할을 소유한다. `src/ui/index.tsx`를 가져오면 두 CSS가 함께 적용된다. 화면 CSS는 이 토큰을 사용하고 새로운 palette·radius·shadow를 직접 쓰지 않는다. 한 화면에서만 쓰는 레이아웃은 화면에 남긴다.
 
 | 영역 | 구현 기준 |

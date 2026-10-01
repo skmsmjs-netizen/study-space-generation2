@@ -1,0 +1,1136 @@
+{
+  "brandAnchor": "#4F46E6",
+  "figmaUrl": "https://www.figma.com/design/5RKglEvhscGpWAz5T6qLGQ?node-id=12-2",
+  "primitiveMode": "Value",
+  "semanticMode": "Light",
+  "primitives": [
+    {
+      "name": "Brand/50",
+      "hex": "#EEF2FF",
+      "description": "Brand 50 단계",
+      "scopes": [],
+      "cssVariable": "--primitive-brand-50"
+    },
+    {
+      "name": "Brand/100",
+      "hex": "#E0E7FF",
+      "description": "Brand 100 단계",
+      "scopes": [],
+      "cssVariable": "--primitive-brand-100"
+    },
+    {
+      "name": "Brand/200",
+      "hex": "#C7D2FE",
+      "description": "Brand 200 단계",
+      "scopes": [],
+      "cssVariable": "--primitive-brand-200"
+    },
+    {
+      "name": "Brand/300",
+      "hex": "#A5B4FC",
+      "description": "Brand 300 단계",
+      "scopes": [],
+      "cssVariable": "--primitive-brand-300"
+    },
+    {
+      "name": "Brand/400",
+      "hex": "#818CF8",
+      "description": "Brand 400 단계",
+      "scopes": [],
+      "cssVariable": "--primitive-brand-400"
+    },
+    {
+      "name": "Brand/500",
+      "hex": "#6366F1",
+      "description": "Brand 500 단계",
+      "scopes": [],
+      "cssVariable": "--primitive-brand-500"
+    },
+    {
+      "name": "Brand/600",
+      "hex": "#4F46E6",
+      "description": "서비스 브랜드 원색. #4F46E6을 정확히 유지합니다.",
+      "scopes": [],
+      "cssVariable": "--primitive-brand-600"
+    },
+    {
+      "name": "Brand/700",
+      "hex": "#4338CA",
+      "description": "Brand 700 단계",
+      "scopes": [],
+      "cssVariable": "--primitive-brand-700"
+    },
+    {
+      "name": "Brand/800",
+      "hex": "#3730A3",
+      "description": "Brand 800 단계",
+      "scopes": [],
+      "cssVariable": "--primitive-brand-800"
+    },
+    {
+      "name": "Brand/900",
+      "hex": "#312E81",
+      "description": "Brand 900 단계",
+      "scopes": [],
+      "cssVariable": "--primitive-brand-900"
+    },
+    {
+      "name": "Brand/950",
+      "hex": "#1E1B4B",
+      "description": "Brand 950 단계",
+      "scopes": [],
+      "cssVariable": "--primitive-brand-950"
+    },
+    {
+      "name": "Gray/50",
+      "hex": "#FAFAFA",
+      "description": "Gray 50 단계",
+      "scopes": [],
+      "cssVariable": "--primitive-gray-50"
+    },
+    {
+      "name": "Gray/100",
+      "hex": "#F5F5F5",
+      "description": "Gray 100 단계",
+      "scopes": [],
+      "cssVariable": "--primitive-gray-100"
+    },
+    {
+      "name": "Gray/200",
+      "hex": "#E5E5E5",
+      "description": "Gray 200 단계",
+      "scopes": [],
+      "cssVariable": "--primitive-gray-200"
+    },
+    {
+      "name": "Gray/300",
+      "hex": "#D4D4D4",
+      "description": "Gray 300 단계",
+      "scopes": [],
+      "cssVariable": "--primitive-gray-300"
+    },
+    {
+      "name": "Gray/400",
+      "hex": "#A3A3A3",
+      "description": "Gray 400 단계",
+      "scopes": [],
+      "cssVariable": "--primitive-gray-400"
+    },
+    {
+      "name": "Gray/500",
+      "hex": "#737373",
+      "description": "Gray 500 단계",
+      "scopes": [],
+      "cssVariable": "--primitive-gray-500"
+    },
+    {
+      "name": "Gray/600",
+      "hex": "#525252",
+      "description": "Gray 600 단계",
+      "scopes": [],
+      "cssVariable": "--primitive-gray-600"
+    },
+    {
+      "name": "Gray/700",
+      "hex": "#404040",
+      "description": "Gray 700 단계",
+      "scopes": [],
+      "cssVariable": "--primitive-gray-700"
+    },
+    {
+      "name": "Gray/800",
+      "hex": "#262626",
+      "description": "Gray 800 단계",
+      "scopes": [],
+      "cssVariable": "--primitive-gray-800"
+    },
+    {
+      "name": "Gray/900",
+      "hex": "#171717",
+      "description": "Gray 900 단계",
+      "scopes": [],
+      "cssVariable": "--primitive-gray-900"
+    },
+    {
+      "name": "Gray/950",
+      "hex": "#0A0A0A",
+      "description": "Gray 950 단계",
+      "scopes": [],
+      "cssVariable": "--primitive-gray-950"
+    },
+    {
+      "name": "Common/White",
+      "hex": "#FFFFFF",
+      "description": "White",
+      "scopes": [],
+      "cssVariable": "--primitive-common-white"
+    },
+    {
+      "name": "Common/Black",
+      "hex": "#000000",
+      "description": "Black",
+      "scopes": [],
+      "cssVariable": "--primitive-common-black"
+    },
+    {
+      "name": "Common/Transparent",
+      "hex": "#FFFFFF00",
+      "description": "Transparent",
+      "scopes": [],
+      "cssVariable": "--primitive-common-transparent"
+    },
+    {
+      "name": "Common/Overlay",
+      "hex": "#000000A3",
+      "description": "모달 뒤 배경용 검정 64%입니다. 실제 합성 배경에서 확인합니다.",
+      "scopes": [],
+      "cssVariable": "--primitive-common-overlay"
+    },
+    {
+      "name": "Common/Success/50",
+      "hex": "#F0FDF4",
+      "description": "Common/Success 50 단계",
+      "scopes": [],
+      "cssVariable": "--primitive-common-success-50"
+    },
+    {
+      "name": "Common/Success/100",
+      "hex": "#DCFCE7",
+      "description": "Common/Success 100 단계",
+      "scopes": [],
+      "cssVariable": "--primitive-common-success-100"
+    },
+    {
+      "name": "Common/Success/500",
+      "hex": "#22C55E",
+      "description": "Common/Success 500 단계",
+      "scopes": [],
+      "cssVariable": "--primitive-common-success-500"
+    },
+    {
+      "name": "Common/Success/600",
+      "hex": "#16A34A",
+      "description": "Common/Success 600 단계",
+      "scopes": [],
+      "cssVariable": "--primitive-common-success-600"
+    },
+    {
+      "name": "Common/Success/700",
+      "hex": "#15803D",
+      "description": "Common/Success 700 단계",
+      "scopes": [],
+      "cssVariable": "--primitive-common-success-700"
+    },
+    {
+      "name": "Common/Success/900",
+      "hex": "#14532D",
+      "description": "Common/Success 900 단계",
+      "scopes": [],
+      "cssVariable": "--primitive-common-success-900"
+    },
+    {
+      "name": "Common/Warning/50",
+      "hex": "#FFF7ED",
+      "description": "Common/Warning 50 단계",
+      "scopes": [],
+      "cssVariable": "--primitive-common-warning-50"
+    },
+    {
+      "name": "Common/Warning/100",
+      "hex": "#FFEDD5",
+      "description": "Common/Warning 100 단계",
+      "scopes": [],
+      "cssVariable": "--primitive-common-warning-100"
+    },
+    {
+      "name": "Common/Warning/500",
+      "hex": "#F97316",
+      "description": "Common/Warning 500 단계",
+      "scopes": [],
+      "cssVariable": "--primitive-common-warning-500"
+    },
+    {
+      "name": "Common/Warning/600",
+      "hex": "#EA580C",
+      "description": "Common/Warning 600 단계",
+      "scopes": [],
+      "cssVariable": "--primitive-common-warning-600"
+    },
+    {
+      "name": "Common/Warning/700",
+      "hex": "#C2410C",
+      "description": "Common/Warning 700 단계",
+      "scopes": [],
+      "cssVariable": "--primitive-common-warning-700"
+    },
+    {
+      "name": "Common/Warning/900",
+      "hex": "#7C2D12",
+      "description": "Common/Warning 900 단계",
+      "scopes": [],
+      "cssVariable": "--primitive-common-warning-900"
+    },
+    {
+      "name": "Common/Error/50",
+      "hex": "#FEF2F2",
+      "description": "Common/Error 50 단계",
+      "scopes": [],
+      "cssVariable": "--primitive-common-error-50"
+    },
+    {
+      "name": "Common/Error/100",
+      "hex": "#FEE2E2",
+      "description": "Common/Error 100 단계",
+      "scopes": [],
+      "cssVariable": "--primitive-common-error-100"
+    },
+    {
+      "name": "Common/Error/500",
+      "hex": "#EF4444",
+      "description": "Common/Error 500 단계",
+      "scopes": [],
+      "cssVariable": "--primitive-common-error-500"
+    },
+    {
+      "name": "Common/Error/600",
+      "hex": "#DC2626",
+      "description": "Common/Error 600 단계",
+      "scopes": [],
+      "cssVariable": "--primitive-common-error-600"
+    },
+    {
+      "name": "Common/Error/700",
+      "hex": "#B91C1C",
+      "description": "Common/Error 700 단계",
+      "scopes": [],
+      "cssVariable": "--primitive-common-error-700"
+    },
+    {
+      "name": "Common/Error/900",
+      "hex": "#7F1D1D",
+      "description": "Common/Error 900 단계",
+      "scopes": [],
+      "cssVariable": "--primitive-common-error-900"
+    },
+    {
+      "name": "Common/Info/50",
+      "hex": "#EFF6FF",
+      "description": "Common/Info 50 단계",
+      "scopes": [],
+      "cssVariable": "--primitive-common-info-50"
+    },
+    {
+      "name": "Common/Info/100",
+      "hex": "#DBEAFE",
+      "description": "Common/Info 100 단계",
+      "scopes": [],
+      "cssVariable": "--primitive-common-info-100"
+    },
+    {
+      "name": "Common/Info/500",
+      "hex": "#3B82F6",
+      "description": "Common/Info 500 단계",
+      "scopes": [],
+      "cssVariable": "--primitive-common-info-500"
+    },
+    {
+      "name": "Common/Info/600",
+      "hex": "#2563EB",
+      "description": "Common/Info 600 단계",
+      "scopes": [],
+      "cssVariable": "--primitive-common-info-600"
+    },
+    {
+      "name": "Common/Info/700",
+      "hex": "#1D4ED8",
+      "description": "Common/Info 700 단계",
+      "scopes": [],
+      "cssVariable": "--primitive-common-info-700"
+    },
+    {
+      "name": "Common/Info/900",
+      "hex": "#1E3A8A",
+      "description": "Common/Info 900 단계",
+      "scopes": [],
+      "cssVariable": "--primitive-common-info-900"
+    }
+  ],
+  "semantics": [
+    {
+      "name": "Background/canvas",
+      "alias": "Gray/50",
+      "description": "앱 전체 배경",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "cssVariable": "--color-background-canvas"
+    },
+    {
+      "name": "Background/surface",
+      "alias": "Common/White",
+      "description": "카드·입력창 기본 표면",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "cssVariable": "--color-background-surface"
+    },
+    {
+      "name": "Background/subtle",
+      "alias": "Gray/100",
+      "description": "보조 영역",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "cssVariable": "--color-background-subtle"
+    },
+    {
+      "name": "Background/raised",
+      "alias": "Common/White",
+      "description": "팝오버·대화상자",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "cssVariable": "--color-background-raised"
+    },
+    {
+      "name": "Background/brand-subtle",
+      "alias": "Brand/50",
+      "description": "브랜드 강조 영역",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "cssVariable": "--color-background-brand-subtle"
+    },
+    {
+      "name": "Background/selected",
+      "alias": "Gray/100",
+      "description": "선택한 항목",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "cssVariable": "--color-background-selected"
+    },
+    {
+      "name": "Background/inverse",
+      "alias": "Gray/900",
+      "description": "반전 영역",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "cssVariable": "--color-background-inverse"
+    },
+    {
+      "name": "Background/disabled",
+      "alias": "Gray/100",
+      "description": "비활성 표면",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "cssVariable": "--color-background-disabled"
+    },
+    {
+      "name": "Background/overlay",
+      "alias": "Common/Overlay",
+      "description": "대화상자 뒤 가림막",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "cssVariable": "--color-background-overlay"
+    },
+    {
+      "name": "Text/primary",
+      "alias": "Gray/900",
+      "description": "제목·본문",
+      "scopes": [
+        "TEXT_FILL"
+      ],
+      "cssVariable": "--color-text-primary"
+    },
+    {
+      "name": "Text/secondary",
+      "alias": "Gray/700",
+      "description": "설명",
+      "scopes": [
+        "TEXT_FILL"
+      ],
+      "cssVariable": "--color-text-secondary"
+    },
+    {
+      "name": "Text/tertiary",
+      "alias": "Gray/600",
+      "description": "보조 정보",
+      "scopes": [
+        "TEXT_FILL"
+      ],
+      "cssVariable": "--color-text-tertiary"
+    },
+    {
+      "name": "Text/placeholder",
+      "alias": "Gray/600",
+      "description": "입력 힌트. 흰 배경과 Gray/50, Gray/100에서 일반 글자 대비를 확보",
+      "scopes": [
+        "TEXT_FILL"
+      ],
+      "cssVariable": "--color-text-placeholder"
+    },
+    {
+      "name": "Text/disabled",
+      "alias": "Gray/400",
+      "description": "조작 불가 상태",
+      "scopes": [
+        "TEXT_FILL"
+      ],
+      "cssVariable": "--color-text-disabled"
+    },
+    {
+      "name": "Text/inverse",
+      "alias": "Common/White",
+      "description": "진한 배경 위 글자",
+      "scopes": [
+        "TEXT_FILL"
+      ],
+      "cssVariable": "--color-text-inverse"
+    },
+    {
+      "name": "Text/brand",
+      "alias": "Brand/600",
+      "description": "브랜드 강조 글자",
+      "scopes": [
+        "TEXT_FILL"
+      ],
+      "cssVariable": "--color-text-brand"
+    },
+    {
+      "name": "Text/link",
+      "alias": "Brand/600",
+      "description": "링크",
+      "scopes": [
+        "TEXT_FILL"
+      ],
+      "cssVariable": "--color-text-link"
+    },
+    {
+      "name": "Text/link-hover",
+      "alias": "Brand/700",
+      "description": "링크 호버",
+      "scopes": [
+        "TEXT_FILL"
+      ],
+      "cssVariable": "--color-text-link-hover"
+    },
+    {
+      "name": "Border/subtle",
+      "alias": "Gray/200",
+      "description": "장식 구분선. 입력창 식별의 유일한 표식으로 사용하지 않습니다.",
+      "scopes": [
+        "STROKE_COLOR"
+      ],
+      "cssVariable": "--color-border-subtle"
+    },
+    {
+      "name": "Border/default",
+      "alias": "Gray/300",
+      "description": "일반 구분선. 입력칸 식별에 필요한 유일한 경계에는 Border/strong을 사용",
+      "scopes": [
+        "STROKE_COLOR"
+      ],
+      "cssVariable": "--color-border-default"
+    },
+    {
+      "name": "Border/strong",
+      "alias": "Gray/500",
+      "description": "조작 가능한 입력창 경계",
+      "scopes": [
+        "STROKE_COLOR"
+      ],
+      "cssVariable": "--color-border-strong"
+    },
+    {
+      "name": "Border/brand",
+      "alias": "Brand/600",
+      "description": "선택·브랜드 경계",
+      "scopes": [
+        "STROKE_COLOR"
+      ],
+      "cssVariable": "--color-border-brand"
+    },
+    {
+      "name": "Border/disabled",
+      "alias": "Gray/200",
+      "description": "비활성 경계",
+      "scopes": [
+        "STROKE_COLOR"
+      ],
+      "cssVariable": "--color-border-disabled"
+    },
+    {
+      "name": "Focus/ring",
+      "alias": "Brand/600",
+      "description": "키보드 포커스. 흰색 바깥 여백과 함께 2px 이상 표시합니다.",
+      "scopes": [
+        "STROKE_COLOR"
+      ],
+      "cssVariable": "--color-focus-ring"
+    },
+    {
+      "name": "Icon/primary",
+      "alias": "Gray/700",
+      "description": "기본 아이콘",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "cssVariable": "--color-icon-primary"
+    },
+    {
+      "name": "Icon/secondary",
+      "alias": "Gray/500",
+      "description": "보조 아이콘",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "cssVariable": "--color-icon-secondary"
+    },
+    {
+      "name": "Icon/brand",
+      "alias": "Brand/600",
+      "description": "브랜드 아이콘",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "cssVariable": "--color-icon-brand"
+    },
+    {
+      "name": "Icon/inverse",
+      "alias": "Common/White",
+      "description": "진한 배경 위 아이콘",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "cssVariable": "--color-icon-inverse"
+    },
+    {
+      "name": "Icon/disabled",
+      "alias": "Gray/400",
+      "description": "비활성 아이콘",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "cssVariable": "--color-icon-disabled"
+    },
+    {
+      "name": "Button/primary/background/default",
+      "alias": "Brand/600",
+      "description": "primary 버튼 default 배경",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "cssVariable": "--color-button-primary-background-default"
+    },
+    {
+      "name": "Button/primary/background/hover",
+      "alias": "Brand/700",
+      "description": "primary 버튼 hover 배경",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "cssVariable": "--color-button-primary-background-hover"
+    },
+    {
+      "name": "Button/primary/background/pressed",
+      "alias": "Brand/800",
+      "description": "primary 버튼 pressed 배경",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "cssVariable": "--color-button-primary-background-pressed"
+    },
+    {
+      "name": "Button/primary/background/disabled",
+      "alias": "Gray/200",
+      "description": "primary 버튼 disabled 배경",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "cssVariable": "--color-button-primary-background-disabled"
+    },
+    {
+      "name": "Button/primary/text/default",
+      "alias": "Common/White",
+      "description": "primary 버튼 글자",
+      "scopes": [
+        "TEXT_FILL"
+      ],
+      "cssVariable": "--color-button-primary-text-default"
+    },
+    {
+      "name": "Button/primary/text/disabled",
+      "alias": "Gray/400",
+      "description": "비활성 버튼 글자",
+      "scopes": [
+        "TEXT_FILL"
+      ],
+      "cssVariable": "--color-button-primary-text-disabled"
+    },
+    {
+      "name": "Button/secondary/background/default",
+      "alias": "Gray/100",
+      "description": "secondary 버튼 default 배경",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "cssVariable": "--color-button-secondary-background-default"
+    },
+    {
+      "name": "Button/secondary/background/hover",
+      "alias": "Gray/200",
+      "description": "secondary 버튼 hover 배경",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "cssVariable": "--color-button-secondary-background-hover"
+    },
+    {
+      "name": "Button/secondary/background/pressed",
+      "alias": "Gray/300",
+      "description": "secondary 버튼 pressed 배경",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "cssVariable": "--color-button-secondary-background-pressed"
+    },
+    {
+      "name": "Button/secondary/background/disabled",
+      "alias": "Gray/100",
+      "description": "secondary 버튼 disabled 배경",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "cssVariable": "--color-button-secondary-background-disabled"
+    },
+    {
+      "name": "Button/secondary/text/default",
+      "alias": "Gray/900",
+      "description": "secondary 버튼 글자",
+      "scopes": [
+        "TEXT_FILL"
+      ],
+      "cssVariable": "--color-button-secondary-text-default"
+    },
+    {
+      "name": "Button/secondary/text/disabled",
+      "alias": "Gray/400",
+      "description": "비활성 버튼 글자",
+      "scopes": [
+        "TEXT_FILL"
+      ],
+      "cssVariable": "--color-button-secondary-text-disabled"
+    },
+    {
+      "name": "Button/neutral/background/default",
+      "alias": "Common/White",
+      "description": "neutral 버튼 default 배경",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "cssVariable": "--color-button-neutral-background-default"
+    },
+    {
+      "name": "Button/neutral/background/hover",
+      "alias": "Gray/50",
+      "description": "neutral 버튼 hover 배경",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "cssVariable": "--color-button-neutral-background-hover"
+    },
+    {
+      "name": "Button/neutral/background/pressed",
+      "alias": "Gray/100",
+      "description": "neutral 버튼 pressed 배경",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "cssVariable": "--color-button-neutral-background-pressed"
+    },
+    {
+      "name": "Button/neutral/background/disabled",
+      "alias": "Gray/100",
+      "description": "neutral 버튼 disabled 배경",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "cssVariable": "--color-button-neutral-background-disabled"
+    },
+    {
+      "name": "Button/neutral/text/default",
+      "alias": "Gray/900",
+      "description": "neutral 버튼 글자",
+      "scopes": [
+        "TEXT_FILL"
+      ],
+      "cssVariable": "--color-button-neutral-text-default"
+    },
+    {
+      "name": "Button/neutral/text/disabled",
+      "alias": "Gray/400",
+      "description": "비활성 버튼 글자",
+      "scopes": [
+        "TEXT_FILL"
+      ],
+      "cssVariable": "--color-button-neutral-text-disabled"
+    },
+    {
+      "name": "Button/destructive/background/default",
+      "alias": "Common/White",
+      "description": "destructive 버튼 default 배경",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "cssVariable": "--color-button-destructive-background-default"
+    },
+    {
+      "name": "Button/destructive/background/hover",
+      "alias": "Common/Error/50",
+      "description": "destructive 버튼 hover 배경",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "cssVariable": "--color-button-destructive-background-hover"
+    },
+    {
+      "name": "Button/destructive/background/pressed",
+      "alias": "Common/Error/100",
+      "description": "destructive 버튼 pressed 배경",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "cssVariable": "--color-button-destructive-background-pressed"
+    },
+    {
+      "name": "Button/destructive/background/disabled",
+      "alias": "Gray/200",
+      "description": "destructive 버튼 disabled 배경",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "cssVariable": "--color-button-destructive-background-disabled"
+    },
+    {
+      "name": "Button/destructive/text/default",
+      "alias": "Common/Error/700",
+      "description": "destructive 버튼 글자",
+      "scopes": [
+        "TEXT_FILL"
+      ],
+      "cssVariable": "--color-button-destructive-text-default"
+    },
+    {
+      "name": "Button/destructive/text/disabled",
+      "alias": "Gray/400",
+      "description": "비활성 버튼 글자",
+      "scopes": [
+        "TEXT_FILL"
+      ],
+      "cssVariable": "--color-button-destructive-text-disabled"
+    },
+    {
+      "name": "Button/neutral/border/default",
+      "alias": "Gray/500",
+      "description": "중립 버튼 경계",
+      "scopes": [
+        "STROKE_COLOR"
+      ],
+      "cssVariable": "--color-button-neutral-border-default"
+    },
+    {
+      "name": "Button/neutral/border/disabled",
+      "alias": "Gray/200",
+      "description": "비활성 중립 버튼 경계",
+      "scopes": [
+        "STROKE_COLOR"
+      ],
+      "cssVariable": "--color-button-neutral-border-disabled"
+    },
+    {
+      "name": "Status/success/background",
+      "alias": "Gray/50",
+      "description": "success 상태의 옅은 배경",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "cssVariable": "--color-status-success-background"
+    },
+    {
+      "name": "Status/success/text",
+      "alias": "Gray/700",
+      "description": "success 상태 글자",
+      "scopes": [
+        "TEXT_FILL"
+      ],
+      "cssVariable": "--color-status-success-text"
+    },
+    {
+      "name": "Status/success/border",
+      "alias": "Gray/200",
+      "description": "상태 안내의 장식 구분선. 입력 오류나 의미를 전달하는 유일한 경계에는 solid를 사용합니다.",
+      "scopes": [
+        "STROKE_COLOR"
+      ],
+      "cssVariable": "--color-status-success-border"
+    },
+    {
+      "name": "Status/success/solid",
+      "alias": "Common/Success/700",
+      "description": "success 상태의 진한 배경",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "cssVariable": "--color-status-success-solid"
+    },
+    {
+      "name": "Status/success/on-solid",
+      "alias": "Common/White",
+      "description": "success 진한 배경 위 글자",
+      "scopes": [
+        "TEXT_FILL",
+        "SHAPE_FILL"
+      ],
+      "cssVariable": "--color-status-success-on-solid"
+    },
+    {
+      "name": "Status/warning/background",
+      "alias": "Gray/50",
+      "description": "warning 상태의 옅은 배경",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "cssVariable": "--color-status-warning-background"
+    },
+    {
+      "name": "Status/warning/text",
+      "alias": "Gray/700",
+      "description": "warning 상태 글자",
+      "scopes": [
+        "TEXT_FILL"
+      ],
+      "cssVariable": "--color-status-warning-text"
+    },
+    {
+      "name": "Status/warning/border",
+      "alias": "Gray/200",
+      "description": "상태 안내의 장식 구분선. 입력 오류나 의미를 전달하는 유일한 경계에는 solid를 사용합니다.",
+      "scopes": [
+        "STROKE_COLOR"
+      ],
+      "cssVariable": "--color-status-warning-border"
+    },
+    {
+      "name": "Status/warning/solid",
+      "alias": "Common/Warning/700",
+      "description": "warning 상태의 진한 배경",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "cssVariable": "--color-status-warning-solid"
+    },
+    {
+      "name": "Status/warning/on-solid",
+      "alias": "Common/White",
+      "description": "warning 진한 배경 위 글자",
+      "scopes": [
+        "TEXT_FILL",
+        "SHAPE_FILL"
+      ],
+      "cssVariable": "--color-status-warning-on-solid"
+    },
+    {
+      "name": "Status/error/background",
+      "alias": "Gray/50",
+      "description": "error 상태의 옅은 배경",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "cssVariable": "--color-status-error-background"
+    },
+    {
+      "name": "Status/error/text",
+      "alias": "Gray/700",
+      "description": "error 상태 글자",
+      "scopes": [
+        "TEXT_FILL"
+      ],
+      "cssVariable": "--color-status-error-text"
+    },
+    {
+      "name": "Status/error/border",
+      "alias": "Gray/200",
+      "description": "상태 안내의 장식 구분선. 입력 오류나 의미를 전달하는 유일한 경계에는 solid를 사용합니다.",
+      "scopes": [
+        "STROKE_COLOR"
+      ],
+      "cssVariable": "--color-status-error-border"
+    },
+    {
+      "name": "Status/error/solid",
+      "alias": "Common/Error/600",
+      "description": "error 상태의 진한 배경",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "cssVariable": "--color-status-error-solid"
+    },
+    {
+      "name": "Status/error/on-solid",
+      "alias": "Common/White",
+      "description": "error 진한 배경 위 글자",
+      "scopes": [
+        "TEXT_FILL",
+        "SHAPE_FILL"
+      ],
+      "cssVariable": "--color-status-error-on-solid"
+    },
+    {
+      "name": "Status/info/background",
+      "alias": "Gray/50",
+      "description": "info 상태의 옅은 배경",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "cssVariable": "--color-status-info-background"
+    },
+    {
+      "name": "Status/info/text",
+      "alias": "Gray/700",
+      "description": "info 상태 글자",
+      "scopes": [
+        "TEXT_FILL"
+      ],
+      "cssVariable": "--color-status-info-text"
+    },
+    {
+      "name": "Status/info/border",
+      "alias": "Gray/200",
+      "description": "상태 안내의 장식 구분선. 입력 오류나 의미를 전달하는 유일한 경계에는 solid를 사용합니다.",
+      "scopes": [
+        "STROKE_COLOR"
+      ],
+      "cssVariable": "--color-status-info-border"
+    },
+    {
+      "name": "Status/info/solid",
+      "alias": "Brand/600",
+      "description": "info 상태의 진한 배경",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "cssVariable": "--color-status-info-solid"
+    },
+    {
+      "name": "Status/info/on-solid",
+      "alias": "Common/White",
+      "description": "info 진한 배경 위 글자",
+      "scopes": [
+        "TEXT_FILL",
+        "SHAPE_FILL"
+      ],
+      "cssVariable": "--color-status-info-on-solid"
+    },
+    {
+      "name": "Study/exam-likely/background",
+      "alias": "Gray/50",
+      "description": "출제 가능성 표시 배경. 공부 완료·숙달을 뜻하지 않습니다.",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "cssVariable": "--color-study-exam-likely-background"
+    },
+    {
+      "name": "Study/exam-likely/text",
+      "alias": "Gray/700",
+      "description": "출제 가능성 표시 글자",
+      "scopes": [
+        "TEXT_FILL"
+      ],
+      "cssVariable": "--color-study-exam-likely-text"
+    },
+    {
+      "name": "Study/exam-likely/marker",
+      "alias": "Common/Warning/600",
+      "description": "주황색 출제 가능성 표시",
+      "scopes": [
+        "SHAPE_FILL",
+        "STROKE_COLOR"
+      ],
+      "cssVariable": "--color-study-exam-likely-marker"
+    },
+    {
+      "name": "Study/exam-confirmed/background",
+      "alias": "Gray/50",
+      "description": "출제 확정 표시 배경. 공부 완료·숙달을 뜻하지 않습니다.",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "cssVariable": "--color-study-exam-confirmed-background"
+    },
+    {
+      "name": "Study/exam-confirmed/text",
+      "alias": "Gray/700",
+      "description": "출제 확정 표시 글자",
+      "scopes": [
+        "TEXT_FILL"
+      ],
+      "cssVariable": "--color-study-exam-confirmed-text"
+    },
+    {
+      "name": "Study/exam-confirmed/marker",
+      "alias": "Common/Error/600",
+      "description": "빨간색 출제 확정 표시",
+      "scopes": [
+        "SHAPE_FILL",
+        "STROKE_COLOR"
+      ],
+      "cssVariable": "--color-study-exam-confirmed-marker"
+    }
+  ],
+  "validationStatus": "2026-10-01 최신 중립색 중심 수정안을 Figma UI에서 읽어 동기화. Light 컬렉션 81개 별칭. 기존 앱 다크 설정과 의미색은 보존."
+}

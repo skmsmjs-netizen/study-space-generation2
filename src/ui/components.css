@@ -9,16 +9,23 @@ a { color: var(--color-primary); text-underline-offset: .2em; }
 .ui-button:not(:disabled):hover { border-color: var(--color-border-strong); }
 .ui-button:not(:disabled):active { transform: translateY(var(--border-width)); }
 .ui-button--primary { background: var(--color-primary); color: var(--color-on-primary); }
-.ui-button--secondary { border-color: var(--color-border); background: var(--color-surface); }
+.ui-button--primary:not(:disabled):hover { background: var(--color-primary-hover); }
+.ui-button--primary:not(:disabled):active { background: var(--color-primary-pressed); }
+.ui-button--secondary { border-color: var(--color-border-strong); background: var(--color-secondary-button-background); }
+.ui-button--secondary:not(:disabled):hover { background: var(--color-secondary-button-hover); }
+.ui-button--secondary:not(:disabled):active { background: var(--color-secondary-button-pressed); }
 .ui-button--quiet { background: transparent; }
-.ui-button--danger { color: var(--color-danger); background: var(--color-danger-surface); }
+.ui-button--danger { color: var(--color-destructive-button-text); background: var(--color-destructive-button-background); }
+.ui-button--danger:not(:disabled):hover { background: var(--color-destructive-button-hover); }
+.ui-button--danger:not(:disabled):active { background: var(--color-destructive-button-pressed); }
 .ui-icon-button { min-width: var(--icon-target); min-height: var(--icon-target); padding: var(--space-2); }
 .ui-icon-button svg { width: var(--icon-size); height: var(--icon-size); stroke-width: var(--icon-stroke); }
 .ui-field { display: grid; gap: var(--space-2); min-width: 0; }
 .ui-label { font: var(--type-label-weight) var(--type-label-size)/var(--type-label-line) var(--font-interface); }
 .ui-input { width: 100%; min-width: 0; min-height: var(--control-height); padding: var(--space-2) var(--space-3); border: var(--border-width) solid var(--color-border-strong); border-radius: var(--radius-sm); background: var(--color-surface); color: var(--color-text); font-size: var(--input-font-size); line-height: var(--type-body-line); }
 textarea.ui-input { min-height: calc(var(--control-height) * 3); resize: vertical; }
-.ui-input[aria-invalid="true"] { border-color: var(--color-danger); }
+.ui-input::placeholder { color: var(--color-placeholder); opacity: 1; }
+.ui-input[aria-invalid="true"] { border-color: var(--color-invalid-border); }
 .ui-input[readonly] { background: var(--color-surface-inset); border-style: dashed; }
 .ui-hint, .ui-error { margin: 0; font: var(--type-caption-weight) var(--type-caption-size)/var(--type-caption-line) var(--font-interface); }
 .ui-hint { color: var(--color-muted); }
@@ -29,7 +36,7 @@ textarea.ui-input { min-height: calc(var(--control-height) * 3); resize: vertica
 .ui-tabs, .ui-segmented { display: flex; gap: var(--space-1); overflow-x: auto; padding: var(--space-1); max-width: 100%; }
 .ui-tabs { border-block-end: var(--border-width) solid var(--color-border); }
 .ui-tabs .ui-button { flex: 0 0 auto; }
-.ui-tabs [aria-selected="true"] { background: var(--color-secondary); box-shadow: inset 0 calc(var(--border-width) * -2) var(--color-primary); }
+.ui-tabs [aria-selected="true"] { background: var(--color-selected); box-shadow: inset 0 calc(var(--border-width) * -2) var(--color-primary); }
 .ui-segmented { border-radius: var(--radius-md); background: var(--color-surface-inset); }
 .ui-segmented [aria-pressed="true"] { background: var(--color-surface); box-shadow: var(--shadow-raised); }
 .ui-card { min-width: 0; padding: var(--space-group) 0; border: 0; border-block-end: var(--border-width) solid var(--color-border); border-radius: 0; background: transparent; box-shadow: var(--shadow-none); }
@@ -51,7 +58,7 @@ textarea.ui-input { min-height: calc(var(--control-height) * 3); resize: vertica
 .ui-state { padding: var(--space-6) var(--space-4); text-align: center; }
 .ui-state-title { margin: 0 0 var(--space-2); font: var(--type-heading-weight) var(--type-heading-size)/var(--type-heading-line) var(--font-interface); }
 .ui-state-message { margin: 0 0 var(--space-4); color: var(--color-muted); white-space: pre-line; }
-.ui-state--error { border: var(--border-width) solid var(--color-danger); border-radius: var(--radius-md); }
+.ui-state--error { border: var(--border-width) solid var(--color-invalid-border); border-radius: var(--radius-md); }
 .ui-loading { color: var(--color-muted); padding-block: var(--space-3); }
 .ui-type-display { font: var(--type-display-weight) var(--type-display-size)/var(--type-display-line) var(--font-interface); }
 .ui-type-title { font: var(--type-title-weight) var(--type-title-size)/var(--type-title-line) var(--font-interface); }
@@ -74,3 +81,7 @@ textarea.ui-input { min-height: calc(var(--control-height) * 3); resize: vertica
   .ui-tabs [aria-selected="true"], .ui-segmented [aria-pressed="true"] { outline: var(--focus-width) solid Highlight; }
   .ui-hierarchy { text-decoration: underline; }
 }
+
+/* Keep graph library attribution readable on the current surface in either theme. */
+.react-flow .react-flow__attribution { background: var(--color-surface); }
+.react-flow .react-flow__attribution a { color: var(--color-muted); }
