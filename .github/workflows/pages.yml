@@ -40,6 +40,11 @@ jobs:
     name: Verify ${{ matrix.project }}
     needs: build
     runs-on: ubuntu-latest
+    # Match package-lock.json so browsers and Linux dependencies are ready before
+    # verification; repeated apt mirror downloads delayed the release runners.
+    container:
+      image: mcr.microsoft.com/playwright:v1.63.0-noble
+      options: --user 1001
     strategy:
       fail-fast: false
       matrix:
@@ -62,7 +67,6 @@ jobs:
         with:
           name: verified-build
           path: dist
-      - run: npx playwright install --with-deps webkit
       - name: Verify all checks for this device environment
         run: npm run test:devices -- --project="$DEVICE_PROJECT"
         env:
