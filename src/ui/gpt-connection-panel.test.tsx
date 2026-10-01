@@ -36,3 +36,19 @@ it('saves the amount displayed by a lower budget choice rather than the default 
   fireEvent.change(screen.getByLabelText('OpenAI API 키'),{target:{value:'sk-synthetic-key-do-not-use'}});fireEvent.click(screen.getByRole('checkbox'));fireEvent.click(screen.getByRole('button',{name:'API 설정 저장·사용 켜기'}));
   await waitFor(()=>expect(configureOpenAIAPI).toHaveBeenCalledWith(expect.anything(),expect.objectContaining({limitMicro:3000000})));
 });
+
+it('refreshes budget after generation without overwriting an unsaved cap selection, and keeps the previous summary on failure',async()=>{
+  const view=render(<GPTConnectionPanel userId={AI_OWNER_USER_ID}/>);
+  await screen.findByRole('img',{name:/남은 월 예산 US\$10.0/});
+  fireEvent.change(screen.getByRole('combobox'),{target:{value:'3000000'}});
+  view.rerender(<GPTConnectionPanel userId={AI_OWNER_USER_ID} busy/>);
+  vi.mocked(localAIStatus).mockResolvedValueOnce({...status,billing:{...status.billing,usedMicro:2_000_000,pendingMicro:1_000_000}});
+  view.rerender(<GPTConnectionPanel userId={AI_OWNER_USER_ID}/>);
+  await screen.findByRole('img',{name:/남은 월 예산 US\$7.0/});
+  expect(screen.getByRole('combobox')).toHaveValue('3000000');
+  vi.mocked(localAIStatus).mockRejectedValueOnce(Error('사용량 조회 실패'));
+  fireEvent.click(screen.getByRole('button',{name:'사용량 새로고침'}));
+  await screen.findByText('사용량 조회 실패');
+  expect(screen.getByRole('img')).toHaveAccessibleName(/남은 월 예산 US\$7.0/);
+  expect(configureOpenAIAPI).not.toHaveBeenCalled();
+});
