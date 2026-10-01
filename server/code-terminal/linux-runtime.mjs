@@ -1,6 +1,6 @@
 import { spawn as spawnProcess } from 'node:child_process';
 import { spawn as spawnPty } from 'node-pty';
-import { mkdtemp, writeFile, readFile, rm } from 'node:fs/promises';
+import { mkdtemp, writeFile, readFile, readdir, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 
@@ -29,7 +29,18 @@ const runProcess = (command, args, { signal, onOutput = () => {} } = {}) => new 
     resolve({ code, text, overflow: size > MAX_OUTPUT });
   });
 });
-const project = '<Project Sdk="Microsoft.NET.Sdk"><PropertyGroup><OutputType>Exe</OutputType><TargetFramework>net8.0</TargetFramework><ImplicitUsings>enable</ImplicitUsings><EnableDefaultCompileItems>false</EnableDefaultCompileItems></PropertyGroup><ItemGroup><Compile Include="Main.cs" /></ItemGroup></Project>';
+async function csharpCompiler(directory) {
+  // Invoke the SDK's Roslyn compiler directly: no NuGet, migration locks or network restore.
+  const latest8 = names => names.filter(name => /^8\.0\.\d+$/.test(name)).sort((a, b) => b.localeCompare(a, 'en', { numeric: true }))[0];
+  const sdk = latest8(await readdir('/usr/share/dotnet/sdk'));
+  const pack = latest8(await readdir('/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref'));
+  if (!sdk || !pack) throw Error('.NET 8 컴파일 도구를 먼저 설치해 주세요.');
+  const references = `/usr/share/dotnet/packs/Microsoft.NETCore.App.Ref/${pack}/ref/net8.0`;
+  const files = (await readdir(references)).filter(name => /^[A-Za-z0-9_.-]+\.dll$/.test(name));
+  await writeFile(path.join(directory, 'compiler.rsp'), ['-noconfig', '-nostdlib+', '-nologo', '-target:exe', '-langversion:12', '-out:Main.dll', ...files.map(name => `-reference:${references}/${name}`), 'Main.cs'].join('\n'), { mode: 0o644 });
+  await writeFile(path.join(directory, 'Main.runtimeconfig.json'), JSON.stringify({ runtimeOptions: { tfm: 'net8.0', framework: { name: 'Microsoft.NETCore.App', version: '8.0.0' } } }), { mode: 0o644 });
+  return ['/usr/bin/dotnet', `/usr/share/dotnet/sdk/${sdk}/Roslyn/bincore/csc.dll`, '@compiler.rsp'];
+}
 
 /** Only this adapter runs user programs. The standard isolate tool owns Linux isolation. */
 export async function startLinuxExecution(source, { signal, onOutput, onPhase, onReady, maxSlots = 2 }) {
@@ -48,17 +59,13 @@ export async function startLinuxExecution(source, { signal, onOutput, onPhase, o
     const directory = path.join(initializedBox.text.trim(), 'box');
     const filename = source.language === 'c' ? 'main.c' : source.language === 'cpp' ? 'main.cpp' : 'Main.cs';
     await writeFile(path.join(directory, filename), source.code, { mode: 0o644 });
-    if (source.language === 'csharp') {
-      await writeFile(path.join(directory, 'Main.csproj'), project, { mode: 0o644 });
-      await writeFile(path.join(directory, 'NuGet.Config'), '<configuration><packageSources><clear /></packageSources></configuration>', { mode: 0o644 });
-    }
     const flags = (stage) => [...base, '--silent', '--chdir=/box', '--processes=128', '--open-files=1024', '--fsize=20000', '--cg-mem=1048576', '--time=10', '--extra-time=0', `--wall-time=${stage === 'compile' ? 35 : 120}`, `--meta=${scratch}/${stage}.meta`, '--env=PATH=/usr/bin:/bin', '--env=HOME=/tmp', '--env=LANG=C.UTF-8', '--env=TERM=xterm-256color', '--env=DOTNET_CLI_TELEMETRY_OPTOUT=1', '--env=DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1', '--env=DOTNET_NOLOGO=1', '--env=DOTNET_GCHeapHardLimit=0x18000000'];
-    const compiler = source.language === 'c' ? ['/usr/bin/gcc', '-std=c17', '-Wall', '-Wextra', filename, '-o', 'main'] : source.language === 'cpp' ? ['/usr/bin/g++', '-std=c++20', '-Wall', '-Wextra', filename, '-o', 'main'] : ['/usr/bin/dotnet', 'build', 'Main.csproj', '--configuration', 'Release', '--output', 'out', '--nologo', '--verbosity', 'quiet', '--disable-build-servers'];
+    const compiler = source.language === 'c' ? ['/usr/bin/gcc', '-std=c17', '-Wall', '-Wextra', filename, '-o', 'main'] : source.language === 'cpp' ? ['/usr/bin/g++', '-std=c++20', '-Wall', '-Wextra', filename, '-o', 'main'] : await csharpCompiler(directory);
     onPhase('loading');
     const compilation = await runProcess(ISOLATE, [...flags('compile'), '--run', '--', ...compiler], { signal, onOutput });
     if (signal.aborted) return { outcome: 'stopped', error: '실행을 중지했습니다.' };
     if (compilation.code !== 0 || compilation.overflow) return { outcome: 'error', error: compilation.overflow ? '컴파일 출력 한도를 넘었습니다.' : '컴파일하지 못했습니다. 위 오류 내용을 확인해 주세요.' };
-    const executable = source.language === 'csharp' ? ['/usr/bin/dotnet', '/box/out/Main.dll'] : ['/box/main'];
+    const executable = source.language === 'csharp' ? ['/usr/bin/dotnet', '/box/Main.dll'] : ['/box/main'];
     const args = [...flags('run'), '--tty-hack', '--run', '--', ...executable];
     const exit = await new Promise((resolve, reject) => {
       // Console.ReadLine edits and echoes its own PTY input; configure it before isolation.
