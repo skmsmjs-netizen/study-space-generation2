@@ -7,7 +7,7 @@
 .code-live-terminal {
   height: 18rem;
   padding: var(--space-3);
-  /* design-token-exception: Color -- xterm canvas uses the standard VS Code terminal background and ANSI palette. */
+  /* design-token-exception: background -- xterm canvas uses the standard VS Code terminal background and ANSI palette. */
   background: #1e1e1e;
   border-radius: var(--radius-md);
   overflow: hidden;
