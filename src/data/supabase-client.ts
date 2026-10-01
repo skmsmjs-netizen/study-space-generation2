@@ -3,15 +3,46 @@ import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 import { DomainError, type Command, type Namespace } from '../domain/model';
 import type { OnlineTransport } from './personal-repository';
 import type { ServerSnapshot } from '../server/command-handler';
+import { loginStorageOptions, readLoginPersistence, saveLoginPersistence } from './auth-session';
 export interface PublicServerConfig { url: string; publishableKey: string }
 export function readServerConfig(): PublicServerConfig | null {
   const url = import.meta.env.VITE_SUPABASE_URL || PUBLIC_SERVER_URL;
   const publishableKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY || PUBLIC_SERVER_KEY;
   return url && publishableKey ? { url, publishableKey } : null;
 }
-export function createStudyClient(config: PublicServerConfig) {
+const loginClients = new WeakMap<SupabaseClient, { config: PublicServerConfig; remember: boolean }>();
+export function createStudyClient(config: PublicServerConfig, remember = readLoginPersistence()) {
   if (!/^https:\/\/[a-z0-9]+\.supabase\.co$/.test(config.url) || !config.publishableKey.startsWith('sb_publishable_')) throw Error('공개 서버 설정을 확인해 주세요.');
-  return createClient(config.url, config.publishableKey, { auth: { persistSession: true, autoRefreshToken: true, storageKey: 'study-space:auth:v1' } });
+  const client = createClient(config.url, config.publishableKey, { auth: { persistSession: true, autoRefreshToken: true, ...loginStorageOptions(remember) } });
+  loginClients.set(client, { config, remember });
+  return client;
+}
+export async function signInStudyClient(client: SupabaseClient, credentials: { email: string; password: string }, remember: boolean) {
+  const current = loginClients.get(client);
+  if (!current) throw Error('로그인 연결을 다시 확인해 주세요.');
+  let next: SupabaseClient;
+  try { next = current.remember === remember ? client : createStudyClient(current.config, remember); }
+  catch { throw new DomainError('AUTH_STORAGE', '로그인 정보를 이 기기에 보관하지 못했습니다. 브라우저의 저장 허용 설정을 확인한 뒤 다시 로그인해 주세요.'); }
+  const previousRemember = readLoginPersistence();
+  try {
+    // Check the chosen storage before transmitting credentials. Never fall back
+    // to persistent storage when the user chose a temporary login.
+    try {
+      const options = loginStorageOptions(remember);
+      const storage = options.storage ?? localStorage;
+      const probe = `${options.storageKey}:check`;
+      storage.setItem(probe, '1'); storage.removeItem(probe);
+      saveLoginPersistence(remember);
+    } catch { throw new DomainError('AUTH_STORAGE', '로그인 정보를 이 기기에 보관하지 못했습니다. 브라우저의 저장 허용 설정을 확인한 뒤 다시 로그인해 주세요.'); }
+    const { error } = await next.auth.signInWithPassword(credentials);
+    if (error) throw error;
+    if (next !== client) client.auth.dispose();
+    return next;
+  } catch (error) {
+    try { saveLoginPersistence(previousRemember); } catch { /* Keep the original error. */ }
+    if (next !== client) next.auth.dispose();
+    throw error;
+  }
 }
 export function onlineTransport(client: SupabaseClient, namespace: Namespace = 'personal'): OnlineTransport {
   async function request(action: 'load' | 'execute', command?: Command, baseSequence?: number): Promise<ServerSnapshot> {

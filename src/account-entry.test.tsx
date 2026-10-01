@@ -2,14 +2,14 @@ import { render, screen, fireEvent, cleanup } from '@testing-library/react';
 import { beforeEach, afterEach, expect, it, vi } from 'vitest';
 import App from './App';
 import userEvent from '@testing-library/user-event';
-const authCalls = vi.hoisted(() => ({signUp: vi.fn(async () => ({data:{session:null},error:null}))}));
+const authCalls = vi.hoisted(() => ({signUp: vi.fn(async () => ({data:{session:null},error:null})), signIn: vi.fn(async (client: unknown, _credentials: unknown, _remember: boolean) => client)}));
 import { DEMO_KEY, DemoRepository } from './data/demo-repository';
 vi.mock('./data/supabase-client', () => ({
   readServerConfig: () => ({url:'https://example.supabase.co',publishableKey:'sb_publishable_test'}),
   createStudyClient: () => ({auth:{
     onAuthStateChange: (callback: (event:string,session:null)=>void) => {callback('INITIAL_SESSION',null); return {data:{subscription:{unsubscribe(){}}}};},
     getSession: async () => ({data:{session:null},error:null}), signUp: authCalls.signUp,
-  }}), onlineTransport: vi.fn(),
+  }}), onlineTransport: vi.fn(), signInStudyClient: authCalls.signIn,
 }));
 const nativeLocks=Object.getOwnPropertyDescriptor(navigator,'locks');
 beforeEach(() => {vi.clearAllMocks();localStorage.clear();sessionStorage.clear();history.replaceState(null,'','/#/');Object.defineProperty(navigator,'locks',{configurable:true,value:{request:async (_name:string,_options:unknown,callback:(lock:null)=>unknown)=>callback(null)}});});
@@ -69,4 +69,18 @@ it('does not initialize example records on a new visit or after remounting',asyn
   expect(localStorage.getItem(DEMO_KEY)).toBeNull();view.unmount();
   render(<App/>);await screen.findByRole('textbox',{name:'이메일'});
   expect(localStorage.getItem(DEMO_KEY)).toBeNull();
+});
+
+it('defaults to remembered login and submits an unchecked choice without losing signup fields',async()=>{
+  render(<App/>); await screen.findByRole('textbox',{name:'이메일'});
+  const choice=screen.getByRole('checkbox',{name:'로그인 상태 유지'}); expect(choice).toBeChecked();
+  await userEvent.click(choice);
+  fireEvent.change(screen.getByRole('textbox',{name:'이메일'}),{target:{value:'synthetic@example.invalid'}});
+  fireEvent.change(screen.getByLabelText('비밀번호'),{target:{value:'synthetic-password'}});
+  await userEvent.click(screen.getByRole('button',{name:'처음 사용하기'}));
+  expect(screen.queryByRole('checkbox',{name:'로그인 상태 유지'})).toBeNull();
+  await userEvent.click(screen.getByRole('button',{name:'로그인으로 돌아가기'}));
+  expect(screen.getByRole('checkbox',{name:'로그인 상태 유지'})).not.toBeChecked();
+  await userEvent.click(screen.getByRole('button',{name:/^로그인$/}));
+  expect(authCalls.signIn).toHaveBeenCalledWith(expect.anything(),{email:'synthetic@example.invalid',password:'synthetic-password'},false);
 });

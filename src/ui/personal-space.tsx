@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import type { SupabaseClient } from '@supabase/supabase-js';
-import { Button, Card, ErrorState, Input, LoadingState, Modal } from './index';
-import { createStudyClient, onlineTransport, readServerConfig } from '../data/supabase-client';
+import { Button, Card, Checkbox, ErrorState, Input, LoadingState, Modal } from './index';
+import { createStudyClient, onlineTransport, readServerConfig, signInStudyClient } from '../data/supabase-client';
 import { PersonalRepository, readCachedPersonalSnapshot } from '../data/personal-repository';
 import { startPersonalSync } from '../data/personal-sync';
 import type { SaveStatus } from '../data/repository';
@@ -15,7 +15,7 @@ import './personal-space.css';
 const errorText = (error: unknown) => error instanceof Error ? error.message : '개인 공간을 열지 못했습니다.';
 export function PersonalSpace({ renderWorkspace }: { renderWorkspace: (repo: PersonalRepository, controls: ReactNode) => ReactNode }) {
   const [configured] = useState(readServerConfig);
-  const client = useMemo(() => configured ? createStudyClient(configured) : null, [configured]);
+  const [client, setClient] = useState(() => configured ? createStudyClient(configured) : null);
   const accessApi = useMemo(() => client ? accountAccessClient(client) : null, [client]);
   const [access, setAccess] = useState<AccountAccess | null>(null);
   const [userId, setUserId] = useState<string | null>(null), [authReady, setAuthReady] = useState(false);
@@ -113,15 +113,16 @@ export function PersonalSpace({ renderWorkspace }: { renderWorkspace: (repo: Per
   return <main className="boot personal-entry"><Card><h1>내 공부 공간</h1>
     {withdrawn ? <section><p role="status">{withdrawalNotice||'탈퇴했습니다. 이 브라우저의 개인 자료를 정리하고 있습니다…'}</p>{withdrawalNotice.includes('끝나지')&&<Button onClick={()=>{void cleanupWithdrawal(withdrawn);}}>이 기기의 자료 정리 다시 시도</Button>}<Button onClick={()=>{setWithdrawn(null);setWithdrawalNotice('');}}>로그인 화면으로 돌아가기</Button></section> : !configured ? <ErrorState title="내 공부 공간에 연결하지 못했습니다" message="연결을 확인한 뒤 다시 시도해 주세요. 이 기기에 보관된 기록은 그대로 남아 있습니다." onRetry={() => location.reload()} />
       : !authReady || opening ? <LoadingState message="내 기록을 불러오는 중…" />
-      : !userId && client ? <SignIn client={client} />
+      : !userId && client ? <SignIn client={client} onSignedIn={setClient} />
       : access && access.status !== 'approved' ? <section><h2>{access.status === 'pending' ? '가입 승인 대기' : access.status === 'rejected' ? '가입이 승인되지 않았습니다' : '이용이 중지되었습니다'}</h2><p>{accessMessages[access.status]}</p><div className="actions"><Button onClick={() => setRetry(value => value + 1)}>승인 상태 다시 확인</Button><Button onClick={() => { void client?.auth.signOut({ scope: 'local' }); }}>로그아웃</Button></div></section>
       : <><ErrorState title="내 공부 공간을 열지 못했습니다" message={error || '서버에 연결하지 못했습니다. 기록은 지우지 않았습니다.'} onRetry={() => setRetry(value => value + 1)} />{otherWriter ? <p>가입 확인 메일에서 새 탭이 열렸다면, 처음 가입한 학습앱 탭으로 돌아가 주세요.</p> : <Button onClick={() => { void client?.auth.signOut({ scope: 'local' }); }}>다시 로그인</Button>}</>}
     {userId && !withdrawn && settings}
     {error && !userId && <p role="alert">{error}</p>}
   </Card></main>;
 }
-function SignIn({ client }: { client: SupabaseClient }) {
+function SignIn({ client, onSignedIn }: { client: SupabaseClient; onSignedIn: (client: SupabaseClient) => void }) {
   const [name, setName] = useState('');
+  const [remember, setRemember] = useState(true);
   const [email, setEmail] = useState(''), [password, setPassword] = useState(''), [creating, setCreating] = useState(false), [busy, setBusy] = useState(false), [error, setError] = useState(''), [notice, setNotice] = useState('');
   async function submit(create = false) {
     if (busy) return;
@@ -130,11 +131,13 @@ function SignIn({ client }: { client: SupabaseClient }) {
     if (create) { try { validateAccountName(name); } catch (error) {setError(errorText(error));return;} }
     setBusy(true); setNotice('');
     try {
-      const { data, error } = create ? await client.auth.signUp({ email, password, options: { data: { display_name: validateAccountName(name) }, emailRedirectTo: `${location.origin}${import.meta.env.BASE_URL}?space=personal` } }) : await client.auth.signInWithPassword({ email, password });
-      if (error) throw error;
+      if (create) {
+        const { data, error } = await client.auth.signUp({ email, password, options: { data: { display_name: validateAccountName(name) }, emailRedirectTo: `${location.origin}${import.meta.env.BASE_URL}?space=personal` } });
+        if (error) throw error;
+        if (!data.session) setNotice('이메일로 받은 확인 링크를 연 뒤 로그인해 주세요.');
+      } else onSignedIn(await signInStudyClient(client, { email, password }, remember));
       setPassword('');
-      if (create && !data.session) setNotice('이메일로 받은 확인 링크를 연 뒤 로그인해 주세요.');
-    } catch (error) { const limited = create && typeof error === 'object' && error !== null && 'code' in error && error.code === 'over_email_send_rate_limit'; setError(limited ? '가입 확인 메일의 발송 한도에 도달했습니다. 잠시 후 다시 시도해 주세요.' : create ? '가입하지 못했습니다. 이메일·비밀번호를 확인하거나 잠시 후 다시 시도해 주세요.' : '로그인하지 못했습니다. 이메일·비밀번호와 연결 상태를 확인해 주세요.'); }
+    } catch (error) { const code = typeof error === 'object' && error !== null && 'code' in error ? error.code : null; const limited = create && code === 'over_email_send_rate_limit'; setError(code === 'AUTH_STORAGE' ? errorText(error) : limited ? '가입 확인 메일의 발송 한도에 도달했습니다. 잠시 후 다시 시도해 주세요.' : create ? '가입하지 못했습니다. 이메일·비밀번호를 확인하거나 잠시 후 다시 시도해 주세요.' : '로그인하지 못했습니다. 이메일·비밀번호와 연결 상태를 확인해 주세요.'); }
     finally { setBusy(false); }
   }
   return <form onSubmit={event => { event.preventDefault(); void submit(creating); }}><p>로그인하면 내 공부 기록을 저장하고 다른 기기에서도 이어갈 수 있습니다.</p>
@@ -142,6 +145,7 @@ function SignIn({ client }: { client: SupabaseClient }) {
     {creating && <Input label="이름" autoComplete="name" required maxLength={80} value={name} onChange={event=>setName(event.target.value)} />}
     <Input label="이메일" type="email" autoComplete="email" required value={email} onChange={event => setEmail(event.target.value)} />
     <Input label={creating ? "비밀번호 (6자 이상)" : "비밀번호"} type="password" autoComplete={creating ? "new-password" : "current-password"} required minLength={creating ? 6 : undefined} value={password} onChange={event => setPassword(event.target.value)} />
+    {!creating && <div><Checkbox label="로그인 상태 유지" checked={remember} disabled={busy} aria-describedby="login-persistence-hint" onChange={event => setRemember(event.target.checked)} /><p id="login-persistence-hint" className="ui-hint">{remember ? '다음에 열 때 바로 내 공부 공간으로 들어갑니다. 공용 기기에서는 꺼 주세요.' : '이 탭에서만 로그인을 유지합니다. 사용을 마치면 로그아웃해 주세요.'}</p></div>}
     <div className="actions"><Button variant="primary" type="submit" disabled={busy}>{busy ? '연결 중…' : creating ? '계정 만들기' : '로그인'}</Button><Button type="button" disabled={busy} onClick={() => { setCreating(value => !value); setError(''); setNotice(''); }}>{creating ? '로그인으로 돌아가기' : '처음 사용하기'}</Button></div>
     {error && <p role="alert">{error}</p>}{notice && <p role="status">{notice}</p>}
   </form>;
