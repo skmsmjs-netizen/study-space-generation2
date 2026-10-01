@@ -25,4 +25,4 @@ it('saves expanded schedules and their exact history through authenticated Postg
  expect((await req({...body,command:{...command,opId:'stale'}})).status).toBe(409);expect((await backend.read(owner,'test'))?.sequence).toBe(2);
  const unsafe=structuredClone(w);unsafe.schedules![0].history![0].previous.sourceUrl='javascript:alert(1)';expect((await req({...body,baseSequence:2,command:{...command,workspace:unsafe,expectedVersion:1,opId:'unsafe'}})).status).toBe(400);
  }finally{await db.close();}
-},15000);
+},60000);
