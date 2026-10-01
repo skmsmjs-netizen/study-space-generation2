@@ -62,3 +62,6 @@
 - Apple/Google 캘린더의 실시간 양방향 동기화도 조건부 연동 개발이다. 현재 .ics는 내보낸 시점의 복사본이며 이후 기한 변경은 새 파일을 내보내야 한다. 외부 계정 권한, 중복·삭제·시간대와 충돌 보존을 별도로 설계해야 한다.
 
 2026-10-01 운영 DB의 추가 스키마·알림 서버·VAPID 서버 secrets·09시(KST) 예약 실행을 적용했다. 승인된 합성 시험 계정 둘의 실제 HTTP 호출 16개에서 원문/NUL/surrogate/CRLF·변경 이력·공지 확인 기록의 왕복, 중복 저장, 타 계정 거부/격리, 알림 설정·구독·해제를 확인했다. 실제 기기 push를 발송하지 않았다. 공개 앱 적용 및 CI 결과는 해당 배포 보고에서 별도로 기록한다.
+
+
+운영 예약 실행의 pg_net은 Supabase 관리 확장으로, 설치 schema 표시(public)에 대한 advisor 경고가 있다. 확장 소유자는 supabase_admin이고 postgres 배포 역할로 다른 grantor의 권한을 회수할 수 없어 회수 시도는 효과가 없었다. 이를 권한 변경 완료로 보고하지 않는다. 일반 계정 둘의 실제 REST 요청에서 net schema는 노출되지 않아 406/PGRST106으로 거부됨을 확인했다. 일정 구독 테이블과 일정 알림 RPC는 서비스 전용이며 사용자 요청은 인증한 서버 함수에서만 처리한다. 안내: https://supabase.com/docs/guides/database/database-linter?lint=0014_extension_in_public
