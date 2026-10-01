@@ -178,3 +178,24 @@ it('allows deliberately empty input for EOF tests without changing the source', 
   fireEvent.click(screen.getByRole('button', { name: '입력 없이 실행' }));
   expect(execution.resolve).not.toBeNull();
 });
+
+it('shows disconnected terminal input separately without changing the saved raw keys', () => {
+  const data = repo.getSnapshot();
+  const example = data.codeExamples![0];
+  const rawInput = '3\r한글\r\u0004';
+  repo.execute({
+    ...context(), type: 'saveCodeExample', id: example.id, expectedVersion: example.version,
+    content: { title: example.title, language: example.language, code: example.code,
+      stdin: '미리 적은 값', notes: example.notes, inputMode: 'terminal',
+      lastRun: { language: example.language, code: example.code, stdin: rawInput,
+        output: '입력: ', mode: 'terminal', outcome: 'error', error: '연결이 끊겼습니다.',
+        at: new Date().toISOString() } },
+  });
+  open();
+  const details = screen.getByText('보낸 입력').closest('details');
+  expect(details).toHaveAttribute('open');
+  expect(details).toHaveTextContent('한글');
+  expect(details).toHaveTextContent('〔입력 끝〕');
+  expect(repo.getSnapshot().codeExamples![0].lastRun?.stdin).toBe(rawInput);
+  expect(repo.getSnapshot().codeExamples![0].stdin).toBe('미리 적은 값');
+});

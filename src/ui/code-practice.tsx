@@ -615,8 +615,8 @@ export function CodeExampleEditor({
       </Select>
       {!terminalAvailable && ['c', 'cpp', 'csharp'].includes(content.language) && (
         <p className="ui-hint">
-          현재 접속에서는 입력값을 미리 적어 실행할 수 있습니다. 실행 중 입력은 터미널 서버 연결이
-          필요합니다.
+          현재 접속에서는 입력값을 미리 적어 실행할 수 있습니다. 실행 중 입력하는 터미널은
+          Mac의 로컬 코딩 화면에서 사용합니다.
         </p>
       )}
       <div className="code-input-section" ref={inputSection}>
@@ -762,6 +762,12 @@ export function CodeExampleEditor({
           <p className="ui-hint">
             터미널 기록입니다. 프로그램 출력과 입력한 내용의 표시가 함께 포함됩니다.
           </p>
+        )}
+        {lastRun?.mode === 'terminal' && lastRun.stdin && (
+          <details open={lastRun.outcome !== 'success'}>
+            <summary>보낸 입력</summary>
+            <pre>{lastRun.stdin.replace(/\r\n?/g, '\n').replace(/\u0003/g, '〔중지〕').replace(/\u0004/g, '〔입력 끝〕')}</pre>
+          </details>
         )}
         {lastRun && !currentCodeRun(content) && (
           <p className="code-stale-result">

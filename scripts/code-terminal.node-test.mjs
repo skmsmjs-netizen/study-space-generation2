@@ -3,18 +3,19 @@ import assert from 'node:assert/strict';
 import { createServer } from 'node:http';
 import { WebSocket } from 'ws';
 import { attachCodeTerminal } from './code-terminal.mjs';
-import { mkdtemp, rm, writeFile } from 'node:fs/promises';
+import { chmod, mkdtemp, rm, writeFile } from 'node:fs/promises';
+import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 
 test(
   'real PTY input, cancellation, EOF, isolation and cleanup',
-  { skip: process.platform !== 'darwin', timeout: 60000 },
+  { skip: process.platform !== 'darwin', timeout: 180000 },
   async (t) => {
     let busy = false;
     const server = createServer();
     attachCodeTerminal(server, {
-      executionTimeoutMs: 1000,
+      executionTimeoutMs: 15000,
       acquire: () => {
         if (busy) return false;
         busy = true;
@@ -33,7 +34,7 @@ test(
         const timer = setTimeout(() => {
           ws.terminate();
           reject(Error('Terminal test timed out'));
-        }, 20000);
+        }, 60000);
         let output = '',
           step = 0;
         const send = (message) => ws.send(JSON.stringify(message));
@@ -61,6 +62,16 @@ test(
         });
       });
     try {
+      await t.test('repairs a replaced PTY helper before another run without restarting the server', async () => {
+        const require = createRequire(import.meta.url);
+        const helper = path.join(path.dirname(require.resolve('node-pty/package.json')),
+          'prebuilds', `darwin-${process.arch}`, 'spawn-helper');
+        try {
+          await chmod(helper, 0o644);
+          const result = await run('c', 'int main(){return 0;}');
+          assert.equal(result.outcome, 'success', result.error);
+        } finally { await chmod(helper, 0o755); }
+      });
       const examples = {
         c: '#include <stdio.h>\nint main(){int a,b;printf("FIRST: ");scanf("%d",&a);printf("SECOND: ");scanf("%d",&b);printf("SUM=%d\\n",a+b);}',
         cpp: '#include <iostream>\nint main(){int a,b;std::cout<<"FIRST: ";std::cin>>a;std::cout<<"SECOND: ";std::cin>>b;std::cout<<"SUM="<<a+b<<std::endl;}',
