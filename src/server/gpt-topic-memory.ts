@@ -53,12 +53,9 @@ export async function generateGPTTopicMemory(
   const cards = (parsed as { cards?: unknown })?.cards;
   if (!Array.isArray(cards))
     throw new DomainError('AI_ERROR', 'GPT가 질문 목록을 반환하지 않았습니다.');
-  if (!cards.length)
-    throw new DomainError(
-      'AI_ERROR',
-      '이 범위에서 적절한 문항을 만들지 못했습니다. 주제 이름이나 출제 초점을 구체적으로 적어 주세요.',
-    );
   const result = {
+    evidenceType: 'topic-general' as const,
+    ...((parsed as TopicMemoryResult)?.diagnostics !== undefined ? { diagnostics: (parsed as TopicMemoryResult).diagnostics } : !cards.length ? { diagnostics: [{ kind: 'insufficient-evidence' as const, message: '이 범위에서 적절한 문항을 만들지 못했습니다. 주제 이름이나 출제 초점을 확인해 주세요.' }] } : {}),
     id: crypto.randomUUID(),
     at: new Date().toISOString(),
     model: options.model,

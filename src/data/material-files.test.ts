@@ -1,0 +1,60 @@
+// @vitest-environment node
+import { beforeEach, expect, it, vi } from 'vitest';
+import { IDBFactory, IDBKeyRange } from 'fake-indexeddb';
+import { clearMaterialFilesForOwner, keepAudio, keepRecordingChunk, readAudio, recoverRecording, removeTranscribedAudio, writeTranscriptionCheckpoint, readTranscriptionCheckpoint, writeMaterialDraft, clearMaterialDraft } from './material-files';
+import { TRANSCRIPTION_VERSION } from '../domain/browser-transcription';
+beforeEach(() => { vi.stubGlobal('indexedDB', new IDBFactory()); vi.stubGlobal('IDBKeyRange', IDBKeyRange); });
+const owner = { namespace: 'test' as const, userId: 'owner' };
+it('stores exact audio bytes and checks owner before reading; withdrawal clears only the withdrawn account', async () => {
+  const bytes = new Uint8Array([0, 1, 255, 3, 0, 12]);
+  const first = await keepAudio(owner, new File([bytes], '음성.wav', { type: 'audio/wav' }));
+  const other = await keepAudio({ ...owner, userId: 'other' }, new File([bytes], '음성.wav', { type: 'audio/wav' }));
+  expect(new Uint8Array(await (await readAudio(owner, first))!.arrayBuffer())).toEqual(bytes);
+  await expect(readAudio({ ...owner, userId: 'other' }, first)).rejects.toThrow('다른 공간');
+  await clearMaterialFilesForOwner(owner);
+  expect(await readAudio(owner, first)).toBeNull();
+  expect(await readAudio({ ...owner, userId: 'other' }, other)).not.toBeNull();
+});
+it('recovers ordered chunks after interruption while keeping another recording and owner separate', async () => {
+  await keepRecordingChunk(owner, 'first', 1, new Blob(['B'], { type: 'audio/webm' }));
+  await keepRecordingChunk(owner, 'first', 0, new Blob(['A'], { type: 'audio/webm' }));
+  await keepRecordingChunk(owner, 'second', 0, new Blob(['C'], { type: 'audio/webm' }));
+  expect(await (await recoverRecording(owner, 'first'))!.text()).toBe('AB');
+  expect(await recoverRecording({ ...owner, userId: 'other' }, 'first')).toBeNull();
+});
+it('removes only the acknowledged complete audio and recording chunks, retaining transcription and other-owner bytes', async () => {
+  const file = new File(['synthetic waveform'], '합성.wav', { type: 'audio/wav' });
+  const audio = await keepAudio(owner, file);
+  const other = { ...owner, userId: 'other' };
+  const otherAudio = await keepAudio(other, file);
+  await keepRecordingChunk(owner, 'source', 0, new Blob(['source']));
+  await keepRecordingChunk(owner, 'unrelated', 0, new Blob(['unrelated']));
+  const row = { version: TRANSCRIPTION_VERSION, audioHash: audio.sha256, duration: 30, nextWindow: 0, segments: [], complete: false };
+  await writeTranscriptionCheckpoint(owner, row);
+  await expect(removeTranscribedAudio(owner, audio, '확인한 전사문', 'new', false, 'source')).rejects.toThrow();
+  expect(await readAudio(owner, audio)).not.toBeNull();
+  const complete = { ...row, nextWindow: 1, segments: [{ start: 0, end: 30, text: '원래 전사문' }], editedText: '확인한 전사문', complete: true };
+  await writeTranscriptionCheckpoint(owner, complete);
+  await expect(removeTranscribedAudio(other, audio, complete.editedText, 'new', false)).rejects.toThrow('다른 공간');
+  await expect(removeTranscribedAudio(owner, audio, '다른 전사문', 'new', false)).rejects.toThrow();
+  expect(await removeTranscribedAudio(owner, audio, complete.editedText, 'new', false, 'source')).toBe(true);
+  expect(await readAudio(owner, audio)).toBeNull();
+  expect(await recoverRecording(owner, 'source')).toBeNull();
+  expect(await recoverRecording(owner, 'unrelated')).not.toBeNull();
+  expect(await readAudio(other, otherAudio)).not.toBeNull();
+  expect(await readTranscriptionCheckpoint(owner, audio.sha256)).toEqual(complete);
+});
+it('keeps audio if requested or referenced by another material or draft, and retries cleanup after that reference is removed', async () => {
+  const audio = await keepAudio(owner, new File(['shared'], '합성.wav', { type: 'audio/wav' }));
+  const row = { version: TRANSCRIPTION_VERSION, audioHash: audio.sha256, duration: 30, nextWindow: 1, segments: [{ start: 0, end: 30, text: '전사문' }], complete: true };
+  await writeTranscriptionCheckpoint(owner, { ...row, retainAudio: true });
+  await expect(removeTranscribedAudio(owner, audio, '전사문', 'new', false)).rejects.toThrow();
+  await writeTranscriptionCheckpoint(owner, row);
+  expect(await removeTranscribedAudio(owner, audio, '전사문', 'new', true)).toBe(false);
+  await writeMaterialDraft(owner, 'other-draft', { content: { title: '', subjectId: '', topicId: null, sourceText: '', audio, results: [] }, baseVersion: 0, updatedAt: '2026-10-01T00:00:00Z' });
+  expect(await removeTranscribedAudio(owner, audio, '전사문', 'new', false)).toBe(false);
+  expect(await readAudio(owner, audio)).not.toBeNull();
+  await clearMaterialDraft(owner, 'other-draft');
+  expect(await removeTranscribedAudio(owner, audio, '전사문', 'new', false)).toBe(true);
+  expect(await readAudio(owner, audio)).toBeNull();
+});

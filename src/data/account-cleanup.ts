@@ -1,3 +1,4 @@
+import { clearMaterialFilesForOwner } from './material-files';
 /** Delete only the explicitly withdrawn owner's copies on this browser. */
 export async function clearWithdrawnAccount(userId: string, storage: Storage = localStorage, factory: IDBFactory | undefined = globalThis.indexedDB) {
   const owner = encodeURIComponent(userId);
@@ -25,5 +26,7 @@ export async function clearWithdrawnAccount(userId: string, storage: Storage = l
       });
     } finally {db.close();}
   }
+  if (factory) for (const namespace of ['personal','test'] as const) await clearMaterialFilesForOwner({ userId, namespace }, factory);
+  if (factory) { const { clearBackupCopiesForOwner } = await import('./full-backup'); await clearBackupCopiesForOwner(userId, factory); }
   for(const key of keys) storage.removeItem(key);
 }

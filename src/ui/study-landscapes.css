@@ -1,0 +1,203 @@
+.study-landscapes {
+  --pixel-wind-period: 20s;
+  --pixel-wave-period: 7s;
+  --pixel-wave-travel: 4px;
+  --pixel-boat-bob: 1px;
+  --pixel-walk-period: 32s;
+  --pixel-step-period: 0.9s;
+  --pixel-sway-period: 5s;
+  position: relative;
+  min-width: 0;
+}
+.landscape-heading {
+  position: absolute;
+  z-index: 1;
+  inset: var(--space-2) var(--space-2) auto auto;
+}
+.landscape-heading h2 {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  margin: 0;
+}
+.landscape-controls {
+  display: flex;
+  align-items: start;
+  gap: var(--space-0);
+}
+.landscape-icon-button {
+  color: var(--color-muted);
+}
+.landscape-options {
+  position: relative;
+}
+.landscape-options summary {
+  cursor: pointer;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  color: var(--color-muted);
+  border-radius: var(--radius-md);
+  list-style: none;
+}
+.landscape-options summary::-webkit-details-marker {
+  display: none;
+}
+.landscape-options summary:hover {
+  background: var(--color-surface-inset);
+}
+.landscape-options > div {
+  position: absolute;
+  z-index: 2;
+  top: 100%;
+  right: 0;
+  width: 15rem;
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+}
+.landscape-options summary:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+.pixel-landscape {
+  display: block;
+  width: min(100%, 38rem);
+  margin-inline: auto;
+  fill: var(--color-text);
+  image-rendering: pixelated;
+  overflow: hidden;
+}
+.pixel-ink {
+  fill: var(--color-text);
+}
+.pixel-muted {
+  fill: var(--color-muted);
+}
+.pixel-soft {
+  fill: var(--color-border);
+}
+.pixel-shadow {
+  fill: var(--color-border);
+  opacity: 0.65;
+}
+.pixel-ground {
+  fill: var(--color-surface-inset);
+}
+.pixel-paper {
+  fill: var(--color-surface);
+}
+.pixel-water {
+  fill: var(--color-muted);
+  opacity: 0.35;
+}
+.pixel-outline {
+  fill: none;
+  stroke: var(--color-border);
+  stroke-width: 1;
+}
+.pixel-cloud {
+  animation: pixel-cloud var(--pixel-wind-period) steps(18, end) infinite alternate;
+}
+.pixel-sway,
+.pixel-tree-sway {
+  animation: pixel-sway var(--pixel-sway-period) steps(2, end) infinite alternate;
+}
+.pixel-butterfly {
+  animation: pixel-butterfly var(--pixel-wind-period) steps(20, end) infinite alternate;
+}
+.pixel-ripple {
+  animation: pixel-ripple var(--pixel-wave-period) steps(4, end) infinite alternate;
+}
+.pixel-boat {
+  animation: pixel-boat var(--pixel-wave-period) steps(7, end) infinite alternate;
+}
+.pixel-smoke {
+  animation: pixel-smoke var(--pixel-wind-period) steps(8, end) infinite;
+}
+.pixel-walker {
+  animation: pixel-walk var(--pixel-walk-period) steps(110, end) infinite alternate;
+}
+.pixel-feet {
+  animation: pixel-feet var(--pixel-step-period) steps(2, end) infinite alternate;
+}
+.pixel-cat {
+  animation: pixel-cat 5s steps(2, end) infinite;
+}
+.study-landscapes[data-motion='paused'] .pixel-landscape * {
+  animation-play-state: paused;
+}
+@keyframes pixel-cloud {
+  to {
+    translate: -12px 0;
+  }
+}
+@keyframes pixel-sway {
+  to {
+    translate: 1px 0;
+  }
+}
+@keyframes pixel-butterfly {
+  to {
+    translate: 16px -6px;
+  }
+}
+@keyframes pixel-ripple {
+  to {
+    translate: var(--pixel-wave-travel) 0;
+  }
+}
+@keyframes pixel-boat {
+  to {
+    translate: 1px var(--pixel-boat-bob);
+  }
+}
+@keyframes pixel-smoke {
+  from {
+    translate: 0 3px;
+    opacity: 0.6;
+  }
+  to {
+    translate: -4px -6px;
+    opacity: 0;
+  }
+}
+@keyframes pixel-walk {
+  from {
+    translate: 115px 157px;
+  }
+  to {
+    translate: 230px 157px;
+  }
+}
+@keyframes pixel-feet {
+  to {
+    translate: 0 -1px;
+  }
+}
+@keyframes pixel-cat {
+  90% {
+    translate: 0 0;
+  }
+  100% {
+    translate: 0 -1px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pixel-landscape * {
+    animation: none;
+  }
+  .pixel-walker {
+    translate: 165px 157px;
+  }
+}
+.study-landscapes:not(:has(.pixel-landscape)) {
+  min-height: 44px;
+}

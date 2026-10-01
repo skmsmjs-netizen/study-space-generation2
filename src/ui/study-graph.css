@@ -159,3 +159,10 @@
 .react-flow__node:focus .graph-label {
   visibility: visible;
 }
+
+.graph-stage .react-flow__attribution {
+  background: var(--color-surface);
+}
+.graph-stage .react-flow__attribution a {
+  color: var(--color-text);
+}

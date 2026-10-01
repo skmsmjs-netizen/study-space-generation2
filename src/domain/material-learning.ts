@@ -2,6 +2,7 @@ import { DomainError } from './model';
 export interface MaterialQuizQuestion { id: string; question: string; options: string[]; correctIndex: number; explanation: string; sourceIds: string[]; }
 export interface MaterialQuizAttempt {
   id: string; resultId: string; at: string; submittedAt: string | null;
+  helpedQuestionIds?: string[];
   questions: MaterialQuizQuestion[]; answers: Record<string, number>;
 }
 export interface MaterialMap {
@@ -34,7 +35,7 @@ export function validateMap(value: unknown, sourceIds: Set<string>): asserts val
     ids.add(n.id);
   }
   for (const e of map.edges) {
-    if (typeof e.id !== 'string' || !e.id || edges.has(e.id) || !ids.has(e.from) || !ids.has(e.to) || e.from === e.to || typeof e.label !== 'string' || !e.label.trim() || e.label.length > 1000 || !refs(e.sourceIds)) fail();
+    if (typeof e.id !== 'string' || !e.id || e.id.length > 100 || ids.has(e.id) || edges.has(e.id) || !ids.has(e.from) || !ids.has(e.to) || e.from === e.to || typeof e.label !== 'string' || !e.label.trim() || e.label.length > 300 || !refs(e.sourceIds)) fail();
     edges.add(e.id);
   }
   for (const [id, p] of Object.entries(map.positions ?? {})) if (!ids.has(id) || !p || !Number.isFinite(p.x) || !Number.isFinite(p.y) || Math.abs(p.x) > 1e6 || Math.abs(p.y) > 1e6) fail();
@@ -43,8 +44,9 @@ export function validateQuizAttempts(attempts: MaterialQuizAttempt[]) {
   if (!Array.isArray(attempts) || attempts.length > 100) fail();
   const ids = new Set<string>();
   for (const a of attempts) {
-    if (!a || typeof a.id !== 'string' || !a.id || ids.has(a.id) || typeof a.resultId !== 'string' || !Number.isFinite(Date.parse(a.at)) || !(a.submittedAt === null || Number.isFinite(Date.parse(a.submittedAt)))) fail();
+    if (!a || typeof a.id !== 'string' || !a.id || ids.has(a.id) || a.id.length > 256 || typeof a.resultId !== 'string' || !a.answers || typeof a.answers !== 'object' || Array.isArray(a.answers) || !Number.isFinite(Date.parse(a.at)) || !(a.submittedAt === null || Number.isFinite(Date.parse(a.submittedAt)))) fail();
     ids.add(a.id); validateQuiz(a.questions);
+    if (a.helpedQuestionIds !== undefined && (!Array.isArray(a.helpedQuestionIds) || a.helpedQuestionIds.some(id => !a.questions.some(q => q.id === id)))) fail();
     for (const [id, answer] of Object.entries(a.answers)) {
       const q = a.questions.find(q => q.id === id);
       if (!q || !Number.isInteger(answer) || answer < 0 || answer >= q.options.length) fail();

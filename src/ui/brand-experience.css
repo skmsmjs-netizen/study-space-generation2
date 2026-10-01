@@ -1,0 +1,16 @@
+.brand-wordmark { font-family: var(--font-interface); font-weight: var(--type-title-weight); letter-spacing: var(--type-title-tracking); overflow-wrap: anywhere; }
+.brand-wordmark span { display: block; font-size: var(--type-caption-size); font-weight: var(--type-body-weight); letter-spacing: normal; color: var(--color-muted); margin-top: var(--space-2); }
+.brand-resume, .brand-service { display: grid; gap: var(--space-4); }
+.brand-resume { margin-bottom: var(--space-5); }
+.brand-resume h2, .brand-service h2 { margin-top: 0; }
+.brand-next { white-space: pre-wrap; overflow-wrap: anywhere; border-left: 2px solid var(--color-border); padding-left: var(--space-4); }
+.brand-service pre { white-space: pre-wrap; overflow-wrap: anywhere; font: inherit; max-width: 100%; }
+.brand-related { margin-top: var(--space-5); }
+.brand-related summary { min-height: var(--control-height); cursor: pointer; }
+.brand-related article { border-bottom: 1px solid var(--color-border); padding-block: var(--space-3); }
+.brand-related .prose { white-space: pre-wrap; overflow-wrap: anywhere; }
+.brand-footer { padding-block: var(--space-5); display: flex; flex-wrap: wrap; gap: var(--space-3); color: var(--color-muted); font-size: var(--type-caption-size); }
+.brand-sharing-preview { border: 1px solid var(--color-border); padding: var(--space-4); border-radius: var(--radius-md); max-height: 50vh; overflow: auto; }
+.app-shell[data-reading-width=normal] .main-content .prose { max-width: var(--layout-reading); }
+.app-shell[data-reading-width=wide] .main-content .prose { max-width: none; }
+@media (prefers-reduced-motion: reduce) { .brand-resume { scroll-behavior: auto; } }

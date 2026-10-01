@@ -1,4 +1,7 @@
+import { WorkspaceSearch } from "./ui/workspace-search";
 import { MaterialCardLibrary } from './ui/material-card-library';
+import { MotionWidgets } from './ui/motion-widgets';
+import { SavedMark } from './ui/motion';
 import { RelatedCodeExamples } from './ui/learning-links';
 import { useEffect, useRef, useState, Suspense, lazy, type ReactNode } from "react";
 import {
@@ -15,6 +18,7 @@ import {
   EmptyState,
   ErrorState,
   LoadingState,
+  ScreenBoundary,
   NavigationBar,
   ContextMenu,
 } from "./ui";
@@ -39,14 +43,20 @@ import { OutlineTree } from "./ui/outline-tree";
 import { DraftArchives } from "./ui/draft-archives";
 import { QuickMemos } from "./ui/quick-memos";
 import { StudyLaunch } from "./ui/study-launch";
-const CodePractice = lazy(() => import("./ui/code-practice").then(module => ({ default: module.CodePractice })));
+import { BrandIdentity, BrandContinuity, BrandService, ExperienceSettings, RelatedThinking, useExperience } from "./ui/brand-experience";
+import { SubjectWeeks } from "./ui/semester-weeks";
 const NextStudy = lazy(() => import("./ui/next-study").then(module => ({ default: module.NextStudy })));
 const StudyStatistics = lazy(() => import("./ui/statistics").then(module => ({ default: module.StudyStatistics })));
+const StudyLandscapes = lazy(() => import("./ui/study-landscapes").then(module => ({ default: module.StudyLandscapes })));
+const StudyMaterials = lazy(() => import("./ui/study-materials").then(module => ({ default: module.StudyMaterials })));
+const MathExplorer = lazy(() => import("./ui/math-explorer").then(module => ({ default: module.MathExplorer })));
+const CodePractice = lazy(() => import("./ui/code-practice").then(module => ({ default: module.CodePractice })));
 const MemoryTests = lazy(() => import("./ui/memory-test").then(module => ({ default: module.MemoryTests })));
 const ExamPractice = lazy(() => import("./ui/exam-practice").then(module => ({ default: module.ExamPractice })));
 import { TopicRecall } from "./ui/topic-recall";
-const StudyGraph = lazy(() => import("./ui/study-graph").then(module => ({ default: module.StudyGraph })));
-const StudyBoard = lazy(() => import("./ui/study-board").then(module => ({ default: module.StudyBoard })));
+const StudyGraph = lazy(() => import('./ui/study-graph').then(module => ({ default: module.StudyGraph })));
+const FullBackup = lazy(() => import("./ui/full-backup").then(module => ({ default: module.FullBackup })));
+const StudyBoard = lazy(() => import('./ui/study-board').then(module => ({ default: module.StudyBoard })));
 const StudyCanvas = lazy(() => import("./ui/study-canvas").then(module => ({ default: module.StudyCanvas })));
 const PersonalSpace = lazy(() => import("./ui/personal-space").then(module => ({ default: module.PersonalSpace })));
 import { storagePrefix, type StudyRepository } from "./data/repository";
@@ -76,20 +86,22 @@ function message(error: unknown) {
 }
 
 function readPreference(name: string, fallback: string, prefix = "study-space:demo") {
-  try { return sessionStorage.getItem(`${prefix}:context:${name}`) ?? fallback; }
+  try { return sessionStorage.getItem(`${prefix}:context:${name}`) ?? localStorage.getItem(`${prefix}:context:${name}:device`) ?? fallback; }
   catch { return fallback; }
 }
 function writePreference(name: string, value: string, prefix = "study-space:demo") {
   try { sessionStorage.setItem(`${prefix}:context:${name}`, value); } catch { /* Optional view context never blocks a study draft. */ }
+  try { localStorage.setItem(`${prefix}:context:${name}:device`, value); } catch { /* Optional reopening preference. */ }
 }
 
 export default function App() {
-  // Keep existing example records isolated; normal visits open personal entry.
+  // Personal entry is the default, including visits with an old demo preference.
+  // Existing example records remain accessible only through an explicit URL.
   const [personal, setPersonal] = useState(() => location.hash === '#/account' || new URLSearchParams(location.search).get('space') !== 'demo');
   useEffect(() => { if (location.hash === '#/account') { try { sessionStorage.setItem('study-space:active-space', 'personal'); } catch { /* Space stays open for this visit. */ } location.hash = '#/'; } }, []);
   const choose = (value: boolean) => { const url = new URL(location.href); url.searchParams.delete('space'); history.replaceState(null, '', url); try { sessionStorage.setItem('study-space:active-space', value ? 'personal' : 'demo'); } catch { /* In-memory space choice remains usable. */ } location.hash = '#/'; setPersonal(value); };
-  return personal ? <Suspense fallback={<main className="boot"><LoadingState /></main>}><PersonalSpace renderWorkspace={(repo, controls) => <Workspace key={repo.getSnapshot().userId} repository={repo} accountControls={controls} />} /></Suspense>
-    : <DemoApp accountControls={<Button variant="quiet" onClick={() => choose(true)}>내 공부 공간</Button>} />;
+  return <ScreenBoundary><Suspense fallback={<main className="boot"><LoadingState message="공부 공간을 여는 중입니다." /></main>}>{personal ? <Suspense fallback={<main className="boot"><LoadingState /></main>}><PersonalSpace renderWorkspace={(repo, controls) => <Workspace key={repo.getSnapshot().userId} repository={repo} accountControls={controls} />} /></Suspense>
+    : <DemoApp accountControls={<Button variant="quiet" onClick={() => choose(true)}>내 공부 공간</Button>} />}</Suspense></ScreenBoundary>;
 }
 function DemoApp({ accountControls }: { accountControls: ReactNode }) {
   const [showBootArchives, setShowBootArchives] = useState(false);
@@ -174,6 +186,7 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
   useEffect(() => repository.subscribe?.(() => setData(repository.getSnapshot())), [repository]);
   const prefix = storagePrefix(data);
   const route = useRoute(prefix);
+  const brandExperience = useExperience(data);
   const [scope, setScope] = useState(() => readPreference("scope", "all", prefix));
   const [query, setQuery] = useState(() => readPreference("query", "", prefix));
   const [error, setError] = useState("");
@@ -196,6 +209,7 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
   const [bulkPreview, setBulkPreview] = useState(false);
   const [outlineToken, setOutlineToken] = useState("");
   const [theme, setTheme] = useState(() => readPreference("theme", "auto", prefix));
+  const [reducedMotion, setReducedMotion] = useState(() => readPreference("motion", "auto", prefix) === "reduce");
   const [recent, setRecent] = useState<string[]>(() => {
     try {
       return JSON.parse(sessionStorage.getItem(data.namespace === "demo" ? "demo:recent" : `${prefix}:recent`) || "[]");
@@ -206,6 +220,12 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
   useEffect(() => { writePreference("scope", scope, prefix); }, [scope]);
   useEffect(() => { writePreference("query", query, prefix); }, [query]);
   useEffect(() => { writePreference("theme", theme, prefix); }, [theme]);
+  useEffect(() => {
+    writePreference("motion", reducedMotion ? "reduce" : "auto", prefix);
+    if (reducedMotion) document.documentElement.dataset.motion = 'reduce';
+    else delete document.documentElement.dataset.motion;
+    return () => { delete document.documentElement.dataset.motion; };
+  }, [reducedMotion, prefix]);
   const quickGuard = useRef(new Set<string>());
   const nodes = active(data.nodes),
     subjects = active(data.subjects);
@@ -232,17 +252,6 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
     if (!previous || record.createdAt >= previous.createdAt)
       latestWrittenRecords.set(record.targetId, record);
   }
-  const searching = route === "/search" && Boolean(query.trim());
-  const searchNarratives = searching ? active(data.narratives) : [];
-  const matchingSubjects = searching ? shownSubjects.filter(s =>
-    s.name.includes(query) || searchNarratives.some(n => n.ownerId === s.id && n.body.includes(query))) : [];
-  const matchingNodes = searching ? shownNodes.filter(n =>
-    n.name.includes(query) || searchNarratives.some(text => text.ownerId === n.id && text.body.includes(query)) ||
-    records.some(r => r.targetId === n.id && r.body.includes(query))) : [];
-  const matchingFreeNotes = searching && scope === "all" ? searchNarratives.filter(n =>
-    n.kind === "free-note" && n.ownerId === null && n.body.includes(query)) : [];
-  const matchingMemos = searching ? active(data.memos ?? []).filter(memo => memo.body.includes(query) &&
-    (memo.ownerId === null ? scope === "all" : shownSubjects.some(s => s.id === memo.ownerId) || shownNodes.some(n => n.id === memo.ownerId))) : [];
   const recentTopics = recent
     .map((id) => topics.find((t) => t.id === id))
     .filter(Boolean) as OutlineNode[];
@@ -484,31 +493,33 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
   const navItems = [
     { href: "/", text: "오늘" },
     { href: "/statistics", text: "통계" },
+    { href: "/schedules", text: "일정·과제" },
     { href: "/subjects", text: "과목" },
     { href: "/record", text: "기록" },
     { href: "/memos", text: "메모" },
+    { href: "/materials", text: "강의 자료" },
     { href: "/code", text: "코딩 연습" },
+    { href: "/math", text: "수식 탐색" },
     { href: "/practice", text: "시험 연습" },
-    { href: "/recall", text: "주제 카드" },
     { href: "/memory-test", text: "암기시험" },
     { href: "/material-cards", text: "자료 카드" },
+    { href: "/recall", text: "주제 카드" },
     { href: "/canvas", text: "Canvas" },
     { href: "/graph", text: "그래프뷰" },
     { href: "/board", text: "칸반보드" },
     { href: "/search", text: "찾기" },
   ];
   const recordRoute = route.startsWith("/record");
-  const codeRoute = route === "/code" || route.startsWith("/code/");
   const memoRoute = route === "/memos" || route.startsWith("/memos/");
+  const materialRoute = route === "/materials" || route.startsWith("/materials/");
+  const codeRoute = route === "/code" || route.startsWith("/code/");
   const memoryTestRoute = route === "/memory-test" || route.startsWith("/memory-test/");
   const practiceRoute = route === "/practice" || route.startsWith("/practice/");
   const freeRoute = route === "/free" || route.startsWith("/free/");
   const rootTitle =
-    memoryTestRoute ? "암기시험" : route === "/material-cards" ? "자료 카드" :
-    codeRoute ? "코딩 연습" :
-    practiceRoute ? "시험 연습" : route === "/statistics" ? "공부 통계" :
-    route === "/graph" ? "그래프뷰" : route === "/board" ? "칸반보드" :
-    route === "/canvas"
+    route === "/about" ? "manseeksong" : route === "/help" ? "도움말·문의" : route === "/my-progress" ? "내 생각 다시 보기" : route === "/subscription" ? "이용 정보" :
+    route === "/schedules" ? "일정·과제·온라인 강의" : route === "/material-cards" ? "자료 카드" : route === "/math" ? "수식 탐색" : memoryTestRoute ? "암기시험" : materialRoute ? "강의 자료" : practiceRoute ? "시험 연습" : codeRoute ? "코딩 연습" : route === "/statistics" ? "공부 통계" :
+    route === "/backup" ? "백업·복원" : route === "/graph" ? "그래프뷰" : route === "/board" ? "칸반보드" : route === "/canvas"
       ? "Canvas"
       : (route === "/recall" || route === "/recall/scheduled")
       ? "주제 카드"
@@ -530,15 +541,20 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
   const tree = (parentId: string | null) => nodes.some(n => n.subjectId === subject?.id && n.parentId === parentId)
     ? <OutlineTree nodes={nodes} records={records} subjectId={subject!.id} subjectName={subject!.name} parentId={parentId} /> : null;
   return (
-    <div className={`app-shell${route === "/" ? " is-home" : route === "/canvas" ? " is-canvas" : ""}`}>
+    <div data-reading-width={brandExperience.state.readingWidth} className={`app-shell${route === "/" ? " is-home" : route === "/canvas" ? " is-canvas" : ""}`}>
       <aside className="sidebar">
-        <a className="brand" href="#/">
-          공부의 자리<span>LEARNING SPACE</span>
-        </a>
-        <NavigationBar label="주 메뉴" orientation="vertical" items={navItems.map(item => ({href:`#${item.href}`, label:item.text, active:route === item.href || item.href === "/record" && recordRoute || item.href === "/code" && codeRoute || item.href === "/memos" && memoRoute || item.href === "/practice" && practiceRoute || item.href === "/memory-test" && memoryTestRoute || item.href === "/recall" && route === "/recall/scheduled" || item.href === "/subjects" && Boolean(subject)}))} />
+        <BrandIdentity />
+        <NavigationBar label="주 메뉴" orientation="vertical" items={navItems.map(item => ({href:`#${item.href}`, label:item.text, active:route === item.href || item.href === "/record" && recordRoute || item.href === "/memos" && memoRoute || item.href === "/materials" && materialRoute || item.href === "/code" && codeRoute || item.href === "/practice" && practiceRoute || item.href === "/memory-test" && memoryTestRoute || item.href === "/subjects" && Boolean(subject)}))} />
         <details className="sidebar-bottom workspace-tools"><summary>보관함·화면 설정</summary><div className="workspace-tools-content">
+          <MotionWidgets reduced={reducedMotion} onReducedChange={setReducedMotion} />
+          <a href="#/backup">백업·복원</a>
           <a href="#/trash">휴지통</a>
           <a href="#/draft-archives">초안 보관본</a>
+          <a href="#/my-progress">내 생각 다시 보기</a>
+          <a href="#/help">도움말·문의</a>
+          <a href="#/subscription">이용 정보</a>
+          <a href="#/about">manseeksong 소개</a>
+          <ExperienceSettings data={data} />
           <Select
             label="화면 밝기"
             value={theme}
@@ -552,7 +568,7 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
       </aside>
       <div className="workspace">
         <header className="topbar">
-          <span className="small-brand">공부의 자리</span>
+          <BrandIdentity compact />
           <span className="space-label">{data.namespace === "demo" ? "예시 자료 · 이 기기에 저장" : "내 공부 공간"}</span>{accountControls}
           <Select
             label="공부 범위"
@@ -576,8 +592,14 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
           </Button>
           <details className="compact-menu">
             <summary>더 보기</summary>
+            <MotionWidgets reduced={reducedMotion} onReducedChange={setReducedMotion} />
             <a href="#/trash">휴지통</a>
             <a href="#/draft-archives">초안 보관본</a>
+            <a href="#/my-progress">내 생각 다시 보기</a>
+            <a href="#/help">도움말·문의</a>
+            <a href="#/subscription">이용 정보</a>
+            <a href="#/about">manseeksong 소개</a>
+            <ExperienceSettings data={data} />
             <Select
               label="화면 밝기"
               value={theme}
@@ -590,6 +612,7 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
           </details>
         </header>
         <main id="main" className="main-content">
+          <ScreenBoundary key={`${data.namespace}:${data.userId}:${route}`}>
           {route !== "/" && <Breadcrumb
             items={[
               { label: "오늘", href: "#/" },
@@ -651,11 +674,14 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
               <h1>{node?.name || subject?.name || rootTitle}</h1>
             </div>
             {subject && !node && (
-              <div className="actions"><Button onClick={() => openDialog("node")}>목차 추가</Button><Button onClick={() => openDialog("bulk")}>여러 항목 추가</Button></div>
+              <div className="actions"><Button onClick={() => openDialog("node")}>목차 추가</Button><Button onClick={() => openDialog("bulk")}>여러 항목 추가</Button><SubjectWeeks data={data} repository={repository} subjectId={subject.id} onSaved={setData} /></div>
             )}
           </div>
+          <BrandContinuity key={`${data.namespace}:${data.userId}`} data={data} route={route} />
+          {["/about", "/help", "/my-progress", "/subscription"].includes(route) && <BrandService key={`${data.namespace}:${data.userId}:${route}`} data={data} repository={repository} page={route} />}
           {route === "/draft-archives" && <DraftArchives data={data} />}
-          {route === "/statistics" && <StudyStatistics key={scope} data={data} subjectIds={shownSubjects.map(subject => subject.id)} />}
+          {route === "/schedules" && <Suspense fallback={<LoadingState message="일정을 여는 중입니다." />}><NextStudy onlySchedules repository={repository} onSaved={setData} data={data} subjectIds={shownSubjects.map(subject=>subject.id)} semesterId={scope}/></Suspense>}
+          {route === "/statistics" && <Suspense fallback={<LoadingState message="공부 통계를 여는 중입니다." />}><StudyStatistics key={scope} data={data} subjectIds={shownSubjects.map(subject => subject.id)} /></Suspense>}
           {route === "/" && (
             <>
               <Card className="hero">
@@ -682,7 +708,8 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
               </section>}
               <QuickMemos data={data} repository={repository} onSaved={setData} compact />
               <StudyLaunch data={data} />
-              <StudyStatistics key={`statistics:${scope}`} compact data={data} subjectIds={shownSubjects.map(subject => subject.id)} />
+              <Suspense fallback={null}><StudyLandscapes data={data} subjectIds={shownSubjects.map(subject => subject.id)} /></Suspense>
+              <Suspense fallback={<LoadingState message="공부 통계를 여는 중입니다." />}><StudyStatistics key={`statistics:${scope}`} compact data={data} subjectIds={shownSubjects.map(subject => subject.id)} /></Suspense>
               <Suspense fallback={<LoadingState message="다음 공부를 여는 중입니다." />}><NextStudy key={`${data.namespace}:${data.userId}`} repository={repository} onSaved={setData} data={data} subjectIds={shownSubjects.map(subject => subject.id)} semesterId={scope} /></Suspense>
               <div className="dashboard-grid">
                 <section>
@@ -848,6 +875,7 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
           )}
           {node && (
             <>
+              <RelatedThinking key={`thinking:${node.id}`} data={data} nodeId={node.id} />
               {node.role === "topic" && <StudyLaunch data={data} nodeId={node.id} />}
               <div className="actions">
                 <Button
@@ -865,12 +893,12 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
                 ]} />
               </div>
               <div className="actions" aria-label="형제 항목 순서">
+                {node.role === 'topic' && <Button onClick={() => go(`/memory-test/${encodeURIComponent(node.id)}`)}>암기시험 만들기</Button>}
                 {node.role === 'topic' && <Button onClick={() => go(`/practice/${encodeURIComponent(node.id)}`)}>시험처럼 풀어 보기</Button>}
                 <Button disabled={siblingIndex <= 0} onClick={() => reorderNode(-1)}>순서 위로</Button>
                 <Button disabled={siblingIndex < 0 || siblingIndex >= siblings.length - 1} onClick={() => reorderNode(1)}>순서 아래로</Button>
               </div>
               {node.role === "topic" && <RelatedCodeExamples data={data} topicId={node.id} />}
-              {node.role === "topic" && <Button onClick={() => go(`/memory-test/${encodeURIComponent(node.id)}`)}>암기시험 만들기</Button>}
               <CriteriaEditor data={data} targetId={node.id}
                 onApply={change => {
                   const result = commit({type: "adjustCriteria", ...change});
@@ -930,62 +958,21 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
             setCleanupKeys(keys => [...new Set([...keys, key])]);
             setError("자유 기록은 저장했습니다. 이전 초안 정리가 남았습니다. 창을 닫기 전에 다시 시도해 주세요.");
           }} />}
-          {route === "/graph" && <Suspense fallback={<LoadingState message="관계를 여는 중입니다." />}><StudyGraph key={`${data.namespace}:${data.userId}`} data={data} subjectIds={shownSubjects.map(subject => subject.id)} /></Suspense>}
-          {route === "/board" && <Suspense fallback={<LoadingState message="보드를 여는 중입니다." />}><StudyBoard key={`${data.namespace}:${data.userId}`} data={data} repository={repository} onSaved={setData} subjectIds={shownSubjects.map(subject => subject.id)} /></Suspense>}
+          {route === "/graph" && <Suspense fallback={<LoadingState />}><StudyGraph key={`${data.namespace}:${data.userId}`} data={data} subjectIds={shownSubjects.map(subject => subject.id)} /></Suspense>}
+          {route === "/board" && <Suspense fallback={<LoadingState />}><StudyBoard key={`${data.namespace}:${data.userId}`} data={data} repository={repository} onSaved={setData} subjectIds={shownSubjects.map(subject => subject.id)} /></Suspense>}
           {route === "/canvas" && <Suspense fallback={<LoadingState message="Canvas를 여는 중입니다." />}><StudyCanvas key={`${data.namespace}:${data.userId}`} data={data} repository={repository} onSaved={setData} subjectIds={shownSubjects.map(subject => subject.id)} renderNarrative={(ownerId, narrative, finishEditing) => {
             const target = data.nodes.find(node => node.id === ownerId);
             return <NarrativeEditor key={narrative?.id ?? ownerId} data={data} ownerId={ownerId} narrativeId={narrative?.id} kind={narrative?.kind ?? (target ? target.role === 'unit' ? 'unit-introduction' : 'topic-note' : 'subject-overview')} label={narrative ? '메모' : '새 메모'} commit={commit} repository={repository} onSaved={(_id, cleanupKey) => { if (!cleanupKey) finishEditing(); }} inline />;
           }} /></Suspense>}
-          {route === "/material-cards" && <MaterialCardLibrary data={data} repository={repository} onSaved={setData} />}
+          {(route === "/recall" || route === "/recall/scheduled") && <TopicRecall key={`${data.namespace}:${data.userId}:${route}`} initialMode={route === "/recall/scheduled" ? "scheduled" : undefined} data={data} repository={repository} onSaved={setData} subjectIds={shownSubjects.map(subject => subject.id)} />}
+          {memoRoute && <QuickMemos key={route} data={data} repository={repository} onSaved={setData} memoId={route.startsWith("/memos/") ? route.slice("/memos/".length) : undefined} />}
+          {materialRoute && <Suspense fallback={<LoadingState message="강의 자료를 여는 중입니다." />}><StudyMaterials data={data} repository={repository} onSaved={setData} subjectIds={shownSubjects.map(subject => subject.id)} materialId={route.startsWith("/materials/") ? decodeURIComponent(route.slice("/materials/".length)) : undefined} trash={route === "/materials/trash"} /></Suspense>}
+          {route === "/math" && <Suspense fallback={<LoadingState message="수식 탐색을 여는 중입니다." />}><MathExplorer key={`${data.namespace}:${data.userId}`} data={data} repository={repository} onSaved={setData} /></Suspense>}
+          {codeRoute && <Suspense fallback={<LoadingState message="코드 편집기를 여는 중입니다." />}><CodePractice data={data} repository={repository} onSaved={setData} exampleId={route.startsWith("/code/") ? route.slice("/code/".length) : undefined} /></Suspense>}
+          {route === "/material-cards" && <MaterialCardLibrary data={data} repository={repository} onSaved={setData} subjectIds={shownSubjects.map(subject => subject.id)} />}
           {memoryTestRoute && <Suspense fallback={<LoadingState />}><MemoryTests key={`${data.namespace}:${data.userId}:${route}`} data={data} repository={repository} onSaved={setData} subjectIds={shownSubjects.map(subject => subject.id)} resultId={route.startsWith("/memory-test/result/") ? decodeURIComponent(route.slice("/memory-test/result/".length)) : undefined} initialTopicId={route.startsWith("/memory-test/") && !route.startsWith("/memory-test/result/") ? decodeURIComponent(route.slice("/memory-test/".length)) : undefined} /></Suspense>}
           {practiceRoute && <Suspense fallback={<LoadingState />}><ExamPractice key={`${data.namespace}:${data.userId}:${route}`} data={data} repository={repository} onSaved={setData} subjectIds={shownSubjects.map(subject => subject.id)} initialTopicId={route.startsWith('/practice/') ? route.slice('/practice/'.length) : undefined} /></Suspense>}
-          {(route === "/recall" || route === "/recall/scheduled") && <TopicRecall key={`${data.namespace}:${data.userId}:${route}`} initialMode={route === "/recall/scheduled" ? "scheduled" : undefined} data={data} repository={repository} onSaved={setData} subjectIds={shownSubjects.map(subject => subject.id)} />}
-          {codeRoute && <Suspense fallback={<LoadingState message="코드 편집기를 여는 중입니다." />}><CodePractice data={data} repository={repository} onSaved={setData} exampleId={route.startsWith("/code/") ? route.slice("/code/".length) : undefined} /></Suspense>}
-          {memoRoute && <QuickMemos key={route} data={data} repository={repository} onSaved={setData} memoId={route.startsWith("/memos/") ? route.slice("/memos/".length) : undefined} />}
-          {route === "/search" && (
-            <>
-              <Search
-                label="과목·목차·기록 검색"
-                placeholder="찾고 싶은 말"
-                defaultValue={query}
-                onQueryChange={setQuery}
-              />
-              <div className="card-stack section-space">
-                {query.trim() ? (
-                  <>
-                    {matchingSubjects.map((s) => (
-                        <Card key={s.id}>
-                          <a href={`#/subject/${s.id}`}>{s.name}</a>
-                          <p className="muted">과목</p>
-                        </Card>
-                      ))}
-                    {matchingNodes.map((n) => (
-                        <Card key={n.id}>
-                          <a href={`#/node/${n.id}`}>{n.name}</a>
-                          <p className="muted">
-                            {subjects.find((s) => s.id === n.subjectId)?.name} · {topicPath(n.id).map(parent => parent.name).join(" / ")}
-                          </p>
-                        </Card>
-                      ))}
-                    {matchingFreeNotes.map(n => <Card key={n.id}>
-                      <a href={`#/free/${n.id}`}>{n.body.trim().split("\n")[0].slice(0, 80) || "자유 기록"}</a>
-                      <p className="muted">자유 기록 · 학기 소속 없음</p>
-                    </Card>)}
-                    {matchingMemos.map(memo => <Card key={memo.id}><a href={`#/memos/${memo.id}`}>{memo.body.trim().split("\n")[0].slice(0, 80) || "메모 스케치"}</a><p className="muted">메모</p></Card>)}
-                    {!matchingSubjects.length && !matchingNodes.length && !matchingFreeNotes.length && !matchingMemos.length && <EmptyState
-                      title="일치하는 내용을 찾지 못했습니다"
-                      message="검색어를 줄이거나 상단 공부 범위를 바꿔 보세요."
-                    />}
-                  </>
-                ) : (
-                  <EmptyState
-                    title="어떤 내용을 찾으시나요?"
-                    message="제목이나 기록에 남긴 말로 찾아보세요."
-                  />
-                )}
-              </div>
-            </>
-          )}
+          {route === "/search" && <WorkspaceSearch data={data} query={query} onQueryChange={setQuery} subjectIds={shownSubjects.map(subject => subject.id)} allScopes={scope === "all"} onAllScopes={() => setScope("all")} />}
           {route === "/trash" && (
             <>
               <p className="muted">
@@ -1023,13 +1010,17 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
                 ))}
             </>
           )}
-          {route === "/trash" && <Suspense fallback={<LoadingState />}><CodePractice data={data} repository={repository} onSaved={setData} trash /></Suspense>}
+          {route === "/backup" && <Suspense fallback={<LoadingState />}><FullBackup repository={repository} /></Suspense>}
           {route === "/trash" && <QuickMemos data={data} repository={repository} onSaved={setData} trash />}
-          {!["/", "/subjects", "/search", "/trash", "/free", "/draft-archives", "/material-cards", "/recall", "/recall/scheduled", "/canvas", "/graph", "/board", "/statistics"].includes(route) &&
+          {route === "/trash" && <Suspense fallback={<LoadingState />}><CodePractice data={data} repository={repository} onSaved={setData} trash /></Suspense>}
+          {!["/", "/subjects", "/search", "/trash", "/free", "/draft-archives", "/material-cards", "/recall", "/recall/scheduled", "/canvas", "/graph", "/board", "/statistics", "/math", "/backup", "/about", "/help", "/my-progress", "/subscription"].includes(route) &&
             !recordRoute &&
             !memoRoute &&
-            !codeRoute && !memoryTestRoute &&
+            !materialRoute &&
+            !codeRoute &&
             !practiceRoute &&
+            !memoryTestRoute &&
+            route !== "/schedules" &&
             !freeRoute &&
             !subject && (
               <EmptyState
@@ -1041,8 +1032,9 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
                 </Button>
               </EmptyState>
             )}
+          </ScreenBoundary>
         </main>
-        <NavigationBar label="빠른 이동" className="bottom-nav" items={navItems.map(item => ({href:`#${item.href}`, label:item.text, active:route === item.href || item.href === "/record" && recordRoute || item.href === "/code" && codeRoute || item.href === "/memos" && memoRoute || item.href === "/practice" && practiceRoute || item.href === "/memory-test" && memoryTestRoute || item.href === "/recall" && route === "/recall/scheduled" || item.href === "/subjects" && Boolean(subject)}))} />
+        <NavigationBar label="빠른 이동" className="bottom-nav" items={navItems.map(item => ({href:`#${item.href}`, label:item.text, active:route === item.href || item.href === "/record" && recordRoute || item.href === "/memos" && memoRoute || item.href === "/materials" && materialRoute || item.href === "/code" && codeRoute || item.href === "/practice" && practiceRoute || item.href === "/memory-test" && memoryTestRoute || item.href === "/subjects" && Boolean(subject)}))} />
       </div>
       <Modal
         open={Boolean(dialog)}
@@ -1378,6 +1370,7 @@ function NarrativeEditor({
           placeholder="자신의 말로 자유롭게 남겨 보세요."
         />
         <p className="muted" role="status">
+          {saved && !saving && !saveError && <SavedMark />}
           {saving ? (repository && data.namespace !== 'demo' ? '서버에 저장 중입니다…' : '저장 중입니다…') : saved
             ? (repository && data.namespace !== 'demo' ? '서버에 저장했습니다.' : "이 기기에 저장했습니다.")
             : "입력은 이 기기의 초안으로 보관됩니다. 내용 저장을 누르면 수정 이력에 남습니다."}
@@ -1746,7 +1739,7 @@ function RecordCard({
   );
   const [editing, setEditing] = useState(body.body !== record.body);
   return (
-    <Card className="record-card">
+    <Card className="record-card" data-reading-anchor={`record:${record.id}`}>
       <p className="eyebrow">
         {record.dateEvidence.kind === "exact"
           ? record.dateEvidence.date

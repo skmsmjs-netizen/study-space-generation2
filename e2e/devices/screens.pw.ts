@@ -11,6 +11,10 @@ const routes = [
   '/draft-archives',
   '/trash',
   '/free',
+  '/about',
+  '/help',
+  '/my-progress',
+  '/subscription',
   '/subject/demo-subject-math',
   '/node/demo-topic-function',
   '/record/demo-topic-function',
@@ -68,7 +72,7 @@ test('touch code input, exact draft restore and rotation retain original source'
   await page.goto('?space=demo#/code');
   await page.getByRole('button', { name: '예제 추가', exact: true }).tap();
   const code = page.getByRole('textbox', { name: '소스 코드', exact: true });
-  await expect(code).toBeEditable();
+  await expect(code).toHaveClass('cm-content');
   await page.getByLabel('언어', { exact: true }).selectOption('javascript');
   const source = '// 조건과 예외 · 한글 원문\nconst 합 = 3 + 4;\nconsole.log(합);';
   await code.fill(source);

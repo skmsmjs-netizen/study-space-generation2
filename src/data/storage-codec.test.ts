@@ -1,3 +1,4 @@
+// @vitest-environment node
 import { describe, expect, it } from 'vitest';
 import { encodeStoredText, decodeStoredText } from './storage-codec';
 import { DemoRepository, DEMO_KEY } from './demo-repository';
@@ -31,7 +32,7 @@ describe('lossless storage quota repair', () => {
     expect(next.appliedOps).toMatchObject(data.appliedOps);
     expect(new DemoRepository(storage).getSnapshot()).toEqual(next);
     expect(DEMO_KEY).toBe('study-space:demo:v1');
-  }, 20_000);
+  }, 60_000); // Preservation check for a large ledger, not a latency budget.
   it('does not erase readable legacy data when compaction fails', () => {
     const data = createDemoState(); data.narratives.push({id:'large',userId:data.userId,namespace:data.namespace,kind:'free-note',ownerId:null,body:'원문'.repeat(30000),version:1,createdAt:'2026-09-30',updatedAt:'2026-09-30',deletedAt:null});
     const raw = JSON.stringify({sequence:0,data});

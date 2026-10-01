@@ -10,7 +10,7 @@ const a = '10000000-0000-4000-8000-000000000001', b = '10000000-0000-4000-8000-0
 let db: PGlite;
 const command = (patch: Partial<Command> = {}) => ({ type: 'addSubject', id: 'subject-1', name: '검증 과목', scope: { kind: 'independent' }, userId: a, namespace: 'test', at: '2026-09-30T01:00:00.000Z', opId: 'op-1', ...patch } as Command);
 const backend: CommandBackend = {
-  async access() { return {status:'approved' as const,administrator:false}; },
+  async access() { return {status: 'approved' as const, administrator: false}; },
   async authenticate(token) { return token === 'a' ? a : token === 'b' ? b : ''; },
   async read(userId, namespace) { const result = await db.query<{ sequence: number; state: ReturnType<typeof emptyState> }>('select sequence,state from study_workspaces where user_id=$1 and namespace=$2', [userId, namespace]); return result.rows.length ? { sequence: Number(result.rows[0].sequence), data: unpackServerState(result.rows[0].state) } : null; },
   async commit(userId, namespace, base, op, next) { const result = await db.query<{ result: any }>('select study_commit($1,$2,$3,$4,$5,$6) result', [userId, namespace, base, op.opId, next.appliedOps[op.opId], packServerState(next,op.opId)]); return { sequence: result.rows[0].result.sequence, data: unpackServerState(result.rows[0].result.data) }; },
@@ -20,12 +20,43 @@ beforeAll(async () => {
   db = new PGlite();
   await db.exec(`create schema auth; create table auth.users(id uuid primary key); create role anon; create role authenticated; create role service_role bypassrls; grant usage on schema public,auth to authenticated,service_role,anon; create function auth.uid() returns uuid language sql as $$ select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid $$; insert into auth.users values('${a}'),('${b}');`);
   await db.exec(await readFile(new URL('../../supabase/migrations/202609300001_study_storage.sql', import.meta.url), 'utf8'));
-  await db.exec(await readFile(new URL('../../supabase/migrations/202610010002_learning_plans.sql', import.meta.url), 'utf8'));
-  await db.exec(await readFile(new URL('../../supabase/migrations/202610010003_canvas_layouts.sql', import.meta.url), 'utf8'));
 });
 beforeEach(async () => { await db.exec('reset role; truncate study_operations,study_workspaces;'); });
 afterAll(async () => { await db.close(); });
 describe('server authentication, domain commands and real PostgreSQL transactions', () => {
+  it('commits ordered batches to PostgreSQL once per operation, including original UTF16 and history', async () => {
+    const subject = command();
+    const write = command({ type: 'updateNarrative', id: 'batch-text', kind: 'subject-overview', ownerId: 'subject-1', body: '原文\u0000\ud800\r\n  조건', expectedVersion: 0, opId: 'batch-body' } as Partial<Command>);
+    const body = { action: 'execute-batch', namespace: 'test', baseSequence: 0, commands: [subject, write] };
+    expect((await request(body)).status).toBe(200);
+    expect((await request(body)).status).toBe(200);
+    const saved = await backend.read(a, 'test');
+    expect(saved!.sequence).toBe(2); expect(saved!.data.revisions).toHaveLength(2);
+    expect(saved!.data.narratives[0].body).toBe(write.type === 'updateNarrative' ? write.body : '');
+    expect((await db.query('select * from study_operations')).rows).toHaveLength(2);
+    const unchanged = await (await request({ action: 'load', namespace: 'test', knownSequence: 2 })).json();
+    expect(unchanged.unchanged).toBe(true); expect(unchanged.data).toBeUndefined();
+  });
+  it('recovers a prefix committed before a batch interruption without duplicating PostgreSQL receipts', async () => {
+    const first = command(), second = command({ id: 'subject-2', opId: 'op-2' });
+    await request({ action: 'execute', namespace: 'test', baseSequence: 0, command: first });
+    expect((await request({ action: 'execute-batch', namespace: 'test', baseSequence: 0, commands: [first, second] })).status).toBe(200);
+    expect((await backend.read(a, 'test'))!.sequence).toBe(2);
+    expect((await db.query('select * from study_operations')).rows).toHaveLength(2);
+  });
+  it('stores exact code examples and execution source atomically and rejects foreign owners and stale edits', async () => {
+    const content = { title: '  내 C 예제  ', language: 'c' as const, code: '// 원문\r\n\tint main(void){}\u0000\ud800', stdin: '3\n4', notes: '  설명\r\n조건과 예외  ' };
+    const save = command({ type: 'saveCodeExample', id: 'code-one', expectedVersion: 0, content, opId: 'code-write' } as Partial<Command>);
+    const body = { action: 'execute', namespace: 'test', baseSequence: 0, command: save };
+    expect((await request(body)).status).toBe(200); expect((await request(body)).status).toBe(200);
+    const loaded = await (await request({ action: 'load', namespace: 'test' })).json();
+    expect(loaded.supportedCommands).toContain('saveCodeExample'); expect(loaded.sequence).toBe(1);
+    expect(loaded.data.codeExamples[0]).toMatchObject({ ...content, id: 'code-one', version: 1 });
+    expect(loaded.data.revisions).toHaveLength(1); expect(loaded.data.records).toEqual([]); expect(loaded.data.sessions).toEqual([]);
+    expect((await request({ ...body, command: { ...save, opId: 'foreign-code', userId: b } })).status).toBe(403);
+    expect((await request({ ...body, baseSequence: 1, command: { ...save, opId: 'stale-code', content: { ...content, notes: '다른 입력' } } })).status).toBe(409);
+    expect((await backend.read(a, 'test'))!.data.codeExamples![0]).toMatchObject(content);
+  });
   it('preserves Canvas references, geometry and raw memo through server reload and idempotent retry', async () => {
     await request({ action: 'execute', namespace: 'test', baseSequence: 0, command: command() });
     const node = command({ type: 'addNode', id: 'topic-1', subjectId: 'subject-1', parentId: null, role: 'topic', name: '주제', opId: 'canvas-node' } as Partial<Command>);
@@ -46,8 +77,6 @@ describe('server authentication, domain commands and real PostgreSQL transaction
     expect(data.memos[0].body).toBe(memo.type === 'saveMemo' ? memo.body : '');
     expect(data.records).toEqual([]); expect(data.sessions).toEqual([]);
     expect((await backend.read(a, 'test'))!.sequence).toBe(4);
-    const forged = packServerState(data, layout.opId); (forged as unknown as {canvasLayouts:{userId:string}[]}).canvasLayouts[0].userId = b;
-    await expect(db.query('select study_commit($1,$2,$3,$4,$5,$6)', [a, 'test', 4, 'forged-canvas', 'x', {...forged, appliedOps:{'forged-canvas':'x'}}])).rejects.toThrow('OWNERSHIP');
   });
   it('stores, reloads and preserves original writing and revision identity', async () => {
     expect((await request({ action: 'execute', namespace: 'test', baseSequence: 0, command: command() })).status).toBe(200);

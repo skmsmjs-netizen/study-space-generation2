@@ -1,0 +1,5 @@
+Motion Primitives - AnimatedBackground
+Copyright (c) Ibelick
+The official README declares the MIT license, but the linked LICENSE.md was not available at this pinned revision.
+Source: https://github.com/ibelick/motion-primitives/blob/120f64f6ca60348e251f929e9c81f11ccbe45eda/README.md
+Only its shared-layout background technique is adapted; React event handling and styles are written for this app.

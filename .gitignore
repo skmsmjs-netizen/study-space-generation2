@@ -1,4 +1,5 @@
 node_modules/
+.local/
 dist/
 .env
 .env.*
@@ -7,5 +8,17 @@ dist/
 coverage/
 artifacts/
 .DS_Store
+storybook-static/
+playwright-report/
+test-results/
 
 /public/optimizer/vendor/
+
+/public/vendor/GeoGebra/
+
+# Built locally from pinned OCR dependencies and language sources
+/public/material-ocr/
+
+# Local validation, sessions and Supabase CLI metadata
+work/
+supabase/.temp/

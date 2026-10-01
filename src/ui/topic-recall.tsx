@@ -3,6 +3,7 @@ import type { AppState, MemoStroke } from '../domain/model';
 import { freshRecall, nextRecall, recallForDay, recallPath, recallTopics, type RecallSession } from '../domain/topic-recall';
 import { readRecall, saveRecallMemo, writeRecall, type RecallRepository } from '../data/topic-recall';
 import { Button, Card, EmptyState, ErrorState, Select, Textarea } from './index';
+import { storagePrefix } from '../data/repository';
 import { MemoInkPad } from './memo-ink-pad';
 import { intervalLabel, promptCard, recallPrompts, recallOptions, recallPreview, recallQueue, RECALL_GRADES, RECALL_LABELS } from '../domain/recall-scheduler';
 import { renderCloze } from '../domain/recall-cloze';
@@ -199,7 +200,7 @@ export function TopicRecall({ data, repository, onSaved, subjectIds, initialMode
         </div>
       </Card>
       <div className="recall-editor">
-        <MemoInkPad key={`ink:${topic.id}`} strokes={draft?.strokes ?? []} onChange={changeInk} onDrawing={setDrawing} />
+        <MemoInkPad onRecognizedText={text=>{if(topic) persist({...session,drafts:{...session.drafts,[topic.id]:{...draft,memoId:answerId((draft?.body ?? '')+text,draft?.strokes ?? []),body:(draft?.body ?? '')+((draft?.body ?? '') ? '\n':'')+text,strokes:draft?.strokes ?? []}}});}} repository={repository} onWorkspaceSaved={() => onSaved(repository.getSnapshot())} key={`ink:${topic.id}`} documentKey={`${storagePrefix(data)}:recall-ink:${topic.id}`} preferencesKey={`${storagePrefix(data)}:ink-preferences:v1`} strokes={draft?.strokes ?? []} onChange={changeInk} onDrawing={setDrawing} />
         <details className="recall-text-toggle" key={`text:${topic.id}`}>
           <summary>글로 쓰기{draft?.body && <span className="recall-draft-indicator">작성한 글 있음</span>}</summary>
         <Textarea ref={bodyRef} label="글" rows={3} value={draft?.body ?? ''} placeholder="기억나는 내용을 적어 보세요."

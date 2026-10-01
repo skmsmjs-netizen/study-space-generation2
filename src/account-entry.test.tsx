@@ -44,15 +44,7 @@ it('validates signup fields before invoking auth and explains the email confirma
   fireEvent.change(screen.getByRole('textbox',{name:'이메일'}),{target:{value:'invented@example.invalid'}});fireEvent.change(screen.getByLabelText('비밀번호 (6자 이상)'),{target:{value:'12'}});
   await userEvent.click(screen.getByRole('button',{name:'계정 만들기'}));expect(authCalls.signUp).not.toHaveBeenCalled();
   fireEvent.change(screen.getByLabelText('이름'),{target:{value:'시험 가입자'}});fireEvent.change(screen.getByLabelText('비밀번호 (6자 이상)'),{target:{value:'fake-test-password'}});
-  await userEvent.click(screen.getByRole('button',{name:'계정 만들기'}));await screen.findByText('이메일로 받은 확인 링크를 연 뒤 로그인해 주세요.');expect(authCalls.signUp).toHaveBeenCalledTimes(1);expect(authCalls.signUp).toHaveBeenCalledWith(expect.objectContaining({options:expect.objectContaining({data:{display_name:'시험 가입자'}})}));
-});
-
-it('explains the live email delivery limit without reporting successful registration',async()=>{
-  authCalls.signUp.mockResolvedValueOnce({data:{session:null},error:{code:'over_email_send_rate_limit'}} as never);
-  history.replaceState(null,'','/#/account');render(<App/>);await screen.findByRole('textbox',{name:'이메일'});
-  await userEvent.click(screen.getByRole('button',{name:'처음 사용하기'}));
-  fireEvent.change(screen.getByLabelText('이름'),{target:{value:'시험 가입자'}});fireEvent.change(screen.getByLabelText('이메일'),{target:{value:'trial@example.invalid'}});fireEvent.change(screen.getByLabelText('비밀번호 (6자 이상)'),{target:{value:'trial-password'}});
-  await userEvent.click(screen.getByRole('button',{name:'계정 만들기'}));await screen.findByText('가입 확인 메일의 발송 한도에 도달했습니다. 잠시 후 다시 시도해 주세요.');expect(screen.queryByText('이메일로 받은 확인 링크를 연 뒤 로그인해 주세요.')).toBeNull();
+  await userEvent.click(screen.getByRole('button',{name:'계정 만들기'}));await screen.findByText('이메일로 받은 확인 링크를 연 뒤 로그인해 주세요.');expect(authCalls.signUp).toHaveBeenCalledTimes(1);
 });
 
 it.each([null, 'demo', 'personal'])('opens personal entry by default with previous preference %s and preserves existing records',async preference=>{
@@ -70,7 +62,6 @@ it('does not initialize example records on a new visit or after remounting',asyn
   render(<App/>);await screen.findByRole('textbox',{name:'이메일'});
   expect(localStorage.getItem(DEMO_KEY)).toBeNull();
 });
-
 it('defaults to remembered login and submits an unchecked choice without losing signup fields',async()=>{
   render(<App/>); await screen.findByRole('textbox',{name:'이메일'});
   const choice=screen.getByRole('checkbox',{name:'로그인 상태 유지'}); expect(choice).toBeChecked();

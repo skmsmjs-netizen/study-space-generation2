@@ -6,7 +6,7 @@ export function packServerState(state: AppState, operationId: string) {
   validateState(state);
   const raw = JSON.stringify(state), encoded = LZString.compressToBase64(raw);
   if (LZString.decompressFromBase64(encoded) !== raw) throw new DomainError('ENCODING', '원문 보존을 확인하지 못했습니다. 저장하지 않았습니다.');
-  const collections: (EntityCollection | 'revisions')[] = ['studyBoards','semesters','subjects','nodes','sessions','records','narratives','criteria','criteriaAssignments','memos','learningPlans','canvasLayouts','codeExamples','recallCards','recallPreferences','studyMaterials','memoryCards','memoryTests','revisions'];
+  const collections: (EntityCollection | 'revisions')[] = ['conceptCatalogs','conceptEditions','conceptBatches','studyBoards','semesters','subjects','nodes','sessions','records','narratives','criteria','criteriaAssignments','memos','learningPlans','canvasLayouts','codeExamples','recallCards','recallPreferences','studyMaterials','memoryCards','memoryTests','inkWorkspaces','revisions'];
   return { userId: state.userId, namespace: state.namespace, schemaVersion: state.schemaVersion,
     encoding: 'lz-base64-utf16-v1', encoded,
     appliedOps: { [operationId]: state.appliedOps[operationId] },

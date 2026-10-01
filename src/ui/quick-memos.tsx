@@ -1,38 +1,37 @@
-import { memo as memoComponent, useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react';
-import { Button, Checkbox, EmptyState, ErrorState, IconButton, Modal, Select, Textarea } from './index';
-import type { AppState, Command, MemoInk, MemoPoint, MemoStroke, QuickMemo } from '../domain/model';
-import { MEMO_WIDTH, MEMO_HEIGHT, memoPath } from '../domain/memo';
-import type { StudyRepository } from '../data/repository';
+import { useEffect, useRef, useState } from 'react';
+import { Button, EmptyState, ErrorState, Modal, Select, Textarea } from './index';
+import { isViewPage, isViewText, useViewContext } from './use-view-context';
+import type { AppState, Command, MemoStroke, QuickMemo } from '../domain/model';
+import { MEMO_WIDTH, MEMO_HEIGHT } from '../domain/memo';
+import { storagePrefix, type StudyRepository } from '../data/repository';
+import { MemoInkPad, type InkPadHandle } from './memo-ink-pad';
+import { InkDrawing, InkPreview } from './ink-drawing';
+import { inkPageCount } from '../domain/ink-editing';
 import { memoDraftKey, readMemoDraft, sameMemo, writeMemoDraft, type MemoDraft } from '../data/memo-draft';
 import { archiveDamagedDraft, clearStoredDraft, draftHasUnstoredText, rescueWithoutOverwrite } from '../data/draft-safety';
+import { attachInkPDF, syncInkPDF, exportInkPDF, downloadInkFile } from '../data/ink-documents';
+import { readDocumentFile } from '../data/document-files';
+import { InkPDFBackground } from './ink-pdf-background';
 import { navigate } from './navigation-context';
 import './quick-memos.css';
 
-type Content = Pick<QuickMemo, 'body' | 'ownerId' | 'strokes'>;
+type Content = Pick<QuickMemo, 'body' | 'ownerId' | 'strokes' | 'document'>;
 type Props = { data: AppState; repository: StudyRepository; onSaved: (next: AppState) => void; ownerId?: string; memoId?: string; compact?: boolean; trash?: boolean };
-const inks: Record<MemoInk, { label: string; color: string }> = {
-  ink: { label: '기본색', color: 'var(--color-text)' },
-  blue: { label: '파랑', color: 'var(--color-hierarchy-outline)' },
-  green: { label: '초록', color: 'var(--color-memo-green)' },
-};
 const errorMessage = (error: unknown) => error instanceof Error && (error.name === 'QuotaExceededError' || /quota/i.test(error.message)) ? '이 기기의 저장 공간이 부족합니다.' : error instanceof Error ? error.message : '저장하지 못했습니다.';
 function ownerName(data: AppState, ownerId: string | null) {
   return data.nodes.find(row => row.id === ownerId)?.name ?? data.subjects.find(row => row.id === ownerId)?.name ?? '자유 메모';
 }
-const StrokeDrawing = memoComponent(function StrokeDrawing({ stroke }: { stroke: MemoStroke }) {
-  return <path d={memoPath(stroke.points)} stroke={inks[stroke.ink].color} strokeWidth={stroke.width} fill="none" strokeLinecap="round" strokeLinejoin="round" />;
-});
-const Drawing = memoComponent(function Drawing({ strokes }: { strokes: MemoStroke[] }) {
-  return <>{strokes.map(stroke => <StrokeDrawing key={stroke.id} stroke={stroke} />)}</>;
-});
-
 export function QuickMemos({ data, repository, onSaved, ownerId, memoId, compact = false, trash = false }: Props) {
   const [editing, setEditing] = useState<string | null>(memoId ?? null);
   const [error, setError] = useState('');
+  const view = `memos:${trash ? 'trash' : 'active'}:${ownerId ?? 'all'}`;
+  const [query, setQuery] = useViewContext(data, `${view}:query`, '', isViewText);
+  const [limit, setLimit] = useViewContext(data, `${view}:limit`, 40, isViewPage);
   const [trashId, setTrashId] = useState<string | null>(null);
   const [restored, setRestored] = useState<string | null>(null);
   const all = (data.memos ?? []).filter(memo => Boolean(memo.deletedAt) === trash && (ownerId === undefined || memo.ownerId === ownerId))
     .slice().sort((a, b) => b.updatedAt.localeCompare(a.updatedAt) || a.id.localeCompare(b.id));
+  const filtered = compact ? all : all.filter(memo => !query.trim() || `${memo.body} ${ownerName(data, memo.ownerId)}`.normalize('NFC').toLocaleLowerCase('ko-KR').includes(query.trim().normalize('NFC').toLocaleLowerCase('ko-KR')));
   const selected = (data.memos ?? []).find(memo => memo.id === editing && !memo.deletedAt);
   useEffect(() => { setEditing(memoId ?? null); }, [memoId]);
   const execute = (action: Omit<Extract<Command, { type: 'saveMemo' }>, 'opId' | 'at' | 'userId' | 'namespace'> | { type: 'trashMemo' | 'restoreMemo'; id: string; expectedVersion: number }) => {
@@ -59,14 +58,17 @@ export function QuickMemos({ data, repository, onSaved, ownerId, memoId, compact
     </div>
     {error && <ErrorState message={error} />}
     {undoTrash && <div className="feedback-banner"><span role="status">메모를 휴지통으로 옮겼습니다.</span><Button onClick={() => restore(undoTrash)}>메모 복원</Button></div>}
-    <div className="memo-grid">{(compact ? all.slice(0, 3) : all).map((memo, index) => <article className="memo-card" key={memo.id}>
+    {!compact && <Textarea label="메모 찾기" rows={1} value={query} placeholder="입력한 글이나 과목·주제 이름" onChange={event => { setQuery(event.target.value); setLimit(40); }} />}
+    <div className="memo-grid">{(compact ? filtered.slice(0, 3) : filtered.slice(0, Math.max(40, limit))).map((memo, index) => <article className="memo-card" key={memo.id}>
       <button className="memo-paper-preview" aria-label={`메모 ${index + 1} 열기${memo.body ? `: ${memo.body.slice(0, 35)}` : memo.strokes.length ? ': 스케치' : ': 빈 메모'}`} onClick={() => setEditing(memo.id)} disabled={trash}>
-        <svg viewBox={`0 0 ${MEMO_WIDTH} ${MEMO_HEIGHT}`} aria-hidden="true"><Drawing strokes={memo.strokes} /></svg>
+        <svg viewBox={`0 0 ${MEMO_WIDTH} ${MEMO_HEIGHT}`} aria-hidden="true"><InkDrawing strokes={memo.strokes} /></svg>
         {memo.body && <span className="memo-preview-text">{memo.body}</span>}
-        {!memo.body && !memo.strokes.length && <span className="memo-placeholder">여기에 생각을 남겨 보세요.</span>}
+        {!memo.body && !memo.strokes.length && !memo.document && <span className="memo-placeholder">여기에 생각을 남겨 보세요.</span>}
       </button>
-      <div className="memo-card-footer"><span>{ownerName(data, memo.ownerId)}</span>{trash ? <Button variant="quiet" onClick={() => restore(memo)}>복원</Button> : <details className="memo-card-menu"><summary aria-label={`메모 ${index + 1} 메뉴`}>···</summary><Button variant="quiet" aria-label={`메모 ${index + 1} 휴지통으로 이동`} onClick={() => setTrashId(memo.id)}>휴지통</Button></details>}</div>
+      <div className="memo-card-footer"><span>{memo.document ? memo.document.file.name + ' · ' : ''}{ownerName(data, memo.ownerId)}{inkPageCount(memo.strokes) > 1 ? ` · ${inkPageCount(memo.strokes)}쪽` : ''}</span>{trash ? <Button variant="quiet" onClick={() => restore(memo)}>복원</Button> : <details className="memo-card-menu"><summary aria-label={`메모 ${index + 1} 메뉴`}>···</summary><Button variant="quiet" aria-label={`메모 ${index + 1} 휴지통으로 이동`} onClick={() => setTrashId(memo.id)}>휴지통</Button></details>}</div>
     </article>)}</div>
+    {!compact && filtered.length > Math.max(40, limit) && <Button onClick={() => setLimit(value => Math.max(40, value) + 40)}>메모 더 보기</Button>}
+    {!compact && all.length > 0 && !filtered.length && <EmptyState title="찾은 메모가 없습니다" message="입력한 글이나 과목·주제 이름으로 다시 찾아보세요."><Button onClick={() => {setQuery('');setLimit(40);}}>메모 검색어 지우기</Button></EmptyState>}
     {!all.length && !compact && <EmptyState title={trash ? '휴지통에 메모가 없습니다' : '첫 메모를 남겨 보세요'} message={trash ? undefined : '제목 없이 짧은 글이나 그림부터 시작할 수 있습니다.'} />}
     {selected && <MemoEditor key={selected.id} memo={selected} data={data} repository={repository} onSaved={onSaved} onClose={close} onCopy={id => setEditing(id)} />}
     {memoId && !selected && <EmptyState title="이 메모를 찾을 수 없습니다" message="휴지통에 있는지 확인해 주세요."><a href="#/memos">메모 목록으로</a></EmptyState>}
@@ -88,16 +90,13 @@ export function MemoEditor({ memo, data, repository, onSaved, onClose, onCopy, e
   const contentRef = useRef(content), savedRef = useRef<Content>(memo), version = useRef(memo.version);
   const callback = useRef(onSaved); callback.current = onSaved;
   const [error, setError] = useState(initial.error), [status, setStatus] = useState(sameMemo(initial.content, memo) ? '이 기기에 저장됨' : '저장 중…');
-  const [zoom, setZoom] = useState(1);
-  const [tool, setTool] = useState<'pen' | 'eraser'>('pen');
-  const [ink, setInk] = useState<MemoInk>('ink'), [finger, setFinger] = useState(false);
-  const [past, setPast] = useState<MemoStroke[][]>([]), [future, setFuture] = useState<MemoStroke[][]>([]);
-  const svg = useRef<SVGSVGElement>(null), livePath = useRef<SVGPathElement>(null);
-  const active = useRef<{ pointerId: number; stroke: MemoStroke } | null>(null);
+  const [pdfBusy,setPDFBusy] = useState(false), [pdfPage,setPDFPage] = useState(0);
+  const documentInput=useRef<HTMLInputElement>(null);
+  const mounted=useRef(true); useEffect(()=>()=>{mounted.current=false;},[]);
+  const pad = useRef<InkPadHandle | null>(null), drawing = useRef(false);
+  const finish = () => pad.current?.finish();
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const draftTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const panning = useRef<{ pointerId: number; x: number; y: number } | null>(null);
-  const erasing = useRef<{ pointerId: number; changed: boolean } | null>(null);
   const blocked = useRef(initial.blocked);
   const copyOperation = useRef<{ id: string; opId: string; at: string } | null>(null);
   const persistDraft = () => {
@@ -109,11 +108,12 @@ export function MemoEditor({ memo, data, repository, onSaved, onClose, onCopy, e
   const flush = () => {
     if (timer.current) clearTimeout(timer.current);
     timer.current = null;
-    if (blocked.current) return false;
+    if (blocked.current || drawing.current) return false;
     const current = contentRef.current;
     if (sameMemo(current, savedRef.current)) {
       if (draftTimer.current) clearTimeout(draftTimer.current); draftTimer.current = null;
       try { clearStoredDraft(key); } catch { /* Saved content is already durable. */ }
+      setStatus('이 기기에 저장됨'); setError('');
       return true;
     }
     persistDraft();
@@ -136,72 +136,6 @@ export function MemoEditor({ memo, data, repository, onSaved, onClose, onCopy, e
     if (timer.current) clearTimeout(timer.current);
     timer.current = setTimeout(flush, 1200);
   };
-  const changeStrokes = (strokes: MemoStroke[]) => {
-    const previous = contentRef.current.strokes;
-    setPast(history => [...history, previous]); setFuture([]);
-    update({ ...contentRef.current, strokes });
-  };
-  const finish = () => {
-    panning.current = null; erasing.current = null;
-    const drawing = active.current;
-    if (!drawing) return;
-    active.current = null;
-    // Commit even a cancelled/partly drawn stroke; input cancellation must not discard it.
-    changeStrokes([...contentRef.current.strokes, drawing.stroke]);
-    livePath.current?.setAttribute('d', '');
-  };
-  const point = (event: Pick<PointerEvent, 'clientX' | 'clientY' | 'pressure'>): MemoPoint => {
-    const bounds = svg.current!.getBoundingClientRect();
-    return { x: Math.max(0, Math.min(MEMO_WIDTH, (event.clientX - bounds.left) / bounds.width * MEMO_WIDTH)),
-      y: Math.max(0, Math.min(MEMO_HEIGHT, (event.clientY - bounds.top) / bounds.height * MEMO_HEIGHT)), pressure: Math.max(0, Math.min(1, Number.isFinite(event.pressure) ? event.pressure : 0.5)) };
-  };
-  const eraseAt = (event: Pick<PointerEvent, 'clientX' | 'clientY' | 'pressure'>) => {
-    const p = point(event), radius = 14 * MEMO_WIDTH / svg.current!.getBoundingClientRect().width;
-    const hit = (stroke: MemoStroke) => stroke.points.some((b, i) => {
-      const a = stroke.points[Math.max(0, i - 1)], dx = b.x - a.x, dy = b.y - a.y;
-      const t = Math.max(0, Math.min(1, ((p.x - a.x) * dx + (p.y - a.y) * dy) / (dx * dx + dy * dy || 1)));
-      return Math.hypot(p.x - a.x - t * dx, p.y - a.y - t * dy) <= radius + stroke.width / 2;
-    });
-    const strokes = contentRef.current.strokes.filter(stroke => !hit(stroke));
-    if (strokes.length === contentRef.current.strokes.length) return;
-    if (!erasing.current?.changed) { const previous = contentRef.current.strokes; setPast(history => [...history, previous]); setFuture([]); }
-    if (erasing.current) erasing.current.changed = true;
-    update({ ...contentRef.current, strokes });
-  };
-  const begin = (event: ReactPointerEvent<SVGSVGElement>) => {
-    if (blocked.current || event.button !== 0 || active.current || erasing.current) return;
-    if (event.pointerType === 'touch' && !finger) {
-      if ((zoom > 1 || svg.current!.parentElement!.scrollHeight > svg.current!.parentElement!.clientHeight) && !panning.current) {
-        event.preventDefault(); event.currentTarget.setPointerCapture(event.pointerId);
-        panning.current = {pointerId: event.pointerId, x: event.clientX, y: event.clientY};
-      }
-      return;
-    }
-    event.preventDefault();
-    if (tool === 'eraser') {
-      event.currentTarget.setPointerCapture(event.pointerId);
-      erasing.current = { pointerId: event.pointerId, changed: false };
-      eraseAt(event.nativeEvent); return;
-    }
-    event.currentTarget.setPointerCapture(event.pointerId);
-    const stroke: MemoStroke = { id: crypto.randomUUID(), ink, width: 2, points: [point(event.nativeEvent)] };
-    active.current = { pointerId: event.pointerId, stroke };
-    livePath.current?.setAttribute('d', memoPath(stroke.points));
-  };
-  const move = (event: ReactPointerEvent<SVGSVGElement>) => {
-    if (panning.current?.pointerId === event.pointerId) {
-      event.preventDefault(); const viewport = svg.current!.parentElement!;
-      viewport.scrollLeft += panning.current.x - event.clientX; viewport.scrollTop += panning.current.y - event.clientY;
-      panning.current = {pointerId: event.pointerId, x: event.clientX, y: event.clientY}; return;
-    }
-    if (erasing.current?.pointerId === event.pointerId) { event.preventDefault(); eraseAt(event.nativeEvent); return; }
-    if (active.current?.pointerId !== event.pointerId) return;
-    event.preventDefault();
-    const native = event.nativeEvent;
-    const samples = native.getCoalescedEvents?.() ?? [];
-    active.current.stroke.points.push(...(samples.length ? samples : [native]).map(point));
-    livePath.current?.setAttribute('d', memoPath(active.current.stroke.points));
-  };
   const operations = useRef({ flush, finish }); operations.current = { flush, finish };
   useEffect(() => {
     const save = () => { operations.current.finish(); return operations.current.flush(); };
@@ -216,7 +150,7 @@ export function MemoEditor({ memo, data, repository, onSaved, onClose, onCopy, e
     if (!initial.conflict) return;
     try {
       const operation = copyOperation.current ??= { id: crypto.randomUUID(), opId: crypto.randomUUID(), at: new Date().toISOString() };
-      const next = repository.execute({ type: 'saveMemo', ...operation, ownerId: initial.conflict.ownerId, body: initial.conflict.body, strokes: initial.conflict.strokes,
+      const next = repository.execute({ type: 'saveMemo', ...operation, ownerId: initial.conflict.ownerId, body: initial.conflict.body, strokes: initial.conflict.strokes, ...(initial.conflict.document ? {document:initial.conflict.document}:{}),
         expectedVersion: 0, userId: data.userId, namespace: data.namespace });
       callback.current(next);
       // Keep the old draft until the new card is safely saved and verified by the repository.
@@ -239,26 +173,35 @@ export function MemoEditor({ memo, data, repository, onSaved, onClose, onCopy, e
       setStatus('파일 저장 위치를 확인해 주세요');
     } catch { setError('파일을 만들지 못했습니다. 입력은 현재 창에 유지했습니다.'); }
   };
+  const attachPDF = async (file:File) => {
+    finish();setPDFBusy(true);setError('');
+    try {const source=await attachInkPDF(data,file,contentRef.current.strokes.length ? inkPageCount(contentRef.current.strokes) : 0);
+      if(!mounted.current)return;
+      update({...contentRef.current,document:source});pad.current?.goTo?.(source.startPage);
+      if(data.namespace==='personal') {const synced=await syncInkPDF(data,source);if(mounted.current){update({...contentRef.current,document:synced});flush();}}
+    }catch(e){if(mounted.current)setError(errorMessage(e)+' 원본과 필기는 이 기기에 보관했습니다.');}
+    finally{if(mounted.current)setPDFBusy(false);}
+  };
+  const retryPDF=async()=>{const source=contentRef.current.document;if(!source)return;setPDFBusy(true);try{const synced=await syncInkPDF(data,source);if(mounted.current){update({...contentRef.current,document:synced});flush();setError('');}}catch(e){if(mounted.current)setError(errorMessage(e));}finally{if(mounted.current)setPDFBusy(false);}};
+  const downloadPDF=async(original=false)=>{finish();setPDFBusy(true);try{
+    if(original&&contentRef.current.document){const blob=await readDocumentFile(data,contentRef.current.document.file);if(!blob)throw Error('PDF 원본을 찾지 못했습니다.');downloadInkFile(blob,contentRef.current.document.file.name);}
+    else {const bytes=await exportInkPDF(data,contentRef.current.strokes,contentRef.current.document);downloadInkFile(new Blob([bytes as BlobPart],{type:'application/pdf'}),`memo-${memo.id}-annotations.pdf`);}
+  }catch(e){setError(errorMessage(e));}finally{if(mounted.current)setPDFBusy(false);}};
   const editor = <>
-    <div className="memo-toolbar" role="group" aria-label="그림 도구">
-      <Button aria-pressed={tool === 'pen'} onClick={() => setTool('pen')} disabled={isBlocked}>펜</Button>
-      <Button aria-pressed={tool === 'eraser'} onClick={() => setTool('eraser')} disabled={isBlocked}>지우개</Button>
-      <IconButton label="그림 되돌리기" disabled={!past.length || isBlocked} onClick={() => { const previous = past.at(-1)!; setPast(past.slice(0, -1)); setFuture([...future, contentRef.current.strokes]); update({ ...contentRef.current, strokes: previous }); }}><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M9 5 4 10l5 5M4 10h10a6 6 0 0 1 0 12" /></svg></IconButton>
-      <IconButton label="다시 그리기" disabled={!future.length || isBlocked} onClick={() => { const next = future.at(-1)!; setFuture(future.slice(0, -1)); setPast([...past, contentRef.current.strokes]); update({ ...contentRef.current, strokes: next }); }}><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="m15 5 5 5-5 5M20 10H10a6 6 0 0 0 0 12" /></svg></IconButton>
-      <div className="memo-inks" role="group" aria-label="펜 색">{(Object.keys(inks) as MemoInk[]).map(value => <Button key={value} aria-label={`${inks[value].label} 펜`} aria-pressed={ink === value} className="memo-ink" onClick={() => { setInk(value); setTool('pen'); }} disabled={isBlocked}><span style={{ background: inks[value].color }} /></Button>)}</div>
+    <div className="actions">
+      <input ref={documentInput} type="file" accept="application/pdf,.pdf" hidden aria-label="필기할 PDF 파일" onChange={e=>{const file=e.target.files?.[0];e.target.value='';if(file)void attachPDF(file);}}/>
+      {!content.document && <Button disabled={isBlocked||pdfBusy} onClick={()=>documentInput.current?.click()}>PDF 위에 필기</Button>}
+      <Button disabled={isBlocked||pdfBusy} onClick={()=>void downloadPDF()}>주석 PDF로 보관</Button>
+      {content.document && <><span>{content.document.file.name} · {content.document.pages}쪽</span><Button disabled={pdfBusy} onClick={()=>void downloadPDF(true)}>원본 PDF 보관</Button>
+        {data.namespace==='personal'&&!content.document.file.cloudPath&&<Button disabled={pdfBusy} onClick={()=>void retryPDF()}>PDF 서버 보관 다시 시도</Button>}</>}
+      {pdfBusy&&<span role="status">PDF를 처리하고 있습니다…</span>}
     </div>
-    <div className="memo-zoom"><span className="muted">확대해서 쓰면 카드에서 작게 보입니다.</span><Button aria-label="종이 확대" onClick={() => { finish(); setZoom(zoom === 1 ? 1.5 : zoom === 1.5 ? 2 : 1); }}>{Math.round(zoom * 100)}%</Button></div>
-    <div className="memo-paper">
-      <svg ref={svg} style={{ width: `${zoom * 100}%`, height: 'auto', aspectRatio: '3 / 2' }} className={`memo-drawing${tool === 'eraser' ? ' is-erasing' : ''}`} viewBox={`0 0 ${MEMO_WIDTH} ${MEMO_HEIGHT}`} role="img" aria-label="메모 스케치 영역"
-        onPointerDown={begin} onPointerMove={move} onPointerUp={event => { if (active.current?.pointerId === event.pointerId || erasing.current?.pointerId === event.pointerId || panning.current?.pointerId === event.pointerId) finish(); }} onPointerCancel={event => { if (active.current?.pointerId === event.pointerId || erasing.current?.pointerId === event.pointerId || panning.current?.pointerId === event.pointerId) finish(); }} onLostPointerCapture={event => { if (active.current?.pointerId === event.pointerId || erasing.current?.pointerId === event.pointerId || panning.current?.pointerId === event.pointerId) finish(); }}>
-        <Drawing strokes={content.strokes} />
-        <path ref={livePath} stroke={inks[ink].color} strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-      {!content.strokes.length && <span className="memo-drawing-hint">펜으로 결론이나 그림을 남겨 보세요.</span>}
-    </div>
-    <details className="memo-details" open={Boolean(initial.content.body) || undefined}><summary>글·연결·입력 설정</summary><div className="memo-input"><Textarea label="짧은 글" placeholder="결론 한 줄, 남은 의문…" value={content.body} rows={3} disabled={isBlocked} onChange={event => update({ ...contentRef.current, body: event.target.value })} /></div>
-    <div className="memo-options"><Checkbox label="손가락으로도 그리기" checked={finger} onChange={event => setFinger(event.target.checked)} disabled={isBlocked} />
-      <span className="muted">지우개로 선을 쓸어 지웁니다.</span>
+    <MemoInkPad minimumPages={content.document ? content.document.startPage + content.document.pages : 1} onPageChange={setPDFPage}
+      background={content.document ? <InkPDFBackground owner={data} document={content.document} page={pdfPage} onError={setError}/> : undefined}
+      onRecognizedText={text=>update({...contentRef.current,body:contentRef.current.body+(contentRef.current.body ? '\n' : '')+text})} repository={repository} onWorkspaceSaved={() => onSaved(repository.getSnapshot())} controller={pad} documentKey={key} preferencesKey={`${storagePrefix(data)}:ink-preferences:v1`} title="메모" label="메모 필기" drawingLabel="메모 스케치 영역" strokes={content.strokes} disabled={isBlocked}
+      onDrawing={value => { drawing.current = value; }} onChange={strokes => update({ ...contentRef.current, strokes })} />
+    <details className="memo-details" open={Boolean(initial.content.body) || undefined}><summary>글·연결·입력 설정</summary><div className="memo-input"><Textarea label="짧은 글" data-editing-context={`memo:${memo.id}:body`} placeholder="결론 한 줄, 남은 의문…" value={content.body} rows={3} disabled={isBlocked} onChange={event => update({ ...contentRef.current, body: event.target.value })} /></div>
+    <div className="memo-options">
       <Select label="연결할 곳" value={content.ownerId ?? ''} disabled={isBlocked} onChange={event => update({ ...contentRef.current, ownerId: event.target.value || null })}>
         <option value="">자유 메모</option>
         {data.subjects.filter(row => !row.deletedAt).map(subject => <optgroup key={subject.id} label={subject.name}><option value={subject.id}>{subject.name} 전체</option>{data.nodes.filter(row => !row.deletedAt && row.subjectId === subject.id).map(node => <option key={node.id} value={node.id}>{node.name}</option>)}</optgroup>)}
@@ -267,7 +210,7 @@ export function MemoEditor({ memo, data, repository, onSaved, onClose, onCopy, e
     </div>
     </details>
     <div className="memo-notice">{error && <p role="alert">{error}</p>}</div>
-    {initial.conflict && <div className="memo-conflict"><p>저장된 메모는 위에 그대로 있습니다. 별도로 남아 있는 초안:</p><p className="prose">{initial.conflict.body || '(글 없음)'}</p><svg viewBox={`0 0 ${MEMO_WIDTH} ${MEMO_HEIGHT}`} role="img" aria-label="별도로 남아 있는 초안 그림"><Drawing strokes={initial.conflict.strokes} /></svg><Button onClick={copyConflict}>초안을 별도 메모로 보관</Button></div>}
+    {initial.conflict && <div className="memo-conflict"><p>저장된 메모는 위에 그대로 있습니다. 별도로 남아 있는 초안:</p><p className="prose">{initial.conflict.body || '(글 없음)'}</p><InkPreview strokes={initial.conflict.strokes} label="별도로 남아 있는 초안 그림" /><Button onClick={copyConflict}>초안을 별도 메모로 보관</Button></div>}
     {isBlocked && !initial.conflict && <Button onClick={() => {
       try { archiveDamagedDraft(key, '작은 메모 초안 읽기 실패'); clearStoredDraft(key); blocked.current = false; setBlocked(false); setError('읽을 수 없던 초안 원문을 보관했습니다. 저장된 메모를 이어 편집할 수 있습니다.'); }
       catch (e) { setError(errorMessage(e)); }

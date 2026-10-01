@@ -6,10 +6,14 @@ import { readLearningPlan } from '../data/learning-plan';
 import { emptyRecommendations } from '../domain/recommendation-workspace';
 import { Button, Card, Checkbox, Input, Modal, Select, SegmentedControl } from './index';
 import './statistics.css';
+import { MonthSummary } from './month-summary';
+import { calendarMonth } from '../domain/study-calendar';
+import { readStatisticsMonth } from '../data/statistics-month';
 const format = (lo: number, hi: number | null) => hi === null ? `${lo} 이상 · 상한 미정` : lo === hi ? `${lo}` : `${lo}–${hi}`;
 export function StudyStatistics({ data, subjectIds, compact = false }: { data: AppState; subjectIds: string[]; compact?: boolean }) {
   const today = koreanDay(new Date().toISOString());
-  const [from,setFrom] = useState(shiftDay(today,-13)), [to,setTo] = useState(today);
+  const [initialMonth] = useState(() => calendarMonth(readStatisticsMonth(data, today.slice(0, 7)).month));
+  const [from,setFrom] = useState(compact ? shiftDay(today,-13) : initialMonth.from), [to,setTo] = useState(compact ? today : initialMonth.to);
   const [subjectId,setSubject] = useState(''), [nodeId,setNode] = useState(''), [metricId,setMetric] = useState<MetricId>('sessions');
   const [view,setView] = useState('graph'), [compare,setCompare] = useState(false), [zoom,setZoom] = useState(1);
   const [cursor,setCursor] = useState<number | null>(null), [playing,setPlaying] = useState(false);
@@ -37,7 +41,7 @@ export function StudyStatistics({ data, subjectIds, compact = false }: { data: A
   const sourceData = frozen?.source ?? data, sourceEvents = canonicalEvents(frozen?.events ?? workspace.events, new Date().toISOString(), new Date().toISOString());
   const openEvidence = (label:string, items:StatisticItem[]) => { if(compact){location.hash='#/statistics';return;} setFrozen(null); setSelected({label,items}); };
   const dateLabel = (i:StatisticItem) => i.date.kind === 'unknown' ? '공부 날짜 미정' : i.date.kind === 'exact' ? i.date.date : `${i.date.from}–${i.date.to} 사이`;
-  if (compact) return <Card className="study-statistics"><div className="section-heading"><h2>공부 기록의 변화</h2><a href="#/statistics">통계와 그래프 보기</a></div><p className="muted">최근 14일 · 공부 회차입니다. 체크는 이해나 정답 판정이 아닙니다.</p>{chart()}{!metric.items.length && <p className="muted">공부를 남기면 이곳에 변화가 보입니다.</p>}</Card>;
+  if (compact) return <><Card className="study-statistics"><div className="section-heading"><h2>공부 기록의 변화</h2><a href="#/statistics">통계와 그래프 보기</a></div><p className="muted">최근 14일 · 공부 회차입니다. 체크는 이해나 정답 판정이 아닙니다.</p>{chart()}{!metric.items.length && <p className="muted">공부를 남기면 이곳에 변화가 보입니다.</p>}</Card><MonthSummary compact data={data} workspace={workspace} subjectIds={subjectIds} unavailable={Boolean(readError)} /></>;
   function chart() { return <div className="statistics-scroll"><svg className="statistics-chart" style={{width:`${zoom*100}%`}} viewBox="0 0 800 260" role="group" aria-label={`${metric.label} · 정확한 날짜가 있는 기록의 변화`}>
     {[0,.5,1].map(r => <g key={r}><line className="grid" x1="40" y1={210-r*180} x2="790" y2={210-r*180}/><text x="4" y={215-r*180}>{Math.round(maximum*r)}</text></g>)}
     {bins.map((b,i) => {const width=740/Math.max(1,bins.length),x=45+i*width; return <g key={b.lo} className="bar-control" style={{opacity:cursor!==null&&i>cursor?0.35:1}} role="button" tabIndex={0} aria-label={`${b.lo}${b.lo===b.hi?'':`부터 ${b.hi}`} ${b.current.lower}${metric.unit} · 근거 보기`} onClick={() => openEvidence(`${b.lo}–${b.hi}`,b.current.evidence)} onKeyDown={e => {if(e.key==='Enter'||e.key===' '){e.preventDefault();openEvidence(`${b.lo}–${b.hi}`,b.current.evidence);}}}>
@@ -49,6 +53,7 @@ export function StudyStatistics({ data, subjectIds, compact = false }: { data: A
     </g>;})}
   </svg></div>; }
   return <section className="study-statistics" aria-label="공부 통계">
+    <MonthSummary data={data} workspace={workspace} subjectIds={subjectIds} subjectId={subjectId} nodeId={nodeId} unavailable={Boolean(readError)} onOpen={(month, id, items) => { const period = calendarMonth(month); setFrom(period.from); setTo(period.to); setMetric(id); openEvidence(`${month} · 월간 원기록`, items); }} />
     <p className="muted">남긴 기록을 기준으로 계산합니다. 수행 결과는 자기 보고이며, 빈 기간은 기록이 없다는 뜻입니다.</p>
     {readError && <p role="alert">{readError}</p>}
     <div className="statistics-filters">

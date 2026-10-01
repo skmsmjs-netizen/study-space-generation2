@@ -4,7 +4,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 export const NAVIGATION_CONTEXT_KEY = 'study-space:demo:navigation-context:v1';
 const BEFORE_NAVIGATE = 'study-space:before-navigate';
 type FocusTarget = { kind: 'key' | 'id' | 'href' | 'editor'; value: string };
-type Position = { x: number; y: number; focus?: FocusTarget };
+type Position = { x: number; y: number; focus?: FocusTarget; anchor?: { value: string; offset: number } };
 type NavigationContext = { version: 1; route: string; positions: Record<string, Position> };
 
 function validRoute(value: unknown): value is string {
@@ -25,7 +25,8 @@ export function readRouteHash(hash = window.location.hash): string {
 function readContext(key = NAVIGATION_CONTEXT_KEY): NavigationContext {
   const fallback: NavigationContext = { version: 1, route: '/', positions: {} };
   try {
-    const value: unknown = JSON.parse(sessionStorage.getItem(key) || 'null');
+    const value: unknown = JSON.parse(sessionStorage.getItem(key) ||
+      (key.startsWith('study-space:personal:') ? localStorage.getItem(key) : null) || 'null');
     if (!value || typeof value !== 'object') return fallback;
     const raw = value as Partial<NavigationContext>;
     if (raw.version !== 1 || !validRoute(raw.route) || !raw.positions || typeof raw.positions !== 'object') return fallback;
@@ -35,6 +36,7 @@ function readContext(key = NAVIGATION_CONTEXT_KEY): NavigationContext {
         !Number.isFinite(candidate.x) || !Number.isFinite(candidate.y) || candidate.x < 0 || candidate.y < 0) continue;
       const focus = candidate.focus;
       positions[route] = { x: candidate.x, y: candidate.y,
+        ...(candidate.anchor && typeof candidate.anchor.value === 'string' && candidate.anchor.value.length < 4096 && Number.isFinite(candidate.anchor.offset) ? { anchor: candidate.anchor } : {}),
         ...(focus && ['key', 'id', 'href', 'editor'].includes(focus.kind) &&
           typeof focus.value === 'string' && focus.value.length <= 4096 ? { focus } : {}) };
     }
@@ -45,6 +47,9 @@ function readContext(key = NAVIGATION_CONTEXT_KEY): NavigationContext {
 function writeContext(context: NavigationContext, key = NAVIGATION_CONTEXT_KEY) {
   try { sessionStorage.setItem(key, JSON.stringify(context)); }
   catch { /* History and in-memory restoration stay usable when storage is unavailable. */ }
+  if (key.startsWith('study-space:personal:')) {
+    try { localStorage.setItem(key, JSON.stringify(context)); } catch { /* View hints never block input. */ }
+  }
 }
 
 function identifyFocus(element: Element | null): FocusTarget | undefined {
@@ -56,6 +61,13 @@ function identifyFocus(element: Element | null): FocusTarget | undefined {
   const href = element instanceof HTMLAnchorElement && element.getAttribute('href');
   if (href) return { kind: 'href', value: href };
   return undefined;
+}
+
+function measurePosition(): Position {
+  const anchor = Array.from(document.querySelectorAll<HTMLElement>('main [data-reading-anchor]'))
+    .find(element => isDisplayed(element) && element.getBoundingClientRect().bottom > 0 && element.getBoundingClientRect().top < window.innerHeight);
+  return { x: Math.max(0, window.scrollX), y: Math.max(0, window.scrollY), focus: identifyFocus(document.activeElement),
+    ...(anchor ? { anchor: { value: anchor.dataset.readingAnchor!, offset: anchor.getBoundingClientRect().top } } : {}) };
 }
 
 function findFocus(target: FocusTarget): HTMLElement | undefined {
@@ -83,6 +95,17 @@ function editingOrDialogOwnsFocus(): boolean {
       Boolean(element.closest('[role="dialog"], dialog[open]')));
 }
 
+function restoreFocus(element: HTMLElement) {
+  element.focus({ preventScroll: true });
+  const navigation = element.closest<HTMLElement>('.ui-navigation-bar');
+  if (!navigation || navigation.scrollWidth <= navigation.clientWidth) return;
+  const item = element.getBoundingClientRect(), area = navigation.getBoundingClientRect();
+  // Reveal a returned menu item inside its own horizontal strip only. Native
+  // scrollIntoView would also move the restored reading position of the page.
+  if (item.left < area.left) navigation.scrollLeft += item.left - area.left;
+  else if (item.right > area.right) navigation.scrollLeft += item.right - area.right;
+}
+
 /** Use this for imperative navigation so the departing page is captured before the hash changes. */
 export function navigate(path: string) {
   if (!validRoute(path) || path === readRouteHash()) return;
@@ -108,6 +131,7 @@ export function useRoute(prefix = 'study-space:demo'): string {
   const current = useRef(route);
   const departed = useRef(false);
   const hasNavigated = useRef(false);
+  const restorationPending = useRef(false);
 
   useEffect(() => {
     const previousScrollRestoration = window.history.scrollRestoration;
@@ -118,14 +142,28 @@ export function useRoute(prefix = 'study-space:demo'): string {
       // Preserve every other owner's history state and the current pathname/query.
       window.history.replaceState(window.history.state, '', `${window.location.pathname}${window.location.search}#${encodeURI(route)}`);
     }
-    const capture = () => {
-      const position: Position = { x: Math.max(0, window.scrollX), y: Math.max(0, window.scrollY), focus: identifyFocus(document.activeElement) };
+    const capturePosition = (hint?: Position) => {
+      // A loading fallback can clamp scroll before the saved page is mounted.
+      if (restorationPending.current) return;
+      const position: Position = hint || measurePosition();
       context.current.positions[current.current] = position;
       const entries = Object.entries(context.current.positions);
       if (entries.length > 100) context.current.positions = Object.fromEntries(entries.slice(-100));
       context.current.route = current.current;
       writeContext(context.current, navigationKey);
     };
+    const capture = () => capturePosition();
+    let pointerDeparture: { route: string; anchor: HTMLAnchorElement; position: Position } | null = null;
+    const pointer = (event: PointerEvent) => {
+      pointerDeparture = null;
+      if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+      const anchor = event.target instanceof Element ? event.target.closest('a[href]') : null;
+      if (anchor instanceof HTMLAnchorElement) pointerDeparture = {
+        route: current.current, anchor,
+        position: { ...measurePosition(), focus: identifyFocus(anchor) },
+      };
+    };
+    const cancelPointer = () => { pointerDeparture = null; };
     const beforeNavigate = () => { capture(); departed.current = true; };
     const update = () => {
       const next = readRouteHash();
@@ -145,20 +183,35 @@ export function useRoute(prefix = 'study-space:demo'): string {
         (anchor.target && anchor.target !== '_self')) return;
       const url = new URL(anchor.href, window.location.href);
       if (url.origin === window.location.origin && url.pathname === window.location.pathname &&
-        url.search === window.location.search && url.hash && readRouteHash(url.hash) !== current.current) beforeNavigate();
+        url.search === window.location.search && url.hash && readRouteHash(url.hash) !== current.current) {
+        // Pointer focus can scroll a narrow navigation strip into view before
+        // click. Save the reading position from press, but commit only on click.
+        const hint = event.detail > 0 && pointerDeparture?.route === current.current && pointerDeparture.anchor === anchor
+          ? pointerDeparture.position : undefined;
+        capturePosition(hint); departed.current = true;
+      }
+      pointerDeparture = null;
     };
     window.addEventListener(BEFORE_NAVIGATE, beforeNavigate);
     window.addEventListener('hashchange', update);
     window.addEventListener('popstate', update);
     window.addEventListener('pagehide', capture);
+    document.addEventListener('input', capture, true);
+    document.addEventListener('focusout', capture, true);
     document.addEventListener('click', click);
+    document.addEventListener('pointerdown', pointer, true);
+    document.addEventListener('pointercancel', cancelPointer, true);
     return () => {
       capture();
       window.removeEventListener(BEFORE_NAVIGATE, beforeNavigate);
       window.removeEventListener('hashchange', update);
       window.removeEventListener('popstate', update);
       window.removeEventListener('pagehide', capture);
+      document.removeEventListener('input', capture, true);
+      document.removeEventListener('focusout', capture, true);
       document.removeEventListener('click', click);
+      document.removeEventListener('pointerdown', pointer, true);
+      document.removeEventListener('pointercancel', cancelPointer, true);
       if (window.history.scrollRestoration === 'manual') window.history.scrollRestoration = previousScrollRestoration;
     };
     // One listener owns the lifetime of this workspace; mutable route lives in current.
@@ -167,17 +220,49 @@ export function useRoute(prefix = 'study-space:demo'): string {
 
   useLayoutEffect(() => {
     const position = context.current.positions[route];
-    if (editingOrDialogOwnsFocus()) return;
-    const target = position?.focus && findFocus(position.focus);
-    const heading = !target && hasNavigated.current
-      ? document.querySelector<HTMLElement>('[data-route-heading], main h1, main h2') : null;
-    if (target) target.focus({ preventScroll: true });
-    else if (heading) {
-      if (!heading.hasAttribute('tabindex')) heading.tabIndex = -1;
-      heading.focus({ preventScroll: true });
-    }
-    const x = position?.x ?? 0, y = position?.y ?? 0;
-    if (window.scrollX !== x || window.scrollY !== y) window.scrollTo({ left: x, top: y, behavior: 'instant' });
+    let stopped = false;
+    const restore = () => {
+      if (stopped || current.current !== route) return;
+      if (editingOrDialogOwnsFocus()) { restorationPending.current = false; return; }
+      if (document.querySelector('main [data-ui-loading]')) { restorationPending.current = true; return; }
+      restorationPending.current = false;
+      const target = position?.focus && findFocus(position.focus);
+      const heading = !target && hasNavigated.current
+        ? document.querySelector<HTMLElement>('[data-route-heading], main h1, main h2') : null;
+      if (target) restoreFocus(target);
+      else if (heading) {
+        if (!heading.hasAttribute('tabindex')) heading.tabIndex = -1;
+        heading.focus({ preventScroll: true });
+      }
+      const readingAnchor = position?.anchor && Array.from(document.querySelectorAll<HTMLElement>('main [data-reading-anchor]')).find(element => element.dataset.readingAnchor === position.anchor!.value && isDisplayed(element));
+      const x = position?.x ?? 0, y = readingAnchor && position?.anchor ? Math.max(0, window.scrollY + readingAnchor.getBoundingClientRect().top - position.anchor.offset) : position?.y ?? 0;
+      if (window.scrollX !== x || window.scrollY !== y) window.scrollTo({ left: x, top: y, behavior: 'instant' });
+      stopped = true;
+    };
+    restore();
+    if (!restorationPending.current) return;
+    // Observe only while a route is loading. Never refocus on normal data updates.
+    const observer = new MutationObserver(() => {
+      // A cancelled link/history gesture may never leave this route. Release
+      // capture suppression when it finishes loading without restoring focus.
+      if (stopped && !document.querySelector('main [data-ui-loading]')) restorationPending.current = false;
+      else if (!stopped) restore();
+      if (!restorationPending.current) observer.disconnect();
+    });
+    observer.observe(document.querySelector('main') || document.body, { childList: true, subtree: true });
+    const interact = (event: Event) => {
+      stopped = true;
+      const anchor = event.target instanceof Element ? event.target.closest('a[href]') : null;
+      const historyKey = event instanceof KeyboardEvent && (event.altKey || event.metaKey || event.ctrlKey);
+      // Departing during loading must retain the earlier page position, not its fallback.
+      if (!anchor && !historyKey) { restorationPending.current = false; observer.disconnect(); }
+    };
+    const events = ['pointerdown', 'keydown', 'wheel', 'touchmove'];
+    events.forEach(name => { document.addEventListener(name, interact, { capture: true, passive: true }); });
+    return () => {
+      stopped = true; observer.disconnect();
+      events.forEach(name => { document.removeEventListener(name, interact, true); });
+    };
   }, [route]);
   return route;
 }
@@ -189,7 +274,8 @@ function useEditingContext(storageKey = EDITING_CONTEXT_KEY) {
   useLayoutEffect(() => {
     let positions: Record<string, EditingPosition> = {};
     try {
-      const raw: unknown = JSON.parse(sessionStorage.getItem(storageKey) || '{}');
+      const raw: unknown = JSON.parse(sessionStorage.getItem(storageKey) ||
+        (storageKey.startsWith('study-space:personal:') ? localStorage.getItem(storageKey) : null) || '{}');
       if (raw && typeof raw === 'object') for (const [key, value] of Object.entries(raw).slice(-200)) {
         if (!value || typeof value !== 'object') continue;
         const p = value as EditingPosition;
@@ -205,6 +291,9 @@ function useEditingContext(storageKey = EDITING_CONTEXT_KEY) {
       const entries = Object.entries(positions);
       if (entries.length > 200) positions = Object.fromEntries(entries.slice(-200));
       try { sessionStorage.setItem(storageKey, JSON.stringify(positions)); } catch { /* In-tab hints remain available. */ }
+      if (storageKey.startsWith('study-space:personal:')) {
+        try { localStorage.setItem(storageKey, JSON.stringify(positions)); } catch { /* No written content is stored here. */ }
+      }
     };
     const capture = (event: Event) => { const element = field(event.target); if (element) save(element); };
     const captureActive = () => { const element = field(document.activeElement); if (element) save(element); };

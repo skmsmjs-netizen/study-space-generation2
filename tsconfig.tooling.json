@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    ".storybook",
+    "e2e",
+    "playwright.config.ts",
+    "src/ui/components.stories.tsx",
+    "playwright.devices.config.ts"
+  ]
+}

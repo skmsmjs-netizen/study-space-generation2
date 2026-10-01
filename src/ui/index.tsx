@@ -1,13 +1,14 @@
-import { forwardRef, useEffect, useId, useRef, type ButtonHTMLAttributes, type HTMLAttributes, type InputHTMLAttributes, type ReactNode, type SelectHTMLAttributes, type TextareaHTMLAttributes } from 'react';
+import { Component, forwardRef, useEffect, useId, useRef, type ButtonHTMLAttributes, type HTMLAttributes, type InputHTMLAttributes, type ReactNode, type SelectHTMLAttributes, type TextareaHTMLAttributes } from 'react';
 import { createPortal } from 'react-dom';
 import './tokens.css';
 import './components.css';
+import { BusyDots, FadeContent, NoticeEntrance, SelectionBackground, useSelectionMotionId } from './motion';
 
 const classes = (...values: (string | undefined | false)[]) => values.filter(Boolean).join(' ');
 
 export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & { variant?: 'primary' | 'secondary' | 'quiet' | 'danger'; busy?: boolean };
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button({ variant = 'secondary', busy = false, disabled, className, type = 'button', ...props }, ref) {
-  return <button {...props} ref={ref} type={type} disabled={disabled || busy} aria-busy={busy || undefined} className={classes('ui-button', `ui-button--${variant}`, className)} />;
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button({ variant = 'secondary', busy = false, disabled, className, type = 'button', children, ...props }, ref) {
+  return <button {...props} ref={ref} type={type} disabled={disabled || busy} aria-busy={busy || undefined} className={classes('ui-button', `ui-button--${variant}`, className)}>{busy && <BusyDots />}{children}</button>;
 });
 export const IconButton = forwardRef<HTMLButtonElement, ButtonProps & { label: string }>(function IconButton({ label, className, children, ...props }, ref) {
   return <Button variant="quiet" {...props} ref={ref} className={classes('ui-icon-button', className)} aria-label={label} title={label}><span aria-hidden="true">{children}</span></Button>;
@@ -42,6 +43,7 @@ export function Radio({ label, className, ...props }: ChoiceProps) { return <lab
 export type TabItem = { id: string; label: string; disabled?: boolean; panelId?: string };
 export type TabsProps = { items: TabItem[]; value: string; onChange: (id: string) => void; label?: string; className?: string };
 export function Tabs({ items, value, onChange, label = '보기 선택', className }: TabsProps) {
+  const motionId = useSelectionMotionId();
   const buttons = useRef(new Map<string, HTMLButtonElement>());
   const enabled = items.filter(item => !item.disabled);
   return <div className={classes('ui-tabs', className)} role="tablist" aria-label={label}>{items.map(item => <Button key={item.id} ref={node => { if (node) buttons.current.set(item.id, node); else buttons.current.delete(item.id); }} variant="quiet" role="tab" aria-selected={item.id === value} aria-controls={item.panelId} tabIndex={item.id === value || !enabled.some(entry => entry.id === value) && enabled[0]?.id === item.id ? 0 : -1} disabled={item.disabled} onClick={() => onChange(item.id)} onKeyDown={event => {
@@ -50,7 +52,7 @@ export function Tabs({ items, value, onChange, label = '보기 선택', classNam
     const index = enabled.findIndex(entry => entry.id === item.id);
     const next = event.key === 'Home' ? enabled[0] : event.key === 'End' ? enabled[enabled.length - 1] : enabled[(index + (event.key === 'ArrowRight' ? 1 : -1) + enabled.length) % enabled.length];
     onChange(next.id); buttons.current.get(next.id)?.focus();
-  }}>{item.label}</Button>)}</div>;
+  }}>{item.id === value && <SelectionBackground id={motionId} />}{item.label}</Button>)}</div>;
 }
 export function SegmentedControl({ items, value, onChange, label = '표시 방식', className }: TabsProps) {
   return <div role="group" aria-label={label} className={classes('ui-segmented', className)}>{items.map(item => <Button key={item.id} variant="quiet" aria-pressed={item.id === value} disabled={item.disabled} onClick={() => onChange(item.id)}>{item.label}</Button>)}</div>;
@@ -62,10 +64,32 @@ export type ModalProps = { open: boolean; title: string; onClose: () => void; ch
 const focusableSelector = 'button:not(:disabled), [href], input:not(:disabled):not([type="hidden"]), select:not(:disabled), textarea:not(:disabled), [tabindex]:not([tabindex="-1"])';
 export function Modal({ open, title, onClose, children, className }: ModalProps) {
   const titleId = useId(), dialog = useRef<HTMLDivElement>(null), close = useRef(onClose);
+  const backdropPress = useRef<{ id: number; x: number; y: number; moved: boolean } | null>(null);
+  const openingControl = useRef<HTMLElement | null>(null);
   close.current = onClose;
   useEffect(() => {
+    if (open) return;
+    openingControl.current = null;
+    const remember = (event: PointerEvent) => {
+      const target = event.target instanceof Element ? event.target.closest(focusableSelector) : null;
+      openingControl.current = target instanceof HTMLElement ? target : null;
+    };
+    const clear = () => { openingControl.current = null; };
+    // Safari touch activation need not focus the button that opens a dialog.
+    document.addEventListener('pointerdown', remember, true);
+    document.addEventListener('pointercancel', clear, true);
+    document.addEventListener('keydown', clear, true);
+    return () => {
+      document.removeEventListener('pointerdown', remember, true);
+      document.removeEventListener('pointercancel', clear, true);
+      document.removeEventListener('keydown', clear, true);
+    };
+  }, [open]);
+  useEffect(() => {
     if (!open || !dialog.current) return;
-    const original = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    const original = openingControl.current?.isConnected ? openingControl.current
+      : document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    openingControl.current = null;
     const overflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
     const background = [...document.body.children].filter(el => el !== dialog.current?.parentElement);
@@ -79,7 +103,8 @@ export function Modal({ open, title, onClose, children, className }: ModalProps)
       }
       return true;
     });
-    (available()[0] || dialog.current).focus();
+    backdropPress.current = null;
+    (available()[0] || dialog.current).focus({ preventScroll: true });
     const onFocus = (event: FocusEvent) => {
       if (event.target instanceof Node && !dialog.current?.contains(event.target)) (available()[0] || dialog.current)?.focus();
     };
@@ -96,15 +121,38 @@ export function Modal({ open, title, onClose, children, className }: ModalProps)
     return () => {
       document.removeEventListener('keydown', onKeyDown); document.removeEventListener('focusin', onFocus);
       background.forEach((el, index) => { const before = previousInert[index]; if (before === null) el.removeAttribute('inert'); else el.setAttribute('inert', before); });
-      document.body.style.overflow = overflow; if (original?.isConnected) original.focus();
+      document.body.style.overflow = overflow;
+      if (original?.isConnected && !original.closest('[hidden], [inert]') && !original.matches(':disabled')) original.focus({ preventScroll: true });
     };
   }, [open]);
   if (!open) return null;
-  return createPortal(<div className="ui-overlay" onMouseDown={event => { if (event.target === event.currentTarget) onClose(); }}><div ref={dialog} role="dialog" aria-modal="true" aria-labelledby={titleId} tabIndex={-1} className={classes('ui-modal', className)}><header className="ui-modal-header"><h2 className="ui-modal-title" id={titleId}>{title}</h2><IconButton label={`${title} 닫기`} onClick={onClose}>×</IconButton></header>{children}</div></div>, document.body);
+  // biome-ignore lint/a11y/noStaticElementInteractions: Backdrop dismissal is optional; the labelled close button and Escape provide keyboard access.
+  // biome-ignore lint/a11y/useKeyWithClickEvents: The modal's document key handler owns Escape; the backdrop is not a second tab stop.
+  return createPortal(<div className="ui-overlay"
+    onPointerDown={event => {
+      backdropPress.current = event.target === event.currentTarget && event.button === 0
+        ? { id: event.pointerId, x: event.clientX, y: event.clientY, moved: false } : null;
+    }}
+    onPointerMove={event => {
+      const press = backdropPress.current;
+      // Eight CSS pixels is a local tap tolerance, not a universal gesture standard.
+      if (press && (event.target !== event.currentTarget || Math.hypot(event.clientX - press.x, event.clientY - press.y) > 8)) press.moved = true;
+    }}
+    onPointerUp={event => {
+      // Touch may implicitly capture the pointer; its event target can remain the
+      // backdrop even after the finger has crossed into the dialog.
+      const hit = document.elementFromPoint?.(event.clientX, event.clientY);
+      if (event.target !== event.currentTarget || (hit && hit !== event.currentTarget) || event.pointerId !== backdropPress.current?.id) backdropPress.current = null;
+    }}
+    onPointerCancel={() => { backdropPress.current = null; }}
+    onClick={event => {
+      const press = backdropPress.current; backdropPress.current = null;
+      if (event.target === event.currentTarget && press && !press.moved) onClose();
+    }}><div ref={dialog} role="dialog" aria-modal="true" aria-labelledby={titleId} tabIndex={-1} className={classes('ui-modal', className)}><header className="ui-modal-header"><h2 className="ui-modal-title" id={titleId}>{title}</h2><IconButton label={`${title} 닫기`} onClick={onClose}>×</IconButton></header>{children}</div></div>, document.body);
 }
 export function Sheet(props: ModalProps) { return <Modal {...props} className={classes('ui-sheet', props.className)} />; }
 export function Toast({ message, onUndo, onClose }: { message: string; onUndo?: () => void; onClose?: () => void }) {
-  return <div className="ui-toast"><div role="status" aria-live="polite" className="ui-toast-message">{message}</div>{onUndo && <Button variant="quiet" onClick={onUndo}>되돌리기</Button>}{onClose && <IconButton label="알림 닫기" onClick={onClose}>×</IconButton>}</div>;
+  return <NoticeEntrance className="ui-toast"><div role="status" aria-live="polite" className="ui-toast-message">{message}</div>{onUndo && <Button variant="quiet" onClick={onUndo}>되돌리기</Button>}{onClose && <IconButton label="알림 닫기" onClick={onClose}>×</IconButton>}</NoticeEntrance>;
 }
 export type BreadcrumbItem = { label: string; href?: string; onClick?: () => void };
 export function Breadcrumb({ items }: { items: BreadcrumbItem[] }) {
@@ -112,15 +160,30 @@ export function Breadcrumb({ items }: { items: BreadcrumbItem[] }) {
 }
 export function Search({ onQueryChange, onChange, onCompositionStart, onCompositionEnd, ...props }: InputProps & { onQueryChange?: (value: string) => void }) {
   const composing = useRef(false), last = useRef<string | undefined>(undefined);
+  useEffect(() => { if (!composing.current && typeof props.value === 'string') last.current = props.value; }, [props.value]);
   const publish = (value: string) => { if (last.current !== value) { last.current = value; onQueryChange?.(value); } };
   return <Input {...props} type="search" onChange={event => { onChange?.(event); if (!composing.current) publish(event.currentTarget.value); }} onCompositionStart={event => { composing.current = true; onCompositionStart?.(event); }} onCompositionEnd={event => { composing.current = false; onCompositionEnd?.(event); publish(event.currentTarget.value); }} />;
 }
 export function EmptyState({ title, message, children }: { title: string; message?: string; children?: ReactNode }) {
-  return <section className="ui-state"><h3 className="ui-state-title">{title}</h3>{message && <p className="ui-state-message">{message}</p>}{children}</section>;
+  return <FadeContent><section className="ui-state"><h3 className="ui-state-title">{title}</h3>{message && <p className="ui-state-message">{message}</p>}{children}</section></FadeContent>;
 }
-export function LoadingState({ message = '불러오고 있습니다.' }: { message?: string }) { return <div role="status" aria-live="polite" className="ui-loading">{message}</div>; }
+export function LoadingState({ message = '불러오고 있습니다.' }: { message?: string }) { return <div role="status" aria-live="polite" aria-busy="true" data-ui-loading="" className="ui-loading"><BusyDots />{message}</div>; }
 export function ErrorState({ title = '다시 확인해 주세요', message, onRetry }: { title?: string; message: string; onRetry?: () => void }) {
   return <section className="ui-state ui-state--error"><div role="alert"><h3 className="ui-state-title">{title}</h3><p className="ui-state-message">{message}</p></div>{onRetry && <Button onClick={onRetry}>다시 시도</Button>}</section>;
+}
+
+/** Key by workspace and route so one failed screen cannot disable other navigation. */
+export class ScreenBoundary extends Component<{ children: ReactNode; onRetry?: () => void }, { failed: boolean }> {
+  state = { failed: false };
+  static getDerivedStateFromError() { return { failed: true }; }
+  render() {
+    if (!this.state.failed) return this.props.children;
+    return <section data-route-heading="" tabIndex={-1} aria-label="화면을 열지 못했습니다">
+      <ErrorState title="이 화면을 열지 못했습니다"
+        message="연결을 확인한 뒤 다시 시도해 주세요. 다른 메뉴로 이동할 수도 있습니다. 이미 저장된 기록과 초안은 지우지 않습니다."
+        onRetry={this.props.onRetry || (() => window.location.reload())} />
+    </section>;
+  }
 }
 
 export { NavigationBar, type NavigationBarProps, type NavigationItem } from './navigation-bar';

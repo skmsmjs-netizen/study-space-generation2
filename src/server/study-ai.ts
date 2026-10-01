@@ -1,3 +1,4 @@
+import type { MaterialRange } from '../domain/study-gpt-contract.ts';
 import { requireOwnerAI } from '../domain/ai-access.ts';
 import { validateStudyAIRequest, type StudyAIRequest } from '../domain/study-ai-request.ts';
 import { DomainError } from '../domain/model.ts';
@@ -16,6 +17,7 @@ export interface AIInput {
   cardCount: number;
   request?: StudyAIRequest;
   sourceSegments?: SourceSegment[];
+  range?: MaterialRange;
 }
 export interface AIBackend {
   authorize(request: Request): Promise<{ userId: string; namespace?: string }>;
@@ -114,6 +116,13 @@ export async function handleStudyAI(request: Request, backend: AIBackend): Promi
       if (text.length + sourceSegments.reduce((n: number, b: SourceSegment) => n + b.text.length, 0) > MAX_SOURCE_TEXT) throw new DomainError('SOURCE_SIZE', '필기와 선택한 자료가 15만 자를 넘습니다. 사용할 구간을 나누어 주세요.');
     }
     if (!audio && !text.trim() && !sourceSegments?.length) throw new DomainError('INVALID_REQUEST', '분석할 원문 구간을 선택해 주세요.');
+    const extra = ['problem','attempt','reference','focus'].reduce((n, key) => n + (aiRequest?.[key]?.length ?? 0), 0);
+    if (text.length + (sourceSegments?.reduce((n: number,b: SourceSegment) => n + b.text.length,0) ?? 0) + extra > MAX_SOURCE_TEXT) throw new DomainError('SOURCE_SIZE', '선택 원문과 추가 질문의 범위를 나누어 주세요.');
+    const range = form.has('rangeJSON') ? JSON.parse(String(form.get('rangeJSON'))) : undefined;
+    if (range !== undefined) {
+      if (audio || text || !sourceSegments?.length) throw new DomainError('INVALID_REQUEST', '분할 범위에는 선택한 원문 구간만 사용할 수 있습니다.');
+      validateMaterialResult({ id: 'range-input', at: new Date().toISOString(), model: 'source', segments: sourceSegments, summary: [], cards: [], range });
+    }
     await backend.reserve(identity.userId);
     const result = await backend.generate({
       text,
@@ -122,6 +131,7 @@ export async function handleStudyAI(request: Request, backend: AIBackend): Promi
       cardCount,
       ...(aiRequest ? { request: aiRequest } : {}),
       ...(sourceSegments ? { sourceSegments } : {}),
+      ...(range ? { range } : {}),
     });
     validateMaterialResult(result);
     return aiResponse({ result });

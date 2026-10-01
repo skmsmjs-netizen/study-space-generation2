@@ -2,7 +2,7 @@ import { MemoryCardOrigin } from './material-card-library';
 import { PerformanceFromSource } from './performance-from-source';
 import { useEffect, useRef, useState } from 'react';
 import type { AppState, MemoStroke } from '../domain/model';
-import { MEMO_HEIGHT, MEMO_WIDTH, memoPath } from '../domain/memo';
+import { InkPreview } from './ink-drawing';
 import { storagePrefix } from '../data/repository';
 import {
   memoryCardsInScope,
@@ -40,34 +40,7 @@ const verdicts: { value: MemoryVerdict; label: string }[] = [
   { value: 'uncertain', label: '판단 보류' },
   { value: null, label: '미판정' },
 ];
-function Ink({ strokes, label }: { strokes: MemoStroke[]; label: string }) {
-  return strokes.length ? (
-    <svg
-      className="memory-ink"
-      viewBox={`0 0 ${MEMO_WIDTH} ${MEMO_HEIGHT}`}
-      role="img"
-      aria-label={label}
-    >
-      {strokes.map((s) => (
-        <path
-          key={s.id}
-          d={memoPath(s.points)}
-          stroke={
-            {
-              ink: 'var(--color-text)',
-              blue: 'var(--color-hierarchy-outline)',
-              green: 'var(--color-memo-green)',
-            }[s.ink]
-          }
-          strokeWidth={s.width}
-          fill="none"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      ))}
-    </svg>
-  ) : null;
-}
+function Ink({ strokes, label }: { strokes: MemoStroke[]; label: string }) { return strokes.length ? <InkPreview strokes={strokes} label={label} /> : null; }
 function Summary({ questions }: { questions: MemoryQuestion[] }) {
   const s = memorySummary(questions);
   return (
@@ -427,8 +400,10 @@ export function MemoryTests({
                 onChange={(e) => patchEditor({ answer: e.target.value })}
                 rows={3}
               />
-              <MemoInkPad
+              <MemoInkPad onRecognizedText={text=>patchEditor({answer:draft.editor!.answer+(draft.editor!.answer ? "\n":"")+text})} repository={repository} onWorkspaceSaved={() => onSaved(repository.getSnapshot())}
                 key={draft.editor.id}
+                documentKey={`${storagePrefix(data)}:memory-editor:${draft.editor.id}`}
+                preferencesKey={`${storagePrefix(data)}:ink-preferences:v1`}
                 label="기준 답안 스케치"
                 drawingLabel="기준 답안 필기 영역"
                 title="기준 답안"
@@ -602,8 +577,10 @@ export function MemoryTests({
             onChange={(e) => patchQuestion(attempt.index, { response: e.target.value })}
             rows={4}
           />
-          <MemoInkPad
+          <MemoInkPad onRecognizedText={text=>patchQuestion(attempt.index,{response:question.response+(question.response ? "\n":"")+text})} repository={repository} onWorkspaceSaved={() => onSaved(repository.getSnapshot())}
             key={`${attempt.id}:${attempt.index}`}
+            documentKey={`${storagePrefix(data)}:memory-response:${attempt.id}:${attempt.index}`}
+            preferencesKey={`${storagePrefix(data)}:ink-preferences:v1`}
             label="내 답안 스케치"
             drawingLabel="내 답안 필기 영역"
             title="내 답안"

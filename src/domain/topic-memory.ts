@@ -12,6 +12,8 @@ export interface TopicMemoryInput {
   guidance: string;
 }
 export interface TopicMemoryResult {
+  evidenceType?: 'topic-general';
+  diagnostics?: { kind: 'needs-input' | 'insufficient-evidence'; message: string; questions?: string[] }[];
   id: string;
   at: string;
   model: string;
@@ -114,6 +116,8 @@ export function topicMemoryInput(
 }
 export function validateTopicMemoryResult(value: unknown): asserts value is TopicMemoryResult {
   const r = value as TopicMemoryResult;
+  if (r?.evidenceType !== undefined && r.evidenceType !== 'topic-general') invalid();
+  if (r?.diagnostics !== undefined && (!Array.isArray(r.diagnostics) || r.diagnostics.length > 10 || r.diagnostics.some(d => !d || !['needs-input','insufficient-evidence'].includes(d.kind) || !text(d.message, 4000) || d.questions !== undefined && (!Array.isArray(d.questions) || d.questions.length > 2 || d.questions.some(q => !text(q, 1000)))))) invalid();
   if (r?.promptVersion !== undefined && !text(r.promptVersion, 160)) invalid();
   if (
     !r ||
@@ -124,7 +128,7 @@ export function validateTopicMemoryResult(value: unknown): asserts value is Topi
   )
     invalid();
   validateTopicMemoryInput(r.input);
-  if (!Array.isArray(r.cards) || !r.cards.length || r.cards.length > r.input.count) invalid();
+  if (!Array.isArray(r.cards) || (!r.cards.length && !r.diagnostics?.length) || r.cards.length > r.input.count) invalid();
   const ids = new Set<string>();
   for (const c of r.cards) {
     if (

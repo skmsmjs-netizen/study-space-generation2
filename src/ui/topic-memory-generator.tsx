@@ -246,6 +246,7 @@ export function TopicMemoryGenerator({
           <p className="muted">
             일반 지식으로 만든 답안입니다. 수업의 표기와 조건에 맞는지 확인하거나 고쳐 주세요.
           </p>
+          {result.diagnostics?.map((d, index) => <article key={`diagnostic:${index}`}><p role="status">{d.message}</p>{d.questions?.map(q => <p key={q}>{q}</p>)}</article>)}
           {draft.items.map((i, index) => {
             const original = result.cards.find((c) => c.id === i.id);
             if (!original)

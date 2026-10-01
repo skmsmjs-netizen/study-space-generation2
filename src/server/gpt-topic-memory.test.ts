@@ -58,12 +58,11 @@ it('generates from titles alone and does not allow the model to overwrite the so
   ).rejects.toThrow('revoked');
   expect(runtime.streamResponse).toHaveBeenCalledTimes(1);
 });
-it('rejects unknown topics, empty/malformed/incomplete output and excess cards without retries', async () => {
+it('rejects unknown topics, malformed/incomplete output and excess cards without retries', async () => {
   const runtime = { streamResponse: vi.fn(async () => ({ text: '{}' })) };
   for (const value of [
     'not-json',
     '{}',
-    '{"cards":[]}',
     JSON.stringify({ cards: [{ ...card, topicId: 'unknown' }] }),
     JSON.stringify({ cards: [card, card] }),
   ]) {
@@ -72,7 +71,7 @@ it('rejects unknown topics, empty/malformed/incomplete output and excess cards w
       generateGPTTopicMemory({ ...input, count: 1 }, { runtime, model: 'm' }),
     ).rejects.toThrow();
   }
-  expect(runtime.streamResponse).toHaveBeenCalledTimes(5);
+  expect(runtime.streamResponse).toHaveBeenCalledTimes(4);
 });
 it('refuses nonowner, forged space, revoked approval and limits before provider calls', async () => {
   const result = await generateGPTTopicMemory(input, {

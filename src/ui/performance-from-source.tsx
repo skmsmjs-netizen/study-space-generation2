@@ -8,8 +8,8 @@ import { saveSourcePerformance } from '../data/learning-evidence';
 import { performanceSource, sourceEventId, type PerformanceSource } from '../domain/learning-evidence';
 import { emptyResponse, type ResponseDraft } from '../domain/recommendation-workspace';
 import { Button, ErrorState, Modal, Select } from './index';
-import { MEMO_WIDTH, MEMO_HEIGHT, memoPath } from '../domain/memo';
-export function SourceInk({ strokes }: { strokes: import('../domain/model').MemoStroke[] }) { return strokes.length ? <svg className="memory-ink" viewBox={`0 0 ${MEMO_WIDTH} ${MEMO_HEIGHT}`} role="img" aria-label="원문 답안 필기">{strokes.map(s => <path key={s.id} d={memoPath(s.points)} stroke={{ink:'var(--color-text)',blue:'var(--color-hierarchy-outline)',green:'var(--color-memo-green)'}[s.ink]} strokeWidth={s.width} fill="none" strokeLinecap="round" strokeLinejoin="round" />)}</svg> : null; }
+import { InkPreview } from './ink-drawing';
+export function SourceInk({ strokes }: { strokes: import('../domain/model').MemoStroke[] }) { return strokes.length ? <InkPreview strokes={strokes} label="원문 답안 필기" /> : null; }
 
 type Props = { data: AppState; repository: StudyRepository; onSaved: (data: AppState) => void; kind: PerformanceSource['kind']; id: string; itemId?: string };
 export function PerformanceFromSource({ data, repository, onSaved, kind, id, itemId }: Props) {

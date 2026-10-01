@@ -1,4 +1,4 @@
-import { DomainError } from './model';
+import { DomainError } from './model.ts';
 import type { SourceSegment } from './study-material';
 
 export const MAX_DOCUMENT_BYTES = 50 * 1024 * 1024;
@@ -65,4 +65,12 @@ export function canonicalYouTubeURL(raw: string) {
   }
   if (url.username || url.password || url.port || !id || !/^[A-Za-z0-9_-]{11}$/.test(id)) throw Error('YouTube 영상 주소를 넣어 주세요.');
   return `https://www.youtube.com/watch?v=${id}`;
+}
+
+/** Snapshot only submitted excerpts; complete originals remain on the material and in revisions. */
+export function selectedMaterialDocuments(documents: MaterialDocument[] = []): MaterialDocument[] {
+  return structuredClone(documents.map(d => ({...d, blocks: d.blocks.filter(b => b.included && b.text.trim())})).filter(d => d.blocks.length));
+}
+export function materialSourceIdentity(source: {sourceText?: string; text?: string; audio?: MaterialFile | null; documents?: MaterialDocument[]}) {
+  return JSON.stringify({text: source.sourceText ?? source.text ?? '', audio: source.audio?.sha256 ?? null, documents: (source.documents ?? []).map(d => ({id:d.id,name:d.name,kind:d.kind,url:d.url??null,hash:d.file?.sha256??null,blocks:d.blocks.filter(b=>b.included && b.text.trim()).map(b=>({id:b.id,label:b.label,text:b.text,start:b.start,end:b.end}))})).filter(d=>d.blocks.length)});
 }

@@ -1,3 +1,4 @@
+import { MATERIAL_CONTRACT_VERSION, sourceRole, type SourceRole, type EvidenceType, type MaterialDiagnostic, type MaterialRange, type MaterialView } from './study-gpt-contract.ts';
 import { DomainError, type Entity } from './model.ts';
 import { validateStudyAIRequest, type StudyAIRequest } from './study-ai-request.ts';
 import { validateDocuments, type MaterialDocument, type MaterialFile } from './material-source';
@@ -13,6 +14,7 @@ import {
 export const MAX_AUDIO_BYTES = 50 * 1024 * 1024;
 export const MAX_SOURCE_TEXT = 150_000;
 export interface SourceSegment {
+  role?: SourceRole;
   id: string;
   start: number | null;
   end: number | null;
@@ -21,6 +23,7 @@ export interface SourceSegment {
   label?: string;
 }
 export interface StudyCard {
+  evidenceType?: EvidenceType;
   id: string;
   question: string;
   answer: string;
@@ -30,6 +33,9 @@ export interface StudyCard {
   originalAnswer?: string;
 }
 export interface MaterialResult {
+  contractVersion?: string;
+  diagnostics?: MaterialDiagnostic[];
+  range?: MaterialRange;
   id: string;
   at: string;
   model: string;
@@ -37,7 +43,7 @@ export interface MaterialResult {
   request?: StudyAIRequest;
   source?: { text: string; audio: MaterialContent['audio']; documents?: MaterialDocument[] };
   segments: SourceSegment[];
-  summary: { text: string; sourceIds: string[]; originalText?: string }[];
+  summary: { text: string; sourceIds: string[]; originalText?: string; evidenceType?: EvidenceType }[];
   cards: StudyCard[];
   quiz?: MaterialQuizQuestion[];
   map?: MaterialMap;
@@ -54,6 +60,8 @@ export interface MaterialContent {
   documents?: MaterialDocument[];
   quizAttempts?: MaterialQuizAttempt[];
   tutorDraft?: string;
+  learningView?: MaterialView;
+  generationProgress?: { sourceIdentity: string; index: number; completed: { index: number; resultId: string }[] };
   originalStorage?: 'device' | 'private-server';
 }
 /** Generated materials never create study sessions, scores, or mastery claims. */
@@ -110,6 +118,7 @@ export function validateMaterialResult(value: unknown): asserts value is Materia
       )
     )
       invalid('음성 구간의 시간을 확인해 주세요.');
+    if (segment.role !== undefined && !['material', 'problem', 'attempt', 'reference', 'focus'].includes(segment.role)) invalid('자료 역할을 확인해 주세요.');
     ids.add(segment.id);
   }
   if (result.segments.reduce((sum, row) => sum + row.text.length, 0) > MAX_SOURCE_TEXT)
@@ -127,6 +136,17 @@ export function validateMaterialResult(value: unknown): asserts value is Materia
       (row.originalText !== undefined && !text(row.originalText, 10_000))
     )
       invalid('요약의 원문 근거를 확인하지 못했습니다.');
+  if (result.diagnostics !== undefined) {
+    if (!Array.isArray(result.diagnostics) || result.diagnostics.length > 10) invalid('확인할 내용의 형식을 확인해 주세요.');
+    for (const d of result.diagnostics) {
+      if (!d || !['needs-input', 'insufficient-evidence', 'partial'].includes(d.kind) || !text(d.message, 4000) || !d.message.trim() ||
+          (d.questions !== undefined && (!Array.isArray(d.questions) || d.questions.length > 2 || d.questions.some(q => !text(q, 1000) || !q.trim()))) ||
+          (d.sourceIds !== undefined && (!Array.isArray(d.sourceIds) || d.sourceIds.length > 50 || d.sourceIds.some(id => !ids.has(id))))) invalid('확인할 내용의 형식을 확인해 주세요.');
+    }
+  }
+  if (result.range !== undefined && (!Number.isSafeInteger(result.range.index) || !Number.isSafeInteger(result.range.count) || result.range.index < 0 || result.range.count < 1 || result.range.index >= result.range.count || !text(result.range.sourceIdentity, 160) || !result.range.sourceIdentity || !Number.isSafeInteger(result.range.totalSegments) || result.range.totalSegments < 0 || !Array.isArray(result.range.sourceIds) || !result.range.sourceIds.length || result.range.sourceIds.length > 6000 || result.range.sourceIds.some(id => !ids.has(id)))) invalid('처리 범위와 원문 위치를 확인해 주세요.');
+  if (result.range?.overlapIds !== undefined && (!Array.isArray(result.range.overlapIds) || result.range.overlapIds.some(id => !result.range!.sourceIds.includes(id)))) invalid('겹치는 원문 구간을 확인해 주세요.');
+  if (result.contractVersion !== undefined && result.contractVersion !== MATERIAL_CONTRACT_VERSION) invalid('결과 계약 버전을 확인해 주세요.');
   const cards = new Set<string>();
   for (const card of result.cards) {
     if (
@@ -146,10 +166,32 @@ export function validateMaterialResult(value: unknown): asserts value is Materia
   if (result.quiz !== undefined) validateQuiz(result.quiz, ids);
   if (result.map !== undefined) validateMap(result.map, ids);
   if (result.originalMap !== undefined) validateMap(result.originalMap, ids);
+  if (result.contractVersion === MATERIAL_CONTRACT_VERSION) {
+    const task = result.request?.task ?? 'summary';
+    const roles = new Set(task === 'feedback' || task === 'practice' || task === 'hint' ? ['material', 'problem', 'reference'] : ['material']);
+    const validBasis = (sourceIds: string[]) => sourceIds.some(id => roles.has(sourceRole(result.segments.find(s => s.id === id)!)));
+    for (const item of [...result.summary, ...result.cards]) {
+      if (item.evidenceType !== undefined && !['material-grounded', 'general-supplement'].includes(item.evidenceType)) invalid('자료 근거와 보충 설명을 구별해 주세요.');
+      if (!validBasis(item.sourceIds)) invalid('질문·초점이나 사용자 시도만으로 답의 원문 근거를 삼을 수 없습니다.');
+      if (['tutor','source-qa','questions','quiz'].includes(task) && item.evidenceType === 'general-supplement') invalid('이 작업은 일반 지식 보충으로 자료의 답을 대체할 수 없습니다.');
+      if ('answer' in item && item.evidenceType === 'general-supplement') invalid('자료 기반 문항은 제공된 원문으로 답할 수 있어야 합니다.');
+    }
+    for (const q of result.quiz ?? []) if (!validBasis(q.sourceIds)) invalid('퀴즈의 자료 근거를 확인해 주세요.');
+    for (const n of [...(result.map?.nodes ?? []), ...(result.map?.edges ?? [])]) if (!validBasis(n.sourceIds)) invalid('개념도의 자료 근거를 확인해 주세요.');
+  }
+
 }
 export function validateMaterialContent(value: unknown): asserts value is MaterialContent {
   const row = value as MaterialContent;
   if (row?.originalStorage !== undefined && !['device', 'private-server'].includes(row.originalStorage)) invalid('원본 보관 위치를 확인해 주세요.');
+  if (row?.generationProgress !== undefined) {
+    const p = row.generationProgress;
+    if (!text(p.sourceIdentity, 160) || !Number.isSafeInteger(p.index) || p.index < 0 || !Array.isArray(p.completed) || p.completed.length > 30 || p.completed.some(c => !Number.isSafeInteger(c.index) || c.index < 0 || !text(c.resultId, 256) || !c.resultId)) invalid('이어갈 범위를 확인해 주세요.');
+  }
+  if (row?.learningView !== undefined) {
+    const v = row.learningView;
+    if (!v || !['summary','transcript','cards','quiz','map'].includes(v.tab) || !Array.isArray(v.revealed) || !Array.isArray(v.helped) || v.revealed.length > 3000 || v.helped.length > 30 || [...v.revealed, ...v.helped].some(id => !text(id, 520)) || (v.resultId !== undefined && !text(v.resultId, 256)) || (v.cardId !== undefined && !text(v.cardId, 256)) || (v.activeDisclosure !== undefined && !['hidden','revealed'].includes(v.activeDisclosure))) invalid('학습 화면의 위치와 공개 이력을 확인해 주세요.');
+  }
   // Draft requests may be incomplete; required problem/attempt/criteria are checked at generation.
   if (row?.aiRequest !== undefined) validateStudyAIRequest(row.aiRequest, false);
   if (row?.documents !== undefined) validateDocuments(row.documents);
@@ -190,7 +232,9 @@ export function validateMaterialContent(value: unknown): asserts value is Materi
     if (ids.has(result.id)) invalid('생성 결과의 식별자가 중복되었습니다.');
     ids.add(result.id);
   }
+  if (row.generationProgress?.completed.some(c => { const r = row.results.find(r => r.id === c.resultId); return !r?.range || r.range.sourceIdentity !== row.generationProgress!.sourceIdentity || r.range.index !== c.index; })) invalid('처리 범위의 결과 연결을 확인해 주세요.');
 }
+
 export function materialContent(row: MaterialContent): MaterialContent {
   return structuredClone({
     title: row.title,
@@ -203,6 +247,26 @@ export function materialContent(row: MaterialContent): MaterialContent {
     ...(row.documents ? { documents: row.documents } : {}),
     ...(row.quizAttempts ? { quizAttempts: row.quizAttempts } : {}),
     ...(row.tutorDraft !== undefined ? { tutorDraft: row.tutorDraft } : {}),
+    ...(row.learningView ? { learningView: row.learningView } : {}),
+    ...(row.generationProgress ? { generationProgress: row.generationProgress } : {}),
     ...(row.originalStorage ? { originalStorage: row.originalStorage } : {}),
   });
+}
+
+/** An attempt snapshots actual generated questions. Submitted answers remain historical. */
+export function validateMaterialTransition(previous: MaterialContent | undefined, next: MaterialContent, owner?: {userId: string; namespace: string}) {
+  const canonical = (value: unknown): string => Array.isArray(value) ? '[' + value.map(canonical).join(',') + ']' : value && typeof value === 'object' ? '{' + Object.entries(value).filter(([, v]) => v !== undefined).sort(([a], [b]) => a.localeCompare(b)).map(([k, v]) => JSON.stringify(k) + ':' + canonical(v)).join(',') + '}' : JSON.stringify(value);
+  for (const attempt of next.quizAttempts ?? []) {
+    const source = next.results.find(r => r.id === attempt.resultId);
+    if (!source?.quiz || !attempt.questions.length || attempt.questions.some(q => !source.quiz!.some(original => canonical(original) === canonical(q)))) invalid('퀴즈 시도의 출제 원문을 확인해 주세요.');
+  }
+  for (const old of previous?.quizAttempts ?? []) {
+    const saved = next.quizAttempts?.find(a => a.id === old.id);
+    if (!saved || old.helpedQuestionIds?.some(id => !saved.helpedQuestionIds?.includes(id)) || old.submittedAt && canonical(saved) !== canonical(old) || saved.resultId !== old.resultId || saved.at !== old.at || canonical(saved.questions) !== canonical(old.questions)) invalid('기존 퀴즈 응답과 출제 당시 내용을 유지해 주세요. 새 시도로 다시 풀 수 있습니다.');
+  }
+  if (owner) {
+    const location = (file: MaterialFile | null | undefined, kind: 'audio' | 'document') => { if (file?.cloudPath !== undefined && file.cloudPath !== `${owner.userId}/${owner.namespace}/${kind}/${file.sha256}`) invalid('다른 계정·공간의 원본 파일을 참조할 수 없습니다.'); };
+    location(next.audio, 'audio'); for (const d of next.documents ?? []) location(d.file, 'document');
+    for (const r of next.results) { location(r.source?.audio, 'audio'); for (const d of r.source?.documents ?? []) location(d.file, 'document'); }
+  }
 }

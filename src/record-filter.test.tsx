@@ -28,6 +28,60 @@ async function navigate(path: string) {
 }
 
 describe('record topic filter context', () => {
+  it('explains quota failure and retries the same study without losing or duplicating the original', async () => {
+    const user = userEvent.setup(); await open();
+    await user.click(screen.getByRole('checkbox', { name: '함수는 어떤 관계일까?' }));
+    fireEvent.change(screen.getByRole('textbox', { name: '메모' }), { target: { value: '  공간 부족에도 보존할 원문\n' } });
+    const original = readDraft(localStorage, 'multiple');
+    const nativeSet = Storage.prototype.setItem;
+    const write = vi.spyOn(Storage.prototype, 'setItem').mockImplementation(function (this: Storage, key: string, value: string) {
+      if (this === localStorage && key === DEMO_KEY) throw new DOMException('Quota exceeded', 'QuotaExceededError');
+      nativeSet.call(this, key, value);
+    });
+    await user.click(screen.getByRole('button', { name: '1개 주제 기록 저장' }));
+    expect(screen.getByRole('alert')).toHaveTextContent('저장 공간이 부족');
+    expect(screen.getByRole('textbox', { name: '메모' })).toHaveValue(original!.bodies[first]);
+    expect(readDraft(localStorage, 'multiple')).toEqual(original);
+    expect(JSON.parse(decodeStoredText(localStorage.getItem(DEMO_KEY)!)).data.records).toHaveLength(0);
+    write.mockRestore();
+    await user.click(screen.getByRole('button', { name: '1개 주제 기록 저장' }));
+    const saved = JSON.parse(decodeStoredText(localStorage.getItem(DEMO_KEY)!)).data.records;
+    expect(saved).toHaveLength(1);
+    expect(saved[0]).toMatchObject({ sessionId: original!.sessionId, body: original!.bodies[first] });
+  });
+
+  it('limits the picker to the chosen study scope without discarding selected writing', async () => {
+    const user = userEvent.setup(); await open();
+    await user.click(screen.getByRole('checkbox', { name: '함수는 어떤 관계일까?' }));
+    fireEvent.change(screen.getByRole('textbox', { name: '메모' }), { target: { value: '  범위를 바꿔도 남을 원문\n' } });
+    const draft = readDraft(localStorage, 'multiple');
+    await user.selectOptions(screen.getByRole('combobox', { name: '공부 범위' }), 'independent');
+    expect(screen.queryByRole('checkbox', { name: '함수는 어떤 관계일까?' })).toBeNull();
+    expect(screen.queryByRole('checkbox', { name: '힘과 움직임' })).toBeNull();
+    expect(screen.getByText('이 공부 범위에는 기록할 주제가 없습니다')).toBeVisible();
+    expect(screen.getByRole('textbox', { name: '메모' })).toHaveValue(draft!.bodies[first]);
+    expect(readDraft(localStorage, 'multiple')).toEqual(draft);
+    await user.selectOptions(screen.getByRole('combobox', { name: '공부 범위' }), 'all');
+    expect(screen.getByRole('checkbox', { name: '함수는 어떤 관계일까?' })).toBeChecked();
+    await user.click(screen.getByRole('button', { name: '1개 주제 기록 저장' }));
+    const data = JSON.parse(decodeStoredText(localStorage.getItem(DEMO_KEY)!)).data;
+    expect(data.records).toHaveLength(1);
+    expect(data.records[0]).toMatchObject({ targetId: first, sessionId: draft!.sessionId, body: draft!.bodies[first] });
+  });
+
+  it('explains an empty search while keeping the selected draft available to save', async () => {
+    const user = userEvent.setup(); await open();
+    await user.click(screen.getByRole('checkbox', { name: '함수는 어떤 관계일까?' }));
+    fireEvent.change(screen.getByRole('textbox', { name: '메모' }), { target: { value: '검색 중에도 보존할 글' } });
+    fireEvent.change(screen.getByRole('searchbox'), { target: { value: '없는 주제' } });
+    expect(screen.getByText('검색어에 맞는 주제가 없습니다')).toBeVisible();
+    expect(screen.getByRole('textbox', { name: '메모' })).toHaveValue('검색 중에도 보존할 글');
+    expect(screen.getByRole('button', { name: '1개 주제 기록 저장' })).toBeEnabled();
+    fireEvent.change(screen.getByRole('searchbox'), { target: { value: '' } });
+    expect(screen.queryByText('검색어에 맞는 주제가 없습니다')).toBeNull();
+    expect(screen.getByRole('checkbox', { name: '함수는 어떤 관계일까?' })).toBeChecked();
+  });
+
   it('restores the filter on return and remount while preserving the same selected draft and session', async () => {
     const user = userEvent.setup(), view = await open();
     const persisted = localStorage.getItem(DEMO_KEY), input = screen.getByRole('searchbox', { name: '주제 찾기' });

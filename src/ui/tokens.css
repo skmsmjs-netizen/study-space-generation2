@@ -190,11 +190,12 @@
   --type-caption-size: .875rem;
   --type-caption-weight: 400;
   --type-caption-line: 1.6;
+  /* Existing specialized text roles: preserve their rendered dimensions. */
+  --type-detail-size: .9rem;
   --type-metric-size: 1.5rem;
   --type-chart-size: 12px;
   --type-title-tracking: -.035em;
   --type-brand-tracking: .12em;
-  --layout-compact: 40rem;
   --space-0: 0;
   --space-1: .25rem;
   --space-2: .5rem;
@@ -226,6 +227,7 @@
   --motion-ease: ease-out;
   --state-disabled-opacity: .55;
   --layout-reading: 48rem;
+  --layout-compact: 40rem;
   --layout-dialog: 36rem;
   --layout-sheet: 46rem;
   --breakpoint-compact: 40rem;

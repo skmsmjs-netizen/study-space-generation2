@@ -201,9 +201,7 @@ export function GPTConnectionPanel({
                   생성 설정 적용
                 </Button>
                 {purpose === 'materials' && <p>
-                  {connection.transcription
-                    ? '음성은 이 Mac에서 받아씁니다. 받아쓴 내용과 선택한 필기만 GPT에 보냅니다.'
-                    : '녹음은 기기에 보관하며, 이 Mac의 받아쓰기 연결을 확인해야 음성을 정리할 수 있습니다. 필기는 GPT로 정리할 수 있습니다.'}
+                  녹음은 지금 사용하는 기기에서 받아씁니다. 확인한 전사문을 필기에 추가하면 선택한 내용만 GPT에 보냅니다.
                 </p>}
               </>
             )}

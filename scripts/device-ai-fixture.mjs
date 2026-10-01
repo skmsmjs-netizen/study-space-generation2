@@ -1,0 +1,47 @@
+import { build } from 'esbuild';
+import { preview } from 'vite';
+import { mkdir, writeFile } from 'node:fs/promises';
+import path from 'node:path';
+import { createRequire } from 'node:module';
+const root = process.cwd();
+const output = path.join(root, 'work/device-ai-fixture');
+const fixtureRequire = createRequire(path.join(root, 'package.json'));
+await mkdir(output, { recursive: true });
+await build({
+  entryPoints: { app: path.join(root, 'e2e/fixtures/study-ai.tsx') },
+  outdir: output,
+  bundle: true,
+  format: 'esm',
+  splitting: true,
+  jsx: 'automatic',
+  target: 'es2022',
+  nodePaths: [path.join(root, 'node_modules')],
+  loader: { '.woff': 'file', '.woff2': 'file', '.ttf': 'file', '.wasm': 'file', '.bin': 'file' },
+  define: { 'import.meta.env.DEV': 'true', 'import.meta.env.PROD': 'false' },
+  plugins: [
+    {
+      name: 'isolated-gpt-client',
+      setup(api) {
+        api.onResolve({ filter: /data\/study-ai(?:\.ts)?$/ }, () => ({
+          path: path.join(root, 'e2e/fixtures/study-ai-client.ts'),
+        }));
+        api.onResolve({ filter: /^(react|react-dom)(\/.*)?$/ }, (args) => ({
+          path: fixtureRequire.resolve(args.path),
+        }));
+      },
+    },
+  ],
+});
+await writeFile(
+  path.join(output, 'index.html'),
+  '<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>합성 기기 검증</title><link rel="stylesheet" href="app.css"><style>main{max-width:1000px;margin:24px auto;padding:24px}</style><div id="root"></div><script type="module" src="app.js"></script></html>',
+);
+await preview({
+  configFile: false,
+  build: { outDir: output },
+  preview: {
+    host: '127.0.0.1',
+    port: Number(process.env.DEVICE_FIXTURE_PORT || '5238'),
+    strictPort: true,
+  },
+});

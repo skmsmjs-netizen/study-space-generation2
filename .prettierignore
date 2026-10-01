@@ -1,0 +1,9 @@
+node_modules/
+dist/
+storybook-static/
+playwright-report/
+test-results/
+coverage/
+work/
+docs/validation/
+package-lock.json

@@ -35,6 +35,7 @@ import type { CodeTerminalHandle } from './code-terminal';
 import { SourceEditor } from './source-editor';
 import { requestsCodeInput } from '../domain/code-input';
 import { navigate } from './navigation-context';
+import { isViewText, useViewContext } from './use-view-context';
 import './code-practice.css';
 const CodeTerminal = lazy(() =>
   import('./code-terminal').then((module) => ({
@@ -68,8 +69,8 @@ const canSave = (repo: StudyRepository, data: AppState) =>
 
 export function CodePractice({ data, repository, onSaved, exampleId, trash = false }: Props) {
   const [error, setError] = useState('');
-  const [query, setQuery] = useState('');
-  const [languageFilter, setLanguageFilter] = useState('all');
+  const [query, setQuery] = useViewContext(data, `code:${trash ? 'trash' : 'active'}:query`, '', isViewText);
+  const [languageFilter, setLanguageFilter] = useViewContext(data, `code:${trash ? 'trash' : 'active'}:language`, 'all', (value): value is string => typeof value === 'string' && (value === 'all' || Object.hasOwn(CODE_LANGUAGES, value)));
   const examples = (data.codeExamples ?? [])
     .filter((row) => Boolean(row.deletedAt) === trash)
     .slice()
@@ -177,7 +178,7 @@ export function CodePractice({ data, repository, onSaved, exampleId, trash = fal
             />
           )}
           {!trash && exampleId && !selected && (
-            <ErrorState message="이 코드 예제를 찾을 수 없습니다. 휴지통에 있는지 확인해 주세요." />
+            <EmptyState title="이 코드 예제를 찾을 수 없습니다" message="휴지통에 있는지 확인하거나 다른 예제를 골라 주세요."><a href="#/code">예제 목록으로</a><a href="#/trash">휴지통 확인</a></EmptyState>
           )}
           {examples.length > 0 && (
             <>
@@ -206,7 +207,7 @@ export function CodePractice({ data, repository, onSaved, exampleId, trash = fal
                 {query || languageFilter !== 'all' ? ` · 전체 ${examples.length}개` : ''}
               </p>
               {visibleExamples.length === 0 && (
-                <p>찾는 예제가 없습니다. 검색어나 언어를 바꿔 보세요.</p>
+                <EmptyState title="찾는 예제가 없습니다" message="검색어나 언어를 바꿔 보세요."><Button onClick={() => {setQuery('');setLanguageFilter('all');}}>예제 검색·언어 초기화</Button></EmptyState>
               )}
             </>
           )}

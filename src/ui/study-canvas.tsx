@@ -5,7 +5,7 @@ import { Button, EmptyState, Select, Input } from './index';
 import { MemoEditor } from './quick-memos';
 import { CanvasConceptEditor } from './canvas-concept-editor';
 import { conceptText } from '../domain/canvas-concept';
-import { MEMO_WIDTH, MEMO_HEIGHT, memoPath } from '../domain/memo';
+import { InkPreview } from './ink-drawing';
 import type { AppState, Narrative, QuickMemo, CanvasPosition } from '../domain/model';
 import { CANVAS_ID, projectCanvas, type CanvasCard, type CanvasContent } from '../domain/canvas';
 import { readCanvasDraft, writeCanvasDraft, clearCanvasDraft, preserveCanvasDraft, readConnectionDraft, writeConnectionDraft, clearConnectionDraft, type ConnectionDraft } from '../data/canvas-draft';
@@ -20,6 +20,7 @@ function StudyCard({ data, selected }: NodeProps<CardNode>) {
   const editButton = useRef<HTMLButtonElement>(null);
   useEffect(() => {
     if (!data.saveMessage || data.editor) return;
+    // Let React Flow measure the smaller card before returning keyboard focus.
     let frame = requestAnimationFrame(() => {
       frame = requestAnimationFrame(() => editButton.current?.focus({ preventScroll: true }));
     });
@@ -30,7 +31,7 @@ function StudyCard({ data, selected }: NodeProps<CardNode>) {
     <header className="canvas-drag-handle">{card.kind !== 'memo' && card.kind !== 'narrative' && <span className="canvas-role">{kinds[card.kind]}</span>}<h2>{card.name}</h2></header>
     <div className="canvas-card-body nodrag nopan nowheel">
       {data.editor ?? <>
-        {data.memo?.strokes.length ? <svg className="canvas-sketch" viewBox={`0 0 ${MEMO_WIDTH} ${MEMO_HEIGHT}`} role="img" aria-label="저장한 설명 그림">{data.memo.strokes.map(stroke => <path key={stroke.id} d={memoPath(stroke.points)} strokeWidth={stroke.width} fill="none" stroke={{ ink: 'var(--color-text)', blue: 'var(--color-hierarchy-outline)', green: 'var(--color-memo-green)' }[stroke.ink]} strokeLinecap="round" strokeLinejoin="round" />)}</svg> : null}
+        {data.memo?.strokes.length ? <InkPreview strokes={data.memo.strokes} className="canvas-sketch" label="저장한 설명 그림" /> : null}
         {data.body && <p className="canvas-original">{data.body}</p>}
         {data.saveMessage && <p className="canvas-save-status" role="status">{data.saveMessage}</p>}
         <div className="canvas-card-actions"><Button ref={editButton} variant="quiet" onClick={data.open}>{card.kind === 'memo' || card.kind === 'narrative' || card.kind === 'concept' ? '카드 안에서 편집' : '메모 쓰기'}</Button>
@@ -72,6 +73,8 @@ export function StudyCanvas({ data, repository, onSaved, subjectIds, renderNarra
   const [connectionError, setConnectionError] = useState(connectionBoot.error);
   const [composing, setComposing] = useState(false);
   const subjects = data.subjects.filter(s => !s.deletedAt && subjectIds.includes(s.id));
+  // Keep displayed default positions stable when a note adds a new card. Saved
+  // and explicitly changed geometry always takes precedence over this view cache.
   const displayedPositions = useRef<Record<string, CanvasPosition>>({});
   const projection = useMemo(() => {
     const next = projectCanvas(data, course === 'all' ? subjectIds : subjectIds.filter(id => id === course),
@@ -150,6 +153,7 @@ export function StudyCanvas({ data, repository, onSaved, subjectIds, renderNarra
     try { writeCanvasDraft(data, { baseVersion: version.current, content: next }); }
     catch (e) { setError(e instanceof Error ? e.message : '연결 설명 초안을 보관하지 못했습니다.'); }
   };
+  const selectedCard = projection.cards.find(card => card.id === selectedId);
   return <section className="study-canvas" aria-label="목차와 설명 Canvas">
     <div className="canvas-toolbar"><Select label="Canvas 과목" value={course} onChange={event => { setCourse(event.target.value); setEditorId(null); setSelectedId(null); }}><option value="all">현재 범위의 모든 과목</option>{subjects.map(subject => <option key={subject.id} value={subject.id}>{subject.name}</option>)}</Select>
       <Button onClick={() => flow.current?.fitView({ padding: .16, minZoom: .25, maxZoom: 1 })}>전체 보기</Button>
@@ -183,7 +187,16 @@ export function StudyCanvas({ data, repository, onSaved, subjectIds, renderNarra
         <Background gap={24} color="var(--color-border)" /><Controls showInteractive={serverReady && !boot.blocked} />
       </ReactFlow>
     </div>}
-    {selectedId && <div className="canvas-position-tools" aria-label="선택 카드 위치"><span>{projection.cards.find(card => card.id === selectedId)?.name}</span>{[['←', -40, 0, '왼쪽으로'], ['↑', 0, -40, '위로'], ['↓', 0, 40, '아래로'], ['→', 40, 0, '오른쪽으로']].map(([symbol, x, y, name]) => <Button key={symbol} aria-label={`카드 ${name} 이동`} disabled={!serverReady || boot.blocked} onClick={() => move(Number(x), Number(y))}>{symbol}</Button>)}</div>}
+    <div className="canvas-position-tools" aria-label="카드 선택과 조작">
+      <Select label="조작할 카드" value={selectedId ?? ''} onChange={event => { setSelectedId(event.target.value || null); setSelectedEdge(null); }}>
+        <option value="">카드 선택</option>{projection.cards.map(card => <option key={card.id} value={card.id}>{kinds[card.kind]} · {card.name}</option>)}
+      </Select>
+      {selectedCard && <>
+        <Button onClick={() => { setEditorId(selectedCard.id); setFocusConcept(selectedCard.id); }}>선택한 카드 편집</Button>
+        {!['memo', 'narrative', 'concept'].includes(selectedCard.kind) && <a href={`#/${selectedCard.kind === 'subject' ? 'subject' : 'node'}/${encodeURIComponent(selectedCard.entityId)}`}>선택한 카드 열기 ↗</a>}
+        {[['←', -40, 0, '왼쪽으로'], ['↑', 0, -40, '위로'], ['↓', 0, 40, '아래로'], ['→', 40, 0, '오른쪽으로']].map(([symbol, x, y, name]) => <Button key={symbol} aria-label={`카드 ${name} 이동`} disabled={!serverReady || boot.blocked} onClick={() => move(Number(x), Number(y))}>{symbol}</Button>)}
+      </>}
+    </div>
     {projection.cards.some(card => card.kind === 'concept') && <details className="canvas-concept-list"><summary>내 개념 카드 {projection.cards.filter(card => card.kind === 'concept').length}개</summary>{projection.cards.filter(card => card.kind === 'concept').map(card => <Button variant="quiet" key={card.id} onClick={() => { setSelectedId(card.id); setEditorId(card.id); setSelectedEdge(null); setFocusConcept(card.id); }} aria-label={`개념 카드 편집: ${card.name}`}>{card.name}</Button>)}</details>}
     {projection.links.some(link => !link.id.startsWith('auto:')) && <details className="canvas-concept-list"><summary>내가 연결한 개념</summary>{projection.links.filter(link => !link.id.startsWith('auto:')).map(link => <Button variant="quiet" key={link.id} onClick={() => { setSelectedEdge(link.id); setSelectedId(null); }} aria-label={`관계 수정: ${cardName(link.source)} → ${link.label} → ${cardName(link.target)}`}>{cardName(link.source)} → {link.label} → {cardName(link.target)}</Button>)}</details>}
     <details className="canvas-help"><summary>Canvas 사용 안내</summary><p>카드 제목을 잡아 옮기고 빈 공간을 밀어 이동하세요. 카드 안에서 글과 그림을 편집할 수 있습니다. ‘목차’는 소속, ‘내 설명’은 저장한 메모의 연결입니다. 카드 양옆 점을 이어 만든 연결은 이름을 붙일 수 있습니다. 설명 저장은 공부함·완료·정답으로 집계하지 않습니다.</p></details>

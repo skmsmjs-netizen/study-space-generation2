@@ -1,3 +1,5 @@
+import { parseConceptSource, validateConceptCatalog, validateConceptEdition, validateConceptBatch } from './concept-production';
+import { validateInkWorkspace } from './ink-workspace';
 import { validateMaterialCardSource } from './learning-evidence';
 import { boardContent, validateBoard, verifyBoardTopics } from './study-board';
 import { DomainError, type AppState, type Command, type CriteriaAssignment, type DateEvidence, type DomainEntity, type EntityCollection, type Narrative, type OutlineNode, type Revision, type Scope, type StudyRecord, type TraceDefinition, type TraceState } from './model';
@@ -9,12 +11,12 @@ import { validateMemoContent } from './memo';
 import { validateRecommendations } from './recommendation-workspace';
 function verifyLearningPlan(workspace: unknown, state: AppState) { try { validateRecommendations(workspace,state); } catch(error) { throw new DomainError('INVALID_LEARNING_PLAN',error instanceof Error ? error.message : '학습 일정의 내용을 확인해 주세요.'); } }
 import { validateCanvasLayout } from './canvas';
-import { materialContent, validateMaterialContent } from './study-material';
+import { materialContent, validateMaterialContent, validateMaterialTransition } from './study-material';
 import { codeContent, validateCodeContent } from './code-example';
 import { clozeNumbers, renderCloze } from './recall-cloze';
 import { newRecallMemory, recallOptions, recallPreview, serializeMemory, validateRecallCard, validateRecallOptions } from './recall-scheduler';
 
-const collections: EntityCollection[] = ['studyBoards', 'semesters', 'subjects', 'nodes', 'sessions', 'records', 'narratives', 'criteria', 'criteriaAssignments', 'memos', 'learningPlans', 'canvasLayouts', 'codeExamples', 'recallCards', 'recallPreferences', 'studyMaterials', 'memoryCards', 'memoryTests'];
+const collections: EntityCollection[] = ['conceptCatalogs', 'conceptEditions', 'conceptBatches', 'studyBoards', 'semesters', 'subjects', 'nodes', 'sessions', 'records', 'narratives', 'criteria', 'criteriaAssignments', 'memos', 'learningPlans', 'canvasLayouts', 'codeExamples', 'recallCards', 'recallPreferences', 'studyMaterials', 'memoryCards', 'memoryTests', 'inkWorkspaces'];
 const clone = <T>(value: T): T => structuredClone(value);
 function fail(code: string, message: string, details?: unknown): never { throw new DomainError(code, message, details); }
 function canonical(value: unknown): string {
@@ -128,6 +130,8 @@ export function assertState(state: AppState): void {
     validateDateEvidence(row.dateEvidence); verifyTrace(row.trace);
     if (typeof row.body !== 'string' || typeof row.done !== 'boolean') fail('INVALID_RECORD', '공부 기록의 입력을 확인해 주세요.');
   }
+  const inkKeys = new Set<string>();
+  for (const row of state.inkWorkspaces ?? []) { if (typeof row.key !== 'string' || !row.key || row.key.length > 512 || inkKeys.has(row.key)) fail('INVALID_INK_WORKSPACE', '필기 설정의 연결을 확인해 주세요.'); inkKeys.add(row.key); validateInkWorkspace(row.content); }
   for (const row of state.sessions) validateDateEvidence(row.dateEvidence);
   if ((state.learningPlans ?? []).filter(row => !row.deletedAt).length > 1) fail('DUPLICATE_PLAN', '학습 일정의 원래 연결을 확인해 주세요.');
   for (const row of state.learningPlans ?? []) verifyLearningPlan(row.workspace, state);
@@ -188,6 +192,18 @@ export function assertState(state: AppState): void {
     if (!target || !assignment.deletedAt && target.deletedAt) fail('CRITERIA_REFERENCE', '기준의 원문 연결을 확인해 주세요.');
   }
   for (const row of state.revisions) if (row.userId !== state.userId || row.namespace !== state.namespace) fail('OWNERSHIP', '수정 이력의 소유자가 다릅니다.');
+  const conceptSources = new Map((state.conceptCatalogs ?? []).map(c => { validateConceptCatalog(c); return [c.id, new Set(parseConceptSource(c.raw).items.map(i => i.id))]; }));
+  const conceptPairs = new Set<string>();
+  for (const c of state.conceptEditions ?? []) {
+    validateConceptEdition(c);
+    const pair = JSON.stringify([c.catalogId, c.sourceId]);
+    if (!conceptSources.get(c.catalogId)?.has(c.sourceId) || conceptPairs.has(pair)) fail('INVALID_CONCEPT', '개념의 원문 연결 또는 중복을 확인해 주세요.');
+    conceptPairs.add(pair);
+  }
+  for (const b of state.conceptBatches ?? []) {
+    validateConceptBatch(b);
+    if (b.sourceIds.some(id => !conceptSources.get(b.catalogId)?.has(id))) fail('INVALID_CONCEPT', '작업 묶음의 원문 연결을 확인해 주세요.');
+  }
 }
 function verifyNarrative(state: AppState, row: Pick<Narrative, 'ownerId' | 'kind' | 'body'>): void {
   if (typeof row.body !== 'string') fail('INVALID_BODY', '본문은 글로 남겨 주세요.');
@@ -210,7 +226,14 @@ export function applyCommand(state: AppState, command: Command): AppState {
     if (state.appliedOps[command.opId] !== payload) fail('OPERATION_REUSED', '같은 요청 식별자에 다른 내용이 들어 있습니다.');
     return state;
   }
-  const next = clone(state);
+  // Entities and historical snapshots are immutable here: write() replaces a row.
+  // Copy collection containers, not every past answer/attachment on each edit.
+  const next = { ...state, revisions: state.revisions.slice(), appliedOps: { ...state.appliedOps } };
+  for (const collection of collections) {
+    if (state[collection] !== undefined) {
+      (next[collection] as DomainEntity[]) = (state[collection] as DomainEntity[]).slice();
+    }
+  }
   const common = (id: string) => ({ id, userId: state.userId, namespace: state.namespace, createdAt: command.at, updatedAt: command.at, version: 1, deletedAt: null });
   const fresh = (id: string) => { identity(id); if (collections.some(k => (next[k] ?? []).some(v => v.id === id))) fail('DUPLICATE_ID', '이미 있는 식별자입니다.', { id }); };
   function write(collection: EntityCollection, entity: DomainEntity, reversesRevisionId?: string): void {
@@ -225,6 +248,7 @@ export function applyCommand(state: AppState, command: Command): AppState {
     if (collection === 'studyMaterials') next.studyMaterials ??= [];
     if (collection === 'codeExamples') next.codeExamples ??= [];
     if (collection === 'recallCards') next.recallCards ??= [];
+    if (collection === 'inkWorkspaces') next.inkWorkspaces ??= [];
     if (collection === 'recallPreferences') next.recallPreferences ??= [];
     const list = next[collection] as DomainEntity[];
     const index = list.findIndex(v => v.id === entity.id), before = index < 0 ? null : clone(list[index]);
@@ -279,6 +303,7 @@ export function applyCommand(state: AppState, command: Command): AppState {
       const old = next.studyMaterials?.find(row => row.id === command.id);
       if (old) { find(next.studyMaterials!, old.id); expected(old, command.expectedVersion, command); }
       else { if (command.expectedVersion !== 0) fail('VERSION_CONFLICT', '자료의 수정 순서를 확인해 주세요.'); fresh(command.id); }
+      validateMaterialTransition(old, command.content, next);
       write('studyMaterials', { ...(old ?? common(command.id)), ...materialContent(command.content) }); break;
     }
     case 'trashStudyMaterial': case 'restoreStudyMaterial': {
@@ -531,14 +556,66 @@ export function applyCommand(state: AppState, command: Command): AppState {
       const value = { ...(old ?? common(command.id)), kind: command.kind, ownerId: command.ownerId, body: command.body };
       verifyNarrative(next, value); write('narratives', value); break;
     }
+    case 'saveInkWorkspace': {
+      const old = next.inkWorkspaces?.find(row => row.id === command.id);
+      if (old) { find(next.inkWorkspaces!, old.id); expected(old, command.expectedVersion, command); if (old.key !== command.key) fail('OWNER_CHANGED', '필기 설정의 연결을 바꿀 수 없습니다.'); }
+      else { if (command.expectedVersion !== 0) fail('VERSION_CONFLICT', '필기 설정의 저장 상태를 확인해 주세요.'); fresh(command.id); }
+      if (typeof command.key !== 'string' || !command.key || command.key.length > 512 || (next.inkWorkspaces ?? []).some(row => row.id !== command.id && row.key === command.key)) fail('INVALID_INK_WORKSPACE', '필기 설정의 연결을 확인해 주세요.');
+      validateInkWorkspace(command.content);
+      write('inkWorkspaces', { ...(old ?? common(command.id)), key: command.key, content: clone(command.content) }); break;
+    }
+    case 'importConceptCatalog': {
+      validateConceptCatalog(command);
+      const same = next.conceptCatalogs?.find(c => c.sha256 === command.sha256);
+      if (same) {
+        if (same.raw !== command.raw) fail('CONCEPT_SOURCE_CONFLICT', '같은 해시의 원문이 다릅니다. 두 파일을 보존하고 확인해 주세요.');
+        break;
+      }
+      fresh(command.id);
+      write('conceptCatalogs', { ...common(command.id), raw: command.raw, sha256: command.sha256, filename: command.filename });
+      break;
+    }
+    case 'saveConceptEdition': {
+      validateConceptEdition(command.content);
+      const old = next.conceptEditions?.find(c => c.id === command.id);
+      if (old) { find(next.conceptEditions!, old.id); expected(old, command.expectedVersion, command); }
+      else { if (command.expectedVersion !== 0) fail('VERSION_CONFLICT', '개념의 저장 순서를 확인해 주세요.'); fresh(command.id); }
+      const { catalogId, sourceId } = command.content;
+      const catalog = find(next.conceptCatalogs ?? [], catalogId);
+      if (!parseConceptSource(catalog.raw).items.some(i => i.id === sourceId)) fail('INVALID_CONCEPT', '개념의 원문을 찾을 수 없습니다.');
+      if (old && (old.catalogId !== catalogId || old.sourceId !== sourceId)) fail('OWNER_CHANGED', '기존 설명의 원문 연결은 변경할 수 없습니다.');
+      if ((next.conceptEditions ?? []).some(c => c.id !== command.id && c.catalogId === catalogId && c.sourceId === sourceId)) fail('DUPLICATE_ID', '같은 개념의 제작 기록이 이미 있습니다.');
+      const changed = !old || ['displayType', 'secondaryTypes', 'reason', 'screen', 'evidence'].some(k => canonical(old[k as keyof typeof old]) !== canonical(command.content[k as keyof typeof command.content]));
+      if (changed && (command.content.status === 'published' || Object.values(command.content.checks).some(Boolean))) fail('CONCEPT_REVIEW_REQUIRED', '설명이나 근거가 바뀌었습니다. 내용을 저장한 뒤 다시 검토해 주세요.');
+      if (command.content.jobId !== null && !next.conceptBatches?.some(b => b.id === command.content.jobId && b.catalogId === catalogId && b.sourceIds.includes(sourceId))) fail('INVALID_CONCEPT', '생성 당시 작업 묶음을 확인해 주세요.');
+      write('conceptEditions', { ...(old ?? common(command.id)), ...clone(command.content) });
+      break;
+    }
+    case 'saveConceptBatch': {
+      validateConceptBatch(command.content);
+      const old = next.conceptBatches?.find(b => b.id === command.id);
+      if (old) { find(next.conceptBatches!, old.id); expected(old, command.expectedVersion, command); }
+      else { if (command.expectedVersion !== 0) fail('VERSION_CONFLICT', '작업 묶음의 저장 순서를 확인해 주세요.'); fresh(command.id); }
+      const catalog = find(next.conceptCatalogs ?? [], command.content.catalogId);
+      const sourceIds = new Set(parseConceptSource(catalog.raw).items.map(i => i.id));
+      if (command.content.sourceIds.some(id => !sourceIds.has(id))) fail('INVALID_CONCEPT', '작업 묶음의 개념을 찾을 수 없습니다.');
+      if (old && ['catalogId', 'sourceIds', 'baseVersions'].some(k => canonical(old[k as keyof typeof old]) !== canonical(command.content[k as keyof typeof command.content]))) fail('OWNER_CHANGED', '기존 작업 묶음의 대상과 시작 버전은 변경할 수 없습니다.');
+      write('conceptBatches', { ...(old ?? common(command.id)), ...clone(command.content) });
+      break;
+    }
     case 'saveMemo': {
       const old = next.memos?.find(row => row.id === command.id);
       if (old) { find(next.memos!, old.id); expected(old, command.expectedVersion, command); }
       else { if (command.expectedVersion !== 0) fail('VERSION_CONFLICT', '메모의 저장 상태를 확인해 주세요.'); fresh(command.id); }
       validateMemoContent(command);
+      if (command.document) {
+        const f=command.document.file, prefix=next.namespace==='demo'?'study-space:demo':`study-space:${next.namespace}:${encodeURIComponent(next.userId)}`;
+        if(f.key!==`${prefix}:material:${encodeURIComponent(`document:${f.sha256}`)}` || f.cloudPath!==undefined && f.cloudPath!==`${next.userId}/${next.namespace}/document/${f.sha256}`) fail('OWNERSHIP','다른 공간의 PDF 원본을 연결할 수 없습니다.');
+        if(old?.document && old.document.file.sha256!==f.sha256) fail('OWNER_CHANGED','기존 PDF 원본을 유지합니다. 다른 PDF는 새 메모에 연결해 주세요.');
+      }
       if (command.ownerId !== null) targetSubject(next, command.ownerId, old?.ownerId !== command.ownerId);
       if (command.recallCardId !== undefined && !(next.recallCards ?? []).some(card => !card.deletedAt && card.id === command.recallCardId && card.topicId === command.ownerId)) fail('INVALID_MEMO', '답변 메모의 카드 연결을 확인해 주세요.');
-      write('memos', { ...(old ?? common(command.id)), ...(command.recallCardId ? { recallCardId: command.recallCardId } : {}), ownerId: command.ownerId, body: command.body, strokes: clone(command.strokes) });
+      write('memos', { ...(old ?? common(command.id)), ...(command.recallCardId ? { recallCardId: command.recallCardId } : {}), ownerId: command.ownerId, body: command.body, strokes: clone(command.strokes), ...(command.document ? { document: clone(command.document) } : {}) });
       break;
     }
     case 'trashMemo': case 'restoreMemo': {

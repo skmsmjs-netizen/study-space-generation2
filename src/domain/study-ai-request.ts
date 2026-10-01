@@ -1,7 +1,7 @@
 import { DomainError } from './model.ts';
 
 /** Existing records are optional inputs; these tasks never create performance evidence. */
-export const STUDY_AI_TASKS = {
+const CURRENT_STUDY_AI_TASKS = {
   quiz: {
     label: '객관식 퀴즈',
     instruction:
@@ -97,9 +97,12 @@ export const STUDY_AI_TASKS = {
       '실제 의문·막힘과 제공된 목표에 근거한 작은 행동을 제안한다. 없는 문제·자료·시간·감정을 가정하지 않는다. 공부 횟수·복습 날짜·성과를 새로 계산하지 않고 제안을 완료·의무로 만들지 않는다.',
   },
 } as const;
-export type StudyAITask = keyof typeof STUDY_AI_TASKS;
+// Keep historical requests readable without adding a duplicate choice to the menu.
+export const STUDY_AI_TASKS = Object.defineProperty(CURRENT_STUDY_AI_TASKS, 'source-qa', {value: CURRENT_STUDY_AI_TASKS.tutor, enumerable: false}) as typeof CURRENT_STUDY_AI_TASKS & {'source-qa': typeof CURRENT_STUDY_AI_TASKS.tutor};
+export type StudyAITask = keyof typeof STUDY_AI_TASKS | 'source-qa';
 export interface StudyAIRequest {
   task: StudyAITask;
+  support?: 'full' | 'key' | 'check';
   problem?: string;
   attempt?: string;
   reference?: string;
@@ -107,7 +110,7 @@ export interface StudyAIRequest {
   history?: { question: string; answer: string }[];
 }
 export const isStudyAITask = (value: unknown): value is StudyAITask =>
-  typeof value === 'string' && Object.hasOwn(STUDY_AI_TASKS, value);
+  typeof value === 'string' && (value === 'source-qa' || Object.hasOwn(STUDY_AI_TASKS, value));
 export function validateStudyAIRequest(
   value: unknown,
   complete = true,
@@ -118,21 +121,6 @@ export function validateStudyAIRequest(
   for (const key of ['problem', 'attempt', 'reference', 'focus'] as const)
     if (row[key] !== undefined && (typeof row[key] !== 'string' || row[key]!.length > 30_000))
       throw new DomainError('INVALID_AI_REQUEST', '추가 내용을 3만 자 이내로 나누어 주세요.');
-  if (!complete) return;
-  if (row.task === 'tutor' && !row.focus?.trim())
-    throw new DomainError('INVALID_AI_REQUEST', '자료에 물어볼 질문을 넣어 주세요.');
-  if (['hint', 'feedback', 'practice'].includes(row.task) && !row.problem?.trim())
-    throw new DomainError('INVALID_AI_REQUEST', '이 작업에 사용할 실제 문제와 조건을 넣어 주세요.');
-  if (['hint', 'feedback'].includes(row.task) && !row.attempt?.trim())
-    throw new DomainError('INVALID_AI_REQUEST', '현재 풀이 또는 막힌 단계를 넣어 주세요.');
-  if (['feedback', 'practice'].includes(row.task) && !row.reference?.trim())
-    throw new DomainError('INVALID_AI_REQUEST', '확인할 해설이나 판단 기준을 넣어 주세요.');
-}
-/** Do not send hidden fields left from an unrelated previous task. */
-export function activeStudyAIRequest(request?: StudyAIRequest): StudyAIRequest {
-  const row = request ?? { task: 'summary' as const };
-  validateStudyAIRequest(row, false);
-  const problemTask = ['hint', 'feedback', 'practice'].includes(row.task);
   if (
     row.history !== undefined &&
     (!Array.isArray(row.history) ||
@@ -148,12 +136,29 @@ export function activeStudyAIRequest(request?: StudyAIRequest): StudyAIRequest {
       JSON.stringify(row.history).length > 40000)
   )
     throw new DomainError('INVALID_AI_REQUEST', '이전 질문의 범위를 나누어 주세요.');
+  if (row.support !== undefined && !['full','key','check'].includes(row.support)) throw new DomainError('INVALID_AI_REQUEST', '설명 도움 수준을 확인해 주세요.');
+  if (!complete) return;
+  if (['tutor', 'source-qa'].includes(row.task) && !row.focus?.trim())
+    throw new DomainError('INVALID_AI_REQUEST', '자료에 물어볼 질문을 넣어 주세요.');
+  if (['hint', 'feedback', 'practice'].includes(row.task) && !row.problem?.trim())
+    throw new DomainError('INVALID_AI_REQUEST', '이 작업에 사용할 실제 문제와 조건을 넣어 주세요.');
+  if (['hint', 'feedback'].includes(row.task) && !row.attempt?.trim())
+    throw new DomainError('INVALID_AI_REQUEST', '현재 풀이 또는 막힌 단계를 넣어 주세요.');
+  if (['feedback', 'practice'].includes(row.task) && !row.reference?.trim())
+    throw new DomainError('INVALID_AI_REQUEST', '확인할 해설이나 판단 기준을 넣어 주세요.');
+}
+/** Do not send hidden fields left from an unrelated previous task. */
+export function activeStudyAIRequest(request?: StudyAIRequest): StudyAIRequest {
+  const row = request ?? { task: 'summary' as const };
+  validateStudyAIRequest(row, false);
+  const problemTask = ['hint', 'feedback', 'practice'].includes(row.task);
   return {
-    task: row.task,
+    task: row.task === 'source-qa' ? 'tutor' : row.task,
+    ...(row.support ? { support: row.support } : {}),
     ...(row.focus !== undefined && row.task !== 'summary' ? { focus: row.focus } : {}),
     ...(problemTask && row.problem !== undefined ? { problem: row.problem } : {}),
     ...(problemTask && row.attempt !== undefined ? { attempt: row.attempt } : {}),
     ...(problemTask && row.reference !== undefined ? { reference: row.reference } : {}),
-    ...(row.task === 'tutor' && row.history ? { history: row.history } : {}),
+    ...(['tutor', 'source-qa'].includes(row.task) && row.history ? { history: row.history } : {}),
   };
 }

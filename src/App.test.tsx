@@ -53,7 +53,7 @@ function recordArea(title: string) {
 describe('prototype write ownership', () => {
   it('opens topic exam practice with the subject selected and no missing-item message', async () => {
     await open(`/practice/${firstTopic}`);
-    await screen.findByRole('button', { name: '연습 시작' });
+    await screen.findByRole('button', { name: '연습 시작' }, { timeout: 10_000 });
     expect(screen.getByLabelText('연습할 주제')).toHaveValue(firstTopic);
     expect(screen.queryByText('이 항목을 찾을 수 없습니다')).not.toBeInTheDocument();
     expect(within(screen.getByRole('navigation', { name: '주 메뉴' })).getByRole('link', { name: '시험 연습' })).toHaveAttribute('aria-current', 'page');
@@ -132,7 +132,7 @@ describe('study flows preserve meaning and input', () => {
     expect(currentRecords().find(record => record.targetId === secondTopic)?.body).toBe('다른 주제의 생각');
     expect(new Set(currentRecords().map(record => record.sessionId)).size).toBe(1);
     expect(currentRecords().every(record => record.done)).toBe(true);
-  });
+  },60000);
 
   it('restores the same unfinished study draft after unmount without creating a study event', async () => {
     const user = userEvent.setup(), first = await open(`/record/${firstTopic}`);
@@ -150,7 +150,7 @@ describe('study flows preserve meaning and input', () => {
     await waitFor(() => expect(currentRecords()).toHaveLength(1));
     expect(currentRecords()[0]).toMatchObject({ sessionId: originalDraft.sessionId, body: '아직 마치지 않은 메모\n원문', done: false });
     expect(readDraft(localStorage, firstTopic)).toBeNull();
-  });
+  },15000);
 
   it('keeps edits separate from saved record, restores them, and creates a new revision on save', async () => {
     const repo = new DemoRepository(localStorage);

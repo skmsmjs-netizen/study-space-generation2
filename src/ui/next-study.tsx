@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import type { StudyRepository } from '../data/repository';
 import { readLearningPlan, saveLearningPlan, readLegacyPersonalPlan } from '../data/learning-plan';
 import { LearningScheduleEditor } from './learning-schedule';
+import { WeekOverview } from './week-overview';
 import { openLearningSchedules } from './learning-schedule-navigation';
 import type { AppState } from '../domain/model';
 import { DAY, type RequirementState } from '../domain/recommendation-kernel.mjs';
@@ -20,7 +21,7 @@ const explanations: Record<RequirementState['status'], string> = {
   confirmed: '남긴 기준에서 혼자 확인한 결과가 있습니다. 전체 이해나 다른 문제의 해결을 뜻하지는 않습니다.',
   disputed: '결과에 이견이 있습니다. 답변과 확인 기준을 함께 살펴보세요.',
 };
-export function NextStudy({ data, subjectIds, semesterId, repository, onSaved }: { data: AppState; subjectIds: string[]; semesterId?: string; repository?: StudyRepository; onSaved?: (data:AppState)=>void }) {
+export function NextStudy({ data, subjectIds, semesterId, repository, onSaved, onlySchedules=false }: { data: AppState; subjectIds: string[]; semesterId?: string; repository?: StudyRepository; onSaved?: (data:AppState)=>void;onlySchedules?:boolean }) {
   const serverReady = !repository || data.namespace === 'demo' || repository.getCapabilities?.().includes('saveLearningPlan');
   const [boot] = useState(() => { try { return { ...(repository ? readLearningPlan(data) : readRecommendations(data)), error: '' }; } catch { return { raw: null, workspace: emptyRecommendations(data), error: '추천 내용을 읽지 못했습니다. 저장된 내용은 덮어쓰지 않았습니다. 다시 읽어 주세요.' }; } });
   const [workspace, setWorkspace] = useState(boot.workspace), current = useRef(workspace), raw = useRef(boot.raw);
@@ -117,7 +118,10 @@ export function NextStudy({ data, subjectIds, semesterId, repository, onSaved }:
   }).slice(0, Math.max(0, 3 - visible.length));
   const snooze = (targetId: string) => write(w => ({ ...w, controls: { ...w.controls, [`target:${targetId}`]: { snoozeUntil: new Date(Date.now() + DAY).toISOString() } } }));
   const evidence = (id: string) => <PerformanceEvidence events={workspace.events} goalId={id} at={now} />;
+  const scheduleEditor=<LearningScheduleEditor initiallyOpen={onlySchedules} notifications={repository?.getScheduleNotifications?.()} disabled={blocked || !serverReady} data={data} workspace={workspace} subjectIds={subjectIds} onChange={w=>write(()=>w)} />;
+  if(onlySchedules)return <section className="next-study" aria-label="일정·과제·온라인 강의">{!serverReady&&<p role="alert">학습 일정을 저장할 수 없습니다. 다시 접속해 주세요. 작성 초안은 이 기기에 보관합니다.</p>}{error&&<ErrorState message={error} onRetry={retry}/>}<p>과제 준비·제출과 강의 재생·학습·출석 확인은 각각 남깁니다.</p>{scheduleEditor}</section>;
   return <section className="next-study" aria-label="다음 공부">
+    {!blocked && <WeekOverview data={data} schedules={workspace.schedules ?? []} subjectIds={subjectIds} at={now} />}
     {!serverReady && <p role="alert">학습 일정을 저장할 수 없습니다. 다시 접속해 주세요. 기존 공부 기록과 통계는 사용할 수 있습니다.</p>}
     {legacyError && <p role="alert">{legacyError}</p>}
     {legacyPersonal?.raw && <details><summary>이 기기에 남아 있는 이전 추천 기록</summary><p>이 원문은 서버에 자동으로 올리지 않습니다. 가져오기를 선택해도 원래 저장 위치의 내용은 보존합니다.</p><pre style={{whiteSpace:'pre-wrap',overflowWrap:'anywhere'}}>{JSON.stringify(legacyPersonal.workspace,null,2)}</pre><Button disabled={!serverReady} onClick={importLegacy}>이전 추천 내용을 개인 공간에 가져오기</Button></details>}
@@ -129,7 +133,7 @@ export function NextStudy({ data, subjectIds, semesterId, repository, onSaved }:
     <div className="next-study-list">
       {!blocked && !calculationError && visible.map(card => {
         const node = nodes.find(n => n.id === card.targetId);
-        if (!node) { const schedule=workspace.schedules?.find(s=>card.id.startsWith(`task:${s.id}:`)); return schedule && <Card key={card.groupId}><h3>{schedule.name}</h3><p>{({ prepare:"과제 준비", submit:"과제 제출", watch:"강의 재생", learn:"강의 학습", attendance:"출석 확인" } as Record<string,string>)[card.action] ?? card.action} 상태를 확인해 주세요.</p><p className="muted">{schedule.dueDate || "기한 미정"} · 완료는 일정에서 직접 남겨 주세요.</p><a className="schedule-navigation" href="#learning-schedules" onClick={e=>{e.preventDefault();openLearningSchedules();}}>일정에서 확인하기</a></Card>; }
+        if (!node) { const schedule=workspace.schedules?.find(s=>card.id.startsWith(`task:${s.id}:`)); return schedule && <Card key={card.groupId}><h3>{schedule.name}</h3><p>{({ prepare:"과제 준비", submit:"과제 제출", watch:"강의 재생", learn:"강의 학습", attendance:"출석 확인" } as Record<string,string>)[card.action] ?? card.action} 상태를 확인해 주세요.</p><p className="muted">{schedule.dueDate || "기한 미정"} · 완료는 일정에서 직접 남겨 주세요.</p><a className="schedule-navigation" href="#learning-schedules" onClick={e => { e.preventDefault(); openLearningSchedules(); }}>일정에서 확인하기</a></Card>; }
         return node && <Card key={card.groupId}>
           <p className="muted">{data.subjects.find(s => s.id === node.subjectId)?.name}</p>
           <h3>{node.name}</h3>
@@ -155,7 +159,7 @@ export function NextStudy({ data, subjectIds, semesterId, repository, onSaved }:
               {result?.adaptations?.find(a=>a.goalId===goal.id) && <p>조건을 갖춘 비교 기록에서는 {result.adaptations.find(a=>a.goalId===goal.id)!.action} 방법을 우선 살펴볼 수 있습니다. 관찰된 비교이며 효과 확정은 아닙니다.</p>}<p>{goal.ended ? '추천에서 제외한 내용입니다. 원문과 결과는 남아 있습니다.' : goal.dueDate && Date.parse(dateDeadline(goal.dueDate)!) < Date.parse(now) ? '기한이 지났습니다. 완료 여부는 별도로 확인해 주세요.' : explanations[result?.states[goal.id]?.status ?? 'unobserved']}</p>
       {evidence(goal.id)}<div className="actions"><Button disabled={blocked || !serverReady} onClick={() => beginResponse(goal.id)}>결과 추가</Button><Button variant="quiet" disabled={blocked || !serverReady} onClick={() => write(w => ({ ...w, goals: w.goals.map(g => g.id === goal.id ? { ...g, ended: !g.ended } : g) }))}>{goal.ended ? '다시 후보로' : '추천에서 빼기'}</Button></div></div>)}</details>}
     {result?.warnings.some(w=>w.code==='MATERIAL_REQUIRED'||w.code==='PREREQUISITE_CRITERION_REQUIRED') && <p className="muted">추천에 필요한 선행 주제의 확인 기준이나 공부 자료가 부족합니다. 아래 관계·자료 설정에서 확인해 주세요.</p>}
-    <LearningScheduleEditor disabled={blocked || !serverReady} data={data} workspace={workspace} subjectIds={subjectIds} onChange={w=>write(()=>w)} />
+    {scheduleEditor}
     <Modal open={planOpen} title="다음에 확인할 내용" onClose={() => setPlanOpen(false)}>
       <p>평소 공부 기록에는 필요하지 않습니다. 실제로 확인하고 싶은 내용만 남겨 주세요.</p>
       <Select label="확인할 주제" value={draft.targetId} onChange={e => draftChange({ targetId: e.target.value })}><option value="">주제 선택</option>{nodes.map(n => <option key={n.id} value={n.id}>{data.subjects.find(s => s.id === n.subjectId)?.name} · {n.name}</option>)}</Select>

@@ -11,6 +11,25 @@ function Harness() { const [data,setData] = useState<AppState>(repo.getSnapshot(
 beforeEach(() => { localStorage.clear(); repo = new DemoRepository(localStorage); });
 afterEach(() => { vi.restoreAllMocks(); });
 const add = () => { fireEvent.click(screen.getByRole('button',{ name:'메모 추가' })); fireEvent.click(screen.getByText('글·연결·입력 설정')); };
+it('limits accumulated previews while searching all saved memo text and preserves hidden cards', () => {
+  const data = repo.getSnapshot();
+  for (let index = 0; index < 65; index++) repo.execute({
+    type:'saveMemo', id:`accumulated-${String(index).padStart(2,'0')}`, ownerId:null,
+    body:index === 64 ? '  마지막 메모의 긴 원문\n찾을 단서  ' : `메모 ${index}`, strokes:[], expectedVersion:0,
+    opId:`memo-op-${index}`, at:'2026-10-01T00:00:00.000Z', userId:data.userId, namespace:data.namespace,
+  });
+  render(<Harness />);
+  expect(screen.getAllByRole('button',{name:/메모 \d+ 열기/})).toHaveLength(40);
+  fireEvent.change(screen.getByRole('textbox',{name:'메모 찾기'}),{target:{value:'찾을 단서'}});
+  expect(screen.getAllByRole('button',{name:/메모 \d+ 열기/})).toHaveLength(1);
+  fireEvent.click(screen.getByRole('button',{name:/메모 1 열기/}));
+  expect(screen.getByRole('textbox',{name:'짧은 글'})).toHaveValue('  마지막 메모의 긴 원문\n찾을 단서  ');
+  fireEvent.click(screen.getByRole('button',{name:'닫기'}));
+  fireEvent.change(screen.getByRole('textbox',{name:'메모 찾기'}),{target:{value:''}});
+  fireEvent.click(screen.getByRole('button',{name:'메모 더 보기'}));
+  expect(screen.getAllByRole('button',{name:/메모 \d+ 열기/})).toHaveLength(65);
+  expect(repo.getSnapshot().memos).toHaveLength(65);
+});
 describe('quick memo editor recovery', () => {
   it('autosaves exact text and restores after close/reload without adding a study record', async () => {
     const view = render(<Harness />); add();
@@ -67,13 +86,16 @@ describe('iPad feedback repairs', () => {
     Object.defineProperty(svg,'setPointerCapture',{value:vi.fn()});
     vi.spyOn(svg,'getBoundingClientRect').mockReturnValue({left:0,top:0,width:900,height:600,right:900,bottom:600,x:0,y:0,toJSON:()=>({})});
     fireEvent.click(screen.getByRole('button',{name:'지우개'}));
+    fireEvent.change(screen.getByRole('combobox',{name:'지우는 방식'}),{target:{value:'whole'}});
     fireEvent.pointerDown(svg,{pointerId:1,pointerType:'pen',button:0,clientX:200,clientY:100});
     fireEvent.pointerMove(svg,{pointerId:1,pointerType:'pen',clientX:200,clientY:300});
     fireEvent.pointerUp(svg,{pointerId:1,pointerType:'pen',clientX:200,clientY:300});
-    expect(svg.querySelectorAll('path[d]').length).toBe(0);
+    expect(svg.querySelectorAll('path[d]:not([d=""])').length).toBe(0);
     expect(repo.getSnapshot().memos![0].strokes).toEqual(strokes);
     fireEvent.click(screen.getByRole('button',{name:'그림 되돌리기'}));
-    expect(svg.querySelectorAll('path[d]').length).toBe(2);
+    expect(svg.querySelectorAll('path[d]:not([d=""])').length).toBe(2);
+    fireEvent.click(screen.getByRole('button',{name:'지금 저장'}));
+    expect(screen.getByRole('status')).toHaveTextContent('이 기기에 저장됨');
     fireEvent.click(screen.getByRole('button',{name:'닫기'}));
     expect(repo.getSnapshot().memos![0].strokes).toEqual(strokes);
   });

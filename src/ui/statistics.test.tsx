@@ -9,7 +9,7 @@ afterEach(()=>{cleanup();localStorage.clear();vi.unstubAllGlobals();vi.useRealTi
 it('keeps pinned originals when records change, and shows the same evidence through 2D, depth and list views',()=>{
  let data=createDemoState();const at=new Date().toISOString();data=applyCommand(data,{type:'saveRecords',sessionId:'statistics-session',dateEvidence:{kind:'exact',date:koreanDay(at)},entries:[{targetId:'demo-topic-function',done:true,body:'  시연 원문\n예외'}],userId:data.userId,opId:'statistics-record',at});
  const props={data,subjectIds:['demo-subject-math']};const{rerender}=render(<StudyStatistics {...props}/>);
- fireEvent.click(screen.getByRole('button',{name:'입체'}));expect(screen.getByRole('img')).toBeInTheDocument();fireEvent.click(screen.getByRole('button',{name:'목록'}));expect(screen.getByRole('table')).toBeInTheDocument();
+ fireEvent.click(screen.getByRole('button',{name:'입체'}));expect(screen.getByRole('group',{name:/정확한 날짜/})).toBeInTheDocument();fireEvent.click(screen.getByRole('button',{name:'목록'}));expect(screen.getByRole('table')).toBeInTheDocument();
  fireEvent.click(screen.getByRole('button',{name:'전체 근거 보기'}));const dialog=screen.getByRole('dialog');fireEvent.click(within(dialog).getByRole('button',{name:'이 근거 고정하기'}));
  data={...data,records:data.records.map(r=>({...r,body:'새 수정 원문'}))};rerender(<StudyStatistics {...props} data={data}/>);expect(within(dialog).getByText('시연 원문 예외')).toBeInTheDocument();expect(within(dialog).queryByText('새 수정 원문')).toBeNull();
 });
