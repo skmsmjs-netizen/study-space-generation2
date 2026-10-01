@@ -21,6 +21,9 @@
      an otherwise bounded grid cell. Keep native select behavior and size its
      surface in CSS; the shared grid row supplies its decorative arrow. */
   appearance: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-inline-size: 100%;
   padding-inline-end: var(--space-6);
   grid-column: 1;
   grid-row: 2;
