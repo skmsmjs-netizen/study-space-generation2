@@ -4,7 +4,13 @@ import {readFileSync,writeFileSync} from 'node:fs';
 const axe=readFileSync(new URL('./node_modules/axe-core/axe.min.js',import.meta.url),'utf8');
 const url='/study-space-generation2/?space=demo';
 const note='컬러 배포 확인용 합성 기록입니다. 이유와 예외를 보존합니다.\n줄바꿈과 한국어 원문도 그대로 남습니다.';
-async function overflow(page){return page.evaluate(()=>({width:innerWidth,scrollWidth:document.documentElement.scrollWidth,...(document.documentElement.scrollWidth>innerWidth+1?{overflows:Array.from(document.querySelectorAll('#root *')).map(e=>{const b=e.getBoundingClientRect(),s=getComputedStyle(e);return{tag:e.tagName,className:e.getAttribute('class'),left:b.left,right:b.right,width:b.width,minWidth:s.minWidth,grid:s.gridTemplateColumns,overflow:s.overflow};}).filter(e=>e.right>innerWidth+1&&e.width>0)}:{})}));}
+async function overflow(page){return page.evaluate(()=>{
+ const describe=e=>{const b=e.getBoundingClientRect(),s=getComputedStyle(e);return{tag:e.tagName,className:e.getAttribute('class'),left:b.left,right:b.right,width:b.width,clientWidth:e.clientWidth,scrollWidth:e.scrollWidth,minWidth:s.minWidth,grid:s.gridTemplateColumns,overflow:s.overflow,contain:s.contain,transform:s.transform,position:s.position,clip:s.clipPath};};
+ const width=innerWidth,scrollWidth=document.documentElement.scrollWidth;
+ if(scrollWidth<=width+1)return{width,scrollWidth};
+ const all=Array.from(document.querySelectorAll('body *'));
+ return{width,scrollWidth,root:describe(document.documentElement),body:describe(document.body),graphBusy:document.querySelector('.study-graph [role="status"]')?.textContent,overflows:all.filter(e=>{const b=e.getBoundingClientRect();return(b.right>width+1&&b.width>0)||(e.clientWidth>0&&e.scrollWidth>e.clientWidth+1);}).map(e=>({ ...describe(e),ancestors:Array.from((function*(x){for(let p=x.parentElement;p;p=p.parentElement)yield p;})(e)).map(describe)}))};
+ });}
 async function theme(page,value){
  let summary=page.locator('.workspace-tools > summary');
  if(!await summary.isVisible())summary=page.locator('.compact-menu > summary');
