@@ -5,11 +5,16 @@ import { createStudyClient, onlineTransport, readServerConfig } from '../data/su
 import { PersonalRepository, readCachedPersonalSnapshot } from '../data/personal-repository';
 import { startPersonalSync } from '../data/personal-sync';
 import type { SaveStatus } from '../data/repository';
+import { accountAccessClient } from '../data/account-access';
+import { accessMessages, type AccountAccess } from '../server/account-access';
+import { AccountAdministration } from './account-administration';
 import './personal-space.css';
 const errorText = (error: unknown) => error instanceof Error ? error.message : '개인 공간을 열지 못했습니다.';
 export function PersonalSpace({ onDemo, renderWorkspace }: { onDemo: () => void; renderWorkspace: (repo: PersonalRepository, controls: ReactNode) => ReactNode }) {
   const [configured] = useState(readServerConfig);
   const client = useMemo(() => configured ? createStudyClient(configured) : null, [configured]);
+  const accessApi = useMemo(() => client ? accountAccessClient(client) : null, [client]);
+  const [access, setAccess] = useState<AccountAccess | null>(null);
   const [userId, setUserId] = useState<string | null>(null), [authReady, setAuthReady] = useState(false);
   const [repo, setRepo] = useState<PersonalRepository | null>(null), [error, setError] = useState('');
   const [retry, setRetry] = useState(0), [opening, setOpening] = useState(false), [otherWriter, setOtherWriter] = useState(false);
@@ -25,7 +30,7 @@ export function PersonalSpace({ onDemo, renderWorkspace }: { onDemo: () => void;
     return () => { alive = false; data.subscription.unsubscribe(); };
   }, [client]);
   useEffect(() => {
-    setRepo(null); setError(''); setOtherWriter(false);
+    setRepo(null); setAccess(null); setError(''); setOtherWriter(false);
     if (!client || !userId) { setOpening(false); return; }
     let disposed = false;
     let finish: () => void = () => {};
@@ -50,6 +55,10 @@ export function PersonalSpace({ onDemo, renderWorkspace }: { onDemo: () => void;
         try { await Promise.race([visible, closed]); } finally { removeListener(); }
       }
       if (disposed) return;
+      const permission = await accessApi!.read();
+      if (disposed) return;
+      setAccess(permission);
+      if (permission.status !== 'approved') { setOpening(false); return; }
       await navigator.locks.request(`study-space:personal:${userId}:writer`, { ifAvailable: true }, async lock => {
         if (disposed) return;
         if (!lock) { setOtherWriter(true); setError('다른 창에서 내 공부 공간을 사용 중입니다. 그 창의 입력을 마친 뒤 다시 열어 주세요.'); setOpening(false); return; }
@@ -74,13 +83,14 @@ export function PersonalSpace({ onDemo, renderWorkspace }: { onDemo: () => void;
     writerTask.current = task;
     void task.catch(error => { if (!disposed) { setError(errorText(error)); setOpening(false); } });
     return () => { disposed = true; finish(); };
-  }, [client, userId, retry]);
+  }, [client, accessApi, userId, retry]);
   useEffect(() => repo ? startPersonalSync(repo) : undefined, [repo]);
-  if (repo && client) return renderWorkspace(repo, <ServerStatus repository={repo} client={client} onDemo={onDemo} />);
+  if (repo && client) return renderWorkspace(repo, <><ServerStatus repository={repo} client={client} onDemo={onDemo} />{access?.administrator && accessApi && <AccountAdministration api={accessApi} />}</>);
   return <main className="boot personal-entry"><Card><h1>내 공부 공간</h1>
     {!configured ? <ErrorState title="서버 연결 설정이 필요합니다" message="시연 기록은 그대로 남아 있습니다. 서버 공개 설정을 적용한 뒤 개인 공간을 열 수 있습니다." />
       : !authReady || opening ? <LoadingState message="내 기록을 불러오는 중…" />
       : !userId && client ? <SignIn client={client} />
+      : access && access.status !== 'approved' ? <section><h2>{access.status === 'pending' ? '가입 승인 대기' : access.status === 'rejected' ? '가입이 승인되지 않았습니다' : '이용이 중지되었습니다'}</h2><p>{accessMessages[access.status]}</p><div className="actions"><Button onClick={() => setRetry(value => value + 1)}>승인 상태 다시 확인</Button><Button onClick={() => { void client?.auth.signOut({ scope: 'local' }); }}>로그아웃</Button></div></section>
       : <><ErrorState title="내 공부 공간을 열지 못했습니다" message={error || '서버에 연결하지 못했습니다. 기록은 지우지 않았습니다.'} onRetry={() => setRetry(value => value + 1)} />{otherWriter ? <p>가입 확인 메일에서 새 탭이 열렸다면, 처음 가입한 학습앱 탭으로 돌아가 주세요.</p> : <Button onClick={() => { void client?.auth.signOut({ scope: 'local' }); }}>다시 로그인</Button>}</>}
     {error && !userId && <p role="alert">{error}</p>}
     <Button variant="quiet" onClick={onDemo}>시연 공간으로 돌아가기</Button>
@@ -101,7 +111,7 @@ function SignIn({ client }: { client: SupabaseClient }) {
     finally { setBusy(false); }
   }
   return <form onSubmit={event => { event.preventDefault(); void submit(creating); }}><p>로그인하면 이 공간의 기록을 서버에 저장합니다. 시연 기록은 자동으로 옮기지 않습니다.</p>
-    {creating && <p>이메일과 6자 이상 비밀번호로 계정을 만듭니다. 가입 후 이메일로 받은 확인 링크를 열어 주세요.</p>}
+    {creating && <><p>이메일과 6자 이상 비밀번호로 계정을 만듭니다. 가입 후 이메일로 받은 확인 링크를 열어 주세요.</p><p>이메일 확인 후 관리자 승인을 받아야 내 공부 공간을 사용할 수 있습니다.</p></>}
     <Input label="이메일" type="email" autoComplete="email" required value={email} onChange={event => setEmail(event.target.value)} />
     <Input label={creating ? "비밀번호 (6자 이상)" : "비밀번호"} type="password" autoComplete={creating ? "new-password" : "current-password"} required minLength={creating ? 6 : undefined} value={password} onChange={event => setPassword(event.target.value)} />
     <div className="actions"><Button variant="primary" type="submit" disabled={busy}>{busy ? '연결 중…' : creating ? '계정 만들기' : '로그인'}</Button><Button type="button" disabled={busy} onClick={() => { setCreating(value => !value); setError(''); setNotice(''); }}>{creating ? '로그인으로 돌아가기' : '처음 사용하기'}</Button></div>

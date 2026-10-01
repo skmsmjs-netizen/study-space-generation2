@@ -28,9 +28,9 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 
-// node_modules/lz-string/libs/lz-string.js
+// ../../../Users/manseeksong/Documents/ChatGPT/학습 시스템 설계 프로젝트/generation2/node_modules/lz-string/libs/lz-string.js
 var require_lz_string = __commonJS({
-  "node_modules/lz-string/libs/lz-string.js"(exports, module) {
+  "../../../Users/manseeksong/Documents/ChatGPT/\uD559\uC2B5 \uC2DC\uC2A4\uD15C \uC124\uACC4 \uD504\uB85C\uC81D\uD2B8/generation2/node_modules/lz-string/libs/lz-string.js"(exports, module) {
     var LZString2 = (function() {
       var f = String.fromCharCode;
       var keyStrBase64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
@@ -1437,6 +1437,22 @@ function unpackServerState(value) {
   return state;
 }
 
+// src/server/account-access.ts
+var accessStatuses = ["pending", "approved", "rejected", "suspended"];
+var accessMessages = {
+  pending: "\uAD00\uB9AC\uC790\uAC00 \uAC00\uC785\uC744 \uC2B9\uC778\uD558\uBA74 \uB0B4 \uACF5\uBD80 \uACF5\uAC04\uC744 \uC0AC\uC6A9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.",
+  approved: "\uC774\uC6A9\uC774 \uC2B9\uC778\uB418\uC5C8\uC2B5\uB2C8\uB2E4.",
+  rejected: "\uAC00\uC785 \uC694\uCCAD\uC774 \uC2B9\uC778\uB418\uC9C0 \uC54A\uC558\uC2B5\uB2C8\uB2E4. \uC774\uC6A9\uC774 \uD544\uC694\uD558\uBA74 \uAD00\uB9AC\uC790\uC5D0\uAC8C \uBB38\uC758\uD574 \uC8FC\uC138\uC694.",
+  suspended: "\uD604\uC7AC \uC774\uC6A9\uC774 \uC911\uC9C0\uB418\uC5B4 \uC788\uC2B5\uB2C8\uB2E4. \uAE30\uC874 \uAE30\uB85D\uC740 \uC0AD\uC81C\uD558\uC9C0 \uC54A\uC558\uC2B5\uB2C8\uB2E4. \uAD00\uB9AC\uC790\uC5D0\uAC8C \uBB38\uC758\uD574 \uC8FC\uC138\uC694."
+};
+function requireApproved(access) {
+  if (access.status !== "approved") throw new DomainError("ACCESS_DENIED", accessMessages[access.status] ?? accessMessages.pending);
+}
+function requireAdministrator(access) {
+  requireApproved(access);
+  if (!access.administrator) throw new DomainError("ADMIN_REQUIRED", "\uAD00\uB9AC\uC790\uB9CC \uAC00\uC785 \uACC4\uC815\uC744 \uAD00\uB9AC\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.");
+}
+
 // src/server/command-handler.ts
 var cors = { "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Headers": "authorization, apikey, content-type, x-client-info", "Access-Control-Allow-Methods": "POST, OPTIONS", "Cache-Control": "no-store" };
 function json(body, status = 200) {
@@ -1453,6 +1469,22 @@ async function handleCommand(request, backend) {
     const text = await request.text();
     if (text.length > 4e6) throw new DomainError("TOO_LARGE", "\uD55C \uBC88\uC5D0 \uC800\uC7A5\uD560 \uB0B4\uC6A9\uC774 \uB108\uBB34 \uD07D\uB2C8\uB2E4. \uC6D0\uBB38\uC740 \uC774 \uAE30\uAE30\uC5D0 \uB0A8\uC544 \uC788\uC2B5\uB2C8\uB2E4.");
     const body = JSON.parse(text);
+    const access = await backend.access(userId);
+    if (body.action === "access") return json(access);
+    if (body.action === "admin-list" || body.action === "admin-set") {
+      requireAdministrator(access);
+      if (body.action === "admin-list") {
+        const cursor = body.cursor ?? null;
+        if (cursor !== null && (typeof cursor !== "string" || !/^[0-9a-f-]{36}$/i.test(cursor))) throw new DomainError("INVALID_REQUEST", "\uACC4\uC815 \uBAA9\uB85D\uC758 \uC704\uCE58\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+        if (!backend.listAccounts) throw new DomainError("SERVER_ERROR", "\uACC4\uC815 \uAD00\uB9AC \uC5F0\uACB0\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+        return json(await backend.listAccounts(userId, cursor));
+      }
+      if (typeof body.target !== "string" || !/^[0-9a-f-]{36}$/i.test(body.target) || !accessStatuses.includes(body.status) || !Number.isSafeInteger(body.version) || body.version < 0) throw new DomainError("INVALID_REQUEST", "\uACC4\uC815 \uBCC0\uACBD \uC694\uCCAD\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+      if (!backend.setAccountAccess) throw new DomainError("SERVER_ERROR", "\uACC4\uC815 \uAD00\uB9AC \uC5F0\uACB0\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+      await backend.setAccountAccess(userId, body.target, body.status, body.version);
+      return json({ saved: true });
+    }
+    requireApproved(access);
     const namespace = body.namespace;
     if (!["personal", "test"].includes(namespace)) throw new DomainError("WRONG_NAMESPACE", "\uC2DC\uC5F0 \uC790\uB8CC\uB294 \uAC1C\uC778 \uC11C\uBC84\uC5D0 \uC62C\uB9AC\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4.");
     const current = await backend.read(userId, namespace) ?? { sequence: 0, data: emptyState(userId, namespace) };
@@ -1473,7 +1505,7 @@ async function handleCommand(request, backend) {
     return json({ ...await backend.commit(userId, namespace, current.sequence, command, next), supportedCommands: ["saveLearningPlan", "saveCanvasLayout"] });
   } catch (error) {
     const code = error instanceof DomainError ? error.code : "SERVER_ERROR";
-    const status = code === "AUTH_REQUIRED" ? 401 : code === "OWNERSHIP" ? 403 : /CONFLICT/.test(code) ? 409 : error instanceof DomainError || error instanceof SyntaxError ? 400 : 503;
+    const status = code === "AUTH_REQUIRED" ? 401 : ["OWNERSHIP", "ACCESS_DENIED", "ADMIN_REQUIRED", "ADMIN_PROTECTED"].includes(code) ? 403 : /CONFLICT/.test(code) ? 409 : error instanceof DomainError || error instanceof SyntaxError ? 400 : 503;
     return json({ code, message: error instanceof DomainError ? error.message : "\uC11C\uBC84\uC5D0 \uC800\uC7A5\uD558\uC9C0 \uBABB\uD588\uC2B5\uB2C8\uB2E4. \uC791\uC131 \uB0B4\uC6A9\uC740 \uC774 \uAE30\uAE30\uC5D0 \uB0A8\uC544 \uC788\uC2B5\uB2C8\uB2E4." }, status);
   }
 }
@@ -1485,7 +1517,11 @@ var service = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
 async function admin(path, options = {}) {
   const response = await fetch(`${url}/rest/v1/${path}`, { ...options, headers: { apikey: service, Authorization: `Bearer ${service}`, "Content-Type": "application/json", ...options.headers } });
   const result = await response.json();
-  if (!response.ok) throw new DomainError(result.message?.includes("VERSION_CONFLICT") ? "VERSION_CONFLICT" : "SERVER_ERROR", "\uC11C\uBC84\uC5D0\uC11C \uC800\uC7A5\uC744 \uC2B9\uC778\uD558\uC9C0 \uC54A\uC558\uC2B5\uB2C8\uB2E4. \uC6D0\uBB38\uC744 \uBCF4\uC874\uD588\uC2B5\uB2C8\uB2E4.");
+  if (!response.ok) {
+    const code = ["ACCESS_DENIED", "ADMIN_REQUIRED", "ADMIN_PROTECTED", "ACCESS_CONFLICT", "VERSION_CONFLICT", "EMAIL_UNCONFIRMED"].find((code2) => result.message?.includes(code2)) ?? "SERVER_ERROR";
+    const message = code === "ACCESS_DENIED" ? "\uAD00\uB9AC\uC790 \uC2B9\uC778\uC774 \uD544\uC694\uD558\uAC70\uB098 \uC774\uC6A9\uC774 \uC911\uC9C0\uB418\uC5B4 \uC788\uC2B5\uB2C8\uB2E4. \uC791\uC131 \uB0B4\uC6A9\uC740 \uC774 \uAE30\uAE30\uC5D0 \uB0A8\uC544 \uC788\uC2B5\uB2C8\uB2E4." : code === "ACCESS_CONFLICT" ? "\uACC4\uC815 \uC0C1\uD0DC\uAC00 \uBCC0\uACBD\uB418\uC5C8\uC2B5\uB2C8\uB2E4. \uBAA9\uB85D\uC744 \uB2E4\uC2DC \uBD88\uB7EC\uC640 \uC8FC\uC138\uC694." : code === "EMAIL_UNCONFIRMED" ? "\uC774\uBA54\uC77C \uD655\uC778\uC774 \uB05D\uB09C \uACC4\uC815\uB9CC \uC2B9\uC778\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4." : "\uC11C\uBC84\uC5D0\uC11C \uBCC0\uACBD\uC744 \uC2B9\uC778\uD558\uC9C0 \uC54A\uC558\uC2B5\uB2C8\uB2E4. \uC6D0\uBB38\uC744 \uBCF4\uC874\uD588\uC2B5\uB2C8\uB2E4.";
+    throw new DomainError(code, message);
+  }
   return result;
 }
 Deno.serve((request) => handleCommand(request, {
@@ -1494,9 +1530,18 @@ Deno.serve((request) => handleCommand(request, {
     if (!response.ok) throw new DomainError("AUTH_REQUIRED", "\uB85C\uADF8\uC778\uC774 \uB9CC\uB8CC\uB418\uC5C8\uC2B5\uB2C8\uB2E4. \uC791\uC131 \uB0B4\uC6A9\uC744 \uBCF4\uC874\uD558\uACE0 \uB2E4\uC2DC \uB85C\uADF8\uC778\uD574 \uC8FC\uC138\uC694.");
     return (await response.json()).id;
   },
+  async access(userId) {
+    return admin("rpc/study_account_access", { method: "POST", body: JSON.stringify({ p_user: userId }) });
+  },
+  async listAccounts(actor, cursor) {
+    return admin("rpc/study_list_accounts", { method: "POST", body: JSON.stringify({ p_actor: actor, p_cursor: cursor }) });
+  },
+  async setAccountAccess(actor, target, status, version) {
+    await admin("rpc/study_set_account_access", { method: "POST", body: JSON.stringify({ p_actor: actor, p_target: target, p_status: status, p_version: version }) });
+  },
   async read(userId, namespace) {
-    const rows = await admin(`study_workspaces?user_id=eq.${encodeURIComponent(userId)}&namespace=eq.${namespace}&select=sequence,state`);
-    return rows.length ? { sequence: rows[0].sequence, data: unpackServerState(rows[0].state) } : null;
+    const row = await admin("rpc/study_read_workspace", { method: "POST", body: JSON.stringify({ p_user: userId, p_namespace: namespace }) });
+    return row ? { sequence: row.sequence, data: unpackServerState(row.state) } : null;
   },
   async commit(userId, namespace, base, command, next) {
     const saved = await admin("rpc/study_commit", { method: "POST", body: JSON.stringify({ p_user: userId, p_namespace: namespace, p_base: base, p_operation: command.opId, p_payload: next.appliedOps[command.opId], p_state: packServerState(next, command.opId) }) });

@@ -4,7 +4,7 @@ import { PersonalSpace } from './personal-space';
 import { PersonalRepository } from '../data/personal-repository';
 import { emptyState } from '../domain/model';
 const fake = vi.hoisted(() => ({
-  id: '70000000-0000-4000-8000-000000000001', load: vi.fn(),
+  id: '70000000-0000-4000-8000-000000000001', load: vi.fn(), access: vi.fn(),
   callback: null as null | ((event: string, session: { user: { id: string } }) => void),
 }));
 vi.mock('../data/supabase-client', () => ({
@@ -16,11 +16,13 @@ vi.mock('../data/supabase-client', () => ({
   onlineTransport: () => ({ load: fake.load }),
 }));
 function deferred<T>() { let resolve!: (value: T | PromiseLike<T>) => void; const promise = new Promise<T>(done => { resolve = done; }); return { promise, resolve }; }
+vi.mock('../data/account-access', () => ({accountAccessClient: () => ({read: fake.access})}));
 const nativeLocks = Object.getOwnPropertyDescriptor(navigator, 'locks');
 let owned = false, releaseBarrier: Promise<void>;
 let request: ReturnType<typeof vi.fn>;
 beforeEach(() => {
   localStorage.clear(); vi.clearAllMocks(); owned = false; releaseBarrier = Promise.resolve();
+  fake.access.mockResolvedValue({status:'approved',administrator:false});
   fake.load.mockResolvedValue({ sequence: 0, data: emptyState(fake.id, 'personal') });
   // Models Web Locks releasing only after the callback's result settles.
   request = vi.fn(async (name: string, _options: unknown, callback: (lock: Lock | null) => Promise<void>) => {
@@ -79,4 +81,24 @@ it('renders a validated cache while the first server load is still pending', asy
  const view = open();
  try { await screen.findByText(`개인 자료 열림 ${fake.id}`); await waitFor(()=>expect(fake.load).toHaveBeenCalledTimes(1)); }
  finally { response.resolve({sequence:0,data}); view.unmount(); }
+});
+
+it('shows pending approval without loading records or claiming a writer, then opens after approval', async () => {
+  fake.access.mockResolvedValueOnce({status:'pending',administrator:false});
+  localStorage.setItem('study-space:personal:preserved:draft','원문과 예외');
+  open(); await screen.findByRole('heading',{name:'가입 승인 대기'});
+  expect(fake.load).not.toHaveBeenCalled(); expect(request).not.toHaveBeenCalled();
+  expect(localStorage.getItem('study-space:personal:preserved:draft')).toBe('원문과 예외');
+  fireEvent.click(screen.getByRole('button',{name:'승인 상태 다시 확인'}));
+  await screen.findByText(`개인 자료 열림 ${fake.id}`);
+});
+it.each(['rejected','suspended'])('prevents %s users from loading their workspace', async status => {
+  fake.access.mockResolvedValue({status,administrator:false}); open();
+  await screen.findByRole('button',{name:'승인 상태 다시 확인'});
+  expect(fake.load).not.toHaveBeenCalled(); expect(request).not.toHaveBeenCalled();
+});
+it('fails closed when the permission service cannot be reached', async () => {
+  fake.access.mockRejectedValue(Error('승인 확인 연결 실패')); open();
+  await screen.findByText('승인 확인 연결 실패');
+  expect(fake.load).not.toHaveBeenCalled(); expect(request).not.toHaveBeenCalled();
 });

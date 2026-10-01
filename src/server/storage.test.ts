@@ -10,6 +10,7 @@ const a = '10000000-0000-4000-8000-000000000001', b = '10000000-0000-4000-8000-0
 let db: PGlite;
 const command = (patch: Partial<Command> = {}) => ({ type: 'addSubject', id: 'subject-1', name: '검증 과목', scope: { kind: 'independent' }, userId: a, namespace: 'test', at: '2026-09-30T01:00:00.000Z', opId: 'op-1', ...patch } as Command);
 const backend: CommandBackend = {
+  async access() { return {status:'approved' as const,administrator:false}; },
   async authenticate(token) { return token === 'a' ? a : token === 'b' ? b : ''; },
   async read(userId, namespace) { const result = await db.query<{ sequence: number; state: ReturnType<typeof emptyState> }>('select sequence,state from study_workspaces where user_id=$1 and namespace=$2', [userId, namespace]); return result.rows.length ? { sequence: Number(result.rows[0].sequence), data: unpackServerState(result.rows[0].state) } : null; },
   async commit(userId, namespace, base, op, next) { const result = await db.query<{ result: any }>('select study_commit($1,$2,$3,$4,$5,$6) result', [userId, namespace, base, op.opId, next.appliedOps[op.opId], packServerState(next,op.opId)]); return { sequence: result.rows[0].result.sequence, data: unpackServerState(result.rows[0].result.data) }; },

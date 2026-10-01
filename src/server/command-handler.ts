@@ -1,8 +1,12 @@
 import { applyCommand, validateState } from '../domain/commands';
 import { DomainError, emptyState, type AppState, type Command, type Namespace } from '../domain/model';
+import { requireApproved, requireAdministrator, accessStatuses, type AccountAccess, type AccountPage, type AccessStatus } from './account-access';
 export interface ServerSnapshot { sequence: number; data: AppState; supportedCommands?: string[] }
 export interface CommandBackend {
   authenticate(token: string): Promise<string>;
+  access(userId: string): Promise<AccountAccess>;
+  listAccounts?(actor: string, cursor: string | null): Promise<AccountPage>;
+  setAccountAccess?(actor: string, target: string, status: AccessStatus, version: number): Promise<void>;
   read(userId: string, namespace: Namespace): Promise<ServerSnapshot | null>;
   commit(userId: string, namespace: Namespace, base: number, command: Command, next: AppState): Promise<ServerSnapshot>;
 }
@@ -20,6 +24,22 @@ export async function handleCommand(request: Request, backend: CommandBackend): 
     const text = await request.text();
     if (text.length > 4_000_000) throw new DomainError('TOO_LARGE', '한 번에 저장할 내용이 너무 큽니다. 원문은 이 기기에 남아 있습니다.');
     const body = JSON.parse(text);
+    const access = await backend.access(userId);
+    if (body.action === 'access') return json(access);
+    if (body.action === 'admin-list' || body.action === 'admin-set') {
+      requireAdministrator(access);
+      if (body.action === 'admin-list') {
+        const cursor = body.cursor ?? null;
+        if (cursor !== null && (typeof cursor !== 'string' || !/^[0-9a-f-]{36}$/i.test(cursor))) throw new DomainError('INVALID_REQUEST', '계정 목록의 위치를 확인해 주세요.');
+        if (!backend.listAccounts) throw new DomainError('SERVER_ERROR', '계정 관리 연결을 확인해 주세요.');
+        return json(await backend.listAccounts(userId, cursor));
+      }
+      if (typeof body.target !== 'string' || !/^[0-9a-f-]{36}$/i.test(body.target) || !accessStatuses.includes(body.status) || !Number.isSafeInteger(body.version) || body.version < 0) throw new DomainError('INVALID_REQUEST', '계정 변경 요청을 확인해 주세요.');
+      if (!backend.setAccountAccess) throw new DomainError('SERVER_ERROR', '계정 관리 연결을 확인해 주세요.');
+      await backend.setAccountAccess(userId, body.target, body.status, body.version);
+      return json({ saved: true });
+    }
+    requireApproved(access);
     const namespace: Namespace = body.namespace;
     if (!['personal', 'test'].includes(namespace)) throw new DomainError('WRONG_NAMESPACE', '시연 자료는 개인 서버에 올리지 않습니다.');
     const current = await backend.read(userId, namespace) ?? { sequence: 0, data: emptyState(userId, namespace) };
@@ -38,7 +58,7 @@ export async function handleCommand(request: Request, backend: CommandBackend): 
     return json({ ...await backend.commit(userId, namespace, current.sequence, command, next), supportedCommands: ['saveLearningPlan', 'saveCanvasLayout'] });
   } catch (error) {
     const code = error instanceof DomainError ? error.code : 'SERVER_ERROR';
-    const status = code === 'AUTH_REQUIRED' ? 401 : code === 'OWNERSHIP' ? 403 : /CONFLICT/.test(code) ? 409 : error instanceof DomainError || error instanceof SyntaxError ? 400 : 503;
+    const status = code === 'AUTH_REQUIRED' ? 401 : ['OWNERSHIP', 'ACCESS_DENIED', 'ADMIN_REQUIRED', 'ADMIN_PROTECTED'].includes(code) ? 403 : /CONFLICT/.test(code) ? 409 : error instanceof DomainError || error instanceof SyntaxError ? 400 : 503;
     return json({ code, message: error instanceof DomainError ? error.message : '서버에 저장하지 못했습니다. 작성 내용은 이 기기에 남아 있습니다.' }, status);
   }
 }
