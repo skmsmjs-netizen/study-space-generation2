@@ -255,7 +255,6 @@ it('restores long text selection direction and internal scroll through route rep
   expect([editor.selectionStart, editor.selectionEnd, editor.selectionDirection, editor.scrollTop]).toEqual([22, 58, 'backward', 340]);
 });
 
-
 it('a new personal tab resumes the last input route, while its own route and explicit links win', () => {
   const prefix = 'study-space:personal:70000000-0000-4000-8000-000000000009';
   const key = `${prefix}:navigation-context:v1`;

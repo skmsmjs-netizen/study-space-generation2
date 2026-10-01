@@ -29,8 +29,17 @@ test('released app themes, routes and saved Korean text',async({page},info)=>{
   expect(metrics.background).toBe(dark?'rgb(32, 32, 32)':'rgb(250, 250, 250)');
   await page.reload();await expect(page.getByRole('heading',{name:'공부 기록',exact:true})).toBeVisible();
   await expect.poll(()=>page.evaluate(()=>document.documentElement.dataset.theme||'auto')).toBe(setting);
-  for(const route of ['#/record/demo-topic-function','#/','#/memos','#/graph','#/board']){
+  for(const route of ['#/record/demo-topic-function','#/','#/memos','#/graph','#/board','#/statistics']){
    await page.goto(url+route);await expect(page.locator('main').first()).toBeVisible();await expect(page.locator('main').first()).not.toHaveText('');
+   if(route==='#/statistics'){
+    const bar=page.getByRole('group',{name:/정확한 날짜가 있는 기록의 변화/}).getByRole('button').first();
+    await bar.focus();await bar.press('Enter');
+    await expect(page.getByRole('dialog',{name:'통계의 원기록',exact:true})).toBeVisible();
+    await page.keyboard.press('Escape');
+    await expect(page.getByRole('dialog',{name:'통계의 원기록',exact:true})).not.toBeVisible();
+    await expect(bar).toBeFocused();
+   }
+   await expect(page.locator('main [data-ui-loading]')).toHaveCount(0,{timeout:30000});
    const width=await overflow(page);expect(width.scrollWidth,route).toBeLessThanOrEqual(width.width+1);
    result.push({setting,scheme,route,...width,...await contrast(page,'#root')});
    if(route.startsWith('#/record')&&setting!=='auto')await page.screenshot({path:fileURLToPath(new URL('./'+info.project.name+'-'+setting+'.png',import.meta.url)),fullPage:true});

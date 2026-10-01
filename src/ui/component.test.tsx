@@ -60,6 +60,18 @@ describe('shared controls', () => {
 });
 
 describe('modal focus contract', () => {
+  it('restores an SVG chart trigger after closing its evidence dialog', () => {
+    function Fixture() { const [open, setOpen] = useState(false); return <><svg role="group" aria-label="차트"><g role="button" tabIndex={0} aria-label="차트 근거" onClick={() => setOpen(true)}><rect width="40" height="40" /></g></svg><Modal open={open} title="근거" onClose={() => setOpen(false)}><p>원기록</p></Modal></>; }
+    render(<Fixture />);
+    const trigger = screen.getByRole('button', { name: '차트 근거' });
+    // jsdom does not implement SVG focus; the actual browser test checks focus.
+    const focus = vi.fn(); Object.defineProperty(trigger, 'focus', { configurable: true, value: focus });
+    fireEvent.pointerDown(trigger); fireEvent.click(trigger);
+    expect(screen.getByRole('dialog', { name: '근거' })).toBeVisible();
+    fireEvent.keyDown(document, { key: 'Escape' });
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+    expect(focus).toHaveBeenLastCalledWith({ preventScroll: true });
+  });
   it('traps keyboard focus, closes on Escape, and restores the trigger', async () => {
     function Fixture() { const [open, setOpen] = useState(false); return <><Button onClick={() => setOpen(true)}>메모 열기</Button><Modal open={open} title="메모" onClose={() => setOpen(false)}><Input label="메모 내용" /><Button>저장</Button></Modal></>; }
     const user = userEvent.setup(); render(<Fixture />);

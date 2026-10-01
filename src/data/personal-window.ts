@@ -93,10 +93,13 @@ export async function claimPersonalWindow(userId: string, storage: Storage = loc
 /** Export only the authenticated owner's other journals, including damaged text. */
 export function personalWindowCopies(userId: string, currentKey: string, storage: Storage = localStorage): JournalRecovery[] {
   const root = personalJournalKey({ userId, namespace: 'personal' });
+  const owner = encodeURIComponent(userId);
   const copies: JournalRecovery[] = [];
   for (let index = 0; index < storage.length; index++) {
     const key = storage.key(index);
-    if (!key || key === currentKey || (key !== root && !key.startsWith(`${root}:window:`))) continue;
+    const windowDraft = key?.includes(':recovery:window-') &&
+      (key.startsWith(`study-space:personal:${owner}:`) || key.startsWith(`study-space:personal:draft:quick-memo:${owner}:`) || key.startsWith(`study-space:personal:draft:topic-recall:${owner}:`));
+    if (!key || key === currentKey || (!windowDraft && key !== root && !key.startsWith(`${root}:window:`))) continue;
     const raw = storage.getItem(key);
     if (raw !== null) copies.push({ key, raw, savedAt: new Date().toISOString() });
   }

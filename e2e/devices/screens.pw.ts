@@ -66,6 +66,21 @@ test('all current screens render, reflow and keep navigation usable', async ({ p
   expect(errors).toEqual([]);
 });
 
+test('graph filters remain usable with larger text without horizontal overflow', async ({ page }) => {
+  await page.goto('?space=demo#/graph');
+  const connections = page.getByLabel('표시할 연결', { exact: true });
+  await expect(connections).toBeVisible();
+  await page.addStyleTag({ content: 'html { font-size: 125%; }' });
+  await connections.selectOption('personal');
+  await expect(connections).toHaveValue('personal');
+  await connections.selectOption('all');
+  await expect(connections).toHaveValue('all');
+  await expect(page.getByLabel('그래프 과목', { exact: true })).toBeVisible();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(
+    await page.evaluate(() => innerWidth + 1),
+  );
+});
+
 test('touch code input, exact draft restore and rotation retain original source', async ({
   page,
 }, info) => {
