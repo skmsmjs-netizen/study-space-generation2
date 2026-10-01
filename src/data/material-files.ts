@@ -9,6 +9,7 @@ type Owner = Pick<AppState, 'namespace' | 'userId'>;
 export const materialKey = (owner: Owner, id: string) =>
   `${storagePrefix(owner)}:material:${encodeURIComponent(id)}`;
 import {access,database} from './material-file-db';
+import { encodeBinary, decodeBinary } from './binary-storage';
 export function audioMime(file: Pick<File, 'name' | 'type'>): string {
   const known: Record<string, string> = {
     mp3: 'audio/mpeg',
@@ -38,7 +39,8 @@ export async function keepAudio(
     .map((x) => x.toString(16).padStart(2, '0'))
     .join('');
   const key = materialKey(owner, `audio:${sha256}`);
-  await access('files', 'readwrite', (store) => store.put(new Blob([bytes], { type }), key));
+  const stored = await encodeBinary(new Blob([bytes], { type }));
+  await access('files', 'readwrite', (store) => store.put(stored, key));
   return { key, name: file.name, type, size: file.size, sha256 };
 }
 export async function readAudio(
@@ -47,12 +49,13 @@ export async function readAudio(
 ): Promise<Blob | null> {
   if (audio.key !== materialKey(owner, `audio:${audio.sha256}`))
     throw Error('다른 공간의 음성 파일을 열 수 없습니다.');
-  const blob = await access<Blob | undefined>('files', 'readonly', (store) => store.get(audio.key));
+  const blob = decodeBinary<Blob | undefined>(await access('files', 'readonly', (store) => store.get(audio.key)));
   if (blob) return blob;
   if (!audio.cloudPath) return null;
   const { downloadMaterialFile } = await import('./material-cloud');
   const downloaded = await downloadMaterialFile(owner, 'audio', audio);
-  await access('files', 'readwrite', store => store.put(downloaded, audio.key));
+  const stored = await encodeBinary(downloaded);
+  await access('files', 'readwrite', store => store.put(stored, audio.key));
   return downloaded;
 }
 export {keepDocumentFile,readDocumentFile} from './document-files';
@@ -131,16 +134,17 @@ export async function removeTranscribedAudio(
     });
   } finally { db.close(); }
 }
-export function keepRecordingChunk(owner: Owner, id: string, index: number, blob: Blob) {
+export async function keepRecordingChunk(owner: Owner, id: string, index: number, blob: Blob) {
+  const stored = await encodeBinary(blob);
   return access('recordings', 'readwrite', (store) =>
-    store.put(blob, `${materialKey(owner, id)}:${String(index).padStart(8, '0')}`),
+    store.put(stored, `${materialKey(owner, id)}:${String(index).padStart(8, '0')}`),
   );
 }
 export async function recoverRecording(owner: Owner, id: string): Promise<Blob | null> {
   const prefix = `${materialKey(owner, id)}:`;
-  const chunks = await access<Blob[]>('recordings', 'readonly', (store) =>
+  const chunks = decodeBinary<Blob[]>(await access('recordings', 'readonly', (store) =>
     store.getAll(IDBKeyRange.bound(prefix, `${prefix}\uffff`)),
-  );
+  ));
   return chunks.length ? new Blob(chunks, { type: chunks[0].type }) : null;
 }
 export async function clearMaterialFilesForOwner(owner: Owner, factory?: IDBFactory) {

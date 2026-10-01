@@ -18,7 +18,7 @@ export function FullBackup({ repository }: { repository: StudyRepository }) {
     return () => { for (const area of areas) area.inert = false; };
   }, [busy, restored]);
   const [prior, setPrior] = useState<Awaited<ReturnType<typeof priorRestoreBackups>>>([]);
-  useEffect(() => { void priorRestoreBackups(owner).then(setPrior).catch(error => setError(errorText(error))); }, [owner.namespace, owner.userId]);
+  useEffect(() => { void priorRestoreBackups(owner).then(setPrior).catch(error => setError(errorText(error))); }, [owner]);
   useEffect(() => {
     if (!busy && !restored) return;
     const prevent = (event: BeforeUnloadEvent) => { event.preventDefault(); event.returnValue = ''; };
@@ -52,7 +52,7 @@ export function FullBackup({ repository }: { repository: StudyRepository }) {
     <Card><h2>공부 자료 백업</h2><p>기록과 수정 이력, 배치, 첨부 원본, 녹음, 작성 중인 초안과 이 기기의 보기 설정을 함께 보관합니다. 로그인 정보는 포함하지 않습니다.</p>
       <Button onClick={() => { void backup(); }} disabled={busy || restored}>전체 백업 내려받기</Button>
     </Card>
-    {!restored && <Card><h2>백업에서 복원</h2><p>현재 계정·공간의 백업만 복원합니다. 같은 항목은 백업 내용으로 복원하고, 현재 자료는 복원 전 사본에 남깁니다. 백업에 없는 기존 항목은 지우지 않습니다.</p>
+    {!restored && <Card><h2>백업에서 복원</h2><p>현재 계정·공간의 백업만 복원합니다. 공부 원장은 백업 시점으로 되돌리고, 현재 자료는 복원 전 사본에 남깁니다. 백업에 없는 별도 첨부·초안은 지우지 않습니다.</p>
       <Input label="전체 백업 파일" type="file" accept=".zip,application/zip" disabled={busy} onChange={event => { const file = event.target.files?.[0]; if (file) void review(file); event.target.value = ''; }} />
       {checked && <div><p>백업 시각: {new Date(checked.manifest.createdAt).toLocaleString('ko-KR')}</p><p>공부 기록 {checked.data.records.length}개 · 보관 항목 {checked.rows.length}개 · 첨부·녹음 조각 {checked.rows.filter(row => row.value instanceof Blob).length}개</p>
         <p>다른 창에서 작성한 초안은 보관하며 자동으로 입력창에 적용하지 않습니다. 개인 공간의 복원 내용이 서버와 다르면 양쪽 내용을 유지하고 선택을 기다립니다.</p>
