@@ -1,4 +1,5 @@
 import {test,expect} from '@playwright/test';
+import {fileURLToPath} from 'node:url';
 import {readFileSync,writeFileSync} from 'node:fs';
 const axe=readFileSync(new URL('./node_modules/axe-core/axe.min.js',import.meta.url),'utf8');
 const url='/study-space-generation2/?space=demo';
@@ -32,7 +33,7 @@ test('released app themes, routes and saved Korean text',async({page},info)=>{
    await page.goto(url+route);await expect(page.locator('main').first()).toBeVisible();await expect(page.locator('main').first()).not.toHaveText('');
    const width=await overflow(page);expect(width.scrollWidth,route).toBeLessThanOrEqual(width.width+1);
    result.push({setting,scheme,route,...width,...await contrast(page,'#root')});
-   if(route.startsWith('#/record')&&setting!=='auto')await page.screenshot({path:new URL('./'+info.project.name+'-'+setting+'.png',import.meta.url).pathname,fullPage:true});
+   if(route.startsWith('#/record')&&setting!=='auto')await page.screenshot({path:fileURLToPath(new URL('./'+info.project.name+'-'+setting+'.png',import.meta.url)),fullPage:true});
   }
  }
  await page.goto(url+'#/record/demo-topic-function');await theme(page,'light');
@@ -60,7 +61,7 @@ test('shared input, focus, error, selection and buttons in both themes',async({p
   const fields=await page.locator('#color-fixture').evaluate(e=>Array.from(e.querySelectorAll('input,textarea')).map(x=>({font:getComputedStyle(x).fontSize,border:getComputedStyle(x).borderTopColor,invalid:x.getAttribute('aria-invalid'),placeholder:getComputedStyle(x,'::placeholder').color,background:getComputedStyle(x).backgroundColor})));
   for(const f of fields)if(!f.invalid||f.font)expect(parseFloat(f.font)).toBeGreaterThanOrEqual(16);
   result.push({setting,...width,fields,...await contrast(page,'#color-fixture')});
-  await page.screenshot({path:new URL('./'+info.project.name+'-fields-'+setting+'.png',import.meta.url).pathname,fullPage:true});
+  await page.screenshot({path:fileURLToPath(new URL('./'+info.project.name+'-fields-'+setting+'.png',import.meta.url)),fullPage:true});
  }
  writeFileSync(new URL('./'+info.project.name+'-fields.json',import.meta.url),JSON.stringify(result,null,2));
 });
