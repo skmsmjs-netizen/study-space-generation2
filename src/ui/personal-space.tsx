@@ -135,7 +135,7 @@ function SignIn({ client }: { client: SupabaseClient }) {
       if (error) throw error;
       setPassword('');
       if (create && !data.session) setNotice('이메일로 받은 확인 링크를 연 뒤 로그인해 주세요.');
-    } catch { setError(create ? '가입하지 못했습니다. 이메일·비밀번호를 확인하거나 잠시 후 다시 시도해 주세요.' : '로그인하지 못했습니다. 이메일·비밀번호와 연결 상태를 확인해 주세요.'); }
+    } catch (error) { const limited = create && typeof error === 'object' && error !== null && 'code' in error && error.code === 'over_email_send_rate_limit'; setError(limited ? '가입 확인 메일의 발송 한도에 도달했습니다. 잠시 후 다시 시도해 주세요.' : create ? '가입하지 못했습니다. 이메일·비밀번호를 확인하거나 잠시 후 다시 시도해 주세요.' : '로그인하지 못했습니다. 이메일·비밀번호와 연결 상태를 확인해 주세요.'); }
     finally { setBusy(false); }
   }
   return <form onSubmit={event => { event.preventDefault(); void submit(creating); }}><p>로그인하면 이 공간의 기록을 서버에 저장합니다. 시연 기록은 자동으로 옮기지 않습니다.</p>
