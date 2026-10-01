@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, type ReactNode } from 'react';
+import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import type { SupabaseClient } from '@supabase/supabase-js';
 import { Button, Card, ErrorState, Input, LoadingState, Modal } from './index';
 import { createStudyClient, onlineTransport, readServerConfig } from '../data/supabase-client';
@@ -11,7 +11,8 @@ export function PersonalSpace({ onDemo, renderWorkspace }: { onDemo: () => void;
   const client = useMemo(() => configured ? createStudyClient(configured) : null, [configured]);
   const [userId, setUserId] = useState<string | null>(null), [authReady, setAuthReady] = useState(false);
   const [repo, setRepo] = useState<PersonalRepository | null>(null), [error, setError] = useState('');
-  const [retry, setRetry] = useState(0), [opening, setOpening] = useState(false);
+  const [retry, setRetry] = useState(0), [opening, setOpening] = useState(false), [otherWriter, setOtherWriter] = useState(false);
+  const writerTask = useRef<Promise<void>>(Promise.resolve());
   useEffect(() => {
     if (!client) { setAuthReady(true); return; }
     let alive = true;
@@ -20,31 +21,58 @@ export function PersonalSpace({ onDemo, renderWorkspace }: { onDemo: () => void;
     return () => { alive = false; data.subscription.unsubscribe(); };
   }, [client]);
   useEffect(() => {
-    setRepo(null); setError('');
+    setRepo(null); setError(''); setOtherWriter(false);
     if (!client || !userId) { setOpening(false); return; }
-    let disposed = false; let release: (() => void) | undefined;
+    let disposed = false;
+    let finish: () => void = () => {};
+    const closed = new Promise<void>(resolve => { finish = resolve; });
     setOpening(true);
     if (!navigator.locks) { setError('동시 작성을 보호할 수 있는 최신 브라우저에서 열어 주세요.'); setOpening(false); return; }
-    void navigator.locks.request(`study-space:personal:${userId}:writer`, { ifAvailable: true }, async lock => {
+    // Await our previous request's completion, which includes the browser releasing its lock.
+    const previous = writerTask.current;
+    const task = (async () => {
+      await previous.catch(() => {});
       if (disposed) return;
-      if (!lock) { setError('다른 창에서 내 공부 공간을 사용 중입니다. 그 창의 입력을 마친 뒤 다시 열어 주세요.'); setOpening(false); return; }
-      try {
-        const transport = onlineTransport(client), server = await transport.load();
+      // An email confirmation can sign in the original hidden signup tab as well.
+      // Do not let that unopened background space claim the writer before the visible tab.
+      if (document.visibilityState === 'hidden') {
+        let removeListener: () => void = () => {};
+        const visible = new Promise<void>(resolve => {
+          const changed = () => { if (document.visibilityState !== 'hidden') resolve(); };
+          document.addEventListener('visibilitychange', changed);
+          removeListener = () => document.removeEventListener('visibilitychange', changed);
+          changed();
+        });
+        try { await Promise.race([visible, closed]); } finally { removeListener(); }
+      }
+      if (disposed) return;
+      await navigator.locks.request(`study-space:personal:${userId}:writer`, { ifAvailable: true }, async lock => {
         if (disposed) return;
-        if (server.data.userId !== userId || server.data.namespace !== 'personal') throw Error('로그인한 사용자의 자료가 아닙니다.');
-        const repository = new PersonalRepository(localStorage, transport, server);
-        setRepo(repository); setOpening(false); void repository.flush();
-      } catch (error) { if (!disposed) { setError(errorText(error)); setOpening(false); } }
-      if (!disposed) await new Promise<void>(resolve => { release = resolve; });
-    }).catch(error => { if (!disposed) { setError(errorText(error)); setOpening(false); } });
-    return () => { disposed = true; release?.(); };
+        if (!lock) { setOtherWriter(true); setError('다른 창에서 내 공부 공간을 사용 중입니다. 그 창의 입력을 마친 뒤 다시 열어 주세요.'); setOpening(false); return; }
+        try {
+          const transport = onlineTransport(client);
+          const server = await Promise.race([transport.load(), closed.then(() => null)]);
+          if (disposed || !server) return;
+          if (server.data.userId !== userId || server.data.namespace !== 'personal') throw Error('로그인한 사용자의 자료가 아닙니다.');
+          const repository = new PersonalRepository(localStorage, transport, server);
+          setRepo(repository); setOpening(false); void repository.flush();
+        } catch (error) {
+          if (!disposed) { setError(errorText(error)); setOpening(false); }
+          return; // An error screen is not a writer; release before retrying.
+        }
+        await closed;
+      });
+    })();
+    writerTask.current = task;
+    void task.catch(error => { if (!disposed) { setError(errorText(error)); setOpening(false); } });
+    return () => { disposed = true; finish(); };
   }, [client, userId, retry]);
   if (repo && client) return renderWorkspace(repo, <ServerStatus repository={repo} client={client} onDemo={onDemo} />);
   return <main className="boot personal-entry"><Card><h1>내 공부 공간</h1>
     {!configured ? <ErrorState title="서버 연결 설정이 필요합니다" message="시연 기록은 그대로 남아 있습니다. 서버 공개 설정을 적용한 뒤 개인 공간을 열 수 있습니다." />
       : !authReady || opening ? <LoadingState message="내 기록을 불러오는 중…" />
       : !userId && client ? <SignIn client={client} />
-      : <><ErrorState title="내 공부 공간을 열지 못했습니다" message={error || '서버에 연결하지 못했습니다. 기록은 지우지 않았습니다.'} onRetry={() => setRetry(value => value + 1)} /><Button onClick={() => { void client?.auth.signOut({ scope: 'local' }); }}>다시 로그인</Button></>}
+      : <><ErrorState title="내 공부 공간을 열지 못했습니다" message={error || '서버에 연결하지 못했습니다. 기록은 지우지 않았습니다.'} onRetry={() => setRetry(value => value + 1)} />{otherWriter ? <p>가입 확인 메일에서 새 탭이 열렸다면, 처음 가입한 학습앱 탭으로 돌아가 주세요.</p> : <Button onClick={() => { void client?.auth.signOut({ scope: 'local' }); }}>다시 로그인</Button>}</>}
     {error && !userId && <p role="alert">{error}</p>}
     <Button variant="quiet" onClick={onDemo}>시연 공간으로 돌아가기</Button>
   </Card></main>;
