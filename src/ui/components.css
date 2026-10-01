@@ -16,6 +16,7 @@ a { color: var(--color-primary); text-underline-offset: .2em; }
 .ui-button--secondary:not(:disabled):hover { background: var(--color-secondary-button-hover); }
 .ui-button--secondary:not(:disabled):active { background: var(--color-secondary-button-pressed); }
 .ui-button--quiet { background: transparent; }
+.ui-button { max-inline-size: 100%; }
 .ui-button--danger { color: var(--color-destructive-button-text); background: var(--color-destructive-button-background); }
 .ui-button--danger:not(:disabled):hover { background: var(--color-destructive-button-hover); }
 .ui-button--danger:not(:disabled):active { background: var(--color-destructive-button-pressed); }

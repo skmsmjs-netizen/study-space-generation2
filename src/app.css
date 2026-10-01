@@ -148,12 +148,14 @@ nav a[aria-current="page"] {
   display: none;
 }
 .main-content {
+  container: study-content / inline-size;
   max-width: 76rem;
   margin: 0 auto;
   padding: var(--space-5) var(--space-7) var(--space-8);
 }
 .page-heading {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: var(--space-4);
@@ -667,6 +669,12 @@ nav a[aria-current="page"] {
 .topbar > .ui-field select { min-inline-size: 0; max-inline-size: min(14rem, 100%); }
 
 .workspace-tools-content > a { min-inline-size: 0; overflow-wrap: anywhere; }
+
+/* Use the space available beside the sidebar, including enlarged text. */
+@container study-content (max-width: 40rem) {
+  .record-layout { grid-template-columns: minmax(0, 1fr); }
+  .topic-picker { position: static; max-block-size: none; }
+}
 
 /* Use the available content width, including enlarged root text, instead of
    viewport breakpoints alone. Cards and stored Canvas geometry stay intact. */
