@@ -19,7 +19,9 @@ export function FullBackup({ repository }: { repository: StudyRepository }) {
   // A blocked download can be retried from a real link without rebuilding the archive.
   // Keep its URL alive until replacement/unmount; never infer disk persistence from a click.
   useEffect(() => () => { if (prepared) URL.revokeObjectURL(prepared.url); }, [prepared]);
-  useEffect(() => { setPrepared(null); }, [ownerKey]);
+  useEffect(() => {
+    if (prepared && prepared.ownerKey !== ownerKey) setPrepared(null);
+  }, [ownerKey, prepared]);
   function download(file: Blob, name: string) {
     const url = URL.createObjectURL(file);
     setPrepared({ url, name, ownerKey });
@@ -79,7 +81,7 @@ export function FullBackup({ repository }: { repository: StudyRepository }) {
     {error && <p role="alert">{error}</p>}{notice && <p role="status">{notice}</p>}
     {prepared?.ownerKey === ownerKey && !busy && !restored && <Card><h2>준비된 백업 파일</h2>
       <p>{prepared.name}</p>
-      <a href={prepared.url} download={prepared.name}>백업 파일 다시 저장</a>
+      <a className="ui-button ui-button--secondary" href={prepared.url} download={prepared.name}>백업 파일 다시 저장</a>
       <p>이 화면에서 같은 파일을 다시 저장할 수 있습니다. 다운로드를 지원하지 않는 앱에서는 Safari나 Chrome으로 공부 공간을 열어 주세요.</p>
     </Card>}
     {restored && <Button onClick={() => location.reload()}>다시 열어 복원하기</Button>}
