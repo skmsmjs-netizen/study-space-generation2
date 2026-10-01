@@ -67,9 +67,10 @@ it('finds material originals, questions, answers and code without changing origi
   expect(data).toEqual(original);
 });
 it('excludes another owner, deleted content and content under a deleted subject', () => {
-  const { data } = fixture(),
-    material = data.studyMaterials![0];
-  data.studyMaterials!.push(
+  const { data } = fixture();
+  const material = data.studyMaterials?.[0];
+  if (!material || !data.studyMaterials) throw Error('Missing synthetic material');
+  data.studyMaterials.push(
     { ...material, id: 'foreign', userId: 'other', title: '다른계정원문' },
     { ...material, id: 'trash', deletedAt: at, title: '휴지통원문' },
   );
@@ -83,7 +84,9 @@ it('excludes another owner, deleted content and content under a deleted subject'
         true,
       ),
     ).toEqual([]);
-  data.subjects.find((row) => row.id === material.subjectId)!.deletedAt = at;
+  const subject = data.subjects.find((row) => row.id === material.subjectId);
+  if (!subject) throw Error('Missing synthetic subject');
+  subject.deletedAt = at;
   expect(searchWorkspace(buildWorkspaceSearch(data), '전위차', [material.subjectId], true)).toEqual(
     [],
   );
@@ -110,7 +113,8 @@ it('matches a historical test only within the question’s actual subject and re
   const { data, entity } = fixture();
   const other = data.nodes.find(
     (row) => row.role === 'topic' && row.subjectId !== 'demo-subject-math',
-  )!;
+  );
+  if (!other) throw Error('Missing synthetic topic');
   const question = (topicId: string, response: string) => ({
     cardId: topicId,
     cardVersion: 1,
