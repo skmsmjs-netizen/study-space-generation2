@@ -70,7 +70,7 @@ export function SelectionBackground({ id }: { id: string }) {
 /** Adapted Magic UI BlurFade. Zero blur and a small offset retain legible Korean text. */
 export function NoticeEntrance({ children, className }: { children: ReactNode; className?: string }) {
   const enabled = useMotionEnabled();
-  return <motion.div className={className} data-motion-source="magic-ui" initial={enabled ? { opacity: 0 } : false} animate={{ opacity: 1 }} transition={{ duration: enabled ? .18 : 0, ease: 'easeOut' }}>{children}</motion.div>;
+  return <motion.div className={className} data-motion-source="magic-ui" initial={enabled ? { opacity: .9 } : false} animate={{ opacity: 1 }} transition={{ duration: enabled ? .18 : 0, ease: 'easeOut' }}>{children}</motion.div>;
 }
 
 /** Adapted React Bits FadeContent, copyright David Haz. No hidden-first content or ScrollTrigger dependency. */
@@ -78,7 +78,7 @@ export function FadeContent({ children }: { children: ReactNode }) {
   const ref = useRef<HTMLDivElement>(null), enabled = useMotionEnabled();
   useEffect(() => {
     if (!enabled || !ref.current) return;
-    const context = gsap.context(() => { gsap.fromTo(ref.current, { opacity: .65 }, { opacity: 1, duration: .18, ease: 'power2.out', clearProps: 'opacity' }); });
+    const context = gsap.context(() => { gsap.fromTo(ref.current, { opacity: .9 }, { opacity: 1, duration: .18, ease: 'power2.out', clearProps: 'opacity' }); });
     return () => context.revert();
   }, [enabled]);
   return <div ref={ref} data-motion-source="react-bits">{children}</div>;

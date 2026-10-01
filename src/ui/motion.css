@@ -18,5 +18,5 @@
 .motion-rive-canvas { inline-size: 100%; block-size: 100%; }
 .motion-rive-canvas[hidden], .motion-player [hidden] { display: none; }
 .ui-modal { animation: ui-modal-appear var(--motion-transition) ease-out; }
-@keyframes ui-modal-appear { from { opacity: .65; } to { opacity: 1; } }
+@keyframes ui-modal-appear { from { opacity: .9; } to { opacity: 1; } }
 @media (prefers-reduced-motion: reduce) { .ui-modal { animation: none; } }
