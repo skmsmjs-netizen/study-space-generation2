@@ -95,6 +95,10 @@ export interface ExperienceRecovery {
   key: string;
   savedRaw: string | null;
   rescuedRaw: string | null;
+  widthKey: string;
+  widthSavedRaw: string | null;
+  widthRescuedRaw: string | null;
+  widthArchives: DraftArchive[];
   archives: Array<DraftArchive & { usable: boolean }>;
   issues: string[];
 }
@@ -105,10 +109,13 @@ const validExperienceRaw = (raw: string | null) => {
 /** Read only this owner's exact setting strings; no repair or write on inspection. */
 export function inspectExperienceRecovery(data: ExperienceOwner): ExperienceRecovery {
   const key = experienceKey(data);
-  let savedRaw: string | null, rescuedRaw: string | null;
+  const widthKey = experienceReadingWidthKey(data);
+  let savedRaw: string | null, rescuedRaw: string | null, widthSavedRaw: string | null, widthRescuedRaw: string | null;
   try {
     savedRaw = localStorage.getItem(key);
     rescuedRaw = readRescuedDraft(key, { scope: 'device' });
+    widthSavedRaw = localStorage.getItem(widthKey);
+    widthRescuedRaw = readRescuedDraft(widthKey, { scope: 'device' });
   } catch {
     throw Error('이 기기의 설정 원문에 접근하지 못했습니다. 저장된 내용을 변경하지 않았습니다. 연결과 브라우저의 저장 허용을 확인한 뒤 다시 읽어 주세요.');
   }
@@ -116,7 +123,8 @@ export function inspectExperienceRecovery(data: ExperienceOwner): ExperienceReco
   const archives = list.archives.filter(archive => archive.sourceKey === key)
     .map(archive => ({ ...archive, usable: validExperienceRaw(archive.raw) }))
     .sort((a, b) => (b.metadata?.archivedAt ?? '').localeCompare(a.metadata?.archivedAt ?? '') || a.archiveKey.localeCompare(b.archiveKey));
-  return { key, savedRaw, rescuedRaw, archives,
+  return { key, savedRaw, rescuedRaw, widthKey, widthSavedRaw, widthRescuedRaw,
+    widthArchives: list.archives.filter(archive => archive.sourceKey === widthKey), archives,
     issues: [...new Set(list.issues.map(issue => issue.message))] };
 }
 export function serializeExperienceRecovery(snapshot: ExperienceRecovery): string {
@@ -131,7 +139,10 @@ export function restoreExperience(
   const key = experienceKey(data);
   const unchanged = () => {
     if (expected.key !== key || localStorage.getItem(key) !== expected.savedRaw ||
-      readRescuedDraft(key, { scope: 'device' }) !== expected.rescuedRaw)
+      readRescuedDraft(key, { scope: 'device' }) !== expected.rescuedRaw ||
+      expected.widthKey !== experienceReadingWidthKey(data) ||
+      localStorage.getItem(expected.widthKey) !== expected.widthSavedRaw ||
+      readRescuedDraft(expected.widthKey, { scope: 'device' }) !== expected.widthRescuedRaw)
       throw Error('다른 창에서 설정이 바뀌었습니다. 현재 설정과 보관본을 유지했습니다. 목록을 다시 읽고 복구할 내용을 확인해 주세요.');
   };
   unchanged();
@@ -150,6 +161,9 @@ export function restoreExperience(
   if (expected.savedRaw !== null) archiveDamagedDraft(key, '이어가기 설정 복구 전 원문');
   if (expected.rescuedRaw !== null && expected.rescuedRaw !== expected.savedRaw)
     archiveDamagedDraft(key, '저장하지 못한 이어가기 설정 원문', expected.rescuedRaw);
+  if (expected.widthSavedRaw !== null) archiveDamagedDraft(expected.widthKey, '읽기 폭 복구 전 원문');
+  if (expected.widthRescuedRaw !== null && expected.widthRescuedRaw !== expected.widthSavedRaw)
+    archiveDamagedDraft(expected.widthKey, '저장하지 못한 읽기 폭 원문', expected.widthRescuedRaw);
   const windowId = personalDraftWindow(key);
   const windowRaw = windowId ? localStorage.getItem(`${key}:recovery:window-${windowId}`) : null;
   if (windowRaw !== null && windowRaw !== raw && windowRaw !== expected.savedRaw && windowRaw !== expected.rescuedRaw)

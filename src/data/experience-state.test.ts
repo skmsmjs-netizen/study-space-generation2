@@ -39,10 +39,10 @@ describe('brand continuity preservation and observations', () => {
     try { expect(readExperience(data).next?.body).toBe(body); }
     finally { reopenFirst(); }
   });
-  it('recognizes an empty saved marker without rewriting it and keeps damaged nonempty data', () => {
+  it('keeps genuinely empty or damaged saved strings blocked without rewriting them', () => {
     const data = createDemoState(), key = experienceKey(data);
     localStorage.setItem(key, '');
-    expect(readExperience(data).next).toBeNull();
+    expect(() => readExperience(data)).toThrow('저장된 원문은 그대로 보존했습니다');
     expect(localStorage.getItem(key)).toBe('');
     const damaged = '  {unfinished original\n';
     localStorage.setItem(key, damaged);

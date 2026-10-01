@@ -42,6 +42,7 @@ export function BrandIdentity({ compact = false }: { compact?: boolean }) {
 }
 export function useExperience(data: AppState) {
   const key = experienceKey(data);
+  const widthKey = experienceReadingWidthKey(data);
   const [state, setState] = useState<ExperienceState>(emptyExperience);
   const [error, setError] = useState('');
   const [readBlocked, setReadBlocked] = useState(false);
@@ -65,7 +66,7 @@ export function useExperience(data: AppState) {
       if (!(e instanceof CustomEvent) || e.detail === key) refresh();
     };
     const storage = (e: StorageEvent) => {
-      if (e.key === key || e.key === experienceReadingWidthKey(data)) refresh();
+      if (e.key === key || e.key === widthKey) refresh();
     };
     window.addEventListener(EXPERIENCE_CHANGED, changed);
     window.addEventListener('storage', storage);
@@ -73,7 +74,7 @@ export function useExperience(data: AppState) {
       window.removeEventListener(EXPERIENCE_CHANGED, changed);
       window.removeEventListener('storage', storage);
     };
-  }, [key, refresh]);
+  }, [key, widthKey, refresh]);
   const change = (fn: (current: ExperienceState) => ExperienceState) => {
     try {
       const next = updateExperience(data, fn);

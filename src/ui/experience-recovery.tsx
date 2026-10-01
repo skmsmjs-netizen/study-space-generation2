@@ -34,8 +34,10 @@ export function ExperienceRecoveryControl({ data, onRecovered }: {
   const restore = (kind: 'archive' | 'restart') => {
     if (!current || (kind === 'archive' && (!selected?.usable || selected.raw === null))) return;
     try {
-      restoreExperience(data, current, kind === 'archive'
-        ? { kind, archiveKey: selected!.archiveKey, raw: selected!.raw! } : { kind });
+      if (kind === 'archive') {
+        if (!selected?.usable || selected.raw === null) return;
+        restoreExperience(data, current, { kind, archiveKey: selected.archiveKey, raw: selected.raw });
+      } else restoreExperience(data, current, { kind });
       onRecovered(); setOpen(false);
       setNotice(kind === 'archive'
         ? '확인한 보관본으로 설정을 복구했습니다. 이전 원문 사본도 유지했습니다.'

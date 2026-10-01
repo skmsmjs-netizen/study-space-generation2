@@ -29,7 +29,7 @@ export function readRescuedDraft(key: string, options: DraftOptions = {}): strin
   return pending.get(key) ?? null;
 }
 export function draftHasUnstoredText(key: string): boolean { return pending.has(key); }
-export function storeDraftSafely(key: string, value: string, options: DraftOptions = {}): void {
+export function storeDraftSafely(key: string, value: string): void {
   // Keep the exact value before a potentially throwing write. Route unmount cannot discard it.
   pending.set(key, value);
   const id = personalDraftWindow(key);
@@ -37,11 +37,11 @@ export function storeDraftSafely(key: string, value: string, options: DraftOptio
     const archiveKey = windowCopyKey(key, id);
     localStorage.setItem(archiveKey, value);
     if (localStorage.getItem(archiveKey) !== value) throw Error('이 창의 초안 보관을 확인하지 못했습니다. 입력은 현재 창에 남아 있습니다.');
-    const metadata: DraftArchiveMetadata = { version: 1, archiveKey, sourceKey: key, archivedAt: new Date().toISOString(), reason: options.scope === 'device' ? '이 창에서 남긴 이어가기 설정 사본' : '창별 작성 초안' };
+    const metadata: DraftArchiveMetadata = { version: 1, archiveKey, sourceKey: key, archivedAt: new Date().toISOString(), reason: '창별 작성 초안' };
     localStorage.setItem(draftArchiveMetadataKey(archiveKey), JSON.stringify(metadata));
   }
   localStorage.setItem(key, value);
-  if (id && options.scope !== 'device') localStorage.setItem(`${key}:window-author`, id);
+  if (id) localStorage.setItem(`${key}:window-author`, id);
   lastWritten.set(key, value);
   pending.delete(key);
 }

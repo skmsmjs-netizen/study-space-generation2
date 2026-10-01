@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import { archiveDamagedDraft, clearRescuedDraft } from './draft-safety';
 import { registerPersonalDraftWindow } from './personal-draft-window';
-import { experienceKey, experienceUnstored, inspectExperienceRecovery, readExperience, restoreExperience, serializeExperienceRecovery, updateExperience } from './experience-state';
+import { experienceKey, experienceReadingWidthKey, experienceUnstored, inspectExperienceRecovery, readExperience, restoreExperience, serializeExperienceRecovery, updateExperience } from './experience-state';
 
 const data = { namespace: 'personal' as const, userId: 'experience-repair-fixture' };
 const key = experienceKey(data);
@@ -143,4 +143,20 @@ it('restoring an old observation-enabled copy retains its events and raw archive
   restoreExperience(data, inspectExperienceRecovery(data), { kind: 'archive', archiveKey: original.archiveKey, raw });
   expect(readExperience(data).measurement).toEqual({ ...parsed.measurement, enabled: false });
   expect(inspectExperienceRecovery(data).archives.some(archive => archive.raw === raw)).toBe(true);
+});
+
+
+it('preserves damaged reading-width strings and rejects a width changed after inspection', () => {
+  savedSetting(); const widthKey = experienceReadingWidthKey(data);
+  localStorage.setItem(widthKey, '  damaged-width-original\n');
+  let snapshot = inspectExperienceRecovery(data);
+  const copy = snapshot.archives.find(archive => archive.usable)!;
+  localStorage.setItem(widthKey, 'normal');
+  expect(() => restoreExperience(data, snapshot, { kind: 'archive', archiveKey: copy.archiveKey, raw: copy.raw! })).toThrow('다른 창에서 설정이 바뀌었습니다');
+  localStorage.setItem(widthKey, '  damaged-width-original\n');
+  snapshot = inspectExperienceRecovery(data);
+  expect(JSON.parse(serializeExperienceRecovery(snapshot)).widthSavedRaw).toBe('  damaged-width-original\n');
+  restoreExperience(data, snapshot, { kind: 'archive', archiveKey: copy.archiveKey, raw: copy.raw! });
+  expect(readExperience(data).readingWidth).toBe('wide');
+  expect(inspectExperienceRecovery(data).widthArchives.some(archive => archive.raw === '  damaged-width-original\n')).toBe(true);
 });
