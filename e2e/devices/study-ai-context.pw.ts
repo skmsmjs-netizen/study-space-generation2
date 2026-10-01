@@ -48,6 +48,7 @@ test('선택 기록·후속 편집·수식 결과는 터치와 재접속 후에�
     true,
   );
   await page.getByRole('combobox', { name: 'GPT 작업', exact: true }).selectOption('formula');
+  await page.getByRole('combobox', { name: '카드 개수', exact: true }).selectOption('20');
   await page.getByRole('button', { name: '수식 보완 만들기', exact: true }).tap();
   await expect(page.locator('math')).toHaveCount(1);
   await page.getByRole('button', { name: '자료 저장', exact: true }).tap();
@@ -59,8 +60,20 @@ test('선택 기록·후속 편집·수식 결과는 터치와 재접속 후에�
   );
   await expect(notes).toHaveValue(edited);
   await expect(page.locator('math')).toHaveCount(1);
+  await expect(page.getByRole('combobox', { name: '카드 개수', exact: true })).toHaveValue('20');
   await expect(page.getByLabel('합성 GPT 호출')).toHaveText('1');
   await expect(page.getByLabel('저장된 프롬프트 버전')).toHaveText(STUDY_GPT_PROMPT_VERSION);
+  // Explanations can also contain formulas; rendering must not depend on the task label.
+  await page.getByRole('combobox', { name: 'GPT 작업', exact: true }).selectOption('explain');
+  await page.getByRole('button', { name: '새 결과 만들기', exact: true }).tap();
+  await expect(page.locator('math')).toHaveCount(1);
+  await page.getByRole('button', { name: '자료 저장', exact: true }).tap();
+  await expect(page.getByLabel('합성 GPT 호출')).toHaveText('2');
+  await page.reload();
+  await expect(page.getByRole('combobox', { name: 'GPT 작업', exact: true })).toHaveValue('explain');
+  await expect(page.locator('math')).toHaveCount(1);
+  await expect(notes).toHaveValue(edited);
+  await expect(page.getByLabel('합성 GPT 호출')).toHaveText('2');
   expect(errors).toEqual([]);
   expect(external).toEqual([]);
 });

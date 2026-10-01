@@ -10,7 +10,7 @@ const windowFor = (id: string) => releases.push(registerPersonalDraftWindow(data
 beforeEach(() => { localStorage.clear(); clearRescuedDraft(key); });
 afterEach(() => { vi.restoreAllMocks(); releases.splice(0).reverse().forEach(release => release()); clearRescuedDraft(key); });
 
-it('a second personal window reads shared settings and retains the next action and problem memo when updating its location', () => {
+it('shares reading width while preserving independent next-action and memo originals in prior window copies', () => {
   windowFor('first');
   updateExperience(data, state => ({ ...state, readingWidth: 'wide',
     next: { location: { route: '/math', label: '수식 탐색' }, body: '  먼저 적용 조건\n' },
@@ -19,14 +19,13 @@ it('a second personal window reads shared settings and retains the next action a
   const before = localStorage.getItem(key);
   windowFor('second');
   expect(readExperience(data).readingWidth).toBe('wide');
+  expect(readExperience(data).next).toBeNull();
   updateExperience(data, state => ({ ...state, last: { route: '/materials', label: '강의 자료' } }));
-  const result = readExperience(data);
-  expect(result.next?.body).toBe('  먼저 적용 조건\n');
-  expect(result.support[0]).toMatchObject({ id: 'preserved-problem', body: '  원문과 예외\n' });
-  expect(result.readingWidth).toBe('wide');
+  expect(readExperience(data).next).toBeNull();
   expect(localStorage.getItem(`${key}:recovery:window-first`)).toBe(before);
   windowFor('first');
-  expect(readExperience(data).last?.route).toBe('/materials');
+  expect(readExperience(data).next?.body).toBe('  먼저 적용 조건\n');
+  expect(readExperience(data).support[0]).toMatchObject({ id: 'preserved-problem', body: '  원문과 예외\n' });
 });
 
 const savedSetting = () => {

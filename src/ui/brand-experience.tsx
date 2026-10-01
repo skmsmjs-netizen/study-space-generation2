@@ -6,6 +6,7 @@ import { BRAND, emptyExperience, retainNextAction, type ExperienceState } from '
 import {
   EXPERIENCE_CHANGED,
   experienceKey,
+  experienceReadingWidthKey,
   experienceUnstored,
   readExperience,
   updateExperience,
@@ -64,7 +65,7 @@ export function useExperience(data: AppState) {
       if (!(e instanceof CustomEvent) || e.detail === key) refresh();
     };
     const storage = (e: StorageEvent) => {
-      if (e.key === key) refresh();
+      if (e.key === key || e.key === experienceReadingWidthKey(data)) refresh();
     };
     window.addEventListener(EXPERIENCE_CHANGED, changed);
     window.addEventListener('storage', storage);

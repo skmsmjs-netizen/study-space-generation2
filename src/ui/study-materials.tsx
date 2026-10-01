@@ -176,6 +176,7 @@ function MaterialEditor({
           sourceText: '',
           audio: null,
           results: [],
+          aiRequest: { task: 'study-pack' },
         },
   );
   const current = useRef(content),
@@ -191,8 +192,8 @@ function MaterialEditor({
     [error, setError] = useState(''),
     [notice, setNotice] = useState(''),
     [busy, setBusy] = useState(false),
-    [importing, setImporting] = useState(false),
-    [count, setCount] = useState(10);
+    [importing, setImporting] = useState(false);
+  const count = content.aiRequest?.requestedCardCount ?? 5;
   const [audioURL, setAudioURL] = useState(''),
     [missingAudio, setMissingAudio] = useState(false),
     audioElement = useRef<HTMLAudioElement>(null);
@@ -441,7 +442,7 @@ function MaterialEditor({
       setCardIndex(0);
       setAnswer('');
       setEditingResult(false);
-      setTab(generated.quiz ? 'quiz' : generated.map ? 'map' : 'summary');
+      setTab(generated.request?.task === 'study-pack' ? 'summary' : generated.quiz ? 'quiz' : generated.map ? 'map' : 'summary');
       await draftFlight.current;
       setNotice('결과를 만들었습니다. 근거를 확인하고 자료 저장을 눌러 주세요.');
     } catch (error) {
@@ -768,10 +769,10 @@ function MaterialEditor({
               ))}
             </Select>
             <Select
-              label="카드 개수"
+              label={task === 'study-pack' ? '카드·퀴즈 개수' : '카드 개수'}
               value={count}
               disabled={busy || saving || importing}
-              onChange={(event) => setCount(Number(event.target.value))}
+              onChange={(event) => requestPatch({ requestedCardCount: Number(event.target.value) as StudyAIRequest['requestedCardCount'] })}
             >
               {[5, 10, 20, 30].map((value) => (
                 <option key={value} value={value}>
@@ -797,7 +798,7 @@ function MaterialEditor({
                   ? '새 결과 만들기'
                   : task === 'summary'
                     ? '요약과 카드 만들기'
-                    : `${STUDY_AI_TASKS[task].label} 만들기`}
+                    : task === 'study-pack' ? '복습 자료 한 번에 만들기' : `${STUDY_AI_TASKS[task].label} 만들기`}
             </Button>
           </>
         )}
@@ -808,6 +809,7 @@ function MaterialEditor({
           {saving ? '저장 중…' : '자료 저장'}
         </Button>
       </div>
+      {aiAllowed && task === 'study-pack' && <p className="material-hint">한 번의 요청으로 핵심 요약·암기 카드·객관식 퀴즈·개념도를 함께 만듭니다. 필요한 기능만 만들려면 GPT 작업을 바꿔 주세요.</p>}
       {aiAllowed && ranges && ranges.batches.length > 1 && <div className="material-fields"><p>선택 원문이 한 번의 처리 범위를 넘습니다. 전체 {ranges.batches.length}개 범위 중 하나씩 생성합니다. 원문과 먼저 만든 결과는 유지됩니다.</p><Select label="처리할 원문 범위" value={Math.min(rangeIndex, ranges.batches.length - 1)} disabled={busy || saving} onChange={event => retain({ ...current.current, generationProgress: { sourceIdentity: ranges.sourceIdentity, index: Number(event.target.value), completed: current.current.generationProgress?.sourceIdentity === ranges.sourceIdentity ? current.current.generationProgress.completed : [] } })}>{ranges.batches.map((batch, index) => <option key={index} value={index}>{index + 1} / {ranges.batches.length} · {batch[0]?.label ?? batch[0]?.id}–{batch.at(-1)?.label ?? batch.at(-1)?.id} · {batch.reduce((n, s) => n + s.text.length, 0).toLocaleString('ko-KR')}자{content.generationProgress?.sourceIdentity === ranges.sourceIdentity && content.generationProgress.completed.some(c => c.index === index) ? ' · 결과 보관됨' : ''}</option>)}</Select></div>}
       {aiAllowed && task !== 'summary' && (
         <fieldset
@@ -915,7 +917,7 @@ function MaterialEditor({
                 {
                   {
                     summary:
-                      result.request && result.request.task !== 'summary' ? '보조 결과' : '요약',
+                      result.request && !['summary','study-pack'].includes(result.request.task) ? '보조 결과' : '요약',
                     transcript: '받아쓴 원문',
                     cards: `플래시카드 ${cards.length}`,
                     quiz: `퀴즈 ${result.quiz?.length ?? 0}`,
@@ -966,7 +968,7 @@ function MaterialEditor({
                       }
                     />
                   ) : (
-                    <StudyResultText text={row.text} formula={result.request?.task === 'formula'} />
+                    <StudyResultText text={row.text} />
                   )}
                   {row.originalText !== undefined && (
                     <details>
@@ -1071,9 +1073,9 @@ function MaterialEditor({
                     </>
                   ) : (
                     <>
-                      <h2>{card.question}</h2>
+                      <h2><StudyResultText text={card.question} as="span" /></h2>
                       {answer === cardKey && cardKey ? (
-                        <p className="material-answer">{card.answer}</p>
+                        <StudyResultText text={card.answer} className="material-answer" />
                       ) : (
                         <Button variant="primary" onClick={() => revealCard()}>
                           답 보기

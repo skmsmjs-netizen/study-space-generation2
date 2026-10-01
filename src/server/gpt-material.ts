@@ -11,6 +11,7 @@ import { buildMaterialGPTInstructions, STUDY_GPT_PROMPT_VERSION } from './study-
 
 export interface GPTMaterialRuntime {
   streamResponse(options: {
+    outputFormat?: 'material' | 'quiz' | 'mindmap' | 'topic-memory' | 'study-pack';
     model: string;
     input: string;
     instructions: string;
@@ -74,6 +75,7 @@ export async function generateGPTMaterial(
   options.signal?.throwIfAborted();
   const response = await options.runtime.streamResponse({
     model: options.model,
+    outputFormat: input.request?.task === 'study-pack' ? 'study-pack' : input.request?.task === 'quiz' ? 'quiz' : input.request?.task === 'mindmap' ? 'mindmap' : 'material',
     input: JSON.stringify({ sourceSegments: segments, ...(input.range ? { range: input.range } : {}), ...(input.request?.history ? { history: input.request.history } : {}) }),
     instructions: buildMaterialGPTInstructions(input.request?.task ?? 'summary', input.cardCount, input.request),
     signal: options.signal
@@ -110,14 +112,14 @@ export async function generateGPTMaterial(
       originalQuestion: card.question,
       originalAnswer: card.answer,
     })),
-    ...(input.request?.task === 'quiz' ? { quiz: Array.isArray(parsed.quiz) ? parsed.quiz.map((q: Record<string, unknown>) => ({ ...q, id: crypto.randomUUID() })) : parsed.quiz } : {}),
-    ...(input.request?.task === 'mindmap' ? { map: parsed.map } : {}),
+    ...(['quiz','study-pack'].includes(input.request?.task ?? '') ? { quiz: Array.isArray(parsed.quiz) ? parsed.quiz.map((q: Record<string, unknown>) => ({ ...q, id: crypto.randomUUID() })) : parsed.quiz } : {}),
+    ...(['mindmap','study-pack'].includes(input.request?.task ?? '') && parsed.map !== null ? { map: parsed.map } : {}),
   };
   validateMaterialResult(result);
-  if (input.request?.task === 'quiz' && (!result.diagnostics?.length && !result.quiz?.length || (result.quiz?.length ?? 0) > input.cardCount)) throw new DomainError('AI_ERROR', '요청한 퀴즈의 문항과 근거를 확인하지 못했습니다.');
-  if (input.request?.task === 'mindmap' && !result.map && !result.diagnostics?.length) throw new DomainError('AI_ERROR', '개념도의 관계를 확인하지 못했습니다.');
+  if (['quiz','study-pack'].includes(input.request?.task ?? '') && (!result.diagnostics?.length && !result.quiz?.length || (result.quiz?.length ?? 0) > input.cardCount)) throw new DomainError('AI_ERROR', '요청한 퀴즈의 문항과 근거를 확인하지 못했습니다.');
+  if (['mindmap','study-pack'].includes(input.request?.task ?? '') && !result.map && !result.diagnostics?.length) throw new DomainError('AI_ERROR', '개념도의 관계를 확인하지 못했습니다.');
   if (['tutor', 'quiz', 'mindmap'].includes(input.request?.task ?? '') && result.cards.length) throw new DomainError('AI_ERROR', '이 작업의 출력 형식을 확인하지 못했습니다.');
-  if (['quiz','mindmap','tutor'].includes(input.request?.task ?? '')) {
+  if (['quiz','mindmap','tutor','study-pack'].includes(input.request?.task ?? '')) {
     const refs = [...result.summary.flatMap(s => s.sourceIds), ...(result.quiz?.flatMap(q => q.sourceIds) ?? []), ...(result.map?.nodes.flatMap(n => n.sourceIds) ?? []), ...(result.map?.edges.flatMap(e => e.sourceIds) ?? [])];
     if (refs.some(id => id.startsWith('request-'))) throw new DomainError('AI_ERROR', '질문을 자료의 근거로 인용한 결과는 적용하지 않았습니다. 원문 근거를 확인해 주세요.');
   }

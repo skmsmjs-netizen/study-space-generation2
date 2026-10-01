@@ -22,7 +22,7 @@ export function ExperienceRecoveryControl({ data, onRecovered }: {
   const [error, setError] = useState('');
   const [notice, setNotice] = useState('');
   useEffect(() => {
-    setOpen(false); setSnapshot(null); setSelectedKey(''); setNotice(''); setError('');
+    setOpen(false); setSnapshot(previous => previous?.key === key ? previous : null); setSelectedKey(''); setNotice(''); setError('');
   }, [key]);
   const current = snapshot?.key === key ? snapshot : null;
   const selected = current?.archives.find(archive => archive.archiveKey === selectedKey);

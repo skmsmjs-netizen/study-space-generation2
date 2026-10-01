@@ -2,6 +2,7 @@ import type { StudyAIRequest, StudyAITask } from '../domain/study-ai-request.ts'
 import { canonicalStudyTask } from '../domain/study-gpt-contract.ts';
 
 const TASK_DETAILS: Record<Exclude<StudyAITask, 'source-qa'>, string> = {
+  'study-pack': '핵심 개념·단위·적용 조건·예외·암기 포인트를 간결한 요약으로 연결한다. 카드와 퀴즈의 답은 answer와 correctIndex/explanation에만 담고 질문에는 답을 노출하지 않는다. 각각 요청 개수는 상한이다. 개념도는 실제 자료의 개념과 관계만 연결한다. 근거가 부족한 출력은 비우고 diagnostics에 그 출력과 부족한 근거를 구체적으로 남긴다. 만들 수 있는 부분은 함께 남기며 별도 추론·검수 호출을 요구하지 않는다.',
   summary:
     '핵심 주장·연결 이유·조건·예외·남은 의문을 요약한다. 전체 재작성은 하지 않는다. 원문으로 답할 수 있는 카드만 만든다. 수량은 상한이다.',
   formula: String.raw`원문 식은 그대로 두고 제안식을 별도로 쓴다. 최종 문자열은 \( x \) 또는 $$ x $$이며 JSON에서는 백슬래시를 이스케이프한다. 기호 뜻·단위·성립 조건·대안 해석을 함께 쓰고 없는 수치나 경계조건을 채우지 않는다. 빈 식은 입력 불편일 수 있다.`,

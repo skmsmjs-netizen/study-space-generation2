@@ -161,3 +161,10 @@ VS Code에서도 사용하는 node-pty1.1.0과 xterm.js6.0.0/addon-fit0.11.0, ws
 PDF.js6.3.289, Mammoth, fflate, Tesseract.js7을 기존 React/Vite에 연결했습니다. `node scripts/prepare-material-tools.mjs`(dev/build 선행)는 OCR worker/core와 한국어/영어 traineddata를 public/material-ocr에 준비합니다. 모델은 고정 SHA256으로 재사용/다운로드를 확인하며 생성 assets는 Git에서 제외합니다. OCR은 같은 origin의 모델로 브라우저에서 실행하며 문서를 외부 추출 서버로 보내지 않습니다. Python 전용 venv에 youtube-transcript-api1.2.4를 준비해 `scripts/youtube-subtitles.py`를 기존 로컬 AI 미들웨어에서 고정 인자로 호출합니다. 공개 영상 ID만 허용하고45초/출력 크기 상한·취소를 둡니다.
 
 공유 의존성의 CJS/PostCSS 문제 때문에 이번 확인과 실제5491 앱은 `work/univ-materials-20261001/check-path.txt`에 기록한 정상 lockfile 설치 사본을 사용했습니다. 기존5218/다른 작업 서버·HEAD·index·패키지를 되돌리지 않았습니다. 원본 입력/퀴즈/지도/저장 관련 검사는 그 사본의 vitest.univ.mjs 및 담당 보고/검사 로그를 사용합니다. 실제 GPT quota/원격 승인과 별개이며 [기능·검증 기록](univ-materials-20261001.md)에 한계를 남겼습니다.
+
+
+## 2026-10-01 제품 품질 보완 검사 재현
+
+최신 저장 호환과 백업/복원/접근성 회귀는 `npm run build && npm run test:devices -- product-quality.pw.ts math.pw.ts`로 다섯 합의 환경에서 확인합니다. `npm test -- --maxWorkers=2 --testTimeout=60000`은 CI의 전체 회귀입니다. 긴 검사에는 default와 JSON reporter를 함께 사용해 진행과 결과 파일을 구별합니다. 실제 기록을 사용하지 않고 각 시험의 새 브라우저에 합성 입력을 만듭니다.
+
+UTF-16 저장 왕복/이전 LZ·gzip16/엄격한 용량·손상/다른 realm 바이트/불변 갱신은 `npx vitest run src/data/storage-codec.test.ts src/data/binary-storage.test.ts src/data/full-backup.test.ts src/domain/quality-immutability.test.ts`로 재현합니다. macOS의 `npm run test:code-terminal`은 실제 PTY 입력/취소/EOF/격리를 확인하며 Linux의 opt-out을 실제 PTY 통과로 보고하지 않습니다. 작업별 확인과 한계는 [제품 품질 보완](product-quality-fixes-20261001-2053.md)에 남깁니다.

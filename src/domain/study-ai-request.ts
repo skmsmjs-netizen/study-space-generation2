@@ -2,6 +2,10 @@ import { DomainError } from './model.ts';
 
 /** Existing records are optional inputs; these tasks never create performance evidence. */
 const CURRENT_STUDY_AI_TASKS = {
+  'study-pack': {
+    label: '복습 자료 한 번에',
+    instruction: '제공한 자료를 한 번 읽고 핵심 개념·암기 포인트를 summary에, 인출 질문과 답을 cards에, 객관식 문제와 해설을 quiz에, 개념 관계를 map에 함께 만든다. 각 출력의 원문 근거와 조건·예외를 유지한다. 튜터는 사용자가 질문할 때 같은 자료로 이어간다.',
+  },
   quiz: {
     label: '객관식 퀴즈',
     instruction:
@@ -102,6 +106,8 @@ export const STUDY_AI_TASKS = Object.defineProperty(CURRENT_STUDY_AI_TASKS, 'sou
 export type StudyAITask = keyof typeof STUDY_AI_TASKS | 'source-qa';
 export interface StudyAIRequest {
   task: StudyAITask;
+  /** Generation preference; excluded from model input by activeStudyAIRequest. */
+  requestedCardCount?: 5 | 10 | 20 | 30;
   support?: 'full' | 'key' | 'check';
   externalization?: 'auto' | 'full' | 'off';
   problem?: string;
@@ -119,6 +125,8 @@ export function validateStudyAIRequest(
   const row = value as StudyAIRequest;
   if (!row || !isStudyAITask(row.task))
     throw new DomainError('INVALID_AI_REQUEST', 'GPT 작업을 골라 주세요.');
+  if (row.requestedCardCount !== undefined && ![5, 10, 20, 30].includes(row.requestedCardCount))
+    throw new DomainError('INVALID_AI_REQUEST', '생성할 카드 개수를 확인해 주세요.');
   for (const key of ['problem', 'attempt', 'reference', 'focus'] as const)
     if (row[key] !== undefined && (typeof row[key] !== 'string' || row[key]!.length > 30_000))
       throw new DomainError('INVALID_AI_REQUEST', '추가 내용을 3만 자 이내로 나누어 주세요.');

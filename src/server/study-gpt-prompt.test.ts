@@ -17,7 +17,7 @@ it('sends the common instructions on every material task, including consecutive 
         text: JSON.stringify({
           summary: task === 'quiz' ? [] : [{ text: '합성 결과', sourceIds: ['t1'] }],
           cards: [],
-          ...(task === 'quiz'
+          ...(['quiz','study-pack'].includes(task ?? '')
             ? {
                 quiz: [
                   {
@@ -30,7 +30,7 @@ it('sends the common instructions on every material task, including consecutive 
                 ],
               }
             : {}),
-          ...(task === 'mindmap'
+          ...(['mindmap','study-pack'].includes(task ?? '')
             ? { map: { nodes: [{ id: 'n1', label: '합성 개념', sourceIds: ['t1'] }], edges: [] } }
             : {}),
         }),

@@ -44,7 +44,7 @@ test('two personal windows open, resume the input location and retain independen
   await expect.poll(() => server.data.memos?.find(row => row.id === 'one')?.body).toBe(first);
   await page.getByRole('button', { name: '닫기', exact: true }).click();
   await page.goto('?space=personal#/');
-  const nextAction = '  다음 공부는 적용 조건부터\n같은 기기의 다른 창에서도 유지  ';
+  const nextAction = '  다음 공부는 적용 조건부터\n현재 창의 보관본 유지  ';
   await page.getByRole('button', { name: '다음에 펼칠 곳 남기기', exact: true }).click();
   await page.getByLabel('다음에 할 일', { exact: true }).fill(nextAction);
   await page.getByRole('button', { name: '다음 행동 남기기', exact: true }).click();
@@ -59,7 +59,10 @@ test('two personal windows open, resume the input location and retain independen
   await second.goto('?space=personal#/');
   await expect(second.getByRole('heading', { name: '오늘', exact: true })).toBeVisible();
   await expect(second.getByLabel('하던 공부 이어가기').getByRole('alert')).toHaveCount(0);
-  expect(await second.locator('.brand-next').textContent()).toBe(nextAction);
+  await expect(second.locator('.brand-next')).toHaveCount(0);
+  await page.goto('?space=personal#/');
+  expect(await page.locator('.brand-next').textContent()).toBe(nextAction);
+  await page.goto('?space=personal#/memos/one');
   await second.goto('?space=personal#/memos/two');
   const other = '  두 번째 창의 독립된 글\n한글과 끝 공백  ';
   await second.getByRole('textbox', { name: '짧은 글', exact: true }).fill(other);

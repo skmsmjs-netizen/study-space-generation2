@@ -198,3 +198,39 @@ it('preserves a conflict when a remote change follows our partially committed pr
   expect(reopened.getSnapshot().subjects.map(row => row.id)).toEqual(['one', 'two']);
   expect(reopened.getConflict()?.server.data.subjects.map(row => row.id)).toEqual(['one', 'other-device']);
 });
+
+it('reconciles a committed prefix before retrying in the same session', async () => {
+  const f = fixture(), original = f.transport.execute, batch = f.executeBatch;
+  f.transport.executeBatch = async commands => { await original(commands[0], 0); throw Error('lost prefix response'); };
+  const repo = f.repo(); repo.execute(op('one')); repo.execute(op('two')); await repo.flush();
+  expect(repo.getStatus()).toMatchObject({ phase: 'error', pending: 2 });
+  f.transport.executeBatch = batch;
+  await repo.flush();
+  expect(f.transport.load).toHaveBeenCalled();
+  expect(repo.getStatus()).toMatchObject({ phase: 'saved', pending: 0 });
+  expect(f.get().data.revisions).toHaveLength(2);
+  expect(f.transport.execute).toHaveBeenLastCalledWith(op('two'), 1);
+});
+
+it('retains drafts when reconciliation is offline and recovers after reopening', async () => {
+  const f = fixture(), original = f.transport.execute, batch = f.executeBatch, load = f.transport.load;
+  f.transport.executeBatch = async commands => { await original(commands[0], 0); throw Error('interrupted'); };
+  const repo = f.repo(); repo.execute(op('one')); repo.execute(op('two')); await repo.flush();
+  f.transport.executeBatch = batch; f.transport.load = async () => { throw Error('offline'); };
+  await repo.flush();
+  expect(repo.getStatus()).toMatchObject({ phase: 'error', pending: 2 });
+  expect(repo.getSnapshot().subjects.map(row => row.name)).toEqual([op('one').type === 'addSubject' ? '원문\r\none' : '', '원문\r\ntwo']);
+  f.transport.load = load;
+  const reopened = f.repo(); await reopened.flush();
+  expect(reopened.getStatus()).toMatchObject({ phase: 'saved', pending: 0 });
+  expect(f.get().data.revisions).toHaveLength(2);
+});
+
+it('does not silently rebase a different device change after a transport failure', async () => {
+  const f = fixture(), original = f.transport.execute;
+  f.transport.executeBatch = async commands => { await original(commands[0], 0); await original(op('foreign-change'), 1); throw Error('interrupted'); };
+  const repo = f.repo(); repo.execute(op('one')); repo.execute(op('two')); await repo.flush(); await repo.flush();
+  expect(repo.getStatus().phase).toBe('conflict');
+  expect(repo.getSnapshot().subjects.map(row => row.id)).toEqual(['one','two']);
+  expect(repo.getConflict()?.server.data.subjects.map(row => row.id)).toEqual(['one','foreign-change']);
+});

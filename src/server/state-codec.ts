@@ -2,14 +2,14 @@ import LZString from 'lz-string';
 import { validateState } from '../domain/commands';
 import { DomainError, type AppState, type EntityCollection } from '../domain/model';
 /** PostgreSQL JSONB cannot store NUL or lone surrogates. Preserve exact UTF-16. */
-export function packServerState(state: AppState, operationId: string) {
+export function packServerState(state: AppState, operationId: string | string[]) {
   validateState(state);
   const raw = JSON.stringify(state), encoded = LZString.compressToBase64(raw);
   if (LZString.decompressFromBase64(encoded) !== raw) throw new DomainError('ENCODING', '원문 보존을 확인하지 못했습니다. 저장하지 않았습니다.');
   const collections: (EntityCollection | 'revisions')[] = ['conceptCatalogs','conceptEditions','conceptBatches','studyBoards','semesters','subjects','nodes','sessions','records','narratives','criteria','criteriaAssignments','memos','learningPlans','canvasLayouts','codeExamples','recallCards','recallPreferences','studyMaterials','memoryCards','memoryTests','inkWorkspaces','revisions'];
   return { userId: state.userId, namespace: state.namespace, schemaVersion: state.schemaVersion,
     encoding: 'lz-base64-utf16-v1', encoded,
-    appliedOps: { [operationId]: state.appliedOps[operationId] },
+    appliedOps: Object.fromEntries((Array.isArray(operationId) ? operationId : [operationId]).map(id => [id, state.appliedOps[id]])),
     ...Object.fromEntries(collections.map(name => [name, (state[name] ?? []).map(row => ({ userId: row.userId, namespace: row.namespace }))])) };
 }
 export function unpackServerState(value: unknown): AppState {

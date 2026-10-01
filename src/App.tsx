@@ -42,6 +42,7 @@ import { OutlineTableEditor } from "./ui/outline-table-editor";
 import { OutlineTree } from "./ui/outline-tree";
 import { DraftArchives } from "./ui/draft-archives";
 import { QuickMemos } from "./ui/quick-memos";
+import { HomeTools } from "./ui/home-tools";
 import { StudyLaunch } from "./ui/study-launch";
 import { BrandIdentity, BrandContinuity, BrandService, ExperienceSettings, RelatedThinking, useExperience } from "./ui/brand-experience";
 import { SubjectWeeks } from "./ui/semester-weeks";
@@ -676,6 +677,7 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
               <div className="actions"><Button onClick={() => openDialog("node")}>목차 추가</Button><Button onClick={() => openDialog("bulk")}>여러 항목 추가</Button><SubjectWeeks data={data} repository={repository} subjectId={subject.id} onSaved={setData} /></div>
             )}
           </div>
+          {route === "/" && <HomeTools onNavigate={go} />}
           <BrandContinuity key={`${data.namespace}:${data.userId}`} data={data} route={route} />
           {["/about", "/help", "/my-progress", "/subscription"].includes(route) && <BrandService key={`${data.namespace}:${data.userId}:${route}`} data={data} repository={repository} page={route === "/subscription" ? "/help" : route} />}
           {route === "/draft-archives" && <DraftArchives data={data} />}
@@ -683,19 +685,6 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
           {route === "/statistics" && <Suspense fallback={<LoadingState message="공부 통계를 여는 중입니다." />}><StudyStatistics key={scope} data={data} subjectIds={shownSubjects.map(subject => subject.id)} /></Suspense>}
           {route === "/" && (
             <>
-              <Card className="hero">
-                <div>
-                  <h2>오늘 공부한 것을 남겨 주세요.</h2>
-                  <p>주제를 고르고 공부함을 체크하세요. 글은 필요할 때 함께 남길 수 있습니다.</p>
-                </div>
-                <div className="actions">
-                  <Button variant="primary" onClick={() => go("/record")}>
-                    공부 기록하기
-                  </Button>
-                  <Button onClick={() => go("/free")}>자유롭게 쓰기</Button>
-                  <Button onClick={() => go("/recall")}>주제 카드로 설명하기</Button>
-                </div>
-              </Card>
               {records.some(record => shownSubjects.some(subject => subject.id === record.subjectId)) && <section className="recent-study-list section-space" aria-label="최근 남긴 공부 기록">
                 <h2>최근 남긴 기록</h2>
                 {records.filter(record => shownSubjects.some(subject => subject.id === record.subjectId)).slice().sort((a, b) => b.createdAt.localeCompare(a.createdAt)).slice(0, 3).map(record => <article key={record.id}>

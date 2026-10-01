@@ -48,4 +48,9 @@ Deno.serve(request => handleCommand(request, {
     const saved = await admin('rpc/study_commit', { method: 'POST', body: JSON.stringify({ p_user: userId, p_namespace: namespace, p_base: base, p_operation: command.opId, p_payload: next.appliedOps[command.opId], p_state: packServerState(next, command.opId) }) });
     return { sequence: saved.sequence, data: unpackServerState(saved.data) };
   },
+  async commitBatch(userId: string, namespace: Namespace, base: number, commands: Command[], next: AppState) {
+    const operations = commands.map(command => ({ id: command.opId, payload: next.appliedOps[command.opId] }));
+    const saved = await admin('rpc/study_commit_batch', { method: 'POST', body: JSON.stringify({ p_user: userId, p_namespace: namespace, p_base: base, p_operations: operations, p_state: packServerState(next, commands.map(command => command.opId)) }) });
+    return { sequence: saved.sequence, data: unpackServerState(saved.data) };
+  },
 }));

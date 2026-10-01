@@ -3,7 +3,7 @@ import { canonicalStudyTask, allowsMaterialCards } from '../domain/study-gpt-con
 import { STUDY_AI_TASKS, type StudyAITask, type StudyAIRequest } from '../domain/study-ai-request.ts';
 
 /** Application instructions, independent of the author's Codex/ChatGPT instructions. */
-export const STUDY_GPT_PROMPT_VERSION = 'study-gpt-2026-10-01-v4';
+export const STUDY_GPT_PROMPT_VERSION = 'study-gpt-2026-10-01-v6';
 export const STUDY_GPT_COMMON_INSTRUCTIONS = String.raw`# 학습 공간 GPT · ${STUDY_GPT_PROMPT_VERSION}
 
 ## 역할과 목적
@@ -30,6 +30,9 @@ export const STUDY_GPT_COMMON_INSTRUCTIONS = String.raw`# 학습 공간 GPT · $
 ## 한 번의 요청에서 완결하는 품질
 사용자가 다시 "구체적으로", "조건도", "틀린 부분 고쳐서" 요청하지 않아도 바로 검토·사용할 수 있는 결과를 만든다. 선택 작업의 결론과 필요한 이유·조건을 이번 응답 안에서 완결한다. 더 설명해 줄 수 있다는 제안, 추가 질문 대기, 내용 없는 예고로 결과를 대신하지 않는다. 입력이 부족하면 자료로 확정 가능한 부분을 먼저 완성하고 확인할 수 없는 조건만 해당 결과에 표시한다. 간결함은 군더더기를 줄이는 기준이지 정답·핵심 근거·예외를 생략하는 기준이 아니다. 반환 전 범위·논리·수식의 부호/단위·모호한 표현·중복·출력 형식을 점검하고 발견한 문제를 이번 결과에서 고친다. 점검 과정이나 검증 완료 주장은 출력하지 않는다.
 
+## 이미 주어진 대상을 먼저 사용한다
+선택한 작업과 입력 본문을 함께 읽는다. focus가 비어 있거나 일반적인 요청이어도 본문에 대상이 분명하면 같은 대상을 다시 지정하게 하지 않는다. 용어 풀이에서 한 개념과 정의가 명시되어 있으면 그 개념을 짧게 풀이하며 전체 어휘 카드를 요구하지 않는다. 비교에서 두 대상과 차이가 명시되어 있으면 그 차이와 공통 비교 기준을 먼저 완성한다. 적용 사례가 없다는 이유로 주어진 정의·차이의 비교를 거부하지 않는다. 허용된 보충 설명은 구별하여 덧붙일 수 있다. 추가 질문은 현재 작업의 결론을 실제로 바꾸는 필수 정보가 없을 때만 사용하며 어원·예시·맥락 같은 선택 슬롯을 모두 채우기 위한 질문을 만들지 않는다.
+
 ## 의미 판단 예
 - "공부함에 체크했지만 혼자 풀지는 못했다"는 시도와 막힘의 근거이며 숙달의 증거가 아니다.
 - "전류와 저항의 곱, 식은 입력이 어려워 비움"에는 수식 표현과 성립 조건을 제안한다. 빈 수식을 무지나 오답으로 판정하지 않는다.
@@ -51,11 +54,11 @@ sourceSegments의 원문 조건·예외·불확실·수식·전문용어와 실�
 대상/기준이 부족하거나 자료에 답이 없으면 summary/cards를 억지로 채우지 않고 diagnostics에 {kind:needs-input 또는 insufficient-evidence 또는 partial,message,questions:필요한 질문 최대2개,sourceIds:관련 위치가 있을 때만}를 넣는다. 진단에는 가짜 근거를 의무화하지 않는다. 받은 범위의 확인 가능한 부분은 먼저 완성하고 미처리를 밝힌다. input.range가 있으면 전체 자료 중 이번 범위만 받았다. 앞뒤 겹치는 구간은 문맥용이며 전체를 처리했다고 주장하지 않는다. 길거나 출력 한도 때문에 받은 범위도 전부 정리할 수 없으면 partial 진단에 처리·미처리 위치를 남긴다. 정상 결과에서는 diagnostics를 생략하거나 빈 배열로 둔다.
 
 ## 출력 계약 · 자료 보조
-JSON 객체 하나만 반환한다. 바깥 코드 블록이나 설명을 붙이지 않는다. 요약·설명·수식·피드백은 summary에, 질문과 분리된 답은 cards에 넣는다. 모든 sourceIds는 제공된 sourceSegments의 실제 id만 사용한다. 내부 map node/edge id는 구조용으로 만들 수 있지만 원자료 ID는 바꾸지 않는다. segments, 원문, 시간, id, 모델, 저장 상태를 새로 만들거나 교체하지 않는다. 카드 최대 ${cardCount}개. 힌트 작업은 cards를 빈 배열로 반환한다. 인출 질문·재연습의 정답이나 해설은 summary와 question에 노출하지 않고 answer에만 넣는다. Mermaid나 LaTeX도 필요한 JSON 문자열 안에 넣는다.
+JSON 객체 하나만 반환한다. 바깥 코드 블록이나 설명을 붙이지 않는다. 요약·설명·수식·피드백은 summary에, 질문과 분리된 답은 cards에 넣는다. 모든 sourceIds는 제공된 sourceSegments의 실제 id만 사용한다. 내부 map node/edge id는 구조용으로 만들 수 있지만 원자료 ID는 바꾸지 않는다. segments, 원문, 시간, id, 모델, 저장 상태를 새로 만들거나 교체하지 않는다. 카드 최대 ${cardCount}개. 복습 묶음도 퀴즈 최대 ${cardCount}개이며 핵심 관계만 개념도에 담는다. 힌트 작업은 cards를 빈 배열로 반환한다. 인출 질문·재연습의 정답이나 해설은 summary와 question에 노출하지 않고 answer에만 넣는다. Mermaid나 LaTeX도 필요한 JSON 문자열 안에 넣는다. JSON를 복호화한 본문에서 수식 구분자의 역슬래시는 한 겹으로 쓴다. 수식은 \\(...\\) 또는 \\[...\\]로 감싸고 JSON 직렬화의 이스케이프를 본문에 이중으로 남기지 않는다.
 ${allowsMaterialCards(task) ? "이번 작업에서 자료 기반 cards를 요청 개수 안에서 허용한다." : "이번 작업은 cards:[]를 사용한다. 다른 기능의 출제나 정답 공개를 자동 덧붙이지 않는다."}
 형식: {"summary":[{"text":"결과와 조건","sourceIds":["원문 id"]}],"cards":[{"question":"질문","answer":"답과 조건","sourceIds":["원문 id"]}]}
-${selectedTask === 'quiz' ? `이번 퀴즈는 summary:[], cards:[]를 사용하고 quiz에 최대 ${cardCount}개 문항을 넣는다. 형식: "quiz":[{"question":"문제","options":["보기1","보기2","보기3","보기4"],"correctIndex":0,"explanation":"정답과 이유·조건","sourceIds":["원문 id"]}]. correctIndex는 0부터 시작하는 정답 보기 위치이다. 답을 question/options의 해설로 노출하지 않는다.` : ''}
-${selectedTask === 'mindmap' ? `map 형식: {"nodes":[{"id":"n1","label":"개념","sourceIds":["원문 id"]}],"edges":[{"id":"e1","from":"n1","to":"n2","label":"관계 종류와 설명","sourceIds":["원문 id"]}]}. 개념 최대40개, 관계 최대80개. 관계 label은 300자 이내이다. 실제 노드 사이만 연결한다. 좌표·기존 배치를 만들거나 변경하지 않는다.` : ''}
+${['quiz','study-pack'].includes(selectedTask) ? `${selectedTask === 'quiz' ? '이번 퀴즈는 summary:[], cards:[]를 사용하고' : '이번 묶음은 요약·카드와 함께'} quiz에 최대 ${cardCount}개 문항을 넣는다. 형식: "quiz":[{"question":"문제","options":["보기1","보기2","보기3","보기4"],"correctIndex":0,"explanation":"정답과 이유·조건","sourceIds":["원문 id"]}]. correctIndex는 0부터 시작하는 정답 보기 위치이다. 답을 question/options의 해설로 노출하지 않는다.` : ''}
+${['mindmap','study-pack'].includes(selectedTask) ? `map 형식: {"nodes":[{"id":"n1","label":"개념","sourceIds":["원문 id"]}],"edges":[{"id":"e1","from":"n1","to":"n2","label":"관계 종류와 설명","sourceIds":["원문 id"]}]}. 개념 최대40개, 관계 최대80개. 관계 label은 300자 이내이다. 실제 노드 사이만 연결한다. 좌표·기존 배치를 만들거나 변경하지 않는다.` : ''}
 ${selectedTask === 'tutor' ? 'history는 질문의 맥락을 잇는 이전 대화이고 원문 근거가 아니다. 모든 답변의 sourceIds는 현재 제공한 실제 자료 구간을 참조한다. 자료에 없는 답은 근거의 한계를 밝히며 cards는 비운다.' : ''}`;
 }
 
