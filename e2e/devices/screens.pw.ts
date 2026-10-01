@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 // All primary screens of the current version are discovered, including future additions.
 const source = readFileSync('src/App.tsx', 'utf8');
 const start = source.indexOf('const navItems =');
-export const primaryRoutes = [
+const primaryRoutes = [
   ...source.slice(start, source.indexOf('];', start)).matchAll(/href:\s*["']([^"']+)["']/g),
 ].map((match) => match[1]);
 const routes = [
