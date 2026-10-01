@@ -1,17 +1,13 @@
-name: Verify and deploy Pages
+name: Native field diagnostic only
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 permissions:
   contents: read
-  pages: write
-  id-token: write
 concurrency:
-  group: pages
+  group: quota-native-field-diagnostic
   cancel-in-progress: false
 jobs:
-  build:
+  probe:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -21,81 +17,13 @@ jobs:
           cache: npm
       - run: npm ci
         env:
-          # Browser builds use ONNX Web; CPU Node files are already bundled.
-          # Do not fetch unused CUDA binaries from NuGet during a Pages build.
           ONNXRUNTIME_NODE_INSTALL: skip
-      - run: npm test -- --maxWorkers=2 --testTimeout=60000
-      - run: npm run build:backend
       - run: npm run build
-        env:
-          PAGES_BASE: /${{ github.event.repository.name }}/
-      - uses: actions/upload-artifact@v4
-        with:
-          name: verified-build
-          path: dist
-          include-hidden-files: true
-          compression-level: 1
-          retention-days: 1
-  devices:
-    name: Verify ${{ matrix.project }}
-    needs: build
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        project:
-          - iPhone-17-Pro-portrait
-          - iPhone-17-Pro-landscape
-          - iPad-Pro-13-portrait
-          - iPad-Pro-13-landscape
-          - iPad-Pro-13-half-window
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '24'
-          cache: npm
-      - run: npm ci
-        env:
-          ONNXRUNTIME_NODE_INSTALL: skip
-      - uses: actions/download-artifact@v4
-        with:
-          name: verified-build
-          path: dist
       - run: npx playwright install --with-deps webkit
-      - name: Verify all checks for this device environment
-        run: npm run test:devices -- --project="$DEVICE_PROJECT"
-        env:
-          DEVICE_PROJECT: ${{ matrix.project }}
-          PAGES_BASE: /${{ github.event.repository.name }}/
+      - run: npx playwright test --config playwright.devices.config.ts e2e/devices/quota-native-probe.pw.ts --project=iPhone-17-Pro-portrait --project=iPhone-17-Pro-landscape --workers=2
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: device-verification-${{ matrix.project }}
-          path: |
-            work/device-report
-            work/device-results.json
-            work/device-traces
-            work/device-runs/**/report/**
-            work/device-runs/**/results.json
-            work/device-runs/**/traces/**
-            work/device-runs/**/build-manifest.json
-          retention-days: 14
-  deploy:
-    needs: [build, devices]
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/download-artifact@v4
-        with:
-          name: verified-build
-          path: dist
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: dist
-      - name: Deploy
-        id: deployment
-        uses: actions/deploy-pages@v4
+          name: quota-native-field-diagnostic
+          path: work/device-results.json
+          retention-days: 1
