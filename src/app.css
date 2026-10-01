@@ -583,6 +583,16 @@ nav a[aria-current="page"] {
   .topbar, .main-content { padding-inline: var(--space-5); }
   .record-layout { grid-template-columns: minmax(10rem, .7fr) minmax(0, 1.5fr); gap: var(--space-5); }
 }
+@media (min-width: 40.01rem) {
+  .topic-picker {
+    position: sticky;
+    top: var(--space-4);
+    max-block-size: calc(100dvh - var(--space-4) - var(--space-4));
+    overflow-y: auto;
+    scrollbar-gutter: stable;
+    padding-inline-end: var(--space-1);
+  }
+}
 @media (max-width: 40rem) {
   .topbar { flex-wrap: wrap; padding-inline: var(--space-4); }
   .topbar .demo-banner { order: 5; flex-basis: 100%; }
