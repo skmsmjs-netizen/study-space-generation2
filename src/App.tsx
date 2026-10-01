@@ -45,6 +45,8 @@ const StudyStatistics = lazy(() => import("./ui/statistics").then(module => ({ d
 const MemoryTests = lazy(() => import("./ui/memory-test").then(module => ({ default: module.MemoryTests })));
 const ExamPractice = lazy(() => import("./ui/exam-practice").then(module => ({ default: module.ExamPractice })));
 import { TopicRecall } from "./ui/topic-recall";
+const StudyGraph = lazy(() => import("./ui/study-graph").then(module => ({ default: module.StudyGraph })));
+const StudyBoard = lazy(() => import("./ui/study-board").then(module => ({ default: module.StudyBoard })));
 const StudyCanvas = lazy(() => import("./ui/study-canvas").then(module => ({ default: module.StudyCanvas })));
 const PersonalSpace = lazy(() => import("./ui/personal-space").then(module => ({ default: module.PersonalSpace })));
 import { storagePrefix, type StudyRepository } from "./data/repository";
@@ -489,6 +491,8 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
     { href: "/memory-test", text: "암기시험" },
     { href: "/material-cards", text: "자료 카드" },
     { href: "/canvas", text: "Canvas" },
+    { href: "/graph", text: "그래프뷰" },
+    { href: "/board", text: "칸반보드" },
     { href: "/search", text: "찾기" },
   ];
   const recordRoute = route.startsWith("/record");
@@ -501,6 +505,7 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
     memoryTestRoute ? "암기시험" : route === "/material-cards" ? "자료 카드" :
     codeRoute ? "코딩 연습" :
     practiceRoute ? "시험 연습" : route === "/statistics" ? "공부 통계" :
+    route === "/graph" ? "그래프뷰" : route === "/board" ? "칸반보드" :
     route === "/canvas"
       ? "Canvas"
       : (route === "/recall" || route === "/recall/scheduled")
@@ -922,6 +927,8 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
             setCleanupKeys(keys => [...new Set([...keys, key])]);
             setError("자유 기록은 저장했습니다. 이전 초안 정리가 남았습니다. 창을 닫기 전에 다시 시도해 주세요.");
           }} />}
+          {route === "/graph" && <Suspense fallback={<LoadingState message="관계를 여는 중입니다." />}><StudyGraph key={`${data.namespace}:${data.userId}`} data={data} subjectIds={shownSubjects.map(subject => subject.id)} /></Suspense>}
+          {route === "/board" && <Suspense fallback={<LoadingState message="보드를 여는 중입니다." />}><StudyBoard key={`${data.namespace}:${data.userId}`} data={data} repository={repository} onSaved={setData} subjectIds={shownSubjects.map(subject => subject.id)} /></Suspense>}
           {route === "/canvas" && <Suspense fallback={<LoadingState message="Canvas를 여는 중입니다." />}><StudyCanvas key={`${data.namespace}:${data.userId}`} data={data} repository={repository} onSaved={setData} subjectIds={shownSubjects.map(subject => subject.id)} renderNarrative={(ownerId, narrative, finishEditing) => {
             const target = data.nodes.find(node => node.id === ownerId);
             return <NarrativeEditor key={narrative?.id ?? ownerId} data={data} ownerId={ownerId} narrativeId={narrative?.id} kind={narrative?.kind ?? (target ? target.role === 'unit' ? 'unit-introduction' : 'topic-note' : 'subject-overview')} label={narrative ? '메모' : '새 메모'} commit={commit} repository={repository} onSaved={(_id, cleanupKey) => { if (!cleanupKey) finishEditing(); }} inline />;
@@ -1015,7 +1022,7 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
           )}
           {route === "/trash" && <Suspense fallback={<LoadingState />}><CodePractice data={data} repository={repository} onSaved={setData} trash /></Suspense>}
           {route === "/trash" && <QuickMemos data={data} repository={repository} onSaved={setData} trash />}
-          {!["/", "/subjects", "/search", "/trash", "/free", "/draft-archives", "/material-cards", "/recall", "/recall/scheduled", "/canvas", "/statistics"].includes(route) &&
+          {!["/", "/subjects", "/search", "/trash", "/free", "/draft-archives", "/material-cards", "/recall", "/recall/scheduled", "/canvas", "/graph", "/board", "/statistics"].includes(route) &&
             !recordRoute &&
             !memoRoute &&
             !codeRoute && !memoryTestRoute &&

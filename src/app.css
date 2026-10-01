@@ -73,6 +73,7 @@ hr {
   position: sticky;
   top: 0;
   height: 100dvh;
+  overflow-y: auto;
   padding: var(--space-7) var(--space-5);
   border-right: var(--border-width) solid var(--color-border);
   background: var(--color-surface-inset);
