@@ -2,8 +2,9 @@ import { test, expect } from '@playwright/test';
 
 test('transcript entry preserves exact manual notes after reentry without requesting a microphone', async ({ page }) => {
   await page.addInitScript(() => {
+    (window as unknown as { microphoneRequests: number }).microphoneRequests = 0;
     Object.defineProperty(navigator, 'mediaDevices', { configurable: true, value: {
-      getUserMedia: async () => { throw new DOMException('Microphone is unavailable', 'NotAllowedError'); },
+      getUserMedia: async () => { (window as unknown as { microphoneRequests: number }).microphoneRequests++; throw new DOMException('Microphone is unavailable', 'NotAllowedError'); },
     } });
   });
   await page.goto('?space=demo#/materials/new');
@@ -16,4 +17,5 @@ test('transcript entry preserves exact manual notes after reentry without reques
   await expect(page.getByRole('button', { name: '녹음 시작', exact: true })).toHaveCount(0);
   await expect(page.getByRole('button', { name: '녹음 파일 가져오기', exact: true })).toHaveCount(0);
   await expect(page.getByRole('alert')).toHaveCount(0);
+  expect(await page.evaluate(() => (window as unknown as { microphoneRequests: number }).microphoneRequests)).toBe(0);
 });
