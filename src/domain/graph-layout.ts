@@ -192,7 +192,11 @@ export function graphVisibleLabels(
     if (!p) continue;
     const r = {
       x: (p.x + 22) * zoom - graphLabelWidth(card.name) / 2,
-      y: (p.y + 48) * zoom,
+      y:
+        (p.y + 22) * zoom +
+        (Math.max(clamp(14 + Math.log2(1 + (degree[card.id] ?? 0)) * 3, 14, 28), 4 / zoom) * zoom) /
+          2 +
+        8,
       w: graphLabelWidth(card.name),
       h: 24,
     };

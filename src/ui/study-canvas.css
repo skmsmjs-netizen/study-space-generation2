@@ -22,7 +22,6 @@
 .canvas-sketch { width: 100%; display: block; background: var(--color-surface); }
 .canvas-card-actions { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); }
 .canvas-card-actions a { display: inline-flex; align-items: center; justify-content: center; min-inline-size: var(--control-height); min-block-size: var(--control-height); font-size: var(--type-caption-size); }
-.canvas-action-hint { margin: 0; font-size: var(--type-caption-size); color: var(--color-muted); }
 .canvas-memo-editor { padding: 0; width: auto; max-height: none; }
 .canvas-memo-editor .memo-save-bar { position: static; flex-wrap: wrap; }
 .canvas-memo-editor .memo-paper { overflow: auto; }
@@ -30,6 +29,8 @@
 .canvas-memo-editor .memo-toolbar { flex-wrap: wrap; }
 .canvas-narrative-editor .narrative-editor { margin: 0; }
 .canvas-position-tools { margin-block-start: var(--space-3); }
+.canvas-position-tools .ui-field { min-inline-size: 0; max-inline-size: 100%; }
+.canvas-position-tools a { display: inline-flex; align-items: center; min-block-size: var(--control-height); padding-inline: var(--space-3); }
 .canvas-position-tools span { margin-inline-end: auto; }
 .canvas-auto-edge .react-flow__edge-path { stroke-dasharray: 5 4; }
 .canvas-user-edge .react-flow__edge-path { stroke: var(--color-focus); }
@@ -53,5 +54,9 @@
 @media (max-width: 40rem) { .canvas-concept-fields { grid-template-columns: minmax(0, 1fr); } }
 @media (max-width: 40rem) { .app-shell.is-canvas .main-content { padding: var(--space-3); } .canvas-stage { height: 65dvh; } .canvas-toolbar a { margin-inline-start: 0; } }
 
+.canvas-action-hint { margin: 0; font-size: var(--type-caption-size); color: var(--color-muted); }
+/* Zoom changes actions, not measured card geometry: both views reserve the same area. */
+.canvas-zoom-actions { display: grid; }
+.canvas-zoom-actions > * { grid-area: 1 / 1; }
+
 .canvas-position-tools .ui-field { min-inline-size: 0; max-inline-size: 100%; }
-.canvas-position-tools a { display: inline-flex; align-items: center; min-block-size: var(--control-height); padding-inline: var(--space-3); }

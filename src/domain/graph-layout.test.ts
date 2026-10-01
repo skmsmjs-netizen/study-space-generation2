@@ -81,7 +81,7 @@ it('declutters labels in screen space and always keeps the selected name', () =>
     .filter((c) => visible.has(c.id))
     .map((c) => ({
       x: (positions[c.id].x + 22) * 0.15 - graphLabelWidth(c.name) / 2,
-      y: (positions[c.id].y + 48) * 0.15,
+      y: (positions[c.id].y + 22) * 0.15 + Math.max(parameters.sizes[c.id] * 0.15, 4) / 2 + 8,
       w: graphLabelWidth(c.name),
       h: 24,
     }));

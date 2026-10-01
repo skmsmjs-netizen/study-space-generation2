@@ -1,0 +1,52 @@
+.flow-tools {
+  max-inline-size: calc(100% - 2 * var(--space-3));
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+.flow-tools > .ui-button {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  max-inline-size: 100%;
+}
+.flow-tools-body {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  max-block-size: min(38dvh, 20rem);
+  overflow-y: auto;
+  inline-size: min(18rem, 100%);
+}
+.flow-tools-body .ui-field {
+  min-inline-size: 0;
+  grid-template-columns: minmax(0, 1fr);
+}
+.flow-tools-body .ui-input {
+  min-inline-size: 0;
+  max-inline-size: 100%;
+}
+.react-flow__minimap {
+  background: var(--color-surface);
+  border: var(--border-width) solid var(--color-border);
+}
+.flow-node-tools {
+  display: flex;
+  gap: var(--space-2);
+  background: var(--color-surface);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: var(--space-1);
+}
+.flow-selection-actions {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  align-items: center;
+}
+.flow-transfer {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border: var(--border-width) solid var(--color-border);
+}

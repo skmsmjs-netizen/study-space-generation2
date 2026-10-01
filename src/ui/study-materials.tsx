@@ -931,7 +931,7 @@ function MaterialEditor({
           </fieldset>
           {tab === 'quiz' && result.quiz && <MaterialQuiz key={result.id} resultId={result.id} questions={result.quiz} attempts={content.quizAttempts ?? []} disabled={busy || saving || importing}
             selectedId={viewState.current.quizAttemptId} onSelected={quizAttemptId => { viewState.current = { ...viewState.current, quizAttemptId }; retain(current.current); }} evidence={evidence} onChange={quizAttempts => retain({ ...current.current, quizAttempts })}/>}
-          {tab === 'map' && result.map && <Suspense fallback={<p>개념도를 불러오고 있습니다.</p>}><MaterialMap key={result.id} map={result.map} originalMap={result.originalMap} disabled={busy || saving || importing} evidence={evidence}
+          {tab === 'map' && result.map && <Suspense fallback={<p>개념도를 불러오고 있습니다.</p>}><MaterialMap owner={data} key={result.id} map={result.map} originalMap={result.originalMap} disabled={busy || saving || importing} evidence={evidence}
             onChange={map => retain({ ...current.current, results: current.current.results.map(row => row.id === result.id ? { ...row, originalMap: row.originalMap ?? structuredClone(row.map), map } : row) })}
             onCanvas={async () => { try { if (!await save()) return; const next = await addMaterialMapToCanvas(repository, current.current, result); onSaved(next); setNotice('개념도를 Canvas에 추가했습니다. 기존 카드와 배치는 유지했습니다.'); } catch (error) { setError(message(error)); } }}/></Suspense>}
           {tab === 'summary' && (

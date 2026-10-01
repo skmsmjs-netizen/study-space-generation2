@@ -1,14 +1,22 @@
-import { useEffect, useMemo, useState, useRef, type CSSProperties } from 'react';
+import { FlowControls } from './flow-controls';
+import { memo, useEffect, useMemo, useState, useRef, type CSSProperties } from 'react';
 import {
   ReactFlow,
-  Controls,
   Handle,
   Position,
   MarkerType,
+  BaseEdge,
+  getStraightPath,
+  getBezierPath,
+  getSmoothStepPath,
+  NodeToolbar,
+  SelectionMode,
+  useInternalNode,
   applyNodeChanges,
   type Node,
   type NodeProps,
   type ReactFlowInstance,
+  type EdgeProps,
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 import type { AppState, CanvasPosition } from '../domain/model';
@@ -25,8 +33,16 @@ import {
 } from '../domain/graph-layout';
 import { Button, Checkbox, EmptyState, Input, Select } from './index';
 import './study-graph.css';
-import { defaultGraphPreferences, graphPreferencesKey, readGraphPreferences, writeGraphPreferences } from '../data/graph-preferences';
+import {
+  defaultGraphPreferences,
+  graphPreferencesKey,
+  readGraphPreferences,
+  writeGraphPreferences,
+} from '../data/graph-preferences';
 import { archiveDamagedDraft } from '../data/draft-safety';
+import { flowPreferencesKey, useFlowPreferences } from '../data/flow-preferences';
+import { FlowExperience, flowAriaLabels, flowSnapGrid } from './flow-experience';
+import { layoutFlowBoxes } from '../domain/flow-layout';
 type GraphNode = Node<
   {
     card: CanvasCard;
@@ -35,6 +51,7 @@ type GraphNode = Node<
     size: number;
     labelVisible: boolean;
     zoom: number;
+    open?: () => void;
   },
   'dot'
 >;
@@ -47,7 +64,7 @@ const names = {
   narrative: '메모',
   concept: '개념',
 };
-function Dot({ data }: NodeProps<GraphNode>) {
+const Dot = memo(function Dot({ data }: NodeProps<GraphNode>) {
   return (
     <div
       className={`graph-dot graph-kind-${data.card.kind}${data.selected ? ' is-selected' : ''}${data.labelVisible ? ' has-label' : ''}`}
@@ -57,6 +74,7 @@ function Dot({ data }: NodeProps<GraphNode>) {
         {
           '--graph-node-size': `${Math.max(data.size, 4 / data.zoom)}px`,
           '--graph-label-scale': 1 / data.zoom,
+          '--graph-label-offset': `${Math.max(data.size * data.zoom, 4) / 2 + 8}px`,
         } as CSSProperties
       }
     >
@@ -64,14 +82,92 @@ function Dot({ data }: NodeProps<GraphNode>) {
       <span className="graph-point" />
       <Handle type="source" position={Position.Right} />
       <span className="graph-label">{data.card.name}</span>
+      <NodeToolbar isVisible={data.selected} position={Position.Top}>
+        <div className="flow-node-tools">
+          <Button variant="quiet" onClick={data.open}>
+            원문과 연결 보기
+          </Button>
+        </div>
+      </NodeToolbar>
     </div>
   );
-}
+});
 const nodeTypes = { dot: Dot };
+// React Flow's floating-edge pattern, adapted to the visible circle rather than
+// the larger touch target. Recompute from live node positions during dragging.
+function DotEdge({ source, target, ...props }: EdgeProps) {
+  const from = useInternalNode<GraphNode>(source);
+  const to = useInternalNode<GraphNode>(target);
+  if (!from || !to) return null;
+  const center = (node: typeof from) => ({
+    x: node.internals.positionAbsolute.x + (node.measured.width ?? 44) / 2,
+    y: node.internals.positionAbsolute.y + (node.measured.height ?? 44) / 2,
+  });
+  const a = center(from),
+    b = center(to);
+  const distance = Math.hypot(b.x - a.x, b.y - a.y);
+  if (!distance) return null;
+  const radius = (node: typeof from) =>
+    Math.min(Math.max(node.data.size, 4 / node.data.zoom) / 2, distance / 2);
+  const dx = (b.x - a.x) / distance,
+    dy = (b.y - a.y) / distance;
+  const coordinates = {
+    sourceX: a.x + dx * radius(from),
+    sourceY: a.y + dy * radius(from),
+    targetX: b.x - dx * radius(to),
+    targetY: b.y - dy * radius(to),
+    sourcePosition:
+      Math.abs(dx) >= Math.abs(dy)
+        ? dx > 0
+          ? Position.Right
+          : Position.Left
+        : dy > 0
+          ? Position.Bottom
+          : Position.Top,
+    targetPosition:
+      Math.abs(dx) >= Math.abs(dy)
+        ? dx > 0
+          ? Position.Left
+          : Position.Right
+        : dy > 0
+          ? Position.Top
+          : Position.Bottom,
+  };
+  const style = props.data?.shape;
+  const [path, labelX, labelY] =
+    style === 'bezier'
+      ? getBezierPath(coordinates)
+      : style === 'smoothstep' || style === 'step'
+        ? getSmoothStepPath({ ...coordinates, borderRadius: style === 'step' ? 0 : 5 })
+        : getStraightPath(coordinates);
+  return (
+    <BaseEdge
+      {...props}
+      data-graph-source={source}
+      data-graph-target={target}
+      path={path}
+      labelX={labelX}
+      labelY={labelY}
+    />
+  );
+}
+const edgeTypes = { dot: DotEdge };
 export function StudyGraph({ data, subjectIds }: { data: AppState; subjectIds: string[] }) {
+  const tools = useFlowPreferences(flowPreferencesKey(data, 'graph'), {
+    edgeStyle: 'straight',
+    background: 'none',
+  });
+  const layoutMode = tools.value.layout;
   const [boot] = useState(() => {
-    try { return { preferences: readGraphPreferences(data), error: '', blocked: false }; }
-    catch (e) { return { preferences: { ...defaultGraphPreferences }, error: String(e instanceof Error ? e.message : e), blocked: true }; }
+    try {
+      return { preferences: readGraphPreferences(data), error: '', blocked: false };
+    } catch (e) {
+      return {
+        preferences: { ...defaultGraphPreferences },
+        error: String(e instanceof Error ? e.message : e),
+        blocked: true,
+      };
+    }
   });
   const [query, setQuery] = useState(boot.preferences.query),
     [subject, setSubject] = useState(boot.preferences.subject),
@@ -86,16 +182,33 @@ export function StudyGraph({ data, subjectIds }: { data: AppState; subjectIds: s
     [preferencesBlocked, setPreferencesBlocked] = useState(boot.blocked);
   const lastPreferences = useRef(JSON.stringify(boot.preferences));
   const preferenceKey = graphPreferencesKey(data);
-  const preferences = useMemo(() => ({ version: 1 as const, query, subject, notes, connections, depth, spacing }), [query, subject, notes, connections, depth, spacing]);
+  const preferences = useMemo(
+    () => ({ version: 1 as const, query, subject, notes, connections, depth, spacing }),
+    [query, subject, notes, connections, depth, spacing],
+  );
   const storePreferences = () => {
     if (preferencesBlocked) return;
-    try { writeGraphPreferences(data, preferences); lastPreferences.current = JSON.stringify(preferences); setPreferenceError(''); }
-    catch { setPreferenceError('보기 설정을 저장하지 못했습니다. 현재 화면은 유지했습니다. 저장 공간을 확인한 뒤 설정 저장을 다시 시도해 주세요.'); }
+    try {
+      writeGraphPreferences(data, preferences);
+      lastPreferences.current = JSON.stringify(preferences);
+      setPreferenceError('');
+    } catch {
+      setPreferenceError(
+        '보기 설정을 저장하지 못했습니다. 현재 화면은 유지했습니다. 저장 공간을 확인한 뒤 설정 저장을 다시 시도해 주세요.',
+      );
+    }
   };
   useEffect(() => {
     if (preferencesBlocked || JSON.stringify(preferences) === lastPreferences.current) return;
-    try { writeGraphPreferences(data, preferences); lastPreferences.current = JSON.stringify(preferences); setPreferenceError(''); }
-    catch { setPreferenceError('보기 설정을 저장하지 못했습니다. 현재 화면은 유지했습니다. 저장 공간을 확인한 뒤 설정 저장을 다시 시도해 주세요.'); }
+    try {
+      writeGraphPreferences(data, preferences);
+      lastPreferences.current = JSON.stringify(preferences);
+      setPreferenceError('');
+    } catch {
+      setPreferenceError(
+        '보기 설정을 저장하지 못했습니다. 현재 화면은 유지했습니다. 저장 공간을 확인한 뒤 설정 저장을 다시 시도해 주세요.',
+      );
+    }
   }, [data, preferences, preferencesBlocked]);
   const subjects = data.subjects.filter((s) => !s.deletedAt && subjectIds.includes(s.id));
   const scopeKey = JSON.stringify(subjectIds);
@@ -151,9 +264,13 @@ export function StudyGraph({ data, subjectIds }: { data: AppState; subjectIds: s
       cancelAnimationFrame(pendingFrame);
     };
   }, []);
+  const onlyAutomaticLinks =
+    graph.links.length > 0 && graph.links.every((link) => link.id.startsWith('auto:'));
   useEffect(() => {
     const options = { frame, spacing, previous: previous.current, pinned };
-    const nextFitSignature = JSON.stringify({ input, frame, spacing });
+    const hierarchical =
+      layoutMode === 'hierarchy' || (layoutMode === 'auto' && onlyAutomaticLinks);
+    const nextFitSignature = JSON.stringify({ input, frame, spacing, layoutMode });
     const needsFit = fitSignature.current !== nextFitSignature;
     setBusy(true);
     setError('');
@@ -167,6 +284,22 @@ export function StudyGraph({ data, subjectIds }: { data: AppState; subjectIds: s
       }
       setBusy(false);
     };
+    if (hierarchical) {
+      const next = layoutFlowBoxes(
+        input.cards.map((card) => ({
+          id: card.id,
+          position: { x: 0, y: 0 },
+          width: 220,
+          height: 70,
+        })),
+        input.links,
+        frame.width < frame.height ? 'TB' : 'LR',
+        spacing === 'compact' ? 0.8 : spacing === 'wide' ? 1.3 : 1,
+      );
+      for (const [id, point] of Object.entries(pinned)) if (next[id]) next[id] = point;
+      apply(next);
+      return;
+    }
     if (typeof Worker === 'undefined') {
       apply(layoutStudyGraph(input.cards, input.links, options).positions);
       return;
@@ -193,13 +326,21 @@ export function StudyGraph({ data, subjectIds }: { data: AppState; subjectIds: s
     };
     worker.postMessage({ ...input, options });
     return () => worker.terminate();
-  }, [input, frame, spacing, pinned]);
+  }, [input, frame, spacing, pinned, layoutMode, onlyAutomaticLinks]);
   const initial = useMemo<GraphNode[]>(
     () =>
       graph.cards.map((card, index) => ({
         id: card.id,
         type: 'dot',
         ariaLabel: card.name,
+        // The touch target is fixed by .graph-dot. Explicit v12 handle geometry
+        // also keeps edges available when WebKit defers offscreen observation.
+        width: 44,
+        height: 44,
+        handles: [
+          { type: 'target', position: Position.Left, x: 0, y: 21.5, width: 1, height: 1 },
+          { type: 'source', position: Position.Right, x: 43, y: 21.5, width: 1, height: 1 },
+        ],
         position: positions[card.id] ?? { x: Math.cos(index) * 100, y: Math.sin(index) * 100 },
         data: {
           card,
@@ -252,7 +393,8 @@ export function StudyGraph({ data, subjectIds }: { data: AppState; subjectIds: s
     related = card ? graph.links.filter((e) => e.source === card.id || e.target === card.id) : [];
   const edges = graph.links.map((e) => ({
     ...e,
-    type: 'straight',
+    type: 'dot',
+    data: { shape: tools.value.edgeStyle },
     label: e.id.startsWith('auto:') ? undefined : e.label,
     markerEnd: e.id.startsWith('auto:') ? undefined : { type: MarkerType.ArrowClosed },
     className: e.id.startsWith('auto:') ? 'graph-outline-edge' : 'graph-personal-edge',
@@ -268,7 +410,11 @@ export function StudyGraph({ data, subjectIds }: { data: AppState; subjectIds: s
           onChange={(e) => setQuery(e.target.value)}
           placeholder="주제나 메모의 글"
         />
-        <Select label="그래프 과목" value={subjects.some((s) => s.id === subject) ? subject : ''} onChange={(e) => setSubject(e.target.value)}>
+        <Select
+          label="그래프 과목"
+          value={subjects.some((s) => s.id === subject) ? subject : ''}
+          onChange={(e) => setSubject(e.target.value)}
+        >
           <option value="">현재 범위 전체</option>
           {subjects.map((s) => (
             <option key={s.id} value={s.id}>
@@ -291,6 +437,17 @@ export function StudyGraph({ data, subjectIds }: { data: AppState; subjectIds: s
         />
       </div>
       <div className="graph-actions">
+        <Select
+          label="관계 배치"
+          value={layoutMode}
+          onChange={(event) =>
+            tools.store({ ...tools.value, layout: event.target.value as typeof layoutMode })
+          }
+        >
+          <option value="auto">자료에 맞추기</option>
+          <option value="hierarchy">목차처럼 정렬</option>
+          <option value="force">연결끼리 모으기</option>
+        </Select>
         <span>
           {graph.cards.length}개 항목 · {graph.links.length}개 연결
         </span>
@@ -330,20 +487,57 @@ export function StudyGraph({ data, subjectIds }: { data: AppState; subjectIds: s
         </Button>
         <a href="#/canvas">Canvas에서 관계 잇기 ↗</a>
       </div>
-      {preferenceError && <div role="alert"><p>{preferenceError}</p>{!preferencesBlocked && <Button onClick={storePreferences}>설정 저장 다시 시도</Button>}</div>}
-      <div className="graph-actions"><Button variant="quiet" onClick={() => {
-        try {
-          if (preferencesBlocked) archiveDamagedDraft(preferenceKey, '그래프 보기 설정 원문 보관');
-          writeGraphPreferences(data, { ...defaultGraphPreferences });
-          lastPreferences.current = JSON.stringify(defaultGraphPreferences);
-          setQuery(''); setSubject(''); setNotes(true); setConnections('all'); setDepth(1); setSpacing('auto'); setCenterId(null);
-          setPreferencesBlocked(false); setPreferenceError('');
-        } catch (e) { setPreferenceError(e instanceof Error ? e.message : '설정 초기화를 완료하지 못했습니다. 현재 설정은 유지했습니다.'); }
-      }}>보기 설정 초기화</Button></div>
+      {preferenceError && (
+        <div role="alert">
+          <p>{preferenceError}</p>
+          {!preferencesBlocked && <Button onClick={storePreferences}>설정 저장 다시 시도</Button>}
+        </div>
+      )}
+      <div className="graph-actions">
+        <Button
+          variant="quiet"
+          onClick={() => {
+            try {
+              if (preferencesBlocked)
+                archiveDamagedDraft(preferenceKey, '그래프 보기 설정 원문 보관');
+              writeGraphPreferences(data, { ...defaultGraphPreferences });
+              lastPreferences.current = JSON.stringify(defaultGraphPreferences);
+              setQuery('');
+              setSubject('');
+              setNotes(true);
+              setConnections('all');
+              setDepth(1);
+              setSpacing('auto');
+              setCenterId(null);
+              setPreferencesBlocked(false);
+              setPreferenceError('');
+            } catch (e) {
+              setPreferenceError(
+                e instanceof Error
+                  ? e.message
+                  : '설정 초기화를 완료하지 못했습니다. 현재 설정은 유지했습니다.',
+              );
+            }
+          }}
+        >
+          보기 설정 초기화
+        </Button>
+      </div>
       {error && <p role="alert">{error}</p>}
+      {tools.error && (
+        <div role="alert">
+          <p>{tools.error}</p>
+          <Button onClick={() => tools.store(tools.value)}>보기 도구 저장 다시 시도</Button>
+          <Button onClick={tools.reset}>보기 도구 초기화</Button>
+        </div>
+      )}
       <div className="graph-layout">
         <div className="graph-stage" ref={stage} aria-busy={busy || (fitting && nodes.length > 0)}>
-          {(busy || (fitting && nodes.length > 0)) && <span className="graph-layout-status" role="status">관계 배치를 맞추고 있습니다.</span>}
+          {(busy || (fitting && nodes.length > 0)) && (
+            <span className="graph-layout-status" role="status">
+              관계 배치를 맞추고 있습니다.
+            </span>
+          )}
           {nodes.length ? (
             <ReactFlow<GraphNode>
               nodes={nodes.map((n) => ({
@@ -354,10 +548,12 @@ export function StudyGraph({ data, subjectIds }: { data: AppState; subjectIds: s
                   pinned: Boolean(pinned[n.id]),
                   zoom,
                   labelVisible: visibleLabels.has(n.id),
+                  open: () => setSelected(n.id),
                 },
               }))}
               edges={edges}
               nodeTypes={nodeTypes}
+              edgeTypes={edgeTypes}
               onInit={setFlow}
               onNodesChange={(changes) => setNodes((prev) => applyNodeChanges(changes, prev))}
               onNodeClick={(_, n) => setSelected(n.id)}
@@ -367,13 +563,29 @@ export function StudyGraph({ data, subjectIds }: { data: AppState; subjectIds: s
                 setPinned((old) => ({ ...old, [n.id]: n.position }));
               }}
               nodesConnectable={false}
+              deleteKeyCode={null}
+              ariaLabelConfig={flowAriaLabels}
+              selectionMode={SelectionMode.Partial}
+              selectionOnDrag={tools.value.mode === 'select'}
+              panOnDrag={tools.value.mode === 'move' ? true : [1, 2]}
+              snapToGrid={tools.value.snap}
+              snapGrid={flowSnapGrid}
+              zoomOnDoubleClick={false}
               minZoom={0.02}
               maxZoom={3}
               fitView
               fitViewOptions={{ padding: 0.3, minZoom: 0.02, maxZoom: 1.2 }}
               aria-label="주제와 개념의 연결 그래프"
             >
-              <Controls showInteractive={false} />
+              <FlowControls aria-label="연결 그래프 보기 조절" showInteractive={false} />
+              <FlowExperience
+                minZoom={0.02}
+                maxZoom={3}
+                tools={tools}
+                count={nodes.length}
+                selectedIds={nodes.filter((node) => node.selected).map((node) => node.id)}
+                name="그래프"
+              />
             </ReactFlow>
           ) : (
             <EmptyState
