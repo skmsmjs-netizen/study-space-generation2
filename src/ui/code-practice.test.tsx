@@ -125,3 +125,28 @@ it('archives an unreadable draft verbatim before allowing editing again', async 
       .some((name) => localStorage.getItem(name) === '{broken 원문'),
   ).toBe(true);
 });
+it('shows the input field and asks for values before running a scanf example', async () => {
+  open();
+  fireEvent.change(screen.getByLabelText('소스 코드 테스트'), {target: {value: 'int main(){int x; scanf("%d", &x); printf("%d", x);}'}});
+  const input = screen.getByLabelText('실행에 사용할 입력값');
+  expect(input).toBeVisible();
+  execution.resolve = null;
+  fireEvent.click(screen.getByRole('button', {name: /^실행$/}));
+  expect(input).toHaveFocus();
+  expect(screen.getByRole('button', {name: '입력 없이 실행'})).toBeVisible();
+  expect(execution.resolve).toBeNull();
+  fireEvent.change(input, {target: {value: '42\n'}});
+  fireEvent.click(screen.getByRole('button', {name: /^실행$/}));
+  expect(execution.resolve).not.toBeNull();
+  await act(async () => execution.resolve!({language: 'c',code: 'int main(){int x; scanf("%d", &x); printf("%d", x);}',stdin: '42\n',outcome: 'success',output: '42',error: '',at: new Date().toISOString()}));
+  expect(repo.getSnapshot().codeExamples![0].stdin).toBe('42\n');
+  expect(repo.getSnapshot().codeExamples![0].lastRun?.output).toBe('42');
+});
+it('allows deliberately empty input for EOF tests without changing the source', () => {
+  open();
+  fireEvent.change(screen.getByLabelText('소스 코드 테스트'), {target: {value: 'int main(){getchar();}'}});
+  execution.resolve = null;
+  fireEvent.click(screen.getByRole('button', {name: /^실행$/}));
+  fireEvent.click(screen.getByRole('button', {name: '입력 없이 실행'}));
+  expect(execution.resolve).not.toBeNull();
+});

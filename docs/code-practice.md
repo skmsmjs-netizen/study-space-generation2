@@ -51,3 +51,11 @@ npx playwright test --config playwright.code.config.ts
 검증 범위: C/C++/C#에 입력 3·4를 전달해 출력 7, 오류 코드의 컴파일 실패, 사용자 파일 읽기·사용자 파일 include·fork·네트워크 연결 거부와 중지, 실제 Monaco의 main/괄호/들여쓰기/Undo/320px 키보드 이동, 제목·코드·설명·결과의 reload 보존, Python/JavaScript 실제 출력. 상세 결과는 공통 프로젝트 `outputs/20261001-code-practice/verification.json`에 기록합니다.
 
 공식 근거: [Monaco](https://github.com/microsoft/monaco-editor), [Pyodide Worker](https://pyodide.org/en/stable/usage/webworker.html), [Supabase 함수 권한](https://supabase.com/docs/guides/database/functions).
+
+## 2026-10-01 입력 안내와 자동 문법 검사
+
+입력 칸을 항상 표시합니다. scanf·cin·Console.ReadLine·input 등의 호출이 있고 입력값이 비어 있으면 입력 칸으로 초점을 옮겨 안내하며, 의도적인 EOF 검사는 입력 없이 실행으로 허용합니다. 실행 전에 표준 입력을 전달하는 방식이며 출력창에서 실행 중 직접 입력하는 터미널은 미구현입니다. scanf로 받은 값이 저절로 출력되지는 않으므로 결과에는 출력 문장 안내를 제공합니다.
+
+web-tree-sitter0.27.0과 @repomix/tree-sitter-wasms0.1.17의 실제 C/C++/C#/Python/JavaScript 문법을 별도 Worker에서 검사합니다. 편집350ms 후 자동 검사·오류 밑줄/행열 목록·해당 줄 이동·수정 후 제거·실패 재시도를 제공합니다. 현재 코드와 맞지 않는 늦은 결과는 표시하지 않고 화면 이동 시 Worker를 종료합니다. WASM과 해당 언어 정의만 앱의 같은 출처에서 가져오며 검사할 코드는 외부로 보내지 않습니다. 문법 검사이지 변수 선언/타입/링크/헤더 전처리/런타임 오류 전체 검사나 정답 판정이 아닙니다. 결과와 원문·저장 상태는 분리합니다.
+
+공식 구현 근거: https://github.com/tree-sitter/tree-sitter/tree/master/lib/binding_web 및 https://github.com/repomix/tree-sitter-wasms . 실제 문법 WASM으로 다섯 언어의 정상/오류 코드와 한글/이모지 위치를 검증하고 실제 브라우저의 C 세미콜론 누락·수정·입력42/출력을 확인합니다.

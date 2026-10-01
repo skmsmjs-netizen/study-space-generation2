@@ -26,6 +26,7 @@ import {
 import { archiveDamagedDraft, draftHasUnstoredText } from '../data/draft-safety';
 import { executeCode, type CodeExecution } from '../data/code-runner';
 import { SourceEditor } from './source-editor';
+import { requestsCodeInput } from '../domain/code-input';
 import { navigate } from './navigation-context';
 import './code-practice.css';
 
@@ -218,6 +219,8 @@ export function CodeExampleEditor({
     );
   const [conflict, setConflict] = useState(initial.conflict);
   const [phase, setPhase] = useState<'idle' | 'loading' | 'running'>('idle');
+  const [inputRequested, setInputRequested] = useState(false);
+  const inputSection = useRef<HTMLDivElement>(null);
   const run = useRef<CodeExecution | null>(null),
     alive = useRef(true);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -329,8 +332,14 @@ export function CodeExampleEditor({
     current.current = codeContent(example);
     setContent(current.current);
   }, [example, key]);
-  const start = () => {
+  const start = (allowEmptyInput = false) => {
     if (run.current || blocked.current) return;
+    if (!allowEmptyInput && !current.current.stdin.trim() && requestsCodeInput(current.current.code, current.current.language)) {
+      setInputRequested(true);
+      inputSection.current?.querySelector('textarea')?.focus();
+      return;
+    }
+    setInputRequested(false);
     const source = {
       language: current.current.language,
       code: current.current.code,
@@ -432,22 +441,26 @@ export function CodeExampleEditor({
         language={content.language}
         readOnly={isBlocked}
         onChange={(code) => update({ ...current.current, code })}
-        onRun={start}
+        onRun={() => start()}
       />
-      <details className="code-input-details" open={content.stdin ? true : undefined}>
-        <summary>실행에 사용할 입력값</summary>
+      <div className="code-input-section" ref={inputSection}>
         <Textarea
-          label="입력값"
+          label="실행에 사용할 입력값"
           rows={3}
           value={content.stdin}
           disabled={isBlocked}
-          hint="scanf·cin·Console.ReadLine·input에 전달할 값을 줄마다 입력하세요. JavaScript는 readline()을 사용합니다."
+          placeholder="예: 3과 4를 입력하려면 한 줄에 하나씩 적으세요."
+          hint="실행 전에 입력값을 적어 주세요. scanf·cin·Console.ReadLine 등에 전달합니다. 출력창에서는 직접 입력을 받지 않습니다."
           onChange={(event) => update({ ...current.current, stdin: event.target.value })}
           data-editing-context={`code:${example.id}:stdin`}
         />
-      </details>
+        {inputRequested && !content.stdin.trim() && <div role="alert" className="code-input-notice">
+          <p>입력을 읽는 코드가 있습니다. 위에 값을 적은 뒤 실행해 주세요. 입력이 끝난 경우를 시험하려면 입력 없이 실행할 수 있습니다.</p>
+          <Button onClick={() => start(true)}>입력 없이 실행</Button>
+        </div>}
+      </div>
       <div className="code-run-actions">
-        <Button variant="primary" onClick={start} disabled={isBlocked || phase !== 'idle'}>
+        <Button variant="primary" onClick={() => start()} disabled={isBlocked || phase !== 'idle'}>
           {phase === 'loading' ? '실행 준비 중…' : phase === 'running' ? '실행 중…' : '실행'}
         </Button>
         {phase !== 'idle' && (
@@ -494,6 +507,9 @@ export function CodeExampleEditor({
             {lastRun.error}
           </pre>
         )}
+        {lastRun?.outcome === 'success' && requestsCodeInput(lastRun.code, lastRun.language) && <p className="ui-hint">
+          입력값은 코드에 전달했습니다. 입력한 값을 결과에 표시하려면 printf·cout·Console.WriteLine 같은 출력 문장을 코드에 넣어 주세요.
+        </p>}
       </section>
       <Textarea
         label="내용·설명"

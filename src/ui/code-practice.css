@@ -43,9 +43,29 @@
 .code-monaco {
   height: 24rem;
 }
-.code-input-details > summary {
-  padding-block: var(--space-3);
+.code-input-notice {
+  border-left: 3px solid var(--color-warning);
+  padding: var(--space-3);
+  background: var(--color-surface-inset);
+}
+.code-syntax-status {
+  border-top: var(--border-width) solid var(--color-border);
+  padding: var(--space-3);
+  font-size: var(--type-caption-size);
+}
+.code-syntax-status ul {
+  padding-left: var(--space-5);
+  max-height: 12rem;
+  overflow: auto;
+}
+.code-syntax-status button {
+  color: var(--color-text);
+  background: transparent;
+  border: 0;
+  text-align: left;
+  text-decoration: underline;
   cursor: pointer;
+  min-height: var(--control-height);
 }
 .code-result {
   background: var(--color-surface-inset);

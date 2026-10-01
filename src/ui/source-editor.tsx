@@ -7,6 +7,7 @@ import 'monaco-editor/editor/contrib/snippet/browser/snippetController2';
 import 'monaco-editor/editor/contrib/comment/browser/comment';
 import 'monaco-editor/editor/contrib/find/browser/findController';
 import 'monaco-editor/editor/contrib/folding/browser/folding';
+import 'monaco-editor/editor/contrib/hover/browser/hoverContribution';
 import 'monaco-editor/editor/contrib/clipboard/browser/clipboard';
 import 'monaco-editor/languages/definitions/cpp/register';
 import 'monaco-editor/languages/definitions/csharp/register';
@@ -14,6 +15,8 @@ import 'monaco-editor/languages/definitions/python/register';
 import 'monaco-editor/languages/definitions/javascript/register';
 import EditorWorker from 'monaco-editor/editor/editor.worker?worker';
 import type { CodeLanguage } from '../domain/model';
+import type { SyntaxDiagnostic } from '../data/code-syntax-parser';
+import SyntaxWorker from '../data/code-syntax.worker?worker';
 
 self.MonacoEnvironment = { getWorker: () => new EditorWorker() };
 const languageId = (language: CodeLanguage) => (language === 'c' ? 'cpp' : language);
@@ -65,6 +68,10 @@ export function SourceEditor({
   const callbacks = useRef({ onChange, onRun });
   callbacks.current = { onChange, onRun };
   const [tabMovesFocus, setTabMovesFocus] = useState(false);
+  const checker = useRef<Worker | null>(null), checkId = useRef(0);
+  const [syntax, setSyntax] = useState<'empty' | 'checking' | 'ready' | 'unavailable'>('empty');
+  const [diagnostics, setDiagnostics] = useState<SyntaxDiagnostic[]>([]);
+  const [retry, setRetry] = useState(0);
   const initial = useRef({ value, language, readOnly });
   useEffect(() => {
     if (!host.current) return;
@@ -144,6 +151,33 @@ export function SourceEditor({
     if (model && editor.current && editor.current.getValue() !== value)
       editor.current.executeEdits('restore', [{ range: model.getFullModelRange(), text: value }]);
   }, [value]);
+  useEffect(() => {
+    const worker = new SyntaxWorker();
+    checker.current = worker;
+    worker.onmessage = (event: MessageEvent<{ id: number; diagnostics?: SyntaxDiagnostic[]; unavailable?: boolean }>) => {
+      if (event.data.id !== checkId.current) return;
+      const model = editor.current?.getModel();
+      if (!model) return;
+      const issues = event.data.diagnostics ?? [];
+      setDiagnostics(issues);
+      setSyntax(event.data.unavailable ? 'unavailable' : 'ready');
+      monaco.editor.setModelMarkers(model, 'study-syntax', issues.map(issue => ({
+        ...issue, severity: monaco.MarkerSeverity.Error, source: '문법 검사',
+      })));
+    };
+    worker.onerror = () => { setSyntax('unavailable'); };
+    return () => { checker.current = null; worker.terminate(); };
+  }, [retry]);
+  useEffect(() => {
+    const id = ++checkId.current;
+    const model = editor.current?.getModel();
+    if (model) monaco.editor.setModelMarkers(model, 'study-syntax', []);
+    setDiagnostics([]);
+    setSyntax(value.trim() ? 'checking' : 'empty');
+    if (!value.trim()) return;
+    const timer = setTimeout(() => checker.current?.postMessage({ id, code: value, language }), 350);
+    return () => clearTimeout(timer);
+  }, [value, language, retry]);
   return (
     <div className="code-editor-shell">
       <div className="code-editor-hint">
@@ -161,6 +195,21 @@ export function SourceEditor({
         </label>
       </div>
       <div ref={host} className="code-monaco" />
+      <div className="code-syntax-status">
+        <span role="status">
+          {syntax === 'checking' ? '문법 검사 중…' : syntax === 'empty' ? '입력하면 자동으로 문법을 검사합니다.' : syntax === 'unavailable' ? '문법 검사를 불러오지 못했습니다.' : diagnostics.length ? `문법 오류 ${diagnostics.length}개` : '문법 오류를 찾지 못했습니다.'}
+        </span>
+        {syntax === 'unavailable' && <button type="button" onClick={() => setRetry(value => value + 1)}>검사 다시 시도</button>}
+        <p className="ui-hint">이 브라우저에서 검사합니다. 변수·타입·라이브러리 오류는 실행할 때 확인합니다.</p>
+        {diagnostics.length > 0 && <ul aria-label="문법 오류 목록">{diagnostics.map((issue, index) => (
+          <li key={index}><button type="button" onClick={() => {
+            const instance = editor.current;
+            instance?.setPosition({ lineNumber: issue.startLineNumber, column: issue.startColumn });
+            instance?.revealLineInCenter(issue.startLineNumber);
+            instance?.focus();
+          }}>{issue.startLineNumber}행 {issue.startColumn}열: {issue.message}</button></li>
+        ))}</ul>}
+      </div>
     </div>
   );
 }
