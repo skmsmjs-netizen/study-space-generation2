@@ -76,6 +76,13 @@ test('graph filters remain usable with larger text without horizontal overflow',
   await connections.selectOption('all');
   await expect(connections).toHaveValue('all');
   await expect(page.getByLabel('그래프 과목', { exact: true })).toBeVisible();
+  for (const [name, content] of [
+    ['surface-hidden', '.graph-toolbar select.ui-input { overflow: hidden; text-overflow: ellipsis; max-inline-size: 100%; }'],
+    ['field-hidden', '.graph-toolbar .ui-field:has(select.ui-input) { overflow: hidden; }'],
+  ]) {
+    await page.addStyleTag({ content });
+    console.log('GRAPH_VARIANT', name, JSON.stringify(await page.evaluate(() => ({ viewport: innerWidth, pageWidth: document.documentElement.scrollWidth }))));
+  }
   console.log('GRAPH_REFLOW', JSON.stringify(await page.evaluate(() => ({
     viewport: innerWidth, pageWidth: document.documentElement.scrollWidth,
     overflowing: [...document.querySelectorAll<HTMLElement>('body *')]
