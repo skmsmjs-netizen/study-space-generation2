@@ -1,9 +1,27 @@
 import {defineConfig,devices} from '@playwright/test';
+import {createServer} from 'node:net';
+import {fileURLToPath} from 'node:url';
+import path from 'node:path';
+import {createDeviceRun} from '../../scripts/device-run.mjs';
+// Serve fixed build bytes on an independent port, also for concurrent local runs.
+if(!process.env.COLOR_TEST_SITE){
+ const snapshot=createDeviceRun(fileURLToPath(new URL('../../dist/',import.meta.url)),fileURLToPath(new URL('../../work/color-environments/',import.meta.url)));
+ process.env.COLOR_TEST_SITE=path.join(snapshot.run,'site');
+ process.env.COLOR_TEST_APP=snapshot.build;
+}
+let port=process.env.COLOR_TEST_PORT;
+if(!port){
+ const reservation=createServer();
+ await new Promise((resolve,reject)=>{reservation.once('error',reject);reservation.listen(0,'127.0.0.1',resolve);});
+ port=String(reservation.address().port);
+ await new Promise(resolve=>reservation.close(resolve));
+ process.env.COLOR_TEST_PORT=port;
+}
 export default defineConfig({
- webServer:{command:'node prepare-site.mjs && python3 -m http.server 5289 --bind 127.0.0.1 --directory site',url:'http://127.0.0.1:5289/color-check.html',reuseExistingServer:!process.env.CI},
+ webServer:{command:'node prepare-site.mjs --serve',url:`http://127.0.0.1:${port}/color-check.html`,reuseExistingServer:false},
  testDir:'.',testMatch:'colors.pw.mjs',workers:2,timeout:90000,retries:0,
  outputDir:'./artifacts/traces',reporter:[['list'],['json',{outputFile:'./artifacts/results.json'}]],
- use:{baseURL:'http://127.0.0.1:5289',locale:'ko-KR',timezoneId:'Asia/Seoul',colorScheme:'light',trace:'retain-on-failure',screenshot:'only-on-failure'},
+ use:{baseURL:`http://127.0.0.1:${port}`,locale:'ko-KR',timezoneId:'Asia/Seoul',colorScheme:'light',trace:'retain-on-failure',screenshot:'only-on-failure'},
  projects:[
   {name:'chromium-desktop',use:{browserName:'chromium',viewport:{width:1280,height:800}}},
   {name:'firefox-desktop',use:{browserName:'firefox',viewport:{width:1280,height:800}}},
