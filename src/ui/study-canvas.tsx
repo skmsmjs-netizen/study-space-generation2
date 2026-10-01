@@ -6,17 +6,25 @@ import { MemoEditor } from './quick-memos';
 import { CanvasConceptEditor } from './canvas-concept-editor';
 import { conceptText } from '../domain/canvas-concept';
 import { MEMO_WIDTH, MEMO_HEIGHT, memoPath } from '../domain/memo';
-import type { AppState, Narrative, QuickMemo } from '../domain/model';
+import type { AppState, Narrative, QuickMemo, CanvasPosition } from '../domain/model';
 import { CANVAS_ID, projectCanvas, type CanvasCard, type CanvasContent } from '../domain/canvas';
 import { readCanvasDraft, writeCanvasDraft, clearCanvasDraft, preserveCanvasDraft, readConnectionDraft, writeConnectionDraft, clearConnectionDraft, type ConnectionDraft } from '../data/canvas-draft';
 import type { StudyRepository } from '../data/repository';
 import './study-canvas.css';
 
-type CardData = { card: CanvasCard; body?: string; memo?: QuickMemo; editor?: ReactNode; open: () => void; close: () => void };
+type CardData = { card: CanvasCard; body?: string; memo?: QuickMemo; editor?: ReactNode; saveMessage?: string; open: () => void; close: () => void };
 type CardNode = Node<CardData, 'study'>;
 const kinds = { subject: '과목', unit: '단원', outline: '목차', topic: '주제', memo: '내 설명', narrative: '내 메모', concept: '개념' };
 function StudyCard({ data, selected }: NodeProps<CardNode>) {
   const { card } = data;
+  const editButton = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    if (!data.saveMessage || data.editor) return;
+    let frame = requestAnimationFrame(() => {
+      frame = requestAnimationFrame(() => editButton.current?.focus({ preventScroll: true }));
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [data.saveMessage, Boolean(data.editor)]);
   return <article className={`canvas-card canvas-kind-${card.kind}${selected ? ' is-selected' : ''}${data.editor ? ' is-editing' : ''}`} aria-label={`${kinds[card.kind]} 카드 ${card.name}`}>
     <Handle type="target" position={Position.Left} />
     <header className="canvas-drag-handle">{card.kind !== 'memo' && card.kind !== 'narrative' && <span className="canvas-role">{kinds[card.kind]}</span>}<h2>{card.name}</h2></header>
@@ -24,7 +32,8 @@ function StudyCard({ data, selected }: NodeProps<CardNode>) {
       {data.editor ?? <>
         {data.memo?.strokes.length ? <svg className="canvas-sketch" viewBox={`0 0 ${MEMO_WIDTH} ${MEMO_HEIGHT}`} role="img" aria-label="저장한 설명 그림">{data.memo.strokes.map(stroke => <path key={stroke.id} d={memoPath(stroke.points)} strokeWidth={stroke.width} fill="none" stroke={{ ink: 'var(--color-text)', blue: 'var(--color-hierarchy-outline)', green: 'var(--color-memo-green)' }[stroke.ink]} strokeLinecap="round" strokeLinejoin="round" />)}</svg> : null}
         {data.body && <p className="canvas-original">{data.body}</p>}
-        <div className="canvas-card-actions"><Button variant="quiet" onClick={data.open}>{card.kind === 'memo' || card.kind === 'narrative' || card.kind === 'concept' ? '카드 안에서 편집' : '메모 쓰기'}</Button>
+        {data.saveMessage && <p className="canvas-save-status" role="status">{data.saveMessage}</p>}
+        <div className="canvas-card-actions"><Button ref={editButton} variant="quiet" onClick={data.open}>{card.kind === 'memo' || card.kind === 'narrative' || card.kind === 'concept' ? '카드 안에서 편집' : '메모 쓰기'}</Button>
         {card.kind !== 'memo' && card.kind !== 'narrative' && card.kind !== 'concept' && <a href={`#/${card.kind === 'subject' ? 'subject' : 'node'}/${encodeURIComponent(card.entityId)}`}>열기 ↗</a>}</div>
       </>}
     </div>
@@ -34,7 +43,7 @@ function StudyCard({ data, selected }: NodeProps<CardNode>) {
 const nodeTypes = { study: StudyCard };
 export function StudyCanvas({ data, repository, onSaved, subjectIds, renderNarrative }: {
   data: AppState; repository: StudyRepository; onSaved: (next: AppState) => void; subjectIds: string[];
-  renderNarrative: (ownerId: string, narrative?: Narrative) => ReactNode;
+  renderNarrative: (ownerId: string, narrative: Narrative | undefined, onSaved: () => void) => ReactNode;
 }) {
   const serverReady = data.namespace === 'demo' || repository.getCapabilities?.().includes('saveCanvasLayout') === true;
   const saved = data.canvasLayouts?.find(row => row.id === CANVAS_ID && !row.deletedAt);
@@ -53,6 +62,7 @@ export function StudyCanvas({ data, repository, onSaved, subjectIds, renderNarra
   const current = useRef(content); current.current = content;
   const version = useRef(saved?.version ?? 0);
   const [editorId, setEditorId] = useState<string | null>(null), [selectedId, setSelectedId] = useState<string | null>(null), [selectedEdge, setSelectedEdge] = useState<string | null>(null);
+  const [savedCard, setSavedCard] = useState<{ id: string; message: string } | null>(null);
   const [course, setCourse] = useState('all');
   const [conceptOpen, setConceptOpen] = useState(false);
   const [focusConcept, setFocusConcept] = useState<string | null>(null);
@@ -62,7 +72,13 @@ export function StudyCanvas({ data, repository, onSaved, subjectIds, renderNarra
   const [connectionError, setConnectionError] = useState(connectionBoot.error);
   const [composing, setComposing] = useState(false);
   const subjects = data.subjects.filter(s => !s.deletedAt && subjectIds.includes(s.id));
-  const projection = useMemo(() => projectCanvas(data, course === 'all' ? subjectIds : subjectIds.filter(id => id === course), content, course === 'all'), [data, course, subjectIds.join('|'), content]);
+  const displayedPositions = useRef<Record<string, CanvasPosition>>({});
+  const projection = useMemo(() => {
+    const next = projectCanvas(data, course === 'all' ? subjectIds : subjectIds.filter(id => id === course),
+      { ...content, positions: { ...displayedPositions.current, ...content.positions } }, course === 'all');
+    for (const card of next.cards) displayedPositions.current[card.id] = card.position;
+    return next;
+  }, [data, course, subjectIds.join('|'), content]);
   const [nodes, setNodes] = useState<CardNode[]>([]);
   const flow = useRef<ReactFlowInstance<CardNode, Edge> | null>(null);
   const save = (nextContent: CanvasContent) => {
@@ -85,12 +101,15 @@ export function StudyCanvas({ data, repository, onSaved, subjectIds, renderNarra
       const narrative = card.kind === 'narrative' ? data.narratives.find(row => row.id === card.entityId) : undefined;
       let editor: ReactNode;
       if (editorId === card.id) editor = card.kind === 'concept' && memo ? <CanvasConceptEditor key={memo.id} data={data} repository={repository} memo={memo} onSaved={next => { onSaved(next); setEditorId(null); }} onClose={() => setEditorId(null)} /> : memo ? <MemoEditor embedded key={memo.id} memo={memo} data={data} repository={repository} onSaved={onSaved} onClose={() => setEditorId(null)} onCopy={id => setEditorId(`memo:${id}`)} />
-        : <div className="canvas-narrative-editor">{renderNarrative(narrative?.ownerId ?? card.entityId, narrative)}<Button variant="quiet" onClick={() => setEditorId(null)}>편집 접기</Button></div>;
+        : <div className="canvas-narrative-editor">{renderNarrative(narrative?.ownerId ?? card.entityId, narrative, () => {
+          setEditorId(current => current === card.id ? null : current);
+          setSavedCard({ id: card.id, message: data.namespace === 'demo' ? '이 기기에 저장했습니다.' : '서버에 저장했습니다.' });
+        })}<Button variant="quiet" onClick={() => setEditorId(null)}>편집 접기</Button></div>;
       return { id: card.id, type: 'study', position: previous.find(row => row.id === card.id)?.dragging ? previous.find(row => row.id === card.id)!.position : card.position,
         dragHandle: '.canvas-drag-handle', selected: card.id === selectedId,
-        data: { card, body: card.kind === 'concept' && memo ? conceptText(memo.body).description : memo?.body ?? narrative?.body, memo, editor, open: () => { setSelectedId(card.id); setEditorId(card.id); }, close: () => setEditorId(null) } };
+        data: { card, body: card.kind === 'concept' && memo ? conceptText(memo.body).description : memo?.body ?? narrative?.body, memo, editor, saveMessage: savedCard?.id === card.id ? savedCard.message : undefined, open: () => { setSavedCard(null); setSelectedId(card.id); setEditorId(card.id); }, close: () => setEditorId(null) } };
     }));
-  }, [projection, editorId, selectedId]);
+  }, [projection, editorId, selectedId, savedCard]);
   useEffect(() => {
     const frame = requestAnimationFrame(() => { if (flow.current && course !== 'all') void flow.current.fitView({ padding: .16, minZoom: .25, maxZoom: 1 }); });
     return () => cancelAnimationFrame(frame);

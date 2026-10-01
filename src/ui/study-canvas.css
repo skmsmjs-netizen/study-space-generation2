@@ -5,7 +5,7 @@
 .canvas-toolbar .ui-field { min-inline-size: 12rem; }
 .canvas-toolbar a { margin-inline-start: auto; font-size: var(--type-caption-size); }
 .canvas-stage { height: max(520px, calc(100dvh - 240px)); border: var(--border-width) solid var(--color-border); border-radius: var(--radius-sm); overflow: hidden; }
-.canvas-card { width: 300px; color: var(--color-text); background: var(--color-surface); border: var(--border-width) solid var(--color-border-strong); border-radius: var(--radius-sm); box-shadow: var(--shadow-none); }
+.canvas-card { width: 300px; color: var(--color-text); background: var(--color-surface); border: var(--border-width) solid var(--color-border-strong); border-radius: var(--radius-sm); box-shadow: var(--shadow-none); transition: width var(--motion-transition) var(--motion-ease); }
 .canvas-card.is-selected { outline: var(--focus-width) solid var(--color-focus); }
 .canvas-card.is-editing { width: 520px; }
 .canvas-drag-handle { cursor: grab; padding: var(--space-4); border-block-end: var(--border-width) solid var(--color-border); }
@@ -18,6 +18,7 @@
 .canvas-kind-memo { background: var(--color-surface-inset); }
 .canvas-card-body { padding: var(--space-3) var(--space-4); max-block-size: 70dvh; overflow-y: auto; }
 .canvas-original { white-space: pre-wrap; overflow-wrap: anywhere; font-family: var(--font-reading); margin-block-end: var(--space-3); }
+.canvas-save-status { color: var(--color-success); font-size: var(--type-caption-size); margin-block: var(--space-2); }
 .canvas-sketch { width: 100%; display: block; background: var(--color-surface); }
 .canvas-card-actions { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); }
 .canvas-card-actions a { font-size: var(--type-caption-size); }

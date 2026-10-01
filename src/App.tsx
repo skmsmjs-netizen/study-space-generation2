@@ -913,9 +913,9 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
             setCleanupKeys(keys => [...new Set([...keys, key])]);
             setError("자유 기록은 저장했습니다. 이전 초안 정리가 남았습니다. 창을 닫기 전에 다시 시도해 주세요.");
           }} />}
-          {route === "/canvas" && <Suspense fallback={<LoadingState message="Canvas를 여는 중입니다." />}><StudyCanvas key={`${data.namespace}:${data.userId}`} data={data} repository={repository} onSaved={setData} subjectIds={shownSubjects.map(subject => subject.id)} renderNarrative={(ownerId, narrative) => {
+          {route === "/canvas" && <Suspense fallback={<LoadingState message="Canvas를 여는 중입니다." />}><StudyCanvas key={`${data.namespace}:${data.userId}`} data={data} repository={repository} onSaved={setData} subjectIds={shownSubjects.map(subject => subject.id)} renderNarrative={(ownerId, narrative, finishEditing) => {
             const target = data.nodes.find(node => node.id === ownerId);
-            return <NarrativeEditor key={narrative?.id ?? ownerId} data={data} ownerId={ownerId} narrativeId={narrative?.id} kind={narrative?.kind ?? (target ? target.role === 'unit' ? 'unit-introduction' : 'topic-note' : 'subject-overview')} label={narrative ? '메모' : '새 메모'} commit={commit} inline />;
+            return <NarrativeEditor key={narrative?.id ?? ownerId} data={data} ownerId={ownerId} narrativeId={narrative?.id} kind={narrative?.kind ?? (target ? target.role === 'unit' ? 'unit-introduction' : 'topic-note' : 'subject-overview')} label={narrative ? '메모' : '새 메모'} commit={commit} repository={repository} onSaved={(_id, cleanupKey) => { if (!cleanupKey) finishEditing(); }} inline />;
           }} /></Suspense>}
           {practiceRoute && <Suspense fallback={<LoadingState />}><ExamPractice key={`${data.namespace}:${data.userId}:${route}`} data={data} repository={repository} onSaved={setData} subjectIds={shownSubjects.map(subject => subject.id)} initialTopicId={route.startsWith('/practice/') ? route.slice('/practice/'.length) : undefined} /></Suspense>}
           {route === "/recall" && <TopicRecall key={`${data.namespace}:${data.userId}`} data={data} repository={repository} onSaved={setData} subjectIds={shownSubjects.map(subject => subject.id)} />}
@@ -1241,6 +1241,7 @@ function NarrativeEditor({
   onSaved,
   draftKey,
   inline = false,
+  repository,
 }: {
   data: AppState;
   kind: NarrativeKind;
@@ -1252,6 +1253,7 @@ function NarrativeEditor({
   onSaved?: (id: string, cleanupKey?: string) => void;
   draftKey?: string;
   inline?: boolean;
+  repository?: StudyRepository;
 }) {
   const original = active(data.narratives).find(
     (n) => !newNote && (narrativeId ? n.id === narrativeId : n.kind === kind && n.ownerId === ownerId),
@@ -1271,31 +1273,62 @@ function NarrativeEditor({
   const draft = useTextDraft(storageKey, original?.body || "", original?.version || 0,
     { entityId: initialId.current, restoreIdentity: newNote || (!original && !narrativeId) });
   const [saved, setSaved] = useState(false);
+  const [saving, setSaving] = useState(false), [saveError, setSaveError] = useState('');
+  const savingGuard = useRef(false), mounted = useRef(true);
+  useEffect(() => { mounted.current = true; return () => { mounted.current = false; }; }, []);
   const stableId = draft.entityId || initialId.current;
   const alreadyCreated = newNote ? active(data.narratives).find(item => item.id === stableId && item.kind === kind && item.ownerId === ownerId) : undefined;
-  const save = () => {
-    // A previous successful create may have outlived draft cleanup. Reuse that identity.
-    if (alreadyCreated && alreadyCreated.body === draft.body) {
-      const cleaned = draft.clear(alreadyCreated.version);
-      setSaved(true); onSaved?.(stableId, cleaned ? undefined : storageKey); return;
-    }
-    const result = commit(
-      {
-        type: "updateNarrative",
-        id: stableId,
-        kind,
-        ownerId,
-        body: draft.body,
-        expectedVersion: draft.expected.current,
-      },
-      `${label}을 저장했습니다.`,
-    );
-    if (result) {
-      const cleaned = draft.clear(
-        result.narratives.find((n) => n.id === stableId)!.version,
+  const save = async () => {
+    if (savingGuard.current || draft.blocked) return;
+    savingGuard.current = true; setSaving(true); setSaveError('');
+    try {
+      // A failed server transmission retains the original queued operation. Retry
+      // that operation when this exact text is already committed on this device.
+      const queued = repository?.getSnapshot().narratives.find(item => item.id === stableId && !item.deletedAt && item.kind === kind && item.ownerId === ownerId && item.body === draft.body);
+      // A previous successful create may have outlived draft cleanup. Reuse that identity.
+      if (!repository && alreadyCreated && alreadyCreated.body === draft.body) {
+        const cleaned = draft.clear(alreadyCreated.version);
+        setSaved(true); onSaved?.(stableId, cleaned ? undefined : storageKey); return;
+      }
+      const result = queued ? repository!.getSnapshot() : commit(
+        {
+          type: "updateNarrative",
+          id: stableId,
+          kind,
+          ownerId,
+          body: draft.body,
+          expectedVersion: draft.expected.current,
+        },
+        repository ? undefined : `${label}을 저장했습니다.`,
       );
-      setSaved(true);
-      onSaved?.(stableId, cleaned ? undefined : storageKey);
+      if (result) {
+        if (repository) {
+          // Keep the text draft, but advance its base to the local commit so that
+          // a failed transmission can be followed by further edits and a retry.
+          draft.expected.current = result.narratives.find(n => n.id === stableId)!.version;
+          draft.change(draft.body);
+        }
+        if (repository && data.namespace !== 'demo') {
+          if (!repository.flush || !repository.getStatus) throw new Error('서버 저장을 확인하지 못했습니다. 입력은 이 기기에 남아 있습니다.');
+          await repository.flush();
+          if (!mounted.current) return;
+          const status = repository.getStatus();
+          if (status.phase !== 'saved' || status.pending !== 0) throw new Error(`${status.message} 편집 내용은 유지했습니다. 다시 저장해 주세요.`);
+        }
+        if (!mounted.current) return;
+        const cleaned = draft.clear(
+          result.narratives.find((n) => n.id === stableId)!.version,
+        );
+        setSaved(true);
+        onSaved?.(stableId, cleaned ? undefined : storageKey);
+      } else if (repository) {
+        setSaveError('내용을 저장하지 못했습니다. 편집 내용은 유지했습니다. 다시 저장해 주세요.');
+      }
+    } catch (reason) {
+      if (mounted.current) setSaveError(message(reason));
+    } finally {
+      savingGuard.current = false;
+      if (mounted.current) setSaving(false);
     }
   };
   return (
@@ -1314,25 +1347,28 @@ function NarrativeEditor({
           label={label}
           data-editing-context={draftKey || `narrative:${kind}:${ownerId}`}
           value={draft.body}
+          readOnly={saving}
           onChange={(e) => {
             draft.change(e.target.value);
             setSaved(false);
+            setSaveError('');
           }}
           rows={kind === "free-note" ? 10 : 4}
           placeholder="자신의 말로 자유롭게 남겨 보세요."
         />
-        <p className="muted">
-          {saved
-            ? "이 기기에 저장했습니다."
+        <p className="muted" role="status">
+          {saving ? (repository && data.namespace !== 'demo' ? '서버에 저장 중입니다…' : '저장 중입니다…') : saved
+            ? (repository && data.namespace !== 'demo' ? '서버에 저장했습니다.' : "이 기기에 저장했습니다.")
             : "입력은 이 기기의 초안으로 보관됩니다. 내용 저장을 누르면 수정 이력에 남습니다."}
         </p>
+        {saveError && <ErrorState message={saveError} />}
         {alreadyCreated && alreadyCreated.body !== draft.body && draft.expected.current !== alreadyCreated.version && <>
           <p role="alert">이 초안의 자유 기록은 이미 저장되어 있습니다. 현재 초안과 저장된 글이 달라 원문을 유지했습니다. 저장된 글을 확인해 주세요.</p>
           <a href={`#/free/${stableId}`}>저장된 자유 기록 열기</a>
         </>}
         {draft.error && <><ErrorState message={draft.error} /><Button onClick={draft.retry}>{draft.blocked ? "원본 사본 보관 후 입력 이어가기" : draft.cleanupPending ? "저장한 초안 정리 다시 시도" : "초안 다시 보관"}</Button></>}
-        <Button disabled={draft.blocked} onClick={save}>
-          내용 저장
+        <Button disabled={draft.blocked} busy={saving} onClick={() => { void save(); }}>
+          {saving ? '저장 중…' : saveError ? '저장 다시 시도' : '내용 저장'}
         </Button>
       </div>
     </details>
