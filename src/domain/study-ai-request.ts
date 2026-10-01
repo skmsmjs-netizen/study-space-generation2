@@ -2,6 +2,10 @@ import { DomainError } from './model.ts';
 
 /** Existing records are optional inputs; these tasks never create performance evidence. */
 const CURRENT_STUDY_AI_TASKS = {
+  'study-pack': {
+    label: '복습 자료 한 번에',
+    instruction: '제공한 자료를 한 번 읽고 핵심 개념·암기 포인트를 summary에, 인출 질문과 답을 cards에, 객관식 문제와 해설을 quiz에, 개념 관계를 map에 함께 만든다. 각 출력의 원문 근거와 조건·예외를 유지한다. 튜터는 사용자가 질문할 때 같은 자료로 이어간다.',
+  },
   quiz: {
     label: '객관식 퀴즈',
     instruction:
