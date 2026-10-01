@@ -16,7 +16,7 @@ async function theme(page,value){
 }
 async function contrast(page,selector){
  await page.addScriptTag({content:axe});
- const a=await page.evaluate(async scope=>{const x=await axe.run(scope,{runOnly:{type:'rule',values:['color-contrast']}});return{violations:x.violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))})),passedNodes:x.passes.flatMap(v=>v.nodes).length,incomplete:x.incomplete.map(v=>({id:v.id,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))}))};},selector);
+ const a=await page.evaluate(async scope=>{const x=await axe.run(scope,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa']}});return{violations:x.violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))})),passedNodes:x.passes.flatMap(v=>v.nodes).length,incomplete:x.incomplete.map(v=>({id:v.id,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))}))};},selector);
  expect(a.violations).toEqual([]);return a;
 }
 test('released app themes, routes and saved Korean text',async({page},info)=>{
