@@ -28,9 +28,9 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 
-// ../../../../../ChatGPT/학습 시스템 설계 프로젝트/generation2/node_modules/lz-string/libs/lz-string.js
+// node_modules/lz-string/libs/lz-string.js
 var require_lz_string = __commonJS({
-  "../../../../../ChatGPT/\uD559\uC2B5 \uC2DC\uC2A4\uD15C \uC124\uACC4 \uD504\uB85C\uC81D\uD2B8/generation2/node_modules/lz-string/libs/lz-string.js"(exports, module) {
+  "node_modules/lz-string/libs/lz-string.js"(exports, module) {
     var LZString2 = (function() {
       var f = String.fromCharCode;
       var keyStrBase64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
@@ -925,7 +925,7 @@ function codeContent(row) {
   };
 }
 
-// ../../../../../ChatGPT/학습 시스템 설계 프로젝트/generation2/node_modules/ts-fsrs/dist/index.mjs
+// node_modules/ts-fsrs/dist/index.mjs
 var FSRSError = class _FSRSError extends Error {
   constructor(message = "FSRS Error") {
     super(message);

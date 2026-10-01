@@ -3,7 +3,8 @@ import { DomainError, type AppState, type Command } from '../domain/model';
 import type { SaveStatus, StudyRepository } from './repository';
 import type { ServerSnapshot } from '../server/command-handler';
 import { encodeStoredText, decodeStoredText } from './storage-codec';
-export interface OnlineTransport { load(): Promise<ServerSnapshot>; execute(command: Command, baseSequence: number): Promise<ServerSnapshot> }
+import type { CodeRemoteRunner } from './code-runner';
+export interface OnlineTransport { load(): Promise<ServerSnapshot>; execute(command: Command, baseSequence: number): Promise<ServerSnapshot>; runCode?: CodeRemoteRunner }
 export interface PreservedConflict { base: ServerSnapshot; local: AppState; pending: Command[]; server: ServerSnapshot; savedAt: string }
 interface LocalEnvelope { format: 1; base: ServerSnapshot; local: AppState; pending: Command[]; conflict?: ServerSnapshot; archives: PreservedConflict[] }
 /** Read only this authenticated owner's cache; never treat it as a server acknowledgement. */
@@ -26,6 +27,7 @@ export class PersonalRepository implements StudyRepository {
   private status: SaveStatus;
   private needsRefresh = false;
   readonly key: string;
+  getCodeRunner = () => this.transport.runCode;
   constructor(private storage: Pick<Storage, 'getItem' | 'setItem'> & { flush?(): Promise<void> }, private transport: OnlineTransport, server: ServerSnapshot, cached = false) {
     this.needsRefresh = cached;
     validateState(server.data);

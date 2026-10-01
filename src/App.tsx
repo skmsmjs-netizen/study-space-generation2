@@ -37,6 +37,7 @@ import { OutlineTree } from "./ui/outline-tree";
 import { DraftArchives } from "./ui/draft-archives";
 import { QuickMemos } from "./ui/quick-memos";
 import { StudyLaunch } from "./ui/study-launch";
+const CodePractice = lazy(() => import("./ui/code-practice").then(module => ({ default: module.CodePractice })));
 const NextStudy = lazy(() => import("./ui/next-study").then(module => ({ default: module.NextStudy })));
 const StudyStatistics = lazy(() => import("./ui/statistics").then(module => ({ default: module.StudyStatistics })));
 const ExamPractice = lazy(() => import("./ui/exam-practice").then(module => ({ default: module.ExamPractice })));
@@ -479,16 +480,19 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
     { href: "/subjects", text: "과목" },
     { href: "/record", text: "기록" },
     { href: "/memos", text: "메모" },
+    { href: "/code", text: "코딩 연습" },
     { href: "/practice", text: "시험 연습" },
     { href: "/recall", text: "주제 카드" },
     { href: "/canvas", text: "Canvas" },
     { href: "/search", text: "찾기" },
   ];
   const recordRoute = route.startsWith("/record");
+  const codeRoute = route === "/code" || route.startsWith("/code/");
   const memoRoute = route === "/memos" || route.startsWith("/memos/");
   const practiceRoute = route === "/practice" || route.startsWith("/practice/");
   const freeRoute = route === "/free" || route.startsWith("/free/");
   const rootTitle =
+    codeRoute ? "코딩 연습" :
     practiceRoute ? "시험 연습" : route === "/statistics" ? "공부 통계" :
     route === "/canvas"
       ? "Canvas"
@@ -517,7 +521,7 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
         <a className="brand" href="#/">
           공부의 자리<span>LEARNING SPACE</span>
         </a>
-        <NavigationBar label="주 메뉴" orientation="vertical" items={navItems.map(item => ({href:`#${item.href}`, label:item.text, active:route === item.href || item.href === "/record" && recordRoute || item.href === "/memos" && memoRoute || item.href === "/practice" && practiceRoute || item.href === "/subjects" && Boolean(subject)}))} />
+        <NavigationBar label="주 메뉴" orientation="vertical" items={navItems.map(item => ({href:`#${item.href}`, label:item.text, active:route === item.href || item.href === "/record" && recordRoute || item.href === "/code" && codeRoute || item.href === "/memos" && memoRoute || item.href === "/practice" && practiceRoute || item.href === "/subjects" && Boolean(subject)}))} />
         <details className="sidebar-bottom workspace-tools"><summary>보관함·화면 설정</summary><div className="workspace-tools-content">
           <a href="#/trash">휴지통</a>
           <a href="#/draft-archives">초안 보관본</a>
@@ -915,6 +919,7 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
           }} /></Suspense>}
           {practiceRoute && <Suspense fallback={<LoadingState />}><ExamPractice key={`${data.namespace}:${data.userId}:${route}`} data={data} repository={repository} onSaved={setData} subjectIds={shownSubjects.map(subject => subject.id)} initialTopicId={route.startsWith('/practice/') ? route.slice('/practice/'.length) : undefined} /></Suspense>}
           {route === "/recall" && <TopicRecall key={`${data.namespace}:${data.userId}`} data={data} repository={repository} onSaved={setData} subjectIds={shownSubjects.map(subject => subject.id)} />}
+          {codeRoute && <Suspense fallback={<LoadingState message="코드 편집기를 여는 중입니다." />}><CodePractice data={data} repository={repository} onSaved={setData} exampleId={route.startsWith("/code/") ? route.slice("/code/".length) : undefined} /></Suspense>}
           {memoRoute && <QuickMemos key={route} data={data} repository={repository} onSaved={setData} memoId={route.startsWith("/memos/") ? route.slice("/memos/".length) : undefined} />}
           {route === "/search" && (
             <>
@@ -997,10 +1002,12 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
                 ))}
             </>
           )}
+          {route === "/trash" && <Suspense fallback={<LoadingState />}><CodePractice data={data} repository={repository} onSaved={setData} trash /></Suspense>}
           {route === "/trash" && <QuickMemos data={data} repository={repository} onSaved={setData} trash />}
           {!["/", "/subjects", "/search", "/trash", "/free", "/draft-archives", "/recall", "/canvas", "/statistics"].includes(route) &&
             !recordRoute &&
             !memoRoute &&
+            !codeRoute &&
             !practiceRoute &&
             !freeRoute &&
             !subject && (
@@ -1014,7 +1021,7 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
               </EmptyState>
             )}
         </main>
-        <NavigationBar label="빠른 이동" className="bottom-nav" items={navItems.map(item => ({href:`#${item.href}`, label:item.text, active:route === item.href || item.href === "/record" && recordRoute || item.href === "/memos" && memoRoute || item.href === "/practice" && practiceRoute || item.href === "/subjects" && Boolean(subject)}))} />
+        <NavigationBar label="빠른 이동" className="bottom-nav" items={navItems.map(item => ({href:`#${item.href}`, label:item.text, active:route === item.href || item.href === "/record" && recordRoute || item.href === "/code" && codeRoute || item.href === "/memos" && memoRoute || item.href === "/practice" && practiceRoute || item.href === "/subjects" && Boolean(subject)}))} />
       </div>
       <Modal
         open={Boolean(dialog)}

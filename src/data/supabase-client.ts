@@ -26,5 +26,18 @@ export function onlineTransport(client: SupabaseClient, namespace: Namespace = '
     const result = data as ServerSnapshot;
     return result;
   }
-  return { load: () => request('load'), execute: (command, sequence) => request('execute', command, sequence) };
+  return {
+    load: () => request('load'), execute: (command, sequence) => request('execute', command, sequence),
+    runCode: async (content, signal) => {
+      const { data: session, error: authError } = await client.auth.getSession();
+      if (authError || !session.session) throw new DomainError('AUTH_REQUIRED', '코드를 실행하려면 내 공부 공간에 다시 로그인해 주세요.');
+      const { data, error } = await client.functions.invoke('study-code-runner', { body: content, signal, timeout: 40000 });
+      if (error) {
+        let result: { code?: string; message?: string } = {};
+        try { if (error.context instanceof Response) result = await error.context.json(); } catch { /* Preserve the original source on an unavailable response. */ }
+        throw new DomainError(result.code ?? 'COMPILER_UNAVAILABLE', result.message ?? '컴파일 서버에 연결하지 못했습니다. 코드와 설명은 유지했습니다.');
+      }
+      return data;
+    },
+  };
 }
