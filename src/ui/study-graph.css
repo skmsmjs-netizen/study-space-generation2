@@ -12,6 +12,10 @@
 .graph-toolbar .ui-choice {
   grid-column: 1 / -1;
 }
+.graph-toolbar select.ui-input {
+  /* WebKit can paint a native option beyond its grid cell when text grows. */
+  overflow: hidden;
+}
 .graph-actions {
   display: flex;
   gap: var(--space-3);
