@@ -54,6 +54,7 @@ const CodePractice = lazy(() => import("./ui/code-practice").then(module => ({ d
 const MemoryTests = lazy(() => import("./ui/memory-test").then(module => ({ default: module.MemoryTests })));
 const ExamPractice = lazy(() => import("./ui/exam-practice").then(module => ({ default: module.ExamPractice })));
 import { TopicRecall } from "./ui/topic-recall";
+const ConceptLibrary = lazy(() => import('./ui/concept-library').then(m => ({ default: m.ConceptLibrary })));
 const StudyGraph = lazy(() => import('./ui/study-graph').then(module => ({ default: module.StudyGraph })));
 const FullBackup = lazy(() => import("./ui/full-backup").then(module => ({ default: module.FullBackup })));
 const StudyBoard = lazy(() => import('./ui/study-board').then(module => ({ default: module.StudyBoard })));
@@ -503,6 +504,7 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
     { href: "/practice", text: "시험 연습" },
     { href: "/memory-test", text: "암기시험" },
     { href: "/material-cards", text: "자료 카드" },
+    { href: "/concepts", text: "개념 전집" },
     { href: "/recall", text: "주제 카드" },
     { href: "/canvas", text: "Canvas" },
     { href: "/graph", text: "그래프뷰" },
@@ -517,7 +519,7 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
   const practiceRoute = route === "/practice" || route.startsWith("/practice/");
   const freeRoute = route === "/free" || route.startsWith("/free/");
   const rootTitle =
-    route === "/about" ? "manseeksong" : route === "/help" ? "도움말·문의" : route === "/my-progress" ? "내 생각 다시 보기" : route === "/subscription" ? "이용 정보" :
+    route === "/concepts" ? "개념 전집" : route === "/about" ? "manseeksong" : route === "/help" ? "도움말·문의" : route === "/my-progress" ? "내 생각 다시 보기" : route === "/subscription" ? "이용 정보" :
     route === "/schedules" ? "일정·과제·온라인 강의" : route === "/material-cards" ? "자료 카드" : route === "/math" ? "수식 탐색" : memoryTestRoute ? "암기시험" : materialRoute ? "강의 자료" : practiceRoute ? "시험 연습" : codeRoute ? "코딩 연습" : route === "/statistics" ? "공부 통계" :
     route === "/backup" ? "백업·복원" : route === "/graph" ? "그래프뷰" : route === "/board" ? "칸반보드" : route === "/canvas"
       ? "Canvas"
@@ -958,6 +960,7 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
             setCleanupKeys(keys => [...new Set([...keys, key])]);
             setError("자유 기록은 저장했습니다. 이전 초안 정리가 남았습니다. 창을 닫기 전에 다시 시도해 주세요.");
           }} />}
+          {route === "/concepts" && <Suspense fallback={<LoadingState />}><ConceptLibrary key={`${data.namespace}:${data.userId}`} data={data} repository={repository} onSaved={setData} /></Suspense>}
           {route === "/graph" && <Suspense fallback={<LoadingState />}><StudyGraph key={`${data.namespace}:${data.userId}`} data={data} subjectIds={shownSubjects.map(subject => subject.id)} /></Suspense>}
           {route === "/board" && <Suspense fallback={<LoadingState />}><StudyBoard key={`${data.namespace}:${data.userId}`} data={data} repository={repository} onSaved={setData} subjectIds={shownSubjects.map(subject => subject.id)} /></Suspense>}
           {route === "/canvas" && <Suspense fallback={<LoadingState message="Canvas를 여는 중입니다." />}><StudyCanvas key={`${data.namespace}:${data.userId}`} data={data} repository={repository} onSaved={setData} subjectIds={shownSubjects.map(subject => subject.id)} renderNarrative={(ownerId, narrative, finishEditing) => {
@@ -1013,7 +1016,7 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
           {route === "/backup" && <Suspense fallback={<LoadingState />}><FullBackup repository={repository} /></Suspense>}
           {route === "/trash" && <QuickMemos data={data} repository={repository} onSaved={setData} trash />}
           {route === "/trash" && <Suspense fallback={<LoadingState />}><CodePractice data={data} repository={repository} onSaved={setData} trash /></Suspense>}
-          {!["/", "/subjects", "/search", "/trash", "/free", "/draft-archives", "/material-cards", "/recall", "/recall/scheduled", "/canvas", "/graph", "/board", "/statistics", "/math", "/backup", "/about", "/help", "/my-progress", "/subscription"].includes(route) &&
+          {!["/", "/subjects", "/concepts", "/search", "/trash", "/free", "/draft-archives", "/material-cards", "/recall", "/recall/scheduled", "/canvas", "/graph", "/board", "/statistics", "/math", "/backup", "/about", "/help", "/my-progress", "/subscription"].includes(route) &&
             !recordRoute &&
             !memoRoute &&
             !materialRoute &&
@@ -1171,7 +1174,7 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
 }
 
 type Commit = (action: Action, success?: string) => AppState | null;
-function useTextDraft(key: string, initial: string, version: number, identity?: { entityId: string; restoreIdentity: boolean }) {
+export function useTextDraft(key: string, initial: string, version: number, identity?: { entityId: string; restoreIdentity: boolean }) {
   const [boot] = useState(() => {
     try {
       const raw = readRescuedDraft(key) ?? localStorage.getItem(key);
@@ -1205,7 +1208,16 @@ function useTextDraft(key: string, initial: string, version: number, identity?: 
   const [blocked, setBlocked] = useState(Boolean(boot.error));
   const [cleanupPending, setCleanupPending] = useState(false);
   const expected = useRef(boot.version);
+  // A remote refresh may replace only a clean editor. Restored or unsaved text
+  // keeps its original version so a later save still detects a conflict.
+  const dirty = useRef(boot.body !== initial || boot.version !== version || Boolean(boot.error) || draftHasUnstoredText(key));
+  useEffect(() => {
+    if (dirty.current || blocked || cleanupPending || error || version < expected.current) return;
+    expected.current = version;
+    setBody(initial);
+  }, [initial, version, blocked, cleanupPending, error]);
   const change = (value: string) => {
+    dirty.current = true;
     setCleanupPending(false);
     setBody(value);
     if (blocked) { rescueWithoutOverwrite(key, JSON.stringify({body: value, version: expected.current, ...(identity ? { entityId: boot.entityId } : {})})); return; }
@@ -1223,6 +1235,7 @@ function useTextDraft(key: string, initial: string, version: number, identity?: 
   };
   const clear = (nextVersion: number) => {
     expected.current = nextVersion;
+    dirty.current = false;
     try {
       clearStoredDraft(key);
       setCleanupPending(false); setError("");

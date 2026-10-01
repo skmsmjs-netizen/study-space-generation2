@@ -14,7 +14,7 @@ export interface CommandBackend {
   read(userId: string, namespace: Namespace): Promise<ServerSnapshot | null>;
   commit(userId: string, namespace: Namespace, base: number, command: Command, next: AppState): Promise<ServerSnapshot>;
 }
-const cors = { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': 'authorization, apikey, content-type, x-client-info', 'Access-Control-Allow-Methods': 'POST, OPTIONS', 'Cache-Control': 'no-store' };
+const cors = { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': 'authorization, apikey, content-type, x-client-info, x-region', 'Access-Control-Allow-Methods': 'POST, OPTIONS', 'Cache-Control': 'no-store' };
 const supportedCommands = ['importConceptCatalog', 'saveConceptEdition', 'saveConceptBatch', 'saveInkWorkspace', 'saveRecallCloze', 'importRecallCards', 'setRecallCardStatus', 'saveMemo', 'saveStudyBoard', 'saveMemoryCard', 'trashMemoryCard', 'restoreMemoryCard', 'saveMemoryTest', 'saveStudyMaterial', 'trashStudyMaterial', 'restoreStudyMaterial', 'saveLearningPlan', 'saveCanvasLayout', 'saveCodeExample', 'trashCodeExample', 'restoreCodeExample', 'saveRecallCard', 'saveRecallReference', 'reviewRecallCard', 'undoRecallReview', 'setRecallDue', 'saveRecallPreferences'];
 const syncCapabilities: SyncCapabilities = { conditionalLoad: true, batchCommands: true };
 function validOperationId(value: unknown): value is string {
@@ -92,6 +92,7 @@ export async function handleCommand(request: Request, backend: CommandBackend): 
       let saved = current;
       for (let index = 0; index < commands.length; index++) {
         const command = commands[index];
+        await verifyConceptHash(command);
         if (saved.data.appliedOps[command.opId]) { timing.sync('apply', () => applyCommand(saved.data, command)); continue; }
         if (body.baseSequence + index !== saved.sequence) return json({ code: 'VERSION_CONFLICT', message: '다른 기기의 변경과 작성 내용을 모두 보존했습니다.', server: saved }, 409);
         const next = timing.sync('apply', () => applyCommand(saved.data, command));
@@ -101,6 +102,7 @@ export async function handleCommand(request: Request, backend: CommandBackend): 
     }
     if (body.action !== 'execute' || !body.command) throw new DomainError('INVALID_REQUEST', '저장 요청을 확인해 주세요.');
     const command = body.command as Command;
+    await verifyConceptHash(command);
     if (!validOperationId(command.opId)) throw new DomainError('INVALID_ID', '저장 요청의 식별자를 확인해 주세요.');
     if (command.userId !== userId || command.namespace !== namespace) throw new DomainError('OWNERSHIP', '다른 사용자의 자료를 변경할 수 없습니다.');
     if (!Number.isSafeInteger(body.baseSequence) || body.baseSequence < 0) throw new DomainError('INVALID_VERSION', '저장 순서를 확인해 주세요.');
@@ -114,4 +116,12 @@ export async function handleCommand(request: Request, backend: CommandBackend): 
     const status = code === 'AUTH_REQUIRED' ? 401 : ['OWNERSHIP', 'ACCESS_DENIED', 'ADMIN_REQUIRED', 'ADMIN_PROTECTED', 'LAST_ADMIN'].includes(code) ? 403 : /CONFLICT/.test(code) ? 409 : error instanceof DomainError || error instanceof SyntaxError ? 400 : 503;
     return json({ code, message: error instanceof DomainError ? error.message : '서버에 저장하지 못했습니다. 작성 내용은 이 기기에 남아 있습니다.' }, status);
   }
+}
+
+async function verifyConceptHash(command: Command) {
+  if (command?.type !== 'importConceptCatalog') return;
+  if (typeof command.raw !== 'string') throw new DomainError('INVALID_CONCEPT', '원문 파일을 확인해 주세요.');
+  const bytes = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(command.raw));
+  const digest = [...new Uint8Array(bytes)].map(n => n.toString(16).padStart(2, '0')).join('');
+  if (digest !== command.sha256) throw new DomainError('INVALID_CONCEPT', '원문과 파일 해시가 다릅니다. 저장하지 않았습니다.');
 }

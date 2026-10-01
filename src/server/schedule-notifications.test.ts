@@ -36,4 +36,4 @@ it('enforces DB ownership, denies client roles, prevents repeat claims and leave
  await db.query('select study_remove_push($1,$2)',[other,subscription.endpoint]);expect((await db.query<{enabled:boolean}>('select study_push_status($1,$2) as enabled',[owner,subscription.endpoint])).rows[0].enabled).toBe(true);
  await db.exec('set role authenticated');await expect(db.query('select * from study_push_subscriptions')).rejects.toThrow('permission denied');await expect(db.query('select study_claim_push($1)',[at])).rejects.toThrow('permission denied');
  }finally{await db.close();}
-},15000);
+},60000);

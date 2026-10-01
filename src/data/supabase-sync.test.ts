@@ -1,13 +1,13 @@
 // @vitest-environment node
-import { beforeEach, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import type { SupabaseClient } from '@supabase/supabase-js';
 import { onlineTransport } from './supabase-client';
-import { emptyState } from '../domain/model';
+import { emptyState, type Command } from '../domain/model';
 import { clearRequestPerformance, readRequestPerformance } from './request-performance';
 const user = '10000000-0000-4000-8000-000000000001';
 const known = () => ({ sequence: 4, data: emptyState(user, 'personal') });
 function fixture(result: unknown) {
-  const invoke = vi.fn(async () => ({ data: result, error: null }));
+  const invoke = vi.fn(async (_name: string, _options: Record<string, unknown>) => ({ data: result, error: null }));
   const client = {
     auth: { getSession: async () => ({ data: { session: { user: { id: user } } }, error: null }) },
     functions: { invoke },
@@ -15,6 +15,20 @@ function fixture(result: unknown) {
   return { transport: onlineTransport(client), invoke };
 }
 beforeEach(clearRequestPerformance);
+afterEach(() => vi.unstubAllEnvs());
+it('routes only multi-operation batches to the known production database region', async () => {
+  const f = fixture(known());
+  const op = (id:string):Command => ({type:'addSubject',id,name:id,scope:{kind:'independent'},userId:user,namespace:'personal',at:'2026-10-01T00:00:00Z',opId:id});
+  await f.transport.load();
+  expect(f.invoke.mock.calls[0][1]).not.toHaveProperty('region');
+  await f.transport.executeBatch!([op('one'),op('two')],4);
+  expect(f.invoke.mock.calls[1][1]).toHaveProperty('region','ap-south-1');
+  await f.transport.executeBatch!([op('single')],4);
+  expect(f.invoke.mock.calls[2][1]).not.toHaveProperty('region');
+  vi.stubEnv('VITE_SUPABASE_URL','https://another.supabase.co');
+  await f.transport.executeBatch!([op('three'),op('four')],4);
+  expect(f.invoke.mock.calls[3][1]).not.toHaveProperty('region');
+});
 it('reuses only the authenticated owner base for a matching conditional response', async () => {
   const cached = known(),
     f = fixture({
