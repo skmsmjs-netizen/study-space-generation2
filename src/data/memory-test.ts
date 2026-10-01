@@ -1,5 +1,6 @@
 import type { AppState } from '../domain/model';
 import { validateMemoContent } from '../domain/memo';
+import { validateMemoryGenerationDraft, type MemoryGenerationDraft } from '../domain/topic-memory';
 import {
   validateMemoryQuestions,
   validateMemoryTest,
@@ -27,6 +28,7 @@ export interface MemoryAttempt {
   index: number;
 }
 export interface MemoryDraft {
+  generation?: MemoryGenerationDraft | null;
   version: 1;
   phase: 'library' | 'testing' | 'review' | 'saved';
   subjectId: string;
@@ -67,6 +69,7 @@ export function validateMemoryDraft(value: unknown): asserts value is MemoryDraf
     (d.editor && d.phase !== 'library')
   )
     throw Error('암기시험 초안을 읽지 못했습니다. 원문을 보존했습니다.');
+  if (d.generation) validateMemoryGenerationDraft(d.generation);
   if (d.editor) {
     const e = d.editor;
     if (
@@ -167,6 +170,8 @@ export function saveMemoryEditor(repository: StudyRepository, editor: MemoryEdit
       question: editor.question,
       answer: editor.answer,
       strokes: editor.strokes,
+      ...(editor.topicGeneration ? { topicGeneration: editor.topicGeneration } : {}),
+      ...(editor.materialSource ? { materialSource: editor.materialSource } : {}),
     },
   });
 }

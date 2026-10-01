@@ -1,4 +1,14 @@
 import { DomainError, type Entity } from './model.ts';
+import { validateStudyAIRequest, type StudyAIRequest } from './study-ai-request.ts';
+import { validateDocuments, type MaterialDocument, type MaterialFile } from './material-source';
+import {
+  validateQuiz,
+  validateMap,
+  validateQuizAttempts,
+  type MaterialMap,
+  type MaterialQuizQuestion,
+  type MaterialQuizAttempt,
+} from './material-learning';
 
 export const MAX_AUDIO_BYTES = 50 * 1024 * 1024;
 export const MAX_SOURCE_TEXT = 150_000;
@@ -8,6 +18,7 @@ export interface SourceSegment {
   end: number | null;
   text: string;
   originalText?: string;
+  label?: string;
 }
 export interface StudyCard {
   id: string;
@@ -22,18 +33,28 @@ export interface MaterialResult {
   id: string;
   at: string;
   model: string;
-  source?: { text: string; audio: MaterialContent['audio'] };
+  promptVersion?: string;
+  request?: StudyAIRequest;
+  source?: { text: string; audio: MaterialContent['audio']; documents?: MaterialDocument[] };
   segments: SourceSegment[];
-  summary: { text: string; sourceIds: string[] }[];
+  summary: { text: string; sourceIds: string[]; originalText?: string }[];
   cards: StudyCard[];
+  quiz?: MaterialQuizQuestion[];
+  map?: MaterialMap;
+  originalMap?: MaterialMap;
 }
 export interface MaterialContent {
   title: string;
   subjectId: string;
   topicId: string | null;
   sourceText: string;
-  audio: { key: string; name: string; type: string; size: number; sha256: string } | null;
+  audio: MaterialFile | null;
   results: MaterialResult[];
+  aiRequest?: StudyAIRequest;
+  documents?: MaterialDocument[];
+  quizAttempts?: MaterialQuizAttempt[];
+  tutorDraft?: string;
+  originalStorage?: 'device' | 'private-server';
 }
 /** Generated materials never create study sessions, scores, or mastery claims. */
 export interface StudyMaterial extends Entity, MaterialContent {}
@@ -43,6 +64,13 @@ const invalid = (message: string): never => {
 const text = (value: unknown, max: number) => typeof value === 'string' && value.length <= max;
 export function validateMaterialResult(value: unknown): asserts value is MaterialResult {
   const result = value as MaterialResult;
+  if (
+    result?.promptVersion !== undefined &&
+    (!text(result.promptVersion, 160) || !result.promptVersion.trim())
+  )
+    invalid('생성 당시 GPT 지침 버전을 확인해 주세요.');
+  if (result?.request !== undefined) validateStudyAIRequest(result.request);
+  if (result?.source?.documents !== undefined) validateDocuments(result.source.documents);
   if (
     !result ||
     !text(result.id, 256) ||
@@ -68,6 +96,8 @@ export function validateMaterialResult(value: unknown): asserts value is Materia
       !segment.text.trim()
     )
       invalid('받아쓴 문장과 식별자를 확인해 주세요.');
+    if (segment.label !== undefined && !text(segment.label, 1000))
+      invalid('원문 위치를 확인해 주세요.');
     if (
       !(segment.start === null && segment.end === null) &&
       !(
@@ -90,7 +120,12 @@ export function validateMaterialResult(value: unknown): asserts value is Materia
     sources.length <= 50 &&
     sources.every((id) => typeof id === 'string' && ids.has(id));
   for (const row of result.summary)
-    if (!text(row.text, 10_000) || !row.text.trim() || !references(row.sourceIds))
+    if (
+      !text(row.text, 10_000) ||
+      !row.text.trim() ||
+      !references(row.sourceIds) ||
+      (row.originalText !== undefined && !text(row.originalText, 10_000))
+    )
       invalid('요약의 원문 근거를 확인하지 못했습니다.');
   const cards = new Set<string>();
   for (const card of result.cards) {
@@ -108,9 +143,19 @@ export function validateMaterialResult(value: unknown): asserts value is Materia
       invalid('카드의 질문·답·원문 근거를 확인해 주세요.');
     cards.add(card.id);
   }
+  if (result.quiz !== undefined) validateQuiz(result.quiz, ids);
+  if (result.map !== undefined) validateMap(result.map, ids);
+  if (result.originalMap !== undefined) validateMap(result.originalMap, ids);
 }
 export function validateMaterialContent(value: unknown): asserts value is MaterialContent {
   const row = value as MaterialContent;
+  if (row?.originalStorage !== undefined && !['device', 'private-server'].includes(row.originalStorage)) invalid('원본 보관 위치를 확인해 주세요.');
+  // Draft requests may be incomplete; required problem/attempt/criteria are checked at generation.
+  if (row?.aiRequest !== undefined) validateStudyAIRequest(row.aiRequest, false);
+  if (row?.documents !== undefined) validateDocuments(row.documents);
+  if (row?.quizAttempts !== undefined) validateQuizAttempts(row.quizAttempts);
+  if (row?.tutorDraft !== undefined && !text(row.tutorDraft, 10000))
+    invalid('질문을 1만 자 이내로 넣어 주세요.');
   if (
     !row ||
     !text(row.title, 300) ||
@@ -136,7 +181,9 @@ export function validateMaterialContent(value: unknown): asserts value is Materi
       !/^[a-f0-9]{64}$/.test(row.audio.sha256))
   )
     invalid('원본 음성 파일 정보를 확인해 주세요.');
-  if (!row.audio && !row.sourceText.trim()) invalid('녹음 파일이나 강의 내용을 넣어 주세요.');
+  if (row.audio?.cloudPath !== undefined && (typeof row.audio.cloudPath !== 'string' || !row.audio.cloudPath.endsWith(`/audio/${row.audio.sha256}`) || !/^[a-zA-Z0-9-]+\/(personal|test)\/audio\/[a-f0-9]{64}$/.test(row.audio.cloudPath))) invalid('원본 음성의 서버 위치를 확인해 주세요.');
+  if (!row.audio && !row.sourceText.trim() && !row.documents?.length)
+    invalid('녹음 파일이나 강의 내용을 넣어 주세요.');
   const ids = new Set<string>();
   for (const result of row.results) {
     validateMaterialResult(result);
@@ -152,5 +199,10 @@ export function materialContent(row: MaterialContent): MaterialContent {
     sourceText: row.sourceText,
     audio: row.audio,
     results: row.results,
+    ...(row.aiRequest ? { aiRequest: row.aiRequest } : {}),
+    ...(row.documents ? { documents: row.documents } : {}),
+    ...(row.quizAttempts ? { quizAttempts: row.quizAttempts } : {}),
+    ...(row.tutorDraft !== undefined ? { tutorDraft: row.tutorDraft } : {}),
+    ...(row.originalStorage ? { originalStorage: row.originalStorage } : {}),
   });
 }

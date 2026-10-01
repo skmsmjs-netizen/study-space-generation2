@@ -1,8 +1,10 @@
 import { DomainError, type AppState, type Entity, type MemoStroke } from './model';
 import { validateMemoContent } from './memo';
 import { recallPath } from './topic-recall';
+import { validateTopicGenerationSource, type TopicGenerationSource } from './topic-memory';
 
 export interface MemoryCardContent {
+  topicGeneration?: TopicGenerationSource;
   materialSource?: import('./learning-evidence').MaterialCardSource;
   topicId: string;
   question: string;
@@ -42,6 +44,11 @@ export function validateMemoryCard(
   )
     bad('암기 항목의 질문과 답안을 확인해 주세요.');
   validateMemoContent({ ownerId: c.topicId, body: c.answer, strokes: c.strokes });
+  if (c.topicGeneration !== undefined) {
+    validateTopicGenerationSource(c.topicGeneration);
+    if (c.materialSource || !c.topicGeneration.input.topics.some(t => t.id === c.topicId))
+      bad('주제 기반 생성과 원자료 기반 출처를 구별해 주세요.');
+  }
   if (complete && (!c.question.trim() || (!c.answer.trim() && !c.strokes.length)))
     bad('질문과 기준 답안을 넣어 주세요. 답안은 그림만 있어도 됩니다.');
 }
@@ -126,6 +133,7 @@ export function memoryQuestions(
         question: c.question,
         answer: c.answer,
         strokes: c.strokes,
+        ...(c.topicGeneration ? { topicGeneration: structuredClone(c.topicGeneration) } : {}),
         cardId: c.id,
         cardVersion: c.version,
         topicName: data.nodes.find((n) => n.id === c.topicId)?.name ?? '',

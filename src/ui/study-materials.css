@@ -1,0 +1,215 @@
+.study-materials {
+  display: grid;
+  gap: var(--space-5);
+  max-inline-size: 64rem;
+}
+.material-toolbar,
+.material-actions,
+.material-recording {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.material-toolbar {
+  justify-content: space-between;
+}
+.material-toolbar p {
+  margin: 0;
+  color: var(--color-muted);
+}
+.material-toolbar > div {
+  display: flex;
+  gap: var(--space-2);
+}
+.material-fields {
+  display: grid;
+  gap: var(--space-4);
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-inline-size: 0;
+}
+.material-context-picker > summary,
+.material-context-list summary {
+  cursor: pointer;
+  min-block-size: var(--control-height);
+  display: flex;
+  align-items: center;
+}
+.material-context-list {
+  display: grid;
+  gap: var(--space-3);
+  max-block-size: 24rem;
+  overflow-y: auto;
+  overflow-wrap: anywhere;
+}
+.material-context-list article {
+  border-block-end: var(--border-width) solid var(--color-border);
+  padding-block: var(--space-2);
+}
+.material-context-list pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-family: var(--font-reading);
+}
+.material-target {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+.material-list {
+  display: grid;
+  gap: var(--space-4);
+}
+.material-list article,
+.material-summary article {
+  padding-block: var(--space-4);
+  border-block-end: 1px solid var(--color-border);
+}
+.material-list h2 {
+  margin-block: 0 var(--space-2);
+  font-size: var(--type-heading-size);
+}
+.material-list p,
+.material-hint {
+  color: var(--color-muted);
+  font-size: var(--type-caption-size);
+  margin: 0;
+}
+.material-file-input {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+.material-audio,
+.material-connection {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--color-surface-inset);
+  border-radius: var(--radius-md);
+}
+.material-audio audio {
+  inline-size: 100%;
+}
+.material-actions .ui-field {
+  min-inline-size: 8rem;
+}
+.material-results {
+  display: grid;
+  gap: var(--space-4);
+}
+.material-tabs,
+.material-evidence {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+.material-tabs {
+  border: 0;
+  border-block-end: 1px solid var(--color-border);
+  padding: 0;
+  margin: 0;
+  min-inline-size: 0;
+}
+.material-tabs [aria-pressed='true'] {
+  box-shadow: inset 0 calc(var(--border-width) * -2) var(--color-text);
+  border-radius: 0;
+}
+.material-summary p,
+.material-answer,
+.material-transcript p {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.material-transcript {
+  display: grid;
+  gap: var(--space-4);
+}
+.material-transcript article {
+  scroll-margin-block-start: var(--space-6);
+  display: grid;
+  gap: var(--space-2);
+}
+.material-transcript article:focus-within {
+  outline: 1px solid var(--color-focus);
+  outline-offset: var(--space-2);
+}
+.material-card-area {
+  display: grid;
+  gap: var(--space-4);
+}
+.material-flashcard {
+  display: grid;
+  align-content: center;
+  gap: var(--space-5);
+  min-block-size: 16rem;
+  padding: var(--space-6);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+.material-flashcard h2 {
+  font-size: var(--type-heading-size);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.material-status {
+  margin: 0;
+  color: var(--color-muted);
+}
+.material-history {
+  margin-block-start: var(--space-5);
+  color: var(--color-muted);
+}
+.material-sources,
+.material-source-document,
+.material-quiz,
+.material-tutor {
+  display: grid;
+  gap: var(--space-3);
+  min-inline-size: 0;
+}
+.material-sources > details,
+.material-source-document {
+  padding: var(--space-3);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+.material-source-blocks,
+.material-tutor-turns {
+  max-block-size: 32rem;
+  overflow: auto;
+  display: grid;
+  gap: var(--space-3);
+  overflow-wrap: anywhere;
+}
+.material-source-blocks > details {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 4rem;
+}
+.material-map-surface {
+  block-size: 28rem;
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+.material-map,
+.material-tutor article {
+  display: grid;
+  gap: var(--space-4);
+}
+.material-tutor h3,
+.material-quiz h3 {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+@media (max-width: 40rem) {
+  .material-target {
+    grid-template-columns: 1fr;
+  }
+  .material-flashcard {
+    padding: var(--space-4);
+  }
+}

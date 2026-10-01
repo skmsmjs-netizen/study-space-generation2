@@ -243,6 +243,17 @@ export function applyCommand(state: AppState, command: Command): AppState {
       if (topic.role !== 'topic') fail('INVALID_MEMORY_TEST', '암기 항목을 연결할 주제를 선택해 주세요.');
       targetSubject(next, topic.id);
       const old = next.memoryCards?.find(c => c.id === command.id);
+      if (old?.topicGeneration && canonical(old.topicGeneration) !== canonical(command.content.topicGeneration))
+        fail('INVALID_TOPIC_GENERATION', '처음 생성한 목차·질문·답안의 출처는 유지해 주세요.');
+      if (command.content.topicGeneration && (!old || !old.topicGeneration)) {
+        const input = command.content.topicGeneration.input;
+        const matches = (collection: 'nodes' | 'subjects', ref: { id: string; name: string; version: number }, parentId?: string | null, leaf = false) => {
+          const candidates = [...next[collection], ...next.revisions.filter(r => r.collection === collection && r.entityId === ref.id).flatMap(r => [r.before, r.after])];
+          return candidates.some(row => row && row.id === ref.id && row.version === ref.version && 'name' in row && row.name === ref.name && row.userId === next.userId && row.namespace === next.namespace && !row.deletedAt && (collection !== 'nodes' || 'subjectId' in row && row.subjectId === input.subject.id && 'parentId' in row && row.parentId === parentId && (!leaf || 'role' in row && row.role === 'topic')));
+        };
+        if (!matches('subjects', input.subject) || input.topics.some(t => t.path.some((n, i) => !matches('nodes', n, i ? t.path[i - 1].id : null, i === t.path.length - 1))))
+          fail('INVALID_TOPIC_GENERATION', '생성에 사용한 과목과 목차의 원래 이름·버전을 확인해 주세요.');
+      }
       validateMaterialCardSource(command.content, next, !old);
       if (old) { find(next.memoryCards!, old.id); expected(old, command.expectedVersion, command); if (old.topicId !== command.content.topicId) fail('INVALID_MEMORY_TEST', '기존 항목의 주제는 유지해 주세요. 다른 주제에는 새 항목으로 등록할 수 있습니다.'); }
       else { if (command.expectedVersion !== 0) fail('VERSION_CONFLICT', '항목의 수정 순서를 확인해 주세요.'); fresh(command.id); }
@@ -257,7 +268,7 @@ export function applyCommand(state: AppState, command: Command): AppState {
       for (const q of command.content.questions) {
         const card = find(next.memoryCards ?? [], q.cardId, false);
         const source = card.version === q.cardVersion ? card : next.revisions.find(r => r.collection === 'memoryCards' && r.entityId === card.id && r.after.version === q.cardVersion)?.after as import('./memory-test').MemoryCard | undefined;
-        if (!source || source.topicId !== q.topicId || source.question !== q.question || source.answer !== q.answer || canonical(source.strokes) !== canonical(q.strokes)) fail('INVALID_MEMORY_TEST', '출제 당시의 질문과 기준 답안을 확인해 주세요.');
+        if (!source || source.topicId !== q.topicId || source.question !== q.question || source.answer !== q.answer || canonical(source.strokes) !== canonical(q.strokes) || canonical(source.topicGeneration) !== canonical(q.topicGeneration)) fail('INVALID_MEMORY_TEST', '출제 당시의 질문과 기준 답안을 확인해 주세요.');
       }
       write('memoryTests', { ...common(command.id), ...clone(command.content) }); break;
     }

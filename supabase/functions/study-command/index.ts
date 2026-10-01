@@ -2343,14 +2343,14 @@ function parse(source) {
   const read = (nested, depth) => {
     if (depth > 8) throw new DomainError("INVALID_CLOZE", "\uACB9\uCE5C \uBE48\uCE78\uC740 \uC5EC\uB35F \uB2E8\uACC4\uAE4C\uC9C0 \uC0AC\uC6A9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.");
     const parts = [];
-    let text2 = "";
+    let text3 = "";
     while (pos < source.length) {
       if (nested && source.startsWith("}}", pos)) break;
       const match = source.startsWith("{{c", pos) && source.slice(pos).match(/^\{\{c(\d+(?:,\d+)*)::/);
       if (match) {
-        if (text2) {
-          parts.push(text2);
-          text2 = "";
+        if (text3) {
+          parts.push(text3);
+          text3 = "";
         }
         const numbers = [...new Set(match[1].split(",").map(Number))];
         if (numbers.some((n) => !Number.isSafeInteger(n) || n < 1 || n > 999)) throw new DomainError("INVALID_CLOZE", "\uBE48\uCE78 \uBC88\uD638\uB294 1\uBD80\uD130 999\uAE4C\uC9C0 \uC0AC\uC6A9\uD574 \uC8FC\uC138\uC694.");
@@ -2367,10 +2367,10 @@ function parse(source) {
         }
         parts.push({ numbers, body, hint });
       } else {
-        text2 += source[pos++];
+        text3 += source[pos++];
       }
     }
-    if (text2) parts.push(text2);
+    if (text3) parts.push(text3);
     return parts;
   };
   return read(false, 0);
@@ -2626,7 +2626,7 @@ function boardContent(row) {
 }
 function validateBoard(value) {
   const row = value;
-  const fail2 = () => {
+  const fail3 = () => {
     throw new DomainError(
       "INVALID_BOARD",
       "\uBCF4\uB4DC\uC758 \uC5F4\uACFC \uCE74\uB4DC\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694. \uC791\uC131\uD55C \uAE00\uC740 \uC720\uC9C0\uD588\uC2B5\uB2C8\uB2E4."
@@ -2635,15 +2635,15 @@ function validateBoard(value) {
   const id = (v) => typeof v === "string" && Boolean(v.trim()) && v.length <= 256;
   const title2 = (v) => typeof v === "string" && Boolean(v.trim()) && v.length <= 1e3;
   if (!row || !title2(row.title) || !Array.isArray(row.columns) || row.columns.length < 1 || row.columns.length > 100 || !Array.isArray(row.cards) || row.cards.length > 1e4)
-    return fail2();
+    return fail3();
   const columns = /* @__PURE__ */ new Set(), cards = /* @__PURE__ */ new Set();
   for (const col of row.columns) {
-    if (!col || !id(col.id) || columns.has(col.id) || !title2(col.title)) return fail2();
+    if (!col || !id(col.id) || columns.has(col.id) || !title2(col.title)) return fail3();
     columns.add(col.id);
   }
   for (const card of row.cards) {
     if (!card || !id(card.id) || cards.has(card.id) || !columns.has(card.columnId) || !title2(card.title) || typeof card.body !== "string" || card.body.length > 2e5 || card.topicId !== null && !id(card.topicId) || typeof card.archived !== "boolean")
-      return fail2();
+      return fail3();
     cards.add(card.id);
   }
 }
@@ -2851,19 +2851,19 @@ function outlineTableToken(state) {
 }
 var sameOutlineScope = (left, right) => left.kind === right.kind && (left.kind !== "semester" || right.kind === "semester" && left.semesterId === right.semesterId);
 function previewOutlineTable(state, input) {
-  const fail2 = (message) => {
+  const fail3 = (message) => {
     throw new DomainError("INVALID_OUTLINE_TABLE", message);
   };
-  if (!input || !input.scope || !["semester", "independent", "unassigned"].includes(input.scope.kind)) fail2("\uB4F1\uB85D\uD560 \uD559\uAE30\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
-  if (input.scope.kind === "semester" && !state.semesters.some((row) => row.id === input.scope.semesterId && !row.deletedAt)) fail2("\uB4F1\uB85D\uD560 \uD559\uAE30\uB97C \uCC3E\uC744 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
-  if (!Array.isArray(input.courses) || input.courses.length > MAX_OUTLINE_ROWS || !input.choices || typeof input.choices !== "object" || Array.isArray(input.choices)) fail2("\uC785\uB825 \uD45C\uC758 \uD615\uC2DD\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+  if (!input || !input.scope || !["semester", "independent", "unassigned"].includes(input.scope.kind)) fail3("\uB4F1\uB85D\uD560 \uD559\uAE30\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+  if (input.scope.kind === "semester" && !state.semesters.some((row) => row.id === input.scope.semesterId && !row.deletedAt)) fail3("\uB4F1\uB85D\uD560 \uD559\uAE30\uB97C \uCC3E\uC744 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
+  if (!Array.isArray(input.courses) || input.courses.length > MAX_OUTLINE_ROWS || !input.choices || typeof input.choices !== "object" || Array.isArray(input.choices)) fail3("\uC785\uB825 \uD45C\uC758 \uD615\uC2DD\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
   const keys = /* @__PURE__ */ new Set(), entries = [], paths = /* @__PURE__ */ new Map();
   let rows = 0;
   const cell = (value) => {
-    if (!value || typeof value.key !== "string" || !value.key || keys.has(value.key) || typeof value.name !== "string") fail2("\uC785\uB825\uCE78\uC758 \uC2DD\uBCC4\uC790\uC640 \uC6D0\uBB38\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+    if (!value || typeof value.key !== "string" || !value.key || keys.has(value.key) || typeof value.name !== "string") fail3("\uC785\uB825\uCE78\uC758 \uC2DD\uBCC4\uC790\uC640 \uC6D0\uBB38\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
     keys.add(value.key);
     const name = value.name.trim();
-    if (name.length > MAX_OUTLINE_NAME || /[\r\n\t]/.test(value.name)) fail2("\uC774\uB984\uC740 \uC904\uBC14\uAFC8 \uC5C6\uC774 180\uC790 \uC774\uB0B4\uB85C \uAC1C\uBCC4 \uCE78\uC5D0 \uC801\uC5B4 \uC8FC\uC138\uC694.");
+    if (name.length > MAX_OUTLINE_NAME || /[\r\n\t]/.test(value.name)) fail3("\uC774\uB984\uC740 \uC904\uBC14\uAFC8 \uC5C6\uC774 180\uC790 \uC774\uB0B4\uB85C \uAC1C\uBCC4 \uCE78\uC5D0 \uC801\uC5B4 \uC8FC\uC138\uC694.");
     return name;
   };
   const append = (path, kind) => {
@@ -2882,25 +2882,25 @@ function previewOutlineTable(state, input) {
         status = "reuse";
         id = choice;
       } else status = "choose";
-    } else if (choice && choice !== "new") fail2("\uC5F0\uACB0\uD558\uB824\uB358 \uAE30\uC874 \uD56D\uBAA9\uC774 \uBC14\uB00C\uC5C8\uC2B5\uB2C8\uB2E4. \uAC19\uC740 \uC774\uB984\uC758 \uD56D\uBAA9\uC744 \uB2E4\uC2DC \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+    } else if (choice && choice !== "new") fail3("\uC5F0\uACB0\uD558\uB824\uB358 \uAE30\uC874 \uD56D\uBAA9\uC774 \uBC14\uB00C\uC5C8\uC2B5\uB2C8\uB2E4. \uAC19\uC740 \uC774\uB984\uC758 \uD56D\uBAA9\uC744 \uB2E4\uC2DC \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
     const entry = { key, parentKey, subjectKey, name: path.at(-1), path, kind, status, id, candidates: candidates.map((row) => ({ id: row.id, name: row.name })) };
     paths.set(key, entry);
     entries.push(entry);
   };
   for (const course of input.courses) {
     const courseName = cell(course);
-    if (!Array.isArray(course.units)) fail2("\uB2E8\uC6D0 \uC785\uB825\uCE78\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+    if (!Array.isArray(course.units)) fail3("\uB2E8\uC6D0 \uC785\uB825\uCE78\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
     if (courseName) append([courseName], "subject");
     for (const unit of course.units) {
-      if (++rows > MAX_OUTLINE_ROWS) fail2("\uB2E8\uC6D0\uACFC \uC8FC\uC81C \uC785\uB825\uC740 \uD569\uACC4 500\uD589\uAE4C\uC9C0 \uC0AC\uC6A9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.");
+      if (++rows > MAX_OUTLINE_ROWS) fail3("\uB2E8\uC6D0\uACFC \uC8FC\uC81C \uC785\uB825\uC740 \uD569\uACC4 500\uD589\uAE4C\uC9C0 \uC0AC\uC6A9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.");
       const unitName = cell(unit);
-      if (!Array.isArray(unit.topics)) fail2("\uC8FC\uC81C \uC785\uB825\uCE78\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
-      if (unitName && !courseName) fail2("\uB2E8\uC6D0\uC744 \uB2F4\uC744 \uACFC\uBAA9\uBA85\uC744 \uC801\uC5B4 \uC8FC\uC138\uC694.");
+      if (!Array.isArray(unit.topics)) fail3("\uC8FC\uC81C \uC785\uB825\uCE78\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+      if (unitName && !courseName) fail3("\uB2E8\uC6D0\uC744 \uB2F4\uC744 \uACFC\uBAA9\uBA85\uC744 \uC801\uC5B4 \uC8FC\uC138\uC694.");
       if (unitName) append([courseName, unitName], "unit");
       for (const topic of unit.topics) {
-        if (++rows > MAX_OUTLINE_ROWS) fail2("\uB2E8\uC6D0\uACFC \uC8FC\uC81C \uC785\uB825\uC740 \uD569\uACC4 500\uD589\uAE4C\uC9C0 \uC0AC\uC6A9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.");
+        if (++rows > MAX_OUTLINE_ROWS) fail3("\uB2E8\uC6D0\uACFC \uC8FC\uC81C \uC785\uB825\uC740 \uD569\uACC4 500\uD589\uAE4C\uC9C0 \uC0AC\uC6A9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.");
         const topicName = cell(topic);
-        if (topicName && (!courseName || !unitName)) fail2("\uC8FC\uC81C\uB97C \uB2F4\uC744 \uACFC\uBAA9\uBA85\uACFC \uB2E8\uC6D0\uBA85\uC744 \uC801\uC5B4 \uC8FC\uC138\uC694.");
+        if (topicName && (!courseName || !unitName)) fail3("\uC8FC\uC81C\uB97C \uB2F4\uC744 \uACFC\uBAA9\uBA85\uACFC \uB2E8\uC6D0\uBA85\uC744 \uC801\uC5B4 \uC8FC\uC138\uC694.");
         if (topicName) append([courseName, unitName, topicName], "topic");
       }
     }
@@ -2925,6 +2925,40 @@ function validateMemoContent(value) {
   }
 }
 
+// src/domain/topic-memory.ts
+var text = (v, max, required = true) => typeof v === "string" && v.length <= max && (!required || !!v.trim());
+function invalid2() {
+  throw new DomainError(
+    "INVALID_TOPIC_GENERATION",
+    "\uC8FC\uC81C \uAE30\uBC18 \uC0DD\uC131\uC758 \uBC94\uC704\uC640 \uC9C8\uBB38\xB7\uB2F5\uC548\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694."
+  );
+}
+function validateTopicMemoryInput(value) {
+  const v = value;
+  if (!v || !text(v.subject?.id, 256) || !text(v.subject.name, 500) || !Number.isSafeInteger(v.subject.version) || v.subject.version < 1 || !Number.isSafeInteger(v.count) || v.count < 1 || v.count > 30 || !text(v.guidance, 2e3, false) || !Array.isArray(v.topics) || !v.topics.length || v.topics.length > 20)
+    invalid2();
+  const ids = /* @__PURE__ */ new Set();
+  for (const t of v.topics) {
+    if (!text(t?.id, 256) || ids.has(t.id) || !Array.isArray(t.path) || !t.path.length || t.path.length > 20 || t.path.at(-1)?.id !== t.id)
+      invalid2();
+    ids.add(t.id);
+    const pathIds = /* @__PURE__ */ new Set();
+    for (const n of t.path) {
+      if (!text(n?.id, 256) || !text(n.name, 500) || !Number.isSafeInteger(n.version) || n.version < 1 || pathIds.has(n.id))
+        invalid2();
+      pathIds.add(n.id);
+    }
+  }
+  if (JSON.stringify(v).length > 32e3) invalid2();
+}
+function validateTopicGenerationSource(value) {
+  const s = value;
+  if (s?.promptVersion !== void 0 && !text(s.promptVersion, 160)) invalid2();
+  if (s?.kind !== "topic" || s.reviewed !== true || !text(s.resultId, 256) || !text(s.cardId, 256) || !text(s.model, 160) || !text(s.at, 40) || !Number.isFinite(Date.parse(s.at)) || !text(s.originalQuestion, 4e3) || !text(s.originalAnswer, 1e4))
+    invalid2();
+  validateTopicMemoryInput(s.input);
+}
+
 // src/domain/memory-test.ts
 function bad(message) {
   throw new DomainError("INVALID_MEMORY_TEST", message);
@@ -2934,6 +2968,11 @@ function validateMemoryCard(value, complete = true) {
   if (!c || typeof c.topicId !== "string" || !c.topicId.trim() || typeof c.question !== "string" || typeof c.answer !== "string")
     bad("\uC554\uAE30 \uD56D\uBAA9\uC758 \uC9C8\uBB38\uACFC \uB2F5\uC548\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
   validateMemoContent({ ownerId: c.topicId, body: c.answer, strokes: c.strokes });
+  if (c.topicGeneration !== void 0) {
+    validateTopicGenerationSource(c.topicGeneration);
+    if (c.materialSource || !c.topicGeneration.input.topics.some((t) => t.id === c.topicId))
+      bad("\uC8FC\uC81C \uAE30\uBC18 \uC0DD\uC131\uACFC \uC6D0\uC790\uB8CC \uAE30\uBC18 \uCD9C\uCC98\uB97C \uAD6C\uBCC4\uD574 \uC8FC\uC138\uC694.");
+  }
   if (complete && (!c.question.trim() || !c.answer.trim() && !c.strokes.length))
     bad("\uC9C8\uBB38\uACFC \uAE30\uC900 \uB2F5\uC548\uC744 \uB123\uC5B4 \uC8FC\uC138\uC694. \uB2F5\uC548\uC740 \uADF8\uB9BC\uB9CC \uC788\uC5B4\uB3C4 \uB429\uB2C8\uB2E4.");
 }
@@ -2973,49 +3012,231 @@ function validateCanvasLayout(value) {
   if (value.viewport && (!position(value.viewport) || !Number.isFinite(value.viewport.zoom) || value.viewport.zoom < 0.1 || value.viewport.zoom > 2)) throw new DomainError("INVALID_CANVAS", "Canvas \uD655\uB300 \uC704\uCE58\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
 }
 
+// src/domain/study-ai-request.ts
+var STUDY_AI_TASKS = {
+  quiz: {
+    label: "\uAC1D\uAD00\uC2DD \uD034\uC988",
+    instruction: "\uC81C\uACF5\uB41C \uC790\uB8CC\uB9CC\uC73C\uB85C \uB2F5\uD560 \uC218 \uC788\uB294 \uAC1D\uAD00\uC2DD \uBB38\uD56D\uC744 quiz\uC5D0 \uB9CC\uB4E0\uB2E4. \uBCF4\uAE30\uC758 \uC815\uB2F5\uC740 \uD558\uB098\uC774\uACE0 \uC624\uB2F5\uB3C4 \uAC19\uC740 \uC885\uB958\uB85C \uADF8\uB7F4\uB4EF\uD574\uC57C \uD55C\uB2E4. \uBB38\uC81C\xB7\uBCF4\uAE30\uC640 \uC815\uB2F5\xB7\uD574\uC124\uC744 \uBD84\uB9AC\uD558\uACE0 summary\uC640 cards\uB294 \uBE44\uC6B4\uB2E4."
+  },
+  tutor: {
+    label: "\uC790\uB8CC\uC5D0 \uC9C8\uBB38",
+    instruction: "request-focus\uC758 \uC9C8\uBB38\uC5D0 \uC790\uB8CC\uB97C \uADFC\uAC70\uB85C \uB2F5\uD55C\uB2E4. history\uB294 \uC774\uC804 \uB300\uD654\uC774\uBA70 \uC6D0\uBB38 \uADFC\uAC70\uAC00 \uC544\uB2C8\uB2E4. \uC790\uB8CC\uB85C \uD655\uC778\uD560 \uC218 \uC5C6\uB294 \uB0B4\uC6A9\uC740 \uD655\uC778 \uBD88\uAC00\uB77C\uACE0 \uBC1D\uD78C\uB2E4. cards\uB294 \uBE44\uC6B4\uB2E4."
+  },
+  mindmap: {
+    label: "\uAC1C\uB150\uB3C4 \uB9CC\uB4E4\uAE30",
+    instruction: "\uC790\uB8CC\uC758 \uC2E4\uC81C \uAC1C\uB150\uACFC \uAD00\uACC4\uB97C map\uC5D0 \uB9CC\uB4E0\uB2E4. \uAC01 \uAC1C\uB150\uACFC \uAD00\uACC4\uC758 sourceIds\uB97C \uC5F0\uACB0\uD55C\uB2E4. \uD3EC\uD568\xB7\uC6D0\uC778\xB7\uC870\uAC74\xB7\uC120\uD589\xB7\uBE44\uAD50 \uAD00\uACC4\uB97C label\uC5D0 \uBA85\uC2DC\uD55C\uB2E4. summary\uC5D0\uB294 \uD574\uC11D \uC870\uAC74\uB9CC \uC801\uACE0 cards\uB294 \uBE44\uC6B4\uB2E4."
+  },
+  summary: {
+    label: "\uC694\uC57D\uACFC \uCE74\uB4DC",
+    instruction: "\uC6D0\uBB38\uC758 \uD575\uC2EC\uACFC \uB0A8\uC740 \uC758\uBB38\uC744 \uC694\uC57D\uD558\uACE0 \uC790\uB8CC\uB85C \uB2F5\uD560 \uC218 \uC788\uB294 \uC778\uCD9C \uCE74\uB4DC\uB97C \uB9CC\uB4E0\uB2E4."
+  },
+  formula: {
+    label: "\uC218\uC2DD \uBCF4\uC644",
+    instruction: "\uB9D0\uB85C \uC4F4 \uC2DD\uC774\uB098 \uBD80\uBD84 \uC218\uC2DD\uC744 \uD3B8\uC9D1 \uAC00\uB2A5\uD55C LaTeX\uB85C \uC81C\uC548\uD55C\uB2E4. \\( ... \\) \uB610\uB294 $$ ... $$\uB97C \uC4F4\uB2E4. \uAE30\uD638 \uB73B\xB7\uB2E8\uC704\xB7\uC131\uB9BD \uC870\uAC74\xB7\uC5EC\uB7EC \uAC00\uB2A5\uD55C \uD574\uC11D\uC744 \uD568\uAED8 \uC124\uBA85\uD55C\uB2E4. \uC785\uB825 \uBD88\uD3B8\uC73C\uB85C \uBE44\uC6B4 \uC2DD\uC744 \uC9C0\uC2DD \uBD80\uC871\uC73C\uB85C \uD310\uC815\uD558\uC9C0 \uC54A\uB294\uB2E4."
+  },
+  questions: {
+    label: "\uC778\uCD9C \uC9C8\uBB38",
+    instruction: "\uC120\uD0DD \uC790\uB8CC \uC548\uC758 \uD575\uC2EC \uC6D0\uB9AC\uB97C \uBB3B\uB294 \uC778\uCD9C \uC9C8\uBB38\uC744 \uB9CC\uB4E0\uB2E4. \uB2F5\uACFC \uADFC\uAC70\uB294 \uCE74\uB4DC\uC758 answer\uC5D0\uB9CC \uB123\uACE0 summary\uC5D0 \uC815\uB2F5\uC744 \uB178\uCD9C\uD558\uC9C0 \uC54A\uB294\uB2E4."
+  },
+  organize: {
+    label: "\uD544\uAE30 \uC815\uB9AC",
+    instruction: "\uC6D0\uBB38 \uC21C\uC11C\xB7\uC870\uAC74\xB7\uC774\uC720\xB7\uC608\uC678\xB7\uAC1C\uC778 \uC758\uACAC\uC744 \uBCF4\uC874\uD558\uC5EC \uC77D\uAE30 \uC26C\uC6B4 \uC815\uB9AC\uC548\uC744 \uB9CC\uB4E0\uB2E4. \uC2E4\uC81C \uC758\uBB38\uACFC \uB2E4\uC74C \uD589\uB3D9\uC740 \uC6D0\uBB38 \uADFC\uAC70\uC640 \uD568\uAED8 \uAD6C\uBD84\uD558\uACE0 \uC758\uBB34\uB098 \uC77C\uC815\uC73C\uB85C \uD655\uC815\uD558\uC9C0 \uC54A\uB294\uB2E4."
+  },
+  glossary: {
+    label: "\uC6A9\uC5B4 \uD480\uC774",
+    instruction: "\uC785\uB825 \uBB38\uB9E5\uC758 \uC6A9\uC5B4\xB7\uC6D0\uC5B4\xB7\uBC88\uC5ED\xB7\uC758\uBBF8\uB97C \uD480\uC5B4 \uC4F4\uB2E4. \uAD50\uC7AC\uC758 \uD2B9\uC218 \uC815\uC758\uB97C \uBCF4\uC874\uD558\uACE0 \uC77C\uBC18\uC801\uC778 \uBCF4\uCDA9 \uC124\uBA85\uACFC \uC6D0\uBB38\uC758 \uC124\uBA85\uC744 \uAD6C\uBCC4\uD55C\uB2E4."
+  },
+  explain: {
+    label: "\uB2E4\uB978 \uBC29\uC2DD\uC73C\uB85C \uC124\uBA85",
+    instruction: "\uC870\uAC74\uC744 \uBCF4\uC874\uD558\uBA70 \uBB38\uC7A5\xB7\uC218\uC2DD\xB7\uC218\uCE58 \uC608\uB85C \uB2E4\uC2DC \uC124\uBA85\uD55C\uB2E4. \uC0AC\uC6A9\uC790\uC758 \uC218\uC900\uC774\uB098 \uACE0\uC815 \uD559\uC2B5 \uC2A4\uD0C0\uC77C\uC744 \uCD94\uC815\uD558\uC9C0 \uC54A\uB294\uB2E4. \uC6D0\uBB38 \uBC16\uC758 \uBCF4\uCDA9\uC740 \uBCF4\uCDA9 \uC124\uBA85\uC774\uB77C\uACE0 \uBC1D\uD78C\uB2E4."
+  },
+  reasoning: {
+    label: "\uC124\uBA85\xB7\uB17C\uB9AC \uAC80\uD1A0",
+    instruction: "\uC2E4\uC81C \uC11C\uC220\xB7\uC99D\uBA85\xB7\uC720\uB3C4\uC5D0\uC11C \uC870\uAC74\uACFC \uBB38\uC7A5 \uC0AC\uC774\uC758 \uBE60\uC9C4 \uADFC\uAC70\xB7\uB2E4\uB978 \uD574\uC11D\uC744 \uC9DA\uB294\uB2E4. \uAE00\uC5D0 \uC0DD\uB7B5\uD55C \uC124\uBA85\uC744 \uAC1C\uB150 \uBB34\uC9C0\uB85C \uD310\uC815\uD558\uC9C0 \uC54A\uB294\uB2E4. \uC6D0\uBB38 \uC704\uCE58\uC640 \uD655\uC778\uD560 \uC9C8\uBB38\uC744 \uB0A8\uAE30\uACE0 \uC218\uC815\uC548\uC740 \uBCC4\uB3C4\uB85C \uC81C\uC2DC\uD55C\uB2E4."
+  },
+  code: {
+    label: "\uCF54\uB4DC\xB7\uC2E4\uD589 \uAC80\uD1A0",
+    instruction: "\uC81C\uACF5\uB41C \uC2E4\uC81C \uCF54\uB4DC\xB7\uC785\uB825\xB7\uC2E4\uD589 \uACB0\uACFC\xB7\uBA54\uBAA8\uC5D0 \uADFC\uAC70\uD574 \uC81C\uC5B4 \uD750\uB984\xB7\uC624\uB958 \uC704\uCE58\xB7\uC218\uC815 \uD6C4\uBCF4\xB7\uD655\uC778\uD560 \uB2E4\uB978 \uC785\uB825\uC744 \uC124\uBA85\uD55C\uB2E4. \uD604\uC7AC \uCF54\uB4DC\uC640 \uACFC\uAC70 \uC2E4\uD589 \uB2F9\uC2DC \uCF54\uB4DC\uB97C \uAD6C\uBCC4\uD558\uACE0 GPT\uC758 \uC608\uCE21\uC744 \uC2E4\uC81C \uC2E4\uD589 \uACB0\uACFC\uB85C \uBC14\uAFB8\uC9C0 \uC54A\uB294\uB2E4. \uC0C8 \uCF54\uB4DC\uB97C \uC2E4\uD589\uD558\uAC70\uB098 \uB3C5\uB9BD \uC791\uC131 \uB2A5\uB825\xB7\uACF5\uBD80 \uC644\uB8CC\uB97C \uD310\uC815\uD558\uC9C0 \uC54A\uB294\uB2E4."
+  },
+  conditions: {
+    label: "\uC801\uC6A9 \uC870\uAC74\uACFC \uBC18\uB840",
+    instruction: "\uC8FC\uC5B4\uC9C4 \uAC1C\uB150\xB7\uBA85\uC81C\uC758 \uC801\uC6A9 \uC870\uAC74, \uC608\uC640 \uBE44\uC608, \uBC18\uB840 \uD6C4\uBCF4\uC640 \uD655\uC778\uD560 \uC774\uC720\uB97C \uC124\uBA85\uD55C\uB2E4. \uACC4\uC0B0\xB7\uBC18\uB840\uAC00 \uAC80\uC99D\uB410\uB2E4\uACE0 \uC8FC\uC7A5\uD558\uC9C0 \uC54A\uB294\uB2E4."
+  },
+  compare: {
+    label: "\uAC1C\uB150 \uBE44\uAD50",
+    instruction: "\uC0AC\uC6A9\uC790\uAC00 \uC9C0\uC815\uD55C \uC2E4\uC81C \uB450 \uAC1C\uB150\uC758 \uC815\uC758\xB7\uCC28\uC774\xB7\uC801\uC6A9 \uC0C1\uD669\uC744 \uBE44\uAD50\uD55C\uB2E4. \uC774\uB984\uC774\uB098 \uBAA9\uCC28\uB9CC\uC73C\uB85C \uD63C\uB3D9\uC744 \uCD94\uC815\uD558\uC9C0 \uC54A\uB294\uB2E4. \uB300\uC0C1\uC774 \uBD88\uBA85\uD655\uD558\uBA74 \uD655\uC778\uD560 \uC9C8\uBB38\uC744 \uB0A8\uAE34\uB2E4."
+  },
+  diagram: {
+    label: "\uAD00\uACC4\uB3C4 \uCD08\uC548",
+    instruction: "\uAD00\uACC4\uB97C \uAE00\uB85C \uBA85\uD655\uD788 \uC124\uBA85\uD558\uACE0 \uD3B8\uC9D1 \uAC00\uB2A5\uD55C Mermaid \uCF54\uB4DC \uBE14\uB85D\uC73C\uB85C \uC791\uC740 \uAD00\uACC4\uB3C4 \uCD08\uC548\uC744 \uC81C\uC548\uD55C\uB2E4. \uC778\uACFC\xB7\uD3EC\uD568\xB7\uC120\uD589\xB7\uC720\uC0AC\uB97C \uAD6C\uBD84\uD55C\uB2E4. \uAE30\uC874 Canvas \uC88C\uD45C\uB098 \uC5F0\uACB0\uC744 \uBC14\uAFB8\uC5C8\uB2E4\uACE0 \uD558\uC9C0 \uC54A\uB294\uB2E4."
+  },
+  hint: {
+    label: "\uB2E4\uC74C \uB2E8\uACC4 \uD78C\uD2B8",
+    instruction: "\uC2E4\uC81C \uBB38\uC81C\uC640 \uD604\uC7AC \uC2DC\uB3C4\uC5D0\uC11C \uC870\uAC74 \uD655\uC778\xB7\uC804\uB7B5\xB7\uB2E4\uC74C \uD55C \uB2E8\uACC4\uAE4C\uC9C0\uB9CC \uD78C\uD2B8\uB97C \uC900\uB2E4. \uC804\uCCB4 \uC815\uB2F5\uC774\uB098 \uD480\uC774\uB97C \uBA3C\uC800 \uB178\uCD9C\uD558\uC9C0 \uC54A\uB294\uB2E4. \uB9C9\uD798\uC758 \uC6D0\uC778\uC740 \uAC00\uC124\uB85C\uB9CC \uD45C\uD604\uD55C\uB2E4."
+  },
+  feedback: {
+    label: "\uB2F5\uC548 \uAC80\uD1A0",
+    instruction: "\uC2E4\uC81C \uBB38\uC81C\xB7\uB2F5\uC548\xB7\uCC38\uACE0 \uAE30\uC900\uC744 \uB300\uC870\uD55C\uB2E4. \uC870\uAC74\xB7\uACC4\uC0B0\xB7\uB2E8\uC704\xB7\uC124\uBA85 \uC0DD\uB7B5\uC744 \uAD6C\uBD84\uD558\uBA70 \uB2E4\uB978 \uAC00\uB2A5\uD55C \uD480\uC774\uB97C \uD5C8\uC6A9\uD55C\uB2E4. \uC6D0\uC778\uC740 \uAC00\uC124\uC774\uACE0 \uADFC\uAC70\uAC00 \uBD80\uC871\uD558\uBA74 \uD655\uC778 \uBD88\uAC00\uB77C\uACE0 \uC4F4\uB2E4. \uACF5\uC2DD \uC810\uC218\xB7\uC219\uB2EC\xB7\uB3C5\uB9BD \uC218\uD589\uC744 \uD310\uC815\uD558\uC9C0 \uC54A\uB294\uB2E4."
+  },
+  practice: {
+    label: "\uB2E4\uB978 \uB9E5\uB77D\uC758 \uC7AC\uC5F0\uC2B5",
+    instruction: "\uC2E4\uC81C \uBB38\uC81C\uC640 \uD655\uC778\uD560 \uCC38\uACE0 \uD480\uC774\uC5D0 \uADFC\uAC70\uD574 \uAC19\uC740 \uC6D0\uB9AC\uB97C \uB2E4\uB978 \uB9E5\uB77D\uC5D0\uC11C \uBB3B\uB294 \uCE74\uB4DC\uB97C \uB9CC\uB4E0\uB2E4. \uC9C8\uBB38\uACFC \uD574\uC124\uC744 \uBD84\uB9AC\uD558\uACE0 \uBC94\uC704 \uBC16 \uAC1C\uB150\xB7\uD574 \uC5C6\uC74C\xB7\uBAA8\uD638\uD55C \uC870\uAC74\uC744 \uC810\uAC80\uD560 \uB300\uC0C1\uC73C\uB85C \uD45C\uC2DC\uD55C\uB2E4. \uC790\uCCB4 \uAC80\uD1A0\uB97C \uAC80\uC99D \uC644\uB8CC\uB77C\uACE0 \uD558\uC9C0 \uC54A\uB294\uB2E4."
+  },
+  reflect: {
+    label: "\uAE30\uB85D \uBCC0\uD654 \uB3CC\uC544\uBCF4\uAE30",
+    instruction: "\uC785\uB825\uC5D0 \uC2E4\uC81C\uB85C \uC788\uB294 \uB0A0\uC9DC\xB7\uC774\uC804 \uC124\uBA85\xB7\uC790\uAE30 \uC815\uC815\uC744 \uBE44\uAD50\uD55C\uB2E4. \uBC18\uBCF5 \uC9C8\uBB38\uC744 \uBCF4\uC5EC \uC8FC\uB418 \uBBF8\uAE30\uB85D\uC744 \uD574\uACB0\uC774\uB098 \uC2E4\uD328\uB85C, \uAE34 \uAE00\uC744 \uC2E4\uB825 \uC0C1\uC2B9\uC73C\uB85C \uD310\uB2E8\uD558\uC9C0 \uC54A\uB294\uB2E4. \uB0A0\uC9DC\uAC00 \uC5C6\uC73C\uBA74 \uBCC0\uD654 \uC21C\uC11C\uB97C \uB2E8\uC815\uD558\uC9C0 \uC54A\uB294\uB2E4."
+  },
+  "next-study": {
+    label: "\uB2E4\uC74C \uACF5\uBD80 \uC81C\uC548",
+    instruction: "\uC2E4\uC81C \uC758\uBB38\xB7\uB9C9\uD798\uACFC \uC81C\uACF5\uB41C \uBAA9\uD45C\uC5D0 \uADFC\uAC70\uD55C \uC791\uC740 \uD589\uB3D9\uC744 \uC81C\uC548\uD55C\uB2E4. \uC5C6\uB294 \uBB38\uC81C\xB7\uC790\uB8CC\xB7\uC2DC\uAC04\xB7\uAC10\uC815\uC744 \uAC00\uC815\uD558\uC9C0 \uC54A\uB294\uB2E4. \uACF5\uBD80 \uD69F\uC218\xB7\uBCF5\uC2B5 \uB0A0\uC9DC\xB7\uC131\uACFC\uB97C \uC0C8\uB85C \uACC4\uC0B0\uD558\uC9C0 \uC54A\uACE0 \uC81C\uC548\uC744 \uC644\uB8CC\xB7\uC758\uBB34\uB85C \uB9CC\uB4E4\uC9C0 \uC54A\uB294\uB2E4."
+  }
+};
+var isStudyAITask = (value) => typeof value === "string" && Object.hasOwn(STUDY_AI_TASKS, value);
+function validateStudyAIRequest(value, complete = true) {
+  const row = value;
+  if (!row || !isStudyAITask(row.task))
+    throw new DomainError("INVALID_AI_REQUEST", "GPT \uC791\uC5C5\uC744 \uACE8\uB77C \uC8FC\uC138\uC694.");
+  for (const key of ["problem", "attempt", "reference", "focus"])
+    if (row[key] !== void 0 && (typeof row[key] !== "string" || row[key].length > 3e4))
+      throw new DomainError("INVALID_AI_REQUEST", "\uCD94\uAC00 \uB0B4\uC6A9\uC744 3\uB9CC \uC790 \uC774\uB0B4\uB85C \uB098\uB204\uC5B4 \uC8FC\uC138\uC694.");
+  if (!complete) return;
+  if (row.task === "tutor" && !row.focus?.trim())
+    throw new DomainError("INVALID_AI_REQUEST", "\uC790\uB8CC\uC5D0 \uBB3C\uC5B4\uBCFC \uC9C8\uBB38\uC744 \uB123\uC5B4 \uC8FC\uC138\uC694.");
+  if (["hint", "feedback", "practice"].includes(row.task) && !row.problem?.trim())
+    throw new DomainError("INVALID_AI_REQUEST", "\uC774 \uC791\uC5C5\uC5D0 \uC0AC\uC6A9\uD560 \uC2E4\uC81C \uBB38\uC81C\uC640 \uC870\uAC74\uC744 \uB123\uC5B4 \uC8FC\uC138\uC694.");
+  if (["hint", "feedback"].includes(row.task) && !row.attempt?.trim())
+    throw new DomainError("INVALID_AI_REQUEST", "\uD604\uC7AC \uD480\uC774 \uB610\uB294 \uB9C9\uD78C \uB2E8\uACC4\uB97C \uB123\uC5B4 \uC8FC\uC138\uC694.");
+  if (["feedback", "practice"].includes(row.task) && !row.reference?.trim())
+    throw new DomainError("INVALID_AI_REQUEST", "\uD655\uC778\uD560 \uD574\uC124\uC774\uB098 \uD310\uB2E8 \uAE30\uC900\uC744 \uB123\uC5B4 \uC8FC\uC138\uC694.");
+}
+
+// src/domain/material-source.ts
+var MAX_DOCUMENT_BYTES = 50 * 1024 * 1024;
+var MAX_DOCUMENT_TEXT = 1e6;
+function validateDocuments(value) {
+  const bad2 = () => {
+    throw new DomainError("INVALID_MATERIAL", "\uAC00\uC838\uC628 \uC790\uB8CC\uC758 \uC6D0\uBB38\xB7\uCD9C\uCC98\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+  };
+  if (!Array.isArray(value) || value.length > 20) bad2();
+  let size = 0;
+  const ids = /* @__PURE__ */ new Set();
+  for (const doc of value) {
+    if (!doc || typeof doc.id !== "string" || !doc.id || doc.id.length > 100 || ids.has(doc.id) || typeof doc.name !== "string" || !doc.name || doc.name.length > 512 || !["pdf", "docx", "pptx", "image", "text", "subtitle", "youtube"].includes(doc.kind) || !Array.isArray(doc.blocks) || doc.blocks.length > 6e3 || !Array.isArray(doc.warnings) || doc.warnings.length > 500 || doc.warnings.some((w) => typeof w !== "string" || w.length > 1e3)) bad2();
+    ids.add(doc.id);
+    if (doc.url !== void 0 && (typeof doc.url !== "string" || !/^https:\/\/(www\.)?youtube\.com\/watch\?v=[A-Za-z0-9_-]{11}$/.test(doc.url))) bad2();
+    if (doc.file !== null && (!doc.file || typeof doc.file.key !== "string" || !doc.file.key || doc.file.key.length > 512 || typeof doc.file.name !== "string" || doc.file.name.length > 512 || typeof doc.file.type !== "string" || doc.file.type.length > 150 || !Number.isSafeInteger(doc.file.size) || doc.file.size <= 0 || doc.file.size > MAX_DOCUMENT_BYTES || !/^[a-f0-9]{64}$/.test(doc.file.sha256))) bad2();
+    if (doc.file?.cloudPath !== void 0 && (typeof doc.file.cloudPath !== "string" || !doc.file.cloudPath.endsWith(`/document/${doc.file.sha256}`) || !/^[a-zA-Z0-9-]+\/(personal|test)\/document\/[a-f0-9]{64}$/.test(doc.file.cloudPath))) bad2();
+    const blocks = /* @__PURE__ */ new Set();
+    for (const block of doc.blocks) {
+      if (!block || typeof block.id !== "string" || !block.id || block.id.length > 100 || blocks.has(block.id) || typeof block.label !== "string" || block.label.length > 300 || typeof block.text !== "string" || block.text.length > 1e5 || block.originalText !== void 0 && (typeof block.originalText !== "string" || block.originalText.length > 1e5) || typeof block.included !== "boolean" || !(block.start === null && block.end === null || typeof block.start === "number" && Number.isFinite(block.start) && block.start >= 0 && typeof block.end === "number" && Number.isFinite(block.end) && block.end >= block.start)) bad2();
+      blocks.add(block.id);
+      size += block.text.length;
+    }
+  }
+  if (size > MAX_DOCUMENT_TEXT) throw new DomainError("SOURCE_SIZE", "\uAC00\uC838\uC628 \uC6D0\uBB38\uC774 100\uB9CC \uC790\uB97C \uB118\uC2B5\uB2C8\uB2E4. \uC790\uB8CC\uB97C \uB098\uB204\uC5B4 \uBCF4\uAD00\uD574 \uC8FC\uC138\uC694.");
+}
+
+// src/domain/material-learning.ts
+var fail = () => {
+  throw new DomainError("INVALID_MATERIAL", "\uD034\uC988\xB7\uAC1C\uB150\uB3C4\uC758 \uD615\uC2DD\uACFC \uC6D0\uBB38 \uADFC\uAC70\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+};
+function validateQuiz(value, sourceIds) {
+  if (!Array.isArray(value) || value.length > 30) fail();
+  const seen = /* @__PURE__ */ new Set();
+  for (const q of value) {
+    if (!q || typeof q.id !== "string" || !q.id || q.id.length > 256 || seen.has(q.id) || typeof q.question !== "string" || !q.question.trim() || q.question.length > 4e3 || !Array.isArray(q.options) || q.options.length < 2 || q.options.length > 6 || q.options.some((a) => typeof a !== "string" || !a.trim() || a.length > 4e3) || new Set(q.options).size !== q.options.length || !Number.isInteger(q.correctIndex) || q.correctIndex < 0 || q.correctIndex >= q.options.length || typeof q.explanation !== "string" || !q.explanation.trim() || q.explanation.length > 1e4 || !Array.isArray(q.sourceIds) || !q.sourceIds.length || q.sourceIds.length > 50 || q.sourceIds.some((id) => typeof id !== "string" || sourceIds && !sourceIds.has(id))) fail();
+    seen.add(q.id);
+  }
+}
+function validateMap(value, sourceIds) {
+  const map = value;
+  if (!map || !Array.isArray(map.nodes) || !map.nodes.length || map.nodes.length > 40 || !Array.isArray(map.edges) || map.edges.length > 80) fail();
+  const ids = /* @__PURE__ */ new Set(), edges = /* @__PURE__ */ new Set();
+  const refs = (v) => Array.isArray(v) && v.length > 0 && v.length <= 50 && v.every((id) => sourceIds.has(id));
+  for (const n of map.nodes) {
+    if (typeof n.id !== "string" || !n.id || n.id.length > 100 || ids.has(n.id) || typeof n.label !== "string" || !n.label.trim() || n.label.length > 1e3 || !refs(n.sourceIds)) fail();
+    ids.add(n.id);
+  }
+  for (const e of map.edges) {
+    if (typeof e.id !== "string" || !e.id || edges.has(e.id) || !ids.has(e.from) || !ids.has(e.to) || e.from === e.to || typeof e.label !== "string" || !e.label.trim() || e.label.length > 1e3 || !refs(e.sourceIds)) fail();
+    edges.add(e.id);
+  }
+  for (const [id, p] of Object.entries(map.positions ?? {})) if (!ids.has(id) || !p || !Number.isFinite(p.x) || !Number.isFinite(p.y) || Math.abs(p.x) > 1e6 || Math.abs(p.y) > 1e6) fail();
+}
+function validateQuizAttempts(attempts) {
+  if (!Array.isArray(attempts) || attempts.length > 100) fail();
+  const ids = /* @__PURE__ */ new Set();
+  for (const a of attempts) {
+    if (!a || typeof a.id !== "string" || !a.id || ids.has(a.id) || typeof a.resultId !== "string" || !Number.isFinite(Date.parse(a.at)) || !(a.submittedAt === null || Number.isFinite(Date.parse(a.submittedAt)))) fail();
+    ids.add(a.id);
+    validateQuiz(a.questions);
+    for (const [id, answer] of Object.entries(a.answers)) {
+      const q = a.questions.find((q2) => q2.id === id);
+      if (!q || !Number.isInteger(answer) || answer < 0 || answer >= q.options.length) fail();
+    }
+  }
+}
+
 // src/domain/study-material.ts
 var MAX_AUDIO_BYTES = 50 * 1024 * 1024;
 var MAX_SOURCE_TEXT = 15e4;
-var invalid2 = (message) => {
+var invalid3 = (message) => {
   throw new DomainError("INVALID_MATERIAL", message);
 };
-var text = (value, max) => typeof value === "string" && value.length <= max;
+var text2 = (value, max) => typeof value === "string" && value.length <= max;
 function validateMaterialResult(value) {
   const result = value;
-  if (!result || !text(result.id, 256) || !result.id || !text(result.model, 160) || !Number.isFinite(Date.parse(result.at)) || !Array.isArray(result.segments) || !result.segments.length || result.segments.length > 6e3 || !Array.isArray(result.summary) || result.summary.length > 100 || !Array.isArray(result.cards) || result.cards.length > 100)
-    invalid2("AI \uACB0\uACFC\uC758 \uD615\uC2DD\uC744 \uD655\uC778\uD558\uC9C0 \uBABB\uD588\uC2B5\uB2C8\uB2E4. \uC6D0\uBCF8\uC740 \uBCF4\uC874\uD588\uC2B5\uB2C8\uB2E4.");
+  if (result?.promptVersion !== void 0 && (!text2(result.promptVersion, 160) || !result.promptVersion.trim()))
+    invalid3("\uC0DD\uC131 \uB2F9\uC2DC GPT \uC9C0\uCE68 \uBC84\uC804\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+  if (result?.request !== void 0) validateStudyAIRequest(result.request);
+  if (result?.source?.documents !== void 0) validateDocuments(result.source.documents);
+  if (!result || !text2(result.id, 256) || !result.id || !text2(result.model, 160) || !Number.isFinite(Date.parse(result.at)) || !Array.isArray(result.segments) || !result.segments.length || result.segments.length > 6e3 || !Array.isArray(result.summary) || result.summary.length > 100 || !Array.isArray(result.cards) || result.cards.length > 100)
+    invalid3("AI \uACB0\uACFC\uC758 \uD615\uC2DD\uC744 \uD655\uC778\uD558\uC9C0 \uBABB\uD588\uC2B5\uB2C8\uB2E4. \uC6D0\uBCF8\uC740 \uBCF4\uC874\uD588\uC2B5\uB2C8\uB2E4.");
   const ids = /* @__PURE__ */ new Set();
   for (const segment of result.segments) {
-    if (!text(segment.id, 256) || !segment.id || ids.has(segment.id) || !text(segment.text, MAX_SOURCE_TEXT) || !segment.text.trim())
-      invalid2("\uBC1B\uC544\uC4F4 \uBB38\uC7A5\uACFC \uC2DD\uBCC4\uC790\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+    if (!text2(segment.id, 256) || !segment.id || ids.has(segment.id) || !text2(segment.text, MAX_SOURCE_TEXT) || !segment.text.trim())
+      invalid3("\uBC1B\uC544\uC4F4 \uBB38\uC7A5\uACFC \uC2DD\uBCC4\uC790\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+    if (segment.label !== void 0 && !text2(segment.label, 1e3))
+      invalid3("\uC6D0\uBB38 \uC704\uCE58\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
     if (!(segment.start === null && segment.end === null) && !(typeof segment.start === "number" && Number.isFinite(segment.start) && segment.start >= 0 && typeof segment.end === "number" && Number.isFinite(segment.end) && segment.end >= segment.start))
-      invalid2("\uC74C\uC131 \uAD6C\uAC04\uC758 \uC2DC\uAC04\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+      invalid3("\uC74C\uC131 \uAD6C\uAC04\uC758 \uC2DC\uAC04\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
     ids.add(segment.id);
   }
   if (result.segments.reduce((sum, row) => sum + row.text.length, 0) > MAX_SOURCE_TEXT)
-    invalid2("\uBC1B\uC544\uC4F4 \uB0B4\uC6A9\uC774 \uD55C \uBC88\uC5D0 \uCC98\uB9AC\uD560 \uC218 \uC788\uB294 \uBC94\uC704\uB97C \uB118\uC5C8\uC2B5\uB2C8\uB2E4.");
+    invalid3("\uBC1B\uC544\uC4F4 \uB0B4\uC6A9\uC774 \uD55C \uBC88\uC5D0 \uCC98\uB9AC\uD560 \uC218 \uC788\uB294 \uBC94\uC704\uB97C \uB118\uC5C8\uC2B5\uB2C8\uB2E4.");
   const references = (sources) => Array.isArray(sources) && sources.length > 0 && sources.length <= 50 && sources.every((id) => typeof id === "string" && ids.has(id));
   for (const row of result.summary)
-    if (!text(row.text, 1e4) || !row.text.trim() || !references(row.sourceIds))
-      invalid2("\uC694\uC57D\uC758 \uC6D0\uBB38 \uADFC\uAC70\uB97C \uD655\uC778\uD558\uC9C0 \uBABB\uD588\uC2B5\uB2C8\uB2E4.");
+    if (!text2(row.text, 1e4) || !row.text.trim() || !references(row.sourceIds) || row.originalText !== void 0 && !text2(row.originalText, 1e4))
+      invalid3("\uC694\uC57D\uC758 \uC6D0\uBB38 \uADFC\uAC70\uB97C \uD655\uC778\uD558\uC9C0 \uBABB\uD588\uC2B5\uB2C8\uB2E4.");
   const cards = /* @__PURE__ */ new Set();
   for (const card of result.cards) {
-    if (!text(card.id, 256) || !card.id || cards.has(card.id) || !text(card.question, 4e3) || !card.question.trim() || !text(card.answer, 1e4) || !card.answer.trim() || !references(card.sourceIds) || typeof card.excluded !== "boolean")
-      invalid2("\uCE74\uB4DC\uC758 \uC9C8\uBB38\xB7\uB2F5\xB7\uC6D0\uBB38 \uADFC\uAC70\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+    if (!text2(card.id, 256) || !card.id || cards.has(card.id) || !text2(card.question, 4e3) || !card.question.trim() || !text2(card.answer, 1e4) || !card.answer.trim() || !references(card.sourceIds) || typeof card.excluded !== "boolean")
+      invalid3("\uCE74\uB4DC\uC758 \uC9C8\uBB38\xB7\uB2F5\xB7\uC6D0\uBB38 \uADFC\uAC70\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
     cards.add(card.id);
   }
+  if (result.quiz !== void 0) validateQuiz(result.quiz, ids);
+  if (result.map !== void 0) validateMap(result.map, ids);
+  if (result.originalMap !== void 0) validateMap(result.originalMap, ids);
 }
 function validateMaterialContent(value) {
   const row = value;
-  if (!row || !text(row.title, 300) || !row.title.trim() || !text(row.subjectId, 256) || !row.subjectId || !(row.topicId === null || text(row.topicId, 256)) || !text(row.sourceText, MAX_SOURCE_TEXT) || !Array.isArray(row.results) || row.results.length > 30)
-    invalid2("\uC790\uB8CC \uC81C\uBAA9\xB7\uACFC\uBAA9\xB7\uBCF8\uBB38\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
-  if (row.audio !== null && (!row.audio || !text(row.audio.key, 512) || !row.audio.key || !text(row.audio.name, 512) || !text(row.audio.type, 100) || !Number.isSafeInteger(row.audio.size) || row.audio.size <= 0 || row.audio.size > MAX_AUDIO_BYTES || !/^[a-f0-9]{64}$/.test(row.audio.sha256)))
-    invalid2("\uC6D0\uBCF8 \uC74C\uC131 \uD30C\uC77C \uC815\uBCF4\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
-  if (!row.audio && !row.sourceText.trim()) invalid2("\uB179\uC74C \uD30C\uC77C\uC774\uB098 \uAC15\uC758 \uB0B4\uC6A9\uC744 \uB123\uC5B4 \uC8FC\uC138\uC694.");
+  if (row?.originalStorage !== void 0 && !["device", "private-server"].includes(row.originalStorage)) invalid3("\uC6D0\uBCF8 \uBCF4\uAD00 \uC704\uCE58\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+  if (row?.aiRequest !== void 0) validateStudyAIRequest(row.aiRequest, false);
+  if (row?.documents !== void 0) validateDocuments(row.documents);
+  if (row?.quizAttempts !== void 0) validateQuizAttempts(row.quizAttempts);
+  if (row?.tutorDraft !== void 0 && !text2(row.tutorDraft, 1e4))
+    invalid3("\uC9C8\uBB38\uC744 1\uB9CC \uC790 \uC774\uB0B4\uB85C \uB123\uC5B4 \uC8FC\uC138\uC694.");
+  if (!row || !text2(row.title, 300) || !row.title.trim() || !text2(row.subjectId, 256) || !row.subjectId || !(row.topicId === null || text2(row.topicId, 256)) || !text2(row.sourceText, MAX_SOURCE_TEXT) || !Array.isArray(row.results) || row.results.length > 30)
+    invalid3("\uC790\uB8CC \uC81C\uBAA9\xB7\uACFC\uBAA9\xB7\uBCF8\uBB38\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+  if (row.audio !== null && (!row.audio || !text2(row.audio.key, 512) || !row.audio.key || !text2(row.audio.name, 512) || !text2(row.audio.type, 100) || !Number.isSafeInteger(row.audio.size) || row.audio.size <= 0 || row.audio.size > MAX_AUDIO_BYTES || !/^[a-f0-9]{64}$/.test(row.audio.sha256)))
+    invalid3("\uC6D0\uBCF8 \uC74C\uC131 \uD30C\uC77C \uC815\uBCF4\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+  if (row.audio?.cloudPath !== void 0 && (typeof row.audio.cloudPath !== "string" || !row.audio.cloudPath.endsWith(`/audio/${row.audio.sha256}`) || !/^[a-zA-Z0-9-]+\/(personal|test)\/audio\/[a-f0-9]{64}$/.test(row.audio.cloudPath))) invalid3("\uC6D0\uBCF8 \uC74C\uC131\uC758 \uC11C\uBC84 \uC704\uCE58\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+  if (!row.audio && !row.sourceText.trim() && !row.documents?.length)
+    invalid3("\uB179\uC74C \uD30C\uC77C\uC774\uB098 \uAC15\uC758 \uB0B4\uC6A9\uC744 \uB123\uC5B4 \uC8FC\uC138\uC694.");
   const ids = /* @__PURE__ */ new Set();
   for (const result of row.results) {
     validateMaterialResult(result);
-    if (ids.has(result.id)) invalid2("\uC0DD\uC131 \uACB0\uACFC\uC758 \uC2DD\uBCC4\uC790\uAC00 \uC911\uBCF5\uB418\uC5C8\uC2B5\uB2C8\uB2E4.");
+    if (ids.has(result.id)) invalid3("\uC0DD\uC131 \uACB0\uACFC\uC758 \uC2DD\uBCC4\uC790\uAC00 \uC911\uBCF5\uB418\uC5C8\uC2B5\uB2C8\uB2E4.");
     ids.add(result.id);
   }
 }
@@ -3026,7 +3247,12 @@ function materialContent(row) {
     topicId: row.topicId,
     sourceText: row.sourceText,
     audio: row.audio,
-    results: row.results
+    results: row.results,
+    ...row.aiRequest ? { aiRequest: row.aiRequest } : {},
+    ...row.documents ? { documents: row.documents } : {},
+    ...row.quizAttempts ? { quizAttempts: row.quizAttempts } : {},
+    ...row.tutorDraft !== void 0 ? { tutorDraft: row.tutorDraft } : {},
+    ...row.originalStorage ? { originalStorage: row.originalStorage } : {}
   });
 }
 
@@ -3041,27 +3267,27 @@ var CODE_LANGUAGES = {
 var MAX_CODE_TEXT = 2e5;
 var MAX_CODE_OUTPUT = 1e5;
 function validateCodeContent(value) {
-  const fail2 = () => {
+  const fail3 = () => {
     throw new DomainError(
       "INVALID_CODE_EXAMPLE",
       "\uCF54\uB4DC \uC608\uC81C\uC758 \uC81C\uBAA9\xB7\uCF54\uB4DC\xB7\uC124\uBA85\xB7\uC2E4\uD589 \uACB0\uACFC\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694."
     );
   };
-  if (!value || typeof value !== "object" || Array.isArray(value)) return fail2();
+  if (!value || typeof value !== "object" || Array.isArray(value)) return fail3();
   const content = value;
   if (content.inputMode !== void 0 && !["batch", "terminal"].includes(content.inputMode))
-    return fail2();
-  if (!Object.hasOwn(CODE_LANGUAGES, content.language)) return fail2();
+    return fail3();
+  if (!Object.hasOwn(CODE_LANGUAGES, content.language)) return fail3();
   for (const name of ["title", "code", "stdin", "notes"]) {
-    if (typeof content[name] !== "string" || content[name].length > MAX_CODE_TEXT) return fail2();
+    if (typeof content[name] !== "string" || content[name].length > MAX_CODE_TEXT) return fail3();
   }
   if (content.lastRun !== void 0) {
     const run = content.lastRun;
     if (!run || run.mode !== void 0 && run.mode !== "terminal" || !Object.hasOwn(CODE_LANGUAGES, run.language) || !["success", "error", "stopped"].includes(run.outcome) || typeof run.at !== "string" || !Number.isFinite(Date.parse(run.at)))
-      return fail2();
+      return fail3();
     for (const name of ["code", "stdin", "output", "error"]) {
       if (typeof run[name] !== "string" || run[name].length > (name === "output" || name === "error" ? MAX_CODE_OUTPUT : MAX_CODE_TEXT))
-        return fail2();
+        return fail3();
     }
   }
 }
@@ -3087,7 +3313,7 @@ function verifyLearningPlan(workspace, state) {
 }
 var collections = ["studyBoards", "semesters", "subjects", "nodes", "sessions", "records", "narratives", "criteria", "criteriaAssignments", "memos", "learningPlans", "canvasLayouts", "codeExamples", "recallCards", "recallPreferences", "studyMaterials", "memoryCards", "memoryTests"];
 var clone = (value) => structuredClone(value);
-function fail(code, message, details) {
+function fail2(code, message, details) {
   throw new DomainError(code, message, details);
 }
 function canonical2(value) {
@@ -3096,31 +3322,31 @@ function canonical2(value) {
   return JSON.stringify(value);
 }
 function identity(id) {
-  if (typeof id !== "string" || !id.trim() || id.length > 256) fail("INVALID_ID", "\uD56D\uBAA9\uC758 \uC2DD\uBCC4\uC790\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+  if (typeof id !== "string" || !id.trim() || id.length > 256) fail2("INVALID_ID", "\uD56D\uBAA9\uC758 \uC2DD\uBCC4\uC790\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
 }
 function title(name) {
-  if (typeof name !== "string" || !name.trim()) fail("EMPTY_NAME", "\uC774\uB984\uC744 \uC785\uB825\uD574 \uC8FC\uC138\uC694.");
+  if (typeof name !== "string" || !name.trim()) fail2("EMPTY_NAME", "\uC774\uB984\uC744 \uC785\uB825\uD574 \uC8FC\uC138\uC694.");
   return name.trim();
 }
 function validDay(day2) {
   return typeof day2 === "string" && /^\d{4}-\d{2}-\d{2}$/.test(day2) && Number.isFinite(Date.parse(day2)) && new Date(day2).toISOString().slice(0, 10) === day2;
 }
 function validateDateEvidence(value) {
-  if (!value || !["exact", "range", "unknown"].includes(value.kind)) fail("INVALID_DATE", "\uACF5\uBD80\uD55C \uB0A0\uC9DC\uC758 \uAE30\uC5B5 \uC815\uB3C4\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
-  if (value.kind === "exact" && !validDay(value.date)) fail("INVALID_DATE", "\uC2E4\uC81C \uACF5\uBD80\uD55C \uB0A0\uC9DC\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
-  if (value.kind === "range" && (!validDay(value.from) || !validDay(value.to) || value.from > value.to)) fail("INVALID_DATE", "\uAE30\uC5B5\uB098\uB294 \uB0A0\uC9DC \uBC94\uC704\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+  if (!value || !["exact", "range", "unknown"].includes(value.kind)) fail2("INVALID_DATE", "\uACF5\uBD80\uD55C \uB0A0\uC9DC\uC758 \uAE30\uC5B5 \uC815\uB3C4\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+  if (value.kind === "exact" && !validDay(value.date)) fail2("INVALID_DATE", "\uC2E4\uC81C \uACF5\uBD80\uD55C \uB0A0\uC9DC\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+  if (value.kind === "range" && (!validDay(value.from) || !validDay(value.to) || value.from > value.to)) fail2("INVALID_DATE", "\uAE30\uC5B5\uB098\uB294 \uB0A0\uC9DC \uBC94\uC704\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
 }
 function verifyScope(state, scope) {
-  if (!scope || !["semester", "independent", "unassigned"].includes(scope.kind)) fail("INVALID_SCOPE", "\uACFC\uBAA9\uC758 \uC18C\uC18D\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
-  if (scope.kind === "semester" && !state.semesters.some((s) => s.id === scope.semesterId && !s.deletedAt)) fail("INVALID_SCOPE", "\uC5F0\uACB0\uD560 \uD559\uAE30\uB97C \uCC3E\uC744 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
+  if (!scope || !["semester", "independent", "unassigned"].includes(scope.kind)) fail2("INVALID_SCOPE", "\uACFC\uBAA9\uC758 \uC18C\uC18D\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+  if (scope.kind === "semester" && !state.semesters.some((s) => s.id === scope.semesterId && !s.deletedAt)) fail2("INVALID_SCOPE", "\uC5F0\uACB0\uD560 \uD559\uAE30\uB97C \uCC3E\uC744 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
 }
 function find(values, id, active = true) {
   const row = values.find((v) => v.id === id);
-  if (!row || active && row.deletedAt) return fail("NOT_FOUND", "\uB300\uC0C1\uC744 \uCC3E\uC744 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4. \uD734\uC9C0\uD1B5\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.", { id });
+  if (!row || active && row.deletedAt) return fail2("NOT_FOUND", "\uB300\uC0C1\uC744 \uCC3E\uC744 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4. \uD734\uC9C0\uD1B5\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.", { id });
   return row;
 }
 function expected(row, version2, attempted) {
-  if (row.version !== version2) fail("VERSION_CONFLICT", "\uB2E4\uB978 \uACF3\uC5D0\uC11C \uBCC0\uACBD\uB41C \uB0B4\uC6A9\uC774 \uC788\uC2B5\uB2C8\uB2E4. \uB450 \uB0B4\uC6A9\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.", { baseVersion: version2, current: clone(row), attempted: clone(attempted) });
+  if (row.version !== version2) fail2("VERSION_CONFLICT", "\uB2E4\uB978 \uACF3\uC5D0\uC11C \uBCC0\uACBD\uB41C \uB0B4\uC6A9\uC774 \uC788\uC2B5\uB2C8\uB2E4. \uB450 \uB0B4\uC6A9\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.", { baseVersion: version2, current: clone(row), attempted: clone(attempted) });
 }
 function targetSubject(state, targetId, active = true) {
   const direct = state.subjects.find((s) => s.id === targetId);
@@ -3140,20 +3366,20 @@ function targetSubject(state, targetId, active = true) {
   return node.subjectId;
 }
 function verifyTrace(trace) {
-  if (!trace || typeof trace !== "object" || Array.isArray(trace)) fail("INVALID_TRACE", "\uD65C\uB3D9 \uC785\uB825\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+  if (!trace || typeof trace !== "object" || Array.isArray(trace)) fail2("INVALID_TRACE", "\uD65C\uB3D9 \uC785\uB825\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
   for (const [id, item] of Object.entries(trace)) {
     identity(id);
-    if (!/^[TRACE][A-Za-z0-9_-]*$/.test(id)) fail("INVALID_TRACE_ID", "\uD65C\uB3D9\uC758 \uC6D0\uB798 \uC2DD\uBCC4\uC790\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
-    if (!item || !["checked", "unchecked", "na", "deferred"].includes(item.status) || item.note !== void 0 && typeof item.note !== "string") fail("INVALID_TRACE", "\uD65C\uB3D9 \uC0C1\uD0DC\uC640 \uBA54\uBAA8\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+    if (!/^[TRACE][A-Za-z0-9_-]*$/.test(id)) fail2("INVALID_TRACE_ID", "\uD65C\uB3D9\uC758 \uC6D0\uB798 \uC2DD\uBCC4\uC790\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+    if (!item || !["checked", "unchecked", "na", "deferred"].includes(item.status) || item.note !== void 0 && typeof item.note !== "string") fail2("INVALID_TRACE", "\uD65C\uB3D9 \uC0C1\uD0DC\uC640 \uBA54\uBAA8\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
     if (item.definition !== void 0) validateTraceDefinition(item.definition, id);
-    if (item.examReview && (typeof item.examReview.answer !== "string" || typeof item.examReview.checked !== "boolean" || item.examReview.checked && (!item.examReview.answer.trim() || item.status !== "checked"))) fail("INVALID_WRITTEN_REVIEW", "\uC810\uAC80\uD558\uB824\uBA74 \uC790\uAE30 \uBB38\uC7A5\uC73C\uB85C \uC11C\uC220\uC744 \uB0A8\uACA8 \uC8FC\uC138\uC694.");
+    if (item.examReview && (typeof item.examReview.answer !== "string" || typeof item.examReview.checked !== "boolean" || item.examReview.checked && (!item.examReview.answer.trim() || item.status !== "checked"))) fail2("INVALID_WRITTEN_REVIEW", "\uC810\uAC80\uD558\uB824\uBA74 \uC790\uAE30 \uBB38\uC7A5\uC73C\uB85C \uC11C\uC220\uC744 \uB0A8\uACA8 \uC8FC\uC138\uC694.");
     if (item.repeats) {
       const ids = /* @__PURE__ */ new Set();
       for (const repeat of item.repeats) {
         identity(repeat.id);
-        if (ids.has(repeat.id)) fail("DUPLICATE_REPEAT", "\uAC19\uC740 \uBC18\uBCF5 \uAE30\uB85D\uC774 \uC911\uBCF5\uB418\uC5B4 \uC788\uC2B5\uB2C8\uB2E4.");
+        if (ids.has(repeat.id)) fail2("DUPLICATE_REPEAT", "\uAC19\uC740 \uBC18\uBCF5 \uAE30\uB85D\uC774 \uC911\uBCF5\uB418\uC5B4 \uC788\uC2B5\uB2C8\uB2E4.");
         ids.add(repeat.id);
-        if (!["exact", "minimum", "unknown"].includes(repeat.kind) || (repeat.kind === "unknown" ? repeat.count !== null : !Number.isSafeInteger(repeat.count) || Number(repeat.count) < 1)) fail("INVALID_REPEAT", "\uBC18\uBCF5 \uD69F\uC218\uC758 \uAE30\uC5B5 \uC815\uB3C4\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+        if (!["exact", "minimum", "unknown"].includes(repeat.kind) || (repeat.kind === "unknown" ? repeat.count !== null : !Number.isSafeInteger(repeat.count) || Number(repeat.count) < 1)) fail2("INVALID_REPEAT", "\uBC18\uBCF5 \uD69F\uC218\uC758 \uAE30\uC5B5 \uC815\uB3C4\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
         if (repeat.dateEvidence) validateDateEvidence(repeat.dateEvidence);
       }
     }
@@ -3163,7 +3389,7 @@ function mergeTrace(previous, patch) {
   verifyTrace(patch);
   const next = clone(previous);
   for (const [id, item] of Object.entries(patch)) {
-    if (item.examReview && canonical2(item.examReview) !== canonical2(previous[id]?.examReview ?? null)) fail("REVIEW_COMMAND_REQUIRED", "\uC11C\uC220 \uC218\uC815\uACFC \uC810\uAC80 \uD655\uC778\uC740 \uD574\uB2F9 \uC870\uC791\uC744 \uC0AC\uC6A9\uD574 \uC8FC\uC138\uC694.");
+    if (item.examReview && canonical2(item.examReview) !== canonical2(previous[id]?.examReview ?? null)) fail2("REVIEW_COMMAND_REQUIRED", "\uC11C\uC220 \uC218\uC815\uACFC \uC810\uAC80 \uD655\uC778\uC740 \uD574\uB2F9 \uC870\uC791\uC744 \uC0AC\uC6A9\uD574 \uC8FC\uC138\uC694.");
     const definition = previous[id]?.definition ?? item.definition ?? (() => {
       const original = TRACE_ITEMS.find((t) => t.id === id);
       return original ? { id, group: original.group, label: original.label, mode: original.mode, version: 1 } : void 0;
@@ -3175,17 +3401,17 @@ function mergeTrace(previous, patch) {
   return next;
 }
 function assertState(state) {
-  if (state.schemaVersion !== 1 || !["demo", "personal", "test"].includes(state.namespace)) fail("INVALID_STATE", "\uC790\uB8CC \uD615\uC2DD\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+  if (state.schemaVersion !== 1 || !["demo", "personal", "test"].includes(state.namespace)) fail2("INVALID_STATE", "\uC790\uB8CC \uD615\uC2DD\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
   identity(state.userId);
   const globallyUnique = /* @__PURE__ */ new Set();
   for (const name of collections) {
-    if (state[name] !== void 0 && !Array.isArray(state[name])) fail("INVALID_STATE", "\uC790\uB8CC \uBAA9\uB85D\uC758 \uD615\uC2DD\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+    if (state[name] !== void 0 && !Array.isArray(state[name])) fail2("INVALID_STATE", "\uC790\uB8CC \uBAA9\uB85D\uC758 \uD615\uC2DD\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
     for (const row of state[name] ?? []) {
       identity(row.id);
-      if (globallyUnique.has(row.id)) fail("DUPLICATE_ID", "\uAC19\uC740 \uC2DD\uBCC4\uC790\uAC00 \uC911\uBCF5\uB418\uC5B4 \uC788\uC2B5\uB2C8\uB2E4.", { id: row.id });
+      if (globallyUnique.has(row.id)) fail2("DUPLICATE_ID", "\uAC19\uC740 \uC2DD\uBCC4\uC790\uAC00 \uC911\uBCF5\uB418\uC5B4 \uC788\uC2B5\uB2C8\uB2E4.", { id: row.id });
       globallyUnique.add(row.id);
-      if (row.userId !== state.userId || row.namespace !== state.namespace) fail("OWNERSHIP", "\uB2E4\uB978 \uC0AC\uC6A9\uC790\uB098 \uC2DC\uD5D8 \uACF5\uAC04\uC758 \uC790\uB8CC\uB97C \uD568\uAED8 \uCC98\uB9AC\uD560 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
-      if (!Number.isInteger(row.version) || row.version < 1) fail("INVALID_VERSION", "\uC218\uC815 \uC21C\uC11C\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+      if (row.userId !== state.userId || row.namespace !== state.namespace) fail2("OWNERSHIP", "\uB2E4\uB978 \uC0AC\uC6A9\uC790\uB098 \uC2DC\uD5D8 \uACF5\uAC04\uC758 \uC790\uB8CC\uB97C \uD568\uAED8 \uCC98\uB9AC\uD560 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
+      if (!Number.isInteger(row.version) || row.version < 1) fail2("INVALID_VERSION", "\uC218\uC815 \uC21C\uC11C\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
     }
   }
   const index = new Map(collections.flatMap((name) => (state[name] ?? []).map((row) => [row.id, row])));
@@ -3195,36 +3421,36 @@ function assertState(state) {
   const nodeIndex = new Map(state.nodes.map((row) => [row.id, row]));
   for (const subject of state.subjects) {
     if (subject.scope.kind === "semester") {
-      if (!semesterIds.has(subject.scope.semesterId)) fail("NOT_FOUND", "\uACFC\uBAA9\uC774 \uC5F0\uACB0\uB41C \uD559\uAE30\uB97C \uCC3E\uC744 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
-    } else if (!["independent", "unassigned"].includes(subject.scope.kind)) fail("INVALID_SCOPE", "\uACFC\uBAA9 \uC18C\uC18D\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+      if (!semesterIds.has(subject.scope.semesterId)) fail2("NOT_FOUND", "\uACFC\uBAA9\uC774 \uC5F0\uACB0\uB41C \uD559\uAE30\uB97C \uCC3E\uC744 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
+    } else if (!["independent", "unassigned"].includes(subject.scope.kind)) fail2("INVALID_SCOPE", "\uACFC\uBAA9 \uC18C\uC18D\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
   }
   for (const node of state.nodes) {
-    if (!subjectIds.has(node.subjectId)) fail("NOT_FOUND", "\uBAA9\uCC28\uC758 \uACFC\uBAA9\uC744 \uCC3E\uC744 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
+    if (!subjectIds.has(node.subjectId)) fail2("NOT_FOUND", "\uBAA9\uCC28\uC758 \uACFC\uBAA9\uC744 \uCC3E\uC744 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
     const seen = /* @__PURE__ */ new Set([node.id]);
     let parentId = node.parentId;
     while (parentId !== null) {
-      if (seen.has(parentId)) fail("CYCLE", "\uD558\uC704 \uD56D\uBAA9 \uC548\uC73C\uB85C \uC774\uB3D9\uD560 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
+      if (seen.has(parentId)) fail2("CYCLE", "\uD558\uC704 \uD56D\uBAA9 \uC548\uC73C\uB85C \uC774\uB3D9\uD560 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
       seen.add(parentId);
       const parent = nodeIndex.get(parentId);
-      if (!parent) fail("NOT_FOUND", "\uBD80\uBAA8 \uBAA9\uCC28\uB97C \uCC3E\uC744 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
-      if (parent.subjectId !== node.subjectId) fail("SUBJECT_MISMATCH", "\uB2E4\uB978 \uACFC\uBAA9\uC758 \uD56D\uBAA9 \uC544\uB798\uB85C \uC774\uB3D9\uD560 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
+      if (!parent) fail2("NOT_FOUND", "\uBD80\uBAA8 \uBAA9\uCC28\uB97C \uCC3E\uC744 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
+      if (parent.subjectId !== node.subjectId) fail2("SUBJECT_MISMATCH", "\uB2E4\uB978 \uACFC\uBAA9\uC758 \uD56D\uBAA9 \uC544\uB798\uB85C \uC774\uB3D9\uD560 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
       parentId = parent.parentId;
     }
   }
   const pairs = /* @__PURE__ */ new Set();
   for (const row of state.records) {
-    if (!sessionIds.has(row.sessionId)) fail("NOT_FOUND", "\uC6D0\uB798 \uACF5\uBD80 \uC138\uC158\uC744 \uCC3E\uC744 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
+    if (!sessionIds.has(row.sessionId)) fail2("NOT_FOUND", "\uC6D0\uB798 \uACF5\uBD80 \uC138\uC158\uC744 \uCC3E\uC744 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
     const subjectId = subjectIds.has(row.targetId) ? row.targetId : nodeIndex.get(row.targetId)?.subjectId;
-    if (subjectId !== row.subjectId) fail("SUBJECT_MISMATCH", "\uAE30\uB85D\uACFC \uC8FC\uC81C\uC758 \uACFC\uBAA9\uC774 \uB2E4\uB985\uB2C8\uB2E4.");
+    if (subjectId !== row.subjectId) fail2("SUBJECT_MISMATCH", "\uAE30\uB85D\uACFC \uC8FC\uC81C\uC758 \uACFC\uBAA9\uC774 \uB2E4\uB985\uB2C8\uB2E4.");
     const key = canonical2([row.sessionId, row.targetId]);
-    if (pairs.has(key)) fail("DUPLICATE_RECORD", "\uD55C \uACF5\uBD80\uC758 \uAC19\uC740 \uB300\uC0C1 \uAE30\uB85D\uC774 \uC911\uBCF5\uB418\uC5B4 \uC788\uC2B5\uB2C8\uB2E4.");
+    if (pairs.has(key)) fail2("DUPLICATE_RECORD", "\uD55C \uACF5\uBD80\uC758 \uAC19\uC740 \uB300\uC0C1 \uAE30\uB85D\uC774 \uC911\uBCF5\uB418\uC5B4 \uC788\uC2B5\uB2C8\uB2E4.");
     pairs.add(key);
     validateDateEvidence(row.dateEvidence);
     verifyTrace(row.trace);
-    if (typeof row.body !== "string" || typeof row.done !== "boolean") fail("INVALID_RECORD", "\uACF5\uBD80 \uAE30\uB85D\uC758 \uC785\uB825\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+    if (typeof row.body !== "string" || typeof row.done !== "boolean") fail2("INVALID_RECORD", "\uACF5\uBD80 \uAE30\uB85D\uC758 \uC785\uB825\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
   }
   for (const row of state.sessions) validateDateEvidence(row.dateEvidence);
-  if ((state.learningPlans ?? []).filter((row) => !row.deletedAt).length > 1) fail("DUPLICATE_PLAN", "\uD559\uC2B5 \uC77C\uC815\uC758 \uC6D0\uB798 \uC5F0\uACB0\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+  if ((state.learningPlans ?? []).filter((row) => !row.deletedAt).length > 1) fail2("DUPLICATE_PLAN", "\uD559\uC2B5 \uC77C\uC815\uC758 \uC6D0\uB798 \uC5F0\uACB0\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
   for (const row of state.learningPlans ?? []) verifyLearningPlan(row.workspace, state);
   for (const row of state.studyBoards ?? []) {
     validateBoard(row);
@@ -3234,93 +3460,93 @@ function assertState(state) {
   for (const row of state.codeExamples ?? []) validateCodeContent(row);
   for (const row of state.studyMaterials ?? []) {
     validateMaterialContent(row);
-    if (!subjectIds.has(row.subjectId) || row.topicId !== null && nodeIndex.get(row.topicId)?.subjectId !== row.subjectId) fail("SUBJECT_MISMATCH", "\uC790\uB8CC\uC758 \uACFC\uBAA9\uACFC \uC8FC\uC81C\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+    if (!subjectIds.has(row.subjectId) || row.topicId !== null && nodeIndex.get(row.topicId)?.subjectId !== row.subjectId) fail2("SUBJECT_MISMATCH", "\uC790\uB8CC\uC758 \uACFC\uBAA9\uACFC \uC8FC\uC81C\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
   }
   for (const card of state.memoryCards ?? []) {
     validateMemoryCard(card);
     validateMaterialCardSource(card, state);
-    if (nodeIndex.get(card.topicId)?.role !== "topic") fail("INVALID_MEMORY_TEST", "\uC554\uAE30 \uD56D\uBAA9\uC758 \uC6D0\uB798 \uC8FC\uC81C\uB97C \uCC3E\uC744 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
+    if (nodeIndex.get(card.topicId)?.role !== "topic") fail2("INVALID_MEMORY_TEST", "\uC554\uAE30 \uD56D\uBAA9\uC758 \uC6D0\uB798 \uC8FC\uC81C\uB97C \uCC3E\uC744 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
   }
   for (const test of state.memoryTests ?? []) {
     validateMemoryTest(test);
-    for (const q of test.questions) if (!(state.memoryCards ?? []).some((c) => c.id === q.cardId && c.topicId === q.topicId)) fail("INVALID_MEMORY_TEST", "\uC2DC\uD5D8 \uBB38\uD56D\uC758 \uC6D0\uB798 \uD56D\uBAA9\uC744 \uCC3E\uC744 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
+    for (const q of test.questions) if (!(state.memoryCards ?? []).some((c) => c.id === q.cardId && c.topicId === q.topicId)) fail2("INVALID_MEMORY_TEST", "\uC2DC\uD5D8 \uBB38\uD56D\uC758 \uC6D0\uB798 \uD56D\uBAA9\uC744 \uCC3E\uC744 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
   }
   const recallTopics = /* @__PURE__ */ new Set();
   for (const row of state.recallCards ?? []) {
     validateRecallCard(row, state);
     if (!row.deletedAt && row.front === void 0) {
-      if (recallTopics.has(row.topicId)) fail("DUPLICATE_RECALL", "\uC8FC\uC81C\uC758 \uBCF5\uC2B5 \uCE74\uB4DC\uAC00 \uC911\uBCF5\uB418\uC5B4 \uC788\uC2B5\uB2C8\uB2E4.");
+      if (recallTopics.has(row.topicId)) fail2("DUPLICATE_RECALL", "\uC8FC\uC81C\uC758 \uBCF5\uC2B5 \uCE74\uB4DC\uAC00 \uC911\uBCF5\uB418\uC5B4 \uC788\uC2B5\uB2C8\uB2E4.");
       recallTopics.add(row.topicId);
     }
   }
-  if ((state.recallPreferences ?? []).filter((row) => !row.deletedAt && row.deckName === void 0).length > 1) fail("DUPLICATE_RECALL", "\uBCF5\uC2B5 \uC124\uC815\uC774 \uC911\uBCF5\uB418\uC5B4 \uC788\uC2B5\uB2C8\uB2E4.");
+  if ((state.recallPreferences ?? []).filter((row) => !row.deletedAt && row.deckName === void 0).length > 1) fail2("DUPLICATE_RECALL", "\uBCF5\uC2B5 \uC124\uC815\uC774 \uC911\uBCF5\uB418\uC5B4 \uC788\uC2B5\uB2C8\uB2E4.");
   for (const row of state.recallPreferences ?? []) {
     validateRecallOptions(row.options);
-    if (row.deckName !== void 0 && (typeof row.deckName !== "string" || !row.deckName.trim() || row.deckName.length > 200)) fail("INVALID_RECALL", "\uB371 \uC774\uB984\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+    if (row.deckName !== void 0 && (typeof row.deckName !== "string" || !row.deckName.trim() || row.deckName.length > 200)) fail2("INVALID_RECALL", "\uB371 \uC774\uB984\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
   }
   const sourceKeys = /* @__PURE__ */ new Set();
   for (const row of state.recallCards ?? []) if (row.importSource) {
-    if (sourceKeys.has(row.importSource.key)) fail("DUPLICATE_RECALL", "Anki \uC6D0\uBCF8 \uCE74\uB4DC\uAC00 \uC911\uBCF5\uB418\uC5B4 \uC788\uC2B5\uB2C8\uB2E4.");
+    if (sourceKeys.has(row.importSource.key)) fail2("DUPLICATE_RECALL", "Anki \uC6D0\uBCF8 \uCE74\uB4DC\uAC00 \uC911\uBCF5\uB418\uC5B4 \uC788\uC2B5\uB2C8\uB2E4.");
     sourceKeys.add(row.importSource.key);
   }
   for (const row of state.memos ?? []) {
     validateMemoContent(row);
-    if (row.recallCardId !== void 0 && !(state.recallCards ?? []).some((card) => card.id === row.recallCardId && card.topicId === row.ownerId)) fail("INVALID_MEMO", "\uB2F5\uBCC0 \uBA54\uBAA8\uC758 \uC6D0\uB798 \uCE74\uB4DC \uC5F0\uACB0\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
-    if (row.ownerId !== null && !subjectIds.has(row.ownerId) && !nodeIndex.has(row.ownerId)) fail("NOT_FOUND", "\uBA54\uBAA8\uC758 \uC6D0\uB798 \uC5F0\uACB0 \uB300\uC0C1\uC744 \uCC3E\uC744 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
+    if (row.recallCardId !== void 0 && !(state.recallCards ?? []).some((card) => card.id === row.recallCardId && card.topicId === row.ownerId)) fail2("INVALID_MEMO", "\uB2F5\uBCC0 \uBA54\uBAA8\uC758 \uC6D0\uB798 \uCE74\uB4DC \uC5F0\uACB0\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+    if (row.ownerId !== null && !subjectIds.has(row.ownerId) && !nodeIndex.has(row.ownerId)) fail2("NOT_FOUND", "\uBA54\uBAA8\uC758 \uC6D0\uB798 \uC5F0\uACB0 \uB300\uC0C1\uC744 \uCC3E\uC744 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
   }
   for (const row of state.narratives) {
-    if (row.ownerId !== null && !index.has(row.ownerId)) fail("NOT_FOUND", "\uBCF8\uBB38\uC758 \uC6D0\uB798 \uB300\uC0C1\uC744 \uCC3E\uC744 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
+    if (row.ownerId !== null && !index.has(row.ownerId)) fail2("NOT_FOUND", "\uBCF8\uBB38\uC758 \uC6D0\uB798 \uB300\uC0C1\uC744 \uCC3E\uC744 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
     verifyNarrative(state, row);
   }
   const definitions = new Map(defaultCriteriaItems().map((item) => [item.id, item]));
   for (const criteria of state.criteria ?? []) {
-    if (!Array.isArray(criteria.items) || criteria.items.length > 100 || new Set(criteria.items.map((item) => item.id)).size !== criteria.items.length) fail("INVALID_CRITERIA", "\uAE30\uC900\uC758 \uD56D\uBAA9\uACFC \uC911\uBCF5 \uC5EC\uBD80\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+    if (!Array.isArray(criteria.items) || criteria.items.length > 100 || new Set(criteria.items.map((item) => item.id)).size !== criteria.items.length) fail2("INVALID_CRITERIA", "\uAE30\uC900\uC758 \uD56D\uBAA9\uACFC \uC911\uBCF5 \uC5EC\uBD80\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
     for (const item of criteria.items) {
       validateTraceDefinition(item);
       const prior = definitions.get(item.id);
-      if (prior && (prior.label !== item.label || prior.group !== item.group || prior.mode !== item.mode || prior.version !== item.version)) fail("CRITERIA_ID_REUSED", "\uB73B\uC774\uB098 \uC801\uC6A9 \uAE30\uC900\uC774 \uBC14\uB010 \uD65C\uB3D9\uC740 \uC0C8 \uD56D\uBAA9\uC73C\uB85C \uAD6C\uBCC4\uD574 \uC8FC\uC138\uC694.");
+      if (prior && (prior.label !== item.label || prior.group !== item.group || prior.mode !== item.mode || prior.version !== item.version)) fail2("CRITERIA_ID_REUSED", "\uB73B\uC774\uB098 \uC801\uC6A9 \uAE30\uC900\uC774 \uBC14\uB010 \uD65C\uB3D9\uC740 \uC0C8 \uD56D\uBAA9\uC73C\uB85C \uAD6C\uBCC4\uD574 \uC8FC\uC138\uC694.");
       definitions.set(item.id, item);
     }
   }
   const assignments = /* @__PURE__ */ new Set();
   for (const assignment of state.criteriaAssignments ?? []) {
-    if (!["topic", "subject", "global"].includes(assignment.scope) || assignment.scope === "global" && assignment.ownerId !== null || assignment.scope === "subject" && !subjectIds.has(assignment.ownerId ?? "") || assignment.scope === "topic" && !nodeIndex.has(assignment.ownerId ?? "")) fail("CRITERIA_OWNER", "\uAE30\uC900\uC744 \uC801\uC6A9\uD560 \uC18C\uC18D\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+    if (!["topic", "subject", "global"].includes(assignment.scope) || assignment.scope === "global" && assignment.ownerId !== null || assignment.scope === "subject" && !subjectIds.has(assignment.ownerId ?? "") || assignment.scope === "topic" && !nodeIndex.has(assignment.ownerId ?? "")) fail2("CRITERIA_OWNER", "\uAE30\uC900\uC744 \uC801\uC6A9\uD560 \uC18C\uC18D\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
     const key = JSON.stringify([assignment.scope, assignment.ownerId]);
-    if (assignments.has(key)) fail("DUPLICATE_CRITERIA_ASSIGNMENT", "\uAC19\uC740 \uD56D\uBAA9\uC5D0 \uAE30\uC900 \uC5F0\uACB0\uC774 \uC911\uBCF5\uB418\uC5B4 \uC788\uC2B5\uB2C8\uB2E4.");
+    if (assignments.has(key)) fail2("DUPLICATE_CRITERIA_ASSIGNMENT", "\uAC19\uC740 \uD56D\uBAA9\uC5D0 \uAE30\uC900 \uC5F0\uACB0\uC774 \uC911\uBCF5\uB418\uC5B4 \uC788\uC2B5\uB2C8\uB2E4.");
     assignments.add(key);
     const target = state.criteria?.find((criteria) => criteria.id === assignment.criteriaId);
-    if (!target || !assignment.deletedAt && target.deletedAt) fail("CRITERIA_REFERENCE", "\uAE30\uC900\uC758 \uC6D0\uBB38 \uC5F0\uACB0\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+    if (!target || !assignment.deletedAt && target.deletedAt) fail2("CRITERIA_REFERENCE", "\uAE30\uC900\uC758 \uC6D0\uBB38 \uC5F0\uACB0\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
   }
-  for (const row of state.revisions) if (row.userId !== state.userId || row.namespace !== state.namespace) fail("OWNERSHIP", "\uC218\uC815 \uC774\uB825\uC758 \uC18C\uC720\uC790\uAC00 \uB2E4\uB985\uB2C8\uB2E4.");
+  for (const row of state.revisions) if (row.userId !== state.userId || row.namespace !== state.namespace) fail2("OWNERSHIP", "\uC218\uC815 \uC774\uB825\uC758 \uC18C\uC720\uC790\uAC00 \uB2E4\uB985\uB2C8\uB2E4.");
 }
 function verifyNarrative(state, row) {
-  if (typeof row.body !== "string") fail("INVALID_BODY", "\uBCF8\uBB38\uC740 \uAE00\uB85C \uB0A8\uACA8 \uC8FC\uC138\uC694.");
+  if (typeof row.body !== "string") fail2("INVALID_BODY", "\uBCF8\uBB38\uC740 \uAE00\uB85C \uB0A8\uACA8 \uC8FC\uC138\uC694.");
   if (row.kind === "free-note") {
     if (row.ownerId !== null) targetSubject(state, row.ownerId, false);
     return;
   }
-  if (row.ownerId === null) fail("OWNER_REQUIRED", "\uBCF8\uBB38\uC744 \uC5F0\uACB0\uD560 \uB300\uC0C1\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+  if (row.ownerId === null) fail2("OWNER_REQUIRED", "\uBCF8\uBB38\uC744 \uC5F0\uACB0\uD560 \uB300\uC0C1\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
   if (row.kind === "subject-overview") find(state.subjects, row.ownerId, false);
   else if (row.kind === "unit-introduction") {
-    if (find(state.nodes, row.ownerId, false).role !== "unit") fail("INVALID_OWNER", "\uB2E8\uC6D0 \uC11C\uBB38\uC740 \uB2E8\uC6D0\uC5D0 \uC5F0\uACB0\uD574 \uC8FC\uC138\uC694.");
+    if (find(state.nodes, row.ownerId, false).role !== "unit") fail2("INVALID_OWNER", "\uB2E8\uC6D0 \uC11C\uBB38\uC740 \uB2E8\uC6D0\uC5D0 \uC5F0\uACB0\uD574 \uC8FC\uC138\uC694.");
   } else if (row.kind === "topic-note") find(state.nodes, row.ownerId, false);
-  else fail("INVALID_NARRATIVE", "\uBCF8\uBB38\uC758 \uC885\uB958\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+  else fail2("INVALID_NARRATIVE", "\uBCF8\uBB38\uC758 \uC885\uB958\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
 }
 function applyCommand(state, command) {
   assertState(state);
-  if (command.userId !== state.userId || command.namespace !== void 0 && command.namespace !== state.namespace) fail("OWNERSHIP", "\uB2E4\uB978 \uC0AC\uC6A9\uC790\uB098 \uC2DC\uD5D8 \uACF5\uAC04\uC758 \uC790\uB8CC\uB97C \uBCC0\uACBD\uD560 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
+  if (command.userId !== state.userId || command.namespace !== void 0 && command.namespace !== state.namespace) fail2("OWNERSHIP", "\uB2E4\uB978 \uC0AC\uC6A9\uC790\uB098 \uC2DC\uD5D8 \uACF5\uAC04\uC758 \uC790\uB8CC\uB97C \uBCC0\uACBD\uD560 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
   identity(command.opId);
-  if (typeof command.at !== "string" || !Number.isFinite(Date.parse(command.at))) fail("INVALID_TIME", "\uC800\uC7A5 \uC2DC\uAC01\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+  if (typeof command.at !== "string" || !Number.isFinite(Date.parse(command.at))) fail2("INVALID_TIME", "\uC800\uC7A5 \uC2DC\uAC01\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
   const payload = canonical2(command);
   if (Object.hasOwn(state.appliedOps, command.opId)) {
-    if (state.appliedOps[command.opId] !== payload) fail("OPERATION_REUSED", "\uAC19\uC740 \uC694\uCCAD \uC2DD\uBCC4\uC790\uC5D0 \uB2E4\uB978 \uB0B4\uC6A9\uC774 \uB4E4\uC5B4 \uC788\uC2B5\uB2C8\uB2E4.");
+    if (state.appliedOps[command.opId] !== payload) fail2("OPERATION_REUSED", "\uAC19\uC740 \uC694\uCCAD \uC2DD\uBCC4\uC790\uC5D0 \uB2E4\uB978 \uB0B4\uC6A9\uC774 \uB4E4\uC5B4 \uC788\uC2B5\uB2C8\uB2E4.");
     return state;
   }
   const next = clone(state);
   const common = (id) => ({ id, userId: state.userId, namespace: state.namespace, createdAt: command.at, updatedAt: command.at, version: 1, deletedAt: null });
   const fresh = (id) => {
     identity(id);
-    if (collections.some((k) => (next[k] ?? []).some((v) => v.id === id))) fail("DUPLICATE_ID", "\uC774\uBBF8 \uC788\uB294 \uC2DD\uBCC4\uC790\uC785\uB2C8\uB2E4.", { id });
+    if (collections.some((k) => (next[k] ?? []).some((v) => v.id === id))) fail2("DUPLICATE_ID", "\uC774\uBBF8 \uC788\uB294 \uC2DD\uBCC4\uC790\uC785\uB2C8\uB2E4.", { id });
   };
   function write(collection, entity, reversesRevisionId) {
     if (collection === "criteria") next.criteria ??= [];
@@ -3354,16 +3580,27 @@ function applyCommand(state, command) {
     case "saveMemoryCard": {
       validateMemoryCard(command.content);
       const topic = find(next.nodes, command.content.topicId);
-      if (topic.role !== "topic") fail("INVALID_MEMORY_TEST", "\uC554\uAE30 \uD56D\uBAA9\uC744 \uC5F0\uACB0\uD560 \uC8FC\uC81C\uB97C \uC120\uD0DD\uD574 \uC8FC\uC138\uC694.");
+      if (topic.role !== "topic") fail2("INVALID_MEMORY_TEST", "\uC554\uAE30 \uD56D\uBAA9\uC744 \uC5F0\uACB0\uD560 \uC8FC\uC81C\uB97C \uC120\uD0DD\uD574 \uC8FC\uC138\uC694.");
       targetSubject(next, topic.id);
       const old = next.memoryCards?.find((c) => c.id === command.id);
+      if (old?.topicGeneration && canonical2(old.topicGeneration) !== canonical2(command.content.topicGeneration))
+        fail2("INVALID_TOPIC_GENERATION", "\uCC98\uC74C \uC0DD\uC131\uD55C \uBAA9\uCC28\xB7\uC9C8\uBB38\xB7\uB2F5\uC548\uC758 \uCD9C\uCC98\uB294 \uC720\uC9C0\uD574 \uC8FC\uC138\uC694.");
+      if (command.content.topicGeneration && (!old || !old.topicGeneration)) {
+        const input = command.content.topicGeneration.input;
+        const matches = (collection, ref, parentId, leaf = false) => {
+          const candidates = [...next[collection], ...next.revisions.filter((r) => r.collection === collection && r.entityId === ref.id).flatMap((r) => [r.before, r.after])];
+          return candidates.some((row) => row && row.id === ref.id && row.version === ref.version && "name" in row && row.name === ref.name && row.userId === next.userId && row.namespace === next.namespace && !row.deletedAt && (collection !== "nodes" || "subjectId" in row && row.subjectId === input.subject.id && "parentId" in row && row.parentId === parentId && (!leaf || "role" in row && row.role === "topic")));
+        };
+        if (!matches("subjects", input.subject) || input.topics.some((t) => t.path.some((n, i) => !matches("nodes", n, i ? t.path[i - 1].id : null, i === t.path.length - 1))))
+          fail2("INVALID_TOPIC_GENERATION", "\uC0DD\uC131\uC5D0 \uC0AC\uC6A9\uD55C \uACFC\uBAA9\uACFC \uBAA9\uCC28\uC758 \uC6D0\uB798 \uC774\uB984\xB7\uBC84\uC804\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+      }
       validateMaterialCardSource(command.content, next, !old);
       if (old) {
         find(next.memoryCards, old.id);
         expected(old, command.expectedVersion, command);
-        if (old.topicId !== command.content.topicId) fail("INVALID_MEMORY_TEST", "\uAE30\uC874 \uD56D\uBAA9\uC758 \uC8FC\uC81C\uB294 \uC720\uC9C0\uD574 \uC8FC\uC138\uC694. \uB2E4\uB978 \uC8FC\uC81C\uC5D0\uB294 \uC0C8 \uD56D\uBAA9\uC73C\uB85C \uB4F1\uB85D\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.");
+        if (old.topicId !== command.content.topicId) fail2("INVALID_MEMORY_TEST", "\uAE30\uC874 \uD56D\uBAA9\uC758 \uC8FC\uC81C\uB294 \uC720\uC9C0\uD574 \uC8FC\uC138\uC694. \uB2E4\uB978 \uC8FC\uC81C\uC5D0\uB294 \uC0C8 \uD56D\uBAA9\uC73C\uB85C \uB4F1\uB85D\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.");
       } else {
-        if (command.expectedVersion !== 0) fail("VERSION_CONFLICT", "\uD56D\uBAA9\uC758 \uC218\uC815 \uC21C\uC11C\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+        if (command.expectedVersion !== 0) fail2("VERSION_CONFLICT", "\uD56D\uBAA9\uC758 \uC218\uC815 \uC21C\uC11C\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
         fresh(command.id);
       }
       write("memoryCards", { ...old ?? common(command.id), ...clone(command.content) });
@@ -3382,7 +3619,7 @@ function applyCommand(state, command) {
       for (const q of command.content.questions) {
         const card = find(next.memoryCards ?? [], q.cardId, false);
         const source = card.version === q.cardVersion ? card : next.revisions.find((r) => r.collection === "memoryCards" && r.entityId === card.id && r.after.version === q.cardVersion)?.after;
-        if (!source || source.topicId !== q.topicId || source.question !== q.question || source.answer !== q.answer || canonical2(source.strokes) !== canonical2(q.strokes)) fail("INVALID_MEMORY_TEST", "\uCD9C\uC81C \uB2F9\uC2DC\uC758 \uC9C8\uBB38\uACFC \uAE30\uC900 \uB2F5\uC548\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+        if (!source || source.topicId !== q.topicId || source.question !== q.question || source.answer !== q.answer || canonical2(source.strokes) !== canonical2(q.strokes) || canonical2(source.topicGeneration) !== canonical2(q.topicGeneration)) fail2("INVALID_MEMORY_TEST", "\uCD9C\uC81C \uB2F9\uC2DC\uC758 \uC9C8\uBB38\uACFC \uAE30\uC900 \uB2F5\uC548\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
       }
       write("memoryTests", { ...common(command.id), ...clone(command.content) });
       break;
@@ -3390,13 +3627,13 @@ function applyCommand(state, command) {
     case "saveStudyMaterial": {
       validateMaterialContent(command.content);
       find(next.subjects, command.content.subjectId);
-      if (command.content.topicId !== null && targetSubject(next, command.content.topicId) !== command.content.subjectId) fail("SUBJECT_MISMATCH", "\uC120\uD0DD\uD55C \uC8FC\uC81C\uAC00 \uC774 \uACFC\uBAA9\uC5D0 \uC18D\uD558\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4.");
+      if (command.content.topicId !== null && targetSubject(next, command.content.topicId) !== command.content.subjectId) fail2("SUBJECT_MISMATCH", "\uC120\uD0DD\uD55C \uC8FC\uC81C\uAC00 \uC774 \uACFC\uBAA9\uC5D0 \uC18D\uD558\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4.");
       const old = next.studyMaterials?.find((row) => row.id === command.id);
       if (old) {
         find(next.studyMaterials, old.id);
         expected(old, command.expectedVersion, command);
       } else {
-        if (command.expectedVersion !== 0) fail("VERSION_CONFLICT", "\uC790\uB8CC\uC758 \uC218\uC815 \uC21C\uC11C\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+        if (command.expectedVersion !== 0) fail2("VERSION_CONFLICT", "\uC790\uB8CC\uC758 \uC218\uC815 \uC21C\uC11C\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
         fresh(command.id);
       }
       write("studyMaterials", { ...old ?? common(command.id), ...materialContent(command.content) });
@@ -3415,9 +3652,9 @@ function applyCommand(state, command) {
       if (old) {
         find(next.recallPreferences, old.id);
         expected(old, command.expectedVersion, command);
-        if (old.deckName === void 0 !== (command.deckName === void 0)) fail("INVALID_RECALL", "\uAE30\uBCF8 \uC124\uC815\uACFC \uB371 \uC124\uC815\uC744 \uC11C\uB85C \uBC14\uAFC0 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
+        if (old.deckName === void 0 !== (command.deckName === void 0)) fail2("INVALID_RECALL", "\uAE30\uBCF8 \uC124\uC815\uACFC \uB371 \uC124\uC815\uC744 \uC11C\uB85C \uBC14\uAFC0 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
       } else {
-        if (command.expectedVersion !== 0) fail("VERSION_CONFLICT", "\uBCF5\uC2B5 \uC124\uC815\uC758 \uC218\uC815 \uC21C\uC11C\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+        if (command.expectedVersion !== 0) fail2("VERSION_CONFLICT", "\uBCF5\uC2B5 \uC124\uC815\uC758 \uC218\uC815 \uC21C\uC11C\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
         fresh(command.id);
       }
       write("recallPreferences", { ...old ?? common(command.id), options: clone(command.options), ...command.deckName !== void 0 ? { deckName: command.deckName } : {} });
@@ -3426,26 +3663,26 @@ function applyCommand(state, command) {
     case "setRecallCardStatus": {
       const card = find(next.recallCards ?? [], command.id);
       expected(card, command.expectedVersion, command);
-      if (typeof command.suspended !== "boolean") fail("INVALID_RECALL", "\uCE74\uB4DC \uC0C1\uD0DC\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
-      if (command.deckId && !next.recallPreferences?.some((row) => row.id === command.deckId && !row.deletedAt && row.deckName !== void 0)) fail("INVALID_RECALL", "\uCE74\uB4DC\uC758 \uB371\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+      if (typeof command.suspended !== "boolean") fail2("INVALID_RECALL", "\uCE74\uB4DC \uC0C1\uD0DC\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+      if (command.deckId && !next.recallPreferences?.some((row) => row.id === command.deckId && !row.deletedAt && row.deckName !== void 0)) fail2("INVALID_RECALL", "\uCE74\uB4DC\uC758 \uB371\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
       write("recallCards", { ...card, deckId: command.deckId, suspended: command.suspended, clozeRemoved: false });
       break;
     }
     case "saveRecallCloze": {
       const topic = find(next.nodes, command.topicId);
       targetSubject(next, topic.id);
-      if (topic.role !== "topic" || typeof command.noteId !== "string" || !command.noteId.trim()) fail("INVALID_CLOZE", "\uBE48\uCE78 \uCE74\uB4DC\uC758 \uACF5\uBD80 \uC8FC\uC81C\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
-      if (command.deckId && !next.recallPreferences?.some((row) => row.id === command.deckId && !row.deletedAt && row.deckName !== void 0)) fail("INVALID_RECALL", "\uCE74\uB4DC\uC758 \uB371\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+      if (topic.role !== "topic" || typeof command.noteId !== "string" || !command.noteId.trim()) fail2("INVALID_CLOZE", "\uBE48\uCE78 \uCE74\uB4DC\uC758 \uACF5\uBD80 \uC8FC\uC81C\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+      if (command.deckId && !next.recallPreferences?.some((row) => row.id === command.deckId && !row.deletedAt && row.deckName !== void 0)) fail2("INVALID_RECALL", "\uCE74\uB4DC\uC758 \uB371\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
       const numbers = clozeNumbers(command.source);
-      if (!numbers.length || !Array.isArray(command.cards) || command.cards.length > 999 || new Set(command.cards.map((row) => row.id)).size !== command.cards.length || new Set(command.cards.map((row) => row.number)).size !== command.cards.length) fail("INVALID_CLOZE", "\uBE48\uCE78\uC744 {{c1::\uC815\uB2F5}}\uCC98\uB7FC \uD45C\uC2DC\uD574 \uC8FC\uC138\uC694.");
+      if (!numbers.length || !Array.isArray(command.cards) || command.cards.length > 999 || new Set(command.cards.map((row) => row.id)).size !== command.cards.length || new Set(command.cards.map((row) => row.number)).size !== command.cards.length) fail2("INVALID_CLOZE", "\uBE48\uCE78\uC744 {{c1::\uC815\uB2F5}}\uCC98\uB7FC \uD45C\uC2DC\uD574 \uC8FC\uC138\uC694.");
       const oldCards = (next.recallCards ?? []).filter((row) => row.cloze?.noteId === command.noteId);
-      if (oldCards.some((row) => row.deletedAt || row.topicId !== topic.id || !command.cards.some((candidate) => candidate.id === row.id && candidate.number === row.cloze.number))) fail("VERSION_CONFLICT", "\uBE48\uCE78\uC758 \uBAA8\uB4E0 \uCE74\uB4DC\uB97C \uB2E4\uC2DC \uC77D\uC5B4 \uC8FC\uC138\uC694. \uD604\uC7AC \uB0B4\uC6A9\uACFC \uCD08\uC548\uC744 \uBCF4\uC874\uD588\uC2B5\uB2C8\uB2E4.");
-      if (numbers.some((number) => !command.cards.some((row) => row.number === number))) fail("INVALID_CLOZE", "\uC0DD\uC131\uD560 \uBE48\uCE78 \uBC88\uD638\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+      if (oldCards.some((row) => row.deletedAt || row.topicId !== topic.id || !command.cards.some((candidate) => candidate.id === row.id && candidate.number === row.cloze.number))) fail2("VERSION_CONFLICT", "\uBE48\uCE78\uC758 \uBAA8\uB4E0 \uCE74\uB4DC\uB97C \uB2E4\uC2DC \uC77D\uC5B4 \uC8FC\uC138\uC694. \uD604\uC7AC \uB0B4\uC6A9\uACFC \uCD08\uC548\uC744 \uBCF4\uC874\uD588\uC2B5\uB2C8\uB2E4.");
+      if (numbers.some((number) => !command.cards.some((row) => row.number === number))) fail2("INVALID_CLOZE", "\uC0DD\uC131\uD560 \uBE48\uCE78 \uBC88\uD638\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
       for (const item of command.cards) {
         const old = oldCards.find((row) => row.id === item.id);
         if (old) expected(old, item.expectedVersion, command);
         else {
-          if (item.expectedVersion !== 0 || !numbers.includes(item.number)) fail("VERSION_CONFLICT", "\uBE48\uCE78 \uCE74\uB4DC\uC758 \uC218\uC815 \uC21C\uC11C\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+          if (item.expectedVersion !== 0 || !numbers.includes(item.number)) fail2("VERSION_CONFLICT", "\uBE48\uCE78 \uCE74\uB4DC\uC758 \uC218\uC815 \uC21C\uC11C\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
           fresh(item.id);
         }
         const card = old ?? { ...common(item.id), topicId: topic.id, reference: "", memory: newRecallMemory(command.at), reviews: [] };
@@ -3454,10 +3691,10 @@ function applyCommand(state, command) {
       break;
     }
     case "importRecallCards": {
-      if (!Array.isArray(command.items) || !command.items.length || command.items.length > 100 || typeof command.updateUnedited !== "boolean") fail("INVALID_IMPORT", "\uD55C \uBC88\uC5D0 \uAC00\uC838\uC62C \uCE74\uB4DC \uC218\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+      if (!Array.isArray(command.items) || !command.items.length || command.items.length > 100 || typeof command.updateUnedited !== "boolean") fail2("INVALID_IMPORT", "\uD55C \uBC88\uC5D0 \uAC00\uC838\uC62C \uCE74\uB4DC \uC218\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
       for (const item of command.items) {
         const source = item.source;
-        if (!source || typeof source.guid !== "string" || !source.guid || source.guid.length > 200 || !Number.isSafeInteger(source.ordinal) || source.ordinal < 0 || source.ordinal > 998 || source.key !== `anki:${source.guid}:${source.ordinal}` || !Array.isArray(source.fields) || source.fields.some((field) => typeof field.name !== "string" || typeof field.value !== "string") || ["deck", "noteType", "tags", "questionTemplate", "answerTemplate", "originalFront", "originalReference"].some((key) => typeof source[key] !== "string") || source.originalFront !== item.front || source.originalReference !== item.reference || JSON.stringify(source).length > 3e5) fail("INVALID_IMPORT", "Anki \uCE74\uB4DC\uC758 \uC6D0\uBCF8\uACFC \uD45C\uC2DC \uB0B4\uC6A9\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+        if (!source || typeof source.guid !== "string" || !source.guid || source.guid.length > 200 || !Number.isSafeInteger(source.ordinal) || source.ordinal < 0 || source.ordinal > 998 || source.key !== `anki:${source.guid}:${source.ordinal}` || !Array.isArray(source.fields) || source.fields.some((field) => typeof field.name !== "string" || typeof field.value !== "string") || ["deck", "noteType", "tags", "questionTemplate", "answerTemplate", "originalFront", "originalReference"].some((key) => typeof source[key] !== "string") || source.originalFront !== item.front || source.originalReference !== item.reference || JSON.stringify(source).length > 3e5) fail2("INVALID_IMPORT", "Anki \uCE74\uB4DC\uC758 \uC6D0\uBCF8\uACFC \uD45C\uC2DC \uB0B4\uC6A9\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
         const old = (next.recallCards ?? []).find((row) => row.importSource?.key === source.key);
         if (old) {
           const original = old.importSource;
@@ -3467,8 +3704,8 @@ function applyCommand(state, command) {
         } else {
           const topic = find(next.nodes, item.topicId);
           targetSubject(next, topic.id);
-          if (topic.role !== "topic") fail("INVALID_IMPORT", "\uAC00\uC838\uC62C \uCE74\uB4DC\uC758 \uACF5\uBD80 \uC8FC\uC81C\uB97C \uC120\uD0DD\uD574 \uC8FC\uC138\uC694.");
-          if (item.deckId && !next.recallPreferences?.some((row) => row.id === item.deckId && !row.deletedAt && row.deckName !== void 0)) fail("INVALID_RECALL", "\uAC00\uC838\uC62C \uB371\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+          if (topic.role !== "topic") fail2("INVALID_IMPORT", "\uAC00\uC838\uC62C \uCE74\uB4DC\uC758 \uACF5\uBD80 \uC8FC\uC81C\uB97C \uC120\uD0DD\uD574 \uC8FC\uC138\uC694.");
+          if (item.deckId && !next.recallPreferences?.some((row) => row.id === item.deckId && !row.deletedAt && row.deckName !== void 0)) fail2("INVALID_RECALL", "\uAC00\uC838\uC62C \uB371\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
           fresh(item.id);
           write("recallCards", { ...common(item.id), topicId: item.topicId, deckId: item.deckId, front: item.front, reference: item.reference, ...item.cloze ? { cloze: clone(item.cloze) } : {}, importSource: clone(source), memory: newRecallMemory(command.at), reviews: [] });
         }
@@ -3481,7 +3718,7 @@ function applyCommand(state, command) {
       const review = card.reviews.at(-1);
       const revision = [...next.revisions].reverse().find((row) => row.collection === "recallCards" && row.entityId === card.id);
       if (!review || review.id !== command.reviewId || revision?.operationId !== command.reviewId || revision.reversesRevisionId)
-        fail("UNDO_CONFLICT", "\uD3C9\uAC00 \uD6C4 \uB2E4\uB978 \uBCC0\uACBD\uC774 \uC788\uC2B5\uB2C8\uB2E4. \uD604\uC7AC \uB0B4\uC6A9\uACFC \uC774\uB825\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+        fail2("UNDO_CONFLICT", "\uD3C9\uAC00 \uD6C4 \uB2E4\uB978 \uBCC0\uACBD\uC774 \uC788\uC2B5\uB2C8\uB2E4. \uD604\uC7AC \uB0B4\uC6A9\uACFC \uC774\uB825\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
       const restored = revision.before;
       write("recallCards", restored ?? { ...card, memory: clone(review.before), reviews: card.reviews.slice(0, -1) }, revision.id);
       break;
@@ -3492,35 +3729,35 @@ function applyCommand(state, command) {
     case "reviewRecallCard": {
       const topic = find(next.nodes, command.topicId);
       targetSubject(next, topic.id);
-      if (topic.role !== "topic") fail("INVALID_RECALL", "\uBCF5\uC2B5 \uCE74\uB4DC\uB294 \uACF5\uBD80 \uC8FC\uC81C\uC5D0 \uC5F0\uACB0\uD574 \uC8FC\uC138\uC694.");
+      if (topic.role !== "topic") fail2("INVALID_RECALL", "\uBCF5\uC2B5 \uCE74\uB4DC\uB294 \uACF5\uBD80 \uC8FC\uC81C\uC5D0 \uC5F0\uACB0\uD574 \uC8FC\uC138\uC694.");
       const old = next.recallCards?.find((row) => row.id === command.id);
       if (old) {
         find(next.recallCards, old.id);
         expected(old, command.expectedVersion, command);
-        if (old.topicId !== topic.id) fail("INVALID_RECALL", "\uBCF5\uC2B5 \uCE74\uB4DC\uC758 \uC6D0\uB798 \uC8FC\uC81C\uB97C \uBCF4\uC874\uD574 \uC8FC\uC138\uC694.");
+        if (old.topicId !== topic.id) fail2("INVALID_RECALL", "\uBCF5\uC2B5 \uCE74\uB4DC\uC758 \uC6D0\uB798 \uC8FC\uC81C\uB97C \uBCF4\uC874\uD574 \uC8FC\uC138\uC694.");
       } else {
-        if (command.expectedVersion !== 0) fail("VERSION_CONFLICT", "\uBCF5\uC2B5 \uCE74\uB4DC\uC758 \uC218\uC815 \uC21C\uC11C\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+        if (command.expectedVersion !== 0) fail2("VERSION_CONFLICT", "\uBCF5\uC2B5 \uCE74\uB4DC\uC758 \uC218\uC815 \uC21C\uC11C\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
         fresh(command.id);
       }
       const card = old ?? { ...common(command.id), topicId: topic.id, reference: "", memory: newRecallMemory(command.at), reviews: [] };
-      if (command.type === "saveRecallCard" && card.cloze) fail("INVALID_CLOZE", "\uBE48\uCE78 \uBB38\uC7A5\uC740 \uBE48\uCE78 \uCE74\uB4DC \uD3B8\uC9D1\uC5D0\uC11C \uBC14\uAFD4 \uC8FC\uC138\uC694.");
-      if (command.type === "reviewRecallCard" && card.suspended) fail("INVALID_RECALL", "\uBCF4\uAD00\uD55C \uCE74\uB4DC\uB294 \uBCF5\uC6D0\uD55C \uB4A4 \uD3C9\uAC00\uD574 \uC8FC\uC138\uC694.");
+      if (command.type === "saveRecallCard" && card.cloze) fail2("INVALID_CLOZE", "\uBE48\uCE78 \uBB38\uC7A5\uC740 \uBE48\uCE78 \uCE74\uB4DC \uD3B8\uC9D1\uC5D0\uC11C \uBC14\uAFD4 \uC8FC\uC138\uC694.");
+      if (command.type === "reviewRecallCard" && card.suspended) fail2("INVALID_RECALL", "\uBCF4\uAD00\uD55C \uCE74\uB4DC\uB294 \uBCF5\uC6D0\uD55C \uB4A4 \uD3C9\uAC00\uD574 \uC8FC\uC138\uC694.");
       if (command.type === "saveRecallCard") write("recallCards", { ...card, front: command.front, reference: command.reference, deckId: command.deckId });
       else if (command.type === "saveRecallReference") write("recallCards", { ...card, reference: command.reference });
       else if (command.type === "setRecallDue") {
-        if (typeof command.due !== "string" || !Number.isFinite(Date.parse(command.due))) fail("INVALID_RECALL", "\uB2E4\uC74C \uBCF5\uC2B5 \uB0A0\uC9DC\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+        if (typeof command.due !== "string" || !Number.isFinite(Date.parse(command.due))) fail2("INVALID_RECALL", "\uB2E4\uC74C \uBCF5\uC2B5 \uB0A0\uC9DC\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
         write("recallCards", { ...card, manualDue: command.due });
       } else {
-        if (![1, 2, 3, 4].includes(command.rating)) fail("INVALID_RECALL", "\uC790\uAE30 \uD3C9\uAC00\uB97C \uC120\uD0DD\uD574 \uC8FC\uC138\uC694.");
-        if (card.memory.last_review && Date.parse(command.at) < Date.parse(card.memory.last_review)) fail("INVALID_TIME", "\uC9C0\uB09C \uBCF5\uC2B5 \uC774\uD6C4\uC758 \uC2DC\uAC01\uC73C\uB85C \uAE30\uB85D\uD574 \uC8FC\uC138\uC694.");
+        if (![1, 2, 3, 4].includes(command.rating)) fail2("INVALID_RECALL", "\uC790\uAE30 \uD3C9\uAC00\uB97C \uC120\uD0DD\uD574 \uC8FC\uC138\uC694.");
+        if (card.memory.last_review && Date.parse(command.at) < Date.parse(card.memory.last_review)) fail2("INVALID_TIME", "\uC9C0\uB09C \uBCF5\uC2B5 \uC774\uD6C4\uC758 \uC2DC\uAC01\uC73C\uB85C \uAE30\uB85D\uD574 \uC8FC\uC138\uC694.");
         let memoId = null;
         if (command.memo) {
           validateMemoContent({ ...command.memo, ownerId: topic.id });
-          if (!command.memo.body.trim() && !command.memo.strokes.length) fail("INVALID_RECALL", "\uBE48 \uBA54\uBAA8 \uB300\uC2E0 \uC790\uAE30 \uD3C9\uAC00\uB9CC \uC800\uC7A5\uD574 \uC8FC\uC138\uC694.");
+          if (!command.memo.body.trim() && !command.memo.strokes.length) fail2("INVALID_RECALL", "\uBE48 \uBA54\uBAA8 \uB300\uC2E0 \uC790\uAE30 \uD3C9\uAC00\uB9CC \uC800\uC7A5\uD574 \uC8FC\uC138\uC694.");
           memoId = command.memo.id;
           const saved = next.memos?.find((row) => row.id === memoId);
           if (saved) {
-            if (saved.deletedAt || saved.ownerId !== topic.id || saved.recallCardId !== void 0 && saved.recallCardId !== card.id || saved.body !== command.memo.body || canonical2(saved.strokes) !== canonical2(command.memo.strokes)) fail("VERSION_CONFLICT", "\uB2F5\uBCC0 \uBA54\uBAA8\uAC00 \uBC14\uB00C\uC5C8\uC2B5\uB2C8\uB2E4. \uCD08\uC548\uC744 \uBCF4\uC874\uD588\uC2B5\uB2C8\uB2E4.");
+            if (saved.deletedAt || saved.ownerId !== topic.id || saved.recallCardId !== void 0 && saved.recallCardId !== card.id || saved.body !== command.memo.body || canonical2(saved.strokes) !== canonical2(command.memo.strokes)) fail2("VERSION_CONFLICT", "\uB2F5\uBCC0 \uBA54\uBAA8\uAC00 \uBC14\uB00C\uC5C8\uC2B5\uB2C8\uB2E4. \uCD08\uC548\uC744 \uBCF4\uC874\uD588\uC2B5\uB2C8\uB2E4.");
           } else {
             fresh(memoId);
             write("memos", { ...common(memoId), ownerId: topic.id, recallCardId: card.id, body: command.memo.body, strokes: clone(command.memo.strokes) });
@@ -3539,7 +3776,7 @@ function applyCommand(state, command) {
         find(next.codeExamples, old.id);
         expected(old, command.expectedVersion, command);
       } else {
-        if (command.expectedVersion !== 0) fail("VERSION_CONFLICT", "\uCF54\uB4DC \uC608\uC81C\uC758 \uC218\uC815 \uC21C\uC11C\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+        if (command.expectedVersion !== 0) fail2("VERSION_CONFLICT", "\uCF54\uB4DC \uC608\uC81C\uC758 \uC218\uC815 \uC21C\uC11C\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
         fresh(command.id);
       }
       write("codeExamples", { ...old ?? common(command.id), ...clone(codeContent(command.content)) });
@@ -3560,7 +3797,7 @@ function applyCommand(state, command) {
         find(next.studyBoards, old.id);
         expected(old, command.expectedVersion, command);
       } else {
-        if (command.expectedVersion !== 0) fail("VERSION_CONFLICT", "\uBCF4\uB4DC\uC758 \uC218\uC815 \uC21C\uC11C\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+        if (command.expectedVersion !== 0) fail2("VERSION_CONFLICT", "\uBCF4\uB4DC\uC758 \uC218\uC815 \uC21C\uC11C\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
         fresh(command.id);
       }
       write("studyBoards", { ...old ?? common(command.id), ...clone(boardContent(command.content)) });
@@ -3573,7 +3810,7 @@ function applyCommand(state, command) {
         find(next.canvasLayouts, old.id);
         expected(old, command.expectedVersion, command);
       } else {
-        if (command.expectedVersion !== 0) fail("VERSION_CONFLICT", "Canvas \uBC30\uCE58\uC758 \uC218\uC815 \uC21C\uC11C\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+        if (command.expectedVersion !== 0) fail2("VERSION_CONFLICT", "Canvas \uBC30\uCE58\uC758 \uC218\uC815 \uC21C\uC11C\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
         fresh(command.id);
       }
       write("canvasLayouts", { ...old ?? common(command.id), positions: clone(command.positions), links: clone(command.links), ...command.viewport ? { viewport: clone(command.viewport) } : {} });
@@ -3584,7 +3821,7 @@ function applyCommand(state, command) {
       const row = next.learningPlans?.find((item) => item.id === command.id);
       if (row) expected(row, command.expectedVersion, command);
       else {
-        if (command.expectedVersion !== 0) fail("VERSION_CONFLICT", "\uD559\uC2B5 \uC77C\uC815\uC774 \uBC14\uB00C\uC5C8\uC2B5\uB2C8\uB2E4. \uC791\uC131 \uB0B4\uC6A9\uC744 \uC720\uC9C0\uD588\uC2B5\uB2C8\uB2E4.");
+        if (command.expectedVersion !== 0) fail2("VERSION_CONFLICT", "\uD559\uC2B5 \uC77C\uC815\uC774 \uBC14\uB00C\uC5C8\uC2B5\uB2C8\uB2E4. \uC791\uC131 \uB0B4\uC6A9\uC744 \uC720\uC9C0\uD588\uC2B5\uB2C8\uB2E4.");
         fresh(command.id);
       }
       write("learningPlans", { ...row ?? common(command.id), workspace: clone(command.workspace) });
@@ -3600,17 +3837,17 @@ function applyCommand(state, command) {
       write("subjects", { ...common(command.id), name: title(command.name), scope: clone(command.scope), order: next.subjects.length });
       break;
     case "createOutlineTable": {
-      if (command.expectedToken !== outlineTableToken(next)) fail("OUTLINE_STALE", "\uBAA9\uCC28\uAC00 \uBCC0\uACBD\uB418\uC5C8\uC2B5\uB2C8\uB2E4. \uC785\uB825\uC740 \uC720\uC9C0\uD558\uACE0 \uC0DD\uC131\uD560 \uAD6C\uC870\uB97C \uB2E4\uC2DC \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+      if (command.expectedToken !== outlineTableToken(next)) fail2("OUTLINE_STALE", "\uBAA9\uCC28\uAC00 \uBCC0\uACBD\uB418\uC5C8\uC2B5\uB2C8\uB2E4. \uC785\uB825\uC740 \uC720\uC9C0\uD558\uACE0 \uC0DD\uC131\uD560 \uAD6C\uC870\uB97C \uB2E4\uC2DC \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
       const preview = previewOutlineTable(next, command);
-      if (!preview.ready) fail("OUTLINE_CHOICE_REQUIRED", "\uAC19\uC740 \uC774\uB984\uC758 \uD56D\uBAA9\uC744 \uC5B4\uB5BB\uAC8C \uC0AC\uC6A9\uD560\uC9C0 \uBA3C\uC800 \uACE8\uB77C \uC8FC\uC138\uC694.");
-      if (!preview.newCount) fail("EMPTY_OUTLINE_TABLE", "\uC0C8\uB85C \uB9CC\uB4E4 \uD56D\uBAA9\uC774 \uC5C6\uC2B5\uB2C8\uB2E4. \uAE30\uC874 \uD56D\uBAA9 \uC5F0\uACB0\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
-      if (!command.ids || typeof command.ids !== "object" || Array.isArray(command.ids)) fail("INVALID_ID", "\uC0C8 \uD56D\uBAA9\uC758 \uC2DD\uBCC4\uC790\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+      if (!preview.ready) fail2("OUTLINE_CHOICE_REQUIRED", "\uAC19\uC740 \uC774\uB984\uC758 \uD56D\uBAA9\uC744 \uC5B4\uB5BB\uAC8C \uC0AC\uC6A9\uD560\uC9C0 \uBA3C\uC800 \uACE8\uB77C \uC8FC\uC138\uC694.");
+      if (!preview.newCount) fail2("EMPTY_OUTLINE_TABLE", "\uC0C8\uB85C \uB9CC\uB4E4 \uD56D\uBAA9\uC774 \uC5C6\uC2B5\uB2C8\uB2E4. \uAE30\uC874 \uD56D\uBAA9 \uC5F0\uACB0\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+      if (!command.ids || typeof command.ids !== "object" || Array.isArray(command.ids)) fail2("INVALID_ID", "\uC0C8 \uD56D\uBAA9\uC758 \uC2DD\uBCC4\uC790\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
       const used = /* @__PURE__ */ new Set(), resolved = /* @__PURE__ */ new Map();
       for (const entry of preview.entries) if (entry.status === "new") {
-        if (!Object.hasOwn(command.ids, entry.key)) fail("INVALID_ID", "\uC0C8 \uD56D\uBAA9\uC758 \uC2DD\uBCC4\uC790\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+        if (!Object.hasOwn(command.ids, entry.key)) fail2("INVALID_ID", "\uC0C8 \uD56D\uBAA9\uC758 \uC2DD\uBCC4\uC790\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
         const id = command.ids[entry.key];
         fresh(id);
-        if (used.has(id)) fail("DUPLICATE_ID", "\uCD94\uAC00\uD560 \uD56D\uBAA9\uC758 \uC2DD\uBCC4\uC790\uAC00 \uACB9\uCCE4\uC2B5\uB2C8\uB2E4.");
+        if (used.has(id)) fail2("DUPLICATE_ID", "\uCD94\uAC00\uD560 \uD56D\uBAA9\uC758 \uC2DD\uBCC4\uC790\uAC00 \uACB9\uCCE4\uC2B5\uB2C8\uB2E4.");
         used.add(id);
       }
       for (const entry of preview.entries) {
@@ -3632,8 +3869,8 @@ function applyCommand(state, command) {
     case "addNode": {
       fresh(command.id);
       find(next.subjects, command.subjectId);
-      if (!["unit", "outline", "topic"].includes(command.role)) fail("INVALID_ROLE", "\uBAA9\uCC28 \uD56D\uBAA9\uC758 \uC5ED\uD560\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
-      if (command.parentId !== null && targetSubject(next, command.parentId) !== command.subjectId) fail("SUBJECT_MISMATCH", "\uBD80\uBAA8 \uD56D\uBAA9\uC758 \uACFC\uBAA9\uC774 \uB2E4\uB985\uB2C8\uB2E4.");
+      if (!["unit", "outline", "topic"].includes(command.role)) fail2("INVALID_ROLE", "\uBAA9\uCC28 \uD56D\uBAA9\uC758 \uC5ED\uD560\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+      if (command.parentId !== null && targetSubject(next, command.parentId) !== command.subjectId) fail2("SUBJECT_MISMATCH", "\uBD80\uBAA8 \uD56D\uBAA9\uC758 \uACFC\uBAA9\uC774 \uB2E4\uB985\uB2C8\uB2E4.");
       if (command.parentId !== null) find(next.nodes, command.parentId);
       const order = Math.max(-1, ...next.nodes.filter((n) => n.subjectId === command.subjectId && n.parentId === command.parentId).map((n) => n.order)) + 1;
       write("nodes", { ...common(command.id), subjectId: command.subjectId, parentId: command.parentId, role: command.role, name: title(command.name), order });
@@ -3644,28 +3881,28 @@ function applyCommand(state, command) {
       find(next.subjects, command.subjectId);
       if (command.parentId !== null) {
         const parent = find(next.nodes, command.parentId);
-        if (targetSubject(next, parent.id) !== command.subjectId) fail("SUBJECT_MISMATCH", "\uBD80\uBAA8 \uD56D\uBAA9\uC758 \uACFC\uBAA9\uC774 \uB2E4\uB985\uB2C8\uB2E4.");
+        if (targetSubject(next, parent.id) !== command.subjectId) fail2("SUBJECT_MISMATCH", "\uBD80\uBAA8 \uD56D\uBAA9\uC758 \uACFC\uBAA9\uC774 \uB2E4\uB985\uB2C8\uB2E4.");
       }
-      if (command.expectedToken !== outlineRevisionToken(next, command.subjectId, command.parentId)) fail("OUTLINE_STALE", "\uBAA9\uCC28\uAC00 \uBCC0\uACBD\uB418\uC5C8\uC2B5\uB2C8\uB2E4. \uC785\uB825\uC740 \uC720\uC9C0\uD558\uACE0 \uD604\uC7AC \uAD6C\uC870\uB97C \uB2E4\uC2DC \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+      if (command.expectedToken !== outlineRevisionToken(next, command.subjectId, command.parentId)) fail2("OUTLINE_STALE", "\uBAA9\uCC28\uAC00 \uBCC0\uACBD\uB418\uC5C8\uC2B5\uB2C8\uB2E4. \uC785\uB825\uC740 \uC720\uC9C0\uD558\uACE0 \uD604\uC7AC \uAD6C\uC870\uB97C \uB2E4\uC2DC \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
       const siblings = next.nodes.filter((row) => row.subjectId === command.subjectId && row.parentId === command.parentId && !row.deletedAt);
       if (command.type === "reorderNodes") {
-        if (!Array.isArray(command.ids) || command.ids.length !== siblings.length || new Set(command.ids).size !== command.ids.length) fail("INVALID_ORDER", "\uAC19\uC740 \uC704\uCE58\uC758 \uD56D\uBAA9 \uC804\uCCB4\uB97C \uD55C \uBC88\uC529 \uC815\uB82C\uD574 \uC8FC\uC138\uC694.");
+        if (!Array.isArray(command.ids) || command.ids.length !== siblings.length || new Set(command.ids).size !== command.ids.length) fail2("INVALID_ORDER", "\uAC19\uC740 \uC704\uCE58\uC758 \uD56D\uBAA9 \uC804\uCCB4\uB97C \uD55C \uBC88\uC529 \uC815\uB82C\uD574 \uC8FC\uC138\uC694.");
         const byId = new Map(siblings.map((row) => [row.id, row]));
         for (const id of command.ids) {
           identity(id);
-          if (!byId.has(id)) fail("INVALID_ORDER", "\uAC19\uC740 \uACFC\uBAA9\uACFC \uBD80\uBAA8 \uC544\uB798\uC758 \uD56D\uBAA9\uB9CC \uC815\uB82C\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.");
+          if (!byId.has(id)) fail2("INVALID_ORDER", "\uAC19\uC740 \uACFC\uBAA9\uACFC \uBD80\uBAA8 \uC544\uB798\uC758 \uD56D\uBAA9\uB9CC \uC815\uB82C\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.");
         }
         command.ids.forEach((id, order) => write("nodes", { ...byId.get(id), order }));
       } else {
-        if (!["unit", "outline", "topic"].includes(command.role)) fail("INVALID_ROLE", "\uBAA9\uCC28 \uD56D\uBAA9\uC758 \uC5ED\uD560\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
-        if (!Array.isArray(command.entries) || !command.entries.length || command.entries.length > MAX_OUTLINE_ROWS || command.entries.some((entry) => !entry || typeof entry !== "object")) fail("INVALID_OUTLINE_ROWS", `\uCD94\uAC00\uD560 \uD56D\uBAA9\uC744 1\uAC1C\uBD80\uD130 ${MAX_OUTLINE_ROWS}\uAC1C\uAE4C\uC9C0 \uD655\uC778\uD574 \uC8FC\uC138\uC694.`);
+        if (!["unit", "outline", "topic"].includes(command.role)) fail2("INVALID_ROLE", "\uBAA9\uCC28 \uD56D\uBAA9\uC758 \uC5ED\uD560\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+        if (!Array.isArray(command.entries) || !command.entries.length || command.entries.length > MAX_OUTLINE_ROWS || command.entries.some((entry) => !entry || typeof entry !== "object")) fail2("INVALID_OUTLINE_ROWS", `\uCD94\uAC00\uD560 \uD56D\uBAA9\uC744 1\uAC1C\uBD80\uD130 ${MAX_OUTLINE_ROWS}\uAC1C\uAE4C\uC9C0 \uD655\uC778\uD574 \uC8FC\uC138\uC694.`);
         const preview = previewOutlineEntries(command.entries.map((entry) => entry.name));
-        if (preview.issues.length || preview.entries.length !== command.entries.length) fail("INVALID_OUTLINE_ROWS", "\uBE48 \uC774\uB984\xB7\uBC18\uBCF5\uB41C \uC774\uB984\xB7\uAE38\uC774\uB97C \uBBF8\uB9AC\uBCF4\uAE30\uC5D0\uC11C \uD655\uC778\uD574 \uC8FC\uC138\uC694.", preview.issues);
-        if (command.duplicateNames !== "create" && preview.entries.some((entry) => siblings.some((row) => row.name === entry.name))) fail("DUPLICATE_NAME_CHOICE", "\uAC19\uC740 \uC774\uB984\uC758 \uD56D\uBAA9\uC774 \uC788\uC2B5\uB2C8\uB2E4. \uAE30\uC874 \uD56D\uBAA9\uC744 \uC0AC\uC6A9\uD560\uC9C0 \uC0C8\uB85C \uB9CC\uB4E4\uC9C0 \uACE8\uB77C \uC8FC\uC138\uC694.");
+        if (preview.issues.length || preview.entries.length !== command.entries.length) fail2("INVALID_OUTLINE_ROWS", "\uBE48 \uC774\uB984\xB7\uBC18\uBCF5\uB41C \uC774\uB984\xB7\uAE38\uC774\uB97C \uBBF8\uB9AC\uBCF4\uAE30\uC5D0\uC11C \uD655\uC778\uD574 \uC8FC\uC138\uC694.", preview.issues);
+        if (command.duplicateNames !== "create" && preview.entries.some((entry) => siblings.some((row) => row.name === entry.name))) fail2("DUPLICATE_NAME_CHOICE", "\uAC19\uC740 \uC774\uB984\uC758 \uD56D\uBAA9\uC774 \uC788\uC2B5\uB2C8\uB2E4. \uAE30\uC874 \uD56D\uBAA9\uC744 \uC0AC\uC6A9\uD560\uC9C0 \uC0C8\uB85C \uB9CC\uB4E4\uC9C0 \uACE8\uB77C \uC8FC\uC138\uC694.");
         const ids = /* @__PURE__ */ new Set();
         for (const entry of command.entries) {
           fresh(entry.id);
-          if (ids.has(entry.id)) fail("DUPLICATE_ID", "\uCD94\uAC00\uD560 \uD56D\uBAA9\uC758 \uC2DD\uBCC4\uC790\uAC00 \uACB9\uCCE4\uC2B5\uB2C8\uB2E4.");
+          if (ids.has(entry.id)) fail2("DUPLICATE_ID", "\uCD94\uAC00\uD560 \uD56D\uBAA9\uC758 \uC2DD\uBCC4\uC790\uAC00 \uACB9\uCCE4\uC2B5\uB2C8\uB2E4.");
           ids.add(entry.id);
         }
         let order = Math.max(-1, ...next.nodes.filter((row) => row.subjectId === command.subjectId && row.parentId === command.parentId).map((row) => row.order)) + 1;
@@ -3682,10 +3919,10 @@ function applyCommand(state, command) {
       const row = node(command.id, command.expectedVersion);
       if (command.parentId !== null) {
         const parent = find(next.nodes, command.parentId);
-        if (targetSubject(next, parent.id) !== row.subjectId) fail("SUBJECT_MISMATCH", "\uACFC\uBAA9 \uAC04 \uC774\uB3D9\uC740 \uBCC4\uB3C4 \uBCF5\uC0AC \uC808\uCC28\uAC00 \uD544\uC694\uD569\uB2C8\uB2E4.");
+        if (targetSubject(next, parent.id) !== row.subjectId) fail2("SUBJECT_MISMATCH", "\uACFC\uBAA9 \uAC04 \uC774\uB3D9\uC740 \uBCC4\uB3C4 \uBCF5\uC0AC \uC808\uCC28\uAC00 \uD544\uC694\uD569\uB2C8\uB2E4.");
       }
       const order = command.order ?? next.nodes.filter((n) => n.subjectId === row.subjectId && n.parentId === command.parentId).length;
-      if (!Number.isSafeInteger(order) || order < 0) fail("INVALID_ORDER", "\uC815\uB82C \uC21C\uC11C\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+      if (!Number.isSafeInteger(order) || order < 0) fail2("INVALID_ORDER", "\uC815\uB82C \uC21C\uC11C\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
       write("nodes", { ...row, parentId: command.parentId, order });
       break;
     }
@@ -3705,7 +3942,7 @@ function applyCommand(state, command) {
     case "restoreNode": {
       const root = node(command.id, command.expectedVersion, false);
       if (!root.deletedAt) break;
-      if (root.parentId && find(next.nodes, root.parentId, false).deletedAt) fail("PARENT_DELETED", "\uC0C1\uC704 \uD56D\uBAA9\uC744 \uBA3C\uC800 \uBCF5\uC6D0\uD574 \uC8FC\uC138\uC694.");
+      if (root.parentId && find(next.nodes, root.parentId, false).deletedAt) fail2("PARENT_DELETED", "\uC0C1\uC704 \uD56D\uBAA9\uC744 \uBA3C\uC800 \uBCF5\uC6D0\uD574 \uC8FC\uC138\uC694.");
       const batch = root.deletionBatchId;
       for (const row of [...next.nodes]) if (row.id === root.id || batch && row.deletionBatchId === batch) {
         const copy = { ...row, deletedAt: null };
@@ -3717,17 +3954,17 @@ function applyCommand(state, command) {
     case "saveRecords": {
       validateDateEvidence(command.dateEvidence);
       identity(command.sessionId);
-      if (!command.entries.length) fail("EMPTY_RECORD", "\uACF5\uBD80\uD55C \uB300\uC0C1\uC744 \uD558\uB098 \uC774\uC0C1 \uACE8\uB77C \uC8FC\uC138\uC694.");
-      if (new Set(command.entries.map((e) => e.targetId)).size !== command.entries.length) fail("DUPLICATE_TARGET", "\uAC19\uC740 \uB300\uC0C1\uC744 \uB450 \uBC88 \uAE30\uB85D\uD560 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
+      if (!command.entries.length) fail2("EMPTY_RECORD", "\uACF5\uBD80\uD55C \uB300\uC0C1\uC744 \uD558\uB098 \uC774\uC0C1 \uACE8\uB77C \uC8FC\uC138\uC694.");
+      if (new Set(command.entries.map((e) => e.targetId)).size !== command.entries.length) fail2("DUPLICATE_TARGET", "\uAC19\uC740 \uB300\uC0C1\uC744 \uB450 \uBC88 \uAE30\uB85D\uD560 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
       const session = next.sessions.find((s) => s.id === command.sessionId);
-      if (session?.deletedAt) fail("DELETED_SESSION", "\uD734\uC9C0\uD1B5\uC758 \uACF5\uBD80 \uAE30\uB85D\uC740 \uBA3C\uC800 \uBCF5\uC6D0\uD574 \uC8FC\uC138\uC694.");
+      if (session?.deletedAt) fail2("DELETED_SESSION", "\uD734\uC9C0\uD1B5\uC758 \uACF5\uBD80 \uAE30\uB85D\uC740 \uBA3C\uC800 \uBCF5\uC6D0\uD574 \uC8FC\uC138\uC694.");
       if (!session) {
         fresh(command.sessionId);
         write("sessions", { ...common(command.sessionId), dateEvidence: clone(command.dateEvidence) });
       }
       for (const entry of command.entries) {
         const subjectId = targetSubject(next, entry.targetId);
-        if (entry.subjectId !== void 0 && entry.subjectId !== subjectId) fail("SUBJECT_MISMATCH", "\uAE30\uB85D\uC758 \uACFC\uBAA9\uACFC \uB300\uC0C1\uC774 \uB2E4\uB985\uB2C8\uB2E4.");
+        if (entry.subjectId !== void 0 && entry.subjectId !== subjectId) fail2("SUBJECT_MISMATCH", "\uAE30\uB85D\uC758 \uACFC\uBAA9\uACFC \uB300\uC0C1\uC774 \uB2E4\uB985\uB2C8\uB2E4.");
         const old = next.records.find((r) => r.sessionId === command.sessionId && r.targetId === entry.targetId);
         if (old) expected(old, entry.expectedVersion ?? -1, command);
         const id = old?.id ?? `record:${encodeURIComponent(command.sessionId)}:${encodeURIComponent(entry.targetId)}`;
@@ -3740,7 +3977,7 @@ function applyCommand(state, command) {
     case "updateRecord": {
       const row = find(next.records, command.id);
       expected(row, command.expectedVersion, command.patch);
-      if (Object.keys(command.patch).some((k) => !["body", "done", "dateEvidence", "trace"].includes(k))) fail("INVALID_PATCH", "\uAE30\uB85D\uC758 \uC18C\uC18D\uC740 \uC77C\uBC18 \uC218\uC815\uC73C\uB85C \uBC14\uAFC0 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
+      if (Object.keys(command.patch).some((k) => !["body", "done", "dateEvidence", "trace"].includes(k))) fail2("INVALID_PATCH", "\uAE30\uB85D\uC758 \uC18C\uC18D\uC740 \uC77C\uBC18 \uC218\uC815\uC73C\uB85C \uBC14\uAFC0 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
       write("records", { ...row, ...clone(command.patch), trace: command.patch.trace ? mergeTrace(row.trace, command.patch.trace) : row.trace });
       break;
     }
@@ -3748,9 +3985,9 @@ function applyCommand(state, command) {
       const old = next.narratives.find((n) => n.id === command.id);
       if (old) {
         expected(old, command.expectedVersion, command.body);
-        if (old.kind !== command.kind || old.ownerId !== command.ownerId) fail("OWNER_CHANGED", "\uBCF8\uBB38\uC758 \uC5F0\uACB0 \uB300\uC0C1\uC740 \uC77C\uBC18 \uC218\uC815\uC73C\uB85C \uBC14\uAFC0 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
+        if (old.kind !== command.kind || old.ownerId !== command.ownerId) fail2("OWNER_CHANGED", "\uBCF8\uBB38\uC758 \uC5F0\uACB0 \uB300\uC0C1\uC740 \uC77C\uBC18 \uC218\uC815\uC73C\uB85C \uBC14\uAFC0 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
       } else {
-        if (command.expectedVersion !== 0) fail("VERSION_CONFLICT", "\uBCF8\uBB38\uC758 \uC800\uC7A5 \uC0C1\uD0DC\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+        if (command.expectedVersion !== 0) fail2("VERSION_CONFLICT", "\uBCF8\uBB38\uC758 \uC800\uC7A5 \uC0C1\uD0DC\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
         fresh(command.id);
       }
       const value = { ...old ?? common(command.id), kind: command.kind, ownerId: command.ownerId, body: command.body };
@@ -3764,12 +4001,12 @@ function applyCommand(state, command) {
         find(next.memos, old.id);
         expected(old, command.expectedVersion, command);
       } else {
-        if (command.expectedVersion !== 0) fail("VERSION_CONFLICT", "\uBA54\uBAA8\uC758 \uC800\uC7A5 \uC0C1\uD0DC\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+        if (command.expectedVersion !== 0) fail2("VERSION_CONFLICT", "\uBA54\uBAA8\uC758 \uC800\uC7A5 \uC0C1\uD0DC\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
         fresh(command.id);
       }
       validateMemoContent(command);
       if (command.ownerId !== null) targetSubject(next, command.ownerId, old?.ownerId !== command.ownerId);
-      if (command.recallCardId !== void 0 && !(next.recallCards ?? []).some((card) => !card.deletedAt && card.id === command.recallCardId && card.topicId === command.ownerId)) fail("INVALID_MEMO", "\uB2F5\uBCC0 \uBA54\uBAA8\uC758 \uCE74\uB4DC \uC5F0\uACB0\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+      if (command.recallCardId !== void 0 && !(next.recallCards ?? []).some((card) => !card.deletedAt && card.id === command.recallCardId && card.topicId === command.ownerId)) fail2("INVALID_MEMO", "\uB2F5\uBCC0 \uBA54\uBAA8\uC758 \uCE74\uB4DC \uC5F0\uACB0\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
       write("memos", { ...old ?? common(command.id), ...command.recallCardId ? { recallCardId: command.recallCardId } : {}, ownerId: command.ownerId, body: command.body, strokes: clone(command.strokes) });
       break;
     }
@@ -3783,16 +4020,16 @@ function applyCommand(state, command) {
     case "adjustCriteria": {
       find(next.nodes, command.targetId);
       targetSubject(next, command.targetId);
-      if (command.expectedToken !== criteriaRevisionToken(next)) fail("CRITERIA_STALE", "\uAE30\uC900\uC774\uB098 \uBAA9\uCC28\uAC00 \uBCC0\uACBD\uB418\uC5C8\uC2B5\uB2C8\uB2E4. \uC785\uB825\uC740 \uC720\uC9C0\uD558\uACE0 \uD604\uC7AC \uBC94\uC704\uB97C \uB2E4\uC2DC \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+      if (command.expectedToken !== criteriaRevisionToken(next)) fail2("CRITERIA_STALE", "\uAE30\uC900\uC774\uB098 \uBAA9\uCC28\uAC00 \uBCC0\uACBD\uB418\uC5C8\uC2B5\uB2C8\uB2E4. \uC785\uB825\uC740 \uC720\uC9C0\uD558\uACE0 \uD604\uC7AC \uBC94\uC704\uB97C \uB2E4\uC2DC \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
       fresh(command.id);
-      if (!Array.isArray(command.items) || command.items.length > 100 || new Set(command.items.map((item) => item.id)).size !== command.items.length) fail("INVALID_CRITERIA", "\uAE30\uC900\uC740 \uC11C\uB85C \uB2E4\uB978 \uD56D\uBAA9 100\uAC1C\uAE4C\uC9C0 \uC870\uC815\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.");
+      if (!Array.isArray(command.items) || command.items.length > 100 || new Set(command.items.map((item) => item.id)).size !== command.items.length) fail2("INVALID_CRITERIA", "\uAE30\uC900\uC740 \uC11C\uB85C \uB2E4\uB978 \uD56D\uBAA9 100\uAC1C\uAE4C\uC9C0 \uC870\uC815\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.");
       const known = new Map(defaultCriteriaItems().map((item) => [item.id, item]));
       for (const criteria of next.criteria ?? []) for (const item of criteria.items) known.set(item.id, item);
       for (const item of command.items) {
         validateTraceDefinition(item);
-        if (item.label.length > 180) fail("INVALID_CRITERIA", "\uD56D\uBAA9 \uBB38\uAD6C\uB294 180\uC790 \uC774\uB0B4\uB85C \uC785\uB825\uD574 \uC8FC\uC138\uC694.");
+        if (item.label.length > 180) fail2("INVALID_CRITERIA", "\uD56D\uBAA9 \uBB38\uAD6C\uB294 180\uC790 \uC774\uB0B4\uB85C \uC785\uB825\uD574 \uC8FC\uC138\uC694.");
         const old = known.get(item.id);
-        if (old && canonical2(old) !== canonical2(item)) fail("CRITERIA_ID_REUSED", "\uB73B\uC774\uB098 \uC801\uC6A9 \uAE30\uC900\uC774 \uBC14\uB010 \uD65C\uB3D9\uC740 \uC0C8 \uD56D\uBAA9\uC73C\uB85C \uAD6C\uBCC4\uD574 \uC8FC\uC138\uC694.");
+        if (old && canonical2(old) !== canonical2(item)) fail2("CRITERIA_ID_REUSED", "\uB73B\uC774\uB098 \uC801\uC6A9 \uAE30\uC900\uC774 \uBC14\uB010 \uD65C\uB3D9\uC740 \uC0C8 \uD56D\uBAA9\uC73C\uB85C \uAD6C\uBCC4\uD574 \uC8FC\uC138\uC694.");
       }
       const targets = criteriaScopeTargets(next, command.targetId, command.scope);
       write("criteria", { ...common(command.id), items: clone(command.items) });
@@ -3815,12 +4052,12 @@ function applyCommand(state, command) {
       expected(row, command.expectedVersion, command);
       const trace = clone(row.trace), item = trace[WRITTEN_REVIEW_ITEM_ID] ?? { status: "unchecked" };
       if (command.type === "editWrittenReview") {
-        if (typeof command.answer !== "string") fail("INVALID_BODY", "\uC11C\uC220\uC744 \uAE00\uB85C \uC785\uB825\uD574 \uC8FC\uC138\uC694.");
+        if (typeof command.answer !== "string") fail2("INVALID_BODY", "\uC11C\uC220\uC744 \uAE00\uB85C \uC785\uB825\uD574 \uC8FC\uC138\uC694.");
         item.examReview = { answer: command.answer, checked: false, updatedAt: command.at };
       } else if (command.type === "unconfirmWrittenReview") {
         if (item.examReview) item.examReview = { ...item.examReview, checked: false, updatedAt: command.at };
       } else {
-        if (!item.examReview?.answer.trim()) fail("EMPTY_WRITTEN_REVIEW", "\uC810\uAC80\uD558\uB824\uBA74 \uBA3C\uC800 \uC790\uAE30 \uBB38\uC7A5\uC73C\uB85C \uC11C\uC220\uD574 \uC8FC\uC138\uC694.");
+        if (!item.examReview?.answer.trim()) fail2("EMPTY_WRITTEN_REVIEW", "\uC810\uAC80\uD558\uB824\uBA74 \uBA3C\uC800 \uC790\uAE30 \uBB38\uC7A5\uC73C\uB85C \uC11C\uC220\uD574 \uC8FC\uC138\uC694.");
         item.status = "checked";
         item.examReview = { ...item.examReview, checked: true, updatedAt: command.at };
       }
@@ -3830,21 +4067,21 @@ function applyCommand(state, command) {
     }
     case "undoRevision": {
       const revision = next.revisions.find((r) => r.id === command.revisionId);
-      if (!revision) fail("NOT_FOUND", "\uB418\uB3CC\uB9B4 \uC218\uC815 \uC774\uB825\uC744 \uCC3E\uC744 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
+      if (!revision) fail2("NOT_FOUND", "\uB418\uB3CC\uB9B4 \uC218\uC815 \uC774\uB825\uC744 \uCC3E\uC744 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
       const row = find(next[revision.collection] ?? [], revision.entityId, false);
       expected(row, command.expectedVersion, command);
       const latest = [...next.revisions].reverse().find((r) => r.collection === revision.collection && r.entityId === revision.entityId);
-      if (latest?.id !== revision.id) fail("UNDO_CONFLICT", "\uADF8 \uB4A4\uC758 \uBCC0\uACBD\uC774 \uC788\uC2B5\uB2C8\uB2E4. \uD604\uC7AC \uC6D0\uBB38\uACFC \uC774\uB825\uC744 \uBE44\uAD50\uD574 \uC8FC\uC138\uC694.");
+      if (latest?.id !== revision.id) fail2("UNDO_CONFLICT", "\uADF8 \uB4A4\uC758 \uBCC0\uACBD\uC774 \uC788\uC2B5\uB2C8\uB2E4. \uD604\uC7AC \uC6D0\uBB38\uACFC \uC774\uB825\uC744 \uBE44\uAD50\uD574 \uC8FC\uC138\uC694.");
       const group = next.revisions.filter((r) => r.operationId === revision.operationId);
       const affectedInGroup = new Set(group.map((r) => r.entityId));
       for (const item of group) {
         if (item.before === null) {
           const external = (row2) => !row2.deletedAt && !affectedInGroup.has(row2.id);
           const referenced = next.subjects.some((s) => external(s) && s.scope.kind === "semester" && s.scope.semesterId === item.entityId) || next.nodes.some((n) => external(n) && (n.subjectId === item.entityId || n.parentId === item.entityId)) || next.records.some((r) => external(r) && (r.sessionId === item.entityId || r.targetId === item.entityId)) || next.narratives.some((n) => external(n) && n.ownerId === item.entityId) || (next.memos ?? []).some((memo) => external(memo) && memo.ownerId === item.entityId) || (next.recallCards ?? []).some((card) => external(card) && (card.topicId === item.entityId || card.reviews.some((review) => review.memoId === item.entityId))) || (next.criteriaAssignments ?? []).some((assignment) => external(assignment) && (assignment.criteriaId === item.entityId || assignment.ownerId === item.entityId));
-          if (referenced) fail("UNDO_DEPENDENCY", "\uADF8 \uB4A4 \uC5F0\uACB0\uB41C \uB0B4\uC6A9\uC774 \uC788\uC2B5\uB2C8\uB2E4. \uD56D\uBAA9\uC744 \uC9C0\uC6B0\uC9C0 \uC54A\uACE0 \uD604\uC7AC \uC790\uB8CC\uB97C \uBCF4\uC874\uD588\uC2B5\uB2C8\uB2E4.");
+          if (referenced) fail2("UNDO_DEPENDENCY", "\uADF8 \uB4A4 \uC5F0\uACB0\uB41C \uB0B4\uC6A9\uC774 \uC788\uC2B5\uB2C8\uB2E4. \uD56D\uBAA9\uC744 \uC9C0\uC6B0\uC9C0 \uC54A\uACE0 \uD604\uC7AC \uC790\uB8CC\uB97C \uBCF4\uC874\uD588\uC2B5\uB2C8\uB2E4.");
         }
         const current = find(next[item.collection] ?? [], item.entityId, false);
-        if (current.version !== item.after.version || [...next.revisions].reverse().find((r) => r.collection === item.collection && r.entityId === item.entityId)?.id !== item.id) fail("UNDO_CONFLICT", "\uD568\uAED8 \uBCC0\uACBD\uD55C \uD56D\uBAA9\uC774 \uB2E4\uC2DC \uC218\uC815\uB418\uC5B4 \uC790\uB3D9\uC73C\uB85C \uB418\uB3CC\uB9B4 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
+        if (current.version !== item.after.version || [...next.revisions].reverse().find((r) => r.collection === item.collection && r.entityId === item.entityId)?.id !== item.id) fail2("UNDO_CONFLICT", "\uD568\uAED8 \uBCC0\uACBD\uD55C \uD56D\uBAA9\uC774 \uB2E4\uC2DC \uC218\uC815\uB418\uC5B4 \uC790\uB3D9\uC73C\uB85C \uB418\uB3CC\uB9B4 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
       }
       for (const item of group) {
         const current = find(next[item.collection] ?? [], item.entityId, false);
@@ -3854,7 +4091,7 @@ function applyCommand(state, command) {
       break;
     }
     default:
-      fail("UNKNOWN_COMMAND", "\uC9C0\uC6D0\uD558\uC9C0 \uC54A\uB294 \uC870\uC791\uC785\uB2C8\uB2E4.");
+      fail2("UNKNOWN_COMMAND", "\uC9C0\uC6D0\uD558\uC9C0 \uC54A\uB294 \uC870\uC791\uC785\uB2C8\uB2E4.");
   }
   Object.defineProperty(next.appliedOps, command.opId, { value: payload, enumerable: true, configurable: true, writable: true });
   assertState(next);
@@ -3927,9 +4164,9 @@ async function handleCommand(request, backend) {
     if (!authorization?.startsWith("Bearer ")) throw new DomainError("AUTH_REQUIRED", "\uAC1C\uC778 \uACF5\uAC04\uC5D0 \uB2E4\uC2DC \uB85C\uADF8\uC778\uD574 \uC8FC\uC138\uC694.");
     const userId = await backend.authenticate(authorization.slice(7));
     if (!userId) throw new DomainError("AUTH_REQUIRED", "\uAC1C\uC778 \uACF5\uAC04\uC5D0 \uB2E4\uC2DC \uB85C\uADF8\uC778\uD574 \uC8FC\uC138\uC694.");
-    const text2 = await request.text();
-    if (text2.length > 4e6) throw new DomainError("TOO_LARGE", "\uD55C \uBC88\uC5D0 \uC800\uC7A5\uD560 \uB0B4\uC6A9\uC774 \uB108\uBB34 \uD07D\uB2C8\uB2E4. \uC6D0\uBB38\uC740 \uC774 \uAE30\uAE30\uC5D0 \uB0A8\uC544 \uC788\uC2B5\uB2C8\uB2E4.");
-    const body = JSON.parse(text2);
+    const text3 = await request.text();
+    if (text3.length > 4e6) throw new DomainError("TOO_LARGE", "\uD55C \uBC88\uC5D0 \uC800\uC7A5\uD560 \uB0B4\uC6A9\uC774 \uB108\uBB34 \uD07D\uB2C8\uB2E4. \uC6D0\uBB38\uC740 \uC774 \uAE30\uAE30\uC5D0 \uB0A8\uC544 \uC788\uC2B5\uB2C8\uB2E4.");
+    const body = JSON.parse(text3);
     const access = await backend.access(userId);
     if (body.action === "access") return json(access);
     if (body.action === "profile-set") {

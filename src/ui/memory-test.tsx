@@ -3,6 +3,7 @@ import { PerformanceFromSource } from './performance-from-source';
 import { useEffect, useRef, useState } from 'react';
 import type { AppState, MemoStroke } from '../domain/model';
 import { MEMO_HEIGHT, MEMO_WIDTH, memoPath } from '../domain/memo';
+import { storagePrefix } from '../data/repository';
 import {
   memoryCardsInScope,
   memoryQuestions,
@@ -24,6 +25,10 @@ import { archiveDamagedDraft, clearStoredDraft, draftHasUnstoredText } from '../
 import type { StudyRepository } from '../data/repository';
 import { Button, EmptyState, Select, Textarea } from './index';
 import { MemoInkPad } from './memo-ink-pad';
+import { canUseOwnerAI } from '../domain/ai-access';
+import { topicMemoryInput } from '../domain/topic-memory';
+import { TopicMemoryGenerator } from './topic-memory-generator';
+import { GPTConnectionPanel } from './gpt-connection-panel';
 import './memory-test.css';
 
 const message = (e: unknown) =>
@@ -104,6 +109,8 @@ export function MemoryTests({
     [error, setError] = useState(boot.error),
     [notice, setNotice] = useState('');
   const [composing, setComposing] = useState(false),
+    [connectionOpen, setConnectionOpen] = useState(false),
+    [generating, setGenerating] = useState(false),
     [drawing, setDrawing] = useState(false),
     [history, setHistory] = useState<MemoryTest | null>(() => data.memoryTests?.find(t => t.id === resultId && !t.deletedAt) ?? null);
   const heading = useRef<HTMLHeadingElement>(null);
@@ -121,7 +128,7 @@ export function MemoryTests({
     ['saveMemoryCard', 'saveMemoryTest'].every((type) =>
       repository.getCapabilities?.().includes(type),
     );
-  const busy = composing || drawing || blocked;
+  const busy = composing || drawing || blocked || generating;
   const persist = (next: MemoryDraft) => {
     if (blockedRef.current) return false;
     current.current = next;
@@ -355,12 +362,37 @@ export function MemoryTests({
               암기 항목 등록
             </Button>
             <a href="#/material-cards">자료에서 카드 가져오기</a>
+            {canUseOwnerAI(data) && <Button variant="quiet" onClick={() => setConnectionOpen(!connectionOpen)}>
+              {connectionOpen ? 'GPT 연결 닫기' : 'GPT 연결'}
+            </Button>}
             <span className="muted">
               등록 {cards.length}개 · 이번 시험 {Math.min(cards.length, draft.count)}문항
             </span>
-
+            {canUseOwnerAI(data) && !draft.generation && <Button disabled={busy || !topics.length || !!draft.editor}
+              onClick={() => {
+                try {
+                  const input = topicMemoryInput(data, [draft.topicId || topics[0].id]);
+                  persist({ ...current.current, generation: { input, result: null, items: [] } });
+                } catch (e) { setError(message(e)); }
+              }}>GPT로 암기항목 만들기</Button>}
           </div>
-
+          {canUseOwnerAI(data) && connectionOpen && <GPTConnectionPanel
+            userId={data.userId} namespace={data.namespace} busy={generating} purpose="memory"
+          />}
+          {canUseOwnerAI(data) && draft.generation && !draft.editor && <>
+            <TopicMemoryGenerator data={data} repository={repository} draft={draft.generation}
+              onConnection={() => setConnectionOpen(true)}
+              disabled={drawing || blocked || !capability} composing={composing} onSaved={onSaved} onBusy={setGenerating}
+              onChange={generation => persist({ ...current.current, generation })}
+              onArchive={() => {
+                try { archiveDamagedDraft(boot.key, '주제 기반 GPT 생성 결과 원문'); return true; }
+                catch (e) { setError(message(e)); return false; }
+              }} />
+            <Button disabled={busy} variant="quiet" onClick={() => {
+              try { archiveDamagedDraft(boot.key, '주제 기반 GPT 생성 초안 보관'); persist({ ...current.current, generation: null }); }
+              catch (e) { setError(message(e)); }
+            }}>생성 초안 보관하고 닫기</Button>
+          </>}
           {draft.editor && (
             <div className="memory-editor">
               <h2>암기 항목</h2>
@@ -443,6 +475,7 @@ export function MemoryTests({
                   <strong className="prose">{c.question}</strong>
                   <MemoryCardOrigin data={data} card={c} />
                   <p className="muted">{data.nodes.find((n) => n.id === c.topicId)?.name}</p>
+                  {c.topicGeneration && <p className="muted">주제 기반 생성 · 답안 확인 후 등록</p>}
                 </div>
                 <Button
                   disabled={busy || Boolean(draft.editor)}
@@ -456,6 +489,7 @@ export function MemoryTests({
                         question: c.question,
                         answer: c.answer,
                         strokes: structuredClone(c.strokes),
+                        ...(c.topicGeneration ? { topicGeneration: structuredClone(c.topicGeneration) } : {}),
                         ...(c.materialSource ? { materialSource: structuredClone(c.materialSource) } : {}),
                       },
                     })

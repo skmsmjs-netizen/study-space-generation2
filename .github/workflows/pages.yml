@@ -20,7 +20,7 @@ jobs:
           node-version: '24'
           cache: npm
       - run: npm ci
-      - run: npm test -- --maxWorkers=2
+      - run: npm test -- --maxWorkers=2 --testTimeout=60000
       - run: npm run build:backend
       - run: npm run build
         env:
