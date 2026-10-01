@@ -58,7 +58,7 @@ textarea.ui-input { min-height: calc(var(--control-height) * 3); resize: vertica
 .ui-breadcrumb button { padding: var(--space-1); border: 0; background: transparent; color: var(--color-primary); cursor: pointer; }
 .ui-state { padding: var(--space-6) var(--space-4); text-align: center; }
 .ui-state-title { margin: 0 0 var(--space-2); font: var(--type-heading-weight) var(--type-heading-size)/var(--type-heading-line) var(--font-interface); }
-.ui-state-message { margin: 0 0 var(--space-4); color: var(--color-muted); white-space: pre-line; }
+.ui-state-message { overflow-wrap: anywhere; margin: 0 0 var(--space-4); color: var(--color-muted); white-space: pre-line; }
 .ui-state--error { border: var(--border-width) solid var(--color-invalid-border); border-radius: var(--radius-md); }
 .ui-loading { color: var(--color-muted); padding-block: var(--space-3); }
 .ui-type-display { font: var(--type-display-weight) var(--type-display-size)/var(--type-display-line) var(--font-interface); letter-spacing: var(--type-title-tracking); }

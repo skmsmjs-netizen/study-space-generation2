@@ -56,7 +56,8 @@ describe('lossless storage quota repair', () => {
     const next = repo.execute({type:'saveMemo',id:'quota-memo',ownerId:null,body:' 原文\r\n次 ',strokes,expectedVersion:14,opId:'next',at:'2026-09-30T12:01:00.000Z',userId:data.userId,namespace:data.namespace});
     expect(next.revisions.length).toBe(data.revisions.length+1);
     expect(next.appliedOps).toMatchObject(data.appliedOps);
-    expect(new DemoRepository(storage).getSnapshot()).toEqual(next);
+    // Compare the complete durable ledger without expanding millions of matcher nodes.
+    expect(JSON.stringify(new DemoRepository(storage).getSnapshot())).toBe(JSON.stringify(next));
     expect(DEMO_KEY).toBe('study-space:demo:v1');
   }, 60_000); // Preservation check for a large ledger, not a latency budget.
   it('does not erase readable legacy data when compaction fails', () => {

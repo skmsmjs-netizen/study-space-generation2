@@ -14,7 +14,8 @@
   margin-right: auto;
 }
 .board-toolbar .ui-field {
-  min-width: 12rem;
+  min-width: min(12rem, 100%);
+  max-width: 100%;
 }
 .board-columns {
   display: flex;

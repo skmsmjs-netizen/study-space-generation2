@@ -2,7 +2,7 @@
 .app-shell.is-canvas .page-heading { margin-block-end: var(--space-3); }
 .study-canvas { --xy-background-color: var(--color-background); --xy-node-color: var(--color-text); --xy-node-background-color: var(--color-surface); --xy-edge-stroke: var(--color-border-strong); --xy-edge-label-color: var(--color-muted); --xy-edge-label-background-color: var(--color-background); --xy-controls-button-background-color: var(--color-surface); --xy-controls-button-background-color-hover: var(--color-surface-inset); --xy-controls-button-color: var(--color-text); --xy-controls-button-border-color: var(--color-border); }
 .canvas-toolbar, .canvas-position-tools, .canvas-link-editor { display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-3); margin-block-end: var(--space-3); }
-.canvas-toolbar .ui-field { min-inline-size: 12rem; }
+.canvas-toolbar .ui-field { min-inline-size: min(12rem, 100%); max-inline-size: 100%; }
 .canvas-toolbar a { margin-inline-start: auto; font-size: var(--type-caption-size); }
 .canvas-stage { height: max(520px, calc(100dvh - 240px)); border: var(--border-width) solid var(--color-border); border-radius: var(--radius-sm); overflow: hidden; }
 .canvas-card { width: 300px; color: var(--color-text); background: var(--color-surface); border: var(--border-width) solid var(--color-border-strong); border-radius: var(--radius-sm); box-shadow: var(--shadow-none); transition: width var(--motion-transition) var(--motion-ease); }
@@ -21,7 +21,8 @@
 .canvas-original { white-space: pre-wrap; overflow-wrap: anywhere; font-family: var(--font-reading); margin-block-end: var(--space-3); }
 .canvas-sketch { width: 100%; display: block; background: var(--color-surface); }
 .canvas-card-actions { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); }
-.canvas-card-actions a { font-size: var(--type-caption-size); }
+.canvas-card-actions a { display: inline-flex; align-items: center; justify-content: center; min-inline-size: var(--control-height); min-block-size: var(--control-height); font-size: var(--type-caption-size); }
+.canvas-action-hint { margin: 0; font-size: var(--type-caption-size); color: var(--color-muted); }
 .canvas-memo-editor { padding: 0; width: auto; max-height: none; }
 .canvas-memo-editor .memo-save-bar { position: static; flex-wrap: wrap; }
 .canvas-memo-editor .memo-paper { overflow: auto; }
@@ -51,3 +52,6 @@
 .canvas-link-editor > span { inline-size: 100%; overflow-wrap: anywhere; }
 @media (max-width: 40rem) { .canvas-concept-fields { grid-template-columns: minmax(0, 1fr); } }
 @media (max-width: 40rem) { .app-shell.is-canvas .main-content { padding: var(--space-3); } .canvas-stage { height: 65dvh; } .canvas-toolbar a { margin-inline-start: 0; } }
+
+.canvas-position-tools .ui-field { max-inline-size: 100%; }
+.canvas-position-tools a { display: inline-flex; align-items: center; min-block-size: var(--control-height); padding-inline: var(--space-3); }

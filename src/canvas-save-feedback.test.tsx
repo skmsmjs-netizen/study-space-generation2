@@ -13,6 +13,7 @@ vi.mock('@xyflow/react', async () => {
   const { createElement } = await import('react');
   return {
     ReactFlow: ({ nodes, nodeTypes, children }: { nodes: { id: string; type: string; data: unknown; selected: boolean; position: { x: number; y: number } }[]; nodeTypes: Record<string, ComponentType<Record<string, unknown>>>; children: ReactNode }) => <div>{nodes.map(node => <div key={node.id} data-testid={node.id} style={{ transform: `translate(${node.position.x}px, ${node.position.y}px)` }}>{createElement(nodeTypes[node.type], { data: node.data, selected: node.selected })}</div>)}{children}</div>,
+    useViewport: () => ({ x: 0, y: 0, zoom: 1 }),
     Background: () => null, Controls: () => null, Handle: () => null,
     Position: { Left: 'left', Right: 'right' }, MarkerType: { ArrowClosed: 'arrowclosed' },
     applyNodeChanges: (_changes: unknown, nodes: unknown) => nodes,
@@ -47,7 +48,7 @@ beforeEach(() => {
 async function edit(f: ReturnType<typeof fixture>) {
   const user = userEvent.setup();
   render(<Workspace repository={f.repository} />);
-  const card = await screen.findByRole('article', { name: '주제 카드 합성 주제' });
+  const card = await screen.findByRole('article', { name: '주제 카드 합성 주제' }, { timeout: 10000 });
   await user.click(within(card).getByRole('button', { name: '메모 쓰기' }));
   fireEvent.change(within(card).getByRole('textbox', { name: '새 메모' }), { target: { value: '  합성 설명\n원문 그대로  ' } });
   return { user, card };

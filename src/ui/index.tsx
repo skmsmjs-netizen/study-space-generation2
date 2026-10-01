@@ -61,7 +61,7 @@ export function Card({ className, ...props }: HTMLAttributes<HTMLDivElement>) { 
 export function ListItem({ className, ...props }: HTMLAttributes<HTMLLIElement>) { return <li {...props} className={classes('ui-list-item', className)} />; }
 
 export type ModalProps = { open: boolean; title: string; onClose: () => void; children: ReactNode; className?: string };
-const focusableSelector = 'button:not(:disabled), [href], input:not(:disabled):not([type="hidden"]), select:not(:disabled), textarea:not(:disabled), [tabindex]:not([tabindex="-1"])';
+const focusableSelector = 'button:not(:disabled), [href], input:not(:disabled):not([type="hidden"]), select:not(:disabled), textarea:not(:disabled), [contenteditable]:not([contenteditable="false"]), [tabindex]:not([tabindex="-1"])';
 export function Modal({ open, title, onClose, children, className }: ModalProps) {
   const titleId = useId(), dialog = useRef<HTMLDivElement>(null), close = useRef(onClose);
   const backdropPress = useRef<{ id: number; x: number; y: number; moved: boolean } | null>(null);
@@ -96,7 +96,7 @@ export function Modal({ open, title, onClose, children, className }: ModalProps)
     const previousInert = background.map(el => el.getAttribute('inert'));
     background.forEach(el => el.setAttribute('inert', ''));
     const available = () => [...(dialog.current?.querySelectorAll<HTMLElement>('*') || [])].filter(el => {
-      if (!el.matches(focusableSelector) || el.tabIndex < 0 || el.matches(':disabled') || el.closest('[hidden], [inert], [aria-hidden="true"]')) return false;
+      if (!el.matches(focusableSelector) || (el.tabIndex < 0 && !(el.matches('[contenteditable]:not([contenteditable="false"])') && !el.hasAttribute('tabindex'))) || el.matches(':disabled') || el.closest('[hidden], [inert], [aria-hidden="true"]')) return false;
       for (let ancestor: HTMLElement | null = el; ancestor && ancestor !== dialog.current; ancestor = ancestor.parentElement) {
         const style = getComputedStyle(ancestor);
         if (style.display === 'none' || style.visibility === 'hidden') return false;
@@ -122,7 +122,22 @@ export function Modal({ open, title, onClose, children, className }: ModalProps)
       document.removeEventListener('keydown', onKeyDown); document.removeEventListener('focusin', onFocus);
       background.forEach((el, index) => { const before = previousInert[index]; if (before === null) el.removeAttribute('inert'); else el.setAttribute('inert', before); });
       document.body.style.overflow = overflow;
-      if (original?.isConnected && !original.closest('[hidden], [inert]') && !original.matches(':disabled')) original.focus({ preventScroll: true });
+      const usable = (element: HTMLElement | SVGElement | null) => {
+        if (!element?.isConnected || element === document.body || element.closest('[hidden], [inert], [aria-hidden="true"]') || element.matches(':disabled')) return false;
+        for (let parent: Element | null = element; parent; parent = parent.parentElement) {
+          const style = getComputedStyle(parent);
+          if (style.display === 'none' || style.visibility === 'hidden') return false;
+        }
+        return true;
+      };
+      if (usable(original)) original!.focus({ preventScroll: true });
+      else {
+        const heading = document.querySelector<HTMLElement>('main h1');
+        if (usable(heading)) {
+          if (!heading!.hasAttribute('tabindex')) heading!.tabIndex = -1;
+          heading!.focus({ preventScroll: true });
+        }
+      }
     };
   }, [open]);
   if (!open) return null;

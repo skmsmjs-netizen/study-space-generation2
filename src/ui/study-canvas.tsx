@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
-import { ReactFlow, Background, Controls, Handle, Position, MarkerType, applyNodeChanges, type Node, type NodeProps, type ReactFlowInstance, type Edge } from '@xyflow/react';
+import { ReactFlow, useViewport, Background, Controls, Handle, Position, MarkerType, applyNodeChanges, type Node, type NodeProps, type ReactFlowInstance, type Edge } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 import { Button, EmptyState, Select, Input } from './index';
 import { MemoEditor } from './quick-memos';
@@ -17,6 +17,7 @@ type CardNode = Node<CardData, 'study'>;
 const kinds = { subject: '과목', unit: '단원', outline: '목차', topic: '주제', memo: '내 설명', narrative: '내 메모', concept: '개념' };
 function StudyCard({ data, selected }: NodeProps<CardNode>) {
   const { card } = data;
+  const { zoom } = useViewport();
   const editButton = useRef<HTMLButtonElement>(null);
   useEffect(() => {
     if (!data.saveMessage || data.editor) return;
@@ -34,8 +35,8 @@ function StudyCard({ data, selected }: NodeProps<CardNode>) {
         {data.memo?.strokes.length ? <InkPreview strokes={data.memo.strokes} className="canvas-sketch" label="저장한 설명 그림" /> : null}
         {data.body && <p className="canvas-original">{data.body}</p>}
         {data.saveMessage && <p className="canvas-save-status" role="status">{data.saveMessage}</p>}
-        <div className="canvas-card-actions"><Button ref={editButton} variant="quiet" onClick={data.open}>{card.kind === 'memo' || card.kind === 'narrative' || card.kind === 'concept' ? '카드 안에서 편집' : '메모 쓰기'}</Button>
-        {card.kind !== 'memo' && card.kind !== 'narrative' && card.kind !== 'concept' && <a href={`#/${card.kind === 'subject' ? 'subject' : 'node'}/${encodeURIComponent(card.entityId)}`}>열기 ↗</a>}</div>
+        {zoom >= .55 ? <div className="canvas-card-actions"><Button ref={editButton} variant="quiet" onClick={data.open}>{card.kind === 'memo' || card.kind === 'narrative' || card.kind === 'concept' ? '카드 안에서 편집' : '메모 쓰기'}</Button>
+        {card.kind !== 'memo' && card.kind !== 'narrative' && card.kind !== 'concept' && <a href={`#/${card.kind === 'subject' ? 'subject' : 'node'}/${encodeURIComponent(card.entityId)}`}>열기 ↗</a>}</div> : <p className="canvas-action-hint">카드를 선택한 뒤 아래에서 열거나 편집하세요.</p>}
       </>}
     </div>
     <Handle type="source" position={Position.Right} />

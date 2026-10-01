@@ -659,3 +659,10 @@ nav a[aria-current="page"] {
 
 /* 주제 제목과 역할 라벨은 구별하고, 제목은 정체로 읽습니다. */
 .outline-flat .role-topic > .outline-label { font-style: normal; }
+
+/* Enlarged text must wrap controls inside the existing shell. */
+.topbar { min-inline-size: 0; flex-wrap: wrap; }
+.topbar > .ui-field { flex-wrap: wrap; max-inline-size: 100%; }
+.topbar > .ui-field select { min-inline-size: 0; max-inline-size: min(14rem, 100%); }
+
+.workspace-tools-content > a { min-inline-size: 0; overflow-wrap: anywhere; }
