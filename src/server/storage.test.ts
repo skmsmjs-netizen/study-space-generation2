@@ -31,12 +31,16 @@ describe('server authentication, domain commands and real PostgreSQL transaction
     const node = command({ type: 'addNode', id: 'topic-1', subjectId: 'subject-1', parentId: null, role: 'topic', name: '주제', opId: 'canvas-node' } as Partial<Command>);
     expect((await request({ action: 'execute', namespace: 'test', baseSequence: 1, command: node })).status).toBe(200);
     const memo = command({ type: 'saveMemo', id: 'memo-1', ownerId: 'topic-1', body: '  원문\r\n\u0000\ud800 ', strokes: [], expectedVersion: 0, opId: 'canvas-memo' } as Partial<Command>);
-    expect((await request({ action: 'execute', namespace: 'test', baseSequence: 2, command: memo })).status).toBe(200);
+    const memoWrite = { action: 'execute', namespace: 'test', baseSequence: 2, command: memo };
+    for (const response of [await request(memoWrite), await request(memoWrite)]) {
+      expect(response.status).toBe(200);
+      expect((await response.json()).supportedCommands).toContain('saveMemo');
+    }
     const layout = command({ type: 'saveCanvasLayout', id: 'canvas:main', positions: { 'node:topic-1': { x: -42.5, y: 18 }, 'memo:memo-1': { x: 450, y: 28 } }, links: [{ id: 'personal-edge', source: 'node:topic-1', target: 'memo:memo-1', label: ' 原文\u0000\ud800 ' }], viewport: { x: 3, y: 4, zoom: .75 }, expectedVersion: 0, opId: 'canvas-layout' } as Partial<Command>);
     const write = { action: 'execute', namespace: 'test', baseSequence: 3, command: layout };
     expect((await request(write)).status).toBe(200); expect((await request(write)).status).toBe(200);
     const loaded = await (await request({ action: 'load', namespace: 'test' })).json();
-    expect(loaded.supportedCommands).toContain('saveCanvasLayout');
+    expect(loaded.supportedCommands).toEqual(expect.arrayContaining(['saveMemo', 'saveCanvasLayout']));
     const data = loaded.data;
     expect(data.canvasLayouts[0]).toMatchObject({ positions: layout.type === 'saveCanvasLayout' ? layout.positions : {}, links: layout.type === 'saveCanvasLayout' ? layout.links : [], version: 1 });
     expect(data.memos[0].body).toBe(memo.type === 'saveMemo' ? memo.body : '');

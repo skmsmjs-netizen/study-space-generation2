@@ -3551,7 +3551,7 @@ async function handleCommand(request, backend) {
     const current = await backend.read(userId, namespace) ?? { sequence: 0, data: emptyState(userId, namespace) };
     validateState(current.data);
     if (current.data.userId !== userId || current.data.namespace !== namespace) throw new DomainError("OWNERSHIP", "\uC774 \uACF5\uAC04\uC5D0 \uC811\uADFC\uD560 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
-    if (body.action === "load") return json({ ...current, supportedCommands: ["saveLearningPlan", "saveCanvasLayout", "saveCodeExample", "trashCodeExample", "restoreCodeExample", "saveRecallCard", "saveRecallReference", "reviewRecallCard", "undoRecallReview", "setRecallDue", "saveRecallPreferences"] });
+    if (body.action === "load") return json({ ...current, supportedCommands: ["saveMemo", "saveLearningPlan", "saveCanvasLayout", "saveCodeExample", "trashCodeExample", "restoreCodeExample", "saveRecallCard", "saveRecallReference", "reviewRecallCard", "undoRecallReview", "setRecallDue", "saveRecallPreferences"] });
     if (body.action !== "execute" || !body.command) throw new DomainError("INVALID_REQUEST", "\uC800\uC7A5 \uC694\uCCAD\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
     const command = body.command;
     if (typeof command.opId !== "string" || !command.opId.trim() || command.opId.length > 256 || /[\u0000-\u001f\u007f]/.test(command.opId)) throw new DomainError("INVALID_ID", "\uC800\uC7A5 \uC694\uCCAD\uC758 \uC2DD\uBCC4\uC790\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
@@ -3559,11 +3559,11 @@ async function handleCommand(request, backend) {
     if (!Number.isSafeInteger(body.baseSequence) || body.baseSequence < 0) throw new DomainError("INVALID_VERSION", "\uC800\uC7A5 \uC21C\uC11C\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
     if (current.data.appliedOps[command.opId]) {
       applyCommand(current.data, command);
-      return json({ ...current, supportedCommands: ["saveLearningPlan", "saveCanvasLayout", "saveCodeExample", "trashCodeExample", "restoreCodeExample", "saveRecallCard", "saveRecallReference", "reviewRecallCard", "undoRecallReview", "setRecallDue", "saveRecallPreferences"] });
+      return json({ ...current, supportedCommands: ["saveMemo", "saveLearningPlan", "saveCanvasLayout", "saveCodeExample", "trashCodeExample", "restoreCodeExample", "saveRecallCard", "saveRecallReference", "reviewRecallCard", "undoRecallReview", "setRecallDue", "saveRecallPreferences"] });
     }
     if (body.baseSequence !== current.sequence) return json({ code: "VERSION_CONFLICT", message: "\uB2E4\uB978 \uAE30\uAE30\uC758 \uBCC0\uACBD\uACFC \uC791\uC131 \uB0B4\uC6A9\uC744 \uBAA8\uB450 \uBCF4\uC874\uD588\uC2B5\uB2C8\uB2E4.", server: current }, 409);
     const next = applyCommand(current.data, command);
-    return json({ ...await backend.commit(userId, namespace, current.sequence, command, next), supportedCommands: ["saveLearningPlan", "saveCanvasLayout", "saveCodeExample", "trashCodeExample", "restoreCodeExample", "saveRecallCard", "saveRecallReference", "reviewRecallCard", "undoRecallReview", "setRecallDue", "saveRecallPreferences"] });
+    return json({ ...await backend.commit(userId, namespace, current.sequence, command, next), supportedCommands: ["saveMemo", "saveLearningPlan", "saveCanvasLayout", "saveCodeExample", "trashCodeExample", "restoreCodeExample", "saveRecallCard", "saveRecallReference", "reviewRecallCard", "undoRecallReview", "setRecallDue", "saveRecallPreferences"] });
   } catch (error) {
     const code = error instanceof DomainError ? error.code : "SERVER_ERROR";
     const status = code === "AUTH_REQUIRED" ? 401 : ["OWNERSHIP", "ACCESS_DENIED", "ADMIN_REQUIRED", "ADMIN_PROTECTED", "LAST_ADMIN"].includes(code) ? 403 : /CONFLICT/.test(code) ? 409 : error instanceof DomainError || error instanceof SyntaxError ? 400 : 503;
