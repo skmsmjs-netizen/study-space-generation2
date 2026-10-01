@@ -10,6 +10,9 @@
   align-items: end;
   gap: var(--space-3);
 }
+.graph-toolbar .ui-field {
+  grid-template-columns: minmax(0, 1fr);
+}
 .graph-toolbar .ui-choice {
   grid-column: 1 / -1;
 }
