@@ -79,6 +79,25 @@ export async function generateStudyMaterial(
                     ],
                   }
                 : {}),
+              ...(request.task === 'study-pack'
+                ? {
+                    map: {
+                      nodes: [
+                        { id: 'n1', label: '전압', sourceIds },
+                        { id: 'n2', label: '전류', sourceIds },
+                      ],
+                      edges: [
+                        {
+                          id: 'e1',
+                          from: 'n1',
+                          to: 'n2',
+                          label: '저항이 일정할 때 비례',
+                          sourceIds,
+                        },
+                      ],
+                    },
+                  }
+                : {}),
               cards:
                 request.task === 'questions'
                   ? [
