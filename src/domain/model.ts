@@ -45,10 +45,13 @@ export interface RecallPreferences extends Entity { options: RecallOptions }
 export type CodeLanguage = 'c' | 'cpp' | 'csharp' | 'python' | 'javascript';
 export interface CodeRun {
   language: CodeLanguage; code: string; stdin: string; at: string;
+  /** Terminal stdin contains actual key input; output includes the PTY's echo. */
+  mode?: 'terminal';
   outcome: 'success' | 'error' | 'stopped'; output: string; error: string;
 }
 export interface CodeExampleContent {
   title: string; language: CodeLanguage; code: string; stdin: string; notes: string;
+  inputMode?: 'batch' | 'terminal';
   lastRun?: CodeRun;
 }
 /** Execution is an observation, never an automatic study check or score. */

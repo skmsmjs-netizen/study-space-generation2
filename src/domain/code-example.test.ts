@@ -34,6 +34,28 @@ const write = (
   expectedVersion,
 });
 describe('code examples retain source and independent execution observations', () => {
+  it('reopens terminal mode and exact keys/output without replacing the prepared batch input', () => {
+    const lastRun = {
+      language: source.language,
+      code: source.code,
+      stdin: '3\r4\r\x04',
+      mode: 'terminal' as const,
+      at: new Date().toISOString(),
+      outcome: 'success' as const,
+      output: 'FIRST: 3\r\nSECOND: 4\r\nSUM=7\r\n',
+      error: '',
+    };
+    const content = { ...source, inputMode: 'terminal' as const, lastRun };
+    repo.execute(write(content));
+    const reopened = new DemoRepository(localStorage).getSnapshot();
+    expect(codeContent(reopened.codeExamples![0])).toEqual(content);
+    expect(currentCodeRun(content)).toBe(true);
+    repo.execute(write({ ...content, notes: '변경한 설명' }, 1));
+    expect(repo.getSnapshot().revisions.at(-1)!.before).toMatchObject(content);
+    expect(() => repo.execute(write({ ...content, inputMode: 'unknown' as never }, 2))).toThrow(
+      '코드 예제',
+    );
+  });
   it('reopens exact text/IDs/history without changing records, older schema-1 states remain readable', () => {
     const before = repo.getSnapshot();
     validateState(before);

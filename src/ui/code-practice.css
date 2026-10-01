@@ -1,6 +1,17 @@
 .code-practice {
   min-width: 0;
 }
+.code-terminal-section {
+  min-width: 0;
+}
+.code-live-terminal {
+  height: 18rem;
+  padding: var(--space-3);
+  /* design-token-exception: Color -- xterm canvas uses the standard VS Code terminal background and ANSI palette. */
+  background: #1e1e1e;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
 .code-example-heading {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 10rem;

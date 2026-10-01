@@ -26,6 +26,8 @@ export function validateCodeContent(value: unknown): asserts value is CodeExampl
   };
   if (!value || typeof value !== 'object' || Array.isArray(value)) return fail();
   const content = value as CodeExampleContent;
+  if (content.inputMode !== undefined && !['batch', 'terminal'].includes(content.inputMode))
+    return fail();
   if (!Object.hasOwn(CODE_LANGUAGES, content.language)) return fail();
   for (const name of ['title', 'code', 'stdin', 'notes'] as const) {
     if (typeof content[name] !== 'string' || content[name].length > MAX_CODE_TEXT) return fail();
@@ -34,6 +36,7 @@ export function validateCodeContent(value: unknown): asserts value is CodeExampl
     const run = content.lastRun;
     if (
       !run ||
+      (run.mode !== undefined && run.mode !== 'terminal') ||
       !Object.hasOwn(CODE_LANGUAGES, run.language) ||
       !['success', 'error', 'stopped'].includes(run.outcome) ||
       typeof run.at !== 'string' ||
@@ -56,6 +59,7 @@ export function codeContent(row: CodeExampleContent): CodeExampleContent {
     code: row.code,
     stdin: row.stdin,
     notes: row.notes,
+    ...(row.inputMode ? { inputMode: row.inputMode } : {}),
     ...(row.lastRun ? { lastRun: row.lastRun } : {}),
   };
 }
@@ -67,6 +71,6 @@ export function currentCodeRun(content: CodeExampleContent) {
     content.lastRun &&
     content.lastRun.code === content.code &&
     content.lastRun.language === content.language &&
-    content.lastRun.stdin === content.stdin,
+    (content.lastRun.mode === 'terminal' || content.lastRun.stdin === content.stdin),
   );
 }

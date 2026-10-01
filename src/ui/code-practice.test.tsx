@@ -4,7 +4,12 @@ import { DemoRepository } from '../data/demo-repository';
 import { codeDraftKey, writeCodeDraft } from '../data/code-example-draft';
 import type { CodeRun } from '../domain/model';
 import { CodeExampleEditor } from './code-practice';
-const execution = vi.hoisted(() => ({ resolve: null as null | ((run: CodeRun) => void) }));
+const execution = vi.hoisted(() => ({
+  resolve: null as null | ((run: CodeRun) => void),
+}));
+vi.mock('./code-terminal', () => ({
+  CodeTerminal: () => <div>실행 터미널 테스트</div>,
+}));
 vi.mock('./source-editor', () => ({
   SourceEditor: ({ value, onChange }: { value: string; onChange: (code: string) => void }) => (
     <textarea
@@ -37,7 +42,14 @@ beforeEach(() => {
     type: 'saveCodeExample',
     id: 'test-example',
     expectedVersion: 0,
-    content: { title: '내 예제', language: 'c', code: 'int main(void) {}', stdin: '', notes: '' },
+    content: {
+      title: '내 예제',
+      language: 'c',
+      code: 'int main(void) {}',
+      stdin: '',
+      notes: '',
+      inputMode: 'batch',
+    },
   });
 });
 afterEach(() => vi.useRealTimers());
@@ -60,7 +72,9 @@ it('saves the latest code and Korean explanation before leaving the editor', () 
   fireEvent.change(screen.getByLabelText('소스 코드 테스트'), {
     target: { value: '// 주석\nint main(void) { return 7; }' },
   });
-  fireEvent.change(screen.getByLabelText('내용·설명'), { target: { value: '  내가 적은 설명  ' } });
+  fireEvent.change(screen.getByLabelText('내용·설명'), {
+    target: { value: '  내가 적은 설명  ' },
+  });
   view.unmount();
   expect(repo.getSnapshot().codeExamples![0]).toMatchObject({
     code: '// 주석\nint main(void) { return 7; }',
@@ -127,26 +141,40 @@ it('archives an unreadable draft verbatim before allowing editing again', async 
 });
 it('shows the input field and asks for values before running a scanf example', async () => {
   open();
-  fireEvent.change(screen.getByLabelText('소스 코드 테스트'), {target: {value: 'int main(){int x; scanf("%d", &x); printf("%d", x);}'}});
+  fireEvent.change(screen.getByLabelText('소스 코드 테스트'), {
+    target: { value: 'int main(){int x; scanf("%d", &x); printf("%d", x);}' },
+  });
   const input = screen.getByLabelText('실행에 사용할 입력값');
   expect(input).toBeVisible();
   execution.resolve = null;
-  fireEvent.click(screen.getByRole('button', {name: /^실행$/}));
+  fireEvent.click(screen.getByRole('button', { name: /^실행$/ }));
   expect(input).toHaveFocus();
-  expect(screen.getByRole('button', {name: '입력 없이 실행'})).toBeVisible();
+  expect(screen.getByRole('button', { name: '입력 없이 실행' })).toBeVisible();
   expect(execution.resolve).toBeNull();
-  fireEvent.change(input, {target: {value: '42\n'}});
-  fireEvent.click(screen.getByRole('button', {name: /^실행$/}));
+  fireEvent.change(input, { target: { value: '42\n' } });
+  fireEvent.click(screen.getByRole('button', { name: /^실행$/ }));
   expect(execution.resolve).not.toBeNull();
-  await act(async () => execution.resolve!({language: 'c',code: 'int main(){int x; scanf("%d", &x); printf("%d", x);}',stdin: '42\n',outcome: 'success',output: '42',error: '',at: new Date().toISOString()}));
+  await act(async () =>
+    execution.resolve!({
+      language: 'c',
+      code: 'int main(){int x; scanf("%d", &x); printf("%d", x);}',
+      stdin: '42\n',
+      outcome: 'success',
+      output: '42',
+      error: '',
+      at: new Date().toISOString(),
+    }),
+  );
   expect(repo.getSnapshot().codeExamples![0].stdin).toBe('42\n');
   expect(repo.getSnapshot().codeExamples![0].lastRun?.output).toBe('42');
 });
 it('allows deliberately empty input for EOF tests without changing the source', () => {
   open();
-  fireEvent.change(screen.getByLabelText('소스 코드 테스트'), {target: {value: 'int main(){getchar();}'}});
+  fireEvent.change(screen.getByLabelText('소스 코드 테스트'), {
+    target: { value: 'int main(){getchar();}' },
+  });
   execution.resolve = null;
-  fireEvent.click(screen.getByRole('button', {name: /^실행$/}));
-  fireEvent.click(screen.getByRole('button', {name: '입력 없이 실행'}));
+  fireEvent.click(screen.getByRole('button', { name: /^실행$/ }));
+  fireEvent.click(screen.getByRole('button', { name: '입력 없이 실행' }));
   expect(execution.resolve).not.toBeNull();
 });

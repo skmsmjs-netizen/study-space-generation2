@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { Button, EmptyState, ErrorState, Input, Select, Textarea } from './index';
 import type {
   AppState,
@@ -25,10 +25,21 @@ import {
 } from '../data/code-example-draft';
 import { archiveDamagedDraft, draftHasUnstoredText } from '../data/draft-safety';
 import { executeCode, type CodeExecution } from '../data/code-runner';
+import {
+  canUseCodeTerminal,
+  executeCodeTerminal,
+  type CodeTerminalExecution,
+} from '../data/code-terminal';
+import type { CodeTerminalHandle } from './code-terminal';
 import { SourceEditor } from './source-editor';
 import { requestsCodeInput } from '../domain/code-input';
 import { navigate } from './navigation-context';
 import './code-practice.css';
+const CodeTerminal = lazy(() =>
+  import('./code-terminal').then((module) => ({
+    default: module.CodeTerminal,
+  })),
+);
 
 type Props = {
   data: AppState;
@@ -37,6 +48,12 @@ type Props = {
   exampleId?: string;
   trash?: boolean;
 };
+// Preserve the original terminal stream in storage, render escapes as plain text here.
+export const readableCodeOutput = (text: string) =>
+  text
+    .replace(/\x1b\][^\x07]*(?:\x07|\x1b\\)/g, '')
+    .replace(/\x1b\[[0-?]*[ -/]*[@-~]/g, '')
+    .replace(/\x1b[=><@-_]/g, '');
 const context = (data: AppState) => ({
   opId: crypto.randomUUID(),
   at: new Date().toISOString(),
@@ -58,7 +75,11 @@ export function CodePractice({ data, repository, onSaved, exampleId, trash = fal
   const commit = (
     action:
       | Omit<Extract<Command, { type: 'saveCodeExample' }>, 'opId' | 'at' | 'userId' | 'namespace'>
-      | { type: 'trashCodeExample' | 'restoreCodeExample'; id: string; expectedVersion: number },
+      | {
+          type: 'trashCodeExample' | 'restoreCodeExample';
+          id: string;
+          expectedVersion: number;
+        },
   ) => {
     try {
       if (!canSave(repository, data))
@@ -117,7 +138,11 @@ export function CodePractice({ data, repository, onSaved, exampleId, trash = fal
               .codeExamples?.find((item) => item.id === selected.id);
             if (
               row &&
-              commit({ type: 'trashCodeExample', id: row.id, expectedVersion: row.version })
+              commit({
+                type: 'trashCodeExample',
+                id: row.id,
+                expectedVersion: row.version,
+              })
             )
               navigate('/code');
           }}
@@ -219,6 +244,13 @@ export function CodeExampleEditor({
     );
   const [conflict, setConflict] = useState(initial.conflict);
   const [phase, setPhase] = useState<'idle' | 'loading' | 'running'>('idle');
+  const terminalExecution = useRef<CodeTerminalExecution | null>(null);
+  const terminalHandle = useRef<CodeTerminalHandle | null>(null);
+  const pendingTerminalOutput = useRef('');
+  const terminalAvailable = canUseCodeTerminal(content.language);
+  const interactive =
+    (content.inputMode ?? (terminalAvailable ? 'terminal' : 'batch')) === 'terminal' &&
+    terminalAvailable;
   const [inputRequested, setInputRequested] = useState(false);
   const inputSection = useRef<HTMLDivElement>(null);
   const run = useRef<CodeExecution | null>(null),
@@ -229,7 +261,9 @@ export function CodeExampleEditor({
   const draft = (): CodeExampleDraft => ({
     id: example.id,
     baseVersion: version.current,
-    content: current.current,
+    content: terminalExecution.current
+      ? { ...current.current, lastRun: terminalExecution.current.snapshot() }
+      : current.current,
   });
   const saveDraft = () => {
     try {
@@ -291,7 +325,16 @@ export function CodeExampleEditor({
   flushRef.current = flush;
   useEffect(() => {
     alive.current = true;
-    const save = () => flushRef.current();
+    const save = () => {
+      if (terminalExecution.current) {
+        current.current = {
+          ...current.current,
+          lastRun: terminalExecution.current.snapshot(),
+        };
+        run.current?.cancel();
+      }
+      return flushRef.current();
+    };
     const unload = (event: BeforeUnloadEvent) => {
       if (!save() && !sameCodeContent(current.current, saved.current)) {
         event.preventDefault();
@@ -311,9 +354,19 @@ export function CodeExampleEditor({
     };
   }, []);
   useEffect(() => {
+    if (phase === 'idle' || !interactive) return;
+    // Keep an exact intermediate draft for crashes; do not claim it completed.
+    const interval = setInterval(saveDraft, 1000);
+    return () => clearInterval(interval);
+  }, [phase, interactive]);
+  useEffect(() => {
     if (example.version === version.current) return;
     if (!sameCodeContent(current.current, saved.current)) {
-      const local = { id: example.id, baseVersion: version.current, content: current.current };
+      const local = {
+        id: example.id,
+        baseVersion: version.current,
+        content: current.current,
+      };
       retainCodeDraft(key, local);
       try {
         writeCodeDraft(key, local);
@@ -334,7 +387,12 @@ export function CodeExampleEditor({
   }, [example, key]);
   const start = (allowEmptyInput = false) => {
     if (run.current || blocked.current) return;
-    if (!allowEmptyInput && !current.current.stdin.trim() && requestsCodeInput(current.current.code, current.current.language)) {
+    if (
+      !interactive &&
+      !allowEmptyInput &&
+      !current.current.stdin.trim() &&
+      requestsCodeInput(current.current.code, current.current.language)
+    ) {
       setInputRequested(true);
       inputSection.current?.querySelector('textarea')?.focus();
       return;
@@ -345,10 +403,24 @@ export function CodeExampleEditor({
       code: current.current.code,
       stdin: current.current.stdin,
     };
-    const execution = executeCode(source, setPhase, repository.getCodeRunner?.());
+    let execution: CodeExecution;
+    if (interactive) {
+      pendingTerminalOutput.current = '';
+      terminalHandle.current?.reset();
+      terminalExecution.current = executeCodeTerminal(
+        source,
+        (text) => {
+          if (terminalHandle.current) terminalHandle.current.write(text);
+          else pendingTerminalOutput.current += text;
+        },
+        setPhase,
+      );
+      execution = terminalExecution.current;
+    } else execution = executeCode(source, setPhase, repository.getCodeRunner?.());
     run.current = execution;
     void execution.result.then((result) => {
       run.current = null;
+      terminalExecution.current = null;
       if (!alive.current) return;
       setPhase('idle');
       update({ ...current.current, lastRun: result });
@@ -362,7 +434,10 @@ export function CodeExampleEditor({
         type: 'saveCodeExample',
         id,
         expectedVersion: 0,
-        content: { ...source, title: source.title ? `${source.title} · 사본` : '예제 사본' },
+        content: {
+          ...source,
+          title: source.title ? `${source.title} · 사본` : '예제 사본',
+        },
         ...context(data),
       });
       callback.current(next);
@@ -416,7 +491,10 @@ export function CodeExampleEditor({
           value={content.language}
           disabled={isBlocked || phase !== 'idle'}
           onChange={(event) =>
-            update({ ...current.current, language: event.target.value as CodeLanguage })
+            update({
+              ...current.current,
+              language: event.target.value as CodeLanguage,
+            })
           }
         >
           {Object.entries(CODE_LANGUAGES).map(([id, name]) => (
@@ -431,7 +509,12 @@ export function CodeExampleEditor({
         <Button
           variant="quiet"
           disabled={isBlocked || Boolean(content.code.trim())}
-          onClick={() => update({ ...current.current, code: CODE_STARTERS[content.language] })}
+          onClick={() =>
+            update({
+              ...current.current,
+              code: CODE_STARTERS[content.language],
+            })
+          }
         >
           시작 코드 넣기
         </Button>
@@ -443,6 +526,28 @@ export function CodeExampleEditor({
         onChange={(code) => update({ ...current.current, code })}
         onRun={() => start()}
       />
+      <Select
+        label="실행 방식"
+        value={interactive ? 'terminal' : 'batch'}
+        disabled={phase !== 'idle' || isBlocked}
+        onChange={(event) =>
+          update({
+            ...current.current,
+            inputMode: event.target.value as 'batch' | 'terminal',
+          })
+        }
+      >
+        <option value="terminal" disabled={!terminalAvailable}>
+          실행 중 터미널에 입력
+        </option>
+        <option value="batch">입력값을 미리 적어 실행</option>
+      </Select>
+      {!terminalAvailable && ['c', 'cpp', 'csharp'].includes(content.language) && (
+        <p className="ui-hint">
+          현재 접속에서는 입력값을 미리 적어 실행할 수 있습니다. 실행 중 입력은 터미널 서버 연결이
+          필요합니다.
+        </p>
+      )}
       <div className="code-input-section" ref={inputSection}>
         <Textarea
           label="실행에 사용할 입력값"
@@ -450,14 +555,23 @@ export function CodeExampleEditor({
           value={content.stdin}
           disabled={isBlocked}
           placeholder="예: 3과 4를 입력하려면 한 줄에 하나씩 적으세요."
-          hint="실행 전에 입력값을 적어 주세요. scanf·cin·Console.ReadLine 등에 전달합니다. 출력창에서는 직접 입력을 받지 않습니다."
+          hint={
+            interactive
+              ? '터미널 실행에서는 아래 터미널에 직접 입력합니다. 여기에 적어 둔 값은 보관되며 자동 전송하지 않습니다.'
+              : '실행 전에 입력값을 적어 주세요. scanf·cin·Console.ReadLine 등에 전달합니다.'
+          }
           onChange={(event) => update({ ...current.current, stdin: event.target.value })}
           data-editing-context={`code:${example.id}:stdin`}
         />
-        {inputRequested && !content.stdin.trim() && <div role="alert" className="code-input-notice">
-          <p>입력을 읽는 코드가 있습니다. 위에 값을 적은 뒤 실행해 주세요. 입력이 끝난 경우를 시험하려면 입력 없이 실행할 수 있습니다.</p>
-          <Button onClick={() => start(true)}>입력 없이 실행</Button>
-        </div>}
+        {inputRequested && !content.stdin.trim() && (
+          <div role="alert" className="code-input-notice">
+            <p>
+              입력을 읽는 코드가 있습니다. 위에 값을 적은 뒤 실행해 주세요. 입력이 끝난 경우를
+              시험하려면 입력 없이 실행할 수 있습니다.
+            </p>
+            <Button onClick={() => start(true)}>입력 없이 실행</Button>
+          </div>
+        )}
       </div>
       <div className="code-run-actions">
         <Button variant="primary" onClick={() => start()} disabled={isBlocked || phase !== 'idle'}>
@@ -465,7 +579,9 @@ export function CodeExampleEditor({
         </Button>
         {phase !== 'idle' && (
           <Button onClick={() => run.current?.cancel()}>
-            {repository.getCodeRunner?.() && ['c', 'cpp', 'csharp'].includes(content.language)
+            {!interactive &&
+            repository.getCodeRunner?.() &&
+            ['c', 'cpp', 'csharp'].includes(content.language)
               ? '응답 대기 중지'
               : '중지'}
           </Button>
@@ -476,22 +592,61 @@ export function CodeExampleEditor({
               ? '컴파일하고 있습니다.'
               : '실행 환경을 여는 중입니다.'
             : phase === 'running'
-              ? '결과를 기다리고 있습니다.'
+              ? interactive
+                ? '터미널에서 입력할 수 있습니다.'
+                : '결과를 기다리고 있습니다.'
               : lastRun
-                ? { success: '실행 완료', error: '오류를 확인해 주세요', stopped: '실행 중지' }[
-                    lastRun.outcome
-                  ]
+                ? {
+                    success: '실행 완료',
+                    error: '오류를 확인해 주세요',
+                    stopped: '실행 중지',
+                  }[lastRun.outcome]
                 : '값을 바꿔 실행해 보세요.'}
         </span>
       </div>
-      {repository.getCodeRunner?.() && ['c', 'cpp', 'csharp'].includes(content.language) && (
-        <p className="ui-hint">
-          실행하면 코드와 입력값을 Wandbox 컴파일 서비스에 전달합니다. 제목·설명은 전달하지
-          않습니다.
-        </p>
+      {interactive && (
+        <section aria-label="실행 터미널" className="code-terminal-section">
+          <div className="code-run-actions">
+            <h3>터미널</h3>
+            <Button
+              disabled={phase !== 'running'}
+              onClick={() => {
+                terminalExecution.current?.write('\u0004');
+                terminalHandle.current?.focus();
+              }}
+            >
+              입력 끝내기 (EOF)
+            </Button>
+          </div>
+          <p className="ui-hint">
+            실행 후 이곳을 눌러 값을 입력하고 Enter를 누르세요. Ctrl+C로 중지할 수 있습니다. 한 번에
+            최대 2분 동안 실행합니다.
+          </p>
+          <Suspense fallback={<p role="status">터미널을 여는 중입니다.</p>}>
+            <CodeTerminal
+              handle={terminalHandle}
+              execution={terminalExecution}
+              pendingOutput={pendingTerminalOutput}
+              running={phase === 'running'}
+            />
+          </Suspense>
+        </section>
       )}
+      {!interactive &&
+        repository.getCodeRunner?.() &&
+        ['c', 'cpp', 'csharp'].includes(content.language) && (
+          <p className="ui-hint">
+            실행하면 코드와 입력값을 Wandbox 컴파일 서비스에 전달합니다. 제목·설명은 전달하지
+            않습니다.
+          </p>
+        )}
       <section className="code-result" aria-label="실행 결과">
         <h3>실행 결과</h3>
+        {lastRun?.mode === 'terminal' && (
+          <p className="ui-hint">
+            터미널 기록입니다. 프로그램 출력과 입력한 내용의 표시가 함께 포함됩니다.
+          </p>
+        )}
         {lastRun && !currentCodeRun(content) && (
           <p className="code-stale-result">
             코드·언어·입력값이 바뀌었습니다. 아래는 이전 실행 결과입니다.
@@ -499,7 +654,8 @@ export function CodeExampleEditor({
         )}
         <pre>
           {lastRun
-            ? lastRun.output || (lastRun.outcome === 'success' ? '출력한 내용이 없습니다.' : '')
+            ? readableCodeOutput(lastRun.output) ||
+              (lastRun.outcome === 'success' ? '출력한 내용이 없습니다.' : '')
             : '아직 실행하지 않았습니다.'}
         </pre>
         {lastRun?.error && (
@@ -507,9 +663,14 @@ export function CodeExampleEditor({
             {lastRun.error}
           </pre>
         )}
-        {lastRun?.outcome === 'success' && requestsCodeInput(lastRun.code, lastRun.language) && <p className="ui-hint">
-          입력값은 코드에 전달했습니다. 입력한 값을 결과에 표시하려면 printf·cout·Console.WriteLine 같은 출력 문장을 코드에 넣어 주세요.
-        </p>}
+        {lastRun?.mode !== 'terminal' &&
+          lastRun?.outcome === 'success' &&
+          requestsCodeInput(lastRun.code, lastRun.language) && (
+            <p className="ui-hint">
+              입력값은 코드에 전달했습니다. 입력한 값을 결과에 표시하려면
+              printf·cout·Console.WriteLine 같은 출력 문장을 코드에 넣어 주세요.
+            </p>
+          )}
       </section>
       <Textarea
         label="내용·설명"

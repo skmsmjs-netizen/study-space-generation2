@@ -2,6 +2,7 @@ import { spawn } from 'node:child_process';
 import { mkdtemp, writeFile, rm, realpath, readdir } from 'node:fs/promises';
 import { tmpdir, homedir } from 'node:os';
 import path from 'node:path';
+import { attachCodeTerminal } from './code-terminal.mjs';
 
 const maxText = 200_000,
   maxOutput = 100_000;
@@ -11,7 +12,7 @@ const sdk =
 const sdkRoot = path.dirname(sdk);
 // Local Mac development only. Never expose this adapter as a public service.
 // Compilation and execution both use a deny-by-default filesystem/network sandbox.
-function profile(directory, compile) {
+export function profile(directory, compile) {
   const roots = [
     '/System',
     '/usr',
@@ -36,25 +37,28 @@ function profile(directory, compile) {
     (allow file-read* file-write* (subpath ${JSON.stringify(directory)}) (literal "/dev/null") (literal "/dev/urandom") (literal "/dev/random"))
     (allow mach-lookup (global-name "com.apple.system.logger"))`;
 }
+export function processEnvironment(directory) {
+  return {
+    PATH: '/usr/bin:/bin',
+    HOME: directory,
+    TMPDIR: directory,
+    DOTNET_ROOT: sdkRoot,
+    DOTNET_CLI_HOME: directory,
+    DOTNET_SKIP_FIRST_TIME_EXPERIENCE: '1',
+    DOTNET_CLI_TELEMETRY_OPTOUT: '1',
+    DOTNET_NOLOGO: '1',
+    DOTNET_EnableDiagnostics: '0',
+    DOTNET_CLI_WORKLOAD_UPDATE_NOTIFY_DISABLE: '1',
+    LANG: 'en_US.UTF-8',
+  };
+}
 function limitedProcess(command, args, input, directory, signal, milliseconds, compile) {
   return new Promise((resolve) => {
     let output = '',
       error = '',
       stopped = false,
       ended = false;
-    const env = {
-      PATH: '/usr/bin:/bin',
-      HOME: directory,
-      TMPDIR: directory,
-      DOTNET_ROOT: sdkRoot,
-      DOTNET_CLI_HOME: directory,
-      DOTNET_SKIP_FIRST_TIME_EXPERIENCE: '1',
-      DOTNET_CLI_TELEMETRY_OPTOUT: '1',
-      DOTNET_NOLOGO: '1',
-      DOTNET_EnableDiagnostics: '0',
-      DOTNET_CLI_WORKLOAD_UPDATE_NOTIFY_DISABLE: '1',
-      LANG: 'en_US.UTF-8',
-    };
+    const env = processEnvironment(directory);
     const child = spawn(
       '/usr/bin/sandbox-exec',
       [
@@ -116,7 +120,7 @@ function limitedProcess(command, args, input, directory, signal, milliseconds, c
     child.stdin.end(input);
   });
 }
-export async function compileProgram(input, { signal } = {}) {
+export async function compileProgram(input, { signal, execute } = {}) {
   if (process.platform !== 'darwin')
     throw Error(
       '현재 개발용 컴파일 실행은 macOS에서 지원합니다. 운영 환경에는 별도 격리 실행 서버가 필요합니다.',
@@ -132,7 +136,7 @@ export async function compileProgram(input, { signal } = {}) {
     throw Error('언어·코드·입력값을 확인해 주세요.');
   const directory = await realpath(await mkdtemp(path.join(tmpdir(), 'study-code-')));
   try {
-    let command, args, execute, executeArgs;
+    let command, args, executeCommand, executeArgs;
     if (input.language === 'csharp') {
       await writeFile(path.join(directory, 'Program.cs'), input.code);
       const latest = (values) =>
@@ -161,7 +165,7 @@ export async function compileProgram(input, { signal } = {}) {
         ...references,
         'Program.cs',
       ];
-      execute = sdk;
+      executeCommand = sdk;
       executeArgs = ['program.dll'];
     } else {
       const file = input.language === 'c' ? 'main.c' : 'main.cpp';
@@ -180,21 +184,28 @@ export async function compileProgram(input, { signal } = {}) {
         '-o',
         'program',
       ];
-      execute = path.join(directory, 'program');
+      executeCommand = path.join(directory, 'program');
       executeArgs = [];
     }
     const compiled = await limitedProcess(command, args, '', directory, signal, 30_000, true);
     if (compiled.outcome !== 'success')
       return { ...compiled, ...input, at: new Date().toISOString() };
-    const result = await limitedProcess(
-      execute,
-      executeArgs,
-      input.stdin,
-      directory,
-      signal,
-      10_000,
-      false,
-    );
+    const result = execute
+      ? await execute({
+          command: executeCommand,
+          args: executeArgs,
+          directory,
+          signal,
+        })
+      : await limitedProcess(
+          executeCommand,
+          executeArgs,
+          input.stdin,
+          directory,
+          signal,
+          10_000,
+          false,
+        );
     return {
       ...result,
       error: [compiled.error, result.error].filter(Boolean).join('\n').slice(0, maxOutput),
@@ -227,9 +238,11 @@ export function localCodeRunnerPlugin() {
     res.setHeader('Content-Type', 'application/json');
     res.setHeader('Cache-Control', 'no-store');
     if (busy) {
-      res
-        .writeHead(429)
-        .end(JSON.stringify({ message: '다른 코드를 실행 중입니다. 잠시 후 다시 실행해 주세요.' }));
+      res.writeHead(429).end(
+        JSON.stringify({
+          message: '다른 코드를 실행 중입니다. 잠시 후 다시 실행해 주세요.',
+        }),
+      );
       return;
     }
     busy = true;
@@ -241,7 +254,9 @@ export function localCodeRunnerPlugin() {
         raw += chunk.toString();
         if (raw.length > 1_500_000) throw Error('한 번에 실행할 코드가 너무 깁니다.');
       }
-      const result = await compileProgram(JSON.parse(raw), { signal: controller.signal });
+      const result = await compileProgram(JSON.parse(raw), {
+        signal: controller.signal,
+      });
       res.end(JSON.stringify(result));
     } catch (error) {
       if (!res.destroyed) {
@@ -255,9 +270,29 @@ export function localCodeRunnerPlugin() {
     name: 'study-local-code-runner',
     configureServer(server) {
       server.middlewares.use(middleware);
+      attachCodeTerminal(server.httpServer, {
+        acquire: () => {
+          if (busy) return false;
+          busy = true;
+          return true;
+        },
+        release: () => {
+          busy = false;
+        },
+      });
     },
     configurePreviewServer(server) {
       server.middlewares.use(middleware);
+      attachCodeTerminal(server.httpServer, {
+        acquire: () => {
+          if (busy) return false;
+          busy = true;
+          return true;
+        },
+        release: () => {
+          busy = false;
+        },
+      });
     },
   };
 }

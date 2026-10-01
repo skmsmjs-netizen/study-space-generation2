@@ -900,13 +900,15 @@ function validateCodeContent(value) {
   };
   if (!value || typeof value !== "object" || Array.isArray(value)) return fail2();
   const content = value;
+  if (content.inputMode !== void 0 && !["batch", "terminal"].includes(content.inputMode))
+    return fail2();
   if (!Object.hasOwn(CODE_LANGUAGES, content.language)) return fail2();
   for (const name of ["title", "code", "stdin", "notes"]) {
     if (typeof content[name] !== "string" || content[name].length > MAX_CODE_TEXT) return fail2();
   }
   if (content.lastRun !== void 0) {
     const run = content.lastRun;
-    if (!run || !Object.hasOwn(CODE_LANGUAGES, run.language) || !["success", "error", "stopped"].includes(run.outcome) || typeof run.at !== "string" || !Number.isFinite(Date.parse(run.at)))
+    if (!run || run.mode !== void 0 && run.mode !== "terminal" || !Object.hasOwn(CODE_LANGUAGES, run.language) || !["success", "error", "stopped"].includes(run.outcome) || typeof run.at !== "string" || !Number.isFinite(Date.parse(run.at)))
       return fail2();
     for (const name of ["code", "stdin", "output", "error"]) {
       if (typeof run[name] !== "string" || run[name].length > (name === "output" || name === "error" ? MAX_CODE_OUTPUT : MAX_CODE_TEXT))
@@ -921,6 +923,7 @@ function codeContent(row) {
     code: row.code,
     stdin: row.stdin,
     notes: row.notes,
+    ...row.inputMode ? { inputMode: row.inputMode } : {},
     ...row.lastRun ? { lastRun: row.lastRun } : {}
   };
 }
