@@ -4459,7 +4459,7 @@ function requestTiming() {
 }
 
 // src/server/command-handler.ts
-var cors = { "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Headers": "authorization, apikey, content-type, x-client-info", "Access-Control-Allow-Methods": "POST, OPTIONS", "Cache-Control": "no-store" };
+var cors = { "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Headers": "authorization, apikey, content-type, x-client-info, x-region", "Access-Control-Allow-Methods": "POST, OPTIONS", "Cache-Control": "no-store" };
 var supportedCommands = ["importConceptCatalog", "saveConceptEdition", "saveConceptBatch", "saveInkWorkspace", "saveRecallCloze", "importRecallCards", "setRecallCardStatus", "saveMemo", "saveStudyBoard", "saveMemoryCard", "trashMemoryCard", "restoreMemoryCard", "saveMemoryTest", "saveStudyMaterial", "trashStudyMaterial", "restoreStudyMaterial", "saveLearningPlan", "saveCanvasLayout", "saveCodeExample", "trashCodeExample", "restoreCodeExample", "saveRecallCard", "saveRecallReference", "reviewRecallCard", "undoRecallReview", "setRecallDue", "saveRecallPreferences"];
 var syncCapabilities = { conditionalLoad: true, batchCommands: true };
 function validOperationId(value) {
@@ -4536,6 +4536,7 @@ async function handleCommand(request, backend) {
       let saved = current;
       for (let index = 0; index < commands.length; index++) {
         const command2 = commands[index];
+        await verifyConceptHash(command2);
         if (saved.data.appliedOps[command2.opId]) {
           timing.sync("apply", () => applyCommand(saved.data, command2));
           continue;
@@ -4548,6 +4549,7 @@ async function handleCommand(request, backend) {
     }
     if (body.action !== "execute" || !body.command) throw new DomainError("INVALID_REQUEST", "\uC800\uC7A5 \uC694\uCCAD\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
     const command = body.command;
+    await verifyConceptHash(command);
     if (!validOperationId(command.opId)) throw new DomainError("INVALID_ID", "\uC800\uC7A5 \uC694\uCCAD\uC758 \uC2DD\uBCC4\uC790\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
     if (command.userId !== userId || command.namespace !== namespace) throw new DomainError("OWNERSHIP", "\uB2E4\uB978 \uC0AC\uC6A9\uC790\uC758 \uC790\uB8CC\uB97C \uBCC0\uACBD\uD560 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
     if (!Number.isSafeInteger(body.baseSequence) || body.baseSequence < 0) throw new DomainError("INVALID_VERSION", "\uC800\uC7A5 \uC21C\uC11C\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
@@ -4563,6 +4565,13 @@ async function handleCommand(request, backend) {
     const status = code === "AUTH_REQUIRED" ? 401 : ["OWNERSHIP", "ACCESS_DENIED", "ADMIN_REQUIRED", "ADMIN_PROTECTED", "LAST_ADMIN"].includes(code) ? 403 : /CONFLICT/.test(code) ? 409 : error instanceof DomainError || error instanceof SyntaxError ? 400 : 503;
     return json({ code, message: error instanceof DomainError ? error.message : "\uC11C\uBC84\uC5D0 \uC800\uC7A5\uD558\uC9C0 \uBABB\uD588\uC2B5\uB2C8\uB2E4. \uC791\uC131 \uB0B4\uC6A9\uC740 \uC774 \uAE30\uAE30\uC5D0 \uB0A8\uC544 \uC788\uC2B5\uB2C8\uB2E4." }, status);
   }
+}
+async function verifyConceptHash(command) {
+  if (command?.type !== "importConceptCatalog") return;
+  if (typeof command.raw !== "string") throw new DomainError("INVALID_CONCEPT", "\uC6D0\uBB38 \uD30C\uC77C\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+  const bytes = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(command.raw));
+  const digest = [...new Uint8Array(bytes)].map((n) => n.toString(16).padStart(2, "0")).join("");
+  if (digest !== command.sha256) throw new DomainError("INVALID_CONCEPT", "\uC6D0\uBB38\uACFC \uD30C\uC77C \uD574\uC2DC\uAC00 \uB2E4\uB985\uB2C8\uB2E4. \uC800\uC7A5\uD558\uC9C0 \uC54A\uC558\uC2B5\uB2C8\uB2E4.");
 }
 
 // supabase/functions/study-command/entry.ts
