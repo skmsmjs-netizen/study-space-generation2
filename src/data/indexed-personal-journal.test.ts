@@ -150,4 +150,35 @@ describe('IndexedDB personal journal connected before server acknowledgement', (
     write.mockRestore(); await repo.close();
   });
 
+  it('keeps both conflict originals after quota plus aborted archive, then archives once durably on retry', async () => {
+    const factory = new IDBFactory(), legacy = storage(), f = serverFixture();
+    const offline = await openPersonalRepository(legacy, { ...f.transport, execute: async () => { throw Error('offline'); } }, f.get(), factory);
+    offline.execute(command('local-conflict')); await offline.flush(); await offline.close();
+    await f.transport.execute(command('server-conflict', '  서버 원문\r\n조건과 예외  '), 0);
+    const repo = await openPersonalRepository(legacy, f.transport, f.get(), factory);
+    const original = repo.getConflict(), durableBefore = await rows(factory);
+    expect(original).not.toBeNull();
+    const write = vi.spyOn(legacy, 'setItem').mockImplementation(() => { throw new DOMException('full', 'QuotaExceededError'); });
+    const put = vi.spyOn(IDBObjectStore.prototype, 'put').mockImplementation(function(this: IDBObjectStore) { this.transaction.abort(); return {} as IDBRequest; });
+    try {
+      await expect(repo.openServerWithArchive()).rejects.toThrow();
+      expect(repo.getStatus().phase).toBe('error'); expect(repo.getConflict()).toEqual(original);
+      expect(repo.getSnapshot().memos?.[0].body).toBe(originalBody);
+      expect(await rows(factory)).toEqual(durableBefore);
+      expect(JSON.parse(repo.exportPreserved()).pending[0].opId).toBe('op-local-conflict');
+    } finally { put.mockRestore(); write.mockRestore(); }
+    // Closing must commit the restored conflict, never the failed staged resolution.
+    await repo.close();
+    const reopened = await openPersonalRepository(legacy, f.transport, f.get(), factory);
+    expect(reopened.getConflict()).toEqual(original);
+    await reopened.openServerWithArchive();
+    const saved = JSON.parse(decodeStoredText((await rows(factory))[0] as string));
+    expect(reopened.getStatus().phase).toBe('saved'); expect(reopened.getConflict()).toBeNull();
+    expect(saved.archives).toHaveLength(1);
+    expect(saved.archives[0].local.memos[0].body).toBe(originalBody);
+    expect(saved.archives[0].server.data.memos[0].body).toBe('  서버 원문\r\n조건과 예외  ');
+    expect(saved.archives[0].pending[0].opId).toBe('op-local-conflict');
+    await reopened.close();
+  });
+
 });

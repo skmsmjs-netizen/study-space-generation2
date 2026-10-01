@@ -31,7 +31,7 @@ describe('durable personal writes and asynchronous acknowledgement', () => {
     const f = fixture(), repo = new PersonalRepository(storage(),f.transport,f.get());
     await f.transport.execute(op('other-device'),0); repo.execute(op('local')); await repo.flush();
     expect(repo.getStatus().phase).toBe('conflict'); expect(repo.getSnapshot().subjects[0].id).toBe('local'); expect(repo.getConflict()?.server.data.subjects[0].id).toBe('other-device');
-    repo.openServerWithArchive(); expect(repo.getSnapshot().subjects[0].id).toBe('other-device'); expect(repo.exportPreserved()).toContain('op-local');
+    await repo.openServerWithArchive(); expect(repo.getSnapshot().subjects[0].id).toBe('other-device'); expect(repo.exportPreserved()).toContain('op-local');
   });
   it('rejects owner mixing and failed local writes before publishing a saved state', () => {
     const f = fixture(), store = storage(), repo = new PersonalRepository(store,f.transport,f.get());
@@ -42,4 +42,23 @@ describe('durable personal writes and asynchronous acknowledgement', () => {
     const f = fixture(), repo = new PersonalRepository(storage(),f.transport,f.get()); repo.execute(op('a')); repo.execute(op('b')); await repo.flush(); expect(f.get().sequence).toBe(2);
     const fake = new PersonalRepository(storage(),{ ...f.transport, execute: async () => f.get() },f.get()); fake.execute(op('c')); await fake.flush(); expect(fake.getStatus().phase).toBe('error'); expect(fake.getStatus().pending).toBe(1);
   });
+});
+
+it('keeps the conflict visible and serializes archive clicks until durable completion', async () => {
+  const f = fixture(), store = storage();
+  let release!: () => void, hold = false;
+  const completion = new Promise<void>(resolve => { release = resolve; });
+  const journal = { ...store, flush: () => hold ? completion : Promise.resolve() };
+  const repo = new PersonalRepository(journal, f.transport, f.get());
+  await f.transport.execute(op('remote'), 0); repo.execute(op('draft')); await repo.flush();
+  const before = repo.getConflict(); hold = true;
+  const saving = repo.openServerWithArchive();
+  expect(repo.openServerWithArchive()).toBe(saving);
+  await Promise.resolve(); await Promise.resolve();
+  expect(repo.getConflict()).toEqual(before); expect(repo.getStatus().phase).not.toBe('saved');
+  expect(repo.getSnapshot().subjects[0].id).toBe('draft');
+  expect(() => repo.execute(op('during-archive'))).toThrow('보관');
+  release(); await saving;
+  expect(repo.getStatus().phase).toBe('saved'); expect(repo.getSnapshot().subjects[0].id).toBe('remote');
+  expect(JSON.parse(repo.exportPreserved()).archives).toHaveLength(1);
 });

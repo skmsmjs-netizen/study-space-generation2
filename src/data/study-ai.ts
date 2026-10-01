@@ -77,7 +77,7 @@ export async function ownerAuthHeaders(
       throw Error('개인 공간에 다시 로그인해 주세요. 원본은 기기에 남아 있습니다.');
     return { Authorization: `Bearer ${data.session.access_token}` };
   } finally {
-    client.auth.stopAutoRefresh();
+    await client.auth.dispose();
   }
 }
 export interface GPTConnectionStatus {

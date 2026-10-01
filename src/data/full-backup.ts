@@ -48,7 +48,7 @@ function openDB(factory: IDBFactory, name: string, stores: readonly string[]): P
     request.onblocked = () => { blocked = true; reject(Error('다른 공부 창을 마친 뒤 다시 시도해 주세요. 기존 자료는 유지했습니다.')); };
   });
 }
-async function rowsInDB(env: BackupEnvironment, area: 'materials' | 'journals', owner: BackupOwner): Promise<BackupRow[]> {
+async function rowsInDB(env: Pick<BackupEnvironment, 'factory'>, area: 'materials' | 'journals', owner: BackupOwner): Promise<BackupRow[]> {
   const [name, stores] = DATABASES[area], db = await openDB(env.factory, name, stores);
   try { return await new Promise((resolve, reject) => {
     const rows: BackupRow[] = [], tx = db.transaction([...stores], 'readonly');
@@ -60,6 +60,11 @@ async function rowsInDB(env: BackupEnvironment, area: 'materials' | 'journals', 
     tx.oncomplete = () => resolve(rows); tx.onabort = () => reject(tx.error); tx.onerror = () => {};
   }); } finally { db.close(); }
 }
+/** Read-only, owner-filtered journal collection shared by backups and recovery downloads. */
+export function readPersonalJournalRows(userId: string, factory: IDBFactory): Promise<BackupRow[]> {
+  return rowsInDB({ factory }, 'journals', { namespace: 'personal', userId });
+}
+
 function storageRows(storage: Storage, owner: BackupOwner, area: 'local' | 'session'): BackupRow[] {
   const rows: BackupRow[] = [];
   for (let i = 0; i < storage.length; i++) {

@@ -17,3 +17,14 @@ it('requires deliberate confirmation and leaves records untouched on cancel or f
   fireEvent.click(screen.getByRole('button',{name:'회원 탈퇴'}));fireEvent.change(screen.getByLabelText('확인을 위해 ‘탈퇴’를 입력해 주세요'),{target:{value:'탈퇴'}});fireEvent.click(screen.getByRole('button',{name:'계정과 기록 삭제'}));
   await screen.findByText('탈퇴 연결 실패');expect(onWithdrawn).not.toHaveBeenCalled();fireEvent.click(screen.getByRole('button',{name:'계정과 기록 삭제'}));await waitFor(()=>expect(onWithdrawn).toHaveBeenCalledOnce());
 });
+
+it('waits for all download stores, prevents repeated actions, and reports asynchronous failure without withdrawal',async()=>{
+  let reject!: (error: Error) => void;
+  const onDownload=vi.fn(()=>new Promise<void>((_, fail)=>{reject=fail;})),withdraw=vi.fn();
+  render(<AccountSettings api={{read:vi.fn(),list:vi.fn(),set:vi.fn(),withdraw}} access={{status:'approved',administrator:false,displayName:'시험 사람'}} onSaved={vi.fn()} onWithdrawn={vi.fn()} onDownload={onDownload}/>);
+  fireEvent.click(screen.getByRole('button',{name:'내 계정'}));fireEvent.click(screen.getByRole('button',{name:'탈퇴 전 기록 내려받기'}));
+  expect(screen.getByRole('button',{name:'탈퇴 전 기록 내려받기'})).toBeDisabled();expect(screen.getByRole('button',{name:'회원 탈퇴'})).toBeDisabled();
+  reject(Error('IndexedDB inaccessible'));
+  await screen.findByText('보관본을 내려받지 못했습니다. 원문은 그대로 남아 있습니다. 다시 시도해 주세요.');
+  expect(screen.getByRole('button',{name:'탈퇴 전 기록 내려받기'})).toBeEnabled();expect(withdraw).not.toHaveBeenCalled();
+});

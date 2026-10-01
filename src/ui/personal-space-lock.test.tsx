@@ -1,18 +1,19 @@
 import { act, cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
-import { PersonalSpace } from './personal-space';
+import { PersonalSpace, ServerStatus } from './personal-space';
 import { PersonalRepository } from '../data/personal-repository';
-import { emptyState } from '../domain/model';
+import { emptyState, type Command } from '../domain/model';
+import type { SupabaseClient } from '@supabase/supabase-js';
 
 const fake = vi.hoisted(() => ({
-  id: '70000000-0000-4000-8000-000000000001', load: vi.fn(), access: vi.fn(),
+  id: '70000000-0000-4000-8000-000000000001', load: vi.fn(), access: vi.fn(), session: vi.fn(), initialSession: true,
   callback: null as null | ((event: string, session: { user: { id: string } }) => void),
 }));
 vi.mock('../data/supabase-client', () => ({
   readServerConfig: () => ({ url: 'https://example.supabase.co', publishableKey: 'sb_publishable_test' }),
   createStudyClient: () => ({ auth: {
-    onAuthStateChange: (callback: typeof fake.callback) => { fake.callback = callback; callback?.('INITIAL_SESSION', { user: { id: fake.id } }); return { data: { subscription: { unsubscribe() {} } } }; },
-    getSession: async () => ({ data: { session: { user: { id: fake.id } } }, error: null }),
+    onAuthStateChange: (callback: typeof fake.callback) => { fake.callback = callback; if (fake.initialSession) callback?.('INITIAL_SESSION', { user: { id: fake.id } }); return { data: { subscription: { unsubscribe() {} } } }; },
+    getSession: () => fake.session(),
   } }),
   onlineTransport: () => ({ load: fake.load }),
 }));
@@ -34,6 +35,7 @@ const held = new Set<string>();
 beforeEach(() => {
   fake.id = '70000000-0000-4000-8000-000000000001';
   localStorage.clear(); sessionStorage.clear(); vi.clearAllMocks(); held.clear();
+  fake.initialSession = true; fake.session.mockResolvedValue({ data: { session: { user: { id: fake.id } } }, error: null });
   fake.access.mockResolvedValue({status:'approved',administrator:false});
   fake.load.mockResolvedValue({ sequence: 0, data: emptyState(fake.id, 'personal') });
   request = vi.fn(async (name: string, _options: unknown, callback: (lock: Lock | null) => Promise<void>) => {
@@ -113,4 +115,62 @@ it('renders a validated cache while the first server load is still pending', asy
  const view = open();
  try { await screen.findByText(`개인 자료 열림 ${fake.id}`); await waitFor(()=>expect(fake.load).toHaveBeenCalledTimes(1)); }
  finally { response.resolve({sequence:0,data}); view.unmount(); }
+});
+
+
+it('does not reload or hide a conflict while its archive is pending or fails', async () => {
+  const server = { sequence: 0, data: emptyState(fake.id, 'personal') };
+  const original = new PersonalRepository(localStorage, {load: async()=>server, execute: async()=>{throw Error('offline');}}, server);
+  const command = { type:'addSubject', id:'original-subject', name:'기기 원문', scope:{kind:'independent'}, opId:'archive-ui', at:'2026-10-01T00:00:00.000Z', userId:fake.id, namespace:'personal' } as Command;
+  original.execute(command); await original.flush();
+  const remote = { sequence:1, data:emptyState(fake.id,'personal') };
+  const repo = new PersonalRepository(localStorage, {load:async()=>remote,execute:async()=>remote}, remote);
+  let reject!: (error: Error)=>void;
+  const archive = vi.spyOn(repo,'openServerWithArchive').mockImplementation(()=>new Promise<void>((_,fail)=>{reject=fail;}));
+  const reload = vi.fn(); vi.stubGlobal('location',{reload});
+  try {
+    render(<ServerStatus repository={repo} client={{auth:{signOut:vi.fn()}} as unknown as SupabaseClient}/>);
+    fireEvent.click(screen.getByRole('button',{name: /다른 기기의 변경/}));
+    fireEvent.click(screen.getByRole('button',{name:'이 기기의 글을 보관하고 서버 자료 열기'}));
+    expect(archive).toHaveBeenCalledOnce(); expect(reload).not.toHaveBeenCalled();
+    expect(screen.getByRole('button',{name:'이 기기의 글을 보관하고 서버 자료 열기'})).toBeDisabled();
+    await act(async()=>{reject(Error('IDB commit aborted'));});
+    expect(screen.getByRole('heading',{name:'두 자료를 확인해 주세요'})).toBeInTheDocument();
+    expect(screen.getByText(/보관을 마치지 못해 서버 자료로 전환하지 않았습니다/)).toBeInTheDocument();
+    expect(reload).not.toHaveBeenCalled();
+    archive.mockResolvedValueOnce(undefined);
+    fireEvent.click(screen.getByRole('button',{name:'이 기기의 글을 보관하고 서버 자료 열기'}));
+    await waitFor(()=>expect(reload).toHaveBeenCalledOnce());
+  } finally { vi.unstubAllGlobals(); }
+});
+
+it('offers preserved originals on the opening error screen and waits for the recovery download', async () => {
+  const original = '{ 손상된 원문\r\n 조건과 예외  ';
+  const key = `study-space:personal:${fake.id}:online:v1:window:damaged`;
+  localStorage.setItem(key, original);
+  localStorage.setItem('study-space:personal:another-owner:online:v1', '다른 계정');
+  fake.load.mockRejectedValueOnce(Error('연결 실패'));
+  let downloaded!: Blob;
+  const create = vi.fn((blob:Blob)=>{downloaded=blob;return 'blob:recovery-test';});
+  vi.stubGlobal('URL', class extends URL { static createObjectURL=create; static revokeObjectURL=vi.fn(); });
+  const click = vi.spyOn(HTMLAnchorElement.prototype,'click').mockImplementation(()=>{});
+  try {
+    open(); await screen.findByText('연결 실패');
+    fireEvent.click(screen.getByRole('button',{name:'이 기기의 기록·보관본 내려받기'}));
+    await waitFor(()=>expect(click).toHaveBeenCalledOnce());
+    const raw = await new Promise<string>((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(String(reader.result));reader.onerror=reject;reader.readAsText(downloaded);});
+    expect(JSON.parse(raw).windowRecovery).toContainEqual(expect.objectContaining({key,raw:original}));
+    expect(raw).not.toContain('another-owner');
+  } finally { vi.unstubAllGlobals(); }
+});
+
+
+it.each([false, true])('leaves loading and preserves the auth failure notice when getSession rejects (initial event: %s)', async initialSession => {
+  fake.initialSession = initialSession;
+  fake.session.mockRejectedValueOnce(Error('기기의 로그인 저장소를 열지 못했습니다. 원문은 남아 있습니다.'));
+  open();
+  await screen.findByText('기기의 로그인 저장소를 열지 못했습니다. 원문은 남아 있습니다.');
+  expect(screen.getByLabelText('이메일')).toBeInTheDocument();
+  expect(screen.getByRole('button', { name: /^로그인$/ })).toBeEnabled();
+  expect(screen.queryByText('내 기록을 불러오는 중…')).not.toBeInTheDocument();
 });

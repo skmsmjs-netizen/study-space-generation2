@@ -19,9 +19,9 @@ import './personal-space.css';
 import { BRAND } from '../domain/brand';
 import { BrandWordmark } from './brand-wordmark';
 import { BrandCopyright } from './brand-copyright';
-function exportWindowRecords(repository: PersonalRepository) {
+async function exportWindowRecords(repository: PersonalRepository) {
   return JSON.stringify({ ...JSON.parse(repository.exportPreserved()),
-    windowRecovery: personalWindowCopies(repository.getSnapshot().userId, repository.key) }, null, 2);
+    windowRecovery: await personalWindowCopies(repository.getSnapshot().userId, repository.key) }, null, 2);
 }
 const errorText = (error: unknown) => storageErrorText(error, '개인 공간을 열지 못했습니다.');
 export function PersonalSpace({ renderWorkspace }: { renderWorkspace: (repo: PersonalRepository, controls: ReactNode) => ReactNode }) {
@@ -30,18 +30,23 @@ export function PersonalSpace({ renderWorkspace }: { renderWorkspace: (repo: Per
   const accessApi = useMemo(() => client ? accountAccessClient(client) : null, [client]);
   const [access, setAccess] = useState<AccountAccess | null>(null);
   const [userId, setUserId] = useState<string | null>(null), [authReady, setAuthReady] = useState(false);
+  const [authError, setAuthError] = useState('');
   const [repo, setRepo] = useState<PersonalRepository | null>(null), [error, setError] = useState('');
   const [retry, setRetry] = useState(0), [opening, setOpening] = useState(false);
   const [withdrawn, setWithdrawn] = useState<string | null>(null), [withdrawalNotice, setWithdrawalNotice] = useState('');
   const writerTask = useRef<Promise<void>>(Promise.resolve());
+  const currentUser = useRef(userId); currentUser.current = userId;
+  const [downloading, setDownloading] = useState(false);
   useEffect(() => {
     if (!client) { setAuthReady(true); return; }
     let alive = true;
     let authVersion = 0;
-    const { data } = client.auth.onAuthStateChange((_event, session) => { if(_event==='SIGNED_OUT')void stopLocalSchedulePush().catch(()=>{if(alive)setError('로그아웃했습니다. 기기의 알림 해제를 확인하지 못했으니 브라우저 알림 설정을 확인해 주세요.');}); authVersion++; if (alive) { setUserId(session?.user.id ?? null); setAuthReady(true); } });
+    const { data } = client.auth.onAuthStateChange((_event, session) => { if(_event==='SIGNED_OUT')void stopLocalSchedulePush().catch(()=>{if(alive)setError('로그아웃했습니다. 기기의 알림 해제를 확인하지 못했으니 브라우저 알림 설정을 확인해 주세요.');}); authVersion++; if (alive) { if (session) setAuthError(''); setUserId(session?.user.id ?? null); setAuthReady(true); } });
     const version = authVersion;
     // Restore the local session; the API still authenticates and authorizes every request.
-    client.auth.getSession().then(({ data, error }) => { if (alive && version === authVersion) { if (error) setError('로그인 상태를 확인하지 못했습니다. 다시 로그인해 주세요.'); setUserId(data.session?.user.id ?? null); setAuthReady(true); } });
+    client.auth.getSession().then(({ data, error }) => { if (alive && version === authVersion) { if (error) setAuthError('로그인 상태를 확인하지 못했습니다. 다시 로그인해 주세요.'); setUserId(data.session?.user.id ?? null); setAuthReady(true); } }).catch(error => {
+      if (alive && version === authVersion) { setAuthError(errorText(error)); setUserId(null); setAuthReady(true); }
+    });
     return () => { alive = false; data.subscription.unsubscribe(); };
   }, [client]);
   useEffect(() => {
@@ -97,21 +102,35 @@ export function PersonalSpace({ renderWorkspace }: { renderWorkspace: (repo: Per
     try { await client?.auth.signOut({ scope:'local' }); } catch { /* Deleted identities cannot access the server. */ }
     await cleanupWithdrawal(id);
   }
-  function downloadRecords() {
-    if (!repo) return;
-    const url=URL.createObjectURL(new Blob([exportWindowRecords(repo)],{type:'application/json'}));
+  async function downloadRecords() {
+    const owner = userId;
+    if (!owner) return;
+    if (repo && repo.getSnapshot().userId !== owner) throw Error('로그인한 계정이 바뀌었습니다. 현재 계정에서 다시 내려받아 주세요.');
+    const raw = repo ? await exportWindowRecords(repo) : JSON.stringify({
+      format: 'study-space-window-recovery', userId: owner,
+      windowRecovery: await personalWindowCopies(owner, ''),
+    }, null, 2);
+    if (currentUser.current !== owner) throw Error('로그인한 계정이 바뀌었습니다. 현재 계정에서 다시 내려받아 주세요.');
+    const url=URL.createObjectURL(new Blob([raw],{type:'application/json'}));
     const anchor=document.createElement('a');anchor.href=url;anchor.download='study-preserved-records.json';anchor.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
   }
-  const settings=accessApi&&access?<AccountSettings api={accessApi} access={access} onSaved={setAccess} onWithdrawn={onWithdrawn} onDownload={repo?downloadRecords:undefined}/>:null;
+  async function downloadOnError() {
+    if (downloading) return;
+    setDownloading(true);
+    try { await downloadRecords(); }
+    catch { setError('보관본을 내려받지 못했습니다. 원문은 그대로 남아 있습니다. 다시 시도해 주세요.'); }
+    finally { setDownloading(false); }
+  }
+  const settings=accessApi&&access?<AccountSettings api={accessApi} access={access} onSaved={setAccess} onWithdrawn={onWithdrawn} onDownload={userId?downloadRecords:undefined}/>:null;
   if (repo && client) return renderWorkspace(repo, <><ServerStatus repository={repo} client={client} />{settings}{access?.administrator && accessApi && <AccountAdministration api={accessApi} />}</>);
   return <main className="boot personal-entry"><Card><p className="brand-wordmark"><BrandWordmark /></p><h1>내 공부 공간</h1><p>{BRAND.promise}</p><h2>{BRAND.headline}</h2><p>{BRAND.description}</p>
     {withdrawn ? <section><p role="status">{withdrawalNotice||'탈퇴했습니다. 이 브라우저의 개인 자료를 정리하고 있습니다…'}</p>{withdrawalNotice.includes('끝나지')&&<Button onClick={()=>{void cleanupWithdrawal(withdrawn);}}>이 기기의 자료 정리 다시 시도</Button>}<Button onClick={()=>{setWithdrawn(null);setWithdrawalNotice('');}}>로그인 화면으로 돌아가기</Button></section> : !configured ? <ErrorState title="내 공부 공간에 연결하지 못했습니다" message="연결을확인한 뒤 다시 시도해 주세요. 이 기기에 보관된 기록은 그대로 남아 있습니다." onRetry={() => location.reload()} />
       : !authReady || opening ? <LoadingState message="내 기록을 불러오는 중…" />
       : !userId && client ? <SignIn client={client} onSignedIn={setClient} />
       : access && access.status !== 'approved' ? <section><h2>{access.status === 'pending' ? '가입 승인 대기' : access.status === 'rejected' ? '가입이 승인되지 않았습니다' : '이용이 중지되었습니다'}</h2><p>{accessMessages[access.status]}</p><div className="actions"><Button onClick={() => setRetry(value => value + 1)}>승인 상태 다시 확인</Button><Button onClick={() => { void client?.auth.signOut({ scope: 'local' }); }}>로그아웃</Button></div></section>
-      : <><ErrorState title="내 공부 공간을 열지 못했습니다" message={error || '서버에 연결하지 못했습니다. 기록은 지우지 않았습니다.'} onRetry={() => setRetry(value => value + 1)} /><Button onClick={() => { void client?.auth.signOut({ scope: 'local' }); }}>다시 로그인</Button></>}
+      : <><ErrorState title="내 공부 공간을 열지 못했습니다" message={error || '서버에 연결하지 못했습니다. 기록은 지우지 않았습니다.'} onRetry={() => setRetry(value => value + 1)} /><Button disabled={downloading} onClick={() => { void downloadOnError(); }}>{downloading ? '보관본 준비 중…' : '이 기기의 기록·보관본 내려받기'}</Button><Button onClick={() => { void client?.auth.signOut({ scope: 'local' }); }}>다시 로그인</Button></>}
     {userId && !withdrawn && settings}
-    {error && !userId && <p role="alert">{error}</p>}
+    {(authError || error) && !userId && <p role="alert">{authError || error}</p>}
   </Card><BrandCopyright /></main>;
 }
 function SignIn({ client, onSignedIn }: { client: SupabaseClient; onSignedIn: (client: SupabaseClient) => void }) {
@@ -148,16 +167,32 @@ export function ServerStatus({ repository, client }: { repository: PersonalRepos
   const [status, setStatus] = useState<SaveStatus>(repository.getStatus()), [open, setOpen] = useState(false), [error, setError] = useState('');
   useEffect(() => { setStatus(repository.getStatus()); return repository.subscribe(() => setStatus(repository.getStatus())); }, [repository]);
   const conflict = repository.getConflict();
-  function download() { try { const blob = new Blob([exportWindowRecords(repository)], { type: 'application/json' }); const url = URL.createObjectURL(blob); const anchor = document.createElement('a'); anchor.href = url; anchor.download = 'study-preserved-records.json'; anchor.click(); setTimeout(() => URL.revokeObjectURL(url), 1000); } catch { setError('보관본을 내려받지 못했습니다. 원문은 그대로 남아 있습니다. 다시 시도해 주세요.'); } }
+  const activeRepository = useRef<PersonalRepository | null>(repository);
+  useEffect(() => { activeRepository.current = repository; return () => { activeRepository.current = null; }; }, [repository]);
+  const [busy, setBusy] = useState(false);
+  async function download() {
+    if (busy) return;
+    setBusy(true); setError('');
+    try { const raw = await exportWindowRecords(repository); if (activeRepository.current !== repository) return; const blob = new Blob([raw], { type: 'application/json' }); const url = URL.createObjectURL(blob); const anchor = document.createElement('a'); anchor.href = url; anchor.download = 'study-preserved-records.json'; anchor.click(); setTimeout(() => URL.revokeObjectURL(url), 1000); }
+    catch { setError('보관본을 내려받지 못했습니다. 원문은 그대로 남아 있습니다. 다시 시도해 주세요.'); }
+    finally { setBusy(false); }
+  }
+  async function openServer() {
+    if (busy) return;
+    setBusy(true); setError('');
+    try { await repository.openServerWithArchive(); if (activeRepository.current === repository) location.reload(); }
+    catch { setError('보관을 마치지 못해 서버 자료로 전환하지 않았습니다. 이 기기의 글과 서버 자료는 그대로 유지했습니다. 다시 시도하거나 보관본을 내려받아 주세요.'); }
+    finally { setBusy(false); }
+  }
   return <><Button variant="quiet" onClick={() => setOpen(true)}>{status.message}{status.pending ? ` (${status.pending}건)` : ''}</Button>
     <Modal open={open} title="내 기록의 저장 상태" onClose={() => setOpen(false)}><p role={status.phase === 'error' || status.phase === 'conflict' ? 'alert' : 'status'}>{status.message}</p>
       <p>기록·목차·서술·메모는 서버 저장과 연결됩니다. 다른 기기의 저장된 기록을 자동으로 확인하며, 화면으로 돌아오면 바로 확인합니다. 작성 중인 초안은 현재 기기에 보관됩니다.</p>
       {repository.hasIndexedJournal() && <p>이 기기의 기록과 미전송 변경은 함께 보관합니다. 서버 저장은 응답을 받은 뒤 확인합니다.</p>}
-      <div className="actions"><Button onClick={() => { void repository.flush(); }}>서버 저장 다시 시도</Button><Button onClick={() => { void repository.refresh().catch(error => setError(errorText(error))); }}>서버 기록 다시 불러오기</Button><Button onClick={download}>이 기기의 기록·보관본 내려받기</Button></div>
+      <div className="actions"><Button disabled={busy} onClick={() => { void repository.flush().catch(error => setError(errorText(error))); }}>서버 저장 다시 시도</Button><Button disabled={busy} onClick={() => { void repository.refresh().catch(error => setError(errorText(error))); }}>서버 기록 다시 불러오기</Button><Button disabled={busy} onClick={() => { void download(); }}>이 기기의 기록·보관본 내려받기</Button></div>
       {conflict && <section><h2>두 자료를 확인해 주세요</h2><p>서버 저장 {conflict.server.sequence}회 · 이 기기의 미전송 변경 {conflict.pending.length}건</p>
         <details><summary>이 기기에서 작성한 내용</summary><pre>{JSON.stringify(conflict.pending, null, 2)}</pre></details>
         <details><summary>서버의 기록·글·메모</summary><pre>{JSON.stringify({ records: conflict.server.data.records, narratives: conflict.server.data.narratives, memos: conflict.server.data.memos }, null, 2)}</pre></details>
-        <Button onClick={() => { try { repository.openServerWithArchive(); location.reload(); } catch (error) { setError(errorText(error)); } }}>이 기기의 글을 보관하고 서버 자료 열기</Button>
+        <Button disabled={busy} onClick={() => { void openServer(); }}>이 기기의 글을 보관하고 서버 자료 열기</Button>
       </section>}
       {error && <p role="alert">{error}</p>}
       <div className="actions section-space"><Button onClick={() => { void client.auth.signOut({ scope: 'local' }).then(({ error }) => { if (error) setError('로그아웃하지 못했습니다. 다시 시도해 주세요.'); }); }}>로그아웃</Button></div>

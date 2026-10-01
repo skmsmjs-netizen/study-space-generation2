@@ -31,12 +31,13 @@ export class PersonalRepository implements StudyRepository {
   private raw: string | null;
   private listeners = new Set<() => void>();
   private flight: Promise<void> | null = null;
+  private archiveFlight: Promise<void> | null = null;
   private status: SaveStatus;
   private needsRefresh = false;
   private restoring = false;
   async pauseForRestore() {
     this.restoring = true;
-    try { await this.flight; await this.storage.flush?.(); }
+    try { await this.archiveFlight; await this.flight; await this.storage.flush?.(); }
     catch (error) { this.restoring = false; throw error; }
     return () => { this.restoring = false; };
   }
@@ -163,7 +164,7 @@ export class PersonalRepository implements StudyRepository {
   getSnapshot() { return this.envelope.local; }
   hasIndexedJournal = () => Boolean(this.storage.flush);
   async close() {
-    try { await this.flight; await this.storage.flush?.(); }
+    try { await this.archiveFlight; await this.flight; await this.storage.flush?.(); }
     finally { this.storage.close?.(); }
   }
   getCapabilities = () => this.envelope.base.supportedCommands ?? [];
@@ -171,6 +172,7 @@ export class PersonalRepository implements StudyRepository {
   subscribe = (listener: () => void) => { this.listeners.add(listener); return () => { this.listeners.delete(listener); }; };
   private update(status: SaveStatus, changed = false) { if (!changed && JSON.stringify(this.status) === JSON.stringify(status)) return; this.status = status; this.listeners.forEach(listener => listener()); }
   execute(command: Command): AppState {
+    if (this.archiveFlight) throw Error('이 기기의 글을 보관하고 있습니다. 보관을 마친 뒤 작성해 주세요.');
     if (this.restoring) throw Error('백업을 복원하고 있습니다. 복원한 공간을 다시 연 뒤 작성해 주세요.');
     if (this.envelope.restoredBackup && !this.envelope.conflict) throw Error('복원한 백업과 서버 자료를 확인하고 있습니다. 저장 상태를 확인한 뒤 작성해 주세요.');
     const started = performance.now();
@@ -188,6 +190,7 @@ export class PersonalRepository implements StudyRepository {
     } finally { recordRequestPerformance('local-command', started, success); }
   }
   flush(): Promise<void> {
+    if (this.archiveFlight) return this.archiveFlight;
     if (this.restoring) return Promise.resolve();
     if (this.flight) return this.flight;
     this.flight = this.drain().finally(() => { this.flight = null; if (this.envelope.pending.length && this.status.phase === 'pending') void this.flush(); });
@@ -287,6 +290,7 @@ export class PersonalRepository implements StudyRepository {
     }
   }
   refresh(): Promise<void> {
+    if (this.archiveFlight) return this.archiveFlight;
     if (this.restoring) return Promise.resolve();
     // Coalesce manual refresh, focus, reconnect and polling with any ongoing write/read.
     if (this.flight) return this.flight;
@@ -300,11 +304,38 @@ export class PersonalRepository implements StudyRepository {
     return JSON.stringify(deviceRecovery.length ? { ...this.envelope, deviceRecovery } : this.envelope, null, 2);
   }
   /** Explicit choice: archive all local originals before opening the server state. */
-  openServerWithArchive() {
-    const server = this.envelope.conflict;
-    if (!server) return;
-    const archive: PreservedConflict = { base: this.envelope.base, local: this.envelope.local, pending: this.envelope.pending, server, savedAt: new Date().toISOString() };
-    this.persist({ format: 1, base: server, local: server.data, pending: [], archives: [...this.envelope.archives, archive] });
-    this.update({ phase: 'saved', pending: 0, message: '이 기기의 이전 글은 보관본에 남겼습니다. 서버 자료를 열었습니다.' });
+  openServerWithArchive(): Promise<void> {
+    if (this.archiveFlight) return this.archiveFlight;
+    if (this.restoring) return Promise.reject(Error('백업을 복원하고 있습니다. 복원한 공간을 다시 연 뒤 확인해 주세요.'));
+    const previousFlight = this.flight;
+    const task = Promise.resolve().then(async () => {
+      await previousFlight;
+      const previous = this.envelope, server = previous.conflict;
+      if (!server) return;
+      const archive: PreservedConflict = { base: previous.base, local: previous.local, pending: previous.pending, server, savedAt: new Date().toISOString() };
+      const next: LocalEnvelope = { format: 1, base: server, local: server.data, pending: [], archives: [...previous.archives, archive] };
+      this.update({ phase: 'conflict', pending: previous.pending.length, message: '이 기기의 글과 서버 자료를 함께 보관하고 있습니다…' });
+      try {
+        this.persist(next);
+        // Keep the current conflict visible until the exact archive commits.
+        // A quota fallback may exist only in memory until this await completes.
+        this.envelope = previous;
+        await this.storage.flush?.();
+        this.envelope = next;
+        this.needsRefresh = false;
+        this.update({ phase: 'saved', pending: 0, message: '이 기기의 이전 글은 보관본에 남겼습니다. 서버 자료를 열었습니다.' }, true);
+      } catch (error) {
+        // Cancel a failed staged resolution so close/retry cannot later commit it
+        // without the user's successful archive action. Every original remains
+        // in both the conflict envelope and any previously persisted archive.
+        this.envelope = previous;
+        try { this.persist(previous); await this.storage.flush?.(); } catch { /* Original conflict remains in memory and the prior durable journal. */ }
+        this.envelope = previous;
+        this.update({ phase: 'error', pending: previous.pending.length, message: '보관을 마치지 못해 서버 자료로 전환하지 않았습니다. 이 기기의 글과 서버 자료를 유지했습니다. 다시 시도하거나 보관본을 내려받아 주세요.' }, true);
+        throw error;
+      }
+    });
+    this.archiveFlight = task.finally(() => { this.archiveFlight = null; });
+    return this.archiveFlight;
   }
 }

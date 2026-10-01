@@ -3,6 +3,7 @@ import { decodeStoredText } from './storage-codec';
 import type { ServerSnapshot } from '../server/command-handler';
 import { IndexedPersonalJournal, indexedPersonalKeys } from './indexed-personal-journal';
 import { registerPersonalDraftWindow } from './personal-draft-window';
+import { readPersonalJournalRows } from './full-backup';
 
 export interface PersonalWindow {
   key: string;
@@ -93,7 +94,8 @@ export async function claimPersonalWindow(userId: string, storage: Storage = loc
 }
 
 /** Export only the authenticated owner's other journals, including damaged text. */
-export function personalWindowCopies(userId: string, currentKey: string, storage: Storage = localStorage): JournalRecovery[] {
+export async function personalWindowCopies(userId: string, currentKey: string, storage: Storage = localStorage,
+  factory: IDBFactory | undefined = globalThis.indexedDB): Promise<JournalRecovery[]> {
   const root = personalJournalKey({ userId, namespace: 'personal' });
   const owner = encodeURIComponent(userId);
   const copies: JournalRecovery[] = [];
@@ -104,6 +106,20 @@ export function personalWindowCopies(userId: string, currentKey: string, storage
     if (!key || key === currentKey || (!windowDraft && key !== root && !key.startsWith(`${root}:window:`))) continue;
     const raw = storage.getItem(key);
     if (raw !== null) copies.push({ key, raw, savedAt: new Date().toISOString() });
+  }
+  if (factory) {
+    // Read the DB directly; opening a journal adapter could prefer a newer
+    // legacy value and hide a differing durable original or recovery copy.
+    const rows = await readPersonalJournalRows(userId, factory);
+    for (const row of rows) {
+      if (row.store === 'journals') copies.push({ key: row.key,
+        raw: typeof row.value === 'string' ? row.value : JSON.stringify(row.value), savedAt: new Date().toISOString() });
+      else {
+        const recovery = row.value as Partial<JournalRecovery>;
+        copies.push({ key: recovery.key!, raw: typeof recovery.raw === 'string' ? recovery.raw : JSON.stringify(row.value),
+          savedAt: typeof recovery.savedAt === 'string' ? recovery.savedAt : new Date().toISOString() });
+      }
+    }
   }
   return copies;
 }

@@ -6,6 +6,7 @@ import type { ServerSnapshot } from '../server/command-handler';
 import { loginStorageOptions, readLoginPersistence, saveLoginPersistence } from './auth-session';
 import { writeLoginStorage } from './journal-quota-recovery';
 import { measureRequest } from './request-performance';
+import { invokeAuthenticatedFunction } from './authenticated-function';
 export interface PublicServerConfig { url: string; publishableKey: string }
 export function readServerConfig(): PublicServerConfig | null {
   const url = import.meta.env.VITE_SUPABASE_URL || PUBLIC_SERVER_URL;
@@ -50,19 +51,13 @@ export async function signInStudyClient(client: SupabaseClient, credentials: { e
 }
 export function onlineTransport(client: SupabaseClient, namespace: Namespace = 'personal'): OnlineTransport {
   async function request(action: 'load' | 'execute' | 'execute-batch', command?: Command, baseSequence?: number, known?: ServerSnapshot, commands?: Command[]): Promise<ServerSnapshot> {
-    const { data: session, error: authError } = await client.auth.getSession();
-    if (authError || !session.session) throw new DomainError('AUTH_REQUIRED', '로그인이 만료되었습니다. 글은 이 기기에 남아 있습니다. 다시 로그인해 주세요.');
-    if (known && (known.data.userId !== session.session.user.id || known.data.namespace !== namespace)) throw new DomainError('OWNERSHIP', '이 공간의 자료가 아닙니다.');
+    const owners = [...(known ? [known.data] : []), ...(command ? [command] : []), ...(commands ?? [])];
+    if (owners.some(owner => owner.namespace !== namespace || owner.userId !== owners[0].userId)) throw new DomainError('OWNERSHIP', '이 공간의 자료가 아닙니다.');
     // Multiple sequential DB writes benefit from running beside this project's DB.
     // Ordinary reads/single writes retain nearest-region routing; custom projects
     // do not inherit the production project's region.
     const region = commands && commands.length > 1 && (loginClients.get(client)?.config.url ?? readServerConfig()?.url) === PUBLIC_SERVER_URL ? FunctionRegion.ApSouth1 : undefined;
-    const { data, error } = await client.functions.invoke('study-command', { timeout: 20000, ...(region ? { region } : {}), body: { action, namespace, ...(command ? { command, baseSequence } : {}), ...(commands ? { commands, baseSequence } : {}), ...(known ? { knownSequence: known.sequence } : {}) } });
-    if (error) {
-      let result: { code?: string; message?: string } = {};
-      try { if (error.context instanceof Response) result = await error.context.json(); } catch { /* Keep original drafts on malformed error responses. */ }
-      throw new DomainError(result.code ?? 'SERVER_ERROR', result.message ?? '서버에 저장하지 못했습니다. 이 기기의 글을 보존했습니다.');
-    }
+    const data = await invokeAuthenticatedFunction<ServerSnapshot & { unchanged?: boolean; userId?: string; namespace?: Namespace }>(client, 'study-command', { timeout: 20000, ...(region ? { region } : {}), body: { action, namespace, ...(command ? { command, baseSequence } : {}), ...(commands ? { commands, baseSequence } : {}), ...(known ? { knownSequence: known.sequence } : {}) } }, { expectedOwner: owners[0]?.userId });
     if (data?.unchanged === true) {
       if (action !== 'load' || !known || data.sequence !== known.sequence || data.userId !== known.data.userId || data.namespace !== namespace || !Array.isArray(data.supportedCommands) || data.supportedCommands.some((value: unknown) => typeof value !== 'string')) throw new DomainError('INVALID_ACK', '서버의 최신 기록을 확인하지 못했습니다. 이 기기의 글은 남아 있습니다.');
       return { ...known, supportedCommands: data.supportedCommands, syncCapabilities: data.syncCapabilities };

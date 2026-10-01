@@ -16,9 +16,14 @@ async function authorizedClient(owner: Owner) {
   if (!['personal', 'test'].includes(owner.namespace)) throw Error('개인 공간에서 원본 파일을 서버에 보관할 수 있습니다.');
   const config = readServerConfig(); if (!config) throw Error('개인 공간의 서버 연결을 확인해 주세요.');
   const client = createStudyClient(config);
-  const { data, error } = await client.auth.getSession();
-  if (error || data.session?.user.id !== owner.userId) { client.auth.stopAutoRefresh(); throw Error('개인 공간에 다시 로그인해 주세요. 원본은 이 기기에 남아 있습니다.'); }
-  return client;
+  try {
+    const { data, error } = await client.auth.getSession();
+    if (error || data.session?.user.id !== owner.userId) throw Error('개인 공간에 다시 로그인해 주세요. 원본은 이 기기에 남아 있습니다.');
+    return client;
+  } catch (error) {
+    await client.auth.dispose();
+    throw error;
+  }
 }
 export async function uploadMaterialFile(owner: Owner, kind: 'audio' | 'document', file: MaterialFile, blob: Blob): Promise<MaterialFile> {
   const path = materialCloudPath(owner, kind, file.sha256);
@@ -33,13 +38,13 @@ export async function uploadMaterialFile(owner: Owner, kind: 'audio' | 'document
     if (saved.error || !saved.data) throw Error('서버에 보관한 원본을 확인하지 못했습니다. 다시 저장하면 같은 파일의 보관 상태를 확인합니다.');
     await verifyMaterialBlob(saved.data, file);
     return { ...file, cloudPath: path };
-  } finally { client.auth.stopAutoRefresh(); }
+  } finally { await client.auth.dispose(); }
 }
 export async function downloadMaterialFile(owner: Owner, kind: 'audio' | 'document', file: MaterialFile): Promise<Blob> {
   if (file.cloudPath !== materialCloudPath(owner, kind, file.sha256)) throw Error('다른 공간의 원본 파일을 열 수 없습니다.');
   const client = await authorizedClient(owner);
   try { const { data, error } = await client.storage.from(MATERIAL_BUCKET).download(file.cloudPath); if (error || !data) throw Error('서버의 원본 파일을 가져오지 못했습니다. 연결 후 다시 열어 주세요.'); await verifyMaterialBlob(data, file); return data; }
-  finally { client.auth.stopAutoRefresh(); }
+  finally { await client.auth.dispose(); }
 }
 export async function removeMaterialAudio(owner: Owner, file: MaterialFile): Promise<void> {
   if (!file.cloudPath) return;
@@ -49,5 +54,5 @@ export async function removeMaterialAudio(owner: Owner, file: MaterialFile): Pro
   try {
     const { error } = await client.storage.from(MATERIAL_BUCKET).remove([file.cloudPath]);
     if (error) throw Error('전사문은 저장했지만 서버의 녹음 정리를 마치지 못했습니다. 다시 자료 저장을 눌러 주세요.');
-  } finally { client.auth.stopAutoRefresh(); }
+  } finally { await client.auth.dispose(); }
 }

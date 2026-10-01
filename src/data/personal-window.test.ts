@@ -2,7 +2,7 @@ import { afterEach, expect, it } from 'vitest';
 import { IDBFactory } from 'fake-indexeddb';
 import { claimPersonalWindow, personalWindowCopies, type PersonalWindow } from './personal-window';
 import { PersonalRepository, personalJournalKey, type OnlineTransport } from './personal-repository';
-import { openPersonalRepository } from './indexed-personal-journal';
+import { IndexedPersonalJournal, openPersonalRepository } from './indexed-personal-journal';
 import { applyCommand } from '../domain/commands';
 import { DomainError, emptyState, type Command } from '../domain/model';
 import { decodeStoredText } from './storage-codec';
@@ -49,7 +49,7 @@ it('a cloned tab gets another outbox and neither localStorage nor IndexedDB lose
   b.execute(command('second')); await b.flush();
   expect(localStorage.getItem(first.key)).toBe(original);
   expect(a.getSnapshot().memos![0].id).toBe('first'); expect(b.getSnapshot().memos![0].id).toBe('second');
-  expect(personalWindowCopies(userId, second.key).map(copy => copy.raw)).toContain(original);
+  expect((await personalWindowCopies(userId, second.key, localStorage, factory)).map(copy => copy.raw)).toContain(original);
   await a.close(); await b.close();
 });
 it('reload resumes the same outbox and a lost server reply produces one operation', async () => {
@@ -89,5 +89,29 @@ it('copies a legacy outbox without changing its key, text or operation IDs', asy
   expect(localStorage.getItem(lease.key)).toBe(original);
   expect(JSON.parse(decodeStoredText(original!)).pending).toHaveLength(1);
   localStorage.setItem('study-space:personal:other:online:v1', '다른 계정의 글');
-  expect(personalWindowCopies(userId, lease.key).every(copy => !copy.key.includes(':other:'))).toBe(true);
+  expect((await personalWindowCopies(userId, lease.key)).every(copy => !copy.key.includes(':other:'))).toBe(true);
+});
+
+
+it('exports DB-only windows and recovery originals with differing legacy and damaged raw while excluding other owners', async () => {
+  const factory = new IDBFactory(), root = personalJournalKey({ namespace: 'personal', userId });
+  const key = `${root}:window:closed`, current = `${root}:window:current`, foreign = 'study-space:personal:other:online:v1:window:closed';
+  const journal = await IndexedPersonalJournal.open(localStorage, key, factory);
+  journal.setItem(key, '  이전 DB 원문\r\n이유와 예외  '); await journal.flush(); journal.close();
+  localStorage.setItem(key, '새 legacy 원문');
+  const next = await IndexedPersonalJournal.open(localStorage, key, factory);
+  next.setItem(key, '새 legacy 원문'); await next.flush(); next.close();
+  localStorage.setItem(key, '{손상된 legacy 원문');
+  const only = await IndexedPersonalJournal.open(localStorage, current, factory);
+  only.setItem(current, '현재 창 DB에만 남은 원문'); await only.flush(); only.close(); localStorage.removeItem(current);
+  const other = await IndexedPersonalJournal.open(localStorage, foreign, factory);
+  other.setItem(foreign, '다른 계정 비공개 원문'); await other.flush(); other.close(); localStorage.removeItem(foreign);
+  const before = localStorage.getItem(key);
+  const copies = await personalWindowCopies(userId, current, localStorage, factory);
+  expect(copies.filter(row => row.key === key).map(row => row.raw)).toEqual(expect.arrayContaining([
+    '  이전 DB 원문\r\n이유와 예외  ', '새 legacy 원문', '{손상된 legacy 원문',
+  ]));
+  expect(copies).toContainEqual(expect.objectContaining({ key: current, raw: '현재 창 DB에만 남은 원문' }));
+  expect(copies.some(row => row.key === foreign || row.raw.includes('비공개'))).toBe(false);
+  expect(localStorage.getItem(key)).toBe(before); expect(localStorage.getItem(current)).toBeNull();
 });
