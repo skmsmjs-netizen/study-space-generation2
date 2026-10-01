@@ -17,7 +17,7 @@ vi.mock('./supabase-client', () => ({
           },
         };
       },
-      stopAutoRefresh() {},
+      async dispose() {},
     },
   }),
 }));
