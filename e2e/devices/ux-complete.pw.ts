@@ -121,7 +121,7 @@ test('zoomed-out Canvas keeps normal-sized selection and open actions without re
   await open.click();await expect(page.locator('main h1')).toHaveText('수학의 기초');
   await page.goBack();await expect(selection).toBeVisible();
   await selection.selectOption({label:'과목 · 수학의 기초'});
-  await page.getByRole('button',{name:'선택한 카드 편집',exact:true}).click();
+  await page.getByRole('group', { name: '카드 선택과 조작', exact: true }).getByRole('button', { name: '선택한 카드 편집', exact: true }).click();
   await expect(page.locator('.canvas-card.is-editing')).toBeVisible();
   const stored=await page.evaluate(()=>localStorage.getItem('study-space:demo:v1'));
   const layout=JSON.parse(decodeStoredText(stored!)).data.canvasLayouts[0];

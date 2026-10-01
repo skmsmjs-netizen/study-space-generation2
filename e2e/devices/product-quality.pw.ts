@@ -97,7 +97,7 @@ test('quality fixes retain accessible control names, chart actions and unscaled 
   await info.attach('quality-accessibility', { body: JSON.stringify(findings, null, 2), contentType: 'application/json' });
   await page.goto('?space=demo#/canvas');
   await page.getByRole('combobox', { name: '조작할 카드', exact: true }).selectOption({ label: '주제 · 함수는 어떤 관계일까?' });
-  const edit = page.getByRole('button', { name: '선택한 카드 편집', exact: true });
+  const edit = page.getByRole('group', { name: '카드 선택과 조작', exact: true }).getByRole('button', { name: '선택한 카드 편집', exact: true });
   const size = await edit.boundingBox(); expect(size!.width).toBeGreaterThanOrEqual(24); expect(size!.height).toBeGreaterThanOrEqual(24);
   await page.getByRole('link', { name: '선택한 카드 열기 ↗', exact: true }).click();
   await expect(page.getByRole('heading', { name: '함수는 어떤 관계일까?', level: 1, exact: true })).toBeVisible();
