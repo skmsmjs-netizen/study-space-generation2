@@ -3,7 +3,7 @@ import { validateMemoContent } from '../domain/memo';
 import { freshRecall, type RecallDraft, type RecallSession } from '../domain/topic-recall';
 import { readRescuedDraft, storeDraftSafely } from './draft-safety';
 
-export type RecallRepository = { getSnapshot(): AppState; execute(command: Command): AppState; getCapabilities?(): string[] };
+export type RecallRepository = Pick<import('./repository').StudyRepository, 'getSnapshot' | 'execute' | 'getCapabilities' | 'flush' | 'getStatus'>;
 export function recallKey(data: Pick<AppState, 'namespace' | 'userId'>) {
   return `study-space:${data.namespace}:draft:topic-recall:${encodeURIComponent(data.userId)}`;
 }
@@ -16,6 +16,7 @@ function validate(value: unknown): asserts value is RecallSession {
     || !Object.values(row.drafts).every(draft => draft && typeof draft.memoId === 'string' && draft.memoId.trim() && typeof draft.body === 'string')) {
     throw new Error('주제 카드 초안을 읽지 못했습니다. 원문을 덮어쓰지 않았습니다.');
   }
+  if (row.deckId !== undefined && typeof row.deckId !== 'string' || row.pendingImport && (row.pendingImport.type !== 'importRecallCards' || !Array.isArray(row.pendingImport.items) || row.pendingImport.items.length > 100)) throw new Error('덱이나 가져오기 초안을 읽지 못했습니다.');
   if (row.mode !== undefined && !['scheduled', 'random'].includes(row.mode)) throw new Error('복습 방식의 초안을 읽지 못했습니다.');
   if (row.skipped !== undefined && (!Array.isArray(row.skipped) || !row.skipped.every(id => typeof id === 'string'))) throw new Error('건너뛴 주제 초안을 읽지 못했습니다.');
   if (row.studyDay !== undefined && (typeof row.studyDay !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(row.studyDay))) throw new Error('복습 날짜 초안을 읽지 못했습니다.');

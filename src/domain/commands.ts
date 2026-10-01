@@ -11,6 +11,7 @@ function verifyLearningPlan(workspace: unknown, state: AppState) { try { validat
 import { validateCanvasLayout } from './canvas';
 import { materialContent, validateMaterialContent } from './study-material';
 import { codeContent, validateCodeContent } from './code-example';
+import { clozeNumbers, renderCloze } from './recall-cloze';
 import { newRecallMemory, recallOptions, recallPreview, serializeMemory, validateRecallCard, validateRecallOptions } from './recall-scheduler';
 
 const collections: EntityCollection[] = ['studyBoards', 'semesters', 'subjects', 'nodes', 'sessions', 'records', 'narratives', 'criteria', 'criteriaAssignments', 'memos', 'learningPlans', 'canvasLayouts', 'codeExamples', 'recallCards', 'recallPreferences', 'studyMaterials', 'memoryCards', 'memoryTests'];
@@ -151,8 +152,10 @@ export function assertState(state: AppState): void {
     validateRecallCard(row, state);
     if (!row.deletedAt && row.front === undefined) { if (recallTopics.has(row.topicId)) fail('DUPLICATE_RECALL', '주제의 복습 카드가 중복되어 있습니다.'); recallTopics.add(row.topicId); }
   }
-  if ((state.recallPreferences ?? []).filter(row => !row.deletedAt).length > 1) fail('DUPLICATE_RECALL', '복습 설정이 중복되어 있습니다.');
-  for (const row of state.recallPreferences ?? []) validateRecallOptions(row.options);
+  if ((state.recallPreferences ?? []).filter(row => !row.deletedAt && row.deckName === undefined).length > 1) fail('DUPLICATE_RECALL', '복습 설정이 중복되어 있습니다.');
+  for (const row of state.recallPreferences ?? []) { validateRecallOptions(row.options); if (row.deckName !== undefined && (typeof row.deckName !== 'string' || !row.deckName.trim() || row.deckName.length > 200)) fail('INVALID_RECALL', '덱 이름을 확인해 주세요.'); }
+  const sourceKeys = new Set<string>();
+  for (const row of state.recallCards ?? []) if (row.importSource) { if (sourceKeys.has(row.importSource.key)) fail('DUPLICATE_RECALL', 'Anki 원본 카드가 중복되어 있습니다.'); sourceKeys.add(row.importSource.key); }
   for (const row of state.memos ?? []) {
     validateMemoContent(row);
     if (row.recallCardId !== undefined && !(state.recallCards ?? []).some(card => card.id === row.recallCardId && card.topicId === row.ownerId)) fail('INVALID_MEMO', '답변 메모의 원래 카드 연결을 확인해 주세요.');
@@ -274,9 +277,54 @@ export function applyCommand(state: AppState, command: Command): AppState {
     case 'saveRecallPreferences': {
       validateRecallOptions(command.options);
       const old = next.recallPreferences?.find(row => row.id === command.id);
-      if (old) { find(next.recallPreferences!, old.id); expected(old, command.expectedVersion, command); }
+      if (old) { find(next.recallPreferences!, old.id); expected(old, command.expectedVersion, command); if ((old.deckName === undefined) !== (command.deckName === undefined)) fail('INVALID_RECALL', '기본 설정과 덱 설정을 서로 바꿀 수 없습니다.'); }
       else { if (command.expectedVersion !== 0) fail('VERSION_CONFLICT', '복습 설정의 수정 순서를 확인해 주세요.'); fresh(command.id); }
-      write('recallPreferences', { ...(old ?? common(command.id)), options: clone(command.options) }); break;
+      write('recallPreferences', { ...(old ?? common(command.id)), options: clone(command.options), ...(command.deckName !== undefined ? { deckName: command.deckName } : {}) }); break;
+    }
+    case 'setRecallCardStatus': {
+      const card = find(next.recallCards ?? [], command.id); expected(card, command.expectedVersion, command);
+      if (typeof command.suspended !== 'boolean') fail('INVALID_RECALL', '카드 상태를 확인해 주세요.');
+      if (command.deckId && !next.recallPreferences?.some(row => row.id === command.deckId && !row.deletedAt && row.deckName !== undefined)) fail('INVALID_RECALL', '카드의 덱을 확인해 주세요.');
+      write('recallCards', { ...card, deckId: command.deckId, suspended: command.suspended, clozeRemoved: false }); break;
+    }
+    case 'saveRecallCloze': {
+      const topic = find(next.nodes, command.topicId); targetSubject(next, topic.id);
+      if (topic.role !== 'topic' || typeof command.noteId !== 'string' || !command.noteId.trim()) fail('INVALID_CLOZE', '빈칸 카드의 공부 주제를 확인해 주세요.');
+      if (command.deckId && !next.recallPreferences?.some(row => row.id === command.deckId && !row.deletedAt && row.deckName !== undefined)) fail('INVALID_RECALL', '카드의 덱을 확인해 주세요.');
+      const numbers = clozeNumbers(command.source);
+      if (!numbers.length || !Array.isArray(command.cards) || command.cards.length > 999 || new Set(command.cards.map(row => row.id)).size !== command.cards.length || new Set(command.cards.map(row => row.number)).size !== command.cards.length) fail('INVALID_CLOZE', '빈칸을 {{c1::정답}}처럼 표시해 주세요.');
+      const oldCards = (next.recallCards ?? []).filter(row => row.cloze?.noteId === command.noteId);
+      if (oldCards.some(row => row.deletedAt || row.topicId !== topic.id || !command.cards.some(candidate => candidate.id === row.id && candidate.number === row.cloze!.number))) fail('VERSION_CONFLICT', '빈칸의 모든 카드를 다시 읽어 주세요. 현재 내용과 초안을 보존했습니다.');
+      if (numbers.some(number => !command.cards.some(row => row.number === number))) fail('INVALID_CLOZE', '생성할 빈칸 번호를 확인해 주세요.');
+      for (const item of command.cards) {
+        const old = oldCards.find(row => row.id === item.id);
+        if (old) expected(old, item.expectedVersion, command);
+        else { if (item.expectedVersion !== 0 || !numbers.includes(item.number)) fail('VERSION_CONFLICT', '빈칸 카드의 수정 순서를 확인해 주세요.'); fresh(item.id); }
+        const card = old ?? { ...common(item.id), topicId: topic.id, reference: '', memory: newRecallMemory(command.at), reviews: [] };
+        // A removed ordinal stays archived with its original prompt/history; adding it back restores the same ID.
+        write('recallCards', numbers.includes(item.number) ? { ...card, deckId: command.deckId, front: renderCloze(command.source, item.number), reference: command.reference, cloze: { noteId: command.noteId, source: command.source, number: item.number }, suspended: old?.suspended && !old.clozeRemoved || false, clozeRemoved: false } : { ...card, suspended: true, clozeRemoved: true });
+      }
+      break;
+    }
+    case 'importRecallCards': {
+      if (!Array.isArray(command.items) || !command.items.length || command.items.length > 100 || typeof command.updateUnedited !== 'boolean') fail('INVALID_IMPORT', '한 번에 가져올 카드 수를 확인해 주세요.');
+      for (const item of command.items) {
+        const source = item.source;
+        if (!source || typeof source.guid !== 'string' || !source.guid || source.guid.length > 200 || !Number.isSafeInteger(source.ordinal) || source.ordinal < 0 || source.ordinal > 998 || source.key !== `anki:${source.guid}:${source.ordinal}` || !Array.isArray(source.fields) || source.fields.some(field => typeof field.name !== 'string' || typeof field.value !== 'string') || ['deck', 'noteType', 'tags', 'questionTemplate', 'answerTemplate', 'originalFront', 'originalReference'].some(key => typeof (source as unknown as Record<string, unknown>)[key] !== 'string') || source.originalFront !== item.front || source.originalReference !== item.reference || JSON.stringify(source).length > 300000) fail('INVALID_IMPORT', 'Anki 카드의 원본과 표시 내용을 확인해 주세요.');
+        const old = (next.recallCards ?? []).find(row => row.importSource?.key === source.key);
+        if (old) {
+          const original = old.importSource!;
+          const unedited = old.front === original.originalFront && old.reference === original.originalReference && old.cloze?.source === original.originalCloze;
+          if (old.deletedAt || !!old.cloze !== !!item.cloze || !command.updateUnedited || !unedited || canonical(original) === canonical(source)) continue;
+          write('recallCards', { ...old, front: item.front, reference: item.reference, importSource: clone(source), ...(item.cloze ? { cloze: { ...item.cloze, noteId: old.cloze?.noteId ?? item.cloze.noteId } } : {}) });
+        } else {
+          const topic = find(next.nodes, item.topicId); targetSubject(next, topic.id);
+          if (topic.role !== 'topic') fail('INVALID_IMPORT', '가져올 카드의 공부 주제를 선택해 주세요.');
+          if (item.deckId && !next.recallPreferences?.some(row => row.id === item.deckId && !row.deletedAt && row.deckName !== undefined)) fail('INVALID_RECALL', '가져올 덱을 확인해 주세요.');
+          fresh(item.id); write('recallCards', { ...common(item.id), topicId: item.topicId, deckId: item.deckId, front: item.front, reference: item.reference, ...(item.cloze ? { cloze: clone(item.cloze) } : {}), importSource: clone(source), memory: newRecallMemory(command.at), reviews: [] });
+        }
+      }
+      break;
     }
     case 'undoRecallReview': {
       const card = find(next.recallCards ?? [], command.id); expected(card, command.expectedVersion, command);
@@ -296,7 +344,9 @@ export function applyCommand(state: AppState, command: Command): AppState {
       if (old) { find(next.recallCards!, old.id); expected(old, command.expectedVersion, command); if (old.topicId !== topic.id) fail('INVALID_RECALL', '복습 카드의 원래 주제를 보존해 주세요.'); }
       else { if (command.expectedVersion !== 0) fail('VERSION_CONFLICT', '복습 카드의 수정 순서를 확인해 주세요.'); fresh(command.id); }
       const card = old ?? { ...common(command.id), topicId: topic.id, reference: '', memory: newRecallMemory(command.at), reviews: [] };
-      if (command.type === 'saveRecallCard') write('recallCards', { ...card, front: command.front, reference: command.reference });
+      if (command.type === 'saveRecallCard' && card.cloze) fail('INVALID_CLOZE', '빈칸 문장은 빈칸 카드 편집에서 바꿔 주세요.');
+      if (command.type === 'reviewRecallCard' && card.suspended) fail('INVALID_RECALL', '보관한 카드는 복원한 뒤 평가해 주세요.');
+      if (command.type === 'saveRecallCard') write('recallCards', { ...card, front: command.front, reference: command.reference, deckId: command.deckId });
       else if (command.type === 'saveRecallReference') write('recallCards', { ...card, reference: command.reference });
       else if (command.type === 'setRecallDue') {
         if (typeof command.due !== 'string' || !Number.isFinite(Date.parse(command.due))) fail('INVALID_RECALL', '다음 복습 날짜를 확인해 주세요.');
@@ -313,7 +363,7 @@ export function applyCommand(state: AppState, command: Command): AppState {
           if (saved) { if (saved.deletedAt || saved.ownerId !== topic.id || saved.recallCardId !== undefined && saved.recallCardId !== card.id || saved.body !== command.memo.body || canonical(saved.strokes) !== canonical(command.memo.strokes)) fail('VERSION_CONFLICT', '답변 메모가 바뀌었습니다. 초안을 보존했습니다.'); }
           else { fresh(memoId); write('memos', { ...common(memoId), ownerId: topic.id, recallCardId: card.id, body: command.memo.body, strokes: clone(command.memo.strokes) }); }
         }
-        const options = recallOptions(next), memory = serializeMemory(recallPreview(card.memory, command.at, options, card.reviews)[command.rating].card);
+        const options = recallOptions(next, card.deckId), memory = serializeMemory(recallPreview(card.memory, command.at, options, card.reviews)[command.rating].card);
         const { manualDue: _manualDue, ...base } = card;
         write('recallCards', { ...base, memory, reviews: [...card.reviews, { id: command.opId, at: command.at, rating: command.rating, memoId, before: clone(card.memory), after: clone(memory), options: clone(options) }] });
       }

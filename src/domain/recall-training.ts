@@ -2,9 +2,9 @@ import type { AppState } from './model';
 import { recallPath } from './topic-recall';
 import { recallDay } from './recall-scheduler';
 /** Only actual, active review histories; each cross-day outcome becomes a training item. */
-export function recallTraining(data: AppState) {
+export function recallTraining(data: AppState, deckId?: string) {
   const allowed = new Set(data.nodes.filter(node => !node.deletedAt && node.role === 'topic' && recallPath(data.nodes, node.id).every(parent => !parent.deletedAt) && data.subjects.some(s => !s.deletedAt && s.id === node.subjectId)).map(node => node.id));
-  const cards = (data.recallCards ?? []).filter(card => !card.deletedAt && allowed.has(card.topicId));
+  const cards = (data.recallCards ?? []).filter(card => !card.deletedAt && allowed.has(card.topicId) && (deckId === undefined ? !card.deckId : card.deckId === deckId));
   const ratings: number[] = [], deltaTs: number[] = [], lengths: number[] = [];
   let reviews = 0;
   for (const card of cards) {

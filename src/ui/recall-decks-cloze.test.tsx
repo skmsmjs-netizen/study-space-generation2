@@ -1,0 +1,31 @@
+import { useState } from 'react';
+import { beforeEach, it, expect } from 'vitest';
+import { render, screen, fireEvent } from '@testing-library/react';
+import { TopicRecall } from './topic-recall';
+import { DemoRepository } from '../data/demo-repository';
+import { readRecall, writeRecall } from '../data/topic-recall';
+import { freshRecall } from '../domain/topic-recall';
+let repo: DemoRepository;
+function Harness() { const [data, setData] = useState(repo.getSnapshot()); return <TopicRecall data={data} repository={repo} onSaved={setData} subjectIds={data.subjects.map(s => s.id)} />; }
+beforeEach(() => { localStorage.clear(); repo = new DemoRepository(localStorage); writeRecall(repo.getSnapshot(), freshRecall()); });
+it('restores deck, unsaved settings and cloze drafts; registers siblings, rates one, and retains its memo after undo', () => {
+  let view = render(<Harness />);
+  fireEvent.click(screen.getByText('덱 만들기', { selector: 'summary' })); fireEvent.change(screen.getByRole('textbox', { name: '새 덱 이름' }), { target: { value: '과학 복습' } });
+  fireEvent.click(screen.getByRole('button', { name: '덱 만들기' }));
+  const deck = repo.getSnapshot().recallPreferences![0]; expect(readRecall(repo.getSnapshot()).deckId).toBe(deck.id);
+  fireEvent.click(screen.getByText('과학 복습 복습 설정'));
+  fireEvent.change(screen.getByRole('spinbutton', { name: '하루 새 카드 수' }), { target: { value: '3' } });
+  view.unmount(); view = render(<Harness />); fireEvent.click(screen.getByText('과학 복습 복습 설정'));
+  expect(screen.getByRole('spinbutton', { name: '하루 새 카드 수' })).toHaveValue(3); fireEvent.click(screen.getByRole('button', { name: '복습 설정 저장' }));
+  fireEvent.click(screen.getByText('질문 카드 만들기·수정')); fireEvent.change(screen.getByRole('combobox', { name: '카드 종류' }), { target: { value: 'cloze' } });
+  fireEvent.change(screen.getByRole('textbox', { name: '빈칸 문장' }), { target: { value: '{{c1::지구::행성}}는 {{c2::태양}} 주위를 돈다.' } });
+  view.unmount(); view = render(<Harness />); fireEvent.click(screen.getByText('질문 카드 만들기·수정'));
+  expect(screen.getByRole('textbox', { name: '빈칸 문장' })).toHaveValue('{{c1::지구::행성}}는 {{c2::태양}} 주위를 돈다.');
+  fireEvent.click(screen.getByRole('button', { name: '질문 카드 등록' }));
+  expect(repo.getSnapshot().recallCards).toHaveLength(2); expect(repo.getSnapshot().recallCards![0].deckId).toBe(deck.id); expect(repo.getSnapshot().recallPreferences![0].options.newPerDay).toBe(3); expect(screen.getByRole('heading', { name: '[행성]는 태양 주위를 돈다.' })).toBeInTheDocument();
+  fireEvent.click(screen.getByText('글로 쓰기')); fireEvent.change(screen.getByRole('textbox', { name: '글' }), { target: { value: '원본 답변\n유지' } });
+  fireEvent.click(screen.getByRole('button', { name: '설명 확인하고 평가' })); fireEvent.click(screen.getByRole('button', { name: /^쉬움/ }));
+  expect(repo.getSnapshot().recallCards![0].reviews[0].options.newPerDay).toBe(3);
+  fireEvent.click(screen.getByRole('button', { name: '마지막 평가 되돌리기' }));
+  expect(readRecall(repo.getSnapshot()).deckId).toBe(deck.id); expect(repo.getSnapshot().memos![0].body).toBe('원본 답변\n유지');
+});

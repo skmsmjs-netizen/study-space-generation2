@@ -5,13 +5,18 @@ export interface RecallDraft { memoId: string; body: string; strokes?: MemoStrok
 export interface RecallSession {
   version: 1; subjectId: string; unitId: string; currentId: string | null;
   mode?: 'scheduled' | 'random';
+  deckId?: string;
+  deckCreation?: { id: string; name: string };
+  settingsDrafts?: Record<string, { id: string; version: number; options: import('./model').RecallOptions; learning: string; relearning: string; name?: string }>;
+  pendingImport?: Extract<Command, { type: 'importRecallCards' }>;
+  importTarget?: { topicId: string; deckId: string; keepDecks: boolean; updateUnedited: boolean };
   skipped?: string[];
   studyDay?: string;
   pendingReview?: Extract<Command, { type: 'reviewRecallCard' }>;
-  lastReview?: { command: Extract<Command, { type: 'reviewRecallCard' }>; expectedVersion: number; subjectId?: string; unitId?: string; currentId?: string };
+  lastReview?: { command: Extract<Command, { type: 'reviewRecallCard' }>; expectedVersion: number; subjectId?: string; unitId?: string; currentId?: string; deckId?: string };
   pendingUndo?: Extract<Command, { type: 'undoRecallReview' }>;
   references?: Record<string, { body: string; cardId: string; expectedVersion: number }>;
-  registration?: { id: string; topicId: string; front: string; reference: string; expectedVersion?: number };
+  registration?: { id: string; topicId: string; front: string; reference: string; expectedVersion?: number; deckId?: string; kind?: 'basic' | 'cloze'; clozeCards?: { id: string; number: number; expectedVersion: number }[] };
   seen: string[]; round: number; drafts: Record<string, RecallDraft>;
 }
 export const freshRecall = (): RecallSession => ({ version: 1, mode: 'scheduled', subjectId: 'all', unitId: 'all', currentId: null, seen: [], round: 1, drafts: {} });

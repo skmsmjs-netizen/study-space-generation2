@@ -13,7 +13,7 @@ export interface CommandBackend {
   commit(userId: string, namespace: Namespace, base: number, command: Command, next: AppState): Promise<ServerSnapshot>;
 }
 const cors = { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': 'authorization, apikey, content-type, x-client-info', 'Access-Control-Allow-Methods': 'POST, OPTIONS', 'Cache-Control': 'no-store' };
-const supportedCommands = ['saveMemo', 'saveStudyBoard', 'saveMemoryCard', 'trashMemoryCard', 'restoreMemoryCard', 'saveMemoryTest', 'saveStudyMaterial', 'trashStudyMaterial', 'restoreStudyMaterial', 'saveLearningPlan', 'saveCanvasLayout', 'saveCodeExample', 'trashCodeExample', 'restoreCodeExample', 'saveRecallCard', 'saveRecallReference', 'reviewRecallCard', 'undoRecallReview', 'setRecallDue', 'saveRecallPreferences'];
+const supportedCommands = ['saveRecallCloze', 'importRecallCards', 'setRecallCardStatus', 'saveMemo', 'saveStudyBoard', 'saveMemoryCard', 'trashMemoryCard', 'restoreMemoryCard', 'saveMemoryTest', 'saveStudyMaterial', 'trashStudyMaterial', 'restoreStudyMaterial', 'saveLearningPlan', 'saveCanvasLayout', 'saveCodeExample', 'trashCodeExample', 'restoreCodeExample', 'saveRecallCard', 'saveRecallReference', 'reviewRecallCard', 'undoRecallReview', 'setRecallDue', 'saveRecallPreferences'];
 function json(body: unknown, status = 200) { return new Response(JSON.stringify(body), { status, headers: { ...cors, 'Content-Type': 'application/json' } }); }
 /** Commands, never client snapshots, cross this trust boundary. */
 export async function handleCommand(request: Request, backend: CommandBackend): Promise<Response> {

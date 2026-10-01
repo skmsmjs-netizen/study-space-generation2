@@ -73,3 +73,7 @@
 ## 일정 세부 보존
 
 approximate 기한은 anchorDate+days를 유지하며 오늘 기준으로 매번 미루지 않는다. available date/time, dueMeaning(출석/개인목표/시청/미정), 메모 필요 여부·수강/메모/출석 개수를 분리한다. 시험일 unknown/scheduled/none, previousDate, trackStart와 기기 prompted/drafts도 Import manifest에 포함한다.
+
+## 덱·빈칸·Anki 가져오기 선택 필드
+
+`recallPreferences.deckName`이 없는 기존 행은 기본 설정, 있는 행은 ID별 덱 설정입니다. `RecallOptions.burySiblings`가 없으면 형제 카드 미루기를 사용합니다. `recallCards.deckId`가 없는 기존 카드는 기본 덱에 남으며 `cloze`는 원문/노트ID/번호, `suspended`와 `clozeRemoved`는 수동 보관과 번호 삭제를 구별합니다. `importSource`는 GUID/ordinal 원본 키·필드·태그·템플릿과 최초 표시 내용을 보존합니다. 새 컬렉션이나 기존 ID/메모/이력의 이관은 없습니다. `saveRecallCloze`는 형제 전체 버전을 확인하고 `importRecallCards`는 요청마다 최대100개와 원본 키 중복을 확인합니다. 세부 보존과 한도는 [덱·빈칸·가져오기 계약](recall-decks-import.md)을 따릅니다.

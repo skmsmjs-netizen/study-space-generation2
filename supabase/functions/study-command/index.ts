@@ -2336,6 +2336,61 @@ function emptyState(userId, namespace) {
   return { schemaVersion: 1, userId, namespace, semesters: [], subjects: [], nodes: [], sessions: [], records: [], narratives: [], revisions: [], appliedOps: {} };
 }
 
+// src/domain/recall-cloze.ts
+function parse(source) {
+  if (typeof source !== "string" || source.length > 1e5) throw new DomainError("INVALID_CLOZE", "\uBE48\uCE78 \uBB38\uC7A5\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+  let pos = 0;
+  const read = (nested, depth) => {
+    if (depth > 8) throw new DomainError("INVALID_CLOZE", "\uACB9\uCE5C \uBE48\uCE78\uC740 \uC5EC\uB35F \uB2E8\uACC4\uAE4C\uC9C0 \uC0AC\uC6A9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.");
+    const parts = [];
+    let text2 = "";
+    while (pos < source.length) {
+      if (nested && source.startsWith("}}", pos)) break;
+      const match = source.startsWith("{{c", pos) && source.slice(pos).match(/^\{\{c(\d+(?:,\d+)*)::/);
+      if (match) {
+        if (text2) {
+          parts.push(text2);
+          text2 = "";
+        }
+        const numbers = [...new Set(match[1].split(",").map(Number))];
+        if (numbers.some((n) => !Number.isSafeInteger(n) || n < 1 || n > 999)) throw new DomainError("INVALID_CLOZE", "\uBE48\uCE78 \uBC88\uD638\uB294 1\uBD80\uD130 999\uAE4C\uC9C0 \uC0AC\uC6A9\uD574 \uC8FC\uC138\uC694.");
+        pos += match[0].length;
+        const body = read(true, depth + 1);
+        if (!source.startsWith("}}", pos)) throw new DomainError("INVALID_CLOZE", "\uBE48\uCE78\uC758 \uB05D\uC5D0 }}\uB97C \uBD99\uC5EC \uC8FC\uC138\uC694.");
+        pos += 2;
+        let hint = "";
+        const last = body.at(-1);
+        if (typeof last === "string" && last.includes("::")) {
+          const split = last.indexOf("::");
+          hint = last.slice(split + 2);
+          body[body.length - 1] = last.slice(0, split);
+        }
+        parts.push({ numbers, body, hint });
+      } else {
+        text2 += source[pos++];
+      }
+    }
+    if (text2) parts.push(text2);
+    return parts;
+  };
+  return read(false, 0);
+}
+function clozeNumbers(source) {
+  const numbers = /* @__PURE__ */ new Set();
+  const visit = (parts) => {
+    for (const p of parts) if (typeof p !== "string") {
+      p.numbers.forEach((n) => numbers.add(n));
+      visit(p.body);
+    }
+  };
+  visit(parse(source));
+  return [...numbers].sort((a, b) => a - b);
+}
+function renderCloze(source, number, revealed = false) {
+  const render = (parts) => parts.map((p) => typeof p === "string" ? p : !revealed && p.numbers.includes(number) ? `[${p.hint || "\u2026"}]` : render(p.body)).join("");
+  return render(parse(source));
+}
+
 // src/domain/recall-scheduler.ts
 var DEFAULT_RECALL_OPTIONS = { retention: 0.9, newPerDay: 20, learningMinutes: [1, 10], relearningMinutes: [10], maximumDays: 36500 };
 var RECALL_GRADES = [1, 2, 3, 4];
@@ -2344,6 +2399,7 @@ var invalid = () => {
 };
 var isDate = (v) => typeof v === "string" && Number.isFinite(Date.parse(v));
 function validateRecallOptions(options) {
+  if (options?.burySiblings !== void 0 && typeof options.burySiblings !== "boolean") invalid();
   if (options?.parameters !== void 0 && (!Array.isArray(options.parameters) || options.parameters.length !== 21 || options.parameters.some((v, i) => !Number.isFinite(v) || v < 0 || v > 100 || i < 4 && v < 1e-3 || i === 20 && (v < 0.1 || v > 0.8)))) invalid();
   if (options?.optimizedAt !== void 0 && !isDate(options.optimizedAt) || options?.optimizedReviews !== void 0 && (!Number.isSafeInteger(options.optimizedReviews) || options.optimizedReviews < 1)) invalid();
   if (!options || !Number.isFinite(options.retention) || options.retention < 0.7 || options.retention > 0.97 || !Number.isSafeInteger(options.newPerDay) || options.newPerDay < 0 || options.newPerDay > 9999 || !Number.isSafeInteger(options.maximumDays) || options.maximumDays < 1 || options.maximumDays > 36500) invalid();
@@ -2360,6 +2416,10 @@ function validateMemory(memory) {
   if (memory.difficulty > 10 || memory.lapses > memory.reps) invalid();
 }
 function validateRecallCard(card, state) {
+  if (card.deckId !== void 0 && !state.recallPreferences?.some((row) => row.id === card.deckId && row.deckName !== void 0)) invalid();
+  if (card.suspended !== void 0 && typeof card.suspended !== "boolean") invalid();
+  if (card.cloze && (typeof card.cloze.noteId !== "string" || !card.cloze.noteId || !Number.isSafeInteger(card.cloze.number) || !card.suspended && !clozeNumbers(card.cloze.source).includes(card.cloze.number))) invalid();
+  if (card.importSource && (typeof card.importSource.key !== "string" || !card.importSource.key || JSON.stringify(card.importSource).length > 3e5)) invalid();
   if (card.front !== void 0 && (typeof card.front !== "string" || !card.front.trim() || card.front.length > 1e5)) invalid();
   if (!state.nodes.some((node) => node.id === card.topicId && node.role === "topic") || typeof card.reference !== "string" || card.reference.length > 1e5 || !Array.isArray(card.reviews) || card.manualDue !== void 0 && !isDate(card.manualDue)) invalid();
   validateMemory(card.memory);
@@ -2372,8 +2432,11 @@ function validateRecallCard(card, state) {
     validateRecallOptions(review.options);
   }
 }
-function recallOptions(data) {
-  return data.recallPreferences?.find((row) => !row.deletedAt)?.options ?? DEFAULT_RECALL_OPTIONS;
+function recallPreference(data, deckId) {
+  return data.recallPreferences?.find((row) => !row.deletedAt && (deckId ? row.id === deckId && row.deckName !== void 0 : row.deckName === void 0));
+}
+function recallOptions(data, deckId) {
+  return recallPreference(data, deckId)?.options ?? recallPreference(data)?.options ?? DEFAULT_RECALL_OPTIONS;
 }
 function serializeMemory(card) {
   return { ...card, due: card.due.toISOString(), ...card.last_review ? { last_review: card.last_review.toISOString() } : {} };
@@ -3190,8 +3253,16 @@ function assertState(state) {
       recallTopics.add(row.topicId);
     }
   }
-  if ((state.recallPreferences ?? []).filter((row) => !row.deletedAt).length > 1) fail("DUPLICATE_RECALL", "\uBCF5\uC2B5 \uC124\uC815\uC774 \uC911\uBCF5\uB418\uC5B4 \uC788\uC2B5\uB2C8\uB2E4.");
-  for (const row of state.recallPreferences ?? []) validateRecallOptions(row.options);
+  if ((state.recallPreferences ?? []).filter((row) => !row.deletedAt && row.deckName === void 0).length > 1) fail("DUPLICATE_RECALL", "\uBCF5\uC2B5 \uC124\uC815\uC774 \uC911\uBCF5\uB418\uC5B4 \uC788\uC2B5\uB2C8\uB2E4.");
+  for (const row of state.recallPreferences ?? []) {
+    validateRecallOptions(row.options);
+    if (row.deckName !== void 0 && (typeof row.deckName !== "string" || !row.deckName.trim() || row.deckName.length > 200)) fail("INVALID_RECALL", "\uB371 \uC774\uB984\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+  }
+  const sourceKeys = /* @__PURE__ */ new Set();
+  for (const row of state.recallCards ?? []) if (row.importSource) {
+    if (sourceKeys.has(row.importSource.key)) fail("DUPLICATE_RECALL", "Anki \uC6D0\uBCF8 \uCE74\uB4DC\uAC00 \uC911\uBCF5\uB418\uC5B4 \uC788\uC2B5\uB2C8\uB2E4.");
+    sourceKeys.add(row.importSource.key);
+  }
   for (const row of state.memos ?? []) {
     validateMemoContent(row);
     if (row.recallCardId !== void 0 && !(state.recallCards ?? []).some((card) => card.id === row.recallCardId && card.topicId === row.ownerId)) fail("INVALID_MEMO", "\uB2F5\uBCC0 \uBA54\uBAA8\uC758 \uC6D0\uB798 \uCE74\uB4DC \uC5F0\uACB0\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
@@ -3344,11 +3415,64 @@ function applyCommand(state, command) {
       if (old) {
         find(next.recallPreferences, old.id);
         expected(old, command.expectedVersion, command);
+        if (old.deckName === void 0 !== (command.deckName === void 0)) fail("INVALID_RECALL", "\uAE30\uBCF8 \uC124\uC815\uACFC \uB371 \uC124\uC815\uC744 \uC11C\uB85C \uBC14\uAFC0 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
       } else {
         if (command.expectedVersion !== 0) fail("VERSION_CONFLICT", "\uBCF5\uC2B5 \uC124\uC815\uC758 \uC218\uC815 \uC21C\uC11C\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
         fresh(command.id);
       }
-      write("recallPreferences", { ...old ?? common(command.id), options: clone(command.options) });
+      write("recallPreferences", { ...old ?? common(command.id), options: clone(command.options), ...command.deckName !== void 0 ? { deckName: command.deckName } : {} });
+      break;
+    }
+    case "setRecallCardStatus": {
+      const card = find(next.recallCards ?? [], command.id);
+      expected(card, command.expectedVersion, command);
+      if (typeof command.suspended !== "boolean") fail("INVALID_RECALL", "\uCE74\uB4DC \uC0C1\uD0DC\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+      if (command.deckId && !next.recallPreferences?.some((row) => row.id === command.deckId && !row.deletedAt && row.deckName !== void 0)) fail("INVALID_RECALL", "\uCE74\uB4DC\uC758 \uB371\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+      write("recallCards", { ...card, deckId: command.deckId, suspended: command.suspended, clozeRemoved: false });
+      break;
+    }
+    case "saveRecallCloze": {
+      const topic = find(next.nodes, command.topicId);
+      targetSubject(next, topic.id);
+      if (topic.role !== "topic" || typeof command.noteId !== "string" || !command.noteId.trim()) fail("INVALID_CLOZE", "\uBE48\uCE78 \uCE74\uB4DC\uC758 \uACF5\uBD80 \uC8FC\uC81C\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+      if (command.deckId && !next.recallPreferences?.some((row) => row.id === command.deckId && !row.deletedAt && row.deckName !== void 0)) fail("INVALID_RECALL", "\uCE74\uB4DC\uC758 \uB371\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+      const numbers = clozeNumbers(command.source);
+      if (!numbers.length || !Array.isArray(command.cards) || command.cards.length > 999 || new Set(command.cards.map((row) => row.id)).size !== command.cards.length || new Set(command.cards.map((row) => row.number)).size !== command.cards.length) fail("INVALID_CLOZE", "\uBE48\uCE78\uC744 {{c1::\uC815\uB2F5}}\uCC98\uB7FC \uD45C\uC2DC\uD574 \uC8FC\uC138\uC694.");
+      const oldCards = (next.recallCards ?? []).filter((row) => row.cloze?.noteId === command.noteId);
+      if (oldCards.some((row) => row.deletedAt || row.topicId !== topic.id || !command.cards.some((candidate) => candidate.id === row.id && candidate.number === row.cloze.number))) fail("VERSION_CONFLICT", "\uBE48\uCE78\uC758 \uBAA8\uB4E0 \uCE74\uB4DC\uB97C \uB2E4\uC2DC \uC77D\uC5B4 \uC8FC\uC138\uC694. \uD604\uC7AC \uB0B4\uC6A9\uACFC \uCD08\uC548\uC744 \uBCF4\uC874\uD588\uC2B5\uB2C8\uB2E4.");
+      if (numbers.some((number) => !command.cards.some((row) => row.number === number))) fail("INVALID_CLOZE", "\uC0DD\uC131\uD560 \uBE48\uCE78 \uBC88\uD638\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+      for (const item of command.cards) {
+        const old = oldCards.find((row) => row.id === item.id);
+        if (old) expected(old, item.expectedVersion, command);
+        else {
+          if (item.expectedVersion !== 0 || !numbers.includes(item.number)) fail("VERSION_CONFLICT", "\uBE48\uCE78 \uCE74\uB4DC\uC758 \uC218\uC815 \uC21C\uC11C\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+          fresh(item.id);
+        }
+        const card = old ?? { ...common(item.id), topicId: topic.id, reference: "", memory: newRecallMemory(command.at), reviews: [] };
+        write("recallCards", numbers.includes(item.number) ? { ...card, deckId: command.deckId, front: renderCloze(command.source, item.number), reference: command.reference, cloze: { noteId: command.noteId, source: command.source, number: item.number }, suspended: old?.suspended && !old.clozeRemoved || false, clozeRemoved: false } : { ...card, suspended: true, clozeRemoved: true });
+      }
+      break;
+    }
+    case "importRecallCards": {
+      if (!Array.isArray(command.items) || !command.items.length || command.items.length > 100 || typeof command.updateUnedited !== "boolean") fail("INVALID_IMPORT", "\uD55C \uBC88\uC5D0 \uAC00\uC838\uC62C \uCE74\uB4DC \uC218\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+      for (const item of command.items) {
+        const source = item.source;
+        if (!source || typeof source.guid !== "string" || !source.guid || source.guid.length > 200 || !Number.isSafeInteger(source.ordinal) || source.ordinal < 0 || source.ordinal > 998 || source.key !== `anki:${source.guid}:${source.ordinal}` || !Array.isArray(source.fields) || source.fields.some((field) => typeof field.name !== "string" || typeof field.value !== "string") || ["deck", "noteType", "tags", "questionTemplate", "answerTemplate", "originalFront", "originalReference"].some((key) => typeof source[key] !== "string") || source.originalFront !== item.front || source.originalReference !== item.reference || JSON.stringify(source).length > 3e5) fail("INVALID_IMPORT", "Anki \uCE74\uB4DC\uC758 \uC6D0\uBCF8\uACFC \uD45C\uC2DC \uB0B4\uC6A9\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+        const old = (next.recallCards ?? []).find((row) => row.importSource?.key === source.key);
+        if (old) {
+          const original = old.importSource;
+          const unedited = old.front === original.originalFront && old.reference === original.originalReference && old.cloze?.source === original.originalCloze;
+          if (old.deletedAt || !!old.cloze !== !!item.cloze || !command.updateUnedited || !unedited || canonical2(original) === canonical2(source)) continue;
+          write("recallCards", { ...old, front: item.front, reference: item.reference, importSource: clone(source), ...item.cloze ? { cloze: { ...item.cloze, noteId: old.cloze?.noteId ?? item.cloze.noteId } } : {} });
+        } else {
+          const topic = find(next.nodes, item.topicId);
+          targetSubject(next, topic.id);
+          if (topic.role !== "topic") fail("INVALID_IMPORT", "\uAC00\uC838\uC62C \uCE74\uB4DC\uC758 \uACF5\uBD80 \uC8FC\uC81C\uB97C \uC120\uD0DD\uD574 \uC8FC\uC138\uC694.");
+          if (item.deckId && !next.recallPreferences?.some((row) => row.id === item.deckId && !row.deletedAt && row.deckName !== void 0)) fail("INVALID_RECALL", "\uAC00\uC838\uC62C \uB371\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+          fresh(item.id);
+          write("recallCards", { ...common(item.id), topicId: item.topicId, deckId: item.deckId, front: item.front, reference: item.reference, ...item.cloze ? { cloze: clone(item.cloze) } : {}, importSource: clone(source), memory: newRecallMemory(command.at), reviews: [] });
+        }
+      }
       break;
     }
     case "undoRecallReview": {
@@ -3379,7 +3503,9 @@ function applyCommand(state, command) {
         fresh(command.id);
       }
       const card = old ?? { ...common(command.id), topicId: topic.id, reference: "", memory: newRecallMemory(command.at), reviews: [] };
-      if (command.type === "saveRecallCard") write("recallCards", { ...card, front: command.front, reference: command.reference });
+      if (command.type === "saveRecallCard" && card.cloze) fail("INVALID_CLOZE", "\uBE48\uCE78 \uBB38\uC7A5\uC740 \uBE48\uCE78 \uCE74\uB4DC \uD3B8\uC9D1\uC5D0\uC11C \uBC14\uAFD4 \uC8FC\uC138\uC694.");
+      if (command.type === "reviewRecallCard" && card.suspended) fail("INVALID_RECALL", "\uBCF4\uAD00\uD55C \uCE74\uB4DC\uB294 \uBCF5\uC6D0\uD55C \uB4A4 \uD3C9\uAC00\uD574 \uC8FC\uC138\uC694.");
+      if (command.type === "saveRecallCard") write("recallCards", { ...card, front: command.front, reference: command.reference, deckId: command.deckId });
       else if (command.type === "saveRecallReference") write("recallCards", { ...card, reference: command.reference });
       else if (command.type === "setRecallDue") {
         if (typeof command.due !== "string" || !Number.isFinite(Date.parse(command.due))) fail("INVALID_RECALL", "\uB2E4\uC74C \uBCF5\uC2B5 \uB0A0\uC9DC\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
@@ -3400,7 +3526,7 @@ function applyCommand(state, command) {
             write("memos", { ...common(memoId), ownerId: topic.id, recallCardId: card.id, body: command.memo.body, strokes: clone(command.memo.strokes) });
           }
         }
-        const options = recallOptions(next), memory = serializeMemory(recallPreview(card.memory, command.at, options, card.reviews)[command.rating].card);
+        const options = recallOptions(next, card.deckId), memory = serializeMemory(recallPreview(card.memory, command.at, options, card.reviews)[command.rating].card);
         const { manualDue: _manualDue, ...base } = card;
         write("recallCards", { ...base, memory, reviews: [...card.reviews, { id: command.opId, at: command.at, rating: command.rating, memoId, before: clone(card.memory), after: clone(memory), options: clone(options) }] });
       }
@@ -3789,7 +3915,7 @@ function validateAccountName(value) {
 
 // src/server/command-handler.ts
 var cors = { "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Headers": "authorization, apikey, content-type, x-client-info", "Access-Control-Allow-Methods": "POST, OPTIONS", "Cache-Control": "no-store" };
-var supportedCommands = ["saveMemo", "saveStudyBoard", "saveMemoryCard", "trashMemoryCard", "restoreMemoryCard", "saveMemoryTest", "saveStudyMaterial", "trashStudyMaterial", "restoreStudyMaterial", "saveLearningPlan", "saveCanvasLayout", "saveCodeExample", "trashCodeExample", "restoreCodeExample", "saveRecallCard", "saveRecallReference", "reviewRecallCard", "undoRecallReview", "setRecallDue", "saveRecallPreferences"];
+var supportedCommands = ["saveRecallCloze", "importRecallCards", "setRecallCardStatus", "saveMemo", "saveStudyBoard", "saveMemoryCard", "trashMemoryCard", "restoreMemoryCard", "saveMemoryTest", "saveStudyMaterial", "trashStudyMaterial", "restoreStudyMaterial", "saveLearningPlan", "saveCanvasLayout", "saveCodeExample", "trashCodeExample", "restoreCodeExample", "saveRecallCard", "saveRecallReference", "reviewRecallCard", "undoRecallReview", "setRecallDue", "saveRecallPreferences"];
 function json(body, status = 200) {
   return new Response(JSON.stringify(body), { status, headers: { ...cors, "Content-Type": "application/json" } });
 }
