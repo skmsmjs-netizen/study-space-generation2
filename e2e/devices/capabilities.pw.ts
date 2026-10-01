@@ -9,6 +9,14 @@ test('microphone refusal and unavailable hardware preserve the manual notes path
     '이 버전에는 자료 화면이 없습니다.',
   );
   await page.addInitScript(() => {
+    // Exercise permission failures only when recording prerequisites exist.
+    // Linux WebKit may omit MediaRecorder; its unavailable path has a separate test.
+    if (typeof MediaRecorder === 'undefined') {
+      Object.defineProperty(globalThis, 'MediaRecorder', {
+        configurable: true,
+        value: class { static isTypeSupported() { return true; } },
+      });
+    }
     Object.defineProperty(navigator, 'mediaDevices', {
       configurable: true,
       value: {
