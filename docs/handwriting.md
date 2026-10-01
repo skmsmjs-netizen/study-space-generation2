@@ -6,7 +6,7 @@
 
 | 종류 | 채택 이유와 실제 연결 | 한계 |
 | --- | --- | --- |
-| Goodnotes의 제품 동작 | [부분/전체 지우개](https://support.goodnotes.com/hc/en-us/articles/7353718249231-Erase-handwriting-and-page-content-with-the-Eraser-tool), [선택·이동·크기 조절](https://support.goodnotes.com/hc/en-us/articles/7353695644175-Select-Move-and-Edit-Content-With-the-Lasso-Tool), [확대 입력](https://support.goodnotes.com/hc/en-us/articles/7353756826383-Write-with-the-Zoom-Window)을 참고하여 펜/지우개/선택, 부분 지우기 기본값, 페이지 추가, 확대/복귀를 연결 | 공식 산업 표준이나 학습 효과의 근거가 아니라 조작 참고 사례. 선택은 선 누르기·사각형·현재 쪽 전체 선택이다. 자유 모양 올가미, PDF 주석, 문자 인식, Goodnotes의 자동 진행 확대창은 구현하지 않음 |
+| Goodnotes의 제품 동작 | [부분/전체 지우개](https://support.goodnotes.com/hc/en-us/articles/7353718249231-Erase-handwriting-and-page-content-with-the-Eraser-tool), [선택·이동·크기 조절](https://support.goodnotes.com/hc/en-us/articles/7353695644175-Select-Move-and-Edit-Content-With-the-Lasso-Tool), [확대 입력](https://support.goodnotes.com/hc/en-us/articles/7353756826383-Write-with-the-Zoom-Window)을 참고하여 펜/지우개/선택, 부분 지우기 기본값, 페이지 추가, 확대/복귀를 연결 | 공식 산업 표준이나 학습 효과의 근거가 아니라 조작 참고 사례. 선 누르기·사각형·자유 모양 올가미·현재 쪽 전체 선택을 제공한다. Goodnotes의 자동 진행 확대창과 동일한 구현은 아니다. |
 | [Apple Pencil HIG](https://developer.apple.com/design/human-interface-guidelines/apple-pencil-and-scribble) | 펜 입력과 손가락 이동을 구별하고 그리는 동안 손바닥 접촉으로 종이가 이동하지 않도록 처리. 손가락 그리기는 선택 설정 | 웹 Pointer Events 범위. Pencil 이중 탭/쥐기와 OS 수준 손바닥 인식은 네이티브 API 연동이 아니며 물리 기기 미확인 |
 | [W3C Pointer Events 3](https://www.w3.org/TR/pointerevents3/) | pointer capture·pressure·coalesced samples, cancel/lost capture/페이지 숨김 시 현재 선 마무리 | 지원되는 이벤트를 사용하며 실제 iOS 지연·필압 품질은 별도 확인 |
 | [WCAG 2.2](https://www.w3.org/TR/WCAG22/) | 조작 이름, 기존 44px 버튼 토큰, 좁은 화면 줄바꿈, 드래그 외 선 누르기/쪽 전체 선택/이동·크기 버튼 제공 | 텍스트 답안 유지. 관련 확인을 제품 전체 접근성 준수로 확대하지 않음 |
@@ -31,4 +31,19 @@
 
 검증 자료는 `work/ink-goodnotes-20261001/`에 있다. 합성 65개 메모의 숨겨진 원문 검색/더 보기, 20쪽·2,000개 선의 현재 쪽 표시/다른 쪽 보존, 부분 지우기/되돌리기/설정 실패/취소/재접속, 로컬 PostgreSQL JSON 왕복과 중복 재시도를 확인한다. 실제 Browser에서는 두 쪽 작성·부분 지우기·선택 이동·정확한 선 복원·저장/재접속·390px 확대와 가로 넘침을 확인한다. WebKit 다섯 환경의 변경 관련 검사는 `npm run test:devices -- --grep 'ink pages|memo text'`로 반복한다.
 
-검사 수·실행 결과와 공유 의존성/병행 변경의 상태는 이번 작업의 `work/ink-goodnotes-20261001/README.md`와 최신 인계에 남긴다. 로컬 서버 합성 저장을 운영 서버·개인 계정·다기기 수신의 증거로 쓰지 않는다. 공개 배포와 물리 iPad/Pencil은 이번에 실행하지 않았다.
+검사 수·실행 결과와 공유 의존성/병행 변경의 상태는 이번 작업의 `work/ink-goodnotes-20261001/README.md`와 최신 인계에 남긴다. 위 근거는 첫 구현 단계의 기록이다. 이후 실제 서버·다기기 수신 확인은 아래에 구별해 남긴다. 물리 iPad/Pencil은 미확인이다.
+
+## 2026-10-01 남은 필기 기능 연결
+
+사용자 `다` 승인으로 자유 모양 올가미, 계정별 설정·보기·최근 되돌리기 동기화, PDF 주석과 원본 보관, 로컬 글자 인식을 연결했다. 이번 변경의 범위와 검증은 `work/ink-complete-20261001/`에 남긴다.
+
+- [PDF.js 공식 예제](https://mozilla.github.io/pdf.js/examples/)와 현재 설치된 6.3.289를 사용한다. 현재 쪽만 표시하고 쪽 전환/닫기 때 렌더링 작업·로딩 작업을 해제한다. 원본 파일은 기존 소유자별 IndexedDB 파일 저장과 비공개 `study-material-originals` 경로를 재사용한다. WebKit에서는 바이트 배열로 저장하며 기존 Blob 보관본도 읽는다. 읽기·업로드·다른 기기 다운로드에서 SHA256과 크기를 확인한다.
+- [pdf-lib PDFPage API](https://pdf-lib.js.org/docs/api/classes/pdfpage) 1.17.1로 별도 주석 PDF 복사본을 만든다. 원본 비율을 900×600 논리 종이에 맞추어 표시하고 같은 위치에 벡터 필기를 내보낸다. 기존 글·그림이 있으면 다음 쪽에 PDF를 붙인다. 원본 PDF bytes, 앱의 편집 가능한 필기·ID·수정 이력은 유지한다. 복사본은 시각 자료이며 원본 PDF의 대화형 양식·링크·전자서명 기능을 보존한다고 보장하지 않는다. 복사본은 한 번에 500쪽까지다. 암호 잠금 파일은 해제된 사본이 필요하다.
+- [Tesseract.js 공식 문서](https://github.com/naptha/tesseract.js) 7.0.0의 기기 내 `kor+eng` worker를 재사용한다. 언어 모델/worker는 앱과 같은 출처에서 제공하고 다운로드 해시를 확인한다. 필기 원본을 외부 OCR 서비스로 보내지 않는다. 현재 쪽의 필기만 이미지로 읽고 결과를 자동 적용하지 않는다. 사용자가 수정·확인한 글을 기존 본문 뒤에 넣으며 원본 필기는 유지한다. 검토 중 결과는 초안으로 남겨 재접속 때 복원하고 취소/닫기 경로를 제공한다. 인쇄 글 중심 엔진이므로 한국어 손글씨·수식 정확도는 보장하지 않는다.
+- 선택한 다각형 안의 선을 고르고, 오목한 영역을 가로지르는 성긴 선도 제외한다. 이동·확대/축소·복사·삭제는 기존 조작과 같은 되돌리기 경로를 쓴다.
+- `inkWorkspaces`는 기존 owner/namespace/버전/opId/원문 보존 journal과 서버 권한 검사를 사용한다. 설정은 계정별, 보기·최근 50번의 undo/redo는 문서별로 보관한다. 같은 값은 중복 저장하지 않는다. 다른 기기의 필기와 지문이 다른 이력은 적용하지 않고 보관한다. 오래된 편집 창의 설정 저장을 거부하며, 사용자가 현재 값을 선택할 때 다른 기기 값도 보관본에 남긴다. 쓰고 있는 종이·커서·선택을 서버 갱신마다 바꾸지 않으며 새로 열 때 수신한다. 로컬 보관·서버 수락·다른 기기 수신은 구별한다.
+- PDF 업로드 중 편집 창을 닫아도 성공한 원본 연결 정보를 해당 메모에 저장한다. 저장 실패 때 원본/필기와 재시도 버튼을 유지하고 같은 해시의 원본 파일을 다시 연결할 수 있다. 다른 PDF로 기존 주석의 원본을 바꾸지 않는다.
+
+다섯 WebKit 환경에서 필기/올가미·PDF·실제 OCR 실행과 결과 검토/재접속 15개 흐름을 통과했다. 운영 Auth/API의 별도 시험 계정 두 개와 같은 계정의 독립 WebKit 창에서 설정·정확한 필기·undo/redo·PDF 원본 바이트 수신, 타인 공간의 메모 비노출·명령 및 파일 읽기 거부를 확인했다. 이메일 확인·가입 승인은 시험 자료를 DB로 준비했으므로 실제 가입 메일/승인 화면의 증거가 아니다. 운영 함수 28과 소유권 guard의 현재 구현을 읽고 VM 격리 8검사 및 실제 저장 왕복으로 확인했다. 병행 작업이 이미 적용한 서버/소유권 guard를 다시 배포하거나 다른 기능을 덮어쓰지 않았다.
+
+최신 공개 코드와 합칠 때 공용 의존성과 UI 갱신·Sync batch 변경을 보존한다. 전체 CI와 실제 공개 결과는 완료 인계에 기록한다. 자동/브라우저 검사는 물리 Pencil의 필압·손바닥·한글 손글씨 정확도·학습 효과·장기 관찰의 근거가 아니다.

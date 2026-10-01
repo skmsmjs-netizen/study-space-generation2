@@ -1,7 +1,7 @@
 import type { StudyRepository } from './repository';
 import type { InkWorkspaceContent } from '../domain/ink-workspace';
 import { validateInkWorkspace } from '../domain/ink-workspace';
-import { archiveDamagedDraft } from './draft-safety';
+import { archiveDamagedDraft,storeDraftSafely } from './draft-safety';
 import { decodeStoredText } from './storage-codec';
 /** Uses the same owner checks, durable journal, operation receipts and conflicts as study records. */
 export function inkSync(repository: StudyRepository, notify?: () => void) {
@@ -21,6 +21,12 @@ export function inkSync(repository: StudyRepository, notify?: () => void) {
       if (raw && JSON.stringify(JSON.parse(decodeStoredText(raw))) !== JSON.stringify(row.content.value))
         archiveDamagedDraft(key, '다른 기기 필기 설정 수신 전 원문 보관');
       return structuredClone(row.content);
+    },
+    keepCurrentAfterReview(key: string | undefined) {
+      if (!key) return;
+      const row=repository.getSnapshot().inkWorkspaces?.find(r=>r.key===key && !r.deletedAt);
+      if (row) storeDraftSafely(`${key}:ink-remote-history:${row.version}`,JSON.stringify(row));
+      versions.set(key,row?.version ?? 0);
     },
     save(key: string | undefined, content: InkWorkspaceContent) {
       if (!key) return;

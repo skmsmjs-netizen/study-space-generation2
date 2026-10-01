@@ -1,3 +1,4 @@
+import pdfWorkerURL from 'pdfjs-dist/build/pdf.worker.min.mjs?url';
 import type { MemoStroke, MemoDocument, AppState } from '../domain/model';
 import { inkShape } from '../domain/ink-appearance';
 import { strokePage, inkPageCount } from '../domain/ink-editing';
@@ -12,7 +13,7 @@ export async function openInkPDF(owner:Pick<AppState,'userId'|'namespace'>,docum
  const blob=await readDocumentFile(owner,document.file);
  if(!blob) throw Error('이 기기의 PDF 원본을 찾지 못했습니다. 원본 PDF를 다시 선택해 주세요. 필기는 그대로 있습니다.');
  const pdfjs=await import('pdfjs-dist');
- pdfjs.GlobalWorkerOptions.workerSrc=new URL('pdfjs-dist/build/pdf.worker.min.mjs',import.meta.url).href;
+ pdfjs.GlobalWorkerOptions.workerSrc=pdfWorkerURL;
  const loading=pdfjs.getDocument({data:await blob.arrayBuffer()});
  try {const pdf=await loading.promise;if(pdf.numPages!==document.pages){await loading.destroy();throw Error('PDF 쪽 수가 원본과 다릅니다. 기존 필기를 보존했습니다.');} return { getPage: pdf.getPage.bind(pdf), destroy: () => loading.destroy() };}
  catch(e){await loading.destroy();throw e;}
@@ -21,7 +22,7 @@ export async function attachInkPDF(owner:Pick<AppState,'userId'|'namespace'>,fil
  if(!/\.pdf$/i.test(file.name)) throw Error('PDF 파일을 선택해 주세요.');
  const reference=await keepDocumentFile(owner,file);
  const pdfjs=await import('pdfjs-dist');
- pdfjs.GlobalWorkerOptions.workerSrc=new URL('pdfjs-dist/build/pdf.worker.min.mjs',import.meta.url).href;
+ pdfjs.GlobalWorkerOptions.workerSrc=pdfWorkerURL;
  const loading=pdfjs.getDocument({data:await file.arrayBuffer()});
  let pages:number;
  try {const pdf=await loading.promise;pages=pdf.numPages;} finally {await loading.destroy();}
@@ -44,6 +45,7 @@ export async function exportInkPDF(owner:Pick<AppState,'userId'|'namespace'>,str
  let source:Awaited<ReturnType<typeof PDFDocument.load>>|undefined;
  if(document){const blob=await readDocumentFile(owner,document.file);if(!blob)throw Error('원본 PDF를 찾지 못했습니다. 필기는 보존했습니다.');source=await PDFDocument.load(await blob.arrayBuffer());}
  const count=Math.max(blankPages,inkPageCount(strokes),document?document.startPage+document.pages:0);
+ if(count>500) throw Error('주석 PDF 복사본은 한 번에 500쪽까지 만들 수 있습니다. 원본 PDF와 전체 필기는 그대로 보관했습니다.');
  for(let index=0;index<count;index++) {
   const page=out.addPage([900,600]);
   if(source && document && index>=document.startPage && index<document.startPage+document.pages) {

@@ -113,6 +113,7 @@ export function MemoInkPad({
   const [selectionShape, setSelectionShape] = useState<'box' | 'lasso'>('box');
   const lassoPath = useRef<SVGPathElement>(null);
   const [error, setError] = useState(initial.error);
+  const [syncConflict,setSyncConflict] = useState(false);
   const damaged = useRef(Boolean(initial.error));
   const preferencesChanged = useRef(false);
   const svg = useRef<SVGSVGElement>(null),
@@ -162,10 +163,11 @@ export function MemoInkPad({
         fingerprint: inkFingerprint(current.current.strokes),
       });
       sync?.save(historyKey, {kind:'document', value:{...current.current.view, fingerprint:inkFingerprint(current.current.strokes)}});
-      setError('');
+      setError('');setSyncConflict(false);
     } catch (e) {
+      if (e && typeof e==='object' && 'code' in e && e.code==='VERSION_CONFLICT') setSyncConflict(true);
       setError(
-        e instanceof Error ? e.message + ' 작성 내용과 이력은 이 기기에 유지했습니다. 저장을 다시 시도해 주세요.' : '필기 설정과 되돌리기 이력을 저장하지 못했습니다. 작성 내용은 유지했습니다.',
+        e instanceof Error ? '필기 설정과 되돌리기 이력: ' + e.message + ' 작성 내용과 이력은 이 기기에 유지했습니다. 저장을 다시 시도해 주세요.' : '필기 설정과 되돌리기 이력을 저장하지 못했습니다. 작성 내용은 유지했습니다.',
       );
     }
   };
@@ -176,6 +178,7 @@ export function MemoInkPad({
   useEffect(() => { onPageChange?.(view.page); }, [view.page, onPageChange]);
   const changeView = (patch: Partial<InkWorkspace>) => {
     const next = { ...current.current.view, ...patch };
+    next.pages = Math.max(next.pages, minimumPages, inkPageCount(current.current.strokes), next.page + 1);
     current.current.view = next;
     setView(next);
     schedule();
@@ -438,6 +441,7 @@ export function MemoInkPad({
       viewport.current.scrollLeft = 0;
     }
   };
+  useEffect(() => { if (minimumPages > current.current.view.pages) changeView({pages:minimumPages}); }, [minimumPages]);
   const rectangle = box ?? bounds;
   const locked = disabled || drawing;
   return (
@@ -672,7 +676,7 @@ export function MemoInkPad({
           </div>
         </div>
       )}
-      {onRecognizedText && <InkOCR strokes={strokes} page={view.page} disabled={locked} onApply={onRecognizedText}/> }
+      {onRecognizedText && <InkOCR documentKey={documentKey} strokes={strokes} page={view.page} disabled={locked} onApply={onRecognizedText}/> }
       <details className="ink-pad-settings">
         <summary>필기 설정</summary>
         <Checkbox
@@ -712,6 +716,7 @@ export function MemoInkPad({
           >
             설정·이력 저장 다시 시도
           </Button>
+          {syncConflict && <><p>다른 기기의 설정·이력이 변경되었습니다. 현재 값으로 저장하면 다른 기기의 값도 보관본과 수정 이력에 남깁니다.</p><Button onClick={()=>{try{sync?.keepCurrentAfterReview(preferencesKey);sync?.keepCurrentAfterReview(historyKey);preferencesChanged.current=true;persist();}catch(e){setError(e instanceof Error?e.message:'다른 기기의 설정을 보관하지 못했습니다.');}}}>현재 설정·이력으로 다시 저장</Button></>}
         </div>
       )}
     </section>

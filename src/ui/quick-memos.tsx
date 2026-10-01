@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import { Button, EmptyState, ErrorState, Modal, Select, Textarea } from './index';
-import { isViewPage, isViewText, useViewContext } from './use-view-context';
 import type { AppState, Command, MemoStroke, QuickMemo } from '../domain/model';
 import { MEMO_WIDTH, MEMO_HEIGHT } from '../domain/memo';
 import { storagePrefix, type StudyRepository } from '../data/repository';
@@ -25,8 +24,8 @@ export function QuickMemos({ data, repository, onSaved, ownerId, memoId, compact
   const [editing, setEditing] = useState<string | null>(memoId ?? null);
   const [error, setError] = useState('');
   const view = `memos:${trash ? 'trash' : 'active'}:${ownerId ?? 'all'}`;
-  const [query, setQuery] = useViewContext(data, `${view}:query`, '', isViewText);
-  const [limit, setLimit] = useViewContext(data, `${view}:limit`, 40, isViewPage);
+  const [query,setQuery]=useState('');
+  const [limit,setLimit]=useState(40);
   const [trashId, setTrashId] = useState<string | null>(null);
   const [restored, setRestored] = useState<string | null>(null);
   const all = (data.memos ?? []).filter(memo => Boolean(memo.deletedAt) === trash && (ownerId === undefined || memo.ownerId === ownerId))
@@ -173,16 +172,25 @@ export function MemoEditor({ memo, data, repository, onSaved, onClose, onCopy, e
       setStatus('파일 저장 위치를 확인해 주세요');
     } catch { setError('파일을 만들지 못했습니다. 입력은 현재 창에 유지했습니다.'); }
   };
+  const finishPDFUpload = (synced:NonNullable<Content['document']>) => {
+    if(mounted.current) {update({...contentRef.current,document:synced});flush();return;}
+    const row=repository.getSnapshot().memos?.find(row=>row.id===memo.id);
+    if(!row || row.deletedAt || row.document?.file.sha256!==synced.file.sha256)return;
+    const next=repository.execute({type:'saveMemo',id:row.id,ownerId:row.ownerId,body:row.body,strokes:row.strokes,document:synced,expectedVersion:row.version,opId:crypto.randomUUID(),at:new Date().toISOString(),userId:data.userId,namespace:data.namespace});
+    callback.current(next);
+  };
   const attachPDF = async (file:File) => {
     finish();setPDFBusy(true);setError('');
-    try {const source=await attachInkPDF(data,file,contentRef.current.strokes.length ? inkPageCount(contentRef.current.strokes) : 0);
+    try {const existing=contentRef.current.document;
+      const source=await attachInkPDF(data,file,existing?.startPage ?? (contentRef.current.strokes.length ? inkPageCount(contentRef.current.strokes) : 0));
+      if(existing && existing.file.sha256!==source.file.sha256)throw Error('기존 PDF와 다른 파일입니다. 원본 PDF를 선택하거나 새 메모에 연결해 주세요. 기존 필기는 유지했습니다.');
       if(!mounted.current)return;
       update({...contentRef.current,document:source});pad.current?.goTo?.(source.startPage);
-      if(data.namespace==='personal') {const synced=await syncInkPDF(data,source);if(mounted.current){update({...contentRef.current,document:synced});flush();}}
+      if(data.namespace==='personal') {const synced=await syncInkPDF(data,source);finishPDFUpload(synced);}
     }catch(e){if(mounted.current)setError(errorMessage(e)+' 원본과 필기는 이 기기에 보관했습니다.');}
     finally{if(mounted.current)setPDFBusy(false);}
   };
-  const retryPDF=async()=>{const source=contentRef.current.document;if(!source)return;setPDFBusy(true);try{const synced=await syncInkPDF(data,source);if(mounted.current){update({...contentRef.current,document:synced});flush();setError('');}}catch(e){if(mounted.current)setError(errorMessage(e));}finally{if(mounted.current)setPDFBusy(false);}};
+  const retryPDF=async()=>{const source=contentRef.current.document;if(!source)return;setPDFBusy(true);try{const synced=await syncInkPDF(data,source);finishPDFUpload(synced);if(mounted.current)setError('');}catch(e){if(mounted.current)setError(errorMessage(e));}finally{if(mounted.current)setPDFBusy(false);}};
   const downloadPDF=async(original=false)=>{finish();setPDFBusy(true);try{
     if(original&&contentRef.current.document){const blob=await readDocumentFile(data,contentRef.current.document.file);if(!blob)throw Error('PDF 원본을 찾지 못했습니다.');downloadInkFile(blob,contentRef.current.document.file.name);}
     else {const bytes=await exportInkPDF(data,contentRef.current.strokes,contentRef.current.document);downloadInkFile(new Blob([bytes as BlobPart],{type:'application/pdf'}),`memo-${memo.id}-annotations.pdf`);}
@@ -192,7 +200,7 @@ export function MemoEditor({ memo, data, repository, onSaved, onClose, onCopy, e
       <input ref={documentInput} type="file" accept="application/pdf,.pdf" hidden aria-label="필기할 PDF 파일" onChange={e=>{const file=e.target.files?.[0];e.target.value='';if(file)void attachPDF(file);}}/>
       {!content.document && <Button disabled={isBlocked||pdfBusy} onClick={()=>documentInput.current?.click()}>PDF 위에 필기</Button>}
       <Button disabled={isBlocked||pdfBusy} onClick={()=>void downloadPDF()}>주석 PDF로 보관</Button>
-      {content.document && <><span>{content.document.file.name} · {content.document.pages}쪽</span><Button disabled={pdfBusy} onClick={()=>void downloadPDF(true)}>원본 PDF 보관</Button>
+      {content.document && <><Button disabled={pdfBusy||isBlocked} onClick={()=>documentInput.current?.click()}>PDF 원본 다시 연결</Button><span>{content.document.file.name} · {content.document.pages}쪽</span><Button disabled={pdfBusy} onClick={()=>void downloadPDF(true)}>원본 PDF 보관</Button>
         {data.namespace==='personal'&&!content.document.file.cloudPath&&<Button disabled={pdfBusy} onClick={()=>void retryPDF()}>PDF 서버 보관 다시 시도</Button>}</>}
       {pdfBusy&&<span role="status">PDF를 처리하고 있습니다…</span>}
     </div>
