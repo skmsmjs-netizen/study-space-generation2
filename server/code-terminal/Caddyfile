@@ -1,0 +1,11 @@
+{$TERMINAL_DOMAIN} {
+  handle /terminal {
+    reverse_proxy 127.0.0.1:8090
+  }
+  handle /health {
+    reverse_proxy 127.0.0.1:8090
+  }
+  handle {
+    respond "Not found" 404
+  }
+}

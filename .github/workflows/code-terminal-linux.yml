@@ -1,0 +1,30 @@
+name: Linux interactive terminal
+on:
+  workflow_dispatch:
+  push:
+    branches: [codex/online-code-terminal]
+    paths: ['server/code-terminal/**', '.github/workflows/code-terminal-linux.yml']
+permissions:
+  contents: read
+jobs:
+  terminal:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Install standard Linux isolation
+        run: sudo bash server/code-terminal/install-isolate.sh
+      - name: Check native compilers
+        run: |
+          gcc --version
+          g++ --version
+          dotnet --list-sdks
+          test -x /usr/bin/dotnet
+      - run: npm ci
+        working-directory: server/code-terminal
+      - name: Verify gateway and real isolated C, C++, Csharp
+        run: npm test && npm run test:linux
+        working-directory: server/code-terminal
