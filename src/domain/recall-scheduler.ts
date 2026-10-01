@@ -1,5 +1,5 @@
 import { createEmptyCard, fsrs, type Card, type StepUnit } from 'ts-fsrs';
-import { DomainError, type AppState, type OutlineNode, type RecallCard, type RecallMemory, type RecallOptions } from './model';
+import { DomainError, type AppState, type OutlineNode, type RecallCard, type RecallMemory, type RecallOptions, type RecallReview } from './model';
 
 export const DEFAULT_RECALL_OPTIONS: RecallOptions = { retention: 0.9, newPerDay: 20, learningMinutes: [1, 10], relearningMinutes: [10], maximumDays: 36500 };
 export const RECALL_GRADES = [1, 2, 3, 4] as const;
@@ -7,6 +7,8 @@ export const RECALL_LABELS = ['다시', '어려움', '알맞음', '쉬움'] as c
 const invalid = () => { throw new DomainError('INVALID_RECALL', '복습 설정과 카드의 저장 내용을 확인해 주세요. 원문은 변경하지 않았습니다.'); };
 const isDate = (v: unknown) => typeof v === 'string' && Number.isFinite(Date.parse(v));
 export function validateRecallOptions(options: RecallOptions) {
+  if (options?.parameters !== undefined && (!Array.isArray(options.parameters) || options.parameters.length !== 21 || options.parameters.some((v, i) => !Number.isFinite(v) || v < 0 || v > 100 || i < 4 && v < .001 || i === 20 && (v < .1 || v > .8)))) invalid();
+  if (options?.optimizedAt !== undefined && !isDate(options.optimizedAt) || options?.optimizedReviews !== undefined && (!Number.isSafeInteger(options.optimizedReviews) || options.optimizedReviews < 1)) invalid();
   if (!options || !Number.isFinite(options.retention) || options.retention < 0.7 || options.retention > 0.97
     || !Number.isSafeInteger(options.newPerDay) || options.newPerDay < 0 || options.newPerDay > 9999
     || !Number.isSafeInteger(options.maximumDays) || options.maximumDays < 1 || options.maximumDays > 36500) invalid();
@@ -24,6 +26,7 @@ function validateMemory(memory: RecallMemory) {
   if (memory.difficulty > 10 || memory.lapses > memory.reps) invalid();
 }
 export function validateRecallCard(card: RecallCard, state: AppState) {
+  if (card.front !== undefined && (typeof card.front !== 'string' || !card.front.trim() || card.front.length > 100000)) invalid();
   if (!state.nodes.some(node => node.id === card.topicId && node.role === 'topic') || typeof card.reference !== 'string' || card.reference.length > 100000
     || !Array.isArray(card.reviews) || card.manualDue !== undefined && !isDate(card.manualDue)) invalid();
   validateMemory(card.memory);
@@ -35,38 +38,54 @@ export function validateRecallCard(card: RecallCard, state: AppState) {
   }
 }
 export function recallOptions(data: AppState): RecallOptions { return data.recallPreferences?.find(row => !row.deletedAt)?.options ?? DEFAULT_RECALL_OPTIONS; }
-export function recallCard(data: AppState, topicId: string) { return data.recallCards?.find(row => !row.deletedAt && row.topicId === topicId); }
+export function recallCard(data: AppState, topicId: string) { return data.recallCards?.find(row => !row.deletedAt && row.topicId === topicId && row.front === undefined); }
 export function serializeMemory(card: Card): RecallMemory {
   return { ...card, due: card.due.toISOString(), ...(card.last_review ? { last_review: card.last_review.toISOString() } : {}) } as RecallMemory;
 }
 export function newRecallMemory(at: string) { return serializeMemory(createEmptyCard(at)); }
-export function recallPreview(memory: RecallMemory | undefined, at: string, options: RecallOptions) {
+export function recallPreview(memory: RecallMemory | undefined, at: string, options: RecallOptions, reviews: readonly RecallReview[] = []) {
   validateRecallOptions(options);
   const scheduler = fsrs({ request_retention: options.retention, maximum_interval: options.maximumDays,
-    learning_steps: options.learningMinutes.map(v => `${v}m` as StepUnit), relearning_steps: options.relearningMinutes.map(v => `${v}m` as StepUnit), enable_fuzz: false });
-  return scheduler.repeat(memory ?? newRecallMemory(at), at);
+    ...(options.parameters ? { w: options.parameters } : {}), learning_steps: options.learningMinutes.map(v => `${v}m` as StepUnit), relearning_steps: options.relearningMinutes.map(v => `${v}m` as StepUnit), enable_fuzz: false });
+  let current = memory ?? newRecallMemory(at);
+  if (options.parameters && reviews.length) {
+    let replayed = createEmptyCard(reviews[0].at);
+    for (const review of reviews) replayed = scheduler.next(replayed, review.at, review.rating).card;
+    // Apply trained memory state on the next answer, while retaining the already booked date and learning step.
+    current = { ...current, stability: replayed.stability, difficulty: replayed.difficulty };
+  }
+  return scheduler.repeat(current, at);
 }
 export function intervalLabel(due: Date, at: string) {
   const minutes = Math.max(1, Math.round((due.getTime() - Date.parse(at)) / 60000));
   return minutes < 60 ? `${minutes}분` : minutes < 1440 ? `${Math.round(minutes / 60)}시간` : `${Math.round(minutes / 1440)}일`;
 }
 export function recallDay(at: string) { const d = new Date(at); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; }
-export function recallQueue(data: AppState, topics: OutlineNode[], at: string, excluded: readonly string[] = []) {
+/** Legacy topic keys stay unchanged; custom questions use their own card identity. */
+export interface RecallPrompt extends OutlineNode { topicId?: string }
+export function recallPrompts(data: AppState, topics: OutlineNode[]): RecallPrompt[] {
+  return topics.flatMap(topic => [topic, ...(data.recallCards ?? []).filter(card => !card.deletedAt && card.topicId === topic.id && card.front !== undefined)
+    .map(card => ({ ...topic, id: card.id, topicId: topic.id, name: card.front! }))]);
+}
+export function promptCard(data: AppState, prompt: RecallPrompt) {
+  return prompt.topicId ? data.recallCards?.find(card => !card.deletedAt && card.id === prompt.id && card.topicId === prompt.topicId) : recallCard(data, prompt.id);
+}
+export function recallQueue(data: AppState, topics: RecallPrompt[], at: string, excluded: readonly string[] = []) {
   const options = recallOptions(data), end = new Date(at); end.setHours(23, 59, 59, 999);
   const today = recallDay(at);
   // Count first actual reviews across the whole account, rather than resetting with a filter.
   const introduced = (data.recallCards ?? []).filter(row => !row.deletedAt && row.reviews.length && recallDay(row.reviews[0].at) === today).length;
   const due = topics.filter(topic => {
-    const card = recallCard(data, topic.id);
+    const card = promptCard(data, topic);
     if (excluded.includes(topic.id) || !card || card.memory.state === 0 && !card.manualDue) return false;
     return Date.parse(card.manualDue ?? card.memory.due) <= (card.manualDue || card.memory.state !== 2 ? Date.parse(at) : end.getTime());
   }).sort((a, b) => {
-    const left = recallCard(data, a.id)!, right = recallCard(data, b.id)!;
+    const left = promptCard(data, a)!, right = promptCard(data, b)!;
     const learning = (card: RecallCard) => !card.manualDue && [1, 3].includes(card.memory.state) ? 0 : 1;
     return learning(left) - learning(right) || Date.parse(left.manualDue ?? left.memory.due) - Date.parse(right.manualDue ?? right.memory.due);
   });
-  const newTopics = topics.filter(topic => { const card = recallCard(data, topic.id); return !excluded.includes(topic.id) && (!card || card.memory.state === 0 && !card.manualDue); });
+  const newTopics = topics.filter(topic => { const card = promptCard(data, topic); return !excluded.includes(topic.id) && (!card || card.memory.state === 0 && !card.manualDue); });
   return { due, fresh: newTopics.slice(0, Math.max(0, options.newPerDay - introduced)), newRemaining: newTopics.length,
-    nextDue: topics.map(topic => recallCard(data, topic.id)).filter((card): card is RecallCard => !!card && (!!card.manualDue || card.memory.state !== 0))
+    nextDue: topics.map(topic => promptCard(data, topic)).filter((card): card is RecallCard => !!card && (!!card.manualDue || card.memory.state !== 0))
       .map(card => card.manualDue ?? card.memory.due).filter(d => Date.parse(d) > Date.parse(at)).sort()[0] };
 }

@@ -4,7 +4,8 @@ import { freshRecall, nextRecall, recallForDay, recallPath, recallTopics, type R
 import { readRecall, saveRecallMemo, writeRecall, type RecallRepository } from '../data/topic-recall';
 import { Button, Card, EmptyState, ErrorState, Select, Textarea } from './index';
 import { MemoInkPad } from './memo-ink-pad';
-import { intervalLabel, recallCard, recallOptions, recallPreview, recallQueue, RECALL_GRADES, RECALL_LABELS } from '../domain/recall-scheduler';
+import { intervalLabel, promptCard, recallPrompts, recallOptions, recallPreview, recallQueue, RECALL_GRADES, RECALL_LABELS } from '../domain/recall-scheduler';
+import { RecallCardEditor } from './recall-card-editor';
 import { RecallSettings } from './recall-settings';
 import { Input } from './index';
 import './topic-recall.css';
@@ -26,7 +27,8 @@ export function TopicRecall({ data, repository, onSaved, subjectIds }: Props) {
   const scheduled = session.mode === 'scheduled';
   const schedulingReady = !repository.getCapabilities || repository.getCapabilities().includes('reviewRecallCard');
   useEffect(() => { const timer = window.setInterval(() => setNow(new Date().toISOString()), 15000); return () => window.clearInterval(timer); }, []);
-  const topics = recallTopics(data, subjectIds, session);
+  const sourceTopics = recallTopics(data, subjectIds, session);
+  const topics = recallPrompts(data, sourceTopics);
   const queue = recallQueue(data, topics, now, recallForDay(session, now).skipped);
   const available = [...queue.due, ...queue.fresh];
   const topic = topics.find(row => row.id === session.currentId);
@@ -38,11 +40,12 @@ export function TopicRecall({ data, repository, onSaved, subjectIds }: Props) {
     try { writeRecall(data, next); setSession(next); setError(''); return true; }
     catch (error) { setError(`${message(error)} 전환을 멈췄습니다. 입력한 글은 이 화면에 남아 있습니다.`); return false; }
   };
-  const card = topic ? recallCard(data, topic.id) : undefined;
+  const card = topic ? promptCard(data, topic) : undefined;
+  const ownerId = topic?.topicId ?? topic?.id;
   const nextSession = (current: RecallSession, snapshot = data): RecallSession => {
-    if (current.mode !== 'scheduled') return nextRecall(current, recallTopics(snapshot, subjectIds, current));
+    if (current.mode !== 'scheduled') return nextRecall(current, recallPrompts(snapshot, recallTopics(snapshot, subjectIds, current)));
     const at = new Date().toISOString(); current = recallForDay(current, at);
-    const pool = recallTopics(snapshot, subjectIds, current), q = recallQueue(snapshot, pool, at, current.skipped);
+    const pool = recallPrompts(snapshot, recallTopics(snapshot, subjectIds, current)), q = recallQueue(snapshot, pool, at, current.skipped);
     const seen = [...new Set([...current.seen, ...(current.currentId ? [current.currentId] : [])])];
     // Due learning cards may return when their step expires; skipped cards return the next day.
     const ready = [...q.due, ...q.fresh].filter(row => !(current.skipped ?? []).includes(row.id) && (!seen.includes(row.id) || q.due.includes(row)));
@@ -81,7 +84,7 @@ export function TopicRecall({ data, repository, onSaved, subjectIds }: Props) {
       if (save && draft) {
         const savedDraft = separate ? { ...draft, memoId: crypto.randomUUID() } : draft;
         if (separate) { next = { ...session, drafts: { ...session.drafts, [topic.id]: savedDraft } }; if (!persist(next)) return; }
-        const saved = saveRecallMemo(repository, topic.id, savedDraft); onSaved(saved); snapshot = saved;
+        const saved = saveRecallMemo(repository, ownerId!, savedDraft, card?.id); onSaved(saved); snapshot = saved;
         const drafts = { ...next.drafts }; delete drafts[topic.id]; next = { ...next, drafts };
       }
       if (scheduled) { next = recallForDay(next, new Date().toISOString()); next = { ...next, skipped: [...new Set([...(next.skipped ?? []), topic.id])] }; }
@@ -95,14 +98,14 @@ export function TopicRecall({ data, repository, onSaved, subjectIds }: Props) {
     if (!topic || composition.current || drawing || session.pendingUndo || !schedulingReady) return;
     try {
       const snapshot = repository.getSnapshot();
-      const command = session.pendingReview ?? { type: 'reviewRecallCard' as const, id: card?.id ?? crypto.randomUUID(), topicId: topic.id,
+      const command = session.pendingReview ?? { type: 'reviewRecallCard' as const, id: card?.id ?? crypto.randomUUID(), topicId: ownerId!,
         expectedVersion: card?.version ?? 0, rating, ...(hasAnswer && draft ? { memo: { id: draft.memoId, body: draft.body, strokes: draft.strokes ?? [] } } : {}),
         opId: crypto.randomUUID(), at: now, userId: snapshot.userId, namespace: snapshot.namespace };
       const pending = { ...session, pendingReview: command }; if (!persist(pending)) return;
       const saved = repository.execute(command); onSaved(saved);
       const drafts = { ...session.drafts }; delete drafts[topic.id];
       const expectedVersion = saved.recallCards!.find(row => row.id === command.id)!.version;
-      if (persist(nextSession({ ...pending, drafts, lastReview: { command, expectedVersion, subjectId: session.subjectId, unitId: session.unitId } }, saved))) { setRevealedId(null); setNow(new Date().toISOString()); setNotice('설명과 자기 평가를 저장하고 다음 복습을 예약했습니다.'); }
+      if (persist(nextSession({ ...pending, drafts, lastReview: { command, expectedVersion, subjectId: session.subjectId, unitId: session.unitId, currentId: topic.id } }, saved))) { setRevealedId(null); setNow(new Date().toISOString()); setNotice('설명과 자기 평가를 저장하고 다음 복습을 예약했습니다.'); }
     } catch (e) { setError(message(e)); }
   };
   const undoReview = () => {
@@ -113,12 +116,12 @@ export function TopicRecall({ data, repository, onSaved, subjectIds }: Props) {
         expectedVersion: last.expectedVersion, opId: crypto.randomUUID(), at: new Date().toISOString(), userId: snapshot.userId, namespace: snapshot.namespace };
       if (!persist({ ...session, pendingUndo: command })) return;
       const saved = repository.execute(command); onSaved(saved);
-      const drafts = { ...session.drafts };
-      if (last.command.memo && !drafts[last.command.topicId]) drafts[last.command.topicId] = { memoId: last.command.memo.id, body: last.command.memo.body, strokes: last.command.memo.strokes };
-      const restored = recallForDay({ ...session, mode: 'scheduled', subjectId: last.subjectId ?? 'all', unitId: last.unitId ?? 'all', currentId: last.command.topicId, drafts,
-        seen: session.seen.filter(id => id !== last.command.topicId), skipped: session.skipped?.filter(id => id !== last.command.topicId),
+      const drafts = { ...session.drafts }, restoredId = last.currentId ?? last.command.topicId;
+      if (last.command.memo && !drafts[restoredId]) drafts[restoredId] = { memoId: last.command.memo.id, body: last.command.memo.body, strokes: last.command.memo.strokes };
+      const restored = recallForDay({ ...session, mode: 'scheduled', subjectId: last.subjectId ?? 'all', unitId: last.unitId ?? 'all', currentId: restoredId, drafts,
+        seen: session.seen.filter(id => id !== restoredId), skipped: session.skipped?.filter(id => id !== restoredId),
         lastReview: undefined, pendingUndo: undefined }, new Date().toISOString());
-      if (persist(restored)) { setRevealedId(last.command.topicId); setNow(new Date().toISOString()); setNotice('평가와 복습 날짜를 되돌렸습니다. 저장한 답변 메모는 그대로 남아 있습니다.'); }
+      if (persist(restored)) { setRevealedId(restoredId); setNow(new Date().toISOString()); setNotice('평가와 복습 날짜를 되돌렸습니다. 저장한 답변 메모는 그대로 남아 있습니다.'); }
     } catch (e) { setError(message(e)); }
   };
   const saveReference = () => {
@@ -126,8 +129,8 @@ export function TopicRecall({ data, repository, onSaved, subjectIds }: Props) {
     try {
       const reference = session.references?.[topic.id]; if (!reference) return;
       const snapshot = repository.getSnapshot();
-      const existing = recallCard(snapshot, topic.id);
-      const saved = existing?.id === reference.cardId && existing.reference === reference.body ? snapshot : repository.execute({ type: 'saveRecallReference', id: reference.cardId, topicId: topic.id, reference: reference.body, expectedVersion: reference.expectedVersion,
+      const existing = promptCard(snapshot, topic);
+      const saved = existing?.id === reference.cardId && existing.reference === reference.body ? snapshot : repository.execute({ type: 'saveRecallReference', id: reference.cardId, topicId: ownerId!, reference: reference.body, expectedVersion: reference.expectedVersion,
         opId: crypto.randomUUID(), at: new Date().toISOString(), userId: snapshot.userId, namespace: snapshot.namespace });
       onSaved(saved); const references = { ...session.references }; delete references[topic.id]; persist({ ...session, references }); setNotice('참고 설명을 저장했습니다.');
     } catch (e) { setError(message(e)); }
@@ -136,25 +139,25 @@ export function TopicRecall({ data, repository, onSaved, subjectIds }: Props) {
     if (!topic || blocked || !schedulingReady || !dueDate) return;
     try {
       const due = new Date(`${dueDate}T00:00:00`); if (!Number.isFinite(due.getTime())) throw new Error('복습 날짜를 확인해 주세요.');
-      const snapshot = repository.getSnapshot(), existing = recallCard(snapshot, topic.id);
-      const saved = repository.execute({ type: 'setRecallDue', id: existing?.id ?? crypto.randomUUID(), topicId: topic.id, expectedVersion: existing?.version ?? 0, due: due.toISOString(),
+      const snapshot = repository.getSnapshot(), existing = promptCard(snapshot, topic);
+      const saved = repository.execute({ type: 'setRecallDue', id: existing?.id ?? crypto.randomUUID(), topicId: ownerId!, expectedVersion: existing?.version ?? 0, due: due.toISOString(),
         opId: crypto.randomUUID(), at: new Date().toISOString(), userId: snapshot.userId, namespace: snapshot.namespace });
       onSaved(saved); persist(nextSession(session, saved)); setNotice('선택한 날짜로 복습을 예약했습니다. 자기 평가 기록은 추가하지 않았습니다.'); setDueDate('');
     } catch (e) { setError(message(e)); }
   };
-  const preview = topic ? recallPreview(card?.memory, now, recallOptions(data)) : null;
+  const preview = topic ? recallPreview(card?.memory, now, recallOptions(data), card?.reviews) : null;
   if (loaded.error) return <ErrorState title="주제 카드 초안을 열지 못했습니다" message={loaded.error} onRetry={() => {
     try { const recovered = readRecall(data); setSession(recovered); setLoaded({ session: recovered, error: '' }); }
     catch (error) { setLoaded(value => ({ ...value, error: message(error) })); }
   }} />;
-  const prior = topic ? (data.memos ?? []).filter(memo => !memo.deletedAt && memo.ownerId === topic.id && memo.id !== draft?.memoId)
+  const prior = topic ? (data.memos ?? []).filter(memo => !memo.deletedAt && memo.ownerId === ownerId && memo.id !== draft?.memoId && (topic.topicId ? memo.recallCardId === card?.id || card?.reviews.some(review => review.memoId === memo.id) : !memo.recallCardId || memo.recallCardId === card?.id))
     .slice().sort((a, b) => b.createdAt.localeCompare(a.createdAt)) : [];
   return <section className="topic-recall" aria-label="주제 카드로 설명하기">
 
     <div className="recall-mode actions">
       <Button disabled={blocked} aria-pressed={scheduled} onClick={() => { persist(nextSession({ ...session, mode: 'scheduled', currentId: null, seen: [], skipped: [] })); setRevealedId(null); }}>예약 복습</Button>
       <Button disabled={blocked} aria-pressed={!scheduled} onClick={() => { persist(nextSession({ ...session, mode: 'random', currentId: null, seen: [], skipped: [] })); setRevealedId(null); }}>무작위 연습</Button>
-      {scheduled && <span className="muted">복습 {queue.due.length} · 새 주제 {queue.fresh.length}</span>}
+      {scheduled && <span className="muted">복습 {queue.due.length} · 새 카드 {queue.fresh.length}</span>}
     </div>
     {session.lastReview && <div className="actions"><Button disabled={composing || drawing || !!session.pendingReview || !!repository.getCapabilities && !repository.getCapabilities().includes('undoRecallReview')} onClick={undoReview}>
       {session.pendingUndo ? '평가 되돌리기 다시 시도' : '마지막 평가 되돌리기'}</Button><span className="muted">답변 메모는 보존합니다.</span>
@@ -172,9 +175,10 @@ export function TopicRecall({ data, repository, onSaved, subjectIds }: Props) {
         {!units.some(row => row.id === session.unitId) && session.unitId !== 'all' && <option value={session.unitId}>범위 밖 단원 · 다른 단원을 골라 주세요</option>}
       </Select>
     </div>
+    <RecallCardEditor data={data} topics={sourceTopics} repository={repository} session={session} persist={persist} onSaved={onSaved} disabled={blocked || !!repository.getCapabilities && !repository.getCapabilities().includes('saveRecallCard')} />
     {topic ? <>
       <Card className="recall-topic" aria-label="현재 주제 카드">
-        <p className="muted recall-path">{[subjects.find(row => row.id === topic.subjectId)?.name, ...recallPath(data.nodes, topic.id).slice(0, -1).map(row => row.name)].filter(Boolean).join(' / ')}</p>
+        <p className="muted recall-path">{[subjects.find(row => row.id === topic.subjectId)?.name, ...recallPath(data.nodes, ownerId!).slice(0, topic.topicId ? undefined : -1).map(row => row.name)].filter(Boolean).join(' / ')}</p>
         <div className="recall-topic-heading">
           <h2>{topic.name}</h2>
           <span className="recall-progress" aria-label={`전체 ${topics.length}개 중 ${Math.min(topics.length, session.seen.filter(id => topics.some(row => row.id === id)).length + 1)}번째 주제`}>{Math.min(topics.length, session.seen.filter(id => topics.some(row => row.id === id)).length + 1)} / {topics.length}</span>
@@ -213,7 +217,7 @@ export function TopicRecall({ data, repository, onSaved, subjectIds }: Props) {
           disabled={drawing || !!session.pendingReview || !!session.pendingUndo || !schedulingReady} onCompositionStart={() => { composition.current = true; setComposing(true); }} onCompositionEnd={() => { composition.current = false; setComposing(false); }}
           onChange={e => { const old = session.references?.[topic.id]; const next = { ...session, references: { ...session.references, [topic.id]: { body: e.target.value, cardId: old?.cardId ?? card?.id ?? crypto.randomUUID(), expectedVersion: old?.expectedVersion ?? card?.version ?? 0 } } }; setSession(next); persist(next); }} />
         <Button disabled={blocked || !schedulingReady || !session.references?.[topic.id]} onClick={saveReference}>참고 설명 저장</Button>
-        <p className="muted">주제 이름이 카드 앞면이고, 입력한 참고 설명은 확인할 때 보입니다. 이전 답변 메모는 그대로 남습니다.</p>
+        <p className="muted">질문이나 주제 이름이 앞면에 표시되고, 참고 설명은 확인할 때 보입니다. 이전 답변 메모는 그대로 남습니다.</p>
         <div className="recall-due-field"><Input label="다음 복습 날짜" type="date" value={dueDate} onChange={e => setDueDate(e.target.value)} /><Button disabled={blocked || !schedulingReady || !dueDate} onClick={setDue}>날짜 지정</Button></div>
         {card && (card.memory.state === 0 && !card.manualDue ? <p className="muted">새 주제 · 아직 자기 평가를 남기지 않았습니다.</p> : <p className="muted">다음 복습: {new Date(card.manualDue ?? card.memory.due).toLocaleString('ko-KR')} · 자기 평가 {card.reviews.length}회</p>)}
         {!!card?.reviews.length && <details><summary>자기 평가 기록</summary>{[...card.reviews].reverse().map(row => <p key={row.id}>{new Date(row.at).toLocaleString('ko-KR')} · {RECALL_LABELS[row.rating - 1]} · 다음 {new Date(row.after.due).toLocaleString('ko-KR')}{row.memoId && <> · <a href={`#/memos/${row.memoId}`}>답변 메모</a></>}</p>)}</details>}
@@ -226,6 +230,6 @@ export function TopicRecall({ data, repository, onSaved, subjectIds }: Props) {
     {error && <div role="alert"><p>{error}</p><div className="actions"><Button onClick={() => persist(session)}>초안 저장 다시 시도</Button>{topic && hasAnswer && <Button onClick={() => advance(true, true)}>별도 메모로 저장 후 다음</Button>}</div></div>}
     {notice && <p role="status">{notice}</p>}
     <RecallSettings data={data} repository={repository} onSaved={onSaved} disabled={blocked || !schedulingReady} />
-    <details className="recall-note"><summary>사용 안내</summary><p className="muted">{session.round}회차 · 예약 복습은 예정된 주제와 하루 새 주제를 보여 주고, 무작위 연습은 주제를 한 번씩 섞어 보여 줍니다. 자기 평가는 복습 간격만 정합니다. 글과 그림은 이 기기의 초안에 남고, 저장하면 현재 주제의 메모가 됩니다. 저장하거나 건너뛰어도 공부 완료·정답으로 집계하지 않습니다.</p></details>
+    <details className="recall-note"><summary>사용 안내</summary><p className="muted">{session.round}회차 · 예약 복습은 예정된 주제와 하루 새 카드를 보여 주고, 무작위 연습은 주제를 한 번씩 섞어 보여 줍니다. 자기 평가는 복습 간격만 정합니다. 글과 그림은 이 기기의 초안에 남고, 저장하면 현재 주제의 메모가 됩니다. 저장하거나 건너뛰어도 공부 완료·정답으로 집계하지 않습니다.</p></details>
   </section>;
 }

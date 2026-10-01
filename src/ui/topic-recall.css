@@ -55,3 +55,6 @@
 .recall-settings-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-3); }
 .recall-due-field { display: flex; align-items: end; flex-wrap: wrap; gap: var(--space-3); }
 @media (max-width: 600px) { .recall-settings-fields { grid-template-columns: 1fr; } .recall-grade-buttons { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+.recall-card-settings article p { white-space: pre-wrap; overflow-wrap: anywhere; }
+.recall-optimization { margin-block-start: var(--space-5); }

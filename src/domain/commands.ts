@@ -131,12 +131,13 @@ export function assertState(state: AppState): void {
   for (const row of state.codeExamples ?? []) validateCodeContent(row);
   for (const row of state.recallCards ?? []) {
     validateRecallCard(row, state);
-    if (!row.deletedAt) { if (recallTopics.has(row.topicId)) fail('DUPLICATE_RECALL', '주제의 복습 카드가 중복되어 있습니다.'); recallTopics.add(row.topicId); }
+    if (!row.deletedAt && row.front === undefined) { if (recallTopics.has(row.topicId)) fail('DUPLICATE_RECALL', '주제의 복습 카드가 중복되어 있습니다.'); recallTopics.add(row.topicId); }
   }
   if ((state.recallPreferences ?? []).filter(row => !row.deletedAt).length > 1) fail('DUPLICATE_RECALL', '복습 설정이 중복되어 있습니다.');
   for (const row of state.recallPreferences ?? []) validateRecallOptions(row.options);
   for (const row of state.memos ?? []) {
     validateMemoContent(row);
+    if (row.recallCardId !== undefined && !(state.recallCards ?? []).some(card => card.id === row.recallCardId && card.topicId === row.ownerId)) fail('INVALID_MEMO', '답변 메모의 원래 카드 연결을 확인해 주세요.');
     if (row.ownerId !== null && !subjectIds.has(row.ownerId) && !nodeIndex.has(row.ownerId)) fail('NOT_FOUND', '메모의 원래 연결 대상을 찾을 수 없습니다.');
   }
   for (const row of state.narratives) {
@@ -229,14 +230,15 @@ export function applyCommand(state: AppState, command: Command): AppState {
       write('recallCards', restored ?? { ...card, memory: clone(review.before), reviews: card.reviews.slice(0, -1) }, revision.id);
       break;
     }
-    case 'saveRecallReference': case 'setRecallDue': case 'reviewRecallCard': {
+    case 'saveRecallCard': case 'saveRecallReference': case 'setRecallDue': case 'reviewRecallCard': {
       const topic = find(next.nodes, command.topicId); targetSubject(next, topic.id);
       if (topic.role !== 'topic') fail('INVALID_RECALL', '복습 카드는 공부 주제에 연결해 주세요.');
       const old = next.recallCards?.find(row => row.id === command.id);
       if (old) { find(next.recallCards!, old.id); expected(old, command.expectedVersion, command); if (old.topicId !== topic.id) fail('INVALID_RECALL', '복습 카드의 원래 주제를 보존해 주세요.'); }
       else { if (command.expectedVersion !== 0) fail('VERSION_CONFLICT', '복습 카드의 수정 순서를 확인해 주세요.'); fresh(command.id); }
       const card = old ?? { ...common(command.id), topicId: topic.id, reference: '', memory: newRecallMemory(command.at), reviews: [] };
-      if (command.type === 'saveRecallReference') write('recallCards', { ...card, reference: command.reference });
+      if (command.type === 'saveRecallCard') write('recallCards', { ...card, front: command.front, reference: command.reference });
+      else if (command.type === 'saveRecallReference') write('recallCards', { ...card, reference: command.reference });
       else if (command.type === 'setRecallDue') {
         if (typeof command.due !== 'string' || !Number.isFinite(Date.parse(command.due))) fail('INVALID_RECALL', '다음 복습 날짜를 확인해 주세요.');
         write('recallCards', { ...card, manualDue: command.due });
@@ -249,10 +251,10 @@ export function applyCommand(state: AppState, command: Command): AppState {
           if (!command.memo.body.trim() && !command.memo.strokes.length) fail('INVALID_RECALL', '빈 메모 대신 자기 평가만 저장해 주세요.');
           memoId = command.memo.id;
           const saved = next.memos?.find(row => row.id === memoId);
-          if (saved) { if (saved.deletedAt || saved.ownerId !== topic.id || saved.body !== command.memo.body || canonical(saved.strokes) !== canonical(command.memo.strokes)) fail('VERSION_CONFLICT', '답변 메모가 바뀌었습니다. 초안을 보존했습니다.'); }
-          else { fresh(memoId); write('memos', { ...common(memoId), ownerId: topic.id, body: command.memo.body, strokes: clone(command.memo.strokes) }); }
+          if (saved) { if (saved.deletedAt || saved.ownerId !== topic.id || saved.recallCardId !== undefined && saved.recallCardId !== card.id || saved.body !== command.memo.body || canonical(saved.strokes) !== canonical(command.memo.strokes)) fail('VERSION_CONFLICT', '답변 메모가 바뀌었습니다. 초안을 보존했습니다.'); }
+          else { fresh(memoId); write('memos', { ...common(memoId), ownerId: topic.id, recallCardId: card.id, body: command.memo.body, strokes: clone(command.memo.strokes) }); }
         }
-        const options = recallOptions(next), memory = serializeMemory(recallPreview(card.memory, command.at, options)[command.rating].card);
+        const options = recallOptions(next), memory = serializeMemory(recallPreview(card.memory, command.at, options, card.reviews)[command.rating].card);
         const { manualDue: _manualDue, ...base } = card;
         write('recallCards', { ...base, memory, reviews: [...card.reviews, { id: command.opId, at: command.at, rating: command.rating, memoId, before: clone(card.memory), after: clone(memory), options: clone(options) }] });
       }
@@ -407,7 +409,8 @@ export function applyCommand(state: AppState, command: Command): AppState {
       else { if (command.expectedVersion !== 0) fail('VERSION_CONFLICT', '메모의 저장 상태를 확인해 주세요.'); fresh(command.id); }
       validateMemoContent(command);
       if (command.ownerId !== null) targetSubject(next, command.ownerId, old?.ownerId !== command.ownerId);
-      write('memos', { ...(old ?? common(command.id)), ownerId: command.ownerId, body: command.body, strokes: clone(command.strokes) });
+      if (command.recallCardId !== undefined && !(next.recallCards ?? []).some(card => !card.deletedAt && card.id === command.recallCardId && card.topicId === command.ownerId)) fail('INVALID_MEMO', '답변 메모의 카드 연결을 확인해 주세요.');
+      write('memos', { ...(old ?? common(command.id)), ...(command.recallCardId ? { recallCardId: command.recallCardId } : {}), ownerId: command.ownerId, body: command.body, strokes: clone(command.strokes) });
       break;
     }
     case 'trashMemo': case 'restoreMemo': {

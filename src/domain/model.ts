@@ -32,15 +32,15 @@ export type MemoInk = 'ink' | 'blue' | 'green';
 export interface MemoPoint { x: number; y: number; pressure: number }
 export interface MemoStroke { id: string; ink: MemoInk; width: number; points: MemoPoint[] }
 /** Fixed logical paper coordinates keep sketches intact when the screen resizes. */
-export interface QuickMemo extends Entity { ownerId: string | null; body: string; strokes: MemoStroke[] }
-export interface RecallOptions { retention: number; newPerDay: number; learningMinutes: number[]; relearningMinutes: number[]; maximumDays: number }
+export interface QuickMemo extends Entity { recallCardId?: string; ownerId: string | null; body: string; strokes: MemoStroke[] }
+export interface RecallOptions { retention: number; newPerDay: number; learningMinutes: number[]; relearningMinutes: number[]; maximumDays: number; parameters?: number[]; optimizedAt?: string; optimizedReviews?: number }
 export interface RecallMemory {
   due: string; stability: number; difficulty: number; elapsed_days: number; scheduled_days: number;
   learning_steps: number; reps: number; lapses: number; state: number; last_review?: string;
 }
 export interface RecallReview { id: string; at: string; rating: 1 | 2 | 3 | 4; memoId: string | null; before: RecallMemory; after: RecallMemory; options: RecallOptions }
 /** Self-reported recall schedules are separate from study checks and correctness. */
-export interface RecallCard extends Entity { topicId: string; reference: string; memory: RecallMemory; reviews: RecallReview[]; manualDue?: string }
+export interface RecallCard extends Entity { topicId: string; front?: string; reference: string; memory: RecallMemory; reviews: RecallReview[]; manualDue?: string }
 export interface RecallPreferences extends Entity { options: RecallOptions }
 export type CodeLanguage = 'c' | 'cpp' | 'csharp' | 'python' | 'javascript';
 export interface CodeRun {
@@ -101,7 +101,8 @@ export type Command = CommandContext & (
   | { type: 'saveRecords'; sessionId: string; entries: RecordEntry[]; dateEvidence: DateEvidence }
   | { type: 'updateRecord'; id: string; expectedVersion: number; patch: Partial<Pick<StudyRecord, 'body' | 'done' | 'dateEvidence' | 'trace'>> }
   | { type: 'updateNarrative'; id: string; kind: NarrativeKind; ownerId: string | null; body: string; expectedVersion: number }
-  | { type: 'saveMemo'; id: string; ownerId: string | null; body: string; strokes: MemoStroke[]; expectedVersion: number }
+  | { type: 'saveMemo'; recallCardId?: string; id: string; ownerId: string | null; body: string; strokes: MemoStroke[]; expectedVersion: number }
+  | { type: 'saveRecallCard'; id: string; topicId: string; front: string; reference: string; expectedVersion: number }
   | { type: 'saveRecallReference'; id: string; topicId: string; reference: string; expectedVersion: number }
   | { type: 'reviewRecallCard'; id: string; topicId: string; expectedVersion: number; rating: 1 | 2 | 3 | 4; memo?: { id: string; body: string; strokes: MemoStroke[] } }
   | { type: 'undoRecallReview'; id: string; reviewId: string; expectedVersion: number }

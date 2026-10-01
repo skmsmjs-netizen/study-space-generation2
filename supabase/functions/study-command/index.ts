@@ -2767,6 +2767,8 @@ var invalid = () => {
 };
 var isDate = (v) => typeof v === "string" && Number.isFinite(Date.parse(v));
 function validateRecallOptions(options) {
+  if (options?.parameters !== void 0 && (!Array.isArray(options.parameters) || options.parameters.length !== 21 || options.parameters.some((v, i) => !Number.isFinite(v) || v < 0 || v > 100 || i < 4 && v < 1e-3 || i === 20 && (v < 0.1 || v > 0.8)))) invalid();
+  if (options?.optimizedAt !== void 0 && !isDate(options.optimizedAt) || options?.optimizedReviews !== void 0 && (!Number.isSafeInteger(options.optimizedReviews) || options.optimizedReviews < 1)) invalid();
   if (!options || !Number.isFinite(options.retention) || options.retention < 0.7 || options.retention > 0.97 || !Number.isSafeInteger(options.newPerDay) || options.newPerDay < 0 || options.newPerDay > 9999 || !Number.isSafeInteger(options.maximumDays) || options.maximumDays < 1 || options.maximumDays > 36500) invalid();
   for (const steps of [options.learningMinutes, options.relearningMinutes]) {
     if (!Array.isArray(steps) || steps.length > 10 || steps.some((v, i) => !Number.isSafeInteger(v) || v < 1 || v > 1440 || i > 0 && v <= steps[i - 1])) invalid();
@@ -2781,6 +2783,7 @@ function validateMemory(memory) {
   if (memory.difficulty > 10 || memory.lapses > memory.reps) invalid();
 }
 function validateRecallCard(card, state) {
+  if (card.front !== void 0 && (typeof card.front !== "string" || !card.front.trim() || card.front.length > 1e5)) invalid();
   if (!state.nodes.some((node) => node.id === card.topicId && node.role === "topic") || typeof card.reference !== "string" || card.reference.length > 1e5 || !Array.isArray(card.reviews) || card.manualDue !== void 0 && !isDate(card.manualDue)) invalid();
   validateMemory(card.memory);
   const ids = /* @__PURE__ */ new Set();
@@ -2801,16 +2804,23 @@ function serializeMemory(card) {
 function newRecallMemory(at) {
   return serializeMemory(createEmptyCard(at));
 }
-function recallPreview(memory, at, options) {
+function recallPreview(memory, at, options, reviews = []) {
   validateRecallOptions(options);
   const scheduler = fsrs({
     request_retention: options.retention,
     maximum_interval: options.maximumDays,
+    ...options.parameters ? { w: options.parameters } : {},
     learning_steps: options.learningMinutes.map((v) => `${v}m`),
     relearning_steps: options.relearningMinutes.map((v) => `${v}m`),
     enable_fuzz: false
   });
-  return scheduler.repeat(memory ?? newRecallMemory(at), at);
+  let current = memory ?? newRecallMemory(at);
+  if (options.parameters && reviews.length) {
+    let replayed = createEmptyCard(reviews[0].at);
+    for (const review of reviews) replayed = scheduler.next(replayed, review.at, review.rating).card;
+    current = { ...current, stability: replayed.stability, difficulty: replayed.difficulty };
+  }
+  return scheduler.repeat(current, at);
 }
 
 // src/domain/commands.ts
@@ -2967,7 +2977,7 @@ function assertState(state) {
   for (const row of state.codeExamples ?? []) validateCodeContent(row);
   for (const row of state.recallCards ?? []) {
     validateRecallCard(row, state);
-    if (!row.deletedAt) {
+    if (!row.deletedAt && row.front === void 0) {
       if (recallTopics.has(row.topicId)) fail("DUPLICATE_RECALL", "\uC8FC\uC81C\uC758 \uBCF5\uC2B5 \uCE74\uB4DC\uAC00 \uC911\uBCF5\uB418\uC5B4 \uC788\uC2B5\uB2C8\uB2E4.");
       recallTopics.add(row.topicId);
     }
@@ -2976,6 +2986,7 @@ function assertState(state) {
   for (const row of state.recallPreferences ?? []) validateRecallOptions(row.options);
   for (const row of state.memos ?? []) {
     validateMemoContent(row);
+    if (row.recallCardId !== void 0 && !(state.recallCards ?? []).some((card) => card.id === row.recallCardId && card.topicId === row.ownerId)) fail("INVALID_MEMO", "\uB2F5\uBCC0 \uBA54\uBAA8\uC758 \uC6D0\uB798 \uCE74\uB4DC \uC5F0\uACB0\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
     if (row.ownerId !== null && !subjectIds.has(row.ownerId) && !nodeIndex.has(row.ownerId)) fail("NOT_FOUND", "\uBA54\uBAA8\uC758 \uC6D0\uB798 \uC5F0\uACB0 \uB300\uC0C1\uC744 \uCC3E\uC744 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
   }
   for (const row of state.narratives) {
@@ -3081,6 +3092,7 @@ function applyCommand(state, command) {
       write("recallCards", restored ?? { ...card, memory: clone(review.before), reviews: card.reviews.slice(0, -1) }, revision.id);
       break;
     }
+    case "saveRecallCard":
     case "saveRecallReference":
     case "setRecallDue":
     case "reviewRecallCard": {
@@ -3097,7 +3109,8 @@ function applyCommand(state, command) {
         fresh(command.id);
       }
       const card = old ?? { ...common(command.id), topicId: topic.id, reference: "", memory: newRecallMemory(command.at), reviews: [] };
-      if (command.type === "saveRecallReference") write("recallCards", { ...card, reference: command.reference });
+      if (command.type === "saveRecallCard") write("recallCards", { ...card, front: command.front, reference: command.reference });
+      else if (command.type === "saveRecallReference") write("recallCards", { ...card, reference: command.reference });
       else if (command.type === "setRecallDue") {
         if (typeof command.due !== "string" || !Number.isFinite(Date.parse(command.due))) fail("INVALID_RECALL", "\uB2E4\uC74C \uBCF5\uC2B5 \uB0A0\uC9DC\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
         write("recallCards", { ...card, manualDue: command.due });
@@ -3111,13 +3124,13 @@ function applyCommand(state, command) {
           memoId = command.memo.id;
           const saved = next.memos?.find((row) => row.id === memoId);
           if (saved) {
-            if (saved.deletedAt || saved.ownerId !== topic.id || saved.body !== command.memo.body || canonical(saved.strokes) !== canonical(command.memo.strokes)) fail("VERSION_CONFLICT", "\uB2F5\uBCC0 \uBA54\uBAA8\uAC00 \uBC14\uB00C\uC5C8\uC2B5\uB2C8\uB2E4. \uCD08\uC548\uC744 \uBCF4\uC874\uD588\uC2B5\uB2C8\uB2E4.");
+            if (saved.deletedAt || saved.ownerId !== topic.id || saved.recallCardId !== void 0 && saved.recallCardId !== card.id || saved.body !== command.memo.body || canonical(saved.strokes) !== canonical(command.memo.strokes)) fail("VERSION_CONFLICT", "\uB2F5\uBCC0 \uBA54\uBAA8\uAC00 \uBC14\uB00C\uC5C8\uC2B5\uB2C8\uB2E4. \uCD08\uC548\uC744 \uBCF4\uC874\uD588\uC2B5\uB2C8\uB2E4.");
           } else {
             fresh(memoId);
-            write("memos", { ...common(memoId), ownerId: topic.id, body: command.memo.body, strokes: clone(command.memo.strokes) });
+            write("memos", { ...common(memoId), ownerId: topic.id, recallCardId: card.id, body: command.memo.body, strokes: clone(command.memo.strokes) });
           }
         }
-        const options = recallOptions(next), memory = serializeMemory(recallPreview(card.memory, command.at, options)[command.rating].card);
+        const options = recallOptions(next), memory = serializeMemory(recallPreview(card.memory, command.at, options, card.reviews)[command.rating].card);
         const { manualDue: _manualDue, ...base } = card;
         write("recallCards", { ...base, memory, reviews: [...card.reviews, { id: command.opId, at: command.at, rating: command.rating, memoId, before: clone(card.memory), after: clone(memory), options: clone(options) }] });
       }
@@ -3346,7 +3359,8 @@ function applyCommand(state, command) {
       }
       validateMemoContent(command);
       if (command.ownerId !== null) targetSubject(next, command.ownerId, old?.ownerId !== command.ownerId);
-      write("memos", { ...old ?? common(command.id), ownerId: command.ownerId, body: command.body, strokes: clone(command.strokes) });
+      if (command.recallCardId !== void 0 && !(next.recallCards ?? []).some((card) => !card.deletedAt && card.id === command.recallCardId && card.topicId === command.ownerId)) fail("INVALID_MEMO", "\uB2F5\uBCC0 \uBA54\uBAA8\uC758 \uCE74\uB4DC \uC5F0\uACB0\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+      write("memos", { ...old ?? common(command.id), ...command.recallCardId ? { recallCardId: command.recallCardId } : {}, ownerId: command.ownerId, body: command.body, strokes: clone(command.strokes) });
       break;
     }
     case "trashMemo":
@@ -3537,7 +3551,7 @@ async function handleCommand(request, backend) {
     const current = await backend.read(userId, namespace) ?? { sequence: 0, data: emptyState(userId, namespace) };
     validateState(current.data);
     if (current.data.userId !== userId || current.data.namespace !== namespace) throw new DomainError("OWNERSHIP", "\uC774 \uACF5\uAC04\uC5D0 \uC811\uADFC\uD560 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
-    if (body.action === "load") return json({ ...current, supportedCommands: ["saveLearningPlan", "saveCanvasLayout", "saveCodeExample", "trashCodeExample", "restoreCodeExample", "saveRecallReference", "reviewRecallCard", "undoRecallReview", "setRecallDue", "saveRecallPreferences"] });
+    if (body.action === "load") return json({ ...current, supportedCommands: ["saveLearningPlan", "saveCanvasLayout", "saveCodeExample", "trashCodeExample", "restoreCodeExample", "saveRecallCard", "saveRecallReference", "reviewRecallCard", "undoRecallReview", "setRecallDue", "saveRecallPreferences"] });
     if (body.action !== "execute" || !body.command) throw new DomainError("INVALID_REQUEST", "\uC800\uC7A5 \uC694\uCCAD\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
     const command = body.command;
     if (typeof command.opId !== "string" || !command.opId.trim() || command.opId.length > 256 || /[\u0000-\u001f\u007f]/.test(command.opId)) throw new DomainError("INVALID_ID", "\uC800\uC7A5 \uC694\uCCAD\uC758 \uC2DD\uBCC4\uC790\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
@@ -3545,11 +3559,11 @@ async function handleCommand(request, backend) {
     if (!Number.isSafeInteger(body.baseSequence) || body.baseSequence < 0) throw new DomainError("INVALID_VERSION", "\uC800\uC7A5 \uC21C\uC11C\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
     if (current.data.appliedOps[command.opId]) {
       applyCommand(current.data, command);
-      return json({ ...current, supportedCommands: ["saveLearningPlan", "saveCanvasLayout", "saveCodeExample", "trashCodeExample", "restoreCodeExample", "saveRecallReference", "reviewRecallCard", "undoRecallReview", "setRecallDue", "saveRecallPreferences"] });
+      return json({ ...current, supportedCommands: ["saveLearningPlan", "saveCanvasLayout", "saveCodeExample", "trashCodeExample", "restoreCodeExample", "saveRecallCard", "saveRecallReference", "reviewRecallCard", "undoRecallReview", "setRecallDue", "saveRecallPreferences"] });
     }
     if (body.baseSequence !== current.sequence) return json({ code: "VERSION_CONFLICT", message: "\uB2E4\uB978 \uAE30\uAE30\uC758 \uBCC0\uACBD\uACFC \uC791\uC131 \uB0B4\uC6A9\uC744 \uBAA8\uB450 \uBCF4\uC874\uD588\uC2B5\uB2C8\uB2E4.", server: current }, 409);
     const next = applyCommand(current.data, command);
-    return json({ ...await backend.commit(userId, namespace, current.sequence, command, next), supportedCommands: ["saveLearningPlan", "saveCanvasLayout", "saveCodeExample", "trashCodeExample", "restoreCodeExample", "saveRecallReference", "reviewRecallCard", "undoRecallReview", "setRecallDue", "saveRecallPreferences"] });
+    return json({ ...await backend.commit(userId, namespace, current.sequence, command, next), supportedCommands: ["saveLearningPlan", "saveCanvasLayout", "saveCodeExample", "trashCodeExample", "restoreCodeExample", "saveRecallCard", "saveRecallReference", "reviewRecallCard", "undoRecallReview", "setRecallDue", "saveRecallPreferences"] });
   } catch (error) {
     const code = error instanceof DomainError ? error.code : "SERVER_ERROR";
     const status = code === "AUTH_REQUIRED" ? 401 : ["OWNERSHIP", "ACCESS_DENIED", "ADMIN_REQUIRED", "ADMIN_PROTECTED", "LAST_ADMIN"].includes(code) ? 403 : /CONFLICT/.test(code) ? 409 : error instanceof DomainError || error instanceof SyntaxError ? 400 : 503;

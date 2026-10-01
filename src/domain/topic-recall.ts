@@ -8,9 +8,10 @@ export interface RecallSession {
   skipped?: string[];
   studyDay?: string;
   pendingReview?: Extract<Command, { type: 'reviewRecallCard' }>;
-  lastReview?: { command: Extract<Command, { type: 'reviewRecallCard' }>; expectedVersion: number; subjectId?: string; unitId?: string };
+  lastReview?: { command: Extract<Command, { type: 'reviewRecallCard' }>; expectedVersion: number; subjectId?: string; unitId?: string; currentId?: string };
   pendingUndo?: Extract<Command, { type: 'undoRecallReview' }>;
   references?: Record<string, { body: string; cardId: string; expectedVersion: number }>;
+  registration?: { id: string; topicId: string; front: string; reference: string; expectedVersion?: number };
   seen: string[]; round: number; drafts: Record<string, RecallDraft>;
 }
 export const freshRecall = (): RecallSession => ({ version: 1, mode: 'scheduled', subjectId: 'all', unitId: 'all', currentId: null, seen: [], round: 1, drafts: {} });
