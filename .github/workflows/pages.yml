@@ -20,6 +20,10 @@ jobs:
           node-version: '24'
           cache: npm
       - run: npm ci
+        env:
+          # Browser builds use ONNX Web; CPU Node files are already bundled.
+          # Do not fetch unused CUDA binaries from NuGet during a Pages build.
+          ONNXRUNTIME_NODE_INSTALL: skip
       - run: npm test -- --maxWorkers=2 --testTimeout=60000
       - run: npm run build:backend
       - run: npm run build
