@@ -75,3 +75,7 @@
 공개 화면의 기존 크기를 보존하기 위해 metric(통계 숫자 `1.5rem`), chart(차트 글자 `12px`), title/brand tracking(`-.035em`/`.12em`)을 역할 토큰으로 옮겼습니다. 개인 진입의 16/24/48px 간격, 시험 타이머·주제 카드의 글자 역할은 같은 값의 기존 토큰을 참조합니다. 시험 화면의 compact 폭은 기존 fallback과 같은 40rem입니다. 메모 오류 문구의 존재하지 않던 `--color-error`는 기존 오류 의미색 `--color-danger`로 수정합니다. 저장·ID·초안·원문·배치를 바꾸지 않습니다. 다른 개발 작업의 자료·그래프·수식 기능과 색상 체계 변경은 이번 공개 배포에 포함하지 않습니다.
 
 도구 선택은 [PostCSS](https://github.com/postcss/postcss/blob/main/docs/api.md)와 [postcss-value-parser](https://github.com/postcss/postcss-value-parser)의 공개 파싱 API를 재사용하고, **프로젝트의 토큰 정책만 작은 검사로 구현**했습니다. 기존 Vite의 PostCSS 8.5.28을 직접 개발 의존성으로 명시하고 값 파서 4.2.0을 추가합니다. [Stylelint 기본 규칙](https://stylelint.io/user-guide/rules/)과 [declaration-strict-value](https://github.com/AndyOGo/stylelint-declaration-strict-value)는 일반 CSS 검사/변수 사용 강제 후보로 확인했습니다. 이번에는 이미 있는 파서를 이용하여 토큰 정의·fallback·지역 별칭·선언별 예외를 하나의 제한된 검사로 다루고, 기존 공개 앱의 Vitest·TypeScript·Vite와 Pages 배포 경로를 유지합니다. 이 자체 정책을 공인 표준이나 전체 CSS 검증으로 표현하지 않습니다. 더 넓은 CSS 문법·관례 검사 필요가 생기면 Stylelint 도입을 해당 요구에서 다시 판단합니다.
+
+## 공통 모션과 재생 위젯
+
+[모션 시스템](motion-system-20261001.md)에 따라 실제 busy의 장식 점, acknowledgment 뒤 저장 표시, Tabs 선택 배경, Toast/빈 상태/Modal opacity를 제공한다. 위젯은 늦게 불러오며 OS/app 모션 감소·화면 가시성·일시정지를 따른다. 입력·초점·원장 의미를 바꾸지 않는다.

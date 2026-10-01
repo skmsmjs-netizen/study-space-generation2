@@ -1,3 +1,5 @@
+import { MotionWidgets } from './ui/motion-widgets';
+import { SavedMark } from './ui/motion';
 import { MaterialCardLibrary } from './ui/material-card-library';
 import { RelatedCodeExamples } from './ui/learning-links';
 import { useEffect, useRef, useState, Suspense, lazy, type ReactNode } from "react";
@@ -196,6 +198,7 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
   const [bulkPreview, setBulkPreview] = useState(false);
   const [outlineToken, setOutlineToken] = useState("");
   const [theme, setTheme] = useState(() => readPreference("theme", "auto", prefix));
+  const [reducedMotion, setReducedMotion] = useState(() => readPreference("motion", "auto", prefix) === "reduce");
   const [recent, setRecent] = useState<string[]>(() => {
     try {
       return JSON.parse(sessionStorage.getItem(data.namespace === "demo" ? "demo:recent" : `${prefix}:recent`) || "[]");
@@ -206,6 +209,12 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
   useEffect(() => { writePreference("scope", scope, prefix); }, [scope]);
   useEffect(() => { writePreference("query", query, prefix); }, [query]);
   useEffect(() => { writePreference("theme", theme, prefix); }, [theme]);
+  useEffect(() => {
+    writePreference("motion", reducedMotion ? "reduce" : "auto", prefix);
+    if (reducedMotion) document.documentElement.dataset.motion = 'reduce';
+    else delete document.documentElement.dataset.motion;
+    return () => { delete document.documentElement.dataset.motion; };
+  }, [reducedMotion, prefix]);
   const quickGuard = useRef(new Set<string>());
   const nodes = active(data.nodes),
     subjects = active(data.subjects);
@@ -537,6 +546,7 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
         </a>
         <NavigationBar label="주 메뉴" orientation="vertical" items={navItems.map(item => ({href:`#${item.href}`, label:item.text, active:route === item.href || item.href === "/record" && recordRoute || item.href === "/code" && codeRoute || item.href === "/memos" && memoRoute || item.href === "/practice" && practiceRoute || item.href === "/memory-test" && memoryTestRoute || item.href === "/recall" && route === "/recall/scheduled" || item.href === "/subjects" && Boolean(subject)}))} />
         <details className="sidebar-bottom workspace-tools"><summary>보관함·화면 설정</summary><div className="workspace-tools-content">
+          <MotionWidgets reduced={reducedMotion} onReducedChange={setReducedMotion} />
           <a href="#/trash">휴지통</a>
           <a href="#/draft-archives">초안 보관본</a>
           <Select
@@ -576,6 +586,7 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
           </Button>
           <details className="compact-menu">
             <summary>더 보기</summary>
+            <MotionWidgets reduced={reducedMotion} onReducedChange={setReducedMotion} />
             <a href="#/trash">휴지통</a>
             <a href="#/draft-archives">초안 보관본</a>
             <Select
@@ -1378,6 +1389,7 @@ function NarrativeEditor({
           placeholder="자신의 말로 자유롭게 남겨 보세요."
         />
         <p className="muted" role="status">
+          {saved && !saving && !saveError && <SavedMark />}
           {saving ? (repository && data.namespace !== 'demo' ? '서버에 저장 중입니다…' : '저장 중입니다…') : saved
             ? (repository && data.namespace !== 'demo' ? '서버에 저장했습니다.' : "이 기기에 저장했습니다.")
             : "입력은 이 기기의 초안으로 보관됩니다. 내용 저장을 누르면 수정 이력에 남습니다."}

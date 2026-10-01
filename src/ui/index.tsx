@@ -2,12 +2,13 @@ import { forwardRef, useEffect, useId, useRef, type ButtonHTMLAttributes, type H
 import { createPortal } from 'react-dom';
 import './tokens.css';
 import './components.css';
+import { BusyDots, FadeContent, NoticeEntrance, SelectionBackground, useSelectionMotionId } from './motion';
 
 const classes = (...values: (string | undefined | false)[]) => values.filter(Boolean).join(' ');
 
 export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & { variant?: 'primary' | 'secondary' | 'quiet' | 'danger'; busy?: boolean };
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button({ variant = 'secondary', busy = false, disabled, className, type = 'button', ...props }, ref) {
-  return <button {...props} ref={ref} type={type} disabled={disabled || busy} aria-busy={busy || undefined} className={classes('ui-button', `ui-button--${variant}`, className)} />;
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button({ variant = 'secondary', busy = false, disabled, className, type = 'button', children, ...props }, ref) {
+  return <button {...props} ref={ref} type={type} disabled={disabled || busy} aria-busy={busy || undefined} className={classes('ui-button', `ui-button--${variant}`, className)}>{busy && <BusyDots />}{children}</button>;
 });
 export const IconButton = forwardRef<HTMLButtonElement, ButtonProps & { label: string }>(function IconButton({ label, className, children, ...props }, ref) {
   return <Button variant="quiet" {...props} ref={ref} className={classes('ui-icon-button', className)} aria-label={label} title={label}><span aria-hidden="true">{children}</span></Button>;
@@ -42,6 +43,7 @@ export function Radio({ label, className, ...props }: ChoiceProps) { return <lab
 export type TabItem = { id: string; label: string; disabled?: boolean; panelId?: string };
 export type TabsProps = { items: TabItem[]; value: string; onChange: (id: string) => void; label?: string; className?: string };
 export function Tabs({ items, value, onChange, label = '보기 선택', className }: TabsProps) {
+  const motionId = useSelectionMotionId();
   const buttons = useRef(new Map<string, HTMLButtonElement>());
   const enabled = items.filter(item => !item.disabled);
   return <div className={classes('ui-tabs', className)} role="tablist" aria-label={label}>{items.map(item => <Button key={item.id} ref={node => { if (node) buttons.current.set(item.id, node); else buttons.current.delete(item.id); }} variant="quiet" role="tab" aria-selected={item.id === value} aria-controls={item.panelId} tabIndex={item.id === value || !enabled.some(entry => entry.id === value) && enabled[0]?.id === item.id ? 0 : -1} disabled={item.disabled} onClick={() => onChange(item.id)} onKeyDown={event => {
@@ -50,7 +52,7 @@ export function Tabs({ items, value, onChange, label = '보기 선택', classNam
     const index = enabled.findIndex(entry => entry.id === item.id);
     const next = event.key === 'Home' ? enabled[0] : event.key === 'End' ? enabled[enabled.length - 1] : enabled[(index + (event.key === 'ArrowRight' ? 1 : -1) + enabled.length) % enabled.length];
     onChange(next.id); buttons.current.get(next.id)?.focus();
-  }}>{item.label}</Button>)}</div>;
+  }}>{item.id === value && <SelectionBackground id={motionId} />}{item.label}</Button>)}</div>;
 }
 export function SegmentedControl({ items, value, onChange, label = '표시 방식', className }: TabsProps) {
   return <div role="group" aria-label={label} className={classes('ui-segmented', className)}>{items.map(item => <Button key={item.id} variant="quiet" aria-pressed={item.id === value} disabled={item.disabled} onClick={() => onChange(item.id)}>{item.label}</Button>)}</div>;
@@ -104,7 +106,7 @@ export function Modal({ open, title, onClose, children, className }: ModalProps)
 }
 export function Sheet(props: ModalProps) { return <Modal {...props} className={classes('ui-sheet', props.className)} />; }
 export function Toast({ message, onUndo, onClose }: { message: string; onUndo?: () => void; onClose?: () => void }) {
-  return <div className="ui-toast"><div role="status" aria-live="polite" className="ui-toast-message">{message}</div>{onUndo && <Button variant="quiet" onClick={onUndo}>되돌리기</Button>}{onClose && <IconButton label="알림 닫기" onClick={onClose}>×</IconButton>}</div>;
+  return <NoticeEntrance className="ui-toast"><div role="status" aria-live="polite" className="ui-toast-message">{message}</div>{onUndo && <Button variant="quiet" onClick={onUndo}>되돌리기</Button>}{onClose && <IconButton label="알림 닫기" onClick={onClose}>×</IconButton>}</NoticeEntrance>;
 }
 export type BreadcrumbItem = { label: string; href?: string; onClick?: () => void };
 export function Breadcrumb({ items }: { items: BreadcrumbItem[] }) {
@@ -116,9 +118,9 @@ export function Search({ onQueryChange, onChange, onCompositionStart, onComposit
   return <Input {...props} type="search" onChange={event => { onChange?.(event); if (!composing.current) publish(event.currentTarget.value); }} onCompositionStart={event => { composing.current = true; onCompositionStart?.(event); }} onCompositionEnd={event => { composing.current = false; onCompositionEnd?.(event); publish(event.currentTarget.value); }} />;
 }
 export function EmptyState({ title, message, children }: { title: string; message?: string; children?: ReactNode }) {
-  return <section className="ui-state"><h3 className="ui-state-title">{title}</h3>{message && <p className="ui-state-message">{message}</p>}{children}</section>;
+  return <FadeContent><section className="ui-state"><h3 className="ui-state-title">{title}</h3>{message && <p className="ui-state-message">{message}</p>}{children}</section></FadeContent>;
 }
-export function LoadingState({ message = '불러오고 있습니다.' }: { message?: string }) { return <div role="status" aria-live="polite" className="ui-loading">{message}</div>; }
+export function LoadingState({ message = '불러오고 있습니다.' }: { message?: string }) { return <div role="status" aria-live="polite" aria-busy="true" data-ui-loading="" className="ui-loading"><BusyDots />{message}</div>; }
 export function ErrorState({ title = '다시 확인해 주세요', message, onRetry }: { title?: string; message: string; onRetry?: () => void }) {
   return <section className="ui-state ui-state--error"><div role="alert"><h3 className="ui-state-title">{title}</h3><p className="ui-state-message">{message}</p></div>{onRetry && <Button onClick={onRetry}>다시 시도</Button>}</section>;
 }

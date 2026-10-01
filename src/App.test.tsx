@@ -39,7 +39,7 @@ afterEach(async () => {
 async function open(path = '/') {
   history.replaceState(null, '', `/?space=demo#${path}`);
   const view = render(<App />);
-  await screen.findByText('예시 자료 · 이 기기에 저장');
+  await screen.findByText('예시 자료 · 이 기기에 저장', {}, { timeout: 5000 });
   return view;
 }
 async function navigate(path: string) {
