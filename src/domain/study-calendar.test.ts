@@ -23,7 +23,8 @@ it('uses the entered semester, preserves excluded and edited weeks, and deduplic
 it('undoes only untouched created schedules, retains later evidence, and restores with history', () => {
   let id = 0; const added = createSemesterWeeks(semesterWeekRows('2026-10-01', '2026-10-15', 1, '회로'), [], 's', '2026-10-01', () => `${id++}`);
   const edited = changeSchedule(added[1], { states: { learn: 'done' }, note: '학습 원문' }, '2026-10-01T01:00:00Z', '수행 기록');
-  const result = reverseWeekBatch([added[0], edited, added[2]], added, '2026-10-01T02:00:00Z');
+  const reordered = Object.fromEntries(Object.entries(added[0]).reverse()) as typeof added[0];
+  const result = reverseWeekBatch([reordered, edited, added[2]], added, '2026-10-01T02:00:00Z');
   expect(result.changed).toBe(2); expect(result.preserved).toBe(1); expect(result.schedules[1]).toEqual(edited);
   const restored = reverseWeekBatch(result.schedules, result.originals, '2026-10-01T03:00:00Z', true);
   expect(restored.changed).toBe(2); expect(restored.schedules.every(s => !s.deletedAt)).toBe(true);

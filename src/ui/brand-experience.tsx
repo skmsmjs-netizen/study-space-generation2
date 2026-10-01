@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+import { BrandWordmark } from './brand-wordmark';
 import type { AppState, StudyRecord } from '../domain/model';
 import { BRAND, emptyExperience, retainNextAction, type ExperienceState } from '../domain/brand';
 import {
@@ -32,7 +33,7 @@ const errorText = (e: unknown) =>
 export function BrandIdentity({ compact = false }: { compact?: boolean }) {
   return (
     <a className={compact ? 'small-brand brand-wordmark' : 'brand brand-wordmark'} href="#/">
-      {BRAND.productName}
+      <BrandWordmark />
       {!compact && <span>{BRAND.promise}</span>}
     </a>
   );

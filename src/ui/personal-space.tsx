@@ -16,6 +16,8 @@ import { claimPersonalWindow, personalWindowCopies } from '../data/personal-wind
 import { stopLocalSchedulePush } from '../data/schedule-notifications';
 import './personal-space.css';
 import { BRAND } from '../domain/brand';
+import { BrandWordmark } from './brand-wordmark';
+import { BrandCopyright } from './brand-copyright';
 function exportWindowRecords(repository: PersonalRepository) {
   return JSON.stringify({ ...JSON.parse(repository.exportPreserved()),
     windowRecovery: personalWindowCopies(repository.getSnapshot().userId, repository.key) }, null, 2);
@@ -101,7 +103,7 @@ export function PersonalSpace({ renderWorkspace }: { renderWorkspace: (repo: Per
   }
   const settings=accessApi&&access?<AccountSettings api={accessApi} access={access} onSaved={setAccess} onWithdrawn={onWithdrawn} onDownload={repo?downloadRecords:undefined}/>:null;
   if (repo && client) return renderWorkspace(repo, <><ServerStatus repository={repo} client={client} />{settings}{access?.administrator && accessApi && <AccountAdministration api={accessApi} />}</>);
-  return <main className="boot personal-entry"><Card><p className="brand-wordmark">{BRAND.productName}</p><h1>내 공부 공간</h1><p>{BRAND.promise}</p><h2>{BRAND.headline}</h2><p>{BRAND.description}</p>
+  return <main className="boot personal-entry"><Card><p className="brand-wordmark"><BrandWordmark /></p><h1>내 공부 공간</h1><p>{BRAND.promise}</p><h2>{BRAND.headline}</h2><p>{BRAND.description}</p>
     {withdrawn ? <section><p role="status">{withdrawalNotice||'탈퇴했습니다. 이 브라우저의 개인 자료를 정리하고 있습니다…'}</p>{withdrawalNotice.includes('끝나지')&&<Button onClick={()=>{void cleanupWithdrawal(withdrawn);}}>이 기기의 자료 정리 다시 시도</Button>}<Button onClick={()=>{setWithdrawn(null);setWithdrawalNotice('');}}>로그인 화면으로 돌아가기</Button></section> : !configured ? <ErrorState title="내 공부 공간에 연결하지 못했습니다" message="연결을확인한 뒤 다시 시도해 주세요. 이 기기에 보관된 기록은 그대로 남아 있습니다." onRetry={() => location.reload()} />
       : !authReady || opening ? <LoadingState message="내 기록을 불러오는 중…" />
       : !userId && client ? <SignIn client={client} onSignedIn={setClient} />
@@ -109,7 +111,7 @@ export function PersonalSpace({ renderWorkspace }: { renderWorkspace: (repo: Per
       : <><ErrorState title="내 공부 공간을 열지 못했습니다" message={error || '서버에 연결하지 못했습니다. 기록은 지우지 않았습니다.'} onRetry={() => setRetry(value => value + 1)} /><Button onClick={() => { void client?.auth.signOut({ scope: 'local' }); }}>다시 로그인</Button></>}
     {userId && !withdrawn && settings}
     {error && !userId && <p role="alert">{error}</p>}
-  </Card></main>;
+  </Card><BrandCopyright /></main>;
 }
 function SignIn({ client, onSignedIn }: { client: SupabaseClient; onSignedIn: (client: SupabaseClient) => void }) {
   const [name, setName] = useState('');

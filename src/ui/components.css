@@ -61,9 +61,9 @@ textarea.ui-input { min-height: calc(var(--control-height) * 3); resize: vertica
 .ui-state-message { margin: 0 0 var(--space-4); color: var(--color-muted); white-space: pre-line; }
 .ui-state--error { border: var(--border-width) solid var(--color-invalid-border); border-radius: var(--radius-md); }
 .ui-loading { color: var(--color-muted); padding-block: var(--space-3); }
-.ui-type-display { font: var(--type-display-weight) var(--type-display-size)/var(--type-display-line) var(--font-interface); }
-.ui-type-title { font: var(--type-title-weight) var(--type-title-size)/var(--type-title-line) var(--font-interface); }
-.ui-type-heading { font: var(--type-heading-weight) var(--type-heading-size)/var(--type-heading-line) var(--font-interface); }
+.ui-type-display { font: var(--type-display-weight) var(--type-display-size)/var(--type-display-line) var(--font-interface); letter-spacing: var(--type-title-tracking); }
+.ui-type-title { font: var(--type-title-weight) var(--type-title-size)/var(--type-title-line) var(--font-interface); letter-spacing: var(--type-title-tracking); }
+.ui-type-heading { font: var(--type-heading-weight) var(--type-heading-size)/var(--type-heading-line) var(--font-interface); letter-spacing: var(--type-heading-tracking); }
 .ui-type-caption { font: var(--type-caption-weight) var(--type-caption-size)/var(--type-caption-line) var(--font-interface); color: var(--color-muted); }
 .ui-hierarchy { color: var(--color-text); font-weight: var(--type-body-weight); background: linear-gradient(transparent 50%, color-mix(in srgb, var(--hierarchy-color) 24%, transparent) 50%, color-mix(in srgb, var(--hierarchy-color) 24%, transparent) 93%, transparent 93%); box-decoration-break: clone; -webkit-box-decoration-break: clone; }
 .ui-hierarchy[data-kind="subject"] { --hierarchy-color: var(--color-hierarchy-subject); }

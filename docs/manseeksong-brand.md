@@ -1,5 +1,11 @@
 # manseeksong — 브랜드와 반복 사용 경험 지침
 
+## 2026-10-01 제품명·타이포그래피·워드마크·저작권 표시
+
+제품 이름은 `ManSeekSong OS`, 회사·브랜드는 `manseeksong`입니다. 본문·제목·캡션의 공통 타입 토큰과 화면 크기별 제목 크기를 재사용합니다. 제품명은 본문 서체와 분리한 Inter OFL 벡터 윤곽선으로 표시하며 이름과 OS 모두 굵기500·자연 폭100%·같은 높이/기준선·단어 간격0.24em을 적용합니다. 홈 폭264px은 좁은 화면에서 비율을 유지해 줄어듭니다. 접근성 이름과 currentColor·본문 서체 설정을 유지하며 앱 실행 중 외부 폰트를 받지 않습니다. Illustrator 편집 SVG·라이선스·폰트 원본·생성 설정은 assets/brand에 있습니다. FontTools4.60.2 재생성 도구 scripts/build-brand-wordmark.py를 사용합니다. 사용자 피드백에 따른 디자인 선택이며 공식 표준값이나 효과의 증거가 아닙니다. [Apple 서체 설명](https://developer.apple.com/fonts/), [Inter/OFL](https://rsms.me/inter/), [Illustrator 커닝·트래킹](https://helpx.adobe.com/illustrator/using/line-character-spacing.html)을 참고했습니다.
+
+공통 공부 화면과 로그인 하단의 저작권 고지는 `© 2026 manseeksong. All rights reserved.`입니다. 기존 회색 캡션/간격/구분선을 사용하며 좁은 화면에서는 문구 단위로 줄바꿈합니다. 저작권/상표 등록이나 사용자·제삼자 자료의 소유권을 주장하지 않고 기존 자료·라이선스·설정을 유지합니다. [고지 형식 참고](https://www.copyright.gov/circs/circ03.pdf)는 기호·연도·이름을 표기하는 관행에 한정하며 한국 법의 권리 성립 요건을 미국 규정으로 설명하지 않습니다.
+
 2026-10-01 사용자 「이거 전부 지침화해. 그리고 프로젝트에 다 구현해. 하나도 빠짐없이」에 따른 채택. 직전 답변 1–14절과 대표 카피·상태표·검증표 전체를 대상으로 한다. 이는 제품 설계 요구이며 무의식 통제·학습 효과·장기 충성도가 입증됐다는 뜻이 아니다. 현재 구현과 확인 결과는 `brand-implementation-20261001.md`에서 별도로 관리한다.
 
 ## 1. 이름과 약속
