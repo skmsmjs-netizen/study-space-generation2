@@ -588,7 +588,7 @@ export function MemoInkPad({
           {expanded ? '작게 보기' : '넓게 쓰기'}
         </Button>
       </div>
-      <div ref={viewport} className="ink-pad-paper">
+      <div ref={viewport} className="ink-pad-paper" role="region" aria-label={`${drawingLabel} 스크롤`} tabIndex={0}>
         <svg
           ref={svg}
           viewBox={`0 0 ${MEMO_WIDTH} ${MEMO_HEIGHT}`}
