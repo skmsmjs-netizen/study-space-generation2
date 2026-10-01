@@ -29,6 +29,7 @@ import { canUseOwnerAI } from '../domain/ai-access';
 import { topicMemoryInput } from '../domain/topic-memory';
 import { TopicMemoryGenerator } from './topic-memory-generator';
 import { GPTConnectionPanel } from './gpt-connection-panel';
+import { StudyResultText } from './study-result-text';
 import './memory-test.css';
 
 const message = (e: unknown) =>
@@ -40,14 +41,29 @@ const verdicts: { value: MemoryVerdict; label: string }[] = [
   { value: 'uncertain', label: '판단 보류' },
   { value: null, label: '미판정' },
 ];
-function Ink({ strokes, label }: { strokes: MemoStroke[]; label: string }) { return strokes.length ? <InkPreview strokes={strokes} label={label} /> : null; }
+function Ink({ strokes, label }: { strokes: MemoStroke[]; label: string }) {
+  return strokes.length ? <InkPreview strokes={strokes} label={label} /> : null;
+}
 function Summary({ questions }: { questions: MemoryQuestion[] }) {
   const s = memorySummary(questions);
   return (
-    <p className="memory-summary">
-      직접 비교한 결과 · 맞음 {s.correct} · 부분적으로 맞음 {s.partial} · 틀림 {s.wrong} · 판단 보류{' '}
-      {s.uncertain} · 미판정 {s.unassessed}
-    </p>
+    <section className="memory-summary" aria-label="직접 비교한 결과">
+      <span>직접 비교한 결과</span>
+      <dl>
+        {[
+          ['맞음', s.correct],
+          ['부분적으로 맞음', s.partial],
+          ['틀림', s.wrong],
+          ['판단 보류', s.uncertain],
+          ['미판정', s.unassessed],
+        ].map(([label, count]) => (
+          <div key={label}>
+            <dt>{label}</dt>
+            <dd>{count}</dd>
+          </div>
+        ))}
+      </dl>
+    </section>
   );
 }
 export function MemoryTests({
@@ -85,7 +101,9 @@ export function MemoryTests({
     [connectionOpen, setConnectionOpen] = useState(false),
     [generating, setGenerating] = useState(false),
     [drawing, setDrawing] = useState(false),
-    [history, setHistory] = useState<MemoryTest | null>(() => data.memoryTests?.find(t => t.id === resultId && !t.deletedAt) ?? null);
+    [history, setHistory] = useState<MemoryTest | null>(
+      () => data.memoryTests?.find((t) => t.id === resultId && !t.deletedAt) ?? null,
+    );
   const heading = useRef<HTMLHeadingElement>(null);
   const subjects = data.subjects.filter((s) => subjectIds.includes(s.id) && !s.deletedAt);
   const topics = data.nodes.filter(
@@ -335,37 +353,76 @@ export function MemoryTests({
               암기 항목 등록
             </Button>
             <a href="#/material-cards">자료에서 카드 가져오기</a>
-            {canUseOwnerAI(data) && <Button variant="quiet" onClick={() => setConnectionOpen(!connectionOpen)}>
-              {connectionOpen ? 'GPT 연결 닫기' : 'GPT 연결'}
-            </Button>}
+            {canUseOwnerAI(data) && (
+              <Button variant="quiet" onClick={() => setConnectionOpen(!connectionOpen)}>
+                {connectionOpen ? 'GPT 연결 닫기' : 'GPT 연결'}
+              </Button>
+            )}
             <span className="muted">
               등록 {cards.length}개 · 이번 시험 {Math.min(cards.length, draft.count)}문항
             </span>
-            {canUseOwnerAI(data) && !draft.generation && <Button disabled={busy || !topics.length || !!draft.editor}
-              onClick={() => {
-                try {
-                  const input = topicMemoryInput(data, [draft.topicId || topics[0].id]);
-                  persist({ ...current.current, generation: { input, result: null, items: [] } });
-                } catch (e) { setError(message(e)); }
-              }}>GPT로 암기항목 만들기</Button>}
+            {canUseOwnerAI(data) && !draft.generation && (
+              <Button
+                disabled={busy || !topics.length || !!draft.editor}
+                onClick={() => {
+                  try {
+                    const input = topicMemoryInput(data, [draft.topicId || topics[0].id]);
+                    persist({ ...current.current, generation: { input, result: null, items: [] } });
+                  } catch (e) {
+                    setError(message(e));
+                  }
+                }}
+              >
+                GPT로 암기항목 만들기
+              </Button>
+            )}
           </div>
-          {canUseOwnerAI(data) && connectionOpen && <GPTConnectionPanel
-            userId={data.userId} namespace={data.namespace} busy={generating} purpose="memory"
-          />}
-          {canUseOwnerAI(data) && draft.generation && !draft.editor && <>
-            <TopicMemoryGenerator data={data} repository={repository} draft={draft.generation}
-              onConnection={() => setConnectionOpen(true)}
-              disabled={drawing || blocked || !capability} composing={composing} onSaved={onSaved} onBusy={setGenerating}
-              onChange={generation => persist({ ...current.current, generation })}
-              onArchive={() => {
-                try { archiveDamagedDraft(boot.key, '주제 기반 GPT 생성 결과 원문'); return true; }
-                catch (e) { setError(message(e)); return false; }
-              }} />
-            <Button disabled={busy} variant="quiet" onClick={() => {
-              try { archiveDamagedDraft(boot.key, '주제 기반 GPT 생성 초안 보관'); persist({ ...current.current, generation: null }); }
-              catch (e) { setError(message(e)); }
-            }}>생성 초안 보관하고 닫기</Button>
-          </>}
+          {canUseOwnerAI(data) && connectionOpen && (
+            <GPTConnectionPanel
+              userId={data.userId}
+              namespace={data.namespace}
+              busy={generating}
+              purpose="memory"
+            />
+          )}
+          {canUseOwnerAI(data) && draft.generation && !draft.editor && (
+            <>
+              <TopicMemoryGenerator
+                data={data}
+                repository={repository}
+                draft={draft.generation}
+                onConnection={() => setConnectionOpen(true)}
+                disabled={drawing || blocked || !capability}
+                composing={composing}
+                onSaved={onSaved}
+                onBusy={setGenerating}
+                onChange={(generation) => persist({ ...current.current, generation })}
+                onArchive={() => {
+                  try {
+                    archiveDamagedDraft(boot.key, '주제 기반 GPT 생성 결과 원문');
+                    return true;
+                  } catch (e) {
+                    setError(message(e));
+                    return false;
+                  }
+                }}
+              />
+              <Button
+                disabled={busy}
+                variant="quiet"
+                onClick={() => {
+                  try {
+                    archiveDamagedDraft(boot.key, '주제 기반 GPT 생성 초안 보관');
+                    persist({ ...current.current, generation: null });
+                  } catch (e) {
+                    setError(message(e));
+                  }
+                }}
+              >
+                생성 초안 보관하고 닫기
+              </Button>
+            </>
+          )}
           {draft.editor && (
             <div className="memory-editor">
               <h2>암기 항목</h2>
@@ -400,7 +457,14 @@ export function MemoryTests({
                 onChange={(e) => patchEditor({ answer: e.target.value })}
                 rows={3}
               />
-              <MemoInkPad onRecognizedText={text=>patchEditor({answer:draft.editor!.answer+(draft.editor!.answer ? "\n":"")+text})} repository={repository} onWorkspaceSaved={() => onSaved(repository.getSnapshot())}
+              <MemoInkPad
+                onRecognizedText={(text) =>
+                  patchEditor({
+                    answer: draft.editor!.answer + (draft.editor!.answer ? '\n' : '') + text,
+                  })
+                }
+                repository={repository}
+                onWorkspaceSaved={() => onSaved(repository.getSnapshot())}
                 key={draft.editor.id}
                 documentKey={`${storagePrefix(data)}:memory-editor:${draft.editor.id}`}
                 preferencesKey={`${storagePrefix(data)}:ink-preferences:v1`}
@@ -447,7 +511,9 @@ export function MemoryTests({
             {cards.map((c) => (
               <article key={c.id}>
                 <div>
-                  <strong className="prose">{c.question}</strong>
+                  <strong>
+                    <StudyResultText text={c.question} as="span" />
+                  </strong>
                   <MemoryCardOrigin data={data} card={c} />
                   <p className="muted">{data.nodes.find((n) => n.id === c.topicId)?.name}</p>
                   {c.topicGeneration && <p className="muted">주제 기반 생성 · 답안 확인 후 등록</p>}
@@ -464,8 +530,12 @@ export function MemoryTests({
                         question: c.question,
                         answer: c.answer,
                         strokes: structuredClone(c.strokes),
-                        ...(c.topicGeneration ? { topicGeneration: structuredClone(c.topicGeneration) } : {}),
-                        ...(c.materialSource ? { materialSource: structuredClone(c.materialSource) } : {}),
+                        ...(c.topicGeneration
+                          ? { topicGeneration: structuredClone(c.topicGeneration) }
+                          : {}),
+                        ...(c.materialSource
+                          ? { materialSource: structuredClone(c.materialSource) }
+                          : {}),
                       },
                     })
                   }
@@ -486,7 +556,7 @@ export function MemoryTests({
                 )
                 .map((c) => (
                   <article key={c.id}>
-                    <p>{c.question}</p>
+                    <StudyResultText text={c.question} />
                     <Button
                       disabled={busy || !capability}
                       onClick={() => {
@@ -569,7 +639,7 @@ export function MemoryTests({
             {attempt.index + 1} / {attempt.questions.length} 문항
           </h2>
           <p className="muted">{question.topicName}</p>
-          <p className="memory-question">{question.question}</p>
+          <StudyResultText className="memory-question" text={question.question} />
           <Textarea
             label="내 답안"
             value={question.response}
@@ -577,7 +647,14 @@ export function MemoryTests({
             onChange={(e) => patchQuestion(attempt.index, { response: e.target.value })}
             rows={4}
           />
-          <MemoInkPad onRecognizedText={text=>patchQuestion(attempt.index,{response:question.response+(question.response ? "\n":"")+text})} repository={repository} onWorkspaceSaved={() => onSaved(repository.getSnapshot())}
+          <MemoInkPad
+            onRecognizedText={(text) =>
+              patchQuestion(attempt.index, {
+                response: question.response + (question.response ? '\n' : '') + text,
+              })
+            }
+            repository={repository}
+            onWorkspaceSaved={() => onSaved(repository.getSnapshot())}
             key={`${attempt.id}:${attempt.index}`}
             documentKey={`${storagePrefix(data)}:memory-response:${attempt.id}:${attempt.index}`}
             preferencesKey={`${storagePrefix(data)}:ink-preferences:v1`}
@@ -654,52 +731,67 @@ export function MemoryTests({
           </h2>
           <Summary questions={review} />
           {review.map((q, index) => (
-            <article className="memory-review" key={q.cardId}>
-              <h3>
-                {index + 1}. {q.question}
-              </h3>
-              <p className="muted">{q.topicName} · 출제 당시의 기준 답안</p>
+            <article className="memory-review memory-review-result" key={q.cardId}>
+              <header className="memory-review-heading">
+                <span className="memory-question-number">문항 {index + 1}</span>
+                <h3>
+                  <StudyResultText text={q.question} as="span" />
+                </h3>
+                <p className="muted">{q.topicName}</p>
+              </header>
               <div className="memory-comparison">
                 <section aria-label={`${index + 1}번 내 답안`}>
                   <strong>내 답안</strong>
-                  <p className="prose">
-                    {q.response || (!q.responseStrokes.length ? '답하지 않음' : '')}
-                  </p>
+                  <StudyResultText
+                    text={q.response || (!q.responseStrokes.length ? '답하지 않음' : '')}
+                  />
                   <Ink strokes={q.responseStrokes} label="내 답안 그림" />
                 </section>
                 <section aria-label={`${index + 1}번 기준 답안`}>
                   <strong>기준 답안</strong>
-                  <p className="prose">{q.answer}</p>
+                  <StudyResultText text={q.answer} />
+                  <p className="memory-answer-caption">출제 당시의 기준 답안</p>
                   <Ink strokes={q.strokes} label="기준 답안 그림" />
                 </section>
               </div>
-              {draft.phase === 'review' && !history ? (
-                <Select
-                  label={`${index + 1}번 비교 결과`}
-                  value={q.verdict ?? ''}
-                  disabled={busy}
-                  onChange={(e) =>
-                    patchQuestion(index, { verdict: (e.target.value || null) as MemoryVerdict })
-                  }
-                >
-                  {verdicts.map((v) => (
-                    <option
-                      key={v.label}
-                      value={v.value ?? ''}
-                      disabled={
-                        ['correct', 'partial', 'wrong'].includes(v.value ?? '') &&
-                        !q.response.trim() &&
-                        !q.responseStrokes.length
-                      }
-                    >
-                      {v.label}
-                    </option>
-                  ))}
-                </Select>
-              ) : (
-                <p>비교 결과 · {verdicts.find((v) => v.value === q.verdict)?.label}</p>
+              <div className="memory-verdict">
+                {draft.phase === 'review' && !history ? (
+                  <Select
+                    label={`${index + 1}번 비교 결과`}
+                    value={q.verdict ?? ''}
+                    disabled={busy}
+                    onChange={(e) =>
+                      patchQuestion(index, { verdict: (e.target.value || null) as MemoryVerdict })
+                    }
+                  >
+                    {verdicts.map((v) => (
+                      <option
+                        key={v.label}
+                        value={v.value ?? ''}
+                        disabled={
+                          ['correct', 'partial', 'wrong'].includes(v.value ?? '') &&
+                          !q.response.trim() &&
+                          !q.responseStrokes.length
+                        }
+                      >
+                        {v.label}
+                      </option>
+                    ))}
+                  </Select>
+                ) : (
+                  <p>비교 결과 · {verdicts.find((v) => v.value === q.verdict)?.label}</p>
+                )}
+              </div>
+              {(history || draft.phase === 'saved') && (
+                <PerformanceFromSource
+                  data={data}
+                  repository={repository}
+                  onSaved={onSaved}
+                  kind="memory-question"
+                  id={history?.id ?? attempt!.id}
+                  itemId={q.cardId}
+                />
               )}
-              {(history || draft.phase === "saved") && <PerformanceFromSource data={data} repository={repository} onSaved={onSaved} kind="memory-question" id={history?.id ?? attempt!.id} itemId={q.cardId} />}
             </article>
           ))}
           <div className="actions">

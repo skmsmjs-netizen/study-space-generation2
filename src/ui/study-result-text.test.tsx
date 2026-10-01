@@ -18,11 +18,35 @@ it('renders math in ordinary explanations and old escaped results without changi
 
 it('keeps code and generated HTML literal, and disables trusted LaTeX links', async () => {
   const tick = String.fromCharCode(96);
-  const source = '<img src=x onerror=alert(1)> ' + tick + String.raw`\(code\)` + tick + String.raw` \(\href{javascript:alert(1)}{x}\)`;
-  const { container } = render(<h2><StudyResultText text={source} as="span" /></h2>);
+  const source =
+    '<img src=x onerror=alert(1)> ' +
+    tick +
+    String.raw`\(code\)` +
+    tick +
+    String.raw` \(\href{javascript:alert(1)}{x}\)`;
+  const { container } = render(
+    <h2>
+      <StudyResultText text={source} as="span" />
+    </h2>,
+  );
   await waitFor(() => expect(container.querySelectorAll('.katex')).toHaveLength(1));
   expect(container.querySelector('img')).toBeNull();
   expect(container.querySelector('a')).toBeNull();
   expect(container.querySelector('p')).toBeNull();
   expect(container.textContent).toContain(String.raw`\(code\)`);
+});
+
+it('preserves paragraph breaks and makes display equations keyboard accessible', async () => {
+  const source =
+    '전압과 전류의 관계입니다.\n\n' +
+    String.raw`\[I=\frac{V}{R}\]` +
+    '\n\n기호와 단위\n전류는 암페어입니다.';
+  const { container, rerender } = render(<StudyResultText text={source} />);
+  await waitFor(() => expect(container.querySelectorAll('math')).toHaveLength(1));
+  const equation = container.querySelector('[role="region"]');
+  expect(equation).toHaveAttribute('tabindex', '0');
+  expect(container.textContent).toContain('\n\n기호와 단위\n전류는 암페어입니다.');
+  rerender(<StudyResultText text="수식이 없는 다음 답안" />);
+  expect(container.querySelector('math')).toBeNull();
+  expect(container.textContent).toBe('수식이 없는 다음 답안');
 });

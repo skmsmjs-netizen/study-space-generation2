@@ -1,0 +1,30 @@
+.study-result-text {
+  min-inline-size: 0;
+  max-inline-size: 100%;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  line-height: var(--type-body-line);
+}
+.study-result-formula .katex {
+  font-size: 1.08em;
+}
+.study-result-formula--display {
+  display: block;
+  max-inline-size: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-block: var(--space-2);
+  margin-block: var(--space-2);
+  white-space: normal;
+}
+.study-result-formula--display .katex-display {
+  margin: 0;
+  text-align: start;
+}
+.study-result-formula--display:focus-visible {
+  outline: var(--focus-width) solid var(--color-focus);
+  outline-offset: var(--focus-offset);
+}
+.study-result-text--inline {
+  line-height: inherit;
+}

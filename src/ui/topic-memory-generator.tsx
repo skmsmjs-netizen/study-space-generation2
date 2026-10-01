@@ -1,3 +1,4 @@
+import { StudyResultText } from './study-result-text';
 import { useEffect, useRef, useState } from 'react';
 import type { AppState } from '../domain/model';
 import { recallPath } from '../domain/topic-recall';
@@ -91,9 +92,11 @@ export function TopicMemoryGenerator({
         })),
       });
       if (mounted.current && stored)
-        setNotice(result.cards.length
-          ? '질문과 기준 답안을 만들었습니다. 확인한 항목을 등록해 주세요.'
-          : '등록할 문항을 만들지 않았습니다. 아래 안내를 확인해 주세요.');
+        setNotice(
+          result.cards.length
+            ? '질문과 기준 답안을 만들었습니다. 확인한 항목을 등록해 주세요.'
+            : '등록할 문항을 만들지 않았습니다. 아래 안내를 확인해 주세요.',
+        );
     } catch (e) {
       if (mounted.current)
         setError(
@@ -142,7 +145,11 @@ export function TopicMemoryGenerator({
         {input.subject.name}의 목차와 주제로 질문과 기준 답안을 만듭니다. 필기나 교재 본문 없이도
         만들 수 있습니다.
       </p>
-      {!result && <p className="muted">기본 3개씩 짧게 만듭니다. 10초 안에 끝나지 않으면 기다림을 끝내고 입력을 유지합니다.</p>}
+      {!result && (
+        <p className="muted">
+          기본 3개씩 짧게 만듭니다. 10초 안에 끝나지 않으면 기다림을 끝내고 입력을 유지합니다.
+        </p>
+      )}
       {!draft.result && (
         <>
           <Select
@@ -235,7 +242,9 @@ export function TopicMemoryGenerator({
             >
               {pending ? '암기항목 만드는 중…' : '이 목차로 생성'}
             </Button>
-            <Button variant="quiet" disabled={pending} onClick={onConnection}>GPT 연결 확인</Button>
+            <Button variant="quiet" disabled={pending} onClick={onConnection}>
+              GPT 연결 확인
+            </Button>
           </div>
         </>
       )}
@@ -245,10 +254,19 @@ export function TopicMemoryGenerator({
             주제 기반 생성 · {result.cards.length}개 · {input.subject.name} /{' '}
             {input.topics.map((t) => t.path.map((n) => n.name).join(' › ')).join(', ')}
           </p>
-          {result.cards.length > 0 && <p className="muted">
-            일반 지식으로 만든 답안입니다. 수업의 표기와 조건에 맞는지 확인하거나 고쳐 주세요.
-          </p>}
-          {result.diagnostics?.map((d, index) => <article key={`diagnostic:${index}`}><p role="status">{d.message}</p>{d.questions?.map(q => <p key={q}>{q}</p>)}</article>)}
+          {result.cards.length > 0 && (
+            <p className="muted">
+              일반 지식으로 만든 답안입니다. 수업의 표기와 조건에 맞는지 확인하거나 고쳐 주세요.
+            </p>
+          )}
+          {result.diagnostics?.map((d, index) => (
+            <article key={`diagnostic:${index}`}>
+              <p role="status">{d.message}</p>
+              {d.questions?.map((q) => (
+                <p key={q}>{q}</p>
+              ))}
+            </article>
+          ))}
           {draft.items.map((i, index) => {
             const original = result.cards.find((c) => c.id === i.id);
             if (!original)
@@ -294,6 +312,16 @@ export function TopicMemoryGenerator({
                   disabled={disabled || !!saved}
                   onChange={(e) => patchItem(i.id, { answer: e.target.value, reviewed: false })}
                 />
+                <section
+                  className="memory-generated-preview"
+                  aria-label={`${index + 1}번 조판 미리보기`}
+                >
+                  <p className="muted">조판 미리보기</p>
+                  <strong>
+                    <StudyResultText text={i.question} as="span" />
+                  </strong>
+                  <StudyResultText text={i.answer} />
+                </section>
                 <Checkbox
                   label={`${index + 1}번 질문과 답안을 확인했어요`}
                   checked={i.reviewed}
@@ -309,8 +337,8 @@ export function TopicMemoryGenerator({
                 )}
                 <details>
                   <summary>처음 생성한 질문·답안</summary>
-                  <p className="prose">{original.question}</p>
-                  <p className="prose">{original.answer}</p>
+                  <StudyResultText text={original.question} />
+                  <StudyResultText text={original.answer} />
                 </details>
               </article>
             );
@@ -343,7 +371,9 @@ export function TopicMemoryGenerator({
       {error && (
         <div role="alert">
           <p>{error}</p>
-          <Button variant="quiet" onClick={onConnection}>연결 설정 열기</Button>
+          <Button variant="quiet" onClick={onConnection}>
+            연결 설정 열기
+          </Button>
         </div>
       )}
     </section>
