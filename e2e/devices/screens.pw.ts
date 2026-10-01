@@ -160,16 +160,14 @@ test('missing microphone API retains transcript import and exact notes after rel
   await page.goto('?space=demo#/materials');
   await page.getByRole('button', { name: '자료 추가', exact: true }).tap();
   await expect(page.getByRole('button', { name: '녹음 시작', exact: true })).toHaveCount(0);
-  await expect(
-    page.getByRole('button', { name: '학습 자료 파일', exact: true }),
-  ).toBeEnabled();
+  await expect(page.getByRole('button', { name: '문서·사진·자막 가져오기', exact: true })).toBeEnabled();
+  await expect(page.getByLabel('학습 자료 파일', { exact: true })).toHaveAttribute('accept', /\.txt/);
   await expect(page.getByRole('link', { name: '클로바노트 열기', exact: true })).toBeVisible();
   const original = '  화자 1 · 00:12\n조건과 예외를 그대로 보관  ';
   const notes = page.getByRole('textbox', { name: '강의 내용·필기', exact: true });
   await notes.fill(original);
   await page.reload();
   await expect(notes).toHaveValue(original);
-  await expect(
-    page.getByRole('button', { name: '학습 자료 파일', exact: true }),
-  ).toBeEnabled();
+  await expect(page.getByRole('button', { name: '문서·사진·자막 가져오기', exact: true })).toBeEnabled();
+  await expect(page.getByLabel('학습 자료 파일', { exact: true })).toHaveAttribute('accept', /\.txt/);
 });
