@@ -13,7 +13,7 @@ type Props = { data: AppState; repository: StudyRepository; onSaved: (next: AppS
 const inks: Record<MemoInk, { label: string; color: string }> = {
   ink: { label: '기본색', color: 'var(--color-text)' },
   blue: { label: '파랑', color: 'var(--color-hierarchy-outline)' },
-  green: { label: '초록', color: 'var(--color-primary)' },
+  green: { label: '초록', color: 'var(--color-memo-green)' },
 };
 const errorMessage = (error: unknown) => error instanceof Error && (error.name === 'QuotaExceededError' || /quota/i.test(error.message)) ? '이 기기의 저장 공간이 부족합니다.' : error instanceof Error ? error.message : '저장하지 못했습니다.';
 function ownerName(data: AppState, ownerId: string | null) {

@@ -66,7 +66,7 @@ export function MemoInkPad({ strokes, onChange, onDrawing }: {
       }} onPointerUp={event => { if (active.current?.pointerId === event.pointerId) finish(); }}
       onPointerCancel={event => { if (active.current?.pointerId === event.pointerId) finish(); }}
       onLostPointerCapture={event => { if (active.current?.pointerId === event.pointerId) finish(); }}>
-      {strokes.map(stroke => <path key={stroke.id} d={memoPath(stroke.points)} stroke={{ ink: 'var(--color-text)', blue: 'var(--color-hierarchy-outline)', green: 'var(--color-primary)' }[stroke.ink]} strokeWidth={stroke.width} fill="none" strokeLinecap="round" strokeLinejoin="round" />)}
+      {strokes.map(stroke => <path key={stroke.id} d={memoPath(stroke.points)} stroke={{ ink: 'var(--color-text)', blue: 'var(--color-hierarchy-outline)', green: 'var(--color-memo-green)' }[stroke.ink]} strokeWidth={stroke.width} fill="none" strokeLinecap="round" strokeLinejoin="round" />)}
       <path ref={live} stroke="var(--color-text)" strokeWidth={3} fill="none" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
     <Checkbox label="손가락으로도 그리기" checked={finger} disabled={drawing} onChange={event => setFinger(event.target.checked)} />

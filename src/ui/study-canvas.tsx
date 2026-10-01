@@ -20,7 +20,7 @@ function StudyCard({ data, selected }: NodeProps<CardNode>) {
     <header className="canvas-drag-handle">{card.kind !== 'memo' && card.kind !== 'narrative' && <span className="canvas-role">{kinds[card.kind]}</span>}<h2>{card.name}</h2></header>
     <div className="canvas-card-body nodrag nopan nowheel">
       {data.editor ?? <>
-        {data.memo?.strokes.length ? <svg className="canvas-sketch" viewBox={`0 0 ${MEMO_WIDTH} ${MEMO_HEIGHT}`} role="img" aria-label="저장한 설명 그림">{data.memo.strokes.map(stroke => <path key={stroke.id} d={memoPath(stroke.points)} strokeWidth={stroke.width} fill="none" stroke={{ ink: 'var(--color-text)', blue: 'var(--color-hierarchy-outline)', green: 'var(--color-primary)' }[stroke.ink]} strokeLinecap="round" strokeLinejoin="round" />)}</svg> : null}
+        {data.memo?.strokes.length ? <svg className="canvas-sketch" viewBox={`0 0 ${MEMO_WIDTH} ${MEMO_HEIGHT}`} role="img" aria-label="저장한 설명 그림">{data.memo.strokes.map(stroke => <path key={stroke.id} d={memoPath(stroke.points)} strokeWidth={stroke.width} fill="none" stroke={{ ink: 'var(--color-text)', blue: 'var(--color-hierarchy-outline)', green: 'var(--color-memo-green)' }[stroke.ink]} strokeLinecap="round" strokeLinejoin="round" />)}</svg> : null}
         {data.body && <p className="canvas-original">{data.body}</p>}
         <div className="canvas-card-actions"><Button variant="quiet" onClick={data.open}>{card.kind === 'memo' || card.kind === 'narrative' ? '카드 안에서 편집' : '메모 쓰기'}</Button>
         {card.kind !== 'memo' && card.kind !== 'narrative' && <a href={`#/${card.kind === 'subject' ? 'subject' : 'node'}/${encodeURIComponent(card.entityId)}`}>열기 ↗</a>}</div>

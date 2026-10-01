@@ -32,7 +32,7 @@ textarea.ui-input { min-height: calc(var(--control-height) * 3); resize: vertica
 .ui-tabs [aria-selected="true"] { background: var(--color-secondary); box-shadow: inset 0 calc(var(--border-width) * -2) var(--color-primary); }
 .ui-segmented { border-radius: var(--radius-md); background: var(--color-surface-inset); }
 .ui-segmented [aria-pressed="true"] { background: var(--color-surface); box-shadow: var(--shadow-raised); }
-.ui-card { min-width: 0; padding: var(--space-group); border: var(--border-width) solid var(--color-border); border-radius: var(--radius-lg); background: var(--color-surface); box-shadow: var(--shadow-raised); }
+.ui-card { min-width: 0; padding: var(--space-group) 0; border: 0; border-block-end: var(--border-width) solid var(--color-border); border-radius: 0; background: transparent; box-shadow: var(--shadow-none); }
 .ui-list-item { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); min-width: 0; padding-block: var(--space-3); border-block-end: var(--border-width) solid var(--color-border); }
 .ui-list-item > :first-child { min-width: 0; overflow-wrap: anywhere; }
 .ui-overlay { position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center; padding: var(--space-4); background: var(--color-overlay); }

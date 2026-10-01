@@ -75,6 +75,7 @@ hr {
   height: 100dvh;
   padding: var(--space-7) var(--space-5);
   border-right: var(--border-width) solid var(--color-border);
+  background: var(--color-surface-inset);
   display: flex;
   flex-direction: column;
   gap: var(--space-7);
@@ -158,17 +159,17 @@ nav a[aria-current="page"] {
   font-size: var(--type-label-size);
 }
 .hero {
-  padding: var(--space-6);
-  background: var(--color-secondary);
+  padding: var(--space-4) 0 var(--space-5);
+  background: transparent;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-6);
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
 }
 .hero h2 {
-  font-size: var(--type-title-size);
-  line-height: var(--type-title-line);
-  margin-bottom: var(--space-3);
+  font-size: var(--type-heading-size);
+  line-height: var(--type-heading-line);
+  margin-bottom: var(--space-2);
 }
 .hero p:last-child {
   margin-bottom: 0;
@@ -180,9 +181,8 @@ nav a[aria-current="page"] {
   flex-wrap: wrap;
 }
 .hero .actions {
-  flex-direction: column;
-  align-items: stretch;
-  flex-shrink: 0;
+  flex-direction: row;
+  align-items: center;
 }
 .dashboard-grid {
   display: grid;
@@ -204,6 +204,9 @@ nav a[aria-current="page"] {
 .field-stack {
   display: grid;
   gap: var(--space-4);
+}
+.card-stack {
+  gap: 0;
 }
 .quick-topic {
   display: flex;
@@ -251,7 +254,7 @@ nav a[aria-current="page"] {
 .subject-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--space-4);
+  gap: 0 var(--space-6);
   margin-top: var(--space-5);
 }
 .outline-list {
@@ -380,7 +383,7 @@ nav a[aria-current="page"] {
   .hero {
     align-items: start;
     flex-direction: column;
-    gap: var(--space-5);
+    gap: var(--space-3);
   }
   .hero .actions {
     flex-direction: row;
@@ -434,7 +437,7 @@ nav a[aria-current="page"] {
     font-size: var(--type-title-size);
   }
   .hero {
-    padding: var(--space-5);
+    padding: var(--space-3) 0 var(--space-4);
   }
   .hero h2 {
     font-size: var(--type-heading-size);
@@ -444,6 +447,9 @@ nav a[aria-current="page"] {
   }
   .hero .actions button {
     flex: 1;
+  }
+  .hero .actions .ui-button--primary {
+    flex-basis: 100%;
   }
   .bottom-nav {
     display: flex;
@@ -541,7 +547,7 @@ nav a[aria-current="page"] {
   .compact-menu[open] { width: 100%; }
   .is-home .page-heading { margin: var(--space-3) 0; }
   .is-home .page-heading .eyebrow { display: none; }
-  .is-home .hero { padding: var(--space-4); gap: var(--space-3); }
+  .is-home .hero { padding: var(--space-3) 0 var(--space-4); gap: var(--space-3); }
   .is-home .hero .eyebrow { display: none; }
   .is-home .hero h2 { margin-bottom: var(--space-2); }
   .is-home .dashboard-grid { margin-top: var(--space-5); }
