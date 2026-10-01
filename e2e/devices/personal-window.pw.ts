@@ -48,6 +48,10 @@ test('two personal windows open, resume the input location and retain independen
   await expect(second.getByRole('textbox', { name: '짧은 글', exact: true })).toHaveValue(first);
   await expect(second).toHaveURL(/#\/memos\/one$/);
   await expect(page.getByRole('textbox', { name: '짧은 글', exact: true })).toHaveValue(first);
+  await second.getByRole('button', { name: '닫기', exact: true }).click();
+  await second.goto('?space=personal#/');
+  await expect(second.getByRole('heading', { name: '오늘', exact: true })).toBeVisible();
+  await expect(second.getByLabel('하던 공부 이어가기').getByRole('alert')).toHaveCount(0);
   await second.goto('?space=personal#/memos/two');
   const other = '  두 번째 창의 독립된 글\n한글과 끝 공백  ';
   await second.getByRole('textbox', { name: '짧은 글', exact: true }).fill(other);

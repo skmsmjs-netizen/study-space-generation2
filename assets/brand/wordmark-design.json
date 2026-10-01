@@ -1,0 +1,21 @@
+{
+  "product": "ManSeekSong OS",
+  "fontSource": "https://github.com/rsms/inter/blob/master/docs/font-files/InterVariable.ttf",
+  "license": "OFL.txt",
+  "name": {
+    "text": "ManSeekSong",
+    "axes": { "wght": 500, "opsz": 32 },
+    "scale": 1,
+    "widthScale": 1,
+    "trackingEm": -0.018,
+    "opticalPairsEm": { "nS": 0.005, "kS": 0.008 }
+  },
+  "suffix": {
+    "text": "OS",
+    "axes": { "wght": 500, "opsz": 32 },
+    "scale": 1,
+    "widthScale": 1,
+    "trackingEm": -0.018
+  },
+  "suffixGapEm": 0.24
+}

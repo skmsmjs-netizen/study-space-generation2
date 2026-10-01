@@ -45,6 +45,7 @@ import { QuickMemos } from "./ui/quick-memos";
 import { StudyLaunch } from "./ui/study-launch";
 import { BrandIdentity, BrandContinuity, BrandService, ExperienceSettings, RelatedThinking, useExperience } from "./ui/brand-experience";
 import { SubjectWeeks } from "./ui/semester-weeks";
+import { BrandCopyright } from "./ui/brand-copyright";
 const NextStudy = lazy(() => import("./ui/next-study").then(module => ({ default: module.NextStudy })));
 const StudyStatistics = lazy(() => import("./ui/statistics").then(module => ({ default: module.StudyStatistics })));
 const StudyLandscapes = lazy(() => import("./ui/study-landscapes").then(module => ({ default: module.StudyLandscapes })));
@@ -1031,6 +1032,7 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
               </EmptyState>
             )}
           </ScreenBoundary>
+          <BrandCopyright />
         </main>
         <NavigationBar label="빠른 이동" className="bottom-nav" items={navItems.map(item => ({href:`#${item.href}`, label:item.text, active:route === item.href || item.href === "/record" && recordRoute || item.href === "/memos" && memoRoute || item.href === "/materials" && materialRoute || item.href === "/code" && codeRoute || item.href === "/practice" && practiceRoute || item.href === "/memory-test" && memoryTestRoute || item.href === "/subjects" && Boolean(subject)}))} />
       </div>

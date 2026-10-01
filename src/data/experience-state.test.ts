@@ -2,6 +2,7 @@ import { beforeEach, afterEach, describe, expect, it, vi } from 'vitest';
 import { createDemoState } from '../domain/fixtures';
 import { retainNextAction } from '../domain/brand';
 import { clearRescuedDraft } from './draft-safety';
+import { registerPersonalDraftWindow } from './personal-draft-window';
 import {
   experienceKey,
   readExperience,
@@ -16,6 +17,39 @@ beforeEach(() => {
 });
 afterEach(() => vi.restoreAllMocks());
 describe('brand continuity preservation and observations', () => {
+  it('opens a new personal window without parsing its empty marker or adopting another window\'s next action', () => {
+    const data = { ...createDemoState(), namespace: 'personal' as const };
+    const key = experienceKey(data);
+    const leaveFirst = registerPersonalDraftWindow(data.userId, 'first-window');
+    const body = '  첫 창에서 남긴 다음 행동\n';
+    updateExperience(data, (s) => ({
+      ...s, next: { location: { route: '/math', label: '수식 탐색' }, body },
+    }));
+    const original = localStorage.getItem(key);
+    leaveFirst();
+    const leaveSecond = registerPersonalDraftWindow(data.userId, 'second-window');
+    try {
+      expect(readExperience(data).next).toBeNull();
+      expect(localStorage.getItem(key)).toBe(original);
+      updateExperience(data, (s) => ({ ...s, last: { route: '/materials', label: '강의 자료' } }));
+      expect(localStorage.getItem(`${key}:recovery:window-first-window`)).toBe(original);
+      expect(readExperience(data).last?.route).toBe('/materials');
+    } finally { leaveSecond(); }
+    const reopenFirst = registerPersonalDraftWindow(data.userId, 'first-window');
+    try { expect(readExperience(data).next?.body).toBe(body); }
+    finally { reopenFirst(); }
+  });
+  it('recognizes an empty saved marker without rewriting it and keeps damaged nonempty data', () => {
+    const data = createDemoState(), key = experienceKey(data);
+    localStorage.setItem(key, '');
+    expect(readExperience(data).next).toBeNull();
+    expect(localStorage.getItem(key)).toBe('');
+    const damaged = '  {unfinished original\n';
+    localStorage.setItem(key, damaged);
+    expect(() => readExperience(data)).toThrow('저장된 원문은 그대로 보존했습니다');
+    expect(() => updateExperience(data, (s) => s)).toThrow('이어가기 정보를 읽지 못했습니다');
+    expect(localStorage.getItem(key)).toBe(damaged);
+  });
   it('retains earlier next-action originals when replacing, hiding and restoring their display', () => {
     const data = createDemoState(),
       location = { route: '/math', label: '수식 탐색' };

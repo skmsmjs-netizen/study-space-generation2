@@ -18,10 +18,16 @@ export const experienceKey = (data: Pick<AppState, 'namespace' | 'userId'>) =>
   `study-space:${data.namespace}:${encodeURIComponent(data.userId)}:experience:v1`;
 export function readExperience(data: Pick<AppState, 'namespace' | 'userId'>): ExperienceState {
   const raw = readRescuedDraft(experienceKey(data)) ?? localStorage.getItem(experienceKey(data));
-  if (raw === null) return emptyExperience();
-  const value: unknown = JSON.parse(raw);
-  validateExperience(value);
-  return value;
+  // Draft safety uses an empty marker for this window when another window owns
+  // the shared value. Do not parse that marker or adopt the other window's text.
+  if (raw === null || raw === '') return emptyExperience();
+  try {
+    const value: unknown = JSON.parse(raw);
+    validateExperience(value);
+    return value;
+  } catch {
+    throw Error('이어가기 정보를 읽지 못했습니다. 저장된 원문은 그대로 보존했습니다. 다시 시도해 주세요.');
+  }
 }
 /** Keep failed writes in the shared draft rescue; do not replace unreadable prior data. */
 export function updateExperience(

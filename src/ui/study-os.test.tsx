@@ -1,0 +1,74 @@
+import { afterEach, expect, it, vi } from 'vitest';
+import { cleanup, fireEvent, render, screen, within } from '@testing-library/react';
+import { createDemoState } from '../domain/fixtures';
+import { emptyRecommendations, readRecommendations, saveRecommendations } from '../data/recommendations';
+import { applyCommand } from '../domain/commands';
+import { createSemesterWeeks, semesterWeekRows } from '../domain/study-calendar';
+import { NextStudy } from './next-study';
+import { StudyStatistics } from './statistics';
+import { WeekOverview } from './week-overview';
+
+afterEach(() => { cleanup(); localStorage.clear(); sessionStorage.clear(); vi.useRealTimers(); vi.restoreAllMocks(); });
+it('limits accumulated undated schedules and reveals searchable originals on demand', () => {
+  const data = createDemoState(), subjectIds = data.subjects.map(s => s.id);
+  const base = createSemesterWeeks(semesterWeekRows('2026-10-01', '2026-10-01', 1, '미정 일정'), [], subjectIds[0], '2026-10-01', () => 'base')[0];
+  const schedules = Array.from({ length: 40 }, (_, i) => ({ ...base, id: `unknown-${i}`, name: `미정 일정 ${i}`, opensDate: '' }));
+  const view = render(<WeekOverview data={data} schedules={schedules} subjectIds={subjectIds} at="2026-10-01T01:00:00Z" />);
+  expect(view.container.querySelectorAll('article')).toHaveLength(6);
+  fireEvent.click(screen.getByText('날짜 미정 일정 40개'));
+  fireEvent.click(screen.getByRole('button', { name: '날짜 미정 일정 더 보기' }));
+  expect(view.container.querySelectorAll('article')).toHaveLength(26);
+  fireEvent.change(screen.getByLabelText('홈 일정 찾기'), { target: { value: '미정 일정 39' } });
+  expect(screen.getByRole('button', { name: '일정 확인 · 미정 일정 39' })).toBeInTheDocument();
+  expect(view.container.querySelectorAll('article')).toHaveLength(1);
+});
+it('restores exact weekly drafts, skips duplicates, and persists undo and restoration across remounts', () => {
+  const data = createDemoState(), subjectIds = data.subjects.map(s => s.id);
+  const show = () => render(<NextStudy onlySchedules data={data} subjectIds={subjectIds} />);
+  let view = show(); fireEvent.click(screen.getByRole('button', { name: '주차 한 번에 만들기' }));
+  fireEvent.change(screen.getByLabelText('첫 강의 날짜'), { target: { value: '2026-09-03' } });
+  fireEvent.change(screen.getByLabelText('마지막 주차 기준일'), { target: { value: '2026-09-24' } });
+  fireEvent.click(screen.getByRole('button', { name: '주차 미리보기' }));
+  fireEvent.click(screen.getByLabelText('2주차 휴강·제외'));
+  fireEvent.change(screen.getByLabelText('3주차 메모 · 선택'), { target: { value: '  원문\n예외  ' } });
+  fireEvent.click(screen.getByRole('button', { name: '닫고 초안 보관' })); view.unmount(); view = show();
+  fireEvent.click(screen.getByRole('button', { name: '주차 한 번에 만들기' }));
+  expect(screen.getByLabelText('3주차 메모 · 선택')).toHaveValue('  원문\n예외  ');
+  expect(screen.getByLabelText('2주차 휴강·제외')).toBeChecked();
+  fireEvent.click(screen.getByRole('button', { name: '3개 주차 등록' }));
+  let saved = readRecommendations(data).workspace.schedules!; expect(saved).toHaveLength(3); expect(saved[1].note).toBe('  원문\n예외  ');
+  expect(screen.getByRole('button', { name: '0개 주차 등록' })).toBeDisabled();
+  fireEvent.click(screen.getByRole('button', { name: '이번 주차 생성 되돌리기' }));
+  expect(readRecommendations(data).workspace.schedules!.every(s => s.deletedAt)).toBe(true);
+  view.unmount(); view = show(); fireEvent.click(screen.getByRole('button', { name: '주차 한 번에 만들기' }));
+  fireEvent.click(screen.getByRole('button', { name: '되돌린 주차 복원' }));
+  saved = readRecommendations(data).workspace.schedules!;
+  expect(saved.every(s => !s.deletedAt)).toBe(true); expect(saved[1].history).toHaveLength(2); expect(saved[1].note).toBe('  원문\n예외  ');
+});
+it('opens the selected home schedule, saves it, and returns to the same home without losing the original note', () => {
+  vi.useFakeTimers(); vi.setSystemTime(new Date('2026-10-01T01:00:00Z'));
+  const data = createDemoState(), subjectIds = data.subjects.map(s => s.id), workspace = emptyRecommendations(data);
+  workspace.schedules = createSemesterWeeks(semesterWeekRows('2026-10-01', '2026-10-01', 1, '선택 일정'), [], subjectIds[0], '2026-10-01', () => 'week-id');
+  workspace.schedules[0].note = '  일정 원문\n조건  '; saveRecommendations(data, workspace, null);
+  render(<NextStudy data={data} subjectIds={subjectIds} />);
+  const home = screen.getByRole('region', { name: '이번 주 일정' });
+  fireEvent.click(within(home).getByRole('button', { name: '일정 확인 · 선택 일정 · 1주차' }));
+  const dialog = screen.getByRole('dialog'); expect(within(dialog).getByLabelText('일정 메모 · 선택')).toHaveValue('  일정 원문\n조건  ');
+  fireEvent.change(within(dialog).getByLabelText('일정 이름'), { target: { value: '바뀐 일정' } });
+  fireEvent.click(within(dialog).getByRole('button', { name: '일정 저장' }));
+  expect(screen.queryByRole('dialog')).toBeNull(); expect(within(home).getByRole('heading', { name: '바뀐 일정' })).toBeInTheDocument();
+  expect(readRecommendations(data).workspace.schedules![0].note).toBe('  일정 원문\n조건  ');
+});
+it('uses calendar-month evidence, retains unknown dates separately, and remembers the chosen month', () => {
+  vi.useFakeTimers(); vi.setSystemTime(new Date('2026-10-01T01:00:00Z'));
+  let data = createDemoState(); const subjectIds = data.subjects.map(s => s.id);
+  const save = (id: string, dateEvidence: { kind: 'exact'; date: string } | { kind: 'unknown' }, body: string) => {
+    data = applyCommand(data, { type: 'saveRecords', sessionId: id, dateEvidence, entries: [{ targetId: 'demo-topic-function', done: true, body }], userId: data.userId, opId: id, at: '2026-10-01T01:00:00Z' });
+  };
+  save('sep', { kind: 'exact', date: '2026-09-30' }, '9월 원문'); save('oct', { kind: 'exact', date: '2026-10-01' }, '10월 원문'); save('unknown', { kind: 'unknown' }, '날짜 미정 원문');
+  let view = render(<StudyStatistics data={data} subjectIds={subjectIds} />);
+  fireEvent.change(screen.getByLabelText('요약할 월'), { target: { value: '2026-09' } });
+  fireEvent.click(screen.getByRole('button', { name: '2026-09 공부 회차 원기록 보기' }));
+  const dialog = screen.getByRole('dialog'); expect(within(dialog).getByText('9월 원문')).toBeInTheDocument(); expect(within(dialog).queryByText('10월 원문')).toBeNull(); expect(within(dialog).getByText('날짜 미정 원문')).toBeInTheDocument();
+  view.unmount(); view = render(<StudyStatistics data={data} subjectIds={subjectIds} />); expect(screen.getByLabelText('요약할 월')).toHaveValue('2026-09');
+});

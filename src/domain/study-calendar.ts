@@ -57,7 +57,11 @@ export function reverseWeekBatch(schedules: LearningSchedule[], originals: Learn
   const changedOriginals: LearningSchedule[] = [];
   const next = schedules.map(s => {
     const original = expected.get(s.id); if (!original) return s;
-    if (JSON.stringify(s) !== JSON.stringify(original)) { preserved++; return s; }
+    // JSON objects can reorder keys during a PostgreSQL round trip. Array order
+    // and every stored value still matter when protecting later user edits.
+    const content = (value: LearningSchedule) => JSON.stringify(value, (_key, v) => v && typeof v === 'object' && !Array.isArray(v)
+      ? Object.fromEntries(Object.entries(v).sort(([a], [b]) => a.localeCompare(b))) : v);
+    if (content(s) !== content(original)) { preserved++; return s; }
     changed++; const updated = changeSchedule(s, { deletedAt: restore ? null : at }, at, restore ? '주차 생성 되돌림 복원' : '주차 생성 되돌림');
     changedOriginals.push(updated); return updated;
   });

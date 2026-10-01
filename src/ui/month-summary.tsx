@@ -27,7 +27,7 @@ export function MonthSummary({ data, workspace, subjectIds, subjectId = '', node
     if (compact) { try { saveStatisticsMonth(data, month); } catch { /* The full view also defaults to the calendar month. */ } location.hash = '#/statistics'; return; }
     onOpen?.(month, metric.id, statisticBounds(metric, period.from, period.to).evidence, metric.unit);
   };
-  return <Card aria-label="월간 기록 요약" className="study-statistics">
+  return <Card role="region" aria-label="월간 기록 요약" className="study-statistics">
     <div className="section-heading"><h2>{BRAND.monthly}</h2>{compact && <a href="#/statistics" onClick={() => { try { saveStatisticsMonth(data, month); } catch { /* Keep navigation usable. */ } }}>월간 기록 보기</a>}</div>
     {!compact && <div className="actions"><Button onClick={() => choose(shiftMonth(month, -1))}>이전 달</Button><Input label="요약할 월" type="month" value={month} onChange={e => { if (e.target.value) choose(e.target.value); }} /><Button onClick={() => choose(shiftMonth(month, 1))}>다음 달</Button><Button variant="quiet" onClick={() => choose(currentMonth)}>이번 달</Button></div>}
     <p className="muted">{period.from}–{period.to} · 남긴 기록에서 이번 달의 공부를 돌아보세요.</p>
