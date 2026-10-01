@@ -17,7 +17,7 @@ beforeEach(() => {
 });
 afterEach(() => vi.restoreAllMocks());
 describe('brand continuity preservation and observations', () => {
-  it('opens a new personal window without parsing its empty marker or adopting another window\'s next action', () => {
+  it('opens a new personal window with the shared next action while preserving window-specific copies', () => {
     const data = { ...createDemoState(), namespace: 'personal' as const };
     const key = experienceKey(data);
     const leaveFirst = registerPersonalDraftWindow(data.userId, 'first-window');
@@ -29,25 +29,26 @@ describe('brand continuity preservation and observations', () => {
     leaveFirst();
     const leaveSecond = registerPersonalDraftWindow(data.userId, 'second-window');
     try {
-      expect(readExperience(data).next).toBeNull();
+      expect(readExperience(data).next?.body).toBe(body);
       expect(localStorage.getItem(key)).toBe(original);
       updateExperience(data, (s) => ({ ...s, last: { route: '/materials', label: '강의 자료' } }));
       expect(localStorage.getItem(`${key}:recovery:window-first-window`)).toBe(original);
       expect(readExperience(data).last?.route).toBe('/materials');
+      expect(readExperience(data).next?.body).toBe(body);
     } finally { leaveSecond(); }
     const reopenFirst = registerPersonalDraftWindow(data.userId, 'first-window');
     try { expect(readExperience(data).next?.body).toBe(body); }
     finally { reopenFirst(); }
   });
-  it('recognizes an empty saved marker without rewriting it and keeps damaged nonempty data', () => {
+  it('blocks replacement of empty or damaged shared metadata and keeps the exact original', () => {
     const data = createDemoState(), key = experienceKey(data);
     localStorage.setItem(key, '');
-    expect(readExperience(data).next).toBeNull();
+    expect(() => readExperience(data)).toThrow('이어가기 설정을 읽지 못했습니다');
     expect(localStorage.getItem(key)).toBe('');
     const damaged = '  {unfinished original\n';
     localStorage.setItem(key, damaged);
-    expect(() => readExperience(data)).toThrow('저장된 원문은 그대로 보존했습니다');
-    expect(() => updateExperience(data, (s) => s)).toThrow('이어가기 정보를 읽지 못했습니다');
+    expect(() => readExperience(data)).toThrow('원문은 유지했습니다');
+    expect(() => updateExperience(data, (s) => s)).toThrow('이어가기 설정을 읽지 못했습니다');
     expect(localStorage.getItem(key)).toBe(damaged);
   });
   it('retains earlier next-action originals when replacing, hiding and restoring their display', () => {

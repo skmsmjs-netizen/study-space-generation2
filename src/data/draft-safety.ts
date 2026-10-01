@@ -13,8 +13,12 @@ if (typeof window !== 'undefined') window.addEventListener('beforeunload', event
   event.preventDefault();
   event.returnValue = '';
 });
-export function readRescuedDraft(key: string): string | null {
+type DraftOptions = { scope?: 'window' | 'device' };
+export function readRescuedDraft(key: string, options: DraftOptions = {}): string | null {
   if (!pending.has(key)) retainedReadErrors.delete(key);
+  // A device setting is shared by this owner's windows. The empty editor
+  // marker and a stale window copy are not the shared setting's contents.
+  if (options.scope === 'device') return pending.get(key) ?? null;
   const id = personalDraftWindow(key);
   if (!pending.has(key) && id) {
     const own = localStorage.getItem(windowCopyKey(key, id));
@@ -25,7 +29,7 @@ export function readRescuedDraft(key: string): string | null {
   return pending.get(key) ?? null;
 }
 export function draftHasUnstoredText(key: string): boolean { return pending.has(key); }
-export function storeDraftSafely(key: string, value: string): void {
+export function storeDraftSafely(key: string, value: string, options: DraftOptions = {}): void {
   // Keep the exact value before a potentially throwing write. Route unmount cannot discard it.
   pending.set(key, value);
   const id = personalDraftWindow(key);
@@ -33,11 +37,11 @@ export function storeDraftSafely(key: string, value: string): void {
     const archiveKey = windowCopyKey(key, id);
     localStorage.setItem(archiveKey, value);
     if (localStorage.getItem(archiveKey) !== value) throw Error('이 창의 초안 보관을 확인하지 못했습니다. 입력은 현재 창에 남아 있습니다.');
-    const metadata: DraftArchiveMetadata = { version: 1, archiveKey, sourceKey: key, archivedAt: new Date().toISOString(), reason: '창별 작성 초안' };
+    const metadata: DraftArchiveMetadata = { version: 1, archiveKey, sourceKey: key, archivedAt: new Date().toISOString(), reason: options.scope === 'device' ? '이 창에서 남긴 이어가기 설정 사본' : '창별 작성 초안' };
     localStorage.setItem(draftArchiveMetadataKey(archiveKey), JSON.stringify(metadata));
   }
   localStorage.setItem(key, value);
-  if (id) localStorage.setItem(`${key}:window-author`, id);
+  if (id && options.scope !== 'device') localStorage.setItem(`${key}:window-author`, id);
   lastWritten.set(key, value);
   pending.delete(key);
 }
@@ -54,9 +58,9 @@ export class DraftArchiveError extends Error {
 }
 
 /** Copy the exact storage string before allowing a replacement. Never delete the archive. */
-export function archiveDamagedDraft(key: string, reason = '읽을 수 없는 초안 원문 보관'): string | null {
+export function archiveDamagedDraft(key: string, reason = '읽을 수 없는 초안 원문 보관', retainedRaw?: string): string | null {
   let raw: string | null;
-  try { raw = localStorage.getItem(key); }
+  try { raw = retainedRaw === undefined ? localStorage.getItem(key) : retainedRaw; }
   catch (cause) { throw new DraftArchiveError('source-read', '원래 초안을 읽지 못해 사본을 만들지 못했습니다. 저장된 내용을 변경하지 않았습니다. 다시 시도해 주세요.', cause); }
   if (raw === null) return null;
   const archiveKey = `${key}:recovery:${crypto.randomUUID()}`;

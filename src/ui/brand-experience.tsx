@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { BrandWordmark } from './brand-wordmark';
+import { ExperienceRecoveryControl } from './experience-recovery';
 import type { AppState, StudyRecord } from '../domain/model';
 import { BRAND, emptyExperience, retainNextAction, type ExperienceState } from '../domain/brand';
 import {
@@ -42,15 +43,18 @@ export function useExperience(data: AppState) {
   const key = experienceKey(data);
   const [state, setState] = useState<ExperienceState>(emptyExperience);
   const [error, setError] = useState('');
+  const [readBlocked, setReadBlocked] = useState(false);
   const refresh = useCallback(() => {
     try {
       setState(readExperience(data));
+      setReadBlocked(false);
       setError(
         experienceUnstored(data)
           ? '이 기기에 저장하지 못한 내용이 있습니다. 화면의 입력은 유지했습니다. 저장을 다시 시도해 주세요.'
           : '',
       );
     } catch (e) {
+      setReadBlocked(true);
       setError(errorText(e));
     }
   }, [data]);
@@ -80,7 +84,7 @@ export function useExperience(data: AppState) {
       return false;
     }
   };
-  return { state, error, change, refresh };
+  return { state, error, readBlocked, change, refresh };
 }
 
 /** User text uses the established exact draft rescue, including failed writes. */
@@ -276,7 +280,10 @@ export function BrandContinuity({ data, route }: { data: AppState; route: string
             </Button>
           </div>
           {experience.error && (
-            <ErrorState message={experience.error} onRetry={() => experience.change((s) => s)} />
+            <>
+              <ErrorState message={experience.error} onRetry={() => experience.change((s) => s)} />
+              <ExperienceRecoveryControl data={data} onRecovered={experience.refresh} />
+            </>
           )}
           {notice && <p role="status">{notice}</p>}
         </Card>
@@ -312,7 +319,10 @@ export function BrandContinuity({ data, route }: { data: AppState; route: string
           onChange={(e) => draft.input(e.target.value)}
         />
         {draft.error && <ErrorState message={draft.error} onRetry={draft.retry} />}
-        {experience.error && <ErrorState message={experience.error} onRetry={experience.refresh} />}
+        {experience.error && <>
+          <ErrorState message={experience.error} onRetry={experience.refresh} />
+          <p>입력한 글은 유지했습니다. 건너뛰기로 닫은 뒤 설정 원문·보관본 확인에서 복구해 주세요.</p>
+        </>}
         <div className="actions">
           <Button
             variant="primary"
@@ -329,20 +339,23 @@ export function BrandContinuity({ data, route }: { data: AppState; route: string
 }
 
 export function ExperienceSettings({ data }: { data: AppState }) {
-  const { state, change, error, refresh } = useExperience(data);
+  const { state, change, error, readBlocked, refresh } = useExperience(data);
   return (
     <>
       <Select
         label="본문 읽기 폭"
-        value={state.readingWidth}
+        disabled={readBlocked}
+        value={readBlocked ? 'unreadable' : state.readingWidth}
         onChange={(e) =>
           change((s) => ({ ...s, readingWidth: e.target.value === 'wide' ? 'wide' : 'normal' }))
         }
       >
+        {readBlocked && <option value="unreadable">저장한 읽기 폭 확인 필요</option>}
         <option value="normal">읽기 편한 폭</option>
         <option value="wide">가용 화면 전체</option>
       </Select>
       {error && <ErrorState message={error} onRetry={refresh} />}
+      <ExperienceRecoveryControl data={data} onRecovered={refresh} />
     </>
   );
 }
@@ -838,7 +851,10 @@ export function BrandService({
           </Card>
         </>
       )}
-      {experience.error && <ErrorState message={experience.error} onRetry={experience.refresh} />}
+      {experience.error && <>
+        <ErrorState message={experience.error} onRetry={experience.refresh} />
+        <ExperienceRecoveryControl data={data} onRecovered={experience.refresh} />
+      </>}
     </div>
   );
 }
