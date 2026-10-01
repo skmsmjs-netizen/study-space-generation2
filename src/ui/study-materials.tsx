@@ -288,11 +288,16 @@ function MaterialEditor({
           baseVersion.current = draft.baseVersion;
           if (!selected && typeof draft.materialId === 'string' && draft.materialId)
             stableMaterialId.current = draft.materialId;
-          recordingId.current = draft.recordingId;
+          recordingId.current = draft.recordingId ?? draft.audioCleanup?.recordingId;
           audioRecordingId.current = draft.audioRecordingId;
           audioCleanup.current = draft.audioCleanup;
-          current.current = draft.content;
-          setContent(draft.content);
+          // Old cleanup drafts may hold the only reference to an existing recording.
+          // Transcript entry keeps that original; it does not repeat or delete prior work.
+          const restoredContent = draft.audioCleanup && !draft.content.audio
+            ? { ...draft.content, audio: draft.audioCleanup.audio }
+            : draft.content;
+          current.current = restoredContent;
+          setContent(restoredContent);
           const savedView = draft.view ?? draft.content.learningView;
           const at = savedView?.resultId ? draft.content.results.findIndex(r => r.id === savedView.resultId) : -1;
           const selectedResult = draft.content.results[at >= 0 ? at : draft.content.results.length - 1];

@@ -28,7 +28,7 @@ const input: TopicMemoryInput = {
   count: 3,
   guidance: '',
 };
-const status = { local: true, configured: true, creditsConfirmed: true, model: 'listed' };
+const status = { local: false, provider: 'openai-api', configured: true, model: 'gpt-6-luna', models: [{ slug: 'gpt-6-luna', displayName: 'GPT-6 Luna' }], connectionError: '', billing: { configured: true, enabled: true, limitMicro: 1_000_000, usedMicro: 0, pendingMicro: 0, month: '2026-10' } };
 const response = () =>
   Response.json({
     result: {
