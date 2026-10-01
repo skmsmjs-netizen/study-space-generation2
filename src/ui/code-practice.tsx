@@ -1,3 +1,4 @@
+import { CodeTopicLinkEditor } from './learning-links';
 import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { Button, EmptyState, ErrorState, Input, Select, Textarea } from './index';
 import type {
@@ -125,6 +126,8 @@ export function CodePractice({ data, repository, onSaved, exampleId, trash = fal
         </p>
       )}
       {selected && !trash ? (
+        <>
+        <CodeTopicLinkEditor key={`topic:${selected.id}`} data={data} repository={repository} onSaved={onSaved} exampleId={selected.id} />
         <CodeExampleEditor
           key={selected.id}
           example={selected}
@@ -147,6 +150,7 @@ export function CodePractice({ data, repository, onSaved, exampleId, trash = fal
               navigate('/code');
           }}
         />
+        </>
       ) : (
         <>
           {!examples.length && (

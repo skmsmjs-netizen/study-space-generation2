@@ -1,0 +1,105 @@
+import { beforeEach, describe, expect, it } from 'vitest';
+import { DemoRepository } from './demo-repository';
+import { readLearningPlan, saveLearningPlan } from './learning-plan';
+import { registerMaterialCard, saveCodeTopic, saveSourcePerformance } from './learning-evidence';
+import { performanceSource, linkPerformance } from '../domain/learning-evidence';
+import { emptyRecommendations, emptyResponse, nextStudy } from '../domain/recommendation-workspace';
+import { canonicalEvents } from '../domain/recommendation-kernel.mjs';
+import { statistics, statisticBounds } from '../domain/statistics';
+import { validateState } from '../domain/commands';
+import { packServerState, unpackServerState } from '../server/state-codec';
+const topicId='demo-topic-function', at='2026-10-01T01:00:00.000Z';
+beforeEach(() => {localStorage.clear();sessionStorage.clear();});
+function setup() {
+  const repo = new DemoRepository(localStorage), data=repo.getSnapshot();
+  const context = {userId:data.userId,namespace:data.namespace,at};
+  repo.execute({...context,type:'saveMemo',opId:'memo',id:'exam-practice:source',expectedVersion:0,ownerId:topicId,body:'시험 연습 · 원문\n\n풀이·답안\n  조건\r\n例外',strokes:[]});
+  const workspace=emptyRecommendations(data);workspace.goals=[{id:'goal',targetId:topicId,label:'조건을 설명할 수 있다',dueDate:'',novelty:'new',createdAt:at,ended:false}];
+  saveLearningPlan(repo,workspace,null);
+  return {repo,context};
+}
+describe('answer, material and code connections', () => {
+  it('keeps unknown help/novelty, exact answer and one canonical performance after editing a verdict', () => {
+    const {repo}=setup(), source=performanceSource(repo.getSnapshot(),'exam-memo','exam-practice:source');
+    let plan=readLearningPlan(repo.getSnapshot());
+    saveSourcePerformance(repo,source,'goal',{...emptyResponse(),result:'pass'},plan.raw);
+    let data=repo.getSnapshot(); plan=readLearningPlan(data);
+    expect(plan.workspace.events[0]).toMatchObject({answer:source.body,source,assistance:'unknown',novelty:'unknown'});
+    expect(nextStudy(data,plan.workspace,new Date().toISOString()).states.goal.status).not.toBe('confirmed');
+    saveSourcePerformance(repo,source,'goal',{...emptyResponse(),result:'pass',assistance:'none',novelty:'new'},plan.raw);
+    data=repo.getSnapshot();plan=readLearningPlan(data);
+    expect(plan.workspace.events).toHaveLength(2);
+    expect(canonicalEvents(plan.workspace.events,new Date().toISOString(),new Date().toISOString())).toHaveLength(1);
+    expect(nextStudy(data,plan.workspace,new Date().toISOString()).states.goal.status).toBe('confirmed');
+    expect(statistics(data,plan.workspace,{from:'2026-01-01',to:'2026-12-31'},new Date().toISOString()).find(m=>m.id==='attempts')?.items).toHaveLength(1);
+    const op=Object.keys(data.appliedOps).at(-1)!;expect(unpackServerState(packServerState(data,op))).toEqual(data);
+    expect(new DemoRepository(localStorage).getSnapshot().learningPlans).toEqual(data.learningPlans);
+  });
+  it('counts one saved answer across criteria and keeps its occurrence date when a later verdict changes', () => {
+    const {repo}=setup(), data=repo.getSnapshot(), source=performanceSource(data,'exam-memo','exam-practice:source');
+    let workspace=readLearningPlan(data).workspace;
+    const first=workspace.goals[0], second={...first,id:'second',label:'다른 기준'};
+    workspace.goals.push(second);
+    const response={...emptyResponse(),result:'pass' as const,assistance:'none' as const,novelty:'same' as const};
+    workspace=linkPerformance(data,workspace,source,first,response,at);
+    workspace=linkPerformance(data,workspace,source,second,response,'2026-10-02T01:00:00Z');
+    workspace=linkPerformance(data,workspace,source,first,{...response,result:'fail'},'2026-10-03T01:00:00Z');
+    expect(workspace.events).toHaveLength(3);
+    expect(workspace.events.every(event=>event.occurredAt===at)).toBe(true);
+    const metrics=statistics(data,workspace,{from:'2026-10-01',to:'2026-10-03'},'2026-10-04T01:00:00Z');
+    const attempts=metrics.find(m=>m.id==='attempts')!, successes=metrics.find(m=>m.id==='successes')!;
+    expect(statisticBounds(attempts,'2026-10-01','2026-10-03')).toMatchObject({lower:1,upper:1});
+    expect(statisticBounds(attempts,'2026-10-02','2026-10-03').lower).toBe(0);
+    expect(statisticBounds(successes,'2026-10-01','2026-10-03').lower).toBe(1);
+    expect(new Set(attempts.items.flatMap(item=>item.eventIds)).size).toBe(2);
+  });
+  it('rejects a forged/foreign/stale source and concurrent result writes; keeps the saved response after source edits/trash', () => {
+    const {repo,context}=setup(), source=performanceSource(repo.getSnapshot(),'exam-memo','exam-practice:source'),plan=readLearningPlan(repo.getSnapshot());
+    expect(()=>saveSourcePerformance(repo,{...source,body:'forged'},'goal',emptyResponse(),plan.raw)).toThrow();
+    expect(()=>saveSourcePerformance(repo,{...source,id:'foreign'},'goal',emptyResponse(),plan.raw)).toThrow();
+    saveSourcePerformance(repo,source,'goal',emptyResponse(),plan.raw);
+    expect(()=>saveSourcePerformance(repo,source,'goal',emptyResponse(),plan.raw)).toThrow(/다른 곳/);
+    repo.execute({...context,opId:'memo-edit',type:'saveMemo',id:source.id,expectedVersion:1,ownerId:topicId,body:'edited',strokes:[]});
+    expect(()=>saveSourcePerformance(repo,source,'goal',emptyResponse(),readLearningPlan(repo.getSnapshot()).raw)).toThrow(/바뀌었습니다/);
+    repo.execute({...context,opId:'memo-trash',type:'trashMemo',id:source.id,expectedVersion:2});
+    const data=repo.getSnapshot();expect(()=>validateState(data)).not.toThrow();expect(readLearningPlan(data).workspace.events[0].source?.body).toBe(source.body);
+  });
+  it('does not score an unanswered memory question and preserves its frozen question after card edits', () => {
+    const {repo,context}=setup();
+    const content={topicId,question:'질문?',answer:'기준',strokes:[]};
+    repo.execute({...context,opId:'card',type:'saveMemoryCard',id:'card',expectedVersion:0,content});
+    repo.execute({...context,opId:'test',type:'saveMemoryTest',id:'test',content:{startedAt:at,endedAt:at,questions:[{...content,cardId:'card',cardVersion:1,topicName:'주제',response:'',responseStrokes:[],verdict:null}]}});
+    repo.execute({...context,opId:'card-edit',type:'saveMemoryCard',id:'card',expectedVersion:1,content:{...content,question:'새 질문'}});
+    const source=performanceSource(repo.getSnapshot(),'memory-question','test','card');
+    expect(source.question).toBe('질문?');expect(source.performedAt).toBe(at);
+    const plan=readLearningPlan(repo.getSnapshot());
+    expect(()=>saveSourcePerformance(repo,source,'goal',{...emptyResponse(),result:'fail'},plan.raw)).toThrow(/답하지 않은/);
+    saveSourcePerformance(repo,source,'goal',emptyResponse(),plan.raw);
+    expect(readLearningPlan(repo.getSnapshot()).workspace.events[0].result).toBe('unknown');
+  });
+  it('registers reviewed material once, rejects old/deleted/cross-subject sources, preserves edits and provenance through reload', () => {
+    const {repo,context}=setup();
+    repo.execute({...context,opId:'material',type:'saveStudyMaterial',id:'material',expectedVersion:0,content:{title:'자료',subjectId:'demo-subject-math',topicId,sourceText:'원문',audio:null,results:[{id:'result',at,model:'fixture',segments:[{id:'segment',text:'원문',start:null,end:null}],summary:[],cards:[{id:'mc',question:'질문',answer:'답',sourceIds:['segment'],excluded:false}]}]}});
+    const material=repo.getSnapshot().studyMaterials![0];
+    expect(()=>registerMaterialCard(repo,material,'result','mc',topicId,false)).toThrow(/대조/);
+    expect(()=>registerMaterialCard(repo,material,'result','mc','demo-topic-force',true)).toThrow(/연결/);
+    const first=registerMaterialCard(repo,material,'result','mc',topicId,true), card=first.data.memoryCards![0];
+    repo.execute({...context,opId:'registered-edit',type:'saveMemoryCard',id:card.id,expectedVersion:1,content:{topicId,question:'내 수정',answer:'내 답',strokes:[]}});
+    const repeat=registerMaterialCard(repo,material,'result','mc',topicId,true);
+    expect(repeat.existing).toBe(true);expect(repeat.data.memoryCards).toHaveLength(1);expect(repeat.data.memoryCards![0].question).toBe('내 수정');expect(repeat.data.memoryCards![0].materialSource?.materialId).toBe('material');
+    repo.execute({...context,opId:'material-edit',type:'saveStudyMaterial',id:material.id,expectedVersion:1,content:{...material,title:'수정'}});
+    expect(()=>registerMaterialCard(repo,material,'result','mc',topicId,true)).toThrow(/바뀌었습니다/);
+    expect(new DemoRepository(localStorage).getSnapshot().memoryCards?.[0].materialSource).toEqual(card.materialSource);
+  });
+  it('links/unlinks code with plan CAS without touching code, stdin, notes or execution history', () => {
+    const {repo,context}=setup();
+    repo.execute({...context,opId:'code',type:'saveCodeExample',id:'code',expectedVersion:0,content:{title:'예제',language:'c',code:'printf("x");',stdin:'原文\r\n',notes:'  조건'}});
+    const original=structuredClone(repo.getSnapshot().codeExamples), raw=readLearningPlan(repo.getSnapshot()).raw;
+    saveCodeTopic(repo,'code',topicId,raw);
+    expect(repo.getSnapshot().codeExamples).toEqual(original);
+    expect(()=>saveCodeTopic(repo,'code','',raw)).toThrow(/다른 곳/);
+    saveCodeTopic(repo,'code','',readLearningPlan(repo.getSnapshot()).raw);
+    expect(readLearningPlan(repo.getSnapshot()).workspace.codeLinks).toEqual([]);
+    expect(new DemoRepository(localStorage).getSnapshot().codeExamples).toEqual(original);
+  });
+});

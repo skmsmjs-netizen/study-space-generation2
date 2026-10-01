@@ -487,447 +487,6 @@ var require_lz_string = __commonJS({
 // src/server/state-codec.ts
 var import_lz_string = __toESM(require_lz_string(), 1);
 
-// src/domain/model.ts
-var DomainError = class extends Error {
-  constructor(code, message, details) {
-    super(message);
-    this.code = code;
-    this.details = details;
-    this.name = "DomainError";
-  }
-  code;
-  details;
-};
-function emptyState(userId, namespace) {
-  return { schemaVersion: 1, userId, namespace, semesters: [], subjects: [], nodes: [], sessions: [], records: [], narratives: [], revisions: [], appliedOps: {} };
-}
-
-// src/domain/trace.ts
-var TRACE_ITEMS = [
-  {
-    "id": "Td1",
-    "group": "T",
-    "label": "\uC774 \uC8FC\uC81C\uC5D0\uC11C \uB2F5\uD558\uB824\uB294 \uC9C8\uBB38\uC744 \uD55C \uBB38\uC7A5\uC73C\uB85C \uC801\uC5B4\uBCF4\uC558\uB2E4.",
-    "question": "\uC774 \uC8FC\uC81C\uC5D0\uC11C \uB2F5\uD558\uB824\uB294 \uC9C8\uBB38\uC740 \uBB34\uC5C7\uC778\uAC00\uC694?",
-    "mode": "required"
-  },
-  {
-    "id": "Td2",
-    "group": "T",
-    "label": "\uC124\uBA85\uC758 \uD750\uB984\uC744 \uB530\uB77C\uAC00\uACE0 \uD544\uC694\uD55C \uC120\uD589 \uAC1C\uB150\uC744 \uC9DA\uC5B4\uBCF4\uC558\uB2E4.",
-    "question": "\uC124\uBA85\uC740 \uC5B4\uB5BB\uAC8C \uC774\uC5B4\uC9C0\uACE0, \uC5B4\uB5A4 \uAC1C\uB150\uC774 \uBA3C\uC800 \uD544\uC694\uD55C\uAC00\uC694?",
-    "mode": "required"
-  },
-  {
-    "id": "Rd1",
-    "group": "R",
-    "label": "\uAE30\uC5B5\uD558\uACE0 \uC0AC\uC6A9\uD560 \uC815\uC758\xB7\uACF5\uC2DD\xB7\uD575\uC2EC \uACB0\uB860\uC744 \uC815\uB9AC\uD574\uBCF4\uC558\uB2E4.",
-    "question": "\uC9C0\uAE08 \uAE30\uC5B5\uD558\uACE0 \uC0AC\uC6A9\uD560 \uD575\uC2EC\uC740 \uBB34\uC5C7\uC778\uAC00\uC694?",
-    "mode": "required"
-  },
-  {
-    "id": "Rd2",
-    "group": "R",
-    "label": "\uAE30\uD638\uC758 \uB73B\uACFC \uC801\uC6A9 \uC870\uAC74\uC744 \uD655\uC778\uD558\uACE0 \uC6D0\uBB38\uACFC \uB300\uC870\uD574\uBCF4\uC558\uB2E4.",
-    "question": "\uAE30\uD638\uC640 \uC870\uAC74\uC744 \uC5B4\uB5BB\uAC8C \uAE30\uC5B5\uD558\uBA70, \uC6D0\uBB38\uACFC \uB9DE\uB098\uC694?",
-    "mode": "required"
-  },
-  {
-    "id": "Ad1",
-    "group": "A",
-    "label": "\uB300\uD45C \uBB38\uC81C\uB97C \uC9C1\uC811 \uD480\uACE0 \uBC29\uBC95\uC744 \uC120\uD0DD\uD55C \uC774\uC720\uB97C \uC124\uBA85\uD574\uBCF4\uC558\uB2E4.",
-    "question": "\uC5B4\uB5A4 \uBC29\uBC95\uC744 \uC120\uD0DD\uD574 \uC2DC\uB3C4\uD588\uACE0, \uC65C \uADF8 \uBC29\uBC95\uC744 \uACE8\uB790\uB098\uC694?",
-    "mode": "required"
-  },
-  {
-    "id": "Ad2",
-    "group": "A",
-    "label": "\uD2C0\uB9AC\uAC70\uB098 \uB9C9\uD78C \uBD80\uBD84\uC744 \uBCF4\uC644\uD558\uACE0 \uB2E4\uC2DC \uD480\uC5B4\uBCF4\uC558\uB2E4.",
-    "question": "\uB9C9\uD78C \uBD80\uBD84\uC744 \uC5B4\uB5BB\uAC8C \uBCF4\uC644\uD588\uACE0, \uB2E4\uC2DC \uD574\uBCF4\uB2C8 \uC5B4\uB514\uAE4C\uC9C0 \uB418\uB098\uC694?",
-    "mode": "required"
-  },
-  {
-    "id": "Cd1",
-    "group": "C",
-    "label": "\uC790\uB8CC \uC5C6\uC774 \uD575\uC2EC\uC744 \uB5A0\uC62C\uB9AC\uACE0 \uC815\uD655\uC131\uC744 \uD655\uC778\uD574\uBCF4\uC558\uB2E4.",
-    "question": "\uB3C4\uC6C0 \uC5C6\uC774 \uBB34\uC5C7\uC744 \uB5A0\uC62C\uB838\uC73C\uBA70 \uC6D0\uBB38\uACFC \uC5BC\uB9C8\uB098 \uB9DE\uB098\uC694?",
-    "mode": "required"
-  },
-  {
-    "id": "Cself1",
-    "group": "C",
-    "label": "\uC790\uAE30\uD654 \uC7AC\uAD6C\uC131: \uACF5\uBD80\uD55C \uB0B4\uC6A9\uC744 \uB098\uB9CC\uC758 \uC5B8\uC5B4\uC640 \uBC29\uC2DD\uC73C\uB85C \uD45C\uD604\uD558\uACE0 \uC5F0\uACB0\uD574\uBCF4\uC558\uB2E4.",
-    "question": "\uACF5\uBD80\uD55C \uB0B4\uC6A9\uC744 \uB098\uB9CC\uC758 \uC5B8\uC5B4\uC640 \uBC29\uC2DD\uC73C\uB85C \uC5B4\uB5BB\uAC8C \uD45C\uD604\uD558\uACE0 \uC5F0\uACB0\uD588\uB098\uC694?",
-    "mode": "optional"
-  },
-  {
-    "id": "Cd3",
-    "group": "C",
-    "label": "\uBCC0\uD615\xB7\uD63C\uD569\xB7\uC0C8 \uBB38\uC81C\uC5D0\uC11C \uBAA9\uD45C \uC218\uD589\uC744 \uD655\uC778\uD574\uBCF4\uC558\uB2E4.",
-    "question": "\uC0C8\uB85C\uC6B4 \uBB38\uC81C\uC5D0\uC11C\uB3C4 \uBAA9\uD45C\uB85C \uD55C \uC218\uD589\uC744 \uD560 \uC218 \uC788\uB098\uC694?",
-    "mode": "required"
-  },
-  {
-    "id": "Cd4",
-    "group": "C",
-    "label": "\uD575\uC2EC \uC815\uC758\xB7\uACF5\uC2DD\xB7\uC870\uAC74\xB7\uACB0\uB860\uC744 \uBC31\uC9C0\uC5D0 \uC11C\uC220\uD558\uACE0 \uC6D0\uBB38\uACFC \uB300\uC870\uD574\uBCF4\uC558\uB2E4.",
-    "question": "\uC774 \uC8FC\uC81C\uC5D0\uC11C \uC2E4\uC81C\uB85C \uC4F8 \uD575\uC2EC\uC744 \uC790\uB8CC \uC5C6\uC774 \uC5B4\uB5BB\uAC8C \uC11C\uC220\uD588\uB098\uC694?",
-    "mode": "optional"
-  },
-  {
-    "id": "Cd5",
-    "group": "C",
-    "label": "\uAC80\uC99D \uACB0\uACFC\uB97C \uC0B4\uD53C\uACE0 \uBD80\uC871\uD568\uACFC \uB2E4\uC74C \uD589\uB3D9\uC744 \uC815\uD574\uBCF4\uC558\uB2E4.",
-    "question": "\uD655\uC778\uD55C \uACB0\uACFC\uC640 \uB0A8\uC740 \uBD80\uC871\uD568\uC740 \uBB34\uC5C7\uC774\uBA70, \uB2E4\uC74C\uC5D0 \uBB34\uC5C7\uC744 \uD560\uAE4C\uC694?",
-    "mode": "required"
-  },
-  {
-    "id": "Ed1",
-    "group": "E",
-    "label": "\uC5B4\uB5A4 \uBB38\uC81C\uB098 \uD544\uC694\uB97C \uB2E4\uB8E8\uAE30 \uC704\uD574 \uB3C4\uC785\uB418\uB294\uC9C0 \uC124\uBA85\uD574\uBCF4\uC558\uB2E4.",
-    "question": "\uC774 \uAC1C\uB150\xB7\uC815\uB9AC\xB7\uACF5\uC2DD\uC740 \uC5B4\uB5A4 \uD544\uC694\uB97C \uB2E4\uB8E8\uB098\uC694?",
-    "mode": "required"
-  },
-  {
-    "id": "Ed2",
-    "group": "E",
-    "label": "\uB3C4\uC785 \uC0AC\uB840\uC5D0\uC11C \uC8FC\uC5B4\uC9C4 \uAC83\uACFC \uAD6C\uD558\uB824\uB294 \uAC83\uC744 \uD480\uC5B4 \uB9D0\uD574\uBCF4\uC558\uB2E4.",
-    "question": "\uC608\uC2DC\uC5D0\uC11C \uBB34\uC5C7\uC774 \uC8FC\uC5B4\uC9C0\uACE0 \uBB34\uC5C7\uC744 \uAD6C\uD558\uAC70\uB098 \uC124\uBA85\uD558\uB098\uC694?",
-    "mode": "required"
-  },
-  {
-    "id": "Ed3",
-    "group": "E",
-    "label": "\uB73B\uC744 \uC790\uAE30 \uB9D0\uACFC \uC608\uC2DC\uB85C \uC124\uBA85\uD558\uACE0 \uC6D0\uBB38\uACFC \uB300\uC870\uD574\uBCF4\uC558\uB2E4.",
-    "question": "\uC790\uAE30 \uB9D0\uACFC \uC608\uC2DC\uB85C \uC124\uBA85\uD558\uBA74 \uC5B4\uB5A4 \uB73B\uC774\uBA70, \uC6D0\uBB38\uACFC \uB9DE\uB098\uC694?",
-    "mode": "required"
-  },
-  {
-    "id": "Ed4",
-    "group": "E",
-    "label": "\uB2E4\uB978 \uC801\uC6A9 \uC0C1\uD669\xB7\uC870\uAC74 \uBCC0\uD654\xB7\uB354 \uC54C \uC218 \uC788\uB294 \uACB0\uB860\uC744 \uC0DD\uAC01\uD574\uBCF4\uC558\uB2E4.",
-    "question": "\uBB34\uC5C7\uC744 \uB354 \uC54C \uC218 \uC788\uACE0, \uC870\uAC74\uC774\uB098 \uC0C1\uD669\uC774 \uB2EC\uB77C\uC9C0\uBA74 \uC5B4\uB5BB\uAC8C \uB418\uB098\uC694?",
-    "mode": "required"
-  }
-];
-var WRITTEN_REVIEW_ITEM_ID = "Cself1";
-
-// src/domain/criteria.ts
-function defaultCriteriaItems() {
-  return TRACE_ITEMS.map((item) => ({ id: item.id, group: item.group, label: item.label, version: 1, mode: item.mode }));
-}
-function validateTraceDefinition(value, expectedId = value?.id) {
-  if (!value || typeof value !== "object" || typeof value.id !== "string" || !/^[TRACE][A-Za-z0-9_-]*$/.test(value.id) || value.id.length > 256 || value.id !== expectedId || !["T", "R", "A", "C", "E"].includes(value.group) || typeof value.label !== "string" || !value.label.trim() || !Number.isSafeInteger(value.version) || value.version < 1 || !["required", "optional", "excluded"].includes(value.mode)) {
-    throw new DomainError("INVALID_TRACE_DEFINITION", "\uD65C\uB3D9\uC758 \uC6D0\uB798 \uD56D\uBAA9\uACFC \uC815\uC758\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
-  }
-}
-function criteriaRevisionToken(state) {
-  return JSON.stringify([
-    state.subjects.map((row) => [row.id, row.version, row.deletedAt]),
-    state.nodes.map((row) => [row.id, row.subjectId, row.version, row.deletedAt]),
-    (state.criteria ?? []).map((row) => [row.id, row.version, row.deletedAt]),
-    (state.criteriaAssignments ?? []).map((row) => [row.id, row.version, row.deletedAt])
-  ]);
-}
-function criteriaScopeTargets(state, targetId, scope) {
-  const subjectId = state.nodes.find((node) => node.id === targetId)?.subjectId;
-  if (!subjectId) throw new DomainError("NOT_FOUND", "\uAE30\uC900\uC744 \uC870\uC815\uD560 \uBAA9\uCC28 \uD56D\uBAA9\uC744 \uCC3E\uC744 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
-  if (scope === "topic") return [{ scope: "topic", ownerId: targetId }];
-  if (scope !== "subject" && scope !== "all") throw new DomainError("INVALID_CRITERIA_SCOPE", "\uAE30\uC900\uC758 \uC801\uC6A9 \uBC94\uC704\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
-  const subjects = state.subjects.filter((subject) => scope === "all" || subject.id === subjectId);
-  const nodes = state.nodes.filter((node) => scope === "all" || node.subjectId === subjectId);
-  return [
-    ...scope === "all" ? [{ scope: "global", ownerId: null }] : [],
-    ...subjects.map((subject) => ({ scope: "subject", ownerId: subject.id })),
-    ...nodes.map((node) => ({ scope: "topic", ownerId: node.id }))
-  ];
-}
-
-// src/domain/outline.ts
-var MAX_OUTLINE_ROWS = 500;
-var MAX_OUTLINE_NAME = 180;
-function outlineRevisionToken(state, subjectId, parentId) {
-  const subject = state.subjects.find((row) => row.id === subjectId);
-  return JSON.stringify([
-    state.userId,
-    state.namespace,
-    subjectId,
-    parentId,
-    subject ? [subject.version, subject.deletedAt, subject.scope] : null,
-    state.nodes.filter((row) => row.subjectId === subjectId).map((row) => [row.id, row.parentId, row.order, row.name, row.version, row.deletedAt]).sort((a, b) => String(a[0]).localeCompare(String(b[0])))
-  ]);
-}
-function previewOutlineEntries(names) {
-  const entries = [], issues = [];
-  if (!Array.isArray(names) || names.length > MAX_OUTLINE_ROWS) {
-    return { entries, issues: [{ line: 0, message: `\uD55C \uBC88\uC5D0 ${MAX_OUTLINE_ROWS}\uD589\uAE4C\uC9C0 \uCD94\uAC00\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.` }] };
-  }
-  const seen = /* @__PURE__ */ new Set();
-  names.forEach((raw, index) => {
-    const line = index + 1;
-    if (typeof raw !== "string") {
-      issues.push({ line, message: "\uC774\uB984\uC744 \uAE00\uB85C \uC785\uB825\uD574 \uC8FC\uC138\uC694." });
-      return;
-    }
-    const name = raw.trim();
-    if (!name) return;
-    if (/[\r\n\t]/.test(raw)) {
-      issues.push({ line, message: "\uD56D\uBAA9\uB9C8\uB2E4 \uBCC4\uB3C4 \uC785\uB825\uCE78\uC744 \uC0AC\uC6A9\uD574 \uC8FC\uC138\uC694." });
-      return;
-    }
-    if (name.length > MAX_OUTLINE_NAME) {
-      issues.push({ line, message: `\uC774\uB984\uC740 ${MAX_OUTLINE_NAME}\uC790 \uC774\uB0B4\uB85C \uC785\uB825\uD574 \uC8FC\uC138\uC694.` });
-      return;
-    }
-    if (!seen.has(name)) {
-      seen.add(name);
-      entries.push({ line, name });
-    }
-  });
-  return { entries, issues };
-}
-function outlineTableToken(state) {
-  return JSON.stringify([
-    state.userId,
-    state.namespace,
-    state.semesters.map((row) => [row.id, row.version, row.deletedAt]),
-    state.subjects.map((row) => [row.id, row.name, row.scope, row.order, row.version, row.deletedAt]),
-    state.nodes.map((row) => [row.id, row.subjectId, row.parentId, row.role, row.name, row.order, row.version, row.deletedAt])
-  ]);
-}
-var sameOutlineScope = (left, right) => left.kind === right.kind && (left.kind !== "semester" || right.kind === "semester" && left.semesterId === right.semesterId);
-function previewOutlineTable(state, input) {
-  const fail2 = (message) => {
-    throw new DomainError("INVALID_OUTLINE_TABLE", message);
-  };
-  if (!input || !input.scope || !["semester", "independent", "unassigned"].includes(input.scope.kind)) fail2("\uB4F1\uB85D\uD560 \uD559\uAE30\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
-  if (input.scope.kind === "semester" && !state.semesters.some((row) => row.id === input.scope.semesterId && !row.deletedAt)) fail2("\uB4F1\uB85D\uD560 \uD559\uAE30\uB97C \uCC3E\uC744 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
-  if (!Array.isArray(input.courses) || input.courses.length > MAX_OUTLINE_ROWS || !input.choices || typeof input.choices !== "object" || Array.isArray(input.choices)) fail2("\uC785\uB825 \uD45C\uC758 \uD615\uC2DD\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
-  const keys = /* @__PURE__ */ new Set(), entries = [], paths = /* @__PURE__ */ new Map();
-  let rows = 0;
-  const cell = (value) => {
-    if (!value || typeof value.key !== "string" || !value.key || keys.has(value.key) || typeof value.name !== "string") fail2("\uC785\uB825\uCE78\uC758 \uC2DD\uBCC4\uC790\uC640 \uC6D0\uBB38\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
-    keys.add(value.key);
-    const name = value.name.trim();
-    if (name.length > MAX_OUTLINE_NAME || /[\r\n\t]/.test(value.name)) fail2("\uC774\uB984\uC740 \uC904\uBC14\uAFC8 \uC5C6\uC774 180\uC790 \uC774\uB0B4\uB85C \uAC1C\uBCC4 \uCE78\uC5D0 \uC801\uC5B4 \uC8FC\uC138\uC694.");
-    return name;
-  };
-  const append = (path, kind) => {
-    const key = JSON.stringify(path);
-    if (paths.has(key)) return;
-    const parentKey = path.length > 1 ? JSON.stringify(path.slice(0, -1)) : null;
-    const parent = parentKey ? paths.get(parentKey) : null;
-    const subjectKey = JSON.stringify(path.slice(0, 1)), subject = paths.get(subjectKey);
-    const candidates = (kind === "subject" ? state.subjects.filter((row) => !row.deletedAt && row.name === path[0] && sameOutlineScope(row.scope, input.scope)) : parent?.status === "reuse" ? state.nodes.filter((row) => !row.deletedAt && row.subjectId === (kind === "unit" ? parent.id : subject?.id) && row.parentId === (kind === "unit" ? null : parent.id) && row.role === kind && row.name === path.at(-1)) : []).sort((a, b) => a.order - b.order);
-    const choice = Object.hasOwn(input.choices, key) ? input.choices[key] : void 0;
-    let status = "new", id = null;
-    if (parent && ["choose", "blocked"].includes(parent.status)) status = "blocked";
-    else if (candidates.length) {
-      if (choice === "new") status = "new";
-      else if (candidates.some((row) => row.id === choice)) {
-        status = "reuse";
-        id = choice;
-      } else status = "choose";
-    } else if (choice && choice !== "new") fail2("\uC5F0\uACB0\uD558\uB824\uB358 \uAE30\uC874 \uD56D\uBAA9\uC774 \uBC14\uB00C\uC5C8\uC2B5\uB2C8\uB2E4. \uAC19\uC740 \uC774\uB984\uC758 \uD56D\uBAA9\uC744 \uB2E4\uC2DC \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
-    const entry = { key, parentKey, subjectKey, name: path.at(-1), path, kind, status, id, candidates: candidates.map((row) => ({ id: row.id, name: row.name })) };
-    paths.set(key, entry);
-    entries.push(entry);
-  };
-  for (const course of input.courses) {
-    const courseName = cell(course);
-    if (!Array.isArray(course.units)) fail2("\uB2E8\uC6D0 \uC785\uB825\uCE78\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
-    if (courseName) append([courseName], "subject");
-    for (const unit of course.units) {
-      if (++rows > MAX_OUTLINE_ROWS) fail2("\uB2E8\uC6D0\uACFC \uC8FC\uC81C \uC785\uB825\uC740 \uD569\uACC4 500\uD589\uAE4C\uC9C0 \uC0AC\uC6A9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.");
-      const unitName = cell(unit);
-      if (!Array.isArray(unit.topics)) fail2("\uC8FC\uC81C \uC785\uB825\uCE78\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
-      if (unitName && !courseName) fail2("\uB2E8\uC6D0\uC744 \uB2F4\uC744 \uACFC\uBAA9\uBA85\uC744 \uC801\uC5B4 \uC8FC\uC138\uC694.");
-      if (unitName) append([courseName, unitName], "unit");
-      for (const topic of unit.topics) {
-        if (++rows > MAX_OUTLINE_ROWS) fail2("\uB2E8\uC6D0\uACFC \uC8FC\uC81C \uC785\uB825\uC740 \uD569\uACC4 500\uD589\uAE4C\uC9C0 \uC0AC\uC6A9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.");
-        const topicName = cell(topic);
-        if (topicName && (!courseName || !unitName)) fail2("\uC8FC\uC81C\uB97C \uB2F4\uC744 \uACFC\uBAA9\uBA85\uACFC \uB2E8\uC6D0\uBA85\uC744 \uC801\uC5B4 \uC8FC\uC138\uC694.");
-        if (topicName) append([courseName, unitName, topicName], "topic");
-      }
-    }
-  }
-  return { entries, ready: entries.length > 0 && entries.every((row) => ["new", "reuse"].includes(row.status)), newCount: entries.filter((row) => row.status === "new").length, reuseCount: entries.filter((row) => row.status === "reuse").length, expectedToken: outlineTableToken(state) };
-}
-
-// src/domain/memo.ts
-var MEMO_WIDTH = 900;
-var MEMO_HEIGHT = 600;
-function validateMemoContent(value) {
-  const row = value;
-  const bad = () => {
-    throw new DomainError("INVALID_MEMO", "\uBA54\uBAA8\uC758 \uAE00\uC774\uB098 \uADF8\uB9BC\uC744 \uC77D\uC9C0 \uBABB\uD588\uC2B5\uB2C8\uB2E4. \uC6D0\uBB38\uC744 \uBCC0\uACBD\uD558\uC9C0 \uC54A\uC558\uC2B5\uB2C8\uB2E4.");
-  };
-  if (!row || typeof row.body !== "string" || row.ownerId !== null && (typeof row.ownerId !== "string" || !row.ownerId.trim()) || !Array.isArray(row.strokes)) return bad();
-  const ids = /* @__PURE__ */ new Set();
-  for (const stroke of row.strokes) {
-    if (!stroke || typeof stroke.id !== "string" || !stroke.id.trim() || ids.has(stroke.id) || !["ink", "blue", "green"].includes(stroke.ink) || !Number.isFinite(stroke.width) || stroke.width <= 0 || stroke.width > 40 || !Array.isArray(stroke.points) || !stroke.points.length) return bad();
-    ids.add(stroke.id);
-    for (const point of stroke.points) if (!point || !Number.isFinite(point.x) || !Number.isFinite(point.y) || point.x < 0 || point.x > MEMO_WIDTH || point.y < 0 || point.y > MEMO_HEIGHT || !Number.isFinite(point.pressure) || point.pressure < 0 || point.pressure > 1) return bad();
-  }
-}
-
-// src/domain/learning-schedule.ts
-var day = (s) => s === "" || /^\d{4}-\d{2}-\d{2}$/.test(s) && Number.isFinite(Date.parse(s)) && new Date(s).toISOString().slice(0, 10) === s;
-function validateScheduleExtensions(w, data) {
-  const node = new Map(data.nodes.map((n) => [n.id, n])), ids = /* @__PURE__ */ new Set();
-  for (const s of w.schedules ?? []) {
-    if (!s || typeof s.id !== "string" || !s.id || ids.has(s.id) || !data.subjects.some((p) => p.id === s.subjectId) || typeof s.name !== "string" || !s.name.trim() || !["exam", "quiz", "assignment", "lecture"].includes(s.kind) || !["active", "ended"].includes(s.status) || !["exam", "submission", "attendance", "personal", "unknown"].includes(s.dueMeaning) || typeof s.note !== "string" || !day(s.dueDate) || !day(s.opensDate) || s.opensDate && s.dueDate && s.opensDate > s.dueDate || s.weight !== null && (!Number.isFinite(s.weight) || s.weight < 0 || s.weight > 1) || !Array.isArray(s.goalIds) || !Array.isArray(s.targetIds) || !s.states || typeof s.states !== "object" || Object.values(s.states).some((v) => !["unknown", "not-done", "done"].includes(v))) throw Error("\uC77C\uC815\uC758 \uB0A0\uC9DC\xB7\uBC94\uC704\xB7\uC0C1\uD0DC\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
-    ids.add(s.id);
-    if (s.targetIds.some((id) => node.get(id)?.subjectId !== s.subjectId) || s.goalIds.some((id) => !w.goals.some((g) => g.id === id && node.get(g.targetId)?.subjectId === s.subjectId))) throw Error("\uC77C\uC815\uACFC \uC8FC\uC81C\uC758 \uACFC\uBAA9\uC774 \uB2E4\uB985\uB2C8\uB2E4.");
-  }
-  const conditions = /* @__PURE__ */ new Map();
-  for (const c of w.conditions ?? []) {
-    if (!c || !node.has(c.targetId) || conditions.has(c.targetId) || !Array.isArray(c.prerequisiteIds) || new Set(c.prerequisiteIds).size !== c.prerequisiteIds.length || ![null, true, false].includes(c.materialAvailable) || c.prerequisiteIds.some((id) => !node.has(id) || node.get(id)?.subjectId !== node.get(c.targetId)?.subjectId)) throw Error("\uC120\uD589 \uAD00\uACC4\uC640 \uC790\uB8CC \uC5EC\uBD80\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
-    conditions.set(c.targetId, c);
-  }
-  const seen = /* @__PURE__ */ new Set(), active = /* @__PURE__ */ new Set();
-  function visit(id) {
-    if (active.has(id)) throw Error("\uC120\uD589 \uAD00\uACC4\uAC00 \uC11C\uB85C \uC21C\uD658\uD569\uB2C8\uB2E4. \uAD00\uACC4\uB97C \uB2E4\uC2DC \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
-    if (seen.has(id)) return;
-    active.add(id);
-    for (const p of conditions.get(id)?.prerequisiteIds ?? []) visit(p);
-    active.delete(id);
-    seen.add(id);
-  }
-  for (const id of conditions.keys()) visit(id);
-  const pairIds = /* @__PURE__ */ new Set();
-  for (const p of w.comparisons ?? []) {
-    if (!p || !p.id || pairIds.has(p.id) || !node.has(p.targetId) || typeof p.action !== "string" || !p.action.trim() || !w.goals.some((g) => g.id === p.goalId && g.targetId === p.targetId) || !Number.isFinite(Date.parse(p.registeredAt)) || !Number.isFinite(Date.parse(p.outcomeDueAt)) || Date.parse(p.registeredAt) >= Date.parse(p.outcomeDueAt) || !Number.isFinite(p.before) || p.before < 0 || p.before > 1 || p.after !== null && (!Number.isFinite(p.after) || p.after < 0 || p.after > 1) || p.after !== null && !p.performed || ![p.independent, p.rubricMatched, p.attributionBundle, p.performed].every((v) => typeof v === "boolean") || typeof p.note !== "string") throw Error("\uBE44\uAD50 \uAE30\uB85D\uC758 \uAE30\uC900\xB7\uC810\uC218\xB7\uC2DC\uC810\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
-    pairIds.add(p.id);
-  }
-  if (w.snapshots !== void 0 && (!Array.isArray(w.snapshots) || w.snapshots.some((s) => !s || typeof s.id !== "string" || !Number.isFinite(Date.parse(s.createdAt)) || typeof s.dataVersion !== "string" || typeof s.policyVersion !== "string" || !Number.isSafeInteger(s.workspaceRevision)))) throw Error("\uCD94\uCC9C \uC774\uB825\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
-}
-
-// src/domain/recommendation-kernel.mjs
-var POLICY = Object.freeze({
-  version: "rules-2-webapp",
-  criticalFraction: 0.1,
-  emphasisFraction: 0.2,
-  refreshFraction: 0.1,
-  freezeFraction: 0.1,
-  maxCards: 3,
-  shrinkage: 8,
-  minPairs: 8,
-  maxPairs: 20,
-  maxMissingFraction: 0.2,
-  maxAdaptiveLift: 0.2
-});
-
-// src/domain/recommendation-workspace.ts
-function validISO(value) {
-  return typeof value === "string" && /(?:Z|[+-]\d\d:\d\d)$/.test(value) && Number.isFinite(Date.parse(value));
-}
-function dateDeadline(date) {
-  if (!date) return null;
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(date) || (/* @__PURE__ */ new Date(`${date}T00:00:00Z`)).toISOString().slice(0, 10) !== date) throw Error("\uAE30\uD55C\uC744 \uB2E4\uC2DC \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
-  return (/* @__PURE__ */ new Date(`${date}T23:59:59.999+09:00`)).toISOString();
-}
-function termPeriod(dates) {
-  if (!dates.start && !dates.end) return null;
-  if (!dates.start || !dates.end) throw Error("\uD559\uAE30 \uC2DC\uC791\uC77C\uACFC \uC885\uB8CC\uC77C\uC744 \uD568\uAED8 \uB0A8\uAE30\uAC70\uB098 \uB458 \uB2E4 \uBE44\uC6CC \uC8FC\uC138\uC694.");
-  dateDeadline(dates.start);
-  const end = dateDeadline(dates.end);
-  const start = (/* @__PURE__ */ new Date(`${dates.start}T00:00:00+09:00`)).toISOString();
-  if (Date.parse(end) < Date.parse(start)) throw Error("\uC885\uB8CC\uC77C\uC740 \uC2DC\uC791\uC77C\uBCF4\uB2E4 \uC55E\uC124 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
-  return { start, end: new Date(Date.parse(end) + 1).toISOString(), timezone: "Asia/Seoul" };
-}
-function validateRecommendations(value, data) {
-  const w = value;
-  if (!w || w.version !== 1 || w.userId !== data.userId || w.namespace !== data.namespace || !Number.isSafeInteger(w.revision) || w.revision < 0 || !Array.isArray(w.goals) || !Array.isArray(w.events) || !w.controls || typeof w.controls !== "object" || !w.responses || typeof w.responses !== "object" || !w.draft || typeof w.draft.targetId !== "string" || typeof w.draft.label !== "string" || typeof w.draft.dueDate !== "string" || !["same", "new"].includes(w.draft.novelty)) throw Error("\uCD94\uCC9C \uB0B4\uC6A9\uC744 \uC77D\uC9C0 \uBABB\uD588\uC2B5\uB2C8\uB2E4. \uC6D0\uB798 \uB0B4\uC6A9\uC740 \uBCF4\uC874\uD588\uC2B5\uB2C8\uB2E4.");
-  const ids = /* @__PURE__ */ new Set();
-  for (const goal of w.goals) {
-    if (!data.nodes.some((n) => n.id === goal.targetId && n.role === "topic") || typeof goal.id !== "string" || !goal.id || ids.has(goal.id) || typeof goal.targetId !== "string" || typeof goal.label !== "string" || !goal.label.trim() || typeof goal.dueDate !== "string" || typeof goal.ended !== "boolean" || !validISO(goal.createdAt) || !["same", "new"].includes(goal.novelty)) throw Error("\uD655\uC778\uD560 \uB0B4\uC6A9\uC758 \uD615\uC2DD\uC744 \uB2E4\uC2DC \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
-    if (goal.minDelayDays !== void 0 && (!Number.isFinite(goal.minDelayDays) || goal.minDelayDays < 0) || goal.refreshDays != null && (!Number.isFinite(goal.refreshDays) || goal.refreshDays <= 0)) throw Error("\uC7AC\uD655\uC778 \uAC04\uACA9\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
-    ids.add(goal.id);
-    dateDeadline(goal.dueDate);
-  }
-  for (const e of w.events) {
-    if (!e.id || !Number.isSafeInteger(e.revision) || e.revision < 1 || !Number.isSafeInteger(e.sequence) || !validISO(e.knownAt) || !validISO(e.occurredAt) || !w.goals.some((g) => g.id === e.facet && g.targetId === e.targetId) || e.rubricVersion !== "self-check-1" || !["assessment", "correction"].includes(e.kind) || !["none", "notes", "unknown"].includes(e.assistance ?? "") || !["pass", "fail", "unknown", "disputed"].includes(e.result ?? "") || !["same", "new", "unknown"].includes(e.novelty ?? "") || typeof e.answer !== "string" || e.authority !== "local") throw Error("\uC218\uD589 \uACB0\uACFC\uC758 \uC5F0\uACB0\uC744 \uD655\uC778\uD558\uC9C0 \uBABB\uD588\uC2B5\uB2C8\uB2E4.");
-  }
-  for (const e of w.events) {
-    if (e.delayDays !== void 0 && (!Number.isFinite(e.delayDays) || e.delayDays < 0) || e.delayVerified !== void 0 && typeof e.delayVerified !== "boolean") throw Error("\uC2E4\uC81C \uC218\uD589 \uAC04\uACA9\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
-    if (e.kind === "correction" && !w.events.some((f) => f.id === e.errorEventId && f.facet === e.facet && f.result === "fail")) throw Error("\uAD50\uC815\uC5D0 \uC5F0\uACB0\uB41C \uC2E4\uD328\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
-  }
-  for (const response of Object.values(w.responses)) {
-    if (!response || !["pass", "fail", "unknown", "disputed"].includes(response.result) || !["none", "notes", "unknown"].includes(response.assistance) || !["same", "new", "unknown"].includes(response.novelty) || typeof response.answer !== "string") throw Error("\uC791\uC131 \uC911\uC778 \uACB0\uACFC\uB97C \uC77D\uC9C0 \uBABB\uD588\uC2B5\uB2C8\uB2E4.");
-  }
-  for (const control of Object.values(w.controls)) if (!control || control.snoozeUntil && !validISO(control.snoozeUntil)) throw Error("\uBCF4\uB958 \uC2DC\uC810\uC744 \uC77D\uC9C0 \uBABB\uD588\uC2B5\uB2C8\uB2E4.");
-  if (w.terms !== void 0) {
-    if (!w.terms || Array.isArray(w.terms) || typeof w.terms !== "object") throw Error("\uD559\uAE30 \uAE30\uAC04\uC744 \uC77D\uC9C0 \uBABB\uD588\uC2B5\uB2C8\uB2E4.");
-    for (const dates of Object.values(w.terms)) {
-      if (typeof dates.start !== "string" || typeof dates.end !== "string") throw Error("\uD559\uAE30 \uAE30\uAC04\uC744 \uC77D\uC9C0 \uBABB\uD588\uC2B5\uB2C8\uB2E4.");
-      termPeriod(dates);
-    }
-  }
-  validateScheduleExtensions(w, data);
-  if (w.termDraft && (typeof w.termDraft.semesterId !== "string" || typeof w.termDraft.start !== "string" || typeof w.termDraft.end !== "string")) throw Error("\uC791\uC131 \uC911\uC778 \uD559\uAE30 \uAE30\uAC04\uC744 \uC77D\uC9C0 \uBABB\uD588\uC2B5\uB2C8\uB2E4.");
-}
-
-// src/domain/canvas.ts
-function validateCanvasLayout(value) {
-  const validKey = (id) => typeof id === "string" && /^(subject|node|memo|narrative):.+/.test(id) && id.length <= 300 && !/[\u0000-\u001f]/.test(id);
-  const position = (p) => p && Number.isFinite(p.x) && Number.isFinite(p.y) && Math.abs(p.x) <= 1e7 && Math.abs(p.y) <= 1e7;
-  if (!value.positions || typeof value.positions !== "object" || Array.isArray(value.positions) || !Object.entries(value.positions).every(([id, p]) => validKey(id) && position(p)) || !Array.isArray(value.links)) throw new DomainError("INVALID_CANVAS", "Canvas \uBC30\uCE58\uC640 \uC5F0\uACB0\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694. \uC6D0\uBB38\uC740 \uC720\uC9C0\uD588\uC2B5\uB2C8\uB2E4.");
-  const ids = /* @__PURE__ */ new Set();
-  for (const link of value.links) {
-    if (!link || typeof link.id !== "string" || !link.id.trim() || link.id.length > 256 || ids.has(link.id) || link.id.startsWith("auto:") || !validKey(link.source) || !validKey(link.target) || typeof link.label !== "string" || link.label.length > 300) throw new DomainError("INVALID_CANVAS", "Canvas \uC5F0\uACB0\uC758 \uC2DD\uBCC4\uC790\uC640 \uC6D0\uBB38\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
-    ids.add(link.id);
-  }
-  if (value.viewport && (!position(value.viewport) || !Number.isFinite(value.viewport.zoom) || value.viewport.zoom < 0.1 || value.viewport.zoom > 2)) throw new DomainError("INVALID_CANVAS", "Canvas \uD655\uB300 \uC704\uCE58\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
-}
-
-// src/domain/code-example.ts
-var CODE_LANGUAGES = {
-  c: "C",
-  cpp: "C++",
-  csharp: "C#",
-  python: "Python",
-  javascript: "JavaScript"
-};
-var MAX_CODE_TEXT = 2e5;
-var MAX_CODE_OUTPUT = 1e5;
-function validateCodeContent(value) {
-  const fail2 = () => {
-    throw new DomainError(
-      "INVALID_CODE_EXAMPLE",
-      "\uCF54\uB4DC \uC608\uC81C\uC758 \uC81C\uBAA9\xB7\uCF54\uB4DC\xB7\uC124\uBA85\xB7\uC2E4\uD589 \uACB0\uACFC\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694."
-    );
-  };
-  if (!value || typeof value !== "object" || Array.isArray(value)) return fail2();
-  const content = value;
-  if (content.inputMode !== void 0 && !["batch", "terminal"].includes(content.inputMode))
-    return fail2();
-  if (!Object.hasOwn(CODE_LANGUAGES, content.language)) return fail2();
-  for (const name of ["title", "code", "stdin", "notes"]) {
-    if (typeof content[name] !== "string" || content[name].length > MAX_CODE_TEXT) return fail2();
-  }
-  if (content.lastRun !== void 0) {
-    const run = content.lastRun;
-    if (!run || run.mode !== void 0 && run.mode !== "terminal" || !Object.hasOwn(CODE_LANGUAGES, run.language) || !["success", "error", "stopped"].includes(run.outcome) || typeof run.at !== "string" || !Number.isFinite(Date.parse(run.at)))
-      return fail2();
-    for (const name of ["code", "stdin", "output", "error"]) {
-      if (typeof run[name] !== "string" || run[name].length > (name === "output" || name === "error" ? MAX_CODE_OUTPUT : MAX_CODE_TEXT))
-        return fail2();
-    }
-  }
-}
-function codeContent(row) {
-  return {
-    title: row.title,
-    language: row.language,
-    code: row.code,
-    stdin: row.stdin,
-    notes: row.notes,
-    ...row.inputMode ? { inputMode: row.inputMode } : {},
-    ...row.lastRun ? { lastRun: row.lastRun } : {}
-  };
-}
-
 // node_modules/ts-fsrs/dist/index.mjs
 var FSRSError = class _FSRSError extends Error {
   constructor(message = "FSRS Error") {
@@ -2762,6 +2321,21 @@ var fsrs = (params) => {
   return new FSRS(params || {});
 };
 
+// src/domain/model.ts
+var DomainError = class extends Error {
+  constructor(code, message, details) {
+    super(message);
+    this.code = code;
+    this.details = details;
+    this.name = "DomainError";
+  }
+  code;
+  details;
+};
+function emptyState(userId, namespace) {
+  return { schemaVersion: 1, userId, namespace, semesters: [], subjects: [], nodes: [], sessions: [], records: [], narratives: [], revisions: [], appliedOps: {} };
+}
+
 // src/domain/recall-scheduler.ts
 var DEFAULT_RECALL_OPTIONS = { retention: 0.9, newPerDay: 20, learningMinutes: [1, 10], relearningMinutes: [10], maximumDays: 36500 };
 var RECALL_GRADES = [1, 2, 3, 4];
@@ -2826,6 +2400,620 @@ function recallPreview(memory, at, options, reviews = []) {
   return scheduler.repeat(current, at);
 }
 
+// src/domain/learning-schedule.ts
+var day = (s) => s === "" || /^\d{4}-\d{2}-\d{2}$/.test(s) && Number.isFinite(Date.parse(s)) && new Date(s).toISOString().slice(0, 10) === s;
+function validateScheduleExtensions(w, data) {
+  const node = new Map(data.nodes.map((n) => [n.id, n])), ids = /* @__PURE__ */ new Set();
+  for (const s of w.schedules ?? []) {
+    if (!s || typeof s.id !== "string" || !s.id || ids.has(s.id) || !data.subjects.some((p) => p.id === s.subjectId) || typeof s.name !== "string" || !s.name.trim() || !["exam", "quiz", "assignment", "lecture"].includes(s.kind) || !["active", "ended"].includes(s.status) || !["exam", "submission", "attendance", "personal", "unknown"].includes(s.dueMeaning) || typeof s.note !== "string" || !day(s.dueDate) || !day(s.opensDate) || s.opensDate && s.dueDate && s.opensDate > s.dueDate || s.weight !== null && (!Number.isFinite(s.weight) || s.weight < 0 || s.weight > 1) || !Array.isArray(s.goalIds) || !Array.isArray(s.targetIds) || !s.states || typeof s.states !== "object" || Object.values(s.states).some((v) => !["unknown", "not-done", "done"].includes(v))) throw Error("\uC77C\uC815\uC758 \uB0A0\uC9DC\xB7\uBC94\uC704\xB7\uC0C1\uD0DC\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+    ids.add(s.id);
+    if (s.targetIds.some((id) => node.get(id)?.subjectId !== s.subjectId) || s.goalIds.some((id) => !w.goals.some((g) => g.id === id && node.get(g.targetId)?.subjectId === s.subjectId))) throw Error("\uC77C\uC815\uACFC \uC8FC\uC81C\uC758 \uACFC\uBAA9\uC774 \uB2E4\uB985\uB2C8\uB2E4.");
+  }
+  const conditions = /* @__PURE__ */ new Map();
+  for (const c of w.conditions ?? []) {
+    if (!c || !node.has(c.targetId) || conditions.has(c.targetId) || !Array.isArray(c.prerequisiteIds) || new Set(c.prerequisiteIds).size !== c.prerequisiteIds.length || ![null, true, false].includes(c.materialAvailable) || c.prerequisiteIds.some((id) => !node.has(id) || node.get(id)?.subjectId !== node.get(c.targetId)?.subjectId)) throw Error("\uC120\uD589 \uAD00\uACC4\uC640 \uC790\uB8CC \uC5EC\uBD80\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+    conditions.set(c.targetId, c);
+  }
+  const seen = /* @__PURE__ */ new Set(), active = /* @__PURE__ */ new Set();
+  function visit(id) {
+    if (active.has(id)) throw Error("\uC120\uD589 \uAD00\uACC4\uAC00 \uC11C\uB85C \uC21C\uD658\uD569\uB2C8\uB2E4. \uAD00\uACC4\uB97C \uB2E4\uC2DC \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+    if (seen.has(id)) return;
+    active.add(id);
+    for (const p of conditions.get(id)?.prerequisiteIds ?? []) visit(p);
+    active.delete(id);
+    seen.add(id);
+  }
+  for (const id of conditions.keys()) visit(id);
+  const pairIds = /* @__PURE__ */ new Set();
+  for (const p of w.comparisons ?? []) {
+    if (!p || !p.id || pairIds.has(p.id) || !node.has(p.targetId) || typeof p.action !== "string" || !p.action.trim() || !w.goals.some((g) => g.id === p.goalId && g.targetId === p.targetId) || !Number.isFinite(Date.parse(p.registeredAt)) || !Number.isFinite(Date.parse(p.outcomeDueAt)) || Date.parse(p.registeredAt) >= Date.parse(p.outcomeDueAt) || !Number.isFinite(p.before) || p.before < 0 || p.before > 1 || p.after !== null && (!Number.isFinite(p.after) || p.after < 0 || p.after > 1) || p.after !== null && !p.performed || ![p.independent, p.rubricMatched, p.attributionBundle, p.performed].every((v) => typeof v === "boolean") || typeof p.note !== "string") throw Error("\uBE44\uAD50 \uAE30\uB85D\uC758 \uAE30\uC900\xB7\uC810\uC218\xB7\uC2DC\uC810\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+    pairIds.add(p.id);
+  }
+  if (w.snapshots !== void 0 && (!Array.isArray(w.snapshots) || w.snapshots.some((s) => !s || typeof s.id !== "string" || !Number.isFinite(Date.parse(s.createdAt)) || typeof s.dataVersion !== "string" || typeof s.policyVersion !== "string" || !Number.isSafeInteger(s.workspaceRevision)))) throw Error("\uCD94\uCC9C \uC774\uB825\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+}
+
+// src/domain/recommendation-kernel.mjs
+var POLICY = Object.freeze({
+  version: "rules-2-webapp",
+  criticalFraction: 0.1,
+  emphasisFraction: 0.2,
+  refreshFraction: 0.1,
+  freezeFraction: 0.1,
+  maxCards: 3,
+  shrinkage: 8,
+  minPairs: 8,
+  maxPairs: 20,
+  maxMissingFraction: 0.2,
+  maxAdaptiveLift: 0.2
+});
+
+// src/domain/recommendation-workspace.ts
+function validISO(value) {
+  return typeof value === "string" && /(?:Z|[+-]\d\d:\d\d)$/.test(value) && Number.isFinite(Date.parse(value));
+}
+function dateDeadline(date) {
+  if (!date) return null;
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(date) || (/* @__PURE__ */ new Date(`${date}T00:00:00Z`)).toISOString().slice(0, 10) !== date) throw Error("\uAE30\uD55C\uC744 \uB2E4\uC2DC \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+  return (/* @__PURE__ */ new Date(`${date}T23:59:59.999+09:00`)).toISOString();
+}
+function termPeriod(dates) {
+  if (!dates.start && !dates.end) return null;
+  if (!dates.start || !dates.end) throw Error("\uD559\uAE30 \uC2DC\uC791\uC77C\uACFC \uC885\uB8CC\uC77C\uC744 \uD568\uAED8 \uB0A8\uAE30\uAC70\uB098 \uB458 \uB2E4 \uBE44\uC6CC \uC8FC\uC138\uC694.");
+  dateDeadline(dates.start);
+  const end = dateDeadline(dates.end);
+  const start = (/* @__PURE__ */ new Date(`${dates.start}T00:00:00+09:00`)).toISOString();
+  if (Date.parse(end) < Date.parse(start)) throw Error("\uC885\uB8CC\uC77C\uC740 \uC2DC\uC791\uC77C\uBCF4\uB2E4 \uC55E\uC124 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
+  return { start, end: new Date(Date.parse(end) + 1).toISOString(), timezone: "Asia/Seoul" };
+}
+function validateRecommendations(value, data) {
+  const w = value;
+  if (!w || w.version !== 1 || w.userId !== data.userId || w.namespace !== data.namespace || !Number.isSafeInteger(w.revision) || w.revision < 0 || !Array.isArray(w.goals) || !Array.isArray(w.events) || !w.controls || typeof w.controls !== "object" || !w.responses || typeof w.responses !== "object" || !w.draft || typeof w.draft.targetId !== "string" || typeof w.draft.label !== "string" || typeof w.draft.dueDate !== "string" || !["same", "new"].includes(w.draft.novelty)) throw Error("\uCD94\uCC9C \uB0B4\uC6A9\uC744 \uC77D\uC9C0 \uBABB\uD588\uC2B5\uB2C8\uB2E4. \uC6D0\uB798 \uB0B4\uC6A9\uC740 \uBCF4\uC874\uD588\uC2B5\uB2C8\uB2E4.");
+  const ids = /* @__PURE__ */ new Set();
+  for (const goal of w.goals) {
+    if (!data.nodes.some((n) => n.id === goal.targetId && n.role === "topic") || typeof goal.id !== "string" || !goal.id || ids.has(goal.id) || typeof goal.targetId !== "string" || typeof goal.label !== "string" || !goal.label.trim() || typeof goal.dueDate !== "string" || typeof goal.ended !== "boolean" || !validISO(goal.createdAt) || !["same", "new"].includes(goal.novelty)) throw Error("\uD655\uC778\uD560 \uB0B4\uC6A9\uC758 \uD615\uC2DD\uC744 \uB2E4\uC2DC \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+    if (goal.minDelayDays !== void 0 && (!Number.isFinite(goal.minDelayDays) || goal.minDelayDays < 0) || goal.refreshDays != null && (!Number.isFinite(goal.refreshDays) || goal.refreshDays <= 0)) throw Error("\uC7AC\uD655\uC778 \uAC04\uACA9\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+    ids.add(goal.id);
+    dateDeadline(goal.dueDate);
+  }
+  for (const e of w.events) {
+    if (!e.id || !Number.isSafeInteger(e.revision) || e.revision < 1 || !Number.isSafeInteger(e.sequence) || !validISO(e.knownAt) || !validISO(e.occurredAt) || !w.goals.some((g) => g.id === e.facet && g.targetId === e.targetId) || e.rubricVersion !== "self-check-1" || !["assessment", "correction"].includes(e.kind) || !["none", "notes", "unknown"].includes(e.assistance ?? "") || !["pass", "fail", "unknown", "disputed"].includes(e.result ?? "") || !["same", "new", "unknown"].includes(e.novelty ?? "") || typeof e.answer !== "string" || e.authority !== "local") throw Error("\uC218\uD589 \uACB0\uACFC\uC758 \uC5F0\uACB0\uC744 \uD655\uC778\uD558\uC9C0 \uBABB\uD588\uC2B5\uB2C8\uB2E4.");
+  }
+  for (const e of w.events) {
+    if (e.delayDays !== void 0 && (!Number.isFinite(e.delayDays) || e.delayDays < 0) || e.delayVerified !== void 0 && typeof e.delayVerified !== "boolean") throw Error("\uC2E4\uC81C \uC218\uD589 \uAC04\uACA9\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+    if (e.kind === "correction" && !w.events.some((f) => f.id === e.errorEventId && f.facet === e.facet && f.result === "fail")) throw Error("\uAD50\uC815\uC5D0 \uC5F0\uACB0\uB41C \uC2E4\uD328\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+  }
+  for (const response of Object.values(w.responses)) {
+    if (!response || !["pass", "fail", "unknown", "disputed"].includes(response.result) || !["none", "notes", "unknown"].includes(response.assistance) || !["same", "new", "unknown"].includes(response.novelty) || typeof response.answer !== "string") throw Error("\uC791\uC131 \uC911\uC778 \uACB0\uACFC\uB97C \uC77D\uC9C0 \uBABB\uD588\uC2B5\uB2C8\uB2E4.");
+  }
+  for (const control of Object.values(w.controls)) if (!control || control.snoozeUntil && !validISO(control.snoozeUntil)) throw Error("\uBCF4\uB958 \uC2DC\uC810\uC744 \uC77D\uC9C0 \uBABB\uD588\uC2B5\uB2C8\uB2E4.");
+  if (w.terms !== void 0) {
+    if (!w.terms || Array.isArray(w.terms) || typeof w.terms !== "object") throw Error("\uD559\uAE30 \uAE30\uAC04\uC744 \uC77D\uC9C0 \uBABB\uD588\uC2B5\uB2C8\uB2E4.");
+    for (const dates of Object.values(w.terms)) {
+      if (typeof dates.start !== "string" || typeof dates.end !== "string") throw Error("\uD559\uAE30 \uAE30\uAC04\uC744 \uC77D\uC9C0 \uBABB\uD588\uC2B5\uB2C8\uB2E4.");
+      termPeriod(dates);
+    }
+  }
+  validateScheduleExtensions(w, data);
+  validateLearningLinks(w, data);
+  if (w.termDraft && (typeof w.termDraft.semesterId !== "string" || typeof w.termDraft.start !== "string" || typeof w.termDraft.end !== "string")) throw Error("\uC791\uC131 \uC911\uC778 \uD559\uAE30 \uAE30\uAC04\uC744 \uC77D\uC9C0 \uBABB\uD588\uC2B5\uB2C8\uB2E4.");
+}
+
+// src/domain/learning-evidence.ts
+function canonical(value) {
+  if (Array.isArray(value)) return "[" + value.map(canonical).join(",") + "]";
+  if (value && typeof value === "object") return "{" + Object.entries(value).filter(([, v]) => v !== void 0).sort(([a], [b]) => a.localeCompare(b)).map(([k, v]) => JSON.stringify(k) + ":" + canonical(v)).join(",") + "}";
+  return JSON.stringify(value);
+}
+var owned = (data, row) => row.userId === data.userId && row.namespace === data.namespace;
+function sourceRevision(data, collection, id, version2) {
+  const live = data[collection]?.find((row) => row.id === id && row.version === version2 && owned(data, row));
+  if (live) return live;
+  for (const revision of data.revisions) {
+    if (revision.collection !== collection || revision.entityId !== id || !owned(data, revision)) continue;
+    const row = [revision.after, revision.before].find((row2) => row2?.version === version2 && row2.id === id && owned(data, row2));
+    if (row) return row;
+  }
+}
+function performanceSource(data, kind, id, itemId, version2) {
+  const collection = kind === "exam-memo" ? "memos" : "memoryTests";
+  const row = version2 === void 0 ? data[collection]?.find((row2) => row2.id === id && !row2.deletedAt && owned(data, row2)) : sourceRevision(data, collection, id, version2);
+  if (!row) throw Error("\uC800\uC7A5\uB41C \uB2F5\uC548\uC758 \uC6D0\uBB38\uC744 \uCC3E\uC9C0 \uBABB\uD588\uC2B5\uB2C8\uB2E4.");
+  if (kind === "exam-memo") {
+    const memo = row;
+    if (!memo.id.startsWith("exam-practice:") || !memo.ownerId) throw Error("\uC8FC\uC81C\uC640 \uC5F0\uACB0\uB41C \uC2DC\uD5D8 \uC5F0\uC2B5 \uBA54\uBAA8\uB97C \uC120\uD0DD\uD574 \uC8FC\uC138\uC694.");
+    return { kind, id, version: row.version, topicId: memo.ownerId, body: memo.body, strokes: structuredClone(memo.strokes), performedAt: null };
+  }
+  const test = row, question = test.questions.find((q) => q.cardId === itemId);
+  if (!question) throw Error("\uC2DC\uD5D8 \uB2F9\uC2DC\uC758 \uBB38\uD56D\uC744 \uCC3E\uC9C0 \uBABB\uD588\uC2B5\uB2C8\uB2E4.");
+  return { kind, id, version: row.version, itemId, topicId: question.topicId, body: question.response, strokes: structuredClone(question.responseStrokes), question: question.question, reference: question.answer, referenceStrokes: structuredClone(question.strokes), performedAt: test.endedAt };
+}
+function validatePerformanceSource(value, data) {
+  if (!value || !["exam-memo", "memory-question"].includes(value.kind) || typeof value.id !== "string" || !Number.isSafeInteger(value.version) || value.version < 1) throw Error("\uB2F5\uC548\uC758 \uCD9C\uCC98\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+  const original = performanceSource(data, value.kind, value.id, value.itemId, value.version);
+  if (canonical(original) !== canonical(value)) throw Error("\uC218\uD589 \uACB0\uACFC\uC5D0 \uC5F0\uACB0\uB41C \uB2F5\uC548\uC774 \uC6D0\uBB38\uACFC \uB2E4\uB985\uB2C8\uB2E4.");
+}
+function sourceEventId(source, goalId) {
+  return "source-result:" + [source.kind, source.id, source.itemId ?? "", goalId].map(encodeURIComponent).join(":");
+}
+function validateMaterialCardSource(content, data, requireCurrent = false) {
+  const source = content.materialSource;
+  if (!source) return;
+  if (source.reviewed !== true || !Number.isSafeInteger(source.materialVersion) || source.materialVersion < 1 || ![source.materialId, source.resultId, source.cardId].every((id) => typeof id === "string" && !!id)) throw Error("\uCE74\uB4DC\uC758 \uC6D0\uC790\uB8CC\uC640 \uD655\uC778 \uC5EC\uBD80\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+  const material = sourceRevision(data, "studyMaterials", source.materialId, source.materialVersion);
+  const card = material?.results.find((r) => r.id === source.resultId)?.cards.find((c) => c.id === source.cardId);
+  if (!material || !card || !data.nodes.some((n) => n.id === content.topicId && n.subjectId === material.subjectId)) throw Error("\uCE74\uB4DC\uC758 \uC6D0\uC790\uB8CC\uC640 \uC8FC\uC81C\uAC00 \uC5F0\uACB0\uB418\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4.");
+  if (requireCurrent && (material.deletedAt || card.excluded || data.studyMaterials?.find((m) => m.id === material.id)?.version !== source.materialVersion || card.question !== content.question || card.answer !== content.answer)) throw Error("\uC6D0\uC790\uB8CC\uAC00 \uBC14\uB00C\uC5C8\uC2B5\uB2C8\uB2E4. \uC800\uC7A5\uB41C \uCE74\uB4DC\uC640 \uC6D0\uBB38\uC744 \uB2E4\uC2DC \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+}
+function validateLearningLinks(workspace, data) {
+  for (const event of workspace.events) if (event.source) {
+    validatePerformanceSource(event.source, data);
+    if (event.targetId !== event.source.topicId || event.answer !== event.source.body || event.id !== sourceEventId(event.source, event.facet)) throw Error("\uACB0\uACFC\uC640 \uC6D0\uBB38 \uB2F5\uC548\uC758 \uC5F0\uACB0\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+  }
+  if (workspace.codeLinks !== void 0 && !Array.isArray(workspace.codeLinks)) throw Error("\uCF54\uB4DC \uC608\uC81C\uC758 \uC8FC\uC81C \uC5F0\uACB0\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+  const ids = /* @__PURE__ */ new Set();
+  for (const link of workspace.codeLinks ?? []) {
+    if (!link || ids.has(link.exampleId) || !data.codeExamples?.some((e) => e.id === link.exampleId && owned(data, e)) || !data.nodes.some((n) => n.id === link.topicId && n.role === "topic" && owned(data, n))) throw Error("\uCF54\uB4DC \uC608\uC81C\uC758 \uC8FC\uC81C \uC5F0\uACB0\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+    ids.add(link.exampleId);
+  }
+}
+
+// src/domain/study-board.ts
+function boardContent(row) {
+  return { title: row.title, columns: row.columns, cards: row.cards };
+}
+function validateBoard(value) {
+  const row = value;
+  const fail2 = () => {
+    throw new DomainError(
+      "INVALID_BOARD",
+      "\uBCF4\uB4DC\uC758 \uC5F4\uACFC \uCE74\uB4DC\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694. \uC791\uC131\uD55C \uAE00\uC740 \uC720\uC9C0\uD588\uC2B5\uB2C8\uB2E4."
+    );
+  };
+  const id = (v) => typeof v === "string" && Boolean(v.trim()) && v.length <= 256;
+  const title2 = (v) => typeof v === "string" && Boolean(v.trim()) && v.length <= 1e3;
+  if (!row || !title2(row.title) || !Array.isArray(row.columns) || row.columns.length < 1 || row.columns.length > 100 || !Array.isArray(row.cards) || row.cards.length > 1e4)
+    return fail2();
+  const columns = /* @__PURE__ */ new Set(), cards = /* @__PURE__ */ new Set();
+  for (const col of row.columns) {
+    if (!col || !id(col.id) || columns.has(col.id) || !title2(col.title)) return fail2();
+    columns.add(col.id);
+  }
+  for (const card of row.cards) {
+    if (!card || !id(card.id) || cards.has(card.id) || !columns.has(card.columnId) || !title2(card.title) || typeof card.body !== "string" || card.body.length > 2e5 || card.topicId !== null && !id(card.topicId) || typeof card.archived !== "boolean")
+      return fail2();
+    cards.add(card.id);
+  }
+}
+function verifyBoardTopics(content, state) {
+  for (const card of content.cards)
+    if (card.topicId !== null && !state.nodes.some((n) => n.id === card.topicId && n.role === "topic"))
+      throw new DomainError(
+        "INVALID_BOARD_TOPIC",
+        "\uCE74\uB4DC\uC5D0 \uC5F0\uACB0\uD55C \uC6D0\uB798 \uC8FC\uC81C\uB97C \uCC3E\uC744 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4. \uAE00\uC740 \uC720\uC9C0\uD588\uC2B5\uB2C8\uB2E4."
+      );
+}
+
+// src/domain/trace.ts
+var TRACE_ITEMS = [
+  {
+    "id": "Td1",
+    "group": "T",
+    "label": "\uC774 \uC8FC\uC81C\uC5D0\uC11C \uB2F5\uD558\uB824\uB294 \uC9C8\uBB38\uC744 \uD55C \uBB38\uC7A5\uC73C\uB85C \uC801\uC5B4\uBCF4\uC558\uB2E4.",
+    "question": "\uC774 \uC8FC\uC81C\uC5D0\uC11C \uB2F5\uD558\uB824\uB294 \uC9C8\uBB38\uC740 \uBB34\uC5C7\uC778\uAC00\uC694?",
+    "mode": "required"
+  },
+  {
+    "id": "Td2",
+    "group": "T",
+    "label": "\uC124\uBA85\uC758 \uD750\uB984\uC744 \uB530\uB77C\uAC00\uACE0 \uD544\uC694\uD55C \uC120\uD589 \uAC1C\uB150\uC744 \uC9DA\uC5B4\uBCF4\uC558\uB2E4.",
+    "question": "\uC124\uBA85\uC740 \uC5B4\uB5BB\uAC8C \uC774\uC5B4\uC9C0\uACE0, \uC5B4\uB5A4 \uAC1C\uB150\uC774 \uBA3C\uC800 \uD544\uC694\uD55C\uAC00\uC694?",
+    "mode": "required"
+  },
+  {
+    "id": "Rd1",
+    "group": "R",
+    "label": "\uAE30\uC5B5\uD558\uACE0 \uC0AC\uC6A9\uD560 \uC815\uC758\xB7\uACF5\uC2DD\xB7\uD575\uC2EC \uACB0\uB860\uC744 \uC815\uB9AC\uD574\uBCF4\uC558\uB2E4.",
+    "question": "\uC9C0\uAE08 \uAE30\uC5B5\uD558\uACE0 \uC0AC\uC6A9\uD560 \uD575\uC2EC\uC740 \uBB34\uC5C7\uC778\uAC00\uC694?",
+    "mode": "required"
+  },
+  {
+    "id": "Rd2",
+    "group": "R",
+    "label": "\uAE30\uD638\uC758 \uB73B\uACFC \uC801\uC6A9 \uC870\uAC74\uC744 \uD655\uC778\uD558\uACE0 \uC6D0\uBB38\uACFC \uB300\uC870\uD574\uBCF4\uC558\uB2E4.",
+    "question": "\uAE30\uD638\uC640 \uC870\uAC74\uC744 \uC5B4\uB5BB\uAC8C \uAE30\uC5B5\uD558\uBA70, \uC6D0\uBB38\uACFC \uB9DE\uB098\uC694?",
+    "mode": "required"
+  },
+  {
+    "id": "Ad1",
+    "group": "A",
+    "label": "\uB300\uD45C \uBB38\uC81C\uB97C \uC9C1\uC811 \uD480\uACE0 \uBC29\uBC95\uC744 \uC120\uD0DD\uD55C \uC774\uC720\uB97C \uC124\uBA85\uD574\uBCF4\uC558\uB2E4.",
+    "question": "\uC5B4\uB5A4 \uBC29\uBC95\uC744 \uC120\uD0DD\uD574 \uC2DC\uB3C4\uD588\uACE0, \uC65C \uADF8 \uBC29\uBC95\uC744 \uACE8\uB790\uB098\uC694?",
+    "mode": "required"
+  },
+  {
+    "id": "Ad2",
+    "group": "A",
+    "label": "\uD2C0\uB9AC\uAC70\uB098 \uB9C9\uD78C \uBD80\uBD84\uC744 \uBCF4\uC644\uD558\uACE0 \uB2E4\uC2DC \uD480\uC5B4\uBCF4\uC558\uB2E4.",
+    "question": "\uB9C9\uD78C \uBD80\uBD84\uC744 \uC5B4\uB5BB\uAC8C \uBCF4\uC644\uD588\uACE0, \uB2E4\uC2DC \uD574\uBCF4\uB2C8 \uC5B4\uB514\uAE4C\uC9C0 \uB418\uB098\uC694?",
+    "mode": "required"
+  },
+  {
+    "id": "Cd1",
+    "group": "C",
+    "label": "\uC790\uB8CC \uC5C6\uC774 \uD575\uC2EC\uC744 \uB5A0\uC62C\uB9AC\uACE0 \uC815\uD655\uC131\uC744 \uD655\uC778\uD574\uBCF4\uC558\uB2E4.",
+    "question": "\uB3C4\uC6C0 \uC5C6\uC774 \uBB34\uC5C7\uC744 \uB5A0\uC62C\uB838\uC73C\uBA70 \uC6D0\uBB38\uACFC \uC5BC\uB9C8\uB098 \uB9DE\uB098\uC694?",
+    "mode": "required"
+  },
+  {
+    "id": "Cself1",
+    "group": "C",
+    "label": "\uC790\uAE30\uD654 \uC7AC\uAD6C\uC131: \uACF5\uBD80\uD55C \uB0B4\uC6A9\uC744 \uB098\uB9CC\uC758 \uC5B8\uC5B4\uC640 \uBC29\uC2DD\uC73C\uB85C \uD45C\uD604\uD558\uACE0 \uC5F0\uACB0\uD574\uBCF4\uC558\uB2E4.",
+    "question": "\uACF5\uBD80\uD55C \uB0B4\uC6A9\uC744 \uB098\uB9CC\uC758 \uC5B8\uC5B4\uC640 \uBC29\uC2DD\uC73C\uB85C \uC5B4\uB5BB\uAC8C \uD45C\uD604\uD558\uACE0 \uC5F0\uACB0\uD588\uB098\uC694?",
+    "mode": "optional"
+  },
+  {
+    "id": "Cd3",
+    "group": "C",
+    "label": "\uBCC0\uD615\xB7\uD63C\uD569\xB7\uC0C8 \uBB38\uC81C\uC5D0\uC11C \uBAA9\uD45C \uC218\uD589\uC744 \uD655\uC778\uD574\uBCF4\uC558\uB2E4.",
+    "question": "\uC0C8\uB85C\uC6B4 \uBB38\uC81C\uC5D0\uC11C\uB3C4 \uBAA9\uD45C\uB85C \uD55C \uC218\uD589\uC744 \uD560 \uC218 \uC788\uB098\uC694?",
+    "mode": "required"
+  },
+  {
+    "id": "Cd4",
+    "group": "C",
+    "label": "\uD575\uC2EC \uC815\uC758\xB7\uACF5\uC2DD\xB7\uC870\uAC74\xB7\uACB0\uB860\uC744 \uBC31\uC9C0\uC5D0 \uC11C\uC220\uD558\uACE0 \uC6D0\uBB38\uACFC \uB300\uC870\uD574\uBCF4\uC558\uB2E4.",
+    "question": "\uC774 \uC8FC\uC81C\uC5D0\uC11C \uC2E4\uC81C\uB85C \uC4F8 \uD575\uC2EC\uC744 \uC790\uB8CC \uC5C6\uC774 \uC5B4\uB5BB\uAC8C \uC11C\uC220\uD588\uB098\uC694?",
+    "mode": "optional"
+  },
+  {
+    "id": "Cd5",
+    "group": "C",
+    "label": "\uAC80\uC99D \uACB0\uACFC\uB97C \uC0B4\uD53C\uACE0 \uBD80\uC871\uD568\uACFC \uB2E4\uC74C \uD589\uB3D9\uC744 \uC815\uD574\uBCF4\uC558\uB2E4.",
+    "question": "\uD655\uC778\uD55C \uACB0\uACFC\uC640 \uB0A8\uC740 \uBD80\uC871\uD568\uC740 \uBB34\uC5C7\uC774\uBA70, \uB2E4\uC74C\uC5D0 \uBB34\uC5C7\uC744 \uD560\uAE4C\uC694?",
+    "mode": "required"
+  },
+  {
+    "id": "Ed1",
+    "group": "E",
+    "label": "\uC5B4\uB5A4 \uBB38\uC81C\uB098 \uD544\uC694\uB97C \uB2E4\uB8E8\uAE30 \uC704\uD574 \uB3C4\uC785\uB418\uB294\uC9C0 \uC124\uBA85\uD574\uBCF4\uC558\uB2E4.",
+    "question": "\uC774 \uAC1C\uB150\xB7\uC815\uB9AC\xB7\uACF5\uC2DD\uC740 \uC5B4\uB5A4 \uD544\uC694\uB97C \uB2E4\uB8E8\uB098\uC694?",
+    "mode": "required"
+  },
+  {
+    "id": "Ed2",
+    "group": "E",
+    "label": "\uB3C4\uC785 \uC0AC\uB840\uC5D0\uC11C \uC8FC\uC5B4\uC9C4 \uAC83\uACFC \uAD6C\uD558\uB824\uB294 \uAC83\uC744 \uD480\uC5B4 \uB9D0\uD574\uBCF4\uC558\uB2E4.",
+    "question": "\uC608\uC2DC\uC5D0\uC11C \uBB34\uC5C7\uC774 \uC8FC\uC5B4\uC9C0\uACE0 \uBB34\uC5C7\uC744 \uAD6C\uD558\uAC70\uB098 \uC124\uBA85\uD558\uB098\uC694?",
+    "mode": "required"
+  },
+  {
+    "id": "Ed3",
+    "group": "E",
+    "label": "\uB73B\uC744 \uC790\uAE30 \uB9D0\uACFC \uC608\uC2DC\uB85C \uC124\uBA85\uD558\uACE0 \uC6D0\uBB38\uACFC \uB300\uC870\uD574\uBCF4\uC558\uB2E4.",
+    "question": "\uC790\uAE30 \uB9D0\uACFC \uC608\uC2DC\uB85C \uC124\uBA85\uD558\uBA74 \uC5B4\uB5A4 \uB73B\uC774\uBA70, \uC6D0\uBB38\uACFC \uB9DE\uB098\uC694?",
+    "mode": "required"
+  },
+  {
+    "id": "Ed4",
+    "group": "E",
+    "label": "\uB2E4\uB978 \uC801\uC6A9 \uC0C1\uD669\xB7\uC870\uAC74 \uBCC0\uD654\xB7\uB354 \uC54C \uC218 \uC788\uB294 \uACB0\uB860\uC744 \uC0DD\uAC01\uD574\uBCF4\uC558\uB2E4.",
+    "question": "\uBB34\uC5C7\uC744 \uB354 \uC54C \uC218 \uC788\uACE0, \uC870\uAC74\uC774\uB098 \uC0C1\uD669\uC774 \uB2EC\uB77C\uC9C0\uBA74 \uC5B4\uB5BB\uAC8C \uB418\uB098\uC694?",
+    "mode": "required"
+  }
+];
+var WRITTEN_REVIEW_ITEM_ID = "Cself1";
+
+// src/domain/criteria.ts
+function defaultCriteriaItems() {
+  return TRACE_ITEMS.map((item) => ({ id: item.id, group: item.group, label: item.label, version: 1, mode: item.mode }));
+}
+function validateTraceDefinition(value, expectedId = value?.id) {
+  if (!value || typeof value !== "object" || typeof value.id !== "string" || !/^[TRACE][A-Za-z0-9_-]*$/.test(value.id) || value.id.length > 256 || value.id !== expectedId || !["T", "R", "A", "C", "E"].includes(value.group) || typeof value.label !== "string" || !value.label.trim() || !Number.isSafeInteger(value.version) || value.version < 1 || !["required", "optional", "excluded"].includes(value.mode)) {
+    throw new DomainError("INVALID_TRACE_DEFINITION", "\uD65C\uB3D9\uC758 \uC6D0\uB798 \uD56D\uBAA9\uACFC \uC815\uC758\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+  }
+}
+function criteriaRevisionToken(state) {
+  return JSON.stringify([
+    state.subjects.map((row) => [row.id, row.version, row.deletedAt]),
+    state.nodes.map((row) => [row.id, row.subjectId, row.version, row.deletedAt]),
+    (state.criteria ?? []).map((row) => [row.id, row.version, row.deletedAt]),
+    (state.criteriaAssignments ?? []).map((row) => [row.id, row.version, row.deletedAt])
+  ]);
+}
+function criteriaScopeTargets(state, targetId, scope) {
+  const subjectId = state.nodes.find((node) => node.id === targetId)?.subjectId;
+  if (!subjectId) throw new DomainError("NOT_FOUND", "\uAE30\uC900\uC744 \uC870\uC815\uD560 \uBAA9\uCC28 \uD56D\uBAA9\uC744 \uCC3E\uC744 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
+  if (scope === "topic") return [{ scope: "topic", ownerId: targetId }];
+  if (scope !== "subject" && scope !== "all") throw new DomainError("INVALID_CRITERIA_SCOPE", "\uAE30\uC900\uC758 \uC801\uC6A9 \uBC94\uC704\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+  const subjects = state.subjects.filter((subject) => scope === "all" || subject.id === subjectId);
+  const nodes = state.nodes.filter((node) => scope === "all" || node.subjectId === subjectId);
+  return [
+    ...scope === "all" ? [{ scope: "global", ownerId: null }] : [],
+    ...subjects.map((subject) => ({ scope: "subject", ownerId: subject.id })),
+    ...nodes.map((node) => ({ scope: "topic", ownerId: node.id }))
+  ];
+}
+
+// src/domain/outline.ts
+var MAX_OUTLINE_ROWS = 500;
+var MAX_OUTLINE_NAME = 180;
+function outlineRevisionToken(state, subjectId, parentId) {
+  const subject = state.subjects.find((row) => row.id === subjectId);
+  return JSON.stringify([
+    state.userId,
+    state.namespace,
+    subjectId,
+    parentId,
+    subject ? [subject.version, subject.deletedAt, subject.scope] : null,
+    state.nodes.filter((row) => row.subjectId === subjectId).map((row) => [row.id, row.parentId, row.order, row.name, row.version, row.deletedAt]).sort((a, b) => String(a[0]).localeCompare(String(b[0])))
+  ]);
+}
+function previewOutlineEntries(names) {
+  const entries = [], issues = [];
+  if (!Array.isArray(names) || names.length > MAX_OUTLINE_ROWS) {
+    return { entries, issues: [{ line: 0, message: `\uD55C \uBC88\uC5D0 ${MAX_OUTLINE_ROWS}\uD589\uAE4C\uC9C0 \uCD94\uAC00\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.` }] };
+  }
+  const seen = /* @__PURE__ */ new Set();
+  names.forEach((raw, index) => {
+    const line = index + 1;
+    if (typeof raw !== "string") {
+      issues.push({ line, message: "\uC774\uB984\uC744 \uAE00\uB85C \uC785\uB825\uD574 \uC8FC\uC138\uC694." });
+      return;
+    }
+    const name = raw.trim();
+    if (!name) return;
+    if (/[\r\n\t]/.test(raw)) {
+      issues.push({ line, message: "\uD56D\uBAA9\uB9C8\uB2E4 \uBCC4\uB3C4 \uC785\uB825\uCE78\uC744 \uC0AC\uC6A9\uD574 \uC8FC\uC138\uC694." });
+      return;
+    }
+    if (name.length > MAX_OUTLINE_NAME) {
+      issues.push({ line, message: `\uC774\uB984\uC740 ${MAX_OUTLINE_NAME}\uC790 \uC774\uB0B4\uB85C \uC785\uB825\uD574 \uC8FC\uC138\uC694.` });
+      return;
+    }
+    if (!seen.has(name)) {
+      seen.add(name);
+      entries.push({ line, name });
+    }
+  });
+  return { entries, issues };
+}
+function outlineTableToken(state) {
+  return JSON.stringify([
+    state.userId,
+    state.namespace,
+    state.semesters.map((row) => [row.id, row.version, row.deletedAt]),
+    state.subjects.map((row) => [row.id, row.name, row.scope, row.order, row.version, row.deletedAt]),
+    state.nodes.map((row) => [row.id, row.subjectId, row.parentId, row.role, row.name, row.order, row.version, row.deletedAt])
+  ]);
+}
+var sameOutlineScope = (left, right) => left.kind === right.kind && (left.kind !== "semester" || right.kind === "semester" && left.semesterId === right.semesterId);
+function previewOutlineTable(state, input) {
+  const fail2 = (message) => {
+    throw new DomainError("INVALID_OUTLINE_TABLE", message);
+  };
+  if (!input || !input.scope || !["semester", "independent", "unassigned"].includes(input.scope.kind)) fail2("\uB4F1\uB85D\uD560 \uD559\uAE30\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+  if (input.scope.kind === "semester" && !state.semesters.some((row) => row.id === input.scope.semesterId && !row.deletedAt)) fail2("\uB4F1\uB85D\uD560 \uD559\uAE30\uB97C \uCC3E\uC744 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
+  if (!Array.isArray(input.courses) || input.courses.length > MAX_OUTLINE_ROWS || !input.choices || typeof input.choices !== "object" || Array.isArray(input.choices)) fail2("\uC785\uB825 \uD45C\uC758 \uD615\uC2DD\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+  const keys = /* @__PURE__ */ new Set(), entries = [], paths = /* @__PURE__ */ new Map();
+  let rows = 0;
+  const cell = (value) => {
+    if (!value || typeof value.key !== "string" || !value.key || keys.has(value.key) || typeof value.name !== "string") fail2("\uC785\uB825\uCE78\uC758 \uC2DD\uBCC4\uC790\uC640 \uC6D0\uBB38\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+    keys.add(value.key);
+    const name = value.name.trim();
+    if (name.length > MAX_OUTLINE_NAME || /[\r\n\t]/.test(value.name)) fail2("\uC774\uB984\uC740 \uC904\uBC14\uAFC8 \uC5C6\uC774 180\uC790 \uC774\uB0B4\uB85C \uAC1C\uBCC4 \uCE78\uC5D0 \uC801\uC5B4 \uC8FC\uC138\uC694.");
+    return name;
+  };
+  const append = (path, kind) => {
+    const key = JSON.stringify(path);
+    if (paths.has(key)) return;
+    const parentKey = path.length > 1 ? JSON.stringify(path.slice(0, -1)) : null;
+    const parent = parentKey ? paths.get(parentKey) : null;
+    const subjectKey = JSON.stringify(path.slice(0, 1)), subject = paths.get(subjectKey);
+    const candidates = (kind === "subject" ? state.subjects.filter((row) => !row.deletedAt && row.name === path[0] && sameOutlineScope(row.scope, input.scope)) : parent?.status === "reuse" ? state.nodes.filter((row) => !row.deletedAt && row.subjectId === (kind === "unit" ? parent.id : subject?.id) && row.parentId === (kind === "unit" ? null : parent.id) && row.role === kind && row.name === path.at(-1)) : []).sort((a, b) => a.order - b.order);
+    const choice = Object.hasOwn(input.choices, key) ? input.choices[key] : void 0;
+    let status = "new", id = null;
+    if (parent && ["choose", "blocked"].includes(parent.status)) status = "blocked";
+    else if (candidates.length) {
+      if (choice === "new") status = "new";
+      else if (candidates.some((row) => row.id === choice)) {
+        status = "reuse";
+        id = choice;
+      } else status = "choose";
+    } else if (choice && choice !== "new") fail2("\uC5F0\uACB0\uD558\uB824\uB358 \uAE30\uC874 \uD56D\uBAA9\uC774 \uBC14\uB00C\uC5C8\uC2B5\uB2C8\uB2E4. \uAC19\uC740 \uC774\uB984\uC758 \uD56D\uBAA9\uC744 \uB2E4\uC2DC \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+    const entry = { key, parentKey, subjectKey, name: path.at(-1), path, kind, status, id, candidates: candidates.map((row) => ({ id: row.id, name: row.name })) };
+    paths.set(key, entry);
+    entries.push(entry);
+  };
+  for (const course of input.courses) {
+    const courseName = cell(course);
+    if (!Array.isArray(course.units)) fail2("\uB2E8\uC6D0 \uC785\uB825\uCE78\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+    if (courseName) append([courseName], "subject");
+    for (const unit of course.units) {
+      if (++rows > MAX_OUTLINE_ROWS) fail2("\uB2E8\uC6D0\uACFC \uC8FC\uC81C \uC785\uB825\uC740 \uD569\uACC4 500\uD589\uAE4C\uC9C0 \uC0AC\uC6A9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.");
+      const unitName = cell(unit);
+      if (!Array.isArray(unit.topics)) fail2("\uC8FC\uC81C \uC785\uB825\uCE78\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+      if (unitName && !courseName) fail2("\uB2E8\uC6D0\uC744 \uB2F4\uC744 \uACFC\uBAA9\uBA85\uC744 \uC801\uC5B4 \uC8FC\uC138\uC694.");
+      if (unitName) append([courseName, unitName], "unit");
+      for (const topic of unit.topics) {
+        if (++rows > MAX_OUTLINE_ROWS) fail2("\uB2E8\uC6D0\uACFC \uC8FC\uC81C \uC785\uB825\uC740 \uD569\uACC4 500\uD589\uAE4C\uC9C0 \uC0AC\uC6A9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.");
+        const topicName = cell(topic);
+        if (topicName && (!courseName || !unitName)) fail2("\uC8FC\uC81C\uB97C \uB2F4\uC744 \uACFC\uBAA9\uBA85\uACFC \uB2E8\uC6D0\uBA85\uC744 \uC801\uC5B4 \uC8FC\uC138\uC694.");
+        if (topicName) append([courseName, unitName, topicName], "topic");
+      }
+    }
+  }
+  return { entries, ready: entries.length > 0 && entries.every((row) => ["new", "reuse"].includes(row.status)), newCount: entries.filter((row) => row.status === "new").length, reuseCount: entries.filter((row) => row.status === "reuse").length, expectedToken: outlineTableToken(state) };
+}
+
+// src/domain/memo.ts
+var MEMO_WIDTH = 900;
+var MEMO_HEIGHT = 600;
+function validateMemoContent(value) {
+  const row = value;
+  const bad2 = () => {
+    throw new DomainError("INVALID_MEMO", "\uBA54\uBAA8\uC758 \uAE00\uC774\uB098 \uADF8\uB9BC\uC744 \uC77D\uC9C0 \uBABB\uD588\uC2B5\uB2C8\uB2E4. \uC6D0\uBB38\uC744 \uBCC0\uACBD\uD558\uC9C0 \uC54A\uC558\uC2B5\uB2C8\uB2E4.");
+  };
+  if (!row || typeof row.body !== "string" || row.ownerId !== null && (typeof row.ownerId !== "string" || !row.ownerId.trim()) || !Array.isArray(row.strokes)) return bad2();
+  const ids = /* @__PURE__ */ new Set();
+  for (const stroke of row.strokes) {
+    if (!stroke || typeof stroke.id !== "string" || !stroke.id.trim() || ids.has(stroke.id) || !["ink", "blue", "green"].includes(stroke.ink) || !Number.isFinite(stroke.width) || stroke.width <= 0 || stroke.width > 40 || !Array.isArray(stroke.points) || !stroke.points.length) return bad2();
+    ids.add(stroke.id);
+    for (const point of stroke.points) if (!point || !Number.isFinite(point.x) || !Number.isFinite(point.y) || point.x < 0 || point.x > MEMO_WIDTH || point.y < 0 || point.y > MEMO_HEIGHT || !Number.isFinite(point.pressure) || point.pressure < 0 || point.pressure > 1) return bad2();
+  }
+}
+
+// src/domain/memory-test.ts
+function bad(message) {
+  throw new DomainError("INVALID_MEMORY_TEST", message);
+}
+function validateMemoryCard(value, complete = true) {
+  const c = value;
+  if (!c || typeof c.topicId !== "string" || !c.topicId.trim() || typeof c.question !== "string" || typeof c.answer !== "string")
+    bad("\uC554\uAE30 \uD56D\uBAA9\uC758 \uC9C8\uBB38\uACFC \uB2F5\uC548\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+  validateMemoContent({ ownerId: c.topicId, body: c.answer, strokes: c.strokes });
+  if (complete && (!c.question.trim() || !c.answer.trim() && !c.strokes.length))
+    bad("\uC9C8\uBB38\uACFC \uAE30\uC900 \uB2F5\uC548\uC744 \uB123\uC5B4 \uC8FC\uC138\uC694. \uB2F5\uC548\uC740 \uADF8\uB9BC\uB9CC \uC788\uC5B4\uB3C4 \uB429\uB2C8\uB2E4.");
+}
+function validateMemoryQuestions(value) {
+  if (!Array.isArray(value) || !value.length || value.length > 50)
+    bad("\uC2DC\uD5D8\uC5D0 \uB123\uC744 \uD56D\uBAA9\uC740 1\uAC1C\uBD80\uD130 50\uAC1C\uAE4C\uC9C0 \uC120\uD0DD\uD574 \uC8FC\uC138\uC694.");
+  const ids = /* @__PURE__ */ new Set();
+  for (const q of value) {
+    validateMemoryCard(q);
+    if (typeof q.cardId !== "string" || !q.cardId.trim() || ids.has(q.cardId) || !Number.isSafeInteger(q.cardVersion) || q.cardVersion < 1 || typeof q.topicName !== "string" || ![null, "correct", "partial", "wrong", "uncertain"].includes(q.verdict))
+      bad("\uBB38\uD56D\uC758 \uC6D0\uB798 \uD56D\uBAA9\uACFC \uBE44\uAD50 \uACB0\uACFC\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+    ids.add(q.cardId);
+    validateMemoContent({ ownerId: q.topicId, body: q.response, strokes: q.responseStrokes });
+    if (!q.response.trim() && !q.responseStrokes.length && ["correct", "partial", "wrong"].includes(q.verdict ?? ""))
+      bad("\uB2F5\uD558\uC9C0 \uC54A\uC740 \uBB38\uD56D\uC740 \uBBF8\uD310\uC815\uC73C\uB85C \uB0A8\uACA8 \uC8FC\uC138\uC694.");
+  }
+}
+function validateMemoryTest(value) {
+  const t = value;
+  if (!t || ![t.startedAt, t.endedAt].every(
+    (x) => typeof x === "string" && Number.isFinite(Date.parse(x))
+  ) || Date.parse(t.startedAt) > Date.parse(t.endedAt))
+    bad("\uC2DC\uD5D8\uC758 \uC2DC\uC791\uACFC \uC885\uB8CC \uC2DC\uAC01\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+  validateMemoryQuestions(t.questions);
+}
+
+// src/domain/canvas.ts
+function validateCanvasLayout(value) {
+  const validKey = (id) => typeof id === "string" && /^(subject|node|memo|narrative):.+/.test(id) && id.length <= 300 && !/[\u0000-\u001f]/.test(id);
+  const position = (p) => p && Number.isFinite(p.x) && Number.isFinite(p.y) && Math.abs(p.x) <= 1e7 && Math.abs(p.y) <= 1e7;
+  if (!value.positions || typeof value.positions !== "object" || Array.isArray(value.positions) || !Object.entries(value.positions).every(([id, p]) => validKey(id) && position(p)) || !Array.isArray(value.links)) throw new DomainError("INVALID_CANVAS", "Canvas \uBC30\uCE58\uC640 \uC5F0\uACB0\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694. \uC6D0\uBB38\uC740 \uC720\uC9C0\uD588\uC2B5\uB2C8\uB2E4.");
+  const ids = /* @__PURE__ */ new Set();
+  for (const link of value.links) {
+    if (!link || typeof link.id !== "string" || !link.id.trim() || link.id.length > 256 || ids.has(link.id) || link.id.startsWith("auto:") || !validKey(link.source) || !validKey(link.target) || typeof link.label !== "string" || link.label.length > 300) throw new DomainError("INVALID_CANVAS", "Canvas \uC5F0\uACB0\uC758 \uC2DD\uBCC4\uC790\uC640 \uC6D0\uBB38\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+    ids.add(link.id);
+  }
+  if (value.viewport && (!position(value.viewport) || !Number.isFinite(value.viewport.zoom) || value.viewport.zoom < 0.1 || value.viewport.zoom > 2)) throw new DomainError("INVALID_CANVAS", "Canvas \uD655\uB300 \uC704\uCE58\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+}
+
+// src/domain/study-material.ts
+var MAX_AUDIO_BYTES = 50 * 1024 * 1024;
+var MAX_SOURCE_TEXT = 15e4;
+var invalid2 = (message) => {
+  throw new DomainError("INVALID_MATERIAL", message);
+};
+var text = (value, max) => typeof value === "string" && value.length <= max;
+function validateMaterialResult(value) {
+  const result = value;
+  if (!result || !text(result.id, 256) || !result.id || !text(result.model, 160) || !Number.isFinite(Date.parse(result.at)) || !Array.isArray(result.segments) || !result.segments.length || result.segments.length > 6e3 || !Array.isArray(result.summary) || result.summary.length > 100 || !Array.isArray(result.cards) || result.cards.length > 100)
+    invalid2("AI \uACB0\uACFC\uC758 \uD615\uC2DD\uC744 \uD655\uC778\uD558\uC9C0 \uBABB\uD588\uC2B5\uB2C8\uB2E4. \uC6D0\uBCF8\uC740 \uBCF4\uC874\uD588\uC2B5\uB2C8\uB2E4.");
+  const ids = /* @__PURE__ */ new Set();
+  for (const segment of result.segments) {
+    if (!text(segment.id, 256) || !segment.id || ids.has(segment.id) || !text(segment.text, MAX_SOURCE_TEXT) || !segment.text.trim())
+      invalid2("\uBC1B\uC544\uC4F4 \uBB38\uC7A5\uACFC \uC2DD\uBCC4\uC790\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+    if (!(segment.start === null && segment.end === null) && !(typeof segment.start === "number" && Number.isFinite(segment.start) && segment.start >= 0 && typeof segment.end === "number" && Number.isFinite(segment.end) && segment.end >= segment.start))
+      invalid2("\uC74C\uC131 \uAD6C\uAC04\uC758 \uC2DC\uAC04\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+    ids.add(segment.id);
+  }
+  if (result.segments.reduce((sum, row) => sum + row.text.length, 0) > MAX_SOURCE_TEXT)
+    invalid2("\uBC1B\uC544\uC4F4 \uB0B4\uC6A9\uC774 \uD55C \uBC88\uC5D0 \uCC98\uB9AC\uD560 \uC218 \uC788\uB294 \uBC94\uC704\uB97C \uB118\uC5C8\uC2B5\uB2C8\uB2E4.");
+  const references = (sources) => Array.isArray(sources) && sources.length > 0 && sources.length <= 50 && sources.every((id) => typeof id === "string" && ids.has(id));
+  for (const row of result.summary)
+    if (!text(row.text, 1e4) || !row.text.trim() || !references(row.sourceIds))
+      invalid2("\uC694\uC57D\uC758 \uC6D0\uBB38 \uADFC\uAC70\uB97C \uD655\uC778\uD558\uC9C0 \uBABB\uD588\uC2B5\uB2C8\uB2E4.");
+  const cards = /* @__PURE__ */ new Set();
+  for (const card of result.cards) {
+    if (!text(card.id, 256) || !card.id || cards.has(card.id) || !text(card.question, 4e3) || !card.question.trim() || !text(card.answer, 1e4) || !card.answer.trim() || !references(card.sourceIds) || typeof card.excluded !== "boolean")
+      invalid2("\uCE74\uB4DC\uC758 \uC9C8\uBB38\xB7\uB2F5\xB7\uC6D0\uBB38 \uADFC\uAC70\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+    cards.add(card.id);
+  }
+}
+function validateMaterialContent(value) {
+  const row = value;
+  if (!row || !text(row.title, 300) || !row.title.trim() || !text(row.subjectId, 256) || !row.subjectId || !(row.topicId === null || text(row.topicId, 256)) || !text(row.sourceText, MAX_SOURCE_TEXT) || !Array.isArray(row.results) || row.results.length > 30)
+    invalid2("\uC790\uB8CC \uC81C\uBAA9\xB7\uACFC\uBAA9\xB7\uBCF8\uBB38\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+  if (row.audio !== null && (!row.audio || !text(row.audio.key, 512) || !row.audio.key || !text(row.audio.name, 512) || !text(row.audio.type, 100) || !Number.isSafeInteger(row.audio.size) || row.audio.size <= 0 || row.audio.size > MAX_AUDIO_BYTES || !/^[a-f0-9]{64}$/.test(row.audio.sha256)))
+    invalid2("\uC6D0\uBCF8 \uC74C\uC131 \uD30C\uC77C \uC815\uBCF4\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+  if (!row.audio && !row.sourceText.trim()) invalid2("\uB179\uC74C \uD30C\uC77C\uC774\uB098 \uAC15\uC758 \uB0B4\uC6A9\uC744 \uB123\uC5B4 \uC8FC\uC138\uC694.");
+  const ids = /* @__PURE__ */ new Set();
+  for (const result of row.results) {
+    validateMaterialResult(result);
+    if (ids.has(result.id)) invalid2("\uC0DD\uC131 \uACB0\uACFC\uC758 \uC2DD\uBCC4\uC790\uAC00 \uC911\uBCF5\uB418\uC5C8\uC2B5\uB2C8\uB2E4.");
+    ids.add(result.id);
+  }
+}
+function materialContent(row) {
+  return structuredClone({
+    title: row.title,
+    subjectId: row.subjectId,
+    topicId: row.topicId,
+    sourceText: row.sourceText,
+    audio: row.audio,
+    results: row.results
+  });
+}
+
+// src/domain/code-example.ts
+var CODE_LANGUAGES = {
+  c: "C",
+  cpp: "C++",
+  csharp: "C#",
+  python: "Python",
+  javascript: "JavaScript"
+};
+var MAX_CODE_TEXT = 2e5;
+var MAX_CODE_OUTPUT = 1e5;
+function validateCodeContent(value) {
+  const fail2 = () => {
+    throw new DomainError(
+      "INVALID_CODE_EXAMPLE",
+      "\uCF54\uB4DC \uC608\uC81C\uC758 \uC81C\uBAA9\xB7\uCF54\uB4DC\xB7\uC124\uBA85\xB7\uC2E4\uD589 \uACB0\uACFC\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694."
+    );
+  };
+  if (!value || typeof value !== "object" || Array.isArray(value)) return fail2();
+  const content = value;
+  if (content.inputMode !== void 0 && !["batch", "terminal"].includes(content.inputMode))
+    return fail2();
+  if (!Object.hasOwn(CODE_LANGUAGES, content.language)) return fail2();
+  for (const name of ["title", "code", "stdin", "notes"]) {
+    if (typeof content[name] !== "string" || content[name].length > MAX_CODE_TEXT) return fail2();
+  }
+  if (content.lastRun !== void 0) {
+    const run = content.lastRun;
+    if (!run || run.mode !== void 0 && run.mode !== "terminal" || !Object.hasOwn(CODE_LANGUAGES, run.language) || !["success", "error", "stopped"].includes(run.outcome) || typeof run.at !== "string" || !Number.isFinite(Date.parse(run.at)))
+      return fail2();
+    for (const name of ["code", "stdin", "output", "error"]) {
+      if (typeof run[name] !== "string" || run[name].length > (name === "output" || name === "error" ? MAX_CODE_OUTPUT : MAX_CODE_TEXT))
+        return fail2();
+    }
+  }
+}
+function codeContent(row) {
+  return {
+    title: row.title,
+    language: row.language,
+    code: row.code,
+    stdin: row.stdin,
+    notes: row.notes,
+    ...row.inputMode ? { inputMode: row.inputMode } : {},
+    ...row.lastRun ? { lastRun: row.lastRun } : {}
+  };
+}
+
 // src/domain/commands.ts
 function verifyLearningPlan(workspace, state) {
   try {
@@ -2834,14 +3022,14 @@ function verifyLearningPlan(workspace, state) {
     throw new DomainError("INVALID_LEARNING_PLAN", error instanceof Error ? error.message : "\uD559\uC2B5 \uC77C\uC815\uC758 \uB0B4\uC6A9\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
   }
 }
-var collections = ["semesters", "subjects", "nodes", "sessions", "records", "narratives", "criteria", "criteriaAssignments", "memos", "learningPlans", "canvasLayouts", "recallCards", "recallPreferences", "codeExamples"];
+var collections = ["studyBoards", "semesters", "subjects", "nodes", "sessions", "records", "narratives", "criteria", "criteriaAssignments", "memos", "learningPlans", "canvasLayouts", "codeExamples", "recallCards", "recallPreferences", "studyMaterials", "memoryCards", "memoryTests"];
 var clone = (value) => structuredClone(value);
 function fail(code, message, details) {
   throw new DomainError(code, message, details);
 }
-function canonical(value) {
-  if (Array.isArray(value)) return "[" + value.map(canonical).join(",") + "]";
-  if (value && typeof value === "object") return "{" + Object.entries(value).filter(([, v]) => v !== void 0).sort(([a], [b]) => a.localeCompare(b)).map(([k, v]) => JSON.stringify(k) + ":" + canonical(v)).join(",") + "}";
+function canonical2(value) {
+  if (Array.isArray(value)) return "[" + value.map(canonical2).join(",") + "]";
+  if (value && typeof value === "object") return "{" + Object.entries(value).filter(([, v]) => v !== void 0).sort(([a], [b]) => a.localeCompare(b)).map(([k, v]) => JSON.stringify(k) + ":" + canonical2(v)).join(",") + "}";
   return JSON.stringify(value);
 }
 function identity(id) {
@@ -2912,7 +3100,7 @@ function mergeTrace(previous, patch) {
   verifyTrace(patch);
   const next = clone(previous);
   for (const [id, item] of Object.entries(patch)) {
-    if (item.examReview && canonical(item.examReview) !== canonical(previous[id]?.examReview ?? null)) fail("REVIEW_COMMAND_REQUIRED", "\uC11C\uC220 \uC218\uC815\uACFC \uC810\uAC80 \uD655\uC778\uC740 \uD574\uB2F9 \uC870\uC791\uC744 \uC0AC\uC6A9\uD574 \uC8FC\uC138\uC694.");
+    if (item.examReview && canonical2(item.examReview) !== canonical2(previous[id]?.examReview ?? null)) fail("REVIEW_COMMAND_REQUIRED", "\uC11C\uC220 \uC218\uC815\uACFC \uC810\uAC80 \uD655\uC778\uC740 \uD574\uB2F9 \uC870\uC791\uC744 \uC0AC\uC6A9\uD574 \uC8FC\uC138\uC694.");
     const definition = previous[id]?.definition ?? item.definition ?? (() => {
       const original = TRACE_ITEMS.find((t) => t.id === id);
       return original ? { id, group: original.group, label: original.label, mode: original.mode, version: 1 } : void 0;
@@ -2965,7 +3153,7 @@ function assertState(state) {
     if (!sessionIds.has(row.sessionId)) fail("NOT_FOUND", "\uC6D0\uB798 \uACF5\uBD80 \uC138\uC158\uC744 \uCC3E\uC744 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
     const subjectId = subjectIds.has(row.targetId) ? row.targetId : nodeIndex.get(row.targetId)?.subjectId;
     if (subjectId !== row.subjectId) fail("SUBJECT_MISMATCH", "\uAE30\uB85D\uACFC \uC8FC\uC81C\uC758 \uACFC\uBAA9\uC774 \uB2E4\uB985\uB2C8\uB2E4.");
-    const key = canonical([row.sessionId, row.targetId]);
+    const key = canonical2([row.sessionId, row.targetId]);
     if (pairs.has(key)) fail("DUPLICATE_RECORD", "\uD55C \uACF5\uBD80\uC758 \uAC19\uC740 \uB300\uC0C1 \uAE30\uB85D\uC774 \uC911\uBCF5\uB418\uC5B4 \uC788\uC2B5\uB2C8\uB2E4.");
     pairs.add(key);
     validateDateEvidence(row.dateEvidence);
@@ -2975,9 +3163,26 @@ function assertState(state) {
   for (const row of state.sessions) validateDateEvidence(row.dateEvidence);
   if ((state.learningPlans ?? []).filter((row) => !row.deletedAt).length > 1) fail("DUPLICATE_PLAN", "\uD559\uC2B5 \uC77C\uC815\uC758 \uC6D0\uB798 \uC5F0\uACB0\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
   for (const row of state.learningPlans ?? []) verifyLearningPlan(row.workspace, state);
+  for (const row of state.studyBoards ?? []) {
+    validateBoard(row);
+    verifyBoardTopics(row, state);
+  }
   for (const row of state.canvasLayouts ?? []) validateCanvasLayout(row);
-  const recallTopics = /* @__PURE__ */ new Set();
   for (const row of state.codeExamples ?? []) validateCodeContent(row);
+  for (const row of state.studyMaterials ?? []) {
+    validateMaterialContent(row);
+    if (!subjectIds.has(row.subjectId) || row.topicId !== null && nodeIndex.get(row.topicId)?.subjectId !== row.subjectId) fail("SUBJECT_MISMATCH", "\uC790\uB8CC\uC758 \uACFC\uBAA9\uACFC \uC8FC\uC81C\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+  }
+  for (const card of state.memoryCards ?? []) {
+    validateMemoryCard(card);
+    validateMaterialCardSource(card, state);
+    if (nodeIndex.get(card.topicId)?.role !== "topic") fail("INVALID_MEMORY_TEST", "\uC554\uAE30 \uD56D\uBAA9\uC758 \uC6D0\uB798 \uC8FC\uC81C\uB97C \uCC3E\uC744 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
+  }
+  for (const test of state.memoryTests ?? []) {
+    validateMemoryTest(test);
+    for (const q of test.questions) if (!(state.memoryCards ?? []).some((c) => c.id === q.cardId && c.topicId === q.topicId)) fail("INVALID_MEMORY_TEST", "\uC2DC\uD5D8 \uBB38\uD56D\uC758 \uC6D0\uB798 \uD56D\uBAA9\uC744 \uCC3E\uC744 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
+  }
+  const recallTopics = /* @__PURE__ */ new Set();
   for (const row of state.recallCards ?? []) {
     validateRecallCard(row, state);
     if (!row.deletedAt && row.front === void 0) {
@@ -3035,7 +3240,7 @@ function applyCommand(state, command) {
   if (command.userId !== state.userId || command.namespace !== void 0 && command.namespace !== state.namespace) fail("OWNERSHIP", "\uB2E4\uB978 \uC0AC\uC6A9\uC790\uB098 \uC2DC\uD5D8 \uACF5\uAC04\uC758 \uC790\uB8CC\uB97C \uBCC0\uACBD\uD560 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
   identity(command.opId);
   if (typeof command.at !== "string" || !Number.isFinite(Date.parse(command.at))) fail("INVALID_TIME", "\uC800\uC7A5 \uC2DC\uAC01\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
-  const payload = canonical(command);
+  const payload = canonical2(command);
   if (Object.hasOwn(state.appliedOps, command.opId)) {
     if (state.appliedOps[command.opId] !== payload) fail("OPERATION_REUSED", "\uAC19\uC740 \uC694\uCCAD \uC2DD\uBCC4\uC790\uC5D0 \uB2E4\uB978 \uB0B4\uC6A9\uC774 \uB4E4\uC5B4 \uC788\uC2B5\uB2C8\uB2E4.");
     return state;
@@ -3050,14 +3255,18 @@ function applyCommand(state, command) {
     if (collection === "criteria") next.criteria ??= [];
     if (collection === "criteriaAssignments") next.criteriaAssignments ??= [];
     if (collection === "memos") next.memos ??= [];
+    if (collection === "memoryCards") next.memoryCards ??= [];
+    if (collection === "memoryTests") next.memoryTests ??= [];
     if (collection === "learningPlans") next.learningPlans ??= [];
+    if (collection === "studyBoards") next.studyBoards ??= [];
     if (collection === "canvasLayouts") next.canvasLayouts ??= [];
+    if (collection === "studyMaterials") next.studyMaterials ??= [];
     if (collection === "codeExamples") next.codeExamples ??= [];
     if (collection === "recallCards") next.recallCards ??= [];
     if (collection === "recallPreferences") next.recallPreferences ??= [];
     const list = next[collection];
     const index = list.findIndex((v) => v.id === entity.id), before = index < 0 ? null : clone(list[index]);
-    if (before && canonical(before) === canonical(entity)) return;
+    if (before && canonical2(before) === canonical2(entity)) return;
     const after = { ...clone(entity), updatedAt: command.at, version: before ? before.version + 1 : 1 };
     if (index < 0) list.push(after);
     else list[index] = after;
@@ -3071,6 +3280,64 @@ function applyCommand(state, command) {
     return found;
   };
   switch (command.type) {
+    case "saveMemoryCard": {
+      validateMemoryCard(command.content);
+      const topic = find(next.nodes, command.content.topicId);
+      if (topic.role !== "topic") fail("INVALID_MEMORY_TEST", "\uC554\uAE30 \uD56D\uBAA9\uC744 \uC5F0\uACB0\uD560 \uC8FC\uC81C\uB97C \uC120\uD0DD\uD574 \uC8FC\uC138\uC694.");
+      targetSubject(next, topic.id);
+      const old = next.memoryCards?.find((c) => c.id === command.id);
+      validateMaterialCardSource(command.content, next, !old);
+      if (old) {
+        find(next.memoryCards, old.id);
+        expected(old, command.expectedVersion, command);
+        if (old.topicId !== command.content.topicId) fail("INVALID_MEMORY_TEST", "\uAE30\uC874 \uD56D\uBAA9\uC758 \uC8FC\uC81C\uB294 \uC720\uC9C0\uD574 \uC8FC\uC138\uC694. \uB2E4\uB978 \uC8FC\uC81C\uC5D0\uB294 \uC0C8 \uD56D\uBAA9\uC73C\uB85C \uB4F1\uB85D\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.");
+      } else {
+        if (command.expectedVersion !== 0) fail("VERSION_CONFLICT", "\uD56D\uBAA9\uC758 \uC218\uC815 \uC21C\uC11C\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+        fresh(command.id);
+      }
+      write("memoryCards", { ...old ?? common(command.id), ...clone(command.content) });
+      break;
+    }
+    case "trashMemoryCard":
+    case "restoreMemoryCard": {
+      const card = find(next.memoryCards ?? [], command.id, command.type === "trashMemoryCard");
+      expected(card, command.expectedVersion, command);
+      write("memoryCards", { ...card, deletedAt: command.type === "trashMemoryCard" ? command.at : null });
+      break;
+    }
+    case "saveMemoryTest": {
+      validateMemoryTest(command.content);
+      fresh(command.id);
+      for (const q of command.content.questions) {
+        const card = find(next.memoryCards ?? [], q.cardId, false);
+        const source = card.version === q.cardVersion ? card : next.revisions.find((r) => r.collection === "memoryCards" && r.entityId === card.id && r.after.version === q.cardVersion)?.after;
+        if (!source || source.topicId !== q.topicId || source.question !== q.question || source.answer !== q.answer || canonical2(source.strokes) !== canonical2(q.strokes)) fail("INVALID_MEMORY_TEST", "\uCD9C\uC81C \uB2F9\uC2DC\uC758 \uC9C8\uBB38\uACFC \uAE30\uC900 \uB2F5\uC548\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+      }
+      write("memoryTests", { ...common(command.id), ...clone(command.content) });
+      break;
+    }
+    case "saveStudyMaterial": {
+      validateMaterialContent(command.content);
+      find(next.subjects, command.content.subjectId);
+      if (command.content.topicId !== null && targetSubject(next, command.content.topicId) !== command.content.subjectId) fail("SUBJECT_MISMATCH", "\uC120\uD0DD\uD55C \uC8FC\uC81C\uAC00 \uC774 \uACFC\uBAA9\uC5D0 \uC18D\uD558\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4.");
+      const old = next.studyMaterials?.find((row) => row.id === command.id);
+      if (old) {
+        find(next.studyMaterials, old.id);
+        expected(old, command.expectedVersion, command);
+      } else {
+        if (command.expectedVersion !== 0) fail("VERSION_CONFLICT", "\uC790\uB8CC\uC758 \uC218\uC815 \uC21C\uC11C\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+        fresh(command.id);
+      }
+      write("studyMaterials", { ...old ?? common(command.id), ...materialContent(command.content) });
+      break;
+    }
+    case "trashStudyMaterial":
+    case "restoreStudyMaterial": {
+      const row = find(next.studyMaterials ?? [], command.id, command.type === "trashStudyMaterial");
+      expected(row, command.expectedVersion, command);
+      write("studyMaterials", { ...row, deletedAt: command.type === "trashStudyMaterial" ? command.at : null });
+      break;
+    }
     case "saveRecallPreferences": {
       validateRecallOptions(command.options);
       const old = next.recallPreferences?.find((row) => row.id === command.id);
@@ -3127,7 +3394,7 @@ function applyCommand(state, command) {
           memoId = command.memo.id;
           const saved = next.memos?.find((row) => row.id === memoId);
           if (saved) {
-            if (saved.deletedAt || saved.ownerId !== topic.id || saved.recallCardId !== void 0 && saved.recallCardId !== card.id || saved.body !== command.memo.body || canonical(saved.strokes) !== canonical(command.memo.strokes)) fail("VERSION_CONFLICT", "\uB2F5\uBCC0 \uBA54\uBAA8\uAC00 \uBC14\uB00C\uC5C8\uC2B5\uB2C8\uB2E4. \uCD08\uC548\uC744 \uBCF4\uC874\uD588\uC2B5\uB2C8\uB2E4.");
+            if (saved.deletedAt || saved.ownerId !== topic.id || saved.recallCardId !== void 0 && saved.recallCardId !== card.id || saved.body !== command.memo.body || canonical2(saved.strokes) !== canonical2(command.memo.strokes)) fail("VERSION_CONFLICT", "\uB2F5\uBCC0 \uBA54\uBAA8\uAC00 \uBC14\uB00C\uC5C8\uC2B5\uB2C8\uB2E4. \uCD08\uC548\uC744 \uBCF4\uC874\uD588\uC2B5\uB2C8\uB2E4.");
           } else {
             fresh(memoId);
             write("memos", { ...common(memoId), ownerId: topic.id, recallCardId: card.id, body: command.memo.body, strokes: clone(command.memo.strokes) });
@@ -3157,6 +3424,20 @@ function applyCommand(state, command) {
       const row = find(next.codeExamples ?? [], command.id, command.type === "trashCodeExample");
       expected(row, command.expectedVersion, command);
       write("codeExamples", { ...row, deletedAt: command.type === "trashCodeExample" ? command.at : null });
+      break;
+    }
+    case "saveStudyBoard": {
+      validateBoard(command.content);
+      verifyBoardTopics(command.content, next);
+      const old = next.studyBoards?.find((row) => row.id === command.id);
+      if (old) {
+        find(next.studyBoards, old.id);
+        expected(old, command.expectedVersion, command);
+      } else {
+        if (command.expectedVersion !== 0) fail("VERSION_CONFLICT", "\uBCF4\uB4DC\uC758 \uC218\uC815 \uC21C\uC11C\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+        fresh(command.id);
+      }
+      write("studyBoards", { ...old ?? common(command.id), ...clone(boardContent(command.content)) });
       break;
     }
     case "saveCanvasLayout": {
@@ -3385,7 +3666,7 @@ function applyCommand(state, command) {
         validateTraceDefinition(item);
         if (item.label.length > 180) fail("INVALID_CRITERIA", "\uD56D\uBAA9 \uBB38\uAD6C\uB294 180\uC790 \uC774\uB0B4\uB85C \uC785\uB825\uD574 \uC8FC\uC138\uC694.");
         const old = known.get(item.id);
-        if (old && canonical(old) !== canonical(item)) fail("CRITERIA_ID_REUSED", "\uB73B\uC774\uB098 \uC801\uC6A9 \uAE30\uC900\uC774 \uBC14\uB010 \uD65C\uB3D9\uC740 \uC0C8 \uD56D\uBAA9\uC73C\uB85C \uAD6C\uBCC4\uD574 \uC8FC\uC138\uC694.");
+        if (old && canonical2(old) !== canonical2(item)) fail("CRITERIA_ID_REUSED", "\uB73B\uC774\uB098 \uC801\uC6A9 \uAE30\uC900\uC774 \uBC14\uB010 \uD65C\uB3D9\uC740 \uC0C8 \uD56D\uBAA9\uC73C\uB85C \uAD6C\uBCC4\uD574 \uC8FC\uC138\uC694.");
       }
       const targets = criteriaScopeTargets(next, command.targetId, command.scope);
       write("criteria", { ...common(command.id), items: clone(command.items) });
@@ -3460,7 +3741,7 @@ function packServerState(state, operationId) {
   validateState(state);
   const raw = JSON.stringify(state), encoded = import_lz_string.default.compressToBase64(raw);
   if (import_lz_string.default.decompressFromBase64(encoded) !== raw) throw new DomainError("ENCODING", "\uC6D0\uBB38 \uBCF4\uC874\uC744 \uD655\uC778\uD558\uC9C0 \uBABB\uD588\uC2B5\uB2C8\uB2E4. \uC800\uC7A5\uD558\uC9C0 \uC54A\uC558\uC2B5\uB2C8\uB2E4.");
-  const collections2 = ["semesters", "subjects", "nodes", "sessions", "records", "narratives", "criteria", "criteriaAssignments", "memos", "learningPlans", "canvasLayouts", "recallCards", "recallPreferences", "codeExamples", "revisions"];
+  const collections2 = ["studyBoards", "semesters", "subjects", "nodes", "sessions", "records", "narratives", "criteria", "criteriaAssignments", "memos", "learningPlans", "canvasLayouts", "codeExamples", "recallCards", "recallPreferences", "studyMaterials", "memoryCards", "memoryTests", "revisions"];
   return {
     userId: state.userId,
     namespace: state.namespace,
@@ -3508,6 +3789,7 @@ function validateAccountName(value) {
 
 // src/server/command-handler.ts
 var cors = { "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Headers": "authorization, apikey, content-type, x-client-info", "Access-Control-Allow-Methods": "POST, OPTIONS", "Cache-Control": "no-store" };
+var supportedCommands = ["saveMemo", "saveStudyBoard", "saveMemoryCard", "trashMemoryCard", "restoreMemoryCard", "saveMemoryTest", "saveStudyMaterial", "trashStudyMaterial", "restoreStudyMaterial", "saveLearningPlan", "saveCanvasLayout", "saveCodeExample", "trashCodeExample", "restoreCodeExample", "saveRecallCard", "saveRecallReference", "reviewRecallCard", "undoRecallReview", "setRecallDue", "saveRecallPreferences"];
 function json(body, status = 200) {
   return new Response(JSON.stringify(body), { status, headers: { ...cors, "Content-Type": "application/json" } });
 }
@@ -3519,9 +3801,9 @@ async function handleCommand(request, backend) {
     if (!authorization?.startsWith("Bearer ")) throw new DomainError("AUTH_REQUIRED", "\uAC1C\uC778 \uACF5\uAC04\uC5D0 \uB2E4\uC2DC \uB85C\uADF8\uC778\uD574 \uC8FC\uC138\uC694.");
     const userId = await backend.authenticate(authorization.slice(7));
     if (!userId) throw new DomainError("AUTH_REQUIRED", "\uAC1C\uC778 \uACF5\uAC04\uC5D0 \uB2E4\uC2DC \uB85C\uADF8\uC778\uD574 \uC8FC\uC138\uC694.");
-    const text = await request.text();
-    if (text.length > 4e6) throw new DomainError("TOO_LARGE", "\uD55C \uBC88\uC5D0 \uC800\uC7A5\uD560 \uB0B4\uC6A9\uC774 \uB108\uBB34 \uD07D\uB2C8\uB2E4. \uC6D0\uBB38\uC740 \uC774 \uAE30\uAE30\uC5D0 \uB0A8\uC544 \uC788\uC2B5\uB2C8\uB2E4.");
-    const body = JSON.parse(text);
+    const text2 = await request.text();
+    if (text2.length > 4e6) throw new DomainError("TOO_LARGE", "\uD55C \uBC88\uC5D0 \uC800\uC7A5\uD560 \uB0B4\uC6A9\uC774 \uB108\uBB34 \uD07D\uB2C8\uB2E4. \uC6D0\uBB38\uC740 \uC774 \uAE30\uAE30\uC5D0 \uB0A8\uC544 \uC788\uC2B5\uB2C8\uB2E4.");
+    const body = JSON.parse(text2);
     const access = await backend.access(userId);
     if (body.action === "access") return json(access);
     if (body.action === "profile-set") {
@@ -3554,7 +3836,7 @@ async function handleCommand(request, backend) {
     const current = await backend.read(userId, namespace) ?? { sequence: 0, data: emptyState(userId, namespace) };
     validateState(current.data);
     if (current.data.userId !== userId || current.data.namespace !== namespace) throw new DomainError("OWNERSHIP", "\uC774 \uACF5\uAC04\uC5D0 \uC811\uADFC\uD560 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.");
-    if (body.action === "load") return json({ ...current, supportedCommands: ["saveMemo", "saveLearningPlan", "saveCanvasLayout", "saveCodeExample", "trashCodeExample", "restoreCodeExample", "saveRecallCard", "saveRecallReference", "reviewRecallCard", "undoRecallReview", "setRecallDue", "saveRecallPreferences"] });
+    if (body.action === "load") return json({ ...current, supportedCommands });
     if (body.action !== "execute" || !body.command) throw new DomainError("INVALID_REQUEST", "\uC800\uC7A5 \uC694\uCCAD\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
     const command = body.command;
     if (typeof command.opId !== "string" || !command.opId.trim() || command.opId.length > 256 || /[\u0000-\u001f\u007f]/.test(command.opId)) throw new DomainError("INVALID_ID", "\uC800\uC7A5 \uC694\uCCAD\uC758 \uC2DD\uBCC4\uC790\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
@@ -3562,11 +3844,11 @@ async function handleCommand(request, backend) {
     if (!Number.isSafeInteger(body.baseSequence) || body.baseSequence < 0) throw new DomainError("INVALID_VERSION", "\uC800\uC7A5 \uC21C\uC11C\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
     if (current.data.appliedOps[command.opId]) {
       applyCommand(current.data, command);
-      return json({ ...current, supportedCommands: ["saveMemo", "saveLearningPlan", "saveCanvasLayout", "saveCodeExample", "trashCodeExample", "restoreCodeExample", "saveRecallCard", "saveRecallReference", "reviewRecallCard", "undoRecallReview", "setRecallDue", "saveRecallPreferences"] });
+      return json({ ...current, supportedCommands });
     }
     if (body.baseSequence !== current.sequence) return json({ code: "VERSION_CONFLICT", message: "\uB2E4\uB978 \uAE30\uAE30\uC758 \uBCC0\uACBD\uACFC \uC791\uC131 \uB0B4\uC6A9\uC744 \uBAA8\uB450 \uBCF4\uC874\uD588\uC2B5\uB2C8\uB2E4.", server: current }, 409);
     const next = applyCommand(current.data, command);
-    return json({ ...await backend.commit(userId, namespace, current.sequence, command, next), supportedCommands: ["saveMemo", "saveLearningPlan", "saveCanvasLayout", "saveCodeExample", "trashCodeExample", "restoreCodeExample", "saveRecallCard", "saveRecallReference", "reviewRecallCard", "undoRecallReview", "setRecallDue", "saveRecallPreferences"] });
+    return json({ ...await backend.commit(userId, namespace, current.sequence, command, next), supportedCommands });
   } catch (error) {
     const code = error instanceof DomainError ? error.code : "SERVER_ERROR";
     const status = code === "AUTH_REQUIRED" ? 401 : ["OWNERSHIP", "ACCESS_DENIED", "ADMIN_REQUIRED", "ADMIN_PROTECTED", "LAST_ADMIN"].includes(code) ? 403 : /CONFLICT/.test(code) ? 409 : error instanceof DomainError || error instanceof SyntaxError ? 400 : 503;

@@ -1,15 +1,19 @@
+import { validateMaterialCardSource } from './learning-evidence';
+import { boardContent, validateBoard, verifyBoardTopics } from './study-board';
 import { DomainError, type AppState, type Command, type CriteriaAssignment, type DateEvidence, type DomainEntity, type EntityCollection, type Narrative, type OutlineNode, type Revision, type Scope, type StudyRecord, type TraceDefinition, type TraceState } from './model';
 import { TRACE_ITEMS, WRITTEN_REVIEW_ITEM_ID } from './trace';
 import { criteriaRevisionToken, criteriaScopeTargets, defaultCriteriaItems, validateTraceDefinition } from './criteria';
 import { MAX_OUTLINE_ROWS, outlineRevisionToken, outlineTableToken, previewOutlineEntries, previewOutlineTable } from './outline';
+import { validateMemoryCard, validateMemoryTest } from './memory-test';
 import { validateMemoContent } from './memo';
 import { validateRecommendations } from './recommendation-workspace';
 function verifyLearningPlan(workspace: unknown, state: AppState) { try { validateRecommendations(workspace,state); } catch(error) { throw new DomainError('INVALID_LEARNING_PLAN',error instanceof Error ? error.message : '학습 일정의 내용을 확인해 주세요.'); } }
 import { validateCanvasLayout } from './canvas';
+import { materialContent, validateMaterialContent } from './study-material';
 import { codeContent, validateCodeContent } from './code-example';
 import { newRecallMemory, recallOptions, recallPreview, serializeMemory, validateRecallCard, validateRecallOptions } from './recall-scheduler';
 
-const collections: EntityCollection[] = ['semesters', 'subjects', 'nodes', 'sessions', 'records', 'narratives', 'criteria', 'criteriaAssignments', 'memos', 'learningPlans', 'canvasLayouts', 'recallCards', 'recallPreferences', 'codeExamples'];
+const collections: EntityCollection[] = ['studyBoards', 'semesters', 'subjects', 'nodes', 'sessions', 'records', 'narratives', 'criteria', 'criteriaAssignments', 'memos', 'learningPlans', 'canvasLayouts', 'codeExamples', 'recallCards', 'recallPreferences', 'studyMaterials', 'memoryCards', 'memoryTests'];
 const clone = <T>(value: T): T => structuredClone(value);
 function fail(code: string, message: string, details?: unknown): never { throw new DomainError(code, message, details); }
 function canonical(value: unknown): string {
@@ -126,9 +130,23 @@ export function assertState(state: AppState): void {
   for (const row of state.sessions) validateDateEvidence(row.dateEvidence);
   if ((state.learningPlans ?? []).filter(row => !row.deletedAt).length > 1) fail('DUPLICATE_PLAN', '학습 일정의 원래 연결을 확인해 주세요.');
   for (const row of state.learningPlans ?? []) verifyLearningPlan(row.workspace, state);
+  for (const row of state.studyBoards ?? []) { validateBoard(row); verifyBoardTopics(row, state); }
   for (const row of state.canvasLayouts ?? []) validateCanvasLayout(row);
-  const recallTopics = new Set<string>();
   for (const row of state.codeExamples ?? []) validateCodeContent(row);
+  for (const row of state.studyMaterials ?? []) {
+    validateMaterialContent(row);
+    if (!subjectIds.has(row.subjectId) || row.topicId !== null && nodeIndex.get(row.topicId)?.subjectId !== row.subjectId) fail('SUBJECT_MISMATCH', '자료의 과목과 주제를 확인해 주세요.');
+  }
+  for (const card of state.memoryCards ?? []) {
+    validateMemoryCard(card);
+    validateMaterialCardSource(card, state);
+    if (nodeIndex.get(card.topicId)?.role !== 'topic') fail('INVALID_MEMORY_TEST', '암기 항목의 원래 주제를 찾을 수 없습니다.');
+  }
+  for (const test of state.memoryTests ?? []) {
+    validateMemoryTest(test);
+    for (const q of test.questions) if (!(state.memoryCards ?? []).some(c => c.id === q.cardId && c.topicId === q.topicId)) fail('INVALID_MEMORY_TEST', '시험 문항의 원래 항목을 찾을 수 없습니다.');
+  }
+  const recallTopics = new Set<string>();
   for (const row of state.recallCards ?? []) {
     validateRecallCard(row, state);
     if (!row.deletedAt && row.front === undefined) { if (recallTopics.has(row.topicId)) fail('DUPLICATE_RECALL', '주제의 복습 카드가 중복되어 있습니다.'); recallTopics.add(row.topicId); }
@@ -196,8 +214,12 @@ export function applyCommand(state: AppState, command: Command): AppState {
     if (collection === 'criteria') next.criteria ??= [];
     if (collection === 'criteriaAssignments') next.criteriaAssignments ??= [];
     if (collection === 'memos') next.memos ??= [];
+    if (collection === 'memoryCards') next.memoryCards ??= [];
+    if (collection === 'memoryTests') next.memoryTests ??= [];
     if (collection === 'learningPlans') next.learningPlans ??= [];
+    if (collection === 'studyBoards') next.studyBoards ??= [];
     if (collection === 'canvasLayouts') next.canvasLayouts ??= [];
+    if (collection === 'studyMaterials') next.studyMaterials ??= [];
     if (collection === 'codeExamples') next.codeExamples ??= [];
     if (collection === 'recallCards') next.recallCards ??= [];
     if (collection === 'recallPreferences') next.recallPreferences ??= [];
@@ -212,6 +234,43 @@ export function applyCommand(state: AppState, command: Command): AppState {
   }
   const node = (id: string, version: number, active = true) => { const found = find(next.nodes, id, active); expected(found, version, command); return found; };
   switch (command.type) {
+    case 'saveMemoryCard': {
+      validateMemoryCard(command.content);
+      const topic = find(next.nodes, command.content.topicId);
+      if (topic.role !== 'topic') fail('INVALID_MEMORY_TEST', '암기 항목을 연결할 주제를 선택해 주세요.');
+      targetSubject(next, topic.id);
+      const old = next.memoryCards?.find(c => c.id === command.id);
+      validateMaterialCardSource(command.content, next, !old);
+      if (old) { find(next.memoryCards!, old.id); expected(old, command.expectedVersion, command); if (old.topicId !== command.content.topicId) fail('INVALID_MEMORY_TEST', '기존 항목의 주제는 유지해 주세요. 다른 주제에는 새 항목으로 등록할 수 있습니다.'); }
+      else { if (command.expectedVersion !== 0) fail('VERSION_CONFLICT', '항목의 수정 순서를 확인해 주세요.'); fresh(command.id); }
+      write('memoryCards', { ...(old ?? common(command.id)), ...clone(command.content) }); break;
+    }
+    case 'trashMemoryCard': case 'restoreMemoryCard': {
+      const card = find(next.memoryCards ?? [], command.id, command.type === 'trashMemoryCard'); expected(card, command.expectedVersion, command);
+      write('memoryCards', { ...card, deletedAt: command.type === 'trashMemoryCard' ? command.at : null }); break;
+    }
+    case 'saveMemoryTest': {
+      validateMemoryTest(command.content); fresh(command.id);
+      for (const q of command.content.questions) {
+        const card = find(next.memoryCards ?? [], q.cardId, false);
+        const source = card.version === q.cardVersion ? card : next.revisions.find(r => r.collection === 'memoryCards' && r.entityId === card.id && r.after.version === q.cardVersion)?.after as import('./memory-test').MemoryCard | undefined;
+        if (!source || source.topicId !== q.topicId || source.question !== q.question || source.answer !== q.answer || canonical(source.strokes) !== canonical(q.strokes)) fail('INVALID_MEMORY_TEST', '출제 당시의 질문과 기준 답안을 확인해 주세요.');
+      }
+      write('memoryTests', { ...common(command.id), ...clone(command.content) }); break;
+    }
+    case 'saveStudyMaterial': {
+      validateMaterialContent(command.content);
+      find(next.subjects, command.content.subjectId);
+      if (command.content.topicId !== null && targetSubject(next, command.content.topicId) !== command.content.subjectId) fail('SUBJECT_MISMATCH', '선택한 주제가 이 과목에 속하지 않습니다.');
+      const old = next.studyMaterials?.find(row => row.id === command.id);
+      if (old) { find(next.studyMaterials!, old.id); expected(old, command.expectedVersion, command); }
+      else { if (command.expectedVersion !== 0) fail('VERSION_CONFLICT', '자료의 수정 순서를 확인해 주세요.'); fresh(command.id); }
+      write('studyMaterials', { ...(old ?? common(command.id)), ...materialContent(command.content) }); break;
+    }
+    case 'trashStudyMaterial': case 'restoreStudyMaterial': {
+      const row = find(next.studyMaterials ?? [], command.id, command.type === 'trashStudyMaterial'); expected(row, command.expectedVersion, command);
+      write('studyMaterials', { ...row, deletedAt: command.type === 'trashStudyMaterial' ? command.at : null }); break;
+    }
     case 'saveRecallPreferences': {
       validateRecallOptions(command.options);
       const old = next.recallPreferences?.find(row => row.id === command.id);
@@ -271,6 +330,14 @@ export function applyCommand(state: AppState, command: Command): AppState {
     case 'trashCodeExample': case 'restoreCodeExample': {
       const row = find(next.codeExamples ?? [], command.id, command.type === 'trashCodeExample'); expected(row, command.expectedVersion, command);
       write('codeExamples', { ...row, deletedAt: command.type === 'trashCodeExample' ? command.at : null });
+      break;
+    }
+    case 'saveStudyBoard': {
+      validateBoard(command.content); verifyBoardTopics(command.content, next);
+      const old = next.studyBoards?.find(row => row.id === command.id);
+      if (old) { find(next.studyBoards!, old.id); expected(old, command.expectedVersion, command); }
+      else { if (command.expectedVersion !== 0) fail('VERSION_CONFLICT', '보드의 수정 순서를 확인해 주세요.'); fresh(command.id); }
+      write('studyBoards', { ...(old ?? common(command.id)), ...clone(boardContent(command.content)) });
       break;
     }
     case 'saveCanvasLayout': {

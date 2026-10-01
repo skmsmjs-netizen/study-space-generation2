@@ -5,8 +5,9 @@ import { IconButton, Checkbox } from './index';
 import './memo-ink-pad.css';
 
 /** Same vector format as memo cards; original coordinates and pressure stay editable. */
-export function MemoInkPad({ strokes, onChange, onDrawing }: {
+export function MemoInkPad({ strokes, onChange, onDrawing, label = '펜으로 설명하기', drawingLabel = '설명 필기 영역', title = '메모', disabled = false }: {
   strokes: MemoStroke[]; onChange: (strokes: MemoStroke[]) => void; onDrawing: (drawing: boolean) => void;
+  label?: string; drawingLabel?: string; title?: string; disabled?: boolean;
 }) {
   const svg = useRef<SVGSVGElement>(null), live = useRef<SVGPathElement>(null);
   const active = useRef<{ pointerId: number; stroke: MemoStroke } | null>(null);
@@ -39,25 +40,25 @@ export function MemoInkPad({ strokes, onChange, onDrawing }: {
     return () => { window.removeEventListener('pagehide', flush); document.removeEventListener('visibilitychange', hidden); flush(); };
   }, []);
   const begin = (event: ReactPointerEvent<SVGSVGElement>) => {
-    if (event.button !== 0 || active.current || event.pointerType === 'touch' && !finger) return;
+    if (disabled || event.button !== 0 || active.current || event.pointerType === 'touch' && !finger) return;
     event.preventDefault(); event.currentTarget.setPointerCapture(event.pointerId);
     active.current = { pointerId: event.pointerId, stroke: { id: crypto.randomUUID(), ink: 'ink', width: 3, points: [point(event.nativeEvent)] } };
     live.current?.setAttribute('d', memoPath(active.current.stroke.points));
     setDrawing(true); onDrawing(true);
   };
-  return <section className="memo-ink-pad" aria-label="펜으로 설명하기">
+  return <section className="memo-ink-pad" aria-label={label}>
     <div className="ink-pad-toolbar">
-      <span>메모</span>
+      <span>{title}</span>
       <div className="actions">
-        <IconButton label="되돌리기" disabled={drawing || !past.length} onClick={() => {
+        <IconButton label="되돌리기" disabled={disabled || drawing || !past.length} onClick={() => {
           const previous = past.at(-1)!; setPast(past.slice(0, -1)); setFuture([...future, strokes]); onChange(previous);
         }}><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M9 5 4 10l5 5M4 10h10a6 6 0 0 1 0 12" /></svg></IconButton>
-        <IconButton label="다시 적용" disabled={drawing || !future.length} onClick={() => {
+        <IconButton label="다시 적용" disabled={disabled || drawing || !future.length} onClick={() => {
           const next = future.at(-1)!; setFuture(future.slice(0, -1)); setPast([...past, strokes]); onChange(next);
         }}><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="m15 5 5 5-5 5M20 10H10a6 6 0 0 0 0 12" /></svg></IconButton>
       </div>
     </div>
-    <svg ref={svg} viewBox={`0 0 ${MEMO_WIDTH} ${MEMO_HEIGHT}`} aria-label="설명 필기 영역" role="img" data-finger={finger}
+    <svg ref={svg} viewBox={`0 0 ${MEMO_WIDTH} ${MEMO_HEIGHT}`} aria-label={drawingLabel} role="img" data-finger={finger}
       onPointerDown={begin} onPointerMove={event => {
         if (active.current?.pointerId !== event.pointerId) return;
         event.preventDefault(); const samples = event.nativeEvent.getCoalescedEvents?.() ?? [];
@@ -69,6 +70,6 @@ export function MemoInkPad({ strokes, onChange, onDrawing }: {
       {strokes.map(stroke => <path key={stroke.id} d={memoPath(stroke.points)} stroke={{ ink: 'var(--color-text)', blue: 'var(--color-hierarchy-outline)', green: 'var(--color-memo-green)' }[stroke.ink]} strokeWidth={stroke.width} fill="none" strokeLinecap="round" strokeLinejoin="round" />)}
       <path ref={live} stroke="var(--color-text)" strokeWidth={3} fill="none" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
-    <Checkbox label="손가락으로도 그리기" checked={finger} disabled={drawing} onChange={event => setFinger(event.target.checked)} />
+    <Checkbox label="손가락으로도 그리기" checked={finger} disabled={disabled || drawing} onChange={event => setFinger(event.target.checked)} />
   </section>;
 }

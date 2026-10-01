@@ -10,11 +10,20 @@ import { RecallSettings } from './recall-settings';
 import { Input } from './index';
 import './topic-recall.css';
 
-type Props = { data: AppState; repository: RecallRepository; onSaved: (data: AppState) => void; subjectIds: string[] };
+type Props = { data: AppState; repository: RecallRepository; onSaved: (data: AppState) => void; subjectIds: string[]; initialMode?: 'scheduled' };
 const message = (error: unknown) => error instanceof Error ? error.message : '저장하지 못했습니다. 입력한 글은 이 화면에 남아 있습니다.';
-export function TopicRecall({ data, repository, onSaved, subjectIds }: Props) {
+export function TopicRecall({ data, repository, onSaved, subjectIds, initialMode }: Props) {
   const [loaded, setLoaded] = useState(() => {
-    try { return { session: recallForDay(readRecall(data), new Date().toISOString()), error: '' }; }
+    try {
+      let session = recallForDay(readRecall(data), new Date().toISOString());
+      const draft = session.currentId ? session.drafts[session.currentId] : undefined;
+      if (initialMode && !session.pendingReview && !session.pendingUndo && !draft?.body.trim() && !draft?.strokes?.length) {
+        session = recallForDay({ ...session, mode: initialMode, subjectId: 'all', unitId: 'all' }, new Date().toISOString());
+        const pool = recallPrompts(data, recallTopics(data,subjectIds,session)), queue = recallQueue(data,pool,new Date().toISOString(),session.skipped);
+        session = { ...session, currentId: [...queue.due, ...queue.fresh][0]?.id ?? null };
+      }
+      return { session, error: '' };
+    }
     catch (error) { return { session: freshRecall(), error: message(error) }; }
   });
   const [session, setSession] = useState<RecallSession>(loaded.session);

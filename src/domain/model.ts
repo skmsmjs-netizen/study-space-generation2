@@ -64,8 +64,8 @@ export interface CanvasPosition { x: number; y: number }
 export interface CanvasLink { id: string; source: string; target: string; label: string }
 /** Only presentation is stored here. Names, text and drawings remain in their original entities. */
 export interface CanvasLayout extends Entity { positions: Record<string, CanvasPosition>; links: CanvasLink[]; viewport?: { x: number; y: number; zoom: number } }
-export type EntityCollection = 'semesters' | 'subjects' | 'nodes' | 'sessions' | 'records' | 'narratives' | 'criteria' | 'criteriaAssignments' | 'memos' | 'learningPlans' | 'canvasLayouts' | 'recallCards' | 'recallPreferences' | 'codeExamples';
-export type DomainEntity = Semester | Subject | OutlineNode | StudySession | StudyRecord | Narrative | Criteria | CriteriaAssignment | QuickMemo | LearningPlan | CanvasLayout | RecallCard | RecallPreferences | CodeExample;
+export type EntityCollection = 'studyBoards' | 'semesters' | 'subjects' | 'nodes' | 'sessions' | 'records' | 'narratives' | 'criteria' | 'criteriaAssignments' | 'memos' | 'learningPlans' | 'canvasLayouts' | 'codeExamples' | 'recallCards' | 'recallPreferences' | 'studyMaterials' | 'memoryCards' | 'memoryTests';
+export type DomainEntity = import('./study-board').StudyBoard | Semester | Subject | OutlineNode | StudySession | StudyRecord | Narrative | Criteria | CriteriaAssignment | QuickMemo | LearningPlan | CanvasLayout | CodeExample | RecallCard | RecallPreferences | import('./study-material').StudyMaterial | import('./memory-test').MemoryCard | import('./memory-test').MemoryTest;
 export interface Revision extends Entity {
   collection: EntityCollection; entityId: string; operationId: string; parentRevisionId: string | null;
   before: DomainEntity | null; after: DomainEntity; reversesRevisionId?: string;
@@ -79,9 +79,13 @@ export interface AppState {
   memos?: QuickMemo[];
   learningPlans?: LearningPlan[];
   canvasLayouts?: CanvasLayout[];
+  studyBoards?: import('./study-board').StudyBoard[];
+  codeExamples?: CodeExample[];
   recallCards?: RecallCard[];
   recallPreferences?: RecallPreferences[];
-  codeExamples?: CodeExample[];
+  studyMaterials?: import('./study-material').StudyMaterial[];
+  memoryCards?: import('./memory-test').MemoryCard[];
+  memoryTests?: import('./memory-test').MemoryTest[];
   /** Canonical operation payloads make repeated requests idempotent. */
   appliedOps: Record<string, string>;
 }
@@ -112,9 +116,15 @@ export type Command = CommandContext & (
   | { type: 'setRecallDue'; id: string; topicId: string; expectedVersion: number; due: string }
   | { type: 'saveRecallPreferences'; id: string; expectedVersion: number; options: RecallOptions }
   | { type: 'trashMemo' | 'restoreMemo'; id: string; expectedVersion: number }
+  | { type: 'saveMemoryCard'; id: string; expectedVersion: number; content: import('./memory-test').MemoryCardContent }
+  | { type: 'trashMemoryCard' | 'restoreMemoryCard'; id: string; expectedVersion: number }
+  | { type: 'saveMemoryTest'; id: string; content: import('./memory-test').MemoryTestContent }
+  | { type: 'saveStudyMaterial'; id: string; expectedVersion: number; content: import('./study-material').MaterialContent }
+  | { type: 'trashStudyMaterial' | 'restoreStudyMaterial'; id: string; expectedVersion: number }
   | { type: 'saveCodeExample'; id: string; expectedVersion: number; content: CodeExampleContent }
   | { type: 'trashCodeExample' | 'restoreCodeExample'; id: string; expectedVersion: number }
   | { type: 'saveLearningPlan'; id: string; expectedVersion: number; workspace: import('./recommendation-workspace').RecommendationWorkspace }
+  | { type: 'saveStudyBoard'; id: string; expectedVersion: number; content: import('./study-board').BoardContent }
   | { type: 'saveCanvasLayout'; id: string; expectedVersion: number; positions: CanvasLayout['positions']; links: CanvasLink[]; viewport?: CanvasLayout['viewport'] }
   | ({ type: 'adjustCriteria' } & CriteriaChange)
   | { type: 'editWrittenReview'; recordId: string; expectedVersion: number; answer: string }

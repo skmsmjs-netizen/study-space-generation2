@@ -1,3 +1,4 @@
+import { validateLearningLinks, type CodeTopicLink } from './learning-evidence';
 import { validateScheduleExtensions, scheduleSteps, type LearningSchedule, type TargetCondition, type ComparisonPlan, type RecommendationSnapshot } from './learning-schedule';
 import type { AppState } from './model';
 import { recommend, activitySupport, robustWinner, type EvidenceEvent, type GuidanceControl, type RecommendationModel, type RecommendationResult } from './recommendation-kernel.mjs';
@@ -6,7 +7,7 @@ export interface CheckGoal { id: string; targetId: string; label: string; dueDat
 export interface GoalDraft { targetId: string; label: string; dueDate: string; novelty: 'same' | 'new'; minDelayDays?: number; refreshDays?: number | null }
 export interface ResponseDraft { result: 'pass' | 'fail' | 'unknown' | 'disputed'; assistance: 'none' | 'notes' | 'unknown'; novelty: 'same' | 'new' | 'unknown'; answer: string; delayDays?: number; delayVerified?: boolean }
 export interface TermDates { start: string; end: string }
-export interface RecommendationWorkspace { version: 1; userId: string; namespace: AppState['namespace']; revision: number; goals: CheckGoal[]; events: EvidenceEvent[]; controls: Record<string, GuidanceControl>; draft: GoalDraft; responses: Record<string, ResponseDraft>; terms?: Record<string, TermDates>; termDraft?: TermDates & { semesterId: string }; schedules?: LearningSchedule[]; conditions?: TargetCondition[]; comparisons?: ComparisonPlan[]; snapshots?: RecommendationSnapshot[] }
+export interface RecommendationWorkspace { codeLinks?: CodeTopicLink[]; version: 1; userId: string; namespace: AppState['namespace']; revision: number; goals: CheckGoal[]; events: EvidenceEvent[]; controls: Record<string, GuidanceControl>; draft: GoalDraft; responses: Record<string, ResponseDraft>; terms?: Record<string, TermDates>; termDraft?: TermDates & { semesterId: string }; schedules?: LearningSchedule[]; conditions?: TargetCondition[]; comparisons?: ComparisonPlan[]; snapshots?: RecommendationSnapshot[] }
 export const recommendationKey = (data: AppState) => `study-space:${data.namespace}:recommendations:${data.userId}:v1`;
 export const emptyResponse = (): ResponseDraft => ({ result: 'unknown', assistance: 'unknown', novelty: 'unknown', answer: '' });
 export function emptyRecommendations(data: AppState): RecommendationWorkspace {
@@ -52,6 +53,7 @@ export function validateRecommendations(value: unknown, data: AppState): asserts
     for (const dates of Object.values(w.terms)) { if (typeof dates.start !== 'string' || typeof dates.end !== 'string') throw Error('학기 기간을 읽지 못했습니다.'); termPeriod(dates); }
   }
   validateScheduleExtensions(w, data);
+  validateLearningLinks(w, data);
   if (w.termDraft && (typeof w.termDraft.semesterId !== 'string' || typeof w.termDraft.start !== 'string' || typeof w.termDraft.end !== 'string')) throw Error('작성 중인 학기 기간을 읽지 못했습니다.');
 }
 

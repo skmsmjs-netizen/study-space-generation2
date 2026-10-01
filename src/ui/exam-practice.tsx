@@ -1,3 +1,4 @@
+import { PerformanceFromSource } from './performance-from-source';
 import { useEffect, useRef, useState } from 'react';
 import type { AppState } from '../domain/model';
 import type { StudyRepository } from '../data/repository';
@@ -394,6 +395,7 @@ export function ExamPractice({
               <p>연습한 시간 {clock(draft.elapsedMs)}</p>
               <div className="actions">
                 <a href={`#/memos/${encodeURIComponent(draft.id)}`}>남긴 메모 보기</a>
+                {data.memos?.some(m => m.id === draft.id && !m.deletedAt && m.ownerId) && <PerformanceFromSource data={data} repository={repository} onSaved={onSaved} kind="exam-memo" id={draft.id} />}
                 <Button variant="primary" onClick={restart} disabled={blocked}>
                   새 연습
                 </Button>
@@ -424,6 +426,7 @@ export function ExamPractice({
                 >
                   같은 주제로 다시 연습
                 </Button>
+                {memo.ownerId && <PerformanceFromSource data={data} repository={repository} onSaved={onSaved} kind="exam-memo" id={memo.id} />}
               </li>
             ))}
           </ul>

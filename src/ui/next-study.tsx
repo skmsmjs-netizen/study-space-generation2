@@ -1,3 +1,5 @@
+import { TodayStudy } from './today-study';
+import { PerformanceEvidence } from './performance-evidence';
 import { useEffect, useRef, useState } from 'react';
 import type { StudyRepository } from '../data/repository';
 import { readLearningPlan, saveLearningPlan, readLegacyPersonalPlan } from '../data/learning-plan';
@@ -114,13 +116,13 @@ export function NextStudy({ data, subjectIds, semesterId, repository, onSaved }:
     return !goals.some(g => g.targetId === n.id) && (!control?.snoozeUntil || Date.parse(control.snoozeUntil) <= Date.parse(now));
   }).slice(0, Math.max(0, 3 - visible.length));
   const snooze = (targetId: string) => write(w => ({ ...w, controls: { ...w.controls, [`target:${targetId}`]: { snoozeUntil: new Date(Date.now() + DAY).toISOString() } } }));
-  const evidence = (id: string) => <details><summary>근거 보기</summary><p className="muted">공부 체크는 수행 성공으로 세지 않습니다. 아래 결과는 직접 남긴 자기 보고입니다.</p>
-    {workspace.events.filter(e => e.facet === id && !e.deleted).map(e => <div key={`${e.id}:${e.revision}`} className="next-study-evidence"><p>{e.kind === 'correction' ? '교정 기록' : ({ pass: '확인됨', fail: '막힘', unknown: '결과 모름', disputed: '판정에 이견 있음' }[e.result!])} · {e.assistance === 'none' ? '도움 없음' : e.assistance === 'notes' ? '도움 사용' : '도움 여부 미확인'}</p><p className="muted">{new Date(e.occurredAt!).toLocaleString('ko-KR')} · {e.novelty === 'new' ? '새 문항' : e.novelty === 'same' ? '같은 문항' : '문항 새로움 미확인'}</p>{e.answer && <p className="next-study-answer">{e.answer}</p>}</div>)}</details>;
+  const evidence = (id: string) => <PerformanceEvidence events={workspace.events} goalId={id} at={now} />;
   return <section className="next-study" aria-label="다음 공부">
     {!serverReady && <p role="alert">학습 일정을 저장할 수 없습니다. 다시 접속해 주세요. 기존 공부 기록과 통계는 사용할 수 있습니다.</p>}
     {legacyError && <p role="alert">{legacyError}</p>}
     {legacyPersonal?.raw && <details><summary>이 기기에 남아 있는 이전 추천 기록</summary><p>이 원문은 서버에 자동으로 올리지 않습니다. 가져오기를 선택해도 원래 저장 위치의 내용은 보존합니다.</p><pre style={{whiteSpace:'pre-wrap',overflowWrap:'anywhere'}}>{JSON.stringify(legacyPersonal.workspace,null,2)}</pre><Button disabled={!serverReady} onClick={importLegacy}>이전 추천 내용을 개인 공간에 가져오기</Button></details>}
     <div className="section-heading"><h2>다음 공부</h2><Button variant="quiet" disabled={blocked || !serverReady} onClick={() => setPlanOpen(true)}>확인할 내용 추가</Button></div>
+    {!blocked && <TodayStudy data={data} workspace={workspace} subjectIds={subjectIds} at={now} />}
     <p className="muted">원하는 주제부터 해도 됩니다. 확인할 내용과 기한은 필요할 때만 남겨 주세요.</p>
     {result?.phase === 'in_term' && <p className="muted">남긴 학기 기간 기준 {result.calendarWeek}주차 · 주차만으로 공부 성과를 판단하지 않습니다.</p>}
     {(error || calculationError) && <ErrorState message={error || '추천 조건을 확인하지 못했습니다. 기존 공부 기록은 유지했습니다.'} onRetry={retry} />}
