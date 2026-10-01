@@ -38,6 +38,8 @@ test('released app themes, routes and saved Korean text',async({page},info)=>{
   for(const route of ['#/record/demo-topic-function','#/','#/memos','#/graph','#/board','#/statistics']){
    await page.goto(url+route);await expect(page.locator('main').first()).toBeVisible();await expect(page.locator('main').first()).not.toHaveText('');
    if(route==='#/statistics'){
+    // The statistics page remembers its chart kind; choose the keyboard bars explicitly.
+    await page.getByRole('region',{name:'기간별 통계 그래프',exact:true}).getByRole('combobox',{name:'그래프 종류',exact:true}).selectOption('column');
     const bar=page.getByRole('group',{name:/정확한 날짜가 있는 기록의 변화/}).getByRole('button').first();
     await bar.focus();await bar.press('Enter');
     await expect(page.getByRole('dialog',{name:'통계의 원기록',exact:true})).toBeVisible();
