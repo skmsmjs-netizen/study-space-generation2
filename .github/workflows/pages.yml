@@ -25,6 +25,20 @@ jobs:
       - run: npm run build
         env:
           PAGES_BASE: /${{ github.event.repository.name }}/
+      - run: npx playwright install --with-deps webkit
+      - name: Verify all agreed device environments
+        run: npm run test:devices
+        env:
+          PAGES_BASE: /${{ github.event.repository.name }}/
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: device-verification
+          path: |
+            work/device-report
+            work/device-results.json
+            work/device-traces
+          retention-days: 14
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

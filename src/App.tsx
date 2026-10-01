@@ -68,6 +68,8 @@ const active = <T extends { deletedAt: string | null }>(items: T[]) =>
   items.filter((item) => !item.deletedAt);
 const labelRole = { unit: "단원", outline: "목차", topic: "주제" };
 function message(error: unknown) {
+  if (error instanceof DOMException && error.name === "QuotaExceededError")
+    return "이 기기의 저장 공간이 부족해 저장하지 못했습니다. 작성 중인 내용은 유지했습니다. 공간을 확보한 뒤 다시 저장해 주세요.";
   return error instanceof Error
     ? error.message
     : "내용을 보존했습니다. 다시 시도해 주세요.";
@@ -914,6 +916,7 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
             <RecordForm
               key={route}
               data={data}
+              subjectIds={shownSubjects.map(subject => subject.id)}
               initialTarget={route.startsWith("/record/") ? route.slice("/record/".length) : undefined}
               commit={commit}
               onSaved={(warning, cleanupKey) => {
@@ -1434,11 +1437,13 @@ function FreeNotes({ data, route, commit, onCleanupFailure }: { data: AppState; 
 
 function RecordForm({
   data,
+  subjectIds,
   initialTarget,
   commit,
   onSaved,
 }: {
   data: AppState;
+  subjectIds: string[];
   initialTarget?: string;
   commit: Commit;
   onSaved: (warning?: string, cleanupKey?: string) => void;
@@ -1477,6 +1482,10 @@ function RecordForm({
   const nodes = active(data.nodes).filter(
     (n) => n.role === "topic" || n.id === initialTarget,
   );
+  const pickerSubjects = active(data.subjects).filter(subject => subjectIds.includes(subject.id));
+  const pickerNodes = nodes.filter(node => subjectIds.includes(node.subjectId));
+  const hasMatches = pickerNodes.some(node => node.name.includes(filter));
+  const selectedOutsideScope = form.selectedIds.some(id => !pickerNodes.some(node => node.id === id));
   const change = (next: FormDraft) => {
     currentForm.current = next;
     setForm(next);
@@ -1531,8 +1540,8 @@ function RecordForm({
       <section className="topic-picker">
         <h2>공부한 주제</h2>
         <Search label="주제 찾기" defaultValue={filter} onQueryChange={setFilter} />
-        {active(data.subjects).map(subject => {
-          const matching = nodes.filter(node => node.subjectId === subject.id && node.name.includes(filter));
+        {pickerSubjects.map(subject => {
+          const matching = pickerNodes.filter(node => node.subjectId === subject.id && node.name.includes(filter));
           if (!matching.length) return null;
           const groups = [...new Set(matching.map(node => node.parentId))];
           return <fieldset className="record-topic-group" key={subject.id}><legend>{subject.name}</legend>{groups.map(parentId => <div key={parentId ?? 'root'}>
@@ -1540,9 +1549,14 @@ function RecordForm({
             {matching.filter(node => node.parentId === parentId).map(node => <Checkbox key={node.id} label={node.name} checked={form.selectedIds.includes(node.id)} onChange={event => select(node.id, event.target.checked)} />)}
           </div>)}</fieldset>;
         })}
+        {!hasMatches && <EmptyState
+          title={filter ? "검색어에 맞는 주제가 없습니다" : "이 공부 범위에는 기록할 주제가 없습니다"}
+          message={filter ? "검색어를 바꾸거나 상단의 공부 범위를 확인해 주세요. 작성 중인 내용은 유지합니다." : "상단에서 다른 공부 범위를 고르거나 과목에서 주제를 추가해 주세요."}
+        />}
       </section>
       <section className="record-compose">
         {form.selectedIds.length > 0 && <p className="muted record-help">일부만 했거나 막혔어도 남겨 주세요. 글은 선택입니다.</p>}
+        {selectedOutsideScope && <p className="muted">범위를 바꾸기 전에 고른 주제도 아래에 유지했습니다. 함께 저장할 수 있습니다.</p>}
         {form.selectedIds.length > 1 && (
           <Button
             onClick={() =>

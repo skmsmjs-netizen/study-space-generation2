@@ -19,7 +19,8 @@
     "predev": "npm run check:design",
     "prebuild": "npm run check:design",
     "pretest": "npm run test:design",
-    "lint": "npm run check:design"
+    "lint": "npm run check:design",
+    "test:devices": "playwright test --config playwright.devices.config.ts"
   },
   "dependencies": {
     "@repomix/tree-sitter-wasms": "0.1.17",

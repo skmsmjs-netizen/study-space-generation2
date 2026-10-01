@@ -1,0 +1,37 @@
+name: iPhone and iPad app checks
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'src/**'
+      - 'e2e/devices/**'
+      - 'playwright.devices.config.ts'
+      - 'package*.json'
+      - 'vite.config.ts'
+      - 'tsconfig*.json'
+      - '.github/workflows/device-environments.yml'
+permissions:
+  contents: read
+jobs:
+  device-environments:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: npx playwright install --with-deps webkit
+      - run: npm run test:devices
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: device-verification
+          path: |
+            work/device-report
+            work/device-results.json
+            work/device-traces
+          retention-days: 14
