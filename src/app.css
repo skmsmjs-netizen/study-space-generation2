@@ -63,6 +63,7 @@ small {
   font-size: var(--type-caption-size);
 }
 fieldset {
+  min-inline-size: 0;
   border: var(--border-width) solid var(--color-border);
   border-radius: var(--radius-md);
   margin: var(--space-4) 0;
@@ -666,3 +667,35 @@ nav a[aria-current="page"] {
 .topbar > .ui-field select { min-inline-size: 0; max-inline-size: min(14rem, 100%); }
 
 .workspace-tools-content > a { min-inline-size: 0; overflow-wrap: anywhere; }
+
+/* Use the available content width, including enlarged root text, instead of
+   viewport breakpoints alone. Cards and stored Canvas geometry stay intact. */
+.workspace { container-type: inline-size; }
+.main-content { min-inline-size: 0; }
+.save-bar { flex-wrap: wrap; }
+@container (max-width: 40rem) {
+  .main-content .record-layout,
+  .main-content .math-workspace,
+  .main-content .math-sliders,
+  .main-content .memory-filters,
+  .main-content .graph-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .main-content .math-controls {
+    border-inline-start: 0;
+    padding-inline-start: 0;
+    border-block-start: var(--border-width) solid var(--color-border);
+    padding-block-start: var(--space-3);
+  }
+  .main-content .math-interval .ui-field,
+  .main-content .math-start .ui-field {
+    min-inline-size: 0;
+    flex-basis: 100%;
+  }
+  .main-content .record-entry-heading,
+  .main-content .memory-card-list article {
+    flex-wrap: wrap;
+  }
+  .topbar > .ui-field { inline-size: 100%; }
+  .topbar > .ui-field select { max-inline-size: 100%; }
+}
