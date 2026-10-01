@@ -67,3 +67,37 @@ test('sandbox denies a host sentinel and outbound sockets; threads and memory ar
     const processes = Number(/processes=(\d+)/.exec(result.output)?.[1]); assert.ok(processes > 0 && processes < 128, JSON.stringify(result));
   } finally { await unlink(sentinel); }
 });
+test('aggregate memory exhaustion is stopped and leaves the next sandbox clean', { timeout: 60000 }, async () => {
+  const result = await execution('c', '#include <stdlib.h>\n#include <string.h>\n#include <unistd.h>\nint main(){while(1){void*p=malloc(32*1024*1024);if(!p)return 4;memset(p,1,32*1024*1024);} }');
+  assert.equal(result.outcome, 'error', JSON.stringify(result));
+  const next = await execution('c', 'int main(){return 0;}'); assert.equal(next.outcome, 'success', JSON.stringify(next));
+});
+test('real WebSocket gateway accepts two live scanf inputs and returns the original source', { timeout: 60000 }, async t => {
+  const { once } = await import('node:events');
+  const { WebSocket } = await import('ws');
+  const { createTerminalGateway } = await import('./gateway.mjs');
+  const calls = [];
+  const origin = 'https://study.example';
+  const server = createTerminalGateway({ origins: [origin], access: async (_, body) => { calls.push(body.action); return { job: '00000000-0000-4000-8000-000000000000' }; } });
+  server.listen(0, '127.0.0.1'); await once(server, 'listening');
+  const ws = new WebSocket(`ws://127.0.0.1:${server.address().port}/terminal`, { origin });
+  t.after(async () => { ws.terminate(); server.closeAllConnections(); await new Promise(resolve => server.close(resolve)); });
+  await once(ws, 'open');
+  const code = '#include <stdio.h>\nint main(){int a,b;printf("first: ");scanf("%d",&a);printf("second: ");scanf("%d",&b);printf("sum=%d\\n",a+b);return 0;}';
+  let output = '', first = false, second = false;
+  const result = new Promise((resolve, reject) => {
+    ws.on('message', raw => {
+      const message = JSON.parse(raw.toString());
+      if (message.type === 'failure') reject(Error(message.message));
+      if (message.type === 'result') resolve(message.result);
+      if (message.type === 'data') {
+        output += message.text;
+        if (output.includes('first: ') && !first) { first = true; ws.send(JSON.stringify({ type: 'input', text: '3\r' })); }
+        if (output.includes('second: ') && !second) { second = true; ws.send(JSON.stringify({ type: 'input', text: '4\r' })); }
+      }
+    });
+  });
+  ws.send(JSON.stringify({ type: 'start', language: 'c', code, token: 'synthetic-auth-token' }));
+  const run = await result; assert.equal(run.code, code); assert.equal(run.stdin, '3\r4\r'); assert.equal(run.outcome, 'success', JSON.stringify(run)); assert.match(run.output, /sum=7/);
+  await once(ws, 'close'); assert.deepEqual(calls, ['reserve', 'release']);
+});

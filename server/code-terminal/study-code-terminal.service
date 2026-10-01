@@ -1,7 +1,7 @@
 [Unit]
 Description=Study interactive code terminal
 After=network-online.target isolate.service
-Requires=isolate.service
+Requires=isolate.service var-local-lib-isolate.mount
 Wants=network-online.target
 
 [Service]
@@ -10,7 +10,7 @@ User=study-terminal
 Group=study-terminal
 WorkingDirectory=/opt/study-code-terminal
 EnvironmentFile=/etc/study-code-terminal.env
-ExecStart=/usr/bin/node /opt/study-code-terminal/gateway.mjs
+ExecStart=/opt/study-node/bin/node /opt/study-code-terminal/gateway.mjs
 Restart=on-failure
 RestartSec=3
 KillMode=control-group

@@ -13,6 +13,8 @@ for uid in $(seq 60000 60007); do
   if getent passwd "$uid" >/dev/null; then echo 'Sandbox UID range is already used.' >&2; exit 1; fi
 done
 sed -i 's/^subid_user = isolate/# subid_user = isolate/; s/^# first_uid = 60000/first_uid = 60000/; s/^# first_gid = 60000/first_gid = 60000/; s/^# num_boxes = 1000/num_boxes = 8/' /usr/local/etc/isolate
+install -m 644 "$(dirname "$0")/var-local-lib-isolate.mount" /etc/systemd/system/var-local-lib-isolate.mount
 systemctl daemon-reload
+systemctl enable --now var-local-lib-isolate.mount
 systemctl enable --now isolate.service
 /usr/local/bin/isolate --check-config

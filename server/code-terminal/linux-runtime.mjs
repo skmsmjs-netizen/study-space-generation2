@@ -103,6 +103,18 @@ export async function startLinuxExecution(source, { signal, onOutput, onPhase, o
 }
 export async function checkLinuxRuntime() {
   if (process.platform !== 'linux') return false;
-  const check = await runProcess(ISOLATE, ['--check-config']);
-  return check.code === 0;
+  try {
+    const check = await runProcess(ISOLATE, ['--check-config']);
+    if (check.code !== 0) return false;
+    for (const command of ['/usr/bin/gcc', '/usr/bin/g++', '/usr/bin/dotnet']) {
+      if ((await runProcess(command, ['--version'])).code !== 0) return false;
+    }
+    if (!(await readdir('/usr/share/dotnet/sdk')).some(name => /^8\.0\.\d+$/.test(name))) return false;
+    const base = ['--cg', '--box-id=7'];
+    const box = await runProcess(ISOLATE, [...base, '--init']);
+    if (box.code !== 0) return false;
+    try {
+      return (await runProcess(ISOLATE, [...base, '--silent', '--time=1', '--wall-time=2', '--run', '--', '/bin/true'])).code === 0;
+    } finally { await runProcess(ISOLATE, [...base, '--cleanup']); }
+  } catch { return false; }
 }

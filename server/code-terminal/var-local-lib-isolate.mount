@@ -1,0 +1,12 @@
+[Unit]
+Description=Bounded temporary storage for study execution sandboxes
+Before=isolate.service study-code-terminal.service
+
+[Mount]
+What=tmpfs
+Where=/var/local/lib/isolate
+Type=tmpfs
+Options=size=512M,mode=0755,nosuid,nodev
+
+[Install]
+WantedBy=multi-user.target
