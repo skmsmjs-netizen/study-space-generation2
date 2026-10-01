@@ -43,6 +43,6 @@ it('validates signup fields before invoking auth and explains the email confirma
   await userEvent.click(screen.getByRole('button',{name:'처음 사용하기'}));await userEvent.click(screen.getByRole('button',{name:'계정 만들기'}));expect(authCalls.signUp).not.toHaveBeenCalled();
   fireEvent.change(screen.getByRole('textbox',{name:'이메일'}),{target:{value:'invented@example.invalid'}});fireEvent.change(screen.getByLabelText('비밀번호 (6자 이상)'),{target:{value:'12'}});
   await userEvent.click(screen.getByRole('button',{name:'계정 만들기'}));expect(authCalls.signUp).not.toHaveBeenCalled();
-  fireEvent.change(screen.getByLabelText('비밀번호 (6자 이상)'),{target:{value:'fake-test-password'}});
-  await userEvent.click(screen.getByRole('button',{name:'계정 만들기'}));await screen.findByText('이메일로 받은 확인 링크를 연 뒤 로그인해 주세요.');expect(authCalls.signUp).toHaveBeenCalledTimes(1);
+  fireEvent.change(screen.getByLabelText('이름'),{target:{value:'시험 가입자'}});fireEvent.change(screen.getByLabelText('비밀번호 (6자 이상)'),{target:{value:'fake-test-password'}});
+  await userEvent.click(screen.getByRole('button',{name:'계정 만들기'}));await screen.findByText('이메일로 받은 확인 링크를 연 뒤 로그인해 주세요.');expect(authCalls.signUp).toHaveBeenCalledTimes(1);expect(authCalls.signUp).toHaveBeenCalledWith(expect.objectContaining({options:expect.objectContaining({data:{display_name:'시험 가입자'}})}));
 });

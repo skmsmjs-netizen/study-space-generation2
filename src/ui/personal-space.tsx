@@ -7,6 +7,9 @@ import { startPersonalSync } from '../data/personal-sync';
 import type { SaveStatus } from '../data/repository';
 import { accountAccessClient } from '../data/account-access';
 import { accessMessages, type AccountAccess } from '../server/account-access';
+import { AccountSettings } from './account-settings';
+import { clearWithdrawnAccount } from '../data/account-cleanup';
+import { validateAccountName } from '../server/account-access';
 import { AccountAdministration } from './account-administration';
 import './personal-space.css';
 const errorText = (error: unknown) => error instanceof Error ? error.message : '개인 공간을 열지 못했습니다.';
@@ -18,6 +21,7 @@ export function PersonalSpace({ onDemo, renderWorkspace }: { onDemo: () => void;
   const [userId, setUserId] = useState<string | null>(null), [authReady, setAuthReady] = useState(false);
   const [repo, setRepo] = useState<PersonalRepository | null>(null), [error, setError] = useState('');
   const [retry, setRetry] = useState(0), [opening, setOpening] = useState(false), [otherWriter, setOtherWriter] = useState(false);
+  const [withdrawn, setWithdrawn] = useState<string | null>(null), [withdrawalNotice, setWithdrawalNotice] = useState('');
   const writerTask = useRef<Promise<void>>(Promise.resolve());
   useEffect(() => {
     if (!client) { setAuthReady(true); return; }
@@ -31,7 +35,7 @@ export function PersonalSpace({ onDemo, renderWorkspace }: { onDemo: () => void;
   }, [client]);
   useEffect(() => {
     setRepo(null); setAccess(null); setError(''); setOtherWriter(false);
-    if (!client || !userId) { setOpening(false); return; }
+    if (!client || !userId || withdrawn) { setOpening(false); return; }
     let disposed = false;
     let finish: () => void = () => {};
     const closed = new Promise<void>(resolve => { finish = resolve; });
@@ -83,27 +87,51 @@ export function PersonalSpace({ onDemo, renderWorkspace }: { onDemo: () => void;
     writerTask.current = task;
     void task.catch(error => { if (!disposed) { setError(errorText(error)); setOpening(false); } });
     return () => { disposed = true; finish(); };
-  }, [client, accessApi, userId, retry]);
+  }, [client, accessApi, userId, retry, withdrawn]);
   useEffect(() => repo ? startPersonalSync(repo) : undefined, [repo]);
-  if (repo && client) return renderWorkspace(repo, <><ServerStatus repository={repo} client={client} onDemo={onDemo} />{access?.administrator && accessApi && <AccountAdministration api={accessApi} />}</>);
+  async function cleanupWithdrawal(id: string) {
+    await writerTask.current.catch(() => {});
+    try {
+      if (navigator.locks) await navigator.locks.request(`study-space:personal:${id}:writer`, {ifAvailable:true}, async lock=>{if(!lock)throw Error('다른 창에서 사용 중입니다.');await clearWithdrawnAccount(id);});
+      else await clearWithdrawnAccount(id);
+      setWithdrawalNotice('탈퇴했습니다. 계정과 서버 기록, 이 브라우저의 개인 자료를 삭제했습니다.'); }
+    catch { setWithdrawalNotice('탈퇴했고 서버 기록은 삭제했습니다. 이 브라우저의 개인 자료 정리는 끝나지 않았습니다. 다른 학습앱 창을 닫은 뒤 다시 시도해 주세요.'); }
+  }
+  async function onWithdrawn() {
+    if (!userId) return;
+    const id=userId; setWithdrawn(id); setRepo(null); setUserId(null);
+    try { await client?.auth.signOut({ scope:'local' }); } catch { /* Deleted identities cannot access the server. */ }
+    await cleanupWithdrawal(id);
+  }
+  function downloadRecords() {
+    if (!repo) return;
+    const url=URL.createObjectURL(new Blob([repo.exportPreserved()],{type:'application/json'}));
+    const anchor=document.createElement('a');anchor.href=url;anchor.download='study-preserved-records.json';anchor.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+  }
+  const settings=accessApi&&access?<AccountSettings api={accessApi} access={access} onSaved={setAccess} onWithdrawn={onWithdrawn} onDownload={repo?downloadRecords:undefined}/>:null;
+  if (repo && client) return renderWorkspace(repo, <><ServerStatus repository={repo} client={client} onDemo={onDemo} />{settings}{access?.administrator && accessApi && <AccountAdministration api={accessApi} />}</>);
   return <main className="boot personal-entry"><Card><h1>내 공부 공간</h1>
-    {!configured ? <ErrorState title="서버 연결 설정이 필요합니다" message="시연 기록은 그대로 남아 있습니다. 서버 공개 설정을 적용한 뒤 개인 공간을 열 수 있습니다." />
+    {withdrawn ? <section><p role="status">{withdrawalNotice||'탈퇴했습니다. 이 브라우저의 개인 자료를 정리하고 있습니다…'}</p>{withdrawalNotice.includes('끝나지')&&<Button onClick={()=>{void cleanupWithdrawal(withdrawn);}}>이 기기의 자료 정리 다시 시도</Button>}<Button onClick={()=>{setWithdrawn(null);setWithdrawalNotice('');}}>로그인 화면으로 돌아가기</Button></section> : !configured ? <ErrorState title="서버 연결 설정이 필요합니다" message="시연 기록은 그대로 남아 있습니다. 서버 공개 설정을 적용한 뒤 개인 공간을 열 수 있습니다." />
       : !authReady || opening ? <LoadingState message="내 기록을 불러오는 중…" />
       : !userId && client ? <SignIn client={client} />
       : access && access.status !== 'approved' ? <section><h2>{access.status === 'pending' ? '가입 승인 대기' : access.status === 'rejected' ? '가입이 승인되지 않았습니다' : '이용이 중지되었습니다'}</h2><p>{accessMessages[access.status]}</p><div className="actions"><Button onClick={() => setRetry(value => value + 1)}>승인 상태 다시 확인</Button><Button onClick={() => { void client?.auth.signOut({ scope: 'local' }); }}>로그아웃</Button></div></section>
       : <><ErrorState title="내 공부 공간을 열지 못했습니다" message={error || '서버에 연결하지 못했습니다. 기록은 지우지 않았습니다.'} onRetry={() => setRetry(value => value + 1)} />{otherWriter ? <p>가입 확인 메일에서 새 탭이 열렸다면, 처음 가입한 학습앱 탭으로 돌아가 주세요.</p> : <Button onClick={() => { void client?.auth.signOut({ scope: 'local' }); }}>다시 로그인</Button>}</>}
+    {userId && !withdrawn && settings}
     {error && !userId && <p role="alert">{error}</p>}
     <Button variant="quiet" onClick={onDemo}>시연 공간으로 돌아가기</Button>
   </Card></main>;
 }
 function SignIn({ client }: { client: SupabaseClient }) {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState(''), [password, setPassword] = useState(''), [creating, setCreating] = useState(false), [busy, setBusy] = useState(false), [error, setError] = useState(''), [notice, setNotice] = useState('');
   async function submit(create = false) {
     if (busy) return;
     if (create && password.length < 6) { setError('비밀번호를 6자 이상 입력해 주세요.'); return; }
-    setBusy(true); setError(''); setNotice('');
+    setError('');
+    if (create) { try { validateAccountName(name); } catch (error) {setError(errorText(error));return;} }
+    setBusy(true); setNotice('');
     try {
-      const { data, error } = create ? await client.auth.signUp({ email, password, options: { emailRedirectTo: `${location.origin}${import.meta.env.BASE_URL}?space=personal` } }) : await client.auth.signInWithPassword({ email, password });
+      const { data, error } = create ? await client.auth.signUp({ email, password, options: { data: { display_name: validateAccountName(name) }, emailRedirectTo: `${location.origin}${import.meta.env.BASE_URL}?space=personal` } }) : await client.auth.signInWithPassword({ email, password });
       if (error) throw error;
       setPassword('');
       if (create && !data.session) setNotice('이메일로 받은 확인 링크를 연 뒤 로그인해 주세요.');
@@ -112,6 +140,7 @@ function SignIn({ client }: { client: SupabaseClient }) {
   }
   return <form onSubmit={event => { event.preventDefault(); void submit(creating); }}><p>로그인하면 이 공간의 기록을 서버에 저장합니다. 시연 기록은 자동으로 옮기지 않습니다.</p>
     {creating && <><p>이메일과 6자 이상 비밀번호로 계정을 만듭니다. 가입 후 이메일로 받은 확인 링크를 열어 주세요.</p><p>이메일 확인 후 관리자 승인을 받아야 내 공부 공간을 사용할 수 있습니다.</p></>}
+    {creating && <Input label="이름" autoComplete="name" required maxLength={80} value={name} onChange={event=>setName(event.target.value)} />}
     <Input label="이메일" type="email" autoComplete="email" required value={email} onChange={event => setEmail(event.target.value)} />
     <Input label={creating ? "비밀번호 (6자 이상)" : "비밀번호"} type="password" autoComplete={creating ? "new-password" : "current-password"} required minLength={creating ? 6 : undefined} value={password} onChange={event => setPassword(event.target.value)} />
     <div className="actions"><Button variant="primary" type="submit" disabled={busy}>{busy ? '연결 중…' : creating ? '계정 만들기' : '로그인'}</Button><Button type="button" disabled={busy} onClick={() => { setCreating(value => !value); setError(''); setNotice(''); }}>{creating ? '로그인으로 돌아가기' : '처음 사용하기'}</Button></div>

@@ -1,11 +1,11 @@
 import { DomainError } from '../domain/model';
 
 export type AccessStatus = 'pending' | 'approved' | 'rejected' | 'suspended';
-export interface AccountAccess { status: AccessStatus; administrator: boolean }
+export interface AccountAccess { status: AccessStatus; administrator: boolean; displayName?: string | null }
 export interface ManagedAccount extends AccountAccess {
   userId: string; email: string; createdAt: string; emailConfirmed: boolean; version: number;
 }
-export interface AccountPage { accounts: ManagedAccount[]; nextCursor: string | null }
+export interface AccountPage { accounts: ManagedAccount[]; nextCursor: string | null; totalCount?: number }
 export const accessStatuses: AccessStatus[] = ['pending', 'approved', 'rejected', 'suspended'];
 export const accessMessages: Record<AccessStatus, string> = {
   pending: '관리자가 가입을 승인하면 내 공부 공간을 사용할 수 있습니다.',
@@ -19,4 +19,9 @@ export function requireApproved(access: AccountAccess) {
 export function requireAdministrator(access: AccountAccess) {
   requireApproved(access);
   if (!access.administrator) throw new DomainError('ADMIN_REQUIRED', '관리자만 가입 계정을 관리할 수 있습니다.');
+}
+
+export function validateAccountName(value: unknown): string {
+  if (typeof value !== "string" || !value.trim() || [...value.trim()].length > 80 || /[\u0000-\u001f\u007f-\u009f]/.test(value)) throw new DomainError("NAME_REQUIRED", "이름을 1~80자로 입력해 주세요.");
+  return value.trim();
 }

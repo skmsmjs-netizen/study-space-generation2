@@ -9,7 +9,7 @@ const sqlString = value => "'" + value.replaceAll("'", "''") + "'";
 const argumentsSql = `'${user}', 'test', 0, '${command.opId}', ${sqlString(state.appliedOps[command.opId])}, ${sqlString(JSON.stringify(state))}::jsonb`;
 const sql = `-- Synthetic identities and rows exist only inside this rolled-back transaction.
 BEGIN;
-INSERT INTO auth.users(id) VALUES('${user}');
+INSERT INTO auth.users(id,raw_user_meta_data) VALUES('${user}','{"display_name":"서버 시험 계정"}'::jsonb);
 SET LOCAL ROLE service_role;
 SELECT public.study_commit(${argumentsSql});
 SELECT public.study_commit(${argumentsSql});

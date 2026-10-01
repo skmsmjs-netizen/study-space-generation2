@@ -4,7 +4,7 @@ import { AccountAdministration } from './account-administration';
 import type { AccountAccessClient } from '../data/account-access';
 import type { ManagedAccount } from '../server/account-access';
 afterEach(cleanup);
-const account:ManagedAccount={userId:'80000000-0000-4000-8000-000000000002',email:'member@example.invalid',createdAt:'2026-10-01',emailConfirmed:true,status:'pending',administrator:false,version:3};
+const account:ManagedAccount={userId:'80000000-0000-4000-8000-000000000002',displayName:'시험 가입자',email:'member@example.invalid',createdAt:'2026-10-01',emailConfirmed:true,status:'pending',administrator:false,version:3};
 it('shows explicit confirmation, sends the selected account and version, and reloads only after success',async()=>{
   const api:AccountAccessClient={read:vi.fn(),list:vi.fn().mockResolvedValueOnce({accounts:[account],nextCursor:null}).mockResolvedValue({accounts:[{...account,status:'approved',version:4}],nextCursor:null}),set:vi.fn().mockResolvedValue(undefined)};
   render(<AccountAdministration api={api}/>);fireEvent.click(screen.getByRole('button',{name:'가입 계정 관리'}));

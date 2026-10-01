@@ -13,8 +13,8 @@ async function admin(path: string, options: RequestInit = {}) {
   // has already committed; an empty response must not become a save failure.
   const result = response.status === 204 ? null : await response.json();
   if (!response.ok) {
-    const code = ['ACCESS_DENIED','ADMIN_REQUIRED','ADMIN_PROTECTED','ACCESS_CONFLICT','VERSION_CONFLICT','EMAIL_UNCONFIRMED'].find(code => result.message?.includes(code)) ?? 'SERVER_ERROR';
-    const message = code === 'ACCESS_DENIED' ? '관리자 승인이 필요하거나 이용이 중지되어 있습니다. 작성 내용은 이 기기에 남아 있습니다.' : code === 'ACCESS_CONFLICT' ? '계정 상태가 변경되었습니다. 목록을 다시 불러와 주세요.' : code === 'EMAIL_UNCONFIRMED' ? '이메일 확인이 끝난 계정만 승인할 수 있습니다.' : '서버에서 변경을 승인하지 않았습니다. 원문을 보존했습니다.';
+    const code = ['ACCESS_DENIED','ADMIN_REQUIRED','ADMIN_PROTECTED','ACCESS_CONFLICT','VERSION_CONFLICT','EMAIL_UNCONFIRMED','NAME_REQUIRED','LAST_ADMIN','AUTH_REQUIRED'].find(code => result.message?.includes(code)) ?? 'SERVER_ERROR';
+    const message = code === 'LAST_ADMIN' ? '현재 유일한 관리자입니다. 다른 관리자에게 권한을 넘긴 뒤 탈퇴할 수 있습니다.' : code === 'NAME_REQUIRED' ? '이름을 1~80자로 입력해 주세요.' : code === 'ACCESS_DENIED' ? '관리자 승인이 필요하거나 이용이 중지되어 있습니다. 작성 내용은 이 기기에 남아 있습니다.' : code === 'ACCESS_CONFLICT' ? '계정 상태가 변경되었습니다. 목록을 다시 불러와 주세요.' : code === 'EMAIL_UNCONFIRMED' ? '이메일 확인이 끝난 계정만 승인할 수 있습니다.' : '서버에서 변경을 승인하지 않았습니다. 원문을 보존했습니다.';
     throw new DomainError(code, message);
   }
   return result;
@@ -33,6 +33,12 @@ Deno.serve(request => handleCommand(request, {
   },
   async setAccountAccess(actor: string, target: string, status: AccessStatus, version: number) {
     await admin('rpc/study_set_account_access', { method: 'POST', body: JSON.stringify({ p_actor: actor, p_target: target, p_status: status, p_version: version }) });
+  },
+  async setAccountName(userId: string, name: string): Promise<AccountAccess> {
+    return admin('rpc/study_set_account_name', { method: 'POST', body: JSON.stringify({ p_user: userId, p_name: name }) });
+  },
+  async withdrawAccount(userId: string) {
+    await admin('rpc/study_withdraw_account', { method: 'POST', body: JSON.stringify({ p_user: userId }) });
   },
   async read(userId: string, namespace: Namespace) {
     const row = await admin('rpc/study_read_workspace', { method: 'POST', body: JSON.stringify({ p_user: userId, p_namespace: namespace }) });

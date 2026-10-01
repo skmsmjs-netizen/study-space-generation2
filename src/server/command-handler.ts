@@ -1,12 +1,14 @@
 import { applyCommand, validateState } from '../domain/commands';
 import { DomainError, emptyState, type AppState, type Command, type Namespace } from '../domain/model';
-import { requireApproved, requireAdministrator, accessStatuses, type AccountAccess, type AccountPage, type AccessStatus } from './account-access';
+import { requireApproved, requireAdministrator, validateAccountName, accessStatuses, type AccountAccess, type AccountPage, type AccessStatus } from './account-access';
 export interface ServerSnapshot { sequence: number; data: AppState; supportedCommands?: string[] }
 export interface CommandBackend {
   authenticate(token: string): Promise<string>;
   access(userId: string): Promise<AccountAccess>;
   listAccounts?(actor: string, cursor: string | null): Promise<AccountPage>;
   setAccountAccess?(actor: string, target: string, status: AccessStatus, version: number): Promise<void>;
+  setAccountName?(userId: string, name: string): Promise<AccountAccess>;
+  withdrawAccount?(userId: string): Promise<void>;
   read(userId: string, namespace: Namespace): Promise<ServerSnapshot | null>;
   commit(userId: string, namespace: Namespace, base: number, command: Command, next: AppState): Promise<ServerSnapshot>;
 }
@@ -26,6 +28,17 @@ export async function handleCommand(request: Request, backend: CommandBackend): 
     const body = JSON.parse(text);
     const access = await backend.access(userId);
     if (body.action === 'access') return json(access);
+    if (body.action === 'profile-set') {
+      const name = validateAccountName(body.name);
+      if (!backend.setAccountName) throw new DomainError('SERVER_ERROR', '계정 연결을 확인해 주세요.');
+      return json(await backend.setAccountName(userId, name));
+    }
+    if (body.action === 'withdraw') {
+      if (body.confirmation !== '탈퇴' || body.target !== undefined) throw new DomainError('INVALID_REQUEST', '본인 계정의 탈퇴 확인을 다시 해 주세요.');
+      if (!backend.withdrawAccount) throw new DomainError('SERVER_ERROR', '탈퇴 연결을 확인해 주세요.');
+      await backend.withdrawAccount(userId);
+      return json({ withdrawn: true });
+    }
     if (body.action === 'admin-list' || body.action === 'admin-set') {
       requireAdministrator(access);
       if (body.action === 'admin-list') {
@@ -58,7 +71,7 @@ export async function handleCommand(request: Request, backend: CommandBackend): 
     return json({ ...await backend.commit(userId, namespace, current.sequence, command, next), supportedCommands: ['saveLearningPlan', 'saveCanvasLayout'] });
   } catch (error) {
     const code = error instanceof DomainError ? error.code : 'SERVER_ERROR';
-    const status = code === 'AUTH_REQUIRED' ? 401 : ['OWNERSHIP', 'ACCESS_DENIED', 'ADMIN_REQUIRED', 'ADMIN_PROTECTED'].includes(code) ? 403 : /CONFLICT/.test(code) ? 409 : error instanceof DomainError || error instanceof SyntaxError ? 400 : 503;
+    const status = code === 'AUTH_REQUIRED' ? 401 : ['OWNERSHIP', 'ACCESS_DENIED', 'ADMIN_REQUIRED', 'ADMIN_PROTECTED', 'LAST_ADMIN'].includes(code) ? 403 : /CONFLICT/.test(code) ? 409 : error instanceof DomainError || error instanceof SyntaxError ? 400 : 503;
     return json({ code, message: error instanceof DomainError ? error.message : '서버에 저장하지 못했습니다. 작성 내용은 이 기기에 남아 있습니다.' }, status);
   }
 }

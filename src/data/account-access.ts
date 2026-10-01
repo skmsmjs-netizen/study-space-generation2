@@ -2,6 +2,8 @@ import type { SupabaseClient } from '@supabase/supabase-js';
 import { DomainError } from '../domain/model';
 import type { AccountAccess, AccountPage, AccessStatus } from '../server/account-access';
 export interface AccountAccessClient {
+  saveName?(name: string): Promise<AccountAccess>;
+  withdraw?(): Promise<void>;
   read(): Promise<AccountAccess>;
   list(cursor?: string | null): Promise<AccountPage>;
   set(target: string, status: AccessStatus, version: number): Promise<void>;
@@ -17,6 +19,8 @@ export function accountAccessClient(client: SupabaseClient): AccountAccessClient
     return data as T;
   }
   return {
+    saveName: name => request<AccountAccess>({ action: 'profile-set', name }),
+    withdraw: async () => { await request({ action: 'withdraw', confirmation: '탈퇴' }); },
     read: () => request<AccountAccess>({ action: 'access' }),
     list: (cursor = null) => request<AccountPage>({ action: 'admin-list', cursor }),
     set: async (target, status, version) => { await request({ action: 'admin-set', target, status, version }); },

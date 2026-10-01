@@ -1452,6 +1452,10 @@ function requireAdministrator(access) {
   requireApproved(access);
   if (!access.administrator) throw new DomainError("ADMIN_REQUIRED", "\uAD00\uB9AC\uC790\uB9CC \uAC00\uC785 \uACC4\uC815\uC744 \uAD00\uB9AC\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.");
 }
+function validateAccountName(value) {
+  if (typeof value !== "string" || !value.trim() || [...value.trim()].length > 80 || /[\u0000-\u001f\u007f-\u009f]/.test(value)) throw new DomainError("NAME_REQUIRED", "\uC774\uB984\uC744 1~80\uC790\uB85C \uC785\uB825\uD574 \uC8FC\uC138\uC694.");
+  return value.trim();
+}
 
 // src/server/command-handler.ts
 var cors = { "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Headers": "authorization, apikey, content-type, x-client-info", "Access-Control-Allow-Methods": "POST, OPTIONS", "Cache-Control": "no-store" };
@@ -1471,6 +1475,17 @@ async function handleCommand(request, backend) {
     const body = JSON.parse(text);
     const access = await backend.access(userId);
     if (body.action === "access") return json(access);
+    if (body.action === "profile-set") {
+      const name = validateAccountName(body.name);
+      if (!backend.setAccountName) throw new DomainError("SERVER_ERROR", "\uACC4\uC815 \uC5F0\uACB0\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+      return json(await backend.setAccountName(userId, name));
+    }
+    if (body.action === "withdraw") {
+      if (body.confirmation !== "\uD0C8\uD1F4" || body.target !== void 0) throw new DomainError("INVALID_REQUEST", "\uBCF8\uC778 \uACC4\uC815\uC758 \uD0C8\uD1F4 \uD655\uC778\uC744 \uB2E4\uC2DC \uD574 \uC8FC\uC138\uC694.");
+      if (!backend.withdrawAccount) throw new DomainError("SERVER_ERROR", "\uD0C8\uD1F4 \uC5F0\uACB0\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+      await backend.withdrawAccount(userId);
+      return json({ withdrawn: true });
+    }
     if (body.action === "admin-list" || body.action === "admin-set") {
       requireAdministrator(access);
       if (body.action === "admin-list") {
@@ -1505,7 +1520,7 @@ async function handleCommand(request, backend) {
     return json({ ...await backend.commit(userId, namespace, current.sequence, command, next), supportedCommands: ["saveLearningPlan", "saveCanvasLayout"] });
   } catch (error) {
     const code = error instanceof DomainError ? error.code : "SERVER_ERROR";
-    const status = code === "AUTH_REQUIRED" ? 401 : ["OWNERSHIP", "ACCESS_DENIED", "ADMIN_REQUIRED", "ADMIN_PROTECTED"].includes(code) ? 403 : /CONFLICT/.test(code) ? 409 : error instanceof DomainError || error instanceof SyntaxError ? 400 : 503;
+    const status = code === "AUTH_REQUIRED" ? 401 : ["OWNERSHIP", "ACCESS_DENIED", "ADMIN_REQUIRED", "ADMIN_PROTECTED", "LAST_ADMIN"].includes(code) ? 403 : /CONFLICT/.test(code) ? 409 : error instanceof DomainError || error instanceof SyntaxError ? 400 : 503;
     return json({ code, message: error instanceof DomainError ? error.message : "\uC11C\uBC84\uC5D0 \uC800\uC7A5\uD558\uC9C0 \uBABB\uD588\uC2B5\uB2C8\uB2E4. \uC791\uC131 \uB0B4\uC6A9\uC740 \uC774 \uAE30\uAE30\uC5D0 \uB0A8\uC544 \uC788\uC2B5\uB2C8\uB2E4." }, status);
   }
 }
@@ -1518,8 +1533,8 @@ async function admin(path, options = {}) {
   const response = await fetch(`${url}/rest/v1/${path}`, { ...options, headers: { apikey: service, Authorization: `Bearer ${service}`, "Content-Type": "application/json", ...options.headers } });
   const result = response.status === 204 ? null : await response.json();
   if (!response.ok) {
-    const code = ["ACCESS_DENIED", "ADMIN_REQUIRED", "ADMIN_PROTECTED", "ACCESS_CONFLICT", "VERSION_CONFLICT", "EMAIL_UNCONFIRMED"].find((code2) => result.message?.includes(code2)) ?? "SERVER_ERROR";
-    const message = code === "ACCESS_DENIED" ? "\uAD00\uB9AC\uC790 \uC2B9\uC778\uC774 \uD544\uC694\uD558\uAC70\uB098 \uC774\uC6A9\uC774 \uC911\uC9C0\uB418\uC5B4 \uC788\uC2B5\uB2C8\uB2E4. \uC791\uC131 \uB0B4\uC6A9\uC740 \uC774 \uAE30\uAE30\uC5D0 \uB0A8\uC544 \uC788\uC2B5\uB2C8\uB2E4." : code === "ACCESS_CONFLICT" ? "\uACC4\uC815 \uC0C1\uD0DC\uAC00 \uBCC0\uACBD\uB418\uC5C8\uC2B5\uB2C8\uB2E4. \uBAA9\uB85D\uC744 \uB2E4\uC2DC \uBD88\uB7EC\uC640 \uC8FC\uC138\uC694." : code === "EMAIL_UNCONFIRMED" ? "\uC774\uBA54\uC77C \uD655\uC778\uC774 \uB05D\uB09C \uACC4\uC815\uB9CC \uC2B9\uC778\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4." : "\uC11C\uBC84\uC5D0\uC11C \uBCC0\uACBD\uC744 \uC2B9\uC778\uD558\uC9C0 \uC54A\uC558\uC2B5\uB2C8\uB2E4. \uC6D0\uBB38\uC744 \uBCF4\uC874\uD588\uC2B5\uB2C8\uB2E4.";
+    const code = ["ACCESS_DENIED", "ADMIN_REQUIRED", "ADMIN_PROTECTED", "ACCESS_CONFLICT", "VERSION_CONFLICT", "EMAIL_UNCONFIRMED", "NAME_REQUIRED", "LAST_ADMIN", "AUTH_REQUIRED"].find((code2) => result.message?.includes(code2)) ?? "SERVER_ERROR";
+    const message = code === "LAST_ADMIN" ? "\uD604\uC7AC \uC720\uC77C\uD55C \uAD00\uB9AC\uC790\uC785\uB2C8\uB2E4. \uB2E4\uB978 \uAD00\uB9AC\uC790\uC5D0\uAC8C \uAD8C\uD55C\uC744 \uB118\uAE34 \uB4A4 \uD0C8\uD1F4\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4." : code === "NAME_REQUIRED" ? "\uC774\uB984\uC744 1~80\uC790\uB85C \uC785\uB825\uD574 \uC8FC\uC138\uC694." : code === "ACCESS_DENIED" ? "\uAD00\uB9AC\uC790 \uC2B9\uC778\uC774 \uD544\uC694\uD558\uAC70\uB098 \uC774\uC6A9\uC774 \uC911\uC9C0\uB418\uC5B4 \uC788\uC2B5\uB2C8\uB2E4. \uC791\uC131 \uB0B4\uC6A9\uC740 \uC774 \uAE30\uAE30\uC5D0 \uB0A8\uC544 \uC788\uC2B5\uB2C8\uB2E4." : code === "ACCESS_CONFLICT" ? "\uACC4\uC815 \uC0C1\uD0DC\uAC00 \uBCC0\uACBD\uB418\uC5C8\uC2B5\uB2C8\uB2E4. \uBAA9\uB85D\uC744 \uB2E4\uC2DC \uBD88\uB7EC\uC640 \uC8FC\uC138\uC694." : code === "EMAIL_UNCONFIRMED" ? "\uC774\uBA54\uC77C \uD655\uC778\uC774 \uB05D\uB09C \uACC4\uC815\uB9CC \uC2B9\uC778\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4." : "\uC11C\uBC84\uC5D0\uC11C \uBCC0\uACBD\uC744 \uC2B9\uC778\uD558\uC9C0 \uC54A\uC558\uC2B5\uB2C8\uB2E4. \uC6D0\uBB38\uC744 \uBCF4\uC874\uD588\uC2B5\uB2C8\uB2E4.";
     throw new DomainError(code, message);
   }
   return result;
@@ -1538,6 +1553,12 @@ Deno.serve((request) => handleCommand(request, {
   },
   async setAccountAccess(actor, target, status, version) {
     await admin("rpc/study_set_account_access", { method: "POST", body: JSON.stringify({ p_actor: actor, p_target: target, p_status: status, p_version: version }) });
+  },
+  async setAccountName(userId, name) {
+    return admin("rpc/study_set_account_name", { method: "POST", body: JSON.stringify({ p_user: userId, p_name: name }) });
+  },
+  async withdrawAccount(userId) {
+    await admin("rpc/study_withdraw_account", { method: "POST", body: JSON.stringify({ p_user: userId }) });
   },
   async read(userId, namespace) {
     const row = await admin("rpc/study_read_workspace", { method: "POST", body: JSON.stringify({ p_user: userId, p_namespace: namespace }) });
