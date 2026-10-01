@@ -22,7 +22,7 @@ export async function claimPersonalWindow(userId: string, storage: Storage = loc
   let previous: string | null = null;
   try { previous = session.getItem(sessionKey); } catch { /* A fresh isolated window still works. */ }
   const storedKeys = Array.from({ length: storage.length }, (_, index) => storage.key(index));
-  const keys = [...new Set([...storedKeys, ...await indexedPersonalKeys(prefix, factory)])].filter((key): key is string => !!key && key.startsWith(prefix));
+  const keys = [...new Set([...storedKeys, ...(factory ? await indexedPersonalKeys(prefix, factory) : [])])].filter((key): key is string => !!key && key.startsWith(prefix));
   const readJournal = async (key: string) => {
     if (!factory) return { raw: storage.getItem(key), cached: readCachedPersonalSnapshot(storage, userId, key) };
     const journal = await IndexedPersonalJournal.open(storage, key, factory);
