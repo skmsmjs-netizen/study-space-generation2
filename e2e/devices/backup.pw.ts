@@ -83,7 +83,9 @@ test('whole backup downloads and restores records, attachments, unfinished text 
 test('scope name, interactive chart evidence and graph attribution retain their accessible roles and contrast', async ({page}) => {
   await page.goto('?space=demo#/record'); await expect(page.getByRole('combobox',{name:'공부 범위'})).toBeVisible();
   expect((await new AxeBuilder({page}).include('.topbar').withRules(['select-name']).analyze()).violations).toEqual([]);
-  await page.goto('?space=demo#/statistics'); await expect(page.getByRole('group',{name:/정확한 날짜가 있는 기록/})).toBeVisible();
+  await page.goto('?space=demo#/statistics');
+  await page.getByRole('region',{name:'기간별 통계 그래프',exact:true}).getByRole('combobox',{name:'그래프 종류',exact:true}).selectOption('column');
+  await expect(page.getByRole('group',{name:/정확한 날짜가 있는 기록/})).toBeVisible();
   expect((await new AxeBuilder({page}).include('.statistics-chart').withRules(['nested-interactive']).analyze()).violations).toEqual([]);
   const evidence=page.getByRole('button',{name:/근거 보기$/}).first(); await evidence.focus(); await evidence.press('Enter'); await expect(page.getByRole('dialog')).toBeVisible();
   await page.goto('?space=demo#/graph'); await expect(page.locator('.react-flow__attribution')).toBeVisible();
