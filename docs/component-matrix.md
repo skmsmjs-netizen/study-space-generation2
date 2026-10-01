@@ -93,3 +93,5 @@ Modal/Sheet의 `onClose`는 초안 보관을 먼저 확인하거나 이탈 확�
 | ContextMenu | 주제 목차 관리 | rename/move/bulk 진입; 이전 keyboard 회귀 유지 | 통과 |
 
 표 판정은 적힌 이번 조작 범위에만 적용됩니다. 모든 hover/pressed/대비/고대비/200%확대/VoiceOver/터치/물리IME를 통과로 판정하지 않습니다. Modal은 배경의 이전 inert 상태를 보존·복원하고 숨은 조상, disabled fieldset, tabindex=-1 후보를 탭 순환에서 배제합니다. component.test.tsx 9개 및 이번 통합 로그, [실제 UI 기록](validation/followup-ui-20260930.md)을 연결합니다.
+
+2026-10-01 `APIBudgetSummary({billing})`는 GPT 연결의 저장된 월 상한/사용액/미확인 예약을 도넛과 소수 한 자리 금액으로 표시한다. 사용 전/일부/예약/상한 도달·초과를 지원하며 자체 저장/차감을 하지 않는다. 로딩/재조회/실패와 마지막 확인값은 부모 패널이 담당한다. [API 예산 표시](api-budget-chart-20261001.md)를 따른다.

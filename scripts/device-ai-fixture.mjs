@@ -8,7 +8,7 @@ const output = process.env.DEVICE_RUN_DIR ? path.join(process.env.DEVICE_RUN_DIR
 const fixtureRequire = createRequire(path.join(root, 'package.json'));
 await mkdir(output, { recursive: true });
 await build({
-  entryPoints: { app: path.join(root, 'e2e/fixtures/study-ai.tsx') },
+  entryPoints: { app: path.join(root, 'e2e/fixtures/study-ai.tsx'), 'api-budget': path.join(root, 'e2e/fixtures/api-budget.tsx') },
   outdir: output,
   bundle: true,
   format: 'esm',
@@ -35,6 +35,10 @@ await build({
 await writeFile(
   path.join(output, 'index.html'),
   '<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>합성 기기 검증</title><link rel="stylesheet" href="app.css"><style>main{max-width:1000px;margin:24px auto;padding:24px}</style><div id="root"></div><script type="module" src="app.js"></script></html>',
+);
+await writeFile(
+  path.join(output, 'api-budget.html'),
+  '<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>API 예산 표시 확인</title><link rel="stylesheet" href="api-budget.css"><style>main{max-width:720px;margin:24px auto;padding:16px}</style><div id="root"></div><script type="module" src="api-budget.js"></script></html>',
 );
 await preview({
   configFile: false,

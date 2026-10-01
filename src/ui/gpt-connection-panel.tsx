@@ -1,11 +1,11 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Button, Checkbox, ErrorState, Input, Select } from './index';
 import { canUseOwnerAI } from '../domain/ai-access';
 import type { Namespace } from '../domain/model';
 import { configureOpenAIAPI, localAIStatus, type GPTConnectionStatus } from '../data/study-ai';
 import './study-materials.css';
+import { APIBudgetSummary, apiDollars as dollars } from './api-budget-summary';
 const message = (error: unknown) => error instanceof Error ? error.message : 'API 설정을 확인해 주세요.';
-const dollars = (micro: number) => `US$${(micro / 1_000_000).toFixed(micro > 0 && micro < 100 ? 6 : 4)}`;
 /** Keys live only in this input until submitted to the authenticated server vault. */
 export function GPTConnectionPanel({ userId, namespace = 'personal', busy = false, purpose = 'materials' }: {
   userId: string; namespace?: Namespace; busy?: boolean; purpose?: 'materials' | 'memory';
@@ -18,6 +18,7 @@ export function GPTConnectionPanel({ userId, namespace = 'personal', busy = fals
   const [limit, setLimit] = useState(10_000_000);
   const [confirmed, setConfirmed] = useState(false);
   const [error, setError] = useState(''), [notice, setNotice] = useState('');
+  const wasBusy = useRef(busy);
   useEffect(() => {
     if (!allowed) return;
     const controller = new AbortController();
@@ -26,6 +27,16 @@ export function GPTConnectionPanel({ userId, namespace = 'personal', busy = fals
     }).catch(error => { if (!controller.signal.aborted) setError(message(error)); });
     return () => controller.abort();
   }, [owner, allowed]);
+  useEffect(() => {
+    const finished = wasBusy.current && !busy;
+    wasBusy.current = busy;
+    if (!allowed || !finished) return;
+    const controller = new AbortController();
+    void localAIStatus(owner, controller.signal).then(status => {
+      if (!controller.signal.aborted) { setConnection(status); setError(''); }
+    }).catch(error => { if (!controller.signal.aborted) setError(message(error)); });
+    return () => controller.abort();
+  }, [owner, allowed, busy]);
   if (!allowed) return null;
   const billing = connection?.billing;
   const disabled = working || busy || !connection;
@@ -57,9 +68,9 @@ export function GPTConnectionPanel({ userId, namespace = 'personal', busy = fals
         <a href="https://platform.openai.com/settings/organization/limits" target="_blank" rel="noreferrer">OpenAI 사용 한도 확인</a>
       </div>
       {billing && <p role="status">{billing.configured ? billing.enabled ? '키 등록됨 · 생성 사용 켜짐' : '키 등록됨 · 생성 사용 멈춤' : 'API 키가 필요합니다.'}<br />
-        {billing.month.slice(0, 7)} 상한 {dollars(billing.limitMicro)} · 보수적으로 집계한 사용 {dollars(billing.usedMicro)}
-        {billing.pendingMicro > 0 && <> · 사용량 미확인 예약 {dollars(billing.pendingMicro)}</>}
       </p>}
+      {billing && <APIBudgetSummary billing={billing} />}
+      {error && billing && <p className="material-hint">그래프는 마지막으로 확인한 사용량입니다. 사용량 새로고침으로 다시 확인해 주세요.</p>}
       <Input label={billing?.configured ? 'API 키 교체 (선택)' : 'OpenAI API 키'} type="password" value={key}
         autoComplete="off" autoCapitalize="none" spellCheck={false} disabled={disabled}
         onChange={e => setKey(e.target.value)} hint="키는 서버에 암호화하여 보관합니다. 기기의 학습 자료나 백업에는 넣지 않습니다." />
