@@ -70,11 +70,13 @@ test('graph filters remain usable with larger text without horizontal overflow',
   await page.goto('?space=demo#/graph');
   const connections = page.getByLabel('표시할 연결', { exact: true });
   await expect(connections).toBeVisible();
+  await expect(page.locator('.graph-stage')).toHaveAttribute('aria-busy', 'false');
   await page.addStyleTag({ content: 'html { font-size: 125%; }' });
   await connections.selectOption('personal');
   await expect(connections).toHaveValue('personal');
   await connections.selectOption('all');
   await expect(connections).toHaveValue('all');
+  await expect(page.locator('.graph-stage')).toHaveAttribute('aria-busy', 'false');
   await expect(page.getByLabel('그래프 과목', { exact: true })).toBeVisible();
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(
     await page.evaluate(() => innerWidth + 1),
