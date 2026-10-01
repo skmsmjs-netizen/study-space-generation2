@@ -241,6 +241,10 @@ function MaterialEditor({
   }
   useEffect(() => {
     if (!ready) return;
+    if ((tab === 'quiz' && !result?.quiz) || (tab === 'map' && !result?.map)) {
+      setTab('summary');
+      return;
+    }
     setEditingCard('');
     setSourceOpen(false);
     viewState.current = { ...viewState.current, resultId: result?.id, cardId: card?.id, tab, activeDisclosure: answer === cardKey && cardKey ? 'revealed' : 'hidden' };
@@ -880,6 +884,7 @@ function MaterialEditor({
               label="생성 결과"
               value={resultIndex}
               onChange={(event) => {
+                if (tab === 'quiz') recordHelp();
                 setResultIndex(Number(event.target.value));
                 setCardIndex(0);
                 setAnswer('');

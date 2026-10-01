@@ -412,6 +412,23 @@ it('binds answer editing to the selected card and never reveals the next or anot
   expect(screen.queryByText('다른 결과 숨긴 답')).not.toBeInTheDocument();
 });
 
+it('opens a valid view when switching from a quiz to an earlier result and preserves the attempt as helped', async () => {
+  const next = structuredClone(content);
+  next.results[0].summary = [{text:'이전 수식 보완 결과',sourceIds:['s1']}];
+  next.results.push({...structuredClone(next.results[0]),id:'quiz-result',cards:[],quiz:[{id:'quiz-q',question:'합성 문제',options:['보기 하나','보기 둘'],correctIndex:0,explanation:'제출 뒤 해설',sourceIds:['s1']}],request:{task:'quiz'}});
+  const state = repo.getSnapshot();
+  repo.execute({type:'saveStudyMaterial',id:'view-switch',content:next,expectedVersion:0,userId:state.userId,namespace:state.namespace,opId:'view-switch-save',at:new Date().toISOString()});
+  render(<StudyMaterials data={repo.getSnapshot()} repository={repo} onSaved={() => undefined} materialId="view-switch"/>);
+  await waitFor(() => expect(screen.getByRole('button',{name:'자료 저장'})).toBeEnabled());
+  fireEvent.click(screen.getByRole('button',{name:'퀴즈 1'}));
+  fireEvent.click(screen.getByRole('button',{name:'새 퀴즈 시작'}));
+  fireEvent.change(screen.getByRole('combobox',{name:'생성 결과'}),{target:{value:'0'}});
+  await waitFor(() => expect(screen.getByText('이전 수식 보완 결과')).toBeVisible());
+  expect(screen.getByRole('button',{name:'결과 수정'})).toBeVisible();
+  await waitFor(async () => expect((await readMaterialDraft(repo.getSnapshot(),'view-switch'))?.content.quizAttempts?.[0].helpedQuestionIds).toEqual(['quiz-q']));
+  expect(vi.mocked(generateStudyMaterial)).not.toHaveBeenCalled();
+});
+
 it('retains a received result in memory after draft failure and retries only storage before restoring location', async () => {
   const personal = ownerFixture();
   const originalWrite = materialFiles.writeMaterialDraft;

@@ -50,4 +50,11 @@ test('퀴즈에서는 원문을 기본으로 가리고 명시 열람·미응답�
   await expect(page.getByRole('textbox', { name: '강의 내용·필기', exact: true })).toHaveCount(0);
   await expect(page.getByText('응답하지 않은 문항입니다.', { exact: true })).toBeVisible();
   await expect(page.getByText('이 시도에서 자료·보조 결과를 열었습니다. 독립 수행과 구별하여 보관합니다.', { exact: true })).toBeVisible();
+  await page.getByRole('combobox', {name:'GPT 작업',exact:true}).selectOption('questions');
+  await page.getByRole('button', {name:'새 결과 만들기',exact:true}).tap();
+  await page.getByRole('combobox', {name:'생성 결과',exact:true}).selectOption('0');
+  await page.getByRole('button', {name:'퀴즈 1',exact:true}).tap();
+  await page.getByRole('combobox', {name:'생성 결과',exact:true}).selectOption('1');
+  await expect(page.getByRole('button', {name:'보조 결과',exact:true})).toHaveAttribute('aria-pressed','true');
+  await expect(page.getByRole('button', {name:'결과 수정',exact:true})).toBeVisible();
 });
