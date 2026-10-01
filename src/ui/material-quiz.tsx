@@ -2,26 +2,28 @@ import { useState, type ReactNode } from 'react';
 import type { MaterialQuizAttempt, MaterialQuizQuestion } from '../domain/material-learning';
 import { Button, Radio, Select } from './index';
 import { StudyResultText } from './study-result-text';
-export function MaterialQuiz({ resultId, questions, attempts, disabled, onChange, evidence }: {
+export function MaterialQuiz({ resultId, questions, attempts, disabled, onChange, selectedId, onSelected, evidence }: {
+  selectedId?: string; onSelected?: (id: string) => void;
   resultId: string; questions: MaterialQuizQuestion[]; attempts: MaterialQuizAttempt[]; disabled: boolean;
   onChange: (attempts: MaterialQuizAttempt[]) => void; evidence: (ids: string[]) => ReactNode;
 }) {
   const previous = attempts.filter(a => a.resultId === resultId);
-  const [selected, setSelected] = useState(previous.at(-1)?.id ?? '');
+  const [selected, setSelected] = useState(selectedId ?? previous.at(-1)?.id ?? '');
+  function select(id: string) { setSelected(id); onSelected?.(id); }
   const attempt = previous.find(a => a.id === selected) ?? previous.at(-1);
   const answered = attempt ? attempt.questions.filter(q => attempt.answers[q.id] !== undefined) : [];
   const wrong = attempt ? answered.filter(q => attempt.answers[q.id] !== q.correctIndex) : [];
   function start(rows = questions) {
     const open = previous.find(a => !a.submittedAt);
-    if (open) { setSelected(open.id); return; }
+    if (open) { select(open.id); return; }
     if (attempts.length >= 100 || !rows.length) return;
     const next: MaterialQuizAttempt = { id: crypto.randomUUID(), resultId, at: new Date().toISOString(), questions: structuredClone(rows), answers: {}, submittedAt: null };
-    onChange([...attempts, next]); setSelected(next.id);
+    onChange([...attempts, next]); select(next.id);
   }
   function update(patch: Partial<MaterialQuizAttempt>) { if (attempt) onChange(attempts.map(a => a.id === attempt.id ? { ...a, ...patch } : a)); }
   return <section className="material-quiz" aria-label="자료 퀴즈">
     <div className="material-actions"><Button disabled={disabled || attempts.length >= 100 || Boolean(attempt && !attempt.submittedAt)} onClick={() => start()}>새 퀴즈 시작</Button>
-      {previous.length > 1 && <Select label="퀴즈 시도" value={attempt?.id ?? ''} onChange={e => setSelected(e.target.value)}>{previous.map((a, i) => <option key={a.id} value={a.id}>{i + 1}번째 · {a.submittedAt ? '답 확인함' : '응답 중'}</option>)}</Select>}
+      {previous.length > 1 && <Select label="퀴즈 시도" value={attempt?.id ?? ''} onChange={e => select(e.target.value)}>{previous.map((a, i) => <option key={a.id} value={a.id}>{i + 1}번째 · {a.submittedAt ? '답 확인함' : '응답 중'}</option>)}</Select>}
     </div>
     {!attempt && <p>문제를 풀고 답 제출을 누르면 정답·해설·원문 근거를 확인할 수 있습니다.</p>}
     {attempt && <>

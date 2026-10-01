@@ -28,9 +28,9 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 
-// node_modules/lz-string/libs/lz-string.js
+// ../../../../../../../../../private/tmp/study-quality-runtime-20261001/node_modules/lz-string/libs/lz-string.js
 var require_lz_string = __commonJS({
-  "node_modules/lz-string/libs/lz-string.js"(exports, module) {
+  "../../../../../../../../../private/tmp/study-quality-runtime-20261001/node_modules/lz-string/libs/lz-string.js"(exports, module) {
     var LZString2 = (function() {
       var f = String.fromCharCode;
       var keyStrBase64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
@@ -827,7 +827,7 @@ function validateInkWorkspace(content) {
   } else bad2();
 }
 
-// node_modules/ts-fsrs/dist/index.mjs
+// ../../../../../../../../../private/tmp/study-quality-runtime-20261001/node_modules/ts-fsrs/dist/index.mjs
 var FSRSError = class _FSRSError extends Error {
   constructor(message = "FSRS Error") {
     super(message);
@@ -1591,6 +1591,7 @@ function validateStudyAIRequest(value, complete = true) {
   ) || JSON.stringify(row.history).length > 4e4))
     throw new DomainError("INVALID_AI_REQUEST", "\uC774\uC804 \uC9C8\uBB38\uC758 \uBC94\uC704\uB97C \uB098\uB204\uC5B4 \uC8FC\uC138\uC694.");
   if (row.support !== void 0 && !["full", "key", "check"].includes(row.support)) throw new DomainError("INVALID_AI_REQUEST", "\uC124\uBA85 \uB3C4\uC6C0 \uC218\uC900\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+  if (row.externalization !== void 0 && !["auto", "full", "off"].includes(row.externalization)) throw new DomainError("INVALID_AI_REQUEST", "\uC0AC\uACE0 \uBCF4\uC870 \uC7A5\uCE58 \uC120\uD0DD\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
   if (!complete) return;
   if (["tutor", "source-qa"].includes(row.task) && !row.focus?.trim())
     throw new DomainError("INVALID_AI_REQUEST", "\uC790\uB8CC\uC5D0 \uBB3C\uC5B4\uBCFC \uC9C8\uBB38\uC744 \uB123\uC5B4 \uC8FC\uC138\uC694.");
@@ -1685,6 +1686,7 @@ function validateMaterialResult(value) {
   if (result.range !== void 0 && (!Number.isSafeInteger(result.range.index) || !Number.isSafeInteger(result.range.count) || result.range.index < 0 || result.range.count < 1 || result.range.index >= result.range.count || !text3(result.range.sourceIdentity, 160) || !result.range.sourceIdentity || !Number.isSafeInteger(result.range.totalSegments) || result.range.totalSegments < 0 || !Array.isArray(result.range.sourceIds) || !result.range.sourceIds.length || result.range.sourceIds.length > 6e3 || result.range.sourceIds.some((id) => !ids.has(id)))) invalid3("\uCC98\uB9AC \uBC94\uC704\uC640 \uC6D0\uBB38 \uC704\uCE58\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
   if (result.range?.overlapIds !== void 0 && (!Array.isArray(result.range.overlapIds) || result.range.overlapIds.some((id) => !result.range.sourceIds.includes(id)))) invalid3("\uACB9\uCE58\uB294 \uC6D0\uBB38 \uAD6C\uAC04\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
   if (result.contractVersion !== void 0 && result.contractVersion !== MATERIAL_CONTRACT_VERSION) invalid3("\uACB0\uACFC \uACC4\uC57D \uBC84\uC804\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+  if (result.status !== void 0 && !["complete", "needs-input", "insufficient-evidence", "partial"].includes(result.status)) invalid3("\uC0DD\uC131 \uCC98\uB9AC \uC0C1\uD0DC\uB97C \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
   const cards = /* @__PURE__ */ new Set();
   for (const card of result.cards) {
     if (!text3(card.id, 256) || !card.id || cards.has(card.id) || !text3(card.question, 4e3) || !card.question.trim() || !text3(card.answer, 1e4) || !card.answer.trim() || !references(card.sourceIds) || typeof card.excluded !== "boolean")
@@ -1717,7 +1719,7 @@ function validateMaterialContent(value) {
   }
   if (row?.learningView !== void 0) {
     const v = row.learningView;
-    if (!v || !["summary", "transcript", "cards", "quiz", "map"].includes(v.tab) || !Array.isArray(v.revealed) || !Array.isArray(v.helped) || v.revealed.length > 3e3 || v.helped.length > 30 || [...v.revealed, ...v.helped].some((id) => !text3(id, 520)) || v.resultId !== void 0 && !text3(v.resultId, 256) || v.cardId !== void 0 && !text3(v.cardId, 256) || v.activeDisclosure !== void 0 && !["hidden", "revealed"].includes(v.activeDisclosure)) invalid3("\uD559\uC2B5 \uD654\uBA74\uC758 \uC704\uCE58\uC640 \uACF5\uAC1C \uC774\uB825\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
+    if (!v || !["summary", "transcript", "cards", "quiz", "map"].includes(v.tab) || !Array.isArray(v.revealed) || !Array.isArray(v.helped) || v.revealed.length > 3e3 || v.helped.length > 30 || [...v.revealed, ...v.helped].some((id) => !text3(id, 520)) || v.resultId !== void 0 && !text3(v.resultId, 256) || v.cardId !== void 0 && !text3(v.cardId, 256) || v.quizAttemptId !== void 0 && !text3(v.quizAttemptId, 256) || v.activeDisclosure !== void 0 && !["hidden", "revealed"].includes(v.activeDisclosure)) invalid3("\uD559\uC2B5 \uD654\uBA74\uC758 \uC704\uCE58\uC640 \uACF5\uAC1C \uC774\uB825\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
   }
   if (row?.aiRequest !== void 0) validateStudyAIRequest(row.aiRequest, false);
   if (row?.documents !== void 0) validateDocuments(row.documents);

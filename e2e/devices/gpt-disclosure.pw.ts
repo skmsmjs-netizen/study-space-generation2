@@ -29,3 +29,25 @@ test('카드 편집·제외·새 생성·저장·재접속에서도 답 공개�
   expect(external).toEqual([]); expect(errors).toEqual([]);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1)).toBe(true);
 });
+
+test('퀴즈에서는 원문을 기본으로 가리고 명시 열람·미응답·시도 위치를 저장한다', async ({ page }) => {
+  await page.goto(process.env.STUDY_AI_FIXTURE_URL! + '#/materials/new');
+  await page.getByRole('textbox', { name: '자료 제목', exact: true }).fill('퀴즈 도움 합성 검증');
+  await page.getByRole('textbox', { name: '강의 내용·필기', exact: true }).fill('문제의 답이 포함된 합성 원문');
+  await page.getByRole('combobox', { name: 'GPT 작업', exact: true }).selectOption('quiz');
+  await page.getByRole('button', { name: '객관식 퀴즈 만들기', exact: true }).tap();
+  await expect(page.getByRole('textbox', { name: '강의 내용·필기', exact: true })).toHaveCount(0);
+  await page.getByRole('button', { name: '새 퀴즈 시작', exact: true }).tap();
+  await expect(page.getByText('제출 뒤에만 표시할 합성 해설', { exact: true })).toHaveCount(0);
+  await page.getByText('원문·자료 열기 · 퀴즈 도움으로 보관', { exact: true }).tap();
+  await expect(page.getByRole('textbox', { name: '강의 내용·필기', exact: true })).toBeVisible();
+  await expect(page.getByText('이 시도에서 자료·보조 결과를 열었습니다. 독립 수행과 구별하여 보관합니다.', { exact: true })).toBeVisible();
+  await page.getByRole('button', { name: '답 제출 · 해설 확인', exact: true }).tap();
+  await expect(page.getByText('응답하지 않은 문항입니다.', { exact: true })).toBeVisible();
+  await page.getByRole('button', { name: '자료 저장', exact: true }).tap();
+  await expect(page.getByText('자료를 서버에 저장했습니다.', { exact: true })).toBeVisible();
+  await page.reload();
+  await expect(page.getByRole('textbox', { name: '강의 내용·필기', exact: true })).toHaveCount(0);
+  await expect(page.getByText('응답하지 않은 문항입니다.', { exact: true })).toBeVisible();
+  await expect(page.getByText('이 시도에서 자료·보조 결과를 열었습니다. 독립 수행과 구별하여 보관합니다.', { exact: true })).toBeVisible();
+});
