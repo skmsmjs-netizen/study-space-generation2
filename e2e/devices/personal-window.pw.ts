@@ -63,11 +63,12 @@ test('two personal windows open, resume the input location and retain independen
   await expect.poll(() => failedWrites).toBeGreaterThan(0);
   await second.reload();
   await expect(second.getByRole('textbox', { name: '짧은 글', exact: true })).toHaveValue(pending);
-  failWrites = false;
   // The status is accessible after closing the memo dialog; the outbox retains
   // the text throughout the refresh/retry instead of blocking the entire space.
   await second.getByRole('button', { name: '닫기', exact: true }).click();
+  await expect(second.getByRole('dialog', { name: '작은 메모', exact: true })).toBeHidden();
   await second.getByRole('button', { name: /저장 연결 확인 중/ }).click();
+  failWrites = false;
   await second.getByRole('button', { name: '서버 저장 다시 시도', exact: true }).click();
   await expect.poll(() => server.data.memos?.find(row => row.id === 'two')?.body).toBe(pending);
   await second.getByRole('button', { name: '내 기록의 저장 상태 닫기', exact: true }).click();
