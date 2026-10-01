@@ -113,6 +113,8 @@ test('touch code input, exact draft restore and rotation retain original source'
     )
     .toBe(source);
   await expect(page.getByLabel('예제 제목', { exact: true })).toHaveValue('터치 입력·복귀 검증');
+  // The HTTP fixture covers batch execution; interactive terminal sessions have their own tests.
+  await page.getByLabel('실행 방식', { exact: true }).selectOption('batch');
   await page.getByRole('button', { name: '실행', exact: true }).tap();
   await expect(page.getByRole('region', { name: '실행 결과', exact: true })).toContainText('7');
   await expect

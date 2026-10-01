@@ -30,7 +30,7 @@ test('full backup restores exact records, an unfinished draft, settings and atta
   await page.getByRole('button', { name: '전체 백업 내려받기', exact: true }).click();
   const download = await downloadPromise, file = info.outputPath('full-backup.zip');
   await download.saveAs(file);
-  await expect(page.getByRole('status').filter({ hasText: '한 파일로 내려받았습니다' })).toBeVisible();
+  await expect(page.getByRole('status').filter({ hasText: '백업 파일을 준비했습니다' })).toBeVisible();
   const context = await browser.newContext({ viewport: info.project.use.viewport, isMobile: info.project.use.isMobile, hasTouch: info.project.use.hasTouch, locale: 'ko-KR' });
   try {
     const target = await context.newPage();
