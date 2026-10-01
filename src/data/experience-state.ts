@@ -45,10 +45,16 @@ function readingWidth(
 }
 export function readExperience(data: Pick<AppState, 'namespace' | 'userId'>): ExperienceState {
   const key = experienceKey(data);
-  const raw = readRescuedDraft(key) ?? localStorage.getItem(key);
+  const rescued = readRescuedDraft(key);
+  const raw = rescued ?? localStorage.getItem(key);
   // Draft safety uses an empty marker for this window when another window owns
   // the shared value. Do not parse that marker or adopt the other window's text.
   try {
+    // A readable per-window copy must not authorize overwriting a damaged saved original.
+    if (rescued !== null && !draftHasUnstoredText(key)) {
+      const saved = localStorage.getItem(key);
+      if (saved !== null) validateExperience(JSON.parse(saved));
+    }
     const windowId = personalDraftWindow(key);
     const author = raw === '' ? localStorage.getItem(`${key}:window-author`) : null;
     const marker = raw === '' && !draftHasUnstoredText(key) && Boolean(windowId) &&

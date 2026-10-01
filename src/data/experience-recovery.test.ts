@@ -170,3 +170,12 @@ it('does not treat an empty current-window copy or a failed empty write as a for
   expect(localStorage.getItem(`${key}:recovery:window-saved-window`)).toBe('');
   expect(localStorage.getItem(key)).toBe(validRaw);
 });
+
+
+it('requires explicit recovery when a valid current-window copy masks a damaged saved original', () => {
+  const valid = savedSetting(), original = localStorage.getItem(key);
+  expect(() => readExperience(data)).toThrow('저장된 원문은 그대로 보존했습니다');
+  expect(() => updateExperience(data, state => ({ ...state, last: { route: '/materials', label: '강의 자료' } }))).toThrow();
+  expect(localStorage.getItem(key)).toBe(original);
+  expect(localStorage.getItem(`${key}:recovery:window-saved-window`)).toBe(valid);
+});
