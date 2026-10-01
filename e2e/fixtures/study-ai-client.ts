@@ -66,7 +66,7 @@ export async function generateStudyMaterial(
                       sourceIds,
                     },
                   ],
-              ...(request.task === 'quiz'
+              ...(['quiz', 'study-pack'].includes(request.task)
                 ? {
                     quiz: [
                       {
@@ -98,13 +98,12 @@ export async function generateStudyMaterial(
                     },
                   }
                 : {}),
-              cards:
-                request.task === 'questions'
-                  ? [
-                      { question: '합성 첫 질문', answer: '합성 첫 숨긴 답', sourceIds },
-                      { question: '합성 둘째 질문', answer: '합성 둘째 숨긴 답', sourceIds },
-                    ]
-                  : [],
+              cards: ['questions', 'study-pack'].includes(request.task)
+                ? [
+                    { question: '합성 첫 질문', answer: '합성 첫 숨긴 답', sourceIds },
+                    { question: '합성 둘째 질문', answer: '합성 둘째 숨긴 답', sourceIds },
+                  ]
+                : [],
             }),
           };
         },
