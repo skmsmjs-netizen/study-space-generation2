@@ -13,6 +13,7 @@ export interface CommandBackend {
   withdrawAccount?(userId: string): Promise<void>;
   read(userId: string, namespace: Namespace): Promise<ServerSnapshot | null>;
   commit(userId: string, namespace: Namespace, base: number, command: Command, next: AppState): Promise<ServerSnapshot>;
+  commitBatch?(userId: string, namespace: Namespace, base: number, commands: Command[], next: AppState): Promise<ServerSnapshot>;
 }
 const cors = { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': 'authorization, apikey, content-type, x-client-info, x-region', 'Access-Control-Allow-Methods': 'POST, OPTIONS', 'Cache-Control': 'no-store' };
 const supportedCommands = ['importConceptCatalog', 'saveConceptEdition', 'saveConceptBatch', 'saveInkWorkspace', 'saveRecallCloze', 'importRecallCards', 'setRecallCardStatus', 'saveMemo', 'saveStudyBoard', 'saveMemoryCard', 'trashMemoryCard', 'restoreMemoryCard', 'saveMemoryTest', 'saveStudyMaterial', 'trashStudyMaterial', 'restoreStudyMaterial', 'saveLearningPlan', 'saveCanvasLayout', 'saveCodeExample', 'trashCodeExample', 'restoreCodeExample', 'saveRecallCard', 'saveRecallReference', 'reviewRecallCard', 'undoRecallReview', 'setRecallDue', 'saveRecallPreferences'];
@@ -87,17 +88,20 @@ export async function handleCommand(request: Request, backend: CommandBackend): 
         if (command.userId !== userId || command.namespace !== namespace) throw new DomainError('OWNERSHIP', '다른 사용자의 자료를 변경할 수 없습니다.');
         ids.add(command.opId);
       }
-      // Every operation retains its own transaction and history. Keep one snapshot
-      // in memory. A failed suffix preserves the committed prefix and original IDs.
+      // Production commits the fully validated suffix atomically, packing the
+      // ledger once. Legacy backends retain receipt-safe sequential commits.
       let saved = current;
+      const pending: Command[] = [];
       for (let index = 0; index < commands.length; index++) {
         const command = commands[index];
         await verifyConceptHash(command);
         if (saved.data.appliedOps[command.opId]) { timing.sync('apply', () => applyCommand(saved.data, command)); continue; }
         if (body.baseSequence + index !== saved.sequence) return json({ code: 'VERSION_CONFLICT', message: '다른 기기의 변경과 작성 내용을 모두 보존했습니다.', server: saved }, 409);
         const next = timing.sync('apply', () => applyCommand(saved.data, command));
-        saved = await timing.measure('commit', () => backend.commit(userId, namespace, saved.sequence, command, next));
+        if (backend.commitBatch) { pending.push(command); saved = { sequence: saved.sequence + 1, data: next }; }
+        else saved = await timing.measure('commit', () => backend.commit(userId, namespace, saved.sequence, command, next));
       }
+      if (pending.length && backend.commitBatch) saved = await timing.measure('commit', () => backend.commitBatch!(userId, namespace, current.sequence, pending, saved.data));
       return json({ ...saved, supportedCommands, syncCapabilities });
     }
     if (body.action !== 'execute' || !body.command) throw new DomainError('INVALID_REQUEST', '저장 요청을 확인해 주세요.');

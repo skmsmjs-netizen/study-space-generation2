@@ -264,7 +264,7 @@ export class PersonalRepository implements StudyRepository {
       if (error instanceof DomainError && /CONFLICT/.test(error.code)) {
         try {
           const server = await this.transport.load(); this.verify(server);
-          const rebased = this.rebaseWindow(this.envelope, server);
+          const rebased = this.recoverAcknowledged(this.envelope, server) ?? this.rebaseWindow(this.envelope, server);
           if (rebased && server.sequence > this.envelope.base.sequence) {
             this.persist(rebased); await this.storage.flush?.();
             this.update(rebased.pending.length
@@ -276,7 +276,13 @@ export class PersonalRepository implements StudyRepository {
         }
         catch { this.update({ phase: 'error', pending: this.envelope.pending.length, message: '충돌 자료를 불러오지 못했습니다. 이 기기의 원문은 남아 있습니다.' }); return; }
         this.update({ phase: 'conflict', pending: this.envelope.pending.length, message: '다른 기기의 변경과 이 기기의 글을 모두 보존했습니다.' });
-      } else this.update({ phase: 'error', pending: this.envelope.pending.length, message: error instanceof Error ? error.message : '서버에 저장하지 못했습니다. 이 기기의 원문은 남아 있습니다.' });
+      } else {
+        // A transport failure may follow a committed prefix or a lost final
+        // acknowledgement. Reconcile receipts before the next write, including
+        // retries in this same session. Keep every draft while offline.
+        this.needsRefresh = true;
+        this.update({ phase: 'error', pending: this.envelope.pending.length, message: error instanceof Error ? error.message : '서버에 저장하지 못했습니다. 이 기기의 원문은 남아 있습니다.' });
+      }
     }
   }
   refresh(): Promise<void> {
