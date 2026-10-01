@@ -9,3 +9,6 @@ artifacts/
 .DS_Store
 
 /public/optimizer/vendor/
+
+/public/material-ocr/
+/supabase/.temp/
