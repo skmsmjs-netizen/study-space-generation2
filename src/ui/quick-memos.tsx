@@ -53,7 +53,7 @@ export function QuickMemos({ data, repository, onSaved, ownerId, memoId, compact
   };
   const undoTrash = (data.memos ?? []).find(row => row.id === restored && row.deletedAt);
   return <section className="quick-memos section-space" aria-label={trash ? '휴지통의 메모' : '메모 카드'}>
-    <div className="section-heading"><div><h2>{trash ? '메모' : '작은 메모'}</h2></div>
+    <div className="section-heading"><div><h2>{trash ? '메모' : '작은 메모'}</h2>{compact && <p className="muted">떠오른 생각을 잠시 보관하세요. 짧은 글이나 그림으로 남길 수 있습니다.</p>}</div>
       {!trash && <div className="actions">{compact && <a href="#/memos">모두 보기</a>}<Button onClick={add}>메모 추가</Button></div>}
     </div>
     {error && <ErrorState message={error} />}
