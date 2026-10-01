@@ -8,9 +8,7 @@ import {
   type MaterialResult,
 } from '../domain/study-material';
 import { createStudyClient, readServerConfig } from './supabase-client';
-import { readAudio } from './material-files';
 import { documentSegments, selectedMaterialDocuments } from '../domain/material-source';
-import { REMOTE_AI_APPROVAL_MESSAGE } from '../domain/ai-connection';
 import { receiveTopicMemoryResponse } from './topic-memory-response';
 import {
   validateTopicMemoryInput,
@@ -47,15 +45,15 @@ async function requestTopicMemory(
 ): Promise<TopicMemoryResult> {
   const connection = await localAIStatus(owner, signal);
   signal.throwIfAborted();
-  if (!connection.local) throw Error(connection.connectionError || '이 Mac에서 연 공부 공간에서 GPT를 연결해 주세요.');
   if (!connection.configured)
-    throw Error('GPT 연결에서 ChatGPT를 연결해 주세요. 선택한 목차는 유지했습니다.');
-  if (!connection.creditsConfirmed)
+    throw Error(connection.connectionError || 'GPT 연결에서 API 키를 등록해 주세요. 선택한 목차는 유지했습니다.');
+  if (connection.provider === 'chatgpt' && !connection.creditsConfirmed && !connection.temporaryCreditsAllowed)
     throw Error('GPT 연결에서 추가 크레딧 사용 허용이 꺼져 있음을 확인해 주세요.');
   if (!connection.model) throw Error('GPT 연결에서 사용할 모델을 불러와 주세요.');
-  const headers = { ...(await ownerAuthHeaders(owner)), 'Content-Type': 'application/json' };
+  const target = await studyAIRequestTarget(owner, connection, '/topic-memory');
+  const headers = { ...target.headers, 'Content-Type': 'application/json' };
   signal.throwIfAborted();
-  const response = await fetch('/api/study-ai/topic-memory', {
+  const response = await fetch(target.url, {
     method: 'POST',
     headers,
     body: JSON.stringify({ userId: owner.userId, namespace: owner.namespace, input }),
@@ -85,39 +83,68 @@ async function ownerAuthHeaders(
 export interface GPTConnectionStatus {
   configured: boolean;
   local: boolean;
-  provider: 'chatgpt';
+  provider: 'chatgpt' | 'openai-api';
+  billing?: { configured: boolean; enabled: boolean; limitMicro: number; usedMicro: number; pendingMicro: number; month: string };
   model: string;
   models: { slug: string; displayName: string }[];
   session: { status: string; sharing: boolean; identity?: { name?: string; email?: string } };
   creditsConfirmed: boolean;
+  temporaryCreditsAllowed?: boolean;
+  temporaryCreditsRemaining?: number;
+  temporaryCreditsExpiresAt?: number;
   transcription: boolean;
   connecting: boolean;
   connectionError: string;
 }
 export const CHATGPT_USAGE_URL = 'https://chatgpt.com/settings/usage';
+async function studyAIRequestTarget(owner: Pick<AppState, 'userId' | 'namespace'>, connection: GPTConnectionStatus, path: string) {
+  const headers = await ownerAuthHeaders(owner);
+  if (connection.local) return { url: `/api/study-ai${path}`, headers };
+  const config = readServerConfig();
+  if (!config) throw Error('개인 공간의 서버 연결을 확인해 주세요.');
+  return { url: `${config.url}/functions/v1/${connection.provider === 'openai-api' ? 'study-openai-api' : 'study-ai'}${path}`, headers: { ...headers, apikey: config.publishableKey } };
+}
 export async function localAIStatus(
   owner: Pick<AppState, 'userId' | 'namespace'>,
   signal?: AbortSignal,
 ): Promise<GPTConnectionStatus> {
   requireOwnerAI(owner);
-  if (!import.meta.env.DEV) {
-    const config = readServerConfig();
-    if (!config) throw Error('개인 공간의 서버 연결을 확인해 주세요.');
-    const response = await fetch(`${config.url}/functions/v1/study-ai/status`, {
-      signal,
-      headers: { apikey: config.publishableKey, ...(await ownerAuthHeaders(owner)) },
-    });
-    if (!response.ok) throw Error('ChatGPT 연결 상태를 확인하지 못했습니다. 원본은 보관했습니다.');
-    const body = await response.json();
-    if (body.configured !== false || body.local !== false || body.provider !== 'chatgpt')
-      throw Error('ChatGPT 연결 상태의 형식을 확인하지 못했습니다. 원본은 보관했습니다.');
-    return { ...body, connectionError: REMOTE_AI_APPROVAL_MESSAGE } as GPTConnectionStatus;
-  }
-  signal?.throwIfAborted();
-  const response = await fetch('/api/study-ai/status', { headers: await ownerAuthHeaders(owner), signal });
-  if (!response.ok) throw Error('AI 연결 상태를 확인하지 못했습니다.');
-  return response.json();
+  const config = readServerConfig();
+  if (!config) throw Error('개인 공간의 서버 연결을 확인해 주세요.');
+  const response = await fetch(`${config.url}/functions/v1/study-openai-api/status`, {
+    signal, headers: { apikey: config.publishableKey, ...(await ownerAuthHeaders(owner)) },
+  });
+  if (!response.ok) throw Error('API 설정을 확인하지 못했습니다. 원본은 보관했습니다.');
+  const body = await response.json();
+  const bill = body.billing;
+  if (typeof body.configured !== 'boolean' || body.local !== false || body.provider !== 'openai-api'
+    || body.model !== 'gpt-6-luna' || !Array.isArray(body.models)
+    || body.models.some((m: { slug?: unknown; displayName?: unknown }) => !m || typeof m.slug !== 'string' || typeof m.displayName !== 'string')
+    || !bill || typeof bill.configured !== 'boolean' || typeof bill.enabled !== 'boolean'
+    || !['limitMicro','usedMicro','pendingMicro'].every(key => Number.isSafeInteger(bill[key]) && bill[key] >= 0)
+    || bill.limitMicro < 100_000 || bill.limitMicro > 10_000_000 || typeof bill.month !== 'string'
+    || body.configured !== (bill.configured && bill.enabled)
+    || typeof body.connectionError !== 'string') throw Error('API 설정의 형식을 확인하지 못했습니다. 원본은 보관했습니다.');
+  return { configured: body.configured, local: false, provider: 'openai-api', model: body.model,
+    models: body.models.map((m: { slug: string; displayName: string }) => ({ slug: m.slug, displayName: m.displayName })),
+    session: { status: bill.configured ? 'connected' : 'disconnected', sharing: false },
+    creditsConfirmed: false, transcription: false, connecting: false, connectionError: body.connectionError,
+    billing: { configured: bill.configured, enabled: bill.enabled, limitMicro: bill.limitMicro,
+      usedMicro: bill.usedMicro, pendingMicro: bill.pendingMicro, month: bill.month } };
 }
+export async function configureOpenAIAPI(owner: Pick<AppState, 'userId' | 'namespace'>,
+  settings: { key?: string; limitMicro: number; enabled: boolean; confirmPaid: true; disconnect?: boolean }): Promise<void> {
+  requireOwnerAI(owner);
+  const config = readServerConfig();
+  if (!config) throw Error('개인 공간의 서버 연결을 확인해 주세요.');
+  const response = await fetch(`${config.url}/functions/v1/study-openai-api/settings`, {
+    method: 'POST', headers: { apikey: config.publishableKey, ...(await ownerAuthHeaders(owner)), 'Content-Type': 'application/json' },
+    body: JSON.stringify(settings),
+  });
+  const body = await response.json();
+  if (!response.ok || body.saved !== true) throw Error(body.message || 'API 설정을 저장하지 못했습니다. 입력한 키는 다시 입력해 주세요.');
+}
+
 export async function connectLocalAI(owner: Pick<AppState, 'userId' | 'namespace'>) {
   requireOwnerAI(owner);
   if (!import.meta.env.DEV) throw Error('원격 ChatGPT 연결의 서비스 접근 승인이 필요합니다. 원본은 보관했습니다.');
@@ -154,25 +181,20 @@ export async function generateStudyMaterial(
 ): Promise<MaterialResult> {
   requireOwnerAI(owner);
   const request = activeStudyAIRequest(content.aiRequest);
-  const cachedAudio = content.audio ? [...content.results].reverse().find(r => r.source?.audio?.sha256 === content.audio?.sha256)?.segments.filter(s => s.start !== null && !s.label) ?? [] : [];
   validateStudyAIRequest(request);
-  const plan = planMaterialRanges(content, request);
+  const plan = planMaterialRanges({ ...content, audio: null }, request);
   const divided = plan.batches.length > 1;
-  if (divided && content.audio && !cachedAudio.length) throw Error('긴 자료와 음성은 먼저 받아쓰기 내용을 확인한 뒤 필기로 추가해 범위별로 생성해 주세요. 원본은 유지했습니다.');
   const index = content.generationProgress?.sourceIdentity === plan.sourceIdentity ? content.generationProgress.index : 0;
   if (divided && !plan.batches[index]) throw Error('현재 원문에서 사용할 처리 범위를 다시 선택해 주세요.');
-  const segments = divided ? plan.batches[index] : [...documentSegments(content.documents), ...structuredClone(cachedAudio)];
+  const segments = divided ? plan.batches[index] : documentSegments(content.documents);
   const extra = ['problem','attempt','reference','focus'].reduce((n, key) => n + (request[key as 'problem'|'attempt'|'reference'|'focus']?.length ?? 0), 0);
   if ((divided ? 0 : content.sourceText.length) + segments.reduce((n, b) => n + b.text.length, 0) + extra > 150_000) throw Error('선택한 원문과 추가 질문의 범위를 나누어 주세요. 원본은 유지했습니다.');
   const connection = await localAIStatus(owner);
-  if (!connection.local) throw Error(connection.connectionError || 'ChatGPT 연결을 확인하지 못했습니다. 원본은 보관했습니다.');
   if (!connection.configured)
-    throw Error('GPT 연결에서 ChatGPT로 로그인해 주세요. 원본은 보관했습니다.');
-  if (!connection.creditsConfirmed)
+    throw Error(connection.connectionError || 'GPT 연결에서 API 키를 등록해 주세요. 원본은 보관했습니다.');
+  if (connection.provider === 'chatgpt' && !connection.creditsConfirmed && !connection.temporaryCreditsAllowed)
     throw Error('GPT 연결에서 추가 크레딧 사용 허용이 꺼져 있음을 확인해 주세요.');
   if (!connection.model) throw Error('GPT 연결에서 사용할 모델을 불러와 주세요.');
-  if (content.audio && !cachedAudio.length && !connection.transcription)
-    throw Error('이 Mac의 받아쓰기 도구를 연결해 주세요. 원본 음성은 보관했습니다.');
   const form = new FormData();
   form.set('userId', owner.userId);
   form.set('namespace', owner.namespace);
@@ -185,13 +207,7 @@ export async function generateStudyMaterial(
   form.set('cardCount', String(cardCount));
   if (content.aiRequest) form.set('requestJSON', JSON.stringify(request));
   if (segments.length) form.set('segmentsJSON', JSON.stringify(segments));
-  if (content.audio && !cachedAudio.length) {
-    const blob = await readAudio(owner, content.audio);
-    if (!blob) throw Error('이 기기에 원본 음성이 없습니다. 같은 파일을 다시 가져와 주세요.');
-    form.set('audio', blob, content.audio.name);
-  }
-  const headers = await ownerAuthHeaders(owner);
-  const url = '/api/study-ai';
+  const { headers, url } = await studyAIRequestTarget(owner, connection, '');
   const response = await fetch(url, {
     method: 'POST',
     headers,
@@ -209,7 +225,7 @@ export async function generateStudyMaterial(
   if (!response.ok)
     throw Error(body.message || 'AI가 자료를 처리하지 못했습니다. 원본은 보존했습니다.');
   validateMaterialResult(body.result);
-  return { ...body.result, source: { text: content.sourceText, audio: content.audio, ...(content.documents ? { documents: selectedMaterialDocuments(content.documents) } : {}) } };
+  return { ...body.result, source: { text: content.sourceText, audio: null, ...(content.documents ? { documents: selectedMaterialDocuments(content.documents) } : {}) } };
 }
 export async function fetchYouTubeSubtitles(owner: Pick<AppState, 'userId' | 'namespace'>, url: string, signal: AbortSignal): Promise<{ title: string; text: string }> {
   if (!import.meta.env.DEV) throw Error('영상 자막을 자동으로 가져올 연결이 없습니다. SRT·VTT 파일이나 영상의 자막을 붙여 넣어 보관할 수 있습니다.');

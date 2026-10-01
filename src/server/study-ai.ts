@@ -3,7 +3,6 @@ import { requireOwnerAI } from '../domain/ai-access.ts';
 import { validateStudyAIRequest, type StudyAIRequest } from '../domain/study-ai-request.ts';
 import { DomainError } from '../domain/model.ts';
 import {
-  MAX_AUDIO_BYTES,
   MAX_SOURCE_TEXT,
   validateMaterialResult,
   type MaterialResult,
@@ -37,9 +36,9 @@ export function aiResponse(body: unknown, status = 200) {
   });
 }
 async function boundedBody(request: Request) {
-  const limit = MAX_AUDIO_BYTES + MAX_SOURCE_TEXT * 12 + 200_000;
+  const limit = MAX_SOURCE_TEXT * 12 + 200_000;
   if (Number(request.headers.get('content-length')) > limit)
-    throw new DomainError('TOO_LARGE', '음성은 50MB 이하로 넣어 주세요.');
+    throw new DomainError('TOO_LARGE', '선택한 전사문과 질문의 범위를 나누어 주세요.');
   const reader = request.body?.getReader();
   if (!reader) throw new DomainError('INVALID_REQUEST', '분석할 자료를 넣어 주세요.');
   const chunks: Uint8Array[] = [];
@@ -50,7 +49,7 @@ async function boundedBody(request: Request) {
     size += value.length;
     if (size > limit) {
       await reader.cancel();
-      throw new DomainError('TOO_LARGE', '음성은 50MB 이하로 넣어 주세요.');
+      throw new DomainError('TOO_LARGE', '선택한 전사문과 질문의 범위를 나누어 주세요.');
     }
     chunks.push(value);
   }
@@ -82,10 +81,11 @@ export async function handleStudyAI(request: Request, backend: AIBackend): Promi
       !['personal', 'test', 'demo'].includes(namespace)
     )
       throw new DomainError('OWNERSHIP', '이 공간의 자료만 분석할 수 있습니다.');
+    if (form.has('audio')) throw new DomainError('AUDIO_NOT_SUPPORTED', '클로바노트 전사문을 붙여 넣거나 전사문 파일을 가져와 주세요.');
     const text = form.has('textJSON')
         ? JSON.parse(String(form.get('textJSON')))
         : (form.get('text') ?? ''),
-      audio = form.get('audio'),
+      audio = null,
       cardCount = Number(form.get('cardCount') ?? 10);
     if (
       typeof text !== 'string' ||
@@ -95,16 +95,8 @@ export async function handleStudyAI(request: Request, backend: AIBackend): Promi
       cardCount > 30
     )
       throw new DomainError('INVALID_REQUEST', '강의 내용과 카드 개수를 확인해 주세요.');
-    if (
-      audio !== null &&
-      (!(audio instanceof Blob) ||
-        !audio.size ||
-        audio.size > MAX_AUDIO_BYTES ||
-        !/^audio\/(mpeg|mp4|wav|webm|ogg|aac|flac)$/.test(audio.type))
-    )
-      throw new DomainError('INVALID_AUDIO', '지원되는 50MB 이하 음성 파일을 넣어 주세요.');
     if (!audio && !text.trim() && !form.has('segmentsJSON'))
-      throw new DomainError('INVALID_REQUEST', '녹음 파일이나 강의 내용을 넣어 주세요.');
+      throw new DomainError('INVALID_REQUEST', '전사문이나 강의 내용을 넣어 주세요.');
     const aiRequest = form.has('requestJSON')
       ? JSON.parse(String(form.get('requestJSON')))
       : undefined;
@@ -127,7 +119,7 @@ export async function handleStudyAI(request: Request, backend: AIBackend): Promi
     const result = await backend.generate({
       text,
       audio: audio as Blob | null,
-      audioName: audio instanceof File ? audio.name : 'lecture',
+      audioName: '',
       cardCount,
       ...(aiRequest ? { request: aiRequest } : {}),
       ...(sourceSegments ? { sourceSegments } : {}),

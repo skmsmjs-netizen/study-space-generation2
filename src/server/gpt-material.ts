@@ -96,6 +96,7 @@ export async function generateGPTMaterial(
     at: new Date().toISOString(),
     model: options.model,
     contractVersion: MATERIAL_CONTRACT_VERSION,
+    status: parsed.diagnostics?.length ? ((Array.isArray(parsed.summary) && parsed.summary.length || parsed.cards.length || Array.isArray(parsed.quiz) && parsed.quiz.length || parsed.map) ? 'partial' as const : parsed.diagnostics[0].kind) : 'complete' as const,
     ...(input.range ? { range: structuredClone(input.range) } : {}),
     ...(parsed.diagnostics !== undefined ? { diagnostics: parsed.diagnostics } : {}),
     ...(input.request ? { request: structuredClone(input.request) } : {}),

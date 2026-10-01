@@ -33,6 +33,7 @@ export interface StudyCard {
   originalAnswer?: string;
 }
 export interface MaterialResult {
+  status?: 'complete' | 'needs-input' | 'insufficient-evidence' | 'partial';
   contractVersion?: string;
   diagnostics?: MaterialDiagnostic[];
   range?: MaterialRange;
@@ -147,6 +148,7 @@ export function validateMaterialResult(value: unknown): asserts value is Materia
   if (result.range !== undefined && (!Number.isSafeInteger(result.range.index) || !Number.isSafeInteger(result.range.count) || result.range.index < 0 || result.range.count < 1 || result.range.index >= result.range.count || !text(result.range.sourceIdentity, 160) || !result.range.sourceIdentity || !Number.isSafeInteger(result.range.totalSegments) || result.range.totalSegments < 0 || !Array.isArray(result.range.sourceIds) || !result.range.sourceIds.length || result.range.sourceIds.length > 6000 || result.range.sourceIds.some(id => !ids.has(id)))) invalid('처리 범위와 원문 위치를 확인해 주세요.');
   if (result.range?.overlapIds !== undefined && (!Array.isArray(result.range.overlapIds) || result.range.overlapIds.some(id => !result.range!.sourceIds.includes(id)))) invalid('겹치는 원문 구간을 확인해 주세요.');
   if (result.contractVersion !== undefined && result.contractVersion !== MATERIAL_CONTRACT_VERSION) invalid('결과 계약 버전을 확인해 주세요.');
+  if (result.status !== undefined && !['complete','needs-input','insufficient-evidence','partial'].includes(result.status)) invalid('생성 처리 상태를 확인해 주세요.');
   const cards = new Set<string>();
   for (const card of result.cards) {
     if (
@@ -190,7 +192,7 @@ export function validateMaterialContent(value: unknown): asserts value is Materi
   }
   if (row?.learningView !== undefined) {
     const v = row.learningView;
-    if (!v || !['summary','transcript','cards','quiz','map'].includes(v.tab) || !Array.isArray(v.revealed) || !Array.isArray(v.helped) || v.revealed.length > 3000 || v.helped.length > 30 || [...v.revealed, ...v.helped].some(id => !text(id, 520)) || (v.resultId !== undefined && !text(v.resultId, 256)) || (v.cardId !== undefined && !text(v.cardId, 256)) || (v.activeDisclosure !== undefined && !['hidden','revealed'].includes(v.activeDisclosure))) invalid('학습 화면의 위치와 공개 이력을 확인해 주세요.');
+    if (!v || !['summary','transcript','cards','quiz','map'].includes(v.tab) || !Array.isArray(v.revealed) || !Array.isArray(v.helped) || v.revealed.length > 3000 || v.helped.length > 30 || [...v.revealed, ...v.helped].some(id => !text(id, 520)) || (v.resultId !== undefined && !text(v.resultId, 256)) || (v.cardId !== undefined && !text(v.cardId, 256)) || (v.quizAttemptId !== undefined && !text(v.quizAttemptId, 256)) || (v.activeDisclosure !== undefined && !['hidden','revealed'].includes(v.activeDisclosure))) invalid('학습 화면의 위치와 공개 이력을 확인해 주세요.');
   }
   // Draft requests may be incomplete; required problem/attempt/criteria are checked at generation.
   if (row?.aiRequest !== undefined) validateStudyAIRequest(row.aiRequest, false);

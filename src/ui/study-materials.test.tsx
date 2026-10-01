@@ -1,3 +1,4 @@
+import * as materialFiles from '../data/material-files';
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import { configure, fireEvent, render, screen, waitFor } from '@testing-library/react';
 configure({ asyncUtilTimeout: 10_000 });
@@ -12,7 +13,6 @@ import { applyCommand } from '../domain/commands';
 import { AI_OWNER_USER_ID } from '../domain/ai-access';
 import type { StudyRepository } from '../data/repository';
 import { generateStudyMaterial } from '../data/study-ai';
-import * as materialFiles from '../data/material-files';
 vi.mock('../data/study-ai', () => ({
   localAIStatus: vi.fn(async () => ({ configured: false, model: 'test-model', local: true })),
   connectLocalAI: vi.fn(),
@@ -25,7 +25,7 @@ vi.mock('../data/study-ai', () => ({
 let repo: DemoRepository;
 beforeEach(() => {
   localStorage.clear();
-  vi.mocked(generateStudyMaterial).mockClear();
+  vi.mocked(generateStudyMaterial).mockReset().mockRejectedValue(Error('AI 연결이 필요합니다. 원본은 보존했습니다.'));
   vi.stubGlobal('indexedDB', new IDBFactory());
   vi.stubGlobal('IDBKeyRange', IDBKeyRange);
   Element.prototype.scrollIntoView = vi.fn();
@@ -172,11 +172,9 @@ it('hides answers until asked, follows source evidence, preserves edits and rest
   expect(screen.getByRole('textbox', { name: 's1 원문' })).toHaveValue('전압은 전위차다.');
   await user.click(screen.getByRole('button', { name: '플래시카드 1' }));
   await user.click(screen.getByRole('button', { name: '카드 수정' }));
-  await user.clear(screen.getByRole('textbox', { name: '카드 답' }));
-  await user.type(
-    screen.getByRole('textbox', { name: '카드 답' }),
-    '기준점 사이의 전위차. 조건을 확인한다.',
-  );
+  fireEvent.change(screen.getByRole('textbox', { name: '카드 답' }), {
+    target: { value: '기준점 사이의 전위차. 조건을 확인한다.' },
+  });
   await user.click(screen.getByRole('button', { name: '편집 마치기' }));
   await user.click(screen.getByRole('button', { name: '이 카드 제외' }));
   await user.click(screen.getByRole('button', { name: '자료 저장' }));
@@ -287,70 +285,20 @@ it('stores a successful generated result with its source, then saves without cre
     '두 지점 사이의 전위차다.',
   );
 });
-it('starts recording in chunks, stops microphone tracks, keeps original audio before automatic generation', async () => {
-  const user = userEvent.setup(),
-    personal = ownerFixture(),
-    stopTrack = vi.fn();
-  vi.stubGlobal('navigator', {
-    mediaDevices: { getUserMedia: vi.fn(async () => ({ getTracks: () => [{ stop: stopTrack }] })) },
-  });
-  const keep = vi.spyOn(materialFiles, 'keepAudio').mockResolvedValue({
-    key: 'synthetic-audio',
-    name: '합성 녹음.webm',
-    type: 'audio/webm',
-    size: 30,
-    sha256: 'a'.repeat(64),
-  });
-  const chunks = vi.spyOn(materialFiles, 'keepRecordingChunk').mockResolvedValue('synthetic-chunk');
-  vi.spyOn(materialFiles, 'readAudio').mockResolvedValue(null);
-  let timeslice = 0;
-  class MockRecorder {
-    static isTypeSupported() {
-      return true;
-    }
-    state = 'inactive';
-    mimeType = 'audio/webm';
-    ondataavailable?: (event: { data: Blob }) => void;
-    onstop?: () => Promise<void>;
-    onerror?: () => void;
-    start(interval: number) {
-      timeslice = interval;
-      this.state = 'recording';
-    }
-    stop() {
-      this.state = 'inactive';
-      this.ondataavailable?.({ data: new Blob(['synthetic audio'], { type: 'audio/webm' }) });
-      void this.onstop?.();
-    }
-  }
-  vi.stubGlobal('MediaRecorder', MockRecorder);
+it('uses pasted ClovaNote transcript only after an explicit generation request and preserves its draft', async () => {
+  const user = userEvent.setup(), personal = ownerFixture();
+  const original = '참석자 1 00:12\n전압은 전류와 저항의 곱이다.\n단, 저항이 일정한 조건이다.  ';
   vi.mocked(generateStudyMaterial).mockResolvedValueOnce(content.results[0]);
-  render(
-    <StudyMaterials
-      data={personal.getSnapshot()}
-      repository={personal}
-      onSaved={() => undefined}
-      materialId="new"
-    />,
-  );
-  await waitFor(() => expect(screen.getByRole('button', { name: '녹음 시작' })).toBeEnabled());
-  await user.click(screen.getByRole('button', { name: '녹음 시작' }));
-  await screen.findByText('녹음 중 · 5초마다 이 기기에 보관합니다.');
-  await user.click(screen.getByRole('button', { name: '녹음 마치기' }));
+  render(<StudyMaterials data={personal.getSnapshot()} repository={personal} onSaved={() => undefined} materialId="new" />);
+  await waitFor(() => expect(screen.getByRole('textbox', { name: '강의 내용·필기' })).toBeEnabled());
+  expect(screen.queryByRole('button', { name: '녹음 시작' })).not.toBeInTheDocument();
+  expect(screen.queryByRole('button', { name: '녹음 파일 가져오기' })).not.toBeInTheDocument();
+  fireEvent.change(screen.getByRole('textbox', { name: '강의 내용·필기' }), { target: { value: original } });
+  await waitFor(async () => expect((await readMaterialDraft(personal.getSnapshot(), 'new'))?.content.sourceText).toBe(original));
+  expect(generateStudyMaterial).not.toHaveBeenCalled();
+  await user.click(screen.getByRole('button', { name: '요약과 카드 만들기' }));
   await screen.findByText('전압의 뜻');
-  expect(timeslice).toBe(5000);
-  expect(chunks).toHaveBeenCalledTimes(1);
-  expect(stopTrack).toHaveBeenCalled();
-  expect(keep).toHaveBeenCalledTimes(1);
-  expect(generateStudyMaterial).toHaveBeenLastCalledWith(
-    expect.objectContaining({ userId: AI_OWNER_USER_ID }),
-    expect.objectContaining({ audio: expect.objectContaining({ sha256: 'a'.repeat(64) }) }),
-    10,
-    expect.any(AbortSignal),
-  );
-  expect((await readMaterialDraft(personal.getSnapshot(), 'new'))?.content.audio?.sha256).toBe(
-    'a'.repeat(64),
-  );
+  expect(generateStudyMaterial).toHaveBeenLastCalledWith(expect.objectContaining({ userId: AI_OWNER_USER_ID }), expect.objectContaining({ sourceText: original, audio: null }), 10, expect.any(AbortSignal));
 });
 it('retains unsaved source after provider failure and reopens it without creating records', async () => {
   const user = userEvent.setup();
@@ -497,5 +445,29 @@ it('retains a received result in memory after draft failure and retries only sto
   expect(screen.getByRole('button', { name: '플래시카드 1' })).toHaveAttribute('aria-pressed', 'true');
   expect(generateStudyMaterial).toHaveBeenCalledTimes(1);
   expect(personal.getSnapshot().records).toHaveLength(0);
+  view.unmount();
+});
+
+it('hides source and tutor answers on entering a quiz and preserves explicit source access as help', async () => {
+  const next = structuredClone(content);
+  next.sourceText = '원문에 있는 합성 퀴즈의 기준 답';
+  next.results[0].cards = [];
+  next.results[0].quiz = [{ id: 'q1', question: '합성 문제', options: ['보기 하나', '보기 둘'], correctIndex: 0, explanation: '제출 후의 기준 해설', sourceIds: ['s1'] }];
+  const state = repo.getSnapshot();
+  repo.execute({ type: 'saveStudyMaterial', id: 'quiz-help', content: next, expectedVersion: 0, userId: state.userId, namespace: state.namespace, opId: 'quiz-help-save', at: new Date().toISOString() });
+  const view = render(<StudyMaterials data={repo.getSnapshot()} repository={repo} onSaved={() => undefined} materialId="quiz-help"/>);
+  await waitFor(() => expect(screen.getByRole('button', { name: '자료 저장' })).toBeEnabled());
+  fireEvent.click(screen.getByRole('button', { name: '퀴즈 1' }));
+  await waitFor(() => expect(screen.getByRole('textbox', { name: '강의 내용·필기' })).not.toBeVisible());
+  fireEvent.click(screen.getByRole('button', { name: '새 퀴즈 시작' }));
+  expect(screen.queryByText('제출 후의 기준 해설')).not.toBeInTheDocument();
+  const source = screen.getByText('원문·자료 열기 · 퀴즈 도움으로 보관').closest('details')!;
+  source.open = true;
+  fireEvent(source, new Event('toggle'));
+  await waitFor(() => expect(screen.getByRole('textbox', { name: '강의 내용·필기' })).toBeVisible());
+  await waitFor(async () => expect((await readMaterialDraft(repo.getSnapshot(), 'quiz-help'))?.content.quizAttempts?.[0].helpedQuestionIds).toEqual(['q1']));
+  fireEvent.click(screen.getByRole('button', { name: '답 제출 · 해설 확인' }));
+  expect(screen.getByText('응답하지 않은 문항입니다.')).toBeVisible();
+  expect(repo.getSnapshot().records).toHaveLength(0);
   view.unmount();
 });

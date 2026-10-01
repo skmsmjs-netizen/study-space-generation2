@@ -103,6 +103,7 @@ export type StudyAITask = keyof typeof STUDY_AI_TASKS | 'source-qa';
 export interface StudyAIRequest {
   task: StudyAITask;
   support?: 'full' | 'key' | 'check';
+  externalization?: 'auto' | 'full' | 'off';
   problem?: string;
   attempt?: string;
   reference?: string;
@@ -137,6 +138,7 @@ export function validateStudyAIRequest(
   )
     throw new DomainError('INVALID_AI_REQUEST', '이전 질문의 범위를 나누어 주세요.');
   if (row.support !== undefined && !['full','key','check'].includes(row.support)) throw new DomainError('INVALID_AI_REQUEST', '설명 도움 수준을 확인해 주세요.');
+  if (row.externalization !== undefined && !['auto','full','off'].includes(row.externalization)) throw new DomainError('INVALID_AI_REQUEST', '사고 보조 장치 선택을 확인해 주세요.');
   if (!complete) return;
   if (['tutor', 'source-qa'].includes(row.task) && !row.focus?.trim())
     throw new DomainError('INVALID_AI_REQUEST', '자료에 물어볼 질문을 넣어 주세요.');
@@ -155,6 +157,7 @@ export function activeStudyAIRequest(request?: StudyAIRequest): StudyAIRequest {
   return {
     task: row.task === 'source-qa' ? 'tutor' : row.task,
     ...(row.support ? { support: row.support } : {}),
+    ...(row.externalization ? { externalization: row.externalization } : {}),
     ...(row.focus !== undefined && row.task !== 'summary' ? { focus: row.focus } : {}),
     ...(problemTask && row.problem !== undefined ? { problem: row.problem } : {}),
     ...(problemTask && row.attempt !== undefined ? { attempt: row.attempt } : {}),
