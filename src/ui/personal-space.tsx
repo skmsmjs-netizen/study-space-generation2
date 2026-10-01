@@ -2,7 +2,9 @@ import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import type { SupabaseClient } from '@supabase/supabase-js';
 import { Button, Card, Checkbox, ErrorState, Input, LoadingState, Modal } from './index';
 import { createStudyClient, onlineTransport, readServerConfig, signInStudyClient } from '../data/supabase-client';
-import { PersonalRepository, readCachedPersonalSnapshot } from '../data/personal-repository';
+import type { PersonalRepository } from '../data/personal-repository';
+import { openPersonalRepository } from '../data/indexed-personal-journal';
+import { claimPersonalWindow, personalWindowCopies } from '../data/personal-window';
 import { startPersonalSync } from '../data/personal-sync';
 import type { SaveStatus } from '../data/repository';
 import { accountAccessClient } from '../data/account-access';
@@ -13,6 +15,10 @@ import { validateAccountName } from '../server/account-access';
 import { AccountAdministration } from './account-administration';
 import { stopLocalSchedulePush } from '../data/schedule-notifications';
 import './personal-space.css';
+function exportWindowRecords(repository: PersonalRepository) {
+  return JSON.stringify({ ...JSON.parse(repository.exportPreserved()),
+    windowRecovery: personalWindowCopies(repository.getSnapshot().userId, repository.key) }, null, 2);
+}
 const errorText = (error: unknown) => error instanceof Error ? error.message : '개인 공간을 열지 못했습니다.';
 export function PersonalSpace({ renderWorkspace }: { renderWorkspace: (repo: PersonalRepository, controls: ReactNode) => ReactNode }) {
   const [configured] = useState(readServerConfig);
@@ -21,7 +27,7 @@ export function PersonalSpace({ renderWorkspace }: { renderWorkspace: (repo: Per
   const [access, setAccess] = useState<AccountAccess | null>(null);
   const [userId, setUserId] = useState<string | null>(null), [authReady, setAuthReady] = useState(false);
   const [repo, setRepo] = useState<PersonalRepository | null>(null), [error, setError] = useState('');
-  const [retry, setRetry] = useState(0), [opening, setOpening] = useState(false), [otherWriter, setOtherWriter] = useState(false);
+  const [retry, setRetry] = useState(0), [opening, setOpening] = useState(false);
   const [withdrawn, setWithdrawn] = useState<string | null>(null), [withdrawalNotice, setWithdrawalNotice] = useState('');
   const writerTask = useRef<Promise<void>>(Promise.resolve());
   useEffect(() => {
@@ -35,55 +41,35 @@ export function PersonalSpace({ renderWorkspace }: { renderWorkspace: (repo: Per
     return () => { alive = false; data.subscription.unsubscribe(); };
   }, [client]);
   useEffect(() => {
-    setRepo(null); setAccess(null); setError(''); setOtherWriter(false);
-    if (!client || !userId || withdrawn) { setOpening(false); return; }
+    setRepo(null); setAccess(null); setError('');
+    if (!client || !accessApi || !userId || withdrawn) { setOpening(false); return; }
     let disposed = false;
     let finish: () => void = () => {};
     const closed = new Promise<void>(resolve => { finish = resolve; });
     setOpening(true);
-    if (!navigator.locks) { setError('동시 작성을 보호할 수 있는 최신 브라우저에서 열어 주세요.'); setOpening(false); return; }
-    // Await our previous request's completion, which includes the browser releasing its lock.
     const previous = writerTask.current;
     const task = (async () => {
       await previous.catch(() => {});
       if (disposed) return;
-      // An email confirmation can sign in the original hidden signup tab as well.
-      // Do not let that unopened background space claim the writer before the visible tab.
-      if (document.visibilityState === 'hidden') {
-        let removeListener: () => void = () => {};
-        const visible = new Promise<void>(resolve => {
-          const changed = () => { if (document.visibilityState !== 'hidden') resolve(); };
-          document.addEventListener('visibilitychange', changed);
-          removeListener = () => document.removeEventListener('visibilitychange', changed);
-          changed();
-        });
-        try { await Promise.race([visible, closed]); } finally { removeListener(); }
-      }
-      if (disposed) return;
-      const permission = await accessApi!.read();
+      const permission = await accessApi.read();
       if (disposed) return;
       setAccess(permission);
       if (permission.status !== 'approved') { setOpening(false); return; }
-      await navigator.locks.request(`study-space:personal:${userId}:writer`, { ifAvailable: true }, async lock => {
+      const windowJournal = await claimPersonalWindow(userId);
+      let opened: PersonalRepository | undefined;
+      try {
         if (disposed) return;
-        if (!lock) { setOtherWriter(true); setError('다른 창에서 내 공부 공간을 사용 중입니다. 그 창의 입력을 마친 뒤 다시 열어 주세요.'); setOpening(false); return; }
-        let opened: PersonalRepository | undefined;
-        try {
-          const transport = onlineTransport(client);
-          const cached = readCachedPersonalSnapshot(localStorage, userId);
-          const server = cached ?? await Promise.race([transport.load(), closed.then(() => null)]);
-          if (disposed || !server) return;
-          if (server.data.userId !== userId || server.data.namespace !== 'personal') throw Error('로그인한 사용자의 자료가 아닙니다.');
-          const repository = new PersonalRepository(localStorage, transport, server, Boolean(cached));
-          opened = repository;
-          setRepo(repository); setOpening(false); void repository.flush();
-        } catch (error) {
-          if (!disposed) { setError(errorText(error)); setOpening(false); }
-          return; // An error screen is not a writer; release before retrying.
-        }
+        const transport = onlineTransport(client);
+        const server = windowJournal.cached ?? await Promise.race([transport.load(), closed.then(() => null)]);
+        if (disposed || !server) return;
+        if (server.data.userId !== userId || server.data.namespace !== 'personal') throw Error('로그인한 사용자의 자료가 아닙니다.');
+        opened = await openPersonalRepository(localStorage, transport, server, undefined, Boolean(windowJournal.cached), windowJournal.key);
+        if (disposed) return;
+        setRepo(opened); setOpening(false); void opened.flush();
         await closed;
-        await opened?.close();
-      });
+      } finally {
+        try { await opened?.close(); } finally { await windowJournal.release(); }
+      }
     })();
     writerTask.current = task;
     void task.catch(error => { if (!disposed) { setError(errorText(error)); setOpening(false); } });
@@ -93,7 +79,10 @@ export function PersonalSpace({ renderWorkspace }: { renderWorkspace: (repo: Per
   async function cleanupWithdrawal(id: string) {
     await writerTask.current.catch(() => {});
     try {
-      if (navigator.locks) await navigator.locks.request(`study-space:personal:${id}:writer`, {ifAvailable:true}, async lock=>{if(!lock)throw Error('다른 창에서 사용 중입니다.');await clearWithdrawnAccount(id);});
+      if (navigator.locks) await navigator.locks.request(`study-space:personal:${id}:sessions`, {ifAvailable:true}, async sessionLock=>{
+        if(!sessionLock)throw Error('다른 창에서 사용 중입니다.');
+        await navigator.locks.request(`study-space:personal:${id}:writer`, {ifAvailable:true}, async lock=>{if(!lock)throw Error('다른 창에서 사용 중입니다.');await clearWithdrawnAccount(id);});
+      });
       else await clearWithdrawnAccount(id);
       setWithdrawalNotice('탈퇴했습니다. 계정과 서버 기록, 이 브라우저의 개인 자료를 삭제했습니다.'); }
     catch { setWithdrawalNotice('탈퇴했고 서버 기록은 삭제했습니다. 이 브라우저의 개인 자료 정리는 끝나지 않았습니다. 다른 학습앱 창을 닫은 뒤 다시 시도해 주세요.'); }
@@ -106,7 +95,7 @@ export function PersonalSpace({ renderWorkspace }: { renderWorkspace: (repo: Per
   }
   function downloadRecords() {
     if (!repo) return;
-    const url=URL.createObjectURL(new Blob([repo.exportPreserved()],{type:'application/json'}));
+    const url=URL.createObjectURL(new Blob([exportWindowRecords(repo)],{type:'application/json'}));
     const anchor=document.createElement('a');anchor.href=url;anchor.download='study-preserved-records.json';anchor.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
   }
   const settings=accessApi&&access?<AccountSettings api={accessApi} access={access} onSaved={setAccess} onWithdrawn={onWithdrawn} onDownload={repo?downloadRecords:undefined}/>:null;
@@ -116,7 +105,7 @@ export function PersonalSpace({ renderWorkspace }: { renderWorkspace: (repo: Per
       : !authReady || opening ? <LoadingState message="내 기록을 불러오는 중…" />
       : !userId && client ? <SignIn client={client} onSignedIn={setClient} />
       : access && access.status !== 'approved' ? <section><h2>{access.status === 'pending' ? '가입 승인 대기' : access.status === 'rejected' ? '가입이 승인되지 않았습니다' : '이용이 중지되었습니다'}</h2><p>{accessMessages[access.status]}</p><div className="actions"><Button onClick={() => setRetry(value => value + 1)}>승인 상태 다시 확인</Button><Button onClick={() => { void client?.auth.signOut({ scope: 'local' }); }}>로그아웃</Button></div></section>
-      : <><ErrorState title="내 공부 공간을 열지 못했습니다" message={error || '서버에 연결하지 못했습니다. 기록은 지우지 않았습니다.'} onRetry={() => setRetry(value => value + 1)} />{otherWriter ? <p>가입 확인 메일에서 새 탭이 열렸다면, 처음 가입한 학습앱 탭으로 돌아가 주세요.</p> : <Button onClick={() => { void client?.auth.signOut({ scope: 'local' }); }}>다시 로그인</Button>}</>}
+      : <><ErrorState title="내 공부 공간을 열지 못했습니다" message={error || '서버에 연결하지 못했습니다. 기록은 지우지 않았습니다.'} onRetry={() => setRetry(value => value + 1)} /><Button onClick={() => { void client?.auth.signOut({ scope: 'local' }); }}>다시 로그인</Button></>}
     {userId && !withdrawn && settings}
     {error && !userId && <p role="alert">{error}</p>}
   </Card></main>;
@@ -155,7 +144,7 @@ export function ServerStatus({ repository, client }: { repository: PersonalRepos
   const [status, setStatus] = useState<SaveStatus>(repository.getStatus()), [open, setOpen] = useState(false), [error, setError] = useState('');
   useEffect(() => { setStatus(repository.getStatus()); return repository.subscribe(() => setStatus(repository.getStatus())); }, [repository]);
   const conflict = repository.getConflict();
-  function download() { try { const blob = new Blob([repository.exportPreserved()], { type: 'application/json' }); const url = URL.createObjectURL(blob); const anchor = document.createElement('a'); anchor.href = url; anchor.download = 'study-preserved-records.json'; anchor.click(); setTimeout(() => URL.revokeObjectURL(url), 1000); } catch { setError('보관본을 내려받지 못했습니다. 원문은 그대로 남아 있습니다. 다시 시도해 주세요.'); } }
+  function download() { try { const blob = new Blob([exportWindowRecords(repository)], { type: 'application/json' }); const url = URL.createObjectURL(blob); const anchor = document.createElement('a'); anchor.href = url; anchor.download = 'study-preserved-records.json'; anchor.click(); setTimeout(() => URL.revokeObjectURL(url), 1000); } catch { setError('보관본을 내려받지 못했습니다. 원문은 그대로 남아 있습니다. 다시 시도해 주세요.'); } }
   return <><Button variant="quiet" onClick={() => setOpen(true)}>{status.message}{status.pending ? ` (${status.pending}건)` : ''}</Button>
     <Modal open={open} title="내 기록의 저장 상태" onClose={() => setOpen(false)}><p role={status.phase === 'error' || status.phase === 'conflict' ? 'alert' : 'status'}>{status.message}</p>
       <p>기록·목차·서술·메모는 서버 저장과 연결됩니다. 다른 기기의 저장된 기록을 자동으로 확인하며, 화면으로 돌아오면 바로 확인합니다. 작성 중인 초안은 현재 기기에 보관됩니다.</p>

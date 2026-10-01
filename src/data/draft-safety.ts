@@ -1,8 +1,11 @@
 import { draftArchiveMetadataKey, type DraftArchiveMetadata } from './draft-archives';
+import { personalDraftWindow } from './personal-draft-window';
 
 /** Demo-only volatile rescue. It is not durable storage or an offline queue. */
 const pending = new Map<string, string>();
 const retainedReadErrors = new Map<string, string>();
+const lastWritten = new Map<string, string>();
+const windowCopyKey = (key: string, id: string) => `${key}:recovery:window-${id}`;
 if (typeof window !== 'undefined') window.addEventListener('beforeunload', event => {
   if (!pending.size) return;
   event.preventDefault();
@@ -10,16 +13,33 @@ if (typeof window !== 'undefined') window.addEventListener('beforeunload', event
 });
 export function readRescuedDraft(key: string): string | null {
   if (!pending.has(key)) retainedReadErrors.delete(key);
+  const id = personalDraftWindow(key);
+  if (!pending.has(key) && id) {
+    const own = localStorage.getItem(windowCopyKey(key, id));
+    if (own !== null) return own;
+    const author = localStorage.getItem(`${key}:window-author`);
+    if (author && author !== id) return ''; // Another live window's draft is a preserved copy, not this editor's input.
+  }
   return pending.get(key) ?? null;
 }
 export function draftHasUnstoredText(key: string): boolean { return pending.has(key); }
 export function storeDraftSafely(key: string, value: string): void {
   // Keep the exact value before a potentially throwing write. Route unmount cannot discard it.
   pending.set(key, value);
+  const id = personalDraftWindow(key);
+  if (id) {
+    const archiveKey = windowCopyKey(key, id);
+    localStorage.setItem(archiveKey, value);
+    if (localStorage.getItem(archiveKey) !== value) throw Error('이 창의 초안 보관을 확인하지 못했습니다. 입력은 현재 창에 남아 있습니다.');
+    const metadata: DraftArchiveMetadata = { version: 1, archiveKey, sourceKey: key, archivedAt: new Date().toISOString(), reason: '창별 작성 초안' };
+    localStorage.setItem(draftArchiveMetadataKey(archiveKey), JSON.stringify(metadata));
+  }
   localStorage.setItem(key, value);
+  if (id) localStorage.setItem(`${key}:window-author`, id);
+  lastWritten.set(key, value);
   pending.delete(key);
 }
-export function clearRescuedDraft(key: string): void { pending.delete(key); retainedReadErrors.delete(key); }
+export function clearRescuedDraft(key: string): void { pending.delete(key); retainedReadErrors.delete(key); lastWritten.delete(key); }
 export function rememberDraftReadError(key: string, error: string): void { retainedReadErrors.set(key, error); }
 export function draftReadError(key: string): string { return pending.has(key) ? retainedReadErrors.get(key) ?? '' : ''; }
 export function rescueWithoutOverwrite(key: string, value: string): void { pending.set(key, value); }
@@ -57,6 +77,21 @@ export function archiveDamagedDraft(key: string, reason = '읽을 수 없는 초
 
 /** Write an empty marker first so a failed removal cannot resurrect a committed draft. */
 export function clearStoredDraft(key: string): void {
+  const id = personalDraftWindow(key);
+  if (id) {
+    const author = localStorage.getItem(`${key}:window-author`);
+    const current = localStorage.getItem(key);
+    const own = localStorage.getItem(windowCopyKey(key, id));
+    localStorage.setItem(windowCopyKey(key, id), '');
+    try {
+      localStorage.removeItem(windowCopyKey(key, id));
+      localStorage.removeItem(draftArchiveMetadataKey(windowCopyKey(key, id)));
+    } catch { /* The empty marker prevents resurrecting a committed draft. */ }
+    // Saving our record never clears a different window's more recent draft.
+    if ((author && author !== id) || (author === id && current !== (lastWritten.get(key) ?? own))) {
+      clearRescuedDraft(key); return;
+    }
+  }
   let marked = false;
   try { localStorage.setItem(key, ''); marked = true; } catch { /* Removal can still succeed. */ }
   try { localStorage.removeItem(key); clearRescuedDraft(key); }

@@ -25,7 +25,7 @@ export function readRouteHash(hash = window.location.hash): string {
 function readContext(key = NAVIGATION_CONTEXT_KEY): NavigationContext {
   const fallback: NavigationContext = { version: 1, route: '/', positions: {} };
   try {
-    const value: unknown = JSON.parse(sessionStorage.getItem(key) || 'null');
+    const value: unknown = JSON.parse((sessionStorage.getItem(key) ?? (key.startsWith('study-space:personal:') ? localStorage.getItem(key) : null)) || 'null');
     if (!value || typeof value !== 'object') return fallback;
     const raw = value as Partial<NavigationContext>;
     if (raw.version !== 1 || !validRoute(raw.route) || !raw.positions || typeof raw.positions !== 'object') return fallback;
@@ -43,7 +43,7 @@ function readContext(key = NAVIGATION_CONTEXT_KEY): NavigationContext {
 }
 
 function writeContext(context: NavigationContext, key = NAVIGATION_CONTEXT_KEY) {
-  try { sessionStorage.setItem(key, JSON.stringify(context)); }
+  try { sessionStorage.setItem(key, JSON.stringify(context)); if (key.startsWith('study-space:personal:')) localStorage.setItem(key, JSON.stringify(context)); }
   catch { /* History and in-memory restoration stay usable when storage is unavailable. */ }
 }
 
@@ -184,6 +184,8 @@ export function useRoute(prefix = 'study-space:demo'): string {
     window.addEventListener('hashchange', update);
     window.addEventListener('popstate', update);
     window.addEventListener('pagehide', capture);
+    document.addEventListener('input', capture, true);
+    document.addEventListener('focusout', capture, true);
     document.addEventListener('click', click);
     document.addEventListener('pointerdown', pointer, true);
     document.addEventListener('pointercancel', cancelPointer, true);
@@ -193,6 +195,8 @@ export function useRoute(prefix = 'study-space:demo'): string {
       window.removeEventListener('hashchange', update);
       window.removeEventListener('popstate', update);
       window.removeEventListener('pagehide', capture);
+      document.removeEventListener('input', capture, true);
+      document.removeEventListener('focusout', capture, true);
       document.removeEventListener('click', click);
       document.removeEventListener('pointerdown', pointer, true);
       document.removeEventListener('pointercancel', cancelPointer, true);
@@ -257,7 +261,7 @@ function useEditingContext(storageKey = EDITING_CONTEXT_KEY) {
   useLayoutEffect(() => {
     let positions: Record<string, EditingPosition> = {};
     try {
-      const raw: unknown = JSON.parse(sessionStorage.getItem(storageKey) || '{}');
+      const raw: unknown = JSON.parse((sessionStorage.getItem(storageKey) ?? (storageKey.startsWith('study-space:personal:') ? localStorage.getItem(storageKey) : null)) || '{}');
       if (raw && typeof raw === 'object') for (const [key, value] of Object.entries(raw).slice(-200)) {
         if (!value || typeof value !== 'object') continue;
         const p = value as EditingPosition;
@@ -272,7 +276,7 @@ function useEditingContext(storageKey = EDITING_CONTEXT_KEY) {
       positions[key] = { start: element.selectionStart, end: element.selectionEnd, direction: element.selectionDirection || 'none', top: element.scrollTop, left: element.scrollLeft };
       const entries = Object.entries(positions);
       if (entries.length > 200) positions = Object.fromEntries(entries.slice(-200));
-      try { sessionStorage.setItem(storageKey, JSON.stringify(positions)); } catch { /* In-tab hints remain available. */ }
+      try { sessionStorage.setItem(storageKey, JSON.stringify(positions)); if (storageKey.startsWith('study-space:personal:')) localStorage.setItem(storageKey, JSON.stringify(positions)); } catch { /* In-tab hints remain available. */ }
     };
     const capture = (event: Event) => { const element = field(event.target); if (element) save(element); };
     const captureActive = () => { const element = field(document.activeElement); if (element) save(element); };

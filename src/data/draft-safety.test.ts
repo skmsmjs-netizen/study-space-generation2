@@ -57,3 +57,21 @@ it('keeps the source and archive if metadata verification fails after its write'
   expect(get.call(localStorage, archiveKey)).toBe('original');
   expect(get.call(localStorage, draftArchiveMetadataKey(archiveKey))).not.toBeNull();
 });
+
+it('keeps each personal window draft and saving one window leaves the other draft intact', async () => {
+  const { registerPersonalDraftWindow } = await import('./personal-draft-window');
+  const owner = '70000000-0000-4000-8000-000000000009';
+  const key = `study-space:personal:${owner}:draft:multiple`;
+  const a = registerPersonalDraftWindow(owner, 'a');
+  storeDraftSafely(key, '  첫 창의 원문\n이유  ');
+  const b = registerPersonalDraftWindow(owner, 'b');
+  expect(readRescuedDraft(key)).toBe('');
+  storeDraftSafely(key, '  둘째 창의 원문\n예외  ');
+  registerPersonalDraftWindow(owner, 'a');
+  expect(readRescuedDraft(key)).toBe('  첫 창의 원문\n이유  ');
+  clearStoredDraft(key);
+  expect(localStorage.getItem(key)).toBe('  둘째 창의 원문\n예외  ');
+  const finish = registerPersonalDraftWindow(owner, 'b');
+  expect(readRescuedDraft(key)).toBe('  둘째 창의 원문\n예외  ');
+  clearStoredDraft(key); finish(); a(); b();
+});

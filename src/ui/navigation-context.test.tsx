@@ -254,3 +254,21 @@ it('restores long text selection direction and internal scroll through route rep
   render(<EditorHarness />); editor = screen.getByRole('textbox') as HTMLTextAreaElement;
   expect([editor.selectionStart, editor.selectionEnd, editor.selectionDirection, editor.scrollTop]).toEqual([22, 58, 'backward', 340]);
 });
+
+it('a new personal tab resumes the last input route, while its own route and explicit links win', () => {
+  const prefix = 'study-space:personal:70000000-0000-4000-8000-000000000009';
+  const key = `${prefix}:navigation-context:v1`;
+  localStorage.setItem(key, JSON.stringify({version:1,route:'/record',positions:{}}));
+  sessionStorage.removeItem(key);
+  history.replaceState(null, '', '/');
+  function PersonalHarness() { return <main><h1>{useRoute(prefix)}</h1></main>; }
+  const fresh = render(<PersonalHarness />); expect(screen.getByRole('heading')).toHaveTextContent('/record');
+  fresh.unmount();
+  sessionStorage.setItem(key, JSON.stringify({version:1,route:'/memos',positions:{}}));
+  history.replaceState(null, '', '/');
+  const own = render(<PersonalHarness />); expect(screen.getByRole('heading')).toHaveTextContent('/memos');
+  own.unmount();
+  history.replaceState(null, '', '/#/subjects');
+  const link = render(<PersonalHarness />); expect(screen.getByRole('heading')).toHaveTextContent('/subjects'); link.unmount();
+  localStorage.removeItem(key);
+});

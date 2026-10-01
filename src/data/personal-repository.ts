@@ -8,11 +8,14 @@ import { MAX_SYNC_BATCH, MAX_SYNC_BATCH_CHARS } from '../domain/sync-protocol';
 import { recordRequestPerformance } from './request-performance';
 import type { ScheduleNotificationPort } from './schedule-notifications';
 export interface OnlineTransport { load(known?: ServerSnapshot): Promise<ServerSnapshot>; execute(command: Command, baseSequence: number): Promise<ServerSnapshot>; executeBatch?(commands: Command[], baseSequence: number): Promise<ServerSnapshot>; runCode?: CodeRemoteRunner; scheduleNotifications?: ScheduleNotificationPort }
+export interface JournalRecovery { key: string; raw: string; savedAt: string }
+export interface PersonalJournal extends Pick<Storage, 'getItem' | 'setItem'> { flush?(): Promise<void>; close?(): void; getRecoveryCopies?(): JournalRecovery[] }
+export const personalJournalKey = (data: Pick<AppState, 'namespace' | 'userId'>) => `study-space:${data.namespace}:${encodeURIComponent(data.userId)}:online:v1`;
 export interface PreservedConflict { base: ServerSnapshot; local: AppState; pending: Command[]; server: ServerSnapshot; savedAt: string }
 interface LocalEnvelope { format: 1; base: ServerSnapshot; local: AppState; pending: Command[]; conflict?: ServerSnapshot; archives: PreservedConflict[] }
 /** Read only this authenticated owner's cache; never treat it as a server acknowledgement. */
-export function readCachedPersonalSnapshot(storage: Pick<Storage, 'getItem'>, userId: string): ServerSnapshot | null {
-  const raw = storage.getItem(`study-space:personal:${encodeURIComponent(userId)}:online:v1`);
+export function readCachedPersonalSnapshot(storage: Pick<Storage, 'getItem'>, userId: string, key = `study-space:personal:${encodeURIComponent(userId)}:online:v1`): ServerSnapshot | null {
+  const raw = storage.getItem(key);
   if (raw === null) return null;
   try {
     const saved: LocalEnvelope = JSON.parse(decodeStoredText(raw));
@@ -41,11 +44,13 @@ export class PersonalRepository implements StudyRepository {
     }} );
   };
   getCodeRunner = () => this.transport.runCode;
-  constructor(private storage: Pick<Storage, 'getItem' | 'setItem'> & { flush?(): Promise<void> }, private transport: OnlineTransport, server: ServerSnapshot, cached = false) {
+  constructor(private storage: PersonalJournal, private transport: OnlineTransport, server: ServerSnapshot, cached = false, journalKey = personalJournalKey(server.data)) {
     this.needsRefresh = cached;
     validateState(server.data);
     if (!['personal', 'test'].includes(server.data.namespace)) throw new DomainError('WRONG_NAMESPACE', '개인 자료와 시연 자료를 구별해 주세요.');
-    this.key = `study-space:${server.data.namespace}:${encodeURIComponent(server.data.userId)}:online:v1`;
+    const ownerKey = personalJournalKey(server.data);
+    if (journalKey !== ownerKey && !journalKey.startsWith(`${ownerKey}:window:`)) throw new DomainError('OWNERSHIP', '이 공간의 저장 키가 아닙니다.');
+    this.key = journalKey;
     this.raw = storage.getItem(this.key);
     this.envelope = { format: 1, base: server, local: server.data, pending: [], archives: [] };
     if (this.raw !== null) {
@@ -58,7 +63,7 @@ export class PersonalRepository implements StudyRepository {
         if (JSON.stringify(replay) !== JSON.stringify(saved.local)) throw Error();
         if (saved.pending.length && server.sequence !== saved.base.sequence) {
           // Recover acknowledged operations after closing during a lost response.
-          this.envelope = this.recoverAcknowledged(saved, server) ?? { ...saved, conflict: server };
+          this.envelope = this.recoverAcknowledged(saved, server) ?? this.rebaseWindow(saved, server) ?? { ...saved, conflict: server };
         } else this.envelope = saved.pending.length ? saved : { ...saved, base: server, local: server.data, conflict: undefined };
       } catch { throw new DomainError('CORRUPT_PERSONAL', '이 기기의 개인 자료를 읽지 못했습니다. 저장된 원문을 덮어쓰지 않았습니다.'); }
     }
@@ -87,6 +92,47 @@ export class PersonalRepository implements StudyRepository {
     const local = pending.reduce((state, command) => applyCommand(state, command), server.data);
     return { ...saved, base: server, local, pending, conflict: undefined };
   }
+  /** Window outboxes may replay only commands whose affected originals are
+   * unchanged. Same-entity edits always retain both copies for explicit review. */
+  private rebaseWindow(saved: LocalEnvelope, server: ServerSnapshot): LocalEnvelope | null {
+    if (!this.key.includes(':online:v1:window:')) return null;
+    let before = saved.base.data, local = server.data;
+    const pending: Command[] = [];
+    try {
+      for (const command of saved.pending) {
+        const after = applyCommand(before, command);
+        if (server.data.appliedOps[command.opId]) {
+          applyCommand(server.data, command); // Validate the complete receipt payload.
+          before = after; continue;
+        }
+        const originals = before as unknown as Record<string, unknown>;
+        const changes = after as unknown as Record<string, unknown>;
+        const current = local as unknown as Record<string, unknown>;
+        for (const field of Object.keys(changes)) {
+          if (field === 'appliedOps' || field === 'revisions') continue;
+          const a = originals[field], b = changes[field], c = current[field];
+          if (JSON.stringify(a) === JSON.stringify(b)) continue;
+          if (Array.isArray(b)) {
+            const rows = (a ?? []) as { id: string }[];
+            const nextRows = b as { id: string }[];
+            const currentRows = (c ?? []) as { id: string }[];
+            const originalsById = new Map(rows.map(row => [row.id, row]));
+            const nextById = new Map(nextRows.map(row => [row.id, row]));
+            const currentById = new Map(currentRows.map(row => [row.id, row]));
+            const ids = new Set([...rows, ...nextRows].map(row => row.id));
+            for (const id of ids) {
+              const original = originalsById.get(id);
+              if (JSON.stringify(original) !== JSON.stringify(nextById.get(id)) &&
+                JSON.stringify(original) !== JSON.stringify(currentById.get(id))) return null;
+            }
+          } else if (JSON.stringify(a) !== JSON.stringify(c)) return null;
+        }
+        local = applyCommand(local, command);
+        pending.push(command); before = after;
+      }
+      return { ...saved, base: server, local, pending, conflict: undefined };
+    } catch { return null; }
+  }
   private persist(next: LocalEnvelope) {
     const started = performance.now();
     let success = false;
@@ -99,7 +145,8 @@ export class PersonalRepository implements StudyRepository {
     } finally { recordRequestPerformance('local-journal', started, success); }
   }
   getSnapshot() { return this.envelope.local; }
-  async close() { await this.flight; }
+  hasIndexedJournal = () => Boolean(this.storage.flush);
+  async close() { try { await this.flight; await this.storage.flush?.(); } finally { this.storage.close?.(); } }
   getCapabilities = () => this.envelope.base.supportedCommands ?? [];
   getStatus = () => this.status;
   subscribe = (listener: () => void) => { this.listeners.add(listener); return () => { this.listeners.delete(listener); }; };
@@ -130,7 +177,7 @@ export class PersonalRepository implements StudyRepository {
     if (server.sequence < this.envelope.base.sequence) throw new DomainError('STALE_SERVER', '서버의 최신 기록을 확인하지 못했습니다. 이 기기의 글은 남아 있습니다.');
     if (this.envelope.pending.length) {
       if (server.sequence === this.envelope.base.sequence) return;
-      const recovered = this.recoverAcknowledged(this.envelope, server);
+      const recovered = this.recoverAcknowledged(this.envelope, server) ?? this.rebaseWindow(this.envelope, server);
       if (!recovered) {
         this.persist({ ...this.envelope, conflict: server });
         this.update({ phase: 'conflict', pending: this.envelope.pending.length, message: '다른 기기의 변경과 이 기기의 글을 모두 보존했습니다.' });
@@ -188,7 +235,18 @@ export class PersonalRepository implements StudyRepository {
       if (this.status.phase !== 'saved') this.update({ phase: 'saved', pending: 0, message: '서버에 저장됨' });
     } catch (error) {
       if (error instanceof DomainError && /CONFLICT/.test(error.code)) {
-        try { const server = await this.transport.load(); this.verify(server); this.persist({ ...this.envelope, conflict: server }); await this.storage.flush?.(); }
+        try {
+          const server = await this.transport.load(); this.verify(server);
+          const rebased = this.rebaseWindow(this.envelope, server);
+          if (rebased && server.sequence > this.envelope.base.sequence) {
+            this.persist(rebased); await this.storage.flush?.();
+            this.update(rebased.pending.length
+              ? { phase: 'pending', pending: rebased.pending.length, message: '이 기기에 저장됨 · 서버 전송 대기' }
+              : { phase: 'saved', pending: 0, message: '서버에 저장됨' }, true);
+            return;
+          }
+          this.persist({ ...this.envelope, conflict: server }); await this.storage.flush?.();
+        }
         catch { this.update({ phase: 'error', pending: this.envelope.pending.length, message: '충돌 자료를 불러오지 못했습니다. 이 기기의 원문은 남아 있습니다.' }); return; }
         this.update({ phase: 'conflict', pending: this.envelope.pending.length, message: '다른 기기의 변경과 이 기기의 글을 모두 보존했습니다.' });
       } else this.update({ phase: 'error', pending: this.envelope.pending.length, message: error instanceof Error ? error.message : '서버에 저장하지 못했습니다. 이 기기의 원문은 남아 있습니다.' });

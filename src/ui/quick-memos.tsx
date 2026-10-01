@@ -256,7 +256,7 @@ export function MemoEditor({ memo, data, repository, onSaved, onClose, onCopy, e
       </svg>
       {!content.strokes.length && <span className="memo-drawing-hint">펜으로 결론이나 그림을 남겨 보세요.</span>}
     </div>
-    <details className="memo-details" open={Boolean(initial.content.body) || undefined}><summary>글·연결·입력 설정</summary><div className="memo-input"><Textarea label="짧은 글" placeholder="결론 한 줄, 남은 의문…" value={content.body} rows={3} disabled={isBlocked} onChange={event => update({ ...contentRef.current, body: event.target.value })} /></div>
+    <details className="memo-details" open={Boolean(initial.content.body) || undefined}><summary>글·연결·입력 설정</summary><div className="memo-input"><Textarea data-editing-context={`memo:${memo.id}:body`} label="짧은 글" placeholder="결론 한 줄, 남은 의문…" value={content.body} rows={3} disabled={isBlocked} onChange={event => update({ ...contentRef.current, body: event.target.value })} /></div>
     <div className="memo-options"><Checkbox label="손가락으로도 그리기" checked={finger} onChange={event => setFinger(event.target.checked)} disabled={isBlocked} />
       <span className="muted">지우개로 선을 쓸어 지웁니다.</span>
       <Select label="연결할 곳" value={content.ownerId ?? ''} disabled={isBlocked} onChange={event => update({ ...contentRef.current, ownerId: event.target.value || null })}>
