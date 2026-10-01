@@ -68,6 +68,7 @@ it('keeps formula edits, the generated original and request across a failed save
   fireEvent.change(screen.getByRole('combobox', { name: 'GPT 작업' }), {
     target: { value: 'formula' },
   });
+  fireEvent.change(screen.getByRole('combobox', { name: '카드 개수' }), { target: { value: '20' } });
   fireEvent.change(screen.getByRole('textbox', { name: '보조할 내용·범위 · 선택' }), {
     target: { value: generated.request.focus },
   });
@@ -96,6 +97,7 @@ it('keeps formula edits, the generated original and request across a failed save
   );
   expect(screen.queryByText(/다른 곳에서 저장한 자료/)).not.toBeInTheDocument();
   expect(screen.getByRole('combobox', { name: 'GPT 작업' })).toHaveValue('formula');
+  expect(screen.getByRole('combobox', { name: '카드 개수' })).toHaveValue('20');
   expect(screen.getByText('전압은 V=IR이다. 저항이 일정한 조건을 확인한다.')).toBeVisible();
   expect(personal.getSnapshot().studyMaterials![0].results[0].summary[0].originalText).toBe(
     generated.summary[0].text,
@@ -108,6 +110,7 @@ it('keeps formula edits, the generated original and request across a failed save
   expect(generateStudyMaterial).toHaveBeenCalledTimes(1);
   expect(await readMaterialDraft(personal.getSnapshot(), 'new')).toBeUndefined();
   expect(personal.getSnapshot().records).toHaveLength(0);
+  expect(personal.getSnapshot().studyMaterials![0].aiRequest?.requestedCardCount).toBe(20);
   view.unmount();
 });
 afterEach(() => {
@@ -271,7 +274,7 @@ it('stores a successful generated result with its source, then saves without cre
   await waitFor(() => expect(screen.getByRole('button', { name: '자료 저장' })).toBeEnabled());
   await user.type(screen.getByRole('textbox', { name: '자료 제목' }), '합성 AI 응답 확인');
   await user.type(screen.getByRole('textbox', { name: '강의 내용·필기' }), '전압은 전위차다.');
-  await user.click(screen.getByRole('button', { name: '요약과 카드 만들기' }));
+  await user.click(screen.getByRole('button', { name: '복습 자료 한 번에 만들기' }));
   await screen.findByText('전압의 뜻');
   expect(
     (await readMaterialDraft(personal.getSnapshot(), 'new'))?.content.results[0].source?.text,
@@ -296,9 +299,9 @@ it('uses pasted ClovaNote transcript only after an explicit generation request a
   fireEvent.change(screen.getByRole('textbox', { name: '강의 내용·필기' }), { target: { value: original } });
   await waitFor(async () => expect((await readMaterialDraft(personal.getSnapshot(), 'new'))?.content.sourceText).toBe(original));
   expect(generateStudyMaterial).not.toHaveBeenCalled();
-  await user.click(screen.getByRole('button', { name: '요약과 카드 만들기' }));
+  await user.click(screen.getByRole('button', { name: '복습 자료 한 번에 만들기' }));
   await screen.findByText('전압의 뜻');
-  expect(generateStudyMaterial).toHaveBeenLastCalledWith(expect.objectContaining({ userId: AI_OWNER_USER_ID }), expect.objectContaining({ sourceText: original, audio: null }), 10, expect.any(AbortSignal));
+  expect(generateStudyMaterial).toHaveBeenLastCalledWith(expect.objectContaining({ userId: AI_OWNER_USER_ID }), expect.objectContaining({ sourceText: original, audio: null }), 5, expect.any(AbortSignal));
 });
 it('retains unsaved source after provider failure and reopens it without creating records', async () => {
   const user = userEvent.setup();
@@ -331,7 +334,7 @@ it('retains unsaved source after provider failure and reopens it without creatin
     screen.getByRole('textbox', { name: '강의 내용·필기' }),
     '한글 원문과 예외를 유지한다.',
   );
-  await user.click(screen.getByRole('button', { name: '요약과 카드 만들기' }));
+  await user.click(screen.getByRole('button', { name: '복습 자료 한 번에 만들기' }));
   await screen.findByText('AI 연결이 필요합니다. 원본은 보존했습니다.');
   expect((await readMaterialDraft(before, 'new'))!.content.sourceText).toBe(
     '한글 원문과 예외를 유지한다.',
@@ -377,7 +380,7 @@ it('cancels a long generation and keeps the source draft and prior records intac
     screen.getByRole('textbox', { name: '강의 내용·필기' }),
     '중단 뒤에도 보존할 원문',
   );
-  await user.click(screen.getByRole('button', { name: '요약과 카드 만들기' }));
+  await user.click(screen.getByRole('button', { name: '복습 자료 한 번에 만들기' }));
   await user.click(await screen.findByRole('button', { name: '정리 중단' }));
   await screen.findByText(/정리를 중단했습니다/);
   expect(screen.getByRole('textbox', { name: '강의 내용·필기' })).toHaveValue(
@@ -444,7 +447,7 @@ it('retains a received result in memory after draft failure and retries only sto
   fireEvent.change(screen.getByRole('textbox', { name: '강의 내용·필기' }), { target: { value: content.sourceText } });
   await waitFor(async () => expect((await readMaterialDraft(personal.getSnapshot(), 'new'))?.content.sourceText).toBe(content.sourceText));
   fail = true;
-  fireEvent.click(screen.getByRole('button', { name: '요약과 카드 만들기' }));
+  fireEvent.click(screen.getByRole('button', { name: '복습 자료 한 번에 만들기' }));
   await screen.findByRole('button', { name: '초안 저장 재시도' });
   fireEvent.click(screen.getByRole('button', { name: '플래시카드 1' }));
   fireEvent.click(screen.getByRole('button', { name: '답 보기' }));

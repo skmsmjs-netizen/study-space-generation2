@@ -1,5 +1,15 @@
 import { expect, it } from 'vitest';
 import { activeStudyAIRequest, validateStudyAIRequest } from './study-ai-request';
+it('validates saved generation counts and keeps this preference out of model data', () => {
+  for (const requestedCardCount of [5, 10, 20, 30]) {
+    const draft = { task: 'summary' as const, requestedCardCount };
+    expect(() => validateStudyAIRequest(draft, false)).not.toThrow();
+    expect(activeStudyAIRequest(draft as never)).toEqual({ task: 'summary' });
+    expect(draft.requestedCardCount).toBe(requestedCardCount);
+  }
+  for (const requestedCardCount of [0, 1, 31, '5', null])
+    expect(() => validateStudyAIRequest({ task: 'summary', requestedCardCount }, false)).toThrow(/개수/);
+});
 it('keeps incomplete drafts but requires the real problem, attempt and criteria before generation', () => {
   expect(() =>
     validateStudyAIRequest({ task: 'feedback', attempt: '부분 풀이' }, false),

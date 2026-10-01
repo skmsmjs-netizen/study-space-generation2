@@ -133,3 +133,8 @@ approximate 기한은 anchorDate+days를 유지하며 오늘 기준으로 매번
 브라우저의 큰 문자열은 `study-space:gzip15:v1:` 형식으로 저장할 수 있습니다. UTF-16 코드 단위를 그대로 gzip으로 압축하며 고정 mtime, CRC-32와 길이, 저장 전 원문 일치를 확인합니다. 압축 바이트는 서로게이트를 피한 15비트 단위로 담아 브라우저 저장 용량을 줄입니다. 기존 일반 문자열·`study-space:lz16:v1:`·이전 `study-space:gzip16:v1:` 형식도 계속 읽습니다. 원문·서로게이트·ID·이력·좌표의 의미를 바꾸지 않으며 서버의 별도 압축 프로토콜은 유지합니다.
 
 IndexedDB의 첨부·녹음·복원 저널은 ArrayBuffer와 MIME을 저장하고 읽을 때 Blob으로 돌려줍니다. 기존 Blob 및 문서 원본의 `bytes/type` 형식도 읽습니다. 전체 백업은 이 저장 표현을 풀어 실제 바이트 지문과 참조를 검사합니다. 관련 구현은 `src/data/storage-codec.ts`, `binary-storage.ts`, `material-files.ts`, `full-backup.ts`이며 [보완 결과](product-quality-fixes-20261001-2053.md)에서 실제 확인 범위와 한도를 구별합니다.
+
+
+## 2026-10-01 GPT 반복 생성 설정
+
+StudyAIRequest.requestedCardCount는 선택 필드이며5/10/20/30만 보관합니다. 없는 과거 자료는 UI에서5를 사용하고 기존 초안·자료·서버 JSON codec을 재사용합니다. activeStudyAIRequest는 이 화면 선호를 모델의 원문 데이터에서 제외하고 별도 cardCount로 전달합니다. 원문·공부 사건을 자동 변경하지 않습니다. 실제20 선택·저장·재접속은 gpt-api-evaluation-20261001.md에서 확인합니다.

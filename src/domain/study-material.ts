@@ -175,7 +175,7 @@ export function validateMaterialResult(value: unknown): asserts value is Materia
     for (const item of [...result.summary, ...result.cards]) {
       if (item.evidenceType !== undefined && !['material-grounded', 'general-supplement'].includes(item.evidenceType)) invalid('자료 근거와 보충 설명을 구별해 주세요.');
       if (!validBasis(item.sourceIds)) invalid('질문·초점이나 사용자 시도만으로 답의 원문 근거를 삼을 수 없습니다.');
-      if (['tutor','source-qa','questions','quiz'].includes(task) && item.evidenceType === 'general-supplement') invalid('이 작업은 일반 지식 보충으로 자료의 답을 대체할 수 없습니다.');
+      if (['tutor','source-qa','questions','quiz','study-pack'].includes(task) && item.evidenceType === 'general-supplement') invalid('이 작업은 일반 지식 보충으로 자료의 답을 대체할 수 없습니다.');
       if ('answer' in item && item.evidenceType === 'general-supplement') invalid('자료 기반 문항은 제공된 원문으로 답할 수 있어야 합니다.');
     }
     for (const q of result.quiz ?? []) if (!validBasis(q.sourceIds)) invalid('퀴즈의 자료 근거를 확인해 주세요.');

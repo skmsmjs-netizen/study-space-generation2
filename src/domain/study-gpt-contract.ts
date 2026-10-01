@@ -32,7 +32,7 @@ export interface MaterialView {
 export const canonicalStudyTask = (task: StudyAITask): Exclude<StudyAITask, 'source-qa'> =>
   task === 'source-qa' ? 'tutor' : task;
 export const allowsMaterialCards = (task: StudyAITask) =>
-  ['summary', 'questions', 'practice'].includes(task);
+  ['summary', 'study-pack', 'questions', 'practice'].includes(task);
 export function sourceRole(segment: SourceSegment): SourceRole {
   if (segment.role) return segment.role;
   if (segment.id.startsWith('request-')) {
