@@ -45,7 +45,7 @@ it('preserves paragraph breaks and makes display equations keyboard accessible',
   await waitFor(() => expect(container.querySelectorAll('math')).toHaveLength(1));
   const equation = container.querySelector('[role="region"]');
   expect(equation).toHaveAttribute('tabindex', '0');
-  expect(container.textContent).toContain('\n\n기호와 단위\n전류는 암페어입니다.');
+  expect(container.textContent).toContain('기호와 단위\n전류는 암페어입니다.');
   rerender(<StudyResultText text="수식이 없는 다음 답안" />);
   expect(container.querySelector('math')).toBeNull();
   expect(container.textContent).toBe('수식이 없는 다음 답안');

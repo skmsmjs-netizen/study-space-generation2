@@ -2,6 +2,10 @@ import { useEffect, useRef } from 'react';
 import 'katex/dist/katex.min.css';
 import './study-result-text.css';
 
+function isDisplayFormula(text: string | undefined) {
+  return !!text && (text.startsWith('$$') || /^\\{1,2}\[/.test(text));
+}
+
 function Formula({ text }: { text: string }) {
   // Older generated results sometimes kept one JSON escape layer in the text.
   // Normalize only the delimited display fragment; stored/editable text stays intact.
@@ -79,11 +83,18 @@ export function StudyResultText({
         .split(
           /(```[\s\S]*?```|`[^`\n]*`|\$\$[\s\S]*?\$\$|\\{1,2}\([\s\S]*?\\{1,2}\)|\\{1,2}\[[\s\S]*?\\{1,2}\])/g,
         )
-        .map((part, index) =>
+        .map((part, index, pieces) =>
           part.startsWith('$$') || /^\\{1,2}[([]/.test(part) ? (
             <Formula key={`${index}:${part}`} text={part} />
           ) : (
-            <span key={`${index}:${part}`}>{part}</span>
+            <span key={`${index}:${part}`}>
+              {part.startsWith('`')
+                ? part
+                : (isDisplayFormula(pieces[index - 1])
+                    ? part.replace(/^(?:[ \t]*\r?\n)+/, '')
+                    : part
+                  ).replace(isDisplayFormula(pieces[index + 1]) ? /(?:\r?\n[ \t]*)+$/ : /$^/, '')}
+            </span>
           ),
         )}
     </Tag>

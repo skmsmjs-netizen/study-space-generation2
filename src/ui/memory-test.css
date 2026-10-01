@@ -184,3 +184,8 @@
     flex-wrap: wrap;
   }
 }
+
+/* Headings receive focus for navigation, but are not interactive controls. */
+.memory-tests > h2[tabindex='-1']:focus {
+  outline: none;
+}

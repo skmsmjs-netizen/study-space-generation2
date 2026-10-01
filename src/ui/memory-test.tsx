@@ -457,6 +457,15 @@ export function MemoryTests({
                 onChange={(e) => patchEditor({ answer: e.target.value })}
                 rows={3}
               />
+              {(draft.editor.question || draft.editor.answer) && (
+                <section className="memory-generated-preview" aria-label="항목 조판 미리보기">
+                  <p className="muted">조판 미리보기</p>
+                  <strong>
+                    <StudyResultText text={draft.editor.question} as="span" />
+                  </strong>
+                  <StudyResultText text={draft.editor.answer} />
+                </section>
+              )}
               <MemoInkPad
                 onRecognizedText={(text) =>
                   patchEditor({
