@@ -7,7 +7,7 @@ import { DEMO_KEY } from './data/demo-repository';
 const nativeLocks = Object.getOwnPropertyDescriptor(navigator, 'locks');
 beforeEach(() => {
   localStorage.clear(); sessionStorage.clear();
-  history.replaceState(null, '', '/#/search');
+  history.replaceState(null, '', '/?space=demo#/search');
   Object.defineProperty(navigator, 'locks', { configurable: true, value: {
     request: vi.fn(async (_name: string, _options: LockOptions, callback: (lock: Lock) => unknown) =>
       callback({ name: 'study-space:demo:writer', mode: 'exclusive' } as Lock)),
@@ -49,8 +49,8 @@ describe('search result states', () => {
     fireEvent.change(search, { target: { value: '함수' } });
     await user.selectOptions(screen.getByRole('combobox', { name: '공부 범위' }), 'independent');
     expect(screen.getByRole('heading', { name: '일치하는 내용을 찾지 못했습니다' })).toBeInTheDocument();
-    await act(async () => { history.replaceState(null, '', '/#/'); window.dispatchEvent(new HashChangeEvent('hashchange')); });
-    await act(async () => { history.replaceState(null, '', '/#/search'); window.dispatchEvent(new HashChangeEvent('hashchange')); });
+    await act(async () => { history.replaceState(null, '', '/?space=demo#/'); window.dispatchEvent(new HashChangeEvent('hashchange')); });
+    await act(async () => { history.replaceState(null, '', '/?space=demo#/search'); window.dispatchEvent(new HashChangeEvent('hashchange')); });
     expect(screen.getByRole('searchbox')).toHaveValue('함수');
     expect(screen.getByRole('combobox', { name: '공부 범위' })).toHaveValue('independent');
     expect(screen.getByRole('heading', { name: '일치하는 내용을 찾지 못했습니다' })).toBeInTheDocument();

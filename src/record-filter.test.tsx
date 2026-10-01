@@ -8,7 +8,7 @@ import { DEMO_KEY, readDraft } from './data/demo-repository';
 const first = 'demo-topic-function', second = 'demo-topic-graph';
 const nativeLocks = Object.getOwnPropertyDescriptor(navigator, 'locks');
 beforeEach(() => {
-  localStorage.clear(); sessionStorage.clear(); history.replaceState(null, '', '/#/record');
+  localStorage.clear(); sessionStorage.clear(); history.replaceState(null, '', '/?space=demo#/record');
   Object.defineProperty(navigator, 'locks', { configurable: true, value: {
     request: vi.fn(async (_name: string, _options: LockOptions, callback: (lock: Lock) => unknown) =>
       callback({ name: 'study-space:demo:writer', mode: 'exclusive' } as Lock)),
@@ -20,11 +20,11 @@ afterEach(async () => {
   else Reflect.deleteProperty(navigator, 'locks');
 });
 async function open(path = '/record') {
-  history.replaceState(null, '', `/#${path}`);
+  history.replaceState(null, '', `/?space=demo#${path}`);
   const view = render(<App />); await screen.findByRole('searchbox', { name: '주제 찾기' }); return view;
 }
 async function navigate(path: string) {
-  await act(async () => { history.replaceState(null, '', `/#${path}`); window.dispatchEvent(new HashChangeEvent('hashchange')); });
+  await act(async () => { history.replaceState(null, '', `/?space=demo#${path}`); window.dispatchEvent(new HashChangeEvent('hashchange')); });
 }
 
 describe('record topic filter context', () => {

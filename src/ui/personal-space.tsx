@@ -13,7 +13,7 @@ import { validateAccountName } from '../server/account-access';
 import { AccountAdministration } from './account-administration';
 import './personal-space.css';
 const errorText = (error: unknown) => error instanceof Error ? error.message : '개인 공간을 열지 못했습니다.';
-export function PersonalSpace({ onDemo, renderWorkspace }: { onDemo: () => void; renderWorkspace: (repo: PersonalRepository, controls: ReactNode) => ReactNode }) {
+export function PersonalSpace({ renderWorkspace }: { renderWorkspace: (repo: PersonalRepository, controls: ReactNode) => ReactNode }) {
   const [configured] = useState(readServerConfig);
   const client = useMemo(() => configured ? createStudyClient(configured) : null, [configured]);
   const accessApi = useMemo(() => client ? accountAccessClient(client) : null, [client]);
@@ -109,16 +109,15 @@ export function PersonalSpace({ onDemo, renderWorkspace }: { onDemo: () => void;
     const anchor=document.createElement('a');anchor.href=url;anchor.download='study-preserved-records.json';anchor.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
   }
   const settings=accessApi&&access?<AccountSettings api={accessApi} access={access} onSaved={setAccess} onWithdrawn={onWithdrawn} onDownload={repo?downloadRecords:undefined}/>:null;
-  if (repo && client) return renderWorkspace(repo, <><ServerStatus repository={repo} client={client} onDemo={onDemo} />{settings}{access?.administrator && accessApi && <AccountAdministration api={accessApi} />}</>);
+  if (repo && client) return renderWorkspace(repo, <><ServerStatus repository={repo} client={client} />{settings}{access?.administrator && accessApi && <AccountAdministration api={accessApi} />}</>);
   return <main className="boot personal-entry"><Card><h1>내 공부 공간</h1>
-    {withdrawn ? <section><p role="status">{withdrawalNotice||'탈퇴했습니다. 이 브라우저의 개인 자료를 정리하고 있습니다…'}</p>{withdrawalNotice.includes('끝나지')&&<Button onClick={()=>{void cleanupWithdrawal(withdrawn);}}>이 기기의 자료 정리 다시 시도</Button>}<Button onClick={()=>{setWithdrawn(null);setWithdrawalNotice('');}}>로그인 화면으로 돌아가기</Button></section> : !configured ? <ErrorState title="서버 연결 설정이 필요합니다" message="시연 기록은 그대로 남아 있습니다. 서버 공개 설정을 적용한 뒤 개인 공간을 열 수 있습니다." />
+    {withdrawn ? <section><p role="status">{withdrawalNotice||'탈퇴했습니다. 이 브라우저의 개인 자료를 정리하고 있습니다…'}</p>{withdrawalNotice.includes('끝나지')&&<Button onClick={()=>{void cleanupWithdrawal(withdrawn);}}>이 기기의 자료 정리 다시 시도</Button>}<Button onClick={()=>{setWithdrawn(null);setWithdrawalNotice('');}}>로그인 화면으로 돌아가기</Button></section> : !configured ? <ErrorState title="내 공부 공간에 연결하지 못했습니다" message="연결을 확인한 뒤 다시 시도해 주세요. 이 기기에 보관된 기록은 그대로 남아 있습니다." onRetry={() => location.reload()} />
       : !authReady || opening ? <LoadingState message="내 기록을 불러오는 중…" />
       : !userId && client ? <SignIn client={client} />
       : access && access.status !== 'approved' ? <section><h2>{access.status === 'pending' ? '가입 승인 대기' : access.status === 'rejected' ? '가입이 승인되지 않았습니다' : '이용이 중지되었습니다'}</h2><p>{accessMessages[access.status]}</p><div className="actions"><Button onClick={() => setRetry(value => value + 1)}>승인 상태 다시 확인</Button><Button onClick={() => { void client?.auth.signOut({ scope: 'local' }); }}>로그아웃</Button></div></section>
       : <><ErrorState title="내 공부 공간을 열지 못했습니다" message={error || '서버에 연결하지 못했습니다. 기록은 지우지 않았습니다.'} onRetry={() => setRetry(value => value + 1)} />{otherWriter ? <p>가입 확인 메일에서 새 탭이 열렸다면, 처음 가입한 학습앱 탭으로 돌아가 주세요.</p> : <Button onClick={() => { void client?.auth.signOut({ scope: 'local' }); }}>다시 로그인</Button>}</>}
     {userId && !withdrawn && settings}
     {error && !userId && <p role="alert">{error}</p>}
-    <Button variant="quiet" onClick={onDemo}>시연 공간으로 돌아가기</Button>
   </Card></main>;
 }
 function SignIn({ client }: { client: SupabaseClient }) {
@@ -138,7 +137,7 @@ function SignIn({ client }: { client: SupabaseClient }) {
     } catch (error) { const limited = create && typeof error === 'object' && error !== null && 'code' in error && error.code === 'over_email_send_rate_limit'; setError(limited ? '가입 확인 메일의 발송 한도에 도달했습니다. 잠시 후 다시 시도해 주세요.' : create ? '가입하지 못했습니다. 이메일·비밀번호를 확인하거나 잠시 후 다시 시도해 주세요.' : '로그인하지 못했습니다. 이메일·비밀번호와 연결 상태를 확인해 주세요.'); }
     finally { setBusy(false); }
   }
-  return <form onSubmit={event => { event.preventDefault(); void submit(creating); }}><p>로그인하면 이 공간의 기록을 서버에 저장합니다. 시연 기록은 자동으로 옮기지 않습니다.</p>
+  return <form onSubmit={event => { event.preventDefault(); void submit(creating); }}><p>로그인하면 내 공부 기록을 저장하고 다른 기기에서도 이어갈 수 있습니다.</p>
     {creating && <><p>이메일과 6자 이상 비밀번호로 계정을 만듭니다. 가입 후 이메일로 받은 확인 링크를 열어 주세요.</p><p>이메일 확인 후 관리자 승인을 받아야 내 공부 공간을 사용할 수 있습니다.</p></>}
     {creating && <Input label="이름" autoComplete="name" required maxLength={80} value={name} onChange={event=>setName(event.target.value)} />}
     <Input label="이메일" type="email" autoComplete="email" required value={email} onChange={event => setEmail(event.target.value)} />
@@ -147,7 +146,7 @@ function SignIn({ client }: { client: SupabaseClient }) {
     {error && <p role="alert">{error}</p>}{notice && <p role="status">{notice}</p>}
   </form>;
 }
-export function ServerStatus({ repository, client, onDemo }: { repository: PersonalRepository; client: SupabaseClient; onDemo: () => void }) {
+export function ServerStatus({ repository, client }: { repository: PersonalRepository; client: SupabaseClient }) {
   const [status, setStatus] = useState<SaveStatus>(repository.getStatus()), [open, setOpen] = useState(false), [error, setError] = useState('');
   useEffect(() => { setStatus(repository.getStatus()); return repository.subscribe(() => setStatus(repository.getStatus())); }, [repository]);
   const conflict = repository.getConflict();
@@ -162,6 +161,6 @@ export function ServerStatus({ repository, client, onDemo }: { repository: Perso
         <Button onClick={() => { try { repository.openServerWithArchive(); location.reload(); } catch (error) { setError(errorText(error)); } }}>이 기기의 글을 보관하고 서버 자료 열기</Button>
       </section>}
       {error && <p role="alert">{error}</p>}
-      <div className="actions section-space"><Button onClick={onDemo}>시연 공간 보기</Button><Button onClick={() => { void client.auth.signOut({ scope: 'local' }).then(({ error }) => { if (error) setError('로그아웃하지 못했습니다. 다시 시도해 주세요.'); }); }}>로그아웃</Button></div>
+      <div className="actions section-space"><Button onClick={() => { void client.auth.signOut({ scope: 'local' }).then(({ error }) => { if (error) setError('로그아웃하지 못했습니다. 다시 시도해 주세요.'); }); }}>로그아웃</Button></div>
     </Modal></>;
 }

@@ -76,10 +76,11 @@ function writePreference(name: string, value: string, prefix = "study-space:demo
 }
 
 export default function App() {
-  const [personal, setPersonal] = useState(() => { try { return (location.hash === '#/account' || new URLSearchParams(location.search).get('space') === 'personal') || sessionStorage.getItem('study-space:active-space') === 'personal'; } catch { return location.hash === '#/account' || new URLSearchParams(location.search).get('space') === 'personal'; } });
+  // Keep existing example records isolated; normal visits open personal entry.
+  const [personal, setPersonal] = useState(() => location.hash === '#/account' || new URLSearchParams(location.search).get('space') !== 'demo');
   useEffect(() => { if (location.hash === '#/account') { try { sessionStorage.setItem('study-space:active-space', 'personal'); } catch { /* Space stays open for this visit. */ } location.hash = '#/'; } }, []);
   const choose = (value: boolean) => { const url = new URL(location.href); url.searchParams.delete('space'); history.replaceState(null, '', url); try { sessionStorage.setItem('study-space:active-space', value ? 'personal' : 'demo'); } catch { /* In-memory space choice remains usable. */ } location.hash = '#/'; setPersonal(value); };
-  return personal ? <Suspense fallback={<main className="boot"><LoadingState /></main>}><PersonalSpace onDemo={() => choose(false)} renderWorkspace={(repo, controls) => <Workspace key={repo.getSnapshot().userId} repository={repo} accountControls={controls} />} /></Suspense>
+  return personal ? <Suspense fallback={<main className="boot"><LoadingState /></main>}><PersonalSpace renderWorkspace={(repo, controls) => <Workspace key={repo.getSnapshot().userId} repository={repo} accountControls={controls} />} /></Suspense>
     : <DemoApp accountControls={<Button variant="quiet" onClick={() => choose(true)}>내 공부 공간</Button>} />;
 }
 function DemoApp({ accountControls }: { accountControls: ReactNode }) {
@@ -96,7 +97,7 @@ function DemoApp({ accountControls }: { accountControls: ReactNode }) {
       setBoot({
         repo: null,
         error:
-          "이 브라우저에서는 시연 자료의 동시 쓰기를 안전하게 막을 수 없습니다. 최신 브라우저에서 열어 주세요.",
+          "이 브라우저에서는 동시 작성을 보호할 수 없습니다. 최신 브라우저에서 열어 주세요.",
         loading: false,
       });
       return;
@@ -111,7 +112,7 @@ function DemoApp({ accountControls }: { accountControls: ReactNode }) {
             setBoot({
               repo: null,
               error:
-                "다른 창에서 시연 공간을 사용하고 있습니다. 그 창을 닫은 뒤 다시 열어 주세요. 저장된 자료는 그대로 남아 있습니다.",
+                "다른 창에서 예시 자료를 사용하고 있습니다. 그 창을 닫은 뒤 다시 열어 주세요. 저장된 자료는 그대로 남아 있습니다.",
               loading: false,
             });
             return;
@@ -149,7 +150,7 @@ function DemoApp({ accountControls }: { accountControls: ReactNode }) {
     return (
       <main className="boot">
         <ErrorState
-          title="시연 자료를 열지 못했습니다"
+          title="예시 자료를 열지 못했습니다"
           message={boot.error}
           onRetry={() => location.reload()}
         />
@@ -534,7 +535,7 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
       <div className="workspace">
         <header className="topbar">
           <span className="small-brand">공부의 자리</span>
-          <span className="demo-banner">{data.namespace === "demo" ? "시연 자료 · 이 기기에 저장" : "내 공부 공간"}</span>{accountControls}
+          <span className="space-label">{data.namespace === "demo" ? "예시 자료 · 이 기기에 저장" : "내 공부 공간"}</span>{accountControls}
           <Select
             label="공부 범위"
             value={scope}

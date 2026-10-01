@@ -35,7 +35,7 @@ beforeEach(() => {
   vi.spyOn(document, 'visibilityState', 'get').mockReturnValue('visible');
 });
 afterEach(() => { cleanup(); vi.restoreAllMocks(); if (nativeLocks) Object.defineProperty(navigator, 'locks', nativeLocks); else Reflect.deleteProperty(navigator, 'locks'); });
-const open = () => render(<PersonalSpace onDemo={() => {}} renderWorkspace={repo => <p>개인 자료 열림 {repo.getSnapshot().userId}</p>} />);
+const open = () => render(<PersonalSpace renderWorkspace={repo => <p>개인 자료 열림 {repo.getSnapshot().userId}</p>} />);
 it('releases the writer after a failed initial load instead of holding it behind an error screen', async () => {
   fake.load.mockRejectedValueOnce(Error('연결 실패')); open();
   await screen.findByText('연결 실패'); await waitFor(() => expect(owned).toBe(false));

@@ -112,7 +112,7 @@ nav a[aria-current="page"] {
 .workspace {
   min-width: 0;
 }
-.demo-banner {
+.space-label {
   text-align: center;
   font-size: var(--type-caption-size);
   color: var(--color-muted);
@@ -555,7 +555,7 @@ nav a[aria-current="page"] {
 
 /* 2026-09-30 marked iPad areas: compact shell and readable study actions. */
 .topbar { align-items: center; justify-content: flex-start; padding-block: var(--space-3); gap: var(--space-3); }
-.topbar .demo-banner { margin-inline-end: auto; padding: 0; text-align: start; background: transparent; }
+.topbar .space-label { margin-inline-end: auto; padding: 0; text-align: start; background: transparent; }
 .topbar > .ui-field { display: flex; align-items: center; gap: var(--space-2); }
 .topbar > .ui-field .ui-label { white-space: nowrap; }
 .topbar > .ui-field select { inline-size: auto; max-inline-size: 14rem; }
@@ -595,7 +595,7 @@ nav a[aria-current="page"] {
 }
 @media (max-width: 40rem) {
   .topbar { flex-wrap: wrap; padding-inline: var(--space-4); }
-  .topbar .demo-banner { order: 5; flex-basis: 100%; }
+  .topbar .space-label { order: 5; flex-basis: 100%; }
   .topbar > .ui-field { margin-inline-start: auto; }
   .topbar > .ui-field .ui-label { display: none; }
 }

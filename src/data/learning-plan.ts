@@ -11,7 +11,7 @@ export function readLearningPlan(data: AppState) {
 }
 export function saveLearningPlan(repository: StudyRepository, workspace: RecommendationWorkspace, previousRaw: string | null) {
   const data = repository.getSnapshot(), current = readLearningPlan(data);
-  if (data.namespace !== 'demo' && !repository.getCapabilities?.().includes('saveLearningPlan')) throw Error('학습 일정 서버 업데이트가 아직 적용되지 않았습니다. 작성 내용은 이 기기에 유지하며 서버 저장 완료로 표시하지 않습니다.');
+  if (data.namespace !== 'demo' && !repository.getCapabilities?.().includes('saveLearningPlan')) throw Error('학습 일정을 저장할 수 없습니다. 작성 내용은 이 기기에 유지합니다. 다시 접속한 뒤 저장해 주세요.');
   if (current.raw !== previousRaw) throw Error('다른 곳에서 학습 일정이 바뀌었습니다. 작성 중인 내용은 유지했습니다.');
   return repository.execute({ type: 'saveLearningPlan', id: current.id, expectedVersion: current.version, workspace, userId: data.userId, namespace: data.namespace, at: new Date().toISOString(), opId: crypto.randomUUID() });
 }

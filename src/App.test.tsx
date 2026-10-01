@@ -21,7 +21,7 @@ const nativeLocks = Object.getOwnPropertyDescriptor(navigator, 'locks');
 
 beforeEach(() => {
   localStorage.clear(); sessionStorage.clear(); locked = false;
-  history.replaceState(null, '', '/#/');
+  history.replaceState(null, '', '/?space=demo#/');
   lockRequest = vi.fn(async (_name: string, _options: LockOptions, callback: (lock: Lock | null) => unknown) => {
     if (locked) return await callback(null);
     locked = true;
@@ -37,13 +37,13 @@ afterEach(async () => {
 });
 
 async function open(path = '/') {
-  history.replaceState(null, '', `/#${path}`);
+  history.replaceState(null, '', `/?space=demo#${path}`);
   const view = render(<App />);
-  await screen.findByText('시연 자료 · 이 기기에 저장');
+  await screen.findByText('예시 자료 · 이 기기에 저장');
   return view;
 }
 async function navigate(path: string) {
-  await act(async () => { history.replaceState(null, '', `/#${path}`); window.dispatchEvent(new HashChangeEvent('hashchange')); });
+  await act(async () => { history.replaceState(null, '', `/?space=demo#${path}`); window.dispatchEvent(new HashChangeEvent('hashchange')); });
 }
 function recordArea(title: string) {
   const heading = screen.getByRole('heading', { name: title, level: 2 });
@@ -62,7 +62,7 @@ describe('prototype write ownership', () => {
     localStorage.setItem(DEMO_KEY, '{broken workspace');
     localStorage.setItem('study-space:demo:draft:multiple:recovery:qa-boot', '  damaged source\r\n');
     render(<App />);
-    await screen.findByRole('heading', { name: '시연 자료를 열지 못했습니다' });
+    await screen.findByRole('heading', { name: '예시 자료를 열지 못했습니다' });
     await userEvent.click(screen.getByRole('button', { name: '초안 보관본 확인' }));
     expect(screen.getByRole('heading', { name: '1. 여러 주제 공부 기록' })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: '원문 내보내기' })).toBeEnabled();
@@ -83,7 +83,7 @@ describe('prototype write ownership', () => {
     const repo = new DemoRepository(localStorage), before = localStorage.getItem(DEMO_KEY);
     expect(repo.getSnapshot().namespace).toBe('demo'); locked = true;
     render(<App />);
-    expect(await screen.findByRole('heading', { name: '시연 자료를 열지 못했습니다' })).toBeInTheDocument();
+    expect(await screen.findByRole('heading', { name: '예시 자료를 열지 못했습니다' })).toBeInTheDocument();
     expect(screen.getByRole('alert')).toHaveTextContent('다른 창');
     expect(localStorage.getItem(DEMO_KEY)).toBe(before);
     expect(lockRequest).toHaveBeenCalledWith('study-space:demo:writer', { ifAvailable: true }, expect.any(Function));
