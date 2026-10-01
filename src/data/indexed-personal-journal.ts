@@ -79,9 +79,9 @@ export class IndexedPersonalJournal implements PersonalJournal {
   }
   isDurable = () => this.desired === null || this.desired === this.committed;
   /** Only release a legacy slot after the complete original/outbox is committed. */
-  async relocateLegacy() {
+  async relocateLegacy(expectedRaw?: string) {
     const raw = this.storage.getItem(this.key);
-    if (raw === null) return;
+    if (raw === null || (expectedRaw !== undefined && raw !== expectedRaw)) return;
     this.indexedOnly = true; this.legacyAtFallback = raw;
     this.fallback = raw; this.desired = raw;
     await this.flush();

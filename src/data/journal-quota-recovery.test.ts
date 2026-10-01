@@ -53,3 +53,11 @@ it('skips active writers, damaged or unknown journals, auth keys and drafts',asy
  expect(await recoverPersonalJournalQuota(local,factory,locks)).toBe(0);
  expect(Array.from({length:local.length},(_,i)=>[local.key(i),local.getItem(local.key(i)!)])).toEqual(before);
 });
+
+it('does not relocate a damaged concurrent edit that replaced the validated original while opening the DB',async()=>{
+ const local=storage(),factory=new IDBFactory(),raw=envelope();local.setItem(key,raw);
+ const originalGet=IDBObjectStore.prototype.get;let changed=false;
+ const spy=vi.spyOn(IDBObjectStore.prototype,'get').mockImplementation(function(this:IDBObjectStore,...args){const request=originalGet.apply(this,args);if(this.name==='journals'&&!changed){changed=true;local.setItem(key,'damaged concurrent original');}return request;});
+ try {expect(await recoverPersonalJournalQuota(local,factory)).toBe(0);}finally{spy.mockRestore();}
+ expect(local.getItem(key)).toBe('damaged concurrent original');
+});
