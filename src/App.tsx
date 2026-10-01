@@ -517,7 +517,7 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
   const practiceRoute = route === "/practice" || route.startsWith("/practice/");
   const freeRoute = route === "/free" || route.startsWith("/free/");
   const rootTitle =
-    route === "/about" ? "manseeksong" : route === "/help" ? "도움말·문의" : route === "/my-progress" ? "내 생각 다시 보기" : route === "/subscription" ? "이용 정보" :
+    route === "/about" ? "manseeksong" : (route === "/help" || route === "/subscription") ? "도움말" : route === "/my-progress" ? "내 생각 다시 보기" :
     route === "/schedules" ? "일정·과제·온라인 강의" : route === "/material-cards" ? "자료 카드" : route === "/math" ? "수식 탐색" : memoryTestRoute ? "암기시험" : materialRoute ? "강의 자료" : practiceRoute ? "시험 연습" : codeRoute ? "코딩 연습" : route === "/statistics" ? "공부 통계" :
     route === "/backup" ? "백업·복원" : route === "/graph" ? "그래프뷰" : route === "/board" ? "칸반보드" : route === "/canvas"
       ? "Canvas"
@@ -551,8 +551,7 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
           <a href="#/trash">휴지통</a>
           <a href="#/draft-archives">초안 보관본</a>
           <a href="#/my-progress">내 생각 다시 보기</a>
-          <a href="#/help">도움말·문의</a>
-          <a href="#/subscription">이용 정보</a>
+          <a href="#/help">도움말</a>
           <a href="#/about">manseeksong 소개</a>
           <ExperienceSettings data={data} />
           <Select
@@ -596,8 +595,7 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
             <a href="#/trash">휴지통</a>
             <a href="#/draft-archives">초안 보관본</a>
             <a href="#/my-progress">내 생각 다시 보기</a>
-            <a href="#/help">도움말·문의</a>
-            <a href="#/subscription">이용 정보</a>
+            <a href="#/help">도움말</a>
             <a href="#/about">manseeksong 소개</a>
             <ExperienceSettings data={data} />
             <Select
@@ -678,7 +676,7 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
             )}
           </div>
           <BrandContinuity key={`${data.namespace}:${data.userId}`} data={data} route={route} />
-          {["/about", "/help", "/my-progress", "/subscription"].includes(route) && <BrandService key={`${data.namespace}:${data.userId}:${route}`} data={data} repository={repository} page={route} />}
+          {["/about", "/help", "/my-progress", "/subscription"].includes(route) && <BrandService key={`${data.namespace}:${data.userId}:${route}`} data={data} repository={repository} page={route === "/subscription" ? "/help" : route} />}
           {route === "/draft-archives" && <DraftArchives data={data} />}
           {route === "/schedules" && <Suspense fallback={<LoadingState message="일정을 여는 중입니다." />}><NextStudy onlySchedules repository={repository} onSaved={setData} data={data} subjectIds={shownSubjects.map(subject=>subject.id)} semesterId={scope}/></Suspense>}
           {route === "/statistics" && <Suspense fallback={<LoadingState message="공부 통계를 여는 중입니다." />}><StudyStatistics key={scope} data={data} subjectIds={shownSubjects.map(subject => subject.id)} /></Suspense>}

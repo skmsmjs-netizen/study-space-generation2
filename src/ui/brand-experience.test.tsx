@@ -9,6 +9,7 @@ import { BrandContinuity, BrandService } from './brand-experience';
 
 beforeEach(() => {
   localStorage.clear();
+  sessionStorage.clear();
   const key = experienceKey(createDemoState());
   [key, `${key}:next-draft`, `${key}:support-draft`].forEach(clearRescuedDraft);
 });
@@ -68,7 +69,7 @@ it('previews only chosen originals and explicitly selected history without addin
   });
   const original = structuredClone(data);
   const repository = { getSnapshot: () => data, execute: vi.fn(() => data) };
-  render(<BrandService data={data} repository={repository} page="/my-progress" />);
+  const view = render(<BrandService data={data} repository={repository} page="/my-progress" />);
   await user.click(screen.getByRole('checkbox', { name: /함수는 어떤 관계일까.*고친 설명/ }));
   const preview = screen.getByRole('region', { name: '공유 파일 미리보기' });
   expect(preview).toHaveTextContent('고친 설명');
@@ -79,18 +80,38 @@ it('previews only chosen originals and explicitly selected history without addin
   expect(preview).toHaveTextContent('공부한 날짜: 미확인');
   expect(data).toEqual(original);
   expect(repository.execute).not.toHaveBeenCalled();
+  view.unmount();
+  render(<BrandService data={data} repository={repository} page="/my-progress" />);
+  expect(screen.getByRole('checkbox', { name: /함수는 어떤 관계일까.*고친 설명/ })).toBeChecked();
+  expect(screen.getByRole('checkbox', { name: '선택한 기록의 이전 수정본도 포함' })).toBeChecked();
+  expect(screen.getByRole('region', { name: '공유 파일 미리보기' })).toHaveTextContent(
+    '처음 남긴 설명',
+  );
 });
 it('preserves a support draft across reentry and distinguishes local preservation from external receipt', async () => {
   const user = userEvent.setup(),
     data = createDemoState(),
     repository = { getSnapshot: () => data, execute: vi.fn(() => data) };
   const view = render(<BrandService data={data} repository={repository} page="/help" />);
-  await user.type(screen.getByLabelText('문의 내용'), '  문의를 남기기\n');
-  await user.click(screen.getByRole('button', { name: '문의 내용 보관' }));
+  await user.type(screen.getByLabelText('문제 메모'), '  문의를 남기기\n');
+  await user.click(screen.getByRole('button', { name: '문제 메모 보관' }));
   expect(screen.getByRole('status')).toHaveTextContent('외부 접수나 전송은 하지 않았습니다');
   view.unmount();
   render(<BrandService data={data} repository={repository} page="/help" />);
-  expect(screen.getByLabelText('문의 내용')).toHaveValue('  문의를 남기기\n');
+  expect(screen.getByLabelText('문제 메모')).toHaveValue('  문의를 남기기\n');
+  const preservedId = readExperience(data).support[0].id;
+  await user.clear(screen.getByLabelText('문제 메모'));
+  await user.click(screen.getByLabelText('문제 메모'));
+  await user.paste('  고친 문의\n');
+  await user.click(screen.getByRole('button', { name: '문제 메모 보관' }));
+  expect(readExperience(data).support[0].id).toBe(preservedId);
+  expect(readExperience(data).support[0].history?.[0].body).toBe('  문의를 남기기\n');
+  await user.click(screen.getByRole('button', { name: '새 메모 작성' }));
+  await user.click(screen.getByLabelText('문제 메모'));
+  await user.paste('별도의 문의');
+  await user.click(screen.getByRole('button', { name: '문제 메모 보관' }));
+  expect(readExperience(data).support).toHaveLength(2);
+  expect(readExperience(data).support[1].id).not.toBe(preservedId);
   expect(repository.execute).not.toHaveBeenCalled();
   expect(screen.queryByText('접수 완료')).not.toBeInTheDocument();
 });
