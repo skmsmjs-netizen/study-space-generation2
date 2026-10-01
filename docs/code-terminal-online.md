@@ -29,7 +29,8 @@ C#은 SDK의 공식 Roslyn 컴파일러와 .NET 10 reference pack을 직접 호�
 
 `server/code-terminal/install-server.sh`는 전용 Ubuntu24.04 VM에서 isolate, 공식 Node24(체크섬 확인), GCC/G++, .NET10, Caddy, systemd 서비스와 bounded tmpfs를 설치한다. 기존 Caddy 사이트가 있으면 덮어쓰지 않고 중단한다. 서비스 환경 설정도 기존 파일을 보존한다. 신규 서버를 생성하거나 결제하는 스크립트가 아니다.
 
-1. 사용자 계정이 있는 전용 Ubuntu24.04 서버와 그 서버로 연결되는 호스트 이름을 정한다. 현재 연결된 계정은 없다.
+1. 사용자 계정이 있는 전용 Ubuntu24.04 서버를 연결한다. 현재 이 작업에서 사용할 수 있는 서버 계정·SSH 주소는 확인되지 않았다. 새 계정의 기본 후보는 [AWS Lightsail](https://aws.amazon.com/lightsail/pricing/)의 2GB/2vCPU/IPv4 서버(기본 월12달러)이며, 신규 결제·서버 생성은 사용자 동의와 계정 연결 뒤에 한다. 동시 실행1개를 기본값으로 정했으며 운영 부하 측정 결과는 아니다.
+   별도 도메인이 없으면 고정 공인 IP로 `terminal.<IP를 하이픈으로 연결>.sslip.io` 호스트 이름을 사용할 수 있다. [nip.io/sslip.io 공식 안내](https://nip.io/)의 DNS와 [Caddy 자동 HTTPS](https://caddyserver.com/docs/automatic-https)를 적용해 인증서를 발급한다. 실제 서버의 DNS·80/443·인증서 발급 성공을 확인한 뒤에만 앱 주소를 활성화한다. 사용자에게 DNS 설정이나 도구 선정을 맡기지 않는다.
 2. 이번 배포 묶음의 `server/code-terminal`을 서버로 전달하고 root로 `bash install-server.sh <서버 호스트 이름>`을 실행한다. SSH·80/443만 외부에 열고 gateway8090은 loopback에 유지한다.
 3. HTTPS `/health`와 승인된 격리 시험 계정으로 실제 입력·중지·재실행을 확인한다. 실제 공부 자료를 시험으로 실행하지 않는다.
 4. GitHub repository variable `CODE_TERMINAL_URL=wss://<서버 호스트 이름>/terminal`을 설정한 뒤 승인된 Pages를 다시 빌드한다. 값은 공개 주소이며 비밀키를 넣지 않는다. 주소가 없으면 기존 온라인 batch 실행을 제공한다.
@@ -37,7 +38,7 @@ C#은 SDK의 공식 Roslyn 컴파일러와 .NET 10 reference pack을 직접 호�
 
 ## 확인 근거와 남은 범위
 
-실제 Ubuntu24.04의 [Linux 검사 Actions36838125503](https://github.com/skmsmjs-netizen/study-space-generation2/actions/runs/36838125503): gateway6개와 실제 isolate8개 통과. C의 프롬프트 뒤 두 번 scanf, C++20/Korean, C# ReadLine 두 번/Korean, 컴파일 오류 후 재실행, EOF, SIGTERM 무시 프로그램 강제 중단 후 재실행, host 파일·외부 네트워크 차단/프로세스 상한, 메모리 초과 후 복귀, 실제 WebSocket부터 PTY까지 확인했다. 합성 인증을 쓰는 CI이며, 상시 운영 서버의 로그인·HTTPS 완료 증거가 아니다.
+실제 Ubuntu24.04의 [Linux·앱 검사 Actions36842872861](https://github.com/skmsmjs-netizen/study-space-generation2/actions/runs/36842872861): gateway6개와 실제 isolate9개 통과(.NET10). 앱 자동 검사657개 통과·1개 미실행, backend/type/build 통과, 다섯 WebKit 환경의 터미널 입력·저장·재열기·연결 유실20개 통과. C의 프롬프트 뒤 두 번 scanf, C++20/Korean, C# ReadLine 두 번/Korean, 컴파일 오류 후 재실행, EOF, SIGTERM 무시 프로그램 강제 중단 후 재실행, host 파일·외부 네트워크 차단/프로세스 상한, 메모리 초과 후 복귀, 실제 WebSocket부터 PTY까지 확인했다. 합성 인증을 쓰는 CI이며, 상시 운영 서버의 로그인·HTTPS 완료 증거가 아니다.
 
 기존 Supabase 프로젝트에 `study-code-terminal`v1과 service-role 전용 `study_reserve_code_terminal`을 적용했다. 실제 endpoint의 익명/잘못된 토큰401과 CORS204, 실제 DB의 anon/authenticated 실행 불가·service-role 가능을 확인했다. 새로운 실제 사용자의 자료를 생성하지 않았다.
 
