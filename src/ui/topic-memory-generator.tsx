@@ -91,7 +91,9 @@ export function TopicMemoryGenerator({
         })),
       });
       if (mounted.current && stored)
-        setNotice('질문과 기준 답안을 만들었습니다. 확인한 항목을 등록해 주세요.');
+        setNotice(result.cards.length
+          ? '질문과 기준 답안을 만들었습니다. 확인한 항목을 등록해 주세요.'
+          : '등록할 문항을 만들지 않았습니다. 아래 안내를 확인해 주세요.');
     } catch (e) {
       if (mounted.current)
         setError(
@@ -243,9 +245,9 @@ export function TopicMemoryGenerator({
             주제 기반 생성 · {result.cards.length}개 · {input.subject.name} /{' '}
             {input.topics.map((t) => t.path.map((n) => n.name).join(' › ')).join(', ')}
           </p>
-          <p className="muted">
+          {result.cards.length > 0 && <p className="muted">
             일반 지식으로 만든 답안입니다. 수업의 표기와 조건에 맞는지 확인하거나 고쳐 주세요.
-          </p>
+          </p>}
           {result.diagnostics?.map((d, index) => <article key={`diagnostic:${index}`}><p role="status">{d.message}</p>{d.questions?.map(q => <p key={q}>{q}</p>)}</article>)}
           {draft.items.map((i, index) => {
             const original = result.cards.find((c) => c.id === i.id);
