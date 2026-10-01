@@ -1,3 +1,4 @@
+import type { ChartFigure } from '../domain/statistics-charts';
 import { afterEach, expect, it, vi } from 'vitest';
 import { cleanup, fireEvent, render, screen, within } from '@testing-library/react';
 import { createDemoState } from '../domain/fixtures';
@@ -72,3 +73,5 @@ it('uses calendar-month evidence, retains unknown dates separately, and remember
   const dialog = screen.getByRole('dialog'); expect(within(dialog).getByText('9월 원문')).toBeInTheDocument(); expect(within(dialog).queryByText('10월 원문')).toBeNull(); expect(within(dialog).getByText('날짜 미정 원문')).toBeInTheDocument();
   view.unmount(); view = render(<StudyStatistics data={data} subjectIds={subjectIds} />); expect(screen.getByLabelText('요약할 월')).toHaveValue('2026-09');
 });
+
+vi.mock('./statistics-plot',()=>({StatisticsPlot:({figure}:{figure:ChartFigure})=><div data-chart-kind={figure.kind} role="img" aria-label={figure.title}/> }));

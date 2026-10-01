@@ -6,6 +6,7 @@ import { calendarMonth, shiftMonth } from '../domain/study-calendar';
 import { statisticBounds, statistics, type MetricId, type StatisticItem } from '../domain/statistics';
 import { readStatisticsMonth, saveStatisticsMonth } from '../data/statistics-month';
 import { Button, Card, Input } from './index';
+import { StatisticsTrend } from './statistics-trend';
 
 const amount = (lower: number, upper: number | null) => upper === null ? `${lower} 이상 · 상한 미정` : lower === upper ? `${lower}` : `${lower}–${upper}`;
 const shortLabels: Record<MetricId, string> = { sessions: '공부 회차', coverage: '주제', activities: '공부 행동', repeats: '반복', writing: '남긴 글', attempts: '수행 시도', successes: '기준 충족', corrections: '교정' };
@@ -34,12 +35,12 @@ export function MonthSummary({ data, workspace, subjectIds, subjectId = '', node
     <div className="statistics-metrics">{metrics.filter(m => !compact || ['sessions', 'coverage'].includes(m.id)).map(m => {
       const b = statisticBounds(m, period.from, period.to), prev = statisticBounds(m, previous.from, previous.to);
       const missing = unavailable && ['attempts', 'successes', 'corrections'].includes(m.id);
-      return <button key={m.id} className="statistics-metric" aria-label={`${month} ${shortLabels[m.id]} 원기록 보기`} disabled={Boolean(missing)} onClick={() => open(m)}>
+      return <button type="button" key={m.id} className="statistics-metric" aria-label={`${month} ${shortLabels[m.id]} 원기록 보기`} disabled={Boolean(missing)} onClick={() => open(m)}>
         <span>{m.label}</span><strong>{missing ? '확인 불가' : amount(b.lower, b.upper)}</strong><small>{m.unit}{b.undated ? ` · 날짜 미정 ${b.undated}건 별도` : ''}</small>
-        {!compact && !missing && <small>이전 달 {amount(prev.lower, prev.upper)} · 원기록 보기</small>}
+        {!compact && !missing && <><StatisticsTrend metric={m} from={period.from} to={period.to} /><small>이전 달 {amount(prev.lower, prev.upper)} · 원기록 보기</small></>}
       </button>;
     })}</div>
-    <p className="muted">기록·반복과 혼자 확인한 수행 결과를 구별합니다. 날짜 미정은 이 달에 배정하지 않고, 날짜 범위가 걸치면 가능한 상한에만 포함합니다.</p>
+    <p className="muted">{!compact && '작은 그래프는 날짜가 정확한 기록의 흐름이며, 지표마다 눈금을 따로 맞춥니다. '}기록·반복과 혼자 확인한 수행 결과를 구별합니다. 날짜 미정은 이 달에 배정하지 않고, 날짜 범위가 걸치면 가능한 상한에만 포함합니다.</p>
     {error && <p role="alert">{error}</p>}
   </Card>;
 }

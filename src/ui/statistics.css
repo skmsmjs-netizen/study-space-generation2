@@ -11,6 +11,11 @@
 .statistics-chart .current-bar { fill:var(--color-primary); }
 .statistics-chart .previous-bar { fill:var(--color-border-strong); }
 .statistics-chart .grid { stroke:var(--color-border); stroke-width:1; }
+.statistics-trend { display:block; width:100%; height:56px; margin-block:var(--space-3); }
+.statistics-trend .current-bar { fill:var(--color-primary); }
+.statistics-trend .grid { stroke:var(--color-border); }
+.statistics-chart .bar-hit-area { fill:transparent; stroke:none; }
+.statistics-chart .bar-control:focus .bar-hit-area { stroke:var(--color-focus); stroke-width:2; }
 .statistics-chart .bar-control { cursor:pointer; }
 .statistics-chart .bar-control:focus { outline: none; }
 .statistics-chart .bar-control:focus rect, .statistics-chart .bar-control[data-selected=true] rect { stroke:var(--color-focus); stroke-width:3; }
@@ -20,3 +25,16 @@
 .statistics-evidence article { border-bottom:1px solid var(--color-border); padding-block:var(--space-3); }
 .statistics-evidence p { white-space:pre-wrap; overflow-wrap:anywhere; }
 @media(max-width:600px) { .statistics-metrics { grid-template-columns:repeat(2,minmax(0,1fr)); } .statistics-metric { padding:var(--space-3); } }
+.statistics-gallery { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:var(--space-5); }
+.statistics-gallery-card { min-width:0; overflow:hidden; }
+.statistics-gallery-card h3 { margin:var(--space-0); font-size:var(--type-body-size); }
+.statistics-gallery-card p { margin-block:var(--space-2); }
+.statistics-plot-wrap,.statistics-plot { min-width:0; width:100%; }
+.statistics-plot { min-height:220px; overflow:hidden; }
+.statistics-values { margin-block:var(--space-3); }
+.statistics-values summary { cursor:pointer; }
+.statistics-chart-controls { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:var(--space-3); }
+.statistics-chart-reason { min-height:120px; display:grid; align-content:center; }
+@media(max-width:700px) { .statistics-gallery { grid-template-columns:minmax(0,1fr); } }
+
+.statistics-plot-group { min-width:0; border:0; padding:var(--space-0); margin:var(--space-0); }
