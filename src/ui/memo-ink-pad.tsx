@@ -588,7 +588,23 @@ export function MemoInkPad({
           {expanded ? '작게 보기' : '넓게 쓰기'}
         </Button>
       </div>
-      <div ref={viewport} className="ink-pad-paper" role="region" aria-label={`${drawingLabel} 스크롤`} tabIndex={0}>
+      <div ref={viewport} className="ink-pad-paper" role="region" aria-label={`${drawingLabel} 스크롤`} tabIndex={0}
+        onKeyDown={event => {
+          if (event.target !== event.currentTarget || event.altKey || event.ctrlKey || event.metaKey) return;
+          const paper = event.currentTarget;
+          const directions: Record<string, ScrollToOptions> = {
+            ArrowDown: { top: 40 }, ArrowUp: { top: -40 },
+            ArrowRight: { left: 40 }, ArrowLeft: { left: -40 },
+            PageDown: { top: paper.clientHeight }, PageUp: { top: -paper.clientHeight },
+          };
+          if (event.key === 'Home' || event.key === 'End') {
+            event.preventDefault();
+            paper.scrollTo({ top: event.key === 'Home' ? 0 : paper.scrollHeight, behavior: 'auto' });
+          } else if (directions[event.key]) {
+            event.preventDefault();
+            paper.scrollBy({ ...directions[event.key], behavior: 'auto' });
+          }
+        }}>
         <svg
           ref={svg}
           viewBox={`0 0 ${MEMO_WIDTH} ${MEMO_HEIGHT}`}
