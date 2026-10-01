@@ -25,6 +25,7 @@ jobs:
       - run: npm run build
         env:
           PAGES_BASE: /${{ github.event.repository.name }}/
+          VITE_CODE_TERMINAL_URL: ${{ vars.CODE_TERMINAL_URL }}
       - run: npx playwright install --with-deps webkit
       - name: Verify all agreed device environments
         run: npm run test:devices

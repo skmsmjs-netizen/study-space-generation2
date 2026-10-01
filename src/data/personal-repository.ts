@@ -5,9 +5,10 @@ import type { ServerSnapshot } from '../server/command-handler';
 import { encodeStoredText, decodeStoredText } from './storage-codec';
 import type { ScheduleNotificationPort } from './schedule-notifications';
 import type { CodeRemoteRunner } from './code-runner';
+import type { CodeTerminalRunner } from './code-terminal';
 import { MAX_SYNC_BATCH, MAX_SYNC_BATCH_CHARS } from '../domain/sync-protocol';
 import { recordRequestPerformance } from './request-performance';
-export interface OnlineTransport { load(known?: ServerSnapshot): Promise<ServerSnapshot>; execute(command: Command, baseSequence: number): Promise<ServerSnapshot>; executeBatch?(commands: Command[], baseSequence: number): Promise<ServerSnapshot>; runCode?: CodeRemoteRunner; scheduleNotifications?:ScheduleNotificationPort }
+export interface OnlineTransport { load(known?: ServerSnapshot): Promise<ServerSnapshot>; execute(command: Command, baseSequence: number): Promise<ServerSnapshot>; executeBatch?(commands: Command[], baseSequence: number): Promise<ServerSnapshot>; runCode?: CodeRemoteRunner; runTerminal?: CodeTerminalRunner; scheduleNotifications?:ScheduleNotificationPort }
 export interface JournalRecovery { key: string; raw: string; savedAt: string }
 export interface PersonalJournal extends Pick<Storage, 'getItem' | 'setItem'> { flush?(): Promise<void>; close?(): void; getRecoveryCopies?(): JournalRecovery[] }
 export const personalJournalKey = (data: Pick<AppState, 'namespace' | 'userId'>) => `study-space:${data.namespace}:${encodeURIComponent(data.userId)}:online:v1`;
@@ -52,6 +53,7 @@ export class PersonalRepository implements StudyRepository {
     }} );
   };
   getCodeRunner = () => this.transport.runCode;
+  getCodeTerminal = () => this.transport.runTerminal;
   constructor(private storage: PersonalJournal, private transport: OnlineTransport, server: ServerSnapshot, cached = false, journalKey = personalJournalKey(server.data)) {
     this.needsRefresh = cached;
     validateState(server.data);

@@ -298,7 +298,8 @@ export function CodeExampleEditor({
   const terminalExecution = useRef<CodeTerminalExecution | null>(null);
   const terminalHandle = useRef<CodeTerminalHandle | null>(null);
   const pendingTerminalOutput = useRef('');
-  const terminalAvailable = canUseCodeTerminal(content.language);
+  const remoteTerminal = repository.getCodeTerminal?.();
+  const terminalAvailable = canUseCodeTerminal(content.language, remoteTerminal);
   const interactive =
     (content.inputMode ?? (terminalAvailable ? 'terminal' : 'batch')) === 'terminal' &&
     terminalAvailable;
@@ -478,7 +479,7 @@ export function CodeExampleEditor({
       setTerminalInput('');
       pendingTerminalOutput.current = '';
       terminalHandle.current?.reset();
-      terminalExecution.current = executeCodeTerminal(
+      terminalExecution.current = (remoteTerminal ?? executeCodeTerminal)(
         source,
         (text) => {
           if (terminalHandle.current) terminalHandle.current.write(text);
@@ -756,12 +757,23 @@ export function CodeExampleEditor({
             않습니다.
           </p>
         )}
+      {interactive && remoteTerminal && (
+        <p className="ui-hint">
+          실행하면 코드와 터미널 입력을 온라인 실행 서버에 전달합니다. 제목·설명은 전달하지 않습니다.
+        </p>
+      )}
       <section className="code-result" aria-label="실행 결과">
         <h3>실행 결과</h3>
         {lastRun?.mode === 'terminal' && (
           <p className="ui-hint">
             터미널 기록입니다. 프로그램 출력과 입력한 내용의 표시가 함께 포함됩니다.
           </p>
+        )}
+        {lastRun?.mode === 'terminal' && lastRun.stdin && (
+          <details open={lastRun.outcome !== 'success'}>
+            <summary>보낸 입력</summary>
+            <pre>{lastRun.stdin.replace(/\r\n?/g, '\n').replace(/\u0003/g, '〔중지〕').replace(/\u0004/g, '〔입력 끝〕')}</pre>
+          </details>
         )}
         {lastRun && !currentCodeRun(content) && (
           <p className="code-stale-result">

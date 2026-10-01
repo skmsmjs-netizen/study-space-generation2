@@ -108,3 +108,24 @@ it('waits for cancellation acknowledgement but bounds an unresponsive connection
   expect((await run.result).outcome).toBe('stopped');
   expect(socket.readyState).toBe(3);
 });
+it('remote authentication is sent once in the first frame, excluded from source snapshots and URLs', async () => {
+  vi.stubGlobal('WebSocket', Socket);
+  const run = executeCodeTerminal(source, vi.fn(), vi.fn(), { url: 'wss://terminal.example/terminal', authenticate: async () => 'private-token' });
+  await Promise.resolve();
+  const socket = Socket.latest;
+  expect(socket.url).toBe('wss://terminal.example/terminal');
+  socket.open();
+  expect(socket.sent[0]).toEqual({ type: 'start', ...source, token: 'private-token' });
+  expect(JSON.stringify(run.snapshot())).not.toContain('private-token');
+  run.cancel(); socket.onclose?.();
+  expect((await run.result).outcome).toBe('stopped');
+});
+it('cancel during session refresh never opens a late authenticated socket', async () => {
+  vi.stubGlobal('WebSocket', Socket);
+  let authenticated!: (token: string) => void;
+  const previous = Socket.latest;
+  const run = executeCodeTerminal(source, vi.fn(), vi.fn(), { url: 'wss://terminal.example/terminal', authenticate: () => new Promise(resolve => { authenticated = resolve; }) });
+  run.cancel(); authenticated('private-token'); await Promise.resolve();
+  expect(Socket.latest).toBe(previous);
+  expect((await run.result).outcome).toBe('stopped');
+});

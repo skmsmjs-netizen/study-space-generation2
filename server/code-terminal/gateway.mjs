@@ -5,7 +5,7 @@ import { pathToFileURL } from 'node:url';
 
 const MAX_INPUT = 200_000, MAX_OUTPUT = 100_000;
 /** Dependency injection is for integration tests. Production always uses isolate and Supabase. */
-export function createTerminalGateway({ origins, access, execute = startLinuxExecution, ready = true, maxConnections = 16, maxRuns = 2 }) {
+export function createTerminalGateway({ origins, access, execute = startLinuxExecution, ready = true, maxConnections = 16, maxRuns = 1 }) {
   let active = 0;
   const server = createServer((request, response) => {
     const healthy = request.url === '/health' && ready;

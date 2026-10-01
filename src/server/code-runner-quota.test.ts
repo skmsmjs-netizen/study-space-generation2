@@ -16,6 +16,7 @@ beforeAll(async () => {
       'utf8',
     ),
   );
+  await db.exec(await readFile(new URL('../../supabase/migrations/20261001160000_code_terminal_lease.sql', import.meta.url), 'utf8'));
 });
 beforeEach(async () => {
   await db.exec(
@@ -71,4 +72,20 @@ it('expires an abandoned lease and resets minute counters without resetting the 
   await finish();
   await db.exec('update study_code_run_limits set day_count=200 where user_id is not null');
   await expect(reserve()).rejects.toThrow('CODE_RATE_LIMIT');
+});
+
+it('terminal leases last through the input wait, share batch limits, and retain owner isolation', async () => {
+  await db.query('select study_reserve_code_terminal($1,$2)', [user, job]);
+  const { rows } = await db.query<{ seconds: number }>("select extract(epoch from lease_until-clock_timestamp()) as seconds from study_code_run_limits where user_id=$1", [user]);
+  expect(Number(rows[0].seconds)).toBeGreaterThan(170);
+  await expect(reserve()).rejects.toThrow('CODE_BUSY');
+  await db.query('select study_finish_code_run($1,$2)', ['10000000-0000-4000-8000-000000000002', job]);
+  await expect(reserve()).rejects.toThrow('CODE_BUSY');
+  await finish();
+  await reserve();
+  for (const role of ['anon', 'authenticated']) {
+    await db.exec(`set role ${role}`);
+    await expect(db.query('select study_reserve_code_terminal($1,$2)', [user, job])).rejects.toThrow('permission denied');
+    await db.exec('reset role');
+  }
 });

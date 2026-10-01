@@ -7,16 +7,22 @@ export interface CodeTerminalExecution extends CodeExecution {
   write(text: string): void;
   resize(cols: number, rows: number): void;
 }
-export function canUseCodeTerminal(language: string) {
+export type CodeTerminalRunner = typeof executeCodeTerminal;
+export interface RemoteTerminal {
+  url: string;
+  authenticate(): Promise<string>;
+}
+export function canUseCodeTerminal(language: string, remote?: CodeTerminalRunner) {
   return (
     ['c', 'cpp', 'csharp'].includes(language) &&
-    ['localhost', '127.0.0.1'].includes(location.hostname)
+    (Boolean(remote) || ['localhost', '127.0.0.1'].includes(location.hostname))
   );
 }
 export function executeCodeTerminal(
   content: Pick<CodeExampleContent, 'language' | 'code'>,
   onOutput: (text: string) => void,
   onPhase: (phase: 'loading' | 'running') => void,
+  remote?: RemoteTerminal,
 ): CodeTerminalExecution {
   let output = '',
     stdin = '',
@@ -27,16 +33,14 @@ export function executeCodeTerminal(
   const result = new Promise<CodeRun>((done) => {
     resolve = done;
   });
-  const ws = new WebSocket(
-    `${location.protocol === 'https:' ? 'wss:' : 'ws:'}//${location.host}/__code-terminal`,
-  );
+  let ws: WebSocket | undefined;
   let timer: ReturnType<typeof setTimeout>;
   const finish = (outcome: CodeRun['outcome'], error = '') => {
     if (settled) return;
     settled = true;
     running = false;
     clearTimeout(timer);
-    ws.close();
+    ws?.close();
     resolve({
       ...content,
       stdin,
@@ -48,7 +52,7 @@ export function executeCodeTerminal(
     });
   };
   const send = (message: object) => {
-    if (!settled && ws.readyState === WebSocket.OPEN) ws.send(JSON.stringify(message));
+    if (!settled && ws?.readyState === WebSocket.OPEN) ws.send(JSON.stringify(message));
   };
   const timeout = (ms: number) => {
     clearTimeout(timer);
@@ -65,7 +69,10 @@ export function executeCodeTerminal(
   };
   onPhase('loading');
   timeout(40_000);
-  ws.onopen = () => send({ type: 'start', ...content });
+  const connect = (token?: string) => {
+  if (settled) return;
+  ws = new WebSocket(remote?.url ?? `${location.protocol === 'https:' ? 'wss:' : 'ws:'}//${location.host}/__code-terminal`);
+  ws.onopen = () => send({ type: 'start', ...content, ...(token ? { token } : {}) });
   ws.onmessage = (event) => {
     if (settled) return;
     try {
@@ -115,6 +122,14 @@ export function executeCodeTerminal(
       cancelled ? 'stopped' : 'error',
       cancelled ? '실행을 중지했습니다.' : '터미널 연결이 끊겼습니다. 입력과 출력은 보관했습니다.',
     );
+  };
+  if (remote) {
+    // Credentials travel in the first frame, never the URL or saved run.
+    void remote.authenticate().then((token) => {
+      if (!token || !/^wss:\/\//.test(remote.url)) throw Error();
+      connect(token);
+    }).catch(() => finish('error', '터미널에 연결하려면 다시 로그인해 주세요. 코드와 설명은 유지했습니다.'));
+  } else connect();
   return {
     result,
     snapshot: () => ({
@@ -144,7 +159,7 @@ export function executeCodeTerminal(
       cancelled = true;
       send({ type: 'cancel' });
       timeout(4_000);
-      if (ws.readyState === WebSocket.CONNECTING) finish('stopped', '실행을 중지했습니다.');
+      if (!ws || ws.readyState === WebSocket.CONNECTING) finish('stopped', '실행을 중지했습니다.');
     },
   };
 }

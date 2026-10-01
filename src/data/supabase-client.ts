@@ -1,3 +1,4 @@
+import { executeCodeTerminal } from './code-terminal';
 import { PUBLIC_SERVER_URL, PUBLIC_SERVER_KEY } from './public-server-config';
 import { createClient, FunctionRegion, type SupabaseClient } from '@supabase/supabase-js';
 import { DomainError, type Command, type Namespace } from '../domain/model';
@@ -46,6 +47,8 @@ export async function signInStudyClient(client: SupabaseClient, credentials: { e
   }
 }
 export function onlineTransport(client: SupabaseClient, namespace: Namespace = 'personal'): OnlineTransport {
+  const terminalUrl = import.meta.env.VITE_CODE_TERMINAL_URL as string | undefined;
+  if (terminalUrl && !/^wss:\/\/[^/?#]+\/terminal$/.test(terminalUrl)) throw Error('터미널 서버 주소를 확인해 주세요.');
   async function request(action: 'load' | 'execute' | 'execute-batch', command?: Command, baseSequence?: number, known?: ServerSnapshot, commands?: Command[]): Promise<ServerSnapshot> {
     const { data: session, error: authError } = await client.auth.getSession();
     if (authError || !session.session) throw new DomainError('AUTH_REQUIRED', '로그인이 만료되었습니다. 글은 이 기기에 남아 있습니다. 다시 로그인해 주세요.');
@@ -74,6 +77,14 @@ export function onlineTransport(client: SupabaseClient, namespace: Namespace = '
     return data as T;
   }
   return {
+    ...(terminalUrl ? { runTerminal: (content, output, phase) => executeCodeTerminal(content, output, phase, {
+      url: terminalUrl,
+      async authenticate() {
+        const { data, error } = await client.auth.getSession();
+        if (error || !data.session) throw new DomainError('AUTH_REQUIRED', '다시 로그인해 주세요.');
+        return data.session.access_token;
+      },
+    }) } satisfies Pick<OnlineTransport, 'runTerminal'> : {}),
     scheduleNotifications:namespace==='personal'?{
       config:()=>notificationRequest<{publicKey:string}>({action:'config'}),
       subscribe:subscription=>notificationRequest<void>({action:'subscribe',subscription}),

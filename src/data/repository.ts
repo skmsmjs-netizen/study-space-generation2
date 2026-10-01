@@ -1,6 +1,7 @@
 import type { AppState, Command } from '../domain/model';
 import type { ScheduleNotificationPort } from './schedule-notifications';
 import type { CodeRemoteRunner } from './code-runner';
+import type { CodeTerminalRunner } from './code-terminal';
 /** execute commits locally; flush resolves only after the server acknowledges. */
 export interface StudyRepository {
   getSnapshot(): AppState;
@@ -11,6 +12,7 @@ export interface StudyRepository {
   getCapabilities?(): string[];
   getScheduleNotifications?(): ScheduleNotificationPort | undefined;
   getCodeRunner?(): CodeRemoteRunner | undefined;
+  getCodeTerminal?(): CodeTerminalRunner | undefined;
   /** Freeze new edits/transfers and await durable in-flight work for explicit restoration. */
   pauseForRestore?(): Promise<() => void>;
   getBackupKey?(): string;
