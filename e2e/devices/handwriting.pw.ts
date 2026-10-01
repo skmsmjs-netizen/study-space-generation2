@@ -36,7 +36,7 @@ test('ink pages, partial erasing, settings and undo survive saving and reopening
   await page.getByRole('button', {name:'선택',exact:true}).tap();
   await page.getByLabel('선택 모양',{exact:true}).selectOption('lasso');
   await paper.scrollIntoViewIfNeeded(); const lassoBox=(await paper.boundingBox())!;
-  const around=[[.1,.05],[.6,.05],[.6,.3],[.1,.3],[.1,.05]];
+  const around=[[.1,.12],[.6,.12],[.6,.24],[.1,.24],[.1,.12]];
   await page.mouse.move(lassoBox.x+lassoBox.width*around[0][0],lassoBox.y+lassoBox.height*around[0][1]);await page.mouse.down();
   for(const [x,y] of around.slice(1)) await page.mouse.move(lassoBox.x+lassoBox.width*x,lassoBox.y+lassoBox.height*y,{steps:5});
   await page.mouse.up();await expect(page.getByRole('button',{name:'선택 지우기',exact:true})).toBeEnabled();
