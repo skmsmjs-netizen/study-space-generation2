@@ -25,10 +25,18 @@ test('enlarged handwriting remains reachable and scrollable with the keyboard', 
   await expect(paper).toBeVisible();
   await page.getByRole('button', { name: '종이 확대', exact: true }).click();
   await page.getByRole('button', { name: '종이 확대', exact: true }).click();
+  await expect(page.getByRole('button', { name: '종이 확대', exact: true })).toHaveText('200%');
+  await expect.poll(() => paper.evaluate(el => el.scrollWidth - el.clientWidth)).toBeGreaterThan(0);
   await paper.focus();
   await expect(paper).toBeFocused();
   await page.keyboard.press('ArrowRight');
   await expect.poll(() => paper.evaluate(el => el.scrollLeft)).toBeGreaterThan(0);
+  await page.keyboard.press('ArrowLeft');
+  await expect.poll(() => paper.evaluate(el => el.scrollLeft)).toBe(0);
+  await page.keyboard.press('ArrowDown');
+  await expect.poll(() => paper.evaluate(el => el.scrollTop)).toBeGreaterThan(0);
+  await page.keyboard.press('ArrowUp');
+  await expect.poll(() => paper.evaluate(el => el.scrollTop)).toBe(0);
   const accessibility = await new AxeBuilder({ page }).include('.memo-ink-pad').withTags(['wcag2a', 'wcag2aa']).analyze();
   expect(accessibility.violations).toEqual([]);
 });
