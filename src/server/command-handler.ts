@@ -14,7 +14,7 @@ export interface CommandBackend {
   read(userId: string, namespace: Namespace): Promise<ServerSnapshot | null>;
   commit(userId: string, namespace: Namespace, base: number, command: Command, next: AppState): Promise<ServerSnapshot>;
 }
-const cors = { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': 'authorization, apikey, content-type, x-client-info', 'Access-Control-Allow-Methods': 'POST, OPTIONS', 'Cache-Control': 'no-store' };
+const cors = { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': 'authorization, apikey, content-type, x-client-info, x-region', 'Access-Control-Allow-Methods': 'POST, OPTIONS', 'Cache-Control': 'no-store' };
 const supportedCommands = ['saveRecallCloze', 'importRecallCards', 'setRecallCardStatus', 'saveMemo', 'saveStudyBoard', 'saveMemoryCard', 'trashMemoryCard', 'restoreMemoryCard', 'saveMemoryTest', 'saveStudyMaterial', 'trashStudyMaterial', 'restoreStudyMaterial', 'saveLearningPlan', 'saveCanvasLayout', 'saveCodeExample', 'trashCodeExample', 'restoreCodeExample', 'saveRecallCard', 'saveRecallReference', 'reviewRecallCard', 'undoRecallReview', 'setRecallDue', 'saveRecallPreferences'];
 const syncCapabilities: SyncCapabilities = { conditionalLoad: true, batchCommands: true };
 function validOperationId(value: unknown): value is string {

@@ -1,5 +1,5 @@
 import { PUBLIC_SERVER_URL, PUBLIC_SERVER_KEY } from './public-server-config';
-import { createClient, type SupabaseClient } from '@supabase/supabase-js';
+import { createClient, FunctionRegion, type SupabaseClient } from '@supabase/supabase-js';
 import { DomainError, type Command, type Namespace } from '../domain/model';
 import type { OnlineTransport } from './personal-repository';
 import type { ServerSnapshot } from '../server/command-handler';
@@ -50,7 +50,11 @@ export function onlineTransport(client: SupabaseClient, namespace: Namespace = '
     const { data: session, error: authError } = await client.auth.getSession();
     if (authError || !session.session) throw new DomainError('AUTH_REQUIRED', '로그인이 만료되었습니다. 글은 이 기기에 남아 있습니다. 다시 로그인해 주세요.');
     if (known && (known.data.userId !== session.session.user.id || known.data.namespace !== namespace)) throw new DomainError('OWNERSHIP', '이 공간의 자료가 아닙니다.');
-    const { data, error } = await client.functions.invoke('study-command', { timeout: 20000, body: { action, namespace, ...(command ? { command, baseSequence } : {}), ...(commands ? { commands, baseSequence } : {}), ...(known ? { knownSequence: known.sequence } : {}) } });
+    // Multiple sequential DB writes benefit from running beside this project's DB.
+    // Ordinary reads/single writes retain nearest-region routing; custom projects
+    // do not inherit the production project's region.
+    const region = commands && commands.length > 1 && (loginClients.get(client)?.config.url ?? readServerConfig()?.url) === PUBLIC_SERVER_URL ? FunctionRegion.ApSouth1 : undefined;
+    const { data, error } = await client.functions.invoke('study-command', { timeout: 20000, ...(region ? { region } : {}), body: { action, namespace, ...(command ? { command, baseSequence } : {}), ...(commands ? { commands, baseSequence } : {}), ...(known ? { knownSequence: known.sequence } : {}) } });
     if (error) {
       let result: { code?: string; message?: string } = {};
       try { if (error.context instanceof Response) result = await error.context.json(); } catch { /* Keep original drafts on malformed error responses. */ }

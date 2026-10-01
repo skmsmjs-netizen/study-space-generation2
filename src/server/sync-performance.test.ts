@@ -44,6 +44,12 @@ beforeEach(() => {
   approved = true;
   vi.clearAllMocks();
 });
+it('allows the official regional invocation header during browser preflight', async () => {
+  const response = await handleCommand(new Request('http://test/study-command', { method: 'OPTIONS' }), backend);
+  expect(response.status).toBe(204);
+  expect(response.headers.get('Access-Control-Allow-Headers')).toContain('x-region');
+  expect(backend.authenticate).not.toHaveBeenCalled();
+});
 it('returns only version/capabilities for an unchanged authorized workspace', async () => {
   const response = await request({ action: 'load', namespace: 'test', knownSequence: 0 });
   expect(await response.json()).toMatchObject({
