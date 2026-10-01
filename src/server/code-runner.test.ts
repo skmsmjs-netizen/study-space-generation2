@@ -120,4 +120,8 @@ it('uses C# compatible options and returns compiler stdout diagnostics on failur
   const result = await compileOnline({language: 'csharp', code: 'bad code', stdin: ''}, new AbortController().signal, transport);
   expect(result).toEqual({outcome: 'error', output: '', error: 'error CS2007'});
   expect(JSON.parse(transport.mock.calls[0][1]?.body as string).options).toBe('');
+  const sent=JSON.parse(transport.mock.calls[0][1]?.body as string);
+  expect(sent.compiler).toBe('dotnetcore-6.0.425');
+  expect(sent.code).toBe('bad code');
+  expect(sent.codes).toEqual([{file:'NuGet.Config',code:expect.stringContaining('<clear />')}]);
 });

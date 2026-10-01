@@ -29,7 +29,8 @@ function requireApproved(access) {
 var ONLINE_COMPILERS = {
   c: "gcc-13.2.0-c",
   cpp: "gcc-13.2.0",
-  csharp: "mono-6.12.0.199"
+  // Mono's provider locale loses Korean stdin/stdout; use the verified UTF-8 .NET runtime.
+  csharp: "dotnetcore-6.0.425"
 };
 var cors = {
   "Access-Control-Allow-Origin": "*",
@@ -79,7 +80,14 @@ async function compileOnline(source, signal, transport = fetch) {
       code: source.code,
       stdin: source.stdin,
       options: source.language === "csharp" ? "" : "warning",
-      ...source.language === "c" ? { "compiler-option-raw": "-std=c17" } : source.language === "cpp" ? { "compiler-option-raw": "-std=c++20" } : {},
+      ...source.language === "c" ? { "compiler-option-raw": "-std=c17" } : source.language === "cpp" ? { "compiler-option-raw": "-std=c++20" } : {
+        codes: [
+          {
+            file: "NuGet.Config",
+            code: '<?xml version="1.0" encoding="utf-8"?><configuration><packageSources><clear /></packageSources></configuration>'
+          }
+        ]
+      },
       save: false
     })
   });

@@ -3,6 +3,7 @@ import { Terminal } from '@xterm/xterm';
 import { FitAddon } from '@xterm/addon-fit';
 import '@xterm/xterm/css/xterm.css';
 import type { CodeTerminalExecution } from '../data/code-terminal';
+import { prefersTouchCodeEditor } from './source-editor';
 
 export interface CodeTerminalHandle {
   write(text: string): void;
@@ -74,7 +75,7 @@ export function CodeTerminal({
     terminal.current.options.disableStdin = !running;
     if (running) {
       execution.current?.resize(terminal.current.cols, terminal.current.rows);
-      terminal.current.focus();
+      if (!prefersTouchCodeEditor()) terminal.current.focus();
     }
   }, [running, execution]);
   return <div className="code-live-terminal" ref={host} />;

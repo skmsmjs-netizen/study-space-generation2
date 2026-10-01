@@ -68,11 +68,18 @@ const canSave = (repo: StudyRepository, data: AppState) =>
 
 export function CodePractice({ data, repository, onSaved, exampleId, trash = false }: Props) {
   const [error, setError] = useState('');
+  const [query, setQuery] = useState('');
+  const [languageFilter, setLanguageFilter] = useState('all');
   const examples = (data.codeExamples ?? [])
     .filter((row) => Boolean(row.deletedAt) === trash)
     .slice()
     .sort((a, b) => b.updatedAt.localeCompare(a.updatedAt));
   const selected = examples.find((row) => row.id === exampleId);
+  const visibleExamples = examples.filter(
+    (row) =>
+      (languageFilter === 'all' || row.language === languageFilter) &&
+      `${row.title}\n${row.notes}`.toLocaleLowerCase().includes(query.toLocaleLowerCase()),
+  );
   const commit = (
     action:
       | Omit<Extract<Command, { type: 'saveCodeExample' }>, 'opId' | 'at' | 'userId' | 'namespace'>
@@ -127,29 +134,35 @@ export function CodePractice({ data, repository, onSaved, exampleId, trash = fal
       )}
       {selected && !trash ? (
         <>
-        <CodeTopicLinkEditor key={`topic:${selected.id}`} data={data} repository={repository} onSaved={onSaved} exampleId={selected.id} />
-        <CodeExampleEditor
-          key={selected.id}
-          example={selected}
-          data={data}
-          repository={repository}
-          onSaved={onSaved}
-          onCopied={(id) => navigate(`/code/${id}`)}
-          onTrash={() => {
-            const row = repository
-              .getSnapshot()
-              .codeExamples?.find((item) => item.id === selected.id);
-            if (
-              row &&
-              commit({
-                type: 'trashCodeExample',
-                id: row.id,
-                expectedVersion: row.version,
-              })
-            )
-              navigate('/code');
-          }}
-        />
+          <CodeTopicLinkEditor
+            key={`topic:${selected.id}`}
+            data={data}
+            repository={repository}
+            onSaved={onSaved}
+            exampleId={selected.id}
+          />
+          <CodeExampleEditor
+            key={selected.id}
+            example={selected}
+            data={data}
+            repository={repository}
+            onSaved={onSaved}
+            onCopied={(id) => navigate(`/code/${id}`)}
+            onTrash={() => {
+              const row = repository
+                .getSnapshot()
+                .codeExamples?.find((item) => item.id === selected.id);
+              if (
+                row &&
+                commit({
+                  type: 'trashCodeExample',
+                  id: row.id,
+                  expectedVersion: row.version,
+                })
+              )
+                navigate('/code');
+            }}
+          />
         </>
       ) : (
         <>
@@ -166,8 +179,39 @@ export function CodePractice({ data, repository, onSaved, exampleId, trash = fal
           {!trash && exampleId && !selected && (
             <ErrorState message="이 코드 예제를 찾을 수 없습니다. 휴지통에 있는지 확인해 주세요." />
           )}
+          {examples.length > 0 && (
+            <>
+              <div className="code-example-filters">
+                <Input
+                  label="예제 찾기"
+                  value={query}
+                  placeholder="제목이나 설명으로 찾기"
+                  onChange={(event) => setQuery(event.target.value)}
+                />
+                <Select
+                  label="예제 언어"
+                  value={languageFilter}
+                  onChange={(event) => setLanguageFilter(event.target.value)}
+                >
+                  <option value="all">모든 언어</option>
+                  {Object.entries(CODE_LANGUAGES).map(([id, name]) => (
+                    <option key={id} value={id}>
+                      {name}
+                    </option>
+                  ))}
+                </Select>
+              </div>
+              <p role="status">
+                예제 {visibleExamples.length}개
+                {query || languageFilter !== 'all' ? ` · 전체 ${examples.length}개` : ''}
+              </p>
+              {visibleExamples.length === 0 && (
+                <p>찾는 예제가 없습니다. 검색어나 언어를 바꿔 보세요.</p>
+              )}
+            </>
+          )}
           <ul className="code-example-list">
-            {examples.map((row) => (
+            {visibleExamples.map((row) => (
               <li key={row.id}>
                 <div>
                   <a href={`#/code/${encodeURIComponent(row.id)}`}>
@@ -248,6 +292,8 @@ export function CodeExampleEditor({
     );
   const [conflict, setConflict] = useState(initial.conflict);
   const [phase, setPhase] = useState<'idle' | 'loading' | 'running'>('idle');
+  const [terminalInput, setTerminalInput] = useState('');
+  const composingInput = useRef(false);
   const terminalExecution = useRef<CodeTerminalExecution | null>(null);
   const terminalHandle = useRef<CodeTerminalHandle | null>(null);
   const pendingTerminalOutput = useRef('');
@@ -324,6 +370,25 @@ export function CodeExampleEditor({
     saveDraft();
     if (timer.current) clearTimeout(timer.current);
     timer.current = setTimeout(flush, 800);
+  };
+  const saveNow = async () => {
+    const savingContent = current.current;
+    if (!flush() || !repository.flush) return;
+    setStatus('서버에 저장 중…');
+    try {
+      await repository.flush();
+      if (!alive.current || current.current !== savingContent) return;
+      const status = repository.getStatus?.();
+      if (status && status.phase !== 'saved') throw Error(status.message);
+      setStatus('서버에 저장됨');
+      setError('');
+    } catch (error) {
+      if (!alive.current || current.current !== savingContent) return;
+      setStatus('이 기기에 보관 · 서버 저장 다시 필요');
+      setError(
+        `${errorMessage(error)} 입력은 이 기기에 보관했습니다. 지금 저장을 눌러 다시 시도해 주세요.`,
+      );
+    }
   };
   const flushRef = useRef(flush);
   flushRef.current = flush;
@@ -409,6 +474,7 @@ export function CodeExampleEditor({
     };
     let execution: CodeExecution;
     if (interactive) {
+      setTerminalInput('');
       pendingTerminalOutput.current = '';
       terminalHandle.current?.reset();
       terminalExecution.current = executeCodeTerminal(
@@ -634,6 +700,51 @@ export function CodeExampleEditor({
               running={phase === 'running'}
             />
           </Suspense>
+          <div className="code-terminal-input">
+            <Textarea
+              label="터미널에 보낼 입력"
+              value={terminalInput}
+              rows={2}
+              disabled={phase !== 'running'}
+              spellCheck={false}
+              autoCapitalize="off"
+              autoCorrect="off"
+              hint="값을 적고 입력 보내기를 누르세요. Enter로 보내고, Shift+Enter로 줄을 바꿀 수 있습니다."
+              onCompositionStart={() => {
+                composingInput.current = true;
+              }}
+              onCompositionEnd={() => {
+                composingInput.current = false;
+              }}
+              onChange={(event) => setTerminalInput(event.target.value)}
+              onKeyDown={(event) => {
+                if (
+                  event.key !== 'Enter' ||
+                  event.shiftKey ||
+                  event.nativeEvent.isComposing ||
+                  composingInput.current ||
+                  event.keyCode === 229
+                )
+                  return;
+                event.preventDefault();
+                terminalExecution.current?.write(
+                  terminalInput.replace(/\r\n?/g, '\n').replaceAll('\n', '\r') + '\r',
+                );
+                setTerminalInput('');
+              }}
+            />
+            <Button
+              disabled={phase !== 'running'}
+              onClick={() => {
+                terminalExecution.current?.write(
+                  terminalInput.replace(/\r\n?/g, '\n').replaceAll('\n', '\r') + '\r',
+                );
+                setTerminalInput('');
+              }}
+            >
+              입력 보내기
+            </Button>
+          </div>
         </section>
       )}
       {!interactive &&
@@ -716,7 +827,12 @@ export function CodeExampleEditor({
           <Button variant="quiet" onClick={exportFile}>
             파일로 보관
           </Button>
-          <Button onClick={flush} disabled={isBlocked}>
+          <Button
+            onClick={() => {
+              void saveNow();
+            }}
+            disabled={isBlocked}
+          >
             지금 저장
           </Button>
           <Button onClick={() => copy()} disabled={isBlocked || phase !== 'idle'}>
