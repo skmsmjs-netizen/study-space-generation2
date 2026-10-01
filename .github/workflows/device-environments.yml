@@ -34,4 +34,8 @@ jobs:
             work/device-report
             work/device-results.json
             work/device-traces
+            work/device-runs/**/report/**
+            work/device-runs/**/results.json
+            work/device-runs/**/traces/**
+            work/device-runs/**/build-manifest.json
           retention-days: 14
