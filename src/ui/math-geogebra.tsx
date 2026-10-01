@@ -516,7 +516,14 @@ export function MathGeoGebra({
           </div>
         </div>
       )}
-      <section ref={host} className="math-plot math-geogebra-host" aria-label="GeoGebra 그래프" />
+      <section ref={host} className="math-plot math-geogebra-host" aria-label="GeoGebra 그래프"
+        onFocusCapture={event => {
+          const control = event.target;
+          if (!(control instanceof HTMLInputElement) || !control.matches('.slider.accessibilityControl')) return;
+          const label = control.max === '360' ? '시점 회전' : control.min === '-90' ? '시점 기울기' : null;
+          if (label) { control.setAttribute('aria-label', label); control.title = label; }
+        }}
+      />
       <a
         className="muted math-help"
         href="https://www.geogebra.org/license"

@@ -1,6 +1,10 @@
 .math-explorer {
   min-width: 0;
 }
+.math-explorer > .ui-field:first-child {
+  margin-bottom: var(--space-5);
+  max-width: 30rem;
+}
 .math-intro {
   margin-block: 0 var(--space-4);
 }
@@ -223,4 +227,36 @@
   .math-interval {
     align-items: start;
   }
+}
+
+/* GeoGebra's keyboard camera helpers must become usable when focused.
+   Their unfocused 1px boxes must not intercept a graph touch. */
+.math-geogebra-host input.slider.accessibilityControl {
+  pointer-events: none;
+  width: 0 !important;
+  height: 0 !important;
+}
+.math-geogebra-host input.slider.accessibilityControl:focus {
+  box-sizing: border-box;
+  pointer-events: auto;
+  position: absolute !important;
+  inset-inline-start: var(--space-4);
+  inset-block-end: var(--space-4);
+  width: calc(100% - var(--space-4) * 2) !important;
+  height: var(--control-height) !important;
+  opacity: 1 !important;
+  overflow: visible !important;
+  accent-color: var(--color-primary);
+  background: var(--color-surface);
+  outline: var(--focus-width) solid var(--color-focus);
+  outline-offset: var(--focus-offset);
+}
+
+.math-geogebra-host input.slider.accessibilityControl:focus[min="-90"] {
+  inset-block-end: calc(var(--space-4) * 2 + var(--control-height));
+}
+
+/* Native keyboard helpers live inside a zero-sized, absolutely placed parent. */
+.math-geogebra-host .accessibilityView {
+  position: static !important;
 }

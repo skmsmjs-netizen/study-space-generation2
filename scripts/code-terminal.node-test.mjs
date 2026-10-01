@@ -9,12 +9,13 @@ import path from 'node:path';
 
 test(
   'real PTY input, cancellation, EOF, isolation and cleanup',
-  { skip: process.platform !== 'darwin', timeout: 60000 },
+  { skip: process.platform !== 'darwin', timeout: 180000 },
   async (t) => {
     let busy = false;
     const server = createServer();
     attachCodeTerminal(server, {
-      executionTimeoutMs: 1000,
+      // Exercise cancellation and limits with a short, but usable, input window.
+      executionTimeoutMs: 5000,
       acquire: () => {
         if (busy) return false;
         busy = true;
@@ -33,7 +34,9 @@ test(
         const timer = setTimeout(() => {
           ws.terminate();
           reject(Error('Terminal test timed out'));
-        }, 20000);
+        // The runner permits 30 seconds for compilation before PTY execution.
+        // Let that bounded result arrive instead of aborting a valid cold compile.
+        }, 45000);
         let output = '',
           step = 0;
         const send = (message) => ws.send(JSON.stringify(message));

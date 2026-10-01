@@ -1,12 +1,38 @@
 // @vitest-environment node
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { encodeStoredText, decodeStoredText } from './storage-codec';
 import { DemoRepository, DEMO_KEY } from './demo-repository';
 import { applyCommand } from '../domain/commands';
 import { createDemoState } from '../domain/fixtures';
 import type { MemoStroke } from '../domain/model';
+import LZString from 'lz-string';
+import { gzipSync } from 'fflate';
 
 describe('lossless storage quota repair', () => {
+  it('produces the same durable representation after reopening on another day', () => {
+    vi.useFakeTimers();
+    try {
+      const raw = '그대로 보존할 원문\ud800 '.repeat(4000);
+      vi.setSystemTime(new Date('2026-10-01T00:00:00Z')); const first = encodeStoredText(raw);
+      vi.setSystemTime(new Date('2026-10-02T00:00:00Z')); expect(encodeStoredText(raw)).toBe(first);
+      expect(encodeStoredText(decodeStoredText(first))).toBe(first);
+    } finally { vi.useRealTimers(); }
+  });
+  it('reads the previous compressed format and rejects damaged new content without replacing it', () => {
+    const raw = '  예전 원문\ud800\u0000\r\n끝 공백  '.repeat(3000);
+    expect(decodeStoredText('study-space:lz16:v1:' + LZString.compressToUTF16(raw))).toBe(raw);
+    const bytes = new Uint8Array(raw.length * 2);
+    for (let i = 0; i < raw.length; i++) { bytes[i * 2] = raw.charCodeAt(i) & 255; bytes[i * 2 + 1] = raw.charCodeAt(i) >>> 8; }
+    const legacy = gzipSync(bytes, { level: 1, mtime: 0 });
+    expect(decodeStoredText('study-space:gzip16:v1:' + btoa(String.fromCharCode(...legacy)))).toBe(raw);
+    const next = encodeStoredText(raw); expect(next).toMatch(/^study-space:gzip15:v1:/);
+    expect(decodeStoredText(next)).toBe(raw);
+    expect(() => decodeStoredText('study-space:gzip15:v1:broken')).toThrow('변경하지 않았습니다');
+    expect(() => decodeStoredText(next.replace(/gzip15:v1:[0-9]+:/, 'gzip15:v1:536870913:'))).toThrow('변경하지 않았습니다');
+    const index = next.length - 4;
+    const damaged = next.slice(0, index) + String.fromCharCode(32 + ((next.charCodeAt(index) - 32) ^ 1)) + next.slice(index + 1);
+    expect(() => decodeStoredText(damaged)).toThrow('변경하지 않았습니다');
+  });
   it('retains exact whitespace, Unicode, raw surrogates and decimal coordinates', () => {
     const raw = ('  한글\r\n\t\0😀\ud800\udfff ' + JSON.stringify({x: 1.23456789012345, pressure: 0.3333333333333})).repeat(1500);
     const stored = encodeStoredText(raw);
@@ -23,7 +49,7 @@ describe('lossless storage quota repair', () => {
     }
     const raw = JSON.stringify({sequence:14,data});
     let value = raw;
-    const storage = {getItem:()=>value,setItem:(_key:string,next:string)=>{if(next.length>raw.length) throw new DOMException('quota','QuotaExceededError');value=next;}};
+    const storage = {getItem:()=>value,setItem:(_key:string,next:string)=>{if(next.length>raw.length/4) throw new DOMException('quota','QuotaExceededError');value=next;}};
     const repo = new DemoRepository(storage);
     expect(decodeStoredText(value)).toBe(raw);
     expect(value.length).toBeLessThan(raw.length/4);
@@ -40,4 +66,15 @@ describe('lossless storage quota repair', () => {
     expect(new DemoRepository(storage).getSnapshot()).toEqual(data);
     expect(storage.getItem()).toBe(raw);
   });
+});
+
+it('preserves packed gzip across varying byte boundaries and raw UTF-16 units', () => {
+  let seed = 20261001;
+  for (let length = 1; length <= 35; length++) {
+    let pattern = '\ud800\udfff\u0000\r\n';
+    for (let i = 0; i < length * 3; i++) { seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0; pattern += String.fromCharCode(seed & 65535); }
+    const raw = pattern.repeat(80), stored = encodeStoredText(raw, 0);
+    expect(stored.startsWith('study-space:gzip15:v1:')).toBe(true);
+    expect(decodeStoredText(stored)).toBe(raw);
+  }
 });

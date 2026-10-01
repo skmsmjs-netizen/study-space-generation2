@@ -1,3 +1,4 @@
+import { runInNewContext } from 'node:vm';
 // @vitest-environment node
 import { afterEach, expect, it, vi } from 'vitest';
 import { IDBFactory, IDBKeyRange } from 'fake-indexeddb';
@@ -30,3 +31,13 @@ it('retains audio identity and ordered interrupted recordings across both storag
   expect(recording!.type).toBe('audio/webm'); expect(await recording!.text()).toBe('전반\n후반  ');
 });
 const awaitText = '原본\n  ';
+
+it('hydrates attachment bytes from a different realm without accepting a forged buffer', async () => {
+  const bytes = runInNewContext('new Uint8Array([0, 255, 13, 10]).buffer');
+  expect(bytes instanceof ArrayBuffer).toBe(false);
+  const restored = decodeBinary<Blob>({ format: 'study-space-binary-v1', type: 'audio/webm', bytes });
+  expect(restored.type).toBe('audio/webm');
+  expect([...new Uint8Array(await restored.arrayBuffer())]).toEqual([0, 255, 13, 10]);
+  const forged = { format: 'study-space-binary-v1', type: 'audio/webm', bytes: { [Symbol.toStringTag]: 'ArrayBuffer' } };
+  expect(decodeBinary(forged)).not.toBeInstanceOf(Blob);
+});
