@@ -84,7 +84,7 @@ test('scope name, interactive chart evidence and graph attribution retain their 
   await page.goto('?space=demo#/record'); await expect(page.getByRole('combobox',{name:'공부 범위'})).toBeVisible();
   expect((await new AxeBuilder({page}).include('.topbar').withRules(['select-name']).analyze()).violations).toEqual([]);
   await page.goto('?space=demo#/statistics');
-  const graph = page.getByRole('region', {name:'기간별 통계 그래프'});
+  const graph = page.getByRole('region', {name:'기간별 통계 그래프',exact:true});
   await graph.getByLabel('보고 싶은 것', {exact:true}).selectOption('trend');
   await graph.getByLabel('그래프 종류', {exact:true}).selectOption('column');
   await expect(graph.locator('.statistics-chart')).toBeVisible();
