@@ -3,7 +3,7 @@ export const BRAND = {
   productName: 'ManSeekSong OS',
   promise: '생각을 펼치는 나의 천문대',
   headline: '읽고, 쓰고, 연결하며 생각을 펼쳐요.',
-  description: '자료를 살피고, 생각을 적고, 연결을 찾아보세요. 나의 천문대에서 이어가세요.',
+  description: '읽던 자료와 적던 생각을 펼쳐 두고, 새로운 연결을 찾아보세요.',
   monthly: '한 달의 기록, 다음 탐구의 단서.',
   company: '생각을 펼치고 이어가는 도구를 만듭니다.',
   departure: '다녀오세요. 돌아오면 해본 만큼만 남겨 주세요.',
