@@ -107,7 +107,7 @@ test('Canvas concept creation and graph list allow editing without dragging', as
   await page.getByLabel('관계에서 찾기', { exact: true }).fill('관계를 보존하는 모바일 개념');
   await page.getByText('항목 목록에서 선택하기', { exact: true }).tap();
   await page
-    .getByRole('button', { name: '관계를 보존하는 모바일 개념', exact: true })
+    .getByRole('button', { name: '관계를 보존하는 모바일 개념', exact: false })
     .last()
     .tap();
   await expect(page.getByRole('complementary', { name: '선택한 항목', exact: true })).toContainText(
