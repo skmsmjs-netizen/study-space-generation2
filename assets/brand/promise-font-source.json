@@ -1,0 +1,14 @@
+{
+  "family": "Noto Serif KR",
+  "weight": 500,
+  "text": "공부가 이어지는 자리.",
+  "cssSource": "https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500&display=swap&text=%EA%B3%B5%EB%B6%80%EA%B0%80%20%EC%9D%B4%EC%96%B4%EC%A7%80%EB%8A%94%20%EC%9E%90%EB%A6%AC.",
+  "fontSource": "https://fonts.gstatic.com/l/font?kit=3JnoSDn90Gmq2mr3blnHaTZXbOtLJDvui3JOncjUeM52-W_ZWcKOcYdhqbRN9TYgqeTgA80fTf5fmM1Dalkb-0KzzJtz8q3x8hpVoXknLpFTe9xABe0ajr8H3mKI9_Wk_ibstwBydiFeHzC8uhbXjWCO9HvgDKOR_VtKJolYbEsA9ztu6g8OOGamPVOJEEqTZVi7HVe3qJF3vecEaRHeNF9hSUtGLI1I1ueicgexNVusz407YFOq0VlKuo4GT9iNgcIkQr-iT4sPHaRs0oEQftc7tlpvAyYqVuxr5fzZwbQNDvA1F4aV7Ta-9fJHXEZ9VJezWA4fnN1c_jiSkuECH8xdfeBb-0_8ECJ_jFHGJu8YNxPlmhG_Stbhs9ShauKmK6vouSFNgVJHZiKsyNaFbiQFMhTCaSWbxPYyLUI1w14ktcRxi4oVY1rvycZT6s8BAmL3FyMXmQi0RwVa7sXpoorilffJq28gGz1xMLN0Yb2Bq3y_03tGJU2_TEXNqysRPOevzeb9n1cq_9tb9ksAV55AY3Q&skey=de7c49c7501994cc&v=v32",
+  "licenseSource": "https://raw.githubusercontent.com/google/fonts/main/ofl/notoserifkr/OFL.txt",
+  "sha256": "3266b25f7bbc75f6a6153f879fb3d36ae37f00d6790a2bff6be0aeec185304dc",
+  "bytes": 29360,
+  "css": "@font-face {\n  font-family: 'Noto Serif KR';\n  font-style: normal;\n  font-weight: 500;\n  font-display: swap;\n  src: url(https://fonts.gstatic.com/l/font?kit=3JnoSDn90Gmq2mr3blnHaTZXbOtLJDvui3JOncjUeM52-W_ZWcKOcYdhqbRN9TYgqeTgA80fTf5fmM1Dalkb-0KzzJtz8q3x8hpVoXknLpFTe9xABe0ajr8H3mKI9_Wk_ibstwBydiFeHzC8uhbXjWCO9HvgDKOR_VtKJolYbEsA9ztu6g8OOGamPVOJEEqTZVi7HVe3qJF3vecEaRHeNF9hSUtGLI1I1ueicgexNVusz407YFOq0VlKuo4GT9iNgcIkQr-iT4sPHaRs0oEQftc7tlpvAyYqVuxr5fzZwbQNDvA1F4aV7Ta-9fJHXEZ9VJezWA4fnN1c_jiSkuECH8xdfeBb-0_8ECJ_jFHGJu8YNxPlmhG_Stbhs9ShauKmK6vouSFNgVJHZiKsyNaFbiQFMhTCaSWbxPYyLUI1w14ktcRxi4oVY1rvycZT6s8BAmL3FyMXmQi0RwVa7sXpoorilffJq28gGz1xMLN0Yb2Bq3y_03tGJU2_TEXNqysRPOevzeb9n1cq_9tb9ksAV55AY3Q&skey=de7c49c7501994cc&v=v32) format('truetype');\n}\n",
+  "downloadFormat": "truetype",
+  "servedFormat": "woff2",
+  "conversion": "FontTools 4.60.2 WOFF2 lossless encoding"
+}

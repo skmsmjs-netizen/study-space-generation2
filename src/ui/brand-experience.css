@@ -1,3 +1,13 @@
+/* A locally served, licensed subset for the fixed Korean brand promise. */
+@font-face {
+  /* design-token-exception: font-family -- Font-face descriptor names the locally licensed brand family; consuming rules use the shared font token. */
+  font-family: "ManSeekSong Promise";
+  src: url("/fonts/brand/noto-serif-kr-promise.woff2") format("woff2");
+  font-style: normal;
+  /* design-token-exception: font-weight -- Font-face descriptor must declare the static asset weight rather than a custom property. */
+  font-weight: 500;
+  font-display: swap;
+}
 .brand-wordmark {
   font-family: var(--font-interface);
   font-size: var(--type-heading-size);
@@ -6,14 +16,31 @@
   letter-spacing: var(--type-wordmark-tracking);
   overflow-wrap: anywhere;
 }
-.brand-wordmark span {
+/* Explicit class avoids styling every span inside the home link. */
+.brand.brand-wordmark .brand-promise,
+.personal-entry .brand-promise {
   display: block;
-  font-size: var(--type-caption-size);
-  font-weight: var(--type-body-weight);
-  letter-spacing: normal;
-  color: var(--color-muted);
-  margin-top: var(--space-2);
+  font-family: var(--font-brand-promise);
+  font-size: var(--type-brand-promise-size);
+  font-weight: var(--type-brand-promise-weight);
+  line-height: var(--type-brand-promise-line);
+  letter-spacing: var(--type-brand-promise-tracking);
+  color: var(--color-text-secondary);
+  margin-top: var(--space-3);
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
 }
+.brand.brand-wordmark {
+  display: block;
+  min-inline-size: 0;
+  text-decoration: none;
+}
+.brand.brand-wordmark:focus-visible {
+  outline: var(--focus-width) solid var(--color-focus);
+  outline-offset: var(--focus-offset);
+}
+
 .brand-mark {
   display: block;
   inline-size: var(--layout-wordmark);

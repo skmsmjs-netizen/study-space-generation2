@@ -4,18 +4,29 @@
   "license": "OFL.txt",
   "name": {
     "text": "ManSeekSong",
-    "axes": { "wght": 500, "opsz": 32 },
+    "axes": {
+      "wght": 600,
+      "opsz": 32
+    },
     "scale": 1,
     "widthScale": 1,
-    "trackingEm": -0.018,
-    "opticalPairsEm": { "nS": 0.005, "kS": 0.008 }
+    "trackingEm": -0.012,
+    "opticalPairsEm": {
+      "nS": 0.005,
+      "kS": 0.008
+    },
+    "slantDegrees": 8
   },
   "suffix": {
     "text": "OS",
-    "axes": { "wght": 500, "opsz": 32 },
+    "axes": {
+      "wght": 400,
+      "opsz": 32
+    },
     "scale": 1,
     "widthScale": 1,
-    "trackingEm": -0.018
+    "trackingEm": 0.065,
+    "slantDegrees": 0
   },
-  "suffixGapEm": 0.24
+  "suffixGapEm": 0.3
 }

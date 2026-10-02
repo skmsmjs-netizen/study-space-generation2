@@ -203,6 +203,11 @@
   --type-title-tracking: -.035em;
   --type-heading-tracking: -.02em;
   --type-wordmark-tracking: -.025em;
+  --font-brand-promise: "ManSeekSong Promise", "Noto Serif KR", "AppleMyungjo", serif;
+  --type-brand-promise-size: .9375rem;
+  --type-brand-promise-weight: 500;
+  --type-brand-promise-tracking: .025em;
+  --type-brand-promise-line: 1.8;
   --layout-wordmark: 13rem;
   --layout-wordmark-home: 16.5rem;
   --type-brand-tracking: .12em;

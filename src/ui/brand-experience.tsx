@@ -36,7 +36,7 @@ export function BrandIdentity({ compact = false }: { compact?: boolean }) {
   return (
     <a className={compact ? 'small-brand brand-wordmark' : 'brand brand-wordmark'} href="#/">
       <BrandWordmark />
-      {!compact && <span>{BRAND.promise}</span>}
+      {!compact && <span className="brand-promise">{BRAND.promise}</span>}
     </a>
   );
 }

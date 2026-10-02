@@ -1,9 +1,9 @@
 export const BRAND = {
   name: 'manseeksong',
   productName: 'ManSeekSong OS',
-  promise: '공부가 이어지는 자리.',
-  headline: '다시 펴면, 하던 생각부터.',
-  description: '자료와 적던 글, 다음에 할 일을 한곳에서 이어가세요.',
+  promise: '공부가 이어지는 자리',
+  headline: '남겨둔 생각에서, 다음 공부로.',
+  description: '읽던 자료, 적던 생각, 다음에 할 일. 한자리에 두고 이어가세요.',
   monthly: '한 달의 기록, 다음 공부의 단서.',
   company: '생각이 실제로 이어지는 도구를 만듭니다.',
   departure: '공부하고 오세요. 돌아오면 해본 만큼만 남겨 주세요.',
