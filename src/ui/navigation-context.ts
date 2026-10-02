@@ -7,9 +7,21 @@ type FocusTarget = { kind: 'key' | 'id' | 'href' | 'editor'; value: string };
 type Position = { x: number; y: number; focus?: FocusTarget; anchor?: { value: string; offset: number } };
 type NavigationContext = { version: 1; route: string; positions: Record<string, Position> };
 
+/** Coalesce view hints only; lifecycle boundaries flush before animation frames can stop. */
+function frameTask(run: () => void) {
+  let frame: number | undefined;
+  const cancel = () => { if (frame !== undefined) window.cancelAnimationFrame(frame); frame = undefined; };
+  return {
+    schedule() { if (frame === undefined) frame = window.requestAnimationFrame(() => { frame = undefined; run(); }); },
+    flush() { if (frame === undefined) return; cancel(); run(); },
+    cancel,
+  };
+}
+
 function validRoute(value: unknown): value is string {
+  // biome-ignore lint/suspicious/noControlCharactersInRegex: Reject control characters before a route is decoded or stored.
   if (typeof value !== 'string' || value.length > 4096 || !value.startsWith('/') ||
-    value.startsWith('//') || /[\u0000-\u001f\u007f]/.test(value)) return false;
+    value.startsWith('//') || [...value].some(char => char.charCodeAt(0) < 32 || char.charCodeAt(0) === 127)) return false;
   // JSON permits lone surrogate code units; reject them before restart URL encoding.
   try { encodeURI(value); return true; } catch { return false; }
 }
@@ -45,10 +57,11 @@ function readContext(key = NAVIGATION_CONTEXT_KEY): NavigationContext {
 }
 
 function writeContext(context: NavigationContext, key = NAVIGATION_CONTEXT_KEY) {
-  try { sessionStorage.setItem(key, JSON.stringify(context)); }
+  const serialized = JSON.stringify(context);
+  try { sessionStorage.setItem(key, serialized); }
   catch { /* History and in-memory restoration stay usable when storage is unavailable. */ }
   if (key.startsWith('study-space:personal:')) {
-    try { localStorage.setItem(key, JSON.stringify(context)); } catch { /* View hints never block input. */ }
+    try { localStorage.setItem(key, serialized); } catch { /* View hints never block input. */ }
   }
 }
 
@@ -138,13 +151,13 @@ export function useRoute(prefix = 'study-space:demo'): string {
     // The route cache owns scroll while mounted; otherwise native traversal may
     // apply an older history-entry offset after our route restoration has run.
     window.history.scrollRestoration = 'manual';
-    if (!window.location.hash && route !== '/') {
+    if (!window.location.hash && current.current !== '/') {
       // Preserve every other owner's history state and the current pathname/query.
-      window.history.replaceState(window.history.state, '', `${window.location.pathname}${window.location.search}#${encodeURI(route)}`);
+      window.history.replaceState(window.history.state, '', `${window.location.pathname}${window.location.search}#${encodeURI(current.current)}`);
     }
     const capturePosition = (hint?: Position) => {
       // A loading fallback can clamp scroll before the saved page is mounted.
-      if (restorationPending.current) return;
+      if (restorationPending.current || departed.current) return;
       const position: Position = hint || measurePosition();
       context.current.positions[current.current] = position;
       const entries = Object.entries(context.current.positions);
@@ -152,7 +165,15 @@ export function useRoute(prefix = 'study-space:demo'): string {
       context.current.route = current.current;
       writeContext(context.current, navigationKey);
     };
-    const capture = () => capturePosition();
+    const pendingCapture = frameTask(() => capturePosition());
+    const capture = () => {
+      // Input/select/scroll bursts need only their latest reading position. Do not
+      // scan anchors or serialize the route map inside every input event.
+      if (document.visibilityState === 'hidden') flush();
+      else pendingCapture.schedule();
+    };
+    const flush = () => { pendingCapture.cancel(); capturePosition(); };
+    const hidden = () => { if (document.visibilityState === 'hidden') flush(); };
     let pointerDeparture: { route: string; anchor: HTMLAnchorElement; position: Position } | null = null;
     const pointer = (event: PointerEvent) => {
       pointerDeparture = null;
@@ -164,11 +185,12 @@ export function useRoute(prefix = 'study-space:demo'): string {
       };
     };
     const cancelPointer = () => { pointerDeparture = null; };
-    const beforeNavigate = () => { capture(); departed.current = true; };
+    const beforeNavigate = () => { flush(); departed.current = true; };
     const update = () => {
       const next = readRouteHash();
       if (next === current.current) return;
-      if (!departed.current) capture();
+      if (!departed.current) flush();
+      else pendingCapture.cancel();
       departed.current = false;
       hasNavigated.current = true;
       current.current = next;
@@ -188,27 +210,33 @@ export function useRoute(prefix = 'study-space:demo'): string {
         // click. Save the reading position from press, but commit only on click.
         const hint = event.detail > 0 && pointerDeparture?.route === current.current && pointerDeparture.anchor === anchor
           ? pointerDeparture.position : undefined;
-        capturePosition(hint); departed.current = true;
+        pendingCapture.cancel(); capturePosition(hint); departed.current = true;
       }
       pointerDeparture = null;
     };
     window.addEventListener(BEFORE_NAVIGATE, beforeNavigate);
     window.addEventListener('hashchange', update);
     window.addEventListener('popstate', update);
-    window.addEventListener('pagehide', capture);
+    window.addEventListener('pagehide', flush);
+    window.addEventListener('blur', flush);
+    document.addEventListener('visibilitychange', hidden);
     document.addEventListener('input', capture, true);
-    document.addEventListener('focusout', capture, true);
+    document.addEventListener('scroll', capture, true);
+    document.addEventListener('focusout', flush, true);
     document.addEventListener('click', click);
     document.addEventListener('pointerdown', pointer, true);
     document.addEventListener('pointercancel', cancelPointer, true);
     return () => {
-      capture();
+      flush();
       window.removeEventListener(BEFORE_NAVIGATE, beforeNavigate);
       window.removeEventListener('hashchange', update);
       window.removeEventListener('popstate', update);
-      window.removeEventListener('pagehide', capture);
+      window.removeEventListener('pagehide', flush);
+      window.removeEventListener('blur', flush);
+      document.removeEventListener('visibilitychange', hidden);
       document.removeEventListener('input', capture, true);
-      document.removeEventListener('focusout', capture, true);
+      document.removeEventListener('scroll', capture, true);
+      document.removeEventListener('focusout', flush, true);
       document.removeEventListener('click', click);
       document.removeEventListener('pointerdown', pointer, true);
       document.removeEventListener('pointercancel', cancelPointer, true);
@@ -216,7 +244,7 @@ export function useRoute(prefix = 'study-space:demo'): string {
     };
     // One listener owns the lifetime of this workspace; mutable route lives in current.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [navigationKey]);
 
   useLayoutEffect(() => {
     const position = context.current.positions[route];
@@ -284,19 +312,31 @@ function useEditingContext(storageKey = EDITING_CONTEXT_KEY) {
     } catch { /* Invalid view hints never block original text. */ }
     const restored = new WeakSet<Element>();
     const field = (target: EventTarget | null) => (target instanceof HTMLTextAreaElement || target instanceof HTMLInputElement) && target.dataset.editingContext ? target : null;
-    const save = (element: HTMLTextAreaElement | HTMLInputElement) => {
-      const key = element.dataset.editingContext!;
-      if (element.selectionStart === null || element.selectionEnd === null) return;
-      positions[key] = { start: element.selectionStart, end: element.selectionEnd, direction: element.selectionDirection || 'none', top: element.scrollTop, left: element.scrollLeft };
+    const persist = () => {
       const entries = Object.entries(positions);
       if (entries.length > 200) positions = Object.fromEntries(entries.slice(-200));
-      try { sessionStorage.setItem(storageKey, JSON.stringify(positions)); } catch { /* In-tab hints remain available. */ }
+      const serialized = JSON.stringify(positions);
+      try { sessionStorage.setItem(storageKey, serialized); } catch { /* In-tab hints remain available. */ }
       if (storageKey.startsWith('study-space:personal:')) {
-        try { localStorage.setItem(storageKey, JSON.stringify(positions)); } catch { /* No written content is stored here. */ }
+        try { localStorage.setItem(storageKey, serialized); } catch { /* No written content is stored here. */ }
       }
     };
-    const capture = (event: Event) => { const element = field(event.target); if (element) save(element); };
-    const captureActive = () => { const element = field(document.activeElement); if (element) save(element); };
+    const pendingWrite = frameTask(persist);
+    const save = (element: HTMLTextAreaElement | HTMLInputElement) => {
+      const key = element.dataset.editingContext;
+      if (!key || element.selectionStart === null || element.selectionEnd === null) return;
+      // Read scalars now, before blur/unmount or IME updates can replace this
+      // field. Only the JSON/storage work is postponed; no text is retained.
+      positions[key] = { start: element.selectionStart, end: element.selectionEnd, direction: element.selectionDirection || 'none', top: element.scrollTop, left: element.scrollLeft };
+      pendingWrite.schedule();
+    };
+    const capture = (event: Event) => {
+      const element = field(event.target);
+      if (element) save(element);
+      if (event.type === 'focusout' || document.visibilityState === 'hidden') pendingWrite.flush();
+    };
+    const captureActive = () => { const element = field(document.activeElement); if (element) save(element); pendingWrite.flush(); };
+    const hidden = () => { if (document.visibilityState === 'hidden') captureActive(); };
     const restore = () => document.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('[data-editing-context]').forEach(element => {
       if (restored.has(element)) return;
       restored.add(element);
@@ -309,14 +349,22 @@ function useEditingContext(storageKey = EDITING_CONTEXT_KEY) {
     const observer = new MutationObserver(restore);
     observer.observe(document.body, { childList: true, subtree: true });
     const events = ['select', 'keyup', 'pointerup', 'input', 'scroll', 'focusout'];
-    events.forEach(name => document.addEventListener(name, capture, true));
+    events.forEach(name => { document.addEventListener(name, capture, true); });
     window.addEventListener('pagehide', captureActive);
+    window.addEventListener('blur', captureActive);
+    window.addEventListener('hashchange', captureActive);
+    window.addEventListener('popstate', captureActive);
+    document.addEventListener('visibilitychange', hidden);
     window.addEventListener(BEFORE_NAVIGATE, captureActive);
     return () => {
       captureActive(); observer.disconnect();
-      events.forEach(name => document.removeEventListener(name, capture, true));
+      events.forEach(name => { document.removeEventListener(name, capture, true); });
       window.removeEventListener('pagehide', captureActive);
+      window.removeEventListener('blur', captureActive);
+      window.removeEventListener('hashchange', captureActive);
+      window.removeEventListener('popstate', captureActive);
+      document.removeEventListener('visibilitychange', hidden);
       window.removeEventListener(BEFORE_NAVIGATE, captureActive);
     };
-  }, []);
+  }, [storageKey]);
 }

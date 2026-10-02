@@ -29,7 +29,9 @@ test('brand continuity, exact next action, support draft and opt-in survive reen
   await expect(page.locator('main h1')).toHaveText('함수는 어떤 관계일까?');
 
   await page.goto('?space=demo#/subscription');
-  await expect(page.getByRole('heading', { name: '저장한 곳을 먼저 확인하세요', exact: true })).toBeVisible();
+  await expect(
+    page.getByRole('heading', { name: '저장한 곳을 먼저 확인하세요', exact: true }),
+  ).toBeVisible();
   await expect(page.getByRole('link', { name: '이용 정보', exact: true })).toHaveCount(0);
   await expect(page.getByRole('heading', { name: '현재 이용 정보', exact: true })).toHaveCount(0);
   await page.goto('?space=demo#/help');

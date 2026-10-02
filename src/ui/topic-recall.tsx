@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
+import { occurrenceRows } from './list-keys';
+import { useEffectEvent, useEffect, useRef, useState } from 'react';
 import type { AppState, MemoStroke } from '../domain/model';
 import { freshRecall, nextRecall, recallForDay, recallPath, recallTopics, type RecallSession } from '../domain/topic-recall';
 import { readRecall, saveRecallMemo, writeRecall, type RecallRepository } from '../data/topic-recall';
@@ -13,6 +14,7 @@ import { RecallCardEditor } from './recall-card-editor';
 import { RecallSettings } from './recall-settings';
 import { Input } from './index';
 import './topic-recall.css';
+import { ProgressiveHistory } from './progressive-history';
 
 type Props = { data: AppState; repository: RecallRepository; onSaved: (data: AppState) => void; subjectIds: string[]; initialMode?: 'scheduled' };
 const message = (error: unknown) => error instanceof Error ? error.message : '저장하지 못했습니다. 입력한 글은 이 화면에 남아 있습니다.';
@@ -76,7 +78,7 @@ export function TopicRecall({ data, repository, onSaved, subjectIds, initialMode
     setSession(next); persist(next); setNotice('');
   };
   const candidatesKey = topics.map(row => row.id).join('|');
-  useEffect(() => {
+  const normalizeRecall = useEffectEvent(() => {
     const normalized = recallForDay(session, now);
     if (!loaded.error && normalized !== session) { persist(normalized); return; }
     if (session.pendingReview || session.pendingUndo) return;
@@ -84,7 +86,9 @@ export function TopicRecall({ data, repository, onSaved, subjectIds, initialMode
     const eligible = scheduled ? available.filter(row => !(session.skipped ?? []).includes(row.id) && (!session.seen.includes(row.id) || queue.due.includes(row))) : topics;
     if (!eligible.length) return;
     persist(scheduled ? { ...session, currentId: eligible[0].id } : nextRecall({ ...session, currentId: null }, topics));
-  }, [candidatesKey, session.currentId, session.studyDay, session.pendingUndo, session.pendingReview, loaded.error, scheduled, now, data.recallCards, data.recallPreferences]); // Normalize only missing/removed cards, never typing.
+  });
+  // biome-ignore lint/correctness/useExhaustiveDependencies: Normalize when the queue or day changes; the Effect Event reads current drafts without restarting normalization for every keystroke.
+  useEffect(() => { normalizeRecall(); }, [candidatesKey, session.currentId, session.studyDay, session.pendingUndo, session.pendingReview, loaded.error, scheduled, now, data.recallCards, data.recallPreferences]); // Normalize only missing/removed cards, never typing.
   const changeRange = (subjectId: string, unitId: string) => {
     if (composition.current || drawing || session.pendingReview || session.pendingUndo) return;
     const next = { ...session, subjectId, unitId, currentId: null, seen: [], skipped: [], round: 1 };
@@ -196,7 +200,7 @@ export function TopicRecall({ data, repository, onSaved, subjectIds, initialMode
         <p className="muted recall-path">{[subjects.find(row => row.id === topic.subjectId)?.name, ...recallPath(data.nodes, ownerId!).slice(0, topic.topicId ? undefined : -1).map(row => row.name)].filter(Boolean).join(' / ')}</p>
         <div className="recall-topic-heading">
           <h2>{topic.name}</h2>
-          <span className="recall-progress" aria-label={`전체 ${topics.length}개 중 ${Math.min(topics.length, session.seen.filter(id => topics.some(row => row.id === id)).length + 1)}번째 주제`}>{Math.min(topics.length, session.seen.filter(id => topics.some(row => row.id === id)).length + 1)} / {topics.length}</span>
+          <span className="recall-progress" role="status" aria-label={`전체 ${topics.length}개 중 ${Math.min(topics.length, session.seen.filter(id => topics.some(row => row.id === id)).length + 1)}번째 주제`}>{Math.min(topics.length, session.seen.filter(id => topics.some(row => row.id === id)).length + 1)} / {topics.length}</span>
         </div>
       </Card>
       <div className="recall-editor">
@@ -227,7 +231,7 @@ export function TopicRecall({ data, repository, onSaved, subjectIds, initialMode
           {!data.appliedOps[session.pendingReview.opId] && <Button onClick={() => { if (!repository.getSnapshot().appliedOps[session.pendingReview!.opId] && persist({ ...session, pendingReview: undefined })) { setRevealedId(null); setNotice('저장되지 않은 평가를 취소했습니다. 설명 초안은 남아 있습니다.'); } }}>평가 취소하고 초안 유지</Button>}
         </div>}
       </div>}
-      {card?.importSource && <details className="recall-card-settings"><summary>Anki 원본 필드</summary><p className="muted">{card.importSource.deck} · {card.importSource.noteType} · {card.importSource.tags}</p>{card.importSource.fields.map((field, i) => <article key={i}><h3>{field.name}</h3><p>{field.value}</p></article>)}</details>}
+      {card?.importSource && <details className="recall-card-settings"><summary>Anki 원본 필드</summary><p className="muted">{card.importSource.deck} · {card.importSource.noteType} · {card.importSource.tags}</p>{occurrenceRows(card.importSource.fields, field => field.name).map(({value: field, key}) => <article key={key}><h3>{field.name}</h3><p>{field.value}</p></article>)}</details>}
       <details className="recall-card-settings" key={`reference:${topic.id}`}><summary>카드 내용·날짜</summary>
         <Textarea label="참고 설명 입력" value={session.references?.[topic.id]?.body ?? card?.reference ?? ''} rows={4}
           disabled={drawing || !!session.pendingReview || !!session.pendingUndo || !schedulingReady} onCompositionStart={() => { composition.current = true; setComposing(true); }} onCompositionEnd={() => { composition.current = false; setComposing(false); }}
@@ -236,12 +240,9 @@ export function TopicRecall({ data, repository, onSaved, subjectIds, initialMode
         <p className="muted">질문이나 주제 이름이 앞면에 표시되고, 참고 설명은 확인할 때 보입니다. 이전 답변 메모는 그대로 남습니다.</p>
         <div className="recall-due-field"><Input label="다음 복습 날짜" type="date" value={dueDate} onChange={e => setDueDate(e.target.value)} /><Button disabled={blocked || !schedulingReady || !dueDate} onClick={setDue}>날짜 지정</Button></div>
         {card && (card.memory.state === 0 && !card.manualDue ? <p className="muted">새 주제 · 아직 자기 평가를 남기지 않았습니다.</p> : <p className="muted">다음 복습: {new Date(card.manualDue ?? card.memory.due).toLocaleString('ko-KR')} · 자기 평가 {card.reviews.length}회</p>)}
-        {!!card?.reviews.length && <details><summary>자기 평가 기록</summary>{[...card.reviews].reverse().map(row => <p key={row.id}>{new Date(row.at).toLocaleString('ko-KR')} · {RECALL_LABELS[row.rating - 1]} · 다음 {new Date(row.after.due).toLocaleString('ko-KR')}{row.memoId && <> · <a href={`#/memos/${row.memoId}`}>답변 메모</a></>}</p>)}</details>}
+        {!!card?.reviews.length && <ProgressiveHistory data={data} name={`recall-reviews:${card.id}`} total={card.reviews.length} label="자기 평가 기록" collapsible>{limit => [...card.reviews].reverse().slice(0, limit).map(row => <p key={row.id}>{new Date(row.at).toLocaleString('ko-KR')} · {RECALL_LABELS[row.rating - 1]} · 다음 {new Date(row.after.due).toLocaleString('ko-KR')}{row.memoId && <> · <a href={`#/memos/${row.memoId}`}>답변 메모</a></>}</p>)}</ProgressiveHistory>}
       </details>
-      {prior.length > 0 && <details className="recall-history" key={topic.id}>
-        <summary>이전 메모 {prior.length}개</summary>
-        {prior.map(memo => <article key={memo.id}><a href={`#/memos/${memo.id}`}>메모 열기 · {new Date(memo.createdAt).toLocaleString('ko-KR')}</a><p>{memo.body || '그림 메모'}</p></article>)}
-      </details>}
+      {prior.length > 0 && <ProgressiveHistory className="recall-history" key={topic.id} data={data} name={`recall-memos:${topic.id}`} total={prior.length} label="이전 메모" collapsible>{limit => prior.slice(0, limit).map(memo => <article key={memo.id}><a href={`#/memos/${memo.id}`}>메모 열기 · {new Date(memo.createdAt).toLocaleString('ko-KR')}</a><p>{memo.body || '그림 메모'}</p></article>)}</ProgressiveHistory>}
     </> : <EmptyState title={topics.length && scheduled ? "지금 복습할 주제가 없습니다" : session.deckId && session.deckId !== 'all' ? "이 덱에 카드가 없습니다" : "이 범위에 등록된 주제가 없습니다"} message={topics.length && scheduled ? `${queue.nextDue ? `다음 복습은 ${new Date(queue.nextDue).toLocaleString('ko-KR')}입니다. ` : ''}새 주제는 하루 설정 수만큼 나옵니다. 건너뛴 주제를 다시 열거나 무작위 연습을 선택할 수 있습니다.` : session.deckId && session.deckId !== 'all' ? "위에서 질문 카드를 만들거나 Anki 파일을 가져와 이 덱에 담아 주세요. 기존 주제는 기본 덱에서 볼 수 있습니다." : "다른 과목·단원을 고르거나 과목에서 공부 주제를 추가해 주세요."}><a href="#/subjects">과목 보기</a>{topics.length > 0 && scheduled && <Button disabled={blocked} onClick={() => persist(nextSession({ ...session, currentId: null, seen: [], skipped: [] }))}>건너뛴 주제 다시 보기</Button>}</EmptyState>}
     {error && <div role="alert"><p>{error}</p><div className="actions"><Button onClick={() => persist(session)}>초안 저장 다시 시도</Button>{topic && hasAnswer && <Button onClick={() => advance(true, true)}>별도 메모로 저장 후 다음</Button>}</div></div>}
     {notice && <p role="status">{notice}</p>}

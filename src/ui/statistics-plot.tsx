@@ -8,13 +8,20 @@ export function StatisticsPlot({
   small = false,
   cursor = null,
   onOpen,
+  selectedRows = null,
 }: {
   figure: ChartFigure;
   small?: boolean;
   cursor?: number | null;
   onOpen?: (row: ChartRow) => void;
+  selectedRows?: boolean[] | null;
 }) {
   const queue = useRef<Promise<void>>(Promise.resolve());
+  const selection = useRef(selectedRows);
+  selection.current = selectedRows;
+  const redrawSelection = useRef<(() => void) | null>(null);
+  const selectionKey = selectedRows === null ? 'none' : selectedRows.map(Number).join('');
+  const previousSelectionKey = useRef(selectionKey);
   const host = useRef<HTMLDivElement>(null),
     callback = useRef(onOpen),
     model = useRef(figure);
@@ -66,6 +73,43 @@ export function StatisticsPlot({
               decreasing: { marker: { color: colors[2] } },
               totals: { marker: { color: colors[3] } },
             });
+        }
+        const selectedRows = selection.current;
+        if (selectedRows) {
+          for (const [index, trace] of traces.entries()) {
+            const t = trace as unknown as Record<string, unknown>;
+            if (t.type === 'scatter' || t.type === 'bar') {
+              if (figure.kind === 'stacked-bar') t.opacity = selectedRows[index] ? 1 : 0.25;
+              else
+                t.marker = {
+                  ...((t.marker as object) || {}),
+                  opacity: selectedRows.map((selected) => (selected ? 1 : 0.25)),
+                };
+            } else if (t.type === 'pie')
+              t.pull = selectedRows.map((selected) => (selected ? 0.06 : 0));
+          }
+          if (figure.kind === 'heatmap') {
+            const source = figure.traces[0],
+              xs = source.x as string[],
+              ys = source.y as string[];
+            const selected = selectedRows.flatMap((on, index) =>
+              on ? [{ x: xs[index % xs.length], y: ys[Math.floor(index / xs.length)] }] : [],
+            );
+            traces.push({
+              type: 'scatter',
+              mode: 'markers',
+              name: '함께 선택된 근거',
+              x: selected.map((p) => p.x),
+              y: selected.map((p) => p.y),
+              hoverinfo: 'skip',
+              marker: {
+                symbol: 'square-open',
+                size: 18,
+                color: color('--color-text'),
+                line: { width: 2 },
+              },
+            });
+          }
         }
         const layout: Partial<Layout> = {
           autosize: true,
@@ -177,6 +221,9 @@ export function StatisticsPlot({
         }
       }
     };
+    redrawSelection.current = () => {
+      if (observed) void render();
+    };
     const observer =
       typeof IntersectionObserver === 'undefined'
         ? undefined
@@ -223,6 +270,7 @@ export function StatisticsPlot({
     setReady(false);
     return () => {
       active = false;
+      redrawSelection.current = null;
       observer?.disconnect();
       resize?.disconnect();
       theme.disconnect();
@@ -230,9 +278,25 @@ export function StatisticsPlot({
       if (plot) plot.purge(element);
     };
   }, [figure, small, retry, cursor]);
+  useEffect(() => {
+    if (previousSelectionKey.current === selectionKey) return;
+    previousSelectionKey.current = selectionKey;
+    // React against the existing Plotly scene so selection does not purge the user's zoom.
+    redrawSelection.current?.();
+  }, [selectionKey]);
   if (figure.reason) return <p className="muted statistics-chart-reason">{figure.reason}</p>;
   return (
-    <div className="statistics-plot-wrap" data-chart-kind={figure.kind}>
+    <div
+      className="statistics-plot-wrap"
+      data-chart-kind={figure.kind}
+      data-shared-selection={selectedRows ? 'active' : undefined}
+    >
+      {selectedRows && (
+        <p className="statistics-selection-count">
+          함께 선택된 값 행 {selectedRows.filter(Boolean).length}개 / 전체 {selectedRows.length}개 ·
+          값 목록의 ‘함께 선택됨’으로도 확인할 수 있습니다.
+        </p>
+      )}
       <div
         ref={host}
         className="statistics-plot"

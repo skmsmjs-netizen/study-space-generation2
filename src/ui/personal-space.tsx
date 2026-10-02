@@ -3,7 +3,7 @@ import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import type { SupabaseClient } from '@supabase/supabase-js';
 import { Button, Card, Checkbox, ErrorState, Input, LoadingState, Modal } from './index';
 import { createStudyClient, onlineTransport, readServerConfig, signInStudyClient } from '../data/supabase-client';
-import { PersonalRepository } from '../data/personal-repository';
+import type { PersonalRepository } from '../data/personal-repository';
 import { openPersonalRepository } from '../data/indexed-personal-journal';
 import { startPersonalSync } from '../data/personal-sync';
 import type { SaveStatus } from '../data/repository';
@@ -49,9 +49,10 @@ export function PersonalSpace({ renderWorkspace }: { renderWorkspace: (repo: Per
     });
     return () => { alive = false; data.subscription.unsubscribe(); };
   }, [client]);
+  // biome-ignore lint/correctness/useExhaustiveDependencies(retry): An explicit retry recreates the external resource without changing the retained draft.
   useEffect(() => {
     setRepo(null); setAccess(null); setError('');
-    if (!client || !userId || withdrawn) { setOpening(false); return; }
+    if (!client || !accessApi || !userId || withdrawn) { setOpening(false); return; }
     let disposed = false;
     let finish: () => void = () => {};
     const closed = new Promise<void>(resolve => { finish = resolve; });
@@ -60,7 +61,7 @@ export function PersonalSpace({ renderWorkspace }: { renderWorkspace: (repo: Per
     const task = (async () => {
       await previous.catch(() => {});
       if (disposed) return;
-      const permission = await accessApi!.read();
+      const permission = await accessApi.read();
       if (disposed) return;
       setAccess(permission);
       if (permission.status !== 'approved') { setOpening(false); return; }
@@ -123,7 +124,7 @@ export function PersonalSpace({ renderWorkspace }: { renderWorkspace: (repo: Per
   }
   const settings=accessApi&&access?<AccountSettings api={accessApi} access={access} onSaved={setAccess} onWithdrawn={onWithdrawn} onDownload={userId?downloadRecords:undefined}/>:null;
   if (repo && client) return renderWorkspace(repo, <><ServerStatus repository={repo} client={client} />{settings}{access?.administrator && accessApi && <AccountAdministration api={accessApi} />}</>);
-  return <main className="boot personal-entry"><Card><div className="brand-wordmark"><BrandWordmark /><p className="brand-promise">{BRAND.promise}</p></div><h1>내 공부 공간</h1><h2>{BRAND.headline}</h2><p>{BRAND.description}</p>
+  return <main className="boot personal-entry observatory-paper"><Card><div className="brand-wordmark"><BrandWordmark /><p className="brand-promise">{BRAND.promise}</p></div><h1>내 공부 공간</h1><h2>{BRAND.headline}</h2><p>{BRAND.description}</p>
     {withdrawn ? <section><p role="status">{withdrawalNotice||'탈퇴했습니다. 이 브라우저의 개인 자료를 정리하고 있습니다…'}</p>{withdrawalNotice.includes('끝나지')&&<Button onClick={()=>{void cleanupWithdrawal(withdrawn);}}>이 기기의 자료 정리 다시 시도</Button>}<Button onClick={()=>{setWithdrawn(null);setWithdrawalNotice('');}}>로그인 화면으로 돌아가기</Button></section> : !configured ? <ErrorState title="내 공부 공간에 연결하지 못했습니다" message="연결을확인한 뒤 다시 시도해 주세요. 이 기기에 보관된 기록은 그대로 남아 있습니다." onRetry={() => location.reload()} />
       : !authReady || opening ? <LoadingState message="내 기록을 불러오는 중…" />
       : !userId && client ? <SignIn client={client} onSignedIn={setClient} />

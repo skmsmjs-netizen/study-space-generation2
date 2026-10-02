@@ -49,6 +49,7 @@ import { FlowExperience, flowAriaLabels, flowSnapGrid, flowEdgeType } from './fl
 import { layoutFlowBoxes, alignFlowBoxes, validFlowConnection } from '../domain/flow-layout';
 import { FlowHistory } from '../domain/flow-history';
 import { CanvasTransfer } from './canvas-transfer';
+import { KnowledgeLegend, KNOWLEDGE_CANVAS_DEFAULTS } from './knowledge-structure';
 
 type CardData = {
   card: CanvasCard;
@@ -225,7 +226,7 @@ export function StudyCanvas({
     onSaved: () => void,
   ) => ReactNode;
 }) {
-  const tools = useFlowPreferences(flowPreferencesKey(data, 'canvas'));
+  const tools = useFlowPreferences(flowPreferencesKey(data, 'canvas'), KNOWLEDGE_CANVAS_DEFAULTS);
   const history = useRef(new FlowHistory());
   const [, refreshHistory] = useState(0);
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
@@ -635,6 +636,7 @@ export function StudyCanvas({
   const selectedCard = projection.cards.find((card) => card.id === selectedId);
   return (
     <section className="study-canvas" aria-label="목차와 설명 Canvas" onKeyDown={keyboardHistory}>
+      <KnowledgeLegend canvas />
       <div className="canvas-toolbar">
         <Select
           label="Canvas 과목"

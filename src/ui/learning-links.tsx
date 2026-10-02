@@ -40,7 +40,7 @@ export function CodeTopicLinkEditor({ data, repository, onSaved, exampleId }: Co
   </section>;
 }
 export function RelatedCodeExamples({ data, topicId }: { data: AppState; topicId: string }) {
-  let links; try { links = readLearningPlan(data).workspace.codeLinks ?? []; } catch {return <ErrorState message="연결된 코드 예제를 읽지 못했습니다. 기존 예제는 코딩 연습에서 열 수 있습니다." />;}
+  let links: NonNullable<ReturnType<typeof readLearningPlan>["workspace"]["codeLinks"]>; try { links = readLearningPlan(data).workspace.codeLinks ?? []; } catch {return <ErrorState message="연결된 코드 예제를 읽지 못했습니다. 기존 예제는 코딩 연습에서 열 수 있습니다." />;}
   const examples = (data.codeExamples ?? []).filter(e => !e.deletedAt && links.some(l => l.topicId === topicId && l.exampleId === e.id));
   return !!examples.length && <section aria-label="이 주제의 코드 예제"><h3>코드 예제</h3><ul>{examples.map(e => <li key={e.id}><a href={`#/code/${encodeURIComponent(e.id)}`}>{e.title || '제목 없는 예제'}</a> · {e.language}</li>)}</ul></section>;
 }

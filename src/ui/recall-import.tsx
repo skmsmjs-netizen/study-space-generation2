@@ -1,3 +1,4 @@
+import { occurrenceRows } from './list-keys';
 import { useEffect, useRef, useState } from 'react';
 import type { AppState, Command, OutlineNode, RecallImportItem } from '../domain/model';
 import type { RecallSession } from '../domain/topic-recall';
@@ -79,7 +80,7 @@ export function RecallImport({ data, topics, repository, session, persist, onSav
     <p className="muted">기본값은 기존 카드를 유지합니다. 갱신해도 현재 덱·답변·복습 날짜·이력은 유지하며, 직접 고친 질문과 답변은 덮어쓰지 않습니다. 파일 속 타인의 공부 이력은 가져오지 않고 새 카드로 시작합니다.</p>
     {preview && <><p role="status">{name} · 전체 {preview.total}개 · 읽을 수 있는 카드 {preview.items.length}개 · 이미 가져온 카드 {existing}개 · 지원하지 않는 카드 {preview.skipped.length}개</p>
       <details><summary>가져오기 전 카드 확인</summary>{preview.items.slice(0, 10).map(item => <article key={item.source.key}><p>{item.source.deck} · {item.front}</p><details><summary>답변 확인</summary><p>{item.reference}</p></details></article>)}{preview.items.length > 10 && <p className="muted">처음 10개를 표시했습니다. 나머지 카드도 같은 저장 기준으로 처리합니다.</p>}</details>
-      {!!preview.skipped.length && <details><summary>가져올 수 없는 카드 확인</summary>{preview.skipped.slice(0, 50).map((item, i) => <p key={`${item.key}:${i}`}>{item.key} · {item.reason}</p>)}{preview.skipped.length > 50 && <p>처음 50개를 표시했습니다. 원본 파일에 모든 카드가 남아 있습니다.</p>}</details>}
+      {!!preview.skipped.length && <details><summary>가져올 수 없는 카드 확인</summary>{occurrenceRows(preview.skipped.slice(0, 50), item => JSON.stringify(item)).map(({value: item, key}) => <p key={key}>{item.key} · {item.reason}</p>)}{preview.skipped.length > 50 && <p>처음 50개를 표시했습니다. 원본 파일에 모든 카드가 남아 있습니다.</p>}</details>}
       {preview.warnings.map(warning => <p key={warning} role="status">{warning}</p>)}
       {(!!preview.skipped.length || !!preview.warnings.length) && <Checkbox label="표시된 제한을 확인했습니다. 읽을 수 있는 텍스트 카드만 가져옵니다" checked={acknowledged} disabled={busy} onChange={e => setAcknowledged(e.target.checked)} />}
       <div className="actions"><Button disabled={disabled || busy || !!session.pendingImport || !preview.items.length || !target.topicId || (!!preview.skipped.length || !!preview.warnings.length) && !acknowledged} onClick={() => { void start(); }}>확인한 카드 가져오기</Button>{busy && <Button onClick={() => { stopped.current = true; }}>가져오기 중단</Button>}</div></>}

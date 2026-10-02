@@ -39,15 +39,13 @@ test('memory answers typeset math, retain raw text after reload and fit the avai
   const before = await formula.evaluate((e) => e.scrollLeft);
   await page.keyboard.press('ArrowRight');
   await expect.poll(() => formula.evaluate((e) => e.scrollLeft)).toBeGreaterThan(before);
-  const panels = await review
-    .locator('.memory-comparison > section')
-    .evaluateAll((rows) =>
-      rows.map((e) => ({
-        x: e.getBoundingClientRect().x,
-        y: e.getBoundingClientRect().y,
-        width: e.getBoundingClientRect().width,
-      })),
-    );
+  const panels = await review.locator('.memory-comparison > section').evaluateAll((rows) =>
+    rows.map((e) => ({
+      x: e.getBoundingClientRect().x,
+      y: e.getBoundingClientRect().y,
+      width: e.getBoundingClientRect().width,
+    })),
+  );
   if (testInfo.project.name.includes('iPad-Pro-13') && !testInfo.project.name.includes('half'))
     expect(Math.abs(panels[0].y - panels[1].y)).toBeLessThan(2);
   else if (testInfo.project.name.includes('portrait') || testInfo.project.name.includes('half'))

@@ -1,3 +1,4 @@
+import { occurrenceRows } from './list-keys';
 import { useEffect, useRef, useState } from 'react';
 import * as monaco from 'monaco-editor/editor/editor.api';
 import 'monaco-editor/editor/contrib/bracketMatching/browser/bracketMatching';
@@ -17,6 +18,7 @@ import EditorWorker from 'monaco-editor/editor/editor.worker?worker';
 import type { CodeLanguage } from '../domain/model';
 import type { SyntaxDiagnostic } from '../data/code-syntax-parser';
 import SyntaxWorker from '../data/code-syntax.worker?worker';
+import { Button, Checkbox } from './index';
 
 self.MonacoEnvironment = { getWorker: () => new EditorWorker() };
 const languageId = (language: CodeLanguage) => (language === 'c' ? 'cpp' : language);
@@ -165,6 +167,7 @@ export function MonacoSourceEditor({
     if (model && editor.current && editor.current.getValue() !== value)
       editor.current.executeEdits('restore', [{ range: model.getFullModelRange(), text: value }]);
   }, [value]);
+  // biome-ignore lint/correctness/useExhaustiveDependencies(retry): An explicit retry recreates the external resource without changing the retained draft.
   useEffect(() => {
     checkUnavailable.current = false;
     let worker: Worker;
@@ -205,6 +208,7 @@ export function MonacoSourceEditor({
       worker.terminate();
     };
   }, [retry]);
+  // biome-ignore lint/correctness/useExhaustiveDependencies(retry): An explicit retry recreates the external resource without changing the retained draft.
   useEffect(() => {
     const id = ++checkId.current;
     const model = editor.current?.getModel();
@@ -231,17 +235,14 @@ export function MonacoSourceEditor({
             : 'Tab 들여쓰기 · ⌘/Ctrl + / 주석 · ⌘/Ctrl + Enter 실행'}
         </span>
         {!plainInput && (
-          <label>
-            <input
-              type="checkbox"
-              checked={tabMovesFocus}
-              onChange={(event) => {
-                setTabMovesFocus(event.target.checked);
-                editor.current?.updateOptions({ tabFocusMode: event.target.checked });
-              }}
-            />
-            Tab으로 편집기 나가기
-          </label>
+          <Checkbox
+            label="Tab으로 편집기 나가기"
+            checked={tabMovesFocus}
+            onChange={(event) => {
+              setTabMovesFocus(event.target.checked);
+              editor.current?.updateOptions({ tabFocusMode: event.target.checked });
+            }}
+          />
         )}
       </div>
       {plainInput ? (
@@ -282,19 +283,19 @@ export function MonacoSourceEditor({
                   : '문법 오류를 찾지 못했습니다.'}
         </span>
         {syntax === 'unavailable' && (
-          <button type="button" onClick={() => setRetry((value) => value + 1)}>
+          <Button variant="quiet" onClick={() => setRetry((value) => value + 1)}>
             검사 다시 시도
-          </button>
+          </Button>
         )}
         <p className="ui-hint">
           이 브라우저에서 검사합니다. 변수·타입·라이브러리 오류는 실행할 때 확인합니다.
         </p>
         {diagnostics.length > 0 && (
           <ul aria-label="문법 오류 목록">
-            {diagnostics.map((issue, index) => (
-              <li key={index}>
-                <button
-                  type="button"
+            {occurrenceRows(diagnostics, issue => JSON.stringify(issue)).map(({value: issue, key}) => (
+              <li key={key}>
+                <Button
+                  variant="quiet"
                   onClick={() => {
                     if (plain.current) {
                       const lines = value.split('\n');
@@ -317,7 +318,7 @@ export function MonacoSourceEditor({
                   }}
                 >
                   {issue.startLineNumber}행 {issue.startColumn}열: {issue.message}
-                </button>
+                </Button>
               </li>
             ))}
           </ul>

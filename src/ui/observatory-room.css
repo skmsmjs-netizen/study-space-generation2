@@ -1,0 +1,84 @@
+/* Real border/sill layout stays outside the complete, proportionally scaled sky. */
+.observatory-room {
+  --obs-room-wood: color-mix(in oklch, var(--observatory-warm-850) 72%, var(--obs-deep));
+  --obs-room-edge: color-mix(
+    in oklch,
+    var(--obs-time-light, var(--obs-gold)) 28%,
+    var(--obs-room-wood)
+  );
+  --obs-room-shadow: color-mix(in oklch, var(--obs-deep) 88%, var(--observatory-warm-850));
+  --obs-room-frame-size: var(--obs-room-frame-wide);
+  --obs-room-sill-size: var(--obs-room-sill-wide);
+  display: block;
+  position: relative;
+  min-width: 0;
+}
+.observatory-room-frame {
+  display: block;
+  position: relative;
+  z-index: 0;
+  border: var(--obs-room-frame-size) solid var(--obs-room-wood);
+  border-block-start-color: var(--obs-room-edge);
+  border-inline-end-color: var(--obs-room-shadow);
+  border-block-end-color: var(--obs-room-shadow);
+}
+.observatory-room-sill {
+  display: block;
+  height: var(--obs-room-sill-size);
+  background: var(--obs-room-wood);
+  border-block-start: var(--obs-room-step) solid var(--obs-room-edge);
+  border-inline: var(--obs-room-step) solid var(--obs-room-shadow);
+  pointer-events: none;
+}
+.observatory-room-desk {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 960 / 68;
+  pointer-events: none;
+  image-rendering: pixelated;
+}
+.obs-room-desk-shadow {
+  fill: var(--obs-room-shadow);
+}
+@container observatory (width < 40rem) {
+  .observatory-room {
+    --obs-room-frame-size: var(--obs-room-frame-compact);
+    --obs-room-sill-size: var(--obs-room-sill-compact);
+  }
+}
+.obs-room-desk {
+  fill: color-mix(in oklch, var(--observatory-warm-700) 26%, var(--obs-room-wood));
+}
+.obs-room-desk-grain {
+  fill: var(--obs-room-edge);
+  opacity: 0.35;
+}
+.obs-room-light-stop {
+  stop-color: var(--obs-time-light, var(--obs-gold));
+}
+.obs-room-daylight {
+  opacity: var(--obs-room-glow);
+}
+.obs-desk-shadow {
+  fill: var(--obs-room-shadow);
+}
+.obs-desk-wood {
+  fill: color-mix(in oklch, var(--obs-coral) 22%, var(--obs-room-wood));
+}
+.obs-desk-paper {
+  fill: color-mix(in oklch, var(--obs-gold) 58%, var(--obs-time-roof, var(--obs-white)));
+}
+.obs-desk-ink {
+  fill: color-mix(in oklch, var(--obs-room-shadow) 75%, var(--obs-time-wall, var(--obs-blue)));
+}
+.obs-desk-brass {
+  fill: color-mix(in oklch, var(--obs-gold) 55%, var(--obs-room-wood));
+}
+.obs-desk-light {
+  fill: color-mix(in oklch, var(--obs-gold) var(--obs-room-lamp-mix), var(--obs-coral));
+}
+.study-landscapes:has(.observatory-room) .landscape-controls {
+  background: color-mix(in oklch, var(--obs-room-shadow, var(--obs-deep)) 72%, transparent);
+  border-radius: var(--radius-sm);
+}

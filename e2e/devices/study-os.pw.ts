@@ -1,7 +1,10 @@
 import { test, expect } from '@playwright/test';
 
-test('semester weeks, home details, monthly return and brand copy remain usable', async ({ page }, info) => {
-  const errors: string[] = []; page.on('pageerror', e => errors.push(e.message));
+test('semester weeks, home details, monthly return and brand copy remain usable', async ({
+  page,
+}, info) => {
+  const errors: string[] = [];
+  page.on('pageerror', (e) => errors.push(e.message));
   await page.clock.install({ time: new Date('2026-10-01T01:00:00Z') });
   await page.goto('?space=demo#/subject/demo-subject-math');
   await page.getByRole('button', { name: '주차 한 번에 만들기', exact: true }).tap();
@@ -10,26 +13,40 @@ test('semester weeks, home details, monthly return and brand copy remain usable'
   await dialog.getByLabel('마지막 주차 기준일', { exact: true }).fill('2026-10-22');
   await dialog.getByLabel('주차 이름의 앞부분').fill('실제 흐름 확인');
   await dialog.getByRole('button', { name: '주차 미리보기', exact: true }).tap();
-  await dialog.locator('summary').filter({ hasText: /^2주차/ }).tap();
+  await dialog
+    .locator('summary')
+    .filter({ hasText: /^2주차/ })
+    .tap();
   await dialog.getByLabel('2주차 휴강·제외', { exact: true }).check();
-  await dialog.locator('summary').filter({ hasText: /^1주차/ }).tap();
+  await dialog
+    .locator('summary')
+    .filter({ hasText: /^1주차/ })
+    .tap();
   await dialog.getByLabel('1주차 메모 · 선택', { exact: true }).fill('  한글 원문\n조건과 예외  ');
   await dialog.getByRole('button', { name: '닫고 초안 보관', exact: true }).tap();
   await page.reload();
   await page.getByRole('button', { name: '주차 한 번에 만들기', exact: true }).tap();
-  await dialog.locator('summary').filter({ hasText: /^1주차/ }).tap();
-  await expect(dialog.getByLabel('1주차 메모 · 선택', { exact: true })).toHaveValue('  한글 원문\n조건과 예외  ');
+  await dialog
+    .locator('summary')
+    .filter({ hasText: /^1주차/ })
+    .tap();
+  await expect(dialog.getByLabel('1주차 메모 · 선택', { exact: true })).toHaveValue(
+    '  한글 원문\n조건과 예외  ',
+  );
   await dialog.getByRole('button', { name: '3개 주차 등록', exact: true }).tap();
   await expect(dialog.getByRole('button', { name: '0개 주차 등록', exact: true })).toBeDisabled();
   await dialog.getByRole('button', { name: '이번 주차 생성 되돌리기', exact: true }).tap();
   await expect(dialog.getByRole('status')).toContainText('3개 주차를 휴지통으로 이동');
   await dialog.getByRole('button', { name: '닫고 초안 보관', exact: true }).tap();
-  await page.reload(); await page.getByRole('button', { name: '주차 한 번에 만들기', exact: true }).tap();
+  await page.reload();
+  await page.getByRole('button', { name: '주차 한 번에 만들기', exact: true }).tap();
   await dialog.getByRole('button', { name: '되돌린 주차 복원', exact: true }).tap();
   await expect(dialog.getByRole('status')).toContainText('3개 주차를 복원');
   await dialog.getByRole('button', { name: '닫고 초안 보관', exact: true }).tap();
   await page.goto('?space=demo#/');
-  await expect(page.getByRole('link', { name: /ManSeekSong OS.*생각을 펼치는 나의 천문대/ }).first()).toBeVisible();
+  await expect(
+    page.getByRole('link', { name: /ManSeekSong OS.*생각을 펼치는 나의 천문대/ }).first(),
+  ).toBeVisible();
   const wordmark = page.getByRole('img', { name: 'ManSeekSong OS', exact: true }).first();
   await expect(wordmark).toBeVisible();
   const markBox = await wordmark.boundingBox();
@@ -51,8 +68,11 @@ test('semester weeks, home details, monthly return and brand copy remain usable'
   await page.getByRole('button', { name: '2026-09 공부 회차 원기록 보기', exact: true }).tap();
   await expect(page.getByRole('dialog', { name: '통계의 원기록' })).toBeVisible();
   await page.getByRole('button', { name: '통계의 원기록 닫기', exact: true }).tap();
-  await page.reload(); await expect(page.getByLabel('요약할 월', { exact: true })).toHaveValue('2026-09');
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1)).toBe(true);
+  await page.reload();
+  await expect(page.getByLabel('요약할 월', { exact: true })).toHaveValue('2026-09');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1)).toBe(
+    true,
+  );
   await page.screenshot({ path: info.outputPath('month-summary.png') });
   expect(errors).toEqual([]);
 });

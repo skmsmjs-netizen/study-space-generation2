@@ -1,13 +1,37 @@
 import { fireEvent,render,screen,within } from '@testing-library/react';
 import { beforeEach,expect,it,vi } from 'vitest';
 import { createDemoState } from '../domain/fixtures';
-import { emptyRecommendations,readRecommendations,saveRecommendations } from '../data/recommendations';
+import { emptyRecommendations,readRecommendations,saveRecommendations, recommendationKey } from '../data/recommendations';
+import { readScheduleView } from '../data/schedule-view';
 import { NextStudy } from './next-study';
 const data=createDemoState(),subjects=data.subjects.map(s=>s.id);
 const show=()=>render(<NextStudy onlySchedules data={data} subjectIds={subjects}/>);
 const field=(name:string,value:string)=>fireEvent.input(screen.getByLabelText(name,{exact:true}),{target:{value}});
 const change=(name:string,value:string)=>fireEvent.change(screen.getByLabelText(name,{exact:true}),{target:{value}});
 beforeEach(()=>{localStorage.clear();sessionStorage.clear();vi.restoreAllMocks();});
+it('clears empty search and date filters while preserving the selected archive, calendar and schedule evidence', () => {
+ const workspace=emptyRecommendations(data);
+ workspace.schedules=[{id:'archived',subjectId:subjects[0],name:'보관한 과제 원문',kind:'assignment',goalIds:[],targetIds:[],dueDate:'2026-10-08',opensDate:'',weight:null,status:'ended',states:{prepare:'done'},dueMeaning:'submission',note:'  조건과 예외\n그대로  '}];
+ const saved=saveRecommendations(data,workspace,null);
+ let view=show();
+ change('일정 보관 상태','ended');
+ fireEvent.click(screen.getByRole('button',{name:'달력'}));
+ field('달력 월','2026-10');
+ change('일정 종류 보기','exam');
+ change('일정 찾기','일치하지 않는 이름');
+ fireEvent.click(screen.getByRole('button',{name:'2026-10-09 · 일정 0개'}));
+ expect(screen.getByRole('heading',{name:'이 날짜에는 일정이 없습니다'})).toBeVisible();
+ fireEvent.click(screen.getByRole('button',{name:'검색·날짜 조건 해제'}));
+ expect(screen.getByRole('heading',{name:'보관한 과제 원문'})).toBeVisible();
+ expect(screen.getByLabelText('일정 보관 상태')).toHaveValue('ended');
+ expect(screen.getByLabelText('달력 월')).toHaveValue('2026-10');
+ expect(screen.queryByRole('button',{name:'모든 날짜 보기'})).toBeNull();
+ expect(localStorage.getItem(recommendationKey(data))).toBe(saved);
+ view.unmount();view=show();
+ expect(readScheduleView(data,'2026-10')).toMatchObject({view:'calendar',status:'ended',kind:'all',query:'',month:'2026-10'});
+ expect(screen.getByRole('heading',{name:'보관한 과제 원문'})).toBeVisible();
+ expect(localStorage.getItem(recommendationKey(data))).toBe(saved);
+});
 it('registers an unknown deadline with a review date, retains exact draft after reopening, separates submission and restores trash',()=>{
  let view=show();fireEvent.click(screen.getByRole('button',{name:'과제 추가'}));
  change('일정 이름','마감 미정인 과제');field('공지 확인일 · 선택','2026-10-02');change('일정 메모 · 선택','  원문과 예외\n다음 줄  ');

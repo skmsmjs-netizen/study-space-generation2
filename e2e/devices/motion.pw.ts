@@ -1,6 +1,8 @@
 import { expect, test } from '@playwright/test';
 
-test('motion controls, player fallback and reopening preserve an edited record', async ({ page }, info) => {
+test('motion controls, player fallback and reopening preserve an edited record', async ({
+  page,
+}, info) => {
   await page.goto('?space=demo#/record');
   await page.getByRole('checkbox', { name: '함수는 어떤 관계일까?', exact: true }).check();
   const note = '  움직임 확인용 원문\n조건과 예외를 그대로 보존한다.  ';
@@ -15,25 +17,42 @@ test('motion controls, player fallback and reopening preserve an edited record',
   const pause = dialog.getByRole('button', { name: '움직임 일시정지', exact: true });
   await expect(dialog.locator('[data-motion-source="lottiefiles"] canvas')).toBeVisible();
   await pause.click();
-  await expect(dialog.getByRole('button', { name: '움직임 재생', exact: true })).toHaveAttribute('aria-pressed', 'true');
+  await expect(dialog.getByRole('button', { name: '움직임 재생', exact: true })).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  );
   await dialog.getByRole('button', { name: '움직임 재생', exact: true }).click();
   await dialog.getByRole('tab', { name: '인터랙티브 카드', exact: true }).click();
   await expect(dialog.locator('[data-motion-source="rive"] canvas')).toBeVisible();
   await dialog.getByRole('button', { name: '5개', exact: true }).click();
   await dialog.getByRole('checkbox', { name: '움직임 줄이기', exact: true }).check();
   await expect(dialog.getByText('★★★★★', { exact: true })).toBeVisible();
-  await expect(dialog.getByRole('button', { name: '5개', exact: true })).toHaveAttribute('aria-pressed', 'true');
+  await expect(dialog.getByRole('button', { name: '5개', exact: true })).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  );
   await dialog.getByRole('checkbox', { name: '움직임 줄이기', exact: true }).uncheck();
   await expect(dialog.locator('[data-motion-source="rive"] canvas')).toBeVisible();
-  await expect(dialog.getByRole('button', { name: '5개', exact: true })).toHaveAttribute('aria-pressed', 'true');
+  await expect(dialog.getByRole('button', { name: '5개', exact: true })).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  );
   await dialog.getByRole('tab', { name: '선형 아이콘', exact: true }).click();
-  await expect(dialog.getByRole('button', { name: '아이콘 움직임 다시 보기', exact: true })).toBeEnabled();
+  await expect(
+    dialog.getByRole('button', { name: '아이콘 움직임 다시 보기', exact: true }),
+  ).toBeEnabled();
   await dialog.getByRole('button', { name: '아이콘 움직임 다시 보기', exact: true }).click();
   await page.emulateMedia({ reducedMotion: 'reduce' });
-  await expect(dialog.getByRole('button', { name: '아이콘 움직임 다시 보기', exact: true })).toBeDisabled();
-  await expect(dialog.getByRole('checkbox', { name: '움직임 줄이기', exact: true })).not.toBeChecked();
+  await expect(
+    dialog.getByRole('button', { name: '아이콘 움직임 다시 보기', exact: true }),
+  ).toBeDisabled();
+  await expect(
+    dialog.getByRole('checkbox', { name: '움직임 줄이기', exact: true }),
+  ).not.toBeChecked();
   await page.emulateMedia({ reducedMotion: 'no-preference' });
-  await expect(dialog.getByRole('button', { name: '아이콘 움직임 다시 보기', exact: true })).toBeEnabled();
+  await expect(
+    dialog.getByRole('button', { name: '아이콘 움직임 다시 보기', exact: true }),
+  ).toBeEnabled();
   await dialog.getByRole('checkbox', { name: '움직임 줄이기', exact: true }).check();
   await page.screenshot({ path: info.outputPath('motion-controls.png'), fullPage: true });
   await dialog.getByRole('button', { name: '움직임 위젯 닫기', exact: true }).click();

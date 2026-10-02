@@ -1,5 +1,12 @@
 .math-explorer {
+  --color-math-curve: var(--primitive-common-warning-700);
+  --color-math-point: var(--color-math-curve);
+  --color-math-tangent: var(--primitive-common-info-700);
+  --color-math-normal: var(--primitive-common-success-700);
+  --color-math-binormal: var(--primitive-common-error-700);
   min-width: 0;
+  container-name: math-observation;
+  container-type: inline-size;
 }
 .math-explorer > .ui-field:first-child {
   margin-bottom: var(--space-5);
@@ -41,13 +48,19 @@
   border-bottom: 2px solid currentColor;
 }
 .math-vector-T {
-  color: var(--color-hierarchy-outline);
+  color: var(--color-math-tangent);
+}
+.math-point {
+  color: var(--color-math-point);
+}
+.math-curve {
+  color: var(--color-math-curve);
 }
 .math-vector-N {
-  color: var(--color-memo-green);
+  color: var(--color-math-normal);
 }
 .math-vector-B {
-  color: var(--color-text);
+  color: var(--color-math-binormal);
 }
 .math-start,
 .math-interval {
@@ -79,6 +92,7 @@
   padding-block: var(--space-3);
 }
 .math-plot {
+  position: relative;
   width: 100%;
   height: clamp(320px, calc(100dvh - 420px), 460px);
   min-width: 0;
@@ -87,7 +101,30 @@
   touch-action: none;
   overscroll-behavior: contain;
 }
+/* GeoGebra's keyboard camera helpers must become usable when focused.
+   Their unfocused 1px boxes must not intercept a graph touch. */
+.math-geogebra-host input.slider.accessibilityControl {
+  pointer-events: none;
+  width: 0 !important;
+  height: 0 !important;
+}
+.math-geogebra-host input.slider.accessibilityControl:focus {
+  box-sizing: border-box;
+  pointer-events: auto;
+  position: absolute !important;
+  inset-inline-start: var(--space-4);
+  inset-block-end: var(--space-4);
+  width: calc(100% - var(--space-4) * 2) !important;
+  height: var(--control-height) !important;
+  opacity: 1 !important;
+  overflow: visible !important;
+  accent-color: var(--color-primary);
+  background: var(--color-surface);
+  outline: var(--focus-width) solid var(--color-focus);
+  outline-offset: var(--focus-offset);
+}
 .math-geogebra-host {
+  position: relative;
   /* The official injector writes a fixed inline width. Keep the host responsive. */
   width: 100% !important;
   height: clamp(320px, calc(100dvh - 420px), 460px) !important;
@@ -135,6 +172,7 @@
   gap: var(--space-4);
 }
 .math-slider-heading {
+  flex-wrap: wrap;
   align-items: center;
 }
 .math-slider-heading .ui-field {
@@ -233,40 +271,33 @@
   }
 }
 
-/* GeoGebra's keyboard camera helpers must become usable when focused.
-   Their unfocused 1px boxes must not intercept a graph touch. */
-.math-geogebra-host input.slider.accessibilityControl {
+.math-flat-scaffold {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
-  width: 0 !important;
-  height: 0 !important;
-}
-.math-geogebra-host input.slider.accessibilityControl:focus {
-  box-sizing: border-box;
-  pointer-events: auto;
-  position: absolute !important;
-  inset-inline-start: var(--space-4);
-  inset-block-end: var(--space-4);
-  width: calc(100% - var(--space-4) * 2) !important;
-  height: var(--control-height) !important;
-  opacity: 1 !important;
-  overflow: visible !important;
-  accent-color: var(--color-primary);
-  background: var(--color-surface);
-  outline: var(--focus-width) solid var(--color-focus);
-  outline-offset: var(--focus-offset);
+  overflow: hidden;
 }
 
-.math-geogebra-host input.slider.accessibilityControl:focus[min="-90"] {
+.math-geogebra-host input.slider.accessibilityControl:focus[min='-90'] {
   inset-block-end: calc(var(--space-4) * 2 + var(--control-height));
 }
 
-@container study-content (max-width: 40rem) {
-  .math-workspace { grid-template-columns: minmax(0, 1fr); }
-  .math-controls {
-    border-inline-start: 0;
-    padding-inline-start: 0;
-    border-block-start: var(--border-width) solid var(--color-border);
-    padding-block-start: var(--space-3);
+:root[data-theme='dark'] .math-explorer {
+  --color-math-curve: var(--primitive-common-warning-500);
+  --color-math-point: var(--color-math-curve);
+  --color-math-tangent: var(--primitive-common-info-100);
+  --color-math-normal: var(--primitive-common-success-500);
+  --color-math-binormal: var(--primitive-common-error-100);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']):not([data-theme='dark']) .math-explorer {
+    --color-math-curve: var(--primitive-common-warning-500);
+    --color-math-point: var(--color-math-curve);
+    --color-math-tangent: var(--primitive-common-info-100);
+    --color-math-normal: var(--primitive-common-success-500);
+    --color-math-binormal: var(--primitive-common-error-100);
   }
 }
 
@@ -275,13 +306,121 @@
   position: static !important;
 }
 
-.math-slider-heading { flex-wrap: wrap; }
-.math-slider-heading .ui-field { max-inline-size: 100%; }
-.math-start .ui-field, .math-interval .ui-field { min-inline-size: min(8rem, 100%); }
+.math-graph-symbol-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  white-space: nowrap;
+  /* Fixed graph glyph boxes retain the TeX baseline. */
+  line-height: var(--type-math-symbol-line);
+  background: var(--color-surface);
+}
+.math-graph-symbol .katex {
+  /* KaTeX uses the local fixed graph label size. */
+  font-size: var(--type-math-symbol-size);
+}
 
-.math-equation { display: block; min-inline-size: 0; }
+.math-equation-row + .math-equation-row {
+  margin-top: var(--space-3);
+}
+
+.math-plot-symbols {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.math-plot-symbols > .math-graph-symbol {
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+@container study-content (max-width: 40rem) {
+  .math-workspace {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .math-controls {
+    border-inline-start: 0;
+    padding-inline-start: 0;
+    border-block-start: var(--border-width) solid var(--color-border);
+    padding-block-start: var(--space-3);
+  }
+}
+
+.math-slider-heading {
+  flex-wrap: wrap;
+}
+.math-slider-heading .ui-field {
+  max-inline-size: 100%;
+}
+.math-start .ui-field,
+.math-interval .ui-field {
+  min-inline-size: min(8rem, 100%);
+}
+
+.math-equation {
+  display: block;
+  min-inline-size: 0;
+}
 @container workspace-content (max-width: 40rem) {
-  .math-workspace { grid-template-columns: minmax(0, 1fr); }
-  .math-controls { border-inline-start: 0; padding-inline-start: 0; border-block-start: var(--border-width) solid var(--color-border); padding-block-start: var(--space-3); }
-  .math-sliders { grid-template-columns: minmax(0, 1fr); }
+  .math-workspace {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .math-controls {
+    border-inline-start: 0;
+    padding-inline-start: 0;
+    border-block-start: var(--border-width) solid var(--color-border);
+    padding-block-start: var(--space-3);
+  }
+  .math-sliders {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.math-camera-controls {
+  border: 0;
+  padding: 0;
+  margin-inline: 0;
+  display: flex;
+  align-items: end;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-block: var(--space-2) var(--space-3);
+  min-width: 0;
+}
+.math-camera-controls > .ui-field {
+  min-inline-size: min(100%, 11rem);
+  flex: 1;
+  max-inline-size: 16rem;
+}
+.math-camera-turns {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-inline-size: 0;
+  display: flex;
+  gap: var(--space-2);
+}
+.math-camera-turns button {
+  min-inline-size: 44px;
+}
+.math-point-focus-note {
+  margin-block: 0 var(--space-2);
+  color: var(--color-muted);
+  font-size: var(--type-caption-size);
+}
+
+/* Observe the available work surface, including a narrow pane on a wide screen. */
+@container math-observation (max-width: 55rem) {
+  .math-workspace {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .math-controls {
+    border-inline-start: 0;
+    padding-inline-start: 0;
+    border-block-start: var(--border-width) solid var(--color-border);
+    padding-block-start: var(--space-3);
+  }
 }

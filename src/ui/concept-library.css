@@ -1,0 +1,375 @@
+.concept-library {
+  display: grid;
+  gap: var(--space-5);
+  min-inline-size: 0;
+}
+.concept-library-cover {
+  display: grid;
+  gap: var(--space-2);
+  padding-block-end: var(--space-4);
+  border-block-end: var(--border-width) solid var(--color-border);
+}
+.concept-library-cover p {
+  margin: 0;
+  overflow-wrap: anywhere;
+  word-break: keep-all;
+}
+.concept-library-cover p:first-child {
+  font-weight: var(--type-label-weight);
+}
+.concept-library-cover p + p {
+  color: var(--color-muted);
+  font-size: var(--type-caption-size);
+}
+.concept-toolbar,
+.concept-options,
+.concept-batch {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.concept-production-tools,
+.concept-editor {
+  display: grid;
+  gap: var(--space-4);
+}
+.concept-production-tools {
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+.concept-filters {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: var(--space-4);
+}
+.concept-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  gap: var(--space-2);
+}
+.concept-list button {
+  justify-content: space-between;
+  text-align: start;
+  gap: var(--space-3);
+  white-space: normal;
+}
+.concept-list small,
+.concept-caption,
+.concept-eyebrow {
+  color: var(--color-muted);
+}
+.concept-reader {
+  /* A reading column inside the shared paper, measured in the chosen font. */
+  --concept-reading-measure: calc(var(--type-subheading-size) * 36);
+  margin: var(--space-4) auto;
+  inline-size: 100%;
+  max-inline-size: var(--layout-reading);
+  display: grid;
+  gap: var(--space-6);
+  font-family: var(--font-reading);
+  font-size: var(--type-subheading-size);
+  font-weight: var(--type-body-weight);
+  /* design-token-exception: line-height -- Long Korean concept explanations need a quieter 1.85 rhythm inside this reading surface; the OS controls retain their shared label line height. */
+  line-height: 1.85;
+}
+[data-reading-width='wide'] .concept-reader {
+  max-inline-size: none;
+  --concept-reading-measure: 100%;
+}
+.concept-reader-header,
+.concept-observation-controls,
+.concept-observation-readout,
+.concept-observation-reasoning,
+.concept-reader > .concept-options,
+.concept-reader > .concept-toolbar,
+.concept-reader > .concept-reader-footer,
+.concept-stage > h3,
+.concept-stage > .concept-body,
+.concept-stage > p {
+  inline-size: 100%;
+  max-inline-size: var(--concept-reading-measure);
+  margin-inline: auto;
+  min-inline-size: 0;
+}
+.concept-reader-header {
+  display: grid;
+  gap: var(--space-4);
+  padding-block-end: var(--space-5);
+  border-block-end: var(--border-width) solid var(--color-border);
+}
+.concept-reader h2 {
+  margin: 0;
+  font-size: var(--type-title-size);
+  font-weight: var(--type-title-weight);
+  line-height: var(--type-title-line);
+  letter-spacing: var(--type-heading-tracking);
+  text-wrap: balance;
+}
+.concept-reader .concept-lead {
+  font-size: var(--type-heading-size);
+  font-weight: var(--type-body-weight);
+  line-height: var(--type-body-line);
+  text-wrap: pretty;
+}
+.concept-reader p,
+.concept-reader h3 {
+  margin-block: 0;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+  word-break: keep-all;
+}
+.concept-reader h3 {
+  font-size: var(--type-heading-size);
+  font-weight: var(--type-heading-weight);
+  line-height: var(--type-heading-line);
+  letter-spacing: var(--type-heading-tracking);
+  text-wrap: pretty;
+}
+.concept-intro,
+.concept-body {
+  text-wrap: pretty;
+}
+.concept-body {
+  display: grid;
+  gap: var(--space-4);
+  container-type: inline-size;
+  container-name: concept-prose;
+}
+/* Use the actual prose width, including a narrow paper inside a wide window. */
+@container concept-prose (max-width: 40rem) {
+  .observatory-workspace .concept-reader .concept-stages .concept-stage .concept-body > p:not(.math-caption, .equation-source, .input-prompt) {
+    line-height: var(--paper-body-line, var(--observatory-paper-body-compact-line));
+    letter-spacing: var(--paper-body-tracking, var(--observatory-paper-body-compact-tracking));
+  }
+}
+.concept-question {
+  font-weight: var(--type-label-weight);
+}
+.concept-observation-controls {
+  scroll-margin-block-start: var(--space-6);
+}
+.concept-observation-visual,
+.concept-observation-reasoning {
+  display: grid;
+  gap: var(--space-5);
+  min-inline-size: 0;
+}
+.concept-reader-header > h2:focus-visible,
+.concept-stage > h3:focus-visible {
+  outline: var(--focus-width) solid var(--color-focus);
+  outline-offset: var(--space-2);
+}
+.concept-stages {
+  display: grid;
+  min-inline-size: 0;
+}
+.concept-stage {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity var(--motion-feedback) var(--motion-ease);
+  padding-block: 0 var(--space-4);
+  min-inline-size: 0;
+}
+.concept-stage.is-current {
+  visibility: visible;
+  opacity: 1;
+}
+.concept-takeaway {
+  border-block-start: var(--border-width) solid var(--color-border);
+  padding-block-start: var(--space-5);
+  font-weight: var(--type-label-weight);
+}
+.concept-reader .concept-caption {
+  font-size: var(--type-body-size);
+  line-height: var(--type-body-line);
+}
+.concept-diagram {
+  margin: 0;
+  padding: var(--space-4);
+  background: var(--color-surface-inset);
+  border-radius: var(--radius-md);
+  display: grid;
+  gap: var(--space-3);
+}
+.concept-nodes {
+  display: flex;
+  flex-wrap: wrap;
+}
+.concept-node {
+  flex: 1 1 8rem;
+  padding: var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+.concept-node small {
+  display: block;
+  margin-block-start: var(--space-2);
+}
+.concept-node.is-selected {
+  border-color: var(--color-text);
+  font-weight: var(--type-label-weight);
+}
+.concept-months {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: var(--space-2);
+}
+.concept-months span {
+  text-align: center;
+  padding: var(--space-2);
+  border: 1px solid var(--color-border);
+}
+.concept-months strong {
+  display: block;
+}
+.concept-editor textarea {
+  font-family: var(--font-mono);
+  resize: vertical;
+}
+.concept-editor fieldset:not(.concept-options) {
+  display: grid;
+  gap: var(--space-3);
+  border: 1px solid var(--color-border);
+  padding: var(--space-4);
+}
+.concept-editor fieldset label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-block-size: 2.75rem;
+}
+.concept-error {
+  border-inline-start: 2px solid var(--color-text);
+  padding: var(--space-4);
+}
+@media (max-width: 40rem) {
+  .concept-reader {
+    gap: var(--space-5);
+  }
+  .concept-reader h2 {
+    font-size: var(--type-title-compact-size);
+  }
+  .concept-filters {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .concept-months {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .concept-stage {
+    transition: none;
+    transform: none;
+  }
+}
+
+.concept-svg {
+  inline-size: 100%;
+  block-size: auto;
+  max-block-size: 14rem;
+  overflow: visible;
+  color: var(--color-text);
+  font: var(--type-caption-size) var(--font-reading);
+}
+
+:root[data-motion='reduce'] .concept-stage {
+  transition: none;
+  transform: none;
+}
+
+fieldset.concept-options {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.concept-composition figcaption {
+  font-weight: var(--type-label-weight);
+}
+.concept-representations {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+  gap: var(--space-3);
+  margin: 0;
+}
+.concept-representations > div {
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  min-inline-size: 0;
+}
+.concept-representations > .is-emphasized {
+  border-color: var(--color-text);
+  box-shadow: inset 0 0 0 var(--border-width) var(--color-text);
+}
+.concept-representations dt {
+  font-weight: var(--type-label-weight);
+  margin-block-end: var(--space-2);
+}
+.concept-representations dd {
+  margin: 0;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+  word-break: keep-all;
+}
+.concept-relations {
+  margin: 0;
+  padding-inline-start: var(--space-5);
+  display: grid;
+  gap: var(--space-3);
+}
+.concept-relations li {
+  overflow-wrap: anywhere;
+  word-break: keep-all;
+}
+.concept-relations li > p {
+  margin-block-start: var(--space-1);
+}
+.concept-reader-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  justify-content: space-between;
+}
+.concept-composition--sequence .concept-representations {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.concept-composition--compare .concept-representations {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.concept-composition--compare .concept-representations > div:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+.concept-reader .concept-options {
+  display: flex;
+  gap: var(--space-2);
+}
+.concept-reader .concept-options > button {
+  flex: 0 1 auto;
+  min-inline-size: 0;
+  border-color: var(--color-border-strong);
+}
+.concept-reader .concept-options > button[aria-pressed='true'] {
+  background: var(--color-selected);
+  color: var(--color-text);
+  border-color: var(--color-text);
+  text-decoration: underline;
+  text-underline-offset: var(--space-1);
+}
+.concept-reader-navigation {
+  justify-content: space-between;
+  padding-block-start: var(--space-4);
+  border-block-start: var(--border-width) solid var(--color-border);
+  color: var(--color-muted);
+  font-family: var(--font-interface);
+  font-size: var(--type-caption-size);
+  line-height: var(--type-caption-line);
+}

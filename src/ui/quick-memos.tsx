@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type MouseEvent } from 'react';
 import { Button, EmptyState, ErrorState, Modal, Select, Textarea } from './index';
 import { isViewPage, isViewText, useViewContext } from './use-view-context';
 import type { AppState, Command, MemoStroke, QuickMemo } from '../domain/model';
@@ -16,12 +16,12 @@ import { navigate } from './navigation-context';
 import './quick-memos.css';
 
 type Content = Pick<QuickMemo, 'body' | 'ownerId' | 'strokes' | 'document'>;
-type Props = { data: AppState; repository: StudyRepository; onSaved: (next: AppState) => void; ownerId?: string; memoId?: string; compact?: boolean; trash?: boolean };
+type Props = { data: AppState; repository: StudyRepository; onSaved: (next: AppState) => void; ownerId?: string; memoId?: string; compact?: boolean; trash?: boolean; onCloseDetail?: () => void };
 const errorMessage = (error: unknown) => error instanceof Error && (error.name === 'QuotaExceededError' || /quota/i.test(error.message)) ? '이 기기의 저장 공간이 부족합니다.' : error instanceof Error ? error.message : '저장하지 못했습니다.';
 function ownerName(data: AppState, ownerId: string | null) {
   return data.nodes.find(row => row.id === ownerId)?.name ?? data.subjects.find(row => row.id === ownerId)?.name ?? '자유 메모';
 }
-export function QuickMemos({ data, repository, onSaved, ownerId, memoId, compact = false, trash = false }: Props) {
+export function QuickMemos({ data, repository, onSaved, ownerId, memoId, compact = false, trash = false, onCloseDetail }: Props) {
   const [editing, setEditing] = useState<string | null>(memoId ?? null);
   const [error, setError] = useState('');
   const view = `memos:${trash ? 'trash' : 'active'}:${ownerId ?? 'all'}`;
@@ -40,11 +40,14 @@ export function QuickMemos({ data, repository, onSaved, ownerId, memoId, compact
       onSaved(next); setError(''); return next;
     } catch (e) { setError(errorMessage(e)); return null; }
   };
-  const add = () => {
+  const add = (event: MouseEvent<HTMLButtonElement>) => {
+    // Safari touch activation does not focus buttons. The conditionally mounted
+    // editor must receive its actual invoker before Modal captures activeElement.
+    event.currentTarget.focus({ preventScroll: true });
     const id = crypto.randomUUID();
     if (execute({ type: 'saveMemo', id, ownerId: ownerId ?? null, body: '', strokes: [], expectedVersion: 0 })) setEditing(id);
   };
-  const close = () => { setEditing(null); if (memoId) navigate('/memos'); };
+  const close = () => { setEditing(null); if (memoId) { if (onCloseDetail) onCloseDetail(); else navigate('/memos'); } };
   const moveToTrash = (memo: QuickMemo) => {
     if (execute({ type: 'trashMemo', id: memo.id, expectedVersion: memo.version })) { setTrashId(null); setRestored(memo.id); }
   };
@@ -53,14 +56,14 @@ export function QuickMemos({ data, repository, onSaved, ownerId, memoId, compact
   };
   const undoTrash = (data.memos ?? []).find(row => row.id === restored && row.deletedAt);
   return <section className="quick-memos section-space" aria-label={trash ? '휴지통의 메모' : '메모 카드'}>
-    <div className="section-heading"><div><h2>{trash ? '메모' : '작은 메모'}</h2>{compact && <p className="muted">떠오른 생각을 잠시 보관하세요. 짧은 글이나 그림으로 남길 수 있습니다.</p>}</div>
-      {!trash && <div className="actions">{compact && <a href="#/memos">모두 보기</a>}<Button onClick={add}>메모 추가</Button></div>}
+    <div className="section-heading"><div><h2>{trash ? '메모' : '작은 메모'}</h2>{compact && <p className="muted">떠오른 생각을 글이나 그림으로 남겨 두세요.</p>}</div>
+      {!trash && <div className="actions">{compact && <a href="#/memos">메모 모두 보기</a>}<Button onClick={add}>메모 추가</Button></div>}
     </div>
     {error && <ErrorState message={error} />}
     {undoTrash && <div className="feedback-banner"><span role="status">메모를 휴지통으로 옮겼습니다.</span><Button onClick={() => restore(undoTrash)}>메모 복원</Button></div>}
     {!compact && <Textarea label="메모 찾기" rows={1} value={query} placeholder="입력한 글이나 과목·주제 이름" onChange={event => { setQuery(event.target.value); setLimit(40); }} />}
     <div className="memo-grid">{(compact ? filtered.slice(0, 3) : filtered.slice(0, Math.max(40, limit))).map((memo, index) => <article className="memo-card" key={memo.id}>
-      <button className="memo-paper-preview" aria-label={`메모 ${index + 1} 열기${memo.body ? `: ${memo.body.slice(0, 35)}` : memo.strokes.length ? ': 스케치' : ': 빈 메모'}`} onClick={() => setEditing(memo.id)} disabled={trash}>
+      <button type="button" className="memo-paper-preview" aria-label={`메모 ${index + 1} 열기${memo.body ? `: ${memo.body.slice(0, 35)}` : memo.strokes.length ? ': 스케치' : ': 빈 메모'}`} onClick={event => { event.currentTarget.focus({ preventScroll: true }); setEditing(memo.id); }} disabled={trash}>
         <svg viewBox={`0 0 ${MEMO_WIDTH} ${MEMO_HEIGHT}`} aria-hidden="true"><InkDrawing strokes={memo.strokes} /></svg>
         {memo.body && <span className="memo-preview-text">{memo.body}</span>}
         {!memo.body && !memo.strokes.length && !memo.document && <span className="memo-placeholder">여기에 생각을 남겨 보세요.</span>}
@@ -69,9 +72,9 @@ export function QuickMemos({ data, repository, onSaved, ownerId, memoId, compact
     </article>)}</div>
     {!compact && filtered.length > Math.max(40, limit) && <Button onClick={() => setLimit(value => Math.max(40, value) + 40)}>메모 더 보기</Button>}
     {!compact && all.length > 0 && !filtered.length && <EmptyState title="찾은 메모가 없습니다" message="입력한 글이나 과목·주제 이름으로 다시 찾아보세요."><Button onClick={() => {setQuery('');setLimit(40);}}>메모 검색어 지우기</Button></EmptyState>}
-    {!all.length && !compact && <EmptyState title={trash ? '휴지통에 메모가 없습니다' : '첫 메모를 남겨 보세요'} message={trash ? undefined : '제목 없이 짧은 글이나 그림부터 시작할 수 있습니다.'} />}
+    {!all.length && !compact && !memoId && <EmptyState title={trash ? '휴지통에 메모가 없습니다' : '첫 메모를 남겨 보세요'} message={trash ? undefined : '제목 없이 짧은 글이나 그림부터 시작할 수 있습니다.'} />}
     {selected && <MemoEditor key={selected.id} memo={selected} data={data} repository={repository} onSaved={onSaved} onClose={close} onCopy={id => setEditing(id)} />}
-    {memoId && !selected && <EmptyState title="이 메모를 찾을 수 없습니다" message="휴지통에 있는지 확인해 주세요."><a href="#/memos">메모 목록으로</a></EmptyState>}
+    {memoId && !selected && <EmptyState title="이 메모를 찾을 수 없습니다" message="휴지통에 있는지 확인하거나 다른 메모를 골라 주세요."><a href="#/memos">메모 목록으로</a><a href="#/trash">휴지통 확인</a></EmptyState>}
     <Modal open={Boolean(trashId)} title="메모를 휴지통으로 옮길까요?" onClose={() => setTrashId(null)}><p>글과 그림, 수정 이력은 남아 있습니다. 휴지통에서 복원할 수 있습니다.</p><Button variant="danger" onClick={() => { const memo = all.find(row => row.id === trashId); if (memo) moveToTrash(memo); }}>휴지통으로 이동</Button></Modal>
   </section>;
 }
@@ -149,7 +152,8 @@ export function MemoEditor({ memo, data, repository, onSaved, onClose, onCopy, e
   const copyConflict = () => {
     if (!initial.conflict) return;
     try {
-      const operation = copyOperation.current ??= { id: crypto.randomUUID(), opId: crypto.randomUUID(), at: new Date().toISOString() };
+      copyOperation.current ??= { id: crypto.randomUUID(), opId: crypto.randomUUID(), at: new Date().toISOString() };
+      const operation = copyOperation.current;
       const next = repository.execute({ type: 'saveMemo', ...operation, ownerId: initial.conflict.ownerId, body: initial.conflict.body, strokes: initial.conflict.strokes, ...(initial.conflict.document ? {document:initial.conflict.document}:{}),
         expectedVersion: 0, userId: data.userId, namespace: data.namespace });
       callback.current(next);
@@ -224,6 +228,7 @@ export function MemoEditor({ memo, data, repository, onSaved, onClose, onCopy, e
       try { archiveDamagedDraft(key, '작은 메모 초안 읽기 실패'); clearStoredDraft(key); blocked.current = false; setBlocked(false); setError('읽을 수 없던 초안 원문을 보관했습니다. 저장된 메모를 이어 편집할 수 있습니다.'); }
       catch (e) { setError(errorMessage(e)); }
     }}>초안 원문 보관 후 편집</Button>}
+    {/* biome-ignore lint/a11y/useValidAnchor: The real archives route link closes the draft dialog before normal navigation without changing its preserved original. */}
     {isBlocked && <a href="#/draft-archives" onClick={onClose}>초안 보관본 확인</a>}
     <footer className="memo-save-bar"><span role="status">{isBlocked ? '초안 확인 필요' : status}</span><div className="actions"><Button variant="quiet" onClick={exportMemo}>메모 파일로 보관</Button>{!isBlocked && <Button onClick={flush}>지금 저장</Button>}<Button variant="primary" onClick={close}>닫기</Button></div></footer>
   </>;

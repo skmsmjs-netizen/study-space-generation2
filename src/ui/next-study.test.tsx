@@ -13,6 +13,16 @@ const newGoal = () => {
 };
 beforeEach(() => { localStorage.clear(); sessionStorage.clear(); });
 describe('next study UI persistence and meaning', () => {
+  it('offers subject registration instead of an unusable check form when the selected scope has no topics', () => {
+    const original = JSON.stringify(data);
+    render(<NextStudy data={data} subjectIds={[]} />);
+    expect(screen.getByRole('button', { name: '확인할 내용 추가' })).toBeDisabled();
+    fireEvent.click(screen.getByRole('button', { name: '과목·주제 등록하기' }));
+    expect(window.location.hash).toBe('#/subjects');
+    expect(screen.queryByRole('dialog')).toBeNull();
+    expect(localStorage.getItem(recommendationKey(data))).toBeNull();
+    expect(JSON.stringify(data)).toBe(original);
+  });
   it('opens and focuses the schedule controls from both navigation paths without changing saved evidence', () => {
     const workspace = emptyRecommendations(data);
     workspace.schedules = [{ id: 'ux-schedule', subjectId: subjects[0], name: 'UX 확인용 과제', kind: 'assignment', goalIds: [], targetIds: [], dueDate: '2026-10-08', opensDate: '', weight: null, status: 'active', states: {}, dueMeaning: 'submission', note: '  이유와 예외\n원문 보존  ' }];
@@ -25,13 +35,13 @@ describe('next study UI persistence and meaning', () => {
       const panel = view.container.querySelector<HTMLDetailsElement>('#learning-schedules')!;
       const summary = panel.querySelector('summary')!;
       expect(panel.open).toBe(false);
-      fireEvent.click(screen.getAllByRole('link', { name: '일정에서 확인하기' })[0]);
+      fireEvent.click(screen.getAllByRole('button', { name: '일정에서 확인하기' })[0]);
       expect(panel.open).toBe(true);
       expect(summary).toHaveFocus();
       expect(scroll).toHaveBeenCalledWith({ block: 'start' });
       panel.open = false;
       fireEvent.click(screen.getByText('기한이 있는 일정 1개'));
-      fireEvent.click(screen.getByRole('link', { name: '일정과 준비 상태 보기' }));
+      fireEvent.click(screen.getByRole('button', { name: '일정과 준비 상태 보기' }));
       expect(panel.open).toBe(true);
       expect(summary).toHaveFocus();
       expect(localStorage.getItem(recommendationKey(data))).toBe(saved);

@@ -1,0 +1,62 @@
+.math-comparison {
+  margin-block: var(--space-4);
+  padding: var(--space-4);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+}
+.math-comparison-formulas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  gap: var(--space-4);
+}
+.math-comparison-formulas > div {
+  min-width: 0;
+}
+.math-comparison-graph {
+  width: 100%;
+  max-width: 32rem;
+  display: block;
+  margin-inline: auto;
+}
+.math-comparison-graph[data-large='true'] {
+  max-width: none;
+}
+.math-comparison-border,
+.math-comparison-axis {
+  fill: none;
+  stroke: var(--color-border-strong);
+}
+.math-comparison-a {
+  fill: none;
+  stroke: var(--color-text);
+  stroke-width: 2;
+  stroke-dasharray: 7 5;
+}
+.math-comparison-b {
+  fill: none;
+  stroke: var(--color-primary);
+  stroke-width: 2;
+}
+.math-comparison-point-a {
+  fill: var(--color-surface);
+  stroke: var(--color-text);
+  stroke-width: 2;
+}
+.math-comparison-point-b {
+  fill: var(--color-primary);
+}
+.math-comparison-table {
+  overflow-x: auto;
+}
+.math-comparison-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.math-comparison-table th,
+.math-comparison-table td {
+  padding: var(--space-2);
+  text-align: start;
+  border-bottom: var(--border-width) solid var(--color-border);
+  overflow-wrap: anywhere;
+}

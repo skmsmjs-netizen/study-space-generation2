@@ -11,6 +11,14 @@ function Harness() { const [data,setData] = useState<AppState>(repo.getSnapshot(
 beforeEach(() => { localStorage.clear(); repo = new DemoRepository(localStorage); });
 afterEach(() => { vi.restoreAllMocks(); });
 const add = () => { fireEvent.click(screen.getByRole('button',{ name:'메모 추가' })); fireEvent.click(screen.getByText('글·연결·입력 설정')); };
+it('offers a real recovery destination for a missing memo without showing the first-memo prompt or changing records', () => {
+  const data = repo.getSnapshot(), original = JSON.stringify(data);
+  render(<QuickMemos data={data} repository={repo} onSaved={() => undefined} memoId="missing-memo" />);
+  expect(screen.getByRole('heading', {name:'이 메모를 찾을 수 없습니다'})).toBeVisible();
+  expect(screen.getByRole('link', {name:'휴지통 확인'})).toHaveAttribute('href','#/trash');
+  expect(screen.queryByRole('heading', {name:'첫 메모를 남겨 보세요'})).toBeNull();
+  expect(JSON.stringify(repo.getSnapshot())).toBe(original);
+});
 it('limits accumulated previews while searching all saved memo text and preserves hidden cards', () => {
   const data = repo.getSnapshot();
   for (let index = 0; index < 65; index++) repo.execute({
@@ -29,6 +37,22 @@ it('limits accumulated previews while searching all saved memo text and preserve
   fireEvent.click(screen.getByRole('button',{name:'메모 더 보기'}));
   expect(screen.getAllByRole('button',{name:/메모 \d+ 열기/})).toHaveLength(65);
   expect(repo.getSnapshot().memos).toHaveLength(65);
+});
+it('returns focus to the actual add or card button after a touch-style opening without native button focus', () => {
+  render(<Harness />);
+  const addButton = screen.getByRole('button', { name: '메모 추가' });
+  expect(addButton).not.toHaveFocus();
+  // fireEvent.click intentionally does not add the native mouse-focus step.
+  fireEvent.click(addButton);
+  fireEvent.click(screen.getByRole('button', { name: /^닫기$/ }));
+  expect(addButton).toHaveFocus();
+  const cardButton = screen.getByRole('button', { name: /메모 1 열기/ });
+  expect(cardButton).not.toHaveFocus();
+  fireEvent.click(cardButton);
+  fireEvent.click(screen.getByRole('button', { name: /^닫기$/ }));
+  expect(cardButton).toHaveFocus();
+  expect(repo.getSnapshot().memos).toHaveLength(1);
+  expect(repo.getSnapshot().records).toHaveLength(0);
 });
 describe('quick memo editor recovery', () => {
   it('autosaves exact text and restores after close/reload without adding a study record', async () => {

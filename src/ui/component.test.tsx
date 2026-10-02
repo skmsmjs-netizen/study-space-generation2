@@ -34,6 +34,7 @@ describe('shared controls', () => {
     expect((input as HTMLTextAreaElement).value).toBe('  나의 설명\n');
   });
   it('tabs skip disabled items and move both selection and focus', async () => {
+    // biome-ignore lint/a11y/useSemanticElements: The fixture verifies focus restoration to an interactive SVG chart mark inside a named SVG group.
     function Fixture() { const [value, setValue] = useState('a'); return <Tabs value={value} onChange={setValue} items={[{ id: 'a', label: '기록' }, { id: 'b', label: '준비 중', disabled: true }, { id: 'c', label: '원문' }]} />; }
     const user = userEvent.setup(); render(<Fixture />);
     screen.getByRole('tab', { name: '기록' }).focus(); await user.keyboard('{ArrowRight}');
@@ -61,18 +62,21 @@ describe('shared controls', () => {
 
 describe('modal focus contract', () => {
   it('returns to the task heading when the opening action disappears', async () => {
+    // biome-ignore lint/a11y/useSemanticElements: The fixture verifies focus restoration to an interactive SVG chart mark inside a named SVG group.
     function Fixture() { const [open,setOpen]=useState(false);return <main><h1>현재 과업</h1>{!open&&<Button onClick={()=>setOpen(true)}>임시 열기</Button>}<Modal open={open} title="임시 창" onClose={()=>setOpen(false)}><p>내용</p></Modal></main>; }
     const user=userEvent.setup();render(<Fixture/>);
     await user.click(screen.getByRole('button',{name:'임시 열기'}));await user.keyboard('{Escape}');
     expect(screen.getByRole('heading',{name:'현재 과업'})).toHaveFocus();
   });
   it('includes a rich editable surface in the modal keyboard loop', () => {
-    render(<Modal open title="글 쓰기" onClose={()=>{}}><div contentEditable aria-label="자유 글" /></Modal>);
+    // biome-ignore lint/a11y/useSemanticElements: This fixture exercises the existing rich contenteditable focus surface.
+    render(<Modal open title="글 쓰기" onClose={()=>{}}><div role="textbox" aria-multiline="true" tabIndex={0} contentEditable aria-label="자유 글" /></Modal>);
     const editable=screen.getByLabelText('자유 글');const focus=vi.spyOn(editable,'focus');
     screen.getByRole('button',{name:'글 쓰기 닫기'}).focus();
     fireEvent.keyDown(document,{key:'Tab',shiftKey:true});expect(focus).toHaveBeenCalledOnce();
   });
   it('restores an SVG chart trigger after closing its evidence dialog', () => {
+    // biome-ignore lint/a11y/useSemanticElements: The fixture verifies focus restoration to an interactive SVG chart mark inside a named SVG group.
     function Fixture() { const [open, setOpen] = useState(false); return <><svg role="group" aria-label="차트"><g role="button" tabIndex={0} aria-label="차트 근거" onClick={() => setOpen(true)}><rect width="40" height="40" /></g></svg><Modal open={open} title="근거" onClose={() => setOpen(false)}><p>원기록</p></Modal></>; }
     render(<Fixture />);
     const trigger = screen.getByRole('button', { name: '차트 근거' });
@@ -85,6 +89,7 @@ describe('modal focus contract', () => {
     expect(focus).toHaveBeenLastCalledWith({ preventScroll: true });
   });
   it('traps keyboard focus, closes on Escape, and restores the trigger', async () => {
+    // biome-ignore lint/a11y/useSemanticElements: The fixture verifies focus restoration to an interactive SVG chart mark inside a named SVG group.
     function Fixture() { const [open, setOpen] = useState(false); return <><Button onClick={() => setOpen(true)}>메모 열기</Button><Modal open={open} title="메모" onClose={() => setOpen(false)}><Input label="메모 내용" /><Button>저장</Button></Modal></>; }
     const user = userEvent.setup(); render(<Fixture />);
     const trigger = screen.getByRole('button', { name: '메모 열기' }); await user.click(trigger);
@@ -121,6 +126,7 @@ describe('modal focus contract', () => {
     expect(close).not.toHaveBeenCalled();
   });
   it('returns to a touch opener even when the browser does not focus it on activation', () => {
+    // biome-ignore lint/a11y/useSemanticElements: The fixture verifies focus restoration to an interactive SVG chart mark inside a named SVG group.
     function Fixture() { const [open, setOpen] = useState(false); return <><Button onClick={() => setOpen(true)}>터치로 열기</Button><Modal open={open} title="기록" onClose={() => setOpen(false)}><Input label="기록 내용" /></Modal></>; }
     render(<Fixture />);
     const trigger = screen.getByRole('button', { name: '터치로 열기' });
@@ -130,6 +136,7 @@ describe('modal focus contract', () => {
     expect(trigger).toHaveFocus();
   });
   it('returns focus to the trigger without scrolling the underlying page', async () => {
+    // biome-ignore lint/a11y/useSemanticElements: The fixture verifies focus restoration to an interactive SVG chart mark inside a named SVG group.
     function Fixture() { const [open, setOpen] = useState(false); return <><Button onClick={() => setOpen(true)}>기록 열기</Button><Modal open={open} title="기록" onClose={() => setOpen(false)}><Input label="기록 내용" /></Modal></>; }
     const user = userEvent.setup(); render(<Fixture />);
     const trigger = screen.getByRole('button', { name: '기록 열기' });
@@ -141,6 +148,7 @@ describe('modal focus contract', () => {
   });
   it('isolates background interaction, excludes hidden and negative-tab targets, and restores previous inert state', async () => {
     const existing = document.createElement('aside'); existing.setAttribute('inert', ''); document.body.append(existing);
+    // biome-ignore lint/a11y/useSemanticElements: The fixture verifies focus restoration to an interactive SVG chart mark inside a named SVG group.
     function Fixture() { const [open, setOpen] = useState(false); return <><Button onClick={() => setOpen(true)}>열기</Button><Modal open={open} title="편집" onClose={() => setOpen(false)}><Button>마지막 조작</Button><Button tabIndex={-1}>프로그램 전용</Button><div style={{ display: 'none' }}><Button>숨긴 조작</Button></div><fieldset disabled><Input label="비활성 입력" /></fieldset></Modal></>; }
     const user = userEvent.setup(), view = render(<Fixture />);
     await user.click(screen.getByRole('button', { name: '열기' }));

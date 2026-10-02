@@ -70,7 +70,9 @@ test('선택 기록·후속 편집·수식 결과는 터치와 재접속 후에�
   await page.getByRole('button', { name: '자료 저장', exact: true }).tap();
   await expect(page.getByLabel('합성 GPT 호출')).toHaveText('2');
   await page.reload();
-  await expect(page.getByRole('combobox', { name: 'GPT 작업', exact: true })).toHaveValue('explain');
+  await expect(page.getByRole('combobox', { name: 'GPT 작업', exact: true })).toHaveValue(
+    'explain',
+  );
   await expect(page.locator('math')).toHaveCount(1);
   await expect(notes).toHaveValue(edited);
   await expect(page.getByLabel('합성 GPT 호출')).toHaveText('2');

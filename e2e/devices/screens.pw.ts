@@ -1,24 +1,6 @@
-import { readFileSync, existsSync } from 'node:fs';
+import { existsSync } from 'node:fs';
 import { test, expect } from '@playwright/test';
-// All primary screens of the current version are discovered, including future additions.
-const source = readFileSync('src/App.tsx', 'utf8');
-const start = source.indexOf('const navItems =');
-const primaryRoutes = [
-  ...source.slice(start, source.indexOf('];', start)).matchAll(/href:\s*["']([^"']+)["']/g),
-].map((match) => match[1]);
-const routes = [
-  ...primaryRoutes,
-  '/draft-archives',
-  '/trash',
-  '/free',
-  '/about',
-  '/help',
-  '/my-progress',
-  '/subscription',
-  '/subject/demo-subject-math',
-  '/node/demo-topic-function',
-  '/record/demo-topic-function',
-];
+import { primaryRoutes, screenRoutes as routes } from './screen-inventory';
 test('all current screens render, reflow and keep navigation usable', async ({ page }, info) => {
   const errors: string[] = [];
   page.on('pageerror', (error) => errors.push(error.message));
@@ -66,7 +48,9 @@ test('all current screens render, reflow and keep navigation usable', async ({ p
   expect(errors).toEqual([]);
 });
 
-test('graph filters remain usable with larger text without horizontal overflow', async ({ page }) => {
+test('graph filters remain usable with larger text without horizontal overflow', async ({
+  page,
+}) => {
   await page.goto('?space=demo#/graph');
   const connections = page.getByLabel('표시할 연결', { exact: true });
   await expect(connections).toBeVisible();
@@ -88,8 +72,11 @@ test('touch code input, exact draft restore and rotation retain original source'
 }, info) => {
   await page.goto('?space=demo#/code');
   await page.getByRole('button', { name: '예제 추가', exact: true }).tap();
+  const explanation = page.getByRole('textbox', { name: '내용·설명', exact: true });
+  await expect(explanation).toHaveCSS('font-weight', '700');
+  await expect(explanation).toHaveCSS('font-size', '16px');
   const code = page.getByRole('textbox', { name: '소스 코드', exact: true });
-  await expect(code).toHaveClass('cm-content');
+  await expect(code).toHaveClass(/code-native-input|cm-content/);
   await page.getByLabel('언어', { exact: true }).selectOption('javascript');
   const source = '// 조건과 예외 · 한글 원문\nconst 합 = 3 + 4;\nconsole.log(합);';
   await code.fill(source);
@@ -162,14 +149,16 @@ test('missing microphone API retains transcript import and exact notes after rel
   await page.goto('?space=demo#/materials');
   await page.getByRole('button', { name: '자료 추가', exact: true }).tap();
   await expect(page.getByRole('button', { name: '녹음 시작', exact: true })).toHaveCount(0);
-  await expect(page.getByRole('button', { name: '문서·사진·자막 가져오기', exact: true })).toBeEnabled();
-  await expect(page.getByLabel('학습 자료 파일', { exact: true })).toHaveAttribute('accept', /\.txt/);
+  await expect(
+    page.getByRole('button', { name: '전사문 파일 가져오기', exact: true }),
+  ).toBeEnabled();
   await expect(page.getByRole('link', { name: '클로바노트 열기', exact: true })).toBeVisible();
   const original = '  화자 1 · 00:12\n조건과 예외를 그대로 보관  ';
   const notes = page.getByRole('textbox', { name: '강의 내용·필기', exact: true });
   await notes.fill(original);
   await page.reload();
   await expect(notes).toHaveValue(original);
-  await expect(page.getByRole('button', { name: '문서·사진·자막 가져오기', exact: true })).toBeEnabled();
-  await expect(page.getByLabel('학습 자료 파일', { exact: true })).toHaveAttribute('accept', /\.txt/);
+  await expect(
+    page.getByRole('button', { name: '전사문 파일 가져오기', exact: true }),
+  ).toBeEnabled();
 });

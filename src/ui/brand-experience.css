@@ -65,11 +65,7 @@
 .brand-home-identity {
   display: none;
 }
-@media (max-width: 40rem) {
-  .brand-home-identity {
-    display: block;
-  }
-}
+/* The compact shell wordmark stays visible on every mobile task. */
 .brand-resume h2,
 .brand-service h2 {
   margin-top: 0;

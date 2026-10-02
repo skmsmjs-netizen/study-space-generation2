@@ -1,5 +1,6 @@
 import {
   cpSync,
+  constants,
   existsSync,
   mkdirSync,
   mkdtempSync,
@@ -38,7 +39,7 @@ export function createDeviceRun(source, parent) {
   const run = mkdtempSync(path.join(parent, 'run-'));
   const build = path.join(run, 'app');
   try {
-    cpSync(source, build, { recursive: true });
+    cpSync(source, build, { recursive: true, mode: constants.COPYFILE_FICLONE });
     const copied = manifest(build);
     if (JSON.stringify(before) !== JSON.stringify(copied))
       throw Error(

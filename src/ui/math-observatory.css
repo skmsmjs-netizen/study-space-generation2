@@ -1,0 +1,95 @@
+@import './math-observatory-tokens.css';
+
+.math-explorer {
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+.math-observatory-heading,
+.math-template-full.math-explorer .ui-modal-header {
+  --color-focus: var(--math-observatory-accent);
+  background: var(--math-observatory-header-background);
+  color: var(--math-observatory-header-text);
+  border-block-end: var(--border-width) solid var(--math-observatory-accent);
+  padding: var(--space-2) var(--space-3);
+}
+.math-observatory-heading {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-block-end: var(--space-4);
+  font-size: var(--type-label-size);
+}
+.math-observatory-caption {
+  margin-inline-start: auto;
+  font-size: var(--type-caption-size);
+}
+.math-observatory-mark,
+.math-template-full.math-explorer .ui-modal-header h2::before {
+  content: '';
+  display: inline-block;
+  inline-size: 20px;
+  block-size: 20px;
+  flex: none;
+  background: var(--math-observatory-accent);
+  mask: url('./math-observatory-mark.svg') center / contain no-repeat;
+  image-rendering: pixelated;
+}
+.math-template-full.math-explorer .ui-modal-header h2 {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: inherit;
+}
+.math-template-full.math-explorer .ui-modal-header .ui-button {
+  background: transparent;
+  color: inherit;
+  border-color: currentColor;
+}
+.math-template-full.math-explorer .ui-modal-header .ui-button:hover {
+  background: var(--math-observatory-header-text);
+  color: var(--math-observatory-header-background);
+}
+.math-explorer > .math-observatory-heading + .ui-field {
+  max-width: 30rem;
+  margin-block-end: var(--space-5);
+}
+.math-template-panel,
+.math-controls {
+  background: var(--color-surface-inset);
+  border: var(--border-width) solid var(--color-border);
+  padding: var(--space-3);
+}
+.math-camera-controls {
+  padding: var(--space-2);
+  background: var(--color-surface-inset);
+  border: var(--border-width) solid var(--color-border);
+}
+.math-template-full .math-template-panel {
+  border-inline-start: var(--border-width) solid var(--color-border);
+}
+.math-template-readouts {
+  border-block-end: var(--border-width) solid var(--color-border);
+  padding-block-end: var(--space-3);
+  margin-block-end: var(--space-3);
+}
+.math-plot {
+  border: var(--border-width) solid var(--color-border);
+}
+/* Keep the same mathematical hues legible on the adopted night work surface. */
+:root[data-theme='dark'] .math-explorer {
+  --color-math-curve: var(--primitive-common-warning-500);
+  --color-math-point: var(--color-math-curve);
+  --color-math-tangent: var(--primitive-common-info-100);
+  --color-math-normal: var(--primitive-common-success-500);
+  --color-math-binormal: var(--primitive-common-error-100);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']):not([data-theme='dark']) .math-explorer {
+    --color-math-curve: var(--primitive-common-warning-500);
+    --color-math-point: var(--color-math-curve);
+    --color-math-tangent: var(--primitive-common-info-100);
+    --color-math-normal: var(--primitive-common-success-500);
+    --color-math-binormal: var(--primitive-common-error-100);
+  }
+}

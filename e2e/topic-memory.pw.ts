@@ -214,10 +214,14 @@ test('topic-only GPT draft edits survive reload, register once and reach Postgre
     await page.getByLabel('만들 암기항목 수', { exact: true }).selectOption('1');
     await page.getByLabel('출제 초점·난도 (선택)', { exact: true }).fill('공식의 적용 조건');
     await page.getByRole('button', { name: 'GPT 연결 확인', exact: true }).click();
-    await expect(page.getByRole('region', { name: 'GPT 연결 설정' })).toContainText('ChatGPT 연결됨');
+    await expect(page.getByRole('region', { name: 'GPT 연결 설정' })).toContainText(
+      'ChatGPT 연결됨',
+    );
     await expect(page.getByLabel('GPT 모델', { exact: true })).toHaveValue('isolated-model');
     await page.getByRole('button', { name: 'GPT 연결 닫기', exact: true }).click();
-    await expect(page.getByLabel('출제 초점·난도 (선택)', { exact: true })).toHaveValue('공식의 적용 조건');
+    await expect(page.getByLabel('출제 초점·난도 (선택)', { exact: true })).toHaveValue(
+      '공식의 적용 조건',
+    );
     await page.getByRole('button', { name: '이 목차로 생성', exact: true }).click();
     await expect(page.getByLabel('1번 질문', { exact: true })).toHaveValue('커패시터 임피던스는?');
     await page.getByLabel('1번 기준 답안', { exact: true }).fill('  수정한 기준 답안\n소자 조건  ');
@@ -280,7 +284,9 @@ test('topic-only GPT draft edits survive reload, register once and reach Postgre
     }, owner);
     await page.reload();
     await expect(page.getByText('기준 답안', { exact: true })).toBeVisible();
-    await expect(page.getByRole('region', { name: '1번 내 답안', exact: true })).toContainText('내 답안');
+    await expect(page.getByRole('region', { name: '1번 내 답안', exact: true })).toContainText(
+      '내 답안',
+    );
     expect(
       (await backend.read(owner, 'personal'))!.data.memoryTests![0].questions[0].response,
     ).toBe('  내 답안\n');

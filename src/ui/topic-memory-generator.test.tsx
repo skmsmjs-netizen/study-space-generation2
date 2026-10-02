@@ -38,7 +38,8 @@ function repository(owner = AI_OWNER_USER_ID) {
     getCapabilities: () => ['saveMemoryCard', 'saveMemoryTest'],
     execute: (c: Command) => {
       if (fail) throw Error('저장 연결 실패');
-      return (data = applyCommand(data, c));
+      data = applyCommand(data, c);
+      return data;
     },
     setFailure: (value: boolean) => {
       fail = value;

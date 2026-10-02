@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from 'react';
-import { BrandWordmark } from './brand-wordmark';
 import { ExperienceRecoveryControl } from './experience-recovery';
 import type { AppState, StudyRecord } from '../domain/model';
 import { BRAND, emptyExperience, retainNextAction, type ExperienceState } from '../domain/brand';
+import { BrandWordmark } from './brand-wordmark';
 import {
   EXPERIENCE_CHANGED,
   experienceKey,

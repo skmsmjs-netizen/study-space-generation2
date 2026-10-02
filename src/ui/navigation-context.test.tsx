@@ -17,7 +17,7 @@ function Harness({ persistentEditor = false }: { persistentEditor?: boolean }) {
     {persistentEditor && <input aria-label="계속 작성 중인 글" defaultValue="원래 글" />}
     <main key={route}>
       <h1>{route}</h1>
-      <button data-navigation-focus="topic:keep">기록 선택</button>
+      <button type="button" data-navigation-focus="topic:keep">기록 선택</button>
       <a href="#/second">다음 주제</a>
     </main>
   </>;
@@ -46,7 +46,7 @@ afterEach(() => vi.restoreAllMocks());
 describe('route context', () => {
   function DelayedHarness({ ready = false }: { ready?: boolean }) {
     const route = useRoute();
-    return <><a href="#/third">다른 화면</a><main key={route}><h1>{route}</h1>{route === '/second' && !ready ? <LoadingState /> : <button data-navigation-focus="late:control">늦게 열린 조작</button>}</main></>;
+    return <><a href="#/third">다른 화면</a><main key={route}><h1>{route}</h1>{route === '/second' && !ready ? <LoadingState /> : <button type="button" data-navigation-focus="late:control">늦게 열린 조작</button>}</main></>;
   }
   const seedDelayedPosition = () => sessionStorage.setItem(NAVIGATION_CONTEXT_KEY, JSON.stringify({ version: 1, route: '/first', positions: {
     '/second': { x: 0, y: 740, focus: { kind: 'key', value: 'late:control' } },
@@ -244,9 +244,9 @@ it('restores long text selection direction and internal scroll through route rep
   let editor = screen.getByRole('textbox') as HTMLTextAreaElement;
   editor.focus(); editor.setSelectionRange(22, 58, 'backward'); editor.scrollTop = 340; editor.scrollLeft = 12;
   fireEvent.select(editor); fireEvent.scroll(editor);
+  traversal('#/second'); traversal('#/first');
   const saved = sessionStorage.getItem(EDITING_CONTEXT_KEY)!;
   expect(saved).not.toContain('가나다');
-  traversal('#/second'); traversal('#/first');
   await act(async () => await Promise.resolve());
   editor = screen.getByRole('textbox') as HTMLTextAreaElement;
   expect([editor.selectionStart, editor.selectionEnd, editor.selectionDirection, editor.scrollTop, editor.scrollLeft]).toEqual([22, 58, 'backward', 340, 12]);
@@ -254,6 +254,110 @@ it('restores long text selection direction and internal scroll through route rep
   render(<EditorHarness />); editor = screen.getByRole('textbox') as HTMLTextAreaElement;
   expect([editor.selectionStart, editor.selectionEnd, editor.selectionDirection, editor.scrollTop]).toEqual([22, 58, 'backward', 340]);
 });
+
+describe('coalesced view hints', () => {
+  function EditorHarness() {
+    const route = useRoute();
+    return <main key={route}><h1>{route}</h1><textarea aria-label="본문" data-editing-context="entry:body" defaultValue={'한글 원문\n'.repeat(100)} /><p data-reading-anchor="entry:stable">기록</p><iframe title="별도 문서" /></main>;
+  }
+  function frames() {
+    let next = 0;
+    const callbacks = new Map<number, FrameRequestCallback>();
+    vi.spyOn(window, 'requestAnimationFrame').mockImplementation(callback => { callbacks.set(++next, callback); return next; });
+    vi.spyOn(window, 'cancelAnimationFrame').mockImplementation(id => { callbacks.delete(id); });
+    return {
+      flush() { act(() => { const batch = [...callbacks.values()]; callbacks.clear(); batch.forEach(callback => { callback(0); }); }); },
+      pending: () => callbacks.size,
+    };
+  }
+  const reading = () => JSON.parse(sessionStorage.getItem(NAVIGATION_CONTEXT_KEY) || '{}').positions['/first'];
+  const editing = () => JSON.parse(sessionStorage.getItem(EDITING_CONTEXT_KEY) || '{}')['entry:body'];
+
+  it('batches an IME/input/scroll burst without changing original text or writing each event', () => {
+    const frame = frames(), view = render(<EditorHarness />);
+    const editor = screen.getByRole('textbox') as HTMLTextAreaElement;
+    editor.focus();
+    const anchor = view.container.querySelector<HTMLElement>('[data-reading-anchor]');
+    if (!anchor) throw new Error('Missing reading anchor');
+    vi.spyOn(anchor, 'getBoundingClientRect').mockReturnValue({ top: 12, bottom: 32 } as DOMRect);
+    const queries = vi.spyOn(document, 'querySelectorAll');
+    const writes = vi.spyOn(Storage.prototype, 'setItem');
+    fireEvent.compositionStart(editor);
+    for (let index = 1; index <= 40; index++) {
+      editor.setSelectionRange(index, index + 2, 'backward');
+      editor.scrollTop = index * 3; y = index * 10;
+      fireEvent.input(editor, { isComposing: true });
+      fireEvent.keyUp(editor, { key: 'Process', isComposing: true });
+      fireEvent.scroll(editor);
+    }
+    fireEvent.compositionEnd(editor);
+    expect(writes).not.toHaveBeenCalled();
+    expect(queries.mock.calls.filter(call => call[0] === 'main [data-reading-anchor]')).toHaveLength(0);
+    frame.flush();
+    expect(writes.mock.calls.filter(call => call[0] === NAVIGATION_CONTEXT_KEY)).toHaveLength(1);
+    expect(writes.mock.calls.filter(call => call[0] === EDITING_CONTEXT_KEY)).toHaveLength(1);
+    expect(queries.mock.calls.filter(call => call[0] === 'main [data-reading-anchor]')).toHaveLength(1);
+    expect(editing()).toEqual({ start: 40, end: 42, direction: 'backward', top: 120, left: 0 });
+    expect(reading()).toMatchObject({ y: 400, anchor: { value: 'entry:stable', offset: 12 } });
+    expect(editor).toHaveValue('한글 원문\n'.repeat(100));
+    expect(writes.mock.calls.every(call => !call[1].includes('한글 원문'))).toBe(true);
+  });
+
+  it.each(['pagehide', 'hidden', 'iframe', 'unmount'])('flushes the latest hints before frames can stop at %s', boundary => {
+    const frame = frames(), view = render(<EditorHarness />);
+    const editor = screen.getByRole('textbox') as HTMLTextAreaElement;
+    editor.focus(); editor.setSelectionRange(7, 11, 'backward'); editor.scrollTop = 92; y = 360;
+    fireEvent.input(editor);
+    expect(frame.pending()).toBeGreaterThan(0);
+    if (boundary === 'pagehide') fireEvent(window, new Event('pagehide'));
+    else if (boundary === 'hidden') {
+      vi.spyOn(document, 'visibilityState', 'get').mockReturnValue('hidden');
+      fireEvent(document, new Event('visibilitychange'));
+    } else if (boundary === 'iframe') {
+      // Moving into another document can suspend the parent event stream.
+      screen.getByTitle('별도 문서').focus(); fireEvent(window, new Event('blur'));
+    } else view.unmount();
+    expect(editing()).toMatchObject({ start: 7, end: 11, direction: 'backward', top: 92 });
+    expect(reading().y).toBe(360);
+    expect(frame.pending()).toBe(0);
+    const before = sessionStorage.getItem(NAVIGATION_CONTEXT_KEY);
+    frame.flush();
+    expect(sessionStorage.getItem(NAVIGATION_CONTEXT_KEY)).toBe(before);
+  });
+
+  it('flushes the old route before traversal and never runs its queued capture on the new route', async () => {
+    const frame = frames(); render(<EditorHarness />);
+    const editor = screen.getByRole('textbox') as HTMLTextAreaElement;
+    editor.focus(); editor.setSelectionRange(21, 29); y = 510;
+    fireEvent.input(editor); fireEvent.scroll(editor);
+    traversal('#/second');
+    expect(reading().y).toBe(510);
+    expect(editing()).toMatchObject({ start: 21, end: 29 });
+    frame.flush();
+    expect(reading().y).toBe(510);
+    traversal('#/first');
+    await act(async () => await Promise.resolve());
+    expect(y).toBe(510);
+    const restored = screen.getByRole('textbox') as HTMLTextAreaElement;
+    expect([restored.selectionStart, restored.selectionEnd]).toEqual([21, 29]);
+  });
+
+  it('keeps the latest selection in memory when a queued storage write fails', async () => {
+    const frame = frames(); render(<EditorHarness />);
+    const editor = screen.getByRole('textbox') as HTMLTextAreaElement;
+    const writes = vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => { throw new DOMException('full', 'QuotaExceededError'); });
+    editor.focus(); editor.setSelectionRange(16, 33, 'backward'); editor.scrollTop = 170; y = 620;
+    fireEvent.input(editor); frame.flush();
+    traversal('#/second'); traversal('#/first');
+    await act(async () => await Promise.resolve());
+    const restored = screen.getByRole('textbox') as HTMLTextAreaElement;
+    expect([restored.selectionStart, restored.selectionEnd, restored.selectionDirection, restored.scrollTop]).toEqual([16, 33, 'backward', 170]);
+    expect(restored).toHaveValue('한글 원문\n'.repeat(100));
+    expect(y).toBe(620);
+    expect(writes.mock.calls.every(call => [NAVIGATION_CONTEXT_KEY, EDITING_CONTEXT_KEY].includes(call[0]))).toBe(true);
+  });
+});
+
 
 it('a new personal tab resumes the last input route, while its own route and explicit links win', () => {
   const prefix = 'study-space:personal:70000000-0000-4000-8000-000000000009';

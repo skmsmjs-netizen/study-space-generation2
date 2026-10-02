@@ -1,0 +1,709 @@
+{
+  "schemaVersion": 2,
+  "version": "2.1.0",
+  "date": "2026-10-02",
+  "status": "adopted-design-baseline; implementation and deployment tracked per consumer",
+  "scope": "All current and future ManSeekSong OS UX/UI/design: observatory interior, growing pixel sky through a window, paper work surfaces, stable spatial places and clear functional language. Preserve user overrides and data meaning.",
+  "format": "Project JSON; no DTCG conformance claim",
+  "sources": {
+    "functionalColors": "docs/color-system.json",
+    "sharedTokens": "src/ui/tokens.css",
+    "scenePalette": "docs/observatory-palette.json",
+    "sceneRenderer": "src/ui/pixel-worlds.tsx",
+    "requirements": "docs/observatory-design-standard.md",
+    "spatialRouteMap": "work/observatory-spatial-20261002/route-map.json",
+    "presenceResearch": "docs/observatory-presence-details-20261002.md",
+    "paperReference": "work/observatory-spatial-20261002/paper-reference.jpg",
+    "roomRenderer": "src/ui/observatory-room.tsx",
+    "deskRenderer": "src/ui/observatory-desk.tsx",
+    "selfCompanionReference": "work/observatory-baseline-20261002/self-companion-reference.jpg"
+  },
+  "workSurfaceColors": {
+    "light": {
+      "canvas": "#F1ECE1",
+      "surface": "#FFFAF0",
+      "subtle": "#EEE3C9",
+      "text": "#302D32",
+      "muted": "#625B56",
+      "borderDecorative": "#B8AC91",
+      "borderInteractive": "#827564",
+      "focus": "#2B6E9F",
+      "selected": "#EEE3C9",
+      "selectedText": "#302D32",
+      "primary": "#1E1B4B",
+      "primaryHover": "#312E81",
+      "primaryPressed": "#110F29",
+      "onPrimary": "#FFFFFF"
+    },
+    "dark": {
+      "canvas": "#110F29",
+      "surface": "#242239",
+      "subtle": "#302D48",
+      "text": "#F5EDDD",
+      "muted": "#BCB8C5",
+      "borderDecorative": "#696278",
+      "borderInteractive": "#A79FBB",
+      "focus": "#80AEF9",
+      "selected": "#302D48",
+      "selectedText": "#F5EDDD",
+      "primary": "#E7CE84",
+      "primaryHover": "#FEE5D2",
+      "primaryPressed": "#FCB67F",
+      "onPrimary": "#110F29"
+    }
+  },
+  "sceneColors": {
+    "mode": "reference current scenePalette, not a copied/frozen palette",
+    "extendedAccents": {
+      "atmosphereBlue": "#2B6E9F",
+      "warmWindow": "#E7CE84",
+      "nebulaViolet": "#A995D6"
+    },
+    "extendedAccentUse": "Decorative sky/window roles only; functional text/actions use materials. Preserve existing chart/exam/status role mappings.",
+    "roleReferences": {
+      "deepSky": {
+        "paletteName": "night-950"
+      },
+      "navySky": {
+        "paletteName": "night-800"
+      },
+      "coldBlueAtmosphere": {
+        "paletteName": "night-450"
+      },
+      "blueStarlight": {
+        "paletteName": "cool-500"
+      },
+      "orangeBurst": {
+        "paletteName": "warm-500"
+      },
+      "warmStarlight": {
+        "paletteName": "warm-250"
+      },
+      "whiteCore": {
+        "paletteName": "star-050"
+      },
+      "violetNebula": {
+        "paletteName": "cool-400"
+      },
+      "softViolet": {
+        "baselinePath": "/sceneColors/extendedAccents/nebulaViolet"
+      },
+      "lampLight": {
+        "baselinePath": "/sceneColors/extendedAccents/warmWindow"
+      }
+    }
+  },
+  "sharedTokenReferences": {
+    "bodySize": "--type-body-size",
+    "bodyLine": "--type-body-line",
+    "captionSize": "--type-caption-size",
+    "labelSize": "--type-label-size",
+    "displaySize": "--type-display-size",
+    "displayCompact": "--type-display-compact-size",
+    "titleSize": "--type-title-size",
+    "headingSize": "--type-heading-size",
+    "space1": "--space-1",
+    "space2": "--space-2",
+    "space3": "--space-3",
+    "space4": "--space-4",
+    "space5": "--space-5",
+    "space6": "--space-6",
+    "space7": "--space-7",
+    "space8": "--space-8",
+    "spaceGroup": "--space-group",
+    "controlHeight": "--control-height",
+    "iconTarget": "--icon-target",
+    "iconSize": "--icon-size",
+    "inputFont": "--input-font-size",
+    "borderWidth": "--border-width",
+    "focusWidth": "--focus-width",
+    "focusOffset": "--focus-offset",
+    "readingWidth": "--layout-reading",
+    "dialogWidth": "--layout-dialog",
+    "feedbackDuration": "--motion-feedback",
+    "transitionDuration": "--motion-transition",
+    "easing": "--motion-ease"
+  },
+  "pixelTreatment": {
+    "edgeStepPx": 2,
+    "decorativeCornerRadiusPx": 0,
+    "workSurfaceBorderPx": 1,
+    "newPixelIconArtboardPx": 20,
+    "preferredSpriteScale": "integer; preserve native aspect ratio; responsive fallback must remain legible",
+    "pixelatedRendering": "pixel artwork only",
+    "bodyFont": "existing interface/reading/mono settings",
+    "sceneTiming": "current renderer owns scene timing, sampling and evolution; do not impose common UI duration or a fixed stage/frame count",
+    "scope": "Common controls, tabs, panels, dialogs, icons and scene props; not limited to isolated decoration",
+    "componentRadiusPx": {
+      "button": 0,
+      "input": 0,
+      "tab": 0,
+      "panel": 0,
+      "dialog": 2,
+      "toast": 0
+    },
+    "floatingShadow": {
+      "offsetXPx": 2,
+      "offsetYPx": 4,
+      "blurPx": 0,
+      "spreadPx": 0,
+      "lightColor": "#302D3233",
+      "darkColor": "#00000066"
+    },
+    "normalSurfaceShadow": "none",
+    "pressedTranslationYPx": 1,
+    "cornerTreatment": "2px stepped outlines for reusable pixel frames; do not clip focus ring or hit target",
+    "existingRadiusPolicy": "Current 4/6/8/12px radii are runtime inventory, not a permanent visual constraint. Adopt the new role-specific values through shared components."
+  },
+  "componentStates": {
+    "default": "Containing material surface + text; use interactive border when the boundary is necessary.",
+    "hover": "Containing material subtle; primaryHover for a filled primary action.",
+    "pressed": "Containing material selected with visible indicator; primaryPressed for filled primary action; 1px down.",
+    "focus": "Containing material focus ring with surface-colored gap; distinct from selected.",
+    "disabled": "No action; native/aria disabled plus factual label. Use readable material muted text without global opacity; do not make helper explanations unreadable.",
+    "busy": "in-flight request only; prevent duplicate activation of same command; preserve draft",
+    "invalid": "existing danger role + field-associated explanation; preserve entered text",
+    "readOnly": "Readable/selectable text in the material; labelled when needed; no misleading disabled appearance."
+  },
+  "uxDefaults": {
+    "theme": "Preserve saved theme/font and existing OS-following mode. Interior + paper is the observatory composition default, not authority to overwrite a selected light/dark/high-contrast setting. In user-selected dark reading, retain paper layout and use the selected readable dark surface.",
+    "sound": "off unless user explicitly enabled",
+    "ambientMotion": "keep existing user choice; respect reduced motion and pause; never auto-resume after explicit pause",
+    "workSurfaceLoopMotion": false,
+    "automaticCameraMotionWhileEditing": false,
+    "forceAvatarNavigation": false,
+    "selection": "one current selection per relevant control; persist within existing owner and scope",
+    "primaryAction": "one visually dominant action per task region; not one button limit for the whole app",
+    "input": "reuse known context; date/details/free prose remain optional where currently optional",
+    "save": "local acknowledgement labels device save; server acknowledgement labels server save; pending/conflict/error distinct",
+    "failure": "keep original draft and user input; offer retry and real recovery; no success effect before acknowledgement",
+    "return": "restore supported draft, target, filter, scroll/camera and manual layout through current persistence owners",
+    "recalculation": "data/scope/viewport change updates derived visuals; never overwrites manual Canvas coordinates or cursor/selection",
+    "empty": "show usable basic room and direct next action; no failure/locked status inferred from absence",
+    "growth": "use existing search/filter/detail and graph auto-layout policy; no arbitrary universal item limit",
+    "chart": "existing registry and user-selected chart; labels/units/evidence survive theme changes",
+    "meaning": "attempt is not mastery; decorative stars are not actual concepts unless ID links are implemented",
+    "workSurface": "Opaque paper by default under the window; saved reading/theme overrides remain higher priority."
+  },
+  "accessibilityTargets": {
+    "normalTextContrast": 4.5,
+    "largeTextContrast": 3,
+    "essentialNonTextContrast": 3,
+    "colorOnlyMeaning": false,
+    "reducedUiMotionMs": 0,
+    "source": "WCAG 2.2 relevant criteria; not a full conformance claim",
+    "scope": "Flat opaque sRGB pairs are necessary color checks only; whole-app WCAG conformance, composited scene contrast and actual assistive-technology behavior require their own evidence."
+  },
+  "changePolicy": {
+    "owner": "docs/observatory-design-standard.md explains roles; this JSON owns numeric defaults and baseline rules. Existing color/token pipeline owns generated production values; reconcile the targeted consumer explicitly.",
+    "userOverrides": "preserve; baseline applies only when no applicable user override",
+    "sceneExpansion": "current observatory source remains authoritative; update role mappings with new effects; no frozen stage/color count",
+    "exception": "record role, reason, scope, alternative and verification; no per-screen arbitrary constants",
+    "completion": "Design v2 adoption, consumer migration, rendered/device verification, deployment and long-term user effect are independent states.",
+    "existingVisualCriteria": "Revise old neutral-color dominance, rounded shapes, blur shadows and illustration hierarchy when they conflict with this identity. Preserve meaning, accessibility and user overrides; old appearance has no veto.",
+    "technologyAdaptation": {
+      "status": "Current shared defaults, adjustable with technology implementation and actual use; not permanent limits on technical expression.",
+      "scope": [
+        "color",
+        "dimensions",
+        "spacing",
+        "pixel treatment",
+        "materials and lighting",
+        "shadows",
+        "motion timing",
+        "transitions",
+        "layout and interaction presentation"
+      ],
+      "decision": "Advanced rendering, lighting, animation and interaction may justify revising the current design values. Do not constrain new technology to old numbers solely because they were previously adopted. Current values themselves are reviewable: awkward typography, excess navigation height, weak contrast or uncomfortable operation can justify changes even without introducing a new technology.",
+      "maintenance": "Within the authorized task, update the owning baseline/token/component and actual consumer together; record the reason, affected scope and relevant rendered/use verification. Do not introduce a new approval gate for every numerical adjustment.",
+      "preserve": "Observatory identity and symbolic self-companion viewpoint; complete original widget with external frame; readability and operability; learning/data meaning and user settings. Technical evolution does not imply permission to crop the widget, change ownership or overwrite records.",
+      "evidence": "Select existing appropriate methods/tools first. Judge changes by the intended experience and relevant accessibility, responsiveness and runtime behavior; a more advanced implementation alone is not proof of improvement.",
+      "adoptedOn": "2026-10-02"
+    }
+  },
+  "sourceOwnership": {
+    "canonicalDesign": {
+      "version": "2.0.0",
+      "colors": "/materials",
+      "spatialRules": "/spatialWorkspace",
+      "dimensions": "/metrics",
+      "pixelRules": "/pixelTreatment",
+      "motion": "/motion",
+      "copy": "/language",
+      "enginePresentation": "/enginePresentation",
+      "ruleDocument": "docs/observatory-design-standard.md"
+    },
+    "runtimeCompatibility": {
+      "mathWorkspace": {
+        "adoptedValueVersion": "1.1.0",
+        "preservedPaths": [
+          "/workSurfaceColors",
+          "/pixelTreatment"
+        ],
+        "consumedPaths": [
+          "/workSurfaceColors/light",
+          "/workSurfaceColors/dark",
+          "/pixelTreatment/componentRadiusPx"
+        ],
+        "consumer": "scripts/sync-math-observatory.mjs",
+        "generatedOutput": "src/ui/math-observatory-tokens.css",
+        "scope": ".math-explorer and its fullscreen portal",
+        "migration": "Current workSurfaceColors are compatibility values, not v2 default colors. Update the consumer deliberately and verify its material/theme mapping. A root version log is not proof of v2 color adoption."
+      }
+    },
+    "pixelCompatibility": "Pixel dimensions remain adopted v2 defaults as well as preserved v1.1 consumer inputs. There is one shared pixelTreatment object, not a competing copy.",
+    "sharedMetrics": "metrics entries with token references express adopted values at 16px root; source and consumer tokens must change together in a scoped implementation. Preserve rem scaling and user type settings.",
+    "sceneOwnership": "Current scene palette/renderers/engine own sky colors, conditions, timing and expansion. No scene count or engine range is fixed by this baseline."
+  },
+  "materials": {
+    "interior": {
+      "canvas": "#1F1E1B",
+      "surface": "#282722",
+      "subtle": "#33312D",
+      "text": "#E8E3D7",
+      "muted": "#B7B0A2",
+      "borderDecorative": "#514A42",
+      "borderInteractive": "#8B8071",
+      "focus": "#D7B477",
+      "selected": "#33312D",
+      "selectedText": "#E8E3D7",
+      "primary": "#D7B477",
+      "primaryHover": "#E5C890",
+      "primaryPressed": "#C2A062",
+      "onPrimary": "#1F1E1B"
+    },
+    "paper": {
+      "canvas": "#E4DCCD",
+      "surface": "#E4DCCD",
+      "subtle": "#D7CBB4",
+      "text": "#34312B",
+      "muted": "#5B5448",
+      "borderDecorative": "#B4A891",
+      "borderInteractive": "#796D5D",
+      "focus": "#725425",
+      "selected": "#D7CBB4",
+      "selectedText": "#34312B",
+      "primary": "#554530",
+      "primaryHover": "#473924",
+      "primaryPressed": "#3B3022",
+      "onPrimary": "#E4DCCD"
+    }
+  },
+  "materialPolicy": {
+    "composition": "Dark room/desk; framed pixel sky; opaque warm paper for the current reading/writing/calculation task. Material belongs to a region, not to the feature name.",
+    "theme": "Preserve saved theme/font and existing OS-following mode. Interior + paper is the observatory composition default, not authority to overwrite a selected light/dark/high-contrast setting. In user-selected dark reading, retain paper layout and use the selected readable dark surface.",
+    "clock": "Time changes scene lighting only; it does not automatically recolor text/paper or switch the selected UI theme.",
+    "inheritance": "Resolve control text, border, selected and focus from the containing material. Do not use dark-room gold as paper text or paper focus as a dark-room ring.",
+    "selection": "A selected fill alone is insufficient; add a check, current label or visible edge using the material interactive border/text.",
+    "focus": "Use 2px ring and 3px gap. The gap uses the containing material surface so a gold action in the interior remains separate from its gold focus ring. Do not clip the ring.",
+    "decorativeBorder": "Decorative borders/rules are not sufficient as the only boundary of a control or as a state indicator.",
+    "semanticColors": "Keep current exam-possible orange, exam-confirmed red, chart/math/status and user colors in their existing owners. Confirm contrast on the new material; if needed use a readable existing status surface plus text/icon rather than silently recolor meaning.",
+    "claims": "Own project palette: no claim of exact Claude color sampling, exact photo extraction, physically measured cosmic color, or optimality proved by research."
+  },
+  "metrics": {
+    "units": "CSS px or rem as named; rem values scale with the user root font. Pixel-art grid does not quantize text or hit targets.",
+    "type": {
+      "body": {
+        "token": "--type-body-size",
+        "rem": 1,
+        "pxAt16": 16,
+        "lineToken": "--type-body-line",
+        "line": 1.65,
+        "weight": 400
+      },
+      "label": {
+        "token": "--type-label-size",
+        "rem": 0.9375,
+        "pxAt16": 15,
+        "lineToken": "--type-label-line",
+        "line": 1.5,
+        "weight": 600
+      },
+      "caption": {
+        "token": "--type-caption-size",
+        "rem": 0.875,
+        "pxAt16": 14,
+        "lineToken": "--type-caption-line",
+        "line": 1.6,
+        "weight": 400
+      },
+      "heading": {
+        "token": "--type-heading-size",
+        "rem": 1.25,
+        "pxAt16": 20,
+        "lineToken": "--type-heading-line",
+        "line": 1.4,
+        "weight": 600
+      },
+      "title": {
+        "token": "--type-title-size",
+        "rem": 1.75,
+        "compactToken": "--type-title-compact-size",
+        "compactRem": 1.5,
+        "lineToken": "--type-title-line",
+        "line": 1.35,
+        "weight": 600
+      },
+      "input": {
+        "token": "--input-font-size",
+        "minPx": 16
+      },
+      "font": "Existing --font-interface/--font-reading/--font-mono; preserve Korean readability and personal font choices. Pixel fonts are optional short decorative labels only."
+    },
+    "space": {
+      "pxAt16": [
+        0,
+        4,
+        8,
+        12,
+        16,
+        24,
+        32,
+        48,
+        64
+      ],
+      "tokens": [
+        "--space-0",
+        "--space-1",
+        "--space-2",
+        "--space-3",
+        "--space-4",
+        "--space-5",
+        "--space-6",
+        "--space-7",
+        "--space-8"
+      ],
+      "groupPxAt16": 18,
+      "groupToken": "--space-group"
+    },
+    "control": {
+      "heightPx": 48,
+      "heightToken": "--control-height",
+      "iconTargetMinPx": 44,
+      "iconTargetToken": "--icon-target",
+      "iconArtboardPx": 20,
+      "iconToken": "--icon-size",
+      "borderPx": 1,
+      "borderToken": "--border-width",
+      "focusPx": 2,
+      "focusToken": "--focus-width",
+      "focusOffsetPx": 3,
+      "focusOffsetToken": "--focus-offset",
+      "heightPolicy": "Minimum target/height; allow growth for wrapped Korean labels. Do not shrink targets to pixel art."
+    },
+    "layout": {
+      "readingMaxRem": 48,
+      "readingToken": "--layout-reading",
+      "dialogMaxRem": 36,
+      "dialogToken": "--layout-dialog",
+      "compactContainerRem": 40,
+      "wideContainerRem": 64,
+      "pagePaddingRem": 1.5,
+      "compactPaddingRem": 1,
+      "sectionGapRem": 1.5,
+      "relatedGapRem": 0.5,
+      "formFieldGapRem": 1,
+      "responsivePolicy": "Use available container width, not device names. Collapse into one reading column below 40rem; retain independent functional controls and direct navigation. Intrinsically 2D plots/canvas keep pan/zoom and accessible values."
+    },
+    "window": {
+      "framePx": 8,
+      "compactFramePx": 4,
+      "edgeStepPx": 2,
+      "sillDepthPx": 8,
+      "compactSillDepthPx": 4,
+      "deskGapRem": 1.5,
+      "compactDeskGapRem": 1,
+      "artSizing": "Preserve the entire original widget, native aspect ratio, viewBox, scene extent and existing controls. Resize the whole widget proportionally when necessary; no cover crop, clipped edge, scene zoom/recomposition or reduced aperture to make room for the frame. Current detailed artwork remains renderer-owned. Existing user-controlled pan/zoom is preserved.",
+      "pointerPolicy": "Outside frame/sill decoration never intercepts the original widget controls, focus, pointer or touch scroll. Preserve the original interactive bounds; do not shrink them to an inset window aperture. Allow menus/focus to remain visible outside bounds through their existing overlay behavior.",
+      "placement": "Outside the complete widget content bounds. Reserve additional layout space for frame/sill; never overlay them onto the widget image or controls.",
+      "cropAllowed": false,
+      "decorativeOcclusionPx": 0
+    },
+    "paper": {
+      "bodyAlignment": {
+        "textAlign": "justify",
+        "lastLine": "start",
+        "scope": "Prose paragraphs and authored knowledge/module explanations; preserve explicit line breaks, source text and notation. Headings, controls, tables, mathematical/code alignment and spatial labels keep their semantic alignment.",
+        "justification": "inter-word",
+        "wordBreak": "normal",
+        "lineBreak": "normal",
+        "overflowWrap": "break-word",
+        "hyphens": "manual"
+      },
+      "paddingRem": 1.5,
+      "compactPaddingRem": 1,
+      "borderPx": 1,
+      "opacity": 1,
+      "rotationDeg": 0,
+      "textureOpacityUnderText": 0,
+      "textGlowPx": 0,
+      "textBlurPx": 0,
+      "shadow": {
+        "xPx": 2,
+        "yPx": 2,
+        "blurPx": 0,
+        "spreadPx": 0,
+        "color": "#00000033"
+      },
+      "defaultVisibleStackOffsetSheets": 0,
+      "rulePolicy": "Thin decorative rules only where they communicate grouping; no forced ruled lines behind formulas/graphs. Default one continuous document, not nested cards for every item.",
+      "scrollPolicy": "Long content grows/scrolls in the actual reading area. Never clip notes or lock paragraph heights to a decorative sheet.",
+      "bodyTypography": {
+        "fontRole": "--font-reading",
+        "weight": 700,
+        "previousWeight": 500,
+        "lineHeight": 2,
+        "letterSpacingEm": -0.05,
+        "compact": {
+          "maxContentWidthRem": 40,
+          "lineHeight": 1.85,
+          "letterSpacingEm": -0.025,
+          "sizeRem": 1
+        },
+        "glyphScaleX": 0.95,
+        "identity": "Approved Nanum Myeongjo Bold 700/95% in Korean and English prose. Project aesthetic choice; no learning effect claim.",
+        "source": {
+          "typography": "/Users/manseeksong/obsidianvault/송민석/.obsidian/snippets/자간 및 장평 조정.css",
+          "alignment": "/Users/manseeksong/Documents/ChatGPT/학술 지식 보관소/snippets/한글 문단 양쪽 맞춤.css",
+          "originalDesktopScaleX": 0.95
+        },
+        "adaptation": "Use native font metrics, not CSS scaleX on inputs. Paper body18/compact16/preview14/memo16px at root16; actual content width determines compact role. Keep personal font/size/width overrides.",
+        "preservation": "Defaults only; keep existing reading font, font size, explicit source line breaks, emphasis, user CSS overrides and saved width. Headings, captions, controls, quotes, lists, tables, code and math retain their role styles.",
+        "sizeRem": 1.125,
+        "previewSizeRem": 0.875,
+        "memoSizeRem": 1,
+        "fontFamily": "ManSeekSong Paper",
+        "implementation": "Locally hosted OFL derivative of Nanum Myeongjo Bold: glyph outlines and horizontal advances both scaled to 95%; native input coordinates; user font/width overrides retained."
+      }
+    }
+  },
+  "spatialWorkspace": {
+    "routeMap": "work/observatory-spatial-20261002/route-map.json",
+    "places": [
+      {
+        "id": "front",
+        "label": "공부 책상",
+        "facingDeg": 0,
+        "task": "오늘의 공부·기록·메모·인출"
+      },
+      {
+        "id": "left",
+        "label": "자료 책장",
+        "facingDeg": 270,
+        "task": "과목·강의 자료·자료 카드·개념 전집"
+      },
+      {
+        "id": "right",
+        "label": "탐구 작업대",
+        "facingDeg": 90,
+        "task": "수식 탐색·코딩 연습"
+      },
+      {
+        "id": "back",
+        "label": "기록·계획 벽",
+        "facingDeg": 180,
+        "task": "통계·일정과 과제·Canvas·그래프뷰·칸반"
+      }
+    ],
+    "homeAndUse": "Each function has a stable home place. A chosen source, small tool or note can stay beside the current task; do not turn for every supporting action.",
+    "global": "Common tools belong to the upward-facing ceiling light. Find, account/settings, help, storage/recovery and authorized AI settings remain directly reachable from every horizontal place and existing shortcuts. Close/cancel returns to the prior task and orientation; explicitly chosen results navigate normally. Keep urgent state/recovery visible in the current task. AI remains owner-only; this criterion does not claim a global AI entry is implemented.",
+    "navigation": "Keep existing functional menu labels and direct destination controls. Places supplement names. Browser Back means prior history, not the back wall. No forced avatar walking, scroll/edge-hover turn or detour through the front.",
+    "directEntry": "Valid deep link/search result opens its real target in the relevant place. Restore saved supported task state; never invent a prior caller. Missing/deleted target falls back to its usable list with a factual message.",
+    "return": "Borrowed panel closes to its caller/trigger; explicit full-list command goes to its home place. Restore supported route, target, filter, scroll/camera, focus and draft through existing persistence owners.",
+    "continuity": "No orientation animation while typing, Korean IME composition, or blocking an urgent action. Commit current draft via existing contract before unmount; a failed save preserves the original draft and recovery path. Room turn creates no study event.",
+    "viewContinuity": "Same room/window/light across places; left view keeps the front window at the right edge, right view at the left edge, back view does not duplicate it. The observatory outside the window is also the user, viewed with the gentle distance of a companion: the studying self inside and the self represented by the observatory outside. This symbolic dual viewpoint is intentional; do not remove or redesign the original observatory to enforce literal building geometry. It does not imply another account, an AI companion or measured achievement.",
+    "repeatUse": "Place meanings stay stable as data grows. Search/filter/detail handle accumulation; preserve manual Canvas positions. Distinguish persistent user choice from temporary camera or caller state, and document new persistence owners before implementation.",
+    "commonPlace": {
+      "id": "ceiling",
+      "label": "천장 조명",
+      "direction": "up",
+      "functionalLabel": "공통 도구",
+      "accessibleEntryLabel": "천장 조명 · 공통 도구",
+      "compatibleHomePlaceKey": "global",
+      "identity": "공부 공간 전체를 비추고 조율하는 자리",
+      "members": [
+        "찾기",
+        "화면·개인 설정",
+        "계정",
+        "도움말",
+        "저장 상태·백업·복구",
+        "기존 권한 안의 AI 설정"
+      ],
+      "orientation": "Upward view above the current horizontal orientation; retain that orientation for return, with no new horizontal facing degree.",
+      "entry": "Reachable from all four horizontal places by labelled control and existing shortcuts. No physical gaze/head/device-tilt requirement; do not make a small illustration the only target.",
+      "return": "Close/cancel restores the actual originating task, direction, target, draft, scroll/camera and focus via existing owners. Do not reset to front. Explicit result selection navigates to its real target. Direct entry without a caller uses existing safe fallback.",
+      "contextualAccess": "Save/error/pending/retry and contextual supporting actions remain accessible in the active task; ceiling placement never hides urgent state or forces repeated viewpoint detours.",
+      "activation": "Opening common tools does not toggle the actual lamp, theme or brightness and does not run AI. Each setting/action requires its own actual command and existing authorization.",
+      "visuals": "Reuse interior materials and existing transition/reduced-motion defaults. Ceiling light and upward presentation may evolve with advanced implementation; preserve the complete original widget and external frame.",
+      "adoption": "Design criterion adopted 2026-10-02; production and Figma connection/verification tracked separately."
+    },
+    "cover": {
+      "placement": "First full-width child of app-shell, spanning sidebar and workspace. Place navigation and study tools follow below.",
+      "places": [
+        "front",
+        "left",
+        "right",
+        "back",
+        "ceiling"
+      ],
+      "framing": "Keep the complete original window viewBox, outside frame and sill. Rooms preserve 960x260 meet; height follows original aspect ratio. Camera exploration may zoom inside its own viewport.",
+      "consumers": [
+        "src/ui/observatory-cover.tsx",
+        "src/ui/observatory-cover.css",
+        "src/ui/observatory-place-scene.tsx",
+        "src/App.tsx"
+      ],
+      "persistence": "Keep existing user-space room visibility key; pause in its :paused companion key. Camera is transient. No study data writes.",
+      "motion": "Existing pointer damping/latched inspection/LOD; local room light, bounded GPU particles and three depth layers. Pause offscreen, in hidden tabs, when collapsed, by user choice or reduced motion.",
+      "adopted": "2026-10-02 user requested a Notion-like full-width top cover; local implementation evidence in docs/observatory-cover-20261002.md."
+    },
+    "navigationPresentation": {
+      "adoptedOn": "2026-10-02",
+      "wide": "Group all 18 existing navigation links by the four fixed places and common tools; keep names and direct destinations.",
+      "narrow": "At the existing 40rem breakpoint, show the five places in one horizontally scrollable row with full labels and unchanged minimum targets. Reveal the active place on a place or actual strip-width change, and reveal a keyboard-focused place only inside that row; do not move the page or reset manual strip scrolling on unrelated renders.",
+      "hierarchy": "Show the current place once, the task title on its paper, and breadcrumbs only when there is an actual subject/node hierarchy. Put optional work commands beside the title; diagnostics and semester creation stay in space settings.",
+      "focusInset": "Use focus width plus focus offset rather than the smaller spacing token around clipped scrolling controls.",
+      "sourceFiles": [
+        "src/App.tsx",
+        "src/app.css",
+        "src/ui/navigation-bar.tsx",
+        "src/ui/navigation-bar.css",
+        "src/ui/observatory-navigation.tsx",
+        "src/ui/observatory-navigation.css",
+        "src/ui/observatory-workspace.css"
+      ],
+      "evidence": "work/os-ui-review-20261002; 402px native view observed excess chrome, narrow row/header grouping adjusted without reducing reading type, targets or original cover."
+    }
+  },
+  "motion": {
+    "feedbackMs": 120,
+    "feedbackToken": "--motion-feedback",
+    "transitionMs": 180,
+    "transitionToken": "--motion-transition",
+    "easing": "ease-out",
+    "easingToken": "--motion-ease",
+    "reducedMs": 0,
+    "pressedTranslationYPx": 1,
+    "orientation": "Short directional transition for an explicit place change; angle describes location, not a required 3D camera spin. Current place remains labelled; input is not delayed until animation ends.",
+    "workSurfaceLoopCount": 0,
+    "keystrokeEffectCount": 0,
+    "autosaveCelebrationCount": 0,
+    "forcedEntranceCount": 0,
+    "ambient": "Use current renderer timing, pause, offscreen/tab visibility and reduced-motion behavior; do not restart explicitly paused motion. Do not set universal scene FPS/duration or freeze expansion.",
+    "soundEnabledByDefault": false,
+    "sound": "Only after explicit enablement; independent mute and preserved preference. No sound is required to understand a result.",
+    "feedback": "Actual trigger -> existing rule -> factual feedback -> repeated-use policy. Feedback coalesces repeated status changes; never queue decorative celebrations while away."
+  },
+  "language": {
+    "voice": "Calm, practical, polite Korean; state the real action/object first. Observatory presence belongs in place labels, short secondary copy and material/action continuity.",
+    "featureNames": "Preserve functional names such as 기록/통계/수식 탐색. Do not replace save, delete, retry, exam, sync or error with ambiguous space metaphors.",
+    "frequency": "At most one short atmospheric helper line in the active task header or empty state; no repeated slogan in every row/toast. Omit if it delays the next action.",
+    "examples": [
+      {
+        "context": "resume",
+        "primary": "이어서 공부하기",
+        "secondary": "펼쳐 둔 자리에서 이어가세요.",
+        "condition": "Only when a restorable task exists."
+      },
+      {
+        "context": "materials",
+        "primary": "자료 찾기",
+        "secondary": "책상에 펼칠 자료를 골라 주세요.",
+        "condition": "Do not claim desk opening until that flow exists."
+      },
+      {
+        "context": "math",
+        "primary": "수식 탐색",
+        "secondary": "조건을 하나씩 바꾸며 살펴보세요.",
+        "condition": "Use actual manipulable conditions."
+      },
+      {
+        "context": "memo",
+        "primary": "메모 남기기",
+        "secondary": "지금 떠오른 생각을 적어 두세요.",
+        "condition": "Free text remains optional."
+      },
+      {
+        "context": "return",
+        "primary": "하던 공부로 돌아가기",
+        "secondary": "",
+        "condition": "Only with a valid caller; otherwise actual list name."
+      },
+      {
+        "context": "localSave",
+        "primary": "이 기기에 저장했어요.",
+        "secondary": "",
+        "condition": "Local acknowledgement received."
+      },
+      {
+        "context": "serverSave",
+        "primary": "서버에 저장했어요.",
+        "secondary": "",
+        "condition": "Server acknowledgement received."
+      },
+      {
+        "context": "saveError",
+        "primary": "저장하지 못했어요.",
+        "secondary": "다시 시도",
+        "condition": "State actual failure and retained draft only if verified; never show a success effect."
+      },
+      {
+        "context": "emptyStudy",
+        "primary": "공부할 주제를 골라 주세요.",
+        "secondary": "",
+        "condition": "No failure, locked room or low ability inferred from empty data."
+      }
+    ]
+  },
+  "enginePresentation": {
+    "owners": [
+      "src/domain/daily-study-dynamics.ts",
+      "src/domain/study-landscape.ts",
+      "src/domain/observatory-response.ts",
+      "src/domain/observatory-evolution.ts",
+      "src/ui/pixel-worlds.tsx"
+    ],
+    "rule": "Reuse actual observation/derived state and its existing renderer normalization. This design baseline changes presentation, not scores, thresholds, study meaning or engine formulas.",
+    "mappings": [
+      {
+        "input": "current renderer scene/time state",
+        "display": "sky, cloud, cold/warm light and scene props",
+        "constraint": "Use current palette and scene source; keep functional paper/text stable."
+      },
+      {
+        "input": "recorded study activity and existing response output",
+        "display": "existing subtle light/prop response",
+        "constraint": "An attempt is not mastery; no fabricated XP, completion or independent success."
+      },
+      {
+        "input": "local or server acknowledgement",
+        "display": "corresponding concise saved status",
+        "constraint": "No acknowledgement inferred from click, animation completion or a flush return alone."
+      },
+      {
+        "input": "actual stable-ID concept and relationship data",
+        "display": "linked graph/constellation when that integration exists",
+        "constraint": "Decorative stars are not real concepts or verified knowledge growth."
+      },
+      {
+        "input": "math/statistics calculation",
+        "display": "precise plot, formula, units, selected values and accessible data on the work surface",
+        "constraint": "Atmospheric decoration never changes axes, labels, relationship direction, semantic colors or uncertainty."
+      }
+    ],
+    "widgets": "Each widget finishes one small task; default/empty/loading/error/selection/read-only and return states inherit shared rules. Use existing engines and owners rather than duplicate a simulation."
+  },
+  "clarifications": [
+    {
+      "date": "2026-10-02",
+      "userStatements": [
+        "뭔가 동료 천문대를 보는느낌인거지..",
+        "근데 그 동료가 사실 나인 ···",
+        "단, 위젯을 자르면 안대. 위젯 바깥에 테두리를 넣는거지.."
+      ],
+      "decision": "Inside is the studying self; outside is the same self seen as a companion through the observatory. Keep the original complete widget and add the frame beyond its boundary.",
+      "reference": "work/observatory-baseline-20261002/self-companion-reference.jpg",
+      "scope": "Identity and framing criteria clarification; no production renderer change in this amendment."
+    }
+  ]
+}

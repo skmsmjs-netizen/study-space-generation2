@@ -4,57 +4,32 @@
     {
       "id": "trend",
       "label": "추세",
-      "kinds": [
-        "line",
-        "area",
-        "column",
-        "mixed",
-        "stacked-area"
-      ]
+      "kinds": ["line", "area", "column", "mixed", "stacked-area"]
     },
     {
       "id": "comparison",
       "label": "비교",
-      "kinds": [
-        "horizontal",
-        "paired",
-        "radar"
-      ]
+      "kinds": ["horizontal", "paired", "radar"]
     },
     {
       "id": "distribution",
       "label": "분포",
-      "kinds": [
-        "histogram",
-        "box"
-      ]
+      "kinds": ["histogram", "box"]
     },
     {
       "id": "relationship",
       "label": "관계",
-      "kinds": [
-        "scatter",
-        "bubble",
-        "heatmap"
-      ]
+      "kinds": ["scatter", "bubble", "heatmap"]
     },
     {
       "id": "composition",
       "label": "구성",
-      "kinds": [
-        "donut",
-        "pie",
-        "stacked-bar",
-        "treemap"
-      ]
+      "kinds": ["donut", "pie", "stacked-bar", "treemap"]
     },
     {
       "id": "flow",
       "label": "흐름·증감",
-      "kinds": [
-        "sankey",
-        "waterfall"
-      ]
+      "kinds": ["sankey", "waterfall"]
     }
   ]
 }

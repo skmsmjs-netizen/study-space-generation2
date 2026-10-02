@@ -95,7 +95,7 @@ export async function importMaterialFile(owner: Pick<AppState, 'userId' | 'names
     result.kind = 'pptx'; result.blocks = readPresentation(new Uint8Array(await file.arrayBuffer()));
     result.warnings = ['글자와 발표자 메모를 가져왔습니다. 도형·그림·수식·표 배치는 원본 슬라이드와 대조해 주세요.'];
   } else if (['png', 'jpg', 'jpeg', 'webp', 'bmp'].includes(extension ?? '')) {
-    result.kind = 'image'; result.blocks = [];
+    result.kind = 'image'; result.blocks = []; 
     result.warnings = ['원본 사진을 보관했습니다. 사진으로 목차·내용 가져오기에서 GPT에 직접 보내 분석할 수 있습니다.'];
   } else if (['srt', 'vtt'].includes(extension ?? '')) {
     result.kind = 'subtitle'; result.blocks = parseSubtitles(await file.text());

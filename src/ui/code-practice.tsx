@@ -1,5 +1,5 @@
 import { CodeTopicLinkEditor } from './learning-links';
-import { lazy, Suspense, useEffect, useRef, useState } from 'react';
+import { lazy, Suspense, useEffectEvent, useEffect, useRef, useState } from 'react';
 import { Button, EmptyState, ErrorState, Input, Select, Textarea } from './index';
 import type {
   AppState,
@@ -49,13 +49,21 @@ type Props = {
   onSaved: (data: AppState) => void;
   exampleId?: string;
   trash?: boolean;
+  onOpenExample?: (id: string | undefined) => void;
+  active?: boolean;
 };
 // Preserve the original terminal stream in storage, render escapes as plain text here.
 export const readableCodeOutput = (text: string) =>
   text
-    .replace(/\x1b\][^\x07]*(?:\x07|\x1b\\)/g, '')
-    .replace(/\x1b\[[0-?]*[ -/]*[@-~]/g, '')
-    .replace(/\x1b[=><@-_]/g, '');
+    .replace(
+      // biome-ignore lint/suspicious/noControlCharactersInRegex: ANSI protocol escape bytes are decoded only for display; stored terminal output is unchanged.
+      /\x1b\][^\x07]*(?:\x07|\x1b\\)/g, '')
+    .replace(
+      // biome-ignore lint/suspicious/noControlCharactersInRegex: ANSI protocol escape bytes are decoded only for display; stored terminal output is unchanged.
+      /\x1b\[[0-?]*[ -/]*[@-~]/g, '')
+    .replace(
+      // biome-ignore lint/suspicious/noControlCharactersInRegex: ANSI protocol escape bytes are decoded only for display; stored terminal output is unchanged.
+      /\x1b[=><@-_]/g, '');
 const context = (data: AppState) => ({
   opId: crypto.randomUUID(),
   at: new Date().toISOString(),
@@ -67,7 +75,8 @@ const errorMessage = (error: unknown) =>
 const canSave = (repo: StudyRepository, data: AppState) =>
   data.namespace === 'demo' || repo.getCapabilities?.().includes('saveCodeExample');
 
-export function CodePractice({ data, repository, onSaved, exampleId, trash = false }: Props) {
+export function CodePractice({ data, repository, onSaved, exampleId, trash = false, onOpenExample, active = true }: Props) {
+  const openExample = (id: string | undefined) => onOpenExample ? onOpenExample(id) : navigate(id ? `/code/${id}` : '/code');
   const [error, setError] = useState('');
   const [query, setQuery] = useViewContext(data, `code:${trash ? 'trash' : 'active'}:query`, '', isViewText);
   const [languageFilter, setLanguageFilter] = useViewContext(data, `code:${trash ? 'trash' : 'active'}:language`, 'all', (value): value is string => typeof value === 'string' && (value === 'all' || Object.hasOwn(CODE_LANGUAGES, value)));
@@ -114,10 +123,14 @@ export function CodePractice({ data, repository, onSaved, exampleId, trash = fal
         content: { title: '', language: 'c', code: '', stdin: '', notes: '' },
       })
     )
-      navigate(`/code/${id}`);
+      openExample(id);
   };
   return (
-    <section className="code-practice" aria-label={trash ? '휴지통의 코드 예제' : '코딩 연습'}>
+    <section className="code-practice" onClickCapture={event => {
+      if (!onOpenExample || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      const href = event.target instanceof Element ? event.target.closest('a')?.getAttribute('href') : null;
+      if (href === '#/code' || href?.startsWith('#/code/')) { event.preventDefault(); openExample(href === '#/code' ? undefined : decodeURIComponent(href.slice('#/code/'.length))); }
+    }} aria-label={trash ? '휴지통의 코드 예제' : '코딩 연습'}>
       <div className="section-heading">
         <div>
           <h2>{trash ? '코드 예제' : '코드를 쓰고, 결과를 확인해 보세요'}</h2>
@@ -148,7 +161,8 @@ export function CodePractice({ data, repository, onSaved, exampleId, trash = fal
             data={data}
             repository={repository}
             onSaved={onSaved}
-            onCopied={(id) => navigate(`/code/${id}`)}
+            active={active}
+            onCopied={openExample}
             onTrash={() => {
               const row = repository
                 .getSnapshot()
@@ -161,7 +175,7 @@ export function CodePractice({ data, repository, onSaved, exampleId, trash = fal
                   expectedVersion: row.version,
                 })
               )
-                navigate('/code');
+                openExample(undefined);
             }}
           />
         </>
@@ -250,6 +264,7 @@ export function CodeExampleEditor({
   onSaved,
   onCopied,
   onTrash,
+  active = true,
 }: {
   example: CodeExample;
   data: AppState;
@@ -257,6 +272,7 @@ export function CodeExampleEditor({
   onSaved: Props['onSaved'];
   onCopied: (id: string) => void;
   onTrash: () => void;
+  active?: boolean;
 }) {
   const key = codeDraftKey(data, example.id);
   const [initial] = useState(() => {
@@ -423,10 +439,12 @@ export function CodeExampleEditor({
       window.removeEventListener('beforeunload', unload);
     };
   }, []);
+  useEffect(() => { if (!active) run.current?.cancel(); }, [active]);
+  const saveRunningDraft = useEffectEvent(() => saveDraft());
   useEffect(() => {
     if (phase === 'idle' || !interactive) return;
     // Keep an exact intermediate draft for crashes; do not claim it completed.
-    const interval = setInterval(saveDraft, 1000);
+    const interval = setInterval(() => saveRunningDraft(), 1000);
     return () => clearInterval(interval);
   }, [phase, interactive]);
   useEffect(() => {
@@ -772,6 +790,7 @@ export function CodeExampleEditor({
         {lastRun?.mode === 'terminal' && lastRun.stdin && (
           <details open={lastRun.outcome !== 'success'}>
             <summary>보낸 입력</summary>
+            {/* biome-ignore lint/suspicious/noControlCharactersInRegex: Display Ctrl-C and Ctrl-D as named terminal events; retain the exact stdin in the saved run. */}
             <pre>{lastRun.stdin.replace(/\r\n?/g, '\n').replace(/\u0003/g, '〔중지〕').replace(/\u0004/g, '〔입력 끝〕')}</pre>
           </details>
         )}
@@ -802,6 +821,7 @@ export function CodeExampleEditor({
       </section>
       <Textarea
         label="내용·설명"
+        className="paper-memo"
         placeholder="어떤 코드인지, 왜 이렇게 동작하는지, 바꿔 본 값이나 남은 의문을 자유롭게 적어 보세요."
         rows={6}
         value={content.notes}

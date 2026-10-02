@@ -163,14 +163,15 @@
   --color-destructive-button-hover: var(--color-button-destructive-background-hover);
   --color-destructive-button-pressed: var(--color-button-destructive-background-pressed);
   --color-hierarchy-subject: #727773;
-  --color-hierarchy-unit: #a8521f;
+  --color-hierarchy-unit: #a95220;
   --color-hierarchy-outline: #366fa5;
-  --color-hierarchy-topic: #8b650b;
+  --color-hierarchy-topic: #87630b;
   --color-memo-green: #365d57;
   --color-exam-possible: #b85e24;
   --color-exam-confirmed: #b2393c;
   --font-interface: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
-  --font-reading: var(--font-interface);
+  --font-reading: var(--font-paper-default, var(--font-interface));
+  --font-concept-math: KaTeX_Main, serif;
   --font-mono: ui-monospace, SFMono-Regular, monospace;
   --type-display-size: 2.5rem;
   --type-display-compact-size: 2rem;
@@ -189,6 +190,7 @@
   --type-body-size: 1rem;
   --type-body-weight: 400;
   --type-body-line: 1.65;
+  --type-math-size: 1.08em;
   --type-label-size: .9375rem;
   --type-label-weight: 600;
   --type-label-line: 1.5;
@@ -197,20 +199,23 @@
   --type-caption-line: 1.6;
   /* Existing specialized text roles: preserve their rendered dimensions. */
   --type-detail-size: .9rem;
-  --type-math-size: 1.08em;
+  --type-math-symbol-size: 1em;
+  --type-math-symbol-line: 1;
+  --type-math-inline-size: 1.08em;
   --type-metric-size: 1.5rem;
   --type-chart-size: 12px;
   --type-title-tracking: -.035em;
   --type-heading-tracking: -.02em;
   --type-wordmark-tracking: -.025em;
+  --layout-wordmark: 13rem;
+  --layout-wordmark-home: 16.5rem;
+  --type-brand-tracking: .12em;
+  /* Brand promise only; document fonts and personal reading settings stay independent. */
   --font-brand-promise: "ManSeekSong Promise", "Noto Serif KR", "AppleMyungjo", serif;
   --type-brand-promise-size: .9375rem;
   --type-brand-promise-weight: 500;
   --type-brand-promise-tracking: .025em;
   --type-brand-promise-line: 1.8;
-  --layout-wordmark: 13rem;
-  --layout-wordmark-home: 16.5rem;
-  --type-brand-tracking: .12em;
   --space-0: 0;
   --space-1: .25rem;
   --space-2: .5rem;

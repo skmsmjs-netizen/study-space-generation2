@@ -135,7 +135,8 @@ it('keeps hand touches from moving the page during drawing and preserves input i
   fireEvent.pointerUp(svg, { pointerId: 1, pointerType: 'pen' });
   fireEvent(window, new Event('pagehide'));
   expect(result).toHaveLength(1);
-  expect(screen.getByRole('alert')).toHaveTextContent('설정과 되돌리기');
+  expect(screen.getByRole('alert')).toHaveTextContent('작성 내용과 이력은 이 기기에 유지했습니다');
+  expect(screen.getByRole('button', { name: '설정·이력 저장 다시 시도' })).toBeInTheDocument();
 });
 
 it('renders the current page of accumulated ink and keeps all other pages unchanged while editing', () => {

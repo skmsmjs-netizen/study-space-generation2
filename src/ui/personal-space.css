@@ -1,6 +1,12 @@
 .personal-entry { max-width: 32rem; margin: var(--space-7) auto; padding: var(--space-4); }
 .personal-entry form { display: grid; gap: var(--space-4); }
 .personal-entry .card { padding: var(--space-5); }
+.personal-entry > .ui-card {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: var(--shadow-none);
+}
 .personal-entry h1 { margin-top: 0; }
 .personal-entry + .actions { margin-top: var(--space-4); }
 pre { max-width: 100%; overflow: auto; white-space: pre-wrap; overflow-wrap: anywhere; }

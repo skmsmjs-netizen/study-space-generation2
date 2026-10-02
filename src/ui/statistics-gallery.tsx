@@ -8,14 +8,23 @@ import {
 } from '../domain/statistics-charts';
 import { Button, Card } from './index';
 import { StatisticsPlot } from './statistics-plot';
+import {
+  selectedChartRows,
+  uniqueStatisticSources,
+  type StatisticsMatcher,
+} from './statistics-selection';
 export function ChartValues({
   figure,
   onOpen,
   expanded = false,
+  sharedMatch = null,
+  onSelect,
 }: {
   figure: ReturnType<typeof chartFigure>;
   onOpen: (row: ChartRow) => void;
   expanded?: boolean;
+  sharedMatch?: StatisticsMatcher;
+  onSelect?: (row: ChartRow) => void;
 }) {
   const [all, setAll] = useState(false);
   const [opened, setOpened] = useState(expanded);
@@ -41,8 +50,16 @@ export function ChartValues({
             </thead>
             <tbody>
               {figure.rows.slice(0, all ? undefined : 20).map((row) => (
-                <tr key={row.label}>
-                  <th scope="row">{row.label}</th>
+                <tr
+                  key={row.label}
+                  data-shared-selected={sharedMatch ? row.items.some(sharedMatch) : undefined}
+                >
+                  <th scope="row">
+                    {row.label}
+                    {sharedMatch && row.items.some(sharedMatch) && (
+                      <span className="statistics-selection-mark"> · 함께 선택됨</span>
+                    )}
+                  </th>
                   {row.values.map((value, j) => (
                     <td key={figure.columns[j + 1]}>{value}</td>
                   ))}
@@ -50,6 +67,15 @@ export function ChartValues({
                     <Button variant="quiet" onClick={() => onOpen(row)}>
                       기록 보기
                     </Button>
+                    {onSelect && (
+                      <Button
+                        variant="quiet"
+                        aria-pressed={Boolean(sharedMatch && row.items.some(sharedMatch))}
+                        onClick={() => onSelect(row)}
+                      >
+                        함께 선택
+                      </Button>
+                    )}
                   </td>
                 </tr>
               ))}
@@ -102,10 +128,14 @@ export function StatisticsGallery({
   context,
   onChoose,
   onOpen,
+  sharedMatch = null,
+  onSelect,
 }: {
   context: ChartContext;
   onChoose: (kind: ChartKind, metric: ChartContext['metricId']) => void;
   onOpen: (row: ChartRow) => void;
+  sharedMatch?: StatisticsMatcher;
+  onSelect?: (row: ChartRow) => void;
 }) {
   const figures = useMemo(
     () => overview.map((o) => chartFigure({ ...context, metricId: o.metric }, o.kind)),
@@ -137,12 +167,35 @@ export function StatisticsGallery({
             </div>
             <p className="muted">{item.detail}</p>
             {context.metrics.length && context.data && (
-              <StatisticsPlot figure={figures[i]} small onOpen={onOpen} />
+              <StatisticsPlot
+                figure={figures[i]}
+                small
+                onOpen={onOpen}
+                selectedRows={selectedChartRows(figures[i], sharedMatch)}
+              />
             )}
             <Button variant="quiet" onClick={() => onChoose(item.kind, item.metric)}>
               이 그래프 자세히 보기
             </Button>
-            <ChartValues figure={figures[i]} onOpen={onOpen} />
+            {sharedMatch && (
+              <p className="statistics-selection-count">
+                선택된 근거{' '}
+                {
+                  uniqueStatisticSources(
+                    figures[i].rows.flatMap((row) => row.items.filter(sharedMatch)),
+                  ).length
+                }
+                개 / 이 그래프 전체 근거{' '}
+                {uniqueStatisticSources(figures[i].rows.flatMap((row) => row.items)).length}개 ·
+                집계값과 분모 유지
+              </p>
+            )}
+            <ChartValues
+              figure={figures[i]}
+              onOpen={onOpen}
+              sharedMatch={sharedMatch}
+              onSelect={onSelect}
+            />
           </Card>
         ))}
       </div>

@@ -1,3 +1,4 @@
+import { occurrenceRows } from './list-keys';
 import { useState, type ReactNode } from 'react';
 import type { MaterialQuizAttempt, MaterialQuizQuestion } from '../domain/material-learning';
 import { Button, Radio, Select } from './index';
@@ -92,9 +93,9 @@ export function MaterialQuiz({
                 aria-label={`${i + 1}번 보기`}
                 disabled={disabled || Boolean(attempt.submittedAt)}
               >
-                {q.options.map((option, at) => (
+                {occurrenceRows(q.options, value => value).map(({value: option, index: at, key}) => (
                   <Radio
-                    key={at}
+                    key={key}
                     name={`${attempt.id}:${q.id}`}
                     label={<StudyResultText text={option} as="span" />}
                     checked={attempt.answers[q.id] === at}

@@ -90,7 +90,7 @@ describe('ContextMenu', () => {
     function Harness() {
       const [confirm, setConfirm] = useState(false);
       return <><ContextMenu targetLabel="삭제 대상" items={[{ id: 'trash', label: '휴지통으로 이동', danger: true, onSelect: () => setConfirm(true) }]} />
-        <Modal open={confirm} title="휴지통 이동 확인" onClose={() => setConfirm(false)}><button onClick={remove}>이동 확인</button></Modal></>;
+        <Modal open={confirm} title="휴지통 이동 확인" onClose={() => setConfirm(false)}><button type="button" onClick={remove}>이동 확인</button></Modal></>;
     }
     render(<Harness />);
     const trigger = screen.getByRole('button', { name: '삭제 대상: 목차 관리' });

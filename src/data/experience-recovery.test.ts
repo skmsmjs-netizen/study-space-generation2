@@ -8,7 +8,7 @@ const key = experienceKey(data);
 const releases: Array<() => void> = [];
 const windowFor = (id: string) => releases.push(registerPersonalDraftWindow(data.userId, id));
 beforeEach(() => { localStorage.clear(); clearRescuedDraft(key); });
-afterEach(() => { vi.restoreAllMocks(); releases.splice(0).reverse().forEach(release => release()); clearRescuedDraft(key); });
+afterEach(() => { vi.restoreAllMocks(); releases.splice(0).reverse().forEach(release => { release(); }); clearRescuedDraft(key); });
 
 it('shares reading width while preserving independent next-action and memo originals in prior window copies', () => {
   windowFor('first');

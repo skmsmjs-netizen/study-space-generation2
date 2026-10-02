@@ -1,3 +1,5 @@
+import { occurrenceRows } from './list-keys';
+import { featureEntityForDialog, featureSurfaceAttributes } from './observatory-feature-identity';
 import { Component, forwardRef, useEffect, useId, useRef, type ButtonHTMLAttributes, type HTMLAttributes, type InputHTMLAttributes, type ReactNode, type SelectHTMLAttributes, type TextareaHTMLAttributes } from 'react';
 import { createPortal } from 'react-dom';
 import './tokens.css';
@@ -51,18 +53,22 @@ export function Tabs({ items, value, onChange, label = '보기 선택', classNam
     event.preventDefault();
     const index = enabled.findIndex(entry => entry.id === item.id);
     const next = event.key === 'Home' ? enabled[0] : event.key === 'End' ? enabled[enabled.length - 1] : enabled[(index + (event.key === 'ArrowRight' ? 1 : -1) + enabled.length) % enabled.length];
-    onChange(next.id); buttons.current.get(next.id)?.focus();
+    onChange(next.id);
+    const target = buttons.current.get(next.id);
+    target?.focus({ preventScroll: true });
+    target?.scrollIntoView?.({ block: 'nearest', inline: 'nearest', behavior: 'instant' });
   }}>{item.id === value && <SelectionBackground id={motionId} />}{item.label}</Button>)}</div>;
 }
 export function SegmentedControl({ items, value, onChange, label = '표시 방식', className }: TabsProps) {
+  // biome-ignore lint/a11y/useSemanticElements: APG pressed-button group is navigation control grouping, not a form fieldset.
   return <div role="group" aria-label={label} className={classes('ui-segmented', className)}>{items.map(item => <Button key={item.id} variant="quiet" aria-pressed={item.id === value} disabled={item.disabled} onClick={() => onChange(item.id)}>{item.label}</Button>)}</div>;
 }
-export function Card({ className, ...props }: HTMLAttributes<HTMLDivElement>) { return <div {...props} className={classes('ui-card', className)} />; }
+export function Card({ className, role, ...props }: HTMLAttributes<HTMLDivElement>) { return <div {...props} role={role ?? (props['aria-label'] || props['aria-labelledby'] ? 'group' : undefined)} className={classes('ui-card', className)} />; }
 export function ListItem({ className, ...props }: HTMLAttributes<HTMLLIElement>) { return <li {...props} className={classes('ui-list-item', className)} />; }
 
-export type ModalProps = { open: boolean; title: string; onClose: () => void; children: ReactNode; className?: string };
+export type ModalProps = { open: boolean; title: string; onClose: () => void; children: ReactNode; className?: string; featureDialogMode?: string };
 const focusableSelector = 'button:not(:disabled), [href], input:not(:disabled):not([type="hidden"]), select:not(:disabled), textarea:not(:disabled), [contenteditable]:not([contenteditable="false"]), [tabindex]:not([tabindex="-1"])';
-export function Modal({ open, title, onClose, children, className }: ModalProps) {
+export function Modal({ open, title, onClose, children, className, featureDialogMode }: ModalProps) {
   const titleId = useId(), dialog = useRef<HTMLDivElement>(null), close = useRef(onClose);
   const backdropPress = useRef<{ id: number; x: number; y: number; moved: boolean } | null>(null);
   const openingControl = useRef<HTMLElement | SVGElement | null>(null);
@@ -94,7 +100,7 @@ export function Modal({ open, title, onClose, children, className }: ModalProps)
     document.body.style.overflow = 'hidden';
     const background = [...document.body.children].filter(el => el !== dialog.current?.parentElement);
     const previousInert = background.map(el => el.getAttribute('inert'));
-    background.forEach(el => el.setAttribute('inert', ''));
+    background.forEach(el => { el.setAttribute('inert', ''); });
     const available = () => [...(dialog.current?.querySelectorAll<HTMLElement>('*') || [])].filter(el => {
       if (!el.matches(focusableSelector) || (el.tabIndex < 0 && !(el.matches('[contenteditable]:not([contenteditable="false"])') && !el.hasAttribute('tabindex'))) || el.matches(':disabled') || el.closest('[hidden], [inert], [aria-hidden="true"]')) return false;
       for (let ancestor: HTMLElement | null = el; ancestor && ancestor !== dialog.current; ancestor = ancestor.parentElement) {
@@ -163,7 +169,7 @@ export function Modal({ open, title, onClose, children, className }: ModalProps)
     onClick={event => {
       const press = backdropPress.current; backdropPress.current = null;
       if (event.target === event.currentTarget && press && !press.moved) onClose();
-    }}><div ref={dialog} role="dialog" aria-modal="true" aria-labelledby={titleId} tabIndex={-1} className={classes('ui-modal', className)}><header className="ui-modal-header"><h2 className="ui-modal-title" id={titleId}>{title}</h2><IconButton label={`${title} 닫기`} onClick={onClose}>×</IconButton></header>{children}</div></div>, document.body);
+    }}><div ref={dialog} role="dialog" aria-modal="true" aria-labelledby={titleId} tabIndex={-1} className={classes('ui-modal', className)} {...featureSurfaceAttributes(featureEntityForDialog(title, featureDialogMode))}><header className="ui-modal-header"><h2 className="ui-modal-title" id={titleId}>{title}</h2><IconButton label={`${title} 닫기`} onClick={onClose}>×</IconButton></header>{children}</div></div>, document.body);
 }
 export function Sheet(props: ModalProps) { return <Modal {...props} className={classes('ui-sheet', props.className)} />; }
 export function Toast({ message, onUndo, onClose }: { message: string; onUndo?: () => void; onClose?: () => void }) {
@@ -171,7 +177,7 @@ export function Toast({ message, onUndo, onClose }: { message: string; onUndo?: 
 }
 export type BreadcrumbItem = { label: string; href?: string; onClick?: () => void };
 export function Breadcrumb({ items }: { items: BreadcrumbItem[] }) {
-  return <nav aria-label="현재 위치" className="ui-breadcrumb"><ol>{items.map((item, index) => <li key={`${index}:${item.label}`}>{index === items.length - 1 ? <span aria-current="page">{item.label}</span> : item.href ? <a href={item.href} onClick={item.onClick}>{item.label}</a> : <button type="button" onClick={item.onClick}>{item.label}</button>}</li>)}</ol></nav>;
+  return <nav aria-label="현재 위치" className="ui-breadcrumb"><ol>{occurrenceRows(items, item => JSON.stringify([item.href, item.label])).map(({value: item, index, key}) => <li key={key}>{index === items.length - 1 ? <span aria-current="page">{item.label}</span> : item.href ? <a href={item.href} onClick={item.onClick}>{item.label}</a> : <button type="button" onClick={item.onClick}>{item.label}</button>}</li>)}</ol></nav>;
 }
 export function Search({ onQueryChange, onChange, onCompositionStart, onCompositionEnd, ...props }: InputProps & { onQueryChange?: (value: string) => void }) {
   const composing = useRef(false), last = useRef<string | undefined>(undefined);

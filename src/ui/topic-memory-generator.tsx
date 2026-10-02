@@ -1,3 +1,4 @@
+import { occurrenceRows } from './list-keys';
 import { StudyResultText } from './study-result-text';
 import { useEffect, useRef, useState } from 'react';
 import type { AppState } from '../domain/model';
@@ -259,8 +260,8 @@ export function TopicMemoryGenerator({
               일반 지식으로 만든 답안입니다. 수업의 표기와 조건에 맞는지 확인하거나 고쳐 주세요.
             </p>
           )}
-          {result.diagnostics?.map((d, index) => (
-            <article key={`diagnostic:${index}`}>
+          {result.diagnostics && occurrenceRows(result.diagnostics, diagnostic => JSON.stringify(diagnostic)).map(({value: d, key}) => (
+            <article key={key}>
               <p role="status">{d.message}</p>
               {d.questions?.map((q) => (
                 <p key={q}>{q}</p>

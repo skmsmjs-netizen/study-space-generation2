@@ -67,14 +67,6 @@
 .code-touch-toolbar {
   justify-content: flex-start;
 }
-.code-touch-toolbar button {
-  min-height: var(--control-height);
-  padding: var(--space-2) var(--space-3);
-  color: var(--color-text);
-  background: var(--color-surface);
-  border: var(--border-width) solid var(--color-border);
-  border-radius: var(--radius-sm);
-}
 .code-example-filters {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 10rem;
@@ -100,13 +92,9 @@
   overflow: auto;
 }
 .code-syntax-status button {
-  color: var(--color-text);
-  background: transparent;
-  border: 0;
   text-align: left;
   text-decoration: underline;
-  cursor: pointer;
-  min-height: var(--control-height);
+  justify-content: flex-start;
 }
 .code-result {
   background: var(--color-surface-inset);
@@ -178,3 +166,5 @@
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+

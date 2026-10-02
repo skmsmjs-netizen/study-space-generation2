@@ -98,7 +98,7 @@ describe('TRACE optional activity detail', () => {
     const storage = { getItem: (key: string) => memory.get(key) ?? null, setItem: (key: string, value: string) => { memory.set(key, value); } };
     saveDraft(storage, draft);
     const restored = readDraft(storage, 'test-trace');
-    expect(restored?.trace.topic.Td1.repeats![0]).toEqual({ id: originalId, kind: 'exact', count: null });
+    expect(restored!.trace.topic.Td1.repeats![0]).toEqual({ id: originalId, kind: 'exact', count: null });
     expect(form.current().Td1.status).toBe('unchecked');
   });
 

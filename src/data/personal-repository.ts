@@ -47,11 +47,12 @@ export class PersonalRepository implements StudyRepository {
   getScheduleNotifications = () => {
     const port=this.transport.scheduleNotifications;
     if(!port)return undefined;
-    return this.notificationPort??=( {...port,subscribe:async subscription=>{
+    this.notificationPort ??= {...port,subscribe:async subscription=>{
       await this.flush();
       if(this.status.phase!=='saved')throw Error('일정을 서버에 저장하지 못했습니다. 이 기기의 기록을 보존했습니다. 저장 상태를 확인한 뒤 알림을 켜 주세요.');
       await port.subscribe(subscription);
-    }} );
+    }};
+    return this.notificationPort;
   };
   getCodeRunner = () => this.transport.runCode;
   constructor(private storage: PersonalJournal, private transport: OnlineTransport, server: ServerSnapshot, cached = false, journalKey = personalJournalKey(server.data)) {
@@ -170,8 +171,9 @@ export class PersonalRepository implements StudyRepository {
   getCapabilities = () => this.envelope.base.supportedCommands ?? [];
   getStatus = () => this.status;
   subscribe = (listener: () => void) => { this.listeners.add(listener); return () => { this.listeners.delete(listener); }; };
-  private update(status: SaveStatus, changed = false) { if (!changed && JSON.stringify(this.status) === JSON.stringify(status)) return; this.status = status; this.listeners.forEach(listener => listener()); }
-  execute(command: Command): AppState {
+  private update(status: SaveStatus, changed = false) { if (!changed && JSON.stringify(this.status) === JSON.stringify(status)) return; this.status = status; this.listeners.forEach(listener => { listener(); }); }
+  execute(command: Command): AppState { return this.executeMany([command]); }
+  executeMany(commands: Command[]): AppState {
     if (this.archiveFlight) throw Error('이 기기의 글을 보관하고 있습니다. 보관을 마친 뒤 작성해 주세요.');
     if (this.restoring) throw Error('백업을 복원하고 있습니다. 복원한 공간을 다시 연 뒤 작성해 주세요.');
     if (this.envelope.restoredBackup && !this.envelope.conflict) throw Error('복원한 백업과 서버 자료를 확인하고 있습니다. 저장 상태를 확인한 뒤 작성해 주세요.');
@@ -179,9 +181,15 @@ export class PersonalRepository implements StudyRepository {
     let success = false;
     try {
       if (this.envelope.conflict) throw new DomainError('VERSION_CONFLICT', '두 자료를 보존했습니다. 저장 상태에서 충돌 내용을 먼저 확인해 주세요.');
-      const local = applyCommand(this.envelope.local, command);
+      let local = this.envelope.local;
+      const added: Command[] = [];
+      for (const command of commands) {
+        const next = applyCommand(local, command);
+        if (next !== local) added.push(command);
+        local = next;
+      }
       if (local === this.envelope.local) { success = true; return local; }
-      this.persist({ ...this.envelope, local, pending: [...this.envelope.pending, command] });
+      this.persist({ ...this.envelope, local, pending: [...this.envelope.pending, ...added] });
       this.update({ phase: 'pending', pending: this.envelope.pending.length, message: this.storage.isDurable?.() === false ? '기기에 보관 중 · 서버 전송 대기' : '이 기기에 저장됨 · 서버 전송 대기' });
       // IndexedDB completion is awaited before transport; pending in-memory work is not reported as durable.
       void this.flush();

@@ -7,6 +7,7 @@ export const canvasKey = (kind: 'subject' | 'node' | 'memo' | 'narrative', id: s
 export interface CanvasCard { id: string; entityId: string; kind: 'subject' | 'unit' | 'outline' | 'topic' | 'memo' | 'narrative' | 'concept'; name: string; ownerId: string | null; position: CanvasPosition }
 
 export function validateCanvasLayout(value: CanvasContent) {
+  // biome-ignore lint/suspicious/noControlCharactersInRegex: Reject control bytes in persisted IDs before layout validation.
   const validKey = (id: unknown): id is string => typeof id === 'string' && /^(subject|node|memo|narrative):.+/.test(id) && id.length <= 300 && !/[\u0000-\u001f]/.test(id);
   const position = (p: CanvasPosition) => p && Number.isFinite(p.x) && Number.isFinite(p.y) && Math.abs(p.x) <= 1e7 && Math.abs(p.y) <= 1e7;
   if (!value.positions || typeof value.positions !== 'object' || Array.isArray(value.positions) || !Object.entries(value.positions).every(([id, p]) => validKey(id) && position(p)) || !Array.isArray(value.links)) throw new DomainError('INVALID_CANVAS', 'Canvas 배치와 연결을 확인해 주세요. 원문은 유지했습니다.');

@@ -7,7 +7,6 @@ import { DomainError } from '../src/domain/model.ts';
 import { PUBLIC_SERVER_URL, PUBLIC_SERVER_KEY } from '../src/data/public-server-config.ts';
 import { createChatGPT, type ChatGPTModel } from './vendor/siwc-local/index.ts';
 import { keychainEncryption } from './chatgpt-encryption.ts';
-import { transcribeMaterial, transcriptionAvailable } from './material-transcription.ts';
 import { readGPTModel, saveGPTModel } from './gpt-model-preference.ts';
 import { TOPIC_MEMORY_WAIT_MS } from '../src/domain/topic-memory.ts';
 import { youtubeSubtitles } from './material-youtube.ts';
@@ -57,7 +56,10 @@ export function gptFailure(error: unknown): DomainError {
 }
 
 /** Personal local runtime only. No API-key fallback and no remote-origin bridge. */
-export function localStudyAIPlugin(): Plugin {
+export function localStudyAIPlugin(options: { temporaryCredits?: { expiresAt: number; maxCalls: number } } = {}): Plugin {
+  const temporary = options.temporaryCredits;
+  let temporaryCreditsRemaining = temporary && Number.isInteger(temporary.maxCalls) && temporary.maxCalls > 0 && temporary.maxCalls <= 3 && temporary.expiresAt > Date.now() && temporary.expiresAt <= Date.now() + 3600_000 ? temporary.maxCalls : 0;
+  let temporaryCreditsProfile = '';
   let busy = false,
     connecting = false,
     connectionError = '',
@@ -113,6 +115,8 @@ export function localStudyAIPlugin(): Plugin {
       creditConfirmation.profileId === session.profileId &&
       Date.now() - creditConfirmation.at < 3600_000,
     );
+    if (temporaryCreditsRemaining && !temporaryCreditsProfile && session.profileId) temporaryCreditsProfile = session.profileId;
+    const temporaryCreditsAllowed = Boolean(temporary && temporaryCreditsRemaining > 0 && Date.now() < temporary.expiresAt && temporaryCreditsProfile === session.profileId);
     return {
       configured: session.status === 'connected' && session.sharing,
       local: true,
@@ -123,7 +127,10 @@ export function localStudyAIPlugin(): Plugin {
       connecting,
       connectionError,
       creditsConfirmed,
-      transcription: await transcriptionAvailable(),
+      temporaryCreditsAllowed,
+      temporaryCreditsRemaining: temporaryCreditsAllowed ? temporaryCreditsRemaining : 0,
+      temporaryCreditsExpiresAt: temporaryCreditsAllowed ? temporary!.expiresAt : undefined,
+      transcription: false,
     };
   }
   async function requirePlan() {
@@ -133,18 +140,20 @@ export function localStudyAIPlugin(): Plugin {
         'GPT_CONNECTION_REQUIRED',
         'GPT 연결에서 ChatGPT로 로그인하고 구독 사용 권한을 허용해 주세요.',
       );
-    if (!state.creditsConfirmed)
+    if (!state.creditsConfirmed && !state.temporaryCreditsAllowed)
       throw new DomainError(
         'CREDITS_CONFIRMATION_REQUIRED',
         'ChatGPT 사용량 설정에서 추가 크레딧 사용 허용이 꺼져 있는지 확인한 뒤 GPT 연결에 표시해 주세요.',
       );
     if (!model || !models.some((row) => row.slug === model))
       throw new DomainError('AI_MODEL', 'GPT 연결에서 사용할 모델을 불러와 선택해 주세요.');
+    return state;
   }
   return {
     name: 'study-ai-local',
     apply: 'serve',
     configureServer(server) {
+      if (server.config?.isProduction || server.config?.mode === 'production') temporaryCreditsRemaining = 0;
       server.httpServer?.once('close', () => chatgpt.cancelSignIn());
       server.middlewares.use('/api/study-ai', async (request, response) => {
         const generation = new AbortController();
@@ -231,6 +240,7 @@ export function localStudyAIPlugin(): Plugin {
           }
           if (request.url === '/disconnect') {
             if (busy) throw new DomainError('RATE_LIMIT', '진행 중인 정리를 먼저 마쳐 주세요.');
+            temporaryCreditsRemaining = 0;
             creditConfirmation = undefined;
             models = [];
             catalogProfile = '';
@@ -324,7 +334,8 @@ export function localStudyAIPlugin(): Plugin {
                       async beforeInference() {
                         generation.signal.throwIfAborted();
                         await authenticateAIOwner(token, generation.signal);
-                        await requirePlan();
+                        const state = await requirePlan();
+                        if (!state.creditsConfirmed) temporaryCreditsRemaining -= 1;
                         generation.signal.throwIfAborted();
                       },
                     });
@@ -360,11 +371,11 @@ export function localStudyAIPlugin(): Plugin {
                   return await generateGPTMaterial(input, {
                     runtime: chatgpt,
                     model,
-                    transcribe: (audio) => transcribeMaterial(audio, generation.signal),
                     signal: generation.signal,
                     async beforeInference() {
                       await authenticateAIOwner(token);
-                      await requirePlan();
+                      const state = await requirePlan();
+                      if (!state.creditsConfirmed) temporaryCreditsRemaining -= 1;
                     },
                   });
                 } catch (error) {

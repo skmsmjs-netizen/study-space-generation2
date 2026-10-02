@@ -22,6 +22,7 @@ export interface TopicMemoryResult {
   cards: { id: string; topicId: string; question: string; answer: string }[];
 }
 export interface TopicGenerationSource {
+  evidenceType?: 'topic-general';
   kind: 'topic';
   resultId: string;
   cardId: string;
@@ -146,6 +147,7 @@ export function validateTopicGenerationSource(
   value: unknown,
 ): asserts value is TopicGenerationSource {
   const s = value as TopicGenerationSource;
+  if (s?.evidenceType !== undefined && s.evidenceType !== 'topic-general') invalid();
   if (s?.promptVersion !== undefined && !text(s.promptVersion, 160)) invalid();
   if (
     s?.kind !== 'topic' ||
@@ -211,6 +213,7 @@ export function topicGeneratedContent(
     strokes: [],
     topicGeneration: {
       kind: 'topic',
+      ...(r.evidenceType ? { evidenceType: r.evidenceType } : {}),
       resultId: r.id,
       cardId: c.id,
       at: r.at,

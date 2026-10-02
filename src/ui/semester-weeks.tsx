@@ -52,7 +52,7 @@ export function SemesterWeeksEditor({ data, workspace, subjectIds, fixedSubjectI
       if (onChange({ ...workspace, schedules: [...existing, ...added] })) {
         patch({ batch: { originals: added, reversed: false } });
         setNotice(`${added.length}개 주차를 등록했습니다. 출석·학습 상태는 각각 직접 남겨 주세요.`);
-      }
+      } else setError('주차를 저장하지 못했습니다. 초안은 유지했습니다. 연결 상태를 확인한 뒤 다시 등록해 주세요.');
     } catch (e) { setError((e as Error).message); }
   };
   const reverse = () => {
@@ -63,7 +63,7 @@ export function SemesterWeeksEditor({ data, workspace, subjectIds, fixedSubjectI
       if (onChange({ ...workspace, schedules: result.schedules })) {
         patch({ batch: { originals: result.originals, reversed: !draft.batch.reversed } });
         setNotice(`${result.changed}개 주차를 ${draft.batch.reversed ? '복원' : '휴지통으로 이동'}했습니다.${result.preserved ? ` 이후 변경된 ${result.preserved}개는 유지했습니다.` : ''}`);
-      }
+      } else setError('주차 변경을 저장하지 못했습니다. 기존 일정과 초안은 유지했습니다. 다시 시도해 주세요.');
     } catch (e) { setError((e as Error).message); }
   };
   return <>
@@ -80,7 +80,8 @@ export function SemesterWeeksEditor({ data, workspace, subjectIds, fixedSubjectI
           </div>
           <Input label="주차 이름의 앞부분" value={draft.name} disabled={Boolean(draft.rows.length)} onChange={e => patch({ name: e.target.value })} />
           <div className="actions"><Button disabled={Boolean(draft.rows.length)} onClick={generate}>주차 미리보기</Button>{Boolean(draft.rows.length) && <Button onClick={() => { patch({ rows: [], generatedStart: '' }); setNotice('미리보기만 비웠습니다. 저장된 주차와 되돌리기 정보는 유지했습니다.'); }}>미리보기 초기화</Button>}</div>
-          <div className="learning-schedule-form" aria-label="주차 미리보기">{draft.rows.map((row, index) => {
+          {/* biome-ignore lint/a11y/useSemanticElements: This names a non-form control/content group; fieldset would imply a form group. */}
+<div className="learning-schedule-form" role="group" aria-label="주차 미리보기">{draft.rows.map((row, index) => {
             const duplicate = weekDuplicate(existing, draft.subjectId, series, row);
             const edit = (p: Partial<typeof row>) => patch({ rows: current.current.rows.map((r, i) => i === index ? { ...r, ...p } : r) });
             return <details key={row.week}><summary>{row.week}주차 · {row.opensDate}{row.excluded ? ' · 제외' : duplicate ? ` · ${duplicate.deletedAt ? '휴지통에 보관됨' : '이미 등록됨'}` : ''}</summary>

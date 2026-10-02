@@ -115,6 +115,7 @@ export function readAnkiPackage(bytes: Uint8Array, SQL: SqlJsStatic): AnkiPrevie
     const version = Number(rows(db, 'SELECT ver FROM col')[0]?.ver);
     if (version !== 11 && version !== 18) throw Error(`Anki 데이터 버전 ${version}은 아직 지원하지 않습니다. Anki에서 호환 형식으로 다시 내보내 주세요.`);
     const modelMap = models(db, version === 18);
+    // biome-ignore lint/suspicious/noControlCharactersInRegex: Anki uses byte 0x1f as a documented deck-name separator; preserve the importer's exact delimiter.
     const deckMap = version === 18 ? new Map(rows(db, 'SELECT CAST(id AS TEXT) AS id, name FROM decks').map(row => [String(row.id), String(row.name).replace(/\x1f/g, '::')])) : new Map(Object.entries(JSON.parse(String(rows(db, 'SELECT decks FROM col')[0].decks))).map(([id, row]) => [id, String((row as { name: string }).name)]));
     const notes = new Map(rows(db, 'SELECT CAST(id AS TEXT) AS id, guid, CAST(mid AS TEXT) AS mid, tags, flds FROM notes').map(row => [String(row.id), row]));
     const cards = rows(db, 'SELECT CAST(nid AS TEXT) AS nid, CAST(did AS TEXT) AS did, CAST(odid AS TEXT) AS odid, ord FROM cards ORDER BY id');

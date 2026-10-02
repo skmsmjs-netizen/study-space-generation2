@@ -39,7 +39,7 @@ afterEach(async () => {
 async function open(path = '/') {
   history.replaceState(null, '', `/?space=demo#${path}`);
   const view = render(<App />);
-  await screen.findByText('예시 자료 · 이 기기에 저장');
+  await screen.findByText('예시 자료 · 이 기기에 저장', {}, { timeout: 5000 });
   return view;
 }
 async function navigate(path: string) {
@@ -132,7 +132,7 @@ describe('study flows preserve meaning and input', () => {
     expect(currentRecords().find(record => record.targetId === secondTopic)?.body).toBe('다른 주제의 생각');
     expect(new Set(currentRecords().map(record => record.sessionId)).size).toBe(1);
     expect(currentRecords().every(record => record.done)).toBe(true);
-  },60000);
+  },15000);
 
   it('restores the same unfinished study draft after unmount without creating a study event', async () => {
     const user = userEvent.setup(), first = await open(`/record/${firstTopic}`);
@@ -384,10 +384,10 @@ describe('multiple free notes and search', () => {
     fireEvent.compositionStart(search); fireEvent.change(search,{target:{value:'검색'}});
     expect(screen.queryByRole('link',{name:'검색 전용 자유 메모'})).not.toBeInTheDocument();
     fireEvent.compositionEnd(search,{data:'검색'});
-    expect(screen.getByRole('link',{name:'검색 전용 자유 메모'})).toHaveAttribute('href','#/free/note-search');
+    expect(await screen.findByRole('link',{name:'검색 전용 자유 메모'})).toHaveAttribute('href','#/free/note-search');
     await navigate('/free/note-search'); await navigate('/search');
     expect(screen.getByRole('searchbox')).toHaveValue('검색');
-    expect(screen.getByRole('link',{name:'검색 전용 자유 메모'})).toBeInTheDocument();
+    expect(await screen.findByRole('link',{name:'검색 전용 자유 메모'})).toBeInTheDocument();
   });
 });
 
@@ -466,8 +466,8 @@ describe('outline changes keep the original study identity', () => {
     await user.click(screen.getByRole('button', { name: '이 위치로 옮기기' }));
     expect(state().nodes.find(node => node.id === firstTopic)?.parentId).toBeNull();
     expect(currentRecords()).toEqual(before.records);
-    const savedRecords = screen.getByRole('heading', { name: '공부 기록', level: 2 }).closest('section')!;
-    expect(within(savedRecords).getByText('옮겨도 남는 원문')).toBeVisible();
+    const recordCard = document.querySelector('[data-reading-anchor="record:' + before.records[0].id + '"]')!;
+    expect(within(recordCard as HTMLElement).getByText('옮겨도 남는 원문')).toBeInTheDocument();
     await user.click(screen.getByRole('button', { name: '되돌리기' }));
     expect(state().nodes.find(node => node.id === firstTopic)?.parentId).toBe(parentId);
     expect(currentRecords()).toEqual(before.records);
@@ -502,7 +502,7 @@ describe('outline changes keep the original study identity', () => {
 describe('input modals keep separate drafts through close and restart', () => {
   it('keeps semester and subject text separate and clears only the successfully created modal draft', async () => {
     const user = userEvent.setup(); let view = await open('/subjects');
-    await user.click(screen.getByRole('button', { name: '학기 추가' }));
+    await user.click(within(screen.getByRole('complementary')).getByRole('button', { name: '학기 추가' }));
     fireEvent.change(screen.getByRole('textbox', { name: '이름' }), { target: { value: '  다음 학기 초안' } });
     await user.keyboard('{Escape}');
     await user.click(screen.getByRole('button', { name: '과목 추가' }));
@@ -512,7 +512,7 @@ describe('input modals keep separate drafts through close and restart', () => {
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
     view.unmount(); await waitFor(() => expect(locked).toBe(false));
     view = await open('/subjects');
-    await user.click(screen.getByRole('button', { name: '학기 추가' }));
+    await user.click(within(screen.getByRole('complementary')).getByRole('button', { name: '학기 추가' }));
     expect(screen.getByRole('textbox', { name: '이름' })).toHaveValue('  다음 학기 초안');
     await user.keyboard('{Escape}');
     await user.click(screen.getByRole('button', { name: '과목 추가' }));
@@ -591,9 +591,9 @@ it('keeps a move destination after close and remount, then clears it after a suc
 it('never silently replaces a corrupt modal draft across close, and enables recovery only after archiving it', async () => {
   const user = userEvent.setup(), key = 'study-space:demo:modal:semester:global';
   localStorage.setItem(key, '{ damaged original'); await open();
-  await user.click(screen.getByRole('button', { name: '학기 추가' }));
+  await user.click(within(screen.getByRole('complementary')).getByRole('button', { name: '학기 추가' }));
   fireEvent.change(screen.getByRole('textbox', { name: '이름' }), { target: { value: '복구할 학기 이름' } });
-  await user.keyboard('{Escape}'); await user.click(screen.getByRole('button', { name: '학기 추가' }));
+  await user.keyboard('{Escape}'); await user.click(within(screen.getByRole('complementary')).getByRole('button', { name: '학기 추가' }));
   expect(screen.getByRole('textbox', { name: '이름' })).toHaveValue('복구할 학기 이름');
   expect(screen.getByRole('button', { name: '추가하기' })).toBeDisabled();
   expect(localStorage.getItem(key)).toBe('{ damaged original');

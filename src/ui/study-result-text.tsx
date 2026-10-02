@@ -1,3 +1,4 @@
+import { occurrenceRows } from './list-keys';
 import { useEffect, useRef } from 'react';
 import 'katex/dist/katex.min.css';
 import './study-result-text.css';
@@ -73,21 +74,22 @@ export function StudyResultText({
   className?: string;
 }) {
   if (!formula) return <Tag className={className}>{text}</Tag>;
+  const pieces = text
+        .split(
+          /(```[\s\S]*?```|`[^`\n]*`|\$\$[\s\S]*?\$\$|\\{1,2}\([\s\S]*?\\{1,2}\)|\\{1,2}\[[\s\S]*?\\{1,2}\])/g,
+        );
   return (
     <Tag
       className={['study-result-text', Tag === 'span' ? 'study-result-text--inline' : '', className]
         .filter(Boolean)
         .join(' ')}
     >
-      {text
-        .split(
-          /(```[\s\S]*?```|`[^`\n]*`|\$\$[\s\S]*?\$\$|\\{1,2}\([\s\S]*?\\{1,2}\)|\\{1,2}\[[\s\S]*?\\{1,2}\])/g,
-        )
-        .map((part, index, pieces) =>
+      {occurrenceRows(pieces, part => part)
+        .map(({value: part, index, key}) =>
           part.startsWith('$$') || /^\\{1,2}[([]/.test(part) ? (
-            <Formula key={`${index}:${part}`} text={part} />
+            <Formula key={key} text={part} />
           ) : (
-            <span key={`${index}:${part}`}>
+            <span key={key}>
               {part.startsWith('`')
                 ? part
                 : (isDisplayFormula(pieces[index - 1])

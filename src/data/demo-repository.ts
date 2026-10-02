@@ -34,18 +34,20 @@ export class DemoRepository {
     }
   }
   getSnapshot() { return this.state; }
-  execute(command: Command): AppState {
-    // Detect a snapshot made stale before this call. Atomic multi-tab exclusion
-    // is owned by the app lifetime Web Lock; this check alone is not a mutex.
+  execute(command: Command): AppState { return this.executeMany([command]); }
+  executeMany(commands: Command[]): AppState {
     const latest = this.storage.getItem(DEMO_KEY);
     if (latest !== this.persisted) throw new DomainError('STALE_DEMO', '다른 창에서 시연 자료가 바뀌었습니다. 작성 내용은 두고 새로고침해 주세요.');
-    const next = applyCommand(this.state, command);
+    let next = this.state, sequence = this.sequence;
+    for (const command of commands) {
+      const changed = applyCommand(next, command);
+      if (changed !== next) sequence++;
+      next = changed;
+    }
     if (next === this.state) return this.state;
-    const envelope = { sequence: this.sequence + 1, data: next };
-    const encoded = encodeStoredText(JSON.stringify(envelope));
-    this.storage.setItem(DEMO_KEY, encoded); // Publish only after storage succeeds.
-    this.persisted = encoded;
-    this.sequence = envelope.sequence; this.state = next;
+    const encoded = encodeStoredText(JSON.stringify({sequence, data: next}));
+    this.storage.setItem(DEMO_KEY, encoded);
+    this.persisted = encoded; this.sequence = sequence; this.state = next;
     return next;
   }
 }

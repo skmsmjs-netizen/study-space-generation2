@@ -1,7 +1,9 @@
 import { expect, test } from '@playwright/test';
 import { decodeStoredText } from '../../src/data/storage-codec';
 
-test('home tools cross midnight without moving focus or creating study records', async ({ page }) => {
+test('home tools cross midnight without moving focus or creating study records', async ({
+  page,
+}) => {
   await page.clock.install({ time: new Date('2026-10-01T14:59:30Z') });
   await page.goto('?space=demo#/');
   const tools = page.getByRole('region', { name: '지금 쓸 수 있는 공부 도구', exact: true });
@@ -18,7 +20,9 @@ test('home tools cross midnight without moving focus or creating study records',
   await expect(tools.locator('[aria-live="off"]')).toHaveCount(1);
 });
 
-test('home tools save exact long records and free drafts and reopen them on every width', async ({ page }, info) => {
+test('home tools save exact long records and free drafts and reopen them on every width', async ({
+  page,
+}, info) => {
   const original = `  조건·예외·불확실\n${'원문을 그대로 남기고 전체 글로 돌아갑니다. '.repeat(100)}\n끝 공백  `;
   const draft = '  과목을 고르지 않은 생각\n이해 여부는 미확인  ';
   await page.goto('?space=demo#/');
@@ -35,13 +39,21 @@ test('home tools save exact long records and free drafts and reopen them on ever
   await page.locator('nav a[href="#/"]').filter({ visible: true }).first().tap();
   const recent = page.getByRole('region', { name: '최근 남긴 공부 기록', exact: true });
   await expect(recent.locator('.prose')).toHaveText(original);
-  const preview = await recent.locator('.prose').evaluate(element => ({ height: element.getBoundingClientRect().height, line: parseFloat(getComputedStyle(element).lineHeight), full: element.scrollHeight }));
+  const preview = await recent.locator('.prose').evaluate((element) => ({
+    height: element.getBoundingClientRect().height,
+    line: parseFloat(getComputedStyle(element).lineHeight),
+    full: element.scrollHeight,
+  }));
   expect(preview.height).toBeLessThanOrEqual(preview.line * 3 + 1);
   expect(preview.full).toBeGreaterThan(preview.height);
   await recent.getByRole('link', { name: '기록 열기', exact: true }).tap();
-  await expect(page.locator('.record-card .prose').filter({ hasText: '조건·예외·불확실' }).first()).toHaveText(original);
+  await expect(
+    page.locator('.record-card .prose').filter({ hasText: '조건·예외·불확실' }).first(),
+  ).toHaveText(original);
   await page.reload();
-  await expect(page.locator('.record-card .prose').filter({ hasText: '조건·예외·불확실' }).first()).toHaveText(original);
+  await expect(
+    page.locator('.record-card .prose').filter({ hasText: '조건·예외·불확실' }).first(),
+  ).toHaveText(original);
   await page.locator('nav a[href="#/"]').filter({ visible: true }).first().tap();
   await tools.getByRole('button', { name: '자유롭게 쓰기', exact: true }).tap();
   await expect(writing).toHaveValue(draft);
@@ -51,7 +63,9 @@ test('home tools save exact long records and free drafts and reopen them on ever
   await tools.getByRole('button', { name: '주제 카드로 설명하기', exact: true }).tap();
   await expect(page).toHaveURL(/#\/recall$/);
   await expect(page.locator('main h1')).toBeVisible();
-  const saved = JSON.parse(decodeStoredText((await page.evaluate(() => localStorage.getItem('study-space:demo:v1')))!)).data;
+  const saved = JSON.parse(
+    decodeStoredText((await page.evaluate(() => localStorage.getItem('study-space:demo:v1')))!),
+  ).data;
   expect(saved.records).toHaveLength(1);
   expect(saved.records[0].body).toBe(original);
   await page.locator('nav a[href="#/"]').filter({ visible: true }).first().tap();
@@ -60,7 +74,9 @@ test('home tools save exact long records and free drafts and reopen them on ever
   await expect(recent).toHaveCount(0);
   await page.getByRole('combobox', { name: '공부 범위', exact: true }).selectOption('all');
   await expect(recent.locator('.prose')).toHaveText(original);
-  expect(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)).toBeLessThanOrEqual(1);
+  expect(
+    await page.evaluate(() => document.documentElement.scrollWidth - innerWidth),
+  ).toBeLessThanOrEqual(1);
   await tools.scrollIntoViewIfNeeded();
   await page.screenshot({ path: info.outputPath('home-tools.png') });
 });

@@ -50,7 +50,7 @@ test('touch navigation, both schedule paths, rotation, draft and original preser
   await page.getByRole('button', { name: '일정 저장', exact: true }).tap();
   await expect(page.getByRole('dialog', { name: '시험·과제·강의 일정' })).toBeHidden();
   await page.locator(summary).tap();
-  await page.getByRole('link', { name: '일정에서 확인하기', exact: true }).first().tap();
+  await page.getByRole('button', { name: '일정에서 확인하기', exact: true }).first().tap();
   await expect(page.locator('#learning-schedules')).toHaveAttribute('open', '');
   await expect(page.locator(summary)).toBeFocused();
   const first = await metrics(page);
@@ -60,7 +60,7 @@ test('touch navigation, both schedule paths, rotation, draft and original preser
   await page.screenshot({ path: info.outputPath('schedule.png') });
   await page.locator(summary).tap();
   await page.getByText('기한이 있는 일정 1개', { exact: true }).tap();
-  await page.getByRole('link', { name: '일정과 준비 상태 보기', exact: true }).tap();
+  await page.getByRole('button', { name: '일정과 준비 상태 보기', exact: true }).tap();
   await expect(page.locator(summary)).toBeFocused();
   await expect(
     page.getByRole('button', { name: '시험·과제·강의 일정 추가', exact: true }),
@@ -102,7 +102,7 @@ test('touch navigation, both schedule paths, rotation, draft and original preser
   );
   await page.getByRole('button', { name: '시험·과제·강의 일정 닫기', exact: true }).tap();
   await page.reload();
-  await page.getByRole('link', { name: '일정에서 확인하기', exact: true }).first().tap();
+  await page.getByRole('button', { name: '일정에서 확인하기', exact: true }).first().tap();
   await page.getByRole('button', { name: '일정 수정', exact: true }).tap();
   await expect(page.getByRole('textbox', { name: '일정 메모 · 선택', exact: true })).toHaveValue(
     draftNote,
@@ -111,7 +111,7 @@ test('touch navigation, both schedule paths, rotation, draft and original preser
   await page.getByRole('textbox', { name: '일정 메모 · 선택', exact: true }).fill(note);
   await page.getByRole('button', { name: '일정 저장', exact: true }).tap();
   await page.reload();
-  await page.getByRole('link', { name: '일정에서 확인하기', exact: true }).first().tap();
+  await page.getByRole('button', { name: '일정에서 확인하기', exact: true }).first().tap();
   await page.getByRole('button', { name: '일정 수정', exact: true }).tap();
   await expect(page.getByRole('textbox', { name: '일정 메모 · 선택', exact: true })).toHaveValue(
     note,

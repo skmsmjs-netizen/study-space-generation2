@@ -9,12 +9,12 @@ type Result = { parameters: number[]; fingerprint: string; count: number; baseVe
 export function RecallOptimization({ data, repository, onApplied, preferenceId, disabled, deckId }: {
   data: AppState; repository: RecallRepository; onApplied: (data: AppState) => void; preferenceId: string; disabled: boolean; deckId?: string;
 }) {
-  const training = useMemo(() => recallTraining(data, deckId), [data.nodes, data.subjects, data.recallCards, deckId]);
+  const training = useMemo(() => recallTraining({nodes: data.nodes, subjects: data.subjects, recallCards: data.recallCards}, deckId), [data.nodes, data.subjects, data.recallCards, deckId]);
   const [running, setRunning] = useState(false), [result, setResult] = useState<Result | null>(null);
   const [error, setError] = useState(''), [notice, setNotice] = useState('');
   const job = useRef<{ channel: BroadcastChannel; timer: ReturnType<typeof setTimeout> } | null>(null);
   const stop = () => { job.current?.channel.postMessage({ type: 'cancel' }); job.current?.channel.close(); clearTimeout(job.current?.timer); job.current = null; };
-  useEffect(() => () => stop(), []);
+  useEffect(() => () => { job.current?.channel.postMessage({ type: 'cancel' }); job.current?.channel.close(); clearTimeout(job.current?.timer); job.current = null; }, []);
   const start = () => {
     if (disabled || running) return;
     if (!training.lengths.length) { setNotice('날짜를 달리한 복습 이력이 아직 없습니다. 기본 설정으로 복습을 이어가면 최적화할 수 있습니다.'); return; }

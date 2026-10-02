@@ -1,0 +1,335 @@
+@import './observatory-ui-tokens.css';
+
+/* Decorative material roles reuse the adopted interior/paper token owners.
+   SVG coordinates are drawing geometry; no reading surface or control is drawn here. */
+.observatory-place-art {
+  --room-art-play-state: paused;
+  --room-art-duration: calc(18s - var(--room-activity, 0) * 7s);
+  --room-art-amplitude: calc(0.25 + var(--room-activity, 0) * 0.75);
+  --room-art-shimmer: calc(0.14 + var(--room-glimmer, 0) * 0.48);
+  --obs-place-walnut: color-mix(
+    in oklch,
+    var(--observatory-paper-primary) 74%,
+    var(--observatory-interior-canvas)
+  );
+  --obs-place-walnut-light: color-mix(
+    in oklch,
+    var(--observatory-paper-primary) 62%,
+    var(--observatory-interior-primary)
+  );
+  --obs-place-clay: color-mix(
+    in oklch,
+    var(--primitive-common-warning-500) 65%,
+    var(--primitive-common-error-500)
+  );
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 960 / 260;
+  pointer-events: auto;
+  user-select: none;
+  image-rendering: pixelated;
+}
+.obs-place-wall {
+  fill: var(--observatory-interior-surface);
+}
+.obs-place-wall-edge {
+  fill: var(--observatory-interior-border-decorative);
+}
+.obs-place-floor {
+  fill: var(--observatory-interior-subtle);
+}
+.obs-place-shadow,
+.obs-place-ink {
+  fill: var(--observatory-interior-canvas);
+}
+.obs-place-recess {
+  fill: color-mix(in oklch, var(--observatory-interior-canvas) 90%, var(--obs-place-walnut));
+}
+.obs-place-wood,
+.obs-place-book-wood {
+  fill: var(--obs-place-walnut);
+}
+.obs-place-wood-light,
+.obs-place-grain {
+  fill: var(--obs-place-walnut-light);
+}
+.obs-place-grain {
+  opacity: 0.6;
+}
+.obs-place-cork {
+  fill: color-mix(in oklch, var(--obs-place-walnut) 78%, var(--observatory-interior-primary));
+}
+.obs-place-paper,
+.obs-place-book-cream {
+  fill: var(--observatory-paper-canvas);
+}
+.obs-place-paper-subtle {
+  fill: var(--observatory-paper-subtle);
+}
+.obs-place-paper-edge {
+  fill: var(--observatory-paper-border-decorative);
+}
+.obs-place-brass {
+  fill: var(--observatory-interior-primary);
+}
+.obs-place-light {
+  fill: var(--observatory-interior-primary-hover);
+}
+.obs-place-light-stop {
+  stop-color: var(--observatory-interior-primary-hover);
+}
+.obs-place-clay,
+.obs-place-book-clay {
+  fill: color-mix(in oklch, var(--obs-place-clay) 44%, var(--obs-place-walnut));
+}
+.obs-place-moss,
+.obs-place-book-moss {
+  fill: color-mix(
+    in oklch,
+    var(--primitive-common-success-900) 48%,
+    var(--observatory-interior-muted)
+  );
+}
+.obs-place-slate,
+.obs-place-book-slate {
+  fill: color-mix(
+    in oklch,
+    var(--primitive-common-info-900) 58%,
+    var(--observatory-interior-muted)
+  );
+}
+.obs-place-glass {
+  fill: color-mix(
+    in oklch,
+    var(--observatory-interior-primary) 24%,
+    var(--observatory-interior-subtle)
+  );
+}
+.obs-place-string {
+  fill: none;
+  stroke: var(--observatory-interior-primary);
+  stroke-width: 1;
+  opacity: 0.38;
+}
+
+/* Geometry uses SVG viewBox units. The scene publishes unitless pan coordinates;
+   its single camera controller owns smoothing, focus retention and reset. */
+.obs-place-camera {
+  transform: translate(var(--pixel-pan-x, 0px), var(--pixel-pan-y, 0px))
+    scale(var(--pixel-sky-zoom, 1));
+  transform-origin: var(--pixel-origin-x, 480px) var(--pixel-origin-y, 130px);
+}
+.obs-place-depth-back {
+  transform: translate(calc(var(--room-pan-x, 0) * 0.12px), calc(var(--room-pan-y, 0) * 0.12px));
+}
+.obs-place-depth-mid {
+  transform: translate(calc(var(--room-pan-x, 0) * 0.44px), calc(var(--room-pan-y, 0) * 0.44px));
+}
+.obs-place-depth-front {
+  transform: translate(calc(var(--room-pan-x, 0) * 0.8px), calc(var(--room-pan-y, 0) * 0.8px));
+}
+.obs-place-detail-near {
+  opacity: calc(var(--room-detail, 0) * (0.42 + var(--room-growth, 0) * 0.4));
+}
+.obs-place-detail-line,
+.obs-place-detail-grain,
+.obs-place-fiber,
+.obs-place-ring-line {
+  fill: none;
+  stroke-width: 0.55;
+  stroke-linecap: square;
+}
+.obs-place-detail-line {
+  stroke: var(--observatory-interior-primary-hover);
+  opacity: 0.7;
+}
+.obs-place-detail-grain {
+  stroke: var(--obs-place-walnut-light);
+}
+.obs-place-fiber {
+  stroke: var(--observatory-paper-border-decorative);
+  stroke-width: 0.4;
+}
+.obs-place-ring-line {
+  stroke: var(--observatory-interior-primary);
+  stroke-width: 0.65;
+}
+.obs-place-lamp-wash {
+  opacity: calc(0.13 + var(--room-light, 0) * 0.22);
+}
+.obs-place-ceiling-wash {
+  opacity: calc(0.07 + var(--room-light, 0) * 0.13);
+}
+.obs-place-spine-scan,
+.obs-place-pin-travel {
+  --room-art-scan-distance: 105;
+  fill: none;
+  stroke: var(--observatory-interior-primary-hover);
+  stroke-width: 0.85;
+  opacity: var(--room-art-shimmer);
+  stroke-dasharray: 9 96;
+  animation: obs-place-scan var(--room-art-duration) linear infinite;
+  animation-play-state: var(--room-art-play-state);
+}
+.obs-place-pin-travel {
+  --room-art-scan-distance: 84;
+  stroke-dasharray: 5 79;
+  stroke-width: 1;
+  opacity: calc(var(--room-art-shimmer) * (0.45 + var(--room-density, 0) * 0.55));
+  animation-duration: calc(13s - var(--room-activity, 0) * 5s);
+  animation-direction: reverse;
+}
+.obs-place-page-edge {
+  animation: obs-place-page-edge var(--room-art-duration) ease-in-out infinite;
+  animation-play-state: var(--room-art-play-state);
+}
+.obs-place-paper-flutter {
+  transform-origin: 357px 50px;
+  animation: obs-place-paper-flutter calc(14s - var(--room-activity, 0) * 4s) ease-in-out infinite;
+  animation-play-state: var(--room-art-play-state);
+}
+.obs-place-pendulum {
+  transform-origin: 710px 56px;
+  animation: obs-place-pendulum calc(5.8s - var(--room-activity, 0) * 1.4s) ease-in-out infinite;
+  animation-play-state: var(--room-art-play-state);
+}
+.obs-place-meter-needle {
+  transform-origin: 630px 155px;
+  animation: obs-place-needle calc(11s - var(--room-activity, 0) * 3s) ease-in-out infinite;
+  animation-play-state: var(--room-art-play-state);
+}
+.obs-place-tea-steam path {
+  fill: none;
+  stroke: var(--observatory-interior-primary-hover);
+  stroke-width: 0.65;
+  opacity: 0;
+  animation: obs-place-steam calc(7s - var(--room-activity, 0) * 1.8s) ease-out infinite;
+  animation-play-state: var(--room-art-play-state);
+}
+.obs-place-tea-steam .obs-place-steam-second {
+  animation-delay: -2.3s;
+}
+.obs-place-ceiling-ring {
+  transform-origin: 0 0;
+  opacity: calc(0.3 + var(--room-glimmer, 0) * 0.28);
+  animation: obs-place-ring calc(70s - var(--room-activity, 0) * 22s) linear infinite;
+  animation-play-state: var(--room-art-play-state);
+}
+.obs-place-metal-reflection {
+  animation: obs-place-reflection var(--room-art-duration) ease-in-out infinite;
+  animation-play-state: var(--room-art-play-state);
+}
+
+@keyframes obs-place-scan {
+  from {
+    stroke-dashoffset: var(--room-art-scan-distance);
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes obs-place-page-edge {
+  0%,
+  43%,
+  71%,
+  100% {
+    transform: translateY(0);
+  }
+  55%,
+  62% {
+    transform: translateY(calc(-0.65px * var(--room-art-amplitude)));
+  }
+  59% {
+    transform: translateY(calc(0.2px * var(--room-art-amplitude)));
+  }
+}
+@keyframes obs-place-paper-flutter {
+  0%,
+  100% {
+    transform: skewX(0deg);
+  }
+  47% {
+    transform: skewX(calc(0.36deg * var(--room-art-amplitude)));
+  }
+  71% {
+    transform: skewX(calc(-0.12deg * var(--room-art-amplitude)));
+  }
+}
+@keyframes obs-place-pendulum {
+  0%,
+  50%,
+  100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(calc(6deg * var(--room-art-amplitude)));
+  }
+  75% {
+    transform: rotate(calc(-6deg * var(--room-art-amplitude)));
+  }
+}
+@keyframes obs-place-needle {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  24% {
+    transform: rotate(calc(-7deg * var(--room-art-amplitude)));
+  }
+  58% {
+    transform: rotate(calc(11deg * var(--room-art-amplitude)));
+  }
+  79% {
+    transform: rotate(calc(3deg * var(--room-art-amplitude)));
+  }
+}
+@keyframes obs-place-steam {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+  27% {
+    opacity: calc(0.13 + var(--room-density, 0) * 0.23);
+  }
+  65% {
+    opacity: calc(0.08 + var(--room-density, 0) * 0.12);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(
+      calc(2.5px * var(--room-art-amplitude)),
+      calc(-11px * var(--room-art-amplitude))
+    );
+  }
+}
+@keyframes obs-place-ring {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes obs-place-reflection {
+  0%,
+  100% {
+    opacity: 0.12;
+  }
+  52% {
+    opacity: calc(0.24 + var(--room-glimmer, 0) * 0.5);
+  }
+}
+
+.observatory-place-scene[data-motion='running'] .observatory-place-art {
+  --room-art-play-state: running;
+}
+.observatory-place-scene[data-motion='paused'] .observatory-place-art * {
+  animation-play-state: paused !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .observatory-place-art * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

@@ -28,3 +28,21 @@ describe('draft shape and unfinished input preservation',()=>{
   expect(s.getItem(`study-space:demo:draft:${draft.key}`)).toBe(before);
  });
 });
+
+describe('one durable local commit for concept-sized command sequences', () => {
+  it('retains every revision while writing storage once and rejects a later invalid owner atomically', () => {
+    const s = storage(), repo = new DemoRepository(s), before = repo.getSnapshot();
+    const originalSet = s.setItem; let writes = 0;
+    s.setItem = (key,value) => { writes++; originalSet(key,value); };
+    const commands = ['a','b'].map(id => ({type:'addSemester' as const,id,name:id,opId:`bulk-${id}`,at:'2026-10-01T00:00:00Z',userId:before.userId}));
+    repo.executeMany(commands);
+    expect(writes).toBe(1);
+    expect(repo.getSnapshot().revisions.length).toBe(before.revisions.length+2);
+    const saved = s.getItem(DEMO_KEY), current = repo.getSnapshot();
+    expect(() => repo.executeMany([{...commands[0],id:'c',opId:'bulk-c'},{...commands[1],id:'d',opId:'bulk-d',userId:'other'}])).toThrow();
+    expect(repo.getSnapshot()).toBe(current); expect(s.getItem(DEMO_KEY)).toBe(saved);
+    s.setItem = () => {throw Error('quota');};
+    expect(() => repo.executeMany([{...commands[0],id:'e',opId:'bulk-e'}])).toThrow('quota');
+    expect(repo.getSnapshot()).toBe(current);
+  });
+});

@@ -1,4 +1,4 @@
-import { useEffect, useId, useLayoutEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import './context-menu.css';
 
@@ -11,11 +11,11 @@ export function ContextMenu({ targetLabel, label = '목차 관리', items, disab
   const id = useId();
   const trigger = useRef<HTMLButtonElement>(null), menu = useRef<HTMLDivElement>(null);
   const initialFocus = useRef<'first' | 'last'>('first');
-  const close = (restore = true) => {
+  const close = useCallback((restore = true) => {
     setOpen(false);
     if (restore && trigger.current?.isConnected) trigger.current.focus({ preventScroll: true });
-  };
-  const enabled = () => [...(menu.current?.querySelectorAll<HTMLButtonElement>('[role="menuitem"]:not(:disabled)') || [])];
+  }, []);
+  const enabled = useCallback(() => [...(menu.current?.querySelectorAll<HTMLButtonElement>('[role="menuitem"]:not(:disabled)') || [])], []);
 
   useLayoutEffect(() => {
     if (!open || !menu.current || !trigger.current) return;
@@ -34,7 +34,7 @@ export function ContextMenu({ targetLabel, label = '목차 관리', items, disab
     window.addEventListener('resize', position);
     window.addEventListener('scroll', position, true);
     return () => { window.removeEventListener('resize', position); window.removeEventListener('scroll', position, true); };
-  }, [open]);
+  }, [open, enabled]);
 
   useEffect(() => {
     if (!open) return;
@@ -44,7 +44,7 @@ export function ContextMenu({ targetLabel, label = '목차 관리', items, disab
     document.addEventListener('pointerdown', pointer);
     document.addEventListener('focusin', focus);
     return () => { document.removeEventListener('pointerdown', pointer); document.removeEventListener('focusin', focus); };
-  }, [open]);
+  }, [open, close]);
 
   return <>
     <button ref={trigger} type="button" className="ui-button ui-button--secondary" disabled={disabled}

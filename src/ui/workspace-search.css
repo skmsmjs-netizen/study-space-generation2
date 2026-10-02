@@ -1,0 +1,14 @@
+.workspace-search-result a,
+.workspace-search-excerpt {
+  overflow-wrap: anywhere;
+}
+.workspace-search-excerpt {
+  white-space: pre-wrap;
+}
+.workspace-search-excerpt mark {
+  color: var(--color-text);
+  background: var(--color-background-selected);
+  font-weight: var(--type-label-weight);
+  text-decoration: underline;
+  text-underline-offset: var(--space-1);
+}

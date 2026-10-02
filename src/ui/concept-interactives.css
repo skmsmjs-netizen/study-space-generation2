@@ -1,0 +1,2 @@
+.concept-interactives { min-width: 0; }
+.concept-interactives iframe { display: block; width: 100%; border: 0; background: var(--color-background); }

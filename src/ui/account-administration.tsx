@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffectEvent, useEffect, useState } from 'react';
 import { Button, LoadingState, Modal } from './index';
 import type { AccountAccessClient } from '../data/account-access';
 import type { AccessStatus, ManagedAccount } from '../server/account-access';
@@ -15,7 +15,9 @@ export function AccountAdministration({ api }: { api: AccountAccessClient }) {
     catch (error) { setError(error instanceof Error ? error.message : '계정 목록을 불러오지 못했습니다.'); }
     finally { setBusy(false); }
   }
-  useEffect(() => { if (open) { setDecision(null); setNotice(''); void load(); } }, [open]);
+  const loadOnOpen = useEffectEvent(() => load());
+  // biome-ignore lint/correctness/useExhaustiveDependencies(api): Reopen or API identity changes refresh the account list; the Effect Event reads the latest cursor.
+  useEffect(() => { if (open) { setDecision(null); setNotice(''); void loadOnOpen(); } }, [open, api]);
   async function save() {
     if (!decision || busy) return;
     setBusy(true); setError(''); setNotice('');

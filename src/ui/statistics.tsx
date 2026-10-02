@@ -25,9 +25,19 @@ import {
   type ChartFamily,
   type ChartKind,
 } from '../domain/statistics-charts';
-import { readStatisticsView, saveStatisticsView } from '../data/statistics-view';
+import {
+  availableStatisticsRange,
+  readStatisticsView,
+  saveStatisticsView,
+} from '../data/statistics-view';
 import { StatisticsGallery, ChartValues } from './statistics-gallery';
 import { StatisticsPlot } from './statistics-plot';
+import {
+  selectedChartRows,
+  uniqueStatisticSources,
+  statisticsSelectionMatcher,
+  type StatisticsSelection,
+} from './statistics-selection';
 const format = (lo: number, hi: number | null) =>
   hi === null ? `${lo} 이상 · 상한 미정` : lo === hi ? `${lo}` : `${lo}–${hi}`;
 export function StudyStatistics({
@@ -40,21 +50,47 @@ export function StudyStatistics({
   compact?: boolean;
 }) {
   const today = koreanDay(new Date().toISOString());
+  const [bootView] = useState(() => readStatisticsView(data));
   const [initialMonth] = useState(() =>
     calendarMonth(readStatisticsMonth(data, today.slice(0, 7)).month),
   );
-  const [from, setFrom] = useState(compact ? shiftDay(today, -13) : initialMonth.from),
-    [to, setTo] = useState(compact ? today : initialMonth.to);
-  const [bootView] = useState(() => readStatisticsView(data));
-  const [subjectId, setSubject] = useState(''),
-    [nodeId, setNode] = useState(''),
+  const [from, setFrom] = useState(
+      compact ? shiftDay(today, -13) : (bootView.view.range?.from ?? initialMonth.from),
+    ),
+    [to, setTo] = useState(compact ? today : (bootView.view.range?.to ?? initialMonth.to));
+  const [sharedSelection, setSharedSelection] = useState<StatisticsSelection | null>(null);
+  const [selectionFrom, setSelectionFrom] = useState('');
+  const [selectionTo, setSelectionTo] = useState('');
+  const [selectionSubject, setSelectionSubject] = useState('');
+  const selectionOwner = `${data.namespace}:${data.userId}`;
+  const sharedMatch = useMemo(
+    () => statisticsSelectionMatcher(sharedSelection, data),
+    [sharedSelection, data],
+  );
+  const selectEvidence = (label: string, items: StatisticItem[]) =>
+    setSharedSelection({ owner: selectionOwner, label, sourceKeys: uniqueStatisticSources(items) });
+  const [chosenSubjectId, setSubject] = useState(
+      compact ? '' : (bootView.view.range?.subjectId ?? ''),
+    ),
+    [chosenNodeId, setNode] = useState(compact ? '' : (bootView.view.range?.nodeId ?? '')),
     [metricId, setMetric] = useState<MetricId>(compact ? 'sessions' : bootView.view.metricId);
+  const [compare, setCompare] = useState(compact ? false : (bootView.view.range?.compare ?? false));
+  const {
+    subjectId,
+    nodeId,
+    unavailable: rangeUnavailable,
+  } = availableStatisticsRange(data, subjectIds, {
+    subjectId: chosenSubjectId,
+    nodeId: chosenNodeId,
+  });
   const [family, setFamily] = useState<ChartFamily>(bootView.view.family),
     [kind, setKind] = useState<ChartKind>(bootView.view.kind),
     [overview, setOverview] = useState(bootView.view.overview),
     [secondMetricId, setSecondMetric] = useState<MetricId>(bootView.view.secondMetricId);
   const [viewNotice, setViewNotice] = useState(bootView.error),
     viewTouched = useRef(false);
+  const [viewSaveFailed, setViewSaveFailed] = useState(false);
+  const [viewSaveRetry, setViewSaveRetry] = useState(0);
   const viewAccount = useRef(`${data.namespace}:${data.userId}`);
   useEffect(() => {
     const account = `${data.namespace}:${data.userId}`;
@@ -67,25 +103,57 @@ export function StudyStatistics({
     setOverview(next.view.overview);
     setMetric(compact ? 'sessions' : next.view.metricId);
     setSecondMetric(next.view.secondMetricId);
+    const month = calendarMonth(readStatisticsMonth(data, today.slice(0, 7)).month);
+    setFrom(compact ? shiftDay(today, -13) : (next.view.range?.from ?? month.from));
+    setTo(compact ? today : (next.view.range?.to ?? month.to));
+    setSubject(compact ? '' : (next.view.range?.subjectId ?? ''));
+    setNode(compact ? '' : (next.view.range?.nodeId ?? ''));
+    setCompare(compact ? false : (next.view.range?.compare ?? false));
     setViewNotice(next.error);
-  }, [data.userId, data.namespace, compact]);
+    setViewSaveFailed(false);
+  }, [data, compact, today]);
+  // biome-ignore lint/correctness/useExhaustiveDependencies: The retry button increments viewSaveRetry to repeat a failed save without changing the user's selected view.
   useEffect(() => {
-    if (compact || !viewTouched.current) return;
+    if (compact || !viewTouched.current || !validPeriod(from, to)) return;
     try {
       saveStatisticsView(
         { userId: data.userId, namespace: data.namespace },
-        { version: 1, family, kind, overview, metricId, secondMetricId },
+        {
+          version: 1,
+          family,
+          kind,
+          overview,
+          metricId,
+          secondMetricId,
+          range: { from, to, subjectId, nodeId, compare },
+        },
       );
       setViewNotice('');
+      setViewSaveFailed(false);
     } catch {
+      setViewSaveFailed(true);
       setViewNotice(
-        '그래프 선택을 이 기기에 저장하지 못했습니다. 화면의 선택과 원기록은 유지했습니다.',
+        '통계 범위와 그래프 선택을 이 기기에 저장하지 못했습니다. 화면의 선택과 원기록은 유지했습니다.',
       );
     }
-  }, [data.userId, data.namespace, family, kind, overview, metricId, secondMetricId, compact]);
+  }, [
+    data.userId,
+    data.namespace,
+    family,
+    kind,
+    overview,
+    metricId,
+    secondMetricId,
+    compact,
+    from,
+    to,
+    subjectId,
+    nodeId,
+    compare,
+    viewSaveRetry,
+  ]);
 
   const [view, setView] = useState('graph'),
-    [compare, setCompare] = useState(false),
     [zoom, setZoom] = useState(1);
   const [cursor, setCursor] = useState<number | null>(null),
     [playing, setPlaying] = useState(false);
@@ -302,6 +370,9 @@ export function StudyStatistics({
               <g
                 key={b.lo}
                 className="bar-control"
+                data-shared-selected={
+                  sharedMatch ? b.current.evidence.some(sharedMatch) : undefined
+                }
                 style={{ opacity: cursor !== null && i > cursor ? 0.35 : 1 }}
                 role="button"
                 tabIndex={0}
@@ -364,6 +435,92 @@ export function StudyStatistics({
   }
   return (
     <section className="study-statistics" aria-label="공부 통계">
+      <section className="statistics-scope" aria-label="통계 범위와 비교">
+        <h2>살펴볼 기록 범위</h2>
+        <div className="statistics-filters">
+          <Input
+            label="통계 시작일"
+            type="date"
+            value={from}
+            onChange={(e) => {
+              viewTouched.current = true;
+              setFrom(e.target.value);
+            }}
+          />
+          <Input
+            label="통계 종료일"
+            type="date"
+            value={to}
+            onChange={(e) => {
+              viewTouched.current = true;
+              setTo(e.target.value);
+            }}
+          />
+          <Select
+            label="통계 과목"
+            value={subjectId}
+            onChange={(e) => {
+              viewTouched.current = true;
+              setSubject(e.target.value);
+              setNode('');
+            }}
+          >
+            <option value="">현재 범위 전체</option>
+            {data.subjects
+              .filter((s) => !s.deletedAt && subjectIds.includes(s.id))
+              .map((s) => (
+                <option key={s.id} value={s.id}>
+                  {s.name}
+                </option>
+              ))}
+          </Select>
+          <Select
+            label="통계 단원·주제"
+            value={nodeId}
+            onChange={(e) => {
+              viewTouched.current = true;
+              setNode(e.target.value);
+            }}
+          >
+            <option value="">전체 목차</option>
+            {data.nodes
+              .filter(
+                (n) =>
+                  !n.deletedAt &&
+                  subjectIds.includes(n.subjectId) &&
+                  (!subjectId || n.subjectId === subjectId),
+              )
+              .map((n) => (
+                <option key={n.id} value={n.id}>
+                  {data.subjects.find((s) => s.id === n.subjectId)?.name} · {n.name}
+                </option>
+              ))}
+          </Select>
+        </div>
+        <div className="actions">
+          {[7, 14, 30].map((n) => (
+            <Button
+              key={n}
+              variant="quiet"
+              onClick={() => {
+                viewTouched.current = true;
+                setFrom(shiftDay(today, 1 - n));
+                setTo(today);
+              }}
+            >
+              최근 {n}일
+            </Button>
+          ))}
+          <Checkbox
+            label="같은 길이의 이전 기간과 비교"
+            checked={compare}
+            onChange={(e) => {
+              viewTouched.current = true;
+              setCompare(e.target.checked);
+            }}
+          />
+        </div>
+      </section>
       <div className="actions">
         <Checkbox
           label="여러 그래프 한눈에 보기"
@@ -375,10 +532,26 @@ export function StudyStatistics({
         />
       </div>
       {viewNotice && <p role="status">{viewNotice}</p>}
+      {viewSaveFailed && (
+        <Button
+          disabled={!validPeriod(from, to)}
+          onClick={() => setViewSaveRetry((attempt) => attempt + 1)}
+        >
+          통계 보기 저장 다시 시도
+        </Button>
+      )}
+      {rangeUnavailable && (
+        <p role="status">
+          이전 선택의 과목 또는 주제가 현재 범위에 없어 사용 가능한 범위로 열었습니다. 원기록은
+          그대로 유지했습니다.
+        </p>
+      )}
       {overview && valid && (
         <StatisticsGallery
           context={chartContext}
           onChoose={chooseChart}
+          sharedMatch={sharedMatch}
+          onSelect={(row) => selectEvidence(row.label, row.items)}
           onOpen={(row) => openEvidence(row.label, row.items, row.unit ?? metric.unit)}
         />
       )}
@@ -478,6 +651,7 @@ export function StudyStatistics({
                   >
                     <StatisticsPlot
                       figure={figure}
+                      selectedRows={selectedChartRows(figure, sharedMatch)}
                       cursor={family === 'trend' ? cursor : null}
                       onOpen={(row) => openEvidence(row.label, row.items, row.unit ?? metric.unit)}
                     />
@@ -488,6 +662,8 @@ export function StudyStatistics({
               <ChartValues
                 figure={figure}
                 expanded
+                sharedMatch={sharedMatch}
+                onSelect={(row) => selectEvidence(row.label, row.items)}
                 onOpen={(row) => openEvidence(row.label, row.items, row.unit ?? metric.unit)}
               />
             )}
@@ -496,6 +672,8 @@ export function StudyStatistics({
                 <p className="muted">{figure.description}</p>
                 <ChartValues
                   figure={figure}
+                  sharedMatch={sharedMatch}
+                  onSelect={(row) => selectEvidence(row.label, row.items)}
                   onOpen={(row) => openEvidence(row.label, row.items, row.unit ?? metric.unit)}
                 />
               </>
@@ -638,66 +816,97 @@ export function StudyStatistics({
           </div>
         </>
       )}
-      <div className="statistics-filters">
-        <Input
-          label="통계 시작일"
-          type="date"
-          value={from}
-          onChange={(e) => setFrom(e.target.value)}
-        />
-        <Input label="통계 종료일" type="date" value={to} onChange={(e) => setTo(e.target.value)} />
-        <Select
-          label="통계 과목"
-          value={subjectId}
-          onChange={(e) => {
-            setSubject(e.target.value);
-            setNode('');
-          }}
-        >
-          <option value="">현재 범위 전체</option>
-          {data.subjects
-            .filter((s) => !s.deletedAt && subjectIds.includes(s.id))
-            .map((s) => (
-              <option key={s.id} value={s.id}>
-                {s.name}
-              </option>
-            ))}
-        </Select>
-        <Select label="통계 단원·주제" value={nodeId} onChange={(e) => setNode(e.target.value)}>
-          <option value="">전체 목차</option>
-          {data.nodes
-            .filter(
-              (n) =>
-                !n.deletedAt &&
-                subjectIds.includes(n.subjectId) &&
-                (!subjectId || n.subjectId === subjectId),
-            )
-            .map((n) => (
-              <option key={n.id} value={n.id}>
-                {data.subjects.find((s) => s.id === n.subjectId)?.name} · {n.name}
-              </option>
-            ))}
-        </Select>
-      </div>
-      <div className="actions">
-        {[7, 14, 30].map((n) => (
-          <Button
-            key={n}
-            variant="quiet"
-            onClick={() => {
-              setFrom(shiftDay(today, 1 - n));
-              setTo(today);
-            }}
+      <Card
+        className="statistics-shared-selection"
+        role="region"
+        aria-label="그래프와 원기록 함께 선택"
+      >
+        <h2>같은 기록을 여러 그래프에서 보기</h2>
+        <p className="muted">
+          선택은 강조에만 사용합니다. 전체 값·비율의 분모와 날짜 미정 기록은 그대로 유지합니다.
+        </p>
+        <div className="statistics-filters">
+          <Input
+            label="함께 선택할 시작일"
+            type="date"
+            value={selectionFrom}
+            onChange={(e) => setSelectionFrom(e.target.value)}
+          />
+          <Input
+            label="함께 선택할 종료일"
+            type="date"
+            value={selectionTo}
+            onChange={(e) => setSelectionTo(e.target.value)}
+          />
+          <Select
+            label="함께 선택할 과목"
+            value={selectionSubject}
+            onChange={(e) => setSelectionSubject(e.target.value)}
           >
-            최근 {n}일
+            <option value="">현재 범위 모든 과목</option>
+            {data.subjects
+              .filter((s) => !s.deletedAt && subjectIds.includes(s.id))
+              .map((s) => (
+                <option key={s.id} value={s.id}>
+                  {s.name}
+                </option>
+              ))}
+          </Select>
+        </div>
+        <div className="actions">
+          <Button
+            disabled={!validPeriod(selectionFrom, selectionTo)}
+            onClick={() =>
+              setSharedSelection({
+                owner: selectionOwner,
+                label: `${selectionFrom}–${selectionTo} · 정확한 날짜${selectionSubject ? ' · 선택한 과목' : ''}`,
+                period: { from: selectionFrom, to: selectionTo },
+                subjectId: selectionSubject || undefined,
+              })
+            }
+          >
+            날짜를 함께 선택
           </Button>
-        ))}
-        <Checkbox
-          label="같은 길이의 이전 기간과 비교"
-          checked={compare}
-          onChange={(e) => setCompare(e.target.checked)}
-        />
-      </div>
+          <Button
+            disabled={!selectionSubject}
+            onClick={() =>
+              setSharedSelection({
+                owner: selectionOwner,
+                label: data.subjects.find((s) => s.id === selectionSubject)?.name || '선택한 과목',
+                subjectId: selectionSubject,
+              })
+            }
+          >
+            과목을 함께 선택
+          </Button>
+          <Button variant="quiet" disabled={!sharedMatch} onClick={() => setSharedSelection(null)}>
+            공유 선택 해제
+          </Button>
+        </div>
+        <p role="status">
+          {sharedMatch
+            ? `${sharedSelection!.label} · 선택된 근거 ${uniqueStatisticSources(metrics.flatMap((m) => statisticBounds(m, from, to).evidence.filter(sharedMatch))).length}개 / 현재 범위 전체 근거 ${uniqueStatisticSources(metrics.flatMap((m) => statisticBounds(m, from, to).evidence)).length}개`
+            : '공유 선택 없음 · 현재 범위 전체를 표시합니다.'}
+        </p>
+        {sharedMatch && (
+          <Button
+            variant="quiet"
+            onClick={() =>
+              openEvidence(
+                '함께 선택한 원기록',
+                metrics.flatMap((m) => statisticBounds(m, from, to).evidence.filter(sharedMatch)),
+                '',
+              )
+            }
+          >
+            선택한 원기록 보기
+          </Button>
+        )}
+        <p className="muted">
+          날짜 선택은 정확한 날짜만 포함합니다. 기간·날짜 미정 기록은 원기록에서 직접 선택할 수
+          있습니다. 공유 선택은 이 통계 화면을 나갈 때 해제됩니다.
+        </p>
+      </Card>
       <MonthSummary
         data={data}
         workspace={workspace}
@@ -707,6 +916,7 @@ export function StudyStatistics({
         unavailable={Boolean(readError)}
         onOpen={(month, id, items, unit) => {
           const period = calendarMonth(month);
+          viewTouched.current = true;
           setFrom(period.from);
           setTo(period.to);
           setMetric(id);
@@ -724,6 +934,12 @@ export function StudyStatistics({
         {selection && (
           <>
             <p>{selection.label}</p>
+            <Button
+              variant="quiet"
+              onClick={() => selectEvidence(selection.label, selection.items)}
+            >
+              이 원기록들을 함께 선택
+            </Button>
             <Button
               variant="quiet"
               aria-pressed={Boolean(frozen)}
@@ -745,7 +961,17 @@ export function StudyStatistics({
             <div className="statistics-evidence">
               {selection.items.length ? (
                 selection.items.map((i) => (
-                  <article key={`${i.id}:${i.recordIds.join(',')}:${i.eventIds.join(',')}`}>
+                  <article
+                    key={`${i.id}:${i.recordIds.join(',')}:${i.eventIds.join(',')}`}
+                    data-shared-selected={sharedMatch ? sharedMatch(i) : undefined}
+                  >
+                    <Button
+                      variant="quiet"
+                      aria-pressed={Boolean(sharedMatch?.(i))}
+                      onClick={() => selectEvidence(i.label, [i])}
+                    >
+                      이 원기록 함께 선택
+                    </Button>
                     <strong>{i.label}</strong>
                     <p className="muted">
                       {dateLabel(i)} ·{' '}
@@ -786,7 +1012,7 @@ export function StudyStatistics({
                                     : '결과 미확인'}{' '}
                               · 자기 보고
                             </p>
-                            <a href="#/">다음 공부에서 결과 열기</a>
+                            <a href="#/">오늘에서 다음 공부 보기</a>
                           </div>
                         )
                       );

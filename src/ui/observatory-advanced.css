@@ -1,0 +1,105 @@
+/* Decorative geometry and sampling values; colors inherit the adopted cover palette. */
+.obs-gpu-surface {
+  pointer-events: none;
+}
+.obs-gpu-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  image-rendering: pixelated;
+  pointer-events: none;
+}
+.obs-lod-middle {
+  opacity: var(--pixel-lod-middle, 0);
+  pointer-events: none;
+}
+.obs-lod-close {
+  opacity: var(--pixel-lod-close, 0);
+  pointer-events: none;
+}
+.obs-flow-thread {
+  fill: none;
+  stroke: var(--obs-coral);
+  stroke-width: 0.65;
+}
+.obs-flow-thread--cool {
+  stroke: var(--obs-mint);
+  stroke-width: 0.4;
+}
+.obs-flow-grain {
+  fill: var(--obs-gold);
+}
+.obs-selective-glow {
+  fill: var(--obs-coral);
+}
+.obs-detail-orbit {
+  fill: none;
+  stroke: var(--obs-mint);
+  stroke-width: 0.4;
+  opacity: 0.3;
+}
+.obs-binary-pair {
+  transform-origin: 0 0;
+  animation: obs-binary-resolve 19s linear infinite;
+}
+.obs-binary-stars {
+  fill: var(--obs-gold);
+}
+.obs-resolved-galaxy {
+  transform-origin: 0 0;
+  animation: obs-galaxy-resolve 75s linear infinite;
+}
+.obs-galaxy-arm {
+  fill: var(--obs-mint);
+  opacity: 0.6;
+}
+.obs-galaxy-core {
+  fill: var(--obs-gold);
+}
+.obs-nebula-knot {
+  transform-origin: 0 0;
+  animation: obs-knot-resolve 14s ease-in-out infinite alternate;
+}
+.obs-knot-cloud {
+  fill: var(--obs-coral);
+  opacity: 0.16;
+}
+.obs-knot-edge {
+  fill: none;
+  stroke: var(--obs-gold);
+  stroke-width: 0.6;
+  opacity: 0.65;
+}
+@keyframes obs-binary-resolve {
+  to {
+    rotate: 360deg;
+  }
+}
+@keyframes obs-galaxy-resolve {
+  to {
+    rotate: 360deg;
+  }
+}
+@keyframes obs-knot-resolve {
+  from {
+    scale: 0.95 1;
+  }
+  to {
+    scale: 1.1 0.96;
+    translate: 2px -1px;
+  }
+}
+.study-landscapes .pixel-building-rim {
+  fill: color-mix(
+    in oklch,
+    var(--obs-coral) var(--obs-wave-light, 0%),
+    var(--obs-time-roof, var(--obs-gold))
+  );
+}
+.study-landscapes .pixel-building-wall {
+  fill: color-mix(
+    in oklch,
+    var(--obs-coral) var(--obs-wave-light, 0%),
+    var(--obs-time-wall, var(--obs-deep))
+  );
+}

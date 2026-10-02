@@ -65,6 +65,7 @@ beforeEach(async () => {
 afterEach(async () => {
   await new Promise<void>((resolve) => server.close(() => resolve()));
   vi.clearAllMocks();
+  vi.restoreAllMocks();
   vi.unstubAllGlobals();
 });
 function request(path: string, body?: unknown, auth = true, origin = address) {
@@ -86,6 +87,36 @@ function source() {
   form.set('cardCount', '5');
   return form;
 }
+function installTemporaryCredits(expiresAt: number, maxCalls = 3, production = false) {
+  const plugin = localStudyAIPlugin({ temporaryCredits: { expiresAt, maxCalls } });
+  (plugin.configureServer as Function)({
+    config: { isProduction: production, mode: production ? 'production' : 'development' },
+    httpServer: server,
+    middlewares: { use: (_path: string, fn: typeof middleware) => { middleware = fn; } },
+  });
+}
+it('allows at most three explicitly configured temporary credit attempts without claiming credits are disabled', async () => {
+  installTemporaryCredits(Date.now() + 60000);
+  await request('/models');
+  const status = await (await realFetch(`${address}/api/study-ai/status`, { headers: { Origin: address, Authorization: 'Bearer synthetic-app-session' } })).json();
+  expect(status.temporaryCreditsAllowed).toBe(true);
+  expect(status.creditsConfirmed).toBe(false);
+  for (let i = 0; i < 3; i++) expect((await request('', source())).status).toBe(200);
+  expect((await request('', source())).status).toBe(400);
+  expect(runtime.streamResponse).toHaveBeenCalledTimes(3);
+});
+it('blocks temporary credit attempts after expiry and in production even when configured', async () => {
+  const start = Date.now();
+  installTemporaryCredits(start + 60000);
+  await request('/models');
+  vi.spyOn(Date, 'now').mockReturnValue(start + 60001);
+  expect((await request('', source())).status).toBe(400);
+  vi.restoreAllMocks();
+  installTemporaryCredits(Date.now() + 60000, 3, true);
+  await request('/models');
+  expect((await request('', source())).status).toBe(400);
+  expect(runtime.streamResponse).not.toHaveBeenCalled();
+});
 it('uses the same owner and credit gates for title-only questions, with no paid fallback or repeat calls', async () => {
   const input = {
     subject: { id: 's', name: '회로이론', version: 1 },

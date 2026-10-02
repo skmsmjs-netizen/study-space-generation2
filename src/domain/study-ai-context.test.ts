@@ -2,7 +2,7 @@ import { expect, it } from 'vitest';
 import { emptyState } from './model';
 import { appendStudyAIContext, studyAIContextSources } from './study-ai-context';
 
-export function contextFixture() {
+function contextFixture() {
   const data = emptyState('synthetic-owner', 'test');
   const base = {
     userId: data.userId,

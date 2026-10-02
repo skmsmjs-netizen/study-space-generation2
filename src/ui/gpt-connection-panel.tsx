@@ -4,6 +4,7 @@ import { canUseOwnerAI } from '../domain/ai-access';
 import type { Namespace } from '../domain/model';
 import { configureOpenAIAPI, localAIStatus, type GPTConnectionStatus } from '../data/study-ai';
 import './study-materials.css';
+import { featureSurfaceAttributes } from './observatory-feature-identity';
 import { APIBudgetSummary, apiDollars as dollars } from './api-budget-summary';
 const message = (error: unknown) => error instanceof Error ? error.message : 'API 설정을 확인해 주세요.';
 /** Keys live only in this input until submitted to the authenticated server vault. */
@@ -56,21 +57,24 @@ export function GPTConnectionPanel({ userId, namespace = 'personal', busy = fals
     } catch (error) { setError(message(error)); }
     finally { setKey(''); setWorking(false); }
   }
-  return <section aria-label="GPT 연결 설정" aria-busy={working}>
+  return <section aria-label="GPT 연결 설정" aria-busy={working} {...featureSurfaceAttributes('U37')}>
     <div className="material-connection">
       <h2>GPT 연결</h2>
       <p>OpenAI API로 {purpose === 'memory' ? '암기항목을' : '요약·카드·퀴즈를'} 만듭니다. ChatGPT Plus 구독과 별도로 사용한 만큼 요금이 발생합니다.</p>
-      <p>GPT-6 Luna · 기본 월 상한 US$10. 전사문 가져오기는 API 비용을 쓰지 않습니다. 사진 분석은 생성 버튼을 누를 때 API 비용이 듭니다.</p>
+      <p>GPT-6 Luna · 기본 월 상한 US$10. 전사문 가져오기와 기기 OCR은 API 비용을 쓰지 않습니다.</p>
       <p>새 API 계정은 최소 US$5 선충전이 필요합니다. 매달 내는 구독료가 아니며 잔액은 1년 동안 사용합니다. 결제 화면에서 자동 충전은 꺼 주세요. <a href="https://help.openai.com/en/articles/8264644-setting-up-and-managing-prepaid-api-billing" target="_blank" rel="noreferrer">충전 안내</a></p>
       <div className="material-actions">
         <a href="https://platform.openai.com/api-keys" target="_blank" rel="noreferrer">API 키 만들기</a>
         <a href="https://platform.openai.com/settings/organization/billing/overview" target="_blank" rel="noreferrer">API 결제·잔액 확인</a>
         <a href="https://platform.openai.com/settings/organization/limits" target="_blank" rel="noreferrer">OpenAI 사용 한도 확인</a>
       </div>
+      <fieldset className="feature-control-group"><legend>연결 상태와 사용량</legend>
       {billing && <p role="status">{billing.configured ? billing.enabled ? '키 등록됨 · 생성 사용 켜짐' : '키 등록됨 · 생성 사용 멈춤' : 'API 키가 필요합니다.'}<br />
       </p>}
       {billing && <APIBudgetSummary billing={billing} />}
       {error && billing && <p className="material-hint">그래프는 마지막으로 확인한 사용량입니다. 사용량 새로고침으로 다시 확인해 주세요.</p>}
+      </fieldset>
+      <fieldset className="feature-control-group"><legend>키와 사용 상한</legend>
       <Input label={billing?.configured ? 'API 키 교체 (선택)' : 'OpenAI API 키'} type="password" value={key}
         autoComplete="off" autoCapitalize="none" spellCheck={false} disabled={disabled}
         onChange={e => setKey(e.target.value)} hint="키는 서버에 암호화하여 보관합니다. 기기의 학습 자료나 백업에는 넣지 않습니다." />
@@ -80,6 +84,8 @@ export function GPTConnectionPanel({ userId, namespace = 'personal', busy = fals
         <option value={3_000_000}>US$3</option><option value={6_000_000}>US$6</option><option value={10_000_000}>US$10 (기본)</option>
       </Select>
       <p className="material-hint">호출 전 예상 최대 비용을 예약하고 상한을 넘는 요청은 보내지 않습니다. 집계는 실제 청구액보다 높을 수 있습니다. UTC 기준 매월 초기화하며 키 교체·다시 연결로 집계를 초기화하지 않습니다. 세금·환율 차이와 다른 앱의 API 사용은 이 상한에 포함되지 않습니다.</p>
+      </fieldset>
+      <fieldset className="feature-control-group"><legend>확인하고 적용</legend>
       <Checkbox checked={confirmed} disabled={disabled} onChange={e => setConfirmed(e.target.checked)}
         label="별도 API 요금과 월 상한을 확인했습니다. 생성 버튼을 누를 때 선택한 자료를 OpenAI로 보냅니다." />
       <div className="material-actions">
@@ -94,6 +100,7 @@ export function GPTConnectionPanel({ userId, namespace = 'personal', busy = fals
           <Button variant="quiet" disabled={disabled} onClick={() => void save('disconnect')}>API 키 삭제</Button>
         </>}
       </div>
+      </fieldset>
       {notice && <p role="status">{notice}</p>}{error && <ErrorState message={error} />}
     </div>
   </section>;

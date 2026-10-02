@@ -20,9 +20,24 @@ it('opens personal entry from a locked demo without changing its data or drafts'
   fireEvent.click(screen.getByRole('button',{name:'내 공부 공간'}));await screen.findByRole('textbox',{name:'이메일'});
   expect(localStorage.getItem(DEMO_KEY)).toBe(raw);expect(localStorage.getItem('study-space:demo:draft:multiple')).toBe('preserved writing');
 });
-it('keeps a directly linked personal entry when remounted after route normalization',async()=>{
-  history.replaceState(null,'','/#/account');const view=render(<App/>);await screen.findByRole('textbox',{name:'이메일'});view.unmount();
+it.each(['/#/account', '/?space=demo#/account'])('keeps personal entry on reload after normalizing %s',async path=>{
+  history.replaceState(null,'',path);const view=render(<App/>);await screen.findByRole('textbox',{name:'이메일'});view.unmount();
   render(<App/>);await screen.findByRole('textbox',{name:'이메일'});expect(location.hash).toBe('#/');
+  expect(new URLSearchParams(location.search).has('space')).toBe(false);
+});
+it('opens the personal entry when a legacy account link is followed inside an open app', async()=>{
+  new DemoRepository(localStorage);
+  const raw=localStorage.getItem(DEMO_KEY);
+  localStorage.setItem('study-space:demo:draft:multiple','  작성하던 글\n예외');
+  history.replaceState(null,'','/?space=demo#/');render(<App/>);
+  await screen.findByRole('heading',{name:'예시 자료를 열지 못했습니다'});
+  history.replaceState(null,'','/?space=demo#/account');
+  fireEvent(window,new HashChangeEvent('hashchange'));
+  await screen.findByRole('textbox',{name:'이메일'});
+  expect(location.hash).toBe('#/');
+  expect(new URLSearchParams(location.search).has('space')).toBe(false);
+  expect(localStorage.getItem(DEMO_KEY)).toBe(raw);
+  expect(localStorage.getItem('study-space:demo:draft:multiple')).toBe('  작성하던 글\n예외');
 });
 it('returns email confirmations to personal entry without exposing an example-space switch',async()=>{
   history.replaceState(null,'','/?space=personal');render(<App/>);await screen.findByRole('textbox',{name:'이메일'});

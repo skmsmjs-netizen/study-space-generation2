@@ -1,0 +1,109 @@
+/* Generated from docs/observatory-palette.json by scripts/sync-observatory-palette.mjs. */
+.study-landscapes {
+  --observatory-night-950: color-mix(
+    in srgb,
+    var(--primitive-brand-950) 55%,
+    var(--primitive-common-black)
+  );
+  --observatory-night-800: var(--primitive-brand-950);
+  --observatory-night-650: var(--primitive-brand-900);
+  --observatory-night-450: var(--primitive-common-info-900);
+  --observatory-warm-500: color-mix(
+    in srgb,
+    var(--primitive-common-warning-500) 72%,
+    var(--primitive-common-error-500)
+  );
+  --observatory-warm-850: color-mix(
+    in srgb,
+    var(--observatory-warm-500) 35%,
+    var(--observatory-night-950)
+  );
+  --observatory-warm-700: var(--primitive-common-warning-900);
+  --observatory-warm-400: var(--primitive-common-warning-500);
+  --observatory-warm-250: color-mix(
+    in srgb,
+    var(--primitive-common-warning-500) 45%,
+    var(--primitive-common-warning-100)
+  );
+  --observatory-warm-100: color-mix(
+    in srgb,
+    var(--observatory-warm-500) 45%,
+    var(--primitive-common-white)
+  );
+  --observatory-warm-050: color-mix(
+    in srgb,
+    var(--observatory-warm-250) 35%,
+    var(--primitive-common-white)
+  );
+  --observatory-cool-500: color-mix(
+    in srgb,
+    var(--primitive-common-info-500) 65%,
+    var(--primitive-common-white)
+  );
+  --observatory-cool-350: color-mix(
+    in srgb,
+    var(--primitive-common-success-500) 50%,
+    var(--observatory-cool-500)
+  );
+  --observatory-cool-400: var(--primitive-brand-400);
+  --observatory-cool-850: var(--primitive-common-success-900);
+  --observatory-star-050: var(--primitive-common-white);
+  --obs-deep: var(--observatory-night-950);
+  --obs-white: var(--observatory-star-050);
+  --obs-blue: var(--observatory-cool-500);
+  --obs-violet: var(--observatory-cool-400);
+  --obs-gold: var(--observatory-warm-250);
+  --obs-mint: var(--observatory-cool-350);
+  --obs-rose: var(--observatory-warm-100);
+  --obs-coral: var(--observatory-warm-500);
+  --obs-accent: var(--obs-blue);
+  --obs-horizon: var(--observatory-night-800);
+}
+.study-landscapes[data-evolution-stage="0"] {
+  --obs-accent: var(--obs-blue);
+  --obs-horizon: var(--observatory-night-800);
+}
+.study-landscapes[data-evolution-stage="1"] {
+  --obs-accent: var(--obs-blue);
+  --obs-horizon: var(--observatory-night-450);
+}
+.study-landscapes[data-evolution-stage="2"] {
+  --obs-accent: var(--obs-mint);
+  --obs-horizon: var(--observatory-night-450);
+}
+.study-landscapes[data-evolution-stage="3"] {
+  --obs-accent: var(--obs-gold);
+  --obs-horizon: var(--observatory-night-800);
+}
+.study-landscapes[data-evolution-stage="4"] {
+  --obs-accent: var(--obs-gold);
+  --obs-horizon: var(--observatory-warm-700);
+}
+.study-landscapes[data-evolution-stage="5"] {
+  --obs-accent: var(--obs-violet);
+  --obs-horizon: var(--observatory-night-800);
+}
+.study-landscapes[data-evolution-stage="6"] {
+  --obs-accent: var(--obs-coral);
+  --obs-horizon: var(--observatory-warm-850);
+}
+.study-landscapes[data-evolution-stage="7"] {
+  --obs-accent: var(--obs-violet);
+  --obs-horizon: var(--observatory-night-650);
+}
+.study-landscapes[data-evolution-stage="8"] {
+  --obs-accent: var(--obs-blue);
+  --obs-horizon: var(--observatory-night-450);
+}
+.study-landscapes[data-evolution-stage="9"] {
+  --obs-accent: var(--obs-mint);
+  --obs-horizon: var(--observatory-cool-850);
+}
+.study-landscapes[data-evolution-stage="10"] {
+  --obs-accent: var(--obs-coral);
+  --obs-horizon: var(--observatory-warm-850);
+}
+.study-landscapes[data-evolution-stage="11"] {
+  --obs-accent: var(--obs-coral);
+  --obs-horizon: color-mix(in srgb, var(--obs-coral) 45%, var(--obs-deep));
+}

@@ -1,0 +1,17 @@
+{
+  "source": "outputs/20261001-math-template-kit",
+  "date": "2026-10-01",
+  "hashes": {
+    "index.html": "3b2440134c3aea4ed083cef4a03c5c753e980b78eff7b1882a5f410d9538941d",
+    "app.mjs": "6df6f12d19eb7e8247c5e728ca1293fc3a6713d4779fdbfd8e9acea2327cd789",
+    "graphs.mjs": "559c14d012f13a2e061aae1dc8b19a21744914ff9911141380985b8cb63add32",
+    "model.mjs": "5a111c29fd9c3d65bdf1a548685b9ae070828de05a219afdb2594d8e655934c5",
+    "concepts.mjs": "2a5c976c39fe3efb2d281f496c46777623d49c271747dcef82c29778c60b7242",
+    "physics.mjs": "cec1582dcd2fbcd6514c05a259285a740f758a2230abac4dec265a88a71eea59",
+    "presentation.mjs": "aac3e45a1cafa6e1e4a328579eceaf1c34606c661cfff45e16ae0dfae412f234",
+    "gestures.mjs": "433739b130d7c5f4297ed00516d6da666f94a05703d1830c8e39c3d6acc74eca",
+    "visibility.mjs": "9887631314d9d6f138e3d29761a6fb1f171a4a521cbd0bf201c9b3adef5a1919",
+    "style.css": "3c3093d1f1efdad7003540ae53c9bcc315efb7f9df10c37307060070f7e6bd99",
+    "tokens.css": "95f4b8c44adb9b6e976c29220a90a23d9af69506066c1019a9de6e797d91e3ca"
+  }
+}

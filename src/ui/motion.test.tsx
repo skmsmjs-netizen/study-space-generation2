@@ -56,7 +56,7 @@ describe('motion preserves actions and accessible content', () => {
     });
     function Player() {
       const state = usePlayerMotion();
-      return <div ref={state.ref}><output aria-label="재생 상태">{String(state.playing)}</output><button onClick={() => state.setPaused(value => !value)}>일시정지</button></div>;
+      return <div ref={state.ref}><output aria-label="재생 상태">{String(state.playing)}</output><button type="button" onClick={() => state.setPaused(value => !value)}>일시정지</button></div>;
     }
     const view = render(<Player />);
     expect(screen.getByLabelText('재생 상태')).toHaveTextContent('false');

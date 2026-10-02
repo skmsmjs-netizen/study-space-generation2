@@ -1,4 +1,11 @@
-import { canonicalStudyTask, planMaterialRanges, SOURCE_ROLE_LABELS, sourceRole, type MaterialView } from '../domain/study-gpt-contract';
+import { occurrenceRows } from './list-keys';
+import {
+  canonicalStudyTask,
+  planMaterialRanges,
+  SOURCE_ROLE_LABELS,
+  sourceRole,
+  type MaterialView,
+} from '../domain/study-gpt-contract';
 import { UseMaterialCard } from './learning-links';
 import {
   STUDY_AI_TASKS,
@@ -9,7 +16,7 @@ import {
 } from '../domain/study-ai-request';
 import { StudyResultText } from './study-result-text';
 import { canUseOwnerAI } from '../domain/ai-access';
-import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react';
+import { lazy, Suspense, useEffectEvent, useEffect, useMemo, useRef, useState } from 'react';
 import { Button, Checkbox, EmptyState, ErrorState, Input, Select, Textarea } from './index';
 import type { AppState } from '../domain/model';
 import {
@@ -19,6 +26,7 @@ import {
   type StudyMaterial,
 } from '../domain/study-material';
 import type { StudyRepository } from '../data/repository';
+import { materialTranscriptText, materialReviewMarkdown } from '../data/material-export';
 import { generateStudyMaterial } from '../data/study-ai';
 import { GPTConnectionPanel } from './gpt-connection-panel';
 import { PhotoOutlineImport } from './photo-outline-import';
@@ -41,7 +49,9 @@ import {
 import { navigate } from './navigation-context';
 import { isViewPage, isViewText, useViewContext } from './use-view-context';
 import './study-materials.css';
-const MaterialMap = lazy(() => import('./material-map').then(module => ({ default: module.MaterialMap })));
+const MaterialMap = lazy(() =>
+  import('./material-map').then((module) => ({ default: module.MaterialMap })),
+);
 
 type Props = {
   data: AppState;
@@ -67,15 +77,32 @@ export function StudyMaterials(props: Props) {
   const { data, repository, onSaved, materialId, initialSubjectId, trash = false } = props;
   const aiAllowed = canUseOwnerAI(data);
   const [error, setError] = useState('');
-  const [query, setQuery] = useViewContext(data, `materials:${trash ? 'trash' : 'active'}:query`, '', isViewText);
-  const [limit, setLimit] = useViewContext(data, `materials:${trash ? 'trash' : 'active'}:limit`, 40, isViewPage);
+  const [query, setQuery] = useViewContext(
+    data,
+    `materials:${trash ? 'trash' : 'active'}:query`,
+    '',
+    isViewText,
+  );
+  const [limit, setLimit] = useViewContext(
+    data,
+    `materials:${trash ? 'trash' : 'active'}:limit`,
+    40,
+    isViewPage,
+  );
   const items = (data.studyMaterials ?? [])
     .filter((row) => Boolean(row.deletedAt) === trash)
     .slice()
     .sort((a, b) => b.updatedAt.localeCompare(a.updatedAt));
   const selected = items.find((row) => row.id === materialId);
-  const scoped = items.filter(row => props.subjectIds === undefined || props.subjectIds.includes(row.subjectId));
-  const visible = scoped.filter(row => `${row.title}\n${row.sourceText}\n${data.subjects.find(subject => subject.id === row.subjectId)?.name ?? ''}`.normalize('NFC').toLocaleLowerCase('ko-KR').includes(query.trim().normalize('NFC').toLocaleLowerCase('ko-KR')));
+  const scoped = items.filter(
+    (row) => props.subjectIds === undefined || props.subjectIds.includes(row.subjectId),
+  );
+  const visible = scoped.filter((row) =>
+    `${row.title}\n${row.sourceText}\n${data.subjects.find((subject) => subject.id === row.subjectId)?.name ?? ''}`
+      .normalize('NFC')
+      .toLocaleLowerCase('ko-KR')
+      .includes(query.trim().normalize('NFC').toLocaleLowerCase('ko-KR')),
+  );
   function restore(row: StudyMaterial) {
     try {
       const next = repository.execute({
@@ -103,9 +130,11 @@ export function StudyMaterials(props: Props) {
       {error && <ErrorState message={error} />}
       <div className="material-toolbar">
         <p>
-          {aiAllowed
-            ? '문서·사진·자막·전사문에서 원문을 모으고, 요약·카드·퀴즈로 공부하세요.'
-            : '강의 자료의 원문과 파일을 과목별로 보관하세요.'}
+          {trash
+            ? '다시 사용할 자료를 복원하세요.'
+            : aiAllowed
+              ? '문서·사진·자막·전사문에서 원문을 모으고, 요약·카드·퀴즈로 공부하세요.'
+              : '강의 자료의 원문과 파일을 과목별로 보관하세요.'}
         </p>
         {!trash && (
           <Button variant="primary" onClick={() => navigate('/materials/new')}>
@@ -113,23 +142,60 @@ export function StudyMaterials(props: Props) {
           </Button>
         )}
       </div>
-      {!trash && materialId && materialId !== 'new' && !selected && <EmptyState title="이 강의 자료를 찾을 수 없습니다" message="휴지통에 있는지 확인하거나 자료 목록에서 다시 골라 주세요."><a href="#/materials">자료 목록으로</a><a href="#/materials/trash">강의 자료 휴지통</a></EmptyState>}
-      <Input label="강의 자료 찾기" value={query} placeholder="제목·강의 원문·과목 이름" onChange={event => {setQuery(event.target.value);setLimit(40);}} />
-      {scoped.length > 0 && !visible.length && <EmptyState title="찾는 강의 자료가 없습니다" message="검색어를 줄이거나 지워 보세요."><Button onClick={() => {setQuery('');setLimit(40);}}>강의 자료 검색어 지우기</Button></EmptyState>}
-      {!scoped.length && (
+      {!trash && materialId && materialId !== 'new' && !selected && (
         <EmptyState
-          title={items.length ? '이 공부 범위에는 강의 자료가 없습니다' : trash ? '보관된 강의 자료가 없습니다' : '강의 자료를 모아 두세요'}
-          message={
-            items.length ? '공부 범위를 바꾸면 다른 과목에 저장한 자료를 확인할 수 있습니다.' : trash
-              ? '원본은 직접 삭제하기 전까지 보존됩니다.'
-              : aiAllowed
-                ? '문서·사진·자막·전사문 파일을 가져오거나 강의 내용을 붙여 넣어 시작할 수 있습니다.'
-                : '전사문이나 강의 필기를 과목과 함께 저장할 수 있습니다.'
+          title="이 강의 자료를 찾을 수 없습니다"
+          message="휴지통에 있는지 확인하거나 자료 목록에서 다시 골라 주세요."
+        >
+          <a href="#/materials">자료 목록으로</a>
+          <a href="#/materials/trash">강의 자료 휴지통</a>
+        </EmptyState>
+      )}
+      <Input
+        label="강의 자료 찾기"
+        value={query}
+        placeholder="제목·강의 원문·과목 이름"
+        onChange={(event) => {
+          setQuery(event.target.value);
+          setLimit(40);
+        }}
+      />
+      {scoped.length > 0 && !visible.length && (
+        <EmptyState title="찾는 강의 자료가 없습니다" message="검색어를 줄이거나 지워 보세요.">
+          <Button
+            onClick={() => {
+              setQuery('');
+              setLimit(40);
+            }}
+          >
+            강의 자료 검색어 지우기
+          </Button>
+        </EmptyState>
+      )}
+      {!scoped.length && (!materialId || trash) && (
+        <EmptyState
+          title={
+            items.length
+              ? '이 공부 범위에는 강의 자료가 없습니다'
+              : trash
+                ? '휴지통에 강의 자료가 없습니다'
+                : '강의 자료를 모아 두세요'
           }
-        />
+          message={
+            items.length
+              ? '공부 범위를 바꾸면 다른 과목에 저장한 자료를 확인할 수 있습니다.'
+              : trash
+                ? '자료 목록에서 사용 중인 강의 자료를 확인할 수 있습니다.'
+                : aiAllowed
+                  ? '자료 추가에서 문서·사진·자막·전사문을 가져오거나 강의 내용을 붙여 넣어 보세요.'
+                  : '자료 추가에서 전사문이나 강의 필기를 과목과 함께 저장하세요.'
+          }
+        >
+          {trash && <a href="#/materials">자료 목록으로</a>}
+        </EmptyState>
       )}
       <div className="material-list">
-        {visible.slice(0, Math.max(40,limit)).map((row) => (
+        {visible.slice(0, Math.max(40, limit)).map((row) => (
           <article key={row.id}>
             <h2>
               {trash ? (
@@ -140,14 +206,18 @@ export function StudyMaterials(props: Props) {
             </h2>
             <p>
               {data.subjects.find((subject) => subject.id === row.subjectId)?.name} ·{' '}
-              {row.audio ? row.audio.name : row.documents?.[0]?.name ?? '강의 필기'} ·{' '}
+              {row.audio ? row.audio.name : (row.documents?.[0]?.name ?? '강의 필기')} ·{' '}
               {row.results.at(-1)?.cards.filter((card) => !card.excluded).length ?? 0}개 카드
             </p>
             {trash && <Button onClick={() => restore(row)}>복원</Button>}
           </article>
         ))}
       </div>
-      {visible.length > Math.max(40,limit) && <Button onClick={() => setLimit(value => Math.max(40,value)+40)}>강의 자료 더 보기</Button>}
+      {visible.length > Math.max(40, limit) && (
+        <Button onClick={() => setLimit((value) => Math.max(40, value) + 40)}>
+          강의 자료 더 보기
+        </Button>
+      )}
       {!trash && <a href="#/materials/trash">강의 자료 휴지통</a>}
     </section>
   );
@@ -199,10 +269,27 @@ function MaterialEditor({
     [missingAudio, setMissingAudio] = useState(false),
     audioElement = useRef<HTMLAudioElement>(null);
   const [captionURL, setCaptionURL] = useState('');
-  const [tab, setTab] = useState<'summary' | 'transcript' | 'cards' | 'quiz' | 'map'>(content.learningView?.tab ?? 'summary'),
-    [resultIndex, setResultIndex] = useState(() => { const index = content.results.findIndex(r => r.id === content.learningView?.resultId); return index >= 0 ? index : Math.max(0, content.results.length - 1); }),
-    [cardIndex, setCardIndex] = useState(() => Math.max(0, content.results.find(r => r.id === content.learningView?.resultId)?.cards.filter(c => !c.excluded).findIndex(c => c.id === content.learningView?.cardId) ?? 0)),
-    [answer, setAnswer] = useState(content.learningView?.activeDisclosure === 'revealed' ? `${content.learningView.resultId}:${content.learningView.cardId}` : ''),
+  const [tab, setTab] = useState<'summary' | 'transcript' | 'cards' | 'quiz' | 'map'>(
+      content.learningView?.tab ?? 'summary',
+    ),
+    [resultIndex, setResultIndex] = useState(() => {
+      const index = content.results.findIndex((r) => r.id === content.learningView?.resultId);
+      return index >= 0 ? index : Math.max(0, content.results.length - 1);
+    }),
+    [cardIndex, setCardIndex] = useState(() =>
+      Math.max(
+        0,
+        content.results
+          .find((r) => r.id === content.learningView?.resultId)
+          ?.cards.filter((c) => !c.excluded)
+          .findIndex((c) => c.id === content.learningView?.cardId) ?? 0,
+      ),
+    ),
+    [answer, setAnswer] = useState(
+      content.learningView?.activeDisclosure === 'revealed'
+        ? `${content.learningView.resultId}:${content.learningView.cardId}`
+        : '',
+    ),
     [editingCard, setEditingCard] = useState('');
   const [editingResult, setEditingResult] = useState(false);
   const [sourceOpen, setSourceOpen] = useState(false);
@@ -210,8 +297,7 @@ function MaterialEditor({
   const savingFlight = useRef(false);
   const stableMaterialId = useRef(selected?.id ?? crypto.randomUUID());
   const [saving, setSaving] = useState(false);
-  const storedTask = canonicalStudyTask(content.aiRequest?.task ?? 'summary');
-  const task = ['tutor','source-qa'].includes(storedTask) ? 'summary' : storedTask;
+  const task = canonicalStudyTask(content.aiRequest?.task ?? 'summary');
   function requestPatch(patch: Partial<StudyAIRequest>) {
     retain({ ...current.current, aiRequest: { task, ...current.current.aiRequest, ...patch } });
   }
@@ -221,37 +307,86 @@ function MaterialEditor({
     cards = result?.cards.filter((card) => !card.excluded) ?? [],
     card = cards[cardIndex];
   const cardKey = result && card ? `${result.id}:${card.id}` : '';
-  const viewState = useRef<MaterialView>(content.learningView ?? { tab: 'summary', revealed: [], helped: [] });
+  const viewState = useRef<MaterialView>(
+    content.learningView ?? { tab: 'summary', revealed: [], helped: [] },
+  );
   const draftRevision = useRef(0);
   const [draftState, setDraftState] = useState<'saved' | 'pending' | 'failed'>('saved');
-  const ranges = useMemo(() => { try { return planMaterialRanges({ ...content, audio: null }, activeStudyAIRequest(content.aiRequest)); } catch { return null; } }, [content.sourceText, content.documents, content.aiRequest, content.audio, content.results]);
-  const rangeIndex = ranges && content.generationProgress?.sourceIdentity === ranges.sourceIdentity ? content.generationProgress.index : 0;
+  const ranges = useMemo(() => {
+    try {
+      return planMaterialRanges(
+        { ...content, audio: null },
+        activeStudyAIRequest(content.aiRequest),
+      );
+    } catch {
+      return null;
+    }
+  }, [content]);
+  const rangeIndex =
+    ranges && content.generationProgress?.sourceIdentity === ranges.sourceIdentity
+      ? content.generationProgress.index
+      : 0;
   function revealCard() {
     if (!cardKey) return;
     setAnswer(cardKey);
-    viewState.current = { ...viewState.current, revealed: [...new Set([...viewState.current.revealed, cardKey])], activeDisclosure: 'revealed' };
+    viewState.current = {
+      ...viewState.current,
+      revealed: [...new Set([...viewState.current.revealed, cardKey])],
+      activeDisclosure: 'revealed',
+    };
     retain(current.current);
   }
   function recordHelp() {
     if (!result) return;
-    viewState.current = { ...viewState.current, helped: [...new Set([...viewState.current.helped, result.id])] };
+    viewState.current = {
+      ...viewState.current,
+      helped: [...new Set([...viewState.current.helped, result.id])],
+    };
     const attempts = current.current.quizAttempts;
-    retain({ ...current.current, ...(attempts ? { quizAttempts: attempts.map(a => a.resultId === result.id && !a.submittedAt ? { ...a, helpedQuestionIds: a.questions.map(q => q.id) } : a) } : {}) });
+    retain({
+      ...current.current,
+      ...(attempts
+        ? {
+            quizAttempts: attempts.map((a) =>
+              a.resultId === result.id && !a.submittedAt
+                ? { ...a, helpedQuestionIds: a.questions.map((q) => q.id) }
+                : a,
+            ),
+          }
+        : {}),
+    });
   }
   function chooseTab(next: typeof tab) {
     if (next !== 'quiz') recordHelp();
     setTab(next);
   }
-  useEffect(() => {
+  const hasQuiz = Boolean(result?.quiz),
+    hasMap = Boolean(result?.map);
+  const updateLearningView = useEffectEvent(() => {
     if (!ready) return;
     if ((tab === 'quiz' && !result?.quiz) || (tab === 'map' && !result?.map)) {
       setTab('summary');
       return;
     }
-    viewState.current = { ...viewState.current, resultId: result?.id, cardId: card?.id, tab, activeDisclosure: answer === cardKey && cardKey ? 'revealed' : 'hidden' };
+    viewState.current = {
+      ...viewState.current,
+      resultId: result?.id,
+      cardId: card?.id,
+      tab,
+      activeDisclosure: answer === cardKey && cardKey ? 'revealed' : 'hidden',
+    };
     retain(current.current);
-  }, [ready, result?.id, card?.id, tab]);
-  useEffect(() => {setEditingCard('');setSourceOpen(false);},[result?.id,card?.id,tab]);
+  });
+  // biome-ignore lint/correctness/useExhaustiveDependencies: Persist the view after identity or tab changes; retaining content must not retrigger this save on every draft update.
+  useEffect(() => {
+    updateLearningView();
+  }, [ready, result?.id, hasQuiz, hasMap, card?.id, tab, answer, cardKey]);
+  // Revealing an answer while editing must not close its editor. Reset only when the displayed card changes.
+  // biome-ignore lint/correctness/useExhaustiveDependencies: Changing the displayed result, card or tab resets only transient editors; answer disclosure and typing retain editor focus.
+  useEffect(() => {
+    setEditingCard('');
+    setSourceOpen(false);
+  }, [ready, result?.id, card?.id, tab, cardKey]);
   const capable =
     data.namespace === 'demo' || repository.getCapabilities?.().includes('saveStudyMaterial');
   function retain(next: MaterialContent) {
@@ -274,11 +409,23 @@ function MaterialEditor({
     draftFlight.current = draftFlight.current
       .catch(() => undefined)
       .then(() => writeMaterialDraft(data, draftId, envelope))
-      .then(() => { if (mounted.current && revision === draftRevision.current) setDraftState('saved'); });
+      .then(() => {
+        if (mounted.current && revision === draftRevision.current) setDraftState('saved');
+      });
     void draftFlight.current.catch((error) => {
-      if (mounted.current && revision === draftRevision.current) { setDraftState('failed'); setError(message(error)); }
+      if (mounted.current && revision === draftRevision.current) {
+        setDraftState('failed');
+        setError(message(error));
+      }
     });
   }
+  const hasSelectedMaterial = useEffectEvent(() => Boolean(selected));
+  const currentDraftVersion = useEffectEvent(() =>
+    selected
+      ? initialVersion.current
+      : (repository.getSnapshot().studyMaterials?.find((row) => row.id === stableMaterialId.current)
+          ?.version ?? 0),
+  );
   useEffect(() => {
     mounted.current = true;
     void readMaterialDraft(owner, draftId)
@@ -292,35 +439,37 @@ function MaterialEditor({
           )
             throw Error('보관된 자료 초안을 읽지 못했습니다. 원본은 덮어쓰지 않았습니다.');
           baseVersion.current = draft.baseVersion;
-          if (!selected && typeof draft.materialId === 'string' && draft.materialId)
+          if (!hasSelectedMaterial() && typeof draft.materialId === 'string' && draft.materialId)
             stableMaterialId.current = draft.materialId;
           recordingId.current = draft.recordingId ?? draft.audioCleanup?.recordingId;
           audioRecordingId.current = draft.audioRecordingId;
           audioCleanup.current = draft.audioCleanup;
           // Old cleanup drafts may hold the only reference to an existing recording.
           // Transcript entry keeps that original; it does not repeat or delete prior work.
-          const restoredContent = draft.audioCleanup && !draft.content.audio
-            ? { ...draft.content, audio: draft.audioCleanup.audio }
-            : draft.content;
+          const restoredContent =
+            draft.audioCleanup && !draft.content.audio
+              ? { ...draft.content, audio: draft.audioCleanup.audio }
+              : draft.content;
           current.current = restoredContent;
           setContent(restoredContent);
           const savedView = draft.view ?? draft.content.learningView;
-          const at = savedView?.resultId ? draft.content.results.findIndex(r => r.id === savedView.resultId) : -1;
-          const selectedResult = draft.content.results[at >= 0 ? at : draft.content.results.length - 1];
-          const selectedCards = selectedResult?.cards.filter(c => !c.excluded) ?? [];
-          const cardAt = selectedCards.findIndex(c => c.id === savedView?.cardId);
+          const at = savedView?.resultId
+            ? draft.content.results.findIndex((r) => r.id === savedView.resultId)
+            : -1;
+          const selectedResult =
+            draft.content.results[at >= 0 ? at : draft.content.results.length - 1];
+          const selectedCards = selectedResult?.cards.filter((c) => !c.excluded) ?? [];
+          const cardAt = selectedCards.findIndex((c) => c.id === savedView?.cardId);
           setResultIndex(at >= 0 ? at : Math.max(0, draft.content.results.length - 1));
           setCardIndex(Math.max(0, cardAt));
           if (savedView && Array.isArray(savedView.revealed) && Array.isArray(savedView.helped)) {
             viewState.current = savedView;
-            if (['summary','transcript','cards','quiz','map'].includes(savedView.tab)) setTab(savedView.tab);
-            if (at >= 0 && cardAt >= 0 && savedView.activeDisclosure === 'revealed') setAnswer(`${selectedResult.id}:${selectedCards[cardAt].id}`);
+            if (['summary', 'transcript', 'cards', 'quiz', 'map'].includes(savedView.tab))
+              setTab(savedView.tab);
+            if (at >= 0 && cardAt >= 0 && savedView.activeDisclosure === 'revealed')
+              setAnswer(`${selectedResult.id}:${selectedCards[cardAt].id}`);
           }
-          const savedDraftVersion = selected
-            ? initialVersion.current
-            : (repository
-                .getSnapshot()
-                .studyMaterials?.find((row) => row.id === stableMaterialId.current)?.version ?? 0);
+          const savedDraftVersion = currentDraftVersion();
           if (draft.baseVersion !== savedDraftVersion)
             setError(
               '다른 곳에서 저장한 자료와 이 초안을 모두 보존했습니다. 초안을 내보낸 뒤 최신 자료를 다시 열어 주세요.',
@@ -338,7 +487,7 @@ function MaterialEditor({
       mounted.current = false;
       generationController.current?.abort();
     };
-  }, [owner, draftId, aiAllowed]);
+  }, [owner, draftId]);
   const audioFile = content.audio;
   useEffect(() => {
     let disposed = false,
@@ -389,18 +538,37 @@ function MaterialEditor({
       const href = link?.getAttribute('href');
       if (!href?.startsWith('#/') || draftState === 'saved') return;
       if (draftState === 'failed') {
-        if (!window.confirm('이 기기에 저장되지 않은 변경이 있습니다. 내보내기나 초안 저장 재시도 후 나갈 수 있습니다. 지금 나가시겠습니까?')) { event.preventDefault(); event.stopPropagation(); }
+        if (
+          !window.confirm(
+            '이 기기에 저장되지 않은 변경이 있습니다. 내보내기나 초안 저장 재시도 후 나갈 수 있습니다. 지금 나가시겠습니까?',
+          )
+        ) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
       } else {
-        event.preventDefault(); event.stopPropagation();
-        void draftFlight.current.then(() => { location.hash = href; }).catch(() => undefined);
+        event.preventDefault();
+        event.stopPropagation();
+        void draftFlight.current
+          .then(() => {
+            location.hash = href;
+          })
+          .catch(() => undefined);
       }
     };
     window.addEventListener('click', leave, true);
     window.addEventListener('beforeunload', before);
-    return () => { window.removeEventListener('click', leave, true); window.removeEventListener('beforeunload', before); };
+    return () => {
+      window.removeEventListener('click', leave, true);
+      window.removeEventListener('beforeunload', before);
+    };
   }, [busy, importing, draftState]);
   async function analyze(source = current.current) {
     if (!aiAllowed || generationFlight.current || busy || importing) return;
+    if (canonicalStudyTask(source.aiRequest?.task ?? 'summary') === 'tutor') {
+      setError('새 결과를 만들려면 다른 GPT 작업을 골라 주세요. 이전 질문과 답변은 보관했습니다.');
+      return;
+    }
     if (source.results.length >= 30) {
       setError(
         '이 자료의 생성 결과 30개를 모두 보관했습니다. 내보내거나 새 자료에 필요한 원문을 넣어 이어가 주세요.',
@@ -434,16 +602,47 @@ function MaterialEditor({
         return;
       }
       // Source editing is disabled during generation. Existing results remain in order.
-      if (result?.quiz && current.current.quizAttempts?.some(a => a.resultId === result.id && !a.submittedAt)) recordHelp();
-      const next = { ...current.current, results: [...current.current.results, generated],
-        ...(generated.range ? { generationProgress: { sourceIdentity: generated.range.sourceIdentity, index: generated.range.index, completed: [...(current.current.generationProgress?.sourceIdentity === generated.range.sourceIdentity ? current.current.generationProgress.completed : []), ...(!generated.diagnostics?.length ? [{ index: generated.range.index, resultId: generated.id }] : [])] } } : {}) };
+      if (
+        result?.quiz &&
+        current.current.quizAttempts?.some((a) => a.resultId === result.id && !a.submittedAt)
+      )
+        recordHelp();
+      const next = {
+        ...current.current,
+        results: [...current.current.results, generated],
+        ...(generated.range
+          ? {
+              generationProgress: {
+                sourceIdentity: generated.range.sourceIdentity,
+                index: generated.range.index,
+                completed: [
+                  ...(current.current.generationProgress?.sourceIdentity ===
+                  generated.range.sourceIdentity
+                    ? current.current.generationProgress.completed
+                    : []),
+                  ...(!generated.diagnostics?.length
+                    ? [{ index: generated.range.index, resultId: generated.id }]
+                    : []),
+                ],
+              },
+            }
+          : {}),
+      };
       setEditingCard('');
       retain(next);
       setResultIndex(next.results.length - 1);
       setCardIndex(0);
       setAnswer('');
       setEditingResult(false);
-      setTab(generated.request?.task === 'study-pack' ? 'summary' : generated.quiz ? 'quiz' : generated.map ? 'map' : 'summary');
+      setTab(
+        generated.request?.task === 'study-pack'
+          ? 'summary'
+          : generated.quiz
+            ? 'quiz'
+            : generated.map
+              ? 'map'
+              : 'summary',
+      );
       await draftFlight.current;
       setNotice('결과를 만들었습니다. 근거를 확인하고 자료 저장을 눌러 주세요.');
     } catch (error) {
@@ -468,14 +667,17 @@ function MaterialEditor({
     try {
       if (!recordingId.current) return;
       const blob = await recoverRecording(data, recordingId.current);
-      if (!blob) throw Error('이 기기에 이전 녹음 구간이 없습니다. 원본을 보관한 기기에서 확인해 주세요.');
+      if (!blob)
+        throw Error('이 기기에 이전 녹음 구간이 없습니다. 원본을 보관한 기기에서 확인해 주세요.');
       const url = URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = url;
       link.download = `이전 녹음.${blob.type.includes('mp4') ? 'm4a' : blob.type.includes('ogg') ? 'ogg' : 'webm'}`;
       link.click();
       setTimeout(() => URL.revokeObjectURL(url), 60_000);
-    } catch (cause) { setError(message(cause)); }
+    } catch (cause) {
+      setError(message(cause));
+    }
   }
   async function save() {
     if (savingFlight.current) return false;
@@ -493,9 +695,16 @@ function MaterialEditor({
           if (!doc.file || doc.file.cloudPath) continue;
           setNotice(`${doc.name} 원본을 비공개로 서버에 보관하고 있습니다.`);
           const blob = await readDocumentFile(owner, doc.file);
-          if (!blob) throw Error(`${doc.name} 원본이 이 기기에 없습니다. 같은 파일을 다시 가져와 주세요.`);
+          if (!blob)
+            throw Error(`${doc.name} 원본이 이 기기에 없습니다. 같은 파일을 다시 가져와 주세요.`);
           const file = await uploadMaterialFile(owner, 'document', doc.file, blob);
-          retain({ ...current.current, documents: current.current.documents?.map(row => row.id === doc.id ? { ...row, file } : row) }); await draftFlight.current;
+          retain({
+            ...current.current,
+            documents: current.current.documents?.map((row) =>
+              row.id === doc.id ? { ...row, file } : row,
+            ),
+          });
+          await draftFlight.current;
         }
       }
       const id = stableMaterialId.current;
@@ -578,7 +787,13 @@ function MaterialEditor({
                 );
               }}
             >
-              {sourceRole(segment ?? { id, text: '', start: null, end: null }) !== 'material' ? SOURCE_ROLE_LABELS[sourceRole(segment!)] : segment?.label ? `${segment.label} 원문` : segment?.start != null ? `${clock(segment.start)} 원문` : `${id} 원문`}
+              {sourceRole(segment ?? { id, text: '', start: null, end: null }) !== 'material'
+                ? SOURCE_ROLE_LABELS[sourceRole(segment!)]
+                : segment?.label
+                  ? `${segment.label} 원문`
+                  : segment?.start != null
+                    ? `${clock(segment.start)} 원문`
+                    : `${id} 원문`}
             </Button>
           );
         })}
@@ -608,7 +823,26 @@ function MaterialEditor({
       ),
     });
   }
+  function exportText(format: 'txt' | 'md') {
+    if (format === 'md' && !result) return;
+    recordHelp();
+    const text =
+      format === 'txt'
+        ? materialTranscriptText(current.current)
+        : materialReviewMarkdown(current.current, result!);
+    const url = URL.createObjectURL(
+      new Blob([text], {
+        type: format === 'txt' ? 'text/plain;charset=utf-8' : 'text/markdown;charset=utf-8',
+      }),
+    );
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `${content.title || '강의 자료'}-${format === 'txt' ? '전사문과원문' : '복습자료-답포함'}.${format}`;
+    link.click();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
   function exportDraft() {
+    recordHelp();
     const url = URL.createObjectURL(
       new Blob([JSON.stringify(current.current, null, 2)], { type: 'application/json' }),
     );
@@ -624,8 +858,20 @@ function MaterialEditor({
         <a href="#/materials">← 강의 자료</a>
         <div>
           <Button variant="quiet" onClick={exportDraft}>
-            내보내기
+            원문·카드 파일로 보관
           </Button>
+          <Button
+            variant="quiet"
+            onClick={() => exportText('txt')}
+            disabled={!content.sourceText && !content.documents?.length}
+          >
+            원문 TXT
+          </Button>
+          {result && (
+            <Button variant="quiet" onClick={() => exportText('md')}>
+              복습 자료 MD · 답 포함
+            </Button>
+          )}
           {aiAllowed && (
             <Button variant="quiet" onClick={() => setKeyPanel(!keyPanel)}>
               GPT 연결
@@ -634,15 +880,26 @@ function MaterialEditor({
         </div>
       </div>
       {aiAllowed && keyPanel && (
-        <GPTConnectionPanel
-          userId={owner.userId}
-          namespace={owner.namespace}
-          busy={busy}
-        />
+        <GPTConnectionPanel userId={owner.userId} namespace={owner.namespace} busy={busy} />
       )}
       {error && <ErrorState message={error} />}
-      {draftState !== 'saved' && <p role="status">{draftState === 'pending' ? '이 기기에 초안을 보관하고 있습니다.' : '현재 화면의 변경이 기기에 저장되지 않았습니다. 초안 저장을 재시도하거나 내보내기로 보관해 주세요.'}</p>}
-      {draftState === 'failed' && <Button onClick={() => { setError(''); retain(current.current); }}>초안 저장 재시도</Button>}
+      {draftState !== 'saved' && (
+        <p role="status">
+          {draftState === 'pending'
+            ? '이 기기에 초안을 보관하고 있습니다.'
+            : '현재 화면의 변경이 기기에 저장되지 않았습니다. 초안 저장을 재시도하거나 원문·카드 파일로 보관해 주세요.'}
+        </p>
+      )}
+      {draftState === 'failed' && (
+        <Button
+          onClick={() => {
+            setError('');
+            retain(current.current);
+          }}
+        >
+          초안 저장 재시도
+        </Button>
+      )}
       {busy && <Button onClick={() => generationController.current?.abort()}>정리 중단</Button>}
       {notice && (
         <p role="status" className="material-status">
@@ -650,110 +907,157 @@ function MaterialEditor({
         </p>
       )}
       {!ready && !error && <p>보관한 자료를 불러오고 있습니다.</p>}
-      <details className="material-source-region" open={tab !== 'quiz' || !result?.quiz || sourceOpen} onToggle={event => { if (tab === 'quiz' && result?.quiz) { const opened = event.currentTarget.open; setSourceOpen(opened); if (opened) recordHelp(); } }}>
-      <summary>{tab === 'quiz' && result?.quiz ? '원문·자료 열기 · 퀴즈 도움으로 보관' : '자료와 원문'}</summary>
-      <fieldset
-        disabled={!ready || busy || saving || importing}
-        className="material-fields"
+      <details
+        className="material-source-region"
+        open={tab !== 'quiz' || !result?.quiz || sourceOpen}
+        onToggle={(event) => {
+          if (tab === 'quiz' && result?.quiz) {
+            const opened = event.currentTarget.open;
+            setSourceOpen(opened);
+            if (opened) recordHelp();
+          }
+        }}
       >
-        <Input
-          label="자료 제목"
-          value={content.title}
-          onChange={(event) => retain({ ...content, title: event.target.value })}
-          maxLength={300}
-          placeholder="예: 회로이론 3주차 강의"
+        <summary>
+          {tab === 'quiz' && result?.quiz ? '원문·자료 열기 · 퀴즈 도움으로 보관' : '자료와 원문'}
+        </summary>
+        <fieldset disabled={!ready || busy || saving || importing} className="material-fields">
+          <Input
+            label="자료 제목"
+            value={content.title}
+            onChange={(event) => retain({ ...content, title: event.target.value })}
+            maxLength={300}
+            placeholder="예: 회로이론 3주차 강의"
+          />
+          <div className="material-target">
+            <Select
+              label="과목"
+              value={content.subjectId}
+              onChange={(event) =>
+                retain({ ...content, subjectId: event.target.value, topicId: null })
+              }
+            >
+              <option value="">과목 선택</option>
+              {data.subjects
+                .filter((row) => !row.deletedAt)
+                .map((row) => (
+                  <option key={row.id} value={row.id}>
+                    {row.name}
+                  </option>
+                ))}
+            </Select>
+            <Select
+              label="연결할 주제 · 선택"
+              value={content.topicId ?? ''}
+              onChange={(event) => retain({ ...content, topicId: event.target.value || null })}
+            >
+              <option value="">과목에 보관</option>
+              {data.nodes
+                .filter((row) => row.subjectId === content.subjectId && !row.deletedAt)
+                .map((row) => (
+                  <option key={row.id} value={row.id}>
+                    {row.name}
+                  </option>
+                ))}
+            </Select>
+          </div>
+          <p className="material-hint">
+            <a href="https://clovanote.naver.com/" target="_blank" rel="noreferrer">
+              클로바노트 열기
+            </a>
+            에서 녹음·전사한 뒤, 음성 기록을 복사하거나 내려받은 전사문 파일을 아래에서 가져와
+            주세요.
+          </p>
+          <Textarea
+            label="강의 내용·필기"
+            hint="클로바노트 전사문을 붙여 넣고 필요한 필기를 덧붙여 주세요. 화자·시간·조건·예외를 포함한 원문을 보관합니다. 붙여넣기는 15만 자까지이며, 더 긴 전사문은 파일로 가져와 주세요."
+            value={content.sourceText}
+            maxLength={MAX_SOURCE_TEXT}
+            rows={5}
+            onChange={(event) => retain({ ...content, sourceText: event.target.value })}
+          />
+          {aiAllowed && (
+            <StudyAIContextPicker
+              data={data}
+              subjectId={content.subjectId}
+              text={content.sourceText}
+              disabled={!ready || busy || saving || importing}
+              onApply={async (sourceText) => {
+                retain({ ...current.current, sourceText });
+                await draftFlight.current;
+              }}
+            />
+          )}
+        </fieldset>
+        <PhotoOutlineImport
+          data={data}
+          repository={repository}
+          onSaved={onSaved}
+          initialSubjectId={content.subjectId}
         />
-        <div className="material-target">
-          <Select
-            label="과목"
-            value={content.subjectId}
-            onChange={(event) =>
-              retain({ ...content, subjectId: event.target.value, topicId: null })
-            }
-          >
-            <option value="">과목 선택</option>
-            {data.subjects
-              .filter((row) => !row.deletedAt)
-              .map((row) => (
-                <option key={row.id} value={row.id}>
-                  {row.name}
-                </option>
-              ))}
-          </Select>
-          <Select
-            label="연결할 주제 · 선택"
-            value={content.topicId ?? ''}
-            onChange={(event) => retain({ ...content, topicId: event.target.value || null })}
-          >
-            <option value="">과목에 보관</option>
-            {data.nodes
-              .filter((row) => row.subjectId === content.subjectId && !row.deletedAt)
-              .map((row) => (
-                <option key={row.id} value={row.id}>
-                  {row.name}
-                </option>
-              ))}
-          </Select>
-        </div>
-        <p className="material-hint"><a href="https://clovanote.naver.com/" target="_blank" rel="noreferrer">클로바노트 열기</a>에서 녹음·전사한 뒤, 음성 기록을 복사하거나 내려받은 전사문 파일을 아래에서 가져와 주세요.</p>
-        <Textarea
-          label="강의 내용·필기"
-          hint="클로바노트 전사문을 붙여 넣고 필요한 필기를 덧붙여 주세요. 화자·시간·조건·예외를 포함한 원문을 보관합니다. 붙여넣기는 15만 자까지이며, 더 긴 전사문은 파일로 가져와 주세요."
-          value={content.sourceText}
-          maxLength={MAX_SOURCE_TEXT}
-          rows={5}
-          onChange={(event) => retain({ ...content, sourceText: event.target.value })}
+        <MaterialSources
+          owner={owner}
+          documents={content.documents ?? []}
+          disabled={!ready || busy || saving}
+          onBusy={setImporting}
+          onChange={async (documents) => {
+            retain({
+              ...current.current,
+              documents,
+              title: current.current.title || documents[0]?.name.replace(/\.[^.]+$/, '') || '',
+            });
+            await draftFlight.current;
+          }}
         />
-        {aiAllowed && (
-          <StudyAIContextPicker
-            data={data}
-            subjectId={content.subjectId}
-            text={content.sourceText}
+        {data.namespace === 'personal' && (
+          <Checkbox
+            label="자료 저장할 때 원본 파일도 비공개 서버에 보관"
+            checked={content.originalStorage === 'private-server'}
             disabled={!ready || busy || saving || importing}
-            onApply={async (sourceText) => {
-              retain({ ...current.current, sourceText });
-              await draftFlight.current;
-            }}
+            onChange={(e) =>
+              retain({
+                ...current.current,
+                originalStorage: e.target.checked ? 'private-server' : 'device',
+              })
+            }
           />
         )}
-      </fieldset>
-      {aiAllowed && <PhotoOutlineImport data={data} repository={repository} onSaved={onSaved} initialSubjectId={content.subjectId ?? undefined} />}
-      <MaterialSources owner={owner} documents={content.documents ?? []} disabled={!ready || busy || saving}
-        onBusy={setImporting} onChange={async documents => {
-          retain({ ...current.current, documents, title: current.current.title || documents[0]?.name.replace(/\.[^.]+$/, '') || '' });
-          await draftFlight.current;
-        }}/>
-      {data.namespace === 'personal' && <Checkbox label="자료 저장할 때 원본 파일도 비공개 서버에 보관" checked={content.originalStorage === 'private-server'} disabled={!ready || busy || saving || importing} onChange={e => retain({ ...current.current, originalStorage: e.target.checked ? 'private-server' : 'device' })}/>}
-      {content.originalStorage === 'private-server' && <p className="material-hint">원본은 본인 계정으로만 열 수 있습니다. 다른 기기에서 자료를 열면 원본 파일을 가져옵니다. 기존 자료는 이 선택을 켜고 저장할 때 보관하며, 선택을 꺼도 이미 보관한 파일은 삭제하지 않습니다.</p>}
-      {recovery && <Button onClick={() => void recover()}>이전에 중단한 녹음 내려받기</Button>}
-      {content.audio && (
-        <div className="material-audio">
-          <span>
-            {content.audio.name} · {(content.audio.size / 1024 / 1024).toFixed(1)}MB · 원본은 이
-            {content.audio.cloudPath ? '기기와 비공개 서버에 보관' : '기기에 보관'}
-          </span>
-          {audioURL && (
-            <>
-              <audio ref={audioElement} src={audioURL} controls aria-label="강의 원본 음성">
-                <track
-                  kind="captions"
-                  src={captionURL || undefined}
-                  srcLang="ko"
-                  label="받아쓴 내용"
-                />
-              </audio>
-              <a href={audioURL} download={content.audio.name}>
-                원본 음성 내려받기
-              </a>
-            </>
-          )}
-          {missingAudio && (
-            <p role="alert">
-              이 기기에 이전 원본 음성이 없습니다. 원본을 보관한 기기에서 내려받아 주세요.
-            </p>
-          )}
-        </div>
-      )}
+        {content.originalStorage === 'private-server' && (
+          <p className="material-hint">
+            원본은 본인 계정으로만 열 수 있습니다. 다른 기기에서 자료를 열면 원본 파일을 가져옵니다.
+            기존 자료는 이 선택을 켜고 저장할 때 보관하며, 선택을 꺼도 이미 보관한 파일은 삭제하지
+            않습니다.
+          </p>
+        )}
+        {recovery && <Button onClick={() => void recover()}>이전에 중단한 녹음 내려받기</Button>}
+        {content.audio && (
+          <div className="material-audio">
+            <span>
+              {content.audio.name} · {(content.audio.size / 1024 / 1024).toFixed(1)}MB · 원본은 이
+              {content.audio.cloudPath ? '기기와 비공개 서버에 보관' : '기기에 보관'}
+            </span>
+            {audioURL && (
+              <>
+                <audio ref={audioElement} src={audioURL} controls aria-label="강의 원본 음성">
+                  <track
+                    kind="captions"
+                    src={captionURL || undefined}
+                    srcLang="ko"
+                    label="받아쓴 내용"
+                  />
+                </audio>
+                <a href={audioURL} download={content.audio.name}>
+                  원본 음성 내려받기
+                </a>
+              </>
+            )}
+            {missingAudio && (
+              <p role="alert">
+                이 기기에 이전 원본 음성이 없습니다. 원본을 보관한 기기에서 내려받아 주세요.
+              </p>
+            )}
+          </div>
+        )}
       </details>
       <div className="material-actions">
         {aiAllowed && (
@@ -764,17 +1068,30 @@ function MaterialEditor({
               disabled={!ready || busy || saving || importing}
               onChange={(event) => requestPatch({ task: event.target.value as StudyAITask })}
             >
-              {Object.entries(STUDY_AI_TASKS).filter(([value]) => !['tutor','source-qa'].includes(value)).map(([value, option]) => (
-                <option key={value} value={value}>
-                  {option.label}
+              {task === 'tutor' && (
+                <option value="tutor" disabled>
+                  이전 질문 작업 · 결과 보관
                 </option>
-              ))}
+              )}
+              {Object.entries(STUDY_AI_TASKS)
+                .filter(([value]) => value !== 'tutor' && value !== 'source-qa')
+                .map(([value, option]) => (
+                  <option key={value} value={value}>
+                    {option.label}
+                  </option>
+                ))}
             </Select>
             <Select
               label={task === 'study-pack' ? '카드·퀴즈 개수' : '카드 개수'}
               value={count}
               disabled={busy || saving || importing}
-              onChange={(event) => requestPatch({ requestedCardCount: Number(event.target.value) as StudyAIRequest['requestedCardCount'] })}
+              onChange={(event) =>
+                requestPatch({
+                  requestedCardCount: Number(
+                    event.target.value,
+                  ) as StudyAIRequest['requestedCardCount'],
+                })
+              }
             >
               {[5, 10, 20, 30].map((value) => (
                 <option key={value} value={value}>
@@ -790,7 +1107,11 @@ function MaterialEditor({
                 saving ||
                 importing ||
                 !content.subjectId ||
-                (!content.sourceText.trim() && !content.documents?.some(doc => doc.blocks.some(b => b.included && b.text.trim())))
+                task === 'tutor' ||
+                (!content.sourceText.trim() &&
+                  !content.documents?.some((doc) =>
+                    doc.blocks.some((b) => b.included && b.text.trim()),
+                  ))
               }
               onClick={() => void analyze()}
             >
@@ -800,28 +1121,88 @@ function MaterialEditor({
                   ? '새 결과 만들기'
                   : task === 'summary'
                     ? '요약과 카드 만들기'
-                    : task === 'study-pack' ? '복습 자료 한 번에 만들기' : `${STUDY_AI_TASKS[task].label} 만들기`}
+                    : task === 'study-pack'
+                      ? '복습 자료 한 번에 만들기'
+                      : `${STUDY_AI_TASKS[task].label} 만들기`}
             </Button>
           </>
         )}
-        <Button
-          disabled={!ready || busy || saving || importing}
-          onClick={() => void save()}
-        >
+        <Button disabled={!ready || busy || saving || importing} onClick={() => void save()}>
           {saving ? '저장 중…' : '자료 저장'}
         </Button>
       </div>
-      {aiAllowed && task === 'study-pack' && <p className="material-hint">한 번의 요청으로 핵심 요약·암기 카드·객관식 퀴즈·개념도를 함께 만듭니다. 필요한 기능만 만들려면 GPT 작업을 바꿔 주세요.</p>}
-      {aiAllowed && ranges && ranges.batches.length > 1 && <div className="material-fields"><p>선택 원문이 한 번의 처리 범위를 넘습니다. 전체 {ranges.batches.length}개 범위 중 하나씩 생성합니다. 원문과 먼저 만든 결과는 유지됩니다.</p><Select label="처리할 원문 범위" value={Math.min(rangeIndex, ranges.batches.length - 1)} disabled={busy || saving} onChange={event => retain({ ...current.current, generationProgress: { sourceIdentity: ranges.sourceIdentity, index: Number(event.target.value), completed: current.current.generationProgress?.sourceIdentity === ranges.sourceIdentity ? current.current.generationProgress.completed : [] } })}>{ranges.batches.map((batch, index) => <option key={index} value={index}>{index + 1} / {ranges.batches.length} · {batch[0]?.label ?? batch[0]?.id}–{batch.at(-1)?.label ?? batch.at(-1)?.id} · {batch.reduce((n, s) => n + s.text.length, 0).toLocaleString('ko-KR')}자{content.generationProgress?.sourceIdentity === ranges.sourceIdentity && content.generationProgress.completed.some(c => c.index === index) ? ' · 결과 보관됨' : ''}</option>)}</Select></div>}
-      {aiAllowed && task !== 'summary' && (
-        <fieldset
-          disabled={!ready || busy || saving || importing}
-          className="material-fields"
-        >
-<Select label="설명 도움 수준" value={content.aiRequest?.support ?? 'full'} onChange={event => requestPatch({ support: event.target.value as StudyAIRequest['support'] })}><option value="full">판단과 이유 충분히</option><option value="key">핵심 갈림길 중심</option><option value="check">결과와 점검 중심</option></Select>
-          <Select label="사고 보조 장치" value={content.aiRequest?.externalization ?? 'auto'} onChange={event => requestPatch({ externalization: event.target.value as StudyAIRequest['externalization'] })}><option value="auto">복잡도와 막힘에 맞춰</option><option value="full">묻는 것부터 점검까지 모두</option><option value="off">장치 형식 없이 설명</option></Select>
+      {aiAllowed && task === 'study-pack' && (
+        <p className="material-hint">
+          한 번의 요청으로 핵심 요약·암기 카드·객관식 퀴즈·개념도를 함께 만듭니다. 필요한 기능만
+          만들려면 GPT 작업을 바꿔 주세요.
+        </p>
+      )}
+      {aiAllowed && ranges && ranges.batches.length > 1 && (
+        <div className="material-fields">
+          <p>
+            선택 원문이 한 번의 처리 범위를 넘습니다. 전체 {ranges.batches.length}개 범위 중 하나씩
+            생성합니다. 원문과 먼저 만든 결과는 유지됩니다.
+          </p>
+          <Select
+            label="처리할 원문 범위"
+            value={Math.min(rangeIndex, ranges.batches.length - 1)}
+            disabled={busy || saving}
+            onChange={(event) =>
+              retain({
+                ...current.current,
+                generationProgress: {
+                  sourceIdentity: ranges.sourceIdentity,
+                  index: Number(event.target.value),
+                  completed:
+                    current.current.generationProgress?.sourceIdentity === ranges.sourceIdentity
+                      ? current.current.generationProgress.completed
+                      : [],
+                },
+              })
+            }
+          >
+            {ranges.batches.map((batch, index) => (
+              <option key={JSON.stringify(batch.map((segment) => segment.id))} value={index}>
+                {index + 1} / {ranges.batches.length} · {batch[0]?.label ?? batch[0]?.id}–
+                {batch.at(-1)?.label ?? batch.at(-1)?.id} ·{' '}
+                {batch.reduce((n, s) => n + s.text.length, 0).toLocaleString('ko-KR')}자
+                {content.generationProgress?.sourceIdentity === ranges.sourceIdentity &&
+                content.generationProgress.completed.some((c) => c.index === index)
+                  ? ' · 결과 보관됨'
+                  : ''}
+              </option>
+            ))}
+          </Select>
+        </div>
+      )}
+      {aiAllowed && task !== 'summary' && task !== 'tutor' && (
+        <fieldset disabled={!ready || busy || saving || importing} className="material-fields">
+          <Select
+            label="설명 도움 수준"
+            value={content.aiRequest?.support ?? 'full'}
+            onChange={(event) =>
+              requestPatch({ support: event.target.value as StudyAIRequest['support'] })
+            }
+          >
+            <option value="full">판단과 이유 충분히</option>
+            <option value="key">핵심 갈림길 중심</option>
+            <option value="check">결과와 점검 중심</option>
+          </Select>
+          <Select
+            label="사고 보조 장치"
+            value={content.aiRequest?.externalization ?? 'auto'}
+            onChange={(event) =>
+              requestPatch({
+                externalization: event.target.value as StudyAIRequest['externalization'],
+              })
+            }
+          >
+            <option value="auto">복잡도와 막힘에 맞춰</option>
+            <option value="full">묻는 것부터 점검까지 모두</option>
+            <option value="off">장치 형식 없이 설명</option>
+          </Select>
           <Textarea
-            label={task === 'tutor' ? '내 자료에서 확인할 질문' : '보조할 내용·범위 · 선택'}
+            label="보조할 내용·범위 · 선택"
             hint={
               task === 'formula'
                 ? '예: 위 필기의 식을 LaTeX로 옮기고 기호와 성립 조건을 설명해 주세요.'
@@ -860,8 +1241,8 @@ function MaterialEditor({
       )}
       {aiAllowed && (
         <p className="material-hint">
-          선택한 전사문·원문 구간과 필기만 GPT에 보냅니다. 별도 API 요금이 발생하며
-          이 앱의 월 상한을 넘는 요청은 보내지 않습니다.
+          선택한 전사문·원문 구간과 필기만 GPT에 보냅니다. 별도 API 요금이 발생하며 이 앱의 월
+          상한을 넘는 요청은 보내지 않습니다.
         </p>
       )}
       {result && (
@@ -871,14 +1252,32 @@ function MaterialEditor({
           style={{ border: 0, padding: 0, margin: 0, minWidth: 0 }}
         >
           <p>
-            {STUDY_AI_TASKS[canonicalStudyTask(result.request?.task ?? 'summary')].label} · {result.model}
+            {STUDY_AI_TASKS[canonicalStudyTask(result.request?.task ?? 'summary')].label} ·{' '}
+            {result.model}
           </p>
-          {result.range && <p role="status">전체 {result.range.count}개 중 {result.range.index + 1}번째 범위의 결과입니다. 앞뒤 원문 구간을 함께 제공했으므로 인접 결과와 겹치는 내용이 있을 수 있습니다.</p>}
-          {result.diagnostics?.map((d, index) => <article key={`diagnostic:${index}`}><p>{d.message}</p>{d.questions?.map(q => <p key={q}>{q}</p>)}{d.sourceIds?.length ? evidence(d.sourceIds) : null}</article>)}
+          {result.range && (
+            <p role="status">
+              전체 {result.range.count}개 중 {result.range.index + 1}번째 범위의 결과입니다. 앞뒤
+              원문 구간을 함께 제공했으므로 인접 결과와 겹치는 내용이 있을 수 있습니다.
+            </p>
+          )}
+          {result.diagnostics &&
+            occurrenceRows(result.diagnostics, (diagnostic) => JSON.stringify(diagnostic)).map(
+              ({ value: d, key }) => (
+                <article key={key}>
+                  <p>{d.message}</p>
+                  {d.questions?.map((q) => (
+                    <p key={q}>{q}</p>
+                  ))}
+                  {d.sourceIds?.length ? evidence(d.sourceIds) : null}
+                </article>
+              ),
+            )}
           {((result.source &&
             materialSourceIdentity(result.source) !== materialSourceIdentity(content)) ||
-            (result.request?.task !== 'tutor' && JSON.stringify(activeStudyAIRequest(result.request)) !==
-              JSON.stringify(activeStudyAIRequest(content.aiRequest))) ||
+            (result.request?.task !== 'tutor' &&
+              JSON.stringify(activeStudyAIRequest(result.request)) !==
+                JSON.stringify(activeStudyAIRequest(content.aiRequest))) ||
             result.segments.some(
               (segment) =>
                 segment.originalText !== undefined && segment.originalText !== segment.text,
@@ -903,13 +1302,23 @@ function MaterialEditor({
             >
               {content.results.map((row, index) => (
                 <option key={row.id} value={index}>
-                  {index + 1}번째 결과 · {new Date(row.at).toLocaleString('ko-KR')}
+                  {index + 1}번째 ·{' '}
+                  {STUDY_AI_TASKS[canonicalStudyTask(row.request?.task ?? 'summary')].label} ·{' '}
+                  {new Date(row.at).toLocaleString('ko-KR')}
                 </option>
               ))}
             </Select>
           )}
           <fieldset aria-label="자료 보기" className="material-tabs">
-            {(['summary', 'transcript', 'cards', ...(result.quiz ? ['quiz' as const] : []), ...(result.map ? ['map' as const] : [])] as const).map((value) => (
+            {(
+              [
+                'summary',
+                'transcript',
+                'cards',
+                ...(result.quiz ? ['quiz' as const] : []),
+                ...(result.map ? ['map' as const] : []),
+              ] as const
+            ).map((value) => (
               <Button
                 key={value}
                 variant="quiet"
@@ -919,7 +1328,9 @@ function MaterialEditor({
                 {
                   {
                     summary:
-                      result.request && !['summary','study-pack'].includes(result.request.task) ? '보조 결과' : '요약',
+                      result.request && !['summary', 'study-pack'].includes(result.request.task)
+                        ? '보조 결과'
+                        : '요약',
                     transcript: '받아쓴 원문',
                     cards: `플래시카드 ${cards.length}`,
                     quiz: `퀴즈 ${result.quiz?.length ?? 0}`,
@@ -929,19 +1340,65 @@ function MaterialEditor({
               </Button>
             ))}
           </fieldset>
-          {tab === 'quiz' && result.quiz && <MaterialQuiz key={result.id} resultId={result.id} questions={result.quiz} attempts={content.quizAttempts ?? []} disabled={busy || saving || importing}
-            selectedId={viewState.current.quizAttemptId} onSelected={quizAttemptId => { viewState.current = { ...viewState.current, quizAttemptId }; retain(current.current); }} evidence={evidence} onChange={quizAttempts => retain({ ...current.current, quizAttempts })}/>}
-          {tab === 'map' && result.map && <Suspense fallback={<p>개념도를 불러오고 있습니다.</p>}><MaterialMap owner={data} key={result.id} map={result.map} originalMap={result.originalMap} disabled={busy || saving || importing} evidence={evidence}
-            onChange={map => retain({ ...current.current, results: current.current.results.map(row => row.id === result.id ? { ...row, originalMap: row.originalMap ?? structuredClone(row.map), map } : row) })}
-            onCanvas={async () => { try { if (!await save()) return; const next = await addMaterialMapToCanvas(repository, current.current, result); onSaved(next); setNotice('개념도를 Canvas에 추가했습니다. 기존 카드와 배치는 유지했습니다.'); } catch (error) { setError(message(error)); } }}/></Suspense>}
+          {tab === 'quiz' && result.quiz && (
+            <MaterialQuiz
+              key={result.id}
+              resultId={result.id}
+              questions={result.quiz}
+              attempts={content.quizAttempts ?? []}
+              disabled={busy || saving || importing}
+              selectedId={viewState.current.quizAttemptId}
+              onSelected={(quizAttemptId) => {
+                viewState.current = { ...viewState.current, quizAttemptId };
+                retain(current.current);
+              }}
+              evidence={evidence}
+              onChange={(quizAttempts) => retain({ ...current.current, quizAttempts })}
+            />
+          )}
+          {tab === 'map' && result.map && (
+            <Suspense fallback={<p>개념도를 불러오고 있습니다.</p>}>
+              <MaterialMap
+                owner={data}
+                key={result.id}
+                map={result.map}
+                originalMap={result.originalMap}
+                disabled={busy || saving || importing}
+                evidence={evidence}
+                onChange={(map) =>
+                  retain({
+                    ...current.current,
+                    results: current.current.results.map((row) =>
+                      row.id === result.id
+                        ? { ...row, originalMap: row.originalMap ?? structuredClone(row.map), map }
+                        : row,
+                    ),
+                  })
+                }
+                onCanvas={async () => {
+                  try {
+                    if (!(await save())) return;
+                    const next = await addMaterialMapToCanvas(repository, current.current, result);
+                    onSaved(next);
+                    setNotice('개념도를 Canvas에 추가했습니다. 기존 카드와 배치는 유지했습니다.');
+                  } catch (error) {
+                    setError(message(error));
+                  }
+                }}
+              />
+            </Suspense>
+          )}
           {tab === 'summary' && (
             <div className="material-summary">
               <Button variant="quiet" onClick={() => setEditingResult(!editingResult)}>
                 {editingResult ? '결과 편집 마치기' : '결과 수정'}
               </Button>
               {result.summary.map((row, index) => (
+                // biome-ignore lint/suspicious/noArrayIndexKey: Editable summary rows keep their result order; a content-derived key would remount the editor while typing.
                 <article key={`${result.id}:${index}`}>
-                  {row.evidenceType === 'general-supplement' && <p>보충 설명 · 자료에서 직접 확인한 사실과 구별합니다.</p>}
+                  {row.evidenceType === 'general-supplement' && (
+                    <p>보충 설명 · 자료에서 직접 확인한 사실과 구별합니다.</p>
+                  )}
                   {editingResult ? (
                     <Textarea
                       label={`${index + 1}번째 보조 결과`}
@@ -1014,7 +1471,9 @@ function MaterialEditor({
               </p>
               {result.segments.map((segment) => (
                 <article key={segment.id} id={`material-segment-${segment.id}`}>
-                  <span>{segment.label ?? (segment.start != null ? clock(segment.start) : segment.id)}</span>
+                  <span>
+                    {segment.label ?? (segment.start != null ? clock(segment.start) : segment.id)}
+                  </span>
                   <Textarea
                     label={`${segment.id} 원문`}
                     rows={3}
@@ -1075,7 +1534,9 @@ function MaterialEditor({
                     </>
                   ) : (
                     <>
-                      <h2><StudyResultText text={card.question} as="span" /></h2>
+                      <h2>
+                        <StudyResultText text={card.question} as="span" />
+                      </h2>
                       {answer === cardKey && cardKey ? (
                         <StudyResultText text={card.answer} className="material-answer" />
                       ) : (
@@ -1097,7 +1558,8 @@ function MaterialEditor({
                   cardId={card.id}
                   unsaved={
                     !selected ||
-                    JSON.stringify({ ...materialContent(selected), learningView: undefined }) !== JSON.stringify({ ...content, learningView: undefined })
+                    JSON.stringify({ ...materialContent(selected), learningView: undefined }) !==
+                      JSON.stringify({ ...content, learningView: undefined })
                   }
                 />
                 <div className="material-actions">
@@ -1121,7 +1583,13 @@ function MaterialEditor({
                   >
                     다음 카드
                   </Button>
-                  <Button variant="quiet" onClick={() => { setEditingCard(cardKey); revealCard(); }}>
+                  <Button
+                    variant="quiet"
+                    onClick={() => {
+                      setEditingCard(cardKey);
+                      revealCard();
+                    }}
+                  >
                     카드 수정
                   </Button>
                   <Button
@@ -1177,8 +1645,33 @@ function MaterialEditor({
           )}
         </fieldset>
       )}
-      {aiAllowed && <MaterialTutor key={`${result?.id}:${tab === 'quiz' ? 'quiz' : 'read'}`} onHelp={recordHelp} turns={content.results.filter(row => row.request?.task === 'tutor' || row.request?.task === 'source-qa')} currentSource={content}
-        onEvidence={(resultId, id) => { const index = current.current.results.findIndex(r => r.id === resultId); if (index >= 0) { recordHelp(); setResultIndex(index); setAnswer(''); setEditingCard(''); setTab('transcript'); setTimeout(() => document.getElementById(`material-segment-${id}`)?.scrollIntoView({ block: 'nearest' }), 0); } }}/ >}
+      {aiAllowed && (
+        <MaterialTutor
+          key={`${result?.id}:${tab === 'quiz' ? 'quiz' : 'read'}`}
+          onHelp={recordHelp}
+          turns={content.results.filter(
+            (row) => row.request?.task === 'tutor' || row.request?.task === 'source-qa',
+          )}
+          currentSource={content}
+          onEvidence={(resultId, id) => {
+            const index = current.current.results.findIndex((r) => r.id === resultId);
+            if (index >= 0) {
+              recordHelp();
+              setResultIndex(index);
+              setAnswer('');
+              setEditingCard('');
+              setTab('transcript');
+              setTimeout(
+                () =>
+                  document
+                    .getElementById(`material-segment-${id}`)
+                    ?.scrollIntoView({ block: 'nearest' }),
+                0,
+              );
+            }
+          }}
+        />
+      )}
       {selected && (
         <details className="material-history">
           <summary>저장 이력과 보관</summary>

@@ -19,7 +19,7 @@ function readDraft(key: string, targetId: string): Draft | null {
   if (!value || value.targetId !== targetId || !Array.isArray(value.base) || !Array.isArray(value.rows)
     || typeof value.expectedToken !== 'string' || !['topic', 'subject', 'all'].includes(value.scope)
     || value.rows.length > 100 || new Set(value.rows.map(row => row.key)).size !== value.rows.length) throw Error('기준 조정 초안의 형식을 확인하지 못했습니다. 원문을 덮어쓰지 않았습니다.');
-  value.base.forEach(item => validateTraceDefinition(item));
+  value.base.forEach(item => { validateTraceDefinition(item); });
   for (const row of value.rows) {
     if (!row || typeof row.key !== 'string' || !row.key || (row.id !== null && typeof row.id !== 'string')
       || !['T', 'R', 'A', 'C', 'E'].includes(row.group) || typeof row.label !== 'string'

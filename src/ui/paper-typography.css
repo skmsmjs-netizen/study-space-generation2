@@ -1,0 +1,69 @@
+/* Reuse the shared native-width faces from paper-typeface.css. */
+:is(.observatory-workspace, .observatory-paper,
+    body:has(.observatory-workspace, .personal-entry) > .ui-overlay .ui-modal) textarea.paper-memo {
+  font-family: var(--font-reading);
+  font-size: var(--paper-input-size, var(--observatory-paper-memo-size));
+  font-weight: var(--paper-body-weight, var(--observatory-paper-body-weight));
+  line-height: var(--paper-body-line, var(--observatory-paper-body-compact-line));
+  letter-spacing: var(--paper-body-tracking, var(--observatory-paper-body-compact-tracking));
+  text-align: var(--paper-body-text-align, var(--observatory-body-text-align));
+  text-align-last: var(--observatory-body-last-line);
+}
+/* --font-reading remains a user override; the new default is installed at its
+   existing root token rather than overwriting it at every nested paper. */
+:root {
+  /* design-token-exception: --font-paper-default -- Locally hosted approved Nanum Myeongjo derivative with 95% native text metrics. */
+  --font-paper-default: 'ManSeekSong Paper', 'Nanum Myeongjo', 'AppleMyungjo', serif;
+}
+:is(.observatory-workspace, .observatory-paper,
+    body:has(.observatory-workspace, .personal-entry) > .ui-overlay .ui-modal)
+  :is(p.prose, .prose > p, .concept-body > p, .concept-intro,
+    .knowledge-module dd, .canvas-original,
+    .narrative-editor textarea, .record-compose textarea, .memo-input textarea,
+    .memo-editor textarea, .memo-editor-body textarea) {
+  font-family: var(--font-reading);
+  font-size: var(--paper-body-size, var(--observatory-paper-body-size));
+  font-weight: var(--paper-body-weight, var(--observatory-paper-body-weight));
+}
+:is(.observatory-workspace, .observatory-paper,
+    body:has(.observatory-workspace, .personal-entry) > .ui-overlay .ui-modal)
+  :is(.narrative-editor textarea, .record-compose textarea, .memo-input textarea,
+    .memo-editor textarea, .memo-editor-body textarea) {
+  font-size: var(--paper-input-size, var(--observatory-paper-memo-size));
+  line-height: var(--paper-body-line, var(--observatory-paper-body-compact-line));
+  letter-spacing: var(--paper-body-tracking, var(--observatory-paper-body-compact-tracking));
+  text-align: var(--paper-body-text-align, var(--observatory-body-text-align));
+  text-align-last: var(--observatory-body-last-line);
+}
+:is(.observatory-workspace, .observatory-paper,
+    body:has(.observatory-workspace, .personal-entry) > .ui-overlay .ui-modal) .memo-preview-text {
+  font-family: var(--font-reading);
+  font-weight: var(--paper-body-weight, var(--observatory-paper-body-weight));
+  font-size: var(--paper-preview-size, var(--observatory-paper-preview-size));
+  line-height: var(--paper-body-line, var(--observatory-paper-body-compact-line));
+  letter-spacing: var(--paper-body-tracking, var(--observatory-paper-body-compact-tracking));
+}
+@container study-content (max-width: 40rem) {
+  :is(.prose > p, p.prose, .concept-body > p, .concept-intro, .knowledge-module dd, .canvas-original) {
+    font-size: var(--paper-body-size, var(--observatory-paper-body-compact-size));
+  }
+}
+@container concept-prose (max-width: 40rem) {
+  .concept-body > p {
+    font-size: var(--paper-body-size, var(--observatory-paper-body-compact-size));
+  }
+}
+@media (max-width: 40rem) {
+  :is(.observatory-workspace, .observatory-paper)
+    :is(.prose > p, p.prose, .concept-body > p, .concept-intro, .knowledge-module dd, .canvas-original) {
+    font-size: var(--paper-body-size, var(--observatory-paper-body-compact-size));
+  }
+}
+/* Technical inline roles keep their own font/spacing. Controls use interface
+   text even though authored paragraphs use the paper face in both languages. */
+:is(.observatory-workspace, .observatory-paper,
+    body:has(.observatory-workspace, .personal-entry) > .ui-overlay .ui-modal)
+  :is(button, select, input:not([type='checkbox']):not([type='radio']), .ui-label, .ui-hint,
+    .feature-purpose, .math-caption, .concept-caption, table) {
+  font-family: var(--font-interface);
+}

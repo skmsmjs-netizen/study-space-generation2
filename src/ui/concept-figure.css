@@ -1,0 +1,146 @@
+.concept-figure {
+  margin: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+.concept-figure-frame {
+  position: relative;
+  inline-size: 100%;
+  max-inline-size: 36rem;
+  margin-inline: auto;
+}
+.concept-figure-svg {
+  inline-size: 100%;
+  block-size: auto;
+  max-inline-size: 36rem;
+  margin-inline: auto;
+  display: block;
+}
+.concept-figure-svg polyline,
+.concept-figure-svg polygon,
+.concept-figure-svg circle {
+  fill: none;
+  stroke: var(--color-text);
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+}
+.concept-figure-svg [data-tone='primary'] {
+  stroke: var(--color-text);
+}
+.concept-figure-svg polygon[data-tone='primary'],
+.concept-figure-svg circle[data-tone='primary'] {
+  fill: var(--color-text);
+}
+.concept-figure-svg [data-tone='muted'] {
+  stroke: var(--color-muted);
+  stroke-dasharray: 5 5;
+}
+.concept-figure-svg [data-tone='surface'] {
+  fill: var(--color-surface-inset);
+  stroke: var(--color-text);
+}
+.concept-figure-svg text {
+  font-family: var(--font-reading);
+  font-size: var(--type-body-size);
+  fill: var(--color-text);
+  stroke: none;
+}
+.concept-figure figcaption {
+  line-height: var(--type-body-line);
+  font-size: var(--type-caption-size);
+  color: var(--color-muted);
+}
+.concept-figure > .ui-button {
+  justify-self: start;
+}
+.concept-figure-modal {
+  inline-size: min(100%, var(--layout-reading));
+}
+.concept-figure-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  margin-block: var(--space-3);
+}
+.concept-figure-viewport {
+  block-size: 55dvh;
+  min-block-size: 12rem;
+  overflow: hidden;
+  border: var(--border-width) solid var(--color-border);
+  background: var(--color-surface-inset);
+}
+.concept-figure-viewport:focus-visible {
+  outline: var(--focus-width) solid var(--color-focus);
+  outline-offset: var(--focus-offset);
+}
+.concept-figure-viewport .react-flow {
+  --xy-controls-button-background-color: var(--color-surface);
+  --xy-controls-button-background-color-hover: var(--color-surface-inset);
+  --xy-controls-button-color: var(--color-text);
+  --xy-controls-button-color-hover: var(--color-text);
+  --xy-controls-button-border-color: var(--color-border);
+}
+.concept-figure-viewport .react-flow__controls-button {
+  inline-size: var(--icon-target);
+  block-size: var(--icon-target);
+  padding: var(--space-2);
+  box-sizing: border-box;
+  border-radius: var(--radius-sm);
+}
+.concept-figure-viewport .react-flow__controls-button:focus-visible {
+  outline: var(--focus-width) solid var(--color-focus);
+  outline-offset: var(--focus-offset);
+}
+.concept-figure-vector .concept-figure-frame,
+.concept-figure-vector .concept-figure-svg {
+  inline-size: 100%;
+  max-inline-size: none;
+  block-size: 100%;
+}
+.concept-figure-details {
+  margin-block-start: var(--space-3);
+}
+.concept-figure-details p {
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+.concept-figure-details ul {
+  padding-inline-start: var(--space-5);
+}
+.concept-figure-math-token {
+  font-family: var(--font-concept-math);
+}
+.concept-math-token .katex {
+  font-size: inherit;
+}
+
+.concept-figure-label-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.concept-figure-label {
+  position: absolute;
+  /* design-token-exception: transform -- Match the baseline of the authored SVG labels in the same scaled coordinate system. */
+  transform: translateY(-0.82em);
+  white-space: nowrap;
+  /* design-token-exception: line-height -- Coordinate labels use one-em line boxes to preserve authored SVG baselines while the parent scales both layers. */
+  line-height: 1;
+  font-family: var(--font-reading);
+  color: var(--color-text);
+}
+.concept-figure-label[data-anchor='middle'] {
+  /* design-token-exception: transform -- SVG text-anchor middle expressed in the HTML notation layer. */
+  transform: translate(-50%, -0.82em);
+}
+.concept-figure-label[data-anchor='end'] {
+  /* design-token-exception: transform -- SVG text-anchor end expressed in the HTML notation layer. */
+  transform: translate(-100%, -0.82em);
+}
+.concept-figure-label[data-tone='muted'] {
+  color: var(--color-muted);
+}
+.concept-figure-label .katex {
+  font-size: inherit;
+}

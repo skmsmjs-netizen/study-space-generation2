@@ -20,6 +20,7 @@ import { setDiagnostics } from '@codemirror/lint';
 import type { CodeLanguage } from '../domain/model';
 import type { SourceEditorProps } from './source-editor';
 import { CodeSyntaxStatus, useCodeSyntax } from './code-syntax-status';
+import { Button, Checkbox } from './index';
 
 const syntaxLanguage = (language: CodeLanguage) =>
   language === 'c' || language === 'cpp'
@@ -52,19 +53,20 @@ export function TouchSourceEditor({
     tab: new Compartment(),
   }));
   const syntax = useCodeSyntax(value, language);
+  const initial = useRef({value, language, readOnly, compartments});
   useEffect(() => {
     const editor = new EditorView({
       parent: host.current!,
       state: EditorState.create({
-        doc: value,
+        doc: initial.current.value,
         extensions: [
           basicSetup,
-          compartments.language.of(syntaxLanguage(language)),
-          compartments.readonly.of([
-            EditorState.readOnly.of(readOnly),
-            EditorView.editable.of(!readOnly),
+          initial.current.compartments.language.of(syntaxLanguage(initial.current.language)),
+          initial.current.compartments.readonly.of([
+            EditorState.readOnly.of(initial.current.readOnly),
+            EditorView.editable.of(!initial.current.readOnly),
           ]),
-          compartments.tab.of(keymap.of([indentWithTab])),
+          initial.current.compartments.tab.of(keymap.of([indentWithTab])),
           indentUnit.of('    '),
           EditorState.tabSize.of(4),
           Prec.highest(
@@ -203,63 +205,61 @@ export function TouchSourceEditor({
   };
   return (
     <div className="code-editor-shell">
-      <div className="code-editor-hint code-touch-toolbar" aria-label="코드 편집 도구">
-        <button
+      {/* biome-ignore lint/a11y/useSemanticElements: This names a non-form control/content group; fieldset would imply a form group. */}
+<div className="code-editor-hint code-touch-toolbar" role="group" aria-label="코드 편집 도구">
+        <Button
           type="button"
           disabled={readOnly}
           onMouseDown={(event) => event.preventDefault()}
           onClick={() => command(indentMore)}
         >
           들여쓰기
-        </button>
-        <button
+        </Button>
+        <Button
           type="button"
           disabled={readOnly}
           onMouseDown={(event) => event.preventDefault()}
           onClick={() => command(indentLess)}
         >
           내어쓰기
-        </button>
-        <button
+        </Button>
+        <Button
           type="button"
           disabled={readOnly}
           onMouseDown={(event) => event.preventDefault()}
           onClick={() => command(toggleComment)}
         >
           주석
-        </button>
-        <button
+        </Button>
+        <Button
           type="button"
           disabled={readOnly || !['c', 'cpp', 'csharp'].includes(language)}
           onMouseDown={(event) => event.preventDefault()}
           onClick={insertMain}
         >
           main 함수
-        </button>
-        <button
+        </Button>
+        <Button
           type="button"
           disabled={readOnly}
           onMouseDown={(event) => event.preventDefault()}
           onClick={() => command(undo)}
         >
           되돌리기
-        </button>
-        <button
+        </Button>
+        <Button
           type="button"
           disabled={readOnly}
           onMouseDown={(event) => event.preventDefault()}
           onClick={() => command(redo)}
         >
           다시 적용
-        </button>
-        <label>
-          <input
-            type="checkbox"
-            checked={tabMovesFocus}
-            onChange={(event) => setTabMovesFocus(event.target.checked)}
-          />
-          Tab으로 편집기 나가기
-        </label>
+        </Button>
+        <Checkbox
+          label="Tab으로 편집기 나가기"
+          checked={tabMovesFocus}
+          onChange={(event) => setTabMovesFocus(event.target.checked)}
+        />
       </div>
       <div ref={host} className="code-touch-editor" />
       <CodeSyntaxStatus

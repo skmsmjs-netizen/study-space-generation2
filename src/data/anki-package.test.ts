@@ -9,7 +9,7 @@ import { applyCommand } from '../domain/commands';
 import { emptyState, type Command } from '../domain/model';
 let SQL: SqlJsStatic;
 beforeAll(async () => { SQL = await initSqlJs(); });
-export function ankiFixture(SQL: SqlJsStatic, modern = false, count = 2) {
+function ankiFixture(SQL: SqlJsStatic, modern = false, count = 2) {
   const db = new SQL.Database();
   db.run('CREATE TABLE col(ver INTEGER, models TEXT, decks TEXT); CREATE TABLE notes(id INTEGER, guid TEXT, mid INTEGER, tags TEXT, flds TEXT); CREATE TABLE cards(id INTEGER, nid INTEGER, did INTEGER, odid INTEGER, ord INTEGER);');
   const basic = { name: 'Basic', type: 0, flds: [{ name: 'Front', ord: 0 }, { name: 'Back', ord: 1 }], tmpls: [{ ord: 0, qfmt: '{{Front}}', afmt: '{{FrontSide}}<hr>{{Back}}' }, { ord: 1, qfmt: '{{Back}}', afmt: '{{Front}}' }] };

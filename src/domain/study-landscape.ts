@@ -1,4 +1,6 @@
 import type { AppState, Entity, StudyRecord } from './model';
+import { buildObservatoryEvolution, type ObservatoryEvolution } from './observatory-evolution';
+import { buildObservatoryResponse, type ObservatoryResponse } from './observatory-response';
 import {
   buildDailyStudyDynamics,
   studyInputDay,
@@ -12,6 +14,8 @@ export interface StudyLandscape {
   returns: { key: string; seed: number }[];
   undated: boolean;
   dynamics: DailyStudyDynamics;
+  evolution: ObservatoryEvolution;
+  response: ObservatoryResponse;
 }
 
 export function landscapeSeed(value: string): number {
@@ -106,5 +110,7 @@ export function buildStudyLandscape(
     })),
     undated,
     dynamics: buildDailyStudyDynamics(records, referenceDay),
+    evolution: buildObservatoryEvolution(records, referenceDay),
+    response: buildObservatoryResponse(records, referenceDay),
   };
 }

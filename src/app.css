@@ -64,6 +64,7 @@ small {
 }
 fieldset {
   min-inline-size: 0;
+  min-inline-size: 0;
   border: var(--border-width) solid var(--color-border);
   border-radius: var(--radius-md);
   margin: var(--space-4) 0;
@@ -82,6 +83,18 @@ hr {
   grid-template-columns: 15rem minmax(0, 1fr);
   min-height: 100dvh;
 }
+.skip-to-study {
+  position: fixed;
+  z-index: 100;
+  inset-block-start: var(--space-3);
+  inset-inline-start: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-surface);
+  color: var(--color-text);
+  border: var(--focus-width) solid var(--color-focus);
+  transform: translateY(calc(-100% - var(--space-7)));
+}
+.skip-to-study:focus { transform: none; }
 .sidebar {
   overflow-y: auto;
   position: sticky;
@@ -205,6 +218,40 @@ nav a[aria-current="page"] {
   grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr);
   gap: var(--space-6);
   margin-top: var(--space-7);
+}
+/* Home boundaries follow rendered functions, including lazy loading and optional return guidance. */
+.home-function-stack > * {
+  margin-block: 0;
+}
+.home-function-stack > * + * {
+  border-block-start: var(--border-width) solid var(--color-border);
+  margin-block-start: var(--space-6);
+  padding-block-start: var(--space-6);
+}
+.home-function-stack > .ui-card,
+.home-function-stack > .recent-study-list > article:last-child {
+  border-block-end: 0;
+}
+.home-function-stack > .dashboard-grid > section + section {
+  border-inline-start: var(--border-width) solid var(--color-border);
+  padding-inline-start: var(--space-6);
+}
+@media (max-width: 64rem) {
+  .home-function-stack > .dashboard-grid > section + section {
+    border-inline-start: 0;
+    padding-inline-start: 0;
+    border-block-start: var(--border-width) solid var(--color-border);
+    padding-block-start: var(--space-6);
+  }
+}
+@media (max-width: 40rem) {
+  .is-home .home-function-stack > * + * {
+    margin-block-start: var(--space-5);
+    padding-block-start: var(--space-5);
+  }
+  .home-function-stack > .dashboard-grid > section + section {
+    padding-block-start: var(--space-5);
+  }
 }
 .section-heading {
   display: flex;
@@ -572,10 +619,10 @@ nav a[aria-current="page"] {
 
 /* Compact home keeps the first study action above the fold; full controls remain available. */
 @media (max-width: 40rem) {
-  .small-brand { display: none; }
+  .small-brand { display: block; flex: 1 1 60%; order: -2; }
   .topbar { gap: var(--space-2); }
   .topbar .ui-field { flex: 1 1 50%; }
-  .compact-menu { width: auto; margin-left: auto; }
+  .compact-menu { width: auto; margin-left: auto; order: -1; }
   .compact-menu[open] { width: 100%; }
   .is-home .page-heading { margin: var(--space-3) 0; }
   .is-home .page-heading .eyebrow { display: none; }
@@ -597,6 +644,37 @@ nav a[aria-current="page"] {
 .workspace-tools-content > a { min-block-size: var(--icon-target); display: flex; align-items: center; }
 .page-heading { margin-block: var(--space-4) var(--space-5); }
 .page-heading .eyebrow:empty { display: none; }
+.page-heading > div:first-child { flex: 1 1 18rem; min-inline-size: 0; }
+.page-title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+.page-title-row h1 { min-inline-size: 0; }
+.workspace-action-menu { position: relative; flex: 0 0 auto; }
+.workspace-action-menu > summary {
+  color: var(--color-muted);
+  font-size: var(--type-label-size);
+  padding-inline: var(--space-2);
+}
+.workspace-action-menu > summary:focus-visible {
+  outline: var(--focus-width) solid var(--color-focus);
+  outline-offset: var(--focus-offset);
+}
+.workspace-action-menu .workspace-actions {
+  position: absolute;
+  z-index: 5;
+  inset-inline-end: 0;
+  inline-size: max-content;
+  max-inline-size: min(20rem, calc(100vw - var(--space-7)));
+  display: grid;
+  margin: 0;
+  padding: var(--space-3);
+  border: var(--border-width) solid var(--color-border-strong);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-overlay);
+}
 .page-heading h1 {
   font-size: var(--type-display-size);
   line-height: var(--type-display-line);

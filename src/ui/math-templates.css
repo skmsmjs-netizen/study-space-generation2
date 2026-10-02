@@ -1,0 +1,123 @@
+.math-templates {
+  display: grid;
+  gap: var(--space-4);
+  min-width: 0;
+}
+.math-template-heading,
+.math-template-controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: var(--space-4);
+}
+.math-template-control {
+  display: grid;
+  gap: var(--space-2);
+  min-width: 0;
+}
+.math-template-control input[type='range'] {
+  width: 100%;
+  min-height: var(--control-height);
+  accent-color: var(--color-math-curve);
+}
+.math-template-section p {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.math-template-readouts dl {
+  display: grid;
+  gap: var(--space-2);
+}
+.math-template-readouts dl > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.math-template-readouts dd {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+.math-template-table {
+  overflow: auto;
+  max-width: 100%;
+}
+.math-template-table th,
+.math-template-table td {
+  text-align: left;
+  padding: var(--space-2);
+}
+.math-template-exploration,
+.math-template-canvas,
+.math-template-panel {
+  min-width: 0;
+}
+.math-template-exploration {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(16rem, 18rem);
+  gap: var(--space-4);
+  align-items: start;
+}
+.math-observation-question,
+.math-observation-reasoning {
+  grid-column: 1 / -1;
+  min-inline-size: 0;
+  overflow-wrap: anywhere;
+}
+.math-template-panel {
+  border-inline-start: var(--border-width) solid var(--color-border);
+  padding-inline-start: var(--space-4);
+}
+.math-template-readouts,
+.math-observation-reasoning {
+  border-block-start: var(--border-width) solid var(--color-border);
+  padding-block-start: var(--space-3);
+}
+.math-template-readouts {
+  margin-block-start: var(--space-4);
+  overflow-wrap: anywhere;
+}
+.math-template-full.ui-modal {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100dvh;
+  max-height: 100dvh;
+  border-radius: 0;
+  padding: max(var(--space-3), env(safe-area-inset-top))
+    max(var(--space-3), env(safe-area-inset-right)) max(var(--space-3), env(safe-area-inset-bottom))
+    max(var(--space-3), env(safe-area-inset-left));
+}
+.math-template-full .ui-modal-header {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: var(--color-surface);
+}
+.math-template-full .math-plot {
+  height: calc(100dvh - 250px);
+  min-height: 200px;
+}
+@media (max-width: 55rem) {
+  .math-template-exploration {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .math-template-panel {
+    border-inline-start: 0;
+    padding-inline-start: 0;
+    border-block-start: var(--border-width) solid var(--color-border);
+    padding-block-start: var(--space-3);
+  }
+  .math-template-full .math-plot {
+    height: calc(100dvh - 300px);
+  }
+}
+@container math-observation (max-width: 55rem) {
+  .math-template-exploration {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .math-template-panel {
+    border-inline-start: 0;
+    padding-inline-start: 0;
+    border-block-start: var(--border-width) solid var(--color-border);
+    padding-block-start: var(--space-3);
+  }
+}

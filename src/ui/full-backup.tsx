@@ -98,6 +98,6 @@ export function BackupRecoveryGate({ children }: { children: ReactNode }) {
     void recovery.then(() => { if (alive) setReady(true); }).catch(error => { if (alive) setError(errorText(error)); });
     return () => { alive = false; };
   }, []);
-  if (error) return <main className="boot"><ErrorState title="백업 복원·복구를 마치지 못했습니다" message={error} onRetry={() => location.reload()} /><Button onClick={() => { void cancelPlannedBackup().then(() => location.reload()); }}>복원 요청 취소하고 기존 공간 열기</Button></main>;
-  return ready ? children : <main className="boot"><LoadingState message="보관 자료를 확인하고 있습니다…" /></main>;
+  if (error) return <main className="boot observatory-paper"><ErrorState title="백업 복원·복구를 마치지 못했습니다" message={error} onRetry={() => location.reload()} /><Button onClick={() => { void cancelPlannedBackup().then(() => location.reload()); }}>복원 요청 취소하고 기존 공간 열기</Button></main>;
+  return ready ? children : <main className="boot observatory-paper"><LoadingState message="보관 자료를 확인하고 있습니다…" /></main>;
 }

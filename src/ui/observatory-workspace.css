@@ -1,0 +1,354 @@
+@import './observatory-ui-tokens.css';
+
+/* Entry and recovery belong to the same interior before the full shell mounts. */
+body:has(.boot) {
+  background: var(--observatory-interior-canvas);
+}
+
+/* The shell owns room chrome; each reading surface owns its own material.
+   Rebind aliases at that boundary so inherited custom properties cannot retain
+   the room's colors after entering a paper document or a portal. */
+.observatory-workspace,
+.observatory-interior {
+  --observatory-material-canvas: var(--observatory-interior-canvas);
+  --observatory-material-surface: var(--observatory-interior-surface);
+  --observatory-material-subtle: var(--observatory-interior-subtle);
+  --observatory-material-text: var(--observatory-interior-text);
+  --observatory-material-muted: var(--observatory-interior-muted);
+  --observatory-material-border: var(--observatory-interior-border-decorative);
+  --observatory-material-interactive: var(--observatory-interior-border-interactive);
+  --observatory-material-focus: var(--observatory-interior-focus);
+  --observatory-material-selected: var(--observatory-interior-selected);
+  --observatory-material-selected-text: var(--observatory-interior-selected-text);
+  --observatory-material-primary: var(--observatory-interior-primary);
+  --observatory-material-primary-hover: var(--observatory-interior-primary-hover);
+  --observatory-material-primary-pressed: var(--observatory-interior-primary-pressed);
+  --observatory-material-on-primary: var(--observatory-interior-on-primary);
+  --observatory-material-floating-shadow: var(--observatory-floating-shadow-dark);
+  --color-danger: var(--primitive-common-error-100);
+  --color-danger-surface: var(--primitive-common-error-900);
+  --color-invalid-border: var(--primitive-common-error-100);
+  color-scheme: dark;
+}
+
+.observatory-workspace .main-content,
+.observatory-paper,
+body:has(.observatory-workspace, .personal-entry) > .ui-overlay .ui-modal,
+body:has(.observatory-workspace, .personal-entry) > .ui-context-menu,
+.observatory-workspace .ui-toast {
+  --observatory-material-canvas: var(--observatory-paper-canvas);
+  --observatory-material-surface: var(--observatory-paper-surface);
+  --observatory-material-subtle: var(--observatory-paper-subtle);
+  --observatory-material-text: var(--observatory-paper-text);
+  --observatory-material-muted: var(--observatory-paper-muted);
+  --observatory-material-border: var(--observatory-paper-border-decorative);
+  --observatory-material-interactive: var(--observatory-paper-border-interactive);
+  --observatory-material-focus: var(--observatory-paper-focus);
+  --observatory-material-selected: var(--observatory-paper-selected);
+  --observatory-material-selected-text: var(--observatory-paper-selected-text);
+  --observatory-material-primary: var(--observatory-paper-primary);
+  --observatory-material-primary-hover: var(--observatory-paper-primary-hover);
+  --observatory-material-primary-pressed: var(--observatory-paper-primary-pressed);
+  --observatory-material-on-primary: var(--observatory-paper-on-primary);
+  --observatory-material-floating-shadow: var(--observatory-floating-shadow-light);
+  --color-danger: var(--primitive-common-error-700);
+  --color-danger-surface: var(--primitive-common-error-50);
+  --color-invalid-border: var(--primitive-common-error-600);
+  color-scheme: light;
+}
+
+/* Dark reading is a saved preference (or the existing OS preference), not a
+   time-of-day effect. The paper layout remains the same in both modes. */
+:root[data-theme='dark'] {
+  --observatory-paper-canvas: var(--observatory-interior-canvas);
+  --observatory-paper-surface: var(--observatory-interior-surface);
+  --observatory-paper-subtle: var(--observatory-interior-subtle);
+  --observatory-paper-text: var(--observatory-interior-text);
+  --observatory-paper-muted: var(--observatory-interior-muted);
+  --observatory-paper-border-decorative: var(--observatory-interior-border-decorative);
+  --observatory-paper-border-interactive: var(--observatory-interior-border-interactive);
+  --observatory-paper-focus: var(--observatory-interior-focus);
+  --observatory-paper-selected: var(--observatory-interior-selected);
+  --observatory-paper-selected-text: var(--observatory-interior-selected-text);
+  --observatory-paper-primary: var(--observatory-interior-primary);
+  --observatory-paper-primary-hover: var(--observatory-interior-primary-hover);
+  --observatory-paper-primary-pressed: var(--observatory-interior-primary-pressed);
+  --observatory-paper-on-primary: var(--observatory-interior-on-primary);
+}
+
+:root[data-theme='dark']
+  :is(
+    .observatory-workspace .main-content,
+    .observatory-paper,
+    body:has(.observatory-workspace, .personal-entry) > .ui-overlay .ui-modal,
+    body:has(.observatory-workspace, .personal-entry) > .ui-context-menu,
+    .observatory-workspace .ui-toast
+  ) {
+  --observatory-material-floating-shadow: var(--observatory-floating-shadow-dark);
+  --color-danger: var(--primitive-common-error-100);
+  --color-danger-surface: var(--primitive-common-error-900);
+  --color-invalid-border: var(--primitive-common-error-100);
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']):not([data-theme='dark']) {
+    --observatory-paper-canvas: var(--observatory-interior-canvas);
+    --observatory-paper-surface: var(--observatory-interior-surface);
+    --observatory-paper-subtle: var(--observatory-interior-subtle);
+    --observatory-paper-text: var(--observatory-interior-text);
+    --observatory-paper-muted: var(--observatory-interior-muted);
+    --observatory-paper-border-decorative: var(--observatory-interior-border-decorative);
+    --observatory-paper-border-interactive: var(--observatory-interior-border-interactive);
+    --observatory-paper-focus: var(--observatory-interior-focus);
+    --observatory-paper-selected: var(--observatory-interior-selected);
+    --observatory-paper-selected-text: var(--observatory-interior-selected-text);
+    --observatory-paper-primary: var(--observatory-interior-primary);
+    --observatory-paper-primary-hover: var(--observatory-interior-primary-hover);
+    --observatory-paper-primary-pressed: var(--observatory-interior-primary-pressed);
+    --observatory-paper-on-primary: var(--observatory-interior-on-primary);
+  }
+  :root:not([data-theme='light']):not([data-theme='dark'])
+    :is(
+      .observatory-workspace .main-content,
+      .observatory-paper,
+      body:has(.observatory-workspace, .personal-entry) > .ui-overlay .ui-modal,
+      body:has(.observatory-workspace, .personal-entry) > .ui-context-menu,
+      .observatory-workspace .ui-toast
+    ) {
+    --observatory-material-floating-shadow: var(--observatory-floating-shadow-dark);
+    --color-danger: var(--primitive-common-error-100);
+    --color-danger-surface: var(--primitive-common-error-900);
+    --color-invalid-border: var(--primitive-common-error-100);
+    color-scheme: dark;
+  }
+}
+
+:is(
+  .observatory-workspace,
+  .observatory-interior,
+  .observatory-workspace .main-content,
+  .observatory-paper,
+  body:has(.observatory-workspace, .personal-entry) > .ui-overlay .ui-modal,
+  body:has(.observatory-workspace, .personal-entry) > .ui-context-menu,
+  .observatory-workspace .ui-toast
+) {
+  --color-background: var(--observatory-material-canvas);
+  --color-surface: var(--observatory-material-surface);
+  --color-surface-inset: var(--observatory-material-subtle);
+  --color-text: var(--observatory-material-text);
+  --color-muted: var(--observatory-material-muted);
+  --color-placeholder: var(--observatory-material-muted);
+  --color-border: var(--observatory-material-border);
+  --color-border-strong: var(--observatory-material-interactive);
+  --color-focus: var(--observatory-material-focus);
+  --color-selected: var(--observatory-material-selected);
+  --color-primary: var(--observatory-material-primary);
+  --color-on-primary: var(--observatory-material-on-primary);
+  --color-primary-hover: var(--observatory-material-primary-hover);
+  --color-primary-pressed: var(--observatory-material-primary-pressed);
+  --color-secondary: var(--observatory-material-subtle);
+  --color-secondary-button-background: var(--observatory-material-surface);
+  --color-secondary-button-hover: var(--observatory-material-subtle);
+  --color-secondary-button-pressed: var(--observatory-material-selected);
+  --color-destructive-button-text: var(--color-danger);
+  --color-destructive-button-background: var(--color-danger-surface);
+  --color-destructive-button-hover: var(--color-danger-surface);
+  --color-destructive-button-pressed: var(--color-danger-surface);
+  --color-background-canvas: var(--color-background);
+  --color-background-surface: var(--color-surface);
+  --color-background-raised: var(--color-surface);
+  --color-background-subtle: var(--color-surface-inset);
+  --color-background-selected: var(--color-selected);
+  --color-background-brand-subtle: var(--color-surface-inset);
+  --color-text-primary: var(--color-text);
+  --color-text-secondary: var(--color-muted);
+  --color-text-tertiary: var(--color-muted);
+  --color-text-placeholder: var(--color-placeholder);
+  --color-text-brand: var(--color-primary);
+  --color-text-link: var(--color-primary);
+  --color-text-link-hover: var(--color-primary-hover);
+  --color-border-subtle: var(--color-border);
+  --color-border-default: var(--color-border-strong);
+  --color-border-brand: var(--color-focus);
+  --color-focus-ring: var(--color-focus);
+  --color-icon-primary: var(--color-text);
+  --color-icon-secondary: var(--color-muted);
+  --color-icon-brand: var(--color-primary);
+  --radius-sm: var(--observatory-radius-button);
+  --radius-md: var(--observatory-radius-tab);
+  --radius-lg: var(--observatory-radius-panel);
+  --radius-overlay: var(--observatory-radius-dialog);
+  --shadow-overlay: var(--observatory-material-floating-shadow);
+  --control-height: var(--observatory-control-height);
+  --icon-target: var(--observatory-icon-target);
+  --focus-width: var(--observatory-focus-width);
+  --focus-offset: var(--observatory-focus-offset);
+  --layout-reading: var(--observatory-reading-width);
+  --layout-dialog: var(--observatory-dialog-width);
+  --type-display-size: var(--observatory-type-title-size);
+  --type-display-compact-size: var(--observatory-type-title-compact-size);
+  --type-display-line: var(--observatory-type-title-line);
+  --type-display-weight: var(--observatory-type-title-weight);
+  --type-title-size: var(--observatory-type-title-size);
+  --type-title-compact-size: var(--observatory-type-title-compact-size);
+  --type-title-line: var(--observatory-type-title-line);
+  --type-title-weight: var(--observatory-type-title-weight);
+  --type-body-size: var(--observatory-type-body-size);
+  --type-body-line: var(--observatory-type-body-line);
+  --type-body-weight: var(--observatory-type-body-weight);
+  --type-label-size: var(--observatory-type-label-size);
+  --type-label-line: var(--observatory-type-label-line);
+  --type-label-weight: var(--observatory-type-label-weight);
+  --type-caption-size: var(--observatory-type-caption-size);
+  --type-caption-line: var(--observatory-type-caption-line);
+  --type-caption-weight: var(--observatory-type-caption-weight);
+  --type-heading-size: var(--observatory-type-heading-size);
+  --type-heading-line: var(--observatory-type-heading-line);
+  --type-heading-weight: var(--observatory-type-heading-weight);
+  --input-font-size: max(var(--observatory-input-min-size), var(--type-body-size));
+  font-size: var(--type-body-size);
+  line-height: var(--type-body-line);
+  color: var(--color-text);
+}
+
+.observatory-workspace,
+.observatory-interior {
+  background: var(--color-background);
+  font-family: var(--font-interface);
+}
+
+/* Paper content follows the existing reading-font role, including inherited
+   text inputs and portal drafts. Interface labels and technical editors keep
+   their own explicit font roles; choosing a reading font must not replace their fonts. */
+.observatory-workspace .main-content,
+.observatory-paper,
+body:has(.observatory-workspace, .personal-entry) > .ui-overlay .ui-modal {
+  font-family: var(--font-reading);
+}
+:is(
+    .observatory-workspace .main-content,
+    .observatory-paper,
+    body:has(.observatory-workspace, .personal-entry) > .ui-overlay .ui-modal
+  )
+  :is(h1, h2, h3, h4, legend, summary) {
+  font-family: var(--font-interface);
+}
+.observatory-workspace .sidebar,
+.observatory-workspace .topbar,
+.observatory-workspace .bottom-nav {
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+.observatory-workspace .workspace {
+  padding: var(--space-4);
+}
+.observatory-workspace .topbar {
+  margin-block-end: var(--space-4);
+}
+.observatory-workspace .main-content,
+.observatory-paper {
+  background: var(--color-surface);
+  border: var(--observatory-paper-border) solid var(--color-border);
+  box-shadow: var(--observatory-paper-shadow);
+  padding: var(--observatory-paper-padding);
+  min-inline-size: 0;
+}
+.observatory-workspace.is-canvas .main-content {
+  box-shadow: var(--shadow-none);
+}
+:is(
+    .observatory-workspace,
+    .observatory-interior,
+    .observatory-paper,
+    body:has(.observatory-workspace, .personal-entry) > .ui-overlay
+  )
+  .ui-input {
+  border-radius: var(--observatory-radius-input);
+}
+:is(
+    .observatory-workspace,
+    .observatory-interior,
+    .observatory-paper,
+    body:has(.observatory-workspace, .personal-entry) > .ui-overlay
+  )
+  .ui-button:not(:disabled):active {
+  transform: translateY(var(--observatory-pressed-y));
+}
+:is(.observatory-workspace, .observatory-interior, .observatory-paper)
+  .ui-tabs
+  [aria-selected='true'] {
+  color: var(--observatory-material-selected-text);
+}
+/* Overflowing tab rows clip descendants to their scroll box. Reserve the
+   complete outside focus ring instead of the smaller default spacing step. */
+:is(
+    .observatory-workspace,
+    .observatory-interior,
+    .observatory-paper,
+    body:has(.observatory-workspace, .personal-entry) > .ui-overlay
+  )
+  :is(.ui-tabs, .ui-segmented) {
+  padding: max(var(--space-1), calc(var(--focus-width) + var(--focus-offset)));
+  scroll-padding-inline: max(var(--space-1), calc(var(--focus-width) + var(--focus-offset)));
+}
+.observatory-workspace .ui-toast {
+  border-radius: var(--observatory-radius-toast);
+}
+
+/* Plot hues identify each curve/vector, but some only meet non-text contrast
+   on paper. Keep those hues on the legend markers and use the current reading
+   surface's ink for the small labels; plot variables and geometry stay intact. */
+.math-explorer .math-legend > span {
+  color: var(--color-text);
+}
+.math-explorer .math-legend > .math-curve {
+  border-bottom-color: var(--color-math-curve);
+}
+.math-explorer .math-legend > .math-point {
+  border-bottom-color: var(--color-math-point);
+}
+.math-explorer .math-legend > .math-vector-T {
+  border-bottom-color: var(--color-math-tangent);
+}
+.math-explorer .math-legend > .math-vector-N {
+  border-bottom-color: var(--color-math-normal);
+}
+.math-explorer .math-legend > .math-vector-B {
+  border-bottom-color: var(--color-math-binormal);
+}
+
+/* Container width controls paper padding beside the sidebar. No fixed paper
+   height, texture, glow or text rotation. Canvas retains its own space contract. */
+@container (max-width: 40rem) {
+  .observatory-workspace:not(.is-canvas) .main-content,
+  .observatory-paper {
+    padding: var(--observatory-paper-compact-padding);
+    --type-display-size: var(--observatory-type-title-compact-size);
+    --type-title-size: var(--observatory-type-title-compact-size);
+  }
+}
+@media (max-width: 64rem) {
+  .observatory-workspace .workspace {
+    padding: var(--space-2);
+  }
+}
+@media (max-width: 40rem) {
+  .observatory-workspace .workspace {
+    padding-inline: var(--space-1);
+    padding-block-end: calc(
+      var(--control-height) + var(--space-4) + var(--space-4) + env(safe-area-inset-bottom)
+    );
+  }
+  .observatory-workspace:not(.is-canvas) .main-content,
+  .observatory-paper {
+    padding: var(--observatory-paper-compact-padding);
+  }
+}
+@media (forced-colors: active) {
+  :is(.observatory-workspace, .observatory-interior, .observatory-paper) {
+    background: Canvas;
+    color: CanvasText;
+    box-shadow: none;
+  }
+}

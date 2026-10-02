@@ -28,6 +28,10 @@ function scale(scene: MathScene) {
 
 test('math zoom preserves exact t, formulas, notes and restored view', async ({ page }, info) => {
   await page.goto('?space=demo#/math');
+  const prose = page.getByLabel('관찰·메모 (선택)', { exact: true });
+  await expect(prose).toHaveCSS('font-weight', '700');
+  await expect(prose).toHaveCSS('font-size', '16px');
+  await expect(prose).toHaveCSS('text-align', 'justify');
   const zoomIn = page.getByRole('button', { name: '＋ 확대', exact: true });
   const zoomOut = page.getByRole('button', { name: '− 축소', exact: true });
   await expect(zoomIn).toBeEnabled({ timeout: 45000 });
@@ -58,7 +62,7 @@ test('math zoom preserves exact t, formulas, notes and restored view', async ({ 
   expect(after.expressions).toEqual(before.expressions);
   expect(after.notes).toEqual(before.notes);
   expect(after.a).toBe(before.a);
-  expect(after.position).toBeCloseTo(0.5, 13);
+  expect(after.position).toBeCloseTo(0.25, 13);
   await zoomIn.tap();
   await expect.poll(async () => scale(await snapshot(page))).toBeGreaterThan(originalScale);
   const storedScale = scale(await snapshot(page));
@@ -74,7 +78,7 @@ test('math zoom preserves exact t, formulas, notes and restored view', async ({ 
   await zoomIn.tap();
   await zoomOut.tap();
   await expect(page.locator('.math-visual [role="alert"]')).toHaveCount(0);
-  await page.getByText('수식·구간 편집', { exact: true }).tap();
+  await page.getByText('수식·슬라이더 범위 편집', { exact: true }).tap();
   await page.getByLabel('수식 예시', { exact: true }).selectOption({ label: '사인파' });
   await page.getByRole('button', { name: '예시 적용', exact: true }).tap();
   await expect(page.getByRole('img', { name: '함수 그래프와 현재 점', exact: true })).toBeVisible();
@@ -143,6 +147,29 @@ async function touchView(
       send('pointerup', 12, nativeRotate ? 104 : 56, nativeRotate ? 24 : 0);
     await new Promise((resolve) => requestAnimationFrame(resolve));
   }, gesture);
+  if (selector.startsWith('.math-geogebra')) {
+    // Native pinch easing can continue after pointerup. Wait for its public
+    // camera coordinates to settle before capturing the expected saved view.
+    await page.evaluate(async () => {
+      const applet = Object.values(window).find(
+        (value) =>
+          value &&
+          typeof value === 'object' &&
+          typeof (value as { exists?: unknown }).exists === 'function' &&
+          (value as unknown as { exists: (name: string) => boolean }).exists('StudyPoint'),
+      ) as { getXML: () => string } | undefined;
+      if (!applet) return;
+      let previous = '',
+        stable = 0;
+      for (let attempt = 0; attempt < 40 && stable < 4; attempt++) {
+        await new Promise((resolve) => setTimeout(resolve, 50));
+        const current = (applet.getXML().match(/<coordSystem\s+[^>]+>/g) ?? []).join(';');
+        stable = current === previous ? stable + 1 : 0;
+        previous = current;
+      }
+      if (stable < 4) throw Error('Native camera did not settle after touch');
+    });
+  }
 }
 function angles(scene: MathScene) {
   const coords =
@@ -183,7 +210,7 @@ test('math native touch rotates and pinches while retaining formulas and t', asy
     'none',
   );
   expect(await page.locator('main').evaluate((e) => getComputedStyle(e).touchAction)).toBe('auto');
-  await page.getByText('수식·구간 편집', { exact: true }).tap();
+  await page.getByText('수식·슬라이더 범위 편집', { exact: true }).tap();
   await page.getByLabel('수식 예시', { exact: true }).selectOption({ label: '사인파' });
   await page.getByRole('button', { name: '예시 적용', exact: true }).tap();
   await expect(page.getByLabel('그래프 종류', { exact: true })).toHaveValue('function');
@@ -246,7 +273,7 @@ test('math Plotly touch rotates and pinches with native camera events', async ({
   const moved = await plotlyView(page);
   expect(eyeLength(moved)).toBeCloseTo(eyeLength(reduced) / 1.2, 5);
   await expect(page.locator('.math-visual [role="alert"]')).toHaveCount(0);
-  await page.getByText('수식·구간 편집', { exact: true }).tap();
+  await page.getByText('수식·슬라이더 범위 편집', { exact: true }).tap();
   await page.getByLabel('수식 예시', { exact: true }).selectOption({ label: '사인파' });
   await page.getByRole('button', { name: '예시 적용', exact: true }).tap();
   await expect(page.getByRole('img', { name: '함수 그래프와 현재 점', exact: true })).toBeVisible();
@@ -270,7 +297,7 @@ test('math Plotly touch rotates and pinches with native camera events', async ({
 // Read pixels from the rendered canvas screenshot, rather than asserting only
 // that a construction object still exists outside the visible camera.
 async function coloredPixels(page: Page) {
-  const png = await page.locator('.math-geogebra canvas:visible').first().screenshot();
+  const png = await page.locator('.math-geogebra-host').screenshot();
   return page.evaluate(async (base64) => {
     const image = new Image();
     image.src = `data:image/png;base64,${base64}`;
@@ -282,10 +309,18 @@ async function coloredPixels(page: Page) {
     if (!context) throw Error('화면을 읽지 못했습니다.');
     context.drawImage(image, 0, 0);
     const data = context.getImageData(0, 0, canvas.width, canvas.height).data;
+    const probe = document.createElement('span');
+    probe.style.color = 'var(--color-math-point)';
+    document.querySelector('.math-explorer')!.appendChild(probe);
+    const primary = getComputedStyle(probe)
+      .color.match(/[\d.]+/g)
+      ?.slice(0, 3)
+      .map(Number) ?? [79, 70, 230];
+    probe.remove();
     let count = 0;
     for (let i = 0; i < data.length; i += 4) {
       const [r, g, b] = [data[i], data[i + 1], data[i + 2]];
-      if (b > r + 10 && g > r + 8 && b > 55 && b < 220) count++;
+      if (Math.hypot(r - primary[0], g - primary[1], b - primary[2]) < 60) count++;
     }
     return count;
   }, png.toString('base64'));
@@ -304,7 +339,7 @@ test('math integer grid and coordinate guides retain the point through repeated 
   const before = await snapshot(page);
   const view =
     /<euclidianView3D>[\s\S]*?<\/euclidianView3D>/.exec(before.geogebra?.xml ?? '')?.[0] ?? '';
-  expect(view).toContain('grid="true"');
+  await expect(page.locator('.math-flat-scaffold [data-world-grid]')).toHaveAttribute('d', /M/);
   expect(view.match(/tickDistance="1"/g)).toHaveLength(3);
   expect(view).toContain('<plate show="false"');
   for (const name of ['studyGuideX', 'studyGuideY', 'studyGuideZ', 'studyGuideXY'])
@@ -323,7 +358,7 @@ test('math integer grid and coordinate guides retain the point through repeated 
   await t.press('Enter');
   const moved = await snapshot(page);
   expect(moved.geogebra?.xml).not.toBe(enlarged.geogebra?.xml);
-  await page.getByText('수식·구간 편집', { exact: true }).tap();
+  await page.getByText('수식·슬라이더 범위 편집', { exact: true }).tap();
   await page.getByLabel('수식 예시', { exact: true }).selectOption({ label: '사인파' });
   await page.getByRole('button', { name: '예시 적용', exact: true }).tap();
   await expect(zoom).toBeEnabled({ timeout: 45000 });
@@ -337,15 +372,236 @@ test('math integer grid and coordinate guides retain the point through repeated 
   expect(await coloredPixels(page)).toBeGreaterThan(8);
   await page.getByLabel('그래프 도구', { exact: true }).selectOption('plotly');
   await expect(page.getByRole('img', { name: '함수 그래프와 현재 점', exact: true })).toBeVisible();
-  await expect(page.locator('.math-plot .scatterlayer .trace')).toHaveCount(3);
-  await expect(page.locator('.math-plot .xtick text').first()).not.toContainText('.');
-  // A vertical SVG path has a zero-width geometry box even when its stroke is painted.
-  const gridLine = page.locator('.math-plot .gridlayer .xgrid').first();
-  expect(await gridLine.evaluate(node => {
-    const style = getComputedStyle(node);
-    return style.display !== 'none' && style.visibility === 'visible' &&
-      style.stroke !== 'none' && Number.parseFloat(style.strokeWidth) > 0 &&
-      (node as SVGGeometryElement).getTotalLength() > 0 &&
-      node.getBoundingClientRect().height > 0;
-  })).toBe(true);
+  // Curve, coordinate guides, axis coordinate markers and the current point.
+  await expect(page.locator('.math-plot .scatterlayer .trace')).toHaveCount(4);
+  // The density rule may hide tick labels in narrow views. Verify the
+  // painted grid, and integer formatting for every label that is displayed.
+  const initialLabels = await page.locator('.math-plot .xtick text').allTextContents();
+  expect(initialLabels.every((value) => !value.includes('.'))).toBe(true);
+  // A vertical SVG path has zero bounding-box width, even when its stroke is
+  // painted. Verify the drawing and its style rather than rectangle visibility.
+  const grid = page.locator('.math-plot .gridlayer .xgrid').first();
+  await expect
+    .poll(() =>
+      grid.evaluate((element) => {
+        const style = getComputedStyle(element);
+        return (
+          element instanceof SVGPathElement &&
+          element.getTotalLength() > 0 &&
+          style.stroke !== 'none' &&
+          style.display !== 'none' &&
+          style.visibility === 'visible' &&
+          Number(style.opacity) > 0 &&
+          Number(style.strokeOpacity) > 0
+        );
+      }),
+    )
+    .toBe(true);
+  for (let i = 0; i < 6; i++) await zoom.tap();
+  const labels = await page.locator('.math-plot .xtick text').allTextContents();
+  expect(labels.every((value) => !value.includes('.'))).toBe(true);
+});
+
+test('math neutral solid grid and density driven number fade', async ({ page }, info) => {
+  await page.goto('?space=demo#/math');
+  await page.getByLabel('그래프 도구', { exact: true }).selectOption('geogebra');
+  const host = page.locator('.math-geogebra-host');
+  const zoom = page.getByRole('button', { name: '＋ 확대', exact: true });
+  await expect(zoom).toBeEnabled({ timeout: 45000 });
+  for (let i = 0; i < 4; i++) await page.getByRole('button', { name: '− 축소', exact: true }).tap();
+  await expect(host).toHaveAttribute('data-axis-numbers', 'hidden');
+  const far = await snapshot(page);
+  const xml = far.geogebra?.xml ?? '';
+  expect(xml).toContain('<axesColored val="false"');
+  await expect(page.locator('.math-flat-scaffold [data-world-grid]')).toHaveAttribute('d', /M/);
+  await page.screenshot({ path: info.outputPath('neutral-far.png') });
+  await host.evaluate((el) => {
+    const observer = new MutationObserver(() => {
+      el.dataset.testFade = [
+        ...(el.dataset.testFade?.split(';') ?? []),
+        el.getAttribute('data-axis-number-opacity') ?? '',
+      ]
+        .slice(-120)
+        .join(';');
+    });
+    observer.observe(el, { attributes: true, attributeFilter: ['data-axis-number-opacity'] });
+  });
+  for (let i = 0; i < 12; i++) await zoom.tap();
+  await expect(host).toHaveAttribute('data-axis-numbers', 'visible');
+  const samples = ((await host.getAttribute('data-test-fade')) ?? '').split(/[;,]/).map(Number);
+  expect(samples.some((v) => v > 0.02 && v < 0.98)).toBe(true);
+  const close = await snapshot(page);
+  expect(close.expressions).toEqual(far.expressions);
+  expect(close.position).toBe(far.position);
+  // At high zoom the origin and some whole axes can leave the viewport.
+  // Their labels must follow the axis visibility rather than float in view.
+  const labels = await page
+    .locator('.math-flat-scaffold [data-axis-labels]')
+    .evaluateAll((groups) =>
+      groups.map((group) => ({
+        axis: group.getAttribute('data-axis-labels'),
+        visibility: group.getAttribute('visibility'),
+        values: Array.from(group.querySelectorAll('text'), (text) => text.textContent),
+      })),
+    );
+  for (const label of labels) {
+    await expect(page.locator(`.math-flat-scaffold [data-axis="${label.axis}"]`)).toHaveAttribute(
+      'visibility',
+      label.visibility ?? 'hidden',
+    );
+    expect(label.values.every((value) => /^-?\d+$/.test(value ?? ''))).toBe(true);
+  }
+  expect(await page.locator('.math-flat-scaffold [data-axis]').count()).toBe(3);
+  expect(await page.locator('.math-flat-scaffold [data-vector]').count()).toBe(3);
+  const flatAxes = await page.locator('.math-flat-scaffold [data-axis]').evaluateAll((lines) =>
+    lines.map((line) => ({
+      color: line.getAttribute('stroke'),
+      width: Number(line.getAttribute('stroke-width')),
+      coordinates: ['x1', 'y1', 'x2', 'y2'].map((key) => Number(line.getAttribute(key))),
+    })),
+  );
+  for (const axis of flatAxes) {
+    expect(axis.color).toBe('#525252');
+    expect(axis.width).toBe(1);
+  }
+  expect(close.geogebra?.xml).not.toContain('type="cone"');
+  await page.screenshot({ path: info.outputPath('neutral-close.png') });
+  for (let i = 0; i < 12; i++)
+    await page.getByRole('button', { name: '− 축소', exact: true }).tap();
+  await expect(host).toHaveAttribute('data-axis-numbers', 'hidden');
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  for (let i = 0; i < 12; i++) await zoom.tap();
+  await expect(host).toHaveAttribute('data-axis-numbers', 'visible');
+  await page.getByRole('button', { name: '보기 초기화', exact: true }).tap();
+  await page.getByLabel('그래프 도구', { exact: true }).selectOption('plotly');
+  const plot = page.locator('.math-plot[role="img"]');
+  await expect(zoom).toBeEnabled({ timeout: 45000 });
+  for (let i = 0; i < 6; i++) await page.getByRole('button', { name: '− 축소', exact: true }).tap();
+  await expect(plot).toHaveAttribute('data-axis-numbers', 'hidden');
+  for (let i = 0; i < 10; i++) await zoom.tap();
+  await expect(plot).toHaveAttribute('data-axis-numbers', 'visible');
+  await page.screenshot({ path: info.outputPath('plotly-near.png') });
+});
+
+// Reproduce the almost edge-on camera in the reported screenshot in an isolated
+// context. Check painted curve pixels at analytically known positions outside
+// Classic's world box, rather than only the existence of a curve object.
+test('math rotated zoom paints continuous curve outside native world bounds', async ({
+  page,
+}, info) => {
+  await page.goto('?space=demo#/math');
+  await page.getByLabel('그래프 도구', { exact: true }).selectOption('geogebra');
+  const zoom = page.getByRole('button', { name: '＋ 확대', exact: true });
+  await expect(zoom).toBeEnabled({ timeout: 45000 });
+  await page.getByRole('textbox', { name: 'a 값', exact: true }).fill('3');
+  await page.getByRole('textbox', { name: 'a 값', exact: true }).press('Enter');
+  await page.getByRole('textbox', { name: 't 값', exact: true }).fill('2*pi');
+  await page.getByRole('textbox', { name: 't 값', exact: true }).press('Enter');
+  for (let i = 0; i < 7; i++) await zoom.tap();
+  const samples = await page.evaluate(async () => {
+    const win = window as unknown as Record<
+      string,
+      {
+        exists(name: string): boolean;
+        getXML(): string;
+        setXML(xml: string): void;
+        getXcoord(name: string): number;
+        getYcoord(name: string): number;
+        getZcoord(name: string): number;
+      }
+    >;
+    const native = Object.entries(win).find(
+      ([name, value]) => name.startsWith('studyggb') && value?.exists?.('StudyViewRight'),
+    )?.[1];
+    if (!native) throw Error('Native view missing');
+    await new Promise((resolve) => setTimeout(resolve, 500));
+    const xml = new DOMParser().parseFromString(native.getXML(), 'application/xml');
+    const coords = xml.querySelector('euclidianView3D > coordSystem');
+    coords?.setAttribute('xAngle', '7');
+    coords?.setAttribute('zAngle', '0');
+    native.setXML(new XMLSerializer().serializeToString(xml));
+    await new Promise((resolve) => setTimeout(resolve, 200));
+    const get = (name: string) => [
+      native.getXcoord(name),
+      native.getYcoord(name),
+      native.getZcoord(name),
+    ];
+    const low = get('StudyViewLow'),
+      high = get('StudyViewHigh'),
+      center = low.map((v, i) => (v + high[i]) / 2),
+      scales = get('StudyViewScale');
+    const unit = (v: number[]) => {
+      const n = Math.hypot(...v);
+      return v.map((x) => x / n);
+    };
+    const right = unit(get('StudyViewRight')),
+      direction = unit(get('StudyViewDirection'));
+    let up = unit([
+      direction[1] * right[2] - direction[2] * right[1],
+      direction[2] * right[0] - direction[0] * right[2],
+      direction[0] * right[1] - direction[1] * right[0],
+    ]);
+    if (up[2] < 0) up = up.map((v) => -v);
+    const [width, height] = get('StudyViewSize');
+    const dot = (a: number[], b: number[]) => a.reduce((sum, v, i) => sum + v * b[i], 0);
+    const points: number[][] = [];
+    for (let j = 0; j <= 400; j += 4) {
+      const t = (8 * Math.PI * j) / 400,
+        point = [3 * Math.cos(t), 3 * Math.sin(t), 0.5 * t];
+      const q = point.map((v, i) => (v - center[i]) * scales[i]);
+      const x = width / 2 + dot(q, right),
+        y = height / 2 - dot(q, up);
+      if (
+        x > 8 &&
+        x < width - 8 &&
+        y > 8 &&
+        y < height - 8 &&
+        point.some((v, i) => v < low[i] || v > high[i])
+      )
+        points.push([x, y]);
+    }
+    return {
+      width,
+      height,
+      points,
+      color: document.querySelector('.math-flat-scaffold [data-curve]')?.getAttribute('stroke'),
+      visible: document
+        .querySelector('.math-flat-scaffold [data-curve]')
+        ?.getAttribute('d')
+        ?.includes('L'),
+    };
+  });
+  expect(samples.visible).toBe(true);
+  expect(samples.points.length).toBeGreaterThan(4);
+  const png = await page.locator('.math-geogebra-host').screenshot();
+  const painted = await page.evaluate(
+    async ({ base64, samples }) => {
+      const image = new Image();
+      image.src = `data:image/png;base64,${base64}`;
+      await image.decode();
+      const canvas = document.createElement('canvas');
+      canvas.width = image.width;
+      canvas.height = image.height;
+      const context = canvas.getContext('2d');
+      if (!context) throw Error('Canvas missing');
+      context.drawImage(image, 0, 0);
+      const data = context.getImageData(0, 0, canvas.width, canvas.height).data;
+      const rgb = [1, 3, 5].map((offset) =>
+        Number.parseInt((samples.color ?? '#6366f1').slice(offset, offset + 2), 16),
+      );
+      return samples.points.filter(([x, y]) => {
+        const px = Math.round((x * canvas.width) / samples.width),
+          py = Math.round((y * canvas.height) / samples.height);
+        for (let dy = -3; dy <= 3; dy++)
+          for (let dx = -3; dx <= 3; dx++) {
+            const p = ((py + dy) * canvas.width + px + dx) * 4;
+            if (rgb.every((value, index) => Math.abs(data[p + index] - value) < 55)) return true;
+          }
+        return false;
+      }).length;
+    },
+    { base64: png.toString('base64'), samples },
+  );
+  expect(painted / samples.points.length).toBeGreaterThan(0.9);
+  await page.screenshot({ path: info.outputPath('continuous-rotated-curve.png') });
 });

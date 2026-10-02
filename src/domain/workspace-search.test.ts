@@ -1,10 +1,69 @@
 import { expect, it } from 'vitest';
 import { createDemoState } from './fixtures';
-import { buildWorkspaceSearch, searchWorkspace } from './workspace-search';
+import {
+  buildWorkspaceSearch,
+  normalizeSearchText,
+  queryWorkspaceSearch,
+  searchExcerpt,
+  searchWorkspace,
+  type WorkspaceSearchEntry,
+} from './workspace-search';
 import { emptyRecommendations } from './recommendation-workspace';
 import type { Entity } from './model';
 
 const at = '2026-10-01T00:00:00Z';
+it('keeps original Korean graphemes and escaped-looking text intact in excerpts', () => {
+  const raw = `  😀앞말 ${'한글'.normalize('NFD')} <img src=x onerror=alert(1)> 끝  `;
+  const excerpt = searchExcerpt(raw, '한글');
+  expect(excerpt.text).toBe(raw);
+  expect(excerpt.text.slice(excerpt.start, excerpt.end)).toBe('한글'.normalize('NFD'));
+  const clipped = searchExcerpt(`${'😀'.repeat(80)}별${'👩‍🚀'.repeat(80)}`, '별', 20);
+  expect(clipped.text.slice(clipped.start, clipped.end)).toBe('별');
+  expect(clipped.leading && clipped.trailing).toBe(true);
+  expect(clipped.text).not.toMatch(/[\ud800-\udbff]$/u);
+});
+it('explains stable title/body ranking, retains scope, and counts kinds before filtering', () => {
+  const entry = (
+    id: string,
+    title: string,
+    rawText: string,
+    kind = '기록',
+    subjectId: string | null = 's',
+  ): WorkspaceSearchEntry => ({
+    id,
+    title,
+    rawText,
+    text: normalizeSearchText(`${title}\n${rawText}`),
+    kind,
+    subjectId,
+    href: `#/record/${id}`,
+  });
+  const entries = [
+    entry('body', '첫 자료', '  함수 원문  '),
+    entry('part', '함수와 예외', '', '메모'),
+    entry('exact', '함수', ''),
+    entry('foreign', '함수', '', '기록', 'other'),
+  ];
+  const original = structuredClone(entries);
+  const options = { query: '함수', subjectIds: ['s'], includeUnassigned: false };
+  const result = queryWorkspaceSearch(entries, options);
+  expect(result.hits.map((row) => [row.id, row.reason])).toEqual([
+    ['exact', '제목 전체 일치'],
+    ['part', '제목에 일치'],
+    ['body', '본문에 일치'],
+  ]);
+  expect(result.hits[2].excerpt.text).toBe('  함수 원문  ');
+  expect(queryWorkspaceSearch(entries, { ...options, order: 'source', limit: 1 }).hits[0].id).toBe(
+    'body',
+  );
+  const filtered = queryWorkspaceSearch(entries, { ...options, kind: '메모' });
+  expect(filtered.total).toBe(1);
+  expect(filtered.kinds).toEqual([
+    { kind: '기록', count: 2 },
+    { kind: '메모', count: 1 },
+  ]);
+  expect(entries).toEqual(original);
+});
 function fixture() {
   const data = createDemoState();
   const entity = (id: string): Entity => ({

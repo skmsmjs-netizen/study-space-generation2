@@ -44,6 +44,27 @@ describe('durable personal writes and asynchronous acknowledgement', () => {
   });
 });
 
+it('persists all bulk commands once, retains the offline outbox, and rejects a later owner atomically', async () => {
+  const store = storage(), f = fixture();
+  const offline = {...f.transport,execute:async () => {throw Error('offline');}};
+  const repo = new PersonalRepository(store,offline,f.get());
+  const set = store.setItem; let writes = 0;
+  store.setItem = (key,value) => {writes++;set(key,value);};
+  repo.executeMany([op('bulk-a'),op('bulk-b')]);
+  expect(writes).toBe(1); expect(repo.getSnapshot().revisions).toHaveLength(2);
+  await repo.flush();
+  const reopened = new PersonalRepository(store,offline,f.get());
+  expect(reopened.getSnapshot().subjects.map(s=>s.id)).toEqual(['bulk-a','bulk-b']);
+  expect(reopened.getStatus().pending).toBe(2);
+  const before = repo.getSnapshot();
+  expect(()=>repo.executeMany([op('bulk-c'),{...op('bulk-d'),userId:'other'}])).toThrow();
+  expect(repo.getSnapshot()).toBe(before);
+  store.setItem = () => {throw Error('quota');};
+  expect(()=>repo.executeMany([op('bulk-c')])).toThrow('quota');
+  expect(repo.getSnapshot()).toBe(before);
+});
+
+
 it('keeps the conflict visible and serializes archive clicks until durable completion', async () => {
   const f = fixture(), store = storage();
   let release!: () => void, hold = false;

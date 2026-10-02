@@ -41,10 +41,6 @@
   height: auto;
   touch-action: none;
 }
-.ink-pad-paper:focus-visible {
-  outline: var(--focus-width) solid var(--color-focus);
-  outline-offset: var(--focus-offset);
-}
 .ink-selection {
   fill: none;
   stroke: var(--color-focus);

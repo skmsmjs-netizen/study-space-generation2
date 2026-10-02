@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react';
+import { useEffectEvent, useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react';
 import type { MemoPoint, MemoStroke, MemoInk } from '../domain/model';
 import { MEMO_HEIGHT, MEMO_WIDTH } from '../domain/memo';
 import {
@@ -32,6 +32,7 @@ import { Button, Checkbox, Select } from './index';
 import { InkOCR } from './ink-ocr';
 import { InkDrawing, inkColors, inkShape } from './ink-drawing';
 import './memo-ink-pad.css';
+import { featureSurfaceAttributes } from './observatory-feature-identity';
 
 type Tool = 'pen' | 'eraser' | 'select';
 type Gesture = {
@@ -441,11 +442,13 @@ export function MemoInkPad({
       viewport.current.scrollLeft = 0;
     }
   };
-  useEffect(() => { if (minimumPages > current.current.view.pages) changeView({pages:minimumPages}); }, [minimumPages]);
+  const expandForDocument = useEffectEvent(() => { if (minimumPages > current.current.view.pages) changeView({pages:minimumPages}); });
+  // biome-ignore lint/correctness/useExhaustiveDependencies(minimumPages): Only a changed document page count expands the workspace; the Effect Event preserves current editing state.
+  useEffect(() => { expandForDocument(); }, [minimumPages]);
   const rectangle = box ?? bounds;
   const locked = disabled || drawing;
   return (
-    <section className={`memo-ink-pad${expanded ? ' is-expanded' : ''}`} aria-label={label}>
+    <section className={`memo-ink-pad${expanded ? ' is-expanded' : ''}`} aria-label={label} {...featureSurfaceAttributes('U29')}>
       <div className="ink-pad-toolbar">
         <span>{title}</span>
         <div className="actions">
@@ -588,23 +591,8 @@ export function MemoInkPad({
           {expanded ? '작게 보기' : '넓게 쓰기'}
         </Button>
       </div>
-      <div ref={viewport} className="ink-pad-paper" role="region" aria-label={`${drawingLabel} 스크롤`} tabIndex={0}
-        onKeyDown={event => {
-          if (event.target !== event.currentTarget || event.altKey || event.ctrlKey || event.metaKey) return;
-          const paper = event.currentTarget;
-          const directions: Record<string, ScrollToOptions> = {
-            ArrowDown: { top: 40 }, ArrowUp: { top: -40 },
-            ArrowRight: { left: 40 }, ArrowLeft: { left: -40 },
-            PageDown: { top: paper.clientHeight }, PageUp: { top: -paper.clientHeight },
-          };
-          if (event.key === 'Home' || event.key === 'End') {
-            event.preventDefault();
-            paper.scrollTo({ top: event.key === 'Home' ? 0 : paper.scrollHeight, behavior: 'auto' });
-          } else if (directions[event.key]) {
-            event.preventDefault();
-            paper.scrollBy({ ...directions[event.key], behavior: 'auto' });
-          }
-        }}>
+      {/* biome-ignore lint/a11y/useSemanticElements lint/a11y/noNoninteractiveTabindex: WCAG keyboard scrolling needs a named focusable viewport; preserve the existing paper container. */}
+<div ref={viewport} className="ink-pad-paper" role="region" aria-label={`${drawingLabel} 스크롤`} tabIndex={0}>
         <svg
           ref={svg}
           viewBox={`0 0 ${MEMO_WIDTH} ${MEMO_HEIGHT}`}

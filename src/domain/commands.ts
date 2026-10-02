@@ -238,6 +238,9 @@ export function applyCommand(state: AppState, command: Command): AppState {
   const common = (id: string) => ({ id, userId: state.userId, namespace: state.namespace, createdAt: command.at, updatedAt: command.at, version: 1, deletedAt: null });
   const fresh = (id: string) => { identity(id); if (collections.some(k => (next[k] ?? []).some(v => v.id === id))) fail('DUPLICATE_ID', '이미 있는 식별자입니다.', { id }); };
   function write(collection: EntityCollection, entity: DomainEntity, reversesRevisionId?: string): void {
+    if (collection === 'conceptCatalogs') next.conceptCatalogs ??= [];
+    if (collection === 'conceptEditions') next.conceptEditions ??= [];
+    if (collection === 'conceptBatches') next.conceptBatches ??= [];
     if (collection === 'criteria') next.criteria ??= [];
     if (collection === 'criteriaAssignments') next.criteriaAssignments ??= [];
     if (collection === 'memos') next.memos ??= [];
@@ -512,7 +515,7 @@ export function applyCommand(state: AppState, command: Command): AppState {
         if (!Array.isArray(command.ids) || command.ids.length !== siblings.length || new Set(command.ids).size !== command.ids.length) fail('INVALID_ORDER', '같은 위치의 항목 전체를 한 번씩 정렬해 주세요.');
         const byId = new Map(siblings.map(row => [row.id, row]));
         for (const id of command.ids) { identity(id); if (!byId.has(id)) fail('INVALID_ORDER', '같은 과목과 부모 아래의 항목만 정렬할 수 있습니다.'); }
-        command.ids.forEach((id, order) => write('nodes', { ...byId.get(id)!, order }));
+        command.ids.forEach((id, order) => { write('nodes', { ...byId.get(id)!, order }); });
       } else {
         if (!['unit', 'outline', 'topic'].includes(command.role)) fail('INVALID_ROLE', '목차 항목의 역할을 확인해 주세요.');
         if (!Array.isArray(command.entries) || !command.entries.length || command.entries.length > MAX_OUTLINE_ROWS || command.entries.some(entry => !entry || typeof entry !== 'object')) fail('INVALID_OUTLINE_ROWS', `추가할 항목을 1개부터 ${MAX_OUTLINE_ROWS}개까지 확인해 주세요.`);
@@ -522,7 +525,7 @@ export function applyCommand(state: AppState, command: Command): AppState {
         const ids = new Set<string>();
         for (const entry of command.entries) { fresh(entry.id); if (ids.has(entry.id)) fail('DUPLICATE_ID', '추가할 항목의 식별자가 겹쳤습니다.'); ids.add(entry.id); }
         let order = Math.max(-1, ...next.nodes.filter(row => row.subjectId === command.subjectId && row.parentId === command.parentId).map(row => row.order)) + 1;
-        command.entries.forEach((entry, index) => write('nodes', { ...common(entry.id), subjectId: command.subjectId, parentId: command.parentId, role: command.role, name: preview.entries[index].name, order: order++ }));
+        command.entries.forEach((entry, index) => { write('nodes', { ...common(entry.id), subjectId: command.subjectId, parentId: command.parentId, role: command.role, name: preview.entries[index].name, order: order++ }); });
       }
       break;
     }
@@ -606,12 +609,13 @@ export function applyCommand(state: AppState, command: Command): AppState {
       const { catalogId, sourceId } = command.content;
       const catalog = find(next.conceptCatalogs ?? [], catalogId);
       if (!parseConceptSource(catalog.raw).items.some(i => i.id === sourceId)) fail('INVALID_CONCEPT', '개념의 원문을 찾을 수 없습니다.');
+      if (command.content.screen?.design && command.content.screen.design.sourceSha256 !== catalog.sha256) fail('INVALID_CONCEPT', '설계의 원문 해시가 보관 원문과 다릅니다.');
       if (old && (old.catalogId !== catalogId || old.sourceId !== sourceId)) fail('OWNER_CHANGED', '기존 설명의 원문 연결은 변경할 수 없습니다.');
       if ((next.conceptEditions ?? []).some(c => c.id !== command.id && c.catalogId === catalogId && c.sourceId === sourceId)) fail('DUPLICATE_ID', '같은 개념의 제작 기록이 이미 있습니다.');
       const changed = !old || ['displayType', 'secondaryTypes', 'reason', 'screen', 'evidence'].some(k => canonical(old[k as keyof typeof old]) !== canonical(command.content[k as keyof typeof command.content]));
       if (changed && (command.content.status === 'published' || Object.values(command.content.checks).some(Boolean))) fail('CONCEPT_REVIEW_REQUIRED', '설명이나 근거가 바뀌었습니다. 내용을 저장한 뒤 다시 검토해 주세요.');
       if (command.content.jobId !== null && !next.conceptBatches?.some(b => b.id === command.content.jobId && b.catalogId === catalogId && b.sourceIds.includes(sourceId))) fail('INVALID_CONCEPT', '생성 당시 작업 묶음을 확인해 주세요.');
-      write('conceptEditions', { ...(old ?? common(command.id)), ...clone(command.content) });
+      write('conceptEditions', { ...clone(command.content), ...(old ? { id: old.id, userId: old.userId, namespace: old.namespace, version: old.version, createdAt: old.createdAt, updatedAt: old.updatedAt, deletedAt: old.deletedAt } : common(command.id)) });
       break;
     }
     case 'saveConceptBatch': {
@@ -623,7 +627,7 @@ export function applyCommand(state: AppState, command: Command): AppState {
       const sourceIds = new Set(parseConceptSource(catalog.raw).items.map(i => i.id));
       if (command.content.sourceIds.some(id => !sourceIds.has(id))) fail('INVALID_CONCEPT', '작업 묶음의 개념을 찾을 수 없습니다.');
       if (old && ['catalogId', 'sourceIds', 'baseVersions'].some(k => canonical(old[k as keyof typeof old]) !== canonical(command.content[k as keyof typeof command.content]))) fail('OWNER_CHANGED', '기존 작업 묶음의 대상과 시작 버전은 변경할 수 없습니다.');
-      write('conceptBatches', { ...(old ?? common(command.id)), ...clone(command.content) });
+      write('conceptBatches', { ...clone(command.content), ...(old ? { id: old.id, userId: old.userId, namespace: old.namespace, version: old.version, createdAt: old.createdAt, updatedAt: old.updatedAt, deletedAt: old.deletedAt } : common(command.id)) });
       break;
     }
     case 'saveMemo': {

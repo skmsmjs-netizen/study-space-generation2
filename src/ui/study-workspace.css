@@ -1,0 +1,113 @@
+.study-workspace {
+  container-type: inline-size;
+}
+.study-workspace-toolbar,
+.workspace-actions {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+  flex-wrap: wrap;
+  margin-block: var(--space-3);
+}
+.study-workspace-toolbar .ui-field {
+  margin: 0;
+  min-width: 8rem;
+}
+.study-workspace-width {
+  display: grid;
+  gap: var(--space-1);
+  font-size: var(--type-caption-size);
+}
+.study-workspace-width input {
+  min-height: 44px;
+  max-width: 12rem;
+}
+.study-workspace-panes {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-4);
+}
+.study-workspace[data-open='true'] .study-workspace-panes {
+  grid-template-columns: minmax(0, var(--desk-source-width)) minmax(0, 1fr);
+}
+.study-workspace-source,
+.study-workspace-tools,
+.study-workspace-tools > section {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.study-workspace-tools {
+  border-inline-start: 1px solid var(--color-border);
+  padding-inline-start: var(--space-4);
+}
+.study-workspace-pane-switch {
+  display: none;
+}
+.study-workspace-tools [hidden] {
+  display: none !important;
+}
+.saved-workspaces-list {
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: var(--space-3);
+}
+.saved-workspaces-list li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  padding-block: var(--space-3);
+  border-block-start: 1px solid var(--color-border);
+}
+.saved-workspaces-list strong {
+  overflow-wrap: anywhere;
+}
+.workspace-command-results {
+  display: grid;
+  gap: var(--space-2);
+  padding: 0;
+  list-style: none;
+}
+.workspace-command-results .ui-button {
+  width: 100%;
+  text-align: start;
+  justify-content: flex-start;
+}
+@container (max-width: 760px) {
+  .study-workspace[data-open='true'] .study-workspace-panes {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .study-workspace-pane-switch {
+    display: flex;
+    gap: var(--space-2);
+  }
+  .study-workspace[data-open='true'][data-pane='tool'] .study-workspace-source {
+    display: none;
+  }
+  .study-workspace[data-pane='source'] .study-workspace-tools {
+    display: none;
+  }
+  .study-workspace-tools {
+    border: 0;
+    padding: 0;
+  }
+  .study-workspace-width {
+    display: none;
+  }
+}
+
+.study-workspace[data-open='true'][data-focus='source'] .study-workspace-panes,
+.study-workspace[data-open='true'][data-focus='tool'] .study-workspace-panes {
+  grid-template-columns: minmax(0, 1fr);
+}
+.study-workspace[data-open='true'][data-focus='tool'] .study-workspace-source,
+.study-workspace[data-open='true'][data-focus='source'] .study-workspace-tools {
+  display: none;
+}
+.study-workspace[data-open='true'][data-focus='tool'] .study-workspace-tools,
+.study-workspace[data-open='true'][data-focus='source'] .study-workspace-source {
+  display: block;
+  border: 0;
+  padding: 0;
+}

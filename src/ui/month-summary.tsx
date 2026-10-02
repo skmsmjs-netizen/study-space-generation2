@@ -18,8 +18,8 @@ export function MonthSummary({ data, workspace, subjectIds, subjectId = '', node
   const currentMonth = new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Seoul' }).slice(0, 7);
   const [boot] = useState(() => readStatisticsMonth(data, currentMonth));
   const [month, setMonth] = useState(compact ? currentMonth : boot.month), [error, setError] = useState(compact ? '' : boot.error);
-  const period = calendarMonth(month), previous = calendarMonth(shiftMonth(month, -1));
-  const metrics = useMemo(() => statistics(data, workspace, { ...period, subjectIds, subjectId, nodeId }, new Date().toISOString()), [data, workspace, period.from, period.to, subjectIds, subjectId, nodeId]);
+  const period = useMemo(() => calendarMonth(month), [month]), previous = calendarMonth(shiftMonth(month, -1));
+  const metrics = useMemo(() => statistics(data, workspace, { ...period, subjectIds, subjectId, nodeId }, new Date().toISOString()), [data, workspace, period, subjectIds, subjectId, nodeId]);
   const choose = (value: string) => {
     try { calendarMonth(value); setMonth(value); saveStatisticsMonth(data, value); setError(''); }
     catch { setError('월 선택을 저장하지 못했습니다. 화면의 선택과 공부 기록은 유지했습니다. 월을 다시 선택해 주세요.'); }
@@ -29,6 +29,7 @@ export function MonthSummary({ data, workspace, subjectIds, subjectId = '', node
     onOpen?.(month, metric.id, statisticBounds(metric, period.from, period.to).evidence, metric.unit);
   };
   return <Card role="region" aria-label="월간 기록 요약" className="study-statistics">
+    {/* biome-ignore lint/a11y/useValidAnchor: This real hash-route link persists the selected month before normal link navigation, including keyboard activation. */}
     <div className="section-heading"><h2>{BRAND.monthly}</h2>{compact && <a href="#/statistics" onClick={() => { try { saveStatisticsMonth(data, month); } catch { /* Keep navigation usable. */ } }}>월간 기록 보기</a>}</div>
     {!compact && <div className="actions"><Button onClick={() => choose(shiftMonth(month, -1))}>이전 달</Button><Input label="요약할 월" type="month" value={month} onChange={e => { if (e.target.value) choose(e.target.value); }} /><Button onClick={() => choose(shiftMonth(month, 1))}>다음 달</Button><Button variant="quiet" onClick={() => choose(currentMonth)}>이번 달</Button></div>}
     <p className="muted">{period.from}–{period.to} · 남긴 기록에서 이번 달의 공부를 돌아보세요.</p>

@@ -34,7 +34,7 @@ function parse(source: string): Part[] {
 }
 export function clozeNumbers(source: string) {
   const numbers = new Set<number>();
-  const visit = (parts: Part[]) => { for (const p of parts) if (typeof p !== 'string') { p.numbers.forEach(n => numbers.add(n)); visit(p.body); } };
+  const visit = (parts: Part[]) => { for (const p of parts) if (typeof p !== 'string') { p.numbers.forEach(n => { numbers.add(n); }); visit(p.body); } };
   visit(parse(source));
   return [...numbers].sort((a, b) => a - b);
 }

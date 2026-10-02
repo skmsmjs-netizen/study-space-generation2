@@ -1,5 +1,7 @@
+import './prepare-concept-interactives.mjs';
+import './sync-math-observatory.mjs';
 import { createHash } from 'node:crypto';
-import { mkdtemp, mkdir, readFile, writeFile, rm, access } from 'node:fs/promises';
+import { mkdtemp, mkdir, readFile, writeFile, rm, access, readdir, rename } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -13,7 +15,12 @@ try {
   if ((await readFile(marker, 'utf8')).trim() === `${version} ${hash}`) {
     await access(new URL('GeoGebra/deployggb.js', root));
     await access(new URL('GeoGebra/HTML5/5.0/web3d/web3d.nocache.js', root));
-    process.exit(0);
+    // iCloud placeholders pass access(), but copying them can wait for hours.
+    // Inspect file flags without reading their unavailable content on macOS.
+    const cloudOnly = process.platform === 'darwin' &&
+      /\bdataless\b/.test(execFileSync('/bin/ls', ['-lOR', fileURLToPath(new URL('GeoGebra/', root))], { encoding: 'utf8', maxBuffer: 2 * 1024 * 1024 }));
+    if (!cloudOnly && !process.argv.includes('--repair')) process.exit(0);
+    console.log('GeoGebra: restore the pinned official bundle for local availability.');
   }
 } catch (error) {
   if (error.code !== 'ENOENT') throw error;
@@ -31,7 +38,19 @@ try {
   const path = join(temporary, 'geogebra.zip');
   await writeFile(path, archive);
   await mkdir(root, { recursive: true });
-  execFileSync('unzip', ['-qo', path, '-d', fileURLToPath(root)]);
+  const extracted = join(temporary, 'extracted');
+  execFileSync('unzip', ['-qo', path, '-d', extracted]);
+  async function install(directory, destination) {
+    await mkdir(destination, { recursive: true });
+    for (const entry of await readdir(directory, { withFileTypes: true })) {
+      if (entry.isDirectory()) await install(join(directory, entry.name), join(destination, entry.name));
+      else if (entry.isFile()) await rename(join(directory, entry.name), join(destination, entry.name));
+      else throw Error('Unexpected entry in pinned GeoGebra archive.');
+    }
+  }
+  // Atomic file replacement avoids hydrating/truncating a placeholder first.
+  // Generated toolkit files only; authored math scenes and saved views stay put.
+  await install(join(extracted, 'GeoGebra'), fileURLToPath(new URL('GeoGebra/', root)));
   await writeFile(marker, `${version} ${hash}\n`);
   console.log(`GeoGebra ${version}: local assets prepared.`);
 } finally {

@@ -26,7 +26,7 @@ beforeEach(() => {
 });
 afterEach(() => {
   vi.restoreAllMocks();
-  releases.splice(0).forEach((fn) => fn());
+  releases.splice(0).forEach((fn) => { fn(); });
   keys.forEach(clearRescuedDraft);
 });
 
@@ -60,7 +60,7 @@ it('reads saved settings in another window and preserves obsolete per-window cop
   expect(readExperience(data).readingWidth).toBe('normal');
   expect(readExperience(data).next?.body).toBe('  이어 쓸 원문\n조건과 예외  ');
   keys.forEach((key, index) =>
-    expect(localStorage.getItem(`${key}:recovery:window-first`)).toBe(oldCopies[index]),
+    { expect(localStorage.getItem(`${key}:recovery:window-first`)).toBe(oldCopies[index]); },
   );
   expect(readExperience({ ...data, userId: 'other' }).next).toBeNull();
 });

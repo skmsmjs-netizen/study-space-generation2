@@ -1,0 +1,29 @@
+{
+  "version": "1.0.0",
+  "owner": "knowledge-structure-standard.md",
+  "presentation": {
+    "default": "diagram",
+    "diagram": "구조로 보기",
+    "prose": "문장으로 읽기",
+    "controls": "지식 구조 표현",
+    "relations": "작성된 관계",
+    "missingNode": "연결 대상 확인 필요",
+    "missingRelation": "관계 설명이 비어 있습니다",
+    "legendTitle": "구조 읽는 법",
+    "legend": "네모는 지식의 묶음입니다. 선은 연결을, 화살표는 작성된 연결 방향을 나타냅니다. 관계 설명으로 그 뜻을 확인하세요.",
+    "sequence": "번호는 이 설명에 작성된 순서입니다. 이해도나 완료를 뜻하지 않습니다.",
+    "canvas": "자동 목차 선은 상하위 소속을, 직접 연결한 화살표는 선택한 방향을 나타냅니다. 관계 설명을 읽고 원문과 조건을 확인하세요."
+  },
+  "canvas": {
+    "newWorkspaceEdgeStyle": "step",
+    "preserveSavedEdgeStyle": true,
+    "preserveSavedPositions": true
+  },
+  "materials": {
+    "surface": "--color-surface",
+    "ink": "--color-text",
+    "boundary": "--color-border-strong",
+    "spacing": ["--space-2", "--space-3", "--space-4"],
+    "moduleCorner": "--observatory-radius-panel"
+  }
+}

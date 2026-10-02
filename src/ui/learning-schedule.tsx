@@ -1,5 +1,5 @@
 import { readScheduleDraft, writeScheduleDraft, clearScheduleDraft } from '../data/learning-editor-draft';
-import { useEffect, useRef, useState } from 'react';
+import { useEffectEvent, useEffect, useRef, useState } from 'react';
 import { SemesterWeeksEditor } from './semester-weeks';
 import type { AppState } from '../domain/model';
 import { dateDeadline, recommendationInput, nextStudy, validateRecommendations, type RecommendationWorkspace } from '../domain/recommendation-workspace';
@@ -19,11 +19,12 @@ export function LearningScheduleEditor({data,workspace,subjectIds,onChange,notif
   const [repeatEnd,setRepeatEnd]=useState('');
   const loadDraft=(initial:LearningSchedule,key:string)=>{setConflicting(null);draftKey.current=key;baseSchedule.current=key==='new'?null:structuredClone(initial);setRepeatEnd('');try{const saved=readScheduleDraft(data,key);draftRaw.current=saved.raw;baseSchedule.current=saved.base??baseSchedule.current;draftCurrent.current=saved.draft??initial;setDraft(draftCurrent.current);setRepeatEnd(saved.repeatEnd);setError(saved.draft&&!saved.base&&key!=='new'?'이전 초안 원문을 열었습니다. 현재 저장 내용과 비교한 뒤 저장해 주세요.': '');setOpen(true);}catch(e){setError(e instanceof Error?e.message:'일정 초안 확인이 필요합니다.');}};
   const [condition,setCondition]=useState<TargetCondition>({targetId:'',prerequisiteIds:[],materialAvailable:null});
+  const loadRequestedDraft = useEffectEvent((initial: LearningSchedule, key: string) => loadDraft(initial, key));
   useEffect(() => {
     const openSchedule = (event: Event) => {
       const id = (event as CustomEvent<unknown>).detail;
       const schedule = workspace.schedules?.find(s => s.id === id && !s.deletedAt && subjectIds.includes(s.subjectId));
-      if (schedule) loadDraft(structuredClone(schedule), schedule.id);
+      if (schedule) loadRequestedDraft(structuredClone(schedule), schedule.id);
     };
     window.addEventListener('study-space:open-schedule', openSchedule);
     return () => window.removeEventListener('study-space:open-schedule', openSchedule);

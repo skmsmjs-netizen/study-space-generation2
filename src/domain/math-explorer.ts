@@ -1,4 +1,5 @@
 import { parse, derivative, type MathNode } from 'mathjs';
+import { isTemplateView, type TemplateView } from './math-view';
 
 export type Vec3 = [number, number, number];
 export interface MathScene {
@@ -12,8 +13,10 @@ export interface MathScene {
   b: number;
   vectors: boolean;
   notes: string;
+  sliderRangeVersion?: 2;
   renderer?: 'geogebra' | 'plotly';
   geogebra?: { sourceKey: string; xml: string };
+  view?: TemplateView;
 }
 export const MATH_MEMO_PREFIX = 'math-explorer:';
 export const DEFAULT_SCENE: MathScene = {
@@ -21,12 +24,13 @@ export const DEFAULT_SCENE: MathScene = {
   title: '',
   expressions: ['a*cos(t)', 'a*sin(t)', 'b*t'],
   min: '0',
-  max: '4*pi',
-  position: 0.25,
+  max: '8*pi',
+  position: 0.125,
   a: 2,
   b: 0.5,
   vectors: true,
   notes: '',
+  sliderRangeVersion: 2,
 };
 export const FUNCTIONS = new Set([
   'sin',
@@ -185,6 +189,8 @@ export function buildScene(scene: MathScene) {
       : `y=${compiled[0].tex}`;
   return {
     points,
+    sample,
+    sampleKey: JSON.stringify([scene.mode, scene.expressions, scene.a, scene.b]),
     point,
     at,
     min,
@@ -215,6 +221,7 @@ export function isMathScene(value: unknown): value is MathScene {
     v.position >= 0 &&
     v.position <= 1 &&
     (v.renderer === undefined || v.renderer === 'geogebra' || v.renderer === 'plotly') &&
+    (v.view === undefined || isTemplateView(v.view)) &&
     (v.geogebra === undefined ||
       (typeof v.geogebra.sourceKey === 'string' && typeof v.geogebra.xml === 'string'))
   );

@@ -31,6 +31,18 @@ beforeEach(() => {
   Element.prototype.scrollIntoView = vi.fn();
   repo = new DemoRepository(localStorage);
 });
+it('distinguishes a missing material from an empty library and provides recovery destinations without changing data', () => {
+  const data = repo.getSnapshot(), original = JSON.stringify(data);
+  const props = { data, repository: repo, onSaved: () => undefined };
+  const { rerender } = render(<StudyMaterials {...props} materialId="missing-material" />);
+  expect(screen.getByRole('heading', { name: '이 강의 자료를 찾을 수 없습니다' })).toBeVisible();
+  expect(screen.getByRole('link', { name: '자료 목록으로' })).toHaveAttribute('href', '#/materials');
+  expect(screen.queryByRole('heading', { name: '강의 자료를 모아 두세요' })).toBeNull();
+  rerender(<StudyMaterials {...props} trash />);
+  expect(screen.getByRole('heading', { name: '휴지통에 강의 자료가 없습니다' })).toBeVisible();
+  expect(screen.getByRole('link', { name: '자료 목록으로' })).toHaveAttribute('href', '#/materials');
+  expect(JSON.stringify(repo.getSnapshot())).toBe(original);
+});
 it('keeps formula edits, the generated original and request across a failed save and reopen, without regenerating or duplicating', async () => {
   const personal = ownerFixture();
   let fail = true;

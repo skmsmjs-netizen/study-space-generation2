@@ -1,0 +1,114 @@
+{
+  "format": "concept-work-v1",
+  "original": {
+    "raw": "{\"items\": [{\"id\": \"paper-width-ko\", \"name\": \"조판 확인용 개념 예시\", \"def\": \"나눔명조 700과 장평 95%를 확인하는 합성 예시입니다.\", \"ex\": \"합성 예시\", \"insight\": \"미확인\", \"type\": \"정의형\", \"cat\": 1}, {\"id\": \"paper-width-en\", \"name\": \"Typesetting sample\", \"def\": \"A synthetic example for Nanum Myeongjo 700 at 95 percent width.\", \"ex\": \"합성 예시\", \"insight\": \"미확인\", \"type\": \"정의형\", \"cat\": 1}]}",
+    "sha256": "920d721f50b5ae719950e2a11d6aa58075c0c9b7e554380bb5059a8bb4a43609",
+    "filename": "조판 확인용 개념 원문.json"
+  },
+  "batches": [
+    {
+      "id": "concept-batch:paper-typography-example",
+      "content": {
+        "catalogId": "concept-catalog:920d721f50b5ae719950e2a11d6aa58075c0c9b7e554380bb5059a8bb4a43609",
+        "sourceIds": [
+          "paper-width-ko",
+          "paper-width-en"
+        ],
+        "baseVersions": {
+          "paper-width-ko": 0,
+          "paper-width-en": 0
+        },
+        "status": "open"
+      }
+    }
+  ],
+  "results": [
+    {
+      "format": "concept-results-v1",
+      "jobId": "concept-batch:paper-typography-example",
+      "sourceSha256": "920d721f50b5ae719950e2a11d6aa58075c0c9b7e554380bb5059a8bb4a43609",
+      "items": [
+        {
+          "sourceId": "paper-width-ko",
+          "expectedVersion": 0,
+          "content": {
+            "catalogId": "concept-catalog:920d721f50b5ae719950e2a11d6aa58075c0c9b7e554380bb5059a8bb4a43609",
+            "sourceId": "paper-width-ko",
+            "displayType": "정의형",
+            "secondaryTypes": [],
+            "reason": "글자 역할 확인용 합성 예시",
+            "screen": {
+              "type": "정의형",
+              "title": "본문의 조건과 예외를 함께 읽기",
+              "intro": "나눔명조 700과 장평 95%를 확인하는 합성 예시입니다.",
+              "mode": "opportunity",
+              "navigation": "static",
+              "scenes": [
+                {
+                  "action": "공부 선택",
+                  "title": "본문의 조건과 예외를 함께 읽기",
+                  "body": "관계를 이해하려면 값이 달라질 때 무엇이 함께 변하는지 살펴보아야 합니다. 설명을 읽으면서 관계가 성립하는 조건과 예외를 함께 적어 둡니다.\n\n읽던 질문으로 돌아와 자신의 말로 설명하고, 아직 확실하지 않은 부분은 그대로 남깁니다. 수식 $F=ma$는 글과 구별하여 조판합니다.",
+                  "caption": "조판 확인용 예시이며 실제 공부 기록이 아닙니다.",
+                  "takeaway": "조판 확인용 예시이며 실제 공부 기록이 아닙니다."
+                }
+              ]
+            },
+            "evidence": [],
+            "checks": {
+              "classification": false,
+              "meaning": false,
+              "conditions": false,
+              "example": false,
+              "wording": false,
+              "screen": false
+            },
+            "status": "draft",
+            "issue": "",
+            "promptVersion": "concept-editor-20261001-v1",
+            "jobId": "concept-batch:paper-typography-example"
+          }
+        },
+        {
+          "sourceId": "paper-width-en",
+          "expectedVersion": 0,
+          "content": {
+            "catalogId": "concept-catalog:920d721f50b5ae719950e2a11d6aa58075c0c9b7e554380bb5059a8bb4a43609",
+            "sourceId": "paper-width-en",
+            "displayType": "정의형",
+            "secondaryTypes": [],
+            "reason": "글자 역할 확인용 합성 예시",
+            "screen": {
+              "type": "정의형",
+              "title": "Read the conditions and exceptions together",
+              "intro": "A synthetic example for Nanum Myeongjo 700 at 95 percent width.",
+              "mode": "opportunity",
+              "navigation": "static",
+              "scenes": [
+                {
+                  "action": "공부 선택",
+                  "title": "Read the conditions and exceptions together",
+                  "body": "To understand a relationship, examine what changes when one quantity changes. Read the conditions together with the explanation, and keep the exceptions visible.\n\nReturn to the original question and describe the relationship in your own words. Keep uncertain details open. The formula $F=ma$ retains its mathematical typeface.",
+                  "caption": "This is a typesetting sample, not a study record.",
+                  "takeaway": "This is a typesetting sample, not a study record."
+                }
+              ]
+            },
+            "evidence": [],
+            "checks": {
+              "classification": false,
+              "meaning": false,
+              "conditions": false,
+              "example": false,
+              "wording": false,
+              "screen": false
+            },
+            "status": "draft",
+            "issue": "",
+            "promptVersion": "concept-editor-20261001-v1",
+            "jobId": "concept-batch:paper-typography-example"
+          }
+        }
+      ]
+    }
+  ]
+}

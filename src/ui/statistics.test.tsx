@@ -38,6 +38,22 @@ it('opens with a graph before numeric summaries and switches all eight metrics w
   ).toBe(true);
   expect(month.querySelectorAll('.statistics-trend')).toHaveLength(8);
 });
+it('places scope before observation and supporting selection after it, keeping the home summary compact', () => {
+  const props = { data: createDemoState(), subjectIds: ['demo-subject-math'] };
+  const { rerender } = render(<StudyStatistics {...props} />);
+  const scope = screen.getByRole('region', { name: '통계 범위와 비교' });
+  const graph = screen.getByRole('region', { name: '기간별 통계 그래프' });
+  const selection = screen.getByRole('region', { name: '그래프와 원기록 함께 선택' });
+  expect(scope.compareDocumentPosition(graph) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+  expect(graph.compareDocumentPosition(selection) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+  expect(within(scope).getByLabelText('통계 시작일')).toBeInTheDocument();
+  rerender(<StudyStatistics {...props} compact />);
+  expect(screen.queryByRole('region', { name: '통계 범위와 비교' })).not.toBeInTheDocument();
+  expect(
+    screen.queryByRole('region', { name: '그래프와 원기록 함께 선택' }),
+  ).not.toBeInTheDocument();
+  expect(screen.getByRole('link', { name: '통계와 그래프 보기' })).toBeInTheDocument();
+});
 it('keeps pinned originals when records change, and shows the same evidence through 2D, depth and list views', () => {
   let data = createDemoState();
   const at = new Date().toISOString();
@@ -164,4 +180,60 @@ it('restores another account preference without saving the previous account sele
   expect(within(graph).getByLabelText('그래프 종류')).toHaveValue('box');
   expect(readStatisticsView(other).view.kind).toBe('box');
   expect(readStatisticsView(data).view.kind).toBe('area');
+});
+
+it('restores the selected period, subject, topic and comparison on re-entry', () => {
+  const data = createDemoState(),
+    subjectIds = ['demo-subject-math'];
+  const first = render(<StudyStatistics data={data} subjectIds={subjectIds} />);
+  fireEvent.change(screen.getByLabelText('통계 시작일'), { target: { value: '2026-09-01' } });
+  fireEvent.change(screen.getByLabelText('통계 종료일'), { target: { value: '2026-09-30' } });
+  fireEvent.change(screen.getByLabelText('통계 과목'), { target: { value: 'demo-subject-math' } });
+  fireEvent.change(screen.getByLabelText('통계 단원·주제'), {
+    target: { value: 'demo-topic-graph' },
+  });
+  fireEvent.click(screen.getByLabelText('같은 길이의 이전 기간과 비교'));
+  first.unmount();
+  render(<StudyStatistics data={data} subjectIds={subjectIds} />);
+  expect(screen.getByLabelText('통계 시작일')).toHaveValue('2026-09-01');
+  expect(screen.getByLabelText('통계 종료일')).toHaveValue('2026-09-30');
+  expect(screen.getByLabelText('통계 과목')).toHaveValue('demo-subject-math');
+  expect(screen.getByLabelText('통계 단원·주제')).toHaveValue('demo-topic-graph');
+  expect(screen.getByLabelText('같은 길이의 이전 기간과 비교')).toBeChecked();
+});
+
+it('keeps a saved range when the current scope cannot include its subject', () => {
+  const data = createDemoState();
+  const range = {
+    from: '2026-09-01',
+    to: '2026-09-30',
+    subjectId: 'demo-subject-math',
+    nodeId: 'demo-topic-graph',
+    compare: false,
+  };
+  saveStatisticsView(data, { ...defaultStatisticsView, range });
+  render(<StudyStatistics data={data} subjectIds={[]} />);
+  expect(screen.getByLabelText('통계 과목')).toHaveValue('');
+  expect(screen.getByLabelText('통계 단원·주제')).toHaveValue('');
+  expect(screen.getByText(/이전 선택의 과목 또는 주제가 현재 범위에 없어/)).toBeInTheDocument();
+  expect(readStatisticsView(data).view.range).toEqual(range);
+});
+
+it('keeps the chosen dates after a preference write failure and retries the same selection', () => {
+  const data = createDemoState();
+  render(<StudyStatistics data={data} subjectIds={['demo-subject-math']} />);
+  const write = vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => {
+    throw Error('quota');
+  });
+  fireEvent.change(screen.getByLabelText('통계 시작일'), { target: { value: '2026-09-01' } });
+  fireEvent.change(screen.getByLabelText('통계 종료일'), { target: { value: '2026-09-30' } });
+  expect(
+    screen.getByText(/통계 범위와 그래프 선택을 이 기기에 저장하지 못했습니다/),
+  ).toBeInTheDocument();
+  expect(screen.getByLabelText('통계 시작일')).toHaveValue('2026-09-01');
+  write.mockRestore();
+  fireEvent.click(screen.getByRole('button', { name: '통계 보기 저장 다시 시도' }));
+  expect(readStatisticsView(data).view.range?.from).toBe('2026-09-01');
+  expect(readStatisticsView(data).view.range?.to).toBe('2026-09-30');
+  expect(screen.queryByRole('button', { name: '통계 보기 저장 다시 시도' })).toBeNull();
 });

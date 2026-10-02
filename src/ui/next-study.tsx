@@ -125,7 +125,7 @@ export function NextStudy({ data, subjectIds, semesterId, repository, onSaved, o
     {!serverReady && <p role="alert">학습 일정을 저장할 수 없습니다. 다시 접속해 주세요. 기존 공부 기록과 통계는 사용할 수 있습니다.</p>}
     {legacyError && <p role="alert">{legacyError}</p>}
     {legacyPersonal?.raw && <details><summary>이 기기에 남아 있는 이전 추천 기록</summary><p>이 원문은 서버에 자동으로 올리지 않습니다. 가져오기를 선택해도 원래 저장 위치의 내용은 보존합니다.</p><pre style={{whiteSpace:'pre-wrap',overflowWrap:'anywhere'}}>{JSON.stringify(legacyPersonal.workspace,null,2)}</pre><Button disabled={!serverReady} onClick={importLegacy}>이전 추천 내용을 개인 공간에 가져오기</Button></details>}
-    <div className="section-heading"><h2>다음 공부</h2><Button variant="quiet" disabled={blocked || !serverReady} onClick={() => setPlanOpen(true)}>확인할 내용 추가</Button></div>
+    <div className="section-heading"><h2>다음 공부</h2><Button variant="quiet" disabled={blocked || !serverReady || !nodes.length} onClick={() => setPlanOpen(true)}>확인할 내용 추가</Button></div>
     {!blocked && <TodayStudy data={data} workspace={workspace} subjectIds={subjectIds} at={now} />}
     <p className="muted">원하는 주제부터 해도 됩니다. 확인할 내용과 기한은 필요할 때만 남겨 주세요.</p>
     {result?.phase === 'in_term' && <p className="muted">남긴 학기 기간 기준 {result.calendarWeek}주차 · 주차만으로 공부 성과를 판단하지 않습니다.</p>}
@@ -133,7 +133,7 @@ export function NextStudy({ data, subjectIds, semesterId, repository, onSaved, o
     <div className="next-study-list">
       {!blocked && !calculationError && visible.map(card => {
         const node = nodes.find(n => n.id === card.targetId);
-        if (!node) { const schedule=workspace.schedules?.find(s=>card.id.startsWith(`task:${s.id}:`)); return schedule && <Card key={card.groupId}><h3>{schedule.name}</h3><p>{({ prepare:"과제 준비", submit:"과제 제출", watch:"강의 재생", learn:"강의 학습", attendance:"출석 확인" } as Record<string,string>)[card.action] ?? card.action} 상태를 확인해 주세요.</p><p className="muted">{schedule.dueDate || "기한 미정"} · 완료는 일정에서 직접 남겨 주세요.</p><a className="schedule-navigation" href="#learning-schedules" onClick={e => { e.preventDefault(); openLearningSchedules(); }}>일정에서 확인하기</a></Card>; }
+        if (!node) { const schedule=workspace.schedules?.find(s=>card.id.startsWith(`task:${s.id}:`)); return schedule && <Card key={card.groupId}><h3>{schedule.name}</h3><p>{({ prepare:"과제 준비", submit:"과제 제출", watch:"강의 재생", learn:"강의 학습", attendance:"출석 확인" } as Record<string,string>)[card.action] ?? card.action} 상태를 확인해 주세요.</p><p className="muted">{schedule.dueDate || "기한 미정"} · 완료는 일정에서 직접 남겨 주세요.</p><Button variant="quiet" className="schedule-navigation" onClick={() => openLearningSchedules()}>일정에서 확인하기</Button></Card>; }
         return node && <Card key={card.groupId}>
           <p className="muted">{data.subjects.find(s => s.id === node.subjectId)?.name}</p>
           <h3>{node.name}</h3>
@@ -153,11 +153,11 @@ export function NextStudy({ data, subjectIds, semesterId, repository, onSaved, o
         <p>{data.records.some(r => !r.deletedAt && r.targetId === node.id) ? '남긴 기록을 보고, 다음에 확인할 내용을 골라 보세요.' : '핵심과 사용 조건부터 살펴보세요. 아직 남긴 기록이 없습니다.'}</p>
         <div className="actions"><Button onClick={() => navigate(`/node/${node.id}`)}>주제 열고 시작하기</Button><Button variant="quiet" onClick={() => snooze(node.id)}>하루 보류</Button></div></Card>)}
     </div>
-    {!blocked && !visible.length && !fallback.length && <p className="muted">지금 표시할 후보가 없습니다. 보류한 내용이나 남긴 결과를 확인하거나 다른 주제를 직접 고를 수 있습니다.</p>}
-    <div className="actions"><Button variant="quiet" onClick={() => navigate('/subjects')}>다른 주제 직접 고르기</Button><Button variant="quiet" disabled={blocked || !serverReady} onClick={() => setTermOpen(true)}>학기 기간 설정</Button>{Object.values(workspace.controls).some(c => c.snoozeUntil) && <Button variant="quiet" disabled={blocked || !serverReady} onClick={() => write(w => ({ ...w, controls: {} }))}>보류한 내용 다시 보기</Button>}</div>
+    {!blocked && !visible.length && !fallback.length && <p className="muted">{nodes.length ? '지금 제안할 공부가 없습니다. 보류한 내용을 다시 보거나 다른 주제를 직접 고를 수 있습니다.' : '아직 이 범위에 공부할 주제가 없습니다. 과목을 열고 목차에 주제를 추가해 주세요.'}</p>}
+    <div className="actions"><Button variant="quiet" onClick={() => navigate('/subjects')}>{nodes.length ? '다른 주제 직접 고르기' : '과목·주제 등록하기'}</Button><Button variant="quiet" disabled={blocked || !serverReady} onClick={() => setTermOpen(true)}>학기 기간 설정</Button>{Object.values(workspace.controls).some(c => c.snoozeUntil) && <Button variant="quiet" disabled={blocked || !serverReady} onClick={() => write(w => ({ ...w, controls: {} }))}>보류한 내용 다시 보기</Button>}</div>
     {goals.length > 0 && <details><summary>확인한 내용과 지난 기한 보기</summary>{goals.map(goal => <div className="next-study-goal" key={goal.id}><strong>{goal.label}</strong>
               {result?.adaptations?.find(a=>a.goalId===goal.id) && <p>조건을 갖춘 비교 기록에서는 {result.adaptations.find(a=>a.goalId===goal.id)!.action} 방법을 우선 살펴볼 수 있습니다. 관찰된 비교이며 효과 확정은 아닙니다.</p>}<p>{goal.ended ? '추천에서 제외한 내용입니다. 원문과 결과는 남아 있습니다.' : goal.dueDate && Date.parse(dateDeadline(goal.dueDate)!) < Date.parse(now) ? '기한이 지났습니다. 완료 여부는 별도로 확인해 주세요.' : explanations[result?.states[goal.id]?.status ?? 'unobserved']}</p>
-      {evidence(goal.id)}<div className="actions"><Button disabled={blocked || !serverReady} onClick={() => beginResponse(goal.id)}>결과 추가</Button><Button variant="quiet" disabled={blocked || !serverReady} onClick={() => write(w => ({ ...w, goals: w.goals.map(g => g.id === goal.id ? { ...g, ended: !g.ended } : g) }))}>{goal.ended ? '다시 후보로' : '추천에서 빼기'}</Button></div></div>)}</details>}
+      {evidence(goal.id)}<div className="actions"><Button disabled={blocked || !serverReady} onClick={() => beginResponse(goal.id)}>결과 추가</Button><Button variant="quiet" disabled={blocked || !serverReady} onClick={() => write(w => ({ ...w, goals: w.goals.map(g => g.id === goal.id ? { ...g, ended: !g.ended } : g) }))}>{goal.ended ? '추천에 다시 넣기' : '추천에서 빼기'}</Button></div></div>)}</details>}
     {result?.warnings.some(w=>w.code==='MATERIAL_REQUIRED'||w.code==='PREREQUISITE_CRITERION_REQUIRED') && <p className="muted">추천에 필요한 선행 주제의 확인 기준이나 공부 자료가 부족합니다. 아래 관계·자료 설정에서 확인해 주세요.</p>}
     {scheduleEditor}
     <Modal open={planOpen} title="다음에 확인할 내용" onClose={() => setPlanOpen(false)}>

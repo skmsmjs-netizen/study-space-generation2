@@ -8,13 +8,16 @@ import {
   norm,
   readScene,
   sceneBody,
+  isMathScene,
 } from './math-explorer';
 it('matches the analytic helix frame and curvature at t=0', () => {
   const result = buildScene({ ...DEFAULT_SCENE, position: 0 });
   expect(result.point).toEqual([2, 0, 0]);
   expect(result.vectors?.T?.[0]).toBeCloseTo(0);
   expect(result.vectors?.T?.[1]).toBeCloseTo(2 / Math.sqrt(4.25));
-  result.vectors!.N!.forEach((v, i) => expect(v).toBeCloseTo([-1, 0, 0][i]));
+  result.vectors!.N!.forEach((v, i) => {
+    expect(v).toBeCloseTo([-1, 0, 0][i]);
+  });
   expect(result.vectors?.B?.[1]).toBeCloseTo(-0.5 / Math.sqrt(4.25));
   expect(result.vectors?.curvature).toBeCloseTo(2 / 4.25);
   expect(norm(result.vectors!.B!)).toBeCloseTo(1);
@@ -82,4 +85,18 @@ it('roundtrips source, free writing and slider state without interpreting embedd
   };
   expect(readScene(sceneBody(scene))).toEqual(scene);
   expect(readScene('ordinary memo')).toBeNull();
+});
+it('restores saved Plotly focus alongside native XML and rejects damaged view metadata', () => {
+  const scene = {
+    ...DEFAULT_SCENE,
+    geogebra: { sourceKey: 'native-view', xml: '<geogebra>preserved</geogebra>' },
+    view: {
+      camera: { eye: { x: 0.3, y: -0.2, z: 0.4 } },
+      pointFocus: { returnCamera: { eye: { x: 2, y: -1, z: 1 } } },
+    },
+  };
+  expect(readScene(sceneBody(scene))).toEqual(scene);
+  for (const view of [null, [], { pointFocus: {} }, { camera: { eye: { x: 1, y: 2 } } }])
+    expect(isMathScene({ ...scene, view })).toBe(false);
+  expect(isMathScene(DEFAULT_SCENE)).toBe(true);
 });

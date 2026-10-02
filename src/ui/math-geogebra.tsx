@@ -3,11 +3,18 @@ import { Button, LoadingState } from './index';
 import { add, scale, type buildScene, type MathScene, type Vec3 } from '../domain/math-explorer';
 import { geoExpression, geoSourceKey, geoNumber } from '../domain/math-geogebra';
 import type { MathZoomRef } from './math-view-controls';
+import { geoPresentation } from './math-geogebra-presentation';
 
 type Snapshot = NonNullable<MathScene['geogebra']>;
 type Api = {
   evalCommand: (command: string) => boolean;
   setValue: (name: string, value: number) => void;
+  getXcoord: (name: string) => number;
+  getYcoord: (name: string) => number;
+  getZcoord: (name: string) => number;
+  getVisible: (name: string) => boolean;
+  getViewProperties: (view: number) => string;
+  setAxesVisible: (view: number, x: boolean, y: boolean, z: boolean) => void;
   setCoords: (name: string, ...coords: number[]) => void;
   setVisible: (name: string, value: boolean) => void;
   setLabelVisible: (name: string, value: boolean) => void;
@@ -17,6 +24,7 @@ type Api = {
   setLineStyle: (name: string, style: number) => void;
   setAxisSteps: (view: number, x: number, y: number, z: number) => void;
   setGraphicsOptions: (view: number, options: Record<string, unknown>) => void;
+  setTextValue: (name: string, text: string) => void;
   setCaption: (name: string, caption: string) => void;
   setLabelStyle: (name: string, style: number) => void;
   setFixed: (name: string, fixed: boolean, selection?: boolean) => void;
@@ -32,6 +40,22 @@ type Api = {
   registerClientListener: (callback: (event: { type: string } | unknown[]) => void) => void;
   remove: () => void;
 };
+/** Native layout/tool changes can focus the canvas even with preventFocus:true.
+ * Keep late initialization/rebuild from taking over a task outside this graph. */
+function preserveExternalFocus(element: HTMLElement, change: () => void) {
+  if (element.contains(document.activeElement)) {
+    change();
+    return;
+  }
+  const wasInert = element.inert;
+  try {
+    element.inert = true;
+    change();
+  } finally {
+    element.inert = wasInert;
+  }
+}
+
 type Applet = {
   setHTML5Codebase: (url: string, offline: boolean) => void;
   inject: (host: HTMLElement) => void;
@@ -100,9 +124,25 @@ export function MathGeoGebra({
   const source = useRef('');
   const revision = useRef(-1);
   const syncing = useRef(false);
+  const presentation = useRef<ReturnType<typeof geoPresentation> | null>(null);
   const [ready, setReady] = useState(false);
   const [error, setError] = useState('');
   const [retry, setRetry] = useState(0);
+  const [theme, setTheme] = useState(0);
+  useEffect(() => {
+    const changed = () => setTheme((v) => v + 1);
+    const observer = new MutationObserver(changed);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme', 'style', 'class'],
+    });
+    const media = matchMedia('(prefers-color-scheme: dark)');
+    media.addEventListener('change', changed);
+    return () => {
+      observer.disconnect();
+      media.removeEventListener('change', changed);
+    };
+  }, []);
   const mode = scene.mode;
   // biome-ignore lint/correctness/useExhaustiveDependencies: retry deliberately recreates the failed native applet.
   useEffect(() => {
@@ -112,6 +152,8 @@ export function MathGeoGebra({
     let timer: ReturnType<typeof setTimeout> | undefined;
     let resize: ResizeObserver | undefined;
     let resizeFrame = 0;
+    let overlayFrame = 0;
+    let presentationTimer: ReturnType<typeof setTimeout> | undefined;
     let lastSize = '';
     source.current = '';
     revision.current = -1;
@@ -158,7 +200,7 @@ export function MathGeoGebra({
             customToolBar: mode === 'curve' ? '540' : '40',
             showAlgebraInput: false,
             showMenuBar: false,
-            showZoomButtons: true,
+            showZoomButtons: false,
             showResetIcon: false,
             enableFileFeatures: false,
             enableShiftDragZoom: true,
@@ -168,6 +210,8 @@ export function MathGeoGebra({
             showStartTooltip: false,
             errorDialogsActive: false,
             appletOnLoad: (native: Api) => {
+              // GeoGebra labels its injected container; give that name a supported group role.
+              element.querySelector('.appletParameters')?.setAttribute('role', 'group');
               if (disposed) {
                 native.remove();
                 return;
@@ -191,16 +235,48 @@ export function MathGeoGebra({
                 const xml = new DOMParser().parseFromString(native.getXML(), 'application/xml');
                 xml.querySelector('euclidianView3D > plate')?.setAttribute('show', 'false');
                 xml.querySelector('euclidianView3D > clipping')?.setAttribute('use', 'false');
+                const view = xml.querySelector('euclidianView3D');
+                if (view) {
+                  let colored = view.querySelector('axesColored');
+                  if (!colored) {
+                    colored = xml.createElement('axesColored');
+                    view.appendChild(colored);
+                  }
+                  colored.setAttribute('val', 'false');
+                }
                 native.setXML(new XMLSerializer().serializeToString(xml));
               }
-              native.setPerspective(mode === 'curve' ? 'T' : 'G');
+              if (mode === 'function') {
+                const xml = new DOMParser().parseFromString(native.getXML(), 'application/xml');
+                xml.querySelector('euclidianView > lineStyle')?.setAttribute('grid', '0');
+                native.setXML(new XMLSerializer().serializeToString(xml));
+              }
+              presentation.current = geoPresentation(
+                native,
+                element,
+                mode === 'curve',
+                () => latest.current.result,
+              );
+              preserveExternalFocus(element, () =>
+                native.setPerspective(mode === 'curve' ? 'T' : 'G'),
+              );
               native.setRounding('2');
               // Official Rotate View (540) / Move Graphics View (40) tools:
               // gestures change the view, never the point or construction.
-              native.setMode(mode === 'curve' ? 540 : 40);
+              preserveExternalFocus(element, () => native.setMode(mode === 'curve' ? 540 : 40));
               native.registerClientListener((event) => {
                 // Classic bundles can use the legacy [type, target, ...] event.
                 const eventType = Array.isArray(event) ? event[0] : event.type;
+                if (
+                  !disposed &&
+                  !syncing.current &&
+                  ['viewChanged3D', 'viewChanged2D'].includes(String(eventType))
+                ) {
+                  cancelAnimationFrame(overlayFrame);
+                  overlayFrame = requestAnimationFrame(() => presentation.current?.refresh());
+                  clearTimeout(presentationTimer);
+                  presentationTimer = setTimeout(() => presentation.current?.update(), 60);
+                }
                 if (
                   syncing.current ||
                   disposed ||
@@ -246,6 +322,10 @@ export function MathGeoGebra({
       disposed = true;
       clearTimeout(timer);
       clearTimeout(timeout);
+      clearTimeout(presentationTimer);
+      cancelAnimationFrame(overlayFrame);
+      presentation.current?.dispose();
+      presentation.current = null;
       resize?.disconnect();
       cancelAnimationFrame(resizeFrame);
       document.removeEventListener('visibilitychange', flush);
@@ -264,6 +344,13 @@ export function MathGeoGebra({
     try {
       const key = geoSourceKey(scene);
       const rebuild = source.current !== key;
+      const preserveExpandedView = Boolean(
+        source.current &&
+        scene.sliderRangeVersion === 2 &&
+        scene.min === '0' &&
+        scene.max === '8*pi' &&
+        source.current === geoSourceKey({ ...scene, max: '4*pi' }),
+      );
       if (rebuild) {
         for (const name of ['a', 'b', 'studyCurve', 'StudyPoint'])
           if (native.exists(name)) native.setFixed(name, false, false);
@@ -297,8 +384,8 @@ export function MathGeoGebra({
           throw Error(
             'GeoGebra에서 이 수식을 그리지 못했습니다. 수식을 확인하거나 다른 그래프로 볼 수 있습니다.',
           );
-        native.setColor('studyCurve', ...tokenColor(element, '--color-muted'));
-        native.setColor('StudyPoint', ...tokenColor(element, '--color-hierarchy-outline'));
+        native.setColor('studyCurve', ...tokenColor(element, '--color-math-curve'));
+        native.setColor('StudyPoint', ...tokenColor(element, '--color-math-point'));
         for (const name of ['a', 'b', 'studyCurve', 'StudyPoint']) {
           native.setLabelVisible(name, false);
           native.setFixed(name, true, false);
@@ -353,10 +440,13 @@ export function MathGeoGebra({
         native.setLineThickness(name, 1);
         native.setLineStyle(name, 2);
         native.setLabelVisible(name, false);
-        native.setVisible(name, result.point !== null);
+        native.setVisible(name, scene.mode === 'function' && result.point !== null);
         native.setFixed(name, true, false);
       }
+      native.setVisible('studyCurve', scene.mode === 'function');
       // Apply presentation to restored constructions too, without rounding coordinates.
+      native.setColor('studyCurve', ...tokenColor(element, '--color-math-curve'));
+      native.setColor('StudyPoint', ...tokenColor(element, '--color-math-point'));
       native.setLineThickness('studyCurve', 2);
       native.setPointSize('StudyPoint', 4);
       for (const name of ['a', 'b'] as const) {
@@ -364,7 +454,7 @@ export function MathGeoGebra({
         native.setValue(name, scene[name]);
         native.setFixed(name, true, false);
       }
-      native.setVisible('StudyPoint', result.point !== null);
+      native.setVisible('StudyPoint', scene.mode === 'function' && result.point !== null);
       if (result.point) {
         native.setFixed('StudyPoint', false, false);
         native.setCoords('StudyPoint', ...result.point.slice(0, scene.mode === 'curve' ? 3 : 2));
@@ -372,9 +462,9 @@ export function MathGeoGebra({
       }
       if (scene.mode === 'curve') {
         const colors = {
-          T: tokenColor(element, '--color-hierarchy-outline'),
-          N: tokenColor(element, '--color-memo-green'),
-          B: tokenColor(element, '--color-text'),
+          T: tokenColor(element, '--color-math-tangent'),
+          N: tokenColor(element, '--color-math-normal'),
+          B: tokenColor(element, '--color-math-binormal'),
         };
         for (const name of ['T', 'N', 'B'] as const) {
           const direction = result.vectors?.[name];
@@ -383,19 +473,23 @@ export function MathGeoGebra({
             throw Error(
               `${name} 벡터를 표시하지 못했습니다. 다른 그래프로 보거나 그래프를 다시 열어 주세요.`,
             );
-          native.setVisible(`study${name}`, visible);
+          element.dataset[`vector${name}`] = String(visible);
+          native.setVisible(`study${name}`, false);
           native.setVisible(`StudyTip${name}`, false);
           if (visible && result.point && direction)
             native.setCoords(`StudyTip${name}`, ...add(result.point, scale(direction, 1.3)));
           native.setColor(`study${name}`, ...(colors[name] as [number, number, number]));
-          native.setLineThickness(`study${name}`, 3);
+          native.setLineThickness(`study${name}`, 1);
           native.setCaption(`study${name}`, name);
           native.setLabelStyle(`study${name}`, 3);
-          native.setLabelVisible(`study${name}`, visible);
+          native.setLabelVisible(`study${name}`, false);
           native.setFixed(`study${name}`, true, false);
         }
       }
-      if (rebuild || (revision.current >= 0 && revision.current !== viewRevision)) {
+      if (
+        (rebuild && !preserveExpandedView) ||
+        (revision.current >= 0 && revision.current !== viewRevision)
+      ) {
         const points = result.points.filter((p): p is Vec3 => p !== null);
         const bounds = [0, 1, 2].flatMap((i) => {
           const values = points.map((p) => p[i]);
@@ -405,11 +499,37 @@ export function MathGeoGebra({
           return [low - padding, high + padding];
         });
         if (scene.mode === 'curve') {
-          native.setCoordSystem(...bounds, false);
+          const xml = new DOMParser().parseFromString(native.getXML(), 'application/xml');
+          const coords = xml.querySelector('euclidianView3D > coordSystem');
+          if (coords) {
+            const low = [
+              native.getXcoord('StudyViewLow'),
+              native.getYcoord('StudyViewLow'),
+              native.getZcoord('StudyViewLow'),
+            ];
+            const high = [
+              native.getXcoord('StudyViewHigh'),
+              native.getYcoord('StudyViewHigh'),
+              native.getZcoord('StudyViewHigh'),
+            ];
+            // Same framing ratio as native zoomRW, applied immediately so a
+            // first zoom or file capture cannot race an initial fit animation.
+            const ratio =
+              Math.min(...low.map((v, i) => (high[i] - v) / (bounds[i * 2 + 1] - bounds[i * 2]))) *
+              0.94;
+            const oldScale = Number(coords.getAttribute('scale'));
+            coords.setAttribute('scale', String(oldScale * ratio));
+            ['xZero', 'yZero', 'zZero'].forEach((name, i) => {
+              coords.setAttribute(name, String(-(bounds[i * 2] + bounds[i * 2 + 1]) / 2));
+            });
+            native.setXML(new XMLSerializer().serializeToString(xml));
+            preserveExternalFocus(element, () => native.setMode(540));
+          }
           if (!rebuild) native.evalCommand('SetViewDirection()');
         } else native.setCoordSystem(...bounds.slice(0, 4));
       }
       revision.current = viewRevision;
+      presentation.current?.update();
       setError('');
     } catch (e) {
       setError(e instanceof Error ? e.message : '그래프를 갱신하지 못했습니다.');
@@ -428,6 +548,7 @@ export function MathGeoGebra({
     result,
     viewRevision,
     ready,
+    theme,
   ]);
   useEffect(() => {
     const native = api.current;
@@ -435,68 +556,48 @@ export function MathGeoGebra({
       onZoomReady(false);
       return;
     }
+    const element = host.current;
     zoomRef.current = (factor) => {
       try {
-        // This applet rejects scripting zoom commands and evalXML ignores view
-        // settings. Reload the complete native snapshot with only its camera
-        // changed; preserve all construction objects, coordinates and rotation.
         const xml = new DOMParser().parseFromString(native.getXML(), 'application/xml');
-        const viewName = mode === 'curve' ? 'euclidianView3D' : 'euclidianView';
-        const coords = xml.querySelector(`${viewName} > coordSystem`);
-        if (!coords) throw Error('view');
-        for (const name of ['scale', 'yscale', 'zscale']) {
-          const value = coords.getAttribute(name);
-          if (value !== null) {
-            const next = Number(value) * factor;
-            if (!Number.isFinite(next) || next <= 0) throw Error('scale');
-            coords.setAttribute(name, String(next));
+        const coords = xml.querySelector(
+          `${mode === 'curve' ? 'euclidianView3D' : 'euclidianView'} > coordSystem`,
+        );
+        if (!coords || !element || !(factor > 0)) return;
+        const oldScale = Number(coords.getAttribute('scale'));
+        const point = latest.current.result.point ?? [0, 0, 0];
+        if (mode === 'curve') {
+          for (const name of ['scale', 'yscale', 'zscale']) {
+            const value = coords.getAttribute(name);
+            if (value !== null) coords.setAttribute(name, String(Number(value) * factor));
           }
-        }
-        const point = latest.current.result.point;
-        if (mode === 'curve' && point) {
-          // 3D origins are world coordinates. Zoom around the current point
-          // instead of the empty centre of a helix, retaining its screen position.
-          ['xZero', 'yZero', 'zZero'].forEach((name, index) => {
-            const origin = Number(coords.getAttribute(name));
-            coords.setAttribute(name, String((origin + point[index]) / factor - point[index]));
-          });
-        }
-        if (mode === 'function') {
-          const element = host.current;
-          if (!element) return;
-          for (const [name, center] of [
-            [
-              'xZero',
-              point
-                ? Number(coords.getAttribute('xZero')) +
-                  (point[0] * Number(coords.getAttribute('scale'))) / factor
-                : element.clientWidth / 2,
-            ],
-            [
-              'yZero',
-              point
-                ? Number(coords.getAttribute('yZero')) -
-                  (point[1] *
-                    Number(coords.getAttribute('yscale') ?? coords.getAttribute('scale'))) /
-                    factor
-                : element.clientHeight / 2,
-            ],
-          ] as const) {
+          ['xZero', 'yZero', 'zZero'].forEach((name, i) => {
             const value = Number(coords.getAttribute(name));
-            coords.setAttribute(name, String(center + (value - center) * factor));
-          }
+            coords.setAttribute(name, String((value + point[i]) / factor - point[i]));
+          });
+          syncing.current = true;
+          native.setXML(new XMLSerializer().serializeToString(xml));
+          preserveExternalFocus(element, () => native.setMode(540));
+          syncing.current = false;
+        } else {
+          const ys = Number(coords.getAttribute('yscale') ?? oldScale);
+          const x = Number(coords.getAttribute('xZero')),
+            y = Number(coords.getAttribute('yZero'));
+          const dimensions = xml.querySelector('euclidianView > size');
+          const width = Number(dimensions?.getAttribute('width') ?? element.clientWidth);
+          const height = Number(dimensions?.getAttribute('height') ?? element.clientHeight);
+          const bounds = [-x / oldScale, (width - x) / oldScale, (y - height) / ys, y / ys];
+          native.setCoordSystem(
+            ...bounds.map((v, i) => point[i < 2 ? 0 : 1] + (v - point[i < 2 ? 0 : 1]) / factor),
+          );
         }
-        syncing.current = true;
-        native.setXML(new XMLSerializer().serializeToString(xml));
-        native.setMode(mode === 'curve' ? 540 : 40);
+        presentation.current?.update();
+        const snapshot = captureRef.current?.();
+        if (snapshot) latest.current.onSnapshot(snapshot);
       } catch {
-        setError('확대·축소하지 못했습니다. 그래프를 다시 열어 주세요.');
-        return;
-      } finally {
         syncing.current = false;
+        setError('확대·축소하지 못했습니다. 그래프를 다시 열어 주세요.');
       }
-      const snapshot = captureRef.current?.();
-      if (snapshot) latest.current.onSnapshot(snapshot);
     };
     onZoomReady(true);
     return () => {
@@ -516,12 +617,23 @@ export function MathGeoGebra({
           </div>
         </div>
       )}
-      <section ref={host} className="math-plot math-geogebra-host" aria-label="GeoGebra 그래프"
-        onFocusCapture={event => {
+      <section
+        ref={host}
+        className="math-plot math-geogebra-host"
+        aria-label="GeoGebra 그래프"
+        onFocusCapture={(event) => {
           const control = event.target;
-          if (!(control instanceof HTMLInputElement) || !control.matches('.slider.accessibilityControl')) return;
-          const label = control.max === '360' ? '시점 회전' : control.min === '-90' ? '시점 기울기' : null;
-          if (label) { control.setAttribute('aria-label', label); control.title = label; }
+          if (
+            !(control instanceof HTMLInputElement) ||
+            !control.matches('.slider.accessibilityControl')
+          )
+            return;
+          const label =
+            control.max === '360' ? '시점 회전' : control.min === '-90' ? '시점 기울기' : null;
+          if (label) {
+            control.setAttribute('aria-label', label);
+            control.title = label;
+          }
         }}
       />
       <a

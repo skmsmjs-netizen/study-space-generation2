@@ -21,8 +21,23 @@ export default defineConfig({
   workers: process.env.CI ? 2 : 1,
   reporter: [
     ['list'],
-    ['html', { outputFolder: runDirectory ? path.join(runDirectory, 'report') : `${reportRoot}/device-report`, open: 'never' }],
-    ['json', { outputFile: runDirectory ? path.join(runDirectory, 'results.json') : `${reportRoot}/device-results.json` }],
+    [
+      'html',
+      {
+        outputFolder: runDirectory
+          ? path.join(runDirectory, 'report')
+          : `${reportRoot}/device-report`,
+        open: 'never',
+      },
+    ],
+    [
+      'json',
+      {
+        outputFile: runDirectory
+          ? path.join(runDirectory, 'results.json')
+          : `${reportRoot}/device-results.json`,
+      },
+    ],
   ],
   outputDir: runDirectory ? path.join(runDirectory, 'traces') : `${reportRoot}/device-traces`,
   use: {

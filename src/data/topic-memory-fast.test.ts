@@ -28,17 +28,12 @@ const input: TopicMemoryInput = {
   count: 3,
   guidance: '',
 };
-const status = {
-  local: false, provider: 'openai-api', configured: true, model: 'gpt-6-luna',
-  models: [{ slug: 'gpt-6-luna', displayName: 'GPT-6 Luna' }],
-  connectionError: '',
-  billing: { configured: true, enabled: true, limitMicro: 10_000_000, usedMicro: 0, pendingMicro: 0, month: '2026-10' },
-};
+const status = { local: false, provider: 'openai-api', configured: true, model: 'gpt-6-luna', models: [{ slug: 'gpt-6-luna', displayName: 'GPT-6 Luna' }], billing: { configured: true, enabled: true, limitMicro: 3_000_000, usedMicro: 0, pendingMicro: 0, month: '2026-10' }, connectionError: '' };
 const response = () =>
   Response.json({
     result: {
       id: 'r',
-      model: 'listed',
+      model: 'gpt-6-luna',
       at: '2026-10-01T00:00:00Z',
       input,
       cards: [

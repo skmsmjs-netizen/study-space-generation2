@@ -16,3 +16,4 @@ export function saveRecommendations(data: AppState, workspace: RecommendationWor
   if (storage.getItem(key) !== raw) throw Error('추천 내용의 저장을 확인하지 못했습니다. 작성 내용을 유지합니다.');
   return raw;
 }
+

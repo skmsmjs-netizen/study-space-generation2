@@ -1,0 +1,93 @@
+/* Complete Hangul/Latin faces: no sample-only subset and no remote font request.
+   The derived family is renamed under OFL; outlines and advance widths share 95%. */
+@font-face {
+  /* design-token-exception: font-family -- Licensed native-width paper family. */
+  font-family: 'ManSeekSong Paper';
+  src: url('./fonts/paper/manseek-paper-regular-95.woff2') format('woff2');
+  font-style: normal;
+  /* design-token-exception: font-weight -- Matches the static Regular source. */
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  /* design-token-exception: font-family -- Approved Nanum Myeongjo Bold with 95% native geometry. */
+  font-family: 'ManSeekSong Paper';
+  src: url('./fonts/paper/manseek-paper-bold-95.woff2') format('woff2');
+  font-style: normal;
+  /* design-token-exception: font-weight -- Matches the approved static Bold source. */
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  /* design-token-exception: font-family -- Real ExtraBold preserves authored emphasis over 700 body. */
+  font-family: 'ManSeekSong Paper';
+  src: url('./fonts/paper/manseek-paper-extrabold-95.woff2') format('woff2');
+  font-style: normal;
+  /* design-token-exception: font-weight -- Matches the static ExtraBold source. */
+  font-weight: 800;
+  font-display: swap;
+}
+/* Reading-font defaults apply to authored prose. Ancestors remain interface
+   surfaces so captions, tables, axes and free-standing controls do not inherit it. */
+body,
+.observatory-workspace .main-content,
+.observatory-paper,
+body:has(.observatory-workspace, .personal-entry) > .ui-overlay .ui-modal,
+.concept-reader {
+  font-family: var(--font-interface);
+}
+/* Match the prose rule including its excluded-role filter. Otherwise its
+   specificity overrides the compact rhythm even though the input is 16px. */
+:is(.observatory-workspace, .observatory-paper,
+    body:has(.observatory-workspace, .personal-entry) > .ui-overlay .ui-modal)
+  :is(.narrative-editor textarea, .record-compose textarea, .memo-input textarea,
+    .memo-editor textarea, .memo-editor-body textarea):not(.math-caption, .equation-source, .input-prompt) {
+  line-height: var(--paper-body-line, var(--observatory-paper-body-compact-line));
+  letter-spacing: var(--paper-body-tracking, var(--observatory-paper-body-compact-tracking));
+}
+:is(.observatory-workspace, .observatory-paper,
+    body:has(.observatory-workspace, .personal-entry) > .ui-overlay .ui-modal)
+  span.memo-preview-text:not(.math-caption, .equation-source, .input-prompt) {
+  font-size: var(--paper-preview-size, var(--observatory-paper-preview-size));
+  line-height: var(--paper-body-line, var(--observatory-paper-body-compact-line));
+  letter-spacing: var(--paper-body-tracking, var(--observatory-paper-body-compact-tracking));
+}
+/* Existing saved-record editing is outside the compose form. It is still
+   directly authored prose and must share the native 16px input face. */
+:is(.observatory-workspace, .observatory-paper) .record-card textarea[data-editing-context^='record:'] {
+  font-family: var(--font-reading);
+  font-size: var(--paper-input-size, var(--observatory-paper-memo-size));
+  font-weight: var(--paper-body-weight, var(--observatory-paper-body-weight));
+  line-height: var(--paper-body-line, var(--observatory-paper-body-compact-line));
+  letter-spacing: var(--paper-body-tracking, var(--observatory-paper-body-compact-tracking));
+  text-align: var(--paper-body-text-align, var(--observatory-body-text-align));
+  text-align-last: var(--observatory-body-last-line);
+}
+/* Match the scoped default's specificity: a container query alone must not
+   lose to that default and leave narrow paragraphs at the wide 18px size. */
+@container study-content (max-width: 40rem) {
+  :is(.observatory-workspace, .observatory-paper,
+      body:has(.observatory-workspace, .personal-entry) > .ui-overlay .ui-modal)
+    :is(.prose > p, p.prose, .concept-body > p, .concept-intro, .knowledge-module dd, .canvas-original):not(.math-caption, .equation-source, .input-prompt) {
+    font-size: var(--paper-body-size, var(--observatory-paper-body-compact-size));
+  }
+}
+@container concept-prose (max-width: 40rem) {
+  :is(.observatory-workspace, .observatory-paper,
+      body:has(.observatory-workspace, .personal-entry) > .ui-overlay .ui-modal) .concept-body > p:not(.math-caption, .equation-source, .input-prompt) {
+    font-size: var(--paper-body-size, var(--observatory-paper-body-compact-size));
+  }
+}
+@media (max-width: 40rem) {
+  :is(.observatory-workspace, .observatory-paper,
+      body:has(.observatory-workspace, .personal-entry) > .ui-overlay .ui-modal)
+    :is(.prose > p, p.prose, .concept-body > p, .concept-intro, .knowledge-module dd, .canvas-original):not(.math-caption, .equation-source, .input-prompt) {
+    font-size: var(--paper-body-size, var(--observatory-paper-body-compact-size));
+  }
+}
+:is(.observatory-workspace, .observatory-paper,
+    body:has(.observatory-workspace, .personal-entry) > .ui-overlay .ui-modal) .recent-study-list p.prose {
+  font-size: var(--paper-preview-size, var(--observatory-paper-preview-size));
+  line-height: var(--paper-body-line, var(--observatory-paper-body-compact-line));
+  letter-spacing: var(--paper-body-tracking, var(--observatory-paper-body-compact-tracking));
+}

@@ -8,13 +8,18 @@ export interface WorkspaceSearchEntry {
   href: string;
   subjectId: string | null;
   text: string;
+  /** Exact display text; normalization is only used for matching. */
+  rawText?: string;
 }
-const normalize = (text: string) => text.normalize('NFC').toLocaleLowerCase('ko-KR');
+export const normalizeSearchText = (text: string) =>
+  text.normalize('NFC').toLocaleLowerCase('ko-KR');
+const normalize = normalizeSearchText;
 
 /** Read-only projection of registered content. No archive/draft reads or inferred study results. */
 export function buildWorkspaceSearch(
   data: AppState,
   legacyWorkspace?: RecommendationWorkspace,
+  normalizeIndex = true,
 ): WorkspaceSearchEntry[] {
   const alive = (row: Entity) =>
     !row.deletedAt && row.userId === data.userId && row.namespace === data.namespace;
@@ -36,7 +41,15 @@ export function buildWorkspaceSearch(
     text: string,
   ) => {
     if (subjectId === undefined) return;
-    entries.push({ id, title, kind, href, subjectId, text: normalize(`${title}\n${text}`) });
+    entries.push({
+      id,
+      title,
+      kind,
+      href,
+      subjectId,
+      rawText: text,
+      text: normalizeIndex ? normalize(`${title}\n${text}`) : `${title}\n${text}`,
+    });
   };
   const nodeText = new Map<string, string[]>();
   const append = (id: string, text: string) => {
@@ -192,6 +205,143 @@ export function buildWorkspaceSearch(
         );
     }
   return entries;
+}
+
+export type SearchOrder = 'relevance' | 'source';
+export interface WorkspaceSearchOptions {
+  query: string;
+  subjectIds: string[];
+  includeUnassigned: boolean;
+  kind?: string;
+  order?: SearchOrder;
+  limit?: number;
+}
+export interface SearchExcerpt {
+  text: string;
+  start: number;
+  end: number;
+  leading: boolean;
+  trailing: boolean;
+}
+export interface WorkspaceSearchHit {
+  id: string;
+  title: string;
+  kind: string;
+  href: string;
+  subjectId: string | null;
+  reason: '제목 전체 일치' | '제목에 일치' | '본문에 일치';
+  excerpt: SearchExcerpt;
+  sourcePosition: number;
+}
+export interface WorkspaceSearchResult {
+  hits: WorkspaceSearchHit[];
+  total: number;
+  kinds: Array<{ kind: string; count: number }>;
+}
+
+/** Grapheme boundaries retain decomposed Korean and UTF-16 offsets in the original. */
+function originalSegments(text: string): Array<{ segment: string; index: number }> {
+  const Segmenter = (
+    Intl as typeof Intl & {
+      Segmenter?: new (
+        locale: string,
+        options: { granularity: string },
+      ) => { segment: (value: string) => Iterable<{ segment: string; index: number }> };
+    }
+  ).Segmenter;
+  if (Segmenter) return Array.from(new Segmenter('ko', { granularity: 'grapheme' }).segment(text));
+  // The fallback groups combining marks and Hangul Jamo; it does not rewrite stored text.
+  const result: Array<{ segment: string; index: number }> = [];
+  let index = 0;
+  for (const value of text) {
+    const previous = result.at(-1);
+    if (previous && (/^\p{Mark}$/u.test(value) || /^[\u1160-\u11ff\ud7b0-\ud7ff]$/u.test(value)))
+      previous.segment += value;
+    else result.push({ segment: value, index });
+    index += value.length;
+  }
+  return result;
+}
+export function searchExcerpt(raw: string, query: string, context = 64): SearchExcerpt {
+  const needle = normalize(query.trim()),
+    normalized = normalize(raw),
+    at = normalized.indexOf(needle);
+  if (!needle || at < 0)
+    return {
+      text: raw.slice(0, context * 2),
+      start: 0,
+      end: 0,
+      leading: false,
+      trailing: raw.length > context * 2,
+    };
+  const segments = originalSegments(raw);
+  let offset = 0,
+    first = 0,
+    last = segments.length - 1;
+  for (let i = 0; i < segments.length; i++) {
+    const next = offset + normalize(segments[i].segment).length;
+    if (offset <= at && at < next) first = i;
+    if (offset < at + needle.length && at + needle.length <= next) {
+      last = i;
+      break;
+    }
+    offset = next;
+  }
+  const start = segments[first]?.index ?? 0;
+  const end = (segments[last]?.index ?? start) + (segments[last]?.segment.length ?? 0);
+  const left =
+    segments.find((segment) => segment.index >= Math.max(0, start - context))?.index ?? 0;
+  const right = segments.find((segment) => segment.index >= end + context)?.index ?? raw.length;
+  return {
+    text: raw.slice(left, right),
+    start: start - left,
+    end: end - left,
+    leading: left > 0,
+    trailing: right < raw.length,
+  };
+}
+
+/** Rank is explicit and stable: exact title, title substring, body; ties retain source order. */
+export function queryWorkspaceSearch(
+  entries: WorkspaceSearchEntry[],
+  options: WorkspaceSearchOptions,
+): WorkspaceSearchResult {
+  const needle = normalize(options.query.trim());
+  if (!needle) return { hits: [], total: 0, kinds: [] };
+  const scoped = searchWorkspace(
+    entries,
+    options.query,
+    options.subjectIds,
+    options.includeUnassigned,
+  );
+  const counts = new Map<string, number>();
+  for (const entry of scoped) counts.set(entry.kind, (counts.get(entry.kind) ?? 0) + 1);
+  const ranked = scoped
+    .map((entry, sourcePosition) => {
+      const title = normalize(entry.title);
+      return { entry, sourcePosition, rank: title === needle ? 0 : title.includes(needle) ? 1 : 2 };
+    })
+    .filter(({ entry }) => !options.kind || options.kind === 'all' || entry.kind === options.kind);
+  if (options.order !== 'source')
+    ranked.sort((a, b) => a.rank - b.rank || a.sourcePosition - b.sourcePosition);
+  const limit =
+    options.limit !== undefined && Number.isSafeInteger(options.limit)
+      ? Math.max(1, options.limit)
+      : 40;
+  return {
+    total: ranked.length,
+    kinds: [...counts].map(([kind, count]) => ({ kind, count })),
+    hits: ranked.slice(0, limit).map(({ entry, sourcePosition, rank }) => ({
+      id: entry.id,
+      title: entry.title,
+      kind: entry.kind,
+      href: entry.href,
+      subjectId: entry.subjectId,
+      reason: rank === 0 ? '제목 전체 일치' : rank === 1 ? '제목에 일치' : '본문에 일치',
+      excerpt: searchExcerpt(rank < 2 ? entry.title : (entry.rawText ?? entry.text), options.query),
+      sourcePosition: sourcePosition + 1,
+    })),
+  };
 }
 export function searchWorkspace(
   entries: WorkspaceSearchEntry[],

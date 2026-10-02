@@ -1,0 +1,51 @@
+/* Decorative SVG light geometry uses the established time-of-day palette. */
+.obs-study-warm {
+  stop-color: var(--obs-coral);
+}
+.obs-study-glimmer {
+  fill: var(--obs-gold);
+  animation: obs-study-glimmer 9s ease-in-out infinite;
+}
+.obs-study-star-halo {
+  fill: var(--obs-coral);
+}
+.obs-study-window {
+  fill: var(--obs-gold);
+}
+.obs-study-window-spill {
+  fill: var(--obs-coral);
+  opacity: 0.22;
+}
+.obs-study-platform {
+  stroke: var(--obs-coral);
+  stroke-width: 0.65;
+  opacity: 0.6;
+}
+.obs-study-dome-scan,
+.obs-study-signal {
+  fill: none;
+  stroke: var(--obs-gold);
+  stroke-width: 0.8;
+  stroke-dasharray: 9 91;
+  animation: obs-study-scan var(--obs-study-period, 18s) linear infinite;
+}
+.obs-study-signal {
+  stroke: var(--obs-mint);
+  stroke-width: 0.6;
+  animation-delay: -7s;
+  opacity: 0.65;
+}
+@keyframes obs-study-glimmer {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  45% {
+    opacity: 1;
+  }
+}
+@keyframes obs-study-scan {
+  to {
+    stroke-dashoffset: -100;
+  }
+}

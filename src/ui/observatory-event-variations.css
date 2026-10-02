@@ -1,0 +1,138 @@
+/* These dimensions are SVG scene geometry, not application spacing. */
+.evt-variation {
+  transform-origin: 0 0;
+  animation-duration: var(--obs-event-duration);
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+.evt-variation-contour {
+  fill: none;
+  stroke: var(--obs-event-color);
+  stroke-width: 0.65;
+  opacity: 0.4;
+}
+.evt-variation-detail {
+  fill: none;
+  stroke: var(--observatory-warm-050);
+  stroke-width: 0.65;
+  opacity: var(--obs-variation-detail);
+}
+.evt-variation--shear {
+  animation-name: evt-variation-shear;
+}
+.evt-variation--lift {
+  animation-name: evt-variation-lift;
+}
+.evt-variation--wave {
+  animation-name: evt-variation-wave;
+}
+.evt-variation--open {
+  animation-name: evt-variation-open;
+}
+.evt-variation--thread {
+  animation-name: evt-variation-thread;
+}
+.evt-variation--terrace {
+  animation-name: evt-variation-terrace;
+}
+@keyframes evt-variation-shear {
+  0% {
+    translate: calc(-9px * var(--obs-event-amplitude)) 3px;
+    rotate: -2deg;
+  }
+  50% {
+    translate: 0 -2px;
+    rotate: 0deg;
+  }
+  100% {
+    translate: calc(9px * var(--obs-event-amplitude)) -3px;
+    rotate: 2deg;
+  }
+}
+@keyframes evt-variation-lift {
+  0% {
+    translate: -2px 7px;
+    scale: 0.94 0.88;
+  }
+  55% {
+    translate: 3px calc(-7px * var(--obs-event-amplitude));
+    scale: 1 1;
+  }
+  100% {
+    translate: -1px calc(-13px * var(--obs-event-amplitude));
+    scale: 1.03 1.06;
+  }
+}
+@keyframes evt-variation-wave {
+  0% {
+    translate: -7px 0;
+    rotate: -3deg;
+  }
+  33% {
+    translate: -2px calc(-4px * var(--obs-event-amplitude));
+    rotate: 2deg;
+  }
+  67% {
+    translate: 3px calc(4px * var(--obs-event-amplitude));
+    rotate: -2deg;
+  }
+  100% {
+    translate: 7px 0;
+    rotate: 3deg;
+  }
+}
+@keyframes evt-variation-open {
+  0% {
+    scale: 0.83 1;
+    translate: 0 3px;
+  }
+  60% {
+    scale: calc(0.95 + var(--obs-event-amplitude) * 0.07) 0.94;
+    translate: 0 -2px;
+  }
+  100% {
+    scale: calc(1 + var(--obs-event-amplitude) * 0.09) 1.03;
+    translate: 0 -4px;
+  }
+}
+@keyframes evt-variation-thread {
+  0% {
+    translate: calc(-9px * var(--obs-event-amplitude)) 6px;
+    rotate: -4deg;
+  }
+  40% {
+    translate: 2px -4px;
+    rotate: 3deg;
+  }
+  100% {
+    translate: calc(13px * var(--obs-event-amplitude)) -8px;
+    rotate: -1deg;
+  }
+}
+@keyframes evt-variation-terrace {
+  0% {
+    translate: -4px 4px;
+    scale: 0.97 0.94;
+  }
+  30% {
+    translate: 0 1px;
+    scale: 1 1;
+  }
+  65% {
+    translate: 5px 2px;
+    scale: 1.02 0.97;
+  }
+  100% {
+    translate: calc(9px * var(--obs-event-amplitude)) -3px;
+    scale: 1.04 1.03;
+  }
+}
+.study-landscapes[data-motion='paused'] .evt-variation {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .evt-variation {
+    animation: none;
+  }
+}

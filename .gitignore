@@ -22,3 +22,5 @@ test-results/
 # Local validation, sessions and Supabase CLI metadata
 work/
 supabase/.temp/
+
+/public/tools/concept-interactives/

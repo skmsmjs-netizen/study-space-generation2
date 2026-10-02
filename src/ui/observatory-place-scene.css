@@ -1,0 +1,92 @@
+.observatory-place-scene {
+  margin: 0;
+  border: var(--border-width) solid var(--observatory-interior-border-decorative);
+  color: var(--observatory-interior-text);
+  background: var(--observatory-interior-canvas);
+  min-inline-size: 0;
+}
+.observatory-scene-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding-inline: var(--space-3);
+  font-size: var(--type-caption-size);
+  color: var(--observatory-interior-muted);
+}
+.observatory-scene-toolbar button {
+  min-block-size: var(--control-height);
+  background: none;
+  color: inherit;
+  border: 0;
+  padding: var(--space-2);
+  font: inherit;
+  cursor: pointer;
+}
+.observatory-scene-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  padding: var(--space-3);
+}
+.observatory-scene-tools a {
+  min-block-size: var(--control-height);
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-2) var(--space-3);
+  border: var(--border-width) solid var(--observatory-interior-border-interactive);
+  color: var(--observatory-interior-text);
+  font-size: var(--type-label-size);
+  text-decoration: none;
+}
+.observatory-scene-tools a:is(:hover, [aria-current='page']) {
+  background: var(--observatory-interior-selected);
+  border-color: var(--observatory-interior-focus);
+}
+.observatory-scene-toolbar button:focus-visible,
+.observatory-scene-tools a:focus-visible {
+  outline: var(--focus-width) solid var(--observatory-interior-focus);
+  outline-offset: var(--focus-offset);
+}
+
+/* Full original room, one localized GPU layer and a camera inside the SVG. */
+.observatory-scene-viewport {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  aspect-ratio: 960 / 260;
+  contain: layout paint;
+}
+.observatory-room-gpu {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  pointer-events: none;
+  image-rendering: pixelated;
+  transform: translate(var(--room-pan-pct-x, 0%), var(--room-pan-pct-y, 0%))
+    scale(var(--pixel-sky-zoom, 1))
+    translate(
+      calc(var(--room-pan-pct-x, 0%) * var(--room-light-depth, 0.8)),
+      calc(var(--room-pan-pct-y, 0%) * var(--room-light-depth, 0.8))
+    );
+  transform-origin: var(--room-origin-x, 50%) var(--room-origin-y, 50%);
+}
+.observatory-scene-controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.observatory-scene-toolbar {
+  flex-wrap: wrap;
+  border-block-start: var(--border-width) solid var(--observatory-interior-border-decorative);
+}
+.observatory-scene-toolbar button:disabled {
+  opacity: var(--opacity-disabled);
+  cursor: default;
+}
+.observatory-scene-preference-error {
+  padding: var(--space-3);
+  margin: 0;
+  font-size: var(--type-caption-size);
+}

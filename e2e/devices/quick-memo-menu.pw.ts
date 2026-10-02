@@ -1,7 +1,9 @@
 import { expect, test } from '@playwright/test';
 import { decodeStoredText } from '../../src/data/storage-codec';
 
-test('one and two memo cards allow pointer trash, undo and reload without losing original text', async ({ page }) => {
+test('one and two memo cards allow pointer trash, undo and reload without losing original text', async ({
+  page,
+}) => {
   await page.goto('?space=demo#/memos');
   for (const body of ['  첫 메모 원문\n끝 공백  ', '  다른 메모의 조건·예외  ']) {
     await page.getByRole('button', { name: '메모 추가', exact: true }).click();
@@ -21,7 +23,11 @@ test('one and two memo cards allow pointer trash, undo and reload without losing
     const stored = await page.evaluate(() => localStorage.getItem('study-space:demo:v1'));
     if (stored === null) throw Error('Expected the saved memo workspace');
     const data = JSON.parse(decodeStoredText(stored)).data;
-    expect(data.memos.some((memo: { body: string; deletedAt: string | null }) => memo.body === body && !memo.deletedAt)).toBe(true);
+    expect(
+      data.memos.some(
+        (memo: { body: string; deletedAt: string | null }) => memo.body === body && !memo.deletedAt,
+      ),
+    ).toBe(true);
     expect(data.records).toEqual([]);
   }
 });

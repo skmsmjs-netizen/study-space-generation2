@@ -16,7 +16,7 @@ beforeEach(() => {
   request = vi.fn(async () => new Response(JSON.stringify(session()), { status: 200, headers: { 'Content-Type': 'application/json' } }));
   vi.stubGlobal('fetch', request);
 });
-afterEach(() => { clients.splice(0).forEach(client => client.auth.dispose()); vi.unstubAllGlobals(); });
+afterEach(() => { clients.splice(0).forEach(client => { client.auth.dispose(); }); vi.unstubAllGlobals(); });
 
 it('restores remembered login after tab storage is lost while preserving original records', async () => {
   localStorage.setItem('study-space:personal:synthetic-user:draft', '  원문\n예외');

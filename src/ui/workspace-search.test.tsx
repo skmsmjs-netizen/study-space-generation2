@@ -1,5 +1,5 @@
 import { beforeEach, expect, it, vi } from 'vitest';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { useState } from 'react';
 import { createDemoState } from '../domain/fixtures';
 import { recommendationKey } from '../domain/recommendation-workspace';
@@ -25,20 +25,20 @@ beforeEach(() => {
   localStorage.clear();
   sessionStorage.clear();
 });
-it('allows the same query after clearing, and waits for Korean composition to finish', () => {
+it('allows the same query after clearing, and waits for Korean composition to finish', async () => {
   render(<Harness />);
   const input = screen.getByRole('searchbox');
   fireEvent.change(input, { target: { value: '함수' } });
-  expect(screen.getByRole('link', { name: '함수는 어떤 관계일까?' })).toBeVisible();
+  expect(await screen.findByRole('link', { name: '함수는 어떤 관계일까?' })).toBeVisible();
   fireEvent.click(screen.getByRole('button', { name: '검색어 지우기' }));
   expect(input).toHaveValue('');
   fireEvent.compositionStart(input);
   fireEvent.change(input, { target: { value: '함수' } });
   expect(screen.queryByRole('link', { name: '함수는 어떤 관계일까?' })).toBeNull();
   fireEvent.compositionEnd(input, { data: '함수' });
-  expect(screen.getByRole('link', { name: '함수는 어떤 관계일까?' })).toBeVisible();
+  expect(await screen.findByRole('link', { name: '함수는 어떤 관계일까?' })).toBeVisible();
 });
-it('preserves a damaged legacy plan and keeps unrelated search usable with recovery guidance', () => {
+it('preserves a damaged legacy plan and keeps unrelated search usable with recovery guidance', async () => {
   const key = recommendationKey(data),
     raw = '{invalid';
   localStorage.setItem(key, raw);
@@ -47,7 +47,7 @@ it('preserves a damaged legacy plan and keeps unrelated search usable with recov
     '일정·코드 연결의 검색 정보를 읽지 못했습니다',
   );
   fireEvent.change(screen.getByRole('searchbox'), { target: { value: '함수' } });
-  expect(screen.getByRole('link', { name: '함수는 어떤 관계일까?' })).toBeVisible();
+  expect(await screen.findByRole('link', { name: '함수는 어떤 관계일까?' })).toBeVisible();
   fireEvent.click(screen.getByRole('button', { name: '다시 시도' }));
   expect(localStorage.getItem(key)).toBe(raw);
 });
@@ -108,7 +108,7 @@ it('keeps active, trash and account view hints separate when the same component 
   expect(screen.getByRole('textbox')).toHaveValue('휴지통 조건');
 });
 
-it('searches accumulated originals beyond the first page without rendering every result at once', () => {
+it('searches accumulated originals beyond the first page without rendering every result at once', async () => {
   const many = createDemoState();
   many.studyMaterials = Array.from({ length: 85 }, (_, index) => ({
     id: `accumulated-${index}`,
@@ -142,12 +142,12 @@ it('searches accumulated originals beyond the first page without rendering every
   render(<Many />);
   const input = screen.getByRole('searchbox');
   fireEvent.change(input, { target: { value: '누적검색' } });
-  expect(screen.getByRole('status')).toHaveTextContent('찾은 항목 85개');
+  await waitFor(() => expect(screen.getByRole('status')).toHaveTextContent('찾은 항목 85개'));
   expect(screen.getAllByRole('link')).toHaveLength(40);
   fireEvent.click(screen.getByRole('button', { name: '검색 결과 더 보기' }));
-  expect(screen.getAllByRole('link')).toHaveLength(80);
+  await waitFor(() => expect(screen.getAllByRole('link')).toHaveLength(80));
   fireEvent.change(input, { target: { value: '마지막개별조건' } });
-  expect(screen.getByRole('link', { name: '누적 필기 84' })).toBeVisible();
+  expect(await screen.findByRole('link', { name: '누적 필기 84' })).toBeVisible();
   expect(screen.getAllByRole('link')).toHaveLength(1);
   expect(many).toEqual(original);
 });

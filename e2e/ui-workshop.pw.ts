@@ -1,3 +1,4 @@
+import { readFileSync } from 'node:fs';
 import { expect, test } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
@@ -60,3 +61,54 @@ test('320px에서 긴 한국어 버튼이 가로로 넘치지 않는다', async 
   }));
   expect(width.content).toBeLessThanOrEqual(width.viewport);
 });
+
+// Each registered story owns a fresh Playwright context. This limits retained
+// editor/worker state and gives every failure a specific story and theme.
+const builtIndex = JSON.parse(readFileSync('storybook-static/index.json', 'utf8')) as {
+  entries: Record<string, { id: string; type: string }>;
+};
+const registeredStories = Object.values(builtIndex.entries).filter(
+  (entry) => entry.type === 'story',
+);
+for (const theme of ['light', 'dark']) {
+  for (const entry of registeredStories) {
+    test(`등록 부품 ${entry.id} · ${theme} · 좁은 화면`, async ({ page }, info) => {
+      test.setTimeout(60_000);
+      const liveIndex = (await (await page.request.get('/index.json')).json()) as typeof builtIndex;
+      expect(
+        Object.values(liveIndex.entries)
+          .filter((item) => item.type === 'story')
+          .map((item) => item.id)
+          .sort(),
+      ).toEqual(registeredStories.map((item) => item.id).sort());
+      await page.setViewportSize({ width: 320, height: 780 });
+      await page.goto(story(entry.id, theme));
+      await expect(page.locator('main h1')).toBeVisible();
+      await expect(page.locator('html')).toHaveAttribute('data-theme', theme);
+      if (entry.id.startsWith('study-source-editor'))
+        await expect(page.locator('.monaco-editor')).toBeVisible();
+      const result = await new AxeBuilder({ page })
+        .include('main')
+        .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'])
+        .analyze();
+      expect(result.violations, entry.id).toEqual([]);
+      const width = await page.evaluate(() => ({
+        content: document.documentElement.scrollWidth,
+        viewport: document.documentElement.clientWidth,
+      }));
+      expect(width.content).toBeLessThanOrEqual(width.viewport + 1);
+      await info.attach('complete-component-inventory', {
+        body: JSON.stringify([
+          {
+            id: entry.id,
+            theme,
+            width,
+            violations: result.violations,
+            incomplete: result.incomplete.map((item) => item.id),
+          },
+        ]),
+        contentType: 'application/json',
+      });
+    });
+  }
+}

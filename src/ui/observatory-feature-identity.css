@@ -1,0 +1,227 @@
+/* The identity contract chooses a composition, while each tool keeps its data,
+   coordinate system, keyboard behavior and saved personal layout. */
+/* Paper prose owns typography and alignment; interface/technical roles keep their styles.
+   Defaults remain overrideable through --paper-body-* and --font-reading. */
+:is(
+    .observatory-workspace,
+    .observatory-paper,
+    body:has(.observatory-workspace, .personal-entry) > .ui-overlay .ui-modal
+  )
+  :is(
+    p.prose,
+    .prose > p,
+    .concept-body > p,
+    .concept-intro,
+    .knowledge-module dd,
+    .canvas-original,
+    .memo-preview-text,
+    .narrative-editor textarea,
+    .record-compose textarea,
+    .memo-input textarea
+  ):not(.math-caption, .equation-source, .input-prompt) {
+  font-weight: var(--paper-body-weight, var(--observatory-paper-body-weight));
+  line-height: var(--paper-body-line, var(--observatory-paper-body-line));
+  letter-spacing: var(--paper-body-tracking, var(--observatory-paper-body-tracking));
+  text-align: var(--paper-body-text-align, var(--observatory-body-text-align));
+  text-align-last: var(--observatory-body-last-line);
+  text-justify: var(--observatory-body-justify);
+  word-break: var(--observatory-body-word-break);
+  line-break: var(--observatory-body-line-break);
+  overflow-wrap: var(--observatory-body-overflow-wrap);
+  hyphens: var(--observatory-body-hyphens);
+  -webkit-hyphens: var(--observatory-body-hyphens);
+}
+/* Existing study-content container follows actual available paper width.
+   Viewport fallback also covers detached memo portals without that container. */
+@container study-content (max-width: 40rem) {
+  :is(
+      .observatory-workspace,
+      .observatory-paper,
+      body:has(.observatory-workspace, .personal-entry) > .ui-overlay .ui-modal
+    )
+    :is(
+      p.prose,
+      .prose > p,
+      .concept-body > p,
+      .concept-intro,
+      .knowledge-module dd,
+      .canvas-original,
+      .memo-preview-text,
+      .narrative-editor textarea,
+      .record-compose textarea,
+      .memo-input textarea
+    ):not(.math-caption, .equation-source, .input-prompt) {
+    line-height: var(--paper-body-line, var(--observatory-paper-body-compact-line));
+    letter-spacing: var(--paper-body-tracking, var(--observatory-paper-body-compact-tracking));
+  }
+}
+@media (max-width: 40rem) {
+  :is(
+      .observatory-workspace,
+      .observatory-paper,
+      body:has(.observatory-workspace, .personal-entry) > .ui-overlay .ui-modal
+    )
+    :is(
+      p.prose,
+      .prose > p,
+      .concept-body > p,
+      .concept-intro,
+      .knowledge-module dd,
+      .canvas-original,
+      .memo-preview-text,
+      .narrative-editor textarea,
+      .record-compose textarea,
+      .memo-input textarea
+    ):not(.math-caption, .equation-source, .input-prompt) {
+    line-height: var(--paper-body-line, var(--observatory-paper-body-compact-line));
+    letter-spacing: var(--paper-body-tracking, var(--observatory-paper-body-compact-tracking));
+  }
+}
+/* Inline notation keeps its own spacing inside authored prose. */
+:is(
+    .observatory-workspace,
+    .observatory-paper,
+    body:has(.observatory-workspace, .personal-entry) > .ui-overlay .ui-modal
+  )
+  :is(
+    p.prose,
+    .prose > p,
+    .concept-body > p,
+    .concept-intro,
+    .knowledge-module dd,
+    .canvas-original,
+    .memo-preview-text,
+    .narrative-editor textarea,
+    .record-compose textarea,
+    .memo-input textarea
+  ):not(.math-caption, .equation-source, .input-prompt)
+  :is(code, .katex, mjx-container) {
+  letter-spacing: normal;
+}
+.observatory-workspace .main-content[data-feature-composition] .page-heading {
+  align-items: flex-start;
+  padding-block-end: var(--space-4);
+  border-block-end: var(--border-width) solid var(--color-border);
+}
+
+.feature-purpose {
+  max-inline-size: var(--layout-reading);
+  margin: var(--space-2) 0 0;
+  color: var(--color-muted);
+  font-size: var(--type-caption-size);
+  line-height: var(--type-caption-line);
+  overflow-wrap: anywhere;
+}
+
+/* Continuous writing, retrieval and settings use a stable reading measure.
+   A saved wide-reading choice still takes precedence. */
+.observatory-workspace
+  .main-content:is(
+    [data-feature-composition='document'],
+    [data-feature-composition='practice'],
+    [data-feature-composition='control']
+  ):not(:has(.study-workspace)) {
+  max-inline-size: calc(var(--layout-reading) + var(--observatory-paper-padding) * 2);
+}
+.observatory-workspace[data-reading-width='wide']
+  .main-content:is(
+    [data-feature-composition='document'],
+    [data-feature-composition='practice'],
+    [data-feature-composition='control']
+  ) {
+  max-inline-size: none;
+}
+.main-content[data-feature-composition='document'] :is(.narrative-editor, .free-writing) {
+  margin-inline: auto;
+  min-inline-size: 0;
+}
+
+/* Comparisons and spatial tools receive the available working width. A user's
+   Canvas node geometry and camera are intentionally not restyled here. */
+.observatory-workspace
+  .main-content:is(
+    [data-feature-composition='analysis'],
+    [data-feature-composition='instrument'],
+    [data-feature-composition='spatial'],
+    [data-feature-composition='board']
+  ) {
+  max-inline-size: none;
+}
+
+.main-content[data-feature-composition='catalogue'] .subject-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  align-items: start;
+}
+.main-content[data-feature-composition='catalogue'] .subject-card {
+  min-inline-size: 0;
+}
+.main-content[data-feature-composition='journal'] .record-compose {
+  min-inline-size: 0;
+  border-inline-start: var(--border-width) solid var(--color-border);
+  padding-inline-start: var(--space-5);
+}
+
+/* Scope comes before observation. The supporting selection/evidence controls
+   are a later group, so a first visit starts with the question and charts. */
+.statistics-scope {
+  display: grid;
+  gap: var(--space-3);
+  padding-block-end: var(--space-4);
+  border-block-end: var(--border-width) solid var(--color-border);
+}
+.statistics-scope h2 {
+  margin: 0;
+  font-size: var(--type-label-size);
+  line-height: var(--type-label-line);
+}
+.main-content[data-feature-composition='analysis'] .statistics-shared-selection {
+  border-block-start: var(--border-width) solid var(--color-border-strong);
+  background: var(--color-surface-inset);
+}
+.main-content[data-feature-composition='analysis'] .statistics-gallery {
+  align-items: start;
+}
+
+/* Toolbars are separate from movable contents. No sticky overlay can cover
+   a pen stroke, graph point, board card or its existing focus target. */
+.main-content[data-feature-composition='spatial'] :is(.canvas-toolbar, .graph-toolbar),
+.main-content[data-feature-composition='board'] .board-toolbar {
+  padding: var(--space-3);
+  border-block: var(--border-width) solid var(--color-border);
+  background: var(--color-surface-inset);
+}
+.main-content[data-feature-composition='board'] .board-columns {
+  scrollbar-gutter: stable;
+}
+
+/* A common control can stay beside the task that opened it. Fieldsets expose
+   state -> configuration -> explicit action without changing server authority. */
+.feature-control-group {
+  min-inline-size: 0;
+  margin: var(--space-4) 0;
+  padding: var(--space-4) 0;
+  border: 0;
+  border-block-start: var(--border-width) solid var(--color-border);
+}
+.feature-control-group > legend {
+  padding-inline: 0 var(--space-3);
+  font-size: var(--type-label-size);
+  font-weight: var(--type-label-weight);
+}
+.feature-control-group > .ui-field + .ui-field {
+  margin-block-start: var(--space-3);
+}
+
+.ui-modal[data-feature-composition]:not(.memo-editor) > .ui-modal-header {
+  padding-block-end: var(--space-3);
+  border-block-end: var(--border-width) solid var(--color-border);
+}
+
+@container study-content (max-width: 40rem) {
+  .main-content[data-feature-composition='journal'] .record-compose {
+    border-inline-start: 0;
+    padding-inline-start: 0;
+    border-block-start: var(--border-width) solid var(--color-border);
+    padding-block-start: var(--space-4);
+  }
+}

@@ -80,9 +80,7 @@ test('unavailable screen chunk offers retry and other screens retain original re
   expect(await page.evaluate(() => localStorage.getItem('study-space:demo:v1'))).toBe(before);
   await page.unroute('**/assets/study-materials-*.js');
   await page.goto('?space=demo#/materials');
-  // WebKit can retain a failed module request for this tab. The actual retry
-  // control starts a fresh page while keeping every durable record and draft.
-  if (await page.getByRole('button', { name: '다시 시도', exact: true }).isVisible())
-    await page.getByRole('button', { name: '다시 시도', exact: true }).click();
+  // React.lazy retains its rejected import until the provided retry reloads it.
+  await page.getByRole('button', { name: '다시 시도', exact: true }).click();
   await expect(page.getByRole('button', { name: '자료 추가', exact: true })).toBeVisible();
 });

@@ -1,7 +1,9 @@
+import { occurrenceRows } from './list-keys';
 import { useEffect, useRef, useState } from 'react';
 import type { CodeLanguage } from '../domain/model';
 import type { SyntaxDiagnostic } from '../data/code-syntax-parser';
 import SyntaxWorker from '../data/code-syntax.worker?worker';
+import { Button } from './index';
 
 export function useCodeSyntax(value: string, language: CodeLanguage) {
   const worker = useRef<Worker | null>(null),
@@ -10,6 +12,7 @@ export function useCodeSyntax(value: string, language: CodeLanguage) {
   const [retry, setRetry] = useState(0);
   const [diagnostics, setDiagnostics] = useState<SyntaxDiagnostic[]>([]);
   const [status, setStatus] = useState<'empty' | 'checking' | 'ready' | 'unavailable'>('empty');
+  // biome-ignore lint/correctness/useExhaustiveDependencies(retry): An explicit retry recreates the external resource without changing the retained draft.
   useEffect(() => {
     unavailable.current = false;
     try {
@@ -42,6 +45,7 @@ export function useCodeSyntax(value: string, language: CodeLanguage) {
       worker.current = null;
     };
   }, [retry]);
+  // biome-ignore lint/correctness/useExhaustiveDependencies(retry): An explicit retry recreates the external resource without changing the retained draft.
   useEffect(() => {
     const request = ++id.current;
     setDiagnostics([]);
@@ -81,20 +85,20 @@ export function CodeSyntaxStatus({
                 : '문법 오류를 찾지 못했습니다.'}
       </span>
       {status === 'unavailable' && (
-        <button type="button" onClick={retry}>
+        <Button variant="quiet" onClick={retry}>
           검사 다시 시도
-        </button>
+        </Button>
       )}
       <p className="ui-hint">
         이 브라우저에서 검사합니다. 변수·타입·라이브러리 오류는 실행할 때 확인합니다.
       </p>
       {diagnostics.length > 0 && (
         <ul aria-label="문법 오류 목록">
-          {diagnostics.map((issue, index) => (
-            <li key={index}>
-              <button type="button" onClick={() => goTo(issue)}>
+          {occurrenceRows(diagnostics, issue => JSON.stringify(issue)).map(({value: issue, key}) => (
+            <li key={key}>
+              <Button variant="quiet" onClick={() => goTo(issue)}>
                 {issue.startLineNumber}행 {issue.startColumn}열: {issue.message}
-              </button>
+              </Button>
             </li>
           ))}
         </ul>

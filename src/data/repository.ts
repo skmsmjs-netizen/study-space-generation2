@@ -5,6 +5,8 @@ import type { CodeRemoteRunner } from './code-runner';
 export interface StudyRepository {
   getSnapshot(): AppState;
   execute(command: Command): AppState;
+  /** Commit a local command sequence once; retain each command, receipt and revision. Server acknowledgement still requires flush. */
+  executeMany?(commands: Command[]): AppState;
   flush?(): Promise<void>;
   subscribe?(listener: () => void): () => void;
   getStatus?(): SaveStatus;

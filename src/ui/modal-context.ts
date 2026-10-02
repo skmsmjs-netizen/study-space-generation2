@@ -41,7 +41,7 @@ export function useModalEditingContext(open: boolean, draftKey: string, anchor: 
       write();
     };
     const events = ['focusin', 'focusout', 'select', 'keyup', 'pointerup', 'input', 'scroll'];
-    events.forEach(name => dialog.addEventListener(name, capture, true));
+    events.forEach(name => { dialog.addEventListener(name, capture, true); });
     const userStarted = (event: Event) => { if (restoring) { restoring = false; capture(event); } };
     dialog.addEventListener('pointerdown', userStarted, true);
     dialog.addEventListener('keydown', userStarted, true);
@@ -67,7 +67,7 @@ export function useModalEditingContext(open: boolean, draftKey: string, anchor: 
     return () => {
       cancelAnimationFrame(frame);
       capture();
-      events.forEach(name => dialog.removeEventListener(name, capture, true));
+      events.forEach(name => { dialog.removeEventListener(name, capture, true); });
       dialog.removeEventListener('pointerdown', userStarted, true);
       dialog.removeEventListener('keydown', userStarted, true);
       window.removeEventListener('pagehide', capture);
