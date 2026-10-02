@@ -4,12 +4,13 @@ import { useState } from 'react';
 import { webcrypto } from 'node:crypto';
 import { ConceptLibrary } from './concept-library';
 import { DemoRepository } from '../data/demo-repository';
-import { importConceptCatalog, saveConceptEdition } from '../data/concept-production';
+import { conceptHash, importConceptCatalog, saveConceptEdition } from '../data/concept-production';
 import { emptyConceptEdition, EMPTY_CONCEPT_CHECKS, conceptEditionId } from '../domain/concept-production';
 import { loadConceptReadingPack, type ConceptReadingPack } from '../data/concept-reading-pack';
 import { applyCommand } from '../domain/commands';
 import { emptyState, type Command } from '../domain/model';
 import { storagePrefix, type SaveStatus, type StudyRepository } from '../data/repository';
+import { projectPublishedConceptSource } from '../domain/concept-publication';
 vi.mock('../data/concept-reading-pack', () => ({ BUNDLED_CONCEPT_CATALOG: 'built-in:concept-reading-pack', loadConceptReadingPack: vi.fn() }));
 let pack: ConceptReadingPack;
 beforeEach(async () => {
@@ -57,6 +58,51 @@ async function personalFixture(withCatalog = false, capabilities = ['saveConcept
   if (withCatalog) await importConceptCatalog(repository, pack.catalog.raw, pack.catalog.filename);
   execute.mockClear();
   return { repository, execute, flush, nextFlush(result: SaveStatus) { flushResult = result; } };
+}
+
+async function publishedBookFixture() {
+  const local = structuredClone(pack);
+  const raw = JSON.stringify({
+    source: 'synthetic private fixture',
+    editorMetadata: { cursor: 3 },
+    items: JSON.parse(local.catalog.raw).items.map((item: Record<string, unknown>) => ({
+      ...item,
+      notePath: `private-fixture/${item.id}.md`,
+      annotations: [{ text: '배포에 넣지 않는 합성 주석' }],
+    })),
+  });
+  const privateHash = await conceptHash(raw);
+  const privateId = `concept-catalog:${privateHash}`;
+  const privateCatalog = { ...local.catalog, raw, sha256: privateHash, id: privateId };
+  const privateEditions: ConceptReadingPack['editions'] = local.editions.map(edition => ({
+    ...edition,
+    catalogId: privateId,
+    id: conceptEditionId(privateId, edition.sourceId),
+    screen: { ...edition.screen!,
+      scenes: edition.screen!.scenes.map(scene => ({ ...scene, purpose: '뜻과 예시, 적용 범위를 함께 읽습니다.' })),
+      design: {
+      templateVersion: '20261001-v1', templateId: 'definition',
+      sourceId: edition.sourceId, sourceSha256: privateHash, interaction: 'static',
+      question: '어떤 뜻을 설명하나요?', selectionReason: '뜻과 예시, 적용 범위를 함께 보여 줍니다.',
+      roles: ['meaning', 'example', 'boundary'].map(key => ({ key, sceneIds: ['first'] })),
+    } },
+  }));
+  const publicRaw = projectPublishedConceptSource(raw);
+  const publicHash = await conceptHash(publicRaw);
+  const publicId = `concept-catalog:${publicHash}`;
+  pack = {
+    ...local, distribution: 'published', originalSourceSha256: privateHash,
+    sourceSha256: publicHash,
+    catalog: { ...local.catalog, id: publicId, raw: publicRaw, sha256: publicHash },
+    editions: privateEditions.map(edition => ({
+      ...edition, catalogId: publicId, id: conceptEditionId(publicId, edition.sourceId),
+      screen: { ...edition.screen!, design: { ...edition.screen!.design!, sourceSha256: publicHash } },
+      jobId: null, promptVersion: 'concept-reading-published-v1',
+    })),
+  };
+  pack.payloadSha256 = await conceptHash(JSON.stringify({ catalog: pack.catalog, editions: pack.editions }));
+  vi.mocked(loadConceptReadingPack).mockResolvedValue(pack);
+  return { privateCatalog, privateEditions };
 }
 it('opens the book without writing an account ledger and retains search after remount',async()=>{
   const repo=new DemoRepository(localStorage), before=JSON.stringify(repo.getSnapshot());
@@ -208,3 +254,126 @@ it('blocks a missing import capability before writes and reuses an existing sour
   expect(editions[0]).toMatchObject({ sourceId: 'fixture-2', status: 'draft', userId: 'concept-catalog-personal-fixture', namespace: 'personal' });
   expect(Object.values(editions[0].checks).every(checked => !checked)).toBe(true);
 });
+
+it('uses an existing private published explanation through a public-source alias without changing its ledger', async () => {
+  const book = await publishedBookFixture();
+  const fixture = await personalFixture();
+  await importConceptCatalog(fixture.repository, book.privateCatalog.raw, book.privateCatalog.filename);
+  const source = book.privateEditions[0];
+  saveConceptEdition(fixture.repository, {
+    ...source, status: 'draft', checks: { ...EMPTY_CONCEPT_CHECKS },
+    screen: { ...source.screen!, scenes: [{ ...source.screen!.scenes[0], body: '공개 설명보다 먼저 읽을 내 검토 설명' }] },
+  }, 0);
+  const draft = fixture.repository.getSnapshot().conceptEditions![0];
+  saveConceptEdition(fixture.repository, { ...draft, status: 'published', checks: source.checks }, draft.version);
+  const before = JSON.stringify(fixture.repository.getSnapshot());
+  fixture.execute.mockClear();
+  mount(fixture.repository);
+  await screen.findByText('2개 · 검토를 마친 설명');
+  fireEvent.click(screen.getByRole('button', { name: '개념 1' }));
+  expect(await findParagraph('공개 설명보다 먼저 읽을 내 검토 설명')).toBeVisible();
+  expect(fixture.execute).not.toHaveBeenCalled();
+  expect(JSON.stringify(fixture.repository.getSnapshot())).toBe(before);
+  expect(pack.catalog.id).not.toBe(book.privateCatalog.id);
+});
+
+it('reopens the exact existing private draft through a published alias and returns to the public book', async () => {
+  const book = await publishedBookFixture();
+  const fixture = await personalFixture(false, ['saveConceptEdition']);
+  await importConceptCatalog(fixture.repository, book.privateCatalog.raw, book.privateCatalog.filename);
+  const source = book.privateEditions[0];
+  saveConceptEdition(fixture.repository, {
+    ...source, status: 'draft', checks: { ...EMPTY_CONCEPT_CHECKS },
+    screen: { ...source.screen!, intro: '아직 검토하지 않은 내 문장\n조건은 유지합니다.' },
+  }, 0);
+  const before = JSON.stringify(fixture.repository.getSnapshot());
+  fixture.execute.mockClear();
+  mount(fixture.repository);
+  await screen.findByText('2개 · 검토를 마친 설명');
+  fireEvent.click(screen.getByRole('button', { name: '개념 1' }));
+  expect(await findParagraph('기본 설명 fixture-1')).toBeVisible();
+  fireEvent.click(screen.getByRole('button', { name: '설명 만들기' }));
+  fireEvent.click(await screen.findByRole('button', { name: '내 설명으로 가져와 수정' }));
+  await screen.findByText('내 설명을 열었습니다. 기존 수정본이 있으면 그대로 이어갑니다.');
+  expect(screen.getByLabelText('설명을 시작하는 문장')).toHaveValue('아직 검토하지 않은 내 문장\n조건은 유지합니다.');
+  expect(fixture.execute).not.toHaveBeenCalled();
+  expect(JSON.stringify(fixture.repository.getSnapshot())).toBe(before);
+  fireEvent.click(screen.getByRole('button', { name: '읽기' }));
+  expect(await findParagraph('기본 설명 fixture-1')).toBeVisible();
+  expect(screen.queryByLabelText('설명을 시작하는 문장')).not.toBeInTheDocument();
+  expect(JSON.stringify(fixture.repository.getSnapshot())).toBe(before);
+});
+
+it('copies one public explanation to an existing private source without import permission and binds its design to that source', async () => {
+  const book = await publishedBookFixture();
+  const fixture = await personalFixture(false, ['saveConceptEdition']);
+  await importConceptCatalog(fixture.repository, book.privateCatalog.raw, book.privateCatalog.filename);
+  const originalCatalog = JSON.stringify(fixture.repository.getSnapshot().conceptCatalogs);
+  const revisionsBefore = fixture.repository.getSnapshot().revisions.length;
+  fixture.execute.mockClear();
+  mount(fixture.repository);
+  await screen.findByText('2개 · 검토를 마친 설명');
+  fireEvent.click(screen.getByRole('button', { name: '개념 2' }));
+  fireEvent.click(screen.getByRole('button', { name: '설명 만들기' }));
+  fireEvent.click(await screen.findByRole('button', { name: '내 설명으로 가져와 수정' }));
+  await screen.findByText('내 설명을 열었습니다. 기존 수정본이 있으면 그대로 이어갑니다.');
+  expect(fixture.execute.mock.calls.map(([command]) => command.type)).toEqual(['saveConceptEdition']);
+  const after = fixture.repository.getSnapshot();
+  expect(after.conceptEditions).toHaveLength(1);
+  const copied = after.conceptEditions![0];
+  expect(copied).toMatchObject({
+    id: conceptEditionId(book.privateCatalog.id, 'fixture-2'),
+    catalogId: book.privateCatalog.id, sourceId: 'fixture-2', status: 'draft', jobId: null,
+    checks: EMPTY_CONCEPT_CHECKS,
+  });
+  expect(copied.screen!.design!.sourceSha256).toBe(book.privateCatalog.sha256);
+  expect(copied.screen!.design!.sourceSha256).not.toBe(pack.sourceSha256);
+  expect(copied.screen!.scenes).toEqual(pack.editions[1].screen!.scenes);
+  expect(copied.evidence).toEqual(pack.editions[1].evidence);
+  expect(JSON.stringify(after.conceptCatalogs)).toBe(originalCatalog);
+  expect(after.revisions).toHaveLength(revisionsBefore + 1);
+});
+
+it.each(['raw-hash-mismatch', 'projected-source-mismatch'] as const)(
+  'rejects a changed private alias before copying (%s)',
+  async mismatch => {
+    const book = await publishedBookFixture();
+    const fixture = await personalFixture(false, ['saveConceptEdition']);
+    const changed = JSON.parse(book.privateCatalog.raw);
+    changed.items[0].def = '공개 원문과 다른 합성 정의';
+    const changedRaw = JSON.stringify(changed);
+    const raw = mismatch === 'raw-hash-mismatch' ? book.privateCatalog.raw : changedRaw;
+    await importConceptCatalog(fixture.repository, raw, book.privateCatalog.filename);
+    const target = fixture.repository.getSnapshot().conceptCatalogs![0];
+    if (mismatch === 'projected-source-mismatch') pack.originalSourceSha256 = target.sha256;
+    const source = book.privateEditions[0];
+    saveConceptEdition(fixture.repository, {
+      ...source, catalogId: target.id, status: 'draft', checks: { ...EMPTY_CONCEPT_CHECKS },
+      screen: { ...source.screen!,
+        design: { ...source.screen!.design!, sourceSha256: target.sha256 },
+        scenes: [{ ...source.screen!.scenes[0], body: '잘못 연결되면 보이는 별도 원문의 설명' }],
+      },
+    }, 0);
+    const draft = fixture.repository.getSnapshot().conceptEditions![0];
+    saveConceptEdition(fixture.repository, { ...draft, status: 'published', checks: source.checks }, draft.version);
+    // Simulate damaged stored bytes only in this synthetic fixture. Its advertised
+    // SHA remains unchanged so the write boundary must reject it, not repair it.
+    if (mismatch === 'raw-hash-mismatch') target.raw = changedRaw;
+    const before = JSON.stringify(fixture.repository.getSnapshot());
+    fixture.execute.mockClear();
+    mount(fixture.repository);
+    await screen.findByText('2개 · 검토를 마친 설명');
+    fireEvent.click(screen.getByRole('button', { name: '개념 1' }));
+    expect(await findParagraph('기본 설명 fixture-1')).toBeVisible();
+    expect(screen.queryByText('잘못 연결되면 보이는 별도 원문의 설명')).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: '설명 만들기' }));
+    fireEvent.click(await screen.findByRole('button', { name: '내 설명으로 가져와 수정' }));
+    const message = mismatch === 'raw-hash-mismatch'
+      ? '보관된 원문이 전집과 다릅니다. 기존 원문과 설명은 그대로입니다.'
+      : '보관된 원문과 배포 전집의 개념이 다릅니다. 기존 원문과 설명은 그대로입니다.';
+    expect(await screen.findByText(message)).toBeVisible();
+    expect(fixture.execute).not.toHaveBeenCalled();
+    expect(fixture.flush).not.toHaveBeenCalled();
+    expect(JSON.stringify(fixture.repository.getSnapshot())).toBe(before);
+  },
+);

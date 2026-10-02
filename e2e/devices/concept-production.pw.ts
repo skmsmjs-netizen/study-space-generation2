@@ -92,6 +92,8 @@ test('1168 concepts import, review, stable reader and exact draft restoration', 
   page.on('pageerror', (e) => errors.push(e.message));
   await page.goto('?space=demo#/concepts');
   await page.getByRole('button', { name: '설명 만들기', exact: true }).click();
+  if (await page.getByRole('button', { name: '다른 원문 가져오기', exact: true }).isVisible())
+    await page.getByRole('button', { name: '다른 원문 가져오기', exact: true }).click();
   await page.getByLabel('개념 원문 가져오기', { exact: true }).setInputFiles({
     name: '개념 제작.json',
     mimeType: 'application/json',
@@ -177,6 +179,8 @@ test('1168 concepts import, review, stable reader and exact draft restoration', 
   await expect(page.locator('.concept-reader')).toBeVisible();
   await expect(page.getByText('원문·분류 근거·수정 이력', { exact: true })).toHaveCount(0);
   await page.getByRole('button', { name: '설명 만들기', exact: true }).click();
+  if (await page.getByRole('button', { name: '다른 원문 가져오기', exact: true }).isVisible())
+    await page.getByRole('button', { name: '다른 원문 가져오기', exact: true }).click();
   const title = page.getByLabel('설명 제목', { exact: true });
   await title.fill('');
   await expect(title).toBeVisible();
@@ -244,6 +248,8 @@ test('malformed concept data retains exact input without replacing saved content
   };
   await page.goto('?space=demo#/concepts');
   await page.getByRole('button', { name: '설명 만들기', exact: true }).click();
+  if (await page.getByRole('button', { name: '다른 원문 가져오기', exact: true }).isVisible())
+    await page.getByRole('button', { name: '다른 원문 가져오기', exact: true }).click();
   await page.getByLabel('개념 원문 가져오기', { exact: true }).setInputFiles({
     name: '격리 제작.json',
     mimeType: 'application/json',
@@ -347,6 +353,8 @@ test('changing an authored type keeps text and requires explicit role links', as
   };
   await page.goto('?space=demo#/concepts');
   await page.getByRole('button', { name: '설명 만들기', exact: true }).click();
+  if (await page.getByRole('button', { name: '다른 원문 가져오기', exact: true }).isVisible())
+    await page.getByRole('button', { name: '다른 원문 가져오기', exact: true }).click();
   await page.getByLabel('개념 원문 가져오기', { exact: true }).setInputFiles({
     name: '유형.json',
     mimeType: 'application/json',
@@ -432,6 +440,8 @@ test('versioned portable work resumes and repeats without duplicating history', 
   };
   await page.goto('?space=demo#/concepts');
   await page.getByRole('button', { name: '설명 만들기', exact: true }).click();
+  if (await page.getByRole('button', { name: '다른 원문 가져오기', exact: true }).isVisible())
+    await page.getByRole('button', { name: '다른 원문 가져오기', exact: true }).click();
   await upload({ ...whole, results: results.slice(0, -1) });
   await upload(whole);
   await page.locator('.concept-list button').first().click();

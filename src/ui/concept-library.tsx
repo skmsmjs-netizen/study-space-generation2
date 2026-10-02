@@ -38,6 +38,8 @@ import {
 } from '../data/concept-production';
 import { storagePrefix, type StudyRepository } from '../data/repository';
 import { BUNDLED_CONCEPT_CATALOG, loadConceptReadingPack, type ConceptReadingPack } from '../data/concept-reading-pack';
+import { projectPublishedConceptSource } from '../domain/concept-publication';
+import { conceptHash } from '../data/concept-production';
 import { storeDraftSafely, clearStoredDraft } from '../data/draft-safety';
 import { useViewContext, isViewText, isViewPage } from './use-view-context';
 import { Button, Checkbox, Input, Textarea, Select } from './index';
@@ -117,6 +119,14 @@ export function ConceptLibrary({
     version: 0, createdAt: '', updatedAt: '', deletedAt: null,
   } : undefined, [book, data.userId, data.namespace]);
   const catalog = useBook ? bookCatalog : personalCatalog;
+  const originalBookCatalogId = useMemo(() => {
+    if (!book?.originalSourceSha256) return undefined;
+    const found = data.conceptCatalogs?.find(c => c.sha256 === book.originalSourceSha256
+      && c.id === `concept-catalog:${book.originalSourceSha256}`);
+    if (!found) return undefined;
+    try { return projectPublishedConceptSource(found.raw) === book.catalog.raw ? found.id : undefined; }
+    catch { return undefined; }
+  }, [book, data.conceptCatalogs]);
   const originals = useMemo(
     () => (catalog ? parseConceptSource(catalog.raw).items : []),
     [catalog],
@@ -126,10 +136,12 @@ export function ConceptLibrary({
       new Map<string, ConceptEditionContent>([
         ...(useBook ? (book?.editions ?? []).map((e) => [e.sourceId, e] as const) : []),
         ...(data.conceptEditions ?? [])
-          .filter((e) => e.catalogId === catalog?.id && (!useBook || e.status === 'published'))
+          .filter((e) => (e.catalogId === catalog?.id || (useBook && originalBookCatalogId
+            && e.catalogId === originalBookCatalogId))
+            && (!useBook || e.status === 'published'))
           .map((e) => [e.sourceId, e] as const),
       ]),
-    [data.conceptEditions, catalog, useBook, book],
+    [data.conceptEditions, catalog, useBook, book, originalBookCatalogId],
   );
   const original = originals.find((i) => i.id === selected);
   const library = useRef<HTMLElement>(null);
@@ -199,24 +211,33 @@ export function ConceptLibrary({
   };
   const copyForEditing = async () => {
     if (!book || !original || !writable) return;
+    const findCatalog = (state: AppState) =>
+      state.conceptCatalogs?.find(c => c.sha256 === book.originalSourceSha256)
+      ?? state.conceptCatalogs?.find(c => c.sha256 === book.sourceSha256);
     if (data.namespace === 'personal' &&
-      !data.conceptCatalogs?.some(c => c.sha256 === book.sourceSha256) &&
+      !findCatalog(data) &&
       !repository.getCapabilities?.().includes('importConceptCatalog')) {
       setError('현재 저장 연결에서는 개념 원문을 보관할 수 없습니다. 설명은 계속 읽을 수 있습니다.');
       return;
     }
     await run(async () => {
       const snapshot = repository.getSnapshot();
-      const next = snapshot.conceptCatalogs?.some(c => c.sha256 === book.sourceSha256)
+      const next = findCatalog(snapshot)
         ? snapshot : await importConceptCatalog(repository, book.catalog.raw, book.catalog.filename);
-      const target = next.conceptCatalogs?.find(c => c.sha256 === book.sourceSha256);
+      const target = findCatalog(next);
       if (!target) throw Error('개념 원문을 보관하지 못했습니다. 기존 설명은 그대로입니다.');
-      if (target.raw !== book.catalog.raw) throw Error('보관된 원문이 전집과 다릅니다. 기존 원문과 설명은 그대로입니다.');
+      if (await conceptHash(target.raw) !== target.sha256 || (target.sha256 === book.sourceSha256
+        && target.raw !== book.catalog.raw)) throw Error('보관된 원문이 전집과 다릅니다. 기존 원문과 설명은 그대로입니다.');
+      if (target.sha256 === book.originalSourceSha256
+        && projectPublishedConceptSource(target.raw) !== book.catalog.raw)
+        throw Error('보관된 원문과 배포 전집의 개념이 다릅니다. 기존 원문과 설명은 그대로입니다.');
       const existing = next.conceptEditions?.find(e => e.catalogId === target.id && e.sourceId === original.id);
       const reference = book.editions.find(e => e.sourceId === original.id);
       let result = next;
       if (!existing && reference) result = saveConceptEdition(repository, {
         ...conceptContent(reference), catalogId: target.id,
+        screen: reference.screen ? { ...reference.screen, design: reference.screen.design
+          ? { ...reference.screen.design, sourceSha256: target.sha256 } : undefined } : null,
         checks: { ...EMPTY_CONCEPT_CHECKS }, status: 'draft', jobId: null,
       }, 0);
       setCatalogId(target.id);
@@ -275,7 +296,8 @@ export function ConceptLibrary({
       <ChemistryLauncher data={data} repository={repository} onSaved={onSaved} />
       <div className="concept-toolbar">
         <Button variant={!editing ? 'primary' : 'quiet'} onClick={() => {
-          if (book && personalCatalog?.sha256 === book.sourceSha256) setCatalogId(BUNDLED_CONCEPT_CATALOG);
+          if (book && (personalCatalog?.sha256 === book.sourceSha256
+            || personalCatalog?.id === originalBookCatalogId)) setCatalogId(BUNDLED_CONCEPT_CATALOG);
           if (filter === '보류' || filter === '미분류') setFilter('');
           setEditing(false);
         }}>
@@ -498,7 +520,7 @@ export function ConceptLibrary({
             <>
               <Button disabled={busy || !writable} onClick={() => void copyForEditing()}>내 설명으로 가져와 수정</Button>
               {!writable && <p role="status">이 공간의 개념 저장 연결을 확인해야 합니다. 설명은 계속 읽을 수 있습니다.</p>}
-              {editions.get(original.id)?.screen && <ConceptReader screen={editions.get(original.id)!.screen!} name={original.name} sourceKey={`${catalog.id}:${original.id}`} data={data} />}
+              {editions.get(original.id)?.screen && <ConceptReader screen={editions.get(original.id)!.screen!} name={original.name} sourceKey={`${useBook && book?.originalSourceSha256 ? `concept-catalog:${book.originalSourceSha256}` : catalog.id}:${original.id}`} data={data} />}
             </>
           ) : editing ? (
             <ConceptEditor
@@ -515,7 +537,7 @@ export function ConceptLibrary({
             <ConceptReader
               screen={editions.get(original.id)!.screen!}
               name={original.name}
-              sourceKey={`${catalog.id}:${original.id}`}
+              sourceKey={`${useBook && book?.originalSourceSha256 ? `concept-catalog:${book.originalSourceSha256}` : catalog.id}:${original.id}`}
               data={data}
             />
           ) : (

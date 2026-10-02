@@ -8,6 +8,8 @@ export interface ConceptReadingPack {
   sourceSha256: string;
   canonicalSha256: string;
   payloadSha256: string;
+  distribution?: 'published';
+  originalSourceSha256?: string;
   catalog: Pick<ConceptCatalog, 'id' | 'raw' | 'sha256' | 'filename'>;
   editions: (ConceptEditionContent & { id: string; version: number })[];
 }
@@ -15,6 +17,9 @@ export async function loadConceptReadingPack(): Promise<ConceptReadingPack | nul
   const module = await import('virtual:concept-reading-pack');
   const pack = module.default as ConceptReadingPack | null;
   if (!pack) return null;
+  if (pack.originalSourceSha256 && (pack.distribution !== 'published'
+    || !/^[a-f0-9]{64}$/.test(pack.originalSourceSha256)))
+    throw Error('개념 전집의 기존 원문 연결을 확인해 주세요.');
   if (pack.format !== 'concept-reading-pack' || pack.version !== 1 || !Array.isArray(pack.editions)
     || pack.catalog.sha256 !== pack.sourceSha256
     || await conceptHash(pack.catalog.raw) !== pack.sourceSha256

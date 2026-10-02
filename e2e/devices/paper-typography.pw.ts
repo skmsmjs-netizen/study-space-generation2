@@ -44,6 +44,8 @@ test('Korean and English native paper type preserves mid-text edits, saved memos
 test('concept prose follows its available column in both languages while math and personal fonts keep their roles', async ({ page }) => {
   await page.goto('?space=demo#/concepts');
   await page.getByRole('button', { name: '설명 만들기', exact: true }).click();
+  if (await page.getByRole('button', { name: '다른 원문 가져오기', exact: true }).isVisible())
+    await page.getByRole('button', { name: '다른 원문 가져오기', exact: true }).click();
   await page.getByLabel('개념 원문 가져오기', { exact: true }).setInputFiles('e2e/fixtures/paper-typography-concepts.json');
   await page.getByRole('button', { name: '조판 확인용 개념 예시 정의형 · 내용 검토', exact: true }).click();
   const paragraph = page.locator('.concept-body > p').first();

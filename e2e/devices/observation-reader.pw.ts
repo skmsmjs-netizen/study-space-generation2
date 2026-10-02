@@ -157,6 +157,8 @@ test('structure, process and proof keep observation controls, long text and read
   page.on('pageerror', (error) => errors.push(error.message));
   await page.goto('?space=demo#/concepts');
   await page.getByRole('button', { name: '설명 만들기', exact: true }).click();
+  if (await page.getByRole('button', { name: '다른 원문 가져오기', exact: true }).isVisible())
+    await page.getByRole('button', { name: '다른 원문 가져오기', exact: true }).click();
   await page.getByLabel('개념 원문 가져오기', { exact: true }).setInputFiles({
     name: '격리 관찰 대표.json',
     mimeType: 'application/json',
