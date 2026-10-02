@@ -29,7 +29,7 @@ test('semester weeks, home details, monthly return and brand copy remain usable'
   await expect(dialog.getByRole('status')).toContainText('3개 주차를 복원');
   await dialog.getByRole('button', { name: '닫고 초안 보관', exact: true }).tap();
   await page.goto('?space=demo#/');
-  await expect(page.getByRole('link', { name: /ManSeekSong OS.*공부가 이어지는 자리\./ }).first()).toBeVisible();
+  await expect(page.getByRole('link', { name: /ManSeekSong OS.*공부가 이어지는 자리/ }).first()).toBeVisible();
   const wordmark = page.getByRole('img', { name: 'ManSeekSong OS', exact: true }).first();
   await expect(wordmark).toBeVisible();
   const markBox = await wordmark.boundingBox();
