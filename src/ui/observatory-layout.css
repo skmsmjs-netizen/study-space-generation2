@@ -36,3 +36,8 @@
     inline-size: 100%;
   }
 }
+
+/* Preserve each hierarchy hue while raising contrast on the paper surface. */
+.observatory-workspace .role-unit .role-label { color: color-mix(in srgb, var(--color-hierarchy-unit) 75%, var(--color-text)); }
+.observatory-workspace .role-outline .role-label { color: color-mix(in srgb, var(--color-hierarchy-outline) 75%, var(--color-text)); }
+.observatory-workspace .role-topic .role-label { color: color-mix(in srgb, var(--color-hierarchy-topic) 75%, var(--color-text)); }

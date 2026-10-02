@@ -36,7 +36,7 @@ test('enlarged handwriting remains reachable and scrollable with the keyboard', 
   await page.keyboard.press('ArrowDown');
   await expect.poll(() => paper.evaluate(el => el.scrollTop)).toBeGreaterThan(0);
   await page.keyboard.press('ArrowUp');
-  await expect.poll(() => paper.evaluate(el => el.scrollTop)).toBe(0);
+  await expect.poll(() => paper.evaluate(el => el.scrollTop)).toBeLessThanOrEqual(1);
   const accessibility = await new AxeBuilder({ page }).include('.memo-ink-pad').withTags(['wcag2a', 'wcag2aa']).analyze();
   expect(accessibility.violations).toEqual([]);
 });

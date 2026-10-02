@@ -202,7 +202,7 @@ export function StudyWorkspace({
         )}
       </div>
       <div className="study-workspace-panes" ref={container}>
-        <div className="study-workspace-source" aria-label={sourceTitle}>
+        <div className="study-workspace-source" role="region" aria-label={sourceTitle}>
           {source}
         </div>
         <div className="study-workspace-tools" hidden={!layout.open}>

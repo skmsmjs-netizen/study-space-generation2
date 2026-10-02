@@ -159,10 +159,19 @@ export function MathGeoGebra({
     revision.current = -1;
     setReady(false);
     setError('');
-    const capture = () =>
-      api.current && source.current
-        ? { sourceKey: source.current, xml: api.current.getXML() }
-        : undefined;
+    const capture = () => {
+      if (!api.current || !source.current) return undefined;
+      try {
+        return { sourceKey: source.current, xml: api.current.getXML() };
+      } catch (error) {
+        console.warn('GeoGebra view is unavailable; keep its previous saved snapshot.', error);
+        return undefined;
+      }
+    };
+    const removeNative = (native: Api | null) => {
+      try { native?.remove(); }
+      catch (error) { console.warn('GeoGebra engine was already released during view cleanup.', error); }
+    };
     captureRef.current = capture;
     const persist = () => {
       if (
@@ -213,7 +222,7 @@ export function MathGeoGebra({
               // GeoGebra labels its injected container; give that name a supported group role.
               element.querySelector('.appletParameters')?.setAttribute('role', 'group');
               if (disposed) {
-                native.remove();
+                removeNative(native);
                 return;
               }
               clearTimeout(timeout);
@@ -330,8 +339,9 @@ export function MathGeoGebra({
       cancelAnimationFrame(resizeFrame);
       document.removeEventListener('visibilitychange', flush);
       captureRef.current = null;
-      api.current?.remove();
+      const native = api.current;
       api.current = null;
+      removeNative(native);
     };
   }, [mode, retry, captureRef, restoreRevision]);
   // biome-ignore lint/correctness/useExhaustiveDependencies: view snapshot and notes do not change curve geometry.

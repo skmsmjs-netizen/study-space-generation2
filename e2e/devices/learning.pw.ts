@@ -107,7 +107,7 @@ test('Canvas concept creation and graph list allow editing without dragging', as
   await page.getByLabel('관계에서 찾기', { exact: true }).fill('관계를 보존하는 모바일 개념');
   await page.getByText('항목 목록에서 선택하기', { exact: true }).tap();
   await page
-    .getByRole('button', { name: '관계를 보존하는 모바일 개념', exact: false })
+    .getByRole('button', { name: '관계를 보존하는 모바일 개념', exact: true })
     .last()
     .tap();
   await expect(page.getByRole('complementary', { name: '선택한 항목', exact: true })).toContainText(
@@ -160,10 +160,10 @@ test('subjects, search and record navigation keep a new name and context on a na
   await expect(
     page.getByRole('link', {
       name: '조건과 예외를 보관하는 새 과목',
-      exact: false,
+      exact: true,
     }),
   ).toBeVisible();
-  await page.getByRole('link', { name: '조건과 예외를 보관하는 새 과목', exact: false }).tap();
+  await page.getByRole('link', { name: '조건과 예외를 보관하는 새 과목', exact: true }).tap();
   await expect(page.locator('main h1')).toContainText('조건과 예외를 보관하는 새 과목');
 });
 

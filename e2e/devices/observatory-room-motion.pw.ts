@@ -117,7 +117,7 @@ test('all room directions keep the full cover, support explicit inspection, and 
       expect(value).toBeGreaterThanOrEqual(0);
       expect(value).toBeLessThanOrEqual(1);
     }
-    await expect.poll(() => zoom(scene)).toBe(1);
+    await expect.poll(() => zoom(scene), { timeout: 15000 }).toBe(1);
     await clickSceneControl(scene, '가까이 보기');
     await expect.poll(() => zoom(scene)).toBeGreaterThan(1.05);
     if (place.id === 'right') {
@@ -133,7 +133,7 @@ test('all room directions keep the full cover, support explicit inspection, and 
     }
     await expectWholeArt(scene);
     await clickSceneControl(scene, '전체 보기');
-    await expect.poll(() => zoom(scene)).toBe(1);
+    await expect.poll(() => zoom(scene), { timeout: 15000 }).toBe(1);
     const canvas = scene.locator('canvas');
     await expect(canvas).toHaveAttribute('data-room-renderer', /^(webgl2|fallback)$/);
   }

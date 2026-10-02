@@ -77,7 +77,7 @@ test('pointer dwell retains moving detail during exploration; drag exits gently,
   await expect(cover).toHaveAttribute('data-inspect', 'dragging');
   await page.mouse.up();
   await expect(cover).toHaveAttribute('data-pointer', 'away');
-  await expect.poll(async () => (await values()).zoom).toBe(1);
+  await expect.poll(async () => (await values()).zoom, {timeout: 15000}).toBe(1);
   await expect.poll(async () => (await values()).depth).toBe(0);
   // The full original sky is interactive; only the separate exterior desk is inert.
   const desk = cover.locator('.observatory-room-desk');

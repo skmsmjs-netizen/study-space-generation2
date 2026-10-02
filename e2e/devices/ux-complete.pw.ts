@@ -185,6 +185,7 @@ test('10,000 records retain exact long input, search and saved text through relo
   await memo.fill(original);
   const entered = Date.now();
   await page.getByRole('button', { name: '1개 주제 기록 저장', exact: true }).click();
+  await page.goto('?space=demo#/');
   await expect(page.getByRole('heading', { name: '최근 남긴 기록', exact: true })).toBeVisible();
   const saved = Date.now();
   await page.reload();

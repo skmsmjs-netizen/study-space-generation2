@@ -88,10 +88,12 @@ for (const theme of ['light', 'dark'] as const) {
         )) {
           for (const node of issue.nodes) {
             if (node.target.length !== 1 || typeof node.target[0] !== 'string') continue;
-            const paint = await page
-              .locator(node.target[0])
-              .first()
-              .evaluate((el) => {
+            const target = page.locator(node.target[0]).first();
+            if (await target.count() === 0) {
+              contrastEvidence.push({ target: node.target, paint: null, reason: 'Axe returned a detached or synthetic root; incomplete finding retained.' });
+              continue;
+            }
+            const paint = await target.evaluate((el) => {
                 const style = getComputedStyle(el),
                   rect = el.getBoundingClientRect();
                 const layers = [];

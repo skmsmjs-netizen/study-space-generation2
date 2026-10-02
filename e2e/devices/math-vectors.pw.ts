@@ -79,7 +79,7 @@ test('math vector display is bounded through zoom and shared by other curves', a
     ),
   ).toBeLessThanOrEqual(80.001);
   await page.getByRole('button', { name: '보기 초기화', exact: true }).tap();
-  await page.getByText('수식·구간 편집', { exact: true }).tap();
+  await page.getByText('수식·슬라이더 범위 편집', { exact: true }).tap();
   const set = async (formulas: string[], at: string) => {
     for (const [i, name] of ['x(t)', 'y(t)', 'z(t)'].entries())
       await page.getByLabel(name, { exact: true }).fill(formulas[i]);

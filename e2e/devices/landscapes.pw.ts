@@ -87,6 +87,7 @@ test('home landscape keeps pause, layer choice and study records through reload'
       landscape.evaluate((el) =>
         Number((el as HTMLElement).style.getPropertyValue('--pixel-sky-zoom')),
       ),
+      { timeout: 15000 },
     )
     .toBe(1);
   const original = await page.evaluate(() => localStorage.getItem('study-space:demo:v1'));

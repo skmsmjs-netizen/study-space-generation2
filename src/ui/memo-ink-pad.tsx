@@ -592,7 +592,16 @@ export function MemoInkPad({
         </Button>
       </div>
       {/* biome-ignore lint/a11y/useSemanticElements lint/a11y/noNoninteractiveTabindex: WCAG keyboard scrolling needs a named focusable viewport; preserve the existing paper container. */}
-<div ref={viewport} className="ink-pad-paper" role="region" aria-label={`${drawingLabel} 스크롤`} tabIndex={0}>
+<div ref={viewport} className="ink-pad-paper" role="region" aria-label={`${drawingLabel} 스크롤`} tabIndex={0}
+        onKeyDown={event => {
+          if (event.target !== event.currentTarget || event.altKey || event.ctrlKey || event.metaKey) return;
+          const offsets: Record<string, [number, number]> = {ArrowLeft: [-40, 0], ArrowRight: [40, 0], ArrowUp: [0, -40], ArrowDown: [0, 40]};
+          const offset = offsets[event.key];
+          if (!offset) return;
+          event.preventDefault();
+          event.currentTarget.scrollLeft += offset[0];
+          event.currentTarget.scrollTop += offset[1];
+        }}>
         <svg
           ref={svg}
           viewBox={`0 0 ${MEMO_WIDTH} ${MEMO_HEIGHT}`}

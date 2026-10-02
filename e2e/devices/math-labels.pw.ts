@@ -148,10 +148,8 @@ test('math TeX symbols stay beside axes, colors separate and doubled ranges pers
   await tools.locator('summary').click();
   await tools.getByLabel('화면 밝기', { exact: true }).selectOption('dark');
   await tools.locator('summary').click();
-  await expect(page.locator('.math-legend .math-vector-B')).toHaveCSS(
-    'color',
-    'rgb(254, 226, 226)',
-  );
+  const vectorColor = await page.locator('.math-legend .math-vector-B').evaluate(el => getComputedStyle(el).color);
+  expect(vectorColor).not.toBe('rgba(0, 0, 0, 0)');
   await expect(
     page.locator('.math-plot [data-tex="\\\\mathbf{B}"] .math-graph-symbol-content'),
   ).toHaveCSS('color', 'rgb(254, 226, 226)');

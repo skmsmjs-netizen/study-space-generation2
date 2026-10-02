@@ -134,6 +134,7 @@ async function expectRenderedConceptText(locator: Locator, source: string) {
           .forEach((node) => {
             node.remove();
           });
+        visibleCopy.querySelectorAll('p, li, dd, dt').forEach(node => node.append(' '));
         return (visibleCopy.textContent ?? '')
           .replace(/\u200b/g, '')
           .replace(/\s+/g, ' ')

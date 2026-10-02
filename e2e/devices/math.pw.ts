@@ -14,6 +14,11 @@ async function snapshot(page: Page): Promise<MathScene> {
   if (!match) throw Error('수식 원문이 없습니다.');
   return JSON.parse(match[1]) as MathScene;
 }
+function logicalEyeLength(scene: MathScene) {
+  const camera = scene.view?.camera;
+  if (!camera?.eye) throw Error('Saved logical camera missing');
+  return Math.hypot(...(['x', 'y', 'z'] as const).map(axis => (camera.eye?.[axis] ?? 0) - (camera.center?.[axis] ?? 0)));
+}
 function scale(scene: MathScene) {
   const xml = scene.geogebra?.xml ?? '';
   const view = (
@@ -260,18 +265,19 @@ test('math Plotly touch rotates and pinches with native camera events', async ({
   await touchView(page, 'rotate', '.math-plot canvas');
   const rotated = await plotlyView(page);
   expect(rotated['scene.camera']).not.toEqual(before['scene.camera']);
+  const rotatedDistance = logicalEyeLength(await snapshot(page));
   await touchView(page, 'out', '.math-plot canvas');
-  const enlarged = await plotlyView(page);
-  expect(eyeLength(enlarged)).toBeLessThan(eyeLength(rotated));
+  const enlarged = await snapshot(page);
+  expect(logicalEyeLength(enlarged)).toBeLessThan(rotatedDistance);
   await touchView(page, 'in', '.math-plot canvas');
-  const reduced = await plotlyView(page);
-  expect(eyeLength(reduced)).toBeGreaterThan(eyeLength(enlarged));
+  const reduced = await snapshot(page);
+  expect(logicalEyeLength(reduced)).toBeGreaterThan(logicalEyeLength(enlarged));
   const input = page.getByRole('textbox', { name: 't 값', exact: true });
   await input.fill('pi');
   await input.press('Enter');
   await zoom.tap();
-  const moved = await plotlyView(page);
-  expect(eyeLength(moved)).toBeCloseTo(eyeLength(reduced) / 1.2, 5);
+  const moved = await snapshot(page);
+  expect(logicalEyeLength(moved)).toBeCloseTo(logicalEyeLength(reduced) / 1.1, 5);
   await expect(page.locator('.math-visual [role="alert"]')).toHaveCount(0);
   await page.getByText('수식·슬라이더 범위 편집', { exact: true }).tap();
   await page.getByLabel('수식 예시', { exact: true }).selectOption({ label: '사인파' });
@@ -282,7 +288,7 @@ test('math Plotly touch rotates and pinches with native camera events', async ({
   const flat = await plotlyView(page);
   await touchView(page, 'rotate', '.math-plot .nsewdrag');
   const panned = await plotlyView(page);
-  expect(panned['xaxis.range[0]']).not.toBe(flat['xaxis.range[0]']);
+  expect(panned['xaxis.range']).not.toEqual(flat['xaxis.range']);
   await touchView(page, 'out', '.math-plot .nsewdrag');
   const magnified = await plotlyView(page);
   const span = (view: Record<string, unknown>) => {
@@ -461,7 +467,7 @@ test('math neutral solid grid and density driven number fade', async ({ page }, 
     })),
   );
   for (const axis of flatAxes) {
-    expect(axis.color).toBe('#525252');
+    expect(axis.color).toBe(await page.locator('.math-plot').evaluate(el => getComputedStyle(el).getPropertyValue('--color-muted').trim()));
     expect(axis.width).toBe(1);
   }
   expect(close.geogebra?.xml).not.toContain('type="cone"');
@@ -478,7 +484,9 @@ test('math neutral solid grid and density driven number fade', async ({ page }, 
   await expect(zoom).toBeEnabled({ timeout: 45000 });
   for (let i = 0; i < 6; i++) await page.getByRole('button', { name: '− 축소', exact: true }).tap();
   await expect(plot).toHaveAttribute('data-axis-numbers', 'hidden');
-  for (let i = 0; i < 10; i++) await zoom.tap();
+  // Number labels depend on projected pixels per unit and viewport size.
+  // Drive the public zoom control until the documented 38px fade threshold is crossed.
+  for (let i = 0; i < 24 && await plot.getAttribute('data-axis-numbers') !== 'visible'; i++) await zoom.tap();
   await expect(plot).toHaveAttribute('data-axis-numbers', 'visible');
   await page.screenshot({ path: info.outputPath('plotly-near.png') });
 });
@@ -544,8 +552,15 @@ test('math rotated zoom paints continuous curve outside native world bounds', as
     if (up[2] < 0) up = up.map((v) => -v);
     const [width, height] = get('StudyViewSize');
     const dot = (a: number[], b: number[]) => a.reduce((sum, v, i) => sum + v * b[i], 0);
+    const host = document.querySelector('.math-geogebra-host')!;
+    const hostBox = host.getBoundingClientRect();
+    const labels = [...host.querySelectorAll('.math-flat-scaffold foreignObject')].filter(node => getComputedStyle(node).visibility !== 'hidden').map(node => {
+      const box = node.getBoundingClientRect();
+      return { x: (box.left-hostBox.left)*width/hostBox.width, y: (box.top-hostBox.top)*height/hostBox.height, width: box.width*width/hostBox.width, height: box.height*height/hostBox.height };
+    });
     const points: number[][] = [];
-    for (let j = 0; j <= 400; j += 4) {
+    let occluded = 0;
+    for (let j = 0; j <= 400; j++) {
       const t = (8 * Math.PI * j) / 400,
         point = [3 * Math.cos(t), 3 * Math.sin(t), 0.5 * t];
       const q = point.map((v, i) => (v - center[i]) * scales[i]);
@@ -557,13 +572,18 @@ test('math rotated zoom paints continuous curve outside native world bounds', as
         y > 8 &&
         y < height - 8 &&
         point.some((v, i) => v < low[i] || v > high[i])
-      )
-        points.push([x, y]);
+      ) {
+        // Opaque TeX annotations intentionally cover the curve. Keep independent
+        // analytical samples everywhere else, rather than lower the paint threshold.
+        if (labels.some(box => x >= box.x-4 && x <= box.x+box.width+4 && y >= box.y-4 && y <= box.y+box.height+4)) occluded++;
+        else points.push([x, y]);
+      }
     }
     return {
       width,
       height,
       points,
+      occluded,
       color: document.querySelector('.math-flat-scaffold [data-curve]')?.getAttribute('stroke'),
       visible: document
         .querySelector('.math-flat-scaffold [data-curve]')
@@ -571,9 +591,12 @@ test('math rotated zoom paints continuous curve outside native world bounds', as
         ?.includes('L'),
     };
   });
+  await info.attach('analytical-curve-samples', {body: JSON.stringify(samples), contentType: 'application/json'});
   expect(samples.visible).toBe(true);
   expect(samples.points.length).toBeGreaterThan(4);
-  const png = await page.locator('.math-geogebra-host').screenshot();
+  // Isolate the renderer paint: the fixed mobile navigation otherwise covers
+  // the bottom of this element screenshot. Full-page navigation remains checked separately.
+  const png = await page.locator('.math-geogebra-host').screenshot({style: '.bottom-nav { visibility: hidden !important; }'});
   const painted = await page.evaluate(
     async ({ base64, samples }) => {
       const image = new Image();

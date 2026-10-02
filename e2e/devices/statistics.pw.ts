@@ -26,7 +26,7 @@ test('statistics opens graph first and keeps graph, monthly trends and original 
   expect(
     await graph.evaluate((el) =>
       Boolean(
-        el.compareDocumentPosition(document.querySelector('.statistics-filters')!) &
+        el.compareDocumentPosition([...document.querySelectorAll('.statistics-filters')].at(-1)!) &
         Node.DOCUMENT_POSITION_FOLLOWING,
       ),
     ),
