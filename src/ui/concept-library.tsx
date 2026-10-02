@@ -1,6 +1,6 @@
 import { ConceptFigureView } from './concept-figure';
 import { KnowledgeStructure } from './knowledge-structure';
-import { useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { MathFormula } from './math-formula';
 import { ConceptText } from './concept-text';
 import conceptTemplates from '../../docs/concept-interaction-templates.json' with { type: 'json' };
@@ -37,10 +37,12 @@ import {
   readConceptDraft,
 } from '../data/concept-production';
 import { storagePrefix, type StudyRepository } from '../data/repository';
+import { BUNDLED_CONCEPT_CATALOG, loadConceptReadingPack, type ConceptReadingPack } from '../data/concept-reading-pack';
 import { storeDraftSafely, clearStoredDraft } from '../data/draft-safety';
 import { useViewContext, isViewText, isViewPage } from './use-view-context';
 import { Button, Checkbox, Input, Textarea, Select } from './index';
 import './concept-library.css';
+import { ChemistryLauncher } from './chemistry-launcher';
 const errorText = (e: unknown) =>
   e instanceof Error ? e.message : '처리하지 못했습니다. 기존 자료와 입력은 유지했습니다.';
 const SCENE_KEYS = Array.from({ length: 12 }, (_, index) => `scene-${index}`);
@@ -76,6 +78,21 @@ export function ConceptLibrary({
   repository: StudyRepository;
   onSaved: (data: AppState) => void;
 }) {
+  const [book, setBook] = useState<ConceptReadingPack | null>(null);
+  const [bookLoading, setBookLoading] = useState(true);
+  const [bookError, setBookError] = useState('');
+  const [bookAttempt, setBookAttempt] = useState(0);
+  useEffect(() => {
+    let active = true;
+    setBookLoading(true);
+    setBookError('');
+    void loadConceptReadingPack().then((pack) => {
+      if (active) setBook(pack);
+    }).catch(() => {
+      if (active) setBookError('개념 전집을 열지 못했습니다. 다시 열어 주세요. 저장된 설명은 그대로입니다.');
+    }).finally(() => { if (active) setBookLoading(false); });
+    return () => { active = false; };
+  }, [bookAttempt]);
   const [catalogId, setCatalogId] = useViewContext(data, 'concept-catalog', '', isViewText);
   const [query, setQuery] = useViewContext(data, 'concept-query', '', isViewText);
   const [page, setPage] = useViewContext(data, 'concept-page', 0, isViewPage);
@@ -90,27 +107,37 @@ export function ConceptLibrary({
   const [error, setError] = useState(''),
     [notice, setNotice] = useState(''),
     [busy, setBusy] = useState(false);
-  const catalog =
-    data.conceptCatalogs?.find((c) => c.id === catalogId) ?? data.conceptCatalogs?.at(-1);
+  const personalCatalog = data.conceptCatalogs?.find((c) => c.id === catalogId)
+    ?? data.conceptCatalogs?.at(-1);
+  const useBook = Boolean(book && (catalogId === BUNDLED_CONCEPT_CATALOG
+    || (!editing && (!catalogId || !personalCatalog))));
+  // This is a read-only view, never an account migration or repository write.
+  const bookCatalog = useMemo<ConceptCatalog | undefined>(() => book ? {
+    ...book.catalog, userId: data.userId, namespace: data.namespace,
+    version: 0, createdAt: '', updatedAt: '', deletedAt: null,
+  } : undefined, [book, data.userId, data.namespace]);
+  const catalog = useBook ? bookCatalog : personalCatalog;
   const originals = useMemo(
     () => (catalog ? parseConceptSource(catalog.raw).items : []),
     [catalog],
   );
   const editions = useMemo(
     () =>
-      new Map(
-        (data.conceptEditions ?? [])
-          .filter((e) => e.catalogId === catalog?.id)
-          .map((e) => [e.sourceId, e]),
-      ),
-    [data.conceptEditions, catalog],
+      new Map<string, ConceptEditionContent>([
+        ...(useBook ? (book?.editions ?? []).map((e) => [e.sourceId, e] as const) : []),
+        ...(data.conceptEditions ?? [])
+          .filter((e) => e.catalogId === catalog?.id && (!useBook || e.status === 'published'))
+          .map((e) => [e.sourceId, e] as const),
+      ]),
+    [data.conceptEditions, catalog, useBook, book],
   );
   const original = originals.find((i) => i.id === selected);
   const library = useRef<HTMLElement>(null);
-  const viewScope = `${storagePrefix(data)}:${catalog?.id ?? ''}:${editing ? 'editing' : 'reading'}`;
+  const viewCatalogKey = useBook ? BUNDLED_CONCEPT_CATALOG : catalog?.id ?? '';
+  const viewScope = `${storagePrefix(data)}:${viewCatalogKey}:${editing ? 'editing' : 'reading'}`;
   const [listPosition, setListPosition] = useViewContext<ConceptListPosition | null>(
     data,
-    `concept-list-position:${catalog?.id ?? ''}:${editing ? 'editing' : 'reading'}`,
+    `concept-list-position:${viewCatalogKey}:${editing ? 'editing' : 'reading'}`,
     null,
     isConceptListPosition,
   );
@@ -158,13 +185,44 @@ export function ConceptLibrary({
       const next = await action();
       onSaved(next);
       await repository.flush?.();
-      setNotice(message);
+      const status = repository.getStatus?.();
+      setNotice(data.namespace === 'personal' && status &&
+        (status.phase !== 'saved' || status.pending > 0)
+        ? '내용은 이 기기에 반영했습니다. 서버 저장은 아직 확인되지 않았습니다.'
+        : message);
     } catch (e) {
       onSaved(repository.getSnapshot());
       setError(errorText(e));
     } finally {
       setBusy(false);
     }
+  };
+  const copyForEditing = async () => {
+    if (!book || !original || !writable) return;
+    if (data.namespace === 'personal' &&
+      !data.conceptCatalogs?.some(c => c.sha256 === book.sourceSha256) &&
+      !repository.getCapabilities?.().includes('importConceptCatalog')) {
+      setError('현재 저장 연결에서는 개념 원문을 보관할 수 없습니다. 설명은 계속 읽을 수 있습니다.');
+      return;
+    }
+    await run(async () => {
+      const snapshot = repository.getSnapshot();
+      const next = snapshot.conceptCatalogs?.some(c => c.sha256 === book.sourceSha256)
+        ? snapshot : await importConceptCatalog(repository, book.catalog.raw, book.catalog.filename);
+      const target = next.conceptCatalogs?.find(c => c.sha256 === book.sourceSha256);
+      if (!target) throw Error('개념 원문을 보관하지 못했습니다. 기존 설명은 그대로입니다.');
+      if (target.raw !== book.catalog.raw) throw Error('보관된 원문이 전집과 다릅니다. 기존 원문과 설명은 그대로입니다.');
+      const existing = next.conceptEditions?.find(e => e.catalogId === target.id && e.sourceId === original.id);
+      const reference = book.editions.find(e => e.sourceId === original.id);
+      let result = next;
+      if (!existing && reference) result = saveConceptEdition(repository, {
+        ...conceptContent(reference), catalogId: target.id,
+        checks: { ...EMPTY_CONCEPT_CHECKS }, status: 'draft', jobId: null,
+      }, 0);
+      setCatalogId(target.id);
+      setEditing(true);
+      return result;
+    }, '내 설명을 열었습니다. 기존 수정본이 있으면 그대로 이어갑니다.');
   };
   const importFile = async (selected: File | FileList | undefined | null, result: boolean) => {
     if (!selected) return;
@@ -214,13 +272,27 @@ export function ConceptLibrary({
         </p>
         <p>궁금한 개념을 골라, 설명과 사례를 차근차근 살펴보세요.</p>
       </header>
+      <ChemistryLauncher data={data} repository={repository} onSaved={onSaved} />
       <div className="concept-toolbar">
-        <Button variant={!editing ? 'primary' : 'quiet'} onClick={() => setEditing(false)}>
+        <Button variant={!editing ? 'primary' : 'quiet'} onClick={() => {
+          if (book && personalCatalog?.sha256 === book.sourceSha256) setCatalogId(BUNDLED_CONCEPT_CATALOG);
+          if (filter === '보류' || filter === '미분류') setFilter('');
+          setEditing(false);
+        }}>
           읽기
         </Button>
-        <Button variant={editing ? 'primary' : 'quiet'} onClick={() => setEditing(true)}>
+        <Button variant={editing ? 'primary' : 'quiet'} onClick={() => {
+          if (useBook) setCatalogId(BUNDLED_CONCEPT_CATALOG);
+          setEditing(true);
+        }}>
           설명 만들기
         </Button>
+        {useBook && editing && <Button variant="quiet" onClick={() => {
+          setCatalogId(''); setSelected(''); setPage(0);
+        }}>다른 원문 가져오기</Button>}
+        {useBook && <Button variant="quiet" onClick={() => {
+          if (book) downloadConceptFile(book.catalog.raw, book.catalog.filename);
+        }}>원문 내보내기</Button>}
       </div>
       {error && (
         <div role="alert" className="concept-error">
@@ -239,7 +311,9 @@ export function ConceptLibrary({
         </div>
       )}
       {notice && <p role="status">{notice}</p>}
-      {editing && (
+      {bookError && <div role="alert">{bookError}<Button variant="quiet" onClick={() => setBookAttempt(n => n + 1)}>전집 다시 열기</Button></div>}
+      {useBook && editing && <p>설명을 고르세요. 선택한 개념만 내 초안으로 가져와 수정할 수 있습니다.</p>}
+      {editing && !useBook && (
         <div className="concept-production-tools">
           <p>
             원문은 보관하고, 읽기 쉬운 설명을 따로 만듭니다. 유형 제안은 검토 결과와 구별합니다.
@@ -389,17 +463,18 @@ export function ConceptLibrary({
           )}
         </div>
       )}
-      {(data.conceptCatalogs?.length ?? 0) > 1 && (
+      {((data.conceptCatalogs?.length ?? 0) + (book ? 1 : 0)) > 1 && (
         <Select
-          label="원문 선택"
-          value={catalog?.id ?? ''}
+          label="전집 선택"
+          value={useBook ? BUNDLED_CONCEPT_CATALOG : catalog?.id ?? ''}
           onChange={(e) => {
             setCatalogId(e.target.value);
             setSelected('');
             setPage(0);
           }}
         >
-          {data.conceptCatalogs!.map((c) => (
+          {book && <option value={BUNDLED_CONCEPT_CATALOG}>개념 전집 · {book.editions.length.toLocaleString()}개</option>}
+          {(data.conceptCatalogs ?? []).map((c) => (
             <option key={c.id} value={c.id}>
               {c.filename}
             </option>
@@ -407,7 +482,7 @@ export function ConceptLibrary({
         </Select>
       )}
       {!catalog ? (
-        <p>설명 만들기에서 개념 원문을 가져와 주세요.</p>
+        <p role={bookLoading ? 'status' : undefined}>{bookLoading ? '개념 전집을 펼치고 있습니다.' : '설명 만들기에서 개념 원문을 가져와 주세요.'}</p>
       ) : original ? (
         <>
           <Button
@@ -419,7 +494,13 @@ export function ConceptLibrary({
           >
             목록으로 돌아가기
           </Button>
-          {editing ? (
+          {editing && useBook ? (
+            <>
+              <Button disabled={busy || !writable} onClick={() => void copyForEditing()}>내 설명으로 가져와 수정</Button>
+              {!writable && <p role="status">이 공간의 개념 저장 연결을 확인해야 합니다. 설명은 계속 읽을 수 있습니다.</p>}
+              {editions.get(original.id)?.screen && <ConceptReader screen={editions.get(original.id)!.screen!} name={original.name} sourceKey={`${catalog.id}:${original.id}`} data={data} />}
+            </>
+          ) : editing ? (
             <ConceptEditor
               key={`${catalog.id}:${original.id}`}
               data={data}
@@ -493,6 +574,7 @@ export function ConceptLibrary({
                   data-concept-source={i.id}
                   data-navigation-focus={`concept:${catalog.id}:${i.id}:open`}
                   onClick={(event) => {
+                    if (!useBook && !catalogId) setCatalogId(catalog.id);
                     setListPosition({
                       sourceId: i.id,
                       x: Math.max(0, window.scrollX),
@@ -657,9 +739,13 @@ function ConceptEditor({
         JSON.stringify({ version: nextVersion, text: JSON.stringify(nextContent, null, 2) }),
       );
       await repository.flush?.();
-      clearStoredDraft(boot.key);
+      const storage = repository.getStatus?.();
+      const pending = data.namespace === 'personal' && storage &&
+        (storage.phase !== 'saved' || storage.pending > 0);
+      if (!pending) clearStoredDraft(boot.key);
       setNotice(
-        publish ? '읽기용으로 등록했습니다.' : '설명을 저장했습니다. 내용과 화면을 확인해 주세요.',
+        pending ? '설명은 이 기기에 보관했습니다. 서버 저장은 아직 확인되지 않았습니다. 복구용 초안도 유지합니다.'
+          : publish ? '읽기용으로 등록했습니다.' : '설명을 저장했습니다. 내용과 화면을 확인해 주세요.',
       );
     } catch (e) {
       setError(errorText(e));
@@ -708,8 +794,13 @@ function ConceptEditor({
                 }),
               );
               await repository.flush?.();
-              clearStoredDraft(boot.key);
-              setNotice('직전 수정으로 되돌렸습니다. 이후의 이력도 보관했습니다.');
+              const storage = repository.getStatus?.();
+              const pending = data.namespace === 'personal' && storage &&
+                (storage.phase !== 'saved' || storage.pending > 0);
+              if (!pending) clearStoredDraft(boot.key);
+              setNotice(pending
+                ? '이 기기에서 직전 수정으로 되돌렸습니다. 서버 저장은 아직 확인되지 않았습니다. 복구용 초안도 유지합니다.'
+                : '직전 수정으로 되돌렸습니다. 이후의 이력도 보관했습니다.');
             } catch (e) {
               setError(errorText(e));
             } finally {

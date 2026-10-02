@@ -112,9 +112,11 @@ export function Modal({ open, title, onClose, children, className, featureDialog
     backdropPress.current = null;
     (available()[0] || dialog.current).focus({ preventScroll: true });
     const onFocus = (event: FocusEvent) => {
+      if (dialog.current?.closest('[inert]')) return;
       if (event.target instanceof Node && !dialog.current?.contains(event.target)) (available()[0] || dialog.current)?.focus();
     };
     const onKeyDown = (event: KeyboardEvent) => {
+      if (dialog.current?.closest('[inert]')) return;
       if (event.key === 'Escape' && !event.isComposing) { event.preventDefault(); event.stopPropagation(); close.current(); }
       if (event.key !== 'Tab') return;
       const targets = available(), first = targets[0], last = targets[targets.length - 1];

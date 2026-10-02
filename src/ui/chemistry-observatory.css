@@ -1,0 +1,27 @@
+.chemistry-dialog { /* design-token-exception: width -- Source and instrument share a growing, viewport-bounded local reading surface. */
+ width: min(96vw, 84rem); }
+.chemistry-observatory { color: var(--color-text); container-type: inline-size; }
+.chemistry-observatory p.prose { font-family: var(--font-reading); font-weight: var(--paper-body-weight, var(--observatory-paper-body-weight)); font-size: var(--paper-body-size, var(--observatory-paper-body-size)); line-height: var(--paper-body-line, var(--observatory-paper-body-line)); letter-spacing: var(--paper-body-tracking, var(--observatory-paper-body-tracking)); text-align: justify; text-align-last: start; overflow-wrap: anywhere; }
+.chem-actions, .chem-filters { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-block: var(--space-3); }
+.chem-filters > * { flex: 1; min-width: 0; }
+.chem-list { display: grid; /* design-token-exception: grid-template-columns -- Content-sized catalogue columns, not a new screen pattern. */
+ grid-template-columns: repeat(auto-fit,minmax(min(100%,18rem),1fr)); gap: var(--space-4); /* design-token-exception: max-height -- Scroll owner retains the caller and list position. */
+ max-height: 40rem; overflow: auto; }
+.chem-module, .chem-calculation, .chem-procedure { border: 1px solid var(--color-border); padding: var(--space-4); margin-block: var(--space-3); border-radius: 0; background: var(--color-surface); min-width: 0; }
+.chem-observation-grid { display: grid; /* design-token-exception: grid-template-columns -- L194 visual and adjacent controls with independent minimum widths. */
+ grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: var(--space-4); }
+.chem-observation-grid > * { min-width: 0; }
+.chemistry-observatory code { overflow-wrap: anywhere; white-space: pre-wrap; }
+.chem-slider { display: grid; gap: var(--space-2); margin-block: var(--space-3); }
+.chem-slider input, .chemistry-observatory input[type=range] { width: 100%; min-height: var(--observatory-control-height); }
+.chem-molecule-scroll { overflow: auto; }
+.chem-molecule-scroll svg { width: 100%; height: auto; }
+.chem-procedure [aria-current=step] { border-inline-start: 2px solid var(--color-text); padding-inline-start: var(--space-3); }
+.chem-source-scroll { overflow: auto; }
+.chem-source-scroll canvas { max-width: none; /* design-token-exception: width -- Source half-resolution display retains long PDF detail, with horizontal scrolling. */
+ width: auto; }
+@container (max-width: 40rem) {
+ .chem-observation-grid { grid-template-columns: minmax(0,1fr); }
+ .chem-filters { flex-direction: column; }
+ .chemistry-observatory p.prose { font-size: var(--paper-body-size, var(--observatory-paper-body-compact-size)); line-height: var(--paper-body-line, var(--observatory-paper-body-compact-line)); letter-spacing: var(--paper-body-tracking, var(--observatory-paper-body-compact-tracking)); }
+}

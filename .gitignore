@@ -24,3 +24,6 @@ work/
 supabase/.temp/
 
 /public/tools/concept-interactives/
+
+# Personal corpus stays outside the public repository and Pages artifacts.
+/src/data/concept-reading-pack.json

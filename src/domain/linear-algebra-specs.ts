@@ -1,0 +1,333 @@
+import type { LinearKind } from './linear-algebra';
+export type ObservationSpec = {
+  question: string;
+  conditions: string[];
+  initialReason: string;
+  representations: string[];
+  limitations: string[];
+  matrix?: string;
+  t?: { label: string; min: number; max: number; value: number };
+  n?: { label: string; min: number; max: number; value: number };
+  axis?: [string, string];
+  isSpatial?: boolean;
+  formula?: string[];
+};
+export const LINEAR_SPECS: Record<LinearKind, ObservationSpec> = {
+  determinant: {
+    question: 't가 0을 지나면 넓이·방향·가역성은 어떻게 함께 변하는가?',
+    conditions: [
+      '실수 정사각행렬의 행렬식 · 이 가족은 A=[[1,1],[0,t]]',
+      '원벡터 x=(1,1)과 단위 정사각형 고정 · 단위 없는 벡터',
+      '역행렬은 t≠0일 때만 정의된다.',
+    ],
+    initialReason: 't=2는 가역인 변환과 넓이의 두 배 변화를 함께 보여준다.',
+    representations: [
+      '행렬의 성분: 변환 규칙',
+      '정사각형과 그 상: 넓이·방향',
+      '행렬식·rank·역행렬: 같은 t의 조건 판단',
+    ],
+    limitations: ['2차원 예제는 모든 차원의 행렬식 정리에 대한 증명이 아니다.'],
+    t: { label: '배율 t', min: -5, max: 5, value: 2 },
+    isSpatial: true,
+  },
+  transform: {
+    question: '같은 벡터와 도형이 행렬 A에 의해 어디로 보내지는가?',
+    conditions: ['실수 R²에서의 선형변환', '원점은 원점으로 보내진다.'],
+    initialReason: 't=2의 전단과 배율을 함께 본다.',
+    representations: ['행렬: 규칙', '원벡터·상: 입력과 출력', '원도형·상: 전체와 부분의 대응'],
+    limitations: ['일반 공간·합성·아핀 평행이동은 원문에서 별도 조건과 함께 읽는다.'],
+    t: { label: '배율 t', min: -5, max: 5, value: 2 },
+    isSpatial: true,
+  },
+  elimination: {
+    question: '해를 유지하는 행 연산은 피벗과 자유변수를 어떻게 드러내는가?',
+    conditions: [
+      '마지막 열은 b, 앞의 열들은 A',
+      '실수 유한 행렬 · 최대 6행·7열',
+      '교환·0 아닌 배수·다른 행의 배수를 더하는 연산은 해를 유지한다.',
+    ],
+    initialReason: '유일한 해가 있는 두 식으로 시작해 모순·자유변수 사례로 직접 바꿀 수 있다.',
+    representations: [
+      '확대행렬: 모든 조건',
+      '행 연산 장면: 실제 순서·근거',
+      '피벗·해의 상태: 결과 판단',
+    ],
+    limitations: [
+      '교재의 물리·경제·화학 모델 단위는 입력된 숫자만으로 추정하지 않는다.',
+      '피벗은 상대적 수치 허용오차를 사용한다.',
+    ],
+    matrix: '1 1 3\n2 -1 0',
+  },
+  basis: {
+    question: '원래 행렬의 피벗 열과 영공간 차원은 독립 방향을 어떻게 나누는가?',
+    conditions: [
+      '실수 유한 행렬 · 열을 생성집합으로 읽는다.',
+      '열공간의 기저는 원래 행렬의 피벗 열에서 고른다.',
+    ],
+    initialReason: '세 열 중 하나가 중복인 rank 2 행렬로 시작한다.',
+    representations: [
+      '원래 열: 생성집합',
+      'RREF: 독립성·피벗',
+      'rank+nullity: 전체 입력 차원의 분할',
+    ],
+    limitations: ['추상 공간의 정의·기저변환·동형의 모든 주장을 수치 rank로 대신하지 않는다.'],
+    matrix: '1 1 0\n0 1 1\n1 2 1',
+  },
+  projection: {
+    question: '방향 u를 바꾸면 정사영 p와 잔차 r은 어떻게 대응하는가?',
+    conditions: ['실수 유클리드 내적', 'u=(1,t)≠0 · b=(2,1) 고정', '부분공간 W=span(u)'],
+    initialReason: 't=2에서 b의 정사영과 수직 잔차가 모두 보인다.',
+    representations: [
+      'u·b·p·r: 같은 벡터의 분해',
+      '정사영 식: 내적과 분모 조건',
+      '잔차 내적·노름: 직교와 최선근사',
+    ],
+    limitations: ['일반 가중·함수 내적은 이 유클리드 예제와 구별한다.'],
+    t: { label: '방향 u의 두 번째 성분 t', min: -5, max: 5, value: 2 },
+    isSpatial: true,
+  },
+  qr: {
+    question: '원래 열벡터는 직교 방향 Q와 계수 R로 어떻게 재구성되는가?',
+    conditions: [
+      '실수 행렬의 열들이 선형독립',
+      '얇은 Q는 QᵀQ=I · 직사각 Q에 QQᵀ=I를 강제하지 않는다.',
+    ],
+    initialReason: 'R³의 독립인 두 열로 얇은 QR을 보여준다.',
+    representations: ['A: 원래 열', 'qⱼ 장면: 순서대로 직교화', 'Q·R·재구성 오차: 방향과 계수'],
+    limitations: ['수정 그람–슈미트의 수치 계산이며 모든 조건수에서의 안정성을 보장하지 않는다.'],
+    matrix: '1 0\n1 1\n1 2',
+  },
+  'least-squares': {
+    question: '도달 가능한 Ax 가운데 b에 가장 가까운 것은 무엇이며 잔차는 왜 수직인가?',
+    conditions: [
+      '실수 유클리드 최소제곱',
+      '이 QR 해법의 열들은 선형독립',
+      'b의 앞 성분은 1,2,… · 마지막 성분 t만 바꾼다.',
+    ],
+    initialReason: '세 식·두 미지수에서 정확한 해와 최소제곱의 차이를 보여준다.',
+    representations: ['A·b: 원래 조건', 'Q·R·계수: QR 해법', 'Aᵀr=0·노름: 최선근사의 조건'],
+    limitations: [
+      '종속 열이면 정사영은 유일해도 계수는 유일하지 않을 수 있다.',
+      '통계적 모집단·실제 측정 오차·새 자료의 예측 정확성을 추정하지 않는다.',
+    ],
+    matrix: '1 0\n1 1\n1 2',
+    t: { label: 'b의 마지막 성분 t', min: -5, max: 5, value: 4 },
+  },
+  operations: {
+    question: '전치와 곱의 순서를 바꾸면 크기와 성분은 어떻게 달라지는가?',
+    conditions: ['곱의 안쪽 차원이 같아야 한다.', '덧셈은 같은 크기끼리이다.'],
+    initialReason: '직사각행렬로 AᵀA와 AAᵀ의 크기 차이를 보여준다.',
+    representations: ['A·Aᵀ: 대응 성분', '두 순서의 곱: 크기·값'],
+    limitations: ['몇 숫자의 예시는 일반 대수 법칙의 증명이 아니다.'],
+    matrix: '1 2\n0 1\n1 0',
+  },
+  eigen: {
+    question: '특성다항식의 근과 고유공간 차원은 대각화 조건을 어떻게 결정하는가?',
+    conditions: [
+      '실수 2×2 입력 · 선택 체는 실수 또는 복소수로 구별',
+      '고유벡터는 0이 아니어야 한다.',
+      'n차원에서 독립인 고유벡터 n개가 대각화 조건이다.',
+    ],
+    initialReason: '두 서로 다른 실수 고유값을 가진 상삼각행렬로 시작한다.',
+    representations: ['특성다항식: 근', 'A−λI: 고유공간', 'v·Av: 방향과 배율'],
+    limitations: [
+      '반복 고유값이나 거의 중복인 근에서는 수치 차원 판정과 정확한 기호 판단을 구별한다.',
+    ],
+    matrix: '2 1\n0 1',
+    isSpatial: true,
+  },
+  quadratic: {
+    question: '정규직교 기저로 옮기면 이차형식의 교차항과 부호가 어떻게 드러나는가?',
+    conditions: [
+      '실수 대칭 2×2',
+      '그래프는 q(x)=xᵀAx 자체',
+      '일반 함수 최적화는 임계점·헤시안 조건을 별도로 확인한다.',
+    ],
+    initialReason: '양정치이고 교차항이 있는 행렬로 주축과 부호를 함께 읽는다.',
+    representations: ['A·Q·D: 기저 대응', 'q의 곡면: 부호·모양', '고유값: 방향별 배율'],
+    limitations: ['반정치 헤시안만으로 일반 함수의 극값을 확정하지 않는다.'],
+    matrix: '2 1\n1 2',
+    isSpatial: true,
+  },
+  cross: {
+    question: '두 벡터에 수직인 외적은 방향과 넓이를 어떻게 함께 담는가?',
+    conditions: ['실수 R³', 'u=(1,t,0), v=(0,1,1)', '외적 순서를 바꾸면 부호가 뒤집힌다.'],
+    initialReason: '수직 방향과 비영 넓이가 동시에 보인다.',
+    representations: ['두 입력·외적: 공간 대응', '내적: 수직 확인', '노름: 넓이'],
+    limitations: ['이 교재의 외적을 모든 n차원의 같은 연산으로 확장하지 않는다.'],
+    t: { label: 'u의 두 번째 성분 t', min: -5, max: 5, value: 2 },
+    isSpatial: true,
+  },
+  lu: {
+    question: '피벗 교환과 소거 계수는 PA=LU에 어떻게 저장되는가?',
+    conditions: [
+      '실수 정사각행렬',
+      '각 피벗이 수치 허용오차에서 비영',
+      '부분 피벗 교환 P를 명시한다.',
+    ],
+    initialReason: '첫 피벗에 교환이 필요한 행렬로 P의 역할을 보여준다.',
+    representations: ['행 연산: 실제 순서', 'P·L·U: 교환·계수·결과', '재구성 오차: 수치 근거'],
+    limitations: [
+      '특이 피벗에서는 이 해법의 조건 실패이지 모든 선형계의 해가 불가능하다는 뜻이 아니다.',
+    ],
+    matrix: '0 2\n1 3',
+  },
+  power: {
+    question: '반복 정규화와 레일리 몫은 지배 고유방향에 어떻게 접근하는가?',
+    conditions: [
+      '책의 정리: 실수 대칭 · 양의 지배 고유값 · 절댓값 엄격한 우위',
+      '시작 벡터의 지배 고유방향 성분이 비영',
+      'x₀=(1,t)',
+    ],
+    initialReason: '조건을 충족하는 대칭 행렬과 비직교 시작 방향이다.',
+    representations: ['단위 xₙ: 반복 과정', 'Ax·x: 현재 방향', '레일리 몫·잔차: 근사 품질'],
+    limitations: [
+      '유한 반복의 잔차는 일반 수렴의 증명이 아니다.',
+      '이 관찰은 유클리드 노름으로 정규화한다. 교재의 최대 성분 정규화와 단계별 수치가 다를 수 있다.',
+      '조건 위반과 실제 관찰 결과는 구별한다.',
+    ],
+    matrix: '2 1\n1 2',
+    t: { label: '시작 방향의 성분 t', min: -5, max: 5, value: 0 },
+    n: { label: '반복 수 n', min: 0, max: 30, value: 4 },
+    isSpatial: true,
+  },
+  svd: {
+    question: '큰 특이값부터 유지하면 같은 행렬의 복원 오차와 저장량은 어떻게 바뀌는가?',
+    conditions: [
+      '작은 실수 직사각행렬',
+      '특이값은 비음수 내림차순',
+      'k≤min(m,n) · 복소수에서는 켤레전치',
+    ],
+    initialReason: 'rank 2인 3×2 행렬에서 한 방향만 남기는 예제로 시작한다.',
+    representations: [
+      'U·Σ·V: 입력·배율·출력',
+      'Aₖ: 같은 자료의 근사',
+      '오차·저장 수: 손실과 표현량',
+    ],
+    limitations: [
+      'AᵀA를 통한 작은 예제 계산 · 조건수 제곱과 작은 특이값 오차',
+      'AᵀA 고유값이 그 행렬의 허용오차 이하이면 수치적으로 0으로 처리한다. 작은 양의 특이값을 놓칠 수 있다.',
+      '실제 영상·대규모 자료 또는 통계적 PCA를 구현했다고 처리하지 않는다.',
+    ],
+    matrix: '1 0\n1 1\n1 2',
+    n: { label: '유지한 방향 수 k', min: 0, max: 6, value: 1 },
+  },
+  dynamics: {
+    question: '같은 A의 이산 갱신과 연속 미분방정식은 어떤 다른 과정을 만드는가?',
+    conditions: [
+      '이산 xₙ₊₁=Axₙ · 연속 x′=Ax',
+      'A=[[1,1],[0,t]], x₀=(1,1)',
+      '같은 초기 상태이나 이산 단계 n과 연속 시간 s는 다른 변수',
+    ],
+    initialReason: 't=2는 고유방향별 성장 차이를 보여준다.',
+    representations: [
+      '이산 상태공간 궤적: 갱신',
+      '단계 행렬: 상태',
+      '별도 연속 시간 곡선: 해석해의 표본',
+    ],
+    limitations: ['유한 구간 그림으로 무한 시간 안정성을 증명하지 않는다.'],
+    t: { label: 'A의 두 번째 고유값 t', min: -2, max: 2, value: 2 },
+    n: { label: '이산 단계 n', min: 0, max: 15, value: 4 },
+    isSpatial: true,
+  },
+  markov: {
+    question: '열 합이 1인 전이에서 현재 분포와 정상분포는 어떻게 연결되는가?',
+    conditions: [
+      'A=[[1−p,1/4],[p,3/4]] · p∈[0,1]',
+      '열 합 1 · 비음수 · 초기 x₀=(1,0)',
+      '정규성은 양의 원소를 갖는 거듭제곱의 존재',
+    ],
+    initialReason: 'p=0.2는 정규 행렬이며 초기 분포에서 변화를 볼 수 있다.',
+    representations: [
+      '열 전이행렬: 확률 이동',
+      '같은 단계의 두 확률: 분포',
+      '정상분포·총확률: 조건·보존',
+    ],
+    limitations: ['일반 마르코프 연쇄 전체가 항상 같은 방식으로 수렴한다고 말하지 않는다.'],
+    t: { label: '전이확률 p', min: 0, max: 1, value: 0.2 },
+    n: { label: '갱신 수 n', min: 0, max: 30, value: 4 },
+    axis: ['단계 n', '확률'],
+  },
+  leontief: {
+    question: '산업 간 소비와 외부 수요는 필요한 비음수 생산량에 어떻게 연결되는가?',
+    conditions: [
+      '소비행렬 C≥0 · 외부 수요 d=(2,1)≥0',
+      '(I−C)x=d',
+      '수학적 해와 생산 가능한 비음수 해를 구별한다.',
+    ],
+    initialReason: '대각 소비 0.2에서 생산 가능한 모형으로 시작한다.',
+    representations: ['C·d: 산업 의존', '소거 과정: 생산량 계산', '비음수 여부: 경제적 해석 조건'],
+    limitations: ['실제 산업 자료·화폐 단위를 임의로 붙이지 않는다.'],
+    t: { label: '두 번째 산업의 자기 소비 t', min: 0, max: 0.99, value: 0.2 },
+  },
+  fourier: {
+    question: '직교 성분을 더 남기면 같은 함수의 유한 근사는 어디에서 달라지는가?',
+    conditions: [
+      'f(x)=x · (−π,π) · 주기 연장',
+      '계수는 적분으로 구한 해석값',
+      'N≤15 · 끝점은 좌우 극한 평균을 별도 판단',
+    ],
+    initialReason: '네 성분에서 원함수와 근사·끝점 차이가 보인다.',
+    representations: [
+      '원함수와 Sₙ: 같은 x 대응',
+      '유한 합: 선택 성분',
+      '표본 최대 오차: 관찰 범위',
+    ],
+    limitations: [
+      '유한 투영은 무한 급수의 점별 수렴 증명이 아니다.',
+      '유한 표본 최대 오차를 전체 구간의 엄밀 상계로 부르지 않는다.',
+    ],
+    n: { label: '유지한 항 N', min: 0, max: 15, value: 4 },
+    axis: ['x · 라디안', '함수값'],
+  },
+  complex: {
+    question: '켤레·극형식의 곱·거듭제곱은 같은 복소수를 어떻게 다르게 표현하는가?',
+    conditions: [
+      'z=1+ti ≠0 · w=1−i',
+      '복소평면 가로=실수부, 세로=허수부',
+      '책의 내적은 첫 인자에 선형, 둘째 인자에 켤레',
+    ],
+    initialReason: '실수·허수 성분이 모두 보이는 z로 시작한다.',
+    representations: [
+      'z·켤레·곱: 평면 대응',
+      '극형식·거듭제곱: 길이·편각',
+      '켤레전치 식: 복소 구조의 조건',
+    ],
+    limitations: [
+      '일반 복소 공간·에르미트·유니터리·정규행렬의 계산은 이 스칼라 관찰로 완결하지 않는다.',
+    ],
+    t: { label: 'z의 허수부 t', min: -5, max: 5, value: 2 },
+    n: { label: '거듭제곱 n', min: 0, max: 10, value: 2 },
+    axis: ['실수부', '허수부'],
+    isSpatial: true,
+  },
+  static: {
+    question: '가정·대상·결론은 어떤 관계를 보존하며 어디까지 적용되는가?',
+    conditions: ['원문의 대상·체·정의역·가정과 결론을 구별한다.'],
+    initialReason: '값 변화가 필요하지 않아 정적 읽기로 시작한다.',
+    representations: ['문장·수식: 정의·조건', '연결도: 다른 개념에서 다시 쓰이는 관계'],
+    limitations: ['도식이나 여러 사례를 증명으로 처리하지 않는다.'],
+  },
+};
+
+export const LINEAR_FORMULAS: Partial<Record<LinearKind, string>> = {
+  determinant: '\\det A=t,\\quad A=\\begin{bmatrix}1&1\\\\0&t\\end{bmatrix}',
+  transform: 'y=Ax',
+  elimination: 'Ax=b',
+  basis: '\\operatorname{rank}A+\\operatorname{nullity}A=n',
+  projection: 'p=\\frac{\\langle b,u\\rangle}{\\langle u,u\\rangle}u',
+  qr: 'A=QR,\\quad Q^TQ=I',
+  'least-squares': 'A^T(b-A\\hat x)=0',
+  operations: '(AB)^T=B^TA^T',
+  eigen: 'Av=\\lambda v,\\quad v\\ne0',
+  quadratic: 'x^TAx=y^TDy,\\quad x=Qy',
+  cross: 'u\\times v\\perp u,v',
+  lu: 'PA=LU',
+  power: 'x_{k+1}=Ax_k/\\|Ax_k\\|',
+  svd: 'A=U\\Sigma V^T',
+  dynamics: 'x_{n+1}=Ax_n,\\quad x^\\prime=Ax',
+  markov: 'x_{n+1}=Ax_n,\\quad A\\pi=\\pi',
+  leontief: '(I-C)x=d',
+  fourier: 'S_N=\\sum_{j=1}^N b_j\\sin(jx)',
+  complex: 'z=r(\\cos\\theta+i\\sin\\theta)',
+};

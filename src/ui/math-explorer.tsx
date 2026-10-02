@@ -1,3 +1,4 @@
+import { ChemistryLauncher } from './chemistry-launcher';
 import { Activity, lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import { MathFormula as MathText } from './math-formula';
 import { MathComparison } from './math-comparison';
@@ -43,6 +44,8 @@ const ConceptInteractives = lazy(() =>
 const MathTemplates = lazy(() =>
   import('./math-templates').then((module) => ({ default: module.MathTemplates })),
 );
+const LinearAlgebraObservations = lazy(() => import('./linear-algebra-observations').then(module => ({ default: module.LinearAlgebraObservations })));
+const VectorCalculus = lazy(() => import('./vector-calculus').then(module => ({ default: module.VectorCalculus })));
 const format = (v: number) => {
   const text = v.toFixed(2);
   return text === '-0.00' ? '0.00' : text;
@@ -407,6 +410,7 @@ export function MathExplorer({
   const result = computed.result;
   return (
     <section className="math-explorer" aria-label="수식 탐색">
+      <ChemistryLauncher data={data} repository={repository} onSaved={onSaved} place="east" />
       <div className="math-observatory-heading">
         <span className="math-observatory-mark" aria-hidden="true" />
         <span>관측 도구</span>
@@ -426,6 +430,8 @@ export function MathExplorer({
         <option value="templates">모든 과목 · 수식 유형별 탐색</option>
         <option value="series">급수의 수렴 판단</option>
         <option value="concepts">개념 탐구실</option>
+        <option value="vector-calculus">벡터 미적분 · 자료와 관찰</option>
+        <option value="linear">선형대수 · 교재 관찰</option>
       </Select>
       {readingError && (
         <div>
@@ -476,11 +482,13 @@ export function MathExplorer({
           <MathTemplates key={key} data={data} repository={repository} onSaved={onSaved} />
         </Suspense>
       )}
+      {readingView.active === 'linear' && <Suspense fallback={<LoadingState message="선형대수 관찰을 여는 중입니다." />}><LinearAlgebraObservations data={data} repository={repository} onSaved={onSaved}/></Suspense>}
       {readingView.active === 'concepts' && (
         <Suspense fallback={<LoadingState message="개념 탐구실을 여는 중입니다." />}>
           <ConceptInteractives key={key} data={data} />
         </Suspense>
       )}
+      {readingView.active === 'vector-calculus' && <Suspense fallback={<LoadingState message="벡터 미적분 자료와 관찰을 여는 중입니다." />}><VectorCalculus key={key} data={data} /></Suspense>}
       {graphVisited && (
         <div hidden={readingView.active !== 'graph'}>
           <section data-observation-region="question" aria-label="살펴볼 질문과 수식">

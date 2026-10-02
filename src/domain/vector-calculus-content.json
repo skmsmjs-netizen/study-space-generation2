@@ -1,0 +1,522 @@
+[
+  {
+    "id": "A1",
+    "group": "공간과 벡터",
+    "title": "공간과 벡터 대수",
+    "question": "위치와 방향을 어떻게 수량으로 나타낼까?",
+    "formula": "\\mathbf v+\\mathbf w,\\quad c\\mathbf v,\\quad \\|\\mathbf v\\|=\\sqrt{v_1^2+v_2^2+v_3^2}",
+    "condition": "같은 좌표계의 성분으로 연산한다. 단위벡터를 만들 때에는 v ≠ 0이다.",
+    "interactive": "두 벡터를 이동하고 성분·합·크기를 비교한다.",
+    "sections": ["1.1", "1.2"],
+    "pages": "1–14",
+    "pdf": "1",
+    "tex": "\\mathbf v+\\mathbf w,\\quad c\\mathbf v,\\quad \\|\\mathbf v\\|=\\sqrt{v_1^2+v_2^2+v_3^2}",
+    "details": [
+      {
+        "label": "점 · 위치벡터 · 표준기저",
+        "tex": "\\mathbf v=v_1\\mathbf i+v_2\\mathbf j+v_3\\mathbf k,\\quad \\widehat{\\mathbf v}=\\frac{\\mathbf v}{\\|\\mathbf v\\|}",
+        "note": "점과 벡터의 의미를 구별한다. 합·차·스칼라배, 영벡터, 크기와 방향, 거리, 평행사변형 법칙을 함께 읽는다."
+      }
+    ]
+  },
+  {
+    "id": "A2",
+    "group": "공간과 벡터",
+    "title": "내적",
+    "question": "한 방향으로 얼마나 향하고 있을까?",
+    "formula": "\\mathbf v\\cdot\\mathbf w=\\sum_{i=1}^{3}v_iw_i=\\|\\mathbf v\\|\\|\\mathbf w\\|\\cos\\theta",
+    "condition": "각도에는 두 비영벡터가 필요하고, 정사영의 기준벡터도 비영이어야 한다. 내적의 결과는 스칼라이다.",
+    "interactive": "각도를 바꾸고 투영·내적·직교를 함께 본다.",
+    "sections": ["1.3"],
+    "pages": "15–19",
+    "pdf": "1",
+    "tex": "\\mathbf v\\cdot\\mathbf w=\\sum_{i=1}^{3}v_iw_i=\\|\\mathbf v\\|\\|\\mathbf w\\|\\cos\\theta",
+    "details": [
+      {
+        "label": "정사영 · 직교",
+        "tex": "\\operatorname{proj}_{\\mathbf w}\\mathbf v=\\frac{\\mathbf v\\cdot\\mathbf w}{\\|\\mathbf w\\|^2}\\mathbf w,\\quad \\mathbf v\\perp\\mathbf w\\iff\\mathbf v\\cdot\\mathbf w=0",
+        "note": ""
+      },
+      {
+        "label": "코시–슈바르츠 · 삼각 부등식",
+        "tex": "|\\mathbf v\\cdot\\mathbf w|\\leq\\|\\mathbf v\\|\\|\\mathbf w\\|,\\quad\\|\\mathbf v+\\mathbf w\\|\\leq\\|\\mathbf v\\|+\\|\\mathbf w\\|",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "id": "A3",
+    "group": "공간과 벡터",
+    "title": "외적·직선·평면",
+    "question": "두 방향에서 법선을 어떻게 정할까?",
+    "formula": "\\mathbf n=\\mathbf v\\times\\mathbf w,\\quad\\|\\mathbf v\\times\\mathbf w\\|=\\|\\mathbf v\\|\\|\\mathbf w\\|\\sin\\theta",
+    "condition": "외적은 이 교재의 R³에서 다룬다. 비평행인 두 비영벡터가 비영법선을 만든다. 직선 방향과 평면 법선도 비영이다.",
+    "interactive": "두 방향과 법선·평행사변형 넓이를 비교한다.",
+    "sections": ["1.4", "1.5"],
+    "pages": "20–39",
+    "pdf": "1–2",
+    "tex": "\\mathbf n=\\mathbf v\\times\\mathbf w,\\quad\\|\\mathbf v\\times\\mathbf w\\|=\\|\\mathbf v\\|\\|\\mathbf w\\|\\sin\\theta",
+    "details": [
+      {
+        "label": "오른손 법칙 · 행렬식 · 삼중곱",
+        "tex": "\\mathbf v\\times\\mathbf w=-\\mathbf w\\times\\mathbf v,\\quad V=|\\mathbf u\\cdot(\\mathbf v\\times\\mathbf w)|",
+        "note": "외적의 순서와 부호를 보존한다. 결합법칙은 일반적으로 성립하지 않는다. 부록 B는 오른손 법칙의 증명이다."
+      },
+      {
+        "label": "벡터 삼중곱",
+        "tex": "\\mathbf u\\times(\\mathbf v\\times\\mathbf w)=(\\mathbf u\\cdot\\mathbf w)\\mathbf v-(\\mathbf u\\cdot\\mathbf v)\\mathbf w",
+        "note": ""
+      },
+      {
+        "label": "직선 · 평면 · 거리와 각도",
+        "tex": "\\mathbf r=\\mathbf r_0+t\\mathbf v,\\quad\\mathbf n\\cdot(\\mathbf r-\\mathbf r_0)=0",
+        "note": "매개식·대칭식, 평행·교차·꼬인 직선과 점–직선·점–평면 거리를 구별한다. 대칭식에서 0인 방향 성분으로 나누지 않는다."
+      }
+    ]
+  },
+  {
+    "id": "A4",
+    "group": "공간과 벡터",
+    "title": "곡면과 좌표",
+    "question": "공간의 대칭에 맞는 좌표는 무엇일까?",
+    "formula": "x=r\\cos\\theta,\\quad y=r\\sin\\theta,\\quad z=z",
+    "condition": "r, ρ ≥ 0; 0 ≤ θ < 2π; 0 ≤ φ ≤ π. φ는 양의 z축에서 잰 천정각이다. 축에서 θ, 원점에서 φ가 미정이다.",
+    "interactive": "직교·원통·구면좌표와 단면을 전환한다.",
+    "sections": ["1.6", "1.7"],
+    "pages": "40–50",
+    "pdf": "2–3",
+    "tex": "x=r\\cos\\theta,\\quad y=r\\sin\\theta,\\quad z=z",
+    "details": [
+      {
+        "label": "곡면 · 단면",
+        "tex": "z=f(x,y),\\quad F(x,y,z)=0",
+        "note": "구·원기둥·타원면·쌍곡면·포물면·원뿔과 직선으로 생성되는 곡면을 구별한다. 한 단면만으로 전체 모양을 확정하지 않는다."
+      },
+      {
+        "label": "구면좌표 · 각도 약속",
+        "tex": "x=\\rho\\sin\\phi\\cos\\theta,\\quad y=\\rho\\sin\\phi\\sin\\theta,\\quad z=\\rho\\cos\\phi",
+        "note": "교재의 (ρ, θ, φ) 순서를 유지한다. 이 기저 순서는 왼손 방향이므로 물리학의 다른 각도 약속을 섞지 않는다. 역탄젠트에는 사분면 확인이 필요하다."
+      }
+    ]
+  },
+  {
+    "id": "A5",
+    "group": "공간과 벡터",
+    "title": "벡터값 함수와 호의 길이",
+    "question": "움직이는 점의 경로와 길이는 어떻게 정할까?",
+    "formula": "L=\\int_a^b\\|\\mathbf f^{\\prime}(t)\\|\\,dt",
+    "condition": "성분 도함수가 연속이고 곡선의 중복 추적을 구별한다. 매끄러운 곡선은 f′ ≠ 0이며 동등한 재매개화는 증가하는 일대일 대응이다.",
+    "interactive": "t를 움직이며 위치·속도·속력·길이를 본다.",
+    "sections": ["1.8", "1.9"],
+    "pages": "51–64",
+    "pdf": "3",
+    "tex": "L=\\int_a^b\\|\\mathbf f^{\\prime}(t)\\|\\,dt",
+    "details": [
+      {
+        "label": "위치 · 속도 · 가속도 · 벡터 곱의 미분",
+        "tex": "\\mathbf v=\\mathbf r^{\\prime},\\quad\\mathbf a=\\mathbf r^{\\prime\\prime},\\quad\\text{speed}=\\|\\mathbf v\\|",
+        "note": "성분별 극한·미분·적분, 베지에 곡선과 반복 선형 보간을 포함한다."
+      },
+      {
+        "label": "재매개화 · 길이 요소 · 단위접선",
+        "tex": "ds=\\|\\mathbf f^{\\prime}(t)\\|\\,dt,\\quad\\mathbf T=\\frac{\\mathbf f^{\\prime}(t)}{\\|\\mathbf f^{\\prime}(t)\\|}",
+        "note": "호의 길이 매개화와 연쇄법칙을 연결한다. 원통좌표에서 속력의 배율도 확인한다. 법선·종법선·곡률은 절 말미 연습문제의 확장이다."
+      },
+      {
+        "label": "원통좌표의 호의 길이",
+        "tex": "L=\\int_a^b\\sqrt{(r^{\\prime})^2+r^2(\\theta^{\\prime})^2+(z^{\\prime})^2}\\,dt",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "id": "B1",
+    "group": "다변수 미분",
+    "title": "다변수 함수와 편미분",
+    "question": "한 변수를 바꿀 때 함수는 어떻게 변할까?",
+    "formula": "f_x=\\frac{\\partial f}{\\partial x},\\quad f_y=\\frac{\\partial f}{\\partial y}",
+    "condition": "편미분의 존재만으로 미분 가능성을 결론 내리지 않는다. 교재는 이후 모든 차수 편미분의 연속성을 가정하며 혼합 편미분 교환에도 그 조건을 사용한다.",
+    "interactive": "한 변수를 고정하고 단면과 극한을 관찰한다.",
+    "sections": ["2.1", "2.2"],
+    "pages": "65–74",
+    "pdf": "3",
+    "tex": "f_x=\\frac{\\partial f}{\\partial x},\\quad f_y=\\frac{\\partial f}{\\partial y}",
+    "details": [
+      {
+        "label": "정의역 · 치역 · 극한 · 연속",
+        "tex": "\\lim_{(x,y)\\to(a,b)}f(x,y)=L",
+        "note": "경로에 따라 다른 극한은 부존재를 보이지만 몇 경로에서 같다는 사실은 존재 증명이 아니다. 극한의 대수 법칙·샌드위치 원리를 포함한다."
+      },
+      {
+        "label": "고계 · 혼합 편미분",
+        "tex": "f_{xy}=f_{yx}",
+        "note": "혼합 편미분의 연속성 등 순서 교환 조건을 확인한다. 파동방정식은 절 말미 연습문제의 확장이다."
+      }
+    ]
+  },
+  {
+    "id": "B2",
+    "group": "다변수 미분",
+    "title": "접평면과 그래디언트",
+    "question": "여러 방향의 변화율을 어떻게 묶을까?",
+    "formula": "D_{\\mathbf v}f=\\mathbf v\\cdot\\nabla f,\\quad\\|\\mathbf v\\|=1",
+    "condition": "교재의 방향벡터 v는 단위벡터이다. 편미분의 존재·연속 아래 공식을 사용한다. 특정 최대 상승 방향을 지정할 때에는 ∇f ≠ 0이다.",
+    "interactive": "방향 u를 돌리며 기울기와 최대 증가 방향을 본다.",
+    "sections": ["2.3", "2.4"],
+    "pages": "75–82",
+    "pdf": "3–4",
+    "tex": "D_{\\mathbf v}f=\\mathbf v\\cdot\\nabla f,\\quad\\|\\mathbf v\\|=1",
+    "details": [
+      {
+        "label": "그래프의 접평면",
+        "tex": "z-f(a,b)=f_x(a,b)(x-a)+f_y(a,b)(y-b)",
+        "note": ""
+      },
+      {
+        "label": "음함수의 접평면 · 등위면의 법선",
+        "tex": "\\nabla F(a,b,c)\\cdot(x-a,y-b,z-c)=0",
+        "note": "교재 밖 조건 보충: 음함수 접평면을 정하려면 ∇F ≠ 0인 정칙점을 확인한다."
+      },
+      {
+        "label": "최급상승 · 최급하강",
+        "tex": "\\mathbf v_{\\max}=\\frac{\\nabla f}{\\|\\nabla f\\|},\\quad\\max_{\\|\\mathbf v\\|=1}D_{\\mathbf v}f=\\|\\nabla f\\|",
+        "note": "등위선·등위면에 수직이며 반대 방향은 최급하강이다."
+      }
+    ]
+  },
+  {
+    "id": "B3",
+    "group": "다변수 미분",
+    "title": "극값과 최적화",
+    "question": "극값 후보와 제약을 어떻게 판별할까?",
+    "formula": "\\nabla f=\\lambda\\nabla g,\\quad g(x,y)=c",
+    "condition": "매끄러운 f, g와 ∇g ≠ 0인 제약 위의 후보를 다룬다. 숨은 제약·경계·특이점을 별도로 확인한다. 승수식은 극값의 충분조건이 아니다.",
+    "interactive": "등고선·제약선·임계점을 겹쳐 비교한다.",
+    "sections": ["2.5", "2.6", "2.7"],
+    "pages": "83–100",
+    "pdf": "4",
+    "tex": "\\nabla f=\\lambda\\nabla g,\\quad g(x,y)=c",
+    "details": [
+      {
+        "label": "임계점 · 이계미분 판정",
+        "tex": "\\nabla f=\\mathbf0,\\quad D=f_{xx}f_{yy}-(f_{xy})^2",
+        "note": "내부 극값의 필요조건이다. D > 0, fxx > 0이면 극소; D > 0, fxx < 0이면 극대; D < 0이면 안장점; D = 0이면 판정 불가."
+      },
+      {
+        "label": "뉴턴 알고리즘 · x 갱신",
+        "tex": "x_{n+1}=x_n-\\frac{f_{yy}f_x-f_{xy}f_y}{D}",
+        "note": ""
+      },
+      {
+        "label": "뉴턴 알고리즘 · y 갱신",
+        "tex": "y_{n+1}=y_n-\\frac{f_{xx}f_y-f_{xy}f_x}{D}",
+        "note": "우변은 (xn, yn)에서 평가하며 매 단계 D ≠ 0을 확인한다. 최급하강법도 비교한다. 교재 밖 조건 보충: 임의 초기점의 수렴·전역 최적성을 보장하지 않는다."
+      }
+    ]
+  },
+  {
+    "id": "C1",
+    "group": "다중적분",
+    "title": "이중·삼중적분",
+    "question": "영역 전체에서 값을 어떻게 누적할까?",
+    "formula": "\\iint_R f\\,dA,\\quad\\iiint_S f\\,dV",
+    "condition": "교재의 도입은 유계 직사각형 위의 연속 함수이다. 부피 해석에는 f ≥ 0이 필요하다. 일반·이상적분의 순서 교환과 수렴에는 별도 조건이 필요하다.",
+    "interactive": "절단 방향과 적분 순서를 바꾸며 영역을 읽는다.",
+    "sections": ["3.1", "3.2", "3.3"],
+    "pages": "101–112",
+    "pdf": "4–5",
+    "tex": "\\iint_R f\\,dA,\\quad\\iiint_S f\\,dV",
+    "details": [
+      {
+        "label": "반복적분 · 일반 영역의 절단",
+        "tex": "\\iint_R f\\,dA=\\int_a^b\\int_{y_1(x)}^{y_2(x)}f(x,y)\\,dy\\,dx",
+        "note": "수평 절단으로 바꾸면 경계식과 적분 한계를 함께 바꾼다. 필요하면 영역을 분할한다. 소직사각형 합과 이상적분을 포함한다."
+      },
+      {
+        "label": "삼중적분 · 입체 부피",
+        "tex": "V=\\iiint_S1\\,dV",
+        "note": "소직육면체 합, 반복 삼중적분, 투영 영역과 위·아래 곡면의 일치를 확인한다."
+      }
+    ]
+  },
+  {
+    "id": "C2",
+    "group": "다중적분",
+    "title": "몬테카를로 근사",
+    "question": "정확한 계산이 어려울 때 어떻게 추정할까?",
+    "formula": "\\widehat I=A(R)\\overline f,\\quad\\overline f=\\frac1N\\sum_{i=1}^N f(x_i,y_i)",
+    "condition": "영역에서 균일한 무작위 표본을 쓴다. 둘러싼 직사각형에서 표본을 뽑고 영역 밖을 0으로 두면 직사각형의 넓이와 전체 표본 수를 사용한다.",
+    "interactive": "표본 수를 바꾸고 반복 추정값과 오차를 비교한다.",
+    "sections": ["3.4"],
+    "pages": "113–116",
+    "pdf": "5",
+    "tex": "\\widehat I=A(R)\\overline f,\\quad\\overline f=\\frac1N\\sum_{i=1}^N f(x_i,y_i)",
+    "details": [
+      {
+        "label": "표본 오차 · 반복 추정",
+        "tex": "\\sigma_{\\widehat I}\\approx A(R)\\sqrt{\\frac{\\overline{f^2}-\\overline f^{\\,2}}{N}}",
+        "note": "교재 식을 추정값·오차 규모로 구별해 표기했다. ±항은 단일 표준편차 규모이고 확정 상·하한이 아니다. 삼중적분은 넓이 대신 부피를 쓴다. 교재 밖 조건 보충: 표준오차 해석은 독립인 균일 표본을 전제한다."
+      }
+    ]
+  },
+  {
+    "id": "C3",
+    "group": "다중적분",
+    "title": "변수변환과 야코비안",
+    "question": "좌표를 바꾸면 넓이와 부피는 얼마나 달라질까?",
+    "formula": "dA(x,y)=|J(u,v)|\\,dA(u,v)",
+    "condition": "일대일 변환과 변환 영역의 J ≠ 0, 절댓값, 새 영역을 확인한다. 교재 밖 조건 보충: 축·원점·주기 경계는 적절한 좌표 영역에서 따로 처리한다.",
+    "interactive": "작은 격자의 변형과 |J|에 따른 면적을 본다.",
+    "sections": ["3.5"],
+    "pages": "117–123",
+    "pdf": "5",
+    "tex": "dA(x,y)=|J(u,v)|\\,dA(u,v)",
+    "details": [
+      {
+        "label": "야코비안 · 변환된 피적분 함수",
+        "tex": "J=x_u y_v-x_v y_u",
+        "note": ""
+      },
+      {
+        "label": "변수변환 정리",
+        "tex": "\\iint_R f(x,y)\\,dA=\\iint_{R^{\\prime}} f(x(u,v),y(u,v))|J|\\,du\\,dv",
+        "note": "3차원에서는 3×3 야코비안 행렬식과 |J|를 사용한다."
+      },
+      {
+        "label": "극 · 원통 · 구면 적분 요소",
+        "tex": "dA=r\\,dr\\,d\\theta,\\quad dV=r\\,dr\\,d\\theta\\,dz",
+        "note": ""
+      },
+      {
+        "label": "구면의 부피 요소",
+        "tex": "dV=\\rho^2\\sin\\phi\\,d\\rho\\,d\\theta\\,d\\phi",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "id": "C4",
+    "group": "다중적분",
+    "title": "질량중심·확률·기댓값",
+    "question": "밀도를 반영한 전체량과 평균은 무엇일까?",
+    "formula": "M=\\iint_R\\delta\\,dA,\\quad\\overline x=\\frac{M_y}{M},\\quad\\overline y=\\frac{M_x}{M}",
+    "condition": "질량중심에는 M > 0이 필요하다. 확률밀도는 비음수이고 전체 적분이 1이다. 밀도값과 점 확률, 물리적 밀도와 확률밀도를 구별한다.",
+    "interactive": "밀도와 분포를 바꾸고 중심과 기대값을 본다.",
+    "sections": ["3.6", "3.7"],
+    "pages": "124–134",
+    "pdf": "5",
+    "tex": "M=\\iint_R\\delta\\,dA,\\quad\\overline x=\\frac{M_y}{M},\\quad\\overline y=\\frac{M_x}{M}",
+    "details": [
+      {
+        "label": "모멘트 · 평면과 입체의 질량중심",
+        "tex": "M_y=\\iint_R x\\delta\\,dA,\\quad M_x=\\iint_R y\\delta\\,dA",
+        "note": "입체에서는 좌표평면 모멘트를 총질량으로 나눈다. 일정 밀도의 기하적 중심과 일반 밀도 가중 중심을 구별한다."
+      },
+      {
+        "label": "누적분포 · 확률밀도 · 기댓값",
+        "tex": "F(x)=\\int_{-\\infty}^{x}f(t)\\,dt,\\quad EX=\\int_{-\\infty}^{\\infty}x f(x)\\,dx",
+        "note": "기댓값 적분의 존재를 확인한다. 균등·정규분포와 결합밀도, 사건 영역의 확률을 포함한다. 분산·상관은 절 말미 연습문제의 확장이다."
+      },
+      {
+        "label": "결합분포의 사건 확률",
+        "tex": "P((X,Y)\\in R)=\\iint_R f(x,y)\\,dA",
+        "note": "독립성은 자동 가정하지 않는다."
+      }
+    ]
+  },
+  {
+    "id": "D1",
+    "group": "선적분과 면적분",
+    "title": "선적분과 퍼텐셜",
+    "question": "경로를 따라 힘과 값은 어떻게 누적될까?",
+    "formula": "\\int_C\\mathbf f\\cdot d\\mathbf r=F(B)-F(A),\\quad\\mathbf f=\\nabla F",
+    "condition": "연속 장과 조각별 매끄러운 곡선, 해당 영역에서 하나의 퍼텐셜 F를 확인한다. 회전 0만으로 전역 퍼텐셜을 결론 내리지 않는다.",
+    "interactive": "같은 끝점의 경로를 바꾸고 적분을 비교한다.",
+    "sections": ["4.1", "4.2"],
+    "pages": "135–149",
+    "pdf": "5–6",
+    "tex": "\\int_C\\mathbf f\\cdot d\\mathbf r=F(B)-F(A),\\quad\\mathbf f=\\nabla F",
+    "details": [
+      {
+        "label": "스칼라 선적분 · 길이 요소",
+        "tex": "\\int_C f\\,ds=\\int_a^b f(\\mathbf r(t))\\|\\mathbf r^{\\prime}(t)\\|\\,dt",
+        "note": ""
+      },
+      {
+        "label": "벡터 선적분 · 일",
+        "tex": "\\int_C\\mathbf f\\cdot d\\mathbf r=\\int_a^b\\mathbf f(\\mathbf r(t))\\cdot\\mathbf r^{\\prime}(t)\\,dt",
+        "note": "방향을 반전하면 스칼라 선적분은 유지되고 벡터 선적분은 부호가 바뀐다. 동등한 매개화에서는 적분값이 같다."
+      },
+      {
+        "label": "경로 독립 · 폐곡선 · 연쇄법칙",
+        "tex": "\\frac{d}{dt}F(\\mathbf r(t))=\\nabla F(\\mathbf r(t))\\cdot\\mathbf r^{\\prime}(t)",
+        "note": "퍼텐셜과 끝점 차이, 경로 독립성과 모든 폐곡선 적분 0의 관계를 정의역 조건과 함께 읽는다."
+      }
+    ]
+  },
+  {
+    "id": "D2",
+    "group": "선적분과 면적분",
+    "title": "그린 정리",
+    "question": "평면의 경계 순환은 내부와 어떻게 이어질까?",
+    "formula": "\\oint_C(P\\,dx+Q\\,dy)=\\iint_R\\left(\\frac{\\partial Q}{\\partial x}-\\frac{\\partial P}{\\partial y}\\right)dA",
+    "condition": "조각별 매끄러운 단순 폐곡선과 내부·경계의 매끄러운 장이다. 진행할 때 영역이 왼쪽이며 구멍이 있으면 안쪽 경계도 포함한다.",
+    "interactive": "경계 방향과 영역 내부의 회전을 비교한다.",
+    "sections": ["4.3"],
+    "pages": "150–155",
+    "pdf": "6",
+    "tex": "\\oint_C(P\\,dx+Q\\,dy)=\\iint_R\\left(\\frac{\\partial Q}{\\partial x}-\\frac{\\partial P}{\\partial y}\\right)dA",
+    "details": [
+      {
+        "label": "특이점 · 단순 연결 영역",
+        "tex": "\\mathbf f=\\left(-\\frac{y}{x^2+y^2},\\frac{x}{x^2+y^2}\\right)",
+        "note": "교재 반례: 원점을 뺀 곳에서 Qx − Py = 0이지만 원점을 양의 방향으로 한 바퀴 도는 적분은 2π이다. 특이점을 포함한 원판에 정리를 적용하지 않는다."
+      },
+      {
+        "label": "면적 공식 · 연습문제 확장",
+        "tex": "A(R)=\\frac12\\oint_C(x\\,dy-y\\,dx)",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "id": "D3",
+    "group": "선적분과 면적분",
+    "title": "면적분과 발산 정리",
+    "question": "폐곡면의 유량은 내부와 어떻게 이어질까?",
+    "formula": "\\iint_{\\Sigma}\\mathbf f\\cdot d\\boldsymbol\\sigma=\\iiint_S\\operatorname{div}\\mathbf f\\,dV",
+    "condition": "Σ는 입체 S의 폐곡면 경계이고 법선은 외향이다. 교재 밖 조건 보충: 장은 내부와 경계 전체에서 정의되고 필요한 편미분이 연속이어야 한다.",
+    "interactive": "영역과 바깥 법선을 바꾸며 총유량을 본다.",
+    "sections": ["4.4"],
+    "pages": "156–164",
+    "pdf": "6–7",
+    "tex": "\\iint_{\\Sigma}\\mathbf f\\cdot d\\boldsymbol\\sigma=\\iiint_S\\operatorname{div}\\mathbf f\\,dV",
+    "details": [
+      {
+        "label": "곡면 매개화 · 면적 요소",
+        "tex": "d\\sigma=\\|\\mathbf r_u\\times\\mathbf r_v\\|\\,du\\,dv,\\quad d\\boldsymbol\\sigma=\\mathbf n\\,d\\sigma",
+        "note": "법선 n은 단위벡터이며 두 접벡터의 외적이 비영인 정칙한 곡면 조각을 사용한다."
+      },
+      {
+        "label": "스칼라 면적분 · 곡면의 넓이",
+        "tex": "\\iint_{\\Sigma}f\\,d\\sigma=\\iint_R f(\\mathbf r(u,v))\\|\\mathbf r_u\\times\\mathbf r_v\\|\\,du\\,dv",
+        "note": "면적은 f = 1일 때이다. 스칼라 면적분과 방향을 가진 유량을 구별한다."
+      },
+      {
+        "label": "유량 · 발산",
+        "tex": "\\iint_{\\Sigma}\\mathbf f\\cdot\\mathbf n\\,d\\sigma,\\quad\\operatorname{div}\\mathbf f=\\frac{\\partial f_1}{\\partial x}+\\frac{\\partial f_2}{\\partial y}+\\frac{\\partial f_3}{\\partial z}",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "id": "D4",
+    "group": "선적분과 면적분",
+    "title": "스토크스 정리",
+    "question": "공간의 경계 순환은 곡면과 어떻게 이어질까?",
+    "formula": "\\oint_C\\mathbf f\\cdot d\\mathbf r=\\iint_{\\Sigma}(\\operatorname{curl}\\mathbf f)\\cdot\\mathbf n\\,d\\sigma",
+    "condition": "가향 곡면 Σ의 경계가 단순 폐곡선 C이며 장은 곡면을 포함하는 영역에서 매끄럽다. 선택한 단위법선과 경계의 양의 방향이 일치해야 한다.",
+    "interactive": "곡면과 경계의 방향을 함께 반전시켜 비교한다.",
+    "sections": ["4.5"],
+    "pages": "165–176",
+    "pdf": "7",
+    "tex": "\\oint_C\\mathbf f\\cdot d\\mathbf r=\\iint_{\\Sigma}(\\operatorname{curl}\\mathbf f)\\cdot\\mathbf n\\,d\\sigma",
+    "details": [
+      {
+        "label": "가향성 · 경계 방향 · 회전의 국소 순환",
+        "tex": "C=\\partial\\Sigma,\\quad\\operatorname{curl}\\mathbf f=\\nabla\\times\\mathbf f",
+        "note": "뫼비우스 띠는 비가향 예시이다. 법선과 경계 방향을 함께 반전하면 양변의 부호가 함께 바뀐다. 3차원의 연쇄법칙·퍼텐셜도 이 절에서 다룬다."
+      },
+      {
+        "label": "회전 0과 퍼텐셜의 역방향",
+        "tex": "\\mathbf f=\\nabla F\\ \\Longrightarrow\\ \\operatorname{curl}\\mathbf f=\\mathbf0",
+        "note": "역방향에는 매끄러움과 단순 연결 등 정의역 조건을 함께 확인한다."
+      }
+    ]
+  },
+  {
+    "id": "D5",
+    "group": "선적분과 면적분",
+    "title": "미분 연산자의 통합",
+    "question": "그래디언트·발산·회전은 어떻게 연결될까?",
+    "formula": "\\nabla f,\\quad\\operatorname{div}\\mathbf f=\\nabla\\cdot\\mathbf f,\\quad\\operatorname{curl}\\mathbf f=\\nabla\\times\\mathbf f,\\quad\\Delta f=\\nabla\\cdot\\nabla f",
+    "condition": "항등식은 필요한 혼합 편미분의 연속성과 순서 교환 아래 성립한다. 원통·구면에서는 변하는 기저와 길이 배율을 함께 사용한다.",
+    "interactive": "같은 스칼라장·벡터장에서 연산자를 전환한다.",
+    "sections": ["4.6"],
+    "pages": "177–186",
+    "pdf": "7",
+    "tex": "\\nabla f,\\quad\\operatorname{div}\\mathbf f=\\nabla\\cdot\\mathbf f,\\quad\\operatorname{curl}\\mathbf f=\\nabla\\times\\mathbf f,\\quad\\Delta f=\\nabla\\cdot\\nabla f",
+    "details": [
+      {
+        "label": "입력 · 출력 · 연산자 항등식",
+        "tex": "\\nabla\\times\\nabla f=\\mathbf0,\\quad\\nabla\\cdot(\\nabla\\times\\mathbf f)=0",
+        "note": "그래디언트는 스칼라→벡터, 발산은 벡터→스칼라, 회전은 벡터→벡터이다. ∇를 보통 수치 벡터와 구별한다."
+      },
+      {
+        "label": "가우스 법칙 · 교재의 단위계",
+        "tex": "\\nabla\\cdot\\mathbf E=4\\pi\\rho",
+        "note": "교재의 Gaussian/CGS 단위를 유지한다. 여기의 ρ는 전하밀도이며 구면좌표의 반지름 ρ와 문맥으로 구별한다."
+      },
+      {
+        "label": "직교좌표 · 그래디언트",
+        "tex": "\\nabla F=F_x\\mathbf i+F_y\\mathbf j+F_z\\mathbf k",
+        "note": ""
+      },
+      {
+        "label": "직교좌표 · 발산",
+        "tex": "\\nabla\\cdot\\mathbf f=\\partial_x f_1+\\partial_y f_2+\\partial_z f_3",
+        "note": ""
+      },
+      {
+        "label": "직교좌표 · 회전",
+        "tex": "\\nabla\\times\\mathbf f=(\\partial_y f_3-\\partial_z f_2)\\mathbf i+(\\partial_z f_1-\\partial_x f_3)\\mathbf j+(\\partial_x f_2-\\partial_y f_1)\\mathbf k",
+        "note": ""
+      },
+      {
+        "label": "직교좌표 · 라플라시안",
+        "tex": "\\Delta F=F_{xx}+F_{yy}+F_{zz}",
+        "note": ""
+      },
+      {
+        "label": "원통좌표 · 그래디언트",
+        "tex": "\\nabla F=F_r\\mathbf e_r+\\frac{F_\\theta}{r}\\mathbf e_\\theta+F_z\\mathbf e_z",
+        "note": ""
+      },
+      {
+        "label": "원통좌표 · 발산",
+        "tex": "\\nabla\\cdot\\mathbf f=\\frac1r\\partial_r(rf_r)+\\frac1r\\partial_\\theta f_\\theta+\\partial_z f_z",
+        "note": ""
+      },
+      {
+        "label": "원통좌표 · 회전",
+        "tex": "\\begin{aligned}\\nabla\\times\\mathbf f={}&\\left(\\frac1r\\partial_\\theta f_z-\\partial_z f_\\theta\\right)\\mathbf e_r\\\\&+(\\partial_z f_r-\\partial_r f_z)\\mathbf e_\\theta\\\\&+\\frac1r\\left[\\partial_r(rf_\\theta)-\\partial_\\theta f_r\\right]\\mathbf e_z\\end{aligned}",
+        "note": ""
+      },
+      {
+        "label": "원통좌표 · 라플라시안",
+        "tex": "\\Delta F=\\frac1r\\partial_r(rF_r)+\\frac1{r^2}F_{\\theta\\theta}+F_{zz}",
+        "note": ""
+      },
+      {
+        "label": "구면좌표 · 그래디언트",
+        "tex": "\\nabla F=F_\\rho\\mathbf e_\\rho+\\frac{F_\\theta}{\\rho\\sin\\phi}\\mathbf e_\\theta+\\frac{F_\\phi}{\\rho}\\mathbf e_\\phi",
+        "note": ""
+      },
+      {
+        "label": "구면좌표 · 발산",
+        "tex": "\\nabla\\cdot\\mathbf f=\\frac1{\\rho^2}\\partial_\\rho(\\rho^2f_\\rho)+\\frac1{\\rho\\sin\\phi}\\partial_\\theta f_\\theta+\\frac1{\\rho\\sin\\phi}\\partial_\\phi(\\sin\\phi f_\\phi)",
+        "note": ""
+      },
+      {
+        "label": "구면좌표 · 회전",
+        "tex": "\\begin{aligned}\\nabla\\times\\mathbf f={}&\\frac{\\partial_\\phi(\\sin\\phi f_\\theta)-\\partial_\\theta f_\\phi}{\\rho\\sin\\phi}\\mathbf e_\\rho\\\\&+\\frac{\\partial_\\rho(\\rho f_\\phi)-\\partial_\\phi f_\\rho}{\\rho}\\mathbf e_\\theta\\\\&+\\left[\\frac{\\partial_\\theta f_\\rho}{\\rho\\sin\\phi}-\\frac{\\partial_\\rho(\\rho f_\\theta)}{\\rho}\\right]\\mathbf e_\\phi\\end{aligned}",
+        "note": ""
+      },
+      {
+        "label": "구면좌표 · 라플라시안",
+        "tex": "\\Delta F=\\frac1{\\rho^2}\\partial_\\rho(\\rho^2F_\\rho)+\\frac{F_{\\theta\\theta}}{\\rho^2\\sin^2\\phi}+\\frac1{\\rho^2\\sin\\phi}\\partial_\\phi(\\sin\\phi F_\\phi)",
+        "note": "이 표에서 F는 스칼라장이다. 원통에서는 r > 0, 구면에서는 ρ > 0, sin φ ≠ 0인 좌표 영역에서 식을 사용한다. 극·축에서는 좌표식의 특이점과 실제 장의 특이점을 구별한다."
+      }
+    ]
+  }
+]

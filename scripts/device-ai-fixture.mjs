@@ -1,6 +1,6 @@
 import { build } from 'esbuild';
 import { preview } from 'vite';
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, writeFile, readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { createRequire } from 'node:module';
 const root = process.cwd();
@@ -17,11 +17,17 @@ await build({
   target: 'es2022',
   nodePaths: [path.join(root, 'node_modules')],
   loader: { '.woff': 'file', '.woff2': 'file', '.ttf': 'file', '.wasm': 'file', '.bin': 'file' },
-  define: { 'import.meta.env.DEV': 'true', 'import.meta.env.PROD': 'false' },
+  define: { 'import.meta.env.DEV': 'true', 'import.meta.env.PROD': 'false', 'import.meta.env.BASE_URL': JSON.stringify('/') },
   plugins: [
     {
       name: 'isolated-gpt-client',
       setup(api) {
+        api.onResolve({ filter: /\.mjs\?url$/ }, args => ({
+          path: fixtureRequire.resolve(args.path.slice(0, -4)), namespace: 'fixture-url-asset',
+        }));
+        api.onLoad({ filter: /.*/, namespace: 'fixture-url-asset' }, async args => ({
+          contents: await readFile(args.path), loader: 'file',
+        }));
         api.onResolve({ filter: /data\/photo-outline(?:\.ts)?$/ }, () => ({ path: path.join(root, 'e2e/fixtures/photo-outline-client.ts') }));
         api.onResolve({ filter: /data\/study-ai(?:\.ts)?$/ }, () => ({
           path: path.join(root, 'e2e/fixtures/study-ai-client.ts'),

@@ -17,7 +17,7 @@ import {
 import { StudyResultText } from './study-result-text';
 import { canUseOwnerAI } from '../domain/ai-access';
 import { lazy, Suspense, useEffectEvent, useEffect, useMemo, useRef, useState } from 'react';
-import { Button, Checkbox, EmptyState, ErrorState, Input, Select, Textarea } from './index';
+import { Button, Checkbox, EmptyState, ErrorState, Input, Select, Textarea, LoadingState } from './index';
 import type { AppState } from '../domain/model';
 import {
   materialContent,
@@ -52,6 +52,7 @@ import './study-materials.css';
 const MaterialMap = lazy(() =>
   import('./material-map').then((module) => ({ default: module.MaterialMap })),
 );
+const LinearAlgebraBookEntry = lazy(() => import('./linear-algebra-observations').then(module => ({ default: module.LinearAlgebraBookEntry })));
 
 type Props = {
   data: AppState;
@@ -73,7 +74,12 @@ const context = (data: AppState) => ({
 const clock = (seconds: number) =>
   `${Math.floor(seconds / 60)}:${String(Math.floor(seconds % 60)).padStart(2, '0')}`;
 
+const VectorCalculus = lazy(() => import('./vector-calculus').then(module => ({ default: module.VectorCalculus })));
 export function StudyMaterials(props: Props) {
+  if (props.materialId === 'vector-calculus') return <Suspense fallback={<LoadingState message="벡터 미적분 자료를 여는 중입니다." />}><VectorCalculus data={props.data} sourceShelf /></Suspense>;
+  return <><Button onClick={() => navigate('/materials/vector-calculus')}>벡터 미적분 자료와 관찰</Button><StudyMaterialContent {...props} /></>;
+}
+function StudyMaterialContent(props: Props) {
   const { data, repository, onSaved, materialId, initialSubjectId, trash = false } = props;
   const aiAllowed = canUseOwnerAI(data);
   const [error, setError] = useState('');
@@ -127,6 +133,7 @@ export function StudyMaterials(props: Props) {
     );
   return (
     <section className="study-materials">
+      {!trash && !materialId && <Suspense fallback={null}><LinearAlgebraBookEntry data={data} repository={repository} onSaved={onSaved}/></Suspense>}
       {error && <ErrorState message={error} />}
       <div className="material-toolbar">
         <p>
