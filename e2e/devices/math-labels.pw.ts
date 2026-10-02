@@ -117,6 +117,11 @@ test('math TeX symbols stay beside axes, colors separate and doubled ranges pers
   for (const name of ['T', 'N', 'B'])
     await expect(page.locator(`.math-plot [data-tex="\\\\mathbf{${name}}"] .katex`)).toHaveCount(1);
   const checkPlotlyLabels = async () => {
+    // Reveal the graph before measuring its painted labels. Narrow landscape
+    // screens leave it below the controls; WebKit defers offscreen layout.
+    await page.keyboard.press('PageDown');
+    await page.locator('.math-plot').evaluate(node => node.scrollIntoView({ block: 'center', behavior: 'instant' }));
+    await expect(page.locator('.math-plot')).toBeInViewport();
     await expect
       .poll(async () => {
         const offsets = await page.locator('.math-plot').evaluate((host) =>

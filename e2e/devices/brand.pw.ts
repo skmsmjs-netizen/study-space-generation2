@@ -52,7 +52,8 @@ test('brand continuity, exact next action, support draft and opt-in survive reen
   await page.reload();
   await expect(consent).toBeChecked();
   await page.goto('?space=demo#/');
-  await page.getByRole('button', { name: '이어가기', exact: true }).click();
+  await page.getByRole('button', { name: '이어가기', exact: true }).press('Enter');
+  await expect(page.locator('main h1')).toHaveText('함수는 어떤 관계일까?');
   await page.goto('?space=demo#/my-progress');
   await expect(page.getByText('이어가기: 1회', { exact: true })).toBeVisible();
   const body = await page.locator('body').textContent();
