@@ -3,6 +3,8 @@ import { packServerState, unpackServerState } from '../../../src/server/state-co
 import { handleCommand } from '../../../src/server/command-handler';
 import { DomainError, type AppState, type Command, type Namespace } from '../../../src/domain/model';
 import type { AccountAccess, AccountPage, AccessStatus } from '../../../src/server/account-access';
+import { withdrawAccountFiles } from '../../../src/server/account-withdrawal';
+import { handleWithdrawalStatus } from '../../../src/server/withdrawal-status';
 declare const Deno: { env: { get(key: string): string | undefined }; serve(handler: (request: Request) => Promise<Response>): void };
 const url = Deno.env.get('SUPABASE_URL')!;
 const anon = Deno.env.get('SUPABASE_ANON_KEY')!;
@@ -19,7 +21,9 @@ async function admin(path: string, options: RequestInit = {}) {
   }
   return result;
 }
-Deno.serve(request => handleCommand(request, {
+Deno.serve(request => new URL(request.url).pathname.endsWith('/withdrawal-status')
+  ? handleWithdrawalStatus(request, requestId => admin('rpc/study_withdrawal_status', { method: 'POST', body: JSON.stringify({ p_request: requestId }) }))
+  : handleCommand(request, {
   async authenticate(token: string) {
     const response = await fetch(`${url}/auth/v1/user`, { headers: { apikey: anon, Authorization: `Bearer ${token}` } });
     if (!response.ok) throw new DomainError('AUTH_REQUIRED', '로그인이 만료되었습니다. 작성 내용을 보존하고 다시 로그인해 주세요.');
@@ -37,8 +41,19 @@ Deno.serve(request => handleCommand(request, {
   async setAccountName(userId: string, name: string): Promise<AccountAccess> {
     return admin('rpc/study_set_account_name', { method: 'POST', body: JSON.stringify({ p_user: userId, p_name: name }) });
   },
-  async withdrawAccount(userId: string) {
-    await admin('rpc/study_withdraw_account', { method: 'POST', body: JSON.stringify({ p_user: userId }) });
+  async withdrawAccount(userId: string, requestId = crypto.randomUUID()) {
+    return withdrawAccountFiles({
+      begin: (id, receipt) => admin('rpc/study_begin_withdrawal', { method: 'POST', body: JSON.stringify({ p_user: id, p_request: receipt }) }),
+      batch: id => admin('rpc/study_withdraw_storage_batch', { method: 'POST', body: JSON.stringify({ p_user: id }) }),
+      finish: async id => { await admin('rpc/study_withdraw_account', { method: 'POST', body: JSON.stringify({ p_user: id }) }); },
+      async remove(bucket, names) {
+        const response = await fetch(`${url}/storage/v1/object/${encodeURIComponent(bucket)}`, {
+          method: 'DELETE', headers: { apikey: service, Authorization: `Bearer ${service}`, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ prefixes: names }), signal: AbortSignal.timeout(12000),
+        });
+        if (!response.ok) throw new DomainError('SERVER_ERROR', '첨부 파일 정리를 마치지 못했습니다. 계정과 이 기기의 기록은 아직 삭제하지 않았습니다. 탈퇴 처리를 다시 시도해 주세요.');
+      },
+    }, userId, requestId);
   },
   async read(userId: string, namespace: Namespace) {
     const row = await admin('rpc/study_read_workspace', { method: 'POST', body: JSON.stringify({ p_user: userId, p_namespace: namespace }) });

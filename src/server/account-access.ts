@@ -1,7 +1,7 @@
 import { DomainError } from '../domain/model';
 
 export type AccessStatus = 'pending' | 'approved' | 'rejected' | 'suspended';
-export interface AccountAccess { status: AccessStatus; administrator: boolean; displayName?: string | null }
+export interface AccountAccess { status: AccessStatus; administrator: boolean; displayName?: string | null; withdrawalPending?: boolean }
 export interface ManagedAccount extends AccountAccess {
   userId: string; email: string; createdAt: string; emailConfirmed: boolean; version: number;
 }

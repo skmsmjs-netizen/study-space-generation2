@@ -3761,9 +3761,6 @@ function applyCommand(state, command) {
     if (collection === "memoryCards") next.memoryCards ??= [];
     if (collection === "memoryTests") next.memoryTests ??= [];
     if (collection === "learningPlans") next.learningPlans ??= [];
-    if (collection === "conceptCatalogs") next.conceptCatalogs ??= [];
-    if (collection === "conceptEditions") next.conceptEditions ??= [];
-    if (collection === "conceptBatches") next.conceptBatches ??= [];
     if (collection === "studyBoards") next.studyBoards ??= [];
     if (collection === "canvasLayouts") next.canvasLayouts ??= [];
     if (collection === "studyMaterials") next.studyMaterials ??= [];
@@ -4615,10 +4612,8 @@ async function handleCommand(request, backend) {
     if (body.action === "withdraw") {
       if (body.confirmation !== "\uD0C8\uD1F4" || body.target !== void 0) throw new DomainError("INVALID_REQUEST", "\uBCF8\uC778 \uACC4\uC815\uC758 \uD0C8\uD1F4 \uD655\uC778\uC744 \uB2E4\uC2DC \uD574 \uC8FC\uC138\uC694.");
       if (!backend.withdrawAccount) throw new DomainError("SERVER_ERROR", "\uD0C8\uD1F4 \uC5F0\uACB0\uC744 \uD655\uC778\uD574 \uC8FC\uC138\uC694.");
-      if (body.requestId !== undefined && !withdrawalSupport.validWithdrawalId(body.requestId)) throw new DomainError('INVALID_REQUEST', '탈퇴 확인 번호를 확인해 주세요.');
-      const result = await backend.withdrawAccount(userId, body.requestId);
-      if (result && !result.withdrawn && body.requestId === undefined) throw new DomainError('SERVER_ERROR', '첨부 파일을 정리하고 있습니다. 탈퇴 처리를 다시 시도해 주세요.');
-      return json(result ?? { withdrawn: true }, result && !result.withdrawn ? 202 : 200);
+      await backend.withdrawAccount(userId);
+      return json({ withdrawn: true });
     }
     if (body.action === "admin-list" || body.action === "admin-set") {
       requireAdministrator(access);
@@ -4838,73 +4833,7 @@ var photoOutlineSupport = (() => {
   }
   return __toCommonJS(stdin_exports);
 })();
-const withdrawalSupport = (() => {
-// src/server/account-withdrawal.ts
-
-var validWithdrawalId = (id) => typeof id === "string" && /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(id);
-async function withdrawAccountFiles(backend, userId, requestId) {
-  const started = await backend.begin(userId, requestId);
-  if (started.requestId !== requestId) return { withdrawn: false, requestId: started.requestId };
-  const objects = await backend.batch(userId);
-  const buckets = /* @__PURE__ */ new Map();
-  for (const object of objects) {
-    if (!object || typeof object.bucket !== "string" || typeof object.name !== "string") throw new DomainError("SERVER_ERROR", "\uCCA8\uBD80 \uD30C\uC77C \uBAA9\uB85D\uC744 \uD655\uC778\uD558\uC9C0 \uBABB\uD588\uC2B5\uB2C8\uB2E4. \uD0C8\uD1F4 \uCC98\uB9AC\uB97C \uB2E4\uC2DC \uC2DC\uB3C4\uD574 \uC8FC\uC138\uC694.");
-    const names = buckets.get(object.bucket) ?? [];
-    names.push(object.name);
-    buckets.set(object.bucket, names);
-  }
-  for (const [bucket, names] of buckets) await backend.remove(bucket, names);
-  if ((await backend.batch(userId)).length) return { withdrawn: false, requestId };
-  await backend.finish(userId);
-  return { withdrawn: true, requestId };
-}
-
-// src/server/withdrawal-status.ts
-var headers = { "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Headers": "authorization, apikey, content-type, x-client-info", "Access-Control-Allow-Methods": "POST, OPTIONS", "Cache-Control": "no-store", "Content-Type": "application/json" };
-async function handleWithdrawalStatus(request, status) {
-  if (request.method === "OPTIONS") return new Response(null, { status: 204, headers });
-  if (request.method !== "POST") return new Response("{}", { status: 405, headers });
-  try {
-    const reader = request.body?.getReader();
-    const chunks = [];
-    let size = 0;
-    if (reader) try {
-      while (true) {
-        const part = await reader.read();
-        if (part.done) break;
-        size += part.value.byteLength;
-        if (size > 512) {
-          await reader.cancel();
-          throw Error("request");
-        }
-        chunks.push(part.value);
-      }
-    } finally {
-      reader.releaseLock();
-    }
-    const bytes = new Uint8Array(size);
-    let offset = 0;
-    for (const chunk of chunks) {
-      bytes.set(chunk, offset);
-      offset += chunk.length;
-    }
-    const body = JSON.parse(new TextDecoder().decode(bytes));
-    if (!validWithdrawalId(body?.requestId)) return new Response("{}", { status: 400, headers });
-    const result = await status(body.requestId);
-    return new Response(JSON.stringify({ withdrawn: result.withdrawn === true }), { headers });
-  } catch {
-    return new Response("{}", { status: 503, headers });
-  }
-}
-return {
-  handleWithdrawalStatus,
-  validWithdrawalId,
-  withdrawAccountFiles
-};
-})();
-Deno.serve((request) => new URL(request.url).pathname.endsWith('/withdrawal-status')
-  ? withdrawalSupport.handleWithdrawalStatus(request, requestId => admin('rpc/study_withdrawal_status', { method: 'POST', body: JSON.stringify({ p_request: requestId }) }))
-  : handleCommand(request, {
+Deno.serve((request) => handleCommand(request, {
   async authenticate(token) {
     const response = await fetch(`${url}/auth/v1/user`, { headers: { apikey: anon, Authorization: `Bearer ${token}` } });
     if (!response.ok) throw new DomainError("AUTH_REQUIRED", "\uB85C\uADF8\uC778\uC774 \uB9CC\uB8CC\uB418\uC5C8\uC2B5\uB2C8\uB2E4. \uC791\uC131 \uB0B4\uC6A9\uC744 \uBCF4\uC874\uD558\uACE0 \uB2E4\uC2DC \uB85C\uADF8\uC778\uD574 \uC8FC\uC138\uC694.");
@@ -4922,19 +4851,8 @@ Deno.serve((request) => new URL(request.url).pathname.endsWith('/withdrawal-stat
   async setAccountName(userId, name) {
     return admin("rpc/study_set_account_name", { method: "POST", body: JSON.stringify({ p_user: userId, p_name: name }) });
   },
-  async withdrawAccount(userId, requestId = crypto.randomUUID()) {
-    return withdrawalSupport.withdrawAccountFiles({
-      begin: (id, receipt) => admin('rpc/study_begin_withdrawal', { method: 'POST', body: JSON.stringify({ p_user: id, p_request: receipt }) }),
-      batch: id => admin('rpc/study_withdraw_storage_batch', { method: 'POST', body: JSON.stringify({ p_user: id }) }),
-      finish: async id => { await admin('rpc/study_withdraw_account', { method: 'POST', body: JSON.stringify({ p_user: id }) }); },
-      async remove(bucket, names) {
-        const response = await fetch(`${url}/storage/v1/object/${encodeURIComponent(bucket)}`, {
-          method: 'DELETE', headers: { apikey: service, Authorization: `Bearer ${service}`, 'Content-Type': 'application/json' },
-          body: JSON.stringify({ prefixes: names }), signal: AbortSignal.timeout(12000),
-        });
-        if (!response.ok) throw new DomainError('SERVER_ERROR', '첨부 파일 정리를 마치지 못했습니다. 계정과 이 기기의 기록은 아직 삭제하지 않았습니다. 탈퇴 처리를 다시 시도해 주세요.');
-      },
-    }, userId, requestId);
+  async withdrawAccount(userId) {
+    await admin("rpc/study_withdraw_account", { method: "POST", body: JSON.stringify({ p_user: userId }) });
   },
   read: readWorkspace,
   async readConditional(userId, namespace, knownSequence) {

@@ -3,6 +3,7 @@ import { DomainError, emptyState, type AppState, type Command, type Namespace } 
 import { requireApproved, requireAdministrator, validateAccountName, accessStatuses, type AccountAccess, type AccountPage, type AccessStatus } from './account-access';
 import { MAX_SYNC_BATCH, MAX_SYNC_BATCH_CHARS, type SyncCapabilities } from '../domain/sync-protocol';
 import { requestTiming } from './request-timing';
+import { validWithdrawalId, type WithdrawalResult } from './account-withdrawal';
 export interface ServerSnapshot { sequence: number; data: AppState; supportedCommands?: string[]; syncCapabilities?: SyncCapabilities }
 export interface CommandBackend {
   authenticate(token: string): Promise<string>;
@@ -10,7 +11,7 @@ export interface CommandBackend {
   listAccounts?(actor: string, cursor: string | null): Promise<AccountPage>;
   setAccountAccess?(actor: string, target: string, status: AccessStatus, version: number): Promise<void>;
   setAccountName?(userId: string, name: string): Promise<AccountAccess>;
-  withdrawAccount?(userId: string): Promise<void>;
+  withdrawAccount?(userId: string, requestId?: string): Promise<void | WithdrawalResult>;
   read(userId: string, namespace: Namespace): Promise<ServerSnapshot | null>;
   commit(userId: string, namespace: Namespace, base: number, command: Command, next: AppState): Promise<ServerSnapshot>;
   commitBatch?(userId: string, namespace: Namespace, base: number, commands: Command[], next: AppState): Promise<ServerSnapshot>;
@@ -50,8 +51,10 @@ export async function handleCommand(request: Request, backend: CommandBackend): 
     if (body.action === 'withdraw') {
       if (body.confirmation !== '탈퇴' || body.target !== undefined) throw new DomainError('INVALID_REQUEST', '본인 계정의 탈퇴 확인을 다시 해 주세요.');
       if (!backend.withdrawAccount) throw new DomainError('SERVER_ERROR', '탈퇴 연결을 확인해 주세요.');
-      await backend.withdrawAccount(userId);
-      return json({ withdrawn: true });
+      if (body.requestId !== undefined && !validWithdrawalId(body.requestId)) throw new DomainError('INVALID_REQUEST', '탈퇴 확인 번호를 확인해 주세요.');
+      const result = await backend.withdrawAccount(userId, body.requestId);
+      if (result && !result.withdrawn && body.requestId === undefined) throw new DomainError('SERVER_ERROR', '첨부 파일을 정리하고 있습니다. 계정과 이 기기의 기록은 아직 삭제하지 않았습니다. 탈퇴 처리를 다시 시도해 주세요.');
+      return json(result ?? { withdrawn: true }, result && !result.withdrawn ? 202 : 200);
     }
     if (body.action === 'admin-list' || body.action === 'admin-set') {
       requireAdministrator(access);

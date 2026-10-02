@@ -18,8 +18,13 @@ function fixture(result: unknown) {
   } as unknown as SupabaseClient;
   return { transport: onlineTransport(client), invoke };
 }
-beforeEach(clearRequestPerformance);
-afterEach(() => vi.unstubAllEnvs());
+beforeEach(() => {
+  clearRequestPerformance();
+  const values = new Map<string,string>();
+  vi.stubGlobal('localStorage', { get length(){return values.size;}, key:(index:number)=>[...values.keys()][index]??null, getItem:(key:string)=>values.get(key)??null, setItem:(key:string,value:string)=>values.set(key,value), removeItem:(key:string)=>values.delete(key), clear:()=>values.clear() });
+  vi.stubGlobal('fetch',vi.fn().mockResolvedValue(Response.json({withdrawn:false})));
+});
+afterEach(() => { vi.unstubAllEnvs(); vi.unstubAllGlobals(); });
 it('routes only multi-operation batches to the known production database region', async () => {
   const f = fixture(known());
   const op = (id:string):Command => ({type:'addSubject',id,name:id,scope:{kind:'independent'},userId:user,namespace:'personal',at:'2026-10-01T00:00:00Z',opId:id});
@@ -136,10 +141,11 @@ it('keeps withdrawal on the checked account when the SDK sees an account switch 
   const replacement = { user: { id: 'another-user' }, access_token: 'other-account-token' } as Session;
   vi.spyOn(client.auth, 'getSession')
     .mockResolvedValueOnce({ data: { session: original }, error: null })
+    .mockResolvedValueOnce({ data: { session: original }, error: null })
     .mockResolvedValue({ data: { session: replacement }, error: null });
   try {
     await expect(accountAccessClient(client).withdraw!()).rejects.toMatchObject({ code: 'OWNERSHIP' });
-    expect(requests).toEqual([{ authorization: 'Bearer checked-owner-token', body: { action: 'withdraw', confirmation: '탈퇴' } }]);
+    expect(requests).toEqual([{ authorization: 'Bearer checked-owner-token', body: { action: 'withdraw', confirmation: '탈퇴',requestId:expect.any(String) } }]);
   } finally { await client.auth.dispose(); }
 });
 
@@ -276,10 +282,10 @@ it('accepts a confirmed withdrawal whose session disappeared, but rejects a diff
   const f = sessionFixture();
   f.invoke.mockImplementationOnce(async () => {
     f.getSession.mockRejectedValueOnce(new AuthApiError('Session was deleted', 401, 'session_not_found'));
-    return { data: {}, error: null };
+    return { data: {withdrawn:true}, error: null };
   });
   await expect(f.account.withdraw!()).resolves.toBeUndefined();
-  f.invoke.mockImplementationOnce(async () => { f.changeOwner(); return { data: {}, error: null }; });
+  f.invoke.mockImplementationOnce(async () => { f.changeOwner(); return { data: {withdrawn:true}, error: null }; });
   await expect(f.account.withdraw!()).rejects.toMatchObject({ code: 'OWNERSHIP' });
   expect(f.invoke).toHaveBeenCalledTimes(2);
 });

@@ -11,6 +11,7 @@ import { accountAccessClient } from '../data/account-access';
 import { accessMessages, type AccountAccess } from '../server/account-access';
 import { AccountSettings } from './account-settings';
 import { clearWithdrawnAccount } from '../data/account-cleanup';
+import { pendingWithdrawals, withdrawalCompleted, forgetWithdrawalReceipt } from '../data/withdrawal-recovery';
 import { validateAccountName } from '../server/account-access';
 import { AccountAdministration } from './account-administration';
 import { claimPersonalWindow, personalWindowCopies } from '../data/personal-window';
@@ -86,6 +87,23 @@ export function PersonalSpace({ renderWorkspace }: { renderWorkspace: (repo: Per
     return () => { disposed = true; finish(); };
   }, [client, accessApi, userId, retry, withdrawn]);
   useEffect(() => repo ? startPersonalSync(repo) : undefined, [repo]);
+  useEffect(() => {
+    if (!configured || !authReady) return;
+    let disposed = false;
+    void (async () => {
+      for (const receipt of pendingWithdrawals()) {
+        if (!await withdrawalCompleted(configured, receipt.requestId).catch(() => false) || disposed) continue;
+        if (currentUser.current && currentUser.current !== receipt.userId) {
+          // A new login must never be signed out by another account's receipt.
+          await clearWithdrawnAccount(receipt.userId); forgetWithdrawalReceipt(receipt.userId); continue;
+        }
+        setWithdrawn(receipt.userId); setRepo(null); setUserId(null);
+        if (currentUser.current === receipt.userId) await client?.auth.signOut({ scope: 'local' }).catch(() => {});
+        await cleanupWithdrawal(receipt.userId);
+      }
+    })().catch(() => { /* Keep the receipt and local originals for the next attempt. */ });
+    return () => { disposed = true; };
+  }, [configured, client, authReady]);
   async function cleanupWithdrawal(id: string) {
     await writerTask.current.catch(() => {});
     try {
@@ -94,12 +112,15 @@ export function PersonalSpace({ renderWorkspace }: { renderWorkspace: (repo: Per
         await navigator.locks.request(`study-space:personal:${id}:writer`, {ifAvailable:true}, async lock=>{if(!lock)throw Error('다른 창에서 사용 중입니다.');await clearWithdrawnAccount(id);});
       });
       else await clearWithdrawnAccount(id);
-      setWithdrawalNotice('탈퇴했습니다. 계정과 서버 기록, 이 브라우저의 개인 자료를 삭제했습니다.'); }
+      forgetWithdrawalReceipt(id);
+      setWithdrawalNotice('탈퇴했습니다. 계정과 서버 기록·첨부 파일, 이 브라우저의 개인 자료를 삭제했습니다.'); }
     catch { setWithdrawalNotice('탈퇴했고 서버 기록은 삭제했습니다. 이 브라우저의 개인 자료 정리는 끝나지 않았습니다. 다른 학습앱 창을 닫은 뒤 다시 시도해 주세요.'); }
   }
   async function onWithdrawn() {
     if (!userId) return;
-    const id=userId; setWithdrawn(id); setRepo(null); setUserId(null);
+    const id=userId;
+    if (currentUser.current && currentUser.current !== id) { await clearWithdrawnAccount(id); forgetWithdrawalReceipt(id); return; }
+    setWithdrawn(id); setRepo(null); setUserId(null);
     try { await client?.auth.signOut({ scope:'local' }); } catch { /* Deleted identities cannot access the server. */ }
     await cleanupWithdrawal(id);
   }
