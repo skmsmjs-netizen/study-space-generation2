@@ -2,7 +2,7 @@
 @font-face {
   /* design-token-exception: font-family -- Font-face descriptor names the locally licensed brand family; consuming rules use the shared font token. */
   font-family: "ManSeekSong Promise";
-  src: url("/fonts/brand/noto-serif-kr-promise.woff2") format("woff2");
+  src: url("/fonts/brand/noto-serif-kr-observatory.woff2") format("woff2");
   font-style: normal;
   /* design-token-exception: font-weight -- Font-face descriptor must declare the static asset weight rather than a custom property. */
   font-weight: 500;

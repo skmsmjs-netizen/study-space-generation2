@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { BRAND } from '../domain/brand';
 import type { AppState } from '../domain/model';
 import { clearStudyLaunch, readStudyLaunch, resolveStudyLaunchTarget, saveStudyLaunch, type StudyLaunchHint } from '../data/study-launch';
 import { Button, Card, ErrorState, Modal } from './index';
@@ -56,9 +57,9 @@ function StudyLaunchContent({ data, nodeId, onRecord = id => navigate(`/record/$
     {!open && error && <ErrorState message={error} onRetry={retryRead} />}
     {displayedHint && hint && <Card className="study-launch-return">
       {returning ? <>
-        <h2>공부하고 오세요 ~</h2>
+        <h2>공부 시작</h2>
         <p className="muted">{returning.path.join(' → ')}</p>
-        <p>돌아오면 해본 만큼만 남겨 주세요. 일부만 했거나 막힌 부분도 남길 수 있습니다.</p>
+        <p>{BRAND.departure} 일부만 했거나 막힌 부분도 남길 수 있습니다.</p>
         <p className="muted">이 기기에 복귀 위치만 보관했습니다. 시작 안내로 공부 기록이나 활동 체크가 추가되지는 않습니다.</p>
         <div className="actions"><Button variant="primary" onClick={() => record(returning.node.id, hint)}>다 하셨으면 기록하세요</Button><Button variant="quiet" onClick={choose}>다른 내용 고르기</Button></div>
       </> : <>

@@ -1,12 +1,12 @@
 export const BRAND = {
   name: 'manseeksong',
   productName: 'ManSeekSong OS',
-  promise: '공부가 이어지는 자리',
-  headline: '남겨둔 생각에서, 다음 공부로.',
-  description: '읽던 자료, 적던 생각, 다음에 할 일. 한자리에 두고 이어가세요.',
-  monthly: '한 달의 기록, 다음 공부의 단서.',
-  company: '생각이 실제로 이어지는 도구를 만듭니다.',
-  departure: '공부하고 오세요. 돌아오면 해본 만큼만 남겨 주세요.',
+  promise: '생각을 펼치는 나의 천문대',
+  headline: '읽고, 쓰고, 연결하며 생각을 펼쳐요.',
+  description: '자료를 살피고, 생각을 적고, 연결을 찾아보세요. 나의 천문대에서 이어가세요.',
+  monthly: '한 달의 기록, 다음 탐구의 단서.',
+  company: '생각을 펼치고 이어가는 도구를 만듭니다.',
+  departure: '다녀오세요. 돌아오면 해본 만큼만 남겨 주세요.',
 } as const;
 
 /** An observation of an interface action, never a study event or mastery score. */

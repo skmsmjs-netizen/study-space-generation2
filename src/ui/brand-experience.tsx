@@ -519,7 +519,7 @@ export function BrandService({
     })
     .join('\n\n────────\n\n');
   const exportText = share
-    ? `${share}\n\nmanseeksong · 공부가 이어지는 자리.\n선택한 원문을 내보낸 파일입니다. 독립 수행·정확성·숙달을 뜻하지 않습니다.\n`
+    ? `${share}\n\n${BRAND.name} · ${BRAND.promise}\n선택한 원문을 내보낸 파일입니다. 독립 수행·정확성·숙달을 뜻하지 않습니다.\n`
     : '';
   const preserve = () =>
     downloadText(
