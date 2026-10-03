@@ -33,6 +33,8 @@ import { MathFormula } from './math-formula';
 import { navigate } from './navigation-context';
 import { featureSurfaceAttributes } from './observatory-feature-identity';
 import './linear-algebra-observations.css';
+import {LinearImageObservation} from './linear-image-observation';
+const SourceIndex = lazy(() => import('./linear-source-index').then(m=>({default:m.LinearSourceIndex})));
 const SourceReader = lazy(() =>
   import('./linear-source-reader').then((m) => ({ default: m.LinearSourceReader })),
 );
@@ -45,18 +47,6 @@ type Props = {
   onSaved: (next: AppState) => void;
   reading?: boolean;
 };
-const matrixKinds = [
-  'elimination',
-  'basis',
-  'qr',
-  'least-squares',
-  'lu',
-  'svd',
-  'operations',
-  'eigen',
-  'quadratic',
-  'power',
-];
 const implemented = new Set<LinearKind>(
   Object.keys(LINEAR_SPECS).filter((k) => k !== 'static') as LinearKind[],
 );
@@ -65,6 +55,8 @@ function defaultReading(kind: LinearKind): LinearReading {
     r = newLinearReading();
   r.params = { t: spec.t?.value ?? 2, n: spec.n?.value ?? 4 };
   if (spec.matrix) r.matrix = r.matrixDraft = spec.matrix;
+  if (spec.auxiliary) r.auxiliary = r.auxiliaryDraft = spec.auxiliary.value;
+  if (spec.modes) r.mode = spec.modes[0].value;
   return r;
 }
 export function LinearAlgebraObservations({ data, repository, onSaved, reading = false }: Props) {
@@ -82,6 +74,7 @@ export function LinearAlgebraObservations({ data, repository, onSaved, reading =
   });
   const [mapOpen, setMapOpen] = useState(false);
   const [sourcePage, setSourcePage] = useState<number | null>(null);
+  const [sourceItem,setSourceItem]=useState<string|null>(null);
   const [workspace, setWorkspace] = useState(initial.value),
     [error, setError] = useState(initial.error),
     [status, setStatus] = useState(''),
@@ -102,6 +95,8 @@ export function LinearAlgebraObservations({ data, repository, onSaved, reading =
   const coverage = correspondence.concepts.find((x) => x.id === concept.id);
 
   const state = workspace.readings[concept.id] ?? defaultReading(kind);
+  // Older power observations stored their initial second component in t.
+  const auxiliaryValue=state.auxiliary??(kind==='power'&&workspace.readings[concept.id]?`1\n${state.params.t??0}`:spec.auxiliary?.value??'');
   const update = useCallback(
     (next: LinearWorkspace) => {
       current.current = next;
@@ -134,13 +129,13 @@ export function LinearAlgebraObservations({ data, repository, onSaved, reading =
   const calculated = useMemo(() => {
     try {
       return {
-        result: observeLinear(implemented.has(kind) ? kind : 'static', state.params, state.matrix),
+        result: observeLinear(implemented.has(kind) ? kind : 'static', state.params, state.matrix, auxiliaryValue, state.mode ?? spec.modes?.[0]?.value ?? ''),
         error: '',
       };
     } catch (e) {
       return { result: null, error: e instanceof Error ? e.message : '계산하지 못했다.' };
     }
-  }, [kind, state.params, state.matrix]);
+  }, [kind, state.params, state.matrix, auxiliaryValue, state.mode, spec]);
   const result = calculated.result;
   const invalidPending = (['t', 'n'] as const).some((symbol) => {
     const c = symbol === 't' ? spec.t : spec.n,
@@ -282,8 +277,8 @@ export function LinearAlgebraObservations({ data, repository, onSaved, reading =
       })}
       <p className="prose">
         {implemented.has(kind)
-          ? '계산은 작은 실수 유한차원 예제에 한정한다. 일반 정리와 증명은 원문에서 확인한다.'
-          : '이 항목은 원문 연결과 읽기 설명을 제공하며, 전용 관찰 계산은 아직 연결하지 않았다.'}
+          ? '계산은 위에서 정한 실수·복소수의 유한차원 예제에 한정한다. 일반 정리와 증명은 원문에서 확인한다.'
+          : '이 항목은 정의·가정·논증을 읽는 방식으로 대응한다. 불필요한 수치 조작을 강제하지 않는다.'}
       </p>
     </details>
   );
@@ -384,7 +379,7 @@ export function LinearAlgebraObservations({ data, repository, onSaved, reading =
           )}
           {result?.secondaryPlot && (
             <>
-              <h3>연속 시간에서 첫 번째 성분</h3>
+              <h3>{kind === 'matrix-dynamics' ? '연속 시간에서 각 상태 성분' : '연속 시간에서 첫 번째 성분'}</h3>
               <Suspense fallback={<LoadingState />}>
                 <Plot
                   item={continuousPlotItem}
@@ -397,6 +392,12 @@ export function LinearAlgebraObservations({ data, repository, onSaved, reading =
               </Suspense>
             </>
           )}
+          {kind === 'svd' && result?.matrix && result.approximation && (() => {
+            const approximation = result.approximation!;
+            return <LinearImageObservation key={concept.id} owner={data} file={state.image}
+              matrix={result.matrix} approx={approximation} detached={state.imageDetached}
+              onApply={(matrix, image) => change({ matrix, matrixDraft: matrix, image, imageDetached:false, step: 0 })} />;
+          })()}
           {result?.tex.map((tex, i) => (
             <MathFormula key={i} tex={tex} />
           ))}
@@ -423,13 +424,13 @@ export function LinearAlgebraObservations({ data, repository, onSaved, reading =
           {implemented.has(kind) && (
             <section data-observation-region="controls">
               <h3>값과 조건 조절</h3>
-              {matrixKinds.includes(kind) && (
+              {spec.matrix && (
                 <>
                   <Textarea
                     label={
-                      kind === 'elimination'
+                      spec.matrixLabel ?? (kind === 'elimination'
                         ? '확대행렬 [A | b] · 마지막 열이 b'
-                        : '행렬 A · 행마다 줄바꿈'
+                        : '행렬 A · 행마다 줄바꿈')
                     }
                     value={state.matrixDraft}
                     onChange={(e) => change({ matrixDraft: e.target.value })}
@@ -437,8 +438,8 @@ export function LinearAlgebraObservations({ data, repository, onSaved, reading =
                   <Button
                     onClick={() => {
                       try {
-                        parseMatrix(state.matrixDraft);
-                        change({ matrix: state.matrixDraft, step: 0 });
+                        observeLinear(kind, state.params, state.matrixDraft, auxiliaryValue, state.mode ?? spec.modes?.[0]?.value ?? '');
+                        change({ matrix: state.matrixDraft, imageDetached:state.image ? true : undefined, step: 0 });
                         setInputError('');
                       } catch (e) {
                         setInputError(e instanceof Error ? e.message : '행렬 입력 오류');
@@ -449,7 +450,27 @@ export function LinearAlgebraObservations({ data, repository, onSaved, reading =
                   </Button>
                 </>
               )}
+              {spec.auxiliary && (
+                <>
+                  <Textarea label={spec.auxiliary.label} value={state.auxiliaryDraft ?? auxiliaryValue}
+                    onChange={(e) => change({ auxiliaryDraft: e.target.value })} />
+                  <Button onClick={() => {
+                    const raw = state.auxiliaryDraft ?? spec.auxiliary!.value;
+                    try {
+                      observeLinear(kind, state.params, state.matrix, raw, state.mode ?? spec.modes?.[0]?.value ?? '');
+                      change({ auxiliary: raw, step: 0 }); setInputError('');
+                    } catch (e) { setInputError(e instanceof Error ? e.message : '보조 입력 오류'); }
+                  }}>보조 입력 적용</Button>
+                </>
+              )}
+              {spec.modes && <Select label={kind==='triangular'?'분해 방식':'관찰 방식'} value={state.mode ?? spec.modes[0].value}
+                onChange={(e) => change({ mode: e.target.value, step: 0 })}>
+                {spec.modes.map((m) => <option key={m.value} value={m.value}>{m.label}</option>)}
+              </Select>}
               {(['t', 'n'] as const).map((symbol) => {
+                if(kind==='data-fit'&&symbol==='n'&&state.mode==='logarithmic')return null;
+                if(kind==='function-inner'&&symbol==='n'&&state.mode!=='best')return null;
+                if(kind==='geometry'&&symbol==='t'&&(!state.mode||state.mode==='matrix'))return null;
                 const control = symbol === 't' ? spec.t : spec.n;
                 return control ? (
                   <div key={symbol}>
@@ -520,6 +541,10 @@ export function LinearAlgebraObservations({ data, repository, onSaved, reading =
                   inputs: {},
                   matrix: defaultReading(kind).matrix,
                   matrixDraft: defaultReading(kind).matrixDraft,
+                  auxiliary: defaultReading(kind).auxiliary,
+                  auxiliaryDraft: defaultReading(kind).auxiliaryDraft,
+                  mode: defaultReading(kind).mode,
+                  imageDetached:state.image ? true : undefined,
                   step: 0,
                 })
               }
@@ -680,13 +705,10 @@ export function LinearAlgebraObservations({ data, repository, onSaved, reading =
       ) : (
         <div hidden={expanded}>{observation()}</div>
       )}
+      <Suspense fallback={<LoadingState message="원문 항목 연결을 펼치는 중이다." />}><SourceIndex selected={concept.id} onSelect={select} onSource={(pdf,id)=>{setSourceItem(id);setSourcePage(pdf);}} /></Suspense>
       <details>
         <summary>전체 대응 목록과 확인 범위</summary>
         <p className="prose">{correspondence.notComplete}</p>
-        <p className="prose">
-          원문에서 제목·정리 표식 688개를 추가로 추출했다. 각 항목의 경계·가정·결론·관찰 대응은 판단
-          보류이며 이 개념 목록의 검토 완료 수에 포함하지 않는다.
-        </p>
         <p>
           서로 다른 연결도에 재사용된 개념 ID {correspondence.concepts.length}개 · 본문과 부록 항목{' '}
           {correspondence.sections.length}개
@@ -734,11 +756,11 @@ export function LinearAlgebraObservations({ data, repository, onSaved, reading =
       {sourcePage !== null && (
         <Suspense fallback={<LoadingState message="원문을 펼치는 중이다." />}>
           <SourceReader
-            key={concept.id}
+            key={sourceItem??concept.id}
             data={data}
-            contextId={concept.id}
+            contextId={sourceItem??concept.id}
             page={sourcePage}
-            onClose={() => setSourcePage(null)}
+            onClose={() => {setSourcePage(null);setSourceItem(null);}}
           />
         </Suspense>
       )}

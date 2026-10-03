@@ -1,0 +1,130 @@
+{
+  "generatedAt": "2026-10-03T01:03:40.971Z",
+  "baselineVersion": "2.1.0",
+  "knowledgeContractVersion": "1.0.0",
+  "source": {
+    "id": "anton-kaul-ela12",
+    "title": "Elementary Linear Algebra, 12th Edition",
+    "authors": "Howard Anton · Anton Kaul",
+    "sha256": "a7e75bf268e9ebee129766eddeea451c21af79bced002eb19e5c5c4d477a8215",
+    "pdfPages": 611
+  },
+  "hashes": [
+    {
+      "file": "docs/observatory-experience-baseline.json",
+      "sha256": "d8dbc382416ac5dc328835ac93424e2883abfba30abb5609a1627ed5e841dd5a"
+    },
+    {
+      "file": "docs/knowledge-structure-contract.json",
+      "sha256": "950e516b8b63d347b60671a8713fa09cc7648e24c9cd5ec0ba25091775ec0f53"
+    },
+    {
+      "file": "docs/layout-standard-contract.json",
+      "sha256": "af1733ff32de36ef78c91c9690bb4fef0e51dfdd7ff0971ecfeebf131a6f2894"
+    },
+    {
+      "file": "docs/observation-frames.md",
+      "sha256": "8cb2caefd385bb629e27b773cd45c3ce4f546eb74260bace73dcd6758d4b7933"
+    },
+    {
+      "file": "docs/observatory-design-standard.md",
+      "sha256": "d8a02845c19f6a055e83ce55e6879169ffe87484448f0483362c5d07e0eafbc9"
+    },
+    {
+      "file": "docs/observatory-feature-identities.md",
+      "sha256": "6012b035d496f1cb22c706e4cdda3ba9c35fc4307032023f52798ce81c6b5ad6"
+    },
+    {
+      "file": "docs/knowledge-structure-standard.md",
+      "sha256": "363f9ea84e392c70b8db3f0b953d79c92626f2c25fde3fd11932a29a556155c9"
+    },
+    {
+      "file": "docs/paper-typography-standard/README.md",
+      "sha256": "43b927124de3346e71735fdb3865ab5bace32fb521d399911a6f311cf05661e0"
+    },
+    {
+      "file": "docs/design-ui-ux-priority.md",
+      "sha256": "554bd80d20f68f5258b675f788228a362ed66f8d6bcfcdf661b84a227b30438b"
+    },
+    {
+      "file": "src/ui/tokens.css",
+      "sha256": "d4229e01f7ccc785db9a5c9fd4e86a02d540f3999de4d7f32ac317ad06960329"
+    },
+    {
+      "file": "src/ui/linear-algebra-observations.tsx",
+      "sha256": "f159fc2cbdedbd67ffde7d4944ee1857c58fb522761413ec300c77cc35c085c0"
+    },
+    {
+      "file": "src/ui/linear-source-reader.tsx",
+      "sha256": "f871a339d1d957ec96b4deca247a42aa1d9b1e926e131023f01ae1373b9afe00"
+    },
+    {
+      "file": "src/ui/linear-concept-map.tsx",
+      "sha256": "08d1db121bbb8b60dc1e2c2e1b9d32d2a97cc183f4e2bd67e2fde17e227f444d"
+    },
+    {
+      "file": "src/domain/linear-algebra.ts",
+      "sha256": "dadfdd8098bd97981ad294b3fffaeb6cad296ef5613880039f70fab2aebf29f3"
+    },
+    {
+      "file": "src/domain/linear-algebra-specs.ts",
+      "sha256": "c88bf4bb7e47343f3a2afd86b0e57b5a2d6d85e65963304fad96e3717810b173"
+    },
+    {
+      "file": "src/domain/linear-algebra-advanced.ts",
+      "sha256": "26899150c1726f7e6fb99919826b90242ef359f8cb510f77f70108da7134ca91"
+    },
+    {
+      "file": "src/domain/linear-algebra-advanced-specs.ts",
+      "sha256": "36474c8dde243fa3ba5983598eb388999ea2cbca2e5d28139a41c48a51fbb391"
+    },
+    {
+      "file": "src/domain/linear-algebra-reading.ts",
+      "sha256": "f610f680b53f5475f04a6a72971db0de9a36c34e5fa7f83221beb8a2d3178b58"
+    },
+    {
+      "file": "src/domain/linear-algebra-reading-foundations.ts",
+      "sha256": "542d043f72bd8d3df2eaa7624bd6b5cd8c89e311967936e2a6ed01abe1be0833"
+    },
+    {
+      "file": "src/domain/linear-algebra-reading-extensions.ts",
+      "sha256": "b971773261568b8a823be6bc2adc52b752198d039f8a8d0fee5a4cce60a63c43"
+    },
+    {
+      "file": "src/domain/linear-algebra-source-index.json",
+      "sha256": "7fd895c7e7492e078bd9ef5b4b3896eac98ba6a7bb38b4ee66f689de3d57e389"
+    },
+    {
+      "file": "src/ui/linear-source-index.tsx",
+      "sha256": "f25a4f1c8a7812f90e2d56506f5c51b9e7a7a0c622aa410213ecf662af4ae251"
+    },
+    {
+      "file": "src/ui/linear-image-observation.tsx",
+      "sha256": "f6e36c3d71f1fa2d072050cf920a211dd83458cbe81ba2bb9f0efb3c70f66aae"
+    },
+    {
+      "file": "src/domain/linear-algebra-units.ts",
+      "sha256": "9f632d8cf9b0efb62cfabc53ae969d18570e398666a20a1e598b68fca209b7fd"
+    },
+    {
+      "file": "src/data/linear-algebra-view.ts",
+      "sha256": "71efb62e68ee7854476d3f0c12e958dc72af6a2718e61b3774daafd8cae7e04c"
+    },
+    {
+      "file": "src/ui/linear-algebra-observations.css",
+      "sha256": "65f62db02aaeb3d5297aa70514b7cd4c67a79b563c6fa5a526e45cf1f8760ab9"
+    },
+    {
+      "file": "scripts/linear-source-plugin.ts",
+      "sha256": "d6da179fde1d99cc1d52700c5b60de1870b720fcd4a6842e5bdc3b69a7a21b9a"
+    },
+    {
+      "file": "vite.config.ts",
+      "sha256": "6381ea257050b5e6132d5648ff5491069df0799a843848889a6b077aaf287aba"
+    },
+    {
+      "file": "src/ui/index.tsx",
+      "sha256": "a2417bd950bf1c9d7db9404b58b7010a6c8e437a1f9cf4a7370788fe6622fab2"
+    }
+  ]
+}

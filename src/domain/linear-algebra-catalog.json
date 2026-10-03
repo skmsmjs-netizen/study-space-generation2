@@ -544,7 +544,7 @@
       "name": "행렬 연산과 전치",
       "role": "계수와 연산을 하나의 대상으로 다룸",
       "map": 0,
-      "kind": "operations",
+      "kind": "matrix-operations",
       "sections": [
         "1.3"
       ]
@@ -554,7 +554,7 @@
       "name": "기본행렬",
       "role": "행 연산을 행렬 곱으로 표현함",
       "map": 0,
-      "kind": "elimination",
+      "kind": "elementary",
       "sections": [
         "1.5"
       ]
@@ -564,7 +564,7 @@
       "name": "역행렬과 가역성",
       "role": "변환을 되돌리고 해의 유일성을 판별함",
       "map": 0,
-      "kind": "determinant",
+      "kind": "cofactor",
       "sections": [
         "1.4",
         "1.6"
@@ -575,7 +575,7 @@
       "name": "대각·삼각·대칭행렬",
       "role": "구조에 따라 계산과 성질을 단순화함",
       "map": 0,
-      "kind": "quadratic",
+      "kind": "matrix-operations",
       "sections": [
         "1.7"
       ]
@@ -585,7 +585,7 @@
       "name": "행렬에 의한 선형변환",
       "role": "벡터를 보내는 규칙으로 행렬을 해석함",
       "map": 0,
-      "kind": "transform",
+      "kind": "geometry",
       "sections": [
         "1.8"
       ]
@@ -595,7 +595,7 @@
       "name": "변환의 합성",
       "role": "여러 변환을 차례로 적용함",
       "map": 0,
-      "kind": "transform",
+      "kind": "composition",
       "sections": [
         "1.9"
       ]
@@ -635,7 +635,7 @@
       "name": "여인수 전개와 행 연산",
       "role": "행렬식의 값을 계산함",
       "map": 0,
-      "kind": "determinant",
+      "kind": "cofactor",
       "sections": [
         "2.1",
         "2.2"
@@ -646,7 +646,7 @@
       "name": "크래머 공식",
       "role": "행렬식으로 유일한 해의 성분을 표현함",
       "map": 0,
-      "kind": "determinant",
+      "kind": "cofactor",
       "sections": [
         "2.3"
       ]
@@ -726,7 +726,7 @@
       "name": "부분공간",
       "role": "선형결합에 닫힌 작은 공간을 구별함",
       "map": 1,
-      "kind": "basis",
+      "kind": "spaces",
       "sections": [
         "4.2"
       ]
@@ -736,7 +736,7 @@
       "name": "생성집합과 선형결합",
       "role": "주어진 벡터로 만들 수 있는 범위를 정함",
       "map": 1,
-      "kind": "basis",
+      "kind": "spaces",
       "sections": [
         "4.3"
       ]
@@ -746,7 +746,7 @@
       "name": "선형독립",
       "role": "벡터 사이의 중복을 판별함",
       "map": 1,
-      "kind": "basis",
+      "kind": "spaces",
       "sections": [
         "4.4"
       ]
@@ -756,7 +756,7 @@
       "name": "기저와 좌표",
       "role": "벡터를 중복 없이 유일하게 표현함",
       "map": 1,
-      "kind": "basis",
+      "kind": "coordinates",
       "sections": [
         "4.5"
       ]
@@ -766,7 +766,7 @@
       "name": "차원",
       "role": "공간을 표현하는 데 필요한 독립 방향 수를 셈",
       "map": 1,
-      "kind": "basis",
+      "kind": "spaces",
       "sections": [
         "4.6"
       ]
@@ -776,7 +776,7 @@
       "name": "기저변환",
       "role": "같은 벡터를 다른 좌표로 표현함",
       "map": 1,
-      "kind": "basis",
+      "kind": "coordinates",
       "sections": [
         "4.7"
       ]
@@ -786,7 +786,7 @@
       "name": "행·열·영·왼쪽 영공간",
       "role": "해의 가능성과 사라지는 방향을 구별함",
       "map": 1,
-      "kind": "basis",
+      "kind": "spaces",
       "sections": [
         "4.8"
       ]
@@ -796,7 +796,7 @@
       "name": "계수와 영공간 차원",
       "role": "유효한 방향과 자유도를 연결함",
       "map": 1,
-      "kind": "basis",
+      "kind": "spaces",
       "sections": [
         "4.9"
       ]
@@ -828,7 +828,8 @@
       "map": 2,
       "kind": "eigen",
       "sections": [
-        "5.1"
+        "5.1",
+        "5.2"
       ]
     },
     {
@@ -836,7 +837,7 @@
       "name": "기저와 좌표",
       "role": "공간을 독립 방향으로 표현함",
       "map": 2,
-      "kind": "basis",
+      "kind": "coordinates",
       "sections": [
         "4.5"
       ]
@@ -846,7 +847,7 @@
       "name": "대각화",
       "role": "고유벡터 기저로 작용을 방향별 배율로 바꿈",
       "map": 2,
-      "kind": "eigen",
+      "kind": "eigen-general",
       "sections": [
         "5.2"
       ]
@@ -867,7 +868,7 @@
       "name": "복소 벡터공간",
       "role": "복소 성분과 고유벡터를 같은 선형 구조로 다룸",
       "map": 2,
-      "kind": "complex",
+      "kind": "complex-matrix",
       "sections": [
         "5.3"
       ]
@@ -887,7 +888,7 @@
       "name": "선형 미분방정식계",
       "role": "연속적인 변화를 고유방향별로 분석함",
       "map": 2,
-      "kind": "dynamics",
+      "kind": "matrix-dynamics",
       "sections": [
         "5.4"
       ]
@@ -897,7 +898,7 @@
       "name": "이산 동역학",
       "role": "행렬의 반복 작용으로 장기 변화를 분석함",
       "map": 2,
-      "kind": "dynamics",
+      "kind": "matrix-dynamics",
       "sections": [
         "5.5"
       ]
@@ -927,7 +928,7 @@
       "name": "일반 내적",
       "role": "벡터·행렬·함수에 맞는 측정 규칙을 정함",
       "map": 3,
-      "kind": "projection",
+      "kind": "weighted-inner",
       "sections": [
         "6.1"
       ]
@@ -937,7 +938,7 @@
       "name": "내적에서의 길이·각도·직교",
       "role": "코시-슈바르츠와 삼각부등식으로 기하를 유지함",
       "map": 3,
-      "kind": "projection",
+      "kind": "weighted-inner",
       "sections": [
         "6.2"
       ]
@@ -947,7 +948,7 @@
       "name": "기저와 좌표",
       "role": "공간을 유일하게 표현함",
       "map": 3,
-      "kind": "basis",
+      "kind": "coordinates",
       "sections": [
         "4.5"
       ]
@@ -957,7 +958,7 @@
       "name": "정규직교 기저와 그람-슈미트",
       "role": "기저를 서로 수직인 단위벡터로 바꿈",
       "map": 3,
-      "kind": "qr",
+      "kind": "weighted-qr",
       "sections": [
         "6.3"
       ]
@@ -967,7 +968,7 @@
       "name": "부분공간 정사영과 최선근사",
       "role": "주어진 공간에서 가장 가까운 벡터를 찾음",
       "map": 3,
-      "kind": "projection",
+      "kind": "subspace-projection",
       "sections": [
         "6.4"
       ]
@@ -987,7 +988,7 @@
       "name": "최소제곱과 정규방정식",
       "role": "정확한 해가 없어도 잔차의 크기를 최소화함",
       "map": 3,
-      "kind": "least-squares",
+      "kind": "subspace-projection",
       "sections": [
         "6.4"
       ]
@@ -997,7 +998,7 @@
       "name": "최소제곱 모형",
       "role": "직선·다항식·변환된 자료에 모형을 맞춤",
       "map": 3,
-      "kind": "least-squares",
+      "kind": "data-fit",
       "sections": [
         "6.5"
       ]
@@ -1007,7 +1008,7 @@
       "name": "함수공간의 내적",
       "role": "구간 전체에서 함수의 차이를 측정함",
       "map": 3,
-      "kind": "fourier",
+      "kind": "function-inner",
       "sections": [
         "6.6"
       ]
@@ -1027,7 +1028,7 @@
       "name": "정규직교 기저",
       "role": "서로 수직인 단위 방향으로 공간을 표현함",
       "map": 4,
-      "kind": "qr",
+      "kind": "weighted-qr",
       "sections": [
         "6.3"
       ]
@@ -1037,7 +1038,7 @@
       "name": "직교행렬",
       "role": "길이와 내적을 보존하며 좌표를 바꿈",
       "map": 4,
-      "kind": "transform",
+      "kind": "geometry",
       "sections": [
         "7.1"
       ]
@@ -1047,7 +1048,7 @@
       "name": "대각화",
       "role": "행렬의 작용을 방향별 배율로 분리함",
       "map": 4,
-      "kind": "eigen",
+      "kind": "eigen-general",
       "sections": [
         "5.2"
       ]
@@ -1057,7 +1058,7 @@
       "name": "대칭행렬과 직교 대각화",
       "role": "실수 고유값과 정규직교 고유기저를 얻음",
       "map": 4,
-      "kind": "quadratic",
+      "kind": "spectral",
       "sections": [
         "7.2"
       ]
@@ -1067,7 +1068,7 @@
       "name": "스펙트럼 분해",
       "role": "행렬을 고유방향의 투영과 배율로 나눔",
       "map": 4,
-      "kind": "quadratic",
+      "kind": "spectral",
       "sections": [
         "7.2"
       ]
@@ -1077,7 +1078,7 @@
       "name": "직교 삼각화·헤센베르크 형태",
       "role": "대각화가 어려운 계산도 단순한 형태로 바꿈",
       "map": 4,
-      "kind": "static",
+      "kind": "triangular",
       "sections": [
         "7.2"
       ]
@@ -1107,7 +1108,7 @@
       "name": "이차형식의 최적화",
       "role": "단위구면의 극값과 국소 극값을 판별함",
       "map": 4,
-      "kind": "quadratic",
+      "kind": "spectral",
       "sections": [
         "7.4"
       ]
@@ -1117,7 +1118,7 @@
       "name": "켤레전치",
       "role": "복소 행렬에서 전치와 켤레를 함께 적용함",
       "map": 4,
-      "kind": "complex",
+      "kind": "complex-matrix",
       "sections": [
         "7.5"
       ]
@@ -1127,7 +1128,7 @@
       "name": "에르미트·유니터리·정규행렬",
       "role": "복소수에서 대칭·직교·대각화 구조를 확장함",
       "map": 4,
-      "kind": "complex",
+      "kind": "complex-matrix",
       "sections": [
         "7.5"
       ]
@@ -1147,7 +1148,7 @@
       "name": "일반 선형변환",
       "role": "덧셈과 스칼라배를 보존하며 공간 사이를 연결함",
       "map": 5,
-      "kind": "transform",
+      "kind": "objects",
       "sections": [
         "8.1"
       ]
@@ -1157,7 +1158,7 @@
       "name": "핵과 상",
       "role": "사라지는 입력과 만들어지는 출력을 구별함",
       "map": 5,
-      "kind": "basis",
+      "kind": "spaces",
       "sections": [
         "8.1"
       ]
@@ -1167,9 +1168,10 @@
       "name": "단사와 전사",
       "role": "입력의 구별과 출력의 도달 가능성을 판별함",
       "map": 5,
-      "kind": "basis",
+      "kind": "spaces",
       "sections": [
-        "8.1"
+        "8.1",
+        "8.2"
       ]
     },
     {
@@ -1177,7 +1179,7 @@
       "name": "합성과 역변환",
       "role": "변환을 이어 적용하고 입력을 복원함",
       "map": 5,
-      "kind": "transform",
+      "kind": "composition",
       "sections": [
         "8.2"
       ]
@@ -1187,7 +1189,7 @@
       "name": "동형사상",
       "role": "서로 다른 공간의 선형 구조가 같음을 보임",
       "map": 5,
-      "kind": "basis",
+      "kind": "objects",
       "sections": [
         "8.3"
       ]
@@ -1197,7 +1199,7 @@
       "name": "기저와 좌표",
       "role": "추상적인 벡터를 성분으로 표현함",
       "map": 5,
-      "kind": "basis",
+      "kind": "coordinates",
       "sections": [
         "4.5"
       ]
@@ -1207,7 +1209,7 @@
       "name": "선형변환의 행렬 표현",
       "role": "기저벡터의 상으로 전체 변환을 계산함",
       "map": 5,
-      "kind": "basis",
+      "kind": "representation",
       "sections": [
         "8.4"
       ]
@@ -1217,7 +1219,7 @@
       "name": "닮음",
       "role": "같은 작용의 서로 다른 기저 표현을 연결함",
       "map": 5,
-      "kind": "eigen",
+      "kind": "representation",
       "sections": [
         "8.5"
       ]
@@ -1227,7 +1229,7 @@
       "name": "행렬 연산자의 기하",
       "role": "회전·반사·투영·확대·축소·전단을 설명함",
       "map": 5,
-      "kind": "transform",
+      "kind": "geometry",
       "sections": [
         "8.6"
       ]
@@ -1237,7 +1239,7 @@
       "name": "동차좌표와 아핀변환",
       "role": "평행이동도 확장된 행렬 계산에 포함함",
       "map": 5,
-      "kind": "transform",
+      "kind": "affine",
       "sections": [
         "8.6"
       ]
@@ -1257,7 +1259,7 @@
       "name": "LU·LDU 분해와 피벗 교환",
       "role": "소거 과정을 삼각행렬 인수로 저장함",
       "map": 6,
-      "kind": "lu",
+      "kind": "ldu",
       "sections": [
         "9.1"
       ]
@@ -1357,7 +1359,7 @@
       "name": "계수·영공간·핵",
       "role": "유효한 방향과 사라지는 방향을 셈",
       "map": 7,
-      "kind": "basis",
+      "kind": "spaces",
       "sections": [
         "4.9"
       ]
@@ -1367,7 +1369,7 @@
       "name": "가역성",
       "role": "모든 입력 정보를 보존하는지 판별함",
       "map": 7,
-      "kind": "determinant",
+      "kind": "cofactor",
       "sections": [
         "1.4",
         "1.6"
@@ -1378,9 +1380,11 @@
       "name": "기저변환과 닮음",
       "role": "같은 대상을 다른 좌표에서 표현함",
       "map": 7,
-      "kind": "basis",
+      "kind": "coordinates",
       "sections": [
-        "4.5"
+        "4.5",
+        "4.7",
+        "8.5"
       ]
     },
     {
@@ -1388,7 +1392,7 @@
       "name": "대각화",
       "role": "고유방향에서 작용을 단순화함",
       "map": 7,
-      "kind": "eigen",
+      "kind": "eigen-general",
       "sections": [
         "5.2"
       ]
@@ -1398,7 +1402,7 @@
       "name": "정사영과 최소제곱",
       "role": "도달 가능한 공간에서 가장 가까운 답을 찾음",
       "map": 7,
-      "kind": "projection",
+      "kind": "subspace-projection",
       "sections": [
         "6.4"
       ]
@@ -1428,9 +1432,10 @@
       "name": "직교·유니터리 변환",
       "role": "내적을 보존하며 표현을 바꿈",
       "map": 7,
-      "kind": "transform",
+      "kind": "complex-matrix",
       "sections": [
-        "7.1"
+        "7.1",
+        "7.5"
       ]
     }
   ]

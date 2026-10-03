@@ -1,0 +1,93 @@
+{
+  "base": "6318aba05e2d6d0b8d43fbe9ce5cc607559d42f7",
+  "files": [
+    {
+      "file": "src/domain/linear-algebra-advanced.test.ts",
+      "sha256": "5fdf5525c6c8c757090b43d25d2489a7086ac534678f1bb6c0c0dcf88de31723"
+    },
+    {
+      "file": "src/domain/linear-algebra.test.ts",
+      "sha256": "1679174f794c2812183cd59e9e719ebb99b6a74a3aa384af60a921a1a4a5a97a"
+    },
+    {
+      "file": "src/domain/linear-algebra-advanced-specs.ts",
+      "sha256": "36474c8dde243fa3ba5983598eb388999ea2cbca2e5d28139a41c48a51fbb391"
+    },
+    {
+      "file": "src/domain/linear-algebra-units.ts",
+      "sha256": "9f632d8cf9b0efb62cfabc53ae969d18570e398666a20a1e598b68fca209b7fd"
+    },
+    {
+      "file": "src/domain/linear-algebra-specs.ts",
+      "sha256": "c88bf4bb7e47343f3a2afd86b0e57b5a2d6d85e65963304fad96e3717810b173"
+    },
+    {
+      "file": "src/domain/linear-algebra-maps.json",
+      "sha256": "a953ed5af27e5e48d67b6ae42f85a7efe9f9bbe1b6048cd71c1eff55be20df0e"
+    },
+    {
+      "file": "src/domain/linear-algebra-correspondence.json",
+      "sha256": "2cfef4eccce3570415c24b5c6b260c54ddb3050dd67a34627867e666b668367e"
+    },
+    {
+      "file": "src/domain/linear-algebra-catalog.json",
+      "sha256": "5ec6d95ad17da20a30119ee97a427a8c3cb245750e35d2894af4d83e4b9b889c"
+    },
+    {
+      "file": "src/domain/linear-algebra-source-index.json",
+      "sha256": "7fd895c7e7492e078bd9ef5b4b3896eac98ba6a7bb38b4ee66f689de3d57e389"
+    },
+    {
+      "file": "src/domain/linear-algebra-advanced.ts",
+      "sha256": "26899150c1726f7e6fb99919826b90242ef359f8cb510f77f70108da7134ca91"
+    },
+    {
+      "file": "src/domain/linear-algebra-reading-foundations.ts",
+      "sha256": "542d043f72bd8d3df2eaa7624bd6b5cd8c89e311967936e2a6ed01abe1be0833"
+    },
+    {
+      "file": "src/domain/linear-algebra-reading-extensions.ts",
+      "sha256": "b971773261568b8a823be6bc2adc52b752198d039f8a8d0fee5a4cce60a63c43"
+    },
+    {
+      "file": "src/domain/linear-algebra.ts",
+      "sha256": "dadfdd8098bd97981ad294b3fffaeb6cad296ef5613880039f70fab2aebf29f3"
+    },
+    {
+      "file": "src/domain/linear-algebra-reading.ts",
+      "sha256": "f610f680b53f5475f04a6a72971db0de9a36c34e5fa7f83221beb8a2d3178b58"
+    },
+    {
+      "file": "src/data/linear-algebra-view.ts",
+      "sha256": "71efb62e68ee7854476d3f0c12e958dc72af6a2718e61b3774daafd8cae7e04c"
+    },
+    {
+      "file": "src/data/linear-algebra-view.test.ts",
+      "sha256": "40187b780b3b9918a2cca912d124ccdb25efaca8326bde0690bf5e1fe86e2da9"
+    },
+    {
+      "file": "src/ui/linear-algebra-observations.css",
+      "sha256": "65f62db02aaeb3d5297aa70514b7cd4c67a79b563c6fa5a526e45cf1f8760ab9"
+    },
+    {
+      "file": "src/ui/linear-source-reader.tsx",
+      "sha256": "f871a339d1d957ec96b4deca247a42aa1d9b1e926e131023f01ae1373b9afe00"
+    },
+    {
+      "file": "src/ui/linear-source-index.tsx",
+      "sha256": "f25a4f1c8a7812f90e2d56506f5c51b9e7a7a0c622aa410213ecf662af4ae251"
+    },
+    {
+      "file": "src/ui/linear-image-observation.tsx",
+      "sha256": "f6e36c3d71f1fa2d072050cf920a211dd83458cbe81ba2bb9f0efb3c70f66aae"
+    },
+    {
+      "file": "src/ui/linear-concept-map.tsx",
+      "sha256": "08d1db121bbb8b60dc1e2c2e1b9d32d2a97cc183f4e2bd67e2fde17e227f444d"
+    },
+    {
+      "file": "src/ui/linear-algebra-observations.tsx",
+      "sha256": "f159fc2cbdedbd67ffde7d4944ee1857c58fb522761413ec300c77cc35c085c0"
+    }
+  ]
+}

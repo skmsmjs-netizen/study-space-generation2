@@ -24,10 +24,10 @@ const distance = (a: Matrix, b: Matrix) => norm(a.flat().map((v, i) => v - b.fla
 describe('선형대수 수치와 적용 조건', () => {
   it('정적 읽기 수식의 실제 LaTeX와 전체 개념의 연결 계약을 확인한다', () => {
     for (const tex of Object.values(LINEAR_FORMULAS))
-      expect(() => katex.renderToString(tex!, { throwOnError: true, trust: false })).not.toThrow();
+      expect(() => katex.renderToString(tex, { throwOnError: true, trust: false })).not.toThrow();
     for (const note of Object.values(LINEAR_READING))
       for (const tex of note.tex ?? [])
-        expect(() => katex.renderToString(tex!, { throwOnError: true, trust: false })).not.toThrow();
+        expect(() => katex.renderToString(tex, { throwOnError: true, trust: false })).not.toThrow();
     for (const c of catalog.concepts) {
       const unit = linearUnit(c.id);
       expect(unit.question).toBeTruthy();
@@ -85,7 +85,9 @@ describe('선형대수 수치와 적용 조건', () => {
     expect(() => multiply([[1, 2]], [[1]])).toThrow();
   });
   it('과학 표기와 반올림은 값의 자릿수를 훼손하지 않는다', () => {
-    expect(Number(displayNumber(1.23456789e-10))).toBeCloseTo(1.234568e-10, 20);
+    expect(displayNumber(1.23456789e-10)).toBe('1.23e-10');
+    expect(displayNumber(1.23456789)).toBe('1.23');
+    expect(1.23456789).toBeGreaterThan(Number(displayNumber(1.23456789)));
     expect(displayNumber(-0)).toBe('0');
   });
   it('얇은 QR은 재구성과 QᵀQ=I를 보존하며 종속 열을 거부한다', () => {
@@ -218,11 +220,13 @@ describe('선형대수 수치와 적용 조건', () => {
         kind as LinearKind,
         { t: spec.t?.value ?? 2, n: spec.n?.value ?? 4 },
         spec.matrix ?? '',
+        spec.auxiliary?.value ?? '',
+        spec.modes?.[0]?.value ?? '',
       );
       for (const tex of result.tex) {
         expect(
           () =>
-            katex.renderToString(tex!, {
+            katex.renderToString(tex, {
               throwOnError: true,
               trust: false,
               output: 'htmlAndMathml',

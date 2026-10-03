@@ -85,3 +85,12 @@
 .linear-algebra ul { padding-inline-start: var(--space-5); }
 .linear-algebra li { margin-block: var(--space-3); }
 .linear-static-reading { display: block; max-inline-size: var(--paper-reading-width, 46rem); }
+
+.linear-image-comparison { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+.linear-image-comparison figure { margin: 0; flex: 1; min-inline-size: 7rem; }
+.linear-image-pixels { inline-size: 100%; max-inline-size: 20rem; image-rendering: pixelated; block-size: auto; border: var(--border-width) solid var(--color-border); }
+.linear-original-image { max-inline-size: 100%; max-block-size: 20rem; object-fit: contain; }
+
+.linear-source-items { list-style: none; padding: 0; }
+.linear-source-item { border: var(--border-width) solid var(--color-border); padding: var(--space-3); margin-block: var(--space-3); overflow-wrap: anywhere; }
+.linear-source-index { margin-block: var(--space-4); }

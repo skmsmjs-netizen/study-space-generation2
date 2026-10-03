@@ -1,6 +1,8 @@
 import type { TemplateLine, TemplateResult } from './math-templates';
+import { observeLinearAdvanced, type AdvancedKind } from './linear-algebra-advanced';
 export type Matrix = number[][];
 export type LinearKind =
+  | AdvancedKind
   | 'determinant'
   | 'elimination'
   | 'projection'
@@ -21,8 +23,11 @@ export type LinearKind =
   | 'leontief'
   | 'transform'
   | 'static';
-export const displayNumber = (n: number) =>
-  Object.is(n, -0) ? '0' : Number.isInteger(n) ? String(n) : String(Number(n.toPrecision(7)));
+export const displayNumber = (n: number) => {
+  if (Object.is(n, -0) || n === 0) return '0';
+  if (Math.abs(n) < 0.01) return n.toExponential(2).replace(/\.?(0+)e/, 'e');
+  return String(Number(n.toFixed(2)));
+};
 export const transpose = (a: Matrix): Matrix => a[0].map((_, j) => a.map((row) => row[j]));
 export const identity = (n: number): Matrix =>
   Array.from({ length: n }, (_, i) => Array.from({ length: n }, (_, j) => Number(i === j)));
@@ -33,10 +38,11 @@ export const multiply = (a: Matrix, b: Matrix): Matrix => {
 export const norm = (v: number[]) => Math.hypot(...v);
 export const dot = (u: number[], v: number[]) => u.reduce((s, x, i) => s + x * v[i], 0);
 export const matrixTex = (a: Matrix) =>
-  `\\begin{bmatrix}${a.map((row) => row.map(displayNumber).join('&')).join('\\\\')}\\end{bmatrix}`;
+  `\\begin{bmatrix}${a.map((row) => row.map(x=>scientificTex(displayNumber(x))).join('&')).join('\\\\')}\\end{bmatrix}`;
+export const scientificTex = (tex: string) => tex.replace(/(-?\d+(?:\.\d+)?)e([+-]?\d+)/g, (_, mantissa, exponent) => `${mantissa}\\times 10^{${Number(exponent)}}`);
 export const column = (v: number[]) => v.map((x) => [x]);
 export const tolerance = (a: Matrix) => Math.max(1, ...a.flat().map(Math.abs)) * 1e-12;
-export function parseMatrix(text: string): Matrix {
+export function parseMatrix(text: string, maxRows = 6, maxColumns = 7): Matrix {
   const tokens = text
     .trim()
     .split(/\n|;/)
@@ -46,15 +52,15 @@ export function parseMatrix(text: string): Matrix {
   const rows = tokens.map((row) => row.map(Number));
   if (
     !rows.length ||
-    rows.length > 6 ||
+    rows.length > maxRows ||
     !rows[0].length ||
-    rows[0].length > 7 ||
+    rows[0].length > maxColumns ||
     rows.some(
       (r) => r.length !== rows[0].length || r.some((x) => !Number.isFinite(x) || Math.abs(x) > 1e6),
     )
   )
     throw Error(
-      '같은 길이의 행에 유한한 숫자를 넣어야 한다. 최대 6행·7열, 각 값의 절댓값 10⁶ 이하이다.',
+      `같은 길이의 행에 유한한 숫자를 넣어야 한다. 최대 ${maxRows}행·${maxColumns}열, 각 값의 절댓값 10⁶ 이하이다.`,
     );
   return rows;
 }
@@ -194,48 +200,47 @@ export function symmetricEigen(a: Matrix) {
     iterations,
   };
 }
-export function smallSvd(a: Matrix, k: number) {
-  const gram = multiply(transpose(a), a),
-    e = symmetricEigen(gram),
-    singular = e.values.map((x) => (x <= tolerance(gram) ? 0 : Math.sqrt(x))),
-    vs = transpose(e.vectors);
-  const approx = a.map((row) => row.map(() => 0));
-  for (let j = 0; j < Math.min(k, vs.length); j++) {
-    const av = multiply(a, column(vs[j])).flat();
-    for (let r = 0; r < a.length; r++)
-      for (let c = 0; c < a[0].length; c++) approx[r][c] += av[r] * vs[j][c];
+/** Bounded one-sided Jacobi, not a binding to LAPACK. Avoids forming A^T A. */
+export function smallSvd(a: Matrix, k: number): {singular:number[]; U:Matrix; V:Matrix; Sigma:Matrix; approx:Matrix; error:number; sweeps:number; cutoff:number} {
+  const m=a.length,n=a[0].length;
+  if(m<n){
+    const trans=smallSvd(transpose(a),k);
+    return { ...trans, U:trans.V,V:trans.U,Sigma:transpose(trans.Sigma),approx:transpose(trans.approx) };
   }
-  const u: number[][] = [];
-  for (let j = 0; j < Math.min(a.length, singular.length); j++) {
-    if (singular[j] === 0) continue;
-    const v = multiply(a, column(vs[j]))
-      .flat()
-      .map((x) => x / singular[j]);
-    u.push(v);
-  }
-  for (let i = 0; i < a.length && u.length < a.length; i++) {
-    let v = Array.from({ length: a.length }, (_, j) => Number(j === i));
-    for (const q of u) {
-      const c = dot(q, v);
-      v = v.map((x, j) => x - c * q[j]);
+  const scale=Math.max(...a.flat().map(Math.abs))||1, B=a.map(r=>r.map(v=>v/scale)), V=identity(n);
+  let sweeps=0,converged=false;
+  for(;sweeps<80;sweeps++){
+    let changed=false;
+    for(let p=0;p<n-1;p++)for(let q=p+1;q<n;q++){
+      const x=B.map(r=>r[p]),y=B.map(r=>r[q]),alpha=dot(x,x),beta=dot(y,y),gamma=dot(x,y);
+      if(!alpha||!beta||Math.abs(gamma)<=1e-13*Math.sqrt(alpha*beta))continue;
+      changed=true;
+      const tau=(beta-alpha)/(2*gamma),t=(tau>=0?1:-1)/(Math.abs(tau)+Math.hypot(1,tau)),c=1/Math.hypot(1,t),s=c*t;
+      for(const row of B){const bp=row[p],bq=row[q];row[p]=c*bp-s*bq;row[q]=s*bp+c*bq;}
+      for(const row of V){const vp=row[p],vq=row[q];row[p]=c*vp-s*vq;row[q]=s*vp+c*vq;}
     }
-    if (norm(v) > 1e-10) u.push(v.map((x) => x / norm(v)));
+    if(!changed){converged=true;break;}
   }
-  const U = transpose(u),
-    Sigma = a.map((_, i) => a[0].map((_, j) => (i === j ? (singular[i] ?? 0) : 0)));
-  return {
-    singular,
-    U,
-    Sigma,
-    V: e.vectors,
-    approx,
-    error: norm(a.flat().map((x, i) => x - approx.flat()[i])),
-  };
+  if(!converged)throw Error('SVD의 제한된 Jacobi 반복에서 수렴을 확인하지 못했다. 오래된 결과를 최신 계산으로 표시하지 않는다.');
+  const values=transpose(B).map(norm),order=values.map((_,i)=>i).sort((i,j)=>values[j]-values[i]),sigma=order.map(j=>values[j]*scale),v=V.map(r=>order.map(j=>r[j]));
+  const cutoff=Math.max(...sigma)*Number.EPSILON*Math.max(m,n)*8, u:number[][]=[];
+  const singular=sigma.map(x=>x<=cutoff?0:x);
+  for(let j=0;j<n;j++)if(singular[j]>0)u.push(B.map(r=>r[order[j]]/values[order[j]]));
+  for(let i=0;i<m&&u.length<m;i++){
+    let candidate=Array.from({length:m},(_,j)=>Number(i===j));
+    for(let pass=0;pass<2;pass++)for(const q of u){const c=dot(q,candidate);candidate=candidate.map((x,j)=>x-c*q[j]);}
+    const length=norm(candidate);if(length>1e-12)u.push(candidate.map(x=>x/length));
+  }
+  if(u.length!==m)throw Error('SVD의 직교 기저 완성을 수치적으로 확인하지 못했다.');
+  const U=transpose(u),Sigma=a.map((_,i)=>a[0].map((_,j)=>i===j?(singular[i]??0):0));
+  const count=Math.max(0,Math.min(Math.round(k),n)),approx=a.map((row,i)=>row.map((_,j)=>singular.slice(0,count).reduce((sum,s,r)=>sum+U[i][r]*s*v[j][r],0)));
+  return {singular,U,Sigma,V:v,approx,error:norm(a.flat().map((x,i)=>x-approx.flat()[i])),sweeps,cutoff};
 }
 export interface LinearOutput extends TemplateResult {
   steps: RowStep[];
   explanation: string[];
   matrix?: Matrix;
+  approximation?: Matrix;
   secondaryPlot?: TemplateResult;
 }
 const line = (
@@ -252,6 +257,8 @@ export function observeLinear(
   auxiliary = '',
   mode = '',
 ): LinearOutput {
+  const advanced = observeLinearAdvanced(kind, params, matrixText, auxiliary, mode);
+  if (advanced) { advanced.tex = advanced.tex.map(scientificTex); return advanced; }
   const t = params.t ?? 2,
     n = Math.round(params.n ?? 4),
     out: LinearOutput = {
@@ -337,6 +344,13 @@ export function observeLinear(
         '해의 상태',
         inconsistent ? '불일치 · 해 없음' : rr.rank === c ? '유일한 해' : '자유변수가 있는 해',
       );
+      out.tex.push(...a.map(row => row.slice(0,c).map((coefficient,j)=>`(${displayNumber(coefficient)})x_{${j+1}}`).join('+')+'='+displayNumber(row[c])));
+      if(!inconsistent){
+        const free=Array.from({length:c},(_,j)=>j).filter(j=>!rr.pivots.includes(j));
+        rr.pivots.forEach((pivot,i)=>out.tex.push(`x_{${pivot+1}}=${displayNumber(rr.matrix[i][c])}`+free.map(j=>`-(${displayNumber(rr.matrix[i][j])})s_{${free.indexOf(j)+1}}`).join('')));
+        free.forEach((j,i)=>out.tex.push(`x_{${j+1}}=s_{${i+1}},\\quad s_{${i+1}}\\in\\mathbb R`));
+      }
+
     }
     out.notices.push(
       `피벗 판정 허용오차 ${rr.tolerance}. 근처의 rank는 수치 판단이며 정확한 기호 rank의 증명이 아니다.`,
@@ -602,26 +616,35 @@ export function observeLinear(
       '유한 반복과 작은 잔차는 수치 근거이다. 음의 지배 고유값에서는 방향 부호가 번갈아도 레일리 몫은 수렴할 수 있다.',
     ];
   } else if (kind === 'svd') {
-    const A = parseMatrix(matrixText),
+    const A = parseMatrix(matrixText, 32, 32),
       k = Math.min(Math.round(params.n ?? 1), Math.min(A.length, A[0].length)),
       s = smallSvd(A, k);
+    const reconstructed=multiply(multiply(s.U,s.Sigma),transpose(s.V));
     out.matrix = A;
+    out.approximation = s.approx;
     out.tex = [
-      `A=${matrixTex(A)},\\quad A=U\\Sigma V^T`,
+      `A${A.length>6||A[0].length>7?'\\in\\mathbb R^{'+A.length+'\\times '+A[0].length+'}':'='+matrixTex(A)},\\quad A=U\\Sigma V^T`,
       `U=${matrixTex(s.U)},\\quad\\Sigma=${matrixTex(s.Sigma)},\\quad V=${matrixTex(s.V)}`,
       `A_k=${matrixTex(s.approx)}`,
     ];
     value(
       '재구성 잔차 ‖A−UΣVᵀ‖F',
-      norm(A.flat().map((x, i) => x - multiply(multiply(s.U, s.Sigma), transpose(s.V)).flat()[i])),
+      norm(A.flat().map((x, i) => x - reconstructed.flat()[i])),
     );
     value('유지한 특이값 수 k', k);
     value('특이값 · 내림차순', s.singular.map(displayNumber).join(', '));
     value('프로베니우스 오차 ‖A−Aₖ‖F', s.error);
     value('전개 저장 수', k * (A.length + A[0].length + 1));
     value('원래 저장 수', A.length * A[0].length);
+    if(A.length===A[0].length&&A.length<=6){
+      const P=multiply(multiply(s.U,s.Sigma),transpose(s.U)),Q=multiply(s.U,transpose(s.V));
+      out.tex.push(`A=PQ,\\quad P=U\\Sigma U^T=${matrixTex(P)},\\quad Q=UV^T=${matrixTex(Q)}`);
+      value('극분해 재구성 잔차 ‖A−PQ‖F',norm(A.flat().map((v,i)=>v-multiply(P,Q).flat()[i])));
+      out.notices.push('정사각 실수 행렬의 왼쪽 극분해: P는 대칭 반양정치, Q는 직교이다. 특이행렬에서는 Q의 선택이 유일하지 않을 수 있다.');
+    }
+    if(A.length>6||A[0].length>7) out.tex=out.tex.filter((_,i)=>i===0);
     out.notices.push(
-      '작은 실수 행렬의 AᵀA·Jacobi 계산이다. 조건수가 제곱되어 아주 작은 특이값의 상대오차가 커질 수 있다. 실무 대규모 SVD나 기호적 rank를 대체하지 않는다.',
+      '작은 실수 행렬의 한쪽 Jacobi 수치 계산이다. AᵀA를 만들지 않으며 최대80회전 순회를 제한한다. 기계 정밀도·행렬 크기의 상대 기준 이하 특이값은0으로 처리하며, 정확한 기호 rank를 증명하지 않는다.',
     );
     out.explanation = [
       '큰 특이값부터 k개를 유지해 같은 행렬을 재구성한다. 복소 행렬에서는 전치가 아니라 켤레전치이다.',
@@ -813,5 +836,6 @@ export function observeLinear(
       '책의 내적은 첫 인자에 선형이고 둘째 인자에 켤레를 취한다. 에르미트·유니터리·정규행렬의 일반 분류는 이 스칼라 예제로 완결하지 않는다.',
     ];
   }
+  out.tex = out.tex.map(scientificTex);
   return out;
 }

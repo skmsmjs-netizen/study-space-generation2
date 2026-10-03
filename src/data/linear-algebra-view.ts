@@ -1,3 +1,4 @@
+import type {MaterialFile} from '../domain/material-source';
 import type { AppState } from '../domain/model';
 import { storagePrefix } from './repository';
 import { readRescuedDraft, storeDraftSafely, rescueWithoutOverwrite } from './draft-safety';
@@ -11,6 +12,8 @@ export interface LinearReading {
   auxiliary?: string;
   auxiliaryDraft?: string;
   mode?: string;
+  image?: MaterialFile;
+  imageDetached?: boolean;
   step: number;
   memo: string;
   view?: TemplateView;
@@ -57,12 +60,14 @@ export function isLinearWorkspace(value: unknown): value is LinearWorkspace {
       (r) =>
         r &&
         typeof r.matrix === 'string' &&
-        r.matrix.length < 10000 &&
+        r.matrix.length < 30000 &&
         typeof r.matrixDraft === 'string' &&
-        r.matrixDraft.length < 10000 &&
+        r.matrixDraft.length < 30000 &&
         (r.auxiliary === undefined || (typeof r.auxiliary === 'string' && r.auxiliary.length < 10000)) &&
         (r.auxiliaryDraft === undefined || (typeof r.auxiliaryDraft === 'string' && r.auxiliaryDraft.length < 10000)) &&
+        (r.image === undefined || (typeof r.image.key === 'string' && typeof r.image.name === 'string' && typeof r.image.type === 'string' && Number.isFinite(r.image.size) && r.image.size > 0 && r.image.size <= 50*1024*1024 && /^[a-f0-9]{64}$/.test(r.image.sha256) && r.image.cloudPath === undefined)) &&
         (r.mode === undefined || (typeof r.mode === 'string' && r.mode.length < 100)) &&
+        (r.imageDetached === undefined || typeof r.imageDetached === 'boolean') &&
         typeof r.memo === 'string' &&
         r.memo.length < 100000 &&
         Number.isInteger(r.step) &&

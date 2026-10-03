@@ -1,5 +1,9 @@
+import { ADVANCED_SPECS } from './linear-algebra-advanced-specs';
 import type { LinearKind } from './linear-algebra';
 export type ObservationSpec = {
+  matrixLabel?: string;
+  auxiliary?: { label: string; value: string };
+  modes?: { value: string; label: string }[];
   question: string;
   conditions: string[];
   initialReason: string;
@@ -13,6 +17,7 @@ export type ObservationSpec = {
   formula?: string[];
 };
 export const LINEAR_SPECS: Record<LinearKind, ObservationSpec> = {
+  ...ADVANCED_SPECS,
   determinant: {
     question: 't가 0을 지나면 넓이·방향·가역성은 어떻게 함께 변하는가?',
     conditions: [
@@ -205,12 +210,12 @@ export const LINEAR_SPECS: Record<LinearKind, ObservationSpec> = {
       '오차·저장 수: 손실과 표현량',
     ],
     limitations: [
-      'AᵀA를 통한 작은 예제 계산 · 조건수 제곱과 작은 특이값 오차',
-      'AᵀA 고유값이 그 행렬의 허용오차 이하이면 수치적으로 0으로 처리한다. 작은 양의 특이값을 놓칠 수 있다.',
-      '실제 영상·대규모 자료 또는 통계적 PCA를 구현했다고 처리하지 않는다.',
+      '한쪽 Jacobi 수치 SVD · 최대80 순회 · 상대 기계 정밀도 이하 특이값은0 처리',
+      '표본 영상은 종횡비를 유지해 최대32×32의 회색값 행렬로 축소한다. 원영상과 표본·저계수 복원을 구별한다.',
+      '대규모 영상 SVD·무손실 압축·통계적 PCA의 자동 판정을 제공하지 않는다.',
     ],
     matrix: '1 0\n1 1\n1 2',
-    n: { label: '유지한 방향 수 k', min: 0, max: 6, value: 1 },
+    n: { label: '유지한 방향 수 k', min: 0, max: 32, value: 1 },
   },
   dynamics: {
     question: '같은 A의 이산 갱신과 연속 미분방정식은 어떤 다른 과정을 만드는가?',
@@ -309,6 +314,7 @@ export const LINEAR_SPECS: Record<LinearKind, ObservationSpec> = {
     limitations: ['도식이나 여러 사례를 증명으로 처리하지 않는다.'],
   },
 };
+Object.assign(LINEAR_SPECS, ADVANCED_SPECS);
 
 export const LINEAR_FORMULAS: Partial<Record<LinearKind, string>> = {
   determinant: '\\det A=t,\\quad A=\\begin{bmatrix}1&1\\\\0&t\\end{bmatrix}',
@@ -323,11 +329,11 @@ export const LINEAR_FORMULAS: Partial<Record<LinearKind, string>> = {
   quadratic: 'x^TAx=y^TDy,\\quad x=Qy',
   cross: 'u\\times v\\perp u,v',
   lu: 'PA=LU',
-  power: 'x_{k+1}=Ax_k/\\|Ax_k\\|',
+  power: 'x_{k+1}=Ax_k/c_k,\\quad c_k>0',
   svd: 'A=U\\Sigma V^T',
   dynamics: 'x_{n+1}=Ax_n,\\quad x^\\prime=Ax',
   markov: 'x_{n+1}=Ax_n,\\quad A\\pi=\\pi',
   leontief: '(I-C)x=d',
-  fourier: 'S_N=\\sum_{j=1}^N b_j\\sin(jx)',
+  fourier: 'S_N=a_0/2+\\sum_{j=1}^N(a_j\\cos(jx)+b_j\\sin(jx))',
   complex: 'z=r(\\cos\\theta+i\\sin\\theta)',
 };

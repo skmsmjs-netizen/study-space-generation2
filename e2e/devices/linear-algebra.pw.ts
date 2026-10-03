@@ -84,7 +84,7 @@ test('선형대수 · 읽기·경계·오입력·시야·저장·재접속·소�
   await concept.selectOption('1:O');
   await expect(
     page.getByRole('heading', {
-      name: '방향 u를 바꾸면 정사영 p와 잔차 r은 어떻게 대응하는가?',
+      name: '수직 조건과 정사영은 어떤 잔차를 만드는가?',
       exact: true,
     }),
   ).toBeVisible();

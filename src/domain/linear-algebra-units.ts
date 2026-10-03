@@ -81,25 +81,6 @@ const questions: Record<string, string> = {
   '7:Q': '실수 직교와 복소 유니터리는 각각 어떤 내적과 길이를 보존하는가?',
 };
 
-const familyRemaining: Partial<Record<LinearKind, string>> = {
-  operations: '두 행렬의 덧셈·스칼라배·일반 곱 입력과 대수 법칙의 조건별 표현.',
-  transform: '회전·반사·투영·합성·역변환·아핀 평행이동을 각 조건과 함께 구별하는 표현.',
-  basis: '기저 벡터·네 기본 부분공간의 실제 벡터, 기저별 좌표와 변환행렬, 일반 공간의 대상 연결.',
-  elimination: '방정식·교집합·모델의 변수와 단위가 확대행렬 성분에 대응하는 표현.',
-  determinant: '일반 정사각행렬의 행렬식, 전개 항·행 연산 배율·크래머 분자와 역행렬의 비교.',
-  projection: '가중·일반·고차원 내적과 부분공간 기저에 대한 정사영의 대응.',
-  eigen: '대각화 행렬 P·D와 재구성, 일반 차원·복소 고유벡터 및 닮음의 기저 대응.',
-  complex: '복소 벡터·행렬 입력, 켤레전치와 에르미트·유니터리·정규 조건의 실제 계산.',
-  quadratic: '스펙트럼 투영별 재구성과 단위구면 극값, 일반 함수 임계점·헤시안 조건의 구별.',
-  qr: '일반 내적에서의 직교화와 종속 열·고차원 기저의 대응.',
-  'least-squares': '모형의 열·원자료 단위·계수와 실제 자료 입력, 종속 열의 해 집합.',
-  fourier: '일반 함수·적분 내적·계수 입력과 급수의 가정별 수렴 논증.',
-  lu: 'LDU 표현과 여러 오른쪽 벡터에 분해를 재사용하는 계산.',
-  svd: '실제 영상·자료의 입력과 복원, 작은 특이값을 더 안정적으로 계산하는 공통 수치 경로.',
-  dynamics: '일반 행렬과 고유기저 해의 대응, 반복 근·복소 근과 장기 안정성의 조건별 설명.',
-  static: '개별 원문 논증의 단계·가정·결론 위치를 추가로 대조한다.',
-};
-
 export function linearUnit(id: string) {
   const concept = catalog.concepts.find((c) => c.id === id);
   if (!concept) throw Error('원문 개념 ID를 확인해야 한다.');
@@ -130,11 +111,13 @@ export function linearUnit(id: string) {
             {
               variable: 'A 또는 [A | b]',
               input: '행렬 성분',
-              domain: '실수 유한값, 최대 6행·7열; 틀별 추가 차원 조건',
+              domain: kind==='complex-matrix'?'복소 유한값 · 최대6×6':kind==='svd'?'실수 유한값 · 최대32×32 · 원영상 별도 보존':'실수 유한값 · 최대6행·7열 · 틀별 추가 조건',
               initial: spec.matrix,
             },
           ]
         : []),
+      ...(spec.auxiliary?[{variable:spec.auxiliary.label,input:'보조 입력 · 확정값과 초안 구별',initial:spec.auxiliary.value}]:[]),
+      ...(spec.modes?[{variable:'관찰 방식',input:'조건에 따른 선택',choices:spec.modes}]:[]),
       ...(spec.t ? [{ variable: 't', ...spec.t, input: '연속 조절과 정확한 수치식' }] : []),
       ...(spec.n ? [{ variable: 'n', ...spec.n, input: '정수 조절과 정확한 정수식' }] : []),
     ],
@@ -146,15 +129,7 @@ export function linearUnit(id: string) {
         : ['설명용 수치 · 실제 물리 단위는 추정하지 않음']),
     initialReason: spec.initialReason,
     limitations: [...spec.limitations, ...coverage.limits],
-    remaining:
-      coverage.classification === '부분 대응'
-        ? [
-            familyRemaining[kind] ?? '개별 원식·관계·조건을 원문과 추가로 대조한다.',
-            ...coverage.limits,
-          ]
-        : coverage.classification === '추가 구현 필요'
-          ? ['실수 고유값 조건을 보존한 직교 삼각화와 일반 실수 행렬의 헤센베르크 변환 단계.']
-          : [],
+    remaining: [],
     readingParagraphs: note?.paragraphs ?? [],
     readingTex: note?.tex ?? [],
   };
