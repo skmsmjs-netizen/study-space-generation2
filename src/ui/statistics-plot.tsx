@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import type { Data, Layout, PlotlyHTMLElement } from 'plotly.js';
+import type { Data, Layout, LayoutAxis, PlotlyHTMLElement } from 'plotly.js';
 import type { ChartFigure, ChartRow } from '../domain/statistics-charts';
 import { Button } from './index';
 
@@ -39,6 +39,7 @@ export function StatisticsPlot({
       plot: typeof import('plotly.js-dist-min') | undefined,
       observed = false;
     let cleanupTheme: (() => void) | undefined;
+    let renderedWidth = 0;
     const render = async () => {
       try {
         const imported = await import('plotly.js-dist-min');
@@ -46,6 +47,7 @@ export function StatisticsPlot({
         if (!active) return;
         const style = getComputedStyle(element),
           color = (name: string) => style.getPropertyValue(name).trim();
+        renderedWidth = element.clientWidth;
         const colors = [
           color('--color-primary'),
           color('--color-border-strong'),
@@ -163,6 +165,63 @@ export function StatisticsPlot({
             automargin: true,
             ...layout[axis],
           };
+        if (figure.kind === 'horizontal' || figure.kind === 'paired') {
+          const fontSize =
+            parseFloat(color('--type-caption-size')) *
+              (color('--type-caption-size').endsWith('rem')
+                ? parseFloat(getComputedStyle(document.documentElement).fontSize)
+                : 1) || 14;
+          const labelWidth = Math.max(72, Math.min(200, (renderedWidth || 480) * 0.4));
+          const canvas = renderedWidth ? document.createElement('canvas').getContext('2d') : null;
+          if (canvas) canvas.font = `${fontSize}px ${style.fontFamily}`;
+          const escape = (text: string) =>
+            text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+          const labels = figure.rows.map((row) => {
+            const lines: string[] = [];
+            let line = '';
+            for (const { segment } of new Intl.Segmenter('ko', { granularity: 'grapheme' }).segment(
+              row.label,
+            )) {
+              const candidate = line + segment;
+              const width =
+                canvas?.measureText(candidate).width ?? Array.from(candidate).length * fontSize;
+              if (line && (segment === '\n' || width > labelWidth)) {
+                lines.push(line);
+                line = segment === '\n' ? '' : segment;
+              } else line = candidate;
+            }
+            lines.push(line);
+            return lines;
+          });
+          const top = 24,
+            bottom = small ? 48 : 72;
+          // Each category has an equal band, sized for the longest wrapped name.
+          const rowHeight = Math.max(
+            figure.kind === 'paired' ? 56 : 44,
+            ...labels.map((lines) => lines.length * fontSize * 1.3 + 20),
+          );
+          layout.height = Math.max(small ? 220 : 320, rowHeight * labels.length + top + bottom);
+          layout.margin = { ...layout.margin, t: top, b: bottom };
+          layout.font = { ...layout.font, size: fontSize };
+          layout.bargap = 0.45;
+          // Plotly 4 supports standoff; the installed 3.x declarations omit it.
+          const categoryAxis: Partial<LayoutAxis> & { ticklabelstandoff: number } = {
+            ...layout.yaxis,
+            type: 'category',
+            tickmode: 'array',
+            tickvals: figure.rows.map((row) => row.label),
+            ticktext: labels.map((lines) => lines.map(escape).join('<br>')),
+            ticklabelstandoff: 12,
+            tickfont: { size: fontSize },
+            automargin: true,
+          };
+          const valueAxis: Partial<LayoutAxis> & { ticklabelstandoff: number } = {
+            ...layout.xaxis,
+            ticklabelstandoff: 8,
+          };
+          layout.yaxis = categoryAxis;
+          layout.xaxis = valueAxis;
+        }
         if (['line', 'area', 'mixed', 'stacked-area', 'heatmap'].includes(figure.kind))
           layout.xaxis = { ...layout.xaxis, tickformat: '%m/%d', hoverformat: '%Y-%m-%d' };
         for (const axis of ['xaxis', 'yaxis'] as const) {
@@ -246,6 +305,13 @@ export function StatisticsPlot({
         ? undefined
         : new ResizeObserver(() => {
             if (plot && observed && active) {
+              if (
+                (figure.kind === 'horizontal' || figure.kind === 'paired') &&
+                Math.abs(element.clientWidth - renderedWidth) > 1
+              ) {
+                void render();
+                return;
+              }
               try {
                 plot.Plots.resize(element);
               } catch {

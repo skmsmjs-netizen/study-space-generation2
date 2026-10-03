@@ -150,6 +150,9 @@
   min-height: 220px;
   overflow: hidden;
 }
+.statistics-plot text {
+  letter-spacing: normal;
+}
 .statistics-values {
   margin-block: var(--space-3);
 }
