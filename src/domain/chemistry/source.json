@@ -99,6 +99,32 @@
       "서버 연결",
       "배포",
       "사용자 시험·숙달 추정"
+    ],
+    "heading_metadata_corrections_20261003": [
+      {
+        "section": "11.4",
+        "before": "Properties of Liquids: Surface Tension and Viscosity",
+        "after": "Properties of Liquids; Surface Tension and Viscosity",
+        "basis": "Original numbered body heading text rechecked; formula font codes retained as extraction, not displayed TeX"
+      },
+      {
+        "section": "18.6",
+        "before": "Relating /H9004G/H11034to the Equilibrium Constant",
+        "after": "Relating /H9004G/H11543to the Equilibrium Constant",
+        "basis": "Original numbered body heading text rechecked; formula font codes retained as extraction, not displayed TeX"
+      },
+      {
+        "section": "21.4",
+        "before": "Group IVA: The Alkali Metals",
+        "after": "Group IA: The Alkali Metals",
+        "basis": "Original numbered body heading text rechecked; formula font codes retained as extraction, not displayed TeX"
+      },
+      {
+        "section": "21.9",
+        "before": "Group VA: Nitrogen and the Phosphorous Family",
+        "after": "Group VA: Nitrogen and the Phosphorus Family",
+        "basis": "Original numbered body heading text rechecked; formula font codes retained as extraction, not displayed TeX"
+      }
     ]
   },
   "chapters": [
@@ -322,12 +348,15 @@
         2
       ],
       "printed_end_before_next_section": 3,
-      "source_location_note": "인쇄 시작 쪽은 교재 목차·본문 근거이다. PDF 목록은 제목·용어 검색 후보이며 정확한 본문 시작 PDF·세로 좌표는 아직 확정하지 않았다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-39fbe1d0fff2"
       ],
       "map_alias": "A",
-      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존"
+      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
+      "primary_pdf_page": 2,
+      "source_start_visual_confirmed": true,
+      "primary_pdf_offset": 6631
     },
     {
       "section": "1.2",
@@ -356,14 +385,15 @@
         40
       ],
       "printed_end_before_next_section": 5,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-39fbe1d0fff2"
       ],
       "map_alias": "A",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
-      "primary_pdf_page": 3,
-      "primary_pdf_offset": 6182
+      "primary_pdf_page": 2,
+      "primary_pdf_offset": 7502,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "1.3",
@@ -392,14 +422,15 @@
         39
       ],
       "printed_end_before_next_section": 7,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-5d90e514ffae"
       ],
       "map_alias": "F",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
-      "primary_pdf_page": 3,
-      "primary_pdf_offset": 6222
+      "primary_pdf_page": 2,
+      "primary_pdf_offset": 8634,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "1.4",
@@ -427,12 +458,15 @@
         2
       ],
       "printed_end_before_next_section": 12,
-      "source_location_note": "인쇄 시작 쪽은 교재 목차·본문 근거이다. PDF 목록은 제목·용어 검색 후보이며 정확한 본문 시작 PDF·세로 좌표는 아직 확정하지 않았다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-62983f5e454e"
       ],
       "map_alias": "B",
-      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존"
+      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
+      "primary_pdf_page": 2,
+      "source_start_visual_confirmed": true,
+      "primary_pdf_offset": 9593
     },
     {
       "section": "1.5",
@@ -460,12 +494,15 @@
         2
       ],
       "printed_end_before_next_section": 18,
-      "source_location_note": "인쇄 시작 쪽은 교재 목차·본문 근거이다. PDF 목록은 제목·용어 검색 후보이며 정확한 본문 시작 PDF·세로 좌표는 아직 확정하지 않았다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-adefb4e683f9"
       ],
       "map_alias": "R",
-      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존"
+      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
+      "primary_pdf_page": 2,
+      "source_start_visual_confirmed": true,
+      "primary_pdf_offset": 12073
     },
     {
       "section": "1.6",
@@ -501,14 +538,15 @@
         40
       ],
       "printed_end_before_next_section": 21,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-adefb4e683f9"
       ],
       "map_alias": "R",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 3,
-      "primary_pdf_offset": 326
+      "primary_pdf_offset": 439,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "1.7",
@@ -538,14 +576,15 @@
         40
       ],
       "printed_end_before_next_section": 24,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-adefb4e683f9"
       ],
       "map_alias": "R",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 3,
-      "primary_pdf_offset": 2087
+      "primary_pdf_offset": 2097,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "1.8",
@@ -573,14 +612,15 @@
         2
       ],
       "printed_end_before_next_section": 41,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-adefb4e683f9"
       ],
       "map_alias": "R",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 3,
-      "primary_pdf_offset": 3318
+      "primary_pdf_offset": 3663,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "2.1",
@@ -609,14 +649,15 @@
         4
       ],
       "printed_end_before_next_section": 43,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-bc59e5a5c66d"
       ],
       "map_alias": "C",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 3,
-      "primary_pdf_offset": 11621
+      "primary_pdf_offset": 12167,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "2.2",
@@ -644,12 +685,15 @@
         4
       ],
       "printed_end_before_next_section": 46,
-      "source_location_note": "인쇄 시작 쪽은 교재 목차·본문 근거이다. PDF 목록은 제목·용어 검색 후보이며 정확한 본문 시작 PDF·세로 좌표는 아직 확정하지 않았다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-bc59e5a5c66d"
       ],
       "map_alias": "C",
-      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존"
+      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
+      "primary_pdf_page": 3,
+      "primary_pdf_offset": 13172,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "2.3",
@@ -678,14 +722,15 @@
         4
       ],
       "printed_end_before_next_section": 48,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-bc59e5a5c66d"
       ],
       "map_alias": "C",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
-      "primary_pdf_page": 3,
-      "primary_pdf_offset": 14291
+      "primary_pdf_page": 4,
+      "primary_pdf_offset": 148,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "2.4",
@@ -720,14 +765,15 @@
         40
       ],
       "printed_end_before_next_section": 50,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-bc59e5a5c66d"
       ],
       "map_alias": "C",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 4,
-      "primary_pdf_offset": 888
+      "primary_pdf_offset": 1098,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "2.5",
@@ -761,14 +807,15 @@
         40
       ],
       "printed_end_before_next_section": 53,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-bc59e5a5c66d"
       ],
       "map_alias": "C",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 4,
-      "primary_pdf_offset": 1886
+      "primary_pdf_offset": 2263,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "2.6",
@@ -795,14 +842,15 @@
         4
       ],
       "printed_end_before_next_section": 58,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-f065ecc038c9"
       ],
       "map_alias": "D",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 4,
-      "primary_pdf_offset": 3757
+      "primary_pdf_offset": 3767,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "2.7",
@@ -837,14 +885,15 @@
         19
       ],
       "printed_end_before_next_section": 59,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-f065ecc038c9"
       ],
       "map_alias": "D",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 4,
-      "primary_pdf_offset": 5876
+      "primary_pdf_offset": 6185,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "2.8",
@@ -873,12 +922,15 @@
         4
       ],
       "printed_end_before_next_section": 70,
-      "source_location_note": "인쇄 시작 쪽은 교재 목차·본문 근거이다. PDF 목록은 제목·용어 검색 후보이며 정확한 본문 시작 PDF·세로 좌표는 아직 확정하지 않았다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-f065ecc038c9"
       ],
       "map_alias": "D",
-      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존"
+      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
+      "primary_pdf_page": 4,
+      "primary_pdf_offset": 6737,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "2.9",
@@ -907,14 +959,15 @@
         4
       ],
       "printed_end_before_next_section": 70,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-5d90e514ffae"
       ],
       "map_alias": "F",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 4,
-      "primary_pdf_offset": 11908
+      "primary_pdf_offset": 11918,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "2.10",
@@ -943,14 +996,15 @@
         4
       ],
       "printed_end_before_next_section": 86,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-5d90e514ffae"
       ],
       "map_alias": "F",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 4,
-      "primary_pdf_offset": 11861
+      "primary_pdf_offset": 12214,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "3.1",
@@ -978,14 +1032,15 @@
         5
       ],
       "printed_end_before_next_section": 88,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-503d8b7bc61a"
       ],
       "map_alias": "E",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 5,
-      "primary_pdf_offset": 5441
+      "primary_pdf_offset": 5848,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "3.2",
@@ -1013,14 +1068,15 @@
         5
       ],
       "printed_end_before_next_section": 92,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-503d8b7bc61a"
       ],
       "map_alias": "E",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 5,
-      "primary_pdf_offset": 6439
+      "primary_pdf_offset": 6668,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "3.3",
@@ -1048,14 +1104,15 @@
         5
       ],
       "printed_end_before_next_section": 94,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-d95ae25ef239"
       ],
       "map_alias": "K",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 5,
-      "primary_pdf_offset": 8434
+      "primary_pdf_offset": 8767,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "3.4",
@@ -1082,14 +1139,15 @@
         5
       ],
       "printed_end_before_next_section": 96,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-d95ae25ef239"
       ],
       "map_alias": "K",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 5,
-      "primary_pdf_offset": 9431
+      "primary_pdf_offset": 9570,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "3.5",
@@ -1118,14 +1176,15 @@
         4
       ],
       "printed_end_before_next_section": 102,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-f065ecc038c9"
       ],
       "map_alias": "D",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 5,
-      "primary_pdf_offset": 10429
+      "primary_pdf_offset": 10547,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "3.6",
@@ -1153,14 +1212,15 @@
         5
       ],
       "printed_end_before_next_section": 103,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-24e845f44acd"
       ],
       "map_alias": "G",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 5,
-      "primary_pdf_offset": 13421
+      "primary_pdf_offset": 13481,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "3.7",
@@ -1188,14 +1248,15 @@
         5
       ],
       "printed_end_before_next_section": 106,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-24e845f44acd"
       ],
       "map_alias": "G",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 5,
-      "primary_pdf_offset": 13941
+      "primary_pdf_offset": 13951,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "3.8",
@@ -1223,14 +1284,15 @@
         5
       ],
       "printed_end_before_next_section": 124,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-24e845f44acd"
       ],
       "map_alias": "G",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 6,
-      "primary_pdf_offset": 1016
+      "primary_pdf_offset": 1408,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "4.1",
@@ -1258,14 +1320,15 @@
         8
       ],
       "printed_end_before_next_section": 129,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-b69621586eed"
       ],
       "map_alias": "H",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 6,
-      "primary_pdf_offset": 9994
+      "primary_pdf_offset": 10378,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "4.2",
@@ -1294,14 +1357,15 @@
         8
       ],
       "printed_end_before_next_section": 133,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-b69621586eed"
       ],
       "map_alias": "H",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 6,
-      "primary_pdf_offset": 12731
+      "primary_pdf_offset": 12741,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "4.3",
@@ -1331,14 +1395,15 @@
         40
       ],
       "printed_end_before_next_section": 135,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-045f74d80579"
       ],
       "map_alias": "I",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 7,
-      "primary_pdf_offset": 137
+      "primary_pdf_offset": 147,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "4.4",
@@ -1371,12 +1436,15 @@
         25
       ],
       "printed_end_before_next_section": 143,
-      "source_location_note": "인쇄 시작 쪽은 교재 목차·본문 근거이다. PDF 목록은 제목·용어 검색 후보이며 정확한 본문 시작 PDF·세로 좌표는 아직 확정하지 않았다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-045f74d80579"
       ],
       "map_alias": "I",
-      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존"
+      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
+      "primary_pdf_page": 7,
+      "primary_pdf_offset": 1420,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "4.5",
@@ -1407,12 +1475,15 @@
         34
       ],
       "printed_end_before_next_section": 150,
-      "source_location_note": "인쇄 시작 쪽은 교재 목차·본문 근거이다. PDF 목록은 제목·용어 검색 후보이며 정확한 본문 시작 PDF·세로 좌표는 아직 확정하지 않았다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-045f74d80579"
       ],
       "map_alias": "I",
-      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존"
+      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
+      "primary_pdf_page": 7,
+      "primary_pdf_offset": 5477,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "4.6",
@@ -1440,14 +1511,15 @@
         8
       ],
       "printed_end_before_next_section": 153,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-5d90e514ffae"
       ],
       "map_alias": "F",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 7,
-      "primary_pdf_offset": 8561
+      "primary_pdf_offset": 8968,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "4.7",
@@ -1484,14 +1556,15 @@
         19
       ],
       "printed_end_before_next_section": 155,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-50d2782f6e92"
       ],
       "map_alias": "J",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 7,
-      "primary_pdf_offset": 10179
+      "primary_pdf_offset": 10189,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "4.8",
@@ -1520,14 +1593,15 @@
         8
       ],
       "printed_end_before_next_section": 157,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-50d2782f6e92"
       ],
       "map_alias": "J",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 7,
-      "primary_pdf_offset": 11311
+      "primary_pdf_offset": 11321,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "4.9",
@@ -1558,14 +1632,15 @@
         40
       ],
       "printed_end_before_next_section": 159,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-d95ae25ef239"
       ],
       "map_alias": "K",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 7,
-      "primary_pdf_offset": 12315
+      "primary_pdf_offset": 12325,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "4.10",
@@ -1595,14 +1670,15 @@
         8
       ],
       "printed_end_before_next_section": 176,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-d95ae25ef239"
       ],
       "map_alias": "K",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 7,
-      "primary_pdf_offset": 13071
+      "primary_pdf_offset": 13081,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "5.1",
@@ -1630,14 +1706,15 @@
         8
       ],
       "printed_end_before_next_section": 177,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-d7cfe35980b0"
       ],
       "map_alias": "L",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 8,
-      "primary_pdf_offset": 7129
+      "primary_pdf_offset": 7160,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "5.2",
@@ -1665,12 +1742,15 @@
         8
       ],
       "printed_end_before_next_section": 186,
-      "source_location_note": "인쇄 시작 쪽은 교재 목차·본문 근거이다. PDF 목록은 제목·용어 검색 후보이며 정확한 본문 시작 PDF·세로 좌표는 아직 확정하지 않았다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-d7cfe35980b0"
       ],
       "map_alias": "L",
-      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존"
+      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
+      "primary_pdf_page": 8,
+      "primary_pdf_offset": 8027,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "5.3",
@@ -1701,14 +1781,15 @@
         18
       ],
       "printed_end_before_next_section": 192,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-d7cfe35980b0"
       ],
       "map_alias": "L",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 8,
-      "primary_pdf_offset": 12439
+      "primary_pdf_offset": 12449,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "5.4",
@@ -1736,14 +1817,15 @@
         8
       ],
       "printed_end_before_next_section": 193,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-d7cfe35980b0"
       ],
       "map_alias": "L",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 9,
-      "primary_pdf_offset": 709
+      "primary_pdf_offset": 740,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "5.5",
@@ -1771,12 +1853,15 @@
         8
       ],
       "printed_end_before_next_section": 198,
-      "source_location_note": "인쇄 시작 쪽은 교재 목차·본문 근거이다. PDF 목록은 제목·용어 검색 후보이며 정확한 본문 시작 PDF·세로 좌표는 아직 확정하지 않았다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-d7cfe35980b0"
       ],
       "map_alias": "L",
-      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존"
+      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
+      "primary_pdf_page": 9,
+      "primary_pdf_offset": 1540,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "5.6",
@@ -1804,14 +1889,15 @@
         8
       ],
       "printed_end_before_next_section": 200,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-eb54da9f63b2"
       ],
       "map_alias": "M",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 9,
-      "primary_pdf_offset": 3702
+      "primary_pdf_offset": 3732,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "5.7",
@@ -1839,14 +1925,15 @@
         8
       ],
       "printed_end_before_next_section": 206,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-eb54da9f63b2"
       ],
       "map_alias": "M",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 9,
-      "primary_pdf_offset": 4699
+      "primary_pdf_offset": 5106,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "5.8",
@@ -1875,14 +1962,15 @@
         40
       ],
       "printed_end_before_next_section": 224,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-5fcc78023fc9"
       ],
       "map_alias": "N",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 9,
-      "primary_pdf_offset": 7692
+      "primary_pdf_offset": 7904,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "6.1",
@@ -1910,14 +1998,15 @@
         10
       ],
       "printed_end_before_next_section": 226,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-a8126b5da953"
       ],
       "map_alias": "O",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 10,
-      "primary_pdf_offset": 2269
+      "primary_pdf_offset": 2300,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "6.2",
@@ -1952,14 +2041,15 @@
         40
       ],
       "printed_end_before_next_section": 229,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-a8126b5da953"
       ],
       "map_alias": "O",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 10,
-      "primary_pdf_offset": 3267
+      "primary_pdf_offset": 3644,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "6.3",
@@ -1987,14 +2077,15 @@
         10
       ],
       "printed_end_before_next_section": 231,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-a8126b5da953"
       ],
       "map_alias": "O",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 10,
-      "primary_pdf_offset": 4784
+      "primary_pdf_offset": 4794,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "6.4",
@@ -2023,12 +2114,15 @@
         40
       ],
       "printed_end_before_next_section": 234,
-      "source_location_note": "인쇄 시작 쪽은 교재 목차·본문 근거이다. PDF 목록은 제목·용어 검색 후보이며 정확한 본문 시작 PDF·세로 좌표는 아직 확정하지 않았다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-a8126b5da953"
       ],
       "map_alias": "O",
-      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존"
+      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
+      "primary_pdf_page": 10,
+      "primary_pdf_offset": 6081,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "6.5",
@@ -2056,14 +2150,15 @@
         10
       ],
       "printed_end_before_next_section": 235,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-22ff02574e85"
       ],
       "map_alias": "Q",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 10,
-      "primary_pdf_offset": 7631
+      "primary_pdf_offset": 7641,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "6.6",
@@ -2091,12 +2186,15 @@
         10
       ],
       "printed_end_before_next_section": 240,
-      "source_location_note": "인쇄 시작 쪽은 교재 목차·본문 근거이다. PDF 목록은 제목·용어 검색 후보이며 정확한 본문 시작 PDF·세로 좌표는 아직 확정하지 않았다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-5ee421ba6e8b"
       ],
       "map_alias": "P",
-      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존"
+      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
+      "primary_pdf_page": 10,
+      "primary_pdf_offset": 8147,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "6.7",
@@ -2126,14 +2224,15 @@
         38
       ],
       "printed_end_before_next_section": 243,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-22ff02574e85"
       ],
       "map_alias": "Q",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 10,
-      "primary_pdf_offset": 10249
+      "primary_pdf_offset": 10280,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "6.8",
@@ -2162,12 +2261,15 @@
         10
       ],
       "printed_end_before_next_section": 248,
-      "source_location_note": "인쇄 시작 쪽은 교재 목차·본문 근거이다. PDF 목록은 제목·용어 검색 후보이며 정확한 본문 시작 PDF·세로 좌표는 아직 확정하지 않았다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-22ff02574e85"
       ],
       "map_alias": "Q",
-      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존"
+      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
+      "primary_pdf_page": 10,
+      "primary_pdf_offset": 12092,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "6.9",
@@ -2195,14 +2297,15 @@
         10
       ],
       "printed_end_before_next_section": 264,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-e11bf84a25c2"
       ],
       "map_alias": "S",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
-      "primary_pdf_page": 10,
-      "primary_pdf_offset": 14239
+      "primary_pdf_page": 11,
+      "primary_pdf_offset": 1,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "7.1",
@@ -2230,14 +2333,15 @@
         11
       ],
       "printed_end_before_next_section": 267,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-7800afe690e9"
       ],
       "map_alias": "A",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 11,
-      "primary_pdf_offset": 7819
+      "primary_pdf_offset": 8014,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "7.2",
@@ -2265,14 +2369,15 @@
         11
       ],
       "printed_end_before_next_section": 270,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-7800afe690e9"
       ],
       "map_alias": "A",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 11,
-      "primary_pdf_offset": 9402
+      "primary_pdf_offset": 9412,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "7.3",
@@ -2300,14 +2405,15 @@
         11
       ],
       "printed_end_before_next_section": 276,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-7800afe690e9"
       ],
       "map_alias": "A",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 11,
-      "primary_pdf_offset": 10812
+      "primary_pdf_offset": 10843,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "7.4",
@@ -2337,14 +2443,15 @@
         11
       ],
       "printed_end_before_next_section": 280,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-f249a60e4789"
       ],
       "map_alias": "B",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 11,
-      "primary_pdf_offset": 13804
+      "primary_pdf_offset": 13905,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "7.5",
@@ -2371,14 +2478,15 @@
         12
       ],
       "printed_end_before_next_section": 293,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-f249a60e4789"
       ],
       "map_alias": "B",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 12,
-      "primary_pdf_offset": 1789
+      "primary_pdf_offset": 1799,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "8.1",
@@ -2407,12 +2515,15 @@
         13
       ],
       "printed_end_before_next_section": 298,
-      "source_location_note": "인쇄 시작 쪽은 교재 목차·본문 근거이다. PDF 목록은 제목·용어 검색 후보이며 정확한 본문 시작 PDF·세로 좌표는 아직 확정하지 않았다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-152f57c98ae9"
       ],
       "map_alias": "C",
-      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존"
+      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
+      "primary_pdf_page": 12,
+      "source_start_visual_confirmed": true,
+      "primary_pdf_offset": 8283
     },
     {
       "section": "8.2",
@@ -2441,14 +2552,15 @@
         13
       ],
       "printed_end_before_next_section": 303,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-152f57c98ae9"
       ],
       "map_alias": "C",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 12,
-      "primary_pdf_offset": 10377
+      "primary_pdf_offset": 10526,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "8.3",
@@ -2476,14 +2588,15 @@
         13
       ],
       "printed_end_before_next_section": 307,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-152f57c98ae9"
       ],
       "map_alias": "C",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 12,
-      "primary_pdf_offset": 13268
+      "primary_pdf_offset": 13278,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "8.4",
@@ -2511,14 +2624,15 @@
         13
       ],
       "printed_end_before_next_section": 310,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-152f57c98ae9"
       ],
       "map_alias": "C",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 13,
-      "primary_pdf_offset": 534
+      "primary_pdf_offset": 544,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "8.5",
@@ -2545,14 +2659,15 @@
         13
       ],
       "printed_end_before_next_section": 311,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-7d17be0f30d7"
       ],
       "map_alias": "D",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 13,
-      "primary_pdf_offset": 1962
+      "primary_pdf_offset": 2107,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "8.6",
@@ -2581,14 +2696,15 @@
         13
       ],
       "printed_end_before_next_section": 317,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-7d17be0f30d7"
       ],
       "map_alias": "D",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 13,
-      "primary_pdf_offset": 2664
+      "primary_pdf_offset": 2674,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "8.7",
@@ -2617,12 +2733,15 @@
         13
       ],
       "printed_end_before_next_section": 328,
-      "source_location_note": "인쇄 시작 쪽은 교재 목차·본문 근거이다. PDF 목록은 제목·용어 검색 후보이며 정확한 본문 시작 PDF·세로 좌표는 아직 확정하지 않았다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-7d17be0f30d7"
       ],
       "map_alias": "D",
-      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존"
+      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
+      "primary_pdf_page": 13,
+      "primary_pdf_offset": 5860,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "9.1",
@@ -2650,14 +2769,15 @@
         13
       ],
       "printed_end_before_next_section": 335,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-59f727038b66"
       ],
       "map_alias": "E",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 13,
-      "primary_pdf_offset": 10940
+      "primary_pdf_offset": 11302,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "9.2",
@@ -2686,14 +2806,15 @@
         13
       ],
       "printed_end_before_next_section": 338,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-152f57c98ae9"
       ],
       "map_alias": "C",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 14,
-      "primary_pdf_offset": 52
+      "primary_pdf_offset": 62,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "9.3",
@@ -2722,14 +2843,15 @@
         13
       ],
       "printed_end_before_next_section": 341,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-7d17be0f30d7"
       ],
       "map_alias": "D",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 14,
-      "primary_pdf_offset": 1527
+      "primary_pdf_offset": 1662,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "9.4",
@@ -2758,14 +2880,15 @@
         13
       ],
       "printed_end_before_next_section": 344,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-0048471f86d2"
       ],
       "map_alias": "F",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 14,
-      "primary_pdf_offset": 3044
+      "primary_pdf_offset": 3054,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "9.5",
@@ -2794,14 +2917,15 @@
         13
       ],
       "printed_end_before_next_section": 346,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-0048471f86d2"
       ],
       "map_alias": "F",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 14,
-      "primary_pdf_offset": 4520
+      "primary_pdf_offset": 4732,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "9.6",
@@ -2830,14 +2954,15 @@
         13
       ],
       "printed_end_before_next_section": 349,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-0048471f86d2"
       ],
       "map_alias": "F",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 14,
-      "primary_pdf_offset": 5517
+      "primary_pdf_offset": 5752,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "9.7",
@@ -2865,12 +2990,15 @@
         13
       ],
       "printed_end_before_next_section": 351,
-      "source_location_note": "인쇄 시작 쪽은 교재 목차·본문 근거이다. PDF 목록은 제목·용어 검색 후보이며 정확한 본문 시작 PDF·세로 좌표는 아직 확정하지 않았다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-dd65a7ac491b"
       ],
       "map_alias": "J",
-      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존"
+      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
+      "primary_pdf_page": 14,
+      "primary_pdf_offset": 7428,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "9.8",
@@ -2899,14 +3027,15 @@
         13
       ],
       "printed_end_before_next_section": 354,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-0048471f86d2"
       ],
       "map_alias": "F",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 14,
-      "primary_pdf_offset": 8274
+      "primary_pdf_offset": 8284,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "9.9",
@@ -2935,14 +3064,15 @@
         13
       ],
       "printed_end_before_next_section": 357,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-0048471f86d2"
       ],
       "map_alias": "F",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 14,
-      "primary_pdf_offset": 9507
+      "primary_pdf_offset": 9644,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "9.10",
@@ -2971,14 +3101,15 @@
         13
       ],
       "printed_end_before_next_section": 358,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-d617ac3de200"
       ],
       "map_alias": "K",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 14,
-      "primary_pdf_offset": 11273
+      "primary_pdf_offset": 11283,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "9.11",
@@ -3008,14 +3139,15 @@
         39
       ],
       "printed_end_before_next_section": 374,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-d617ac3de200"
       ],
       "map_alias": "K",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 14,
-      "primary_pdf_offset": 11502
+      "primary_pdf_offset": 11806,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "10.1",
@@ -3042,14 +3174,15 @@
         15
       ],
       "printed_end_before_next_section": 382,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-05a35878bf9e"
       ],
       "map_alias": "G",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 15,
-      "primary_pdf_offset": 5082
+      "primary_pdf_offset": 5204,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "10.2",
@@ -3078,14 +3211,15 @@
         16
       ],
       "printed_end_before_next_section": 388,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-05a35878bf9e"
       ],
       "map_alias": "G",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 15,
-      "primary_pdf_offset": 9072
+      "primary_pdf_offset": 9479,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "10.3",
@@ -3115,14 +3249,15 @@
         35
       ],
       "printed_end_before_next_section": 394,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-7af26480dfec"
       ],
       "map_alias": "H",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 15,
-      "primary_pdf_offset": 12065
+      "primary_pdf_offset": 12096,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "10.4",
@@ -3150,14 +3285,15 @@
         16
       ],
       "printed_end_before_next_section": 399,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-7af26480dfec"
       ],
       "map_alias": "H",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 16,
-      "primary_pdf_offset": 658
+      "primary_pdf_offset": 786,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "10.5",
@@ -3185,14 +3321,15 @@
         16
       ],
       "printed_end_before_next_section": 401,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-5d4c935e7d11"
       ],
       "map_alias": "I",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 16,
-      "primary_pdf_offset": 3252
+      "primary_pdf_offset": 3262,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "10.6",
@@ -3219,12 +3356,15 @@
         16
       ],
       "printed_end_before_next_section": 404,
-      "source_location_note": "인쇄 시작 쪽은 교재 목차·본문 근거이다. PDF 목록은 제목·용어 검색 후보이며 정확한 본문 시작 PDF·세로 좌표는 아직 확정하지 않았다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-5d4c935e7d11"
       ],
       "map_alias": "I",
-      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존"
+      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
+      "primary_pdf_page": 16,
+      "primary_pdf_offset": 4451,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "10.7",
@@ -3251,14 +3391,15 @@
         16
       ],
       "printed_end_before_next_section": 418,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-dd65a7ac491b"
       ],
       "map_alias": "J",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 16,
-      "primary_pdf_offset": 5645
+      "primary_pdf_offset": 6009,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "11.1",
@@ -3286,14 +3427,15 @@
         18
       ],
       "printed_end_before_next_section": 419,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-266c4993237a"
       ],
       "map_alias": "A",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 16,
-      "primary_pdf_offset": 12628
+      "primary_pdf_offset": 12930,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "11.2",
@@ -3323,12 +3465,15 @@
         18
       ],
       "printed_end_before_next_section": 429,
-      "source_location_note": "인쇄 시작 쪽은 교재 목차·본문 근거이다. PDF 목록은 제목·용어 검색 후보이며 정확한 본문 시작 PDF·세로 좌표는 아직 확정하지 않았다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-266c4993237a"
       ],
       "map_alias": "A",
-      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존"
+      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
+      "primary_pdf_page": 16,
+      "primary_pdf_offset": 13541,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "11.3",
@@ -3357,19 +3502,20 @@
         18
       ],
       "printed_end_before_next_section": 433,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-6d5a9bb3b3e5"
       ],
       "map_alias": "B",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 17,
-      "primary_pdf_offset": 3913
+      "primary_pdf_offset": 3923,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "11.4",
       "chapter": 11,
-      "source_title": "Properties of Liquids: Surface Tension and Viscosity",
+      "source_title": "Properties of Liquids; Surface Tension and Viscosity",
       "printed_start": 434,
       "id": "chem-2d6b325f3c01",
       "name": "표면장력과 점성",
@@ -3391,12 +3537,15 @@
         17
       ],
       "printed_end_before_next_section": 435,
-      "source_location_note": "인쇄 시작 쪽은 교재 목차·본문 근거이다. PDF 목록은 제목·용어 검색 후보이며 정확한 본문 시작 PDF·세로 좌표는 아직 확정하지 않았다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-171e1e5e3490"
       ],
       "map_alias": "C",
-      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존"
+      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
+      "primary_pdf_page": 17,
+      "primary_pdf_offset": 5855,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "11.5",
@@ -3423,12 +3572,15 @@
         17
       ],
       "printed_end_before_next_section": 443,
-      "source_location_note": "인쇄 시작 쪽은 교재 목차·본문 근거이다. PDF 목록은 제목·용어 검색 후보이며 정확한 본문 시작 PDF·세로 좌표는 아직 확정하지 않았다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-4950c6396804"
       ],
       "map_alias": "D",
-      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존"
+      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
+      "primary_pdf_page": 17,
+      "primary_pdf_offset": 6956,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "11.6",
@@ -3455,14 +3607,15 @@
         17
       ],
       "printed_end_before_next_section": 447,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-fbe86d4e8755"
       ],
       "map_alias": "E",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 17,
-      "primary_pdf_offset": 10894
+      "primary_pdf_offset": 10904,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "11.7",
@@ -3491,14 +3644,15 @@
         18
       ],
       "printed_end_before_next_section": 450,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-fbe86d4e8755"
       ],
       "map_alias": "E",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 17,
-      "primary_pdf_offset": 12784
+      "primary_pdf_offset": 12794,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "11.8",
@@ -3527,14 +3681,15 @@
         18
       ],
       "printed_end_before_next_section": 457,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-fbe86d4e8755"
       ],
       "map_alias": "E",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
-      "primary_pdf_page": 17,
-      "primary_pdf_offset": 14188
+      "primary_pdf_page": 18,
+      "primary_pdf_offset": 195,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "11.9",
@@ -3562,14 +3717,15 @@
         18
       ],
       "printed_end_before_next_section": 459,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-fbe86d4e8755"
       ],
       "map_alias": "E",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 18,
-      "primary_pdf_offset": 3300
+      "primary_pdf_offset": 3310,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "11.10",
@@ -3597,14 +3753,15 @@
         18
       ],
       "printed_end_before_next_section": 478,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-3540c8b3f0a7"
       ],
       "map_alias": "N",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 18,
-      "primary_pdf_offset": 4479
+      "primary_pdf_offset": 4489,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "12.1",
@@ -3633,14 +3790,15 @@
         19
       ],
       "printed_end_before_next_section": 480,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-c0b031247291"
       ],
       "map_alias": "F",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 18,
-      "primary_pdf_offset": 13753
+      "primary_pdf_offset": 14087,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "12.2",
@@ -3669,14 +3827,15 @@
         19
       ],
       "printed_end_before_next_section": 486,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-c0b031247291"
       ],
       "map_alias": "F",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 19,
-      "primary_pdf_offset": 350
+      "primary_pdf_offset": 509,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "12.3",
@@ -3704,14 +3863,15 @@
         19
       ],
       "printed_end_before_next_section": 489,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-d70984ca57a5"
       ],
       "map_alias": "G",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 19,
-      "primary_pdf_offset": 3343
+      "primary_pdf_offset": 3570,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "12.4",
@@ -3740,12 +3900,15 @@
         19
       ],
       "printed_end_before_next_section": 495,
-      "source_location_note": "인쇄 시작 쪽은 교재 목차·본문 근거이다. PDF 목록은 제목·용어 검색 후보이며 정확한 본문 시작 PDF·세로 좌표는 아직 확정하지 않았다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-c92940ccba71"
       ],
       "map_alias": "H",
-      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존"
+      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
+      "primary_pdf_page": 19,
+      "primary_pdf_offset": 5123,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "12.5",
@@ -3774,12 +3937,15 @@
         19
       ],
       "printed_end_before_next_section": 499,
-      "source_location_note": "인쇄 시작 쪽은 교재 목차·본문 근거이다. PDF 목록은 제목·용어 검색 후보이며 정확한 본문 시작 PDF·세로 좌표는 아직 확정하지 않았다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-a8d0137c67c3"
       ],
       "map_alias": "I",
-      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존"
+      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
+      "primary_pdf_page": 19,
+      "primary_pdf_offset": 8171,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "12.6",
@@ -3807,14 +3973,15 @@
         19
       ],
       "printed_end_before_next_section": 503,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-da9ba837c820"
       ],
       "map_alias": "J",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 19,
-      "primary_pdf_offset": 9972
+      "primary_pdf_offset": 9982,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "12.7",
@@ -3845,14 +4012,15 @@
         19
       ],
       "printed_end_before_next_section": 506,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-da9ba837c820"
       ],
       "map_alias": "J",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 19,
-      "primary_pdf_offset": 12033
+      "primary_pdf_offset": 12043,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "12.8",
@@ -3881,14 +4049,15 @@
         19
       ],
       "printed_end_before_next_section": 508,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-da9ba837c820"
       ],
       "map_alias": "J",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 19,
-      "primary_pdf_offset": 13318
+      "primary_pdf_offset": 13672,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "12.9",
@@ -3918,14 +4087,15 @@
         19
       ],
       "printed_end_before_next_section": 524,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-bcdc205168d4"
       ],
       "map_alias": "K",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 19,
-      "primary_pdf_offset": 14316
+      "primary_pdf_offset": 14347,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "13.1",
@@ -3952,14 +4122,15 @@
         20
       ],
       "printed_end_before_next_section": 528,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-4395aaa7a146"
       ],
       "map_alias": "A",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 20,
-      "primary_pdf_offset": 7896
+      "primary_pdf_offset": 8243,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "13.2",
@@ -3987,14 +4158,15 @@
         22
       ],
       "printed_end_before_next_section": 529,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-4395aaa7a146"
       ],
       "map_alias": "A",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 20,
-      "primary_pdf_offset": 9891
+      "primary_pdf_offset": 10014,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "13.3",
@@ -4023,14 +4195,15 @@
         22
       ],
       "printed_end_before_next_section": 535,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-4395aaa7a146"
       ],
       "map_alias": "A",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 20,
-      "primary_pdf_offset": 10550
+      "primary_pdf_offset": 10560,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "13.4",
@@ -4059,12 +4232,15 @@
         22
       ],
       "printed_end_before_next_section": 543,
-      "source_location_note": "인쇄 시작 쪽은 교재 목차·본문 근거이다. PDF 목록은 제목·용어 검색 후보이며 정확한 본문 시작 PDF·세로 좌표는 아직 확정하지 않았다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-4395aaa7a146"
       ],
       "map_alias": "A",
-      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존"
+      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
+      "primary_pdf_page": 20,
+      "primary_pdf_offset": 13751,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "13.5",
@@ -4092,14 +4268,15 @@
         20
       ],
       "printed_end_before_next_section": 547,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-60aa569d67de"
       ],
       "map_alias": "B",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 21,
-      "primary_pdf_offset": 3292
+      "primary_pdf_offset": 3302,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "13.6",
@@ -4129,14 +4306,15 @@
         22
       ],
       "printed_end_before_next_section": 549,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-60aa569d67de"
       ],
       "map_alias": "B",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 21,
-      "primary_pdf_offset": 5296
+      "primary_pdf_offset": 5306,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "13.7",
@@ -4166,12 +4344,15 @@
         22
       ],
       "printed_end_before_next_section": 553,
-      "source_location_note": "인쇄 시작 쪽은 교재 목차·본문 근거이다. PDF 목록은 제목·용어 검색 후보이며 정확한 본문 시작 PDF·세로 좌표는 아직 확정하지 않았다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-e8b5da39c28e"
       ],
       "map_alias": "C",
-      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존"
+      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
+      "primary_pdf_page": 21,
+      "primary_pdf_offset": 6375,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "13.8",
@@ -4200,12 +4381,15 @@
         22
       ],
       "printed_end_before_next_section": 559,
-      "source_location_note": "인쇄 시작 쪽은 교재 목차·본문 근거이다. PDF 목록은 제목·용어 검색 후보이며 정확한 본문 시작 PDF·세로 좌표는 아직 확정하지 않았다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-e8b5da39c28e"
       ],
       "map_alias": "C",
-      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존"
+      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
+      "primary_pdf_page": 21,
+      "primary_pdf_offset": 8235,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "13.9",
@@ -4236,14 +4420,15 @@
         37
       ],
       "printed_end_before_next_section": 581,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-e8b5da39c28e"
       ],
       "map_alias": "C",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 21,
-      "primary_pdf_offset": 11077
+      "primary_pdf_offset": 11087,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "14.1",
@@ -4271,14 +4456,15 @@
         23
       ],
       "printed_end_before_next_section": 584,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-50887ae12fe7"
       ],
       "map_alias": "D",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 22,
-      "primary_pdf_offset": 7610
+      "primary_pdf_offset": 7620,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "14.2",
@@ -4310,14 +4496,15 @@
         25
       ],
       "printed_end_before_next_section": 590,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-50887ae12fe7"
       ],
       "map_alias": "D",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 22,
-      "primary_pdf_offset": 9021
+      "primary_pdf_offset": 9052,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "14.3",
@@ -4344,14 +4531,15 @@
         22
       ],
       "printed_end_before_next_section": 593,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-50887ae12fe7"
       ],
       "map_alias": "D",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 22,
-      "primary_pdf_offset": 12013
+      "primary_pdf_offset": 12329,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "14.4",
@@ -4378,14 +4566,15 @@
         22
       ],
       "printed_end_before_next_section": 594,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-df52b97ec9bd"
       ],
       "map_alias": "E",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 22,
-      "primary_pdf_offset": 13716
+      "primary_pdf_offset": 13726,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "14.5",
@@ -4413,14 +4602,15 @@
         23
       ],
       "printed_end_before_next_section": 596,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-df52b97ec9bd"
       ],
       "map_alias": "E",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 22,
-      "primary_pdf_offset": 14008
+      "primary_pdf_offset": 14328,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "14.6",
@@ -4449,14 +4639,15 @@
         40
       ],
       "printed_end_before_next_section": 601,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-50887ae12fe7"
       ],
       "map_alias": "D",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 23,
-      "primary_pdf_offset": 606
+      "primary_pdf_offset": 863,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "14.7",
@@ -4484,14 +4675,15 @@
         23
       ],
       "printed_end_before_next_section": 603,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-df52b97ec9bd"
       ],
       "map_alias": "E",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 23,
-      "primary_pdf_offset": 3250
+      "primary_pdf_offset": 3260,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "14.8",
@@ -4519,12 +4711,15 @@
         23
       ],
       "printed_end_before_next_section": 608,
-      "source_location_note": "인쇄 시작 쪽은 교재 목차·본문 근거이다. PDF 목록은 제목·용어 검색 후보이며 정확한 본문 시작 PDF·세로 좌표는 아직 확정하지 않았다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-df52b97ec9bd"
       ],
       "map_alias": "E",
-      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존"
+      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
+      "primary_pdf_page": 23,
+      "primary_pdf_offset": 4493,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "14.9",
@@ -4552,14 +4747,15 @@
         23
       ],
       "printed_end_before_next_section": 624,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-e8b5da39c28e"
       ],
       "map_alias": "C",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 23,
-      "primary_pdf_offset": 6591
+      "primary_pdf_offset": 6814,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "15.1",
@@ -4587,14 +4783,15 @@
         24
       ],
       "printed_end_before_next_section": 624,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-6f33d1c25340"
       ],
       "map_alias": "F",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 24,
-      "primary_pdf_offset": 192
+      "primary_pdf_offset": 202,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "15.2",
@@ -4621,14 +4818,15 @@
         24
       ],
       "printed_end_before_next_section": 627,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-6f33d1c25340"
       ],
       "map_alias": "F",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 24,
-      "primary_pdf_offset": 171
+      "primary_pdf_offset": 578,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "15.3",
@@ -4656,14 +4854,15 @@
         24
       ],
       "printed_end_before_next_section": 630,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-6f33d1c25340"
       ],
       "map_alias": "F",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 24,
-      "primary_pdf_offset": 1836
+      "primary_pdf_offset": 1846,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "15.4",
@@ -4691,14 +4890,15 @@
         24
       ],
       "printed_end_before_next_section": 632,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-5ea8eae3be2f"
       ],
       "map_alias": "G",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 24,
-      "primary_pdf_offset": 3164
+      "primary_pdf_offset": 3271,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "15.5",
@@ -4727,14 +4927,15 @@
         24
       ],
       "printed_end_before_next_section": 635,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-5ea8eae3be2f"
       ],
       "map_alias": "G",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 24,
-      "primary_pdf_offset": 4161
+      "primary_pdf_offset": 4568,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "15.6",
@@ -4762,14 +4963,15 @@
         24
       ],
       "printed_end_before_next_section": 636,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-4b93e4c45b20"
       ],
       "map_alias": "H",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 24,
-      "primary_pdf_offset": 5808
+      "primary_pdf_offset": 5818,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "15.7",
@@ -4797,14 +4999,15 @@
         24
       ],
       "printed_end_before_next_section": 638,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-4b93e4c45b20"
       ],
       "map_alias": "H",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 24,
-      "primary_pdf_offset": 6156
+      "primary_pdf_offset": 6237,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "15.8",
@@ -4834,14 +5037,15 @@
         24
       ],
       "printed_end_before_next_section": 652,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-4b93e4c45b20"
       ],
       "map_alias": "H",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 24,
-      "primary_pdf_offset": 7154
+      "primary_pdf_offset": 7425,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "16.1",
@@ -4870,14 +5074,15 @@
         25
       ],
       "printed_end_before_next_section": 659,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-af8303c4f7c1"
       ],
       "map_alias": "I",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
-      "primary_pdf_page": 24,
-      "primary_pdf_offset": 14136
+      "primary_pdf_page": 25,
+      "primary_pdf_offset": 4,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "16.2",
@@ -4908,12 +5113,15 @@
         25
       ],
       "printed_end_before_next_section": 663,
-      "source_location_note": "인쇄 시작 쪽은 교재 목차·본문 근거이다. PDF 목록은 제목·용어 검색 후보이며 정확한 본문 시작 PDF·세로 좌표는 아직 확정하지 않았다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-af8303c4f7c1"
       ],
       "map_alias": "I",
-      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존"
+      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
+      "primary_pdf_page": 25,
+      "primary_pdf_offset": 3538,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "16.3",
@@ -4942,12 +5150,15 @@
         25
       ],
       "printed_end_before_next_section": 666,
-      "source_location_note": "인쇄 시작 쪽은 교재 목차·본문 근거이다. PDF 목록은 제목·용어 검색 후보이며 정확한 본문 시작 PDF·세로 좌표는 아직 확정하지 않았다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-af8303c4f7c1"
       ],
       "map_alias": "I",
-      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존"
+      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
+      "primary_pdf_page": 25,
+      "primary_pdf_offset": 5633,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "16.4",
@@ -4976,14 +5187,15 @@
         25
       ],
       "printed_end_before_next_section": 671,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-af8303c4f7c1"
       ],
       "map_alias": "I",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 25,
-      "primary_pdf_offset": 6719
+      "primary_pdf_offset": 7010,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "16.5",
@@ -5013,14 +5225,15 @@
         25
       ],
       "printed_end_before_next_section": 674,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-2e3e9f503b3a"
       ],
       "map_alias": "J",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 25,
-      "primary_pdf_offset": 9371
+      "primary_pdf_offset": 9381,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "16.6",
@@ -5050,14 +5263,15 @@
         25
       ],
       "printed_end_before_next_section": 681,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-2e3e9f503b3a"
       ],
       "map_alias": "J",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 25,
-      "primary_pdf_offset": 10709
+      "primary_pdf_offset": 10966,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "16.7",
@@ -5087,13 +5301,15 @@
         25
       ],
       "printed_end_before_next_section": 699,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-61db6519bc40"
       ],
       "map_alias": "K",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
-      "primary_pdf_page": 25
+      "primary_pdf_page": 26,
+      "source_start_visual_confirmed": true,
+      "primary_pdf_offset": 150
     },
     {
       "section": "17.1",
@@ -5121,14 +5337,15 @@
         26
       ],
       "printed_end_before_next_section": 704,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-5f407e8401df"
       ],
       "map_alias": "L",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 26,
-      "primary_pdf_offset": 8609
+      "primary_pdf_offset": 9042,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "17.2",
@@ -5156,14 +5373,15 @@
         26
       ],
       "printed_end_before_next_section": 706,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-5f407e8401df"
       ],
       "map_alias": "L",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 26,
-      "primary_pdf_offset": 11271
+      "primary_pdf_offset": 11472,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "17.3",
@@ -5191,14 +5409,15 @@
         26
       ],
       "printed_end_before_next_section": 711,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-5f407e8401df"
       ],
       "map_alias": "L",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 26,
-      "primary_pdf_offset": 12269
+      "primary_pdf_offset": 12581,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "17.4",
@@ -5226,14 +5445,15 @@
         26
       ],
       "printed_end_before_next_section": 714,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-5f407e8401df"
       ],
       "map_alias": "L",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 27,
-      "primary_pdf_offset": 384
+      "primary_pdf_offset": 394,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "17.5",
@@ -5261,14 +5481,15 @@
         26
       ],
       "printed_end_before_next_section": 717,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-cdee4fa07f37"
       ],
       "map_alias": "M",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 27,
-      "primary_pdf_offset": 1859
+      "primary_pdf_offset": 2034,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "17.6",
@@ -5296,14 +5517,15 @@
         26
       ],
       "printed_end_before_next_section": 719,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-cdee4fa07f37"
       ],
       "map_alias": "M",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 27,
-      "primary_pdf_offset": 3429
+      "primary_pdf_offset": 3439,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "17.7",
@@ -5331,12 +5553,15 @@
         26
       ],
       "printed_end_before_next_section": 731,
-      "source_location_note": "인쇄 시작 쪽은 교재 목차·본문 근거이다. PDF 목록은 제목·용어 검색 후보이며 정확한 본문 시작 PDF·세로 좌표는 아직 확정하지 않았다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-143dcce13fe3"
       ],
       "map_alias": "N",
-      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존"
+      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
+      "primary_pdf_page": 27,
+      "primary_pdf_offset": 4752,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "18.1",
@@ -5364,14 +5589,15 @@
         27
       ],
       "printed_end_before_next_section": 735,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-56b92a58efbf"
       ],
       "map_alias": "A",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 27,
-      "primary_pdf_offset": 10153
+      "primary_pdf_offset": 10567,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "18.2",
@@ -5399,14 +5625,15 @@
         27
       ],
       "printed_end_before_next_section": 740,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-d4029427f65a"
       ],
       "map_alias": "B",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 27,
-      "primary_pdf_offset": 12354
+      "primary_pdf_offset": 12364,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "18.3",
@@ -5434,14 +5661,15 @@
         27
       ],
       "printed_end_before_next_section": 744,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-d4029427f65a"
       ],
       "map_alias": "B",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 28,
-      "primary_pdf_offset": 427
+      "primary_pdf_offset": 706,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "18.4",
@@ -5469,14 +5697,15 @@
         27
       ],
       "printed_end_before_next_section": 748,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-2e41cfc3fd8a"
       ],
       "map_alias": "C",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 28,
-      "primary_pdf_offset": 2422
+      "primary_pdf_offset": 2586,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "18.5",
@@ -5504,19 +5733,20 @@
         27
       ],
       "printed_end_before_next_section": 752,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-2e41cfc3fd8a"
       ],
       "map_alias": "C",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 28,
-      "primary_pdf_offset": 4417
+      "primary_pdf_offset": 4755,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "18.6",
       "chapter": 18,
-      "source_title": "Relating /H9004G/H11034to the Equilibrium Constant",
+      "source_title": "Relating /H9004G/H11543to the Equilibrium Constant",
       "printed_start": 753,
       "id": "chem-a225de403bb7",
       "name": "자유에너지와 K",
@@ -5538,12 +5768,15 @@
         28
       ],
       "printed_end_before_next_section": 754,
-      "source_location_note": "인쇄 시작 쪽은 교재 목차·본문 근거이다. PDF 목록은 제목·용어 검색 후보이며 정확한 본문 시작 PDF·세로 좌표는 아직 확정하지 않았다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-d6947a5f2c69"
       ],
       "map_alias": "D",
-      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존"
+      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
+      "primary_pdf_page": 28,
+      "source_start_visual_confirmed": true,
+      "primary_pdf_offset": 6443
     },
     {
       "section": "18.7",
@@ -5571,14 +5804,15 @@
         27
       ],
       "printed_end_before_next_section": 770,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-2e41cfc3fd8a"
       ],
       "map_alias": "C",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 28,
-      "primary_pdf_offset": 7409
+      "primary_pdf_offset": 7786,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "19.1",
@@ -5605,14 +5839,15 @@
         29
       ],
       "printed_end_before_next_section": 775,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-d321efe5af98"
       ],
       "map_alias": "E",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 29,
-      "primary_pdf_offset": 989
+      "primary_pdf_offset": 1296,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "19.2",
@@ -5640,12 +5875,15 @@
         30
       ],
       "printed_end_before_next_section": 778,
-      "source_location_note": "인쇄 시작 쪽은 교재 목차·본문 근거이다. PDF 목록은 제목·용어 검색 후보이며 정확한 본문 시작 PDF·세로 좌표는 아직 확정하지 않았다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-e6d51165c042"
       ],
       "map_alias": "F",
-      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존"
+      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
+      "primary_pdf_page": 29,
+      "primary_pdf_offset": 3763,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "19.3",
@@ -5673,14 +5911,15 @@
         30
       ],
       "printed_end_before_next_section": 780,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-e6d51165c042"
       ],
       "map_alias": "F",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 29,
-      "primary_pdf_offset": 4979
+      "primary_pdf_offset": 5285,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "19.4",
@@ -5709,14 +5948,15 @@
         30
       ],
       "printed_end_before_next_section": 782,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-e6d51165c042"
       ],
       "map_alias": "F",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 29,
-      "primary_pdf_offset": 5977
+      "primary_pdf_offset": 6215,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "19.5",
@@ -5743,14 +5983,15 @@
         29
       ],
       "printed_end_before_next_section": 789,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-e6d51165c042"
       ],
       "map_alias": "F",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 29,
-      "primary_pdf_offset": 6974
+      "primary_pdf_offset": 7199,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "19.6",
@@ -5778,12 +6019,15 @@
         30
       ],
       "printed_end_before_next_section": 792,
-      "source_location_note": "인쇄 시작 쪽은 교재 목차·본문 근거이다. PDF 목록은 제목·용어 검색 후보이며 정확한 본문 시작 PDF·세로 좌표는 아직 확정하지 않았다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-d6947a5f2c69"
       ],
       "map_alias": "D",
-      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존"
+      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
+      "primary_pdf_page": 29,
+      "primary_pdf_offset": 10853,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "19.7",
@@ -5811,14 +6055,15 @@
         30
       ],
       "printed_end_before_next_section": 796,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-8eff83151ebf"
       ],
       "map_alias": "G",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 29,
-      "primary_pdf_offset": 11962
+      "primary_pdf_offset": 12369,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "19.8",
@@ -5846,14 +6091,15 @@
         30
       ],
       "printed_end_before_next_section": 799,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-01cfba4e7afe"
       ],
       "map_alias": "H",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 29,
-      "primary_pdf_offset": 13957
+      "primary_pdf_offset": 13988,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "19.9",
@@ -5881,12 +6127,15 @@
         30
       ],
       "printed_end_before_next_section": 801,
-      "source_location_note": "인쇄 시작 쪽은 교재 목차·본문 근거이다. PDF 목록은 제목·용어 검색 후보이며 정확한 본문 시작 PDF·세로 좌표는 아직 확정하지 않았다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-b453d27b7510"
       ],
       "map_alias": "I",
-      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존"
+      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
+      "primary_pdf_page": 30,
+      "primary_pdf_offset": 1345,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "19.10",
@@ -5914,14 +6163,15 @@
         30
       ],
       "printed_end_before_next_section": 805,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-b453d27b7510"
       ],
       "map_alias": "I",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 30,
-      "primary_pdf_offset": 2131
+      "primary_pdf_offset": 2141,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "19.11",
@@ -5949,12 +6199,15 @@
         30
       ],
       "printed_end_before_next_section": 820,
-      "source_location_note": "인쇄 시작 쪽은 교재 목차·본문 근거이다. PDF 목록은 제목·용어 검색 후보이며 정확한 본문 시작 PDF·세로 좌표는 아직 확정하지 않았다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-b453d27b7510"
       ],
       "map_alias": "I",
-      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존"
+      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
+      "primary_pdf_page": 30,
+      "primary_pdf_offset": 4453,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "20.1",
@@ -5985,14 +6238,15 @@
         40
       ],
       "printed_end_before_next_section": 831,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-104992f1418f"
       ],
       "map_alias": "J",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 30,
-      "primary_pdf_offset": 11527
+      "primary_pdf_offset": 11934,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "20.2",
@@ -6021,14 +6275,15 @@
         31
       ],
       "printed_end_before_next_section": 835,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-104992f1418f"
       ],
       "map_alias": "J",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 31,
-      "primary_pdf_offset": 2634
+      "primary_pdf_offset": 2644,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "20.3",
@@ -6056,14 +6311,15 @@
         31
       ],
       "printed_end_before_next_section": 837,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-d62cae4eaab8"
       ],
       "map_alias": "L",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 31,
-      "primary_pdf_offset": 4630
+      "primary_pdf_offset": 4640,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "20.4",
@@ -6092,12 +6348,15 @@
         31
       ],
       "printed_end_before_next_section": 844,
-      "source_location_note": "인쇄 시작 쪽은 교재 목차·본문 근거이다. PDF 목록은 제목·용어 검색 후보이며 정확한 본문 시작 PDF·세로 좌표는 아직 확정하지 않았다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-d832a2313485"
       ],
       "map_alias": "K",
-      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존"
+      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
+      "primary_pdf_page": 31,
+      "primary_pdf_offset": 5884,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "20.5",
@@ -6126,14 +6385,15 @@
         31
       ],
       "printed_end_before_next_section": 849,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-d62cae4eaab8"
       ],
       "map_alias": "L",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 31,
-      "primary_pdf_offset": 9097
+      "primary_pdf_offset": 9169,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "20.6",
@@ -6162,14 +6422,15 @@
         31
       ],
       "printed_end_before_next_section": 853,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-47afc33a0a3d"
       ],
       "map_alias": "M",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 31,
-      "primary_pdf_offset": 11666
+      "primary_pdf_offset": 11676,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "20.7",
@@ -6198,12 +6459,15 @@
         31
       ],
       "printed_end_before_next_section": 866,
-      "source_location_note": "인쇄 시작 쪽은 교재 목차·본문 근거이다. PDF 목록은 제목·용어 검색 후보이며 정확한 본문 시작 PDF·세로 좌표는 아직 확정하지 않았다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-fcbd7c3c33b5"
       ],
       "map_alias": "O",
-      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존"
+      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
+      "primary_pdf_page": 31,
+      "primary_pdf_offset": 13815,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "21.1",
@@ -6230,14 +6494,15 @@
         32
       ],
       "printed_end_before_next_section": 869,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-a1bbe8e26f4e"
       ],
       "map_alias": "A",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 32,
-      "primary_pdf_offset": 5670
+      "primary_pdf_offset": 6039,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "21.2",
@@ -6265,14 +6530,15 @@
         32
       ],
       "printed_end_before_next_section": 873,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-7776233c0494"
       ],
       "map_alias": "B",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 32,
-      "primary_pdf_offset": 7305
+      "primary_pdf_offset": 7315,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "21.3",
@@ -6300,19 +6566,20 @@
         32
       ],
       "printed_end_before_next_section": 876,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-7776233c0494"
       ],
       "map_alias": "B",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 32,
-      "primary_pdf_offset": 9323
+      "primary_pdf_offset": 9333,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "21.4",
       "chapter": 21,
-      "source_title": "Group IVA: The Alkali Metals",
+      "source_title": "Group IA: The Alkali Metals",
       "printed_start": 877,
       "id": "chem-b1702c5eb832",
       "name": "알칼리 금속",
@@ -6334,12 +6601,15 @@
         32
       ],
       "printed_end_before_next_section": 882,
-      "source_location_note": "인쇄 시작 쪽은 교재 목차·본문 근거이다. PDF 목록은 제목·용어 검색 후보이며 정확한 본문 시작 PDF·세로 좌표는 아직 확정하지 않았다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-e9bdf3ce3f54"
       ],
       "map_alias": "C",
-      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존"
+      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
+      "primary_pdf_page": 32,
+      "primary_pdf_offset": 10742,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "21.5",
@@ -6368,14 +6638,15 @@
         32
       ],
       "printed_end_before_next_section": 887,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-e9bdf3ce3f54"
       ],
       "map_alias": "C",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 32,
-      "primary_pdf_offset": 13650
+      "primary_pdf_offset": 13767,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "21.6",
@@ -6404,14 +6675,15 @@
         32
       ],
       "printed_end_before_next_section": 892,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-e9bdf3ce3f54"
       ],
       "map_alias": "C",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 33,
-      "primary_pdf_offset": 1811
+      "primary_pdf_offset": 1821,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "21.7",
@@ -6449,14 +6721,15 @@
         40
       ],
       "printed_end_before_next_section": 894,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-0326248fecdb"
       ],
       "map_alias": "D",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 33,
-      "primary_pdf_offset": 4237
+      "primary_pdf_offset": 4268,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "21.8",
@@ -6485,19 +6758,20 @@
         32
       ],
       "printed_end_before_next_section": 899,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-0fa3aecb2482"
       ],
       "map_alias": "E",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 33,
-      "primary_pdf_offset": 5235
+      "primary_pdf_offset": 5597,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "21.9",
       "chapter": 21,
-      "source_title": "Group VA: Nitrogen and the Phosphorous Family",
+      "source_title": "Group VA: Nitrogen and the Phosphorus Family",
       "printed_start": 900,
       "id": "chem-dc08da90dd2d",
       "name": "질소와 인",
@@ -6521,12 +6795,15 @@
         32
       ],
       "printed_end_before_next_section": 907,
-      "source_location_note": "인쇄 시작 쪽은 교재 목차·본문 근거이다. PDF 목록은 제목·용어 검색 후보이며 정확한 본문 시작 PDF·세로 좌표는 아직 확정하지 않았다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-fe9f20efb6c0"
       ],
       "map_alias": "F",
-      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존"
+      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
+      "primary_pdf_page": 33,
+      "primary_pdf_offset": 8076,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "21.10",
@@ -6555,12 +6832,15 @@
         32
       ],
       "printed_end_before_next_section": 913,
-      "source_location_note": "인쇄 시작 쪽은 교재 목차·본문 근거이다. PDF 목록은 제목·용어 검색 후보이며 정확한 본문 시작 PDF·세로 좌표는 아직 확정하지 않았다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-4dde166049cd"
       ],
       "map_alias": "G",
-      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존"
+      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
+      "primary_pdf_page": 33,
+      "primary_pdf_offset": 12081,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "21.11",
@@ -6588,14 +6868,15 @@
         32
       ],
       "printed_end_before_next_section": 917,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-c37d52c57587"
       ],
       "map_alias": "H",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 34,
-      "primary_pdf_offset": 555
+      "primary_pdf_offset": 565,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "21.12",
@@ -6623,14 +6904,15 @@
         32
       ],
       "printed_end_before_next_section": 930,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-c37d52c57587"
       ],
       "map_alias": "H",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 34,
-      "primary_pdf_offset": 2332
+      "primary_pdf_offset": 2342,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "22.1",
@@ -6658,14 +6940,15 @@
         34
       ],
       "printed_end_before_next_section": 934,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-eca697767c1e"
       ],
       "map_alias": "I",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 34,
-      "primary_pdf_offset": 8790
+      "primary_pdf_offset": 9178,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "22.2",
@@ -6693,14 +6976,15 @@
         34
       ],
       "printed_end_before_next_section": 937,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-eca697767c1e"
       ],
       "map_alias": "I",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 34,
-      "primary_pdf_offset": 10785
+      "primary_pdf_offset": 11142,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "22.3",
@@ -6728,12 +7012,15 @@
         34
       ],
       "printed_end_before_next_section": 941,
-      "source_location_note": "인쇄 시작 쪽은 교재 목차·본문 근거이다. PDF 목록은 제목·용어 검색 후보이며 정확한 본문 시작 PDF·세로 좌표는 아직 확정하지 않았다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-1c3bffbd827b"
       ],
       "map_alias": "J",
-      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존"
+      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
+      "primary_pdf_page": 34,
+      "primary_pdf_offset": 12491,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "22.4",
@@ -6761,12 +7048,15 @@
         34
       ],
       "printed_end_before_next_section": 945,
-      "source_location_note": "인쇄 시작 쪽은 교재 목차·본문 근거이다. PDF 목록은 제목·용어 검색 후보이며 정확한 본문 시작 PDF·세로 좌표는 아직 확정하지 않았다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-1c3bffbd827b"
       ],
       "map_alias": "J",
-      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존"
+      "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
+      "primary_pdf_page": 35,
+      "source_start_visual_confirmed": true,
+      "primary_pdf_offset": 199
     },
     {
       "section": "22.5",
@@ -6793,14 +7083,15 @@
         35
       ],
       "printed_end_before_next_section": 952,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-29b8b2e909cd"
       ],
       "map_alias": "K",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 35,
-      "primary_pdf_offset": 2016
+      "primary_pdf_offset": 2026,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "22.6",
@@ -6828,14 +7119,15 @@
         34
       ],
       "printed_end_before_next_section": 953,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-3f4ea73cf2d0"
       ],
       "map_alias": "L",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 35,
-      "primary_pdf_offset": 5363
+      "primary_pdf_offset": 5629,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "22.7",
@@ -6864,14 +7156,15 @@
         34
       ],
       "printed_end_before_next_section": 968,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-3f4ea73cf2d0"
       ],
       "map_alias": "L",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 35,
-      "primary_pdf_offset": 6131
+      "primary_pdf_offset": 6141,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "23.1",
@@ -6899,14 +7192,15 @@
         36
       ],
       "printed_end_before_next_section": 969,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-1891ecf3f731"
       ],
       "map_alias": "A",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 35,
-      "primary_pdf_offset": 13343
+      "primary_pdf_offset": 13477,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "23.2",
@@ -6934,14 +7228,15 @@
         36
       ],
       "printed_end_before_next_section": 976,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-1891ecf3f731"
       ],
       "map_alias": "A",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 35,
-      "primary_pdf_offset": 14028
+      "primary_pdf_offset": 14038,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "23.3",
@@ -6969,14 +7264,15 @@
         36
       ],
       "printed_end_before_next_section": 980,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-1891ecf3f731"
       ],
       "map_alias": "A",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 36,
-      "primary_pdf_offset": 2933
+      "primary_pdf_offset": 3056,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "23.4",
@@ -7004,14 +7300,15 @@
         36
       ],
       "printed_end_before_next_section": 983,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-1891ecf3f731"
       ],
       "map_alias": "A",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 36,
-      "primary_pdf_offset": 4928
+      "primary_pdf_offset": 5204,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "23.5",
@@ -7040,14 +7337,15 @@
         37
       ],
       "printed_end_before_next_section": 990,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-88190d0f99e8"
       ],
       "map_alias": "B",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 36,
-      "primary_pdf_offset": 6621
+      "primary_pdf_offset": 6631,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "23.6",
@@ -7074,14 +7372,15 @@
         36
       ],
       "printed_end_before_next_section": 994,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-1a0ee2f02dec"
       ],
       "map_alias": "C",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 36,
-      "primary_pdf_offset": 9915
+      "primary_pdf_offset": 10224,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "23.7",
@@ -7110,14 +7409,15 @@
         37
       ],
       "printed_end_before_next_section": 1005,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-1a0ee2f02dec"
       ],
       "map_alias": "C",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 36,
-      "primary_pdf_offset": 11910
+      "primary_pdf_offset": 12265,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "24.1",
@@ -7144,14 +7444,15 @@
         37
       ],
       "printed_end_before_next_section": 1009,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-07aeb668464a"
       ],
       "map_alias": "E",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 37,
-      "primary_pdf_offset": 3018
+      "primary_pdf_offset": 3028,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "24.2",
@@ -7178,14 +7479,15 @@
         37
       ],
       "printed_end_before_next_section": 1011,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-7b981fd85f2e"
       ],
       "map_alias": "G",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 37,
-      "primary_pdf_offset": 5140
+      "primary_pdf_offset": 5150,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "24.3",
@@ -7217,14 +7519,15 @@
         40
       ],
       "printed_end_before_next_section": 1016,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-ae49eb1d54cd"
       ],
       "map_alias": "I",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 37,
-      "primary_pdf_offset": 6141
+      "primary_pdf_offset": 6151,
+      "source_start_visual_confirmed": true
     },
     {
       "section": "24.4",
@@ -7253,14 +7556,15 @@
         37
       ],
       "printed_end_before_next_section": 1025,
-      "source_location_note": "인쇄 시작 쪽 표지와 절 번호·영문 제목을 동일 PDF 본문에서 텍스트 대조했다. 페이지 안의 정확한 세로 시작 좌표·모든 해당 원문 조각의 시각 대조는 별도 미확인이다. 검색 후보에는 재사용·문제의 언급도 포함될 수 있다. PDFKit의 해당 제목 선택 영역으로 시작 세로 좌표 후보를 계산했다. 모든 후보의 개별 시각 확인 완료를 뜻하지 않는다.",
+      "source_location_note": "본문의 절 번호·보라색 제목을 원본 렌더와 대조했다. 목차·요약 제목과 구별하며 PDF 페이지와 인쇄 쪽은 별도로 유지한다.",
       "concept_candidates": [
         "chem-790d75c1103c"
       ],
       "map_alias": "K",
       "concept_mapping_status": "본문 의미에 따라 편집한 묶음 대응; 세부 정의·조건은 해당 절 상세에 보존",
       "primary_pdf_page": 37,
-      "primary_pdf_offset": 8483
+      "primary_pdf_offset": 8795,
+      "source_start_visual_confirmed": true
     }
   ],
   "supporting_material": [

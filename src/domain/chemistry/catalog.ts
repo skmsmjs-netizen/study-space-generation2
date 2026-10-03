@@ -24,5 +24,5 @@ export function mapping(s: ChemistrySection) {
  if(['10.1','10.2'].includes(s.section))return {status:'부분 대응',reason:'H₂O·CO₂·NH₃의 전자 영역·분자 모양·쌍극자 대응을 연결했다. 임의 분자의 3D·전자구조 계산은 지원하지 않는다.',kind:'molecule',models:[]};
  if(PROCEDURES[s.section])return {status:'부분 대응',reason:'교재의 방법 순서와 단계별 판단을 연결했다. 임의 반응식의 자동 해법은 지원하지 않는다.',kind:'steps',models:[]};
  if(s.observation_code==='S')return {status:'정적 설명 적합',reason:s.observation_reason,kind:'static',models:[]};
- return {status:s.observation_code==='X'?'추가 구현 필요':'부분 대응',reason:s.observation_code==='X'?'원문의 공간·동적 대상을 정확하게 표현할 전문 관찰 구성이 필요하다. 현재는 정의·조건과 대응 명세를 읽는다.':'원문 근거의 정의·조건·교차 연결을 읽을 수 있다. 항목별 비교 자료·계산·분기 구성이 아직 추가로 필요하다.',kind:'reference',models:[]};
+ return {status:s.observation_code==='X'?'추가 구현 필요':'부분 대응',reason:s.observation_code==='X'?'원문의 공간·동적 대상을 정확하게 표현할 전문 관찰 구성이 필요하다. 현재는 정의·조건과 대응 명세를 읽는다.':'원문 근거의 지도 관계를 선택해 구조·문장·조건·재사용 항목을 함께 읽는다. 해당 절의 모든 수식·그림에 대한 전문 계산·공간·분기 구성은 포괄하지 않는다.',kind:'reference',models:[]};
 }
