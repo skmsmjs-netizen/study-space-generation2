@@ -21,6 +21,12 @@ async function theme(page,value){
  await summary.click();
 }
 async function contrast(page,selector){
+ // Audit the completed display, not a transient route/window fade.
+ // Infinite loading indicators are not a reason to wait indefinitely.
+ await page.evaluate(async()=>{
+  const finite=document.getAnimations().filter(a=>Number.isFinite(a.effect?.getComputedTiming().iterations));
+  await Promise.all(finite.map(a=>a.finished.catch(()=>{})));
+ });
  await page.addScriptTag({content:axe});
  const a=await page.evaluate(async scope=>{const x=await axe.run(scope,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa']}});return{violations:x.violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))})),passedNodes:x.passes.flatMap(v=>v.nodes).length,incomplete:x.incomplete.map(v=>({id:v.id,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))}))};},selector);
  expect(a.violations).toEqual([]);return a;
