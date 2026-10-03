@@ -1,0 +1,80 @@
+name: Republish verified Pages
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/redeploy-pages.yml]
+  workflow_dispatch:
+    inputs:
+      source_run:
+        description: Successful source Pages workflow run
+        required: true
+        default: '37091693073'
+      source_attempt:
+        description: Successful source attempt
+        required: true
+        default: '1'
+permissions:
+  actions: read
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Verify successful source and unchanged application
+        id: source
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SOURCE_RUN: ${{ inputs.source_run || '37091693073' }}
+          SOURCE_ATTEMPT: ${{ inputs.source_attempt || '1' }}
+        run: |
+          python3 - <<'PY'
+          import json, os, urllib.request
+          repo = os.environ['GITHUB_REPOSITORY']
+          root = f'https://api.github.com/repos/{repo}'
+          def get(path):
+              req = urllib.request.Request(root + path, headers={'Authorization': 'Bearer ' + os.environ['GH_TOKEN'], 'Accept': 'application/vnd.github+json'})
+              return json.load(urllib.request.urlopen(req, timeout=30))
+          run = os.environ['SOURCE_RUN']
+          attempt = os.environ['SOURCE_ATTEMPT']
+          info = get(f'/actions/runs/{run}/attempts/{attempt}')
+          assert info['status'] == 'completed' and info['conclusion'] == 'success', 'Source attempt did not pass'
+          assert info['head_branch'] == 'main', 'Source must be the approved main branch'
+          jobs = get(f'/actions/runs/{run}/attempts/{attempt}/jobs')['jobs']
+          required = ['build', 'Verify iPhone-17-Pro-portrait', 'Verify iPhone-17-Pro-landscape', 'Verify iPad-Pro-13-portrait', 'Verify iPad-Pro-13-landscape', 'Verify iPad-Pro-13-half-window']
+          for name in required:
+              assert any(j['name'] == name and j['conclusion'] == 'success' for j in jobs), 'Missing successful gate: ' + name
+          current = get('/git/ref/heads/main')['object']['sha']
+          assert current == os.environ['GITHUB_SHA'], 'Main changed; do not republish an older application'
+          diff = get(f"/compare/{info['head_sha']}...{current}")
+          assert all(f['filename'] == '.github/workflows/redeploy-pages.yml' for f in diff['files']), 'Application changed since source build'
+          artifacts = get(f'/actions/runs/{run}/artifacts')['artifacts']
+          matches = [a for a in artifacts if a['name'] == 'verified-build' and not a['expired']]
+          assert len(matches) == 1, 'Exactly one unexpired verified build required'
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as out:
+              out.write(f"run={run}\nartifact={matches[0]['id']}\n")
+          print('Reusing successful build and five device gates for ' + info['head_sha'])
+          PY
+      - uses: actions/download-artifact@v4
+        with:
+          artifact-ids: ${{ steps.source.outputs.artifact }}
+          run-id: ${{ steps.source.outputs.run }}
+          github-token: ${{ github.token }}
+          path: dist
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          name: github-pages-${{ github.run_id }}-${{ github.run_attempt }}
+          path: dist
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
+        with:
+          artifact_name: github-pages-${{ github.run_id }}-${{ github.run_attempt }}
