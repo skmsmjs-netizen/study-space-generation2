@@ -478,8 +478,13 @@ test('math neutral solid grid and density driven number fade', async ({ page }, 
   await page.emulateMedia({ reducedMotion: 'reduce' });
   for (let i = 0; i < 12; i++) await zoom.tap();
   await expect(host).toHaveAttribute('data-axis-numbers', 'visible');
-  await page.getByRole('button', { name: '보기 초기화', exact: true }).tap();
+});
+
+test('math Plotly density driven number fade preserves the public zoom controls', async ({ page }, info) => {
+  await page.goto('?space=demo#/math');
+  await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.getByLabel('그래프 도구', { exact: true }).selectOption('plotly');
+  const zoom = page.getByRole('button', { name: '＋ 확대', exact: true });
   const plot = page.locator('.math-plot[role="img"]');
   await expect(zoom).toBeEnabled({ timeout: 45000 });
   for (let i = 0; i < 6; i++) await page.getByRole('button', { name: '− 축소', exact: true }).tap();
