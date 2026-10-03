@@ -139,6 +139,8 @@
 
 /* Reference maps use the existing graph camera; prose has full sentences, never detached arrow rows. */
 .knowledge-diagram-viewport {
+  /* Narrow reference modules keep Korean words together; do not change personal paper settings. */
+  --observatory-body-word-break: keep-all;
   /* design-token-exception: height -- bounded reading window, larger maps pan without shrinking text */
   height: 34rem;
   min-inline-size: 0;
