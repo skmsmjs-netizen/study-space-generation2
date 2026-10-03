@@ -61,6 +61,7 @@ it('retains input on a failed write and rejects invalid source URLs',()=>{
 it('selects one accumulated task, retains date and expanded list after reopening and never changes evidence by browsing',()=>{
  const workspace=emptyRecommendations(data);workspace.schedules=Array.from({length:55},(_,i)=>({id:`agenda${i}`,subjectId:subjects[0],name:`원문 일정 ${i}`,kind:'lecture' as const,goalIds:[],targetIds:[],dueDate:'2026-10-08',opensDate:'',weight:null,status:'active' as const,states:{},dueMeaning:'attendance' as const,note:`  원문 ${i}\n조건·예외  `}));
  const original=saveRecommendations(data,workspace,null);let rendered=show();
+ expect(screen.getByRole('region',{name:'일정 요약 목록'})).toBeVisible();
  fireEvent.click(screen.getByRole('button',{name:'달력'}));field('달력 월','2026-10');
  fireEvent.click(screen.getByRole('button',{name:'2026-10-08 · 일정 55개'}));
  fireEvent.click(screen.getByRole('button',{name:/일정 더 보기/}));
