@@ -13,6 +13,8 @@ test('all current screens render, reflow and keep navigation usable', async ({ p
   for (const route of routes) {
     await page.goto(`?space=demo#${route}`);
     await expect(page.locator('main h1').first()).toBeVisible();
+    await expect(page.locator('.navigation-history-bar').getByRole('button', { name: '뒤로가기', exact: true })).toBeVisible();
+    await expect(page.locator('.navigation-history-bar').getByRole('button', { name: '앞으로가기', exact: true })).toBeVisible();
     await expect(page.getByText('화면을 열지 못했습니다.', { exact: true })).toHaveCount(0);
     await expect(page.locator('main [data-ui-loading]')).toHaveCount(0, {
       timeout: 30000,

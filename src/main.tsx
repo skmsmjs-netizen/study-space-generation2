@@ -1,5 +1,6 @@
 import { createRoot } from "react-dom/client";
 import App from "./App";
+import { NavigationHistoryProvider } from "./ui/navigation-history";
 import { ScreenBoundary } from "./ui";
 import { BackupRecoveryGate } from "./ui/full-backup";
 import "./app.css";
@@ -8,4 +9,4 @@ import "./ui/observatory-layout.css";
 import "./ui/paper-typography.css";
 import "./ui/paper-typeface.css";
 import "./ui/os-task-surfaces.css";
-createRoot(document.getElementById("root")!).render(<ScreenBoundary><BackupRecoveryGate><App /></BackupRecoveryGate></ScreenBoundary>);
+createRoot(document.getElementById("root")!).render(<NavigationHistoryProvider><ScreenBoundary><BackupRecoveryGate><App /></BackupRecoveryGate></ScreenBoundary></NavigationHistoryProvider>);

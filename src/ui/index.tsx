@@ -1,3 +1,4 @@
+import { NavigationHistoryControls } from "./navigation-history";
 import { occurrenceRows } from './list-keys';
 import { featureEntityForDialog, featureSurfaceAttributes } from './observatory-feature-identity';
 import { Component, forwardRef, useEffect, useId, useRef, type ButtonHTMLAttributes, type HTMLAttributes, type InputHTMLAttributes, type ReactNode, type SelectHTMLAttributes, type TextareaHTMLAttributes } from 'react';
@@ -186,7 +187,7 @@ export function Modal({ open, title, onClose, children, className, featureDialog
     onClick={event => {
       const press = backdropPress.current; backdropPress.current = null;
       if (event.target === event.currentTarget && press && !press.moved) onClose();
-    }}><div ref={dialog} role="dialog" aria-modal="true" aria-labelledby={titleId} tabIndex={-1} className={classes('ui-modal', view?.className ?? className)} {...featureSurfaceAttributes(featureEntityForDialog(shownTitle, view?.featureDialogMode ?? featureDialogMode))}><header className="ui-modal-header"><h2 className="ui-modal-title" id={titleId}>{shownTitle}</h2><IconButton label={`${shownTitle} 닫기`} onClick={onClose}>×</IconButton></header>{view ? view.children : children}</div></div>, document.body);
+    }}><div ref={dialog} role="dialog" aria-modal="true" aria-labelledby={titleId} tabIndex={-1} className={classes('ui-modal', view?.className ?? className)} {...featureSurfaceAttributes(featureEntityForDialog(shownTitle, view?.featureDialogMode ?? featureDialogMode))}><header className="ui-modal-header"><h2 className="ui-modal-title" id={titleId}>{shownTitle}</h2><IconButton label={`${shownTitle} 닫기`} onClick={onClose}>×</IconButton><NavigationHistoryControls onNavigate={onClose} /></header>{view ? view.children : children}</div></div>, document.body);
 }
 export function Sheet(props: ModalProps) { return <Modal {...props} className={classes('ui-sheet', props.className)} />; }
 export function Toast({ message, onUndo, onClose }: { message: string; onUndo?: () => void; onClose?: () => void }) {
