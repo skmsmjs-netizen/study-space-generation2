@@ -6,14 +6,14 @@ import './navigation-history.css';
 // Tab-local navigation metadata only: no account IDs, written content or credentials.
 export const HISTORY_KEY = 'study-space:navigation-history:v1';
 export const HISTORY_STATE = '__studyNavigation';
-type Entry = { id: string; index: number; url: string };
+type Entry = { id: string; index: number };
 type Journey = { id: string; index: number; end: number };
 type Controls = { back: boolean; forward: boolean; move: (delta: -1 | 1, onNavigate?: () => void) => void };
 const HistoryContext = createContext<Controls>({ back: false, forward: false, move: () => {} });
 
 function entry(): Entry | undefined {
   const value = window.history.state?.[HISTORY_STATE];
-  return value && typeof value.id === 'string' && Number.isSafeInteger(value.index) && value.index >= 0 && value.url === location.href ? value : undefined;
+  return value && typeof value.id === 'string' && Number.isSafeInteger(value.index) && value.index >= 0 ? value : undefined;
 }
 
 function initialJourney(): Journey {
@@ -32,7 +32,7 @@ function remember(journey: Journey) {
   // Merge other owners' fields (reading/graph state), never replace them with null.
   const state = window.history.state;
   window.history.replaceState({ ...(state && typeof state === 'object' ? state : {}),
-    [HISTORY_STATE]: { id: journey.id, index: journey.index, url: location.href } }, '', location.href);
+    [HISTORY_STATE]: { id: journey.id, index: journey.index } }, '', location.href);
   try { sessionStorage.setItem(HISTORY_KEY, JSON.stringify({ id: journey.id, end: journey.end })); }
   catch { /* In-memory history remains usable without sessionStorage. */ }
 }

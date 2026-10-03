@@ -60,3 +60,11 @@ it('keeps in-memory traversal usable when storage is blocked', () => {
   visit('#/memos'); expect(back()).toBeEnabled();
   visit('#/', first); expect(forward()).toBeEnabled();
 });
+
+it('keeps authentication callback URLs out of navigation metadata', () => {
+  history.replaceState({ unrelated: 'keep' }, '', '/?code=synthetic-callback-secret#/');
+  render(<NavigationHistoryProvider><main /></NavigationHistoryProvider>);
+  expect(JSON.stringify(history.state)).not.toContain('synthetic-callback-secret');
+  expect(Object.keys(history.state[HISTORY_STATE]).sort()).toEqual(['id', 'index']);
+  expect(history.state.unrelated).toBe('keep');
+});
