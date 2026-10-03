@@ -257,7 +257,7 @@ export function observeLinear(
   auxiliary = '',
   mode = '',
 ): LinearOutput {
-  const advanced = observeLinearAdvanced(kind, params, matrixText, auxiliary, mode);
+  const advanced = kind==='fourier'&&mode==='legacy-fixed'?null:observeLinearAdvanced(kind, params, matrixText, auxiliary, mode);
   if (advanced) { advanced.tex = advanced.tex.map(scientificTex); return advanced; }
   const t = params.t ?? 2,
     n = Math.round(params.n ?? 4),

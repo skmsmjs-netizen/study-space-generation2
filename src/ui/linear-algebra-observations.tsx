@@ -9,6 +9,9 @@ const ConceptMap = lazy(() =>
 import correspondence from '../domain/linear-algebra-correspondence.json';
 import { LINEAR_READING } from '../domain/linear-algebra-reading';
 import { linearUnit } from '../domain/linear-algebra-units';
+import legacyKinds from '../domain/linear-algebra-legacy-kinds.json';
+import legacySpecs from '../domain/linear-algebra-legacy-specs.json';
+import legacyReading from '../domain/linear-algebra-legacy-reading.json';
 import { LINEAR_SPECS, LINEAR_FORMULAS } from '../domain/linear-algebra-specs';
 import catalog from '../domain/linear-algebra-catalog.json';
 import { observeLinear, parseMatrix, type LinearKind } from '../domain/linear-algebra';
@@ -87,16 +90,21 @@ export function LinearAlgebraObservations({ data, repository, onSaved, reading =
     blocked = useRef(initial.blocked),
     pending = useRef<{ id: string; opId: string; at: string; body: string } | null>(null);
   current.current = workspace;
-  const concept = catalog.concepts.find((c) => c.id === workspace.selected) ?? catalog.concepts[10],
-    kind = concept.kind as LinearKind;
-  const spec = LINEAR_SPECS[kind];
-  const readingNote = LINEAR_READING[concept.id];
-  const unit = linearUnit(concept.id);
-  const coverage = correspondence.concepts.find((x) => x.id === concept.id);
-
-  const state = workspace.readings[concept.id] ?? defaultReading(kind);
-  // Older power observations stored their initial second component in t.
-  const auxiliaryValue=state.auxiliary??(kind==='power'&&workspace.readings[concept.id]?`1\n${state.params.t??0}`:spec.auxiliary?.value??'');
+  const concept = catalog.concepts.find((c) => c.id === workspace.selected) ?? catalog.concepts[10];
+  const currentKind=concept.kind as LinearKind;
+  const oldState=workspace.readings[concept.id];
+  const previousKind=(legacyKinds as Record<string,LinearKind>)[concept.id]??currentKind;
+  const hasPrevious=!!oldState&&oldState.modelVersion!==2&&(previousKind!==currentKind||currentKind==='fourier'||currentKind==='power');
+  const usingPrevious=hasPrevious&&workspace.modelChoices?.[concept.id]!=='current';
+  const kind=usingPrevious?previousKind:currentKind;
+  const spec: (typeof LINEAR_SPECS)[LinearKind]=usingPrevious?legacySpecs[previousKind as keyof typeof legacySpecs]:LINEAR_SPECS[kind];
+  const readingNote=usingPrevious?(legacyReading as Record<string,{question:string;paragraphs:string[];tex?:string[]}>)[concept.id]:LINEAR_READING[concept.id];
+  const unit=linearUnit(concept.id);
+  const coverage=correspondence.concepts.find(x=>x.id===concept.id);
+  const newState=hasPrevious?{...defaultReading(currentKind),memo:oldState.memo,view:oldState.view,views:oldState.views}:defaultReading(currentKind);
+  const state=usingPrevious?oldState:hasPrevious?(workspace.variants?.[concept.id]??newState):(oldState??newState);
+  const activeMode=usingPrevious&&kind==='fourier'?'legacy-fixed':state.mode??LINEAR_SPECS[kind].modes?.[0]?.value??'';
+  const auxiliaryValue=state.auxiliary??(usingPrevious&&kind==='power'?`1\n${state.params.t??0}`:LINEAR_SPECS[kind].auxiliary?.value??'');
   const update = useCallback(
     (next: LinearWorkspace) => {
       current.current = next;
@@ -115,27 +123,20 @@ export function LinearAlgebraObservations({ data, repository, onSaved, reading =
     },
     [key],
   );
-  const change = (patch: Partial<LinearReading>) =>
-    update({
-      ...current.current,
-      readings: {
-        ...current.current.readings,
-        [concept.id]: {
-          ...(current.current.readings[concept.id] ?? defaultReading(kind)),
-          ...patch,
-        },
-      },
-    });
+  const change = (patch: Partial<LinearReading>) => {
+    const field=hasPrevious&&!usingPrevious?'variants':'readings';
+    update({...current.current,[field]:{...current.current[field],[concept.id]:{...state,...patch}}});
+  };
   const calculated = useMemo(() => {
     try {
       return {
-        result: observeLinear(implemented.has(kind) ? kind : 'static', state.params, state.matrix, auxiliaryValue, state.mode ?? spec.modes?.[0]?.value ?? ''),
+        result: observeLinear(implemented.has(kind) ? kind : 'static', state.params, state.matrix, auxiliaryValue, activeMode),
         error: '',
       };
     } catch (e) {
       return { result: null, error: e instanceof Error ? e.message : '계산하지 못했다.' };
     }
-  }, [kind, state.params, state.matrix, auxiliaryValue, state.mode, spec]);
+  }, [kind, state.params, state.matrix, auxiliaryValue, activeMode, spec]);
   const result = calculated.result;
   const invalidPending = (['t', 'n'] as const).some((symbol) => {
     const c = symbol === 't' ? spec.t : spec.n,
@@ -215,8 +216,8 @@ export function LinearAlgebraObservations({ data, repository, onSaved, reading =
     setBusy(true);
     setStatus('');
     setSaveError('');
-    const snapshot = current.current.readings[concept.id] ?? defaultReading(kind);
-    const body = `선형대수 관찰 · ${concept.name}\n원자료: ${catalog.source.title}\n안정 ID: ${concept.id}\n질문: ${unit.question}\n이번 예제의 관계: ${unit.currentObservationQuestion}\n${JSON.stringify(snapshot)}\n\n${snapshot.memo}`;
+    const snapshot = {...state,modelKind:kind,modelRevision:usingPrevious?'previous':'current'};
+    const body = `선형대수 관찰 · ${concept.name}\n원자료: ${catalog.source.title}\n안정 ID: ${concept.id}\n질문: ${unit.question}\n이번 예제의 관계: ${spec.question}\n${JSON.stringify(snapshot)}\n\n${snapshot.memo}`;
     try {
       if (data.namespace !== 'demo' && !repository.getCapabilities?.().includes('saveMemo'))
         throw Error('지금은 메모 저장에 접근할 수 없다. 현재 초안은 유지된다.');
@@ -287,8 +288,8 @@ export function LinearAlgebraObservations({ data, repository, onSaved, reading =
       <header data-observation-region="question">
         <p className="linear-context">선형대수 · {concept.name}</p>
         <h2>{unit.question}</h2>
-        {unit.question !== unit.currentObservationQuestion && (
-          <p className="prose">이번 예제에서 살펴볼 관계: {unit.currentObservationQuestion}</p>
+        {unit.question !== spec.question && (
+          <p className="prose">이번 예제에서 살펴볼 관계: {spec.question}</p>
         )}
         <p className="prose">{concept.role}</p>
         {LINEAR_FORMULAS[kind] && (
@@ -438,7 +439,7 @@ export function LinearAlgebraObservations({ data, repository, onSaved, reading =
                   <Button
                     onClick={() => {
                       try {
-                        observeLinear(kind, state.params, state.matrixDraft, auxiliaryValue, state.mode ?? spec.modes?.[0]?.value ?? '');
+                        observeLinear(kind, state.params, state.matrixDraft, auxiliaryValue, activeMode);
                         change({ matrix: state.matrixDraft, imageDetached:state.image ? true : undefined, step: 0 });
                         setInputError('');
                       } catch (e) {
@@ -457,7 +458,7 @@ export function LinearAlgebraObservations({ data, repository, onSaved, reading =
                   <Button onClick={() => {
                     const raw = state.auxiliaryDraft ?? spec.auxiliary!.value;
                     try {
-                      observeLinear(kind, state.params, state.matrix, raw, state.mode ?? spec.modes?.[0]?.value ?? '');
+                      observeLinear(kind, state.params, state.matrix, raw, activeMode);
                       change({ auxiliary: raw, step: 0 }); setInputError('');
                     } catch (e) { setInputError(e instanceof Error ? e.message : '보조 입력 오류'); }
                   }}>보조 입력 적용</Button>
@@ -662,6 +663,12 @@ export function LinearAlgebraObservations({ data, repository, onSaved, reading =
             </option>
           ))}
       </Select>
+      {hasPrevious&&<div>
+        <Select label="이 개념의 관찰" value={usingPrevious?'previous':'current'} onChange={e=>{setInputError('');pending.current=null;update({...current.current,modelChoices:{...current.current.modelChoices,[concept.id]:e.target.value as 'previous'|'current'}});}}>
+          <option value="previous">이전에 저장한 관찰 이어 읽기</option><option value="current">확장된 관찰</option>
+        </Select>
+        <p className="prose">이전 입력·미확정식·단계·시야·메모는 그대로 보관한다. 확장된 관찰의 값은 별도로 저장하며 기존 메모와 시야에서 시작한다.</p>
+      </div>}
       <details onToggle={(e) => setMapOpen(e.currentTarget.open)}>
         <summary>개념 연결도 펼치기</summary>
         {mapOpen && (

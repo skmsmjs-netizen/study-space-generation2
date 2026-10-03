@@ -8,6 +8,9 @@ import catalog from './linear-algebra-catalog.json';
 import sourceIndex from './linear-algebra-source-index.json';
 import {linearUnit} from './linear-algebra-units';
 describe('개념별 선형대수 확장과 조건',()=>{
+  it('이전 푸리에 관찰의 고정 함수는 사용하지 않던 행렬을 새 계수로 해석하지 않는다',()=>{
+    const old=observeLinear('fourier',{n:3},'1 1 3\n2 -1 0','','legacy-fixed');expect(old.lines.length).toBe(2);for(const t of old.tex)expect(()=>katex.renderToString(t,{throwOnError:true})).not.toThrow();
+  });
   it('원문 인덱스와 기존 안정 ID는 누락·중복 없이 실제 질문으로 연결된다',()=>{
     expect(sourceIndex.items.length).toBe(710);expect(new Set(sourceIndex.items.map(i=>i.id)).size).toBe(710);
     for(const i of sourceIndex.items){expect(i.pdf).toBeGreaterThan(0);expect(i.pdf).toBeLessThanOrEqual(611);for(const id of i.conceptIds){expect(catalog.concepts.some(c=>c.id===id),i.id+id).toBe(true);expect(linearUnit(id).remaining).toEqual([]);}}

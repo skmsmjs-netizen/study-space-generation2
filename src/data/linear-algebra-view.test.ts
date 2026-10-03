@@ -59,3 +59,12 @@ it('소유자 경로를 분리하고 허위 중첩 상태를 거부한다', () =
   w.readings.x = { ...newLinearReading(), params: [] as unknown as Record<string, number> };
   expect(isLinearWorkspace(w)).toBe(false);
 });
+
+it('이전 관찰과 확장 관찰은 같은 ID에서 독립적으로 보존하고 손상된 변형을 거부한다',()=>{
+ const previous=newLinearReading();delete previous.modelVersion;previous.inputs.t='1/';previous.memo='원래 메모';
+ const current=newLinearReading();current.memo='확장 메모';current.auxiliaryDraft='미확정 보조 입력';
+ const w={...newLinearWorkspace(),selected:'0:T',readings:{'0:T':previous},variants:{'0:T':current},modelChoices:{'0:T':'current' as const}};
+ writeLinearWorkspace(key,w);expect(readLinearWorkspace(key)).toEqual(w);
+ expect(isLinearWorkspace({...w,variants:{'0:T':{...current,modelVersion:3}}})).toBe(false);
+ expect(isLinearWorkspace({...w,modelChoices:{'0:T':'unknown'}})).toBe(false);
+});

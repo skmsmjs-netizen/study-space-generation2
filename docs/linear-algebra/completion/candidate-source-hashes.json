@@ -3,7 +3,7 @@
   "files": [
     {
       "file": "src/domain/linear-algebra-advanced.test.ts",
-      "sha256": "5fdf5525c6c8c757090b43d25d2489a7086ac534678f1bb6c0c0dcf88de31723"
+      "sha256": "bd691458214cd98e93cf1a1b0f139e150b4630be6d49bb79a3d8b2901f503a38"
     },
     {
       "file": "src/domain/linear-algebra.test.ts",
@@ -51,7 +51,7 @@
     },
     {
       "file": "src/domain/linear-algebra.ts",
-      "sha256": "dadfdd8098bd97981ad294b3fffaeb6cad296ef5613880039f70fab2aebf29f3"
+      "sha256": "8e7078bff9db8dccb78c87691c6af330a5947035d4f80a2e56b2db8884cb9206"
     },
     {
       "file": "src/domain/linear-algebra-reading.ts",
@@ -59,11 +59,11 @@
     },
     {
       "file": "src/data/linear-algebra-view.ts",
-      "sha256": "71efb62e68ee7854476d3f0c12e958dc72af6a2718e61b3774daafd8cae7e04c"
+      "sha256": "d6a69c6d34246b7bac6d0a409c0fdaad7c725a0b63b585f24bdd8a836ff081f2"
     },
     {
       "file": "src/data/linear-algebra-view.test.ts",
-      "sha256": "40187b780b3b9918a2cca912d124ccdb25efaca8326bde0690bf5e1fe86e2da9"
+      "sha256": "929d43893b05f7823bdc098dd501d66154cb91f98d356dc9e1c90545ccb84908"
     },
     {
       "file": "src/ui/linear-algebra-observations.css",
@@ -87,7 +87,19 @@
     },
     {
       "file": "src/ui/linear-algebra-observations.tsx",
-      "sha256": "f159fc2cbdedbd67ffde7d4944ee1857c58fb522761413ec300c77cc35c085c0"
+      "sha256": "718135b65cbe7ddd92b74f8e8094b655db5596be42e1aaab79c92c5fb235f0b8"
+    },
+    {
+      "file": "src/domain/linear-algebra-legacy-kinds.json",
+      "sha256": "2d26accb9ebc92a5a3901a1998e5f3d7d70193d4736880c68896ab33c1883fc5"
+    },
+    {
+      "file": "src/domain/linear-algebra-legacy-specs.json",
+      "sha256": "79c04c6ff52058817f5f2e733473ebd2dbd297a2e1b222221ac4d00c73c46eaa"
+    },
+    {
+      "file": "src/domain/linear-algebra-legacy-reading.json",
+      "sha256": "3090307a1beef96d380268f5af7d9b2d8e957211e97904c8fa9187a9963ab68e"
     }
   ]
 }

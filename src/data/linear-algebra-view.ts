@@ -5,6 +5,7 @@ import { readRescuedDraft, storeDraftSafely, rescueWithoutOverwrite } from './dr
 import { decodeStoredText, encodeStoredText } from './storage-codec';
 import { isTemplateView, type TemplateView } from '../domain/math-view';
 export interface LinearReading {
+  modelVersion?: 2;
   params: Record<string, number>;
   inputs: Record<string, string>;
   matrix: string;
@@ -24,11 +25,14 @@ export interface LinearWorkspace {
   selected: string;
   readings: Record<string, LinearReading>;
   query: string;
+  variants?: Record<string,LinearReading>;
+  modelChoices?: Record<string,'previous'|'current'>;
   returnToReader?: boolean;
 }
 export const linearViewKey = (data: Pick<AppState, 'namespace' | 'userId'>) =>
   `${storagePrefix(data)}:linear-algebra:view:v1`;
 export const newLinearReading = (): LinearReading => ({
+  modelVersion: 2,
   params: { t: 2, n: 4 },
   inputs: {},
   matrix: '1 1 3\n2 -1 0',
@@ -56,9 +60,12 @@ export function isLinearWorkspace(value: unknown): value is LinearWorkspace {
     typeof v.readings === 'object' &&
     !Array.isArray(v.readings) &&
     Object.keys(v.readings).length <= 500 &&
-    Object.values(v.readings).every(
+    (v.variants===undefined || (!!v.variants && typeof v.variants==='object' && !Array.isArray(v.variants) && Object.keys(v.variants).length<=500)) &&
+    (v.modelChoices===undefined || (!!v.modelChoices && typeof v.modelChoices==='object' && !Array.isArray(v.modelChoices) && Object.keys(v.modelChoices).length<=500 && Object.values(v.modelChoices).every(x=>x==='previous'||x==='current'))) &&
+    [...Object.values(v.readings),...Object.values(v.variants??{})].every(
       (r) =>
         r &&
+        (r.modelVersion===undefined || r.modelVersion===2) &&
         typeof r.matrix === 'string' &&
         r.matrix.length < 30000 &&
         typeof r.matrixDraft === 'string' &&

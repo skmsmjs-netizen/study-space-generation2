@@ -1,5 +1,5 @@
 import {test,expect} from '@playwright/test';
-import {LINEAR_SPECS} from '../../src/domain/linear-algebra-specs';
+import {decodeStoredText} from '../../src/data/storage-codec';
 
 import fs from 'node:fs';
 import path from 'node:path';
@@ -38,4 +38,20 @@ test('선형대수 원문 인덱스 · 정의 검색·정확 위치·조건과 �
   await expect(page.getByRole('textbox',{name:'다항식 차수 · 정확한 값',exact:true})).toHaveCount(0);await expect(page.getByRole('alert')).toHaveCount(0);
   const matrix=page.getByRole('textbox',{name:'자료 표본 · 각 행에 x y',exact:true});await matrix.fill('0 1\n1 2');await page.getByRole('button',{name:'행렬 적용',exact:true}).click();await expect(page.getByRole('alert').filter({hasText:'양수'})).toBeVisible();await page.reload();await expect(matrix).toHaveValue('0 1\n1 2');
   await page.getByRole('combobox',{name:'살펴볼 개념',exact:true}).selectOption('3:FUNC');await page.getByRole('combobox',{name:'관찰 방식',exact:true}).selectOption('best');await expect(page.getByRole('textbox',{name:'최선근사 다항식 차수 · 정확한 값',exact:true})).toBeVisible();await expect(page.getByRole('alert')).toHaveCount(0);
+});
+
+test('이전 버전의 관찰 · 같은 ID의 입력·메모·시야를 확장 관찰과 분리 보존',async({page})=>{
+ const old={params:{t:2.5,n:4},inputs:{t:'1/'},matrix:'1 1 3\n2 -1 0',matrixDraft:'1 1 3\n2 -1 0',step:0,memo:'이전 관찰 메모',view:{ranges:{x:[-2,2],y:[-3,3]}}};
+ await page.addInitScript(old=>{if(!localStorage.getItem('linear-compat-fixture')){localStorage.setItem('linear-compat-fixture','1');localStorage.setItem('study-space:demo:linear-algebra:view:v1',JSON.stringify({version:1,selected:'0:T',readings:{'0:T':old},query:''}));}},old);
+ await page.goto('/?space=demo#/math');await page.getByRole('combobox',{name:'탐색할 내용',exact:true}).selectOption('linear');
+ const choice=page.getByRole('combobox',{name:'이 개념의 관찰',exact:true});await expect(choice).toHaveValue('previous');
+ const t=page.getByRole('textbox',{name:'배율 t · 정확한 값',exact:true});await expect(t).toHaveValue('1/');
+ await choice.selectOption('current');await expect(page.getByRole('alert')).toHaveCount(0);
+ const matrix=page.getByRole('textbox',{name:'행렬 A · 행마다 줄바꿈',exact:true});await expect(matrix).toHaveValue('1 0 0\n0 1 0\n0 0 1');
+ await matrix.fill('2 0 0\n0 1 0\n0 0 1');await page.getByRole('button',{name:'행렬 적용',exact:true}).click();await page.getByRole('textbox',{name:'관찰 메모',exact:true}).fill('확장 관찰 메모');
+ // Reload must not reset the fixture: write it only on its first visit.
+ await page.reload();await expect(choice).toHaveValue('current');await expect(matrix).toHaveValue('2 0 0\n0 1 0\n0 0 1');
+ await expect(page.getByRole('textbox',{name:'관찰 메모',exact:true})).toHaveValue('확장 관찰 메모');
+ await choice.selectOption('previous');await expect(t).toHaveValue('1/');await expect(page.getByRole('textbox',{name:'관찰 메모',exact:true})).toHaveValue('이전 관찰 메모');
+ const saved=JSON.parse(decodeStoredText(await page.evaluate(()=>localStorage.getItem('study-space:demo:linear-algebra:view:v1')!)));expect(saved.readings['0:T']).toEqual(old);expect(saved.variants['0:T'].memo).toBe('확장 관찰 메모');
 });

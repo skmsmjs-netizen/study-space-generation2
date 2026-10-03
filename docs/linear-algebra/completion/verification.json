@@ -1,6 +1,6 @@
 {
   "version": "2.0.0",
-  "at": "2026-10-03T01:08:00.486502+00:00",
+  "at": "2026-10-03T01:41:37.674613+00:00",
   "overallStatus": "확인된 본문 범위의 개념 대응·구현 및 선택 검증 완료; 전 문항/외부 보충/독립 전원식 검증·실제 기기·서버 증거는 별도",
   "scope": {
     "pdfPages": 611,
@@ -31,15 +31,15 @@
     "정적 설명 적합": 4
   },
   "unit": {
-    "total": 42,
-    "passed": 42,
+    "total": 44,
+    "passed": 44,
     "failed": 0,
-    "log": "completion-unit.log"
+    "log": "compatibility-units.log"
   },
   "browser": {
     "engine": "WebKit",
     "profiles": 5,
-    "cases": 30,
+    "cases": 35,
     "finalFailed": 0,
     "uniqueComputationFrames": 34,
     "frameVisits": 170,
@@ -70,7 +70,20 @@
     "limits": [
       "브라우저 모사는 물리 기기·보조기술·장기 사용 증거가 아니다.",
       "개인 계정 서버/다기기 저장·학습효과는 미확인이다."
-    ]
+    ],
+    "compatibility": {
+      "profiles": 5,
+      "passed": 5,
+      "failed": 0,
+      "log": "compatibility-five.log",
+      "coreFlowRecheck": {
+        "profiles": 5,
+        "passed": 5,
+        "failed": 0,
+        "log": "compatibility-core-five.log"
+      },
+      "scope": "marker-less previous inputs/memo/view preserved; current model kept in separate optional variants; selection and raw draft survive reload"
+    }
   },
   "build": {
     "command": "CI=1 npm run build",
@@ -95,16 +108,15 @@
     "draft": "owner-prefix localStorage + existing rescue; unconfirmed raw input separate from committed numeric state",
     "pdf": "original hash validation + existing IndexedDB; page/zoom/scroll metadata local",
     "server": "existing saveMemo capability/flush/receipt adapter path wired; actual server flow not tested in this task",
-    "learningEvents": "none created by opening/adjusting/saving observation"
+    "learningEvents": "none created by opening/adjusting/saving observation",
+    "previousModels": "modelVersion absent: preserve original readings; legacy kind/spec/reading snapshots from base6318aba, optional variants/modelChoices stored under same owner-key; no automatic conversion of old drafts"
   },
   "versions": "versions-and-consumers.json",
   "notComplete": [
-    "원문 제목·정리 후보688개 개별 가정/결론/정확 위치·관찰 대응 검토",
-    "표식 없는 수식·논증의 빠짐없는 항목 목록",
-    "72부분 대응의 개별 remaining",
-    "직교 삼각화·헤센베르크 전용 계산",
+    "모든 원식·가정·결론·논증의 독립 형식 검증",
+    "연습문제·정답 전 문항 독해와 문항별 대응",
     "외부 보충자료8개 본문",
-    "실제 서버·다기기·물리 기기·장기 사용·학습 효과"
+    "실제 서버·다기기·물리 기기·보조기술·장기 사용·학습 효과"
   ],
   "historicalFailures": [
     "원문 PDF 로딩의 loadingTask destroy 경로와 개발 읽기 스트림 종료를 수정했다.",
@@ -194,24 +206,30 @@
   },
   "candidateChecks": {
     "base": "6318aba05e2d6d0b8d43fbe9ce5cc607559d42f7",
-    "typecheck": "release-typecheck.log",
-    "build": "release-build.log",
+    "typecheck": "included in successful npm run build",
+    "build": "compatibility-candidate-build.log",
     "backend": "release-backend.log",
     "fullUnits": {
-      "passed": 1316,
+      "passed": 1318,
       "skipped": 1,
-      "log": "release-unit-all.log"
+      "log": "compatibility-all-unit.log"
     },
     "productionBrowser": {
-      "passed": 5,
+      "passed": 6,
+      "failed": 0,
       "profile": "iPhone-17-Pro-portrait",
-      "log": "release-browser-smoke.log"
+      "log": "compatibility-production.log"
     }
   },
   "deployment": {
     "authorized": true,
     "status": "prepared; CI and actual Pages pending",
     "target": "https://skmsmjs-netizen.github.io/study-space-generation2/",
-    "privatePdfIncluded": false
+    "privatePdfIncluded": false,
+    "previousCancelledRun": {
+      "commit": "969cac70563cd4f55b5818f653d4a8059415237c",
+      "run": 37084941746,
+      "conclusion": "cancelled before deployment; compatibility omission corrected"
+    }
   }
 }
