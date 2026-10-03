@@ -67,7 +67,7 @@ export function Card({ className, role, ...props }: HTMLAttributes<HTMLDivElemen
 export function ListItem({ className, ...props }: HTMLAttributes<HTMLLIElement>) { return <li {...props} className={classes('ui-list-item', className)} />; }
 
 export type ModalProps = { open: boolean; title: string; onClose: () => void; children: ReactNode; className?: string; featureDialogMode?: string };
-const focusableSelector = 'button:not(:disabled), [href], input:not(:disabled):not([type="hidden"]), select:not(:disabled), textarea:not(:disabled), [contenteditable]:not([contenteditable="false"]), [tabindex]:not([tabindex="-1"])';
+const focusableSelector = 'button:not(:disabled), [href], input:not(:disabled):not([type="hidden"]), select:not(:disabled), textarea:not(:disabled), details > summary:first-of-type, [contenteditable]:not([contenteditable="false"]), [tabindex]:not([tabindex="-1"])';
 export function Modal({ open, title, onClose, children, className, featureDialogMode }: ModalProps) {
   const titleId = useId(), dialog = useRef<HTMLDivElement>(null), close = useRef(onClose);
   const backdropPress = useRef<{ id: number; x: number; y: number; moved: boolean } | null>(null);
@@ -106,6 +106,7 @@ export function Modal({ open, title, onClose, children, className, featureDialog
       for (let ancestor: HTMLElement | null = el; ancestor && ancestor !== dialog.current; ancestor = ancestor.parentElement) {
         const style = getComputedStyle(ancestor);
         if (style.display === 'none' || style.visibility === 'hidden') return false;
+        if (ancestor.matches('details:not([open])') && !ancestor.querySelector(':scope > summary')?.contains(el)) return false;
       }
       return true;
     });
@@ -118,11 +119,16 @@ export function Modal({ open, title, onClose, children, className, featureDialog
     const onKeyDown = (event: KeyboardEvent) => {
       if (dialog.current?.closest('[inert]')) return;
       if (event.key === 'Escape' && !event.isComposing) { event.preventDefault(); event.stopPropagation(); close.current(); }
-      if (event.key !== 'Tab') return;
+      if (event.key !== 'Tab' || event.defaultPrevented || event.isComposing || event.altKey || event.ctrlKey || event.metaKey) return;
       const targets = available(), first = targets[0], last = targets[targets.length - 1];
       if (!first) { event.preventDefault(); dialog.current?.focus(); return; }
-      if (event.shiftKey && (document.activeElement === first || !dialog.current?.contains(document.activeElement))) { event.preventDefault(); last.focus(); }
-      else if (!event.shiftKey && (document.activeElement === last || !dialog.current?.contains(document.activeElement))) { event.preventDefault(); first.focus(); }
+      // Safari's default Tab preference can skip buttons. The modal owns its
+      // sequence so each available control and the native summary stay reachable.
+      event.preventDefault();
+      const index = targets.indexOf(document.activeElement as HTMLElement);
+      const next = index < 0 ? (event.shiftKey ? last : first)
+        : targets[(index + (event.shiftKey ? -1 : 1) + targets.length) % targets.length];
+      next.focus();
     };
     document.addEventListener('keydown', onKeyDown);
     document.addEventListener('focusin', onFocus);

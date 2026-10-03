@@ -103,6 +103,24 @@ describe('modal focus contract', () => {
     const close = vi.fn(); render(<Modal open title="기록" onClose={close}><Input label="기록 내용" /></Modal>);
     fireEvent.keyDown(document, { key: 'Escape', isComposing: true }); expect(close).not.toHaveBeenCalled();
   });
+  it('keeps the native first summary in the modal keyboard cycle', async () => {
+    render(<Modal open title="도해" onClose={() => {}}><Button>기본 크기</Button><details><summary>도해 설명과 표시값</summary><Input label="펼친 표시값" /></details></Modal>);
+    const user = userEvent.setup(), close = screen.getByRole('button', { name: '도해 닫기' });
+    const summary = screen.getByText('도해 설명과 표시값', { selector: 'summary' });
+    expect(close).toHaveFocus();
+    await user.keyboard('{Shift>}{Tab}{/Shift}'); expect(summary).toHaveFocus();
+    await user.tab(); expect(close).toHaveFocus();
+    await user.tab(); expect(screen.getByRole('button', { name: '기본 크기' })).toHaveFocus();
+    await user.tab(); expect(summary).toHaveFocus();
+    expect(fireEvent.keyDown(document, { key: 'Tab', isComposing: true })).toBe(true);
+    expect(fireEvent.keyDown(document, { key: 'Tab', ctrlKey: true })).toBe(true);
+    expect(summary).toHaveFocus();
+    const editorTab = new KeyboardEvent('keydown', { key: 'Tab', bubbles: true, cancelable: true });
+    editorTab.preventDefault(); summary.dispatchEvent(editorTab); expect(summary).toHaveFocus();
+    await user.click(summary); expect(summary.parentElement).toHaveAttribute('open'); await user.tab();
+    expect(screen.getByRole('textbox', { name: '펼친 표시값' })).toHaveFocus();
+    await user.tab(); expect(close).toHaveFocus();
+  });
   it('closes on a completed backdrop click, while press and cancelled gestures preserve the editor', async () => {
     const close = vi.fn(), user = userEvent.setup();
     render(<Modal open title="기록" onClose={close}><Input label="기록 내용" defaultValue="원래 글" /></Modal>);
