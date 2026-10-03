@@ -19,8 +19,8 @@ html { scroll-padding-block-start: calc(var(--icon-target) + var(--space-2)); }
 }
 .navigation-history-controls .ui-icon-button { flex: 0 0 auto; }
 .ui-modal-header { flex-wrap: wrap; position: sticky; inset-block-start: 0; z-index: 2; background: var(--color-surface); }
-.ui-modal-header .ui-modal-title { flex: 1 1 50%; min-inline-size: 0; }
-.ui-modal-header .navigation-history-controls { flex-basis: 100%; }
+.ui-modal-header .ui-modal-title { flex: 1 1 0; min-inline-size: 0; }
+.ui-modal-header .navigation-history-controls { flex-basis: auto; }
 .navigation-history-fullscreen {
   position: fixed;
   inset-block-start: env(safe-area-inset-top);
