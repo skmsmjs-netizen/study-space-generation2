@@ -44,10 +44,17 @@ for (const count of [0, 120, 300])
     const errors: string[] = [];
     page.on('pageerror', (error) => errors.push(error.message));
     const original = await seed(page, count);
+    const started = Date.now();
     await page.goto('?space=demo#/graph');
     const stage = page.locator('.graph-stage');
-    await expect(stage).toHaveAttribute('aria-busy', 'false');
+    // Reveal the off-screen graph before waiting for its measured layout/camera.
+    // Linux WebKit under the full CI workload exceeded the default 5s readiness wait.
     await stage.scrollIntoViewIfNeeded();
+    await expect(stage).toHaveAttribute('aria-busy', 'false', { timeout: 30_000 });
+    await info.attach('graph-initial-ready', {
+      body: JSON.stringify({ items: count + 11, elapsedMs: Date.now() - started }),
+      contentType: 'application/json',
+    });
     await expect(stage.locator('.react-flow__node')).toHaveCount(count + 11);
     await page.screenshot({ path: info.outputPath('graph-readable.png'), fullPage: true });
     // User chose a readable initial area; the explicit overview fits all nodes.
