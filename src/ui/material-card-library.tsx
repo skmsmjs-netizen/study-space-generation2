@@ -102,50 +102,52 @@ export function MaterialCardLibrary({
           {!entries.length && <a href="#/materials">강의 자료 열기</a>}
         </EmptyState>
       )}
-      {filtered.slice(current * 20, current * 20 + 20).map(({ material, result, card, id }) => (
-        <article key={`${id}:${material.version}`}>
-          <p className="muted">
-            {material.title || '제목 없는 자료'} · {new Date(result.at).toLocaleString('ko-KR')}
-          </p>
-          <Button
-            variant="quiet"
-            aria-expanded={opened === id}
-            onClick={() => setOpened(opened === id ? null : id)}
-          >
-            <StudyResultText text={card.question} as="span" />
-          </Button>
-          {opened === id && (
-            <>
-              <StudyResultText text={card.answer} />
-              <details>
-                <summary>원문 확인</summary>
-                {result.segments
-                  .filter((s) => card.sourceIds.includes(s.id))
-                  .map((s) => (
-                    <p className="prose" key={s.id}>
-                      {s.text}
-                      {s.originalText !== undefined && (
-                        <>
-                          <br />
-                          수정 전 원문 · {s.originalText}
-                        </>
-                      )}
-                    </p>
-                  ))}
-              </details>
-              <UseMaterialCard
-                data={data}
-                repository={repository}
-                onSaved={onSaved}
-                material={material}
-                resultId={result.id}
-                cardId={card.id}
-                unsaved={false}
-              />
-            </>
-          )}
-        </article>
-      ))}
+      <div className="material-card-grid">
+        {filtered.slice(current * 20, current * 20 + 20).map(({ material, result, card, id }) => (
+          <article key={`${id}:${material.version}`}>
+            <p className="muted">
+              {material.title || '제목 없는 자료'} · {new Date(result.at).toLocaleString('ko-KR')}
+            </p>
+            <Button
+              variant="quiet"
+              aria-expanded={opened === id}
+              onClick={() => setOpened(opened === id ? null : id)}
+            >
+              <StudyResultText text={card.question} as="span" />
+            </Button>
+            {opened === id && (
+              <>
+                <StudyResultText text={card.answer} />
+                <details>
+                  <summary>원문 확인</summary>
+                  {result.segments
+                    .filter((s) => card.sourceIds.includes(s.id))
+                    .map((s) => (
+                      <p className="prose" key={s.id}>
+                        {s.text}
+                        {s.originalText !== undefined && (
+                          <>
+                            <br />
+                            수정 전 원문 · {s.originalText}
+                          </>
+                        )}
+                      </p>
+                    ))}
+                </details>
+                <UseMaterialCard
+                  data={data}
+                  repository={repository}
+                  onSaved={onSaved}
+                  material={material}
+                  resultId={result.id}
+                  cardId={card.id}
+                  unsaved={false}
+                />
+              </>
+            )}
+          </article>
+        ))}
+      </div>
       {pages > 1 && (
         <div className="actions">
           <Button disabled={current === 0} onClick={() => setPage(current - 1)}>

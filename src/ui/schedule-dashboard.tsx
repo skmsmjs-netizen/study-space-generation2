@@ -85,8 +85,10 @@ export function ScheduleDashboard({
   const selected = view.selectedDate ?? '',
     limit = view.limit ?? 20;
   const patchView = (p: Partial<ScheduleView>) => {
-    const affectsResults=['query','kind','status','period','month','selectedDate'].some(key=>key in p);
-    const next = { ...view, ...(affectsResults?{selectedId:''}:{}), ...p };
+    const affectsResults = ['query', 'kind', 'status', 'period', 'month', 'selectedDate'].some(
+      (key) => key in p,
+    );
+    const next = { ...view, ...(affectsResults ? { selectedId: '' } : {}), ...p };
     setView(next);
     try {
       saveScheduleView(data, next);
@@ -100,8 +102,8 @@ export function ScheduleDashboard({
     patchView({ selectedId: id });
     requestAnimationFrame(() => {
       detailRef.current?.focus({ preventScroll: true });
-      if (window.matchMedia('(max-width: 60rem)').matches)
-        detailRef.current?.scrollIntoView({ block: 'start' });
+      if (window.matchMedia?.('(max-width: 48rem)').matches)
+        detailRef.current?.scrollIntoView?.({ block: 'start' });
     });
   };
   const returnToList = () => {
@@ -111,12 +113,12 @@ export function ScheduleDashboard({
       const buttons = listRef.current?.querySelectorAll<HTMLButtonElement>('[data-schedule-id]');
       const button = Array.from(buttons ?? []).find((b) => b.dataset.scheduleId === id);
       button?.focus({ preventScroll: true });
-      (button ?? listRef.current)?.scrollIntoView({ block: 'nearest' });
+      (button ?? listRef.current)?.scrollIntoView?.({ block: 'nearest' });
     });
   };
   const savedSchedule = useEffectEvent((event: Event) => {
-    const detail = (event as CustomEvent<{id:string;isNew:boolean}>).detail;
-    patchView({selectedId:detail.id,...(detail.isNew?{selectedDate:'',kind:'all',query:'',period:'all',status:'active'}:{})});
+    const detail = (event as CustomEvent<{ id: string; isNew: boolean }>).detail;
+    patchView({ selectedId: detail.id });
   });
   useEffect(() => {
     window.addEventListener('study-space:schedule-saved', savedSchedule);
@@ -151,7 +153,11 @@ export function ScheduleDashboard({
     ? ranged.filter((s) => s.dueDate === selected || (!s.dueDate && s.reviewDate === selected))
     : ranged;
   const chosen =
-    schedules.find((s) => s.id === view.selectedId && (view.status==='trash'?!!s.deletedAt:!s.deletedAt && s.status===view.status)) ?? (shown.length === 1 ? shown[0] : undefined);
+    schedules.find(
+      (s) =>
+        s.id === view.selectedId &&
+        (view.status === 'trash' ? !!s.deletedAt : !s.deletedAt && s.status === view.status),
+    ) ?? (shown.length === 1 ? shown[0] : undefined);
   const subjectName = (s: LearningSchedule) =>
     data.subjects.find((sub) => sub.id === s.subjectId)?.name ?? '과목 미정';
   const statusText = (s: LearningSchedule) =>
@@ -412,6 +418,12 @@ export function ScheduleDashboard({
           tabIndex={-1}
           aria-label="선택 일정 상세"
         >
+          {chosen && !shown.some((s) => s.id === chosen.id) && (
+            <div className="schedule-outside-filter">
+              <p role="status">저장한 일정은 현재 목록 조건 밖에 있습니다. 보기 조건을 유지한 채 상세를 열었습니다.</p>
+              <Button onClick={() => patchView({ query: '', kind: 'all', period: 'all', selectedDate: '', selectedId: chosen.id })}>이 일정이 있는 목록 보기</Button>
+            </div>
+          )}
           {chosen ? (
             [chosen].map((s) => (
               <Card key={s.id}>
@@ -468,7 +480,7 @@ export function ScheduleDashboard({
                       <Select
                         key={step}
                         label={workLabels[step]}
-                    aria-label={`${s.name}${s.week ? ` · ${s.week}주차` : ''} · ${workLabels[step]}`}
+                        aria-label={`${s.name}${s.week ? ` · ${s.week}주차` : ''} · ${workLabels[step]}`}
                         value={s.states[step] ?? 'unknown'}
                         onChange={(e) =>
                           update(

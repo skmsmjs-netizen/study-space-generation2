@@ -43,6 +43,7 @@ test('calendar, uncertain deadlines, weekly evidence and recovery survive touch 
   await expect(page.getByLabel('검증 미정 강의 · 필기·메모', { exact: true })).toHaveValue(
     'unknown',
   );
+  await page.getByRole('button', { name: '모든 날짜 보기', exact: true }).tap();
   await page.getByLabel('일정 종류 보기', { exact: true }).selectOption('unknown');
   await page.reload();
   await expect(page.getByLabel('일정 종류 보기', { exact: true })).toHaveValue('unknown');

@@ -41,3 +41,15 @@
 .observatory-workspace .role-unit .role-label { color: color-mix(in srgb, var(--color-hierarchy-unit) 75%, var(--color-text)); }
 .observatory-workspace .role-outline .role-label { color: color-mix(in srgb, var(--color-hierarchy-outline) 75%, var(--color-text)); }
 .observatory-workspace .role-topic .role-label { color: color-mix(in srgb, var(--color-hierarchy-topic) 75%, var(--color-text)); }
+
+/* The registered card-grid and document master/detail patterns have explicit
+   task regions, rather than relying on identity attributes alone. */
+.material-card-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,18rem),1fr)); align-items:start; gap:var(--space-4); margin-block:var(--space-4); }
+.material-card-grid > article { min-inline-size:0; overflow-wrap:anywhere; border:var(--border-width) solid var(--color-border); padding:var(--space-4); background:var(--color-surface); }
+.material-card-grid > article > .ui-button { text-align:start; justify-content:flex-start; }
+.free-note-workspace { display:grid; grid-template-columns:minmax(12rem,0.7fr) minmax(20rem,1.5fr); align-items:start; gap:var(--space-5); }
+.free-note-list,.free-note-editor { min-inline-size:0; }
+.free-note-list { margin-block:0; border-inline-end:var(--border-width) solid var(--color-border); padding-inline-end:var(--space-4); }
+.free-note-list .ui-card { padding-block:var(--space-3); overflow-wrap:anywhere; }
+@container study-content (max-width:48rem) { .free-note-workspace { grid-template-columns:minmax(0,1fr); } .free-note-list { border-inline-end:0; padding-inline-end:0; } }
+@media (max-width:48rem) { .free-note-workspace { grid-template-columns:minmax(0,1fr); } .free-note-list { border-inline-end:0; padding-inline-end:0; } }

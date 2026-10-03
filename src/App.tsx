@@ -1567,13 +1567,8 @@ function FreeNotes({ data, route, commit, onCleanupFailure }: { data: AppState; 
       <Button onClick={() => go("/free/new")}>새 자유 기록</Button>
       {route !== "/free" && <a href="#/free">자유 기록 목록</a>}
     </div>
-    {route !== "/free" && id !== legacy.id && !creating && !selected
-      ? <EmptyState title="이 자유 기록을 찾을 수 없습니다" />
-      : <NarrativeEditor data={data} kind="free-note" ownerId={null} label="자유 기록" commit={commit}
-          narrativeId={creating ? undefined : id} newNote={creating}
-          draftKey={creating ? `${storagePrefix(data)}:narrative:free-note:new` : id === legacy.id ? `${storagePrefix(data)}:narrative:free-note:null` : `${storagePrefix(data)}:narrative:free-note:id:${id}`}
-          onSaved={creating ? (savedId, cleanupKey) => { if (cleanupKey) onCleanupFailure(cleanupKey); go(`/free/${savedId}`); } : undefined} />}
-    <section className="section-space" aria-label="저장한 자유 기록">
+    <div className="free-note-workspace">
+    <section className="section-space free-note-list" aria-label="저장한 자유 기록">
       <h2>저장한 자유 기록</h2>
       <p className="muted">생각을 저장해도 공부 회차는 늘어나지 않습니다. 새 기록의 초안은 ‘새 자유 기록’에서 이어 씁니다.</p>
       <div className="card-stack">{notes.slice().reverse().map(note => <Card key={note.id}>
@@ -1583,6 +1578,15 @@ function FreeNotes({ data, route, commit, onCleanupFailure }: { data: AppState; 
         <small>{new Date(note.updatedAt).toLocaleString("ko-KR")}</small>
       </Card>)}</div>
     </section>
+    <div className="free-note-editor">
+    {route !== "/free" && id !== legacy.id && !creating && !selected
+      ? <EmptyState title="이 자유 기록을 찾을 수 없습니다" />
+      : <NarrativeEditor data={data} kind="free-note" ownerId={null} label="자유 기록" commit={commit}
+          narrativeId={creating ? undefined : id} newNote={creating}
+          draftKey={creating ? `${storagePrefix(data)}:narrative:free-note:new` : id === legacy.id ? `${storagePrefix(data)}:narrative:free-note:null` : `${storagePrefix(data)}:narrative:free-note:id:${id}`}
+          onSaved={creating ? (savedId, cleanupKey) => { if (cleanupKey) onCleanupFailure(cleanupKey); go(`/free/${savedId}`); } : undefined} />}
+    </div>
+    </div>
   </>;
 }
 

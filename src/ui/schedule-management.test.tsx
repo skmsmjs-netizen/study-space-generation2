@@ -58,3 +58,21 @@ it('retains input on a failed write and rejects invalid source URLs',()=>{
  show();fireEvent.click(screen.getByRole('button',{name:'과제 추가'}));change('일정 이름','원문 보존');change('공지·강의 주소 · 선택','javascript:alert(1)');fireEvent.click(screen.getByRole('button',{name:'일정 저장'}));expect(screen.getAllByRole('alert').some(e=>e.textContent?.includes('주소'))).toBe(true);expect(screen.getByLabelText('일정 이름')).toHaveValue('원문 보존');
  change('공지·강의 주소 · 선택','');vi.spyOn(Storage.prototype,'setItem').mockImplementation(()=>{throw new DOMException('full','QuotaExceededError');});fireEvent.click(screen.getByRole('button',{name:'일정 저장'}));expect(screen.getByRole('dialog')).toBeVisible();expect(screen.getByLabelText('일정 이름')).toHaveValue('원문 보존');expect(readRecommendations(data).workspace.schedules??[]).toHaveLength(0);
 });
+it('selects one accumulated task, retains date and expanded list after reopening and never changes evidence by browsing',()=>{
+ const workspace=emptyRecommendations(data);workspace.schedules=Array.from({length:55},(_,i)=>({id:`agenda${i}`,subjectId:subjects[0],name:`원문 일정 ${i}`,kind:'lecture' as const,goalIds:[],targetIds:[],dueDate:'2026-10-08',opensDate:'',weight:null,status:'active' as const,states:{},dueMeaning:'attendance' as const,note:`  원문 ${i}\n조건·예외  `}));
+ const original=saveRecommendations(data,workspace,null);let rendered=show();
+ fireEvent.click(screen.getByRole('button',{name:'달력'}));field('달력 월','2026-10');
+ fireEvent.click(screen.getByRole('button',{name:'2026-10-08 · 일정 55개'}));
+ fireEvent.click(screen.getByRole('button',{name:/일정 더 보기/}));
+ fireEvent.click(screen.getByRole('button',{name:'일정 보기 · 원문 일정 39'}));
+ expect(screen.getAllByRole('button',{name:'일정 수정'})).toHaveLength(1);
+ expect(screen.getByLabelText('원문 일정 39 · 출석 확인')).toHaveValue('unknown');
+ expect(readScheduleView(data,'2026-10')).toMatchObject({selectedDate:'2026-10-08',selectedId:'agenda39'});
+ rendered.unmount();rendered=show();
+ expect(screen.getByLabelText('원문 일정 39 · 출석 확인')).toHaveValue('unknown');
+ expect(screen.getByRole('button',{name:'2026-10-08 · 일정 55개'})).toHaveAttribute('aria-pressed','true');
+ expect(localStorage.getItem(recommendationKey(data))).toBe(original);
+ fireEvent.click(screen.getByRole('button',{name:'일정 목록으로 돌아가기'}));
+ expect(screen.getAllByRole('button',{name:/일정 보기 ·/})).toHaveLength(40);
+ expect(screen.queryByRole('button',{name:'일정 수정'})).toBeNull();
+});

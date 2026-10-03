@@ -147,6 +147,13 @@ test('journal and document task surfaces retain long Korean drafts, original whi
   await expect(page).toHaveURL(/#\/free\/(?!new)[^/]+$/);
   await page.reload();
   await expect(editor).toHaveValue(freeText);
+  const regions = await page.locator('.free-note-workspace').evaluate((node) => {
+    const list = node.querySelector('.free-note-list')!, editor = node.querySelector('.free-note-editor')!;
+    return { listBeforeEditor: Boolean(list.compareDocumentPosition(editor) & Node.DOCUMENT_POSITION_FOLLOWING),
+      list: list.getBoundingClientRect().left, editor: editor.getBoundingClientRect().left };
+  });
+  expect(regions.listBeforeEditor).toBe(true);
+  if (info.project.use.viewport!.width >= 1300) expect(regions.editor).toBeGreaterThan(regions.list);
   const saved = await storedData(page);
   expect(saved.records).toEqual([record]);
   expect(
