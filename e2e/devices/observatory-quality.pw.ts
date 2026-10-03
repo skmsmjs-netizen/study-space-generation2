@@ -1,10 +1,13 @@
+import { waitForReadingPaint } from './paint-ready';
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test, type Page } from '@playwright/test';
 
 async function selectTheme(page: Page, theme: 'light' | 'dark') {
   const desktop = page.locator('.sidebar-bottom');
   const settings = await desktop.isVisible() ? desktop : page.locator('.compact-menu');
-  await settings.locator('summary').click();
+  const summary = settings.locator('summary');
+  await expect(summary).toBeVisible();
+  if (!(await settings.evaluate((el) => (el as HTMLDetailsElement).open))) await summary.click();
   await settings.getByRole('combobox', { name: '화면 밝기', exact: true }).selectOption(theme);
   await settings.locator('summary').click();
   await expect(page.locator('html')).toHaveAttribute('data-theme', theme);
@@ -24,6 +27,7 @@ test('paper and interior stay readable across the four real places and preserved
     await expect(page.locator('main')).toHaveCSS('background-color', 'rgb(228, 220, 205)');
     expect(['24px', '28px']).toContain(await page.locator('main h1').first().evaluate(el => getComputedStyle(el).fontSize));
     await expect(page.locator('.observatory-place-links [aria-current="location"]')).toHaveCount(1);
+    await waitForReadingPaint(page);
     const result = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa']).analyze();
     findings.push({ route, violations: result.violations, incomplete: result.incomplete.map(item => item.id) });
     expect.soft(result.violations, route).toEqual([]);
@@ -33,6 +37,7 @@ test('paper and interior stay readable across the four real places and preserved
   await page.reload();
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
   await expect(page.locator('main')).toHaveCSS('background-color', 'rgb(40, 39, 34)');
+  await waitForReadingPaint(page);
   const dark = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa']).analyze();
   findings.push({ route: '/statistics', theme: 'dark', violations: dark.violations });
   expect(dark.violations).toEqual([]);
@@ -55,6 +60,7 @@ test('paper dialog keeps focus, validation and the unfinished original when dism
   await expect(dialog).toBeVisible();
   await expect(dialog).toHaveCSS('background-color', 'rgb(228, 220, 205)');
   await expect.poll(() => page.evaluate(() => Boolean(document.activeElement?.closest('[role="dialog"]')))).toBe(true);
+  await waitForReadingPaint(page, '[role="dialog"]');
   const result = await new AxeBuilder({ page }).include('[role="dialog"]').withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa']).analyze();
   expect(result.violations).toEqual([]);
   await page.keyboard.press('Escape');

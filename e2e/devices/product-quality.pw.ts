@@ -1,3 +1,4 @@
+import { waitForReadingPaint } from './paint-ready';
 import { expect, test } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { decodeStoredText } from '../../src/data/storage-codec';
@@ -181,6 +182,7 @@ test('quality fixes retain accessible control names, chart actions and unscaled 
         await helper.evaluate((element) => (element as HTMLInputElement).blur());
       }
     }
+    await waitForReadingPaint(page);
     const result = await new AxeBuilder({ page })
       .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'])
       .analyze();

@@ -5,8 +5,17 @@ import { existsSync } from 'node:fs';
 const root = (process.env.PAGES_BASE || '/') + '?space=demo&math=riley#/math';
 async function pick(page: any, n: string) {
   const back = page.getByRole('button', { name: '교재 목록으로', exact: true });
-  if (await back.isVisible()) await back.click();
-  await page.getByLabel('교재에서 찾기', { exact: true }).fill(n);
+  if (await back.isVisible()) {
+    await back.click();
+    await expect(back).toHaveCount(0);
+  }
+  const search = page.getByLabel('교재에서 찾기', { exact: true });
+  await expect(search).toBeVisible();
+  // Let the existing return-focus frame complete before typing into the next list.
+  await page.evaluate(() => new Promise<void>((resolve) =>
+    requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
+  await search.fill(n);
+  await expect(search).toHaveValue(n);
   const s = catalog.sections.find((x) => x.number === n)!;
   await page.getByRole('button', { name: `${n} · ${s.title}`, exact: true }).click();
 }
