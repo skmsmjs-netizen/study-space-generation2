@@ -56,6 +56,13 @@
   display: grid;
   place-items: center;
 }
+/* Keep a 44 CSS px target in the reading view without changing stored geometry. */
+.graph-dot::before {
+  content: '';
+  position: absolute;
+  width: var(--graph-hit-size, 44px);
+  height: var(--graph-hit-size, 44px);
+}
 .graph-point {
   width: var(--graph-node-size, 16px);
   height: var(--graph-node-size, 16px);

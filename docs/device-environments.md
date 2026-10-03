@@ -47,6 +47,8 @@ npm run build && npm run test:devices
 
 [WCAG 2.2 Reflow](https://www.w3.org/WAI/WCAG22/Understanding/reflow.html)의 좁은 화면 기준을 적용한다. 그래프/Canvas의 2차원 작업 영역 예외를 주변 버튼·설명·입력창에 확대하지 않는다. 기존 디자인 토큰의 주요 버튼 48px/아이콘 44px과 최소 16px 입력 글자를 유지한다. [MDN feature detection](https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Testing/Feature_detection)에 따라 실제 API·권한·서버 상태를 확인한다.
 
-[Monaco 공식 지원 범위](https://github.com/microsoft/monaco-editor#faq)는 모바일 브라우저를 제외하므로 현재 앱의 [CodeMirror 6 모바일 편집](https://discuss.codemirror.net/t/codemirror-v6-cross-platform-support/9313)을 재사용했다. 선택 근거와 기존 지원 범위는 `docs/code-mobile.md`를 따른다. [Apple/WebKit Web Push](https://webkit.org/blog/13878/web-push-for-web-apps-on-ios-and-ipados/)의 홈 화면 조건은 OS 제한이며 CSS로 해제하지 않는다. [Playwright 모사](https://playwright.dev/docs/emulation)는 개발 회귀에 사용하며 물리기기의 iOS 키보드·VoiceOver·Pencil·OS 알림·기기간 수신·실제 AI 결과/학습 효과를 증명하지 않는다.
+[Monaco 공식 지원 범위](https://github.com/microsoft/monaco-editor#faq)는 모바일 브라우저를 제외하므로 현재 앱의 [CodeMirror 6 모바일 편집](https://discuss.codemirror.net/t/codemirror-v6-cross-platform-support/9313)을 재사용했다. 선택 근거와 기존 지원 범위는 `docs/code-mobile.md`를 따른다. [Apple/WebKit Web Push](https://webkit.org/blog/13878/web-push-for-web-apps-on-ios-and-ipados/)의 홈 화면 조건은 OS 제한이며 CSS로 해제하지 않는다. [Playwright 모사](https://playwright.dev/docs/emulation)는 개발 회귀에 사용하며 물리기기의 iOS 키보드·Pencil·OS 알림·기기간 수신·실제 AI 결과/학습 효과를 증명하지 않는다.
 
 정확한 실행 수·버전·배포 상태는 최신 인계와 이번 검증 결과에서 기록한다. 이전 전체 검사나 프로필 정의를 이번 실행의 성공으로 재사용하지 않는다.
+
+2026-10-03 사용자 결정으로 VoiceOver 전용 지원·검증·완료 및 배포 조건은 모든 기능에서 제외한다. [공통 적용 범위](voiceover-scope-20261003.md)를 따른다.

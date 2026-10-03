@@ -39,6 +39,7 @@ export const FlowExperience = memo(function FlowExperience({
   minZoom = 0.1,
   maxZoom = 2,
   onViewportCommit,
+  minimapSize,
 }: {
   tools: ReturnType<typeof useFlowPreferences>;
   count: number;
@@ -47,6 +48,7 @@ export const FlowExperience = memo(function FlowExperience({
   minZoom?: number;
   maxZoom?: number;
   onViewportCommit?: () => void;
+  minimapSize?: { width: number; height: number };
 }) {
   const [open, setOpen] = useState(false);
   const [zoomDraft, setZoomDraft] = useState<string | null>(null);
@@ -182,6 +184,7 @@ export const FlowExperience = memo(function FlowExperience({
       </Panel>
       {minimap && (
         <MiniMap
+          style={minimapSize}
           position="bottom-right"
           pannable
           zoomable

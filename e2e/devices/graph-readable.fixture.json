@@ -1,0 +1,594 @@
+{
+  "sequence": 0,
+  "data": {
+    "schemaVersion": 1,
+    "userId": "demo-learner",
+    "namespace": "demo",
+    "semesters": [
+      {
+        "id": "demo-semester-current",
+        "userId": "demo-learner",
+        "namespace": "demo",
+        "createdAt": "2026-09-29T00:00:00.000Z",
+        "updatedAt": "2026-09-29T00:00:00.000Z",
+        "version": 1,
+        "deletedAt": null,
+        "name": "이번 학기 · 체험",
+        "order": 0
+      },
+      {
+        "id": "demo-semester-past",
+        "userId": "demo-learner",
+        "namespace": "demo",
+        "createdAt": "2026-09-29T00:00:00.000Z",
+        "updatedAt": "2026-09-29T00:00:00.000Z",
+        "version": 1,
+        "deletedAt": null,
+        "name": "지난 학기 · 체험",
+        "order": 1
+      }
+    ],
+    "subjects": [
+      {
+        "id": "demo-subject-math",
+        "userId": "demo-learner",
+        "namespace": "demo",
+        "createdAt": "2026-09-29T00:00:00.000Z",
+        "updatedAt": "2026-09-29T00:00:00.000Z",
+        "version": 1,
+        "deletedAt": null,
+        "name": "수학의 기초",
+        "scope": {
+          "kind": "semester",
+          "semesterId": "demo-semester-current"
+        },
+        "order": 0
+      },
+      {
+        "id": "demo-subject-science",
+        "userId": "demo-learner",
+        "namespace": "demo",
+        "createdAt": "2026-09-29T00:00:00.000Z",
+        "updatedAt": "2026-09-29T00:00:00.000Z",
+        "version": 1,
+        "deletedAt": null,
+        "name": "과학 탐구",
+        "scope": {
+          "kind": "semester",
+          "semesterId": "demo-semester-current"
+        },
+        "order": 1
+      },
+      {
+        "id": "demo-subject-past",
+        "userId": "demo-learner",
+        "namespace": "demo",
+        "createdAt": "2026-09-29T00:00:00.000Z",
+        "updatedAt": "2026-09-29T00:00:00.000Z",
+        "version": 1,
+        "deletedAt": null,
+        "name": "읽기와 표현",
+        "scope": {
+          "kind": "semester",
+          "semesterId": "demo-semester-past"
+        },
+        "order": 2
+      },
+      {
+        "id": "demo-subject-independent",
+        "userId": "demo-learner",
+        "namespace": "demo",
+        "createdAt": "2026-09-29T00:00:00.000Z",
+        "updatedAt": "2026-09-29T00:00:00.000Z",
+        "version": 1,
+        "deletedAt": null,
+        "name": "스스로 고른 공부",
+        "scope": {
+          "kind": "independent"
+        },
+        "order": 3
+      }
+    ],
+    "nodes": [
+      {
+        "id": "demo-unit-functions",
+        "userId": "demo-learner",
+        "namespace": "demo",
+        "createdAt": "2026-09-29T00:00:00.000Z",
+        "updatedAt": "2026-09-29T00:00:00.000Z",
+        "version": 1,
+        "deletedAt": null,
+        "subjectId": "demo-subject-math",
+        "parentId": null,
+        "role": "unit",
+        "name": "변화와 관계",
+        "order": 0
+      },
+      {
+        "id": "demo-outline-functions",
+        "userId": "demo-learner",
+        "namespace": "demo",
+        "createdAt": "2026-09-29T00:00:00.000Z",
+        "updatedAt": "2026-09-29T00:00:00.000Z",
+        "version": 1,
+        "deletedAt": null,
+        "subjectId": "demo-subject-math",
+        "parentId": "demo-unit-functions",
+        "role": "outline",
+        "name": "함수의 표현",
+        "order": 0
+      },
+      {
+        "id": "demo-topic-function",
+        "userId": "demo-learner",
+        "namespace": "demo",
+        "createdAt": "2026-09-29T00:00:00.000Z",
+        "updatedAt": "2026-09-29T00:00:00.000Z",
+        "version": 1,
+        "deletedAt": null,
+        "subjectId": "demo-subject-math",
+        "parentId": "demo-outline-functions",
+        "role": "topic",
+        "name": "함수는 어떤 관계일까?",
+        "order": 0
+      },
+      {
+        "id": "demo-topic-graph",
+        "userId": "demo-learner",
+        "namespace": "demo",
+        "createdAt": "2026-09-29T00:00:00.000Z",
+        "updatedAt": "2026-09-29T00:00:00.000Z",
+        "version": 1,
+        "deletedAt": null,
+        "subjectId": "demo-subject-math",
+        "parentId": "demo-outline-functions",
+        "role": "topic",
+        "name": "그래프에서 변화 읽기",
+        "order": 1
+      },
+      {
+        "id": "demo-unit-force",
+        "userId": "demo-learner",
+        "namespace": "demo",
+        "createdAt": "2026-09-29T00:00:00.000Z",
+        "updatedAt": "2026-09-29T00:00:00.000Z",
+        "version": 1,
+        "deletedAt": null,
+        "subjectId": "demo-subject-science",
+        "parentId": null,
+        "role": "unit",
+        "name": "움직임 관찰하기",
+        "order": 0
+      },
+      {
+        "id": "demo-topic-force",
+        "userId": "demo-learner",
+        "namespace": "demo",
+        "createdAt": "2026-09-29T00:00:00.000Z",
+        "updatedAt": "2026-09-29T00:00:00.000Z",
+        "version": 1,
+        "deletedAt": null,
+        "subjectId": "demo-subject-science",
+        "parentId": "demo-unit-force",
+        "role": "topic",
+        "name": "힘과 움직임",
+        "order": 0
+      }
+    ],
+    "sessions": [],
+    "records": [],
+    "narratives": [
+      {
+        "id": "demo-overview-math",
+        "userId": "demo-learner",
+        "namespace": "demo",
+        "createdAt": "2026-09-29T00:00:00.000Z",
+        "updatedAt": "2026-09-29T00:00:00.000Z",
+        "version": 1,
+        "deletedAt": null,
+        "kind": "subject-overview",
+        "ownerId": "demo-subject-math",
+        "body": "식, 그림, 말로 같은 관계를 표현해 봅니다.\n\n이 내용은 기능을 살펴보기 위한 가짜 자료입니다."
+      }
+    ],
+    "revisions": [
+      {
+        "id": "revision:seed-1:0",
+        "userId": "demo-learner",
+        "namespace": "demo",
+        "createdAt": "2026-09-29T00:00:00.000Z",
+        "updatedAt": "2026-09-29T00:00:00.000Z",
+        "version": 1,
+        "deletedAt": null,
+        "collection": "semesters",
+        "entityId": "demo-semester-current",
+        "operationId": "seed-1",
+        "parentRevisionId": null,
+        "before": null,
+        "after": {
+          "id": "demo-semester-current",
+          "userId": "demo-learner",
+          "namespace": "demo",
+          "createdAt": "2026-09-29T00:00:00.000Z",
+          "updatedAt": "2026-09-29T00:00:00.000Z",
+          "version": 1,
+          "deletedAt": null,
+          "name": "이번 학기 · 체험",
+          "order": 0
+        }
+      },
+      {
+        "id": "revision:seed-2:1",
+        "userId": "demo-learner",
+        "namespace": "demo",
+        "createdAt": "2026-09-29T00:00:00.000Z",
+        "updatedAt": "2026-09-29T00:00:00.000Z",
+        "version": 1,
+        "deletedAt": null,
+        "collection": "semesters",
+        "entityId": "demo-semester-past",
+        "operationId": "seed-2",
+        "parentRevisionId": null,
+        "before": null,
+        "after": {
+          "id": "demo-semester-past",
+          "userId": "demo-learner",
+          "namespace": "demo",
+          "createdAt": "2026-09-29T00:00:00.000Z",
+          "updatedAt": "2026-09-29T00:00:00.000Z",
+          "version": 1,
+          "deletedAt": null,
+          "name": "지난 학기 · 체험",
+          "order": 1
+        }
+      },
+      {
+        "id": "revision:seed-3:2",
+        "userId": "demo-learner",
+        "namespace": "demo",
+        "createdAt": "2026-09-29T00:00:00.000Z",
+        "updatedAt": "2026-09-29T00:00:00.000Z",
+        "version": 1,
+        "deletedAt": null,
+        "collection": "subjects",
+        "entityId": "demo-subject-math",
+        "operationId": "seed-3",
+        "parentRevisionId": null,
+        "before": null,
+        "after": {
+          "id": "demo-subject-math",
+          "userId": "demo-learner",
+          "namespace": "demo",
+          "createdAt": "2026-09-29T00:00:00.000Z",
+          "updatedAt": "2026-09-29T00:00:00.000Z",
+          "version": 1,
+          "deletedAt": null,
+          "name": "수학의 기초",
+          "scope": {
+            "kind": "semester",
+            "semesterId": "demo-semester-current"
+          },
+          "order": 0
+        }
+      },
+      {
+        "id": "revision:seed-4:3",
+        "userId": "demo-learner",
+        "namespace": "demo",
+        "createdAt": "2026-09-29T00:00:00.000Z",
+        "updatedAt": "2026-09-29T00:00:00.000Z",
+        "version": 1,
+        "deletedAt": null,
+        "collection": "subjects",
+        "entityId": "demo-subject-science",
+        "operationId": "seed-4",
+        "parentRevisionId": null,
+        "before": null,
+        "after": {
+          "id": "demo-subject-science",
+          "userId": "demo-learner",
+          "namespace": "demo",
+          "createdAt": "2026-09-29T00:00:00.000Z",
+          "updatedAt": "2026-09-29T00:00:00.000Z",
+          "version": 1,
+          "deletedAt": null,
+          "name": "과학 탐구",
+          "scope": {
+            "kind": "semester",
+            "semesterId": "demo-semester-current"
+          },
+          "order": 1
+        }
+      },
+      {
+        "id": "revision:seed-5:4",
+        "userId": "demo-learner",
+        "namespace": "demo",
+        "createdAt": "2026-09-29T00:00:00.000Z",
+        "updatedAt": "2026-09-29T00:00:00.000Z",
+        "version": 1,
+        "deletedAt": null,
+        "collection": "subjects",
+        "entityId": "demo-subject-past",
+        "operationId": "seed-5",
+        "parentRevisionId": null,
+        "before": null,
+        "after": {
+          "id": "demo-subject-past",
+          "userId": "demo-learner",
+          "namespace": "demo",
+          "createdAt": "2026-09-29T00:00:00.000Z",
+          "updatedAt": "2026-09-29T00:00:00.000Z",
+          "version": 1,
+          "deletedAt": null,
+          "name": "읽기와 표현",
+          "scope": {
+            "kind": "semester",
+            "semesterId": "demo-semester-past"
+          },
+          "order": 2
+        }
+      },
+      {
+        "id": "revision:seed-6:5",
+        "userId": "demo-learner",
+        "namespace": "demo",
+        "createdAt": "2026-09-29T00:00:00.000Z",
+        "updatedAt": "2026-09-29T00:00:00.000Z",
+        "version": 1,
+        "deletedAt": null,
+        "collection": "subjects",
+        "entityId": "demo-subject-independent",
+        "operationId": "seed-6",
+        "parentRevisionId": null,
+        "before": null,
+        "after": {
+          "id": "demo-subject-independent",
+          "userId": "demo-learner",
+          "namespace": "demo",
+          "createdAt": "2026-09-29T00:00:00.000Z",
+          "updatedAt": "2026-09-29T00:00:00.000Z",
+          "version": 1,
+          "deletedAt": null,
+          "name": "스스로 고른 공부",
+          "scope": {
+            "kind": "independent"
+          },
+          "order": 3
+        }
+      },
+      {
+        "id": "revision:seed-7:6",
+        "userId": "demo-learner",
+        "namespace": "demo",
+        "createdAt": "2026-09-29T00:00:00.000Z",
+        "updatedAt": "2026-09-29T00:00:00.000Z",
+        "version": 1,
+        "deletedAt": null,
+        "collection": "nodes",
+        "entityId": "demo-unit-functions",
+        "operationId": "seed-7",
+        "parentRevisionId": null,
+        "before": null,
+        "after": {
+          "id": "demo-unit-functions",
+          "userId": "demo-learner",
+          "namespace": "demo",
+          "createdAt": "2026-09-29T00:00:00.000Z",
+          "updatedAt": "2026-09-29T00:00:00.000Z",
+          "version": 1,
+          "deletedAt": null,
+          "subjectId": "demo-subject-math",
+          "parentId": null,
+          "role": "unit",
+          "name": "변화와 관계",
+          "order": 0
+        }
+      },
+      {
+        "id": "revision:seed-8:7",
+        "userId": "demo-learner",
+        "namespace": "demo",
+        "createdAt": "2026-09-29T00:00:00.000Z",
+        "updatedAt": "2026-09-29T00:00:00.000Z",
+        "version": 1,
+        "deletedAt": null,
+        "collection": "nodes",
+        "entityId": "demo-outline-functions",
+        "operationId": "seed-8",
+        "parentRevisionId": null,
+        "before": null,
+        "after": {
+          "id": "demo-outline-functions",
+          "userId": "demo-learner",
+          "namespace": "demo",
+          "createdAt": "2026-09-29T00:00:00.000Z",
+          "updatedAt": "2026-09-29T00:00:00.000Z",
+          "version": 1,
+          "deletedAt": null,
+          "subjectId": "demo-subject-math",
+          "parentId": "demo-unit-functions",
+          "role": "outline",
+          "name": "함수의 표현",
+          "order": 0
+        }
+      },
+      {
+        "id": "revision:seed-9:8",
+        "userId": "demo-learner",
+        "namespace": "demo",
+        "createdAt": "2026-09-29T00:00:00.000Z",
+        "updatedAt": "2026-09-29T00:00:00.000Z",
+        "version": 1,
+        "deletedAt": null,
+        "collection": "nodes",
+        "entityId": "demo-topic-function",
+        "operationId": "seed-9",
+        "parentRevisionId": null,
+        "before": null,
+        "after": {
+          "id": "demo-topic-function",
+          "userId": "demo-learner",
+          "namespace": "demo",
+          "createdAt": "2026-09-29T00:00:00.000Z",
+          "updatedAt": "2026-09-29T00:00:00.000Z",
+          "version": 1,
+          "deletedAt": null,
+          "subjectId": "demo-subject-math",
+          "parentId": "demo-outline-functions",
+          "role": "topic",
+          "name": "함수는 어떤 관계일까?",
+          "order": 0
+        }
+      },
+      {
+        "id": "revision:seed-10:9",
+        "userId": "demo-learner",
+        "namespace": "demo",
+        "createdAt": "2026-09-29T00:00:00.000Z",
+        "updatedAt": "2026-09-29T00:00:00.000Z",
+        "version": 1,
+        "deletedAt": null,
+        "collection": "nodes",
+        "entityId": "demo-topic-graph",
+        "operationId": "seed-10",
+        "parentRevisionId": null,
+        "before": null,
+        "after": {
+          "id": "demo-topic-graph",
+          "userId": "demo-learner",
+          "namespace": "demo",
+          "createdAt": "2026-09-29T00:00:00.000Z",
+          "updatedAt": "2026-09-29T00:00:00.000Z",
+          "version": 1,
+          "deletedAt": null,
+          "subjectId": "demo-subject-math",
+          "parentId": "demo-outline-functions",
+          "role": "topic",
+          "name": "그래프에서 변화 읽기",
+          "order": 1
+        }
+      },
+      {
+        "id": "revision:seed-11:10",
+        "userId": "demo-learner",
+        "namespace": "demo",
+        "createdAt": "2026-09-29T00:00:00.000Z",
+        "updatedAt": "2026-09-29T00:00:00.000Z",
+        "version": 1,
+        "deletedAt": null,
+        "collection": "nodes",
+        "entityId": "demo-unit-force",
+        "operationId": "seed-11",
+        "parentRevisionId": null,
+        "before": null,
+        "after": {
+          "id": "demo-unit-force",
+          "userId": "demo-learner",
+          "namespace": "demo",
+          "createdAt": "2026-09-29T00:00:00.000Z",
+          "updatedAt": "2026-09-29T00:00:00.000Z",
+          "version": 1,
+          "deletedAt": null,
+          "subjectId": "demo-subject-science",
+          "parentId": null,
+          "role": "unit",
+          "name": "움직임 관찰하기",
+          "order": 0
+        }
+      },
+      {
+        "id": "revision:seed-12:11",
+        "userId": "demo-learner",
+        "namespace": "demo",
+        "createdAt": "2026-09-29T00:00:00.000Z",
+        "updatedAt": "2026-09-29T00:00:00.000Z",
+        "version": 1,
+        "deletedAt": null,
+        "collection": "nodes",
+        "entityId": "demo-topic-force",
+        "operationId": "seed-12",
+        "parentRevisionId": null,
+        "before": null,
+        "after": {
+          "id": "demo-topic-force",
+          "userId": "demo-learner",
+          "namespace": "demo",
+          "createdAt": "2026-09-29T00:00:00.000Z",
+          "updatedAt": "2026-09-29T00:00:00.000Z",
+          "version": 1,
+          "deletedAt": null,
+          "subjectId": "demo-subject-science",
+          "parentId": "demo-unit-force",
+          "role": "topic",
+          "name": "힘과 움직임",
+          "order": 0
+        }
+      },
+      {
+        "id": "revision:seed-13:12",
+        "userId": "demo-learner",
+        "namespace": "demo",
+        "createdAt": "2026-09-29T00:00:00.000Z",
+        "updatedAt": "2026-09-29T00:00:00.000Z",
+        "version": 1,
+        "deletedAt": null,
+        "collection": "narratives",
+        "entityId": "demo-overview-math",
+        "operationId": "seed-13",
+        "parentRevisionId": null,
+        "before": null,
+        "after": {
+          "id": "demo-overview-math",
+          "userId": "demo-learner",
+          "namespace": "demo",
+          "createdAt": "2026-09-29T00:00:00.000Z",
+          "updatedAt": "2026-09-29T00:00:00.000Z",
+          "version": 1,
+          "deletedAt": null,
+          "kind": "subject-overview",
+          "ownerId": "demo-subject-math",
+          "body": "식, 그림, 말로 같은 관계를 표현해 봅니다.\n\n이 내용은 기능을 살펴보기 위한 가짜 자료입니다."
+        }
+      }
+    ],
+    "appliedOps": {
+      "seed-1": "{\"at\":\"2026-09-29T00:00:00.000Z\",\"id\":\"demo-semester-current\",\"name\":\"이번 학기 · 체험\",\"opId\":\"seed-1\",\"type\":\"addSemester\",\"userId\":\"demo-learner\"}",
+      "seed-2": "{\"at\":\"2026-09-29T00:00:00.000Z\",\"id\":\"demo-semester-past\",\"name\":\"지난 학기 · 체험\",\"opId\":\"seed-2\",\"type\":\"addSemester\",\"userId\":\"demo-learner\"}",
+      "seed-3": "{\"at\":\"2026-09-29T00:00:00.000Z\",\"id\":\"demo-subject-math\",\"name\":\"수학의 기초\",\"opId\":\"seed-3\",\"scope\":{\"kind\":\"semester\",\"semesterId\":\"demo-semester-current\"},\"type\":\"addSubject\",\"userId\":\"demo-learner\"}",
+      "seed-4": "{\"at\":\"2026-09-29T00:00:00.000Z\",\"id\":\"demo-subject-science\",\"name\":\"과학 탐구\",\"opId\":\"seed-4\",\"scope\":{\"kind\":\"semester\",\"semesterId\":\"demo-semester-current\"},\"type\":\"addSubject\",\"userId\":\"demo-learner\"}",
+      "seed-5": "{\"at\":\"2026-09-29T00:00:00.000Z\",\"id\":\"demo-subject-past\",\"name\":\"읽기와 표현\",\"opId\":\"seed-5\",\"scope\":{\"kind\":\"semester\",\"semesterId\":\"demo-semester-past\"},\"type\":\"addSubject\",\"userId\":\"demo-learner\"}",
+      "seed-6": "{\"at\":\"2026-09-29T00:00:00.000Z\",\"id\":\"demo-subject-independent\",\"name\":\"스스로 고른 공부\",\"opId\":\"seed-6\",\"scope\":{\"kind\":\"independent\"},\"type\":\"addSubject\",\"userId\":\"demo-learner\"}",
+      "seed-7": "{\"at\":\"2026-09-29T00:00:00.000Z\",\"id\":\"demo-unit-functions\",\"name\":\"변화와 관계\",\"opId\":\"seed-7\",\"parentId\":null,\"role\":\"unit\",\"subjectId\":\"demo-subject-math\",\"type\":\"addNode\",\"userId\":\"demo-learner\"}",
+      "seed-8": "{\"at\":\"2026-09-29T00:00:00.000Z\",\"id\":\"demo-outline-functions\",\"name\":\"함수의 표현\",\"opId\":\"seed-8\",\"parentId\":\"demo-unit-functions\",\"role\":\"outline\",\"subjectId\":\"demo-subject-math\",\"type\":\"addNode\",\"userId\":\"demo-learner\"}",
+      "seed-9": "{\"at\":\"2026-09-29T00:00:00.000Z\",\"id\":\"demo-topic-function\",\"name\":\"함수는 어떤 관계일까?\",\"opId\":\"seed-9\",\"parentId\":\"demo-outline-functions\",\"role\":\"topic\",\"subjectId\":\"demo-subject-math\",\"type\":\"addNode\",\"userId\":\"demo-learner\"}",
+      "seed-10": "{\"at\":\"2026-09-29T00:00:00.000Z\",\"id\":\"demo-topic-graph\",\"name\":\"그래프에서 변화 읽기\",\"opId\":\"seed-10\",\"parentId\":\"demo-outline-functions\",\"role\":\"topic\",\"subjectId\":\"demo-subject-math\",\"type\":\"addNode\",\"userId\":\"demo-learner\"}",
+      "seed-11": "{\"at\":\"2026-09-29T00:00:00.000Z\",\"id\":\"demo-unit-force\",\"name\":\"움직임 관찰하기\",\"opId\":\"seed-11\",\"parentId\":null,\"role\":\"unit\",\"subjectId\":\"demo-subject-science\",\"type\":\"addNode\",\"userId\":\"demo-learner\"}",
+      "seed-12": "{\"at\":\"2026-09-29T00:00:00.000Z\",\"id\":\"demo-topic-force\",\"name\":\"힘과 움직임\",\"opId\":\"seed-12\",\"parentId\":\"demo-unit-force\",\"role\":\"topic\",\"subjectId\":\"demo-subject-science\",\"type\":\"addNode\",\"userId\":\"demo-learner\"}",
+      "seed-13": "{\"at\":\"2026-09-29T00:00:00.000Z\",\"body\":\"식, 그림, 말로 같은 관계를 표현해 봅니다.\\n\\n이 내용은 기능을 살펴보기 위한 가짜 자료입니다.\",\"expectedVersion\":0,\"id\":\"demo-overview-math\",\"kind\":\"subject-overview\",\"opId\":\"seed-13\",\"ownerId\":\"demo-subject-math\",\"type\":\"updateNarrative\",\"userId\":\"demo-learner\"}"
+    },
+    "canvasLayouts": [
+      {
+        "id": "canvas:main",
+        "namespace": "demo",
+        "userId": "demo-learner",
+        "createdAt": "2026-10-03T00:00:00.000Z",
+        "updatedAt": "2026-10-03T00:00:00.000Z",
+        "version": 1,
+        "deletedAt": null,
+        "positions": {
+          "node:demo-topic-function": {
+            "x": 321,
+            "y": -123
+          }
+        },
+        "links": [],
+        "viewport": {
+          "x": 31,
+          "y": -12,
+          "zoom": 0.63
+        }
+      }
+    ]
+  }
+}

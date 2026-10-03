@@ -1,5 +1,14 @@
 import { FlowControls } from './flow-controls';
-import { memo, useEffect, useMemo, useState, useRef, type CSSProperties } from 'react';
+import {
+  memo,
+  useCallback,
+  useEffect,
+  useEffectEvent,
+  useMemo,
+  useState,
+  useRef,
+  type CSSProperties,
+} from 'react';
 import {
   ReactFlow,
   Handle,
@@ -17,6 +26,7 @@ import {
   type NodeProps,
   type ReactFlowInstance,
   type EdgeProps,
+  type Viewport,
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 import type { AppState, CanvasPosition } from '../domain/model';
@@ -43,6 +53,44 @@ import { archiveDamagedDraft } from '../data/draft-safety';
 import { flowPreferencesKey, useFlowPreferences } from '../data/flow-preferences';
 import { FlowExperience, flowAriaLabels, flowSnapGrid } from './flow-experience';
 import { layoutFlowBoxes } from '../domain/flow-layout';
+import { useViewContext } from './use-view-context';
+
+const readingZoom = 0.6;
+type GraphView = {
+  selected: string | null;
+  centerId: string | null;
+  viewport: Viewport | null;
+  geometry: string;
+  positions: Record<string, CanvasPosition>;
+  pinned: Record<string, CanvasPosition>;
+};
+const emptyGraphView: GraphView = {
+  selected: null,
+  centerId: null,
+  viewport: null,
+  geometry: '',
+  positions: {},
+  pinned: {},
+};
+function validGraphView(value: unknown): value is GraphView {
+  if (!value || typeof value !== 'object') return false;
+  const view = value as GraphView;
+  const point = (p: CanvasPosition) => p && Number.isFinite(p.x) && Number.isFinite(p.y);
+  const positions = (p: Record<string, CanvasPosition>) =>
+    p && typeof p === 'object' && !Array.isArray(p) && Object.values(p).every(point);
+  return (
+    (view.selected === null || typeof view.selected === 'string') &&
+    (view.centerId === null || typeof view.centerId === 'string') &&
+    typeof view.geometry === 'string' &&
+    positions(view.positions) &&
+    positions(view.pinned) &&
+    (view.viewport === null ||
+      (point(view.viewport) &&
+        Number.isFinite(view.viewport.zoom) &&
+        view.viewport.zoom >= 0.02 &&
+        view.viewport.zoom <= 3))
+  );
+}
 type GraphNode = Node<
   {
     card: CanvasCard;
@@ -73,6 +121,7 @@ const Dot = memo(function Dot({ data }: NodeProps<GraphNode>) {
       style={
         {
           '--graph-node-size': `${Math.max(data.size, 4 / data.zoom)}px`,
+          '--graph-hit-size': `${Math.max(44, 44 / Math.max(readingZoom, data.zoom))}px`,
           '--graph-label-scale': 1 / data.zoom,
           '--graph-label-offset': `${Math.max(data.size * data.zoom, 4) / 2 + 8}px`,
         } as CSSProperties
@@ -153,6 +202,11 @@ function DotEdge({ source, target, ...props }: EdgeProps) {
 }
 const edgeTypes = { dot: DotEdge };
 export function StudyGraph({ data, subjectIds }: { data: AppState; subjectIds: string[] }) {
+  // Same-tab exploration survives an original-text round trip; it never writes Canvas.
+  const [view, saveView] = useViewContext(data, 'graph', emptyGraphView, validGraphView);
+  const restoredView = useRef(view);
+  const restoreAttempted = useRef(false);
+  const restoreViewport = useRef<Viewport | null>(null);
   const tools = useFlowPreferences(flowPreferencesKey(data, 'graph'), {
     edgeStyle: 'straight',
     background: 'none',
@@ -173,9 +227,9 @@ export function StudyGraph({ data, subjectIds }: { data: AppState; subjectIds: s
     [subject, setSubject] = useState(boot.preferences.subject),
     [notes, setNotes] = useState(boot.preferences.notes);
   const [connections, setConnections] = useState<'all' | 'personal'>(boot.preferences.connections),
-    [centerId, setCenterId] = useState<string | null>(null),
+    [centerId, setCenterId] = useState<string | null>(view.centerId),
     [depth, setDepth] = useState(boot.preferences.depth);
-  const [selected, setSelected] = useState<string | null>(null),
+  const [selected, setSelected] = useState<string | null>(view.selected),
     [spacing, setSpacing] = useState<GraphSpacing>(boot.preferences.spacing),
     [flow, setFlow] = useState<ReactFlowInstance<GraphNode> | null>(null);
   const [preferenceError, setPreferenceError] = useState(boot.error),
@@ -231,13 +285,14 @@ export function StudyGraph({ data, subjectIds }: { data: AppState; subjectIds: s
   );
   const stage = useRef<HTMLDivElement>(null);
   const [frame, setFrame] = useState<GraphFrame>({ width: 900, height: 550 });
+  const [frameReady, setFrameReady] = useState(false);
   const [positions, setPositions] = useState<Record<string, CanvasPosition>>({});
   const previous = useRef<Record<string, CanvasPosition>>({});
-  const [pinned, setPinned] = useState<Record<string, CanvasPosition>>({});
+  const [pinned, setPinned] = useState<Record<string, CanvasPosition>>(view.pinned);
   const fitSignature = useRef('');
   const [fitRevision, setFitRevision] = useState(0);
   const [fitting, setFitting] = useState(false);
-  const [busy, setBusy] = useState(false),
+  const [busy, setBusy] = useState(true),
     [error, setError] = useState('');
   const [zoom, setZoom] = useState(1);
   const parameters = useMemo(
@@ -256,6 +311,7 @@ export function StudyGraph({ data, subjectIds }: { data: AppState; subjectIds: s
       cancelAnimationFrame(pendingFrame);
       pendingFrame = requestAnimationFrame(() => {
         setFrame((old) => (old.width === width && old.height === height ? old : { width, height }));
+        setFrameReady(true);
       });
     });
     observer.observe(stage.current);
@@ -264,13 +320,19 @@ export function StudyGraph({ data, subjectIds }: { data: AppState; subjectIds: s
       cancelAnimationFrame(pendingFrame);
     };
   }, []);
-  const onlyAutomaticLinks =
-    graph.links.length > 0 && graph.links.every((link) => link.id.startsWith('auto:'));
   useEffect(() => {
+    if (!frameReady) return;
     const options = { frame, spacing, previous: previous.current, pinned };
-    const hierarchical =
-      layoutMode === 'hierarchy' || (layoutMode === 'auto' && onlyAutomaticLinks);
-    const nextFitSignature = JSON.stringify({ input, frame, spacing, layoutMode });
+    // A wide sibling rank in Dagre becomes a line at 2% on a portrait screen.
+    // Use the existing force layout for auto; retain explicit hierarchy choices.
+    const hierarchical = layoutMode === 'hierarchy';
+    const nextFitSignature = JSON.stringify({
+      input,
+      frame,
+      spacing,
+      layoutMode,
+      geometryVersion: 2,
+    });
     const needsFit = fitSignature.current !== nextFitSignature;
     setBusy(true);
     setError('');
@@ -284,6 +346,15 @@ export function StudyGraph({ data, subjectIds }: { data: AppState; subjectIds: s
       }
       setBusy(false);
     };
+    if (!restoreAttempted.current) {
+      restoreAttempted.current = true;
+      const saved = restoredView.current;
+      if (saved.geometry === nextFitSignature && input.cards.every((c) => saved.positions[c.id])) {
+        restoreViewport.current = saved.viewport;
+        apply(saved.positions);
+        return;
+      }
+    }
     if (hierarchical) {
       const next = layoutFlowBoxes(
         input.cards.map((card) => ({
@@ -326,7 +397,7 @@ export function StudyGraph({ data, subjectIds }: { data: AppState; subjectIds: s
     };
     worker.postMessage({ ...input, options });
     return () => worker.terminate();
-  }, [input, frame, spacing, pinned, layoutMode, onlyAutomaticLinks]);
+  }, [input, frame, frameReady, spacing, pinned, layoutMode]);
   const initial = useMemo<GraphNode[]>(
     () =>
       graph.cards.map((card, index) => ({
@@ -354,6 +425,57 @@ export function StudyGraph({ data, subjectIds }: { data: AppState; subjectIds: s
     [graph, positions, parameters],
   );
   const [nodes, setNodes] = useState(initial);
+  // Fit the full cloud first, then use a readable area when that fit is too small.
+  // Explicit overview keeps the circular layout intact at its natural scale.
+  const pendingView = useRef<'read' | 'overview'>('read');
+  const viewScope = JSON.stringify({ input, frame, spacing, layoutMode, geometryVersion: 2 });
+  const rememberView = useCallback(() => {
+    if (!flow || busy || fitting) return;
+    saveView({
+      selected,
+      centerId,
+      viewport: flow.getViewport(),
+      geometry: viewScope,
+      positions: Object.fromEntries(nodes.map((node) => [node.id, node.position])),
+      pinned,
+    });
+  }, [flow, busy, fitting, saveView, selected, centerId, viewScope, nodes, pinned]);
+  const anchor =
+    selected && graph.cards.some((card) => card.id === selected)
+      ? selected
+      : graph.cards.reduce<string | null>(
+          (best, card) =>
+            best === null || parameters.degree[card.id] > parameters.degree[best] ? card.id : best,
+          null,
+        );
+  const focusReading = async () => {
+    if (!flow || !anchor) return;
+    const node = flow.getNode(anchor);
+    if (!node) return;
+    // Keep all nodes available. Only the camera focuses on a readable area.
+    await flow.setCenter(node.position.x + 22, node.position.y + 22, {
+      zoom: Math.max(readingZoom, Math.min(1.2, flow.getZoom())),
+    });
+  };
+  const fitReading = useEffectEvent(focusReading);
+  const showOverview = () => {
+    pendingView.current = 'overview';
+    if (centerId) setCenterId(null);
+    else {
+      setFitting(true);
+      setFitRevision((n) => n + 1);
+    }
+  };
+  const choose = (id: string) => {
+    setSelected(id);
+    if (flow) {
+      const node = flow.getNode(id);
+      if (node)
+        void flow.setCenter(node.position.x + 22, node.position.y + 22, {
+          zoom: Math.max(readingZoom, Math.min(1.2, flow.getZoom())),
+        });
+    }
+  };
   useEffect(() => {
     setNodes((previous) => {
       const measured = new Map(previous.map((node) => [node.id, node.measured]));
@@ -366,7 +488,18 @@ export function StudyGraph({ data, subjectIds }: { data: AppState; subjectIds: s
     if (flow && fitRevision > 0) {
       let active = true;
       const id = requestAnimationFrame(() => {
-        void flow.fitView({ padding: 0.3, minZoom: 0.02, maxZoom: 1.2 }).then(() => {
+        const overview = pendingView.current === 'overview';
+        pendingView.current = 'read';
+        const restored = restoreViewport.current;
+        restoreViewport.current = null;
+        const fit = restored
+          ? flow.setViewport(restored)
+          : overview
+            ? flow.fitView({ padding: 0.3, minZoom: 0.02, maxZoom: 1.2 })
+            : flow.fitView({ padding: 0.3, minZoom: 0.02, maxZoom: 1.2 }).then(async () => {
+                if (flow.getZoom() < readingZoom) await fitReading();
+              });
+        void fit.then(() => {
           if (active) setFitting(false);
         });
       });
@@ -376,6 +509,10 @@ export function StudyGraph({ data, subjectIds }: { data: AppState; subjectIds: s
       };
     }
   }, [flow, fitRevision]);
+  // Selection changes and completed camera changes both update the optional hint.
+  useEffect(() => {
+    rememberView();
+  }, [rememberView]);
   const neighbourIds = new Set(
     graph.links
       .filter((e) => e.source === selected || e.target === selected)
@@ -437,6 +574,12 @@ export function StudyGraph({ data, subjectIds }: { data: AppState; subjectIds: s
         />
       </div>
       <div className="graph-actions">
+        <Button disabled={!nodes.length || busy || fitting} onClick={() => void focusReading()}>
+          읽기 크기로 보기
+        </Button>
+        <Button disabled={!nodes.length || busy || fitting} onClick={showOverview}>
+          전체 보기
+        </Button>
         <Select
           label="관계 배치"
           value={layoutMode}
@@ -444,7 +587,7 @@ export function StudyGraph({ data, subjectIds }: { data: AppState; subjectIds: s
             tools.store({ ...tools.value, layout: event.target.value as typeof layoutMode })
           }
         >
-          <option value="auto">자료에 맞추기</option>
+          <option value="auto">원형으로 모으기</option>
           <option value="hierarchy">목차처럼 정렬</option>
           <option value="force">연결끼리 모으기</option>
         </Select>
@@ -464,7 +607,7 @@ export function StudyGraph({ data, subjectIds }: { data: AppState; subjectIds: s
                 </option>
               ))}
             </Select>
-            <Button onClick={() => setCenterId(null)}>전체 관계 보기</Button>
+            <Button onClick={() => setCenterId(null)}>전체 관계로 돌아가기</Button>
           </>
         )}
         <Select
@@ -478,6 +621,7 @@ export function StudyGraph({ data, subjectIds }: { data: AppState; subjectIds: s
         </Select>
         <Button
           onClick={() => {
+            pendingView.current = 'overview';
             previous.current = {};
             setPinned({});
             fitSignature.current = '';
@@ -531,6 +675,11 @@ export function StudyGraph({ data, subjectIds }: { data: AppState; subjectIds: s
           <Button onClick={tools.reset}>보기 도구 초기화</Button>
         </div>
       )}
+      <p className="graph-legend" role="status">
+        {zoom < readingZoom
+          ? '전체 개요입니다. 읽기 크기로 보거나 항목 목록에서 선택하면 자세히 볼 수 있습니다.'
+          : '읽기 크기입니다. 화면을 이동해 다른 항목을 보고, 전체 보기로 관계의 분포를 확인할 수 있습니다.'}
+      </p>
       <div className="graph-layout">
         <div className="graph-stage" ref={stage} aria-busy={busy || (fitting && nodes.length > 0)}>
           {(busy || (fitting && nodes.length > 0)) && (
@@ -548,7 +697,7 @@ export function StudyGraph({ data, subjectIds }: { data: AppState; subjectIds: s
                   pinned: Boolean(pinned[n.id]),
                   zoom,
                   labelVisible: visibleLabels.has(n.id),
-                  open: () => setSelected(n.id),
+                  open: () => choose(n.id),
                 },
               }))}
               edges={edges}
@@ -556,8 +705,9 @@ export function StudyGraph({ data, subjectIds }: { data: AppState; subjectIds: s
               edgeTypes={edgeTypes}
               onInit={setFlow}
               onNodesChange={(changes) => setNodes((prev) => applyNodeChanges(changes, prev))}
-              onNodeClick={(_, n) => setSelected(n.id)}
+              onNodeClick={(_, n) => choose(n.id)}
               onMove={(_, viewport) => setZoom(viewport.zoom)}
+              onMoveEnd={rememberView}
               onNodeDragStop={(_, n) => {
                 previous.current = { ...previous.current, [n.id]: n.position };
                 setPinned((old) => ({ ...old, [n.id]: n.position }));
@@ -573,11 +723,13 @@ export function StudyGraph({ data, subjectIds }: { data: AppState; subjectIds: s
               zoomOnDoubleClick={false}
               minZoom={0.02}
               maxZoom={3}
-              fitView
-              fitViewOptions={{ padding: 0.3, minZoom: 0.02, maxZoom: 1.2 }}
               aria-label="주제와 개념의 연결 그래프"
             >
-              <FlowControls aria-label="연결 그래프 보기 조절" showInteractive={false} />
+              <FlowControls
+                aria-label="연결 그래프 보기 조절"
+                showInteractive={false}
+                fitViewOptions={{ padding: 0.3, minZoom: 0.02, maxZoom: 1.2 }}
+              />
               <FlowExperience
                 minZoom={0.02}
                 maxZoom={3}
@@ -585,6 +737,11 @@ export function StudyGraph({ data, subjectIds }: { data: AppState; subjectIds: s
                 count={nodes.length}
                 selectedIds={nodes.filter((node) => node.selected).map((node) => node.id)}
                 name="그래프"
+                onViewportCommit={rememberView}
+                minimapSize={{
+                  width: Math.max(72, Math.min(160, frame.width * 0.24)),
+                  height: Math.max(48, Math.min(104, frame.height * 0.2)),
+                }}
               />
             </ReactFlow>
           ) : (
@@ -601,7 +758,9 @@ export function StudyGraph({ data, subjectIds }: { data: AppState; subjectIds: s
               <h2>{card.name}</h2>
               {graphBody(data, card) && <p className="graph-body">{graphBody(data, card)}</p>}
               <div className="graph-actions">
-                <a href={graphHref(card)}>원문 열기 ↗</a>
+                <a href={graphHref(card)} onClick={rememberView}>
+                  원문 열기 ↗
+                </a>
                 <Button onClick={() => setCenterId(card.id)}>이 항목 주변 보기</Button>
               </div>
               <h3>연결된 항목 {related.length}개</h3>
@@ -611,7 +770,7 @@ export function StudyGraph({ data, subjectIds }: { data: AppState; subjectIds: s
                 );
                 return (
                   other && (
-                    <Button variant="quiet" key={e.id} onClick={() => setSelected(other.id)}>
+                    <Button variant="quiet" key={e.id} onClick={() => choose(other.id)}>
                       {other.name}
                       <small>
                         {e.id.startsWith('auto:')
@@ -636,7 +795,7 @@ export function StudyGraph({ data, subjectIds }: { data: AppState; subjectIds: s
               key={c.id}
               variant="quiet"
               aria-pressed={c.id === selected}
-              onClick={() => setSelected(c.id)}
+              onClick={() => choose(c.id)}
             >
               {names[c.kind]} · {c.name}
             </Button>

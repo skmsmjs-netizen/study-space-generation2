@@ -71,6 +71,27 @@ it('keeps manually positioned points while new connected data arrive and is repe
   expect(result.positions.n0).toEqual(pinned.n0);
   expect(layoutStudyGraph(c, links, { previous, pinned })).toEqual(result);
 });
+it.each([30, 100, 300])('keeps %i nodes round on wide and narrow screens', (count) => {
+  const c = cards(count);
+  const structures = [
+    chain(count),
+    c.slice(1).map((card) => ({ source: 'n0', target: card.id })),
+    [],
+  ];
+  for (const links of structures)
+    for (const frame of [
+      { width: 1400, height: 400 },
+      { width: 300, height: 550 },
+    ]) {
+      const points = Object.values(layoutStudyGraph(c, links, { frame }).positions);
+      const width = Math.max(...points.map((p) => p.x)) - Math.min(...points.map((p) => p.x));
+      const height = Math.max(...points.map((p) => p.y)) - Math.min(...points.map((p) => p.y));
+      // Force-directed clusters need not form a perfect geometric disk, but
+      // their cloud must not stretch along the viewport's long axis.
+      expect(width / height).toBeGreaterThan(0.65);
+      expect(width / height).toBeLessThan(1.5);
+    }
+});
 it('declutters labels in screen space and always keeps the selected name', () => {
   const c = cards(100, true),
     { positions, parameters } = layoutStudyGraph(c, chain(100));

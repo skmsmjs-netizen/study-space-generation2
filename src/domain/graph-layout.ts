@@ -68,8 +68,7 @@ export function graphLayoutParameters(
   };
   const multiplier = options.spacing === 'compact' ? 0.8 : options.spacing === 'wide' ? 1.3 : 1;
   const crowding = clamp(Math.sqrt((n * 70000) / (frame.width * frame.height)), 1, 4);
-  const density = Math.log2(1 + averageDegree),
-    aspect = clamp(frame.width / frame.height, 0.65, 2.4);
+  const density = Math.log2(1 + averageDegree);
   const repulsion =
     -(180 + averageLabelWidth * 2.2 + density * 80 + Math.log2(1 + n) * 24) * multiplier ** 2;
   const linkDistance = clamp(
@@ -77,7 +76,9 @@ export function graphLayoutParameters(
     100,
     360,
   );
-  const gravity = clamp(0.065 / (1 + density * crowding * 0.35), 0.008, 0.055);
+  // Keep a useful center force as data grows: a weak dense-graph attraction
+  // lets large sibling clusters trail into an oval even with equal axes.
+  const gravity = clamp(0.13 / (1 + density * crowding * 0.35), 0.045, 0.085);
   const tension = clamp(0.6 / Math.sqrt(1 + averageDegree), 0.06, 0.45);
   const iterations = Math.round(clamp(160 + Math.log2(1 + n) * 12, 180, 280));
   const sizes = Object.fromEntries(
@@ -99,7 +100,6 @@ export function graphLayoutParameters(
     gravity,
     tension,
     iterations,
-    aspect,
     sizes,
     collision,
   };
@@ -156,8 +156,10 @@ export function layoutStudyGraph(
           (1 + Math.log2(1 + parameters.degree[(n as { id: string }).id]) * 0.15),
       ),
     )
-    .force('x', forceX(0).strength(parameters.gravity / parameters.aspect))
-    .force('y', forceY(0).strength(parameters.gravity * parameters.aspect))
+    // Equal attraction in both axes keeps the cloud circular on wide and narrow
+    // screens. The viewport fits the cloud; it must not stretch its geometry.
+    .force('x', forceX(0).strength(parameters.gravity))
+    .force('y', forceY(0).strength(parameters.gravity))
     .force(
       'collide',
       forceCollide<SimulationNodeDatum & { id: string }>((n) => parameters.collision[n.id])
