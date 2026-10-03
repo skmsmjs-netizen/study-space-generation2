@@ -1,6 +1,10 @@
 * {
   box-sizing: border-box;
 }
+/* The measured inset includes wrapped labels and the device safe area. */
+html {
+  scroll-padding-block-end: calc(var(--bottom-navigation-inset, 0px) + var(--space-3));
+}
 body {
   margin: 0;
   background: var(--color-background);

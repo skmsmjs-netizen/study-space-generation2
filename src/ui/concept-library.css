@@ -139,6 +139,11 @@
 }
 /* Use the actual prose width, including a narrow paper inside a wide window. */
 @container concept-prose (max-width: 40rem) {
+  /* WebKit's pretty wrapping stretches Korean word spaces under justify.
+     Native wrapping keeps the original text, explicit breaks and alignment. */
+  .concept-body > p {
+    text-wrap: wrap;
+  }
   .observatory-workspace .concept-reader .concept-stages .concept-stage .concept-body > p:not(.math-caption, .equation-source, .input-prompt) {
     line-height: var(--paper-body-line, var(--observatory-paper-body-compact-line));
     letter-spacing: var(--paper-body-tracking, var(--observatory-paper-body-compact-tracking));
