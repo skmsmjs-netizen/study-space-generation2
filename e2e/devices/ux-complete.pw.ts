@@ -276,6 +276,13 @@ test('personal login and registration expose named fields and accessible labels'
 }, info) => {
   await page.goto('?space=personal');
   await expect(page.getByRole('heading', { name: '내 공부 공간', exact: true })).toBeVisible();
+  await expect(page.locator('.observatory-entry-cover .pixel-landscape')).toBeVisible({ timeout: 30_000 });
+  const originalHash = await page.evaluate(() => location.hash);
+  await page.getByRole('link', { name: '내 공부 공간으로 이동', exact: true }).click();
+  await expect(page.locator('#entry-main')).toBeFocused();
+  expect(await page.evaluate(() => location.hash)).toBe(originalHash);
+  expect(await page.evaluate(() => localStorage.getItem('study-space:demo:v1'))).toBeNull();
+  await page.screenshot({ path: info.outputPath('os-personal-entry.png'), animations: 'disabled' });
   const findings = [];
   for (const mode of ['light', 'dark'] as const) {
     await page.emulateMedia({ colorScheme: mode, reducedMotion: 'reduce' });

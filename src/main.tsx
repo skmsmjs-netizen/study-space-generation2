@@ -7,4 +7,5 @@ import "./ui/observatory-workspace.css";
 import "./ui/observatory-layout.css";
 import "./ui/paper-typography.css";
 import "./ui/paper-typeface.css";
+import "./ui/os-task-surfaces.css";
 createRoot(document.getElementById("root")!).render(<ScreenBoundary><BackupRecoveryGate><App /></BackupRecoveryGate></ScreenBoundary>);

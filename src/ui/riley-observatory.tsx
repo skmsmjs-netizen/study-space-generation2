@@ -448,6 +448,11 @@ export function RileyObservatory({
     setSource(false);
     update({ ...current.current, selected: '' });
     requestAnimationFrame(() => {
+      // Return to the originating item only while focus is still unclaimed.
+      // A new search/input action can arrive before this frame in WebKit;
+      // restoring the old button then would interrupt the next edit.
+      const focused = document.activeElement;
+      if (focused && focused !== document.body && focused.isConnected) return;
       const p = listPosition.current;
       if (p) {
         document.getElementById(p.id)?.focus({ preventScroll: true });

@@ -1,0 +1,56 @@
+/* Adopted paper/interior tokens and L patterns, shared by entry, routes and
+   portals. Task regions keep their original DOM, data and authored 2D geometry. */
+.personal-entry-shell { min-block-size:100dvh; background:var(--observatory-interior-canvas); }
+.observatory-entry-cover { color:var(--observatory-interior-text); }
+.entry-direct-link { display:flex; justify-content:center; align-items:center; min-block-size:var(--control-height); padding:var(--space-2) var(--space-4); color:var(--observatory-interior-text); background:var(--observatory-interior-surface); border-block-end:var(--border-width) solid var(--observatory-interior-border-interactive); font-family:var(--font-interface); }
+.personal-entry-shell .personal-entry { inline-size:min(calc(100% - var(--space-5) * 2),var(--layout-dialog)); margin-block:var(--space-5); padding:var(--observatory-paper-padding); scroll-margin-block-start:var(--space-4); }
+.personal-entry-shell .personal-entry > .ui-card { display:grid; gap:var(--space-4); }
+.personal-entry-shell .personal-entry :is(h1,h2,p) { margin-block:0; }
+.personal-entry-shell .personal-entry form { border-block-start:var(--border-width) solid var(--color-border); padding-block-start:var(--space-4); }
+.personal-entry-shell .personal-entry form .actions { margin-block-start:var(--space-2); }
+
+/* Page context is followed immediately by the task. The title is not another
+   floating paper card and secondary controls keep the shared 48px target. */
+.observatory-workspace .main-content > .page-heading { margin-block-start:0; }
+.observatory-workspace .main-content > .page-heading h1 { max-inline-size:100%; }
+:is(.observatory-workspace .main-content,.observatory-paper,.ui-modal) :is(.section-heading,.ui-modal-header) { flex-wrap:wrap; min-inline-size:0; }
+:is(.observatory-workspace .main-content,.observatory-paper,.ui-modal) .actions { gap:var(--space-2) var(--space-3); }
+.ui-modal-header > :first-child { min-inline-size:0; overflow-wrap:anywhere; }
+.ui-modal-header > .ui-button { flex-shrink:0; }
+.ui-modal > :is(form,.field-stack) { min-inline-size:0; }
+.ui-modal > .actions:last-child { padding-block-start:var(--space-4); border-block-start:var(--border-width) solid var(--color-border); margin-block-start:var(--space-4); }
+
+/* Catalogue modules have closed boundaries. Continuous journals remain rows;
+   free writing, prose and scientific plots are never turned into card grids. */
+.main-content[data-layout-profile='P02'] .subject-grid > .ui-card,
+.next-study-list > .ui-card,
+.material-card-grid > article { border:var(--border-width) solid var(--color-border); padding:var(--space-4); background:var(--color-surface); }
+.main-content[data-layout-profile='P02'] .subject-grid { gap:var(--space-4); }
+.main-content[data-layout-profile='P02'] .subject-grid > .ui-card h2 { margin-block-end:var(--space-2); }
+.main-content[data-layout-profile='P02'] .subject-grid > .ui-card .actions { margin-block-start:var(--space-3); }
+.next-study-list > .ui-card > :last-child { margin-block-end:0; }
+
+/* Independent scope/controls and results use the same group rhythm. Existing
+   split editors and movable canvas contents own their own width and order. */
+:is(.statistics-scope,.schedule-controls,.memory-filters,.concept-filters,.graph-toolbar,.board-toolbar) { align-items:start; }
+:is(.ui-modal,.main-content) :is(.ui-state,.ui-error,[role='alert']) { overflow-wrap:anywhere; }
+.main-content :is(.memory-comparison,.exam-comparison) > section { min-inline-size:0; }
+.main-content .memory-comparison > section { padding:var(--space-4); border:var(--border-width) solid var(--color-border); }
+.main-content .memory-comparison > section:last-child { background:var(--color-surface-inset); }
+
+/* These are authored knowledge/result paragraphs omitted by older p.prose
+   rules. Formula/code elements keep their own fonts and spacing. */
+:is(.observatory-workspace .main-content,.observatory-paper,.ui-modal) :is(.concept-lead,.study-result-text:not(.study-result-text--inline),.knowledge-sequence dd) {
+  font-family:var(--font-reading); font-size:var(--paper-body-size,var(--observatory-paper-body-size)); font-weight:var(--paper-body-weight,var(--observatory-paper-body-weight));
+  line-height:var(--paper-body-line,var(--observatory-paper-body-line)); letter-spacing:var(--paper-body-tracking,var(--observatory-paper-body-tracking));
+  text-align:var(--paper-body-text-align,var(--observatory-body-text-align)); text-align-last:var(--observatory-body-last-line);
+  word-break:var(--observatory-body-word-break); overflow-wrap:var(--observatory-body-overflow-wrap);
+}
+:is(.observatory-workspace .main-content,.observatory-paper,.ui-modal) :is(.concept-lead,.study-result-text,.knowledge-sequence dd) :is(code,.katex,mjx-container) { letter-spacing:normal; }
+@container study-content (max-width:40rem) {
+  :is(.observatory-workspace .main-content,.observatory-paper,.ui-modal) :is(.concept-lead,.study-result-text:not(.study-result-text--inline),.knowledge-sequence dd) { font-size:var(--paper-body-size,var(--observatory-paper-body-compact-size)); line-height:var(--paper-body-line,var(--observatory-paper-body-compact-line)); letter-spacing:var(--paper-body-tracking,var(--observatory-paper-body-compact-tracking)); }
+}
+@media (max-width:40rem) {
+  .personal-entry-shell .personal-entry { inline-size:calc(100% - var(--space-4) * 2); padding:var(--observatory-paper-compact-padding); }
+  :is(.observatory-workspace .main-content,.observatory-paper,.ui-modal) :is(.concept-lead,.study-result-text:not(.study-result-text--inline),.knowledge-sequence dd) { font-size:var(--paper-body-size,var(--observatory-paper-body-compact-size)); line-height:var(--paper-body-line,var(--observatory-paper-body-compact-line)); letter-spacing:var(--paper-body-tracking,var(--observatory-paper-body-compact-tracking)); }
+}
