@@ -64,7 +64,9 @@ test('partial batch failure retries only missing receipts through the save dialo
     if (mode === 'prefix') {
       expect(commands.length).toBeGreaterThan(2);
       commit(commands.slice(0, 2));
-      mode = 'online';
+      // The server stays unavailable until the next explicit retry. Background
+      // refresh must not recover everything before the dialog can be observed.
+      mode = 'offline';
       await route.fulfill({
         status: 503,
         json: { code: 'SERVER_ERROR', message: '시험 부분 저장 뒤 응답 중단' },
@@ -113,9 +115,10 @@ test('partial batch failure retries only missing receipts through the save dialo
   await page.getByRole('button', { name: /시험 전송 차단/ }).click();
   mode = 'prefix';
   await page.getByRole('button', { name: '서버 저장 다시 시도', exact: true }).click();
-  await expect(page.getByRole('alert')).toContainText('시험 부분 저장 뒤 응답 중단');
+  await expect(page.getByRole('alert')).toContainText(/시험 부분 저장 뒤 응답 중단|시험 전송 차단/);
   expect(server.sequence).toBe(2);
   const firstReceipts = Object.keys(server.data.appliedOps);
+  mode = 'online';
   await page.getByRole('button', { name: '서버 저장 다시 시도', exact: true }).click();
   await expect(
     page.getByRole('dialog', { name: '내 기록의 저장 상태', exact: true }),
