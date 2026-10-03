@@ -29,8 +29,8 @@
           "path": "src/App.tsx",
           "name": "Workspace",
           "found": true,
-          "line": 215,
-          "lines": 1105,
+          "line": 217,
+          "lines": 1107,
           "headings": [
             "{node?.name || subject?.name || rootTitle}",
             "최근 남긴 기록",
@@ -107,6 +107,7 @@
             "OutlineTableEditor",
             "EmptyState",
             "NarrativeEditor",
+            "InputAIHelp",
             "RelatedThinking",
             "ContextMenu",
             "RelatedCodeExamples",
@@ -149,6 +150,7 @@
             "onChange",
             "onSaved",
             "onApply",
+            "save",
             "onCloseDetail",
             "onClose"
           ]
@@ -306,8 +308,8 @@
           "path": "src/App.tsx",
           "name": "Workspace",
           "found": true,
-          "line": 215,
-          "lines": 1105,
+          "line": 217,
+          "lines": 1107,
           "headings": [
             "{node?.name || subject?.name || rootTitle}",
             "최근 남긴 기록",
@@ -384,6 +386,7 @@
             "OutlineTableEditor",
             "EmptyState",
             "NarrativeEditor",
+            "InputAIHelp",
             "RelatedThinking",
             "ContextMenu",
             "RelatedCodeExamples",
@@ -426,6 +429,7 @@
             "onChange",
             "onSaved",
             "onApply",
+            "save",
             "onCloseDetail",
             "onClose"
           ]
@@ -448,8 +452,8 @@
           "path": "src/App.tsx",
           "name": "RecordForm",
           "found": true,
-          "line": 1593,
-          "lines": 290,
+          "line": 1598,
+          "lines": 291,
           "headings": [
             "공부한 주제",
             "{recallPath(data.nodes, parentId).map(node => node.name).join(' / ')}",
@@ -479,7 +483,8 @@
             "TraceEditor",
             "Select",
             "Input",
-            "ErrorState"
+            "ErrorState",
+            "InputAIHelp"
           ],
           "storage": [
             "onSaved",
@@ -506,7 +511,7 @@
           "path": "src/ui/quick-memos.tsx",
           "name": "QuickMemos",
           "found": true,
-          "line": 24,
+          "line": 25,
           "lines": 57,
           "headings": [
             "{trash ? '메모' : '작은 메모'}"
@@ -563,7 +568,7 @@
           "path": "src/ui/study-materials.tsx",
           "name": "StudyMaterials",
           "found": true,
-          "line": 79,
+          "line": 80,
           "lines": 5,
           "headings": [],
           "classes": [],
@@ -597,7 +602,7 @@
           "path": "src/ui/code-practice.tsx",
           "name": "CodePractice",
           "found": true,
-          "line": 78,
+          "line": 79,
           "lines": 181,
           "headings": [
             "{trash ? '코드 예제' : '코드를 쓰고, 결과를 확인해 보세요'}"
@@ -645,8 +650,8 @@
           "path": "src/ui/math-explorer.tsx",
           "name": "MathExplorer",
           "found": true,
-          "line": 179,
-          "lines": 667,
+          "line": 180,
+          "lines": 671,
           "headings": [
             "저장한 탐색"
           ],
@@ -1271,8 +1276,8 @@
           "path": "src/App.tsx",
           "name": "Workspace",
           "found": true,
-          "line": 215,
-          "lines": 1105,
+          "line": 217,
+          "lines": 1107,
           "headings": [
             "{node?.name || subject?.name || rootTitle}",
             "최근 남긴 기록",
@@ -1349,6 +1354,7 @@
             "OutlineTableEditor",
             "EmptyState",
             "NarrativeEditor",
+            "InputAIHelp",
             "RelatedThinking",
             "ContextMenu",
             "RelatedCodeExamples",
@@ -1391,6 +1397,7 @@
             "onChange",
             "onSaved",
             "onApply",
+            "save",
             "onCloseDetail",
             "onClose"
           ]
@@ -1413,8 +1420,8 @@
           "path": "src/App.tsx",
           "name": "Workspace",
           "found": true,
-          "line": 215,
-          "lines": 1105,
+          "line": 217,
+          "lines": 1107,
           "headings": [
             "{node?.name || subject?.name || rootTitle}",
             "최근 남긴 기록",
@@ -1491,6 +1498,7 @@
             "OutlineTableEditor",
             "EmptyState",
             "NarrativeEditor",
+            "InputAIHelp",
             "RelatedThinking",
             "ContextMenu",
             "RelatedCodeExamples",
@@ -1533,6 +1541,7 @@
             "onChange",
             "onSaved",
             "onApply",
+            "save",
             "onCloseDetail",
             "onClose"
           ]
@@ -1555,8 +1564,8 @@
           "path": "src/App.tsx",
           "name": "RecordForm",
           "found": true,
-          "line": 1593,
-          "lines": 290,
+          "line": 1598,
+          "lines": 291,
           "headings": [
             "공부한 주제",
             "{recallPath(data.nodes, parentId).map(node => node.name).join(' / ')}",
@@ -1586,7 +1595,8 @@
             "TraceEditor",
             "Select",
             "Input",
-            "ErrorState"
+            "ErrorState",
+            "InputAIHelp"
           ],
           "storage": [
             "onSaved",
@@ -1613,7 +1623,7 @@
           "path": "src/ui/quick-memos.tsx",
           "name": "QuickMemos",
           "found": true,
-          "line": 24,
+          "line": 25,
           "lines": 57,
           "headings": [
             "{trash ? '메모' : '작은 메모'}"
@@ -1670,7 +1680,7 @@
           "path": "src/ui/study-materials.tsx",
           "name": "StudyMaterials",
           "found": true,
-          "line": 79,
+          "line": 80,
           "lines": 5,
           "headings": [],
           "classes": [],
@@ -1704,7 +1714,7 @@
           "path": "src/ui/study-materials.tsx",
           "name": "StudyMaterials",
           "found": true,
-          "line": 79,
+          "line": 80,
           "lines": 5,
           "headings": [],
           "classes": [],
@@ -1738,7 +1748,7 @@
           "path": "src/ui/code-practice.tsx",
           "name": "CodePractice",
           "found": true,
-          "line": 78,
+          "line": 79,
           "lines": 181,
           "headings": [
             "{trash ? '코드 예제' : '코드를 쓰고, 결과를 확인해 보세요'}"
@@ -2076,7 +2086,7 @@
           "path": "src/App.tsx",
           "name": "FreeNotes",
           "found": true,
-          "line": 1549,
+          "line": 1554,
           "lines": 43,
           "headings": [
             "저장한 자유 기록"
@@ -2119,7 +2129,7 @@
           "path": "src/App.tsx",
           "name": "FreeNotes",
           "found": true,
-          "line": 1549,
+          "line": 1554,
           "lines": 43,
           "headings": [
             "저장한 자유 기록"
@@ -2162,7 +2172,7 @@
           "path": "src/App.tsx",
           "name": "FreeNotes",
           "found": true,
-          "line": 1549,
+          "line": 1554,
           "lines": 43,
           "headings": [
             "저장한 자유 기록"
@@ -2250,8 +2260,8 @@
           "path": "src/App.tsx",
           "name": "Workspace",
           "found": true,
-          "line": 215,
-          "lines": 1105,
+          "line": 217,
+          "lines": 1107,
           "headings": [
             "{node?.name || subject?.name || rootTitle}",
             "최근 남긴 기록",
@@ -2328,6 +2338,7 @@
             "OutlineTableEditor",
             "EmptyState",
             "NarrativeEditor",
+            "InputAIHelp",
             "RelatedThinking",
             "ContextMenu",
             "RelatedCodeExamples",
@@ -2370,6 +2381,7 @@
             "onChange",
             "onSaved",
             "onApply",
+            "save",
             "onCloseDetail",
             "onClose"
           ]
@@ -2582,8 +2594,8 @@
           "path": "src/App.tsx",
           "name": "Workspace",
           "found": true,
-          "line": 215,
-          "lines": 1105,
+          "line": 217,
+          "lines": 1107,
           "headings": [
             "{node?.name || subject?.name || rootTitle}",
             "최근 남긴 기록",
@@ -2660,6 +2672,7 @@
             "OutlineTableEditor",
             "EmptyState",
             "NarrativeEditor",
+            "InputAIHelp",
             "RelatedThinking",
             "ContextMenu",
             "RelatedCodeExamples",
@@ -2702,6 +2715,7 @@
             "onChange",
             "onSaved",
             "onApply",
+            "save",
             "onCloseDetail",
             "onClose"
           ]
@@ -2724,7 +2738,7 @@
           "path": "src/App.tsx",
           "name": "App",
           "found": true,
-          "line": 115,
+          "line": 117,
           "lines": 22,
           "headings": [],
           "classes": [
@@ -2759,8 +2773,8 @@
           "path": "src/App.tsx",
           "name": "Workspace",
           "found": true,
-          "line": 215,
-          "lines": 1105,
+          "line": 217,
+          "lines": 1107,
           "headings": [
             "{node?.name || subject?.name || rootTitle}",
             "최근 남긴 기록",
@@ -2837,6 +2851,7 @@
             "OutlineTableEditor",
             "EmptyState",
             "NarrativeEditor",
+            "InputAIHelp",
             "RelatedThinking",
             "ContextMenu",
             "RelatedCodeExamples",
@@ -2879,6 +2894,7 @@
             "onChange",
             "onSaved",
             "onApply",
+            "save",
             "onCloseDetail",
             "onClose"
           ]
@@ -2901,8 +2917,8 @@
           "path": "src/App.tsx",
           "name": "Workspace",
           "found": true,
-          "line": 215,
-          "lines": 1105,
+          "line": 217,
+          "lines": 1107,
           "headings": [
             "{node?.name || subject?.name || rootTitle}",
             "최근 남긴 기록",
@@ -2979,6 +2995,7 @@
             "OutlineTableEditor",
             "EmptyState",
             "NarrativeEditor",
+            "InputAIHelp",
             "RelatedThinking",
             "ContextMenu",
             "RelatedCodeExamples",
@@ -3021,6 +3038,7 @@
             "onChange",
             "onSaved",
             "onApply",
+            "save",
             "onCloseDetail",
             "onClose"
           ]
@@ -3043,8 +3061,8 @@
           "path": "src/App.tsx",
           "name": "Workspace",
           "found": true,
-          "line": 215,
-          "lines": 1105,
+          "line": 217,
+          "lines": 1107,
           "headings": [
             "{node?.name || subject?.name || rootTitle}",
             "최근 남긴 기록",
@@ -3121,6 +3139,7 @@
             "OutlineTableEditor",
             "EmptyState",
             "NarrativeEditor",
+            "InputAIHelp",
             "RelatedThinking",
             "ContextMenu",
             "RelatedCodeExamples",
@@ -3163,6 +3182,7 @@
             "onChange",
             "onSaved",
             "onApply",
+            "save",
             "onCloseDetail",
             "onClose"
           ]
@@ -3185,8 +3205,8 @@
           "path": "src/App.tsx",
           "name": "Workspace",
           "found": true,
-          "line": 215,
-          "lines": 1105,
+          "line": 217,
+          "lines": 1107,
           "headings": [
             "{node?.name || subject?.name || rootTitle}",
             "최근 남긴 기록",
@@ -3263,6 +3283,7 @@
             "OutlineTableEditor",
             "EmptyState",
             "NarrativeEditor",
+            "InputAIHelp",
             "RelatedThinking",
             "ContextMenu",
             "RelatedCodeExamples",
@@ -3305,6 +3326,7 @@
             "onChange",
             "onSaved",
             "onApply",
+            "save",
             "onCloseDetail",
             "onClose"
           ]
@@ -3327,8 +3349,8 @@
           "path": "src/App.tsx",
           "name": "Workspace",
           "found": true,
-          "line": 215,
-          "lines": 1105,
+          "line": 217,
+          "lines": 1107,
           "headings": [
             "{node?.name || subject?.name || rootTitle}",
             "최근 남긴 기록",
@@ -3405,6 +3427,7 @@
             "OutlineTableEditor",
             "EmptyState",
             "NarrativeEditor",
+            "InputAIHelp",
             "RelatedThinking",
             "ContextMenu",
             "RelatedCodeExamples",
@@ -3447,6 +3470,7 @@
             "onChange",
             "onSaved",
             "onApply",
+            "save",
             "onCloseDetail",
             "onClose"
           ]
@@ -3469,8 +3493,8 @@
           "path": "src/App.tsx",
           "name": "Workspace",
           "found": true,
-          "line": 215,
-          "lines": 1105,
+          "line": 217,
+          "lines": 1107,
           "headings": [
             "{node?.name || subject?.name || rootTitle}",
             "최근 남긴 기록",
@@ -3547,6 +3571,7 @@
             "OutlineTableEditor",
             "EmptyState",
             "NarrativeEditor",
+            "InputAIHelp",
             "RelatedThinking",
             "ContextMenu",
             "RelatedCodeExamples",
@@ -3589,6 +3614,7 @@
             "onChange",
             "onSaved",
             "onApply",
+            "save",
             "onCloseDetail",
             "onClose"
           ]
@@ -3611,8 +3637,8 @@
           "path": "src/App.tsx",
           "name": "Workspace",
           "found": true,
-          "line": 215,
-          "lines": 1105,
+          "line": 217,
+          "lines": 1107,
           "headings": [
             "{node?.name || subject?.name || rootTitle}",
             "최근 남긴 기록",
@@ -3689,6 +3715,7 @@
             "OutlineTableEditor",
             "EmptyState",
             "NarrativeEditor",
+            "InputAIHelp",
             "RelatedThinking",
             "ContextMenu",
             "RelatedCodeExamples",
@@ -3731,6 +3758,7 @@
             "onChange",
             "onSaved",
             "onApply",
+            "save",
             "onCloseDetail",
             "onClose"
           ]
@@ -3753,8 +3781,8 @@
           "path": "src/App.tsx",
           "name": "Workspace",
           "found": true,
-          "line": 215,
-          "lines": 1105,
+          "line": 217,
+          "lines": 1107,
           "headings": [
             "{node?.name || subject?.name || rootTitle}",
             "최근 남긴 기록",
@@ -3831,6 +3859,7 @@
             "OutlineTableEditor",
             "EmptyState",
             "NarrativeEditor",
+            "InputAIHelp",
             "RelatedThinking",
             "ContextMenu",
             "RelatedCodeExamples",
@@ -3873,6 +3902,7 @@
             "onChange",
             "onSaved",
             "onApply",
+            "save",
             "onCloseDetail",
             "onClose"
           ]
@@ -4588,7 +4618,7 @@
           "path": "src/ui/quick-memos.tsx",
           "name": "QuickMemos",
           "found": true,
-          "line": 24,
+          "line": 25,
           "lines": 57,
           "headings": [
             "{trash ? '메모' : '작은 메모'}"
@@ -4645,7 +4675,7 @@
           "path": "src/ui/quick-memos.tsx",
           "name": "QuickMemos",
           "found": true,
-          "line": 24,
+          "line": 25,
           "lines": 57,
           "headings": [
             "{trash ? '메모' : '작은 메모'}"
@@ -4963,8 +4993,8 @@
           "path": "src/App.tsx",
           "name": "Workspace",
           "found": true,
-          "line": 215,
-          "lines": 1105,
+          "line": 217,
+          "lines": 1107,
           "headings": [
             "{node?.name || subject?.name || rootTitle}",
             "최근 남긴 기록",
@@ -5041,6 +5071,7 @@
             "OutlineTableEditor",
             "EmptyState",
             "NarrativeEditor",
+            "InputAIHelp",
             "RelatedThinking",
             "ContextMenu",
             "RelatedCodeExamples",
@@ -5083,6 +5114,7 @@
             "onChange",
             "onSaved",
             "onApply",
+            "save",
             "onCloseDetail",
             "onClose"
           ]
@@ -5091,17 +5123,20 @@
           "path": "src/ui/navigation-bar.tsx",
           "name": "NavigationBar",
           "found": true,
-          "line": 13,
-          "lines": 13,
+          "line": 14,
+          "lines": 79,
           "headings": [],
           "classes": [
             "ui-navigation-group",
             "ui-navigation-group-label"
           ],
           "components": [
+            "HTMLElement",
             "SelectionBackground"
           ],
-          "storage": []
+          "storage": [
+            "save"
+          ]
         },
         {
           "path": "src/ui/observatory-navigation.tsx",
@@ -6273,7 +6308,7 @@
           "name": "ScheduleDashboard",
           "found": true,
           "line": 33,
-          "lines": 624,
+          "lines": 622,
           "headings": [
             "일정 목록",
             "{s.name}"
@@ -7880,8 +7915,8 @@
           "path": "src/App.tsx",
           "name": "NarrativeEditor",
           "found": true,
-          "line": 1404,
-          "lines": 145,
+          "line": 1408,
+          "lines": 146,
           "headings": [],
           "classes": [
             "narrative-editor",
@@ -7892,7 +7927,8 @@
             "Textarea",
             "SavedMark",
             "ErrorState",
-            "Button"
+            "Button",
+            "InputAIHelp"
           ],
           "storage": [
             "onSaved",

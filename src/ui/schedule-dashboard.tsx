@@ -102,8 +102,10 @@ export function ScheduleDashboard({
     patchView({ selectedId: id });
     requestAnimationFrame(() => {
       detailRef.current?.focus({ preventScroll: true });
-      if (window.matchMedia?.('(max-width: 48rem)').matches)
-        detailRef.current?.scrollIntoView?.({ block: 'start' });
+      const list = listRef.current, detail = detailRef.current;
+      // A container can reflow inside a wide window. Follow its actual layout.
+      if (list && detail && detail.getBoundingClientRect().top >= list.getBoundingClientRect().bottom - 1)
+        detail.scrollIntoView?.({ block: 'start' });
     });
   };
   const returnToList = () => {
@@ -118,7 +120,7 @@ export function ScheduleDashboard({
   };
   const savedSchedule = useEffectEvent((event: Event) => {
     const detail = (event as CustomEvent<{ id: string; isNew: boolean }>).detail;
-    patchView({ selectedId: detail.id });
+    selectSchedule(detail.id);
   });
   useEffect(() => {
     window.addEventListener('study-space:schedule-saved', savedSchedule);
@@ -153,11 +155,7 @@ export function ScheduleDashboard({
     ? ranged.filter((s) => s.dueDate === selected || (!s.dueDate && s.reviewDate === selected))
     : ranged;
   const chosen =
-    schedules.find(
-      (s) =>
-        s.id === view.selectedId &&
-        (view.status === 'trash' ? !!s.deletedAt : !s.deletedAt && s.status === view.status),
-    ) ?? (shown.length === 1 ? shown[0] : undefined);
+    schedules.find((s) => s.id === view.selectedId) ?? (shown.length === 1 ? shown[0] : undefined);
   const subjectName = (s: LearningSchedule) =>
     data.subjects.find((sub) => sub.id === s.subjectId)?.name ?? '과목 미정';
   const statusText = (s: LearningSchedule) =>
@@ -421,7 +419,7 @@ export function ScheduleDashboard({
           {chosen && !shown.some((s) => s.id === chosen.id) && (
             <div className="schedule-outside-filter">
               <p role="status">저장한 일정은 현재 목록 조건 밖에 있습니다. 보기 조건을 유지한 채 상세를 열었습니다.</p>
-              <Button onClick={() => patchView({ query: '', kind: 'all', period: 'all', selectedDate: '', selectedId: chosen.id })}>이 일정이 있는 목록 보기</Button>
+              <Button onClick={() => patchView({ query: '', kind: 'all', period: 'all', selectedDate: '', status: chosen.deletedAt ? 'trash' : chosen.status, selectedId: chosen.id })}>이 일정이 있는 목록 보기</Button>
             </div>
           )}
           {chosen ? (

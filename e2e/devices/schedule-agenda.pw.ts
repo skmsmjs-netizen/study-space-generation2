@@ -60,3 +60,22 @@ test('agenda selects one task and restores date, exact note and caller after edi
   );
   await page.screenshot({ path: info.outputPath('agenda-selected.png'), fullPage: true });
 });
+
+test('a narrow task region inside a wide window reveals the selected detail and restores an accumulated list', async ({ page }) => {
+  const { createDemoState } = await import('../../src/domain/fixtures');
+  const { emptyRecommendations, recommendationKey } = await import('../../src/data/recommendations');
+  const data = createDemoState(), workspace = emptyRecommendations(data);
+  workspace.schedules = Array.from({ length: 32 }, (_, i) => ({ id: `contained-${i}`, subjectId: data.subjects[0].id, name: `누적 일정 ${i}`, kind: 'lecture' as const, goalIds: [], targetIds: [], dueDate: '2026-10-08', opensDate: '', weight: null, status: 'active' as const, states: {}, dueMeaning: 'attendance' as const, note: `  원문 ${i}\n조건과 예외  ` }));
+  const raw = JSON.stringify(workspace), key = recommendationKey(data);
+  await page.addInitScript(({ key, raw }) => { if (!localStorage.getItem(key)) localStorage.setItem(key, raw); }, { key, raw });
+  await page.goto('?space=demo#/schedules');
+  await page.addStyleTag({ content: '#main { max-inline-size: 44rem !important; margin-inline:auto !important; }' });
+  await expect(page.locator('.schedule-agenda-row')).toHaveCount(20);
+  await page.getByRole('button', { name: '일정 보기 · 누적 일정 0', exact: true }).click();
+  const detail = page.getByRole('region', { name: '선택 일정 상세', exact: true });
+  await expect(detail).toBeFocused();
+  await expect(detail).toBeInViewport();
+  await page.getByRole('button', { name: '일정 목록으로 돌아가기', exact: true }).click();
+  await expect(page.getByRole('button', { name: '일정 보기 · 누적 일정 0', exact: true })).toBeFocused();
+  expect(await page.evaluate(key => localStorage.getItem(key), key)).toBe(raw);
+});

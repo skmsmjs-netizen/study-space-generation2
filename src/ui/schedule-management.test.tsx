@@ -76,3 +76,15 @@ it('selects one accumulated task, retains date and expanded list after reopening
  expect(screen.getAllByRole('button',{name:/일정 보기 ·/})).toHaveLength(40);
  expect(screen.queryByRole('button',{name:'일정 수정'})).toBeNull();
 });
+it('shows a newly saved task outside archived filters and only clears the filters on explicit return',()=>{
+ show(); change('일정 보관 상태','ended'); change('일정 찾기','기존 목록 조건');
+ fireEvent.click(screen.getByRole('button',{name:'과제 추가'})); change('일정 이름','새 진행 중 과제');
+ fireEvent.click(screen.getByRole('button',{name:'일정 저장'}));
+ expect(screen.getByRole('heading',{name:'새 진행 중 과제'})).toBeVisible();
+ expect(screen.getByLabelText('일정 보관 상태')).toHaveValue('ended');
+ expect(screen.getByLabelText('일정 찾기')).toHaveValue('기존 목록 조건');
+ fireEvent.click(screen.getByRole('button',{name:'이 일정이 있는 목록 보기'}));
+ expect(screen.getByLabelText('일정 보관 상태')).toHaveValue('active');
+ expect(screen.getByLabelText('일정 찾기')).toHaveValue('');
+ expect(screen.getByRole('button',{name:'일정 보기 · 새 진행 중 과제'})).toHaveAttribute('aria-pressed','true');
+});
