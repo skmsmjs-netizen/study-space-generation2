@@ -155,3 +155,41 @@ test('248 section plans all have distinct questions and correct actual source id
     ).toBeVisible();
   }
 });
+
+test('a queued list return preserves a newer search focus and typed query', async ({ page }) => {
+  await page.goto(root);
+  const [first, next] = catalog.sections.filter((section) => section.scene);
+  await pick(page, first.number);
+  await page.evaluate(() => {
+    const original = window.requestAnimationFrame.bind(window);
+    const cancel = window.cancelAnimationFrame.bind(window);
+    const frames = new Map<number, FrameRequestCallback>();
+    let id = 100000000;
+    const state = window as unknown as { releaseRileyReturn: () => void };
+    window.requestAnimationFrame = (callback) => {
+      frames.set(++id, callback);
+      return id;
+    };
+    window.cancelAnimationFrame = (frame) => {
+      if (!frames.delete(frame)) cancel(frame);
+    };
+    state.releaseRileyReturn = () => {
+      window.requestAnimationFrame = original;
+      window.cancelAnimationFrame = cancel;
+      const pending = [...frames.values()];
+      frames.clear();
+      pending.forEach((callback) => callback(performance.now()));
+    };
+  });
+  await page.getByRole('button', { name: '교재 목록으로', exact: true }).click();
+  const search = page.getByLabel('교재에서 찾기', { exact: true });
+  await search.focus();
+  await page.evaluate(() =>
+    (window as unknown as { releaseRileyReturn: () => void }).releaseRileyReturn(),
+  );
+  await expect(search).toBeFocused();
+  await search.fill(next.number);
+  await expect(search).toHaveValue(next.number);
+  await page.getByRole('button', { name: `${next.number} · ${next.title}`, exact: true }).click();
+  await expect(page.locator(`[data-section-plan="${next.id}"]`)).toBeVisible();
+});
