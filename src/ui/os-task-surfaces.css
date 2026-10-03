@@ -13,6 +13,10 @@
    floating paper card and secondary controls keep the shared 48px target. */
 .observatory-workspace .main-content > .page-heading { margin-block-start:0; }
 .observatory-workspace .main-content > .page-heading h1 { max-inline-size:100%; }
+/* Navigation focuses a heading/main for context, not an interactive control.
+   Keep control rings while avoiding a box around every opened page title. */
+.observatory-workspace .page-heading h1[tabindex='-1']:focus,
+.personal-entry-shell #entry-main:focus { outline:none; }
 :is(.observatory-workspace .main-content,.observatory-paper,.ui-modal) :is(.section-heading,.ui-modal-header) { flex-wrap:wrap; min-inline-size:0; }
 :is(.observatory-workspace .main-content,.observatory-paper,.ui-modal) .actions { gap:var(--space-2) var(--space-3); }
 .ui-modal-header > :first-child { min-inline-size:0; overflow-wrap:anywhere; }
