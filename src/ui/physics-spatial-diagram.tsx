@@ -1,0 +1,9 @@
+import { useId } from 'react';
+import { physicsSpatial } from '../domain/physics-spatial';
+import type {PhysicsObservation,PhysicsValues} from '../domain/physics-observations';
+export function PhysicsSpatialDiagram({item,values}:{item:PhysicsObservation;values:PhysicsValues}){
+ const marker=useId().replace(/:/g,'');const scene=physicsSpatial(item,values);if(!scene)return null;
+ const [xmin,xmax,ymin,ymax]=scene.bounds;
+ const x=(v:number)=>40+(v-xmin)/(xmax-xmin)*400,y=(v:number)=>440-(v-ymin)/(ymax-ymin)*400;
+ return <section className="physics-module physics-spatial" aria-label={scene.title}><h4>{scene.title}</h4><svg viewBox="0 0 480 480" role="img" aria-label={`${scene.title} · 두 축은 같은 축척이다.`}><defs><marker id={marker} viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"/></marker></defs><path d={`M40 ${y(0)} H440 M${x(0)} 40 V440`} className="physics-spatial-axis"/><text x="440" y={Math.min(458,y(0)+22)} textAnchor="end">{scene.axes[0]}</text><text x="40" y="22">{scene.axes[1]}</text>{scene.arrows.map((a,i)=><g key={`${a.name}-${i}`}><line x1={x(a.from[0])} y1={y(a.from[1])} x2={x(a.to[0])} y2={y(a.to[1])} stroke="currentColor" strokeWidth="2" strokeDasharray={a.style==='dash'?'5 4':undefined} markerEnd={`url(#${marker})`}/>{scene.arrows.length<8&&<text x={(x(a.from[0])+x(a.to[0]))/2} y={(y(a.from[1])+y(a.to[1]))/2-12-(i%2)*14} textAnchor="middle">{a.name}</text>}</g>)}{scene.points.map(a=><g key={a.name}><circle cx={x(a.x)} cy={y(a.y)} r="4" fill="currentColor"/><text x={x(a.x)+8} y={y(a.y)+20}>{a.name}</text></g>)}</svg><p className="physics-prose">{scene.explanation}</p><table><caption>같은 조건의 수치</caption><tbody>{scene.values.map(v=><tr key={v.name}><th scope="row">{v.name}</th><td>{v.value.toPrecision(6)} {v.unit}</td></tr>)}</tbody></table></section>;
+}

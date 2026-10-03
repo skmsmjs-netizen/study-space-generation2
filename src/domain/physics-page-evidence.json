@@ -1,0 +1,6416 @@
+[
+  {
+    "pdf": 1,
+    "printed": null,
+    "printedRoman": null,
+    "verification": "unconfirmed"
+  },
+  {
+    "pdf": 2,
+    "printed": null,
+    "printedRoman": null,
+    "verification": "unconfirmed"
+  },
+  {
+    "pdf": 3,
+    "printed": null,
+    "printedRoman": null,
+    "verification": "unconfirmed"
+  },
+  {
+    "pdf": 4,
+    "printed": null,
+    "printedRoman": null,
+    "verification": "unconfirmed"
+  },
+  {
+    "pdf": 5,
+    "printed": null,
+    "printedRoman": null,
+    "verification": "unconfirmed"
+  },
+  {
+    "pdf": 6,
+    "printed": null,
+    "printedRoman": null,
+    "verification": "unconfirmed"
+  },
+  {
+    "pdf": 7,
+    "printed": null,
+    "printedRoman": "vi",
+    "verification": "original-text-roman-header"
+  },
+  {
+    "pdf": 8,
+    "printed": null,
+    "printedRoman": null,
+    "verification": "unconfirmed"
+  },
+  {
+    "pdf": 9,
+    "printed": null,
+    "printedRoman": "viii",
+    "verification": "original-text-roman-header"
+  },
+  {
+    "pdf": 10,
+    "printed": null,
+    "printedRoman": "ix",
+    "verification": "original-text-roman-header"
+  },
+  {
+    "pdf": 11,
+    "printed": null,
+    "printedRoman": "x",
+    "verification": "original-text-roman-header"
+  },
+  {
+    "pdf": 12,
+    "printed": null,
+    "printedRoman": "xi",
+    "verification": "original-text-roman-header"
+  },
+  {
+    "pdf": 13,
+    "printed": null,
+    "printedRoman": "xii",
+    "verification": "original-text-roman-header"
+  },
+  {
+    "pdf": 14,
+    "printed": null,
+    "printedRoman": "xiii",
+    "verification": "original-text-roman-header"
+  },
+  {
+    "pdf": 15,
+    "printed": null,
+    "printedRoman": "xiv",
+    "verification": "original-text-roman-header"
+  },
+  {
+    "pdf": 16,
+    "printed": null,
+    "printedRoman": null,
+    "verification": "unconfirmed"
+  },
+  {
+    "pdf": 17,
+    "printed": null,
+    "printedRoman": null,
+    "verification": "unconfirmed"
+  },
+  {
+    "pdf": 18,
+    "printed": null,
+    "printedRoman": null,
+    "verification": "unconfirmed"
+  },
+  {
+    "pdf": 19,
+    "printed": null,
+    "printedRoman": null,
+    "verification": "unconfirmed"
+  },
+  {
+    "pdf": 20,
+    "printed": null,
+    "printedRoman": null,
+    "verification": "unconfirmed"
+  },
+  {
+    "pdf": 21,
+    "printed": 3,
+    "printedRoman": null,
+    "verification": "original-text-chapter-footer"
+  },
+  {
+    "pdf": 22,
+    "printed": 4,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 23,
+    "printed": 5,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 24,
+    "printed": 6,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 25,
+    "printed": 7,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 26,
+    "printed": 8,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 27,
+    "printed": 9,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 28,
+    "printed": 10,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 29,
+    "printed": 11,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 30,
+    "printed": 12,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 31,
+    "printed": 13,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 32,
+    "printed": 14,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 33,
+    "printed": 15,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 34,
+    "printed": 17,
+    "printedRoman": null,
+    "verification": "original-text-chapter-footer"
+  },
+  {
+    "pdf": 35,
+    "printed": 18,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 36,
+    "printed": 19,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 37,
+    "printed": 20,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 38,
+    "printed": 21,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 39,
+    "printed": 22,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 40,
+    "printed": 23,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 41,
+    "printed": 24,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 42,
+    "printed": 25,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 43,
+    "printed": 26,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 44,
+    "printed": 27,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 45,
+    "printed": 28,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 46,
+    "printed": 29,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 47,
+    "printed": 30,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 48,
+    "printed": 31,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 49,
+    "printed": 32,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 50,
+    "printed": 33,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 51,
+    "printed": 34,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 52,
+    "printed": 35,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 53,
+    "printed": 36,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 54,
+    "printed": 37,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 55,
+    "printed": 38,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 56,
+    "printed": null,
+    "printedRoman": null,
+    "verification": "unconfirmed"
+  },
+  {
+    "pdf": 57,
+    "printed": 41,
+    "printedRoman": null,
+    "verification": "original-text-chapter-footer"
+  },
+  {
+    "pdf": 58,
+    "printed": 42,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 59,
+    "printed": 43,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 60,
+    "printed": 44,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 61,
+    "printed": 45,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 62,
+    "printed": 46,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 63,
+    "printed": 47,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 64,
+    "printed": 48,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 65,
+    "printed": 49,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 66,
+    "printed": 50,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 67,
+    "printed": 51,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 68,
+    "printed": 52,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 69,
+    "printed": 53,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 70,
+    "printed": 54,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 71,
+    "printed": 55,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 72,
+    "printed": 56,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 73,
+    "printed": 57,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 74,
+    "printed": 58,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 75,
+    "printed": 59,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 76,
+    "printed": 60,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 77,
+    "printed": 61,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 78,
+    "printed": 62,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 79,
+    "printed": 63,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 80,
+    "printed": 64,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 81,
+    "printed": 65,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 82,
+    "printed": 66,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 83,
+    "printed": 67,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 84,
+    "printed": 68,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 85,
+    "printed": 69,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 86,
+    "printed": 70,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 87,
+    "printed": 71,
+    "printedRoman": null,
+    "verification": "original-text-chapter-footer"
+  },
+  {
+    "pdf": 88,
+    "printed": 72,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 89,
+    "printed": 73,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 90,
+    "printed": 74,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 91,
+    "printed": 75,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 92,
+    "printed": 76,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 93,
+    "printed": 77,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 94,
+    "printed": 78,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 95,
+    "printed": 79,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 96,
+    "printed": 80,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 97,
+    "printed": 81,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 98,
+    "printed": 82,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 99,
+    "printed": 83,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 100,
+    "printed": 84,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 101,
+    "printed": 85,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 102,
+    "printed": 86,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 103,
+    "printed": 87,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 104,
+    "printed": 88,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 105,
+    "printed": 89,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 106,
+    "printed": 90,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 107,
+    "printed": 91,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 108,
+    "printed": 92,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 109,
+    "printed": 93,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 110,
+    "printed": 94,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 111,
+    "printed": 95,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 112,
+    "printed": 96,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 113,
+    "printed": 97,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 114,
+    "printed": 98,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 115,
+    "printed": 99,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 116,
+    "printed": 100,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 117,
+    "printed": 101,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 118,
+    "printed": 102,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 119,
+    "printed": 103,
+    "printedRoman": null,
+    "verification": "original-text-chapter-footer"
+  },
+  {
+    "pdf": 120,
+    "printed": 104,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 121,
+    "printed": 105,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 122,
+    "printed": 106,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 123,
+    "printed": 107,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 124,
+    "printed": 108,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 125,
+    "printed": 109,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 126,
+    "printed": 110,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 127,
+    "printed": 111,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 128,
+    "printed": 112,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 129,
+    "printed": 113,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 130,
+    "printed": 114,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 131,
+    "printed": 115,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 132,
+    "printed": 116,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 133,
+    "printed": 117,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 134,
+    "printed": 118,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 135,
+    "printed": 119,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 136,
+    "printed": 120,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 137,
+    "printed": 121,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 138,
+    "printed": 122,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 139,
+    "printed": 123,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 140,
+    "printed": 124,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 141,
+    "printed": 125,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 142,
+    "printed": 126,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 143,
+    "printed": 127,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 144,
+    "printed": 128,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 145,
+    "printed": 129,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 146,
+    "printed": 130,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 147,
+    "printed": 131,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 148,
+    "printed": 132,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 149,
+    "printed": 133,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 150,
+    "printed": 134,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 151,
+    "printed": 135,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 152,
+    "printed": 137,
+    "printedRoman": null,
+    "verification": "original-text-chapter-footer"
+  },
+  {
+    "pdf": 153,
+    "printed": 138,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 154,
+    "printed": 139,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 155,
+    "printed": 140,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 156,
+    "printed": 141,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 157,
+    "printed": 142,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 158,
+    "printed": 143,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 159,
+    "printed": 144,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 160,
+    "printed": 145,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 161,
+    "printed": 146,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 162,
+    "printed": 147,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 163,
+    "printed": 148,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 164,
+    "printed": 149,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 165,
+    "printed": 150,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 166,
+    "printed": 151,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 167,
+    "printed": 152,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 168,
+    "printed": 153,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 169,
+    "printed": 154,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 170,
+    "printed": 155,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 171,
+    "printed": 156,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 172,
+    "printed": 157,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 173,
+    "printed": 158,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 174,
+    "printed": 159,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 175,
+    "printed": 160,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 176,
+    "printed": 161,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 177,
+    "printed": 162,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 178,
+    "printed": 163,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 179,
+    "printed": 164,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 180,
+    "printed": 165,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 181,
+    "printed": 166,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 182,
+    "printed": 167,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 183,
+    "printed": 168,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 184,
+    "printed": 169,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 185,
+    "printed": 170,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 186,
+    "printed": 171,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 187,
+    "printed": 172,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 188,
+    "printed": 173,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 189,
+    "printed": 174,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 190,
+    "printed": 175,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 191,
+    "printed": 176,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 192,
+    "printed": 177,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 193,
+    "printed": 178,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 194,
+    "printed": 179,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 195,
+    "printed": 180,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 196,
+    "printed": 181,
+    "printedRoman": null,
+    "verification": "original-text-chapter-footer"
+  },
+  {
+    "pdf": 197,
+    "printed": 182,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 198,
+    "printed": 183,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 199,
+    "printed": 184,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 200,
+    "printed": 185,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 201,
+    "printed": 186,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 202,
+    "printed": 187,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 203,
+    "printed": 188,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 204,
+    "printed": 189,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 205,
+    "printed": 190,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 206,
+    "printed": 191,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 207,
+    "printed": 192,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 208,
+    "printed": 193,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 209,
+    "printed": 194,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 210,
+    "printed": 195,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 211,
+    "printed": 196,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 212,
+    "printed": 197,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 213,
+    "printed": 198,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 214,
+    "printed": 199,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 215,
+    "printed": 200,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 216,
+    "printed": 201,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 217,
+    "printed": 202,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 218,
+    "printed": 203,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 219,
+    "printed": 204,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 220,
+    "printed": 205,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 221,
+    "printed": 206,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 222,
+    "printed": 207,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 223,
+    "printed": 208,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 224,
+    "printed": 209,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 225,
+    "printed": 210,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 226,
+    "printed": 211,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 227,
+    "printed": 212,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 228,
+    "printed": 213,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 229,
+    "printed": 214,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 230,
+    "printed": 215,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 231,
+    "printed": 216,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 232,
+    "printed": 217,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 233,
+    "printed": 218,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 234,
+    "printed": 219,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 235,
+    "printed": 220,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 236,
+    "printed": 221,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 237,
+    "printed": 222,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 238,
+    "printed": 223,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 239,
+    "printed": 224,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 240,
+    "printed": 225,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 241,
+    "printed": 227,
+    "printedRoman": null,
+    "verification": "original-text-chapter-footer"
+  },
+  {
+    "pdf": 242,
+    "printed": 228,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 243,
+    "printed": 229,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 244,
+    "printed": 230,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 245,
+    "printed": 231,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 246,
+    "printed": 232,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 247,
+    "printed": 233,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 248,
+    "printed": 234,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 249,
+    "printed": 235,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 250,
+    "printed": 236,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 251,
+    "printed": 237,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 252,
+    "printed": 238,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 253,
+    "printed": 239,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 254,
+    "printed": 240,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 255,
+    "printed": 241,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 256,
+    "printed": 242,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 257,
+    "printed": 243,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 258,
+    "printed": 244,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 259,
+    "printed": 245,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 260,
+    "printed": 246,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 261,
+    "printed": 247,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 262,
+    "printed": 248,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 263,
+    "printed": 249,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 264,
+    "printed": 250,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 265,
+    "printed": 251,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 266,
+    "printed": 252,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 267,
+    "printed": 253,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 268,
+    "printed": 254,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 269,
+    "printed": 255,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 270,
+    "printed": 256,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 271,
+    "printed": 257,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 272,
+    "printed": 258,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 273,
+    "printed": 259,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 274,
+    "printed": 260,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 275,
+    "printed": 261,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 276,
+    "printed": 262,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 277,
+    "printed": 263,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 278,
+    "printed": 264,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 279,
+    "printed": 265,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 280,
+    "printed": 266,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 281,
+    "printed": 267,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 282,
+    "printed": 268,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 283,
+    "printed": 269,
+    "printedRoman": null,
+    "verification": "original-text-chapter-footer"
+  },
+  {
+    "pdf": 284,
+    "printed": 270,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 285,
+    "printed": 271,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 286,
+    "printed": 272,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 287,
+    "printed": 273,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 288,
+    "printed": 274,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 289,
+    "printed": 275,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 290,
+    "printed": 276,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 291,
+    "printed": 277,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 292,
+    "printed": 278,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 293,
+    "printed": 279,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 294,
+    "printed": 280,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 295,
+    "printed": 281,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 296,
+    "printed": 282,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 297,
+    "printed": 283,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 298,
+    "printed": 284,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 299,
+    "printed": 285,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 300,
+    "printed": 286,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 301,
+    "printed": 287,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 302,
+    "printed": 288,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 303,
+    "printed": 289,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 304,
+    "printed": 290,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 305,
+    "printed": 291,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 306,
+    "printed": 292,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 307,
+    "printed": 293,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 308,
+    "printed": 294,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 309,
+    "printed": 295,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 310,
+    "printed": 296,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 311,
+    "printed": 297,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 312,
+    "printed": 298,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 313,
+    "printed": 299,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 314,
+    "printed": 300,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 315,
+    "printed": 301,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 316,
+    "printed": 302,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 317,
+    "printed": 303,
+    "printedRoman": null,
+    "verification": "original-text-chapter-footer"
+  },
+  {
+    "pdf": 318,
+    "printed": 304,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 319,
+    "printed": 305,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 320,
+    "printed": 306,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 321,
+    "printed": 307,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 322,
+    "printed": 308,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 323,
+    "printed": 309,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 324,
+    "printed": 310,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 325,
+    "printed": 311,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 326,
+    "printed": 312,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 327,
+    "printed": 313,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 328,
+    "printed": 314,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 329,
+    "printed": 315,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 330,
+    "printed": 316,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 331,
+    "printed": 317,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 332,
+    "printed": 318,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 333,
+    "printed": 319,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 334,
+    "printed": 320,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 335,
+    "printed": 321,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 336,
+    "printed": 322,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 337,
+    "printed": 323,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 338,
+    "printed": 324,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 339,
+    "printed": 325,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 340,
+    "printed": 326,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 341,
+    "printed": 327,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 342,
+    "printed": 328,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 343,
+    "printed": 329,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 344,
+    "printed": 330,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 345,
+    "printed": 331,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 346,
+    "printed": 332,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 347,
+    "printed": 333,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 348,
+    "printed": 334,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 349,
+    "printed": 335,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 350,
+    "printed": 336,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 351,
+    "printed": 337,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 352,
+    "printed": 338,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 353,
+    "printed": 339,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 354,
+    "printed": 340,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 355,
+    "printed": 341,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 356,
+    "printed": 342,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 357,
+    "printed": 343,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 358,
+    "printed": 344,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 359,
+    "printed": 345,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 360,
+    "printed": 346,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 361,
+    "printed": 347,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 362,
+    "printed": 348,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 363,
+    "printed": 349,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 364,
+    "printed": 350,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 365,
+    "printed": 351,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 366,
+    "printed": 352,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 367,
+    "printed": 353,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 368,
+    "printed": 354,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 369,
+    "printed": null,
+    "printedRoman": null,
+    "verification": "unconfirmed"
+  },
+  {
+    "pdf": 370,
+    "printed": 357,
+    "printedRoman": null,
+    "verification": "original-text-chapter-footer"
+  },
+  {
+    "pdf": 371,
+    "printed": 358,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 372,
+    "printed": 359,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 373,
+    "printed": 360,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 374,
+    "printed": 361,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 375,
+    "printed": 362,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 376,
+    "printed": 363,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 377,
+    "printed": 364,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 378,
+    "printed": 365,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 379,
+    "printed": 366,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 380,
+    "printed": 367,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 381,
+    "printed": 368,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 382,
+    "printed": 369,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 383,
+    "printed": 370,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 384,
+    "printed": 371,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 385,
+    "printed": 372,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 386,
+    "printed": 373,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 387,
+    "printed": 374,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 388,
+    "printed": 375,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 389,
+    "printed": 376,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 390,
+    "printed": 377,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 391,
+    "printed": 378,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 392,
+    "printed": 379,
+    "printedRoman": null,
+    "verification": "original-text-chapter-footer"
+  },
+  {
+    "pdf": 393,
+    "printed": 380,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 394,
+    "printed": 381,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 395,
+    "printed": 382,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 396,
+    "printed": 383,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 397,
+    "printed": 384,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 398,
+    "printed": 385,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 399,
+    "printed": 386,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 400,
+    "printed": 387,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 401,
+    "printed": 388,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 402,
+    "printed": 389,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 403,
+    "printed": 390,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 404,
+    "printed": 391,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 405,
+    "printed": 392,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 406,
+    "printed": 393,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 407,
+    "printed": 394,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 408,
+    "printed": 395,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 409,
+    "printed": 396,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 410,
+    "printed": 397,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 411,
+    "printed": 398,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 412,
+    "printed": 399,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 413,
+    "printed": 400,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 414,
+    "printed": 401,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 415,
+    "printed": 402,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 416,
+    "printed": 403,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 417,
+    "printed": 404,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 418,
+    "printed": 405,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 419,
+    "printed": 406,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 420,
+    "printed": 407,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 421,
+    "printed": 408,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 422,
+    "printed": 409,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 423,
+    "printed": 410,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 424,
+    "printed": 411,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 425,
+    "printed": 412,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 426,
+    "printed": 413,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 427,
+    "printed": 414,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 428,
+    "printed": 415,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 429,
+    "printed": 416,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 430,
+    "printed": 417,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 431,
+    "printed": 418,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 432,
+    "printed": 419,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 433,
+    "printed": 420,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 434,
+    "printed": 421,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 435,
+    "printed": 422,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 436,
+    "printed": 423,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 437,
+    "printed": 424,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 438,
+    "printed": 425,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 439,
+    "printed": 427,
+    "printedRoman": null,
+    "verification": "original-text-chapter-footer"
+  },
+  {
+    "pdf": 440,
+    "printed": 428,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 441,
+    "printed": 429,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 442,
+    "printed": 430,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 443,
+    "printed": 431,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 444,
+    "printed": 432,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 445,
+    "printed": 433,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 446,
+    "printed": 434,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 447,
+    "printed": 435,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 448,
+    "printed": 436,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 449,
+    "printed": 437,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 450,
+    "printed": 438,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 451,
+    "printed": 439,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 452,
+    "printed": 440,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 453,
+    "printed": 441,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 454,
+    "printed": 442,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 455,
+    "printed": 443,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 456,
+    "printed": 444,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 457,
+    "printed": 445,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 458,
+    "printed": 446,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 459,
+    "printed": 447,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 460,
+    "printed": 448,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 461,
+    "printed": null,
+    "printedRoman": null,
+    "verification": "unconfirmed"
+  },
+  {
+    "pdf": 462,
+    "printed": 451,
+    "printedRoman": null,
+    "verification": "original-text-chapter-footer"
+  },
+  {
+    "pdf": 463,
+    "printed": 452,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 464,
+    "printed": 453,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 465,
+    "printed": 454,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 466,
+    "printed": 455,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 467,
+    "printed": 456,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 468,
+    "printed": 457,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 469,
+    "printed": 458,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 470,
+    "printed": 459,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 471,
+    "printed": 460,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 472,
+    "printed": 461,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 473,
+    "printed": 462,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 474,
+    "printed": 463,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 475,
+    "printed": 464,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 476,
+    "printed": 465,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 477,
+    "printed": 466,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 478,
+    "printed": 467,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 479,
+    "printed": 468,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 480,
+    "printed": 469,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 481,
+    "printed": 470,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 482,
+    "printed": 471,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 483,
+    "printed": 472,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 484,
+    "printed": 473,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 485,
+    "printed": 474,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 486,
+    "printed": 475,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 487,
+    "printed": 476,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 488,
+    "printed": 477,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 489,
+    "printed": 478,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 490,
+    "printed": 479,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 491,
+    "printed": 480,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 492,
+    "printed": 481,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 493,
+    "printed": 482,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 494,
+    "printed": 483,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 495,
+    "printed": 484,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 496,
+    "printed": 485,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 497,
+    "printed": 486,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 498,
+    "printed": 487,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 499,
+    "printed": 488,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 500,
+    "printed": 489,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 501,
+    "printed": 490,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 502,
+    "printed": 491,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 503,
+    "printed": 492,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 504,
+    "printed": 493,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 505,
+    "printed": 494,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 506,
+    "printed": 495,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 507,
+    "printed": 496,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 508,
+    "printed": 497,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 509,
+    "printed": 499,
+    "printedRoman": null,
+    "verification": "original-text-chapter-footer"
+  },
+  {
+    "pdf": 510,
+    "printed": 500,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 511,
+    "printed": 501,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 512,
+    "printed": 502,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 513,
+    "printed": 503,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 514,
+    "printed": 504,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 515,
+    "printed": 505,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 516,
+    "printed": 506,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 517,
+    "printed": 507,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 518,
+    "printed": 508,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 519,
+    "printed": 509,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 520,
+    "printed": 510,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 521,
+    "printed": 511,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 522,
+    "printed": 512,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 523,
+    "printed": 513,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 524,
+    "printed": 514,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 525,
+    "printed": 515,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 526,
+    "printed": 516,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 527,
+    "printed": 517,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 528,
+    "printed": 518,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 529,
+    "printed": 519,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 530,
+    "printed": 520,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 531,
+    "printed": 521,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 532,
+    "printed": 522,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 533,
+    "printed": 523,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 534,
+    "printed": 524,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 535,
+    "printed": 525,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 536,
+    "printed": 526,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 537,
+    "printed": 527,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 538,
+    "printed": 528,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 539,
+    "printed": 529,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 540,
+    "printed": 530,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 541,
+    "printed": 531,
+    "printedRoman": null,
+    "verification": "original-text-chapter-footer"
+  },
+  {
+    "pdf": 542,
+    "printed": 532,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 543,
+    "printed": 533,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 544,
+    "printed": 534,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 545,
+    "printed": 535,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 546,
+    "printed": 536,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 547,
+    "printed": 537,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 548,
+    "printed": 538,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 549,
+    "printed": 539,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 550,
+    "printed": 540,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 551,
+    "printed": 541,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 552,
+    "printed": 542,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 553,
+    "printed": 543,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 554,
+    "printed": 544,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 555,
+    "printed": 545,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 556,
+    "printed": 546,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 557,
+    "printed": 547,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 558,
+    "printed": 548,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 559,
+    "printed": 549,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 560,
+    "printed": 550,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 561,
+    "printed": 551,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 562,
+    "printed": 552,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 563,
+    "printed": 553,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 564,
+    "printed": 554,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 565,
+    "printed": 555,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 566,
+    "printed": 556,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 567,
+    "printed": 557,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 568,
+    "printed": 558,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 569,
+    "printed": 559,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 570,
+    "printed": 560,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 571,
+    "printed": 561,
+    "printedRoman": null,
+    "verification": "original-text-chapter-footer"
+  },
+  {
+    "pdf": 572,
+    "printed": 562,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 573,
+    "printed": 563,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 574,
+    "printed": 564,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 575,
+    "printed": 565,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 576,
+    "printed": 566,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 577,
+    "printed": 567,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 578,
+    "printed": 568,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 579,
+    "printed": 569,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 580,
+    "printed": 570,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 581,
+    "printed": 571,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 582,
+    "printed": 572,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 583,
+    "printed": 573,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 584,
+    "printed": 574,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 585,
+    "printed": 575,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 586,
+    "printed": 576,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 587,
+    "printed": 577,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 588,
+    "printed": 578,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 589,
+    "printed": 579,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 590,
+    "printed": 580,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 591,
+    "printed": 581,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 592,
+    "printed": 582,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 593,
+    "printed": 583,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 594,
+    "printed": 584,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 595,
+    "printed": 585,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 596,
+    "printed": 586,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 597,
+    "printed": 587,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 598,
+    "printed": 588,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 599,
+    "printed": 589,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 600,
+    "printed": 590,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 601,
+    "printed": 591,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 602,
+    "printed": 592,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 603,
+    "printed": 593,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 604,
+    "printed": 594,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 605,
+    "printed": 595,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 606,
+    "printed": 596,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 607,
+    "printed": 597,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 608,
+    "printed": 598,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 609,
+    "printed": 599,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 610,
+    "printed": 600,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 611,
+    "printed": 601,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 612,
+    "printed": 603,
+    "printedRoman": null,
+    "verification": "original-text-chapter-footer"
+  },
+  {
+    "pdf": 613,
+    "printed": 604,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 614,
+    "printed": 605,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 615,
+    "printed": 606,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 616,
+    "printed": 607,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 617,
+    "printed": 608,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 618,
+    "printed": 609,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 619,
+    "printed": 610,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 620,
+    "printed": 611,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 621,
+    "printed": 612,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 622,
+    "printed": 613,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 623,
+    "printed": 614,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 624,
+    "printed": 615,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 625,
+    "printed": 616,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 626,
+    "printed": 617,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 627,
+    "printed": 618,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 628,
+    "printed": 619,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 629,
+    "printed": 620,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 630,
+    "printed": 621,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 631,
+    "printed": 622,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 632,
+    "printed": 623,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 633,
+    "printed": 624,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 634,
+    "printed": 625,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 635,
+    "printed": 626,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 636,
+    "printed": 627,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 637,
+    "printed": 628,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 638,
+    "printed": 629,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 639,
+    "printed": 630,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 640,
+    "printed": 631,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 641,
+    "printed": 632,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 642,
+    "printed": 633,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 643,
+    "printed": 634,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 644,
+    "printed": null,
+    "printedRoman": null,
+    "verification": "unconfirmed"
+  },
+  {
+    "pdf": 645,
+    "printed": 637,
+    "printedRoman": null,
+    "verification": "original-text-chapter-footer"
+  },
+  {
+    "pdf": 646,
+    "printed": 638,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 647,
+    "printed": 639,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 648,
+    "printed": 640,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 649,
+    "printed": 641,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 650,
+    "printed": 642,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 651,
+    "printed": 643,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 652,
+    "printed": 644,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 653,
+    "printed": 645,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 654,
+    "printed": 646,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 655,
+    "printed": 647,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 656,
+    "printed": 648,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 657,
+    "printed": 649,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 658,
+    "printed": 650,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 659,
+    "printed": 651,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 660,
+    "printed": 652,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 661,
+    "printed": 653,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 662,
+    "printed": 654,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 663,
+    "printed": 655,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 664,
+    "printed": 656,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 665,
+    "printed": 657,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 666,
+    "printed": 658,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 667,
+    "printed": 659,
+    "printedRoman": null,
+    "verification": "original-text-chapter-footer"
+  },
+  {
+    "pdf": 668,
+    "printed": 660,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 669,
+    "printed": 661,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 670,
+    "printed": 662,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 671,
+    "printed": 663,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 672,
+    "printed": 664,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 673,
+    "printed": 665,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 674,
+    "printed": 666,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 675,
+    "printed": 667,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 676,
+    "printed": 668,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 677,
+    "printed": 669,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 678,
+    "printed": 670,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 679,
+    "printed": 671,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 680,
+    "printed": 672,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 681,
+    "printed": 673,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 682,
+    "printed": 674,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 683,
+    "printed": 675,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 684,
+    "printed": 676,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 685,
+    "printed": 677,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 686,
+    "printed": 678,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 687,
+    "printed": 679,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 688,
+    "printed": 680,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 689,
+    "printed": 681,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 690,
+    "printed": 682,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 691,
+    "printed": 683,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 692,
+    "printed": 684,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 693,
+    "printed": 685,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 694,
+    "printed": 686,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 695,
+    "printed": 687,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 696,
+    "printed": 688,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 697,
+    "printed": 689,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 698,
+    "printed": 690,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 699,
+    "printed": 691,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 700,
+    "printed": 692,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 701,
+    "printed": 693,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 702,
+    "printed": 694,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 703,
+    "printed": 695,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 704,
+    "printed": 696,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 705,
+    "printed": 697,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 706,
+    "printed": 698,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 707,
+    "printed": 699,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 708,
+    "printed": 700,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 709,
+    "printed": 701,
+    "printedRoman": null,
+    "verification": "original-text-chapter-footer"
+  },
+  {
+    "pdf": 710,
+    "printed": 702,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 711,
+    "printed": 703,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 712,
+    "printed": 704,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 713,
+    "printed": 705,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 714,
+    "printed": 706,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 715,
+    "printed": 707,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 716,
+    "printed": 708,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 717,
+    "printed": 709,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 718,
+    "printed": 710,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 719,
+    "printed": 711,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 720,
+    "printed": 712,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 721,
+    "printed": 713,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 722,
+    "printed": 714,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 723,
+    "printed": 715,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 724,
+    "printed": 716,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 725,
+    "printed": 717,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 726,
+    "printed": 718,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 727,
+    "printed": 719,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 728,
+    "printed": 720,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 729,
+    "printed": 721,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 730,
+    "printed": 722,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 731,
+    "printed": 723,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 732,
+    "printed": 724,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 733,
+    "printed": 725,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 734,
+    "printed": 726,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 735,
+    "printed": 727,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 736,
+    "printed": 728,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 737,
+    "printed": 729,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 738,
+    "printed": 730,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 739,
+    "printed": 731,
+    "printedRoman": null,
+    "verification": "original-text-chapter-footer"
+  },
+  {
+    "pdf": 740,
+    "printed": 732,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 741,
+    "printed": 733,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 742,
+    "printed": 734,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 743,
+    "printed": 735,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 744,
+    "printed": 736,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 745,
+    "printed": 737,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 746,
+    "printed": 738,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 747,
+    "printed": 739,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 748,
+    "printed": 740,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 749,
+    "printed": 741,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 750,
+    "printed": 742,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 751,
+    "printed": 743,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 752,
+    "printed": 744,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 753,
+    "printed": 745,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 754,
+    "printed": 746,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 755,
+    "printed": 747,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 756,
+    "printed": 748,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 757,
+    "printed": 749,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 758,
+    "printed": 750,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 759,
+    "printed": 751,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 760,
+    "printed": 752,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 761,
+    "printed": 753,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 762,
+    "printed": 754,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 763,
+    "printed": 755,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 764,
+    "printed": 756,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 765,
+    "printed": 757,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 766,
+    "printed": 758,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 767,
+    "printed": 759,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 768,
+    "printed": 760,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 769,
+    "printed": 761,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 770,
+    "printed": 762,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 771,
+    "printed": 763,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 772,
+    "printed": 764,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 773,
+    "printed": 765,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 774,
+    "printed": 766,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 775,
+    "printed": 767,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 776,
+    "printed": 768,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 777,
+    "printed": 769,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 778,
+    "printed": 770,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 779,
+    "printed": 771,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 780,
+    "printed": 772,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 781,
+    "printed": 773,
+    "printedRoman": null,
+    "verification": "original-text-chapter-footer"
+  },
+  {
+    "pdf": 782,
+    "printed": 774,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 783,
+    "printed": 775,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 784,
+    "printed": 776,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 785,
+    "printed": 777,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 786,
+    "printed": 778,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 787,
+    "printed": 779,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 788,
+    "printed": 780,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 789,
+    "printed": 781,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 790,
+    "printed": 782,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 791,
+    "printed": 783,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 792,
+    "printed": 784,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 793,
+    "printed": 785,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 794,
+    "printed": 786,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 795,
+    "printed": 787,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 796,
+    "printed": 788,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 797,
+    "printed": 789,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 798,
+    "printed": 790,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 799,
+    "printed": 791,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 800,
+    "printed": 792,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 801,
+    "printed": 793,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 802,
+    "printed": 794,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 803,
+    "printed": 795,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 804,
+    "printed": 796,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 805,
+    "printed": 797,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 806,
+    "printed": 798,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 807,
+    "printed": 799,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 808,
+    "printed": 800,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 809,
+    "printed": 801,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 810,
+    "printed": 802,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 811,
+    "printed": 803,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 812,
+    "printed": 804,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 813,
+    "printed": 805,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 814,
+    "printed": 806,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 815,
+    "printed": 807,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 816,
+    "printed": 808,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 817,
+    "printed": 809,
+    "printedRoman": null,
+    "verification": "original-text-chapter-footer"
+  },
+  {
+    "pdf": 818,
+    "printed": 810,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 819,
+    "printed": 811,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 820,
+    "printed": 812,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 821,
+    "printed": 813,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 822,
+    "printed": 814,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 823,
+    "printed": 815,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 824,
+    "printed": 816,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 825,
+    "printed": 817,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 826,
+    "printed": 818,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 827,
+    "printed": 819,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 828,
+    "printed": 820,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 829,
+    "printed": 821,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 830,
+    "printed": 822,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 831,
+    "printed": 823,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 832,
+    "printed": 824,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 833,
+    "printed": 825,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 834,
+    "printed": 826,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 835,
+    "printed": 827,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 836,
+    "printed": 828,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 837,
+    "printed": 829,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 838,
+    "printed": 830,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 839,
+    "printed": 831,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 840,
+    "printed": 832,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 841,
+    "printed": 833,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 842,
+    "printed": 834,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 843,
+    "printed": 835,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 844,
+    "printed": 836,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 845,
+    "printed": 837,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 846,
+    "printed": 838,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 847,
+    "printed": 839,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 848,
+    "printed": 840,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 849,
+    "printed": 841,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 850,
+    "printed": 842,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 851,
+    "printed": 843,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 852,
+    "printed": 844,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 853,
+    "printed": 845,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 854,
+    "printed": 846,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 855,
+    "printed": 847,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 856,
+    "printed": 848,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 857,
+    "printed": 849,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 858,
+    "printed": 850,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 859,
+    "printed": 851,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 860,
+    "printed": 852,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 861,
+    "printed": 853,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 862,
+    "printed": 854,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 863,
+    "printed": 855,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 864,
+    "printed": null,
+    "printedRoman": null,
+    "verification": "unconfirmed"
+  },
+  {
+    "pdf": 865,
+    "printed": 859,
+    "printedRoman": null,
+    "verification": "original-text-chapter-footer"
+  },
+  {
+    "pdf": 866,
+    "printed": 860,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 867,
+    "printed": 861,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 868,
+    "printed": 862,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 869,
+    "printed": 863,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 870,
+    "printed": 864,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 871,
+    "printed": 865,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 872,
+    "printed": 866,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 873,
+    "printed": 867,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 874,
+    "printed": 868,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 875,
+    "printed": 869,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 876,
+    "printed": 870,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 877,
+    "printed": 871,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 878,
+    "printed": 872,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 879,
+    "printed": 873,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 880,
+    "printed": 874,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 881,
+    "printed": 875,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 882,
+    "printed": 876,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 883,
+    "printed": 877,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 884,
+    "printed": 878,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 885,
+    "printed": 879,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 886,
+    "printed": 880,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 887,
+    "printed": 881,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 888,
+    "printed": 882,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 889,
+    "printed": 883,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 890,
+    "printed": 884,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 891,
+    "printed": 885,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 892,
+    "printed": 886,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 893,
+    "printed": 887,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 894,
+    "printed": 888,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 895,
+    "printed": 889,
+    "printedRoman": null,
+    "verification": "original-text-chapter-footer"
+  },
+  {
+    "pdf": 896,
+    "printed": 890,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 897,
+    "printed": 891,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 898,
+    "printed": 892,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 899,
+    "printed": 893,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 900,
+    "printed": 894,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 901,
+    "printed": 895,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 902,
+    "printed": 896,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 903,
+    "printed": 897,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 904,
+    "printed": 898,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 905,
+    "printed": 899,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 906,
+    "printed": 900,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 907,
+    "printed": 901,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 908,
+    "printed": 902,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 909,
+    "printed": 903,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 910,
+    "printed": 904,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 911,
+    "printed": 905,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 912,
+    "printed": 906,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 913,
+    "printed": 907,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 914,
+    "printed": 908,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 915,
+    "printed": 909,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 916,
+    "printed": 910,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 917,
+    "printed": 911,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 918,
+    "printed": 912,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 919,
+    "printed": 913,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 920,
+    "printed": 914,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 921,
+    "printed": 915,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 922,
+    "printed": 916,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 923,
+    "printed": 917,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 924,
+    "printed": 918,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 925,
+    "printed": 919,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 926,
+    "printed": 920,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 927,
+    "printed": 921,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 928,
+    "printed": 922,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 929,
+    "printed": 923,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 930,
+    "printed": 924,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 931,
+    "printed": 925,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 932,
+    "printed": 926,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 933,
+    "printed": 927,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 934,
+    "printed": 928,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 935,
+    "printed": 929,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 936,
+    "printed": 930,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 937,
+    "printed": 931,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 938,
+    "printed": 932,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 939,
+    "printed": 933,
+    "printedRoman": null,
+    "verification": "original-text-chapter-footer"
+  },
+  {
+    "pdf": 940,
+    "printed": 934,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 941,
+    "printed": 935,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 942,
+    "printed": 936,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 943,
+    "printed": 937,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 944,
+    "printed": 938,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 945,
+    "printed": 939,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 946,
+    "printed": 940,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 947,
+    "printed": 941,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 948,
+    "printed": 942,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 949,
+    "printed": 943,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 950,
+    "printed": 944,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 951,
+    "printed": 945,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 952,
+    "printed": 946,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 953,
+    "printed": 947,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 954,
+    "printed": 948,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 955,
+    "printed": 949,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 956,
+    "printed": 950,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 957,
+    "printed": 951,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 958,
+    "printed": 952,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 959,
+    "printed": 953,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 960,
+    "printed": 954,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 961,
+    "printed": 955,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 962,
+    "printed": 956,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 963,
+    "printed": 957,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 964,
+    "printed": 958,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 965,
+    "printed": 959,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 966,
+    "printed": 961,
+    "printedRoman": null,
+    "verification": "original-text-chapter-footer"
+  },
+  {
+    "pdf": 967,
+    "printed": 962,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 968,
+    "printed": 963,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 969,
+    "printed": 964,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 970,
+    "printed": 965,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 971,
+    "printed": 966,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 972,
+    "printed": 967,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 973,
+    "printed": 968,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 974,
+    "printed": 969,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 975,
+    "printed": 970,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 976,
+    "printed": 971,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 977,
+    "printed": 972,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 978,
+    "printed": 973,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 979,
+    "printed": 974,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 980,
+    "printed": 975,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 981,
+    "printed": 976,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 982,
+    "printed": 977,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 983,
+    "printed": 978,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 984,
+    "printed": 979,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 985,
+    "printed": 980,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 986,
+    "printed": 981,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 987,
+    "printed": 982,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 988,
+    "printed": 983,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 989,
+    "printed": 984,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 990,
+    "printed": 985,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 991,
+    "printed": 986,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 992,
+    "printed": 987,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 993,
+    "printed": 988,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 994,
+    "printed": 989,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 995,
+    "printed": 990,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 996,
+    "printed": 991,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 997,
+    "printed": 992,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 998,
+    "printed": 993,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 999,
+    "printed": 994,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1000,
+    "printed": 995,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1001,
+    "printed": 996,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1002,
+    "printed": 997,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1003,
+    "printed": 998,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1004,
+    "printed": 999,
+    "printedRoman": null,
+    "verification": "original-text-chapter-footer"
+  },
+  {
+    "pdf": 1005,
+    "printed": 1000,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1006,
+    "printed": 1001,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1007,
+    "printed": 1003,
+    "printedRoman": null,
+    "verification": "original-text-chapter-footer"
+  },
+  {
+    "pdf": 1008,
+    "printed": 1004,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1009,
+    "printed": 1005,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1010,
+    "printed": 1006,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1011,
+    "printed": 1007,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1012,
+    "printed": 1008,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1013,
+    "printed": 1009,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1014,
+    "printed": 1010,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1015,
+    "printed": 1011,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1016,
+    "printed": 1012,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1017,
+    "printed": null,
+    "printedRoman": null,
+    "verification": "unconfirmed"
+  },
+  {
+    "pdf": 1018,
+    "printed": 1015,
+    "printedRoman": null,
+    "verification": "original-text-chapter-footer"
+  },
+  {
+    "pdf": 1019,
+    "printed": 1016,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1020,
+    "printed": 1017,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1021,
+    "printed": 1018,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1022,
+    "printed": 1019,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1023,
+    "printed": 1020,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1024,
+    "printed": 1021,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1025,
+    "printed": 1022,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1026,
+    "printed": 1023,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1027,
+    "printed": 1024,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1028,
+    "printed": 1025,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1029,
+    "printed": 1026,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1030,
+    "printed": 1027,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1031,
+    "printed": 1028,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1032,
+    "printed": 1029,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1033,
+    "printed": 1030,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1034,
+    "printed": 1031,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1035,
+    "printed": 1032,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1036,
+    "printed": 1033,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1037,
+    "printed": 1034,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1038,
+    "printed": 1035,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1039,
+    "printed": 1036,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1040,
+    "printed": 1037,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1041,
+    "printed": 1038,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1042,
+    "printed": 1039,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1043,
+    "printed": 1040,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1044,
+    "printed": 1041,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1045,
+    "printed": 1042,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1046,
+    "printed": 1043,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1047,
+    "printed": 1044,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1048,
+    "printed": 1045,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1049,
+    "printed": 1046,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1050,
+    "printed": 1047,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1051,
+    "printed": 1048,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1052,
+    "printed": 1049,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1053,
+    "printed": 1050,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1054,
+    "printed": 1051,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1055,
+    "printed": 1052,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1056,
+    "printed": 1053,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1057,
+    "printed": 1054,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1058,
+    "printed": 1055,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1059,
+    "printed": 1057,
+    "printedRoman": null,
+    "verification": "original-text-chapter-footer"
+  },
+  {
+    "pdf": 1060,
+    "printed": 1058,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1061,
+    "printed": 1059,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1062,
+    "printed": 1060,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1063,
+    "printed": 1061,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1064,
+    "printed": 1062,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1065,
+    "printed": 1063,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1066,
+    "printed": 1064,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1067,
+    "printed": 1065,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1068,
+    "printed": 1066,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  },
+  {
+    "pdf": 1069,
+    "printed": 1067,
+    "printedRoman": null,
+    "verification": "original-text-header"
+  }
+]

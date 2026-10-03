@@ -46,6 +46,7 @@ const MathTemplates = lazy(() =>
 );
 const LinearAlgebraObservations = lazy(() => import('./linear-algebra-observations').then(module => ({ default: module.LinearAlgebraObservations })));
 const VectorCalculus = lazy(() => import('./vector-calculus').then(module => ({ default: module.VectorCalculus })));
+const PhysicsObservations = lazy(() => import('./physics-observations').then(module => ({ default: module.PhysicsObservations })));
 const format = (v: number) => {
   const text = v.toFixed(2);
   return text === '-0.00' ? '0.00' : text;
@@ -191,6 +192,7 @@ export function MathExplorer({
   const [readingInitial] = useState(() => {
     try {
       const view = readReasoningView(readingKey);
+      if (new URLSearchParams(window.location.search).get('math') === 'physics') view.active = 'physics';
       if (new URLSearchParams(window.location.search).get('math') === 'series')
         view.active = 'series';
       return { view, error: '', blocked: false };
@@ -431,6 +433,7 @@ export function MathExplorer({
         <option value="series">급수의 수렴 판단</option>
         <option value="concepts">개념 탐구실</option>
         <option value="vector-calculus">벡터 미적분 · 자료와 관찰</option>
+        <option value="physics">물리 교재 · 읽기와 관찰</option>
         <option value="linear">선형대수 · 교재 관찰</option>
       </Select>
       {readingError && (
@@ -482,6 +485,7 @@ export function MathExplorer({
           <MathTemplates key={key} data={data} repository={repository} onSaved={onSaved} />
         </Suspense>
       )}
+      {readingView.active === 'physics' && (<Suspense fallback={<LoadingState message="물리 교재 관찰을 여는 중입니다." />}><PhysicsObservations key={key} data={data} /></Suspense>)}
       {readingView.active === 'linear' && <Suspense fallback={<LoadingState message="선형대수 관찰을 여는 중입니다." />}><LinearAlgebraObservations data={data} repository={repository} onSaved={onSaved}/></Suspense>}
       {readingView.active === 'concepts' && (
         <Suspense fallback={<LoadingState message="개념 탐구실을 여는 중입니다." />}>

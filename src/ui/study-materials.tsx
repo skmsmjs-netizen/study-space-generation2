@@ -75,9 +75,11 @@ const clock = (seconds: number) =>
   `${Math.floor(seconds / 60)}:${String(Math.floor(seconds % 60)).padStart(2, '0')}`;
 
 const VectorCalculus = lazy(() => import('./vector-calculus').then(module => ({ default: module.VectorCalculus })));
+const PhysicsObservations = lazy(() => import('./physics-observations').then(module => ({ default: module.PhysicsObservations })));
 export function StudyMaterials(props: Props) {
+  if (props.materialId === 'physics-principles') return <><a href="#/materials">자료 목록으로 돌아가기</a><Suspense fallback={<LoadingState message="물리 교재를 여는 중입니다." />}><PhysicsObservations key={`${props.data.namespace}:${props.data.userId}`} data={props.data} /></Suspense></>;
   if (props.materialId === 'vector-calculus') return <Suspense fallback={<LoadingState message="벡터 미적분 자료를 여는 중입니다." />}><VectorCalculus data={props.data} sourceShelf /></Suspense>;
-  return <><Button onClick={() => navigate('/materials/vector-calculus')}>벡터 미적분 자료와 관찰</Button><StudyMaterialContent {...props} /></>;
+  return <><Button onClick={() => navigate('/materials/physics-principles')}>물리 교재 · 읽기와 관찰</Button><Button onClick={() => navigate('/materials/vector-calculus')}>벡터 미적분 자료와 관찰</Button><StudyMaterialContent {...props} /></>;
 }
 function StudyMaterialContent(props: Props) {
   const { data, repository, onSaved, materialId, initialSubjectId, trash = false } = props;

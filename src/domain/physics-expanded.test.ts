@@ -1,0 +1,20 @@
+import {describe,it,expect} from 'vitest';
+import katex from 'katex';
+import {physicsObservations,initialValues,evaluatePhysics,samplePhysics,physicsMapping} from './physics-observations';
+import {physicsConceptReadings,physicsSectionEvidence} from './physics-reading';
+import {freshPhysicsBook,physicsReadingView,validatePhysicsBook} from '../data/physics-observation-view';
+const o=(engine:string)=>physicsObservations.find(s=>s.engine===engine)!;
+const value=(engine:string,p:Record<string,number>,x:number)=>evaluatePhysics(o(engine),{...initialValues(o(engine)),...p},x);
+describe('확장 물리 관찰의 관계·조건·읽기 보존',()=>{
+ it('원문167절과167개 비교·과정은 실제 원문 범위/안정ID를 가진다',()=>{expect(physicsSectionEvidence).toHaveLength(167);expect(new Set(physicsSectionEvidence.map(s=>s.id)).size).toBe(167);expect(physicsConceptReadings).toHaveLength(167);for(const s of physicsSectionEvidence){expect(s.endPdf).toBeGreaterThanOrEqual(s.startPdf);expect(s.endPdf).toBeLessThanOrEqual(1069);expect(s.contentHash).toMatch(/^[a-f0-9]{64}$/);}for(const c of physicsConceptReadings){expect(physicsMapping.some(s=>s.id===c.id)).toBe(true);for(const s of c.steps)expect(()=>katex.renderToString(s.tex,{throwOnError:true})).not.toThrow();}});
+ it('유전체 전하 고정과 전압 고정은 서로 다른 종속량이다',()=>{expect(value('dielectric-charge',{C:100,Q:10},2)).toBeCloseTo(.05);expect(value('dielectric-voltage',{C:100,V:5},2)).toBeCloseTo(.001);});
+ it('고리 전위의 미분은 고리 전기장과 일치한다',()=>{const h=1e-5,z=.5,p={q:1,radius:.5};const gradient=(value('ring-potential',p,z+h)!-value('ring-potential',p,z-h)!)/(2*h);expect(-gradient).toBeCloseTo(value('ring-field',p,z)!,5);expect(value('ring-field',p,0)).toBe(0);expect(value('ring-potential',p,0)).not.toBe(0);});
+ it('도체 구의 장 불연속과 전위 연속을 구별한다',()=>{const p={q:1,radius:.5};expect(value('sphere-field',p,.49)).toBe(0);expect(value('sphere-field',p,.5)).toBeNull();expect(value('sphere-field',p,.51)).toBeGreaterThan(0);expect(value('sphere-potential',p,.5)).toBeCloseTo(value('sphere-potential',p,.500000001)!,3);expect(samplePhysics(o('sphere-field'),{...initialValues(o('sphere-field')),radius:.501}).some(p=>p.y===null)).toBe(true);});
+ it('회절 중심의 극한·소광·마하각·속도 선택 관계를 유지한다',()=>{expect(value('diffraction',{},0)).toBe(1);expect(value('malus',{intensity:3},Math.PI/2)).toBeCloseTo(0);expect(value('mach',{},686)).toBeCloseTo(Math.PI/6);expect(value('velocity-selector',{q:1,E:20,B:.5},40)).toBe(0);});
+ it('정지마찰·자유낙하·세차의 조건 밖 결과를 보류한다',()=>{expect(value('friction',{mu:.4,N:20},9)).toBeNull();expect(value('friction',{mu:.4,N:20},8)).toBe(8);expect(value('free-fall',{h:20,v:0},5)).toBeNull();expect(value('precession',{},1)).toBeNull();});
+ it('직렬/병렬·전력·파동 전달률의 단위를 보존한다',()=>{expect(value('capacitors-series',{C1:10},20)).toBeCloseTo(20/3*1e-6);expect(value('capacitors-parallel',{C1:10},20)).toBeCloseTo(30e-6);expect(value('resistor-power',{R:10},5)).toBeCloseTo(2.5);expect(value('string-speed',{mu:.01},25)).toBe(50);const a=value('wave-power',{},.002)!;expect(value('wave-power',{},.004)).toBeCloseTo(4*a);});
+ it('저항 없는LC와LR의 초기·장기 한계를 보존한다',()=>{expect(value('lc-charge',{},0)).toBeCloseTo(1e-6,12);expect(value('lr-growth',{V:5,R:10,L:.1},0)).toBe(0);expect(value('lr-growth',{V:5,R:10,L:.1},1)).toBeCloseTo(.5);expect(value('lr-decay',{I:1,R:10,L:.1},0)).toBe(1);expect(value('lr-decay',{I:1,R:10,L:.1},1)).toBeLessThan(1e-40);});
+ it('빠른 전기 진동과 짧은 회로 시간상수의 표본을 보충한다',()=>{const lc=o('lc-charge'),p={...initialValues(lc),L:.01,C:1};expect(samplePhysics(lc,p).length).toBeGreaterThan(3800);const rc=o('rc-discharge'),v={...initialValues(rc),R:1,C:1};expect(samplePhysics(rc,v).some(s=>Math.abs(s.x-1e-6)<1e-12)).toBe(true);});
+ it('감은 수는 정수 조건을 보존하고 과거 소수값은 계산을 보류한다',()=>{expect(value('loop-torque',{N:1.5},Math.PI/2)).toBeNull();expect(value('induction',{N:1.5},.25)).toBeNull();});
+ it('절의 페이지·관계 선택·미확인 조건·메모는기존v1저장과 함께 복원된다',()=>{const b=freshPhysicsBook();b.readings={'27.7':{...physicsReadingView('27.7'),focus:physicsConceptReadings.find(c=>c.id==='27.7')!.steps[2].id,memo:'장과 원천의 조건\n아직 미확인'}};expect(validatePhysicsBook(JSON.parse(JSON.stringify(b)))).toEqual(b);b.readings['27.7'].page=1;expect(()=>validatePhysicsBook(b)).toThrow();});
+});

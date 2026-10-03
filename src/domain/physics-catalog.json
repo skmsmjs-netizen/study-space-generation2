@@ -1,0 +1,2821 @@
+{
+  "version": "physics-radi-2013-observations-v1",
+  "source": {
+    "id": "radi-rasmussen-2013",
+    "file": "Principles of Physics For Scientist and Engineer.pdf",
+    "pages": 1069,
+    "localPath": "Principles of Physics For Scientist and Engineer.pdf",
+    "readingBasis": "원본 PDF1069쪽을 내려받아 동일 사본의 해시를 확인했다. 이번 작업에서 28장 본문·예제와 앞부분·장 끝 연습문제·부록·답안·색인까지1069쪽의 추출 글을 실제로 읽고 문맥을 대조했다. 모든 그림·수식 조판의 픽셀 전수 검증과는 구별하며 확인 범위는 별도 기록에 유지한다.",
+    "sha256": "67f606ca1ec0bc93c593d2f90df2b0fc4a9e1159add89de6df0a11b12bc913b1"
+  },
+  "chapters": [
+    {
+      "chapter": 1,
+      "title": "차원과 단위",
+      "question": "물리량을 어떤 기준으로 표현하고, 식이 말이 되는지 어떻게 확인하는가?",
+      "prerequisite": "별도의 선행 장 없음. 수와 비율, 거듭제곱.",
+      "law": "SI 기본량·단위, 접두어와 과학적 표기, 단위 환산, 차원 분석. 양변과 더하는 항의 차원이 일치해야 한다.",
+      "condition": "차원이 같다는 것은 필요한 점검이며 식의 수치 계수까지 결정하지 않는다. 단위 환산은 같은 물리량을 다른 단위로 표현하는 과정이다.",
+      "next": "**→2장:** 크기와 단위만으로 충분한 양과 방향까지 필요한 양을 구별한다. 이후 모든 식의 단위 점검에 돌아온다.",
+      "evidence": "인쇄 **3–11** / PDF **21–29**; §§1.1–1.3.",
+      "sections": [
+        {
+          "section": "1.1",
+          "chapter": 1,
+          "title": "The International System of Units",
+          "printed": 3,
+          "ko": "국제단위계",
+          "pdf": 21,
+          "id": "1.1"
+        },
+        {
+          "section": "1.2",
+          "chapter": 1,
+          "title": "Standards of Length, Time, and Mass",
+          "printed": 5,
+          "ko": "길이·시간·질량의 기준",
+          "pdf": 23,
+          "id": "1.2"
+        },
+        {
+          "section": "1.3",
+          "chapter": 1,
+          "title": "Dimensional Analysis",
+          "printed": 9,
+          "ko": "차원 분석",
+          "pdf": 27,
+          "id": "1.3"
+        }
+      ],
+      "conditionProse": "차원 일치는 식을 점검하는 필요 조건이며 수치 계수까지 결정하지는 않습니다. 단위 환산은 같은 물리량의 표현을 바꾸는 과정입니다.",
+      "lawProse": "물리량을 SI 기본량과 단위로 표현하고, 접두어·과학적 표기·단위 환산으로 같은 양을 다르게 나타냅니다. 차원 분석은 식의 양변과 더하는 항이 같은 차원을 가지는지 확인합니다.",
+      "id": "c1",
+      "formulas": []
+    },
+    {
+      "chapter": 2,
+      "title": "벡터",
+      "question": "방향이 있는 양을 어떻게 더하고 비교하는가?",
+      "prerequisite": "1장의 단위·차원, 삼각함수.",
+      "law": "벡터 합·성분·단위벡터. $\\vec A\\cdot\\vec B=AB\\cos\\theta$, $\\lvert\\vec A\\times\\vec B\\rvert=AB\\sin\\theta$, 오른손 규칙.",
+      "condition": "성분은 선택한 좌표축에 따른다. 내적은 스칼라, 외적은 벡터이며 순서를 바꾸면 외적 부호가 바뀐다. 방향을 복원할 때 사분면을 확인한다.",
+      "next": "**→3장:** 벡터 운동을 한 축의 부호 있는 위치·속도로 제한한다. **→4·5장:** 성분별 운동·힘, **→6·8장:** 내적의 일·외적의 토크.",
+      "evidence": "인쇄 **17–32** / PDF **34–49**; §§2.1–2.4.",
+      "sections": [
+        {
+          "section": "2.1",
+          "chapter": 2,
+          "title": "Vectors and Scalars",
+          "printed": 17,
+          "ko": "벡터와 스칼라",
+          "pdf": 34,
+          "id": "2.1"
+        },
+        {
+          "section": "2.2",
+          "chapter": 2,
+          "title": "Properties of Vectors",
+          "printed": 19,
+          "ko": "벡터의 성질",
+          "pdf": 36,
+          "id": "2.2"
+        },
+        {
+          "section": "2.3",
+          "chapter": 2,
+          "title": "Vector Components and Unit Vectors",
+          "printed": 22,
+          "ko": "벡터 성분과 단위벡터",
+          "pdf": 39,
+          "id": "2.3"
+        },
+        {
+          "section": "2.4",
+          "chapter": 2,
+          "title": "Multiplying Vectors",
+          "printed": 27,
+          "ko": "벡터의 곱",
+          "pdf": 44,
+          "id": "2.4"
+        }
+      ],
+      "conditionProse": "성분은 선택한 좌표축에 따릅니다. 내적은 스칼라, 외적은 벡터입니다. 외적의 순서를 바꾸면 부호가 바뀌며 방향을 복원할 때 사분면을 확인합니다.",
+      "lawProse": "벡터의 합을 성분과 단위벡터로 표현합니다. 내적은 두 벡터가 같은 방향으로 겹치는 정도를 스칼라로, 외적은 두 벡터가 만드는 면과 방향을 벡터로 나타냅니다. 외적의 방향은 오른손 규칙으로 정합니다.",
+      "id": "c2",
+      "formulas": [
+        {
+          "id": "c2-law-0",
+          "tex": "\\vec A\\cdot\\vec B=AB\\cos\\theta",
+          "sourceTex": "\\vec A\\cdot\\vec B=AB\\cos\\theta",
+          "field": "law"
+        },
+        {
+          "id": "c2-law-1",
+          "tex": "\\lvert\\vec A\\times\\vec B\\rvert=AB\\sin\\theta",
+          "sourceTex": "\\lvert\\vec A\\times\\vec B\\rvert=AB\\sin\\theta",
+          "field": "law"
+        }
+      ]
+    },
+    {
+      "chapter": 3,
+      "title": "1차원 운동",
+      "question": "위치가 시간에 따라 바뀌는 양상을 어떻게 표현하는가?",
+      "prerequisite": "1장의 단위, 2장의 방향·부호, 미분·적분.",
+      "law": "평균/순간 속도와 가속도: $v=dx/dt$, $a=dv/dt$. 일정한 $a$의 운동식. 자유낙하.",
+      "condition": "등가속도 식은 가속도가 일정할 때만 적용한다. 자유낙하 모델은 공기 저항을 무시하고 $g$를 일정하게 취급한다. 최고점에서 속도 0이 가속도 0을 뜻하지 않는다.",
+      "next": "**→4장:** 한 축의 변화율을 위치·속도·가속도 벡터와 각 성분으로 확장한다.",
+      "evidence": "인쇄 **41–61** / PDF **57–77**; §§3.1–3.6.",
+      "sections": [
+        {
+          "section": "3.1",
+          "chapter": 3,
+          "title": "Position and Displacement",
+          "printed": 41,
+          "ko": "위치와 변위",
+          "pdf": 57,
+          "id": "3.1"
+        },
+        {
+          "section": "3.2",
+          "chapter": 3,
+          "title": "Average Velocity and Average Speed",
+          "printed": 42,
+          "ko": "평균 속도와 평균 속력",
+          "pdf": 58,
+          "id": "3.2"
+        },
+        {
+          "section": "3.3",
+          "chapter": 3,
+          "title": "Instantaneous Velocity and Speed",
+          "printed": 44,
+          "ko": "순간 속도와 순간 속력",
+          "pdf": 60,
+          "id": "3.3"
+        },
+        {
+          "section": "3.4",
+          "chapter": 3,
+          "title": "Acceleration",
+          "printed": 48,
+          "ko": "가속도",
+          "pdf": 64,
+          "id": "3.4"
+        },
+        {
+          "section": "3.5",
+          "chapter": 3,
+          "title": "Constant Acceleration",
+          "printed": 52,
+          "ko": "일정한 가속도",
+          "pdf": 68,
+          "id": "3.5"
+        },
+        {
+          "section": "3.6",
+          "chapter": 3,
+          "title": "Free Fall",
+          "printed": 57,
+          "ko": "자유낙하",
+          "pdf": 73,
+          "id": "3.6"
+        }
+      ],
+      "conditionProse": "등가속도 식은 가속도가 일정할 때만 적용합니다. 자유낙하는 공기 저항을 무시하고 중력 가속도를 일정하게 둡니다. 최고점의 속도가 0이어도 가속도가 0인 것은 아닙니다.",
+      "lawProse": "위치가 시간에 따라 변하는 비율이 속도이고, 속도가 변하는 비율이 가속도입니다. 평균값과 순간값을 구별한 뒤 가속도가 일정한 운동식과 자유낙하를 연결합니다.",
+      "id": "c3",
+      "formulas": [
+        {
+          "id": "c3-law-0",
+          "tex": "v=\\frac{dx}{dt}",
+          "sourceTex": "v=dx/dt",
+          "field": "law"
+        },
+        {
+          "id": "c3-law-1",
+          "tex": "a=\\frac{dv}{dt}",
+          "sourceTex": "a=dv/dt",
+          "field": "law"
+        },
+        {
+          "id": "c3-law-2",
+          "tex": "a",
+          "sourceTex": "a",
+          "field": "law"
+        },
+        {
+          "id": "c3-condition-0",
+          "tex": "g",
+          "sourceTex": "g",
+          "field": "condition"
+        }
+      ]
+    },
+    {
+      "chapter": 4,
+      "title": "2차원 운동",
+      "question": "속력 변화와 방향 변화를 어떻게 함께 다루는가?",
+      "prerequisite": "2장의 벡터, 3장의 운동학.",
+      "law": "$\\vec v=d\\vec r/dt$, $\\vec a=d\\vec v/dt$. 포물선 운동. 원운동의 $a_r=v^2/r$, $a_t=dv/dt$.",
+      "condition": "포물선 모델은 공기 저항 없이 일정한 중력만 작용한다. $R=v_\\circ^2\\sin2\\theta_\\circ/g$는 출발·도착 높이가 같을 때다. 등속 원운동도 속도의 방향이 바뀌므로 가속도가 있다.",
+      "next": "**→5장:** 운동을 기술하는 데서 “왜 이 가속도가 생기는가?”를 묻고 합력과 연결한다.",
+      "evidence": "인쇄 **71–92** / PDF **87–108**; §§4.1–4.5.",
+      "sections": [
+        {
+          "section": "4.1",
+          "chapter": 4,
+          "title": "Position, Displacement, Velocity, and Acceleration Vectors",
+          "printed": 71,
+          "ko": "위치·변위·속도·가속도 벡터",
+          "pdf": 87,
+          "id": "4.1"
+        },
+        {
+          "section": "4.2",
+          "chapter": 4,
+          "title": "Projectile Motion",
+          "printed": 79,
+          "ko": "포물선 운동",
+          "pdf": 95,
+          "id": "4.2"
+        },
+        {
+          "section": "4.3",
+          "chapter": 4,
+          "title": "Uniform Circular Motion",
+          "printed": 87,
+          "ko": "등속 원운동",
+          "pdf": 103,
+          "id": "4.3"
+        },
+        {
+          "section": "4.4",
+          "chapter": 4,
+          "title": "Tangential and Radial Acceleration",
+          "printed": 90,
+          "ko": "접선·반지름 방향 가속도",
+          "pdf": 106,
+          "id": "4.4"
+        },
+        {
+          "section": "4.5",
+          "chapter": 4,
+          "title": "Non-uniform Circular Motion",
+          "printed": 91,
+          "ko": "비등속 원운동",
+          "pdf": 107,
+          "id": "4.5"
+        }
+      ],
+      "conditionProse": "포물선 모형은 공기 저항 없이 일정한 중력만 작용합니다. 사거리 식은 출발과 도착 높이가 같을 때 적용합니다. 등속 원운동에도 속도의 방향 변화로 가속도가 생깁니다.",
+      "lawProse": "위치·속도·가속도를 벡터로 표현하면 서로 수직인 성분을 나누어 운동을 읽을 수 있습니다. 포물선 운동에서는 수평·수직 성분을 연결하고, 원운동에서는 속력의 변화와 방향의 변화를 나눕니다.",
+      "id": "c4",
+      "formulas": [
+        {
+          "id": "c4-law-0",
+          "tex": "\\vec v=d\\vec r/dt",
+          "sourceTex": "\\vec v=d\\vec r/dt",
+          "field": "law"
+        },
+        {
+          "id": "c4-law-1",
+          "tex": "\\vec a=d\\vec v/dt",
+          "sourceTex": "\\vec a=d\\vec v/dt",
+          "field": "law"
+        },
+        {
+          "id": "c4-law-2",
+          "tex": "a_r=v^2/r",
+          "sourceTex": "a_r=v^2/r",
+          "field": "law"
+        },
+        {
+          "id": "c4-law-3",
+          "tex": "a_t=dv/dt",
+          "sourceTex": "a_t=dv/dt",
+          "field": "law"
+        },
+        {
+          "id": "c4-condition-0",
+          "tex": "R=v_\\circ^2\\sin2\\theta_\\circ/g",
+          "sourceTex": "R=v_\\circ^2\\sin2\\theta_\\circ/g",
+          "field": "condition"
+        }
+      ]
+    },
+    {
+      "chapter": 5,
+      "title": "힘과 운동",
+      "question": "어떤 상호작용이 운동을 바꾸는가?",
+      "prerequisite": "2장의 힘 벡터, 3–4장의 가속도.",
+      "law": "뉴턴의 세 법칙, $\\sum\\vec F=m\\vec a$. 중력·수직항력·마찰·장력·항력의 모델. $f_s\\leq\\mu_sN$, $f_k=\\mu_kN$.",
+      "condition": "뉴턴 역학은 관성계와 빛보다 충분히 느린 운동을 전제로 한다. 작용·반작용은 서로 다른 물체에 작용한다. 정지 마찰은 항상 최댓값이 아니다. 수직항력·장력은 상황의 힘 평형/운동으로 정한다.",
+      "next": "**→6장:** 힘을 변위에 따라 누적하면 일이 되어 운동에너지 변화를 얻는다. **→7장:** 힘을 시간에 따라 누적하면 운동량 변화가 된다.",
+      "evidence": "인쇄 **103–123** / PDF **119–139**; §§5.1–5.3.",
+      "sections": [
+        {
+          "section": "5.1",
+          "chapter": 5,
+          "title": "The Cause of Acceleration and Newton’s Laws",
+          "printed": 103,
+          "ko": "가속도의 원인과 뉴턴의 법칙",
+          "pdf": 119,
+          "id": "5.1"
+        },
+        {
+          "section": "5.2",
+          "chapter": 5,
+          "title": "Some Particular Forces",
+          "printed": 106,
+          "ko": "중력·수직항력·마찰·장력·항력",
+          "pdf": 122,
+          "id": "5.2"
+        },
+        {
+          "section": "5.3",
+          "chapter": 5,
+          "title": "Applications to Newton’s Laws",
+          "printed": 113,
+          "ko": "뉴턴의 법칙 적용",
+          "pdf": 129,
+          "id": "5.3"
+        }
+      ],
+      "conditionProse": "뉴턴 역학은 관성계와 빛보다 충분히 느린 운동을 다룹니다. 작용·반작용은 서로 다른 물체에 작용합니다. 정지 마찰은 항상 최댓값이 아니며 수직항력과 장력은 실제 힘의 평형·운동으로 정합니다.",
+      "lawProse": "뉴턴의 세 법칙은 운동 상태, 힘과 가속도의 관계, 두 물체가 주고받는 힘을 연결합니다. 중력·수직항력·마찰·장력·항력은 실제 계와 접촉 조건에 맞는 모형으로 표현합니다.",
+      "id": "c5",
+      "formulas": [
+        {
+          "id": "c5-law-0",
+          "tex": "\\sum\\vec F=m\\vec a",
+          "sourceTex": "\\sum\\vec F=m\\vec a",
+          "field": "law"
+        },
+        {
+          "id": "c5-law-1",
+          "tex": "f_s\\leq\\mu_sN",
+          "sourceTex": "f_s\\leq\\mu_sN",
+          "field": "law"
+        },
+        {
+          "id": "c5-law-2",
+          "tex": "f_k=\\mu_kN",
+          "sourceTex": "f_k=\\mu_kN",
+          "field": "law"
+        }
+      ]
+    },
+    {
+      "chapter": 6,
+      "title": "일·에너지·일률",
+      "question": "운동 과정 전체를 매 순간 추적하지 않고 처음·끝을 어떻게 연결하는가?",
+      "prerequisite": "2장의 내적, 3–5장의 운동·힘·적분.",
+      "law": "$W=\\int\\vec F\\cdot d\\vec r$, $W_{\\mathrm{net}}=\\Delta K$, $K=\\tfrac12mv^2$. 보존력의 $W=-\\Delta U$, $U=mgy$, $U=\\tfrac12k_Hx^2$. 역학적/전체 에너지, 일률.",
+      "condition": "역학적 에너지 (K+U) 보존은 비보존력이 한 순일이 0인 경우다. 마찰이 있으면 내부에너지도 계산한다. 위치에너지 기준점은 선택 가능하다. (mgy)는 일정한 $g$, 용수철 식은 훅의 법칙이 성립하는 범위다.",
+      "next": "**→7장:** 에너지와 다른 보존량인 운동량으로 충돌을 다룬다. **→12장:** 내부에너지와 열까지 에너지 전달을 확장한다.",
+      "evidence": "인쇄 **137–167** / PDF **152–182**; §§6.1–6.8.",
+      "sections": [
+        {
+          "section": "6.1",
+          "chapter": 6,
+          "title": "Work Done by a Constant Force",
+          "printed": 137,
+          "ko": "일정한 힘이 한 일",
+          "pdf": 152,
+          "id": "6.1"
+        },
+        {
+          "section": "6.2",
+          "chapter": 6,
+          "title": "Work Done by a Variable Force",
+          "printed": 142,
+          "ko": "변하는 힘이 한 일",
+          "pdf": 157,
+          "id": "6.2"
+        },
+        {
+          "section": "6.3",
+          "chapter": 6,
+          "title": "Work-Energy Theorem",
+          "printed": 148,
+          "ko": "일과 운동에너지",
+          "pdf": 163,
+          "id": "6.3"
+        },
+        {
+          "section": "6.4",
+          "chapter": 6,
+          "title": "Conservative Forces and Potential Energy",
+          "printed": 151,
+          "ko": "보존력과 위치에너지",
+          "pdf": 166,
+          "id": "6.4"
+        },
+        {
+          "section": "6.5",
+          "chapter": 6,
+          "title": "Conservation of Mechanical Energy",
+          "printed": 157,
+          "ko": "역학적 에너지 보존",
+          "pdf": 172,
+          "id": "6.5"
+        },
+        {
+          "section": "6.6",
+          "chapter": 6,
+          "title": "Work Done by Non-conservative Forces",
+          "printed": 159,
+          "ko": "비보존력이 한 일",
+          "pdf": 174,
+          "id": "6.6"
+        },
+        {
+          "section": "6.7",
+          "chapter": 6,
+          "title": "Conservation of Energy",
+          "printed": 162,
+          "ko": "전체 에너지 보존",
+          "pdf": 177,
+          "id": "6.7"
+        },
+        {
+          "section": "6.8",
+          "chapter": 6,
+          "title": "Power",
+          "printed": 166,
+          "ko": "일률",
+          "pdf": 181,
+          "id": "6.8"
+        }
+      ],
+      "conditionProse": "역학적 에너지 보존에는 비보존력이 한 순일이 0인 조건이 필요합니다. 마찰이 있으면 내부에너지도 포함합니다. 위치에너지 기준점은 선택할 수 있습니다. 중력 위치에너지의 간단한 식은 일정한 중력 가속도, 용수철 식은 훅의 법칙 범위에 적용합니다.",
+      "lawProse": "일은 힘이 변위 방향으로 전달한 에너지입니다. 순일은 운동에너지의 변화와 연결되고, 보존력이 한 일은 위치에너지의 감소로 표현됩니다. 비보존력과 내부에너지를 포함해 전체 에너지 보존을 읽고, 에너지 전달의 빠르기를 일률로 나타냅니다.",
+      "id": "c6",
+      "formulas": [
+        {
+          "id": "c6-law-0",
+          "tex": "W=\\int\\vec F\\cdot d\\vec r",
+          "sourceTex": "W=\\int\\vec F\\cdot d\\vec r",
+          "field": "law"
+        },
+        {
+          "id": "c6-law-1",
+          "tex": "W_{\\mathrm{net}}=\\Delta K",
+          "sourceTex": "W_{\\mathrm{net}}=\\Delta K",
+          "field": "law"
+        },
+        {
+          "id": "c6-law-2",
+          "tex": "K=\\tfrac12mv^2",
+          "sourceTex": "K=\\tfrac12mv^2",
+          "field": "law"
+        },
+        {
+          "id": "c6-law-3",
+          "tex": "W=-\\Delta U",
+          "sourceTex": "W=-\\Delta U",
+          "field": "law"
+        },
+        {
+          "id": "c6-law-4",
+          "tex": "U=mgy",
+          "sourceTex": "U=mgy",
+          "field": "law"
+        },
+        {
+          "id": "c6-law-5",
+          "tex": "U=\\tfrac12k_Hx^2",
+          "sourceTex": "U=\\tfrac12k_Hx^2",
+          "field": "law"
+        },
+        {
+          "id": "c6-condition-0",
+          "tex": "g",
+          "sourceTex": "g",
+          "field": "condition"
+        }
+      ]
+    },
+    {
+      "chapter": 7,
+      "title": "선운동량·충돌·질량중심",
+      "question": "여러 물체의 상호작용에서 무엇이 보존되고, 전체 운동은 어떻게 묶이는가?",
+      "prerequisite": "2장의 벡터 합, 5장의 외력·제3법칙, 6장의 에너지.",
+      "law": "$\\vec p=m\\vec v$, 충격량 $\\vec J=\\Delta\\vec p$, $d\\vec P/dt=\\sum\\vec F_{\\mathrm{ext}}$. 운동량 보존, 탄성/비탄성 충돌, 질량중심, 가변 질량계.",
+      "condition": "전체 운동량 보존은 순외력이 0인 계에 적용한다. 짧은 충돌에서는 외부 충격량을 무시할 수 있는지 확인한다. 탄성 충돌은 운동에너지도 보존한다. 가변 질량계는 출입하는 질량의 운동량 전달을 포함한다.",
+      "next": "**→8장:** 질량중심의 병진만으로 설명되지 않는 물체의 회전을 다룬다. **→9장:** 선운동량 보존을 각운동량 보존과 대조한다.",
+      "evidence": "인쇄 **181–207** / PDF **196–222**; §§7.1–7.6.",
+      "sections": [
+        {
+          "section": "7.1",
+          "chapter": 7,
+          "title": "Linear Momentum and Impulse",
+          "printed": 181,
+          "ko": "운동량과 충격량",
+          "pdf": 196,
+          "id": "7.1"
+        },
+        {
+          "section": "7.2",
+          "chapter": 7,
+          "title": "Conservation of Linear Momentum",
+          "printed": 184,
+          "ko": "선운동량 보존",
+          "pdf": 199,
+          "id": "7.2"
+        },
+        {
+          "section": "7.3",
+          "chapter": 7,
+          "title": "Conservation of Momentum and Energy in Collisions",
+          "printed": 187,
+          "ko": "충돌의 운동량·에너지",
+          "pdf": 202,
+          "id": "7.3"
+        },
+        {
+          "section": "7.4",
+          "chapter": 7,
+          "title": "Center of Mass (CM)",
+          "printed": 195,
+          "ko": "질량중심",
+          "pdf": 210,
+          "id": "7.4"
+        },
+        {
+          "section": "7.5",
+          "chapter": 7,
+          "title": "Dynamics of the Center of Mass",
+          "printed": 199,
+          "ko": "질량중심의 운동",
+          "pdf": 214,
+          "id": "7.5"
+        },
+        {
+          "section": "7.6",
+          "chapter": 7,
+          "title": "Systems of Variable Mass",
+          "printed": 203,
+          "ko": "가변 질량계",
+          "pdf": 218,
+          "id": "7.6"
+        }
+      ],
+      "conditionProse": "전체 운동량은 순외력이 0인 계에서 보존됩니다. 짧은 충돌도 외부 충격량을 무시할 수 있는지 확인합니다. 탄성 충돌은 운동에너지도 보존합니다. 가변 질량계에는 질량 출입의 운동량 전달을 포함합니다.",
+      "lawProse": "운동량의 변화는 충격량으로 나타납니다. 여러 물체를 하나의 계로 보면 내부 힘이 상쇄되어 전체 운동량의 변화가 외부 힘과 연결됩니다. 충돌의 운동량·에너지, 질량중심의 운동, 질량이 드나드는 계를 이 관점으로 구별합니다.",
+      "id": "c7",
+      "formulas": [
+        {
+          "id": "c7-law-0",
+          "tex": "\\vec p=m\\vec v",
+          "sourceTex": "\\vec p=m\\vec v",
+          "field": "law"
+        },
+        {
+          "id": "c7-law-1",
+          "tex": "\\vec J=\\Delta\\vec p",
+          "sourceTex": "\\vec J=\\Delta\\vec p",
+          "field": "law"
+        },
+        {
+          "id": "c7-law-2",
+          "tex": "d\\vec P/dt=\\sum\\vec F_{\\mathrm{ext}}",
+          "sourceTex": "d\\vec P/dt=\\sum\\vec F_{\\mathrm{ext}}",
+          "field": "law"
+        }
+      ]
+    },
+    {
+      "chapter": 8,
+      "title": "회전 운동",
+      "question": "분포한 질량을 회전시키는 데 어떤 양이 필요한가?",
+      "prerequisite": "2장의 외적, 3–4장의 원운동, 5–7장의 힘·에너지·질량중심.",
+      "law": "$\\omega=d\\theta/dt$, $\\alpha=d\\omega/dt$, $v=r\\omega$. 토크 $\\vec\\tau=\\vec r\\times\\vec F$, 관성모멘트 $I=\\int r^2dm$, $\\sum\\tau=I\\alpha$, $K_{\\mathrm{rot}}=\\tfrac12I\\omega^2$, 구름 운동.",
+      "condition": "각 운동학의 기본 식에는 라디안을 사용한다. $I\\alpha$ 형태는 고정축에 대한 강체의 회전으로 다룬다. $I$는 선택한 축과 질량 분포에 따른다. $v_{\\mathrm{CM}}=R\\omega$는 미끄러짐 없는 구름 조건이다.",
+      "next": "**→9장:** 토크가 바꾸는 회전의 운동량을 정의하고 외부 토크가 없을 때의 보존을 묻는다.",
+      "evidence": "인쇄 **227–258** / PDF **241–272**; §§8.1–8.9.",
+      "sections": [
+        {
+          "section": "8.1",
+          "chapter": 8,
+          "title": "Radian Measures",
+          "printed": 227,
+          "ko": "라디안",
+          "pdf": 241,
+          "id": "8.1"
+        },
+        {
+          "section": "8.2",
+          "chapter": 8,
+          "title": "Rotational Kinematics; Angular Quantities",
+          "printed": 228,
+          "ko": "각 운동학",
+          "pdf": 242,
+          "id": "8.2"
+        },
+        {
+          "section": "8.3",
+          "chapter": 8,
+          "title": "Constant Angular Acceleration",
+          "printed": 232,
+          "ko": "일정한 각가속도",
+          "pdf": 246,
+          "id": "8.3"
+        },
+        {
+          "section": "8.4",
+          "chapter": 8,
+          "title": "Angular Vectors",
+          "printed": 233,
+          "ko": "각운동의 벡터",
+          "pdf": 247,
+          "id": "8.4"
+        },
+        {
+          "section": "8.5",
+          "chapter": 8,
+          "title": "Relating Angular and Linear Quantities",
+          "printed": 233,
+          "ko": "각운동과 선운동",
+          "pdf": 247,
+          "id": "8.5"
+        },
+        {
+          "section": "8.6",
+          "chapter": 8,
+          "title": "Rotational Dynamics; Torque",
+          "printed": 238,
+          "ko": "토크",
+          "pdf": 252,
+          "id": "8.6"
+        },
+        {
+          "section": "8.7",
+          "chapter": 8,
+          "title": "Newton’s Second Law for Rotation",
+          "printed": 240,
+          "ko": "회전의 뉴턴 제2법칙",
+          "pdf": 254,
+          "id": "8.7"
+        },
+        {
+          "section": "8.8",
+          "chapter": 8,
+          "title": "Kinetic Energy, Work, and Power in Rotation",
+          "printed": 248,
+          "ko": "회전의 에너지·일·일률",
+          "pdf": 262,
+          "id": "8.8"
+        },
+        {
+          "section": "8.9",
+          "chapter": 8,
+          "title": "Rolling Motion",
+          "printed": 252,
+          "ko": "구름 운동",
+          "pdf": 266,
+          "id": "8.9"
+        }
+      ],
+      "conditionProse": "각 운동학에는 라디안을 사용합니다. 토크와 각가속도의 간단한 관계는 고정축 강체 회전입니다. 관성모멘트는 회전축과 질량 분포에 따릅니다. 질량중심 속도와 각속도의 구름 관계는 미끄러짐 없는 조건입니다.",
+      "lawProse": "각위치·각속도·각가속도로 회전을 기술하고 선운동과 연결합니다. 토크는 회전 운동을 바꾸며, 관성모멘트는 회전축에 대한 질량 분포를 나타냅니다. 회전의 에너지·일·일률을 읽은 뒤 병진과 회전을 결합한 구름 운동으로 이어갑니다.",
+      "id": "c8",
+      "formulas": [
+        {
+          "id": "c8-law-0",
+          "tex": "\\omega=d\\theta/dt",
+          "sourceTex": "\\omega=d\\theta/dt",
+          "field": "law"
+        },
+        {
+          "id": "c8-law-1",
+          "tex": "\\alpha=d\\omega/dt",
+          "sourceTex": "\\alpha=d\\omega/dt",
+          "field": "law"
+        },
+        {
+          "id": "c8-law-2",
+          "tex": "v=r\\omega",
+          "sourceTex": "v=r\\omega",
+          "field": "law"
+        },
+        {
+          "id": "c8-law-3",
+          "tex": "\\vec\\tau=\\vec r\\times\\vec F",
+          "sourceTex": "\\vec\\tau=\\vec r\\times\\vec F",
+          "field": "law"
+        },
+        {
+          "id": "c8-law-4",
+          "tex": "I=\\int r^2dm",
+          "sourceTex": "I=\\int r^2dm",
+          "field": "law"
+        },
+        {
+          "id": "c8-law-5",
+          "tex": "\\sum\\tau=I\\alpha",
+          "sourceTex": "\\sum\\tau=I\\alpha",
+          "field": "law"
+        },
+        {
+          "id": "c8-law-6",
+          "tex": "K_{\\mathrm{rot}}=\\tfrac12I\\omega^2",
+          "sourceTex": "K_{\\mathrm{rot}}=\\tfrac12I\\omega^2",
+          "field": "law"
+        },
+        {
+          "id": "c8-condition-0",
+          "tex": "I\\alpha",
+          "sourceTex": "I\\alpha",
+          "field": "condition"
+        },
+        {
+          "id": "c8-condition-1",
+          "tex": "I",
+          "sourceTex": "I",
+          "field": "condition"
+        },
+        {
+          "id": "c8-condition-2",
+          "tex": "v_{\\mathrm{CM}}=R\\omega",
+          "sourceTex": "v_{\\mathrm{CM}}=R\\omega",
+          "field": "condition"
+        }
+      ]
+    },
+    {
+      "chapter": 9,
+      "title": "각운동량",
+      "question": "외부 토크가 없으면 회전에서 무엇이 유지되는가?",
+      "prerequisite": "2장의 외적, 7장의 운동량 보존, 8장의 토크·관성모멘트.",
+      "law": "$\\vec L=\\vec r\\times\\vec p$, $d\\vec L/dt=\\sum\\vec\\tau_{\\mathrm{ext}}$. 각운동량 보존, 강체 회전과 자이로스코프의 세차.",
+      "condition": "토크와 각운동량은 같은 기준점/축에 대해 계산한다. 외부 토크가 0이어야 보존한다. 고정축의 $L_z=I\\omega$와 일반 벡터 관계를 구별한다. 각운동량 보존 자체는 운동에너지 보존을 뜻하지 않는다.",
+      "next": "**→10장 [주제 전환]:** 강체의 회전에서 물질의 변형·유체로 넘어간다. 회전식에서 직접 유도되는 장이 아니라 힘·평형·에너지·보존 개념을 다시 사용하는 연결이다.",
+      "evidence": "인쇄 **269–288** / PDF **283–302**; §§9.1–9.3.",
+      "sections": [
+        {
+          "section": "9.1",
+          "chapter": 9,
+          "title": "Angular Momentum of Rotating Systems",
+          "printed": 269,
+          "ko": "회전계의 각운동량",
+          "pdf": 283,
+          "id": "9.1"
+        },
+        {
+          "section": "9.2",
+          "chapter": 9,
+          "title": "Conservation of Angular Momentum",
+          "printed": 277,
+          "ko": "각운동량 보존",
+          "pdf": 291,
+          "id": "9.2"
+        },
+        {
+          "section": "9.3",
+          "chapter": 9,
+          "title": "The Spinning Top and Gyroscope",
+          "printed": 285,
+          "ko": "팽이와 자이로스코프",
+          "pdf": 299,
+          "id": "9.3"
+        }
+      ],
+      "conditionProse": "토크와 각운동량은 같은 기준점·축에 대해 계산합니다. 외부 토크가 0이어야 각운동량이 보존됩니다. 고정축의 성분 관계와 일반 벡터 관계를 구별합니다. 각운동량 보존은 운동에너지 보존을 뜻하지 않습니다.",
+      "lawProse": "각운동량은 기준점에 대한 운동의 회전 성분을 나타냅니다. 순외부 토크가 각운동량을 바꾸며, 토크가 없으면 각운동량이 보존됩니다. 팽이와 자이로스코프의 세차는 각운동량의 방향이 바뀌는 운동입니다.",
+      "id": "c9",
+      "formulas": [
+        {
+          "id": "c9-law-0",
+          "tex": "\\vec L=\\vec r\\times\\vec p",
+          "sourceTex": "\\vec L=\\vec r\\times\\vec p",
+          "field": "law"
+        },
+        {
+          "id": "c9-law-1",
+          "tex": "d\\vec L/dt=\\sum\\vec\\tau_{\\mathrm{ext}}",
+          "sourceTex": "d\\vec L/dt=\\sum\\vec\\tau_{\\mathrm{ext}}",
+          "field": "law"
+        },
+        {
+          "id": "c9-condition-0",
+          "tex": "L_z=I\\omega",
+          "sourceTex": "L_z=I\\omega",
+          "field": "condition"
+        }
+      ]
+    },
+    {
+      "chapter": 10,
+      "title": "물질의 역학적 성질",
+      "question": "물질은 힘을 받으면 어떻게 변형되고 흐르는가?",
+      "prerequisite": "5장의 힘·평형, 6장의 일·에너지, 7장의 계·보존.",
+      "law": "밀도, 응력·변형률, $Y,S,B$ 탄성률. 정수압 $P=P_\\circ+\\rho gh$, 파스칼 원리, 아르키메데스 원리. 연속 방정식 $A_1v_1=A_2v_2$, 베르누이 식 $P+\\tfrac12\\rho v^2+\\rho gy=\\text{일정}$, 점성·점성 저항.",
+      "condition": "선형 탄성은 탄성 한계 내에서 다룬다. 정수압 식은 정지한 일정 밀도 유체다. 위 연속식은 정상·비압축성 유동, 베르누이 식은 본문의 정상·비압축성·비점성·무회전 이상유체를 다룬다. 점성이 있으면 해당 손실을 무시할 수 있는지 별도로 판단한다.",
+      "next": "**→11장:** 힘·압력에 따른 변화에서 온도에 따른 변화로 확장한다. **→15장:** 탄성률과 밀도가 음속을 결정한다.",
+      "evidence": "인쇄 **303–344** / PDF **317–358**; §§10.1–10.5.",
+      "sections": [
+        {
+          "section": "10.1",
+          "chapter": 10,
+          "title": "Density and Relative Density",
+          "printed": 304,
+          "ko": "밀도와 상대 밀도",
+          "pdf": 318,
+          "id": "10.1"
+        },
+        {
+          "section": "10.2",
+          "chapter": 10,
+          "title": "Elastic Properties of Solids",
+          "printed": 306,
+          "ko": "고체의 탄성",
+          "pdf": 320,
+          "id": "10.2"
+        },
+        {
+          "section": "10.3",
+          "chapter": 10,
+          "title": "Fluids",
+          "printed": 314,
+          "ko": "유체",
+          "pdf": 328,
+          "id": "10.3"
+        },
+        {
+          "section": "10.4",
+          "chapter": 10,
+          "title": "Fluid Statics",
+          "printed": 316,
+          "ko": "유체의 정역학",
+          "pdf": 330,
+          "id": "10.4"
+        },
+        {
+          "section": "10.5",
+          "chapter": 10,
+          "title": "Fluid Dynamics",
+          "printed": 328,
+          "ko": "유체의 동역학",
+          "pdf": 342,
+          "id": "10.5"
+        }
+      ],
+      "conditionProse": "선형 탄성은 탄성 한계 내에서 다룹니다. 정수압의 간단한 식은 정지한 일정 밀도 유체입니다. 연속식은 정상·비압축성 유동, 베르누이 식은 본문의 정상·비압축성·비점성·무회전 이상유체입니다. 점성 손실을 별도로 확인합니다.",
+      "lawProse": "밀도는 질량의 공간 분포를, 영률·전단 탄성률·체적 탄성률은 응력과 변형률의 관계를 나타냅니다. 유체에서는 정수압·파스칼 원리·부력으로 정지 상태를 읽고, 연속 방정식과 베르누이 식으로 흐름을 연결합니다. 점성은 이상유체 모형에서 빠지는 손실을 다룹니다.",
+      "id": "c10",
+      "formulas": [
+        {
+          "id": "c10-law-0",
+          "tex": "Y,S,B",
+          "sourceTex": "Y,S,B",
+          "field": "law"
+        },
+        {
+          "id": "c10-law-1",
+          "tex": "P=P_\\circ+\\rho gh",
+          "sourceTex": "P=P_\\circ+\\rho gh",
+          "field": "law"
+        },
+        {
+          "id": "c10-law-2",
+          "tex": "A_1v_1=A_2v_2",
+          "sourceTex": "A_1v_1=A_2v_2",
+          "field": "law"
+        },
+        {
+          "id": "c10-law-3",
+          "tex": "P+\\tfrac12\\rho v^2+\\rho gy=\\text{일정}",
+          "sourceTex": "P+\\tfrac12\\rho v^2+\\rho gy=\\text{일정}",
+          "field": "law"
+        }
+      ]
+    },
+    {
+      "chapter": 11,
+      "title": "물질의 열적 성질",
+      "question": "온도는 어떻게 정의하며 물질의 상태와 연결되는가?",
+      "prerequisite": "1장의 단위, 10장의 압력·부피·밀도.",
+      "law": "온도 눈금, 열팽창 $\\Delta L=\\alpha L\\Delta T$, $\\Delta V=\\beta V\\Delta T$. 이상기체 상태 방정식 $PV=nRT=Nk_BT$.",
+      "condition": "열팽창 계수를 일정하게 취급하는 범위에서 적용한다. 이상기체 모델은 희박한 기체를 기준으로 하며 $T$는 절대온도다. $n,R$에는 mol/kmol 기준을 일치시킨다. 물의 0–4°C 거동처럼 단순 팽창 경향의 예외도 있다.",
+      "next": "**→12장:** 상태를 지정하는 $P,V,T$에서 상태 사이의 변화와 열·일 전달로 넘어간다. **→13장:** 상태 방정식의 분자적 근거를 묻는다.",
+      "evidence": "인쇄 **357–370** / PDF **370–383**; §§11.1–11.3.",
+      "sections": [
+        {
+          "section": "11.1",
+          "chapter": 11,
+          "title": "Temperature",
+          "printed": 357,
+          "ko": "온도",
+          "pdf": 370,
+          "id": "11.1"
+        },
+        {
+          "section": "11.2",
+          "chapter": 11,
+          "title": "Thermal Expansion of Solids and Liquids",
+          "printed": 360,
+          "ko": "고체·액체의 열팽창",
+          "pdf": 373,
+          "id": "11.2"
+        },
+        {
+          "section": "11.3",
+          "chapter": 11,
+          "title": "The Ideal Gas",
+          "printed": 365,
+          "ko": "이상기체",
+          "pdf": 378,
+          "id": "11.3"
+        }
+      ],
+      "conditionProse": "열팽창 계수를 일정하게 취급하는 범위를 확인합니다. 이상기체는 희박한 기체를 기준으로 합니다. 온도는 절대온도이며 몰수와 기체 상수의 mol·kmol 기준을 일치시킵니다. 물의 0–4°C 거동처럼 단순 팽창의 예외가 있습니다.",
+      "lawProse": "온도 눈금으로 열적 상태를 표현하고, 고체·액체의 열팽창을 길이와 부피 변화로 읽습니다. 이상기체 상태 방정식은 압력·부피·온도와 기체의 양을 하나의 관계로 묶습니다.",
+      "id": "c11",
+      "formulas": [
+        {
+          "id": "c11-law-0",
+          "tex": "\\Delta L=\\alpha L\\Delta T",
+          "sourceTex": "\\Delta L=\\alpha L\\Delta T",
+          "field": "law"
+        },
+        {
+          "id": "c11-law-1",
+          "tex": "\\Delta V=\\beta V\\Delta T",
+          "sourceTex": "\\Delta V=\\beta V\\Delta T",
+          "field": "law"
+        },
+        {
+          "id": "c11-law-2",
+          "tex": "PV=nRT=Nk_BT",
+          "sourceTex": "PV=nRT=Nk_BT",
+          "field": "law"
+        },
+        {
+          "id": "c11-condition-0",
+          "tex": "T",
+          "sourceTex": "T",
+          "field": "condition"
+        },
+        {
+          "id": "c11-condition-1",
+          "tex": "n,R",
+          "sourceTex": "n,R",
+          "field": "condition"
+        },
+        {
+          "id": "c11-next-0",
+          "tex": "P,V,T",
+          "sourceTex": "P,V,T",
+          "field": "next"
+        }
+      ]
+    },
+    {
+      "chapter": 12,
+      "title": "열과 열역학 제1법칙",
+      "question": "열과 일로 전달된 에너지는 내부에너지를 어떻게 바꾸는가?",
+      "prerequisite": "6장의 에너지 보존, 10장의 압력, 11장의 상태 변수.",
+      "law": "비열 $Q=mc\\Delta T$, 잠열 $Q=mL$, 기체가 하는 일 $W=\\int P\\,dV$, $\\Delta E_{\\mathrm{int}}=Q-W$. 등압·등적·등온·단열 과정, 열전도·대류·복사.",
+      "condition": "이 장의 계가 외부에 한 일의 양수 부호는 **계가 외부에 한 일**, (Q>0)는 계로 들어온 열이다. $Q,W$는 경로에, $E_{\\mathrm{int}}$는 상태에 따른다. $\\int P\\,dV$는 본문에서 천천히 진행하는 평형 상태 경로로 다룬다. $mc\\Delta T$와 (mL)는 온도 변화/상변화 구간을 구별하고 비열을 일정하게 취급할 수 있는지 확인한다.",
+      "next": "**→13장:** 내부에너지·비열·압력이 분자 운동으로부터 어떻게 나오는지 설명한다.",
+      "evidence": "인쇄 **379–415** / PDF **392–428**; §§12.1–12.5.",
+      "sections": [
+        {
+          "section": "12.1",
+          "chapter": 12,
+          "title": "Heat and Thermal Energy",
+          "printed": 379,
+          "ko": "열과 열에너지",
+          "pdf": 392,
+          "id": "12.1"
+        },
+        {
+          "section": "12.2",
+          "chapter": 12,
+          "title": "Heat and Work",
+          "printed": 390,
+          "ko": "열과 일",
+          "pdf": 403,
+          "id": "12.2"
+        },
+        {
+          "section": "12.3",
+          "chapter": 12,
+          "title": "The First Law of Thermodynamics",
+          "printed": 395,
+          "ko": "열역학 제1법칙",
+          "pdf": 408,
+          "id": "12.3"
+        },
+        {
+          "section": "12.4",
+          "chapter": 12,
+          "title": "Applications of the First Law of Thermodynamics",
+          "printed": 396,
+          "ko": "제1법칙과 열역학 과정",
+          "pdf": 409,
+          "id": "12.4"
+        },
+        {
+          "section": "12.5",
+          "chapter": 12,
+          "title": "Heat Transfer",
+          "printed": 406,
+          "ko": "열의 전달",
+          "pdf": 419,
+          "id": "12.5"
+        }
+      ],
+      "conditionProse": "이 교재에서 계가 외부에 한 일은 양수입니다. 열과 일은 경로에 따르지만 내부에너지는 상태에 따릅니다. 온도 변화와 상변화의 열량을 구별하며, 각 과정의 고정 조건과 열전달 모형의 조건을 확인합니다.",
+      "lawProse": "비열은 온도 변화에 필요한 열량을, 잠열은 상변화에 필요한 열량을 나타냅니다. 기체의 팽창·압축에서 한 일을 내부에너지 변화와 연결하는 것이 열역학 제1법칙입니다. 과정의 고정 조건을 구별하고 전도·대류·복사의 열전달을 다룹니다.",
+      "id": "c12",
+      "formulas": [
+        {
+          "id": "c12-law-0",
+          "tex": "Q=mc\\Delta T",
+          "sourceTex": "Q=mc\\Delta T",
+          "field": "law"
+        },
+        {
+          "id": "c12-law-1",
+          "tex": "Q=mL",
+          "sourceTex": "Q=mL",
+          "field": "law"
+        },
+        {
+          "id": "c12-law-2",
+          "tex": "W=\\int P\\,dV",
+          "sourceTex": "W=\\int P\\,dV",
+          "field": "law"
+        },
+        {
+          "id": "c12-law-3",
+          "tex": "\\Delta E_{\\mathrm{int}}=Q-W",
+          "sourceTex": "\\Delta E_{\\mathrm{int}}=Q-W",
+          "field": "law"
+        },
+        {
+          "id": "c12-condition-0",
+          "tex": "Q,W",
+          "sourceTex": "Q,W",
+          "field": "condition"
+        },
+        {
+          "id": "c12-condition-1",
+          "tex": "E_{\\mathrm{int}}",
+          "sourceTex": "E_{\\mathrm{int}}",
+          "field": "condition"
+        },
+        {
+          "id": "c12-condition-2",
+          "tex": "\\int P\\,dV",
+          "sourceTex": "\\int P\\,dV",
+          "field": "condition"
+        },
+        {
+          "id": "c12-condition-3",
+          "tex": "mc\\Delta T",
+          "sourceTex": "mc\\Delta T",
+          "field": "condition"
+        }
+      ]
+    },
+    {
+      "chapter": 13,
+      "title": "기체 운동론",
+      "question": "거시적인 압력·온도·비열은 분자의 어떤 운동을 반영하는가?",
+      "prerequisite": "7장의 충돌·운동량, 11장의 이상기체, 12장의 제1법칙·비열.",
+      "law": "무작위 분자 운동으로부터 압력. 평균 병진 운동에너지 $\\overline K=\\tfrac32 k_BT$, rms 속력, 에너지 등분배. 단원자 이상기체 $E_{\\mathrm{int}}=\\tfrac32nRT$, $C_V=\\tfrac32R$, 이상기체 $C_P-C_V=R$. 속력 분포와 비이상기체.",
+      "condition": "열평형의 무작위·등방 운동과 이상기체 모델에 따른다. 단원자 결과를 모든 분자에 그대로 적용하지 않는다. 분자의 자유도와 온도에 따른 활성화 범위가 비열을 바꾼다. 평균 속력·rms 속력·가장 확률 높은 속력은 다르다.",
+      "next": "**→14장 [주제 전환]:** 기체 통계에서 주기 운동으로 넘어간다. 직접적인 공식 유도 관계는 아니며 뉴턴 역학·에너지로 되돌아간다. **→15장:** 기체의 밀도·탄성 반응은 소리의 매질이 된다.",
+      "evidence": "인쇄 **427–443** / PDF **439–455**; §§13.1–13.4.",
+      "sections": [
+        {
+          "section": "13.1",
+          "chapter": 13,
+          "title": "Microscopic Model of an Ideal Gas",
+          "printed": 427,
+          "ko": "이상기체의 미시 모형",
+          "pdf": 439,
+          "id": "13.1"
+        },
+        {
+          "section": "13.2",
+          "chapter": 13,
+          "title": "Molar Specific Heat Capacity of an Ideal Gas",
+          "printed": 434,
+          "ko": "이상기체의 몰비열",
+          "pdf": 446,
+          "id": "13.2"
+        },
+        {
+          "section": "13.3",
+          "chapter": 13,
+          "title": "Distribution of Molecular Speeds",
+          "printed": 441,
+          "ko": "분자 속력 분포",
+          "pdf": 453,
+          "id": "13.3"
+        },
+        {
+          "section": "13.4",
+          "chapter": 13,
+          "title": "Non-ideal Gases and Phases of Matter",
+          "printed": 442,
+          "ko": "비이상기체와 물질의 상",
+          "pdf": 454,
+          "id": "13.4"
+        }
+      ],
+      "conditionProse": "열평형의 무작위·등방 운동과 이상기체 모형을 사용합니다. 단원자 기체의 결과를 모든 분자에 적용하지 않습니다. 자유도와 온도에 따른 활성화 범위가 비열을 바꿉니다. 평균·제곱평균제곱근·가장 확률 높은 속력은 다릅니다.",
+      "lawProse": "분자의 무작위 운동을 평균하면 기체의 압력과 온도가 연결됩니다. 에너지 등분배와 자유도로 내부에너지·몰비열을 읽고, 평균 속력·제곱평균제곱근 속력·속력 분포를 구별합니다. 비이상기체와 물질의 상은 이상기체 모형의 경계를 보여줍니다.",
+      "id": "c13",
+      "formulas": [
+        {
+          "id": "c13-law-0",
+          "tex": "\\overline K=\\tfrac32 k_BT",
+          "sourceTex": "\\overline K=\\tfrac32 k_BT",
+          "field": "law"
+        },
+        {
+          "id": "c13-law-1",
+          "tex": "E_{\\mathrm{int}}=\\tfrac32nRT",
+          "sourceTex": "E_{\\mathrm{int}}=\\tfrac32nRT",
+          "field": "law"
+        },
+        {
+          "id": "c13-law-2",
+          "tex": "C_V=\\tfrac32R",
+          "sourceTex": "C_V=\\tfrac32R",
+          "field": "law"
+        },
+        {
+          "id": "c13-law-3",
+          "tex": "C_P-C_V=R",
+          "sourceTex": "C_P-C_V=R",
+          "field": "law"
+        }
+      ]
+    },
+    {
+      "chapter": 14,
+      "title": "진동과 파동 운동",
+      "question": "복원력은 어떻게 반복 운동을 만들고, 그 변화는 어떻게 전달되는가?",
+      "prerequisite": "3–5장의 미분·운동 방정식, 6장의 훅의 법칙·에너지, 10장의 탄성.",
+      "law": "단순조화운동 $x=A\\cos(\\omega t+\\phi)$, $a=-\\omega^2x$, $F=-k_Hx$, $\\omega=\\sqrt{k_H/m}$. 감쇠 운동(§14.2*), $v=\\omega/k=\\lambda f$, 줄의 $v=\\sqrt{\\tau/\\mu}$, 파동 에너지·파동 방정식·정상파·공명.",
+      "condition": "이상 조화진동은 선형 복원력과 손실 없는 모델이다. 감쇠 모델은 낮은 속력에서 $F_d=-bv_x$. 줄의 식은 일정한 장력·선밀도와 작은 기울기를 사용한다. 정상파의 허용 파장은 고정/자유 끝의 경계 조건에 따른다.",
+      "next": "**→15장:** 일반 파동을 매질의 압축·팽창이 전파되는 소리에 적용한다. **→16장:** 위상을 포함해 여러 파동을 합친다. **→28장:** 같은 형태의 진동 방정식이 다시 등장한다.",
+      "evidence": "인쇄 **451–485** / PDF **462–496**; §§14.1–14.7.",
+      "sections": [
+        {
+          "section": "14.1",
+          "chapter": 14,
+          "title": "Simple Harmonic Motion",
+          "printed": 451,
+          "ko": "단순조화운동",
+          "pdf": 462,
+          "id": "14.1"
+        },
+        {
+          "section": "14.2",
+          "chapter": 14,
+          "title": "Damped Simple Harmonic Motion",
+          "printed": 462,
+          "ko": "감쇠 단순조화운동",
+          "pdf": 473,
+          "id": "14.2"
+        },
+        {
+          "section": "14.3",
+          "chapter": 14,
+          "title": "Sinusoidal Waves",
+          "printed": 463,
+          "ko": "사인파",
+          "pdf": 474,
+          "id": "14.3"
+        },
+        {
+          "section": "14.4",
+          "chapter": 14,
+          "title": "The Speed of Waves on Strings",
+          "printed": 470,
+          "ko": "줄에서의 파동 속도",
+          "pdf": 481,
+          "id": "14.4"
+        },
+        {
+          "section": "14.5",
+          "chapter": 14,
+          "title": "Energy Transfer by Sinusoidal Waves on Strings",
+          "printed": 472,
+          "ko": "줄의 파동과 에너지 전달",
+          "pdf": 483,
+          "id": "14.5"
+        },
+        {
+          "section": "14.6",
+          "chapter": 14,
+          "title": "The Linear Wave Equation",
+          "printed": 476,
+          "ko": "선형 파동 방정식",
+          "pdf": 487,
+          "id": "14.6"
+        },
+        {
+          "section": "14.7",
+          "chapter": 14,
+          "title": "Standing Waves",
+          "printed": 477,
+          "ko": "정상파",
+          "pdf": 488,
+          "id": "14.7"
+        }
+      ],
+      "conditionProse": "이상 조화진동은 선형 복원력과 손실 없는 모형입니다. 감쇠력의 선형 모형은 낮은 속력에서 적용합니다. 줄의 파동 속도에는 일정한 장력·선밀도와 작은 기울기 조건을 사용합니다. 정상파는 고정·자유 끝의 경계 조건에 따릅니다.",
+      "lawProse": "선형 복원력이 만드는 단순조화운동에서 진폭·각주파수·위상을 구별합니다. 감쇠는 진동 에너지의 손실을 다룹니다. 사인파의 위상으로 파장·주파수·전달 속도를 연결하고, 줄의 장력·선밀도에서 파동 속도를 읽습니다. 에너지 전달·파동 방정식·정상파로 이어갑니다.",
+      "id": "c14",
+      "formulas": [
+        {
+          "id": "c14-law-0",
+          "tex": "x=A\\cos(\\omega t+\\phi)",
+          "sourceTex": "x=A\\cos(\\omega t+\\phi)",
+          "field": "law"
+        },
+        {
+          "id": "c14-law-1",
+          "tex": "a=-\\omega^2x",
+          "sourceTex": "a=-\\omega^2x",
+          "field": "law"
+        },
+        {
+          "id": "c14-law-2",
+          "tex": "F=-k_Hx",
+          "sourceTex": "F=-k_Hx",
+          "field": "law"
+        },
+        {
+          "id": "c14-law-3",
+          "tex": "\\omega=\\sqrt{k_H/m}",
+          "sourceTex": "\\omega=\\sqrt{k_H/m}",
+          "field": "law"
+        },
+        {
+          "id": "c14-law-4",
+          "tex": "v=\\omega/k=\\lambda f",
+          "sourceTex": "v=\\omega/k=\\lambda f",
+          "field": "law"
+        },
+        {
+          "id": "c14-law-5",
+          "tex": "v=\\sqrt{\\tau/\\mu}",
+          "sourceTex": "v=\\sqrt{\\tau/\\mu}",
+          "field": "law"
+        },
+        {
+          "id": "c14-condition-0",
+          "tex": "F_d=-bv_x",
+          "sourceTex": "F_d=-bv_x",
+          "field": "condition"
+        }
+      ]
+    },
+    {
+      "chapter": 15,
+      "title": "음파",
+      "question": "소리가 전파되는 속도·에너지·관측 주파수는 무엇으로 정해지는가?",
+      "prerequisite": "10장의 $B,Y,\\rho$, 14장의 종파·주파수·파동 에너지.",
+      "law": "음속: 유체 $v=\\sqrt{B/\\rho}$, 막대 $v=\\sqrt{Y/\\rho}$. 변위와 압력 변화, 세기 $I$, 데시벨 $\\beta=(10\\,\\mathrm{dB})\\log_{10}(I/I_\\circ)$. 도플러 효과와 초음속 충격파.",
+      "condition": "음속은 매질의 성질과 상태에 따른다. 조화 음파에서 압력 변화와 입자 변위의 위상을 구별한다. 역제곱 세기 관계는 등방성 점음원에서 구면으로 퍼지는 음파의 에너지 전달 모델이다. 도플러 식의 음원·관측자 속력은 매질에 대해 정하고 접근/이탈 부호를 구별한다. 초음속 음원은 별도의 충격파 모형으로 다룬다.",
+      "next": "**→16장:** 한 음파의 전파와 관측에서 두 음파의 간섭·정상파·맥놀이로 확장한다.",
+      "evidence": "인쇄 **499–522** / PDF **509–532**; §§15.1–15.7.",
+      "sections": [
+        {
+          "section": "15.1",
+          "chapter": 15,
+          "title": "Speed of Sound Waves",
+          "printed": 499,
+          "ko": "음속",
+          "pdf": 509,
+          "id": "15.1"
+        },
+        {
+          "section": "15.2",
+          "chapter": 15,
+          "title": "Periodic Sound Waves",
+          "printed": 502,
+          "ko": "주기적 음파",
+          "pdf": 512,
+          "id": "15.2"
+        },
+        {
+          "section": "15.3",
+          "chapter": 15,
+          "title": "Energy, Power, and Intensity of Sound Waves",
+          "printed": 505,
+          "ko": "음파의 에너지·일률·세기",
+          "pdf": 515,
+          "id": "15.3"
+        },
+        {
+          "section": "15.4",
+          "chapter": 15,
+          "title": "The Decibel Scale",
+          "printed": 510,
+          "ko": "데시벨",
+          "pdf": 520,
+          "id": "15.4"
+        },
+        {
+          "section": "15.5",
+          "chapter": 15,
+          "title": "Hearing Response to Intensity and Frequency",
+          "printed": 514,
+          "ko": "세기·주파수에 대한 청각 반응",
+          "pdf": 524,
+          "id": "15.5"
+        },
+        {
+          "section": "15.6",
+          "chapter": 15,
+          "title": "The Doppler Effect",
+          "printed": 514,
+          "ko": "도플러 효과",
+          "pdf": 524,
+          "id": "15.6"
+        },
+        {
+          "section": "15.7",
+          "chapter": 15,
+          "title": "Supersonic Speeds and Shock Waves",
+          "printed": 521,
+          "ko": "초음속과 충격파",
+          "pdf": 531,
+          "id": "15.7"
+        }
+      ],
+      "conditionProse": "음속은 매질의 성질과 상태에 따릅니다. 조화 음파의 압력 변화와 입자 변위의 위상을 구별합니다. 세기의 역제곱 관계는 등방성 점음원의 구면 전파 모형입니다. 도플러 속도는 매질 기준이며 접근·이탈 부호를 구별합니다. 초음속 음원은 충격파 모형으로 다룹니다.",
+      "lawProse": "음파의 전달 속도는 매질의 탄성과 밀도에 따릅니다. 입자의 변위와 압력 변화, 전달되는 에너지·일률·세기를 연결하고 데시벨과 청각의 반응을 구별합니다. 음원과 관측자의 운동은 도플러 효과로, 초음속 음원은 충격파로 다룹니다.",
+      "id": "c15",
+      "formulas": [
+        {
+          "id": "c15-law-0",
+          "tex": "v=\\sqrt{B/\\rho}",
+          "sourceTex": "v=\\sqrt{B/\\rho}",
+          "field": "law"
+        },
+        {
+          "id": "c15-law-1",
+          "tex": "v=\\sqrt{Y/\\rho}",
+          "sourceTex": "v=\\sqrt{Y/\\rho}",
+          "field": "law"
+        },
+        {
+          "id": "c15-law-2",
+          "tex": "I",
+          "sourceTex": "I",
+          "field": "law"
+        },
+        {
+          "id": "c15-law-3",
+          "tex": "\\beta=(10\\,\\mathrm{dB})\\log_{10}(I/I_\\circ)",
+          "sourceTex": "\\beta=(10\\,\\mathrm{dB})\\log_{10}(I/I_\\circ)",
+          "field": "law"
+        },
+        {
+          "id": "c15-prerequisite-0",
+          "tex": "B,Y,\\rho",
+          "sourceTex": "B,Y,\\rho",
+          "field": "prerequisite"
+        }
+      ]
+    },
+    {
+      "chapter": 16,
+      "title": "음파의 중첩",
+      "question": "겹친 파동은 왜 강화·상쇄되며 어떤 진동만 남는가?",
+      "prerequisite": "14장의 위상·반사·정상파, 15장의 음파.",
+      "law": "중첩 원리, 경로차에 따른 간섭, 서로 반대 방향의 동일 파동이 만드는 정상파. 양끝 열린 관 $f_n=nv/(2L)$; 한쪽 닫힌 관 $f_n=nv/(4L)$, $n=1,3,5,\\ldots$. 맥놀이 주파수 $\\lvert f_1-f_2\\rvert$.",
+      "condition": "본문의 선형 파동 모델에서 변위를 더한다. 정상파 해는 같은 주파수·파장·진폭의 반대 진행파로 제시된다. 열린 끝은 변위 배, 닫힌 끝은 변위 마디이며 압력의 마디/배는 반대다. 맥놀이는 가까운 두 주파수의 시간적 간섭이다.",
+      "next": "**→17장:** 새로운 파동인 빛을 먼저 광선으로 다룬다. **→18장:** 여기서 익힌 위상차·중첩을 빛의 간섭에 직접 재사용한다.",
+      "evidence": "인쇄 **531–553** / PDF **541–563**; §§16.1–16.5.",
+      "sections": [
+        {
+          "section": "16.1",
+          "chapter": 16,
+          "title": "Superposition and Interference",
+          "printed": 531,
+          "ko": "중첩과 간섭",
+          "pdf": 541,
+          "id": "16.1"
+        },
+        {
+          "section": "16.2",
+          "chapter": 16,
+          "title": "Spatial Interference of Sound Waves",
+          "printed": 533,
+          "ko": "음파의 공간적 간섭",
+          "pdf": 543,
+          "id": "16.2"
+        },
+        {
+          "section": "16.3",
+          "chapter": 16,
+          "title": "Standing Sound Waves",
+          "printed": 537,
+          "ko": "정상 음파",
+          "pdf": 547,
+          "id": "16.3"
+        },
+        {
+          "section": "16.4",
+          "chapter": 16,
+          "title": "Standing Sound Waves in Air Columns",
+          "printed": 541,
+          "ko": "기체 관의 정상파",
+          "pdf": 551,
+          "id": "16.4"
+        },
+        {
+          "section": "16.5",
+          "chapter": 16,
+          "title": "Temporal Interference of Sound Waves: Beats",
+          "printed": 549,
+          "ko": "시간적 간섭과 맥놀이",
+          "pdf": 559,
+          "id": "16.5"
+        }
+      ],
+      "conditionProse": "선형 파동 모형에서 변위를 더합니다. 본문의 정상파는 같은 주파수·파장·진폭의 반대 진행파입니다. 열린 끝은 변위 배, 닫힌 끝은 변위 마디이며 압력의 마디·배는 반대입니다. 맥놀이는 가까운 두 주파수의 시간적 간섭입니다.",
+      "lawProse": "선형 중첩은 같은 위치의 변위를 더합니다. 공간적 간섭과 서로 반대로 진행하는 파동은 정상파로 이어집니다. 관의 열린 끝·닫힌 끝이 가능한 진동 모드를 정하며, 가까운 두 주파수의 시간적 간섭이 맥놀이를 만듭니다.",
+      "id": "c16",
+      "formulas": [
+        {
+          "id": "c16-law-0",
+          "tex": "f_n=nv/(2L)",
+          "sourceTex": "f_n=nv/(2L)",
+          "field": "law"
+        },
+        {
+          "id": "c16-law-1",
+          "tex": "f_n=nv/(4L)",
+          "sourceTex": "f_n=nv/(4L)",
+          "field": "law"
+        },
+        {
+          "id": "c16-law-2",
+          "tex": "n=1,3,5,\\ldots",
+          "sourceTex": "n=1,3,5,\\ldots",
+          "field": "law"
+        },
+        {
+          "id": "c16-law-3",
+          "tex": "\\lvert f_1-f_2\\rvert",
+          "sourceTex": "\\lvert f_1-f_2\\rvert",
+          "field": "law"
+        }
+      ]
+    },
+    {
+      "chapter": 17,
+      "title": "광파와 광학",
+      "question": "광선은 경계에서 어떻게 진행하며 상은 어디에 생기는가?",
+      "prerequisite": "2장의 기하·방향, 14장의 파장·속력, 16장의 파동 경계 개념.",
+      "law": "광선 근사, 반사 법칙, $n=c/v$, 스넬 법칙 $n_1\\sin\\theta_1=n_2\\sin\\theta_2$, 전반사·분산. 거울·얇은 렌즈 $1/p+1/i=1/f$, $M=-i/p$, 구면 경계의 굴절.",
+      "condition": "각도는 법선에서 잰다. 전반사는 첫 매질의 굴절률이 둘째보다 크고, 입사각 $>\\theta_c$일 때다. 광선 근사는 파장이 장애물/구멍 크기보다 매우 작을 때 유효하다. 구면 결상식은 근축 조건, 얇은 렌즈 식은 얇은 렌즈와 본문의 부호 규약을 따른다.",
+      "next": "**→18장:** 광선만으로 설명되지 않는 간섭·회절·편광을 위해 파동의 위상과 진폭으로 돌아간다.",
+      "evidence": "인쇄 **561–594** / PDF **571–604**; §§17.1–17.6.",
+      "sections": [
+        {
+          "section": "17.1",
+          "chapter": 17,
+          "title": "Light Rays",
+          "printed": 561,
+          "ko": "광선",
+          "pdf": 571,
+          "id": "17.1"
+        },
+        {
+          "section": "17.2",
+          "chapter": 17,
+          "title": "Reflection and Refraction of Light",
+          "printed": 563,
+          "ko": "반사와 굴절",
+          "pdf": 573,
+          "id": "17.2"
+        },
+        {
+          "section": "17.3",
+          "chapter": 17,
+          "title": "Total Internal Reflection and Optical Fibers",
+          "printed": 568,
+          "ko": "전반사와 광섬유",
+          "pdf": 578,
+          "id": "17.3"
+        },
+        {
+          "section": "17.4",
+          "chapter": 17,
+          "title": "Chromatic Dispersion and Prisms",
+          "printed": 571,
+          "ko": "색 분산과 프리즘",
+          "pdf": 581,
+          "id": "17.4"
+        },
+        {
+          "section": "17.5",
+          "chapter": 17,
+          "title": "Formation of Images by Reflection",
+          "printed": 575,
+          "ko": "반사에 의한 상",
+          "pdf": 585,
+          "id": "17.5"
+        },
+        {
+          "section": "17.6",
+          "chapter": 17,
+          "title": "Formation of Images by Refraction",
+          "printed": 583,
+          "ko": "굴절에 의한 상",
+          "pdf": 593,
+          "id": "17.6"
+        }
+      ],
+      "conditionProse": "각도는 법선에서 잽니다. 전반사는 첫 매질의 굴절률이 둘째보다 크고 입사각이 임계각보다 클 때 일어납니다. 광선 근사는 파장이 구조보다 매우 작을 때 유효합니다. 구면 결상은 근축 조건, 렌즈 식은 얇은 렌즈와 교재의 부호 규약에 따릅니다.",
+      "lawProse": "광선으로 빛의 진행을 근사하면 반사와 굴절을 기하적으로 읽을 수 있습니다. 굴절률과 스넬 법칙은 매질 경계의 진행 방향을 연결합니다. 전반사·광섬유·분산을 거쳐, 거울과 구면 경계·얇은 렌즈에서 물체 거리·상 거리·초점거리와 배율을 연결합니다.",
+      "id": "c17",
+      "formulas": [
+        {
+          "id": "c17-law-0",
+          "tex": "n=c/v",
+          "sourceTex": "n=c/v",
+          "field": "law"
+        },
+        {
+          "id": "c17-law-1",
+          "tex": "n_1\\sin\\theta_1=n_2\\sin\\theta_2",
+          "sourceTex": "n_1\\sin\\theta_1=n_2\\sin\\theta_2",
+          "field": "law"
+        },
+        {
+          "id": "c17-law-2",
+          "tex": "\\frac{1}{p}+\\frac{1}{i}=\\frac{1}{f}",
+          "sourceTex": "1/p+1/i=1/f",
+          "field": "law"
+        },
+        {
+          "id": "c17-law-3",
+          "tex": "M=-\\frac{i}{p}",
+          "sourceTex": "M=-i/p",
+          "field": "law"
+        },
+        {
+          "id": "c17-condition-0",
+          "tex": "\\theta_1>\\theta_c",
+          "sourceTex": ">\\theta_c",
+          "field": "condition"
+        }
+      ]
+    },
+    {
+      "chapter": 18,
+      "title": "빛의 간섭·회절·편광",
+      "question": "빛의 파동성과 횡파 성질은 어떤 무늬로 드러나는가?",
+      "prerequisite": "14·16장의 중첩·위상, 17장의 광학·굴절률.",
+      "law": "이중 슬릿 밝은 무늬 $d\\sin\\theta=m\\lambda$, 작은 각도에서 무늬 간격 $\\lambda D/d$. 박막 반사 위상 변화, 단일 슬릿 회절 최소 $a\\sin\\theta=m\\lambda\\;(m\\ne0)$, 회절격자, 편광과 말뤼스 법칙 $I=I_\\circ\\cos^2\\theta$.",
+      "condition": "지속적인 간섭무늬에는 결맞음·단색 조건을 사용한다. 작은 각도·먼 스크린 근사를 구별한다. 박막은 경로차뿐 아니라 높은 굴절률 쪽 경계 반사의 $\\pi$ 위상 변화도 포함한다. 이중 슬릿의 최대와 단일 슬릿의 최소를 혼동하지 않는다. 말뤼스 식의 $I_\\circ$는 분석기에 입사하는 편광의 세기다.",
+      "next": "**→19장 [주제 전환]:** 광학에서 전하·전기력으로 넘어간다. 편광으로부터 쿨롱 법칙이 유도되는 것은 아니다. **→27장:** 전자기장을 모은 뒤 빛의 전자기파 성격을 다시 연결한다.",
+      "evidence": "인쇄 **603–626** / PDF **612–635**; §§18.1–18.6.",
+      "sections": [
+        {
+          "section": "18.1",
+          "chapter": 18,
+          "title": "Interference of Light Waves",
+          "printed": 603,
+          "ko": "빛의 간섭",
+          "pdf": 612,
+          "id": "18.1"
+        },
+        {
+          "section": "18.2",
+          "chapter": 18,
+          "title": "Young’s Double Slit Experiment",
+          "printed": 604,
+          "ko": "영의 이중 슬릿",
+          "pdf": 613,
+          "id": "18.2"
+        },
+        {
+          "section": "18.3",
+          "chapter": 18,
+          "title": "Thin Films—Change of Phase Due to Reflection",
+          "printed": 611,
+          "ko": "박막과 반사의 위상 변화",
+          "pdf": 620,
+          "id": "18.3"
+        },
+        {
+          "section": "18.4",
+          "chapter": 18,
+          "title": "Diffraction of Light Waves",
+          "printed": 615,
+          "ko": "빛의 회절",
+          "pdf": 624,
+          "id": "18.4"
+        },
+        {
+          "section": "18.5",
+          "chapter": 18,
+          "title": "Diffraction Gratings",
+          "printed": 620,
+          "ko": "회절격자",
+          "pdf": 629,
+          "id": "18.5"
+        },
+        {
+          "section": "18.6",
+          "chapter": 18,
+          "title": "Polarization of Light Waves",
+          "printed": 624,
+          "ko": "빛의 편광",
+          "pdf": 633,
+          "id": "18.6"
+        }
+      ],
+      "conditionProse": "지속적인 간섭무늬에는 결맞음·단색 조건을 사용합니다. 작은 각도·먼 스크린 근사를 구별합니다. 박막에서는 경로차와 높은 굴절률 경계 반사의 위상 변화를 함께 봅니다. 이중 슬릿의 최대와 단일 슬릿의 최소를 구별합니다. 말뤼스 법칙의 기준 세기는 분석기에 입사하는 편광의 세기입니다.",
+      "lawProse": "빛의 중첩은 이중 슬릿과 박막의 간섭무늬를 만듭니다. 경로차에 반사 위상 변화를 더하고, 유한한 틈의 회절과 회절격자를 구별합니다. 편광은 빛의 진동 방향을 다루며 말뤼스 법칙은 분석기를 통과하는 세기를 연결합니다.",
+      "id": "c18",
+      "formulas": [
+        {
+          "id": "c18-law-0",
+          "tex": "d\\sin\\theta=m\\lambda",
+          "sourceTex": "d\\sin\\theta=m\\lambda",
+          "field": "law"
+        },
+        {
+          "id": "c18-law-1",
+          "tex": "\\lambda D/d",
+          "sourceTex": "\\lambda D/d",
+          "field": "law"
+        },
+        {
+          "id": "c18-law-2",
+          "tex": "a\\sin\\theta=m\\lambda\\;(m\\ne0)",
+          "sourceTex": "a\\sin\\theta=m\\lambda\\;(m\\ne0)",
+          "field": "law"
+        },
+        {
+          "id": "c18-law-3",
+          "tex": "I=I_\\circ\\cos^2\\theta",
+          "sourceTex": "I=I_\\circ\\cos^2\\theta",
+          "field": "law"
+        },
+        {
+          "id": "c18-condition-0",
+          "tex": "\\pi",
+          "sourceTex": "\\pi",
+          "field": "condition"
+        },
+        {
+          "id": "c18-condition-1",
+          "tex": "I_\\circ",
+          "sourceTex": "I_\\circ",
+          "field": "condition"
+        }
+      ]
+    },
+    {
+      "chapter": 19,
+      "title": "전기력",
+      "question": "전하는 어떻게 보존되며 서로 어떤 힘을 주는가?",
+      "prerequisite": "2장의 벡터, 5장의 힘·제3법칙.",
+      "law": "양·음 전하, 전하 보존·양자화, 도체·절연체, 접촉/유도 대전. 쿨롱 법칙 $F=k\\lvert q_1q_2\\rvert/r^2$, $k=1/(4\\pi\\epsilon_\\circ)$, 힘의 중첩.",
+      "condition": "쿨롱 법칙의 기본 모델은 정지한 점전하와 진공이다. 힘의 방향은 전하 부호와 두 전하의 위치에 따른다. 여러 힘은 크기만 더하지 않고 벡터로 합한다.",
+      "next": "**→20장:** 특정 시험 전하에 작용한 힘을 전하량으로 나누어 공간 자체의 전기장으로 기술한다.",
+      "evidence": "인쇄 **637–650** / PDF **645–658**; §§19.1–19.3.",
+      "sections": [
+        {
+          "section": "19.1",
+          "chapter": 19,
+          "title": "Electric Charge",
+          "printed": 637,
+          "ko": "전하",
+          "pdf": 645,
+          "id": "19.1"
+        },
+        {
+          "section": "19.2",
+          "chapter": 19,
+          "title": "Charging Conductors and Insulators",
+          "printed": 639,
+          "ko": "도체·절연체의 대전",
+          "pdf": 647,
+          "id": "19.2"
+        },
+        {
+          "section": "19.3",
+          "chapter": 19,
+          "title": "Coulomb’s Law",
+          "printed": 642,
+          "ko": "쿨롱 법칙",
+          "pdf": 650,
+          "id": "19.3"
+        }
+      ],
+      "conditionProse": "쿨롱 법칙의 기본 모형은 정지한 점전하와 진공입니다. 전하의 부호와 위치로 힘의 방향을 정합니다. 여러 힘은 크기만 더하지 않고 벡터로 합합니다.",
+      "lawProse": "전하의 부호·보존·양자화를 바탕으로 도체와 절연체의 접촉·유도 대전을 구별합니다. 쿨롱 법칙은 두 전하의 힘을 정하고, 여러 전하의 힘은 벡터 중첩으로 계산합니다.",
+      "id": "c19",
+      "formulas": [
+        {
+          "id": "c19-law-0",
+          "tex": "F=k\\lvert q_1q_2\\rvert/r^2",
+          "sourceTex": "F=k\\lvert q_1q_2\\rvert/r^2",
+          "field": "law"
+        },
+        {
+          "id": "c19-law-1",
+          "tex": "k=1/(4\\pi\\epsilon_\\circ)",
+          "sourceTex": "k=1/(4\\pi\\epsilon_\\circ)",
+          "field": "law"
+        }
+      ]
+    },
+    {
+      "chapter": 20,
+      "title": "전기장",
+      "question": "전하가 만든 공간의 작용을 시험 전하와 분리해 어떻게 표현하는가?",
+      "prerequisite": "2장의 벡터·성분, 19장의 쿨롱 법칙, 3–5장의 운동.",
+      "law": "$\\vec E=\\vec F/q_\\circ$, 점전하의 장과 중첩. 쌍극자와 연속 분포 $\\vec E=\\int k\\,dq\\,\\hat{\\vec r}/r^2$, 선·면·체적 전하밀도. $\\vec F=q\\vec E$, 장 속의 입자 운동.",
+      "condition": "장을 측정하는 시험 전하는 원래 전하 분포를 교란하지 않을 만큼 작게 취급한다. 연속 분포는 각 (dq)의 방향까지 적분한다. 쌍극자의 먼 거리 근사는 전하 간격보다 관측 거리가 클 때다. 일정한 가속도 모델은 균일한 장과 해당 힘 조건에 따른다.",
+      "next": "**→21장:** 모든 전하 요소를 직접 더하는 대신 닫힌 면을 통과하는 장과 내부 전하의 관계를 사용한다.",
+      "evidence": "인쇄 **659–690** / PDF **667–698**; §§20.1–20.6.",
+      "sections": [
+        {
+          "section": "20.1",
+          "chapter": 20,
+          "title": "The Electric Field",
+          "printed": 659,
+          "ko": "전기장",
+          "pdf": 667,
+          "id": "20.1"
+        },
+        {
+          "section": "20.2",
+          "chapter": 20,
+          "title": "The Electric Field of a Point Charge",
+          "printed": 660,
+          "ko": "점전하의 전기장",
+          "pdf": 668,
+          "id": "20.2"
+        },
+        {
+          "section": "20.3",
+          "chapter": 20,
+          "title": "The Electric Field of an Electric Dipole",
+          "printed": 666,
+          "ko": "쌍극자의 전기장",
+          "pdf": 674,
+          "id": "20.3"
+        },
+        {
+          "section": "20.4",
+          "chapter": 20,
+          "title": "Electric Field of a Continuous Charge Distribution",
+          "printed": 670,
+          "ko": "연속 전하 분포의 전기장",
+          "pdf": 678,
+          "id": "20.4"
+        },
+        {
+          "section": "20.5",
+          "chapter": 20,
+          "title": "Electric Field Lines",
+          "printed": 684,
+          "ko": "전기력선",
+          "pdf": 692,
+          "id": "20.5"
+        },
+        {
+          "section": "20.6",
+          "chapter": 20,
+          "title": "Motion of Charged Particles in a Uniform Electric Field",
+          "printed": 686,
+          "ko": "균일한 전기장 속 입자 운동",
+          "pdf": 694,
+          "id": "20.6"
+        }
+      ],
+      "conditionProse": "시험 전하는 원래 분포를 교란하지 않을 만큼 작게 취급합니다. 연속 분포는 각 전하 요소의 방향까지 적분합니다. 쌍극자의 먼 거리 근사는 전하 간격보다 관측 거리가 클 때입니다. 일정한 가속도 모형은 균일한 장과 해당 힘 조건을 확인합니다.",
+      "lawProse": "전기장은 시험 전하가 받는 힘을 전하량으로 나누어 정의합니다. 점전하·쌍극자·연속 분포의 장을 중첩하고, 전기력선으로 방향을 읽습니다. 장과 전하량을 다시 결합하면 균일한 전기장 속 입자 운동으로 이어집니다.",
+      "id": "c20",
+      "formulas": [
+        {
+          "id": "c20-law-0",
+          "tex": "\\vec E=\\vec F/q_\\circ",
+          "sourceTex": "\\vec E=\\vec F/q_\\circ",
+          "field": "law"
+        },
+        {
+          "id": "c20-law-1",
+          "tex": "\\vec E=\\int k\\,dq\\,\\hat{\\vec r}/r^2",
+          "sourceTex": "\\vec E=\\int k\\,dq\\,\\hat{\\vec r}/r^2",
+          "field": "law"
+        },
+        {
+          "id": "c20-law-2",
+          "tex": "\\vec F=q\\vec E",
+          "sourceTex": "\\vec F=q\\vec E",
+          "field": "law"
+        }
+      ]
+    },
+    {
+      "chapter": 21,
+      "title": "가우스 법칙",
+      "question": "닫힌 면을 통과하는 전기장과 내부 전하는 어떻게 연결되는가?",
+      "prerequisite": "2장의 내적, 20장의 전기장·전하 분포.",
+      "law": "전기 선속 $\\Phi_E=\\int\\vec E\\cdot d\\vec A$, $\\oint\\vec E\\cdot d\\vec A=q_{\\mathrm{in}}/\\epsilon_\\circ$. 평면·원통·구 대칭의 장, 정전기 평형 도체.",
+      "condition": "가우스 법칙 자체와 대칭을 써서 $E$를 쉽게 계산하는 조건을 구별한다. $q_{\\mathrm{in}}=0$은 순선속 0이지 모든 곳의 $E=0$을 뜻하지 않는다. 면의 장은 내부·외부 전하 모두의 영향을 받는다. 도체 내부 $E=0$은 정전기 평형 조건이다.",
+      "next": "**→22장:** 벡터장과 선속에서 전기력이 한 일·위치에너지·스칼라 전위로 관점을 바꾼다.",
+      "evidence": "인쇄 **701–719** / PDF **709–727**; §§21.1–21.4.",
+      "sections": [
+        {
+          "section": "21.1",
+          "chapter": 21,
+          "title": "Electric Flux",
+          "printed": 701,
+          "ko": "전기 선속",
+          "pdf": 709,
+          "id": "21.1"
+        },
+        {
+          "section": "21.2",
+          "chapter": 21,
+          "title": "Gauss’s Law",
+          "printed": 705,
+          "ko": "가우스 법칙",
+          "pdf": 713,
+          "id": "21.2"
+        },
+        {
+          "section": "21.3",
+          "chapter": 21,
+          "title": "Applications of Gauss’s Law",
+          "printed": 707,
+          "ko": "대칭과 가우스 법칙",
+          "pdf": 715,
+          "id": "21.3"
+        },
+        {
+          "section": "21.4",
+          "chapter": 21,
+          "title": "Conductors in Electrostatic Equilibrium",
+          "printed": 717,
+          "ko": "정전기 평형의 도체",
+          "pdf": 725,
+          "id": "21.4"
+        }
+      ],
+      "conditionProse": "가우스 법칙의 성립과 대칭을 이용한 계산 편의를 구별합니다. 내부 전하가 0인 것은 순선속이 0이라는 뜻이며 모든 곳의 장이 0이라는 뜻은 아닙니다. 면의 장에는 외부 전하도 영향을 줍니다. 도체 내부의 장이 0인 것은 정전기 평형 조건입니다.",
+      "lawProse": "전기 선속은 면을 통과하는 전기장의 성분을 합한 양입니다. 가우스 법칙은 닫힌 면의 순선속을 내부 전하와 연결합니다. 평면·원통·구 대칭으로 계산을 단순하게 하고, 정전기 평형 도체의 내부와 표면 조건을 읽습니다.",
+      "id": "c21",
+      "formulas": [
+        {
+          "id": "c21-law-0",
+          "tex": "\\Phi_E=\\int\\vec E\\cdot d\\vec A",
+          "sourceTex": "\\Phi_E=\\int\\vec E\\cdot d\\vec A",
+          "field": "law"
+        },
+        {
+          "id": "c21-law-1",
+          "tex": "\\oint\\vec E\\cdot d\\vec A=q_{\\mathrm{in}}/\\epsilon_\\circ",
+          "sourceTex": "\\oint\\vec E\\cdot d\\vec A=q_{\\mathrm{in}}/\\epsilon_\\circ",
+          "field": "law"
+        },
+        {
+          "id": "c21-condition-0",
+          "tex": "E",
+          "sourceTex": "E",
+          "field": "condition"
+        },
+        {
+          "id": "c21-condition-1",
+          "tex": "q_{\\mathrm{in}}=0",
+          "sourceTex": "q_{\\mathrm{in}}=0",
+          "field": "condition"
+        },
+        {
+          "id": "c21-condition-2",
+          "tex": "E=0",
+          "sourceTex": "E=0",
+          "field": "condition"
+        },
+        {
+          "id": "c21-condition-3",
+          "tex": "E=0",
+          "sourceTex": "E=0",
+          "field": "condition"
+        }
+      ]
+    },
+    {
+      "chapter": 22,
+      "title": "전위",
+      "question": "전기장을 에너지와 스칼라로 표현하면 무엇이 쉬워지는가?",
+      "prerequisite": "6장의 보존력·위치에너지, 19–21장의 전하·전기장.",
+      "law": "$\\Delta V=\\Delta U/q=-\\int_A^B\\vec E\\cdot d\\vec s$, 점전하 $V=kq/r$, 전위 중첩·분포 적분. 등전위면, 장과 전위의 공간 변화율, 쌍극자 에너지·토크.",
+      "condition": "본문의 전위는 정전기 보존장에 따른다. $V=kq/r$에는 무한대의 전위를 0으로 잡은 기준이 있다. 장 0은 전위 0을 뜻하지 않는다. 도체는 정전기 평형에서 등전위이며, 유한·무한 분포마다 기준점을 확인한다.",
+      "next": "**→23장:** 도체 사이에 전하를 분리할 때 전위차와 저장 에너지를 정전용량으로 묶는다. **→27장:** 유도 전기장에서는 이 정전기적 경로 독립성을 다시 점검한다.",
+      "evidence": "인쇄 **731–762** / PDF **739–770**; §§22.1–22.15.",
+      "sections": [
+        {
+          "section": "22.1",
+          "chapter": 22,
+          "title": "Electric Potential Energy",
+          "printed": 731,
+          "ko": "전기 위치에너지",
+          "pdf": 739,
+          "id": "22.1"
+        },
+        {
+          "section": "22.2",
+          "chapter": 22,
+          "title": "Electric Potential",
+          "printed": 733,
+          "ko": "전위",
+          "pdf": 741,
+          "id": "22.2"
+        },
+        {
+          "section": "22.3",
+          "chapter": 22,
+          "title": "Electric Potential in a Uniform Electric Field",
+          "printed": 735,
+          "ko": "균일한 전기장의 전위",
+          "pdf": 743,
+          "id": "22.3"
+        },
+        {
+          "section": "22.4",
+          "chapter": 22,
+          "title": "Electric Potential Due to a Point Charge",
+          "printed": 741,
+          "ko": "점전하의 전위",
+          "pdf": 749,
+          "id": "22.4"
+        },
+        {
+          "section": "22.5",
+          "chapter": 22,
+          "title": "Electric Potential Due to a Dipole",
+          "printed": 745,
+          "ko": "쌍극자의 전위",
+          "pdf": 753,
+          "id": "22.5"
+        },
+        {
+          "section": "22.6",
+          "chapter": 22,
+          "title": "Electric Dipole in an External Electric Field",
+          "printed": 747,
+          "ko": "외부 전기장 속 쌍극자",
+          "pdf": 755,
+          "id": "22.6"
+        },
+        {
+          "section": "22.7",
+          "chapter": 22,
+          "title": "Electric Potential Due to a Charged Rod",
+          "printed": 749,
+          "ko": "막대의 전위",
+          "pdf": 757,
+          "id": "22.7"
+        },
+        {
+          "section": "22.8",
+          "chapter": 22,
+          "title": "Electric Potential Due to a Uniformly Charged Arc",
+          "printed": 752,
+          "ko": "균일한 원호의 전위",
+          "pdf": 760,
+          "id": "22.8"
+        },
+        {
+          "section": "22.9",
+          "chapter": 22,
+          "title": "Electric Potential Due to a Uniformly Charged Ring",
+          "printed": 753,
+          "ko": "균일한 고리의 전위",
+          "pdf": 761,
+          "id": "22.9"
+        },
+        {
+          "section": "22.10",
+          "chapter": 22,
+          "title": "Electric Potential Due to a Uniformly Charged Disk",
+          "printed": 754,
+          "ko": "균일한 원판의 전위",
+          "pdf": 762,
+          "id": "22.10"
+        },
+        {
+          "section": "22.11",
+          "chapter": 22,
+          "title": "Electric Potential Due to a Uniformly Charged Sphere",
+          "printed": 756,
+          "ko": "균일한 구의 전위",
+          "pdf": 764,
+          "id": "22.11"
+        },
+        {
+          "section": "22.12",
+          "chapter": 22,
+          "title": "Electric Potential Due to a Charged Conductor",
+          "printed": 757,
+          "ko": "대전된 도체의 전위",
+          "pdf": 765,
+          "id": "22.12"
+        },
+        {
+          "section": "22.13",
+          "chapter": 22,
+          "title": "Potential Gradient",
+          "printed": 758,
+          "ko": "전위 기울기",
+          "pdf": 766,
+          "id": "22.13"
+        },
+        {
+          "section": "22.14",
+          "chapter": 22,
+          "title": "The Electrostatic Precipitator",
+          "printed": 761,
+          "ko": "전기 집진기",
+          "pdf": 769,
+          "id": "22.14"
+        },
+        {
+          "section": "22.15",
+          "chapter": 22,
+          "title": "The Van de Graaff Generator",
+          "printed": 762,
+          "ko": "밴더그래프 발전기",
+          "pdf": 770,
+          "id": "22.15"
+        }
+      ],
+      "conditionProse": "정전기 보존장을 다룹니다. 점전하의 전위 식은 무한대 전위를 0으로 둡니다. 장이 0이어도 전위가 0인 것은 아닙니다. 정전기 평형 도체는 등전위입니다. 유한·무한 분포의 기준점을 확인합니다.",
+      "lawProse": "전위차는 단위 전하당 위치에너지의 변화입니다. 전기장의 경로 적분과 전위의 공간 변화율이 서로 연결됩니다. 점전하·쌍극자·막대·원호·고리·원판·구·도체의 전위를 중첩과 적분으로 읽고, 등전위와 쌍극자의 에너지·토크, 전기 집진기와 밴더그래프 발전기로 연결합니다.",
+      "id": "c22",
+      "formulas": [
+        {
+          "id": "c22-law-0",
+          "tex": "\\Delta V=\\Delta U/q=-\\int_A^B\\vec E\\cdot d\\vec s",
+          "sourceTex": "\\Delta V=\\Delta U/q=-\\int_A^B\\vec E\\cdot d\\vec s",
+          "field": "law"
+        },
+        {
+          "id": "c22-law-1",
+          "tex": "V=kq/r",
+          "sourceTex": "V=kq/r",
+          "field": "law"
+        },
+        {
+          "id": "c22-condition-0",
+          "tex": "V=kq/r",
+          "sourceTex": "V=kq/r",
+          "field": "condition"
+        }
+      ]
+    },
+    {
+      "chapter": 23,
+      "title": "축전기와 정전용량",
+      "question": "전하 분리·전위차·기하 구조·에너지 저장은 어떻게 연결되는가?",
+      "prerequisite": "21장의 장·도체, 22장의 전위차, 6장의 에너지.",
+      "law": "$C=Q/\\Delta V$, 평행판 $C_\\circ=\\epsilon_\\circ A/d$. 유전체 $C=\\kappa C_\\circ$, 직렬/병렬 결합, $U=Q^2/(2C)=\\tfrac12C(\\Delta V)^2$, 장의 에너지 밀도.",
+      "condition": "$Q,\\Delta V$는 정전용량 정의에서 크기다. 평행판 식은 가장자리 영향을 무시한다. $\\kappa C_\\circ$는 유전체가 간격을 완전히 채우는 경우다. 유전체 삽입 시 고정 전하와 배터리가 유지하는 고정 전위차를 구별해야 한다.",
+      "next": "**→24장:** 정적으로 저장된 전하가 회로에서 시간에 따라 이동하면 전류와 충·방전 과정이 된다.",
+      "evidence": "인쇄 **773–796** / PDF **781–804**; §§23.1–23.5.",
+      "sections": [
+        {
+          "section": "23.1",
+          "chapter": 23,
+          "title": "Capacitor and Capacitance",
+          "printed": 773,
+          "ko": "축전기와 정전용량",
+          "pdf": 781,
+          "id": "23.1"
+        },
+        {
+          "section": "23.2",
+          "chapter": 23,
+          "title": "Calculating Capacitance",
+          "printed": 775,
+          "ko": "정전용량 계산",
+          "pdf": 783,
+          "id": "23.2"
+        },
+        {
+          "section": "23.3",
+          "chapter": 23,
+          "title": "Capacitors with Dielectrics",
+          "printed": 781,
+          "ko": "유전체",
+          "pdf": 789,
+          "id": "23.3"
+        },
+        {
+          "section": "23.4",
+          "chapter": 23,
+          "title": "Capacitors in Parallel and Series",
+          "printed": 790,
+          "ko": "축전기의 직렬·병렬",
+          "pdf": 798,
+          "id": "23.4"
+        },
+        {
+          "section": "23.5",
+          "chapter": 23,
+          "title": "Energy Stored in a Charged Capacitor",
+          "printed": 795,
+          "ko": "축전기에 저장된 에너지",
+          "pdf": 803,
+          "id": "23.5"
+        }
+      ],
+      "conditionProse": "정전용량 정의의 전하량과 전위차는 크기입니다. 평행판 식은 가장자리 영향을 무시합니다. 유전체의 간단한 배수 관계는 간격을 완전히 채울 때입니다. 고정 전하와 배터리가 유지하는 고정 전위차를 구별합니다.",
+      "lawProse": "정전용량은 분리해 저장한 전하량과 전위차의 관계입니다. 도체의 기하와 유전체가 정전용량을 바꾸며, 직렬·병렬 결합에서는 전하량과 전위차의 조건을 달리 적용합니다. 축전기의 에너지는 전기장의 에너지와 연결됩니다.",
+      "id": "c23",
+      "formulas": [
+        {
+          "id": "c23-law-0",
+          "tex": "C=Q/\\Delta V",
+          "sourceTex": "C=Q/\\Delta V",
+          "field": "law"
+        },
+        {
+          "id": "c23-law-1",
+          "tex": "C_\\circ=\\epsilon_\\circ A/d",
+          "sourceTex": "C_\\circ=\\epsilon_\\circ A/d",
+          "field": "law"
+        },
+        {
+          "id": "c23-law-2",
+          "tex": "C=\\kappa C_\\circ",
+          "sourceTex": "C=\\kappa C_\\circ",
+          "field": "law"
+        },
+        {
+          "id": "c23-law-3",
+          "tex": "U=Q^2/(2C)=\\tfrac12C(\\Delta V)^2",
+          "sourceTex": "U=Q^2/(2C)=\\tfrac12C(\\Delta V)^2",
+          "field": "law"
+        },
+        {
+          "id": "c23-condition-0",
+          "tex": "Q,\\Delta V",
+          "sourceTex": "Q,\\Delta V",
+          "field": "condition"
+        },
+        {
+          "id": "c23-condition-1",
+          "tex": "\\kappa C_\\circ",
+          "sourceTex": "\\kappa C_\\circ",
+          "field": "condition"
+        }
+      ]
+    },
+    {
+      "chapter": 24,
+      "title": "전기 회로",
+      "question": "전하 흐름과 에너지 전달을 여러 소자가 연결된 회로에서 어떻게 계산하는가?",
+      "prerequisite": "19장의 전하 보존, 22장의 전위, 23장의 축전기, 6장의 일률.",
+      "law": "$I=dQ/dt$, 전류밀도·표류 속도, 옴의 법칙 $\\Delta V=IR$, $R=\\rho L/A$, 전력·기전력·내부저항. 저항 결합, 키르히호프 규칙, RC 회로의 시간 상수 $\\tau=RC$.",
+      "condition": "옴의 법칙은 전류–전압이 선형인 물질/상태에서 적용한다. 비저항은 온도 등에 따른다. 내부저항이 있으면 단자 전압과 기전력을 구별한다. 접합 규칙은 전하가 쌓이지 않는 접합을 다룬다. 본문 RC 충전해는 처음 무전하인 축전기와 일정한 소자·전원을 사용한다.",
+      "next": "**→25장:** 전류를 이루는 움직이는 전하에 자기장이 주는 힘을 묻는다. **→28장:** RC의 시간 변화에 인덕터를 더한다.",
+      "evidence": "인쇄 **809–843** / PDF **817–851**; §§24.1–24.7.",
+      "sections": [
+        {
+          "section": "24.1",
+          "chapter": 24,
+          "title": "Electric Current and Electric Current Density",
+          "printed": 809,
+          "ko": "전류와 전류밀도",
+          "pdf": 817,
+          "id": "24.1"
+        },
+        {
+          "section": "24.2",
+          "chapter": 24,
+          "title": "Ohm’s Law and Electric Resistance",
+          "printed": 814,
+          "ko": "옴의 법칙과 저항",
+          "pdf": 822,
+          "id": "24.2"
+        },
+        {
+          "section": "24.3",
+          "chapter": 24,
+          "title": "Electric Power",
+          "printed": 823,
+          "ko": "전력",
+          "pdf": 831,
+          "id": "24.3"
+        },
+        {
+          "section": "24.4",
+          "chapter": 24,
+          "title": "Electromotive Force",
+          "printed": 825,
+          "ko": "기전력",
+          "pdf": 833,
+          "id": "24.4"
+        },
+        {
+          "section": "24.5",
+          "chapter": 24,
+          "title": "Resistors in Series and Parallel",
+          "printed": 829,
+          "ko": "저항의 직렬·병렬",
+          "pdf": 837,
+          "id": "24.5"
+        },
+        {
+          "section": "24.6",
+          "chapter": 24,
+          "title": "Kirchhoff’s Rules",
+          "printed": 834,
+          "ko": "키르히호프 규칙",
+          "pdf": 842,
+          "id": "24.6"
+        },
+        {
+          "section": "24.7",
+          "chapter": 24,
+          "title": "The RC Circuit",
+          "printed": 838,
+          "ko": "RC 회로",
+          "pdf": 846,
+          "id": "24.7"
+        }
+      ],
+      "conditionProse": "옴의 법칙은 전류·전압 관계가 선형인 상태에 적용합니다. 비저항은 온도 등에 따릅니다. 내부저항이 있으면 단자 전압과 기전력을 구별합니다. 접합 규칙은 전하가 쌓이지 않는 접합입니다. 본문의 RC 충전해는 처음 무전하인 축전기와 일정한 소자·전원입니다.",
+      "lawProse": "전류는 전하가 흐르는 비율이고 전류밀도는 흐름의 공간 분포를 나타냅니다. 표류 속도·옴의 법칙·저항·비저항을 연결하고, 전력·기전력·내부저항을 구별합니다. 직렬·병렬과 키르히호프 규칙으로 회로를 읽은 뒤 RC 회로의 충전·방전을 시간에 따른 변화로 다룹니다.",
+      "id": "c24",
+      "formulas": [
+        {
+          "id": "c24-law-0",
+          "tex": "I=dQ/dt",
+          "sourceTex": "I=dQ/dt",
+          "field": "law"
+        },
+        {
+          "id": "c24-law-1",
+          "tex": "\\Delta V=IR",
+          "sourceTex": "\\Delta V=IR",
+          "field": "law"
+        },
+        {
+          "id": "c24-law-2",
+          "tex": "R=\\rho L/A",
+          "sourceTex": "R=\\rho L/A",
+          "field": "law"
+        },
+        {
+          "id": "c24-law-3",
+          "tex": "\\tau=RC",
+          "sourceTex": "\\tau=RC",
+          "field": "law"
+        }
+      ]
+    },
+    {
+      "chapter": 25,
+      "title": "자기장",
+      "question": "자기장은 움직이는 전하·전류·고리에 어떤 작용을 하는가?",
+      "prerequisite": "2장의 외적, 4장의 원운동, 5장의 힘, 24장의 전류.",
+      "law": "$\\vec F_B=q\\vec v\\times\\vec B$, 로런츠 힘 $q(\\vec E+\\vec v\\times\\vec B)$. 원운동·나선 운동, 속도 선택기·홀 효과. 도선의 힘, 고리의 자기모멘트 $\\vec\\mu$와 $\\vec\\tau=\\vec\\mu\\times\\vec B$.",
+      "condition": "자기력은 속도에 수직이어서 입자의 속력 자체를 바꾸지 않는다. 순수 원운동은 균일한 자기장과 수직 초기 속도 조건이다. 전하 부호에 따라 힘 방향이 바뀐다. 도선의 간단한 힘 식은 해당 구간의 균일한 장을 전제로 한다.",
+      "next": "**→26장:** 자기장이 주는 작용에서 자기장을 만드는 전류·물질의 원인으로 넘어간다.",
+      "evidence": "인쇄 **859–878** / PDF **865–884**; §§25.1–25.6.",
+      "sections": [
+        {
+          "section": "25.1",
+          "chapter": 25,
+          "title": "Magnetic Force on a Moving Charge",
+          "printed": 859,
+          "ko": "움직이는 전하의 자기력",
+          "pdf": 865,
+          "id": "25.1"
+        },
+        {
+          "section": "25.2",
+          "chapter": 25,
+          "title": "Motion of a Charged Particle in a Uniform Magnetic Field",
+          "printed": 863,
+          "ko": "균일한 자기장 속 입자 운동",
+          "pdf": 869,
+          "id": "25.2"
+        },
+        {
+          "section": "25.3",
+          "chapter": 25,
+          "title": "Charged Particles in an Electric and Magnetic Fields",
+          "printed": 865,
+          "ko": "전기장·자기장 속 입자",
+          "pdf": 871,
+          "id": "25.3"
+        },
+        {
+          "section": "25.4",
+          "chapter": 25,
+          "title": "Magnetic Force on a Current-Carrying Conductor",
+          "printed": 869,
+          "ko": "전류 도선의 자기력",
+          "pdf": 875,
+          "id": "25.4"
+        },
+        {
+          "section": "25.5",
+          "chapter": 25,
+          "title": "Torque on a Current Loop",
+          "printed": 874,
+          "ko": "전류 고리의 토크",
+          "pdf": 880,
+          "id": "25.5"
+        },
+        {
+          "section": "25.6",
+          "chapter": 25,
+          "title": "Non-Uniform Magnetic Fields",
+          "printed": 878,
+          "ko": "불균일한 자기장",
+          "pdf": 884,
+          "id": "25.6"
+        }
+      ],
+      "conditionProse": "자기력은 속도에 수직이어서 입자의 속력 자체를 바꾸지 않습니다. 순수 원운동은 균일한 자기장과 수직 초기 속도 조건입니다. 전하 부호에 따라 힘 방향이 바뀝니다. 도선의 간단한 힘 식은 해당 구간의 균일한 장입니다.",
+      "lawProse": "움직이는 전하는 자기장에서 속도에 수직인 힘을 받습니다. 전기력과 함께 쓰면 속도 선택기·홀 효과와 입자의 운동을 읽을 수 있습니다. 전류 도선의 힘과 고리의 자기모멘트·토크를 연결하고 균일한 장과 불균일한 장을 구별합니다.",
+      "id": "c25",
+      "formulas": [
+        {
+          "id": "c25-law-0",
+          "tex": "\\vec F_B=q\\vec v\\times\\vec B",
+          "sourceTex": "\\vec F_B=q\\vec v\\times\\vec B",
+          "field": "law"
+        },
+        {
+          "id": "c25-law-1",
+          "tex": "q(\\vec E+\\vec v\\times\\vec B)",
+          "sourceTex": "q(\\vec E+\\vec v\\times\\vec B)",
+          "field": "law"
+        },
+        {
+          "id": "c25-law-2",
+          "tex": "\\vec\\mu",
+          "sourceTex": "\\vec\\mu",
+          "field": "law"
+        },
+        {
+          "id": "c25-law-3",
+          "tex": "\\vec\\tau=\\vec\\mu\\times\\vec B",
+          "sourceTex": "\\vec\\tau=\\vec\\mu\\times\\vec B",
+          "field": "law"
+        }
+      ]
+    },
+    {
+      "chapter": 26,
+      "title": "자기장의 원천",
+      "question": "전류와 물질은 어떤 자기장을 만드는가?",
+      "prerequisite": "24장의 전류, 25장의 자기장·자기모멘트, 21장의 선속.",
+      "law": "비오–사바르 법칙 $d\\vec B=(\\mu_\\circ/4\\pi)I\\,d\\vec s\\times\\hat{\\vec r}/r^2$. 앙페르 법칙, 변위전류 $i_d=\\epsilon_\\circ d\\Phi_E/dt$, 앙페르–맥스웰 법칙, 자기 가우스 법칙 $\\oint\\vec B\\cdot d\\vec A=0$. 원자 자기모멘트·자화·반/상/강자성.",
+      "condition": "기본 전류 계산과 수정 전 앙페르 법칙은 정상 전류를 다룬다. 대칭성이 적분을 단순하게 만든다. 변하는 전기 선속에는 변위전류 항이 필요하다. 자기 선속 0은 닫힌 면의 순선속이다. 원자 자기의 고전 모형은 본문도 양자적 설명의 한계를 밝힌다.",
+      "next": "**→27장:** 전류·변하는 전기 선속이 자기장을 만든다는 관계에, 변하는 자기 선속이 전기장을 만든다는 관계를 더한다.",
+      "evidence": "인쇄 **889–920** / PDF **895–926**; §§26.1–26.10.",
+      "sections": [
+        {
+          "section": "26.1",
+          "chapter": 26,
+          "title": "The Biot-Savart Law",
+          "printed": 889,
+          "ko": "비오–사바르 법칙",
+          "pdf": 895,
+          "id": "26.1"
+        },
+        {
+          "section": "26.2",
+          "chapter": 26,
+          "title": "The Magnetic Force Between Two Parallel Currents",
+          "printed": 895,
+          "ko": "평행 전류 사이의 힘",
+          "pdf": 901,
+          "id": "26.2"
+        },
+        {
+          "section": "26.3",
+          "chapter": 26,
+          "title": "Ampere’s Law",
+          "printed": 897,
+          "ko": "앙페르 법칙",
+          "pdf": 903,
+          "id": "26.3"
+        },
+        {
+          "section": "26.4",
+          "chapter": 26,
+          "title": "Displacement Current and the Ampere-Maxwell Law",
+          "printed": 901,
+          "ko": "변위전류와 앙페르–맥스웰 법칙",
+          "pdf": 907,
+          "id": "26.4"
+        },
+        {
+          "section": "26.5",
+          "chapter": 26,
+          "title": "Gauss’s Law for Magnetism",
+          "printed": 903,
+          "ko": "자기 가우스 법칙",
+          "pdf": 909,
+          "id": "26.5"
+        },
+        {
+          "section": "26.6",
+          "chapter": 26,
+          "title": "The Origin of Magnetism",
+          "printed": 904,
+          "ko": "자기의 기원",
+          "pdf": 910,
+          "id": "26.6"
+        },
+        {
+          "section": "26.7",
+          "chapter": 26,
+          "title": "Magnetic Materials",
+          "printed": 908,
+          "ko": "자성 물질",
+          "pdf": 914,
+          "id": "26.7"
+        },
+        {
+          "section": "26.8",
+          "chapter": 26,
+          "title": "Diamagnetism and Paramagnetism",
+          "printed": 910,
+          "ko": "반자성·상자성",
+          "pdf": 916,
+          "id": "26.8"
+        },
+        {
+          "section": "26.9",
+          "chapter": 26,
+          "title": "Ferromagnetism",
+          "printed": 914,
+          "ko": "강자성",
+          "pdf": 920,
+          "id": "26.9"
+        },
+        {
+          "section": "26.10",
+          "chapter": 26,
+          "title": "Some Applications of Magnetism",
+          "printed": 919,
+          "ko": "자기의 응용",
+          "pdf": 925,
+          "id": "26.10"
+        }
+      ],
+      "conditionProse": "기본 전류 계산과 수정 전 앙페르 법칙은 정상 전류를 다룹니다. 대칭은 적분을 단순하게 합니다. 변하는 전기 선속에는 변위전류가 필요합니다. 자기 선속 0은 닫힌 면의 순선속입니다. 원자 자기의 고전 모형에는 교재가 밝힌 양자적 설명의 한계가 있습니다.",
+      "lawProse": "비오–사바르 법칙은 전류 요소가 만드는 자기장을 더합니다. 앙페르 법칙은 대칭을 가진 정상 전류에 유용하며, 변하는 전기 선속은 변위전류를 더한 앙페르–맥스웰 법칙으로 연결합니다. 닫힌 면의 자기 선속, 원자 자기모멘트·자화·반자성·상자성·강자성과 응용을 함께 다룹니다.",
+      "id": "c26",
+      "formulas": [
+        {
+          "id": "c26-law-0",
+          "tex": "d\\vec B=(\\mu_\\circ/4\\pi)I\\,d\\vec s\\times\\hat{\\vec r}/r^2",
+          "sourceTex": "d\\vec B=(\\mu_\\circ/4\\pi)I\\,d\\vec s\\times\\hat{\\vec r}/r^2",
+          "field": "law"
+        },
+        {
+          "id": "c26-law-1",
+          "tex": "i_d=\\epsilon_\\circ d\\Phi_E/dt",
+          "sourceTex": "i_d=\\epsilon_\\circ d\\Phi_E/dt",
+          "field": "law"
+        },
+        {
+          "id": "c26-law-2",
+          "tex": "\\oint\\vec B\\cdot d\\vec A=0",
+          "sourceTex": "\\oint\\vec B\\cdot d\\vec A=0",
+          "field": "law"
+        }
+      ]
+    },
+    {
+      "chapter": 27,
+      "title": "패러데이 법칙·교류·맥스웰 방정식",
+      "question": "자기 선속의 변화는 어떻게 기전력을 만들며 전기·자기를 묶는가?",
+      "prerequisite": "21장의 전기 선속, 24장의 전류·기전력, 25–26장의 자기장·선속·변위전류.",
+      "law": "패러데이·렌츠 법칙 $\\mathcal E=-N\\,d\\Phi_B/dt$, 운동 기전력, 발전기, 교류 rms, 변압기. 유도 전기장 $\\oint\\vec E\\cdot d\\vec s=-d\\Phi_B/dt$, 맥스웰의 네 방정식·전자기파.",
+      "condition": "렌츠 방향은 선속의 **변화**를 방해한다. $B\\ell v$는 막대·속도·장 배치의 직교 조건을 사용한다. rms가 최댓값의 $1/\\sqrt2$인 것은 정현파다. 변압기 비는 이상 변압기 가정이다. 유도장은 22장의 정전기 보존장과 구별한다.",
+      "next": "**→28장:** 회로 자신의 전류 변화가 자기 선속을 바꾸는 자기유도와 상호유도, 교류 응답으로 확장한다. **→17–18장:** 빛을 전자기파와 다시 연결한다.",
+      "evidence": "인쇄 **933–949** / PDF **939–955**; §§27.1–27.7.",
+      "sections": [
+        {
+          "section": "27.1",
+          "chapter": 27,
+          "title": "Faraday’s Law of Induction",
+          "printed": 933,
+          "ko": "패러데이 유도 법칙",
+          "pdf": 939,
+          "id": "27.1"
+        },
+        {
+          "section": "27.2",
+          "chapter": 27,
+          "title": "Motional emf",
+          "printed": 936,
+          "ko": "운동 기전력",
+          "pdf": 942,
+          "id": "27.2"
+        },
+        {
+          "section": "27.3",
+          "chapter": 27,
+          "title": "Electric Generators",
+          "printed": 940,
+          "ko": "발전기",
+          "pdf": 946,
+          "id": "27.3"
+        },
+        {
+          "section": "27.4",
+          "chapter": 27,
+          "title": "Alternating Current",
+          "printed": 942,
+          "ko": "교류",
+          "pdf": 948,
+          "id": "27.4"
+        },
+        {
+          "section": "27.5",
+          "chapter": 27,
+          "title": "Transformers",
+          "printed": 943,
+          "ko": "변압기",
+          "pdf": 949,
+          "id": "27.5"
+        },
+        {
+          "section": "27.6",
+          "chapter": 27,
+          "title": "Induced Electric Fields",
+          "printed": 945,
+          "ko": "유도 전기장",
+          "pdf": 951,
+          "id": "27.6"
+        },
+        {
+          "section": "27.7",
+          "chapter": 27,
+          "title": "Maxwell’s Equations of Electromagnetism",
+          "printed": 947,
+          "ko": "맥스웰 방정식",
+          "pdf": 953,
+          "id": "27.7"
+        }
+      ],
+      "conditionProse": "렌츠 방향은 선속 자체가 아닌 선속의 변화를 방해합니다. 간단한 막대 운동 기전력 식은 막대·속도·장의 직교 배치입니다. 실효값과 최댓값의 간단한 비는 정현파입니다. 변압기 비는 이상 변압기 가정입니다. 유도장은 정전기 보존장과 구별합니다.",
+      "lawProse": "자기 선속의 변화가 기전력을 유도하며 렌츠 법칙은 그 방향을 정합니다. 운동 기전력·발전기·교류·변압기를 이 관계로 읽습니다. 유도 전기장은 정전기장과 구별되며, 맥스웰의 네 방정식은 전기와 자기를 묶어 전자기파로 연결합니다.",
+      "id": "c27",
+      "formulas": [
+        {
+          "id": "c27-law-0",
+          "tex": "\\mathcal E=-N\\,d\\Phi_B/dt",
+          "sourceTex": "\\mathcal E=-N\\,d\\Phi_B/dt",
+          "field": "law"
+        },
+        {
+          "id": "c27-law-1",
+          "tex": "\\oint\\vec E\\cdot d\\vec s=-d\\Phi_B/dt",
+          "sourceTex": "\\oint\\vec E\\cdot d\\vec s=-d\\Phi_B/dt",
+          "field": "law"
+        },
+        {
+          "id": "c27-condition-0",
+          "tex": "B\\ell v",
+          "sourceTex": "B\\ell v",
+          "field": "condition"
+        },
+        {
+          "id": "c27-condition-1",
+          "tex": "1/\\sqrt2",
+          "sourceTex": "1/\\sqrt2",
+          "field": "condition"
+        }
+      ]
+    },
+    {
+      "chapter": 28,
+      "title": "인덕턴스·진동 회로·교류 회로",
+      "question": "전기·자기 에너지의 교환과 손실·위상차는 회로의 시간 응답을 어떻게 만드는가?",
+      "prerequisite": "23장의 $C$·저장 에너지, 24장의 회로·RC, 27장의 유도·교류, 14장의 진동·감쇠.",
+      "law": "자기유도 $\\mathcal E_L=-L\\,dI/dt$, 상호유도, $U_L=\\tfrac12LI^2$, LR의 $\\tau=L/R$. LC의 $\\omega=1/\\sqrt{LC}$, LRC 감쇠 방정식. $X_L=\\omega L$, $X_C=1/(\\omega C)$, 임피던스 $Z$, 위상·평균 전력·직렬 공명.",
+      "condition": "단순 자기유도 식은 일정한 $L$, 이상 LC는 저항 없는 회로다. LRC의 감쇠 진동해는 본문 $\\omega_d$가 실수인 경우다. 위상자 해는 정현파 교류를 다룬다. 전원 전압을 일정하게 두는 직렬 회로의 **전류 공명**은 $X_L=X_C$, $\\omega_\\circ=1/\\sqrt{LC}$이다.",
+      "next": "**마지막 장:** 다음 번호의 장은 없다. **→14장 재연결:** 역학 진동과 같은 방정식 구조. **→23·27장 재연결:** 전기/자기 에너지와 유도가 하나의 회로 응답으로 합쳐진다.",
+      "evidence": "인쇄 **961–988** / PDF **966–993**; §§28.1–28.9. 988쪽에서 §28.10 연습문제가 시작되지만 그 앞 공명 본문만 근거로 사용했다.",
+      "sections": [
+        {
+          "section": "28.1",
+          "chapter": 28,
+          "title": "Self-Inductance",
+          "printed": 961,
+          "ko": "자기유도",
+          "pdf": 966,
+          "id": "28.1"
+        },
+        {
+          "section": "28.2",
+          "chapter": 28,
+          "title": "Mutual Inductance",
+          "printed": 964,
+          "ko": "상호유도",
+          "pdf": 969,
+          "id": "28.2"
+        },
+        {
+          "section": "28.3",
+          "chapter": 28,
+          "title": "Energy Stored in an Inductor",
+          "printed": 966,
+          "ko": "인덕터에 저장된 에너지",
+          "pdf": 971,
+          "id": "28.3"
+        },
+        {
+          "section": "28.4",
+          "chapter": 28,
+          "title": "The L–R Circuit",
+          "printed": 967,
+          "ko": "L–R 회로",
+          "pdf": 972,
+          "id": "28.4"
+        },
+        {
+          "section": "28.5",
+          "chapter": 28,
+          "title": "The Oscillating L–C Circuit",
+          "printed": 971,
+          "ko": "L–C 진동 회로",
+          "pdf": 976,
+          "id": "28.5"
+        },
+        {
+          "section": "28.6",
+          "chapter": 28,
+          "title": "The L–R–C Circuit",
+          "printed": 974,
+          "ko": "L–R–C 회로",
+          "pdf": 979,
+          "id": "28.6"
+        },
+        {
+          "section": "28.7",
+          "chapter": 28,
+          "title": "Circuits with an ac Source",
+          "printed": 977,
+          "ko": "교류 전원 회로",
+          "pdf": 982,
+          "id": "28.7"
+        },
+        {
+          "section": "28.8",
+          "chapter": 28,
+          "title": "L–R–C Series in an ac Circuit",
+          "printed": 984,
+          "ko": "교류의 L–R–C 직렬 회로",
+          "pdf": 989,
+          "id": "28.8"
+        },
+        {
+          "section": "28.9",
+          "chapter": 28,
+          "title": "Resonance in L–R–C Series Circuit",
+          "printed": 988,
+          "ko": "L–R–C 직렬 공명",
+          "pdf": 993,
+          "id": "28.9"
+        }
+      ],
+      "conditionProse": "단순 자기유도 식은 일정한 인덕턴스에 적용합니다. 이상 L–C는 저항이 없는 회로입니다. 본문의 진동하는 L–R–C 감쇠해는 제곱근 안이 양수인 저감쇠 조건에 적용합니다. 0이면 임계 감쇠, 음수이면 과감쇠이므로 같은 진동해를 적용하지 않습니다. 위상자 해는 정현파 교류이며, 전원 전압을 일정하게 두는 직렬 전류 공명은 두 리액턴스가 같은 조건입니다.",
+      "lawProse": "자기유도·상호유도는 전류의 변화와 선속의 변화를 연결합니다. 인덕터의 에너지와 L–R 시간 상수를 거쳐 L–C 진동, L–R–C 감쇠를 읽습니다. 정현파 교류에서는 리액턴스와 임피던스로 진폭·위상을 연결하고, 평균 전력과 직렬 공명의 조건을 구별합니다.",
+      "id": "c28",
+      "formulas": [
+        {
+          "id": "c28-law-0",
+          "tex": "\\mathcal E_L=-L\\frac{dI}{dt}",
+          "sourceTex": "\\mathcal E_L=-L\\,dI/dt",
+          "field": "law"
+        },
+        {
+          "id": "c28-law-1",
+          "tex": "U_L=\\tfrac12LI^2",
+          "sourceTex": "U_L=\\tfrac12LI^2",
+          "field": "law"
+        },
+        {
+          "id": "c28-law-2",
+          "tex": "\\tau=\\frac{L}{R}",
+          "sourceTex": "\\tau=L/R",
+          "field": "law"
+        },
+        {
+          "id": "c28-law-3",
+          "tex": "\\omega=\\frac{1}{\\sqrt{LC}}",
+          "sourceTex": "\\omega=1/\\sqrt{LC}",
+          "field": "law"
+        },
+        {
+          "id": "c28-law-4",
+          "tex": "X_L=\\omega L",
+          "sourceTex": "X_L=\\omega L",
+          "field": "law"
+        },
+        {
+          "id": "c28-law-5",
+          "tex": "X_C=\\frac{1}{\\omega C}",
+          "sourceTex": "X_C=1/(\\omega C)",
+          "field": "law"
+        },
+        {
+          "id": "c28-law-6",
+          "tex": "Z=\\sqrt{R^2+(X_L-X_C)^2}",
+          "sourceTex": "Z",
+          "field": "law"
+        },
+        {
+          "id": "c28-condition-0",
+          "tex": "L",
+          "sourceTex": "L",
+          "field": "condition"
+        },
+        {
+          "id": "c28-condition-1",
+          "tex": "\\omega_d=\\sqrt{\\frac{1}{LC}-\\frac{R^2}{4L^2}}",
+          "sourceTex": "\\omega_d",
+          "field": "condition"
+        },
+        {
+          "id": "c28-condition-2",
+          "tex": "X_L=X_C",
+          "sourceTex": "X_L=X_C",
+          "field": "condition"
+        },
+        {
+          "id": "c28-condition-3",
+          "tex": "\\omega_\\circ=\\frac{1}{\\sqrt{LC}}",
+          "sourceTex": "\\omega_\\circ=1/\\sqrt{LC}",
+          "field": "condition"
+        },
+        {
+          "id": "c28-prerequisite-0",
+          "tex": "C",
+          "sourceTex": "C",
+          "field": "prerequisite"
+        }
+      ]
+    }
+  ],
+  "supplementalFormulas": [
+    {
+      "key": "motion",
+      "tex": "x=x_\\circ+v_\\circ t+\\frac{1}{2}at^2",
+      "size": 25,
+      "field": "example"
+    },
+    {
+      "key": "velocity",
+      "tex": "v=v_\\circ+at",
+      "size": 25,
+      "field": "example"
+    },
+    {
+      "key": "wave",
+      "tex": "y(x,t)=A\\sin(kx-\\omega t)",
+      "size": 25,
+      "field": "example"
+    },
+    {
+      "key": "wave-speed",
+      "tex": "v=\\frac{\\omega}{k}=\\lambda f",
+      "size": 25,
+      "field": "example"
+    },
+    {
+      "key": "wave-definition",
+      "tex": "k=\\frac{2\\pi}{\\lambda},\\quad\\omega=2\\pi f",
+      "size": 25,
+      "field": "example"
+    }
+  ]
+}

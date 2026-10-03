@@ -12,7 +12,7 @@ import { decodeStoredText, encodeStoredText } from './storage-codec';
 
 export type ReasoningView = {
   version: 1;
-  active: 'graph' | 'series' | 'concepts' | 'templates' | 'linear' | 'vector-calculus';
+  active: 'graph' | 'series' | 'concepts' | 'templates' | 'physics' | 'linear' | 'vector-calculus';
   example: SeriesExampleId;
   readings: Partial<Record<SeriesExampleId, ReadingPosition>>;
 };
@@ -30,7 +30,7 @@ export function isReasoningView(value: unknown): value is ReasoningView {
   const v = value as ReasoningView;
   if (
     v.version !== 1 ||
-    !['graph', 'series', 'concepts', 'templates', 'linear', 'vector-calculus'].includes(v.active) ||
+    !['graph', 'series', 'concepts', 'templates', 'physics', 'linear', 'vector-calculus'].includes(v.active) ||
     !EXAMPLE_IDS.includes(v.example) ||
     !v.readings ||
     typeof v.readings !== 'object' ||

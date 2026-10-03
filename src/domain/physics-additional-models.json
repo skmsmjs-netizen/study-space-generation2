@@ -1,0 +1,4780 @@
+[
+  {
+    "id": "c2-vector-sum",
+    "chapter": 2,
+    "engine": "vector-sum",
+    "name": "벡터 합과 성분",
+    "sections": [
+      "2.2",
+      "2.3"
+    ],
+    "question": "둘째 벡터의 방향이 합벡터 크기를 어떻게 바꾸는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "|\\vec A+\\vec B|=\\sqrt{A^2+B^2+2AB\\cos\\theta}",
+    "conditions": "동일한 평면의 자유벡터. 첫 벡터는 +x 방향에 고정한다. 크기를 더하는 것은 같은 방향일 때뿐이다.",
+    "controls": [
+      {
+        "key": "A",
+        "name": "첫 크기",
+        "tex": "A",
+        "unit": "1",
+        "min": 0,
+        "max": 5,
+        "initial": 2
+      },
+      {
+        "key": "B",
+        "name": "둘째 크기",
+        "tex": "B",
+        "unit": "1",
+        "min": 0,
+        "max": 5,
+        "initial": 3
+      },
+      {
+        "key": "angle",
+        "name": "방향각",
+        "tex": "\\theta",
+        "unit": "rad",
+        "min": 0,
+        "max": 3.141592653589793,
+        "initial": 1.0471975512
+      }
+    ],
+    "abscissa": "angle",
+    "x": "\\theta\\;(\\mathrm{rad})",
+    "y": "|\\vec A+\\vec B|",
+    "extent": [
+      0,
+      3.141592653589793
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c3-free-fall",
+    "chapter": 3,
+    "engine": "free-fall",
+    "name": "자유낙하와 부호",
+    "sections": [
+      "3.2",
+      "3.6"
+    ],
+    "question": "위쪽을 양으로 잡으면 낙하 위치의 변화는 어떤 부호인가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "y=y_\\circ+v_\\circ t-\\frac12gt^2",
+    "conditions": "공기저항 없는 일정 중력·지표 근처. 위치식은 지면 충돌 이후의 운동을 계산하지 않는다. 그래프는 y<0에서 보류한다.",
+    "controls": [
+      {
+        "key": "h",
+        "name": "초기 높이",
+        "tex": "y_\\circ",
+        "unit": "m",
+        "min": 0,
+        "max": 50,
+        "initial": 20
+      },
+      {
+        "key": "v",
+        "name": "초기 수직속도",
+        "tex": "v_\\circ",
+        "unit": "m/s",
+        "min": -10,
+        "max": 10,
+        "initial": 0
+      },
+      {
+        "key": "t",
+        "name": "관찰 시각",
+        "tex": "t",
+        "unit": "s",
+        "min": 0,
+        "max": 5,
+        "initial": 1
+      }
+    ],
+    "abscissa": "t",
+    "x": "t\\;(\\mathrm{s})",
+    "y": "y\\;(\\mathrm{m})",
+    "extent": [
+      0,
+      5
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c4-circular",
+    "chapter": 4,
+    "engine": "circular",
+    "name": "원운동의 가속도",
+    "sections": [
+      "4.1",
+      "4.3",
+      "4.4",
+      "4.5"
+    ],
+    "question": "속력의 크기가 같아도 방향 변화가 가속도를 만드는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "a_r=v^2/r,\\quad a=\\sqrt{a_r^2+a_t^2}",
+    "conditions": "원궤도의 한 순간에서 반지름 방향과 접선 방향은 직교한다. a_t=0이면 등속 원운동이다. 합가속도의 크기를 그리며 벡터 방향은 별도 조건이다.",
+    "controls": [
+      {
+        "key": "v",
+        "name": "현재 속력",
+        "tex": "v",
+        "unit": "m/s",
+        "min": 0,
+        "max": 20,
+        "initial": 5
+      },
+      {
+        "key": "r",
+        "name": "반지름",
+        "tex": "r",
+        "unit": "m",
+        "min": 0.05,
+        "max": 2,
+        "initial": 0.5
+      },
+      {
+        "key": "at",
+        "name": "접선 가속도",
+        "tex": "a_t",
+        "unit": "m/s^2",
+        "min": -10,
+        "max": 10,
+        "initial": 0
+      }
+    ],
+    "abscissa": "v",
+    "x": "v\\;(\\mathrm{m/s})",
+    "y": "a\\;(\\mathrm{m/s^2})",
+    "extent": [
+      0,
+      20
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c5-friction",
+    "chapter": 5,
+    "engine": "friction",
+    "name": "정지 마찰의 상한",
+    "sections": [
+      "5.2"
+    ],
+    "question": "가하는 힘을 늘릴 때 정지 마찰은 언제까지 맞설 수 있는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "|f_s|\\leq\\mu_sN",
+    "conditions": "수평면·다른 수평력 없음·정지 후보 상태. 그래프는 정지 유지에 필요한 마찰 크기이며 μsN을 넘는 곳은 정지 해가 없다. 운동 마찰로 자동 전환하지 않는다.",
+    "controls": [
+      {
+        "key": "mu",
+        "name": "정지 마찰계수",
+        "tex": "\\mu_s",
+        "unit": "1",
+        "min": 0,
+        "max": 1,
+        "initial": 0.4
+      },
+      {
+        "key": "N",
+        "name": "수직항력",
+        "tex": "N",
+        "unit": "N",
+        "min": 1,
+        "max": 100,
+        "initial": 20,
+        "step": 1
+      },
+      {
+        "key": "F",
+        "name": "가하는 수평력",
+        "tex": "F",
+        "unit": "N",
+        "min": 0,
+        "max": 100,
+        "initial": 5
+      }
+    ],
+    "abscissa": "F",
+    "x": "F\\;(\\mathrm{N})",
+    "y": "|f_s|\\;(\\mathrm{N})",
+    "extent": [
+      0,
+      100
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c6-work-linear",
+    "chapter": 6,
+    "engine": "work-linear",
+    "name": "일의 적분과 운동에너지",
+    "sections": [
+      "6.1",
+      "6.2",
+      "6.3"
+    ],
+    "question": "위치에 비례하는 힘의 일은 왜 끝점 힘 곱과 다른가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "F_x=k_Hx,\\quad W_F=\\int_0^xF_xdx=\\frac12k_Hx^2,\\quad W_{net}=\\Delta K",
+    "conditions": "일차원·0에서x까지·일정한 비례계수. F=+k_Hx인 힘의 일이며 복원력−k_Hx의 일과 부호가 반대다. 이 힘이 합력일 때만 그 일이ΔK와 같다. 다른 힘이 있으면 순일을 별도로 더한다.",
+    "controls": [
+      {
+        "key": "k",
+        "name": "비례계수",
+        "tex": "k_H",
+        "unit": "N/m",
+        "min": 0.1,
+        "max": 20,
+        "initial": 4
+      },
+      {
+        "key": "x",
+        "name": "끝 위치",
+        "tex": "x",
+        "unit": "m",
+        "min": -2,
+        "max": 2,
+        "initial": 1
+      }
+    ],
+    "abscissa": "x",
+    "x": "x\\;(\\mathrm{m})",
+    "y": "W\\;(\\mathrm{J})",
+    "extent": [
+      -2,
+      2
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c6-power",
+    "chapter": 6,
+    "engine": "power",
+    "name": "에너지 전달률",
+    "sections": [
+      "6.7",
+      "6.8"
+    ],
+    "question": "같은 힘에서 속도를 바꾸면 일률은 어떻게 달라지는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "P=\\frac{dW}{dt}=\\vec F\\cdot\\vec v",
+    "conditions": "순간적인 힘과 속도·같은 축 성분. P<0은 에너지를 빼앗는 일률이며 에너지의 음수와 구별한다.",
+    "controls": [
+      {
+        "key": "F",
+        "name": "힘 성분",
+        "tex": "F_x",
+        "unit": "N",
+        "min": -20,
+        "max": 20,
+        "initial": 4
+      },
+      {
+        "key": "v",
+        "name": "속도 성분",
+        "tex": "v_x",
+        "unit": "m/s",
+        "min": -10,
+        "max": 10,
+        "initial": 2
+      }
+    ],
+    "abscissa": "v",
+    "x": "v_x\\;(\\mathrm{m/s})",
+    "y": "P\\;(\\mathrm{W})",
+    "extent": [
+      -10,
+      10
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c7-impulse",
+    "chapter": 7,
+    "engine": "impulse",
+    "name": "충격량과 운동량 변화",
+    "sections": [
+      "7.1"
+    ],
+    "question": "짧은 시간과 큰 힘의 곱은 무엇을 바꾸는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "J=\\int Fdt=F\\Delta t=\\Delta p",
+    "conditions": "한 축의 일정한 합력·일정 질량. 같은 충격량이 같은 운동량 변화를 뜻하며 운동에너지 변화까지 같다는 뜻은 아니다.",
+    "controls": [
+      {
+        "key": "F",
+        "name": "합력",
+        "tex": "F",
+        "unit": "N",
+        "min": -20,
+        "max": 20,
+        "initial": 4
+      },
+      {
+        "key": "dt",
+        "name": "힘 작용 시간",
+        "tex": "\\Delta t",
+        "unit": "s",
+        "min": 0,
+        "max": 5,
+        "initial": 1
+      }
+    ],
+    "abscissa": "dt",
+    "x": "\\Delta t\\;(\\mathrm{s})",
+    "y": "J\\;(\\mathrm{kg\\,m/s})",
+    "extent": [
+      0,
+      5
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c7-center-mass",
+    "chapter": 7,
+    "engine": "center-mass",
+    "name": "질량중심과 외력",
+    "sections": [
+      "7.4",
+      "7.5"
+    ],
+    "question": "한 물체를 옮기면 계의 질량중심은 얼마나 이동하는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "x_{CM}=\\frac{m_1x_1+m_2x_2}{m_1+m_2},\\quad M\\vec a_{CM}=\\sum\\vec F_{ext}",
+    "conditions": "두 질점·같은 기준축·양의 일정 질량. 내부 힘이 질량중심의 외력 방정식에 추가되지 않는다. 현재 그래프는 위치 관계이다.",
+    "controls": [
+      {
+        "key": "m1",
+        "name": "첫 질량",
+        "tex": "m_1",
+        "unit": "kg",
+        "min": 0.1,
+        "max": 5,
+        "initial": 1
+      },
+      {
+        "key": "m2",
+        "name": "둘째 질량",
+        "tex": "m_2",
+        "unit": "kg",
+        "min": 0.1,
+        "max": 5,
+        "initial": 2
+      },
+      {
+        "key": "x1",
+        "name": "첫 위치",
+        "tex": "x_1",
+        "unit": "m",
+        "min": -5,
+        "max": 5,
+        "initial": 0
+      },
+      {
+        "key": "x2",
+        "name": "둘째 위치",
+        "tex": "x_2",
+        "unit": "m",
+        "min": -5,
+        "max": 5,
+        "initial": 3
+      }
+    ],
+    "abscissa": "x2",
+    "x": "x_2\\;(\\mathrm{m})",
+    "y": "x_{CM}\\;(\\mathrm{m})",
+    "extent": [
+      -5,
+      5
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c7-rocket",
+    "chapter": 7,
+    "engine": "rocket",
+    "name": "가변 질량의 로켓",
+    "sections": [
+      "7.6"
+    ],
+    "question": "분출 속도가 같아도 질량비가 속도 증가를 어떻게 정하는가?",
+    "relation": "교재의 음의 분출 상대속도와 양의 조절 속력을 대응하고, 초기/최종 질량비에 따른 로켓 속도 증가를 비교한다.",
+    "formula": "v_f-v_i=-v_{rel}\\ln(M_i/M_f),\\quad v_{rel}<0",
+    "conditions": "일차원·외력 무시·일정 분출 상대속력·남은 질량 양수. 교재7.53의 부호 있는 v_rel<0에 대해 조절값은 양의 |v_rel|이다. 질량비 M_i/M_f≥1. 중력의 −gt와 연소율·추력·실제 궤적은 포함하지 않는다.",
+    "controls": [
+      {
+        "key": "u",
+        "name": "분출 상대속력",
+        "tex": "|v_{rel}|",
+        "unit": "m/s",
+        "min": 100,
+        "max": 3000,
+        "initial": 1000
+      },
+      {
+        "key": "ratio",
+        "name": "초기/최종 질량",
+        "tex": "M_i/M_f",
+        "unit": "1",
+        "min": 1,
+        "max": 5,
+        "initial": 2
+      }
+    ],
+    "abscissa": "ratio",
+    "x": "M_i/M_f",
+    "y": "v_f-v_i\\;(\\mathrm{m/s})",
+    "extent": [
+      1,
+      5
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c8-angular-motion",
+    "chapter": 8,
+    "engine": "angular-motion",
+    "name": "각운동과 접선 속도",
+    "sections": [
+      "8.1",
+      "8.2",
+      "8.3",
+      "8.4",
+      "8.5"
+    ],
+    "question": "같은 각속도에서도 반지름이 선속도를 어떻게 바꾸는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "\\omega=\\omega_\\circ+\\alpha t,\\quad v_t=r\\omega",
+    "conditions": "고정축·일정 각가속도·r은 회전축까지 거리·라디안. 부호는 선택한 회전 방향에 따르며 곡선은 한 점의 접선 속도 성분이다.",
+    "controls": [
+      {
+        "key": "r",
+        "name": "반지름",
+        "tex": "r",
+        "unit": "m",
+        "min": 0.05,
+        "max": 2,
+        "initial": 0.5
+      },
+      {
+        "key": "w",
+        "name": "초기 각속도",
+        "tex": "\\omega_\\circ",
+        "unit": "rad/s",
+        "min": -5,
+        "max": 5,
+        "initial": 2
+      },
+      {
+        "key": "alpha",
+        "name": "각가속도",
+        "tex": "\\alpha",
+        "unit": "rad/s^2",
+        "min": -5,
+        "max": 5,
+        "initial": 1
+      },
+      {
+        "key": "t",
+        "name": "관찰 시각",
+        "tex": "t",
+        "unit": "s",
+        "min": 0,
+        "max": 5,
+        "initial": 1
+      }
+    ],
+    "abscissa": "t",
+    "x": "t\\;(\\mathrm{s})",
+    "y": "v_t\\;(\\mathrm{m/s})",
+    "extent": [
+      0,
+      5
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c8-rotation-energy",
+    "chapter": 8,
+    "engine": "rotation-energy",
+    "name": "관성모멘트와 회전 에너지",
+    "sections": [
+      "8.7",
+      "8.8"
+    ],
+    "question": "같은 각속도에서 질량의 배치가 에너지를 어떻게 바꾸는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "I=mr^2,\\quad K_{rot}=\\frac12I\\omega^2",
+    "conditions": "축에서 거리 r인 단일 질점·고정축. 연속 강체의 I를 단일 mr²로 대신하지 않는다.",
+    "controls": [
+      {
+        "key": "m",
+        "name": "질량",
+        "tex": "m",
+        "unit": "kg",
+        "min": 0.1,
+        "max": 5,
+        "initial": 1
+      },
+      {
+        "key": "r",
+        "name": "반지름",
+        "tex": "r",
+        "unit": "m",
+        "min": 0.05,
+        "max": 2,
+        "initial": 0.5
+      },
+      {
+        "key": "w",
+        "name": "각속도",
+        "tex": "\\omega",
+        "unit": "rad/s",
+        "min": -10,
+        "max": 10,
+        "initial": 2
+      }
+    ],
+    "abscissa": "r",
+    "x": "r\\;(\\mathrm{m})",
+    "y": "K_{rot}\\;(\\mathrm{J})",
+    "extent": [
+      0.05,
+      2
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c8-rolling",
+    "chapter": 8,
+    "engine": "rolling",
+    "name": "미끄럼 없는 구름",
+    "sections": [
+      "8.9"
+    ],
+    "question": "관성모멘트가 같은 낙하 높이의 구름 속력을 어떻게 바꾸는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "I=\\beta mR^2,\\quad v_{CM}=\\sqrt{\\frac{2gh}{1+\\beta}}",
+    "conditions": "정지에서 출발·미끄럼 없음·고정 경사면·에너지 손실 없음. β는 강체 질량분포 비율이다. 조건을 만족시키는 정지 마찰이 있어야 한다.",
+    "controls": [
+      {
+        "key": "eta",
+        "name": "질량분포 비율",
+        "tex": "\\beta",
+        "unit": "1",
+        "min": 0.4,
+        "max": 1,
+        "initial": 0.5
+      },
+      {
+        "key": "h",
+        "name": "수직 낙하 높이",
+        "tex": "h",
+        "unit": "m",
+        "min": 0,
+        "max": 5,
+        "initial": 1
+      }
+    ],
+    "abscissa": "h",
+    "x": "h\\;(\\mathrm{m})",
+    "y": "v_{CM}\\;(\\mathrm{m/s})",
+    "extent": [
+      0,
+      5
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c9-precession",
+    "chapter": 9,
+    "engine": "precession",
+    "name": "느린 세차",
+    "sections": [
+      "9.1",
+      "9.3"
+    ],
+    "question": "빠른 자전은 세차 속도를 어떻게 바꾸는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "\\Omega=\\frac{Mgr}{I\\omega}",
+    "conditions": "빠른 자전·느린 정상 세차 Ω≪ω·중력 토크·고정 지지점. Ω/ω≥0.1 구간은 이 관찰의 보수적 근사 범위 밖이라 곡선을 보류한다. 0.1은 교재의 임계 상수가 아니라 설계 경고 기준이다.",
+    "controls": [
+      {
+        "key": "m",
+        "name": "질량",
+        "tex": "M",
+        "unit": "kg",
+        "min": 0.1,
+        "max": 2,
+        "initial": 1
+      },
+      {
+        "key": "r",
+        "name": "지지점과 질량중심 거리",
+        "tex": "r",
+        "unit": "m",
+        "min": 0.01,
+        "max": 0.2,
+        "initial": 0.05
+      },
+      {
+        "key": "I",
+        "name": "축 관성모멘트",
+        "tex": "I",
+        "unit": "kg m^2",
+        "min": 0.001,
+        "max": 0.1,
+        "initial": 0.02
+      },
+      {
+        "key": "w",
+        "name": "자전 각속도",
+        "tex": "\\omega",
+        "unit": "rad/s",
+        "min": 1,
+        "max": 100,
+        "initial": 50
+      }
+    ],
+    "abscissa": "w",
+    "x": "\\omega\\;(\\mathrm{rad/s})",
+    "y": "\\Omega\\;(\\mathrm{rad/s})",
+    "extent": [
+      1,
+      100
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "느린 정상 세차의 크기 관계를 계산한다. 흔들림(장동)·일반 3차원 강체 Euler 방정식·자전축 기울기 변화 전체는 모사하지 않는다. Ω/ω의 설계 경고는 근사가 확인되지 않았다는 뜻이며 대상의 불가능/발산 판정이 아니다."
+  },
+  {
+    "id": "c10-density",
+    "chapter": 10,
+    "engine": "density",
+    "name": "밀도와 질량",
+    "sections": [
+      "10.1",
+      "10.3"
+    ],
+    "question": "같은 부피라도 밀도에 따라 질량은 어떻게 달라지는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "\\rho=m/V",
+    "conditions": "균일한 물질·양의 부피. 고체/액체/기체의 구별을 밀도 값 하나만으로 판정하지 않는다.",
+    "controls": [
+      {
+        "key": "rho",
+        "name": "밀도",
+        "tex": "\\rho",
+        "unit": "kg/m^3",
+        "min": 1,
+        "max": 2000,
+        "initial": 1000
+      },
+      {
+        "key": "vol",
+        "name": "부피",
+        "tex": "V",
+        "unit": "m^3",
+        "min": 0.001,
+        "max": 0.1,
+        "initial": 0.01
+      }
+    ],
+    "abscissa": "vol",
+    "x": "V\\;(\\mathrm{m^3})",
+    "y": "m\\;(\\mathrm{kg})",
+    "extent": [
+      0.001,
+      0.1
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c10-elastic",
+    "chapter": 10,
+    "engine": "elastic",
+    "name": "응력과 작은 변형",
+    "sections": [
+      "10.2"
+    ],
+    "question": "탄성률이 같을 때 응력이 길이 변형을 어떻게 정하는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "\\sigma=Y\\epsilon,\\quad\\epsilon=\\Delta L/L",
+    "conditions": "균일한 축방향 인장/압축·선형 탄성 영역·작은 변형. Y를 GPa, 응력을 MPa로 입력한다. 수치 범위가 재료별 탄성 한계를 입증하지 않는다.",
+    "controls": [
+      {
+        "key": "Y",
+        "name": "영률",
+        "tex": "Y",
+        "unit": "GPa",
+        "min": 1,
+        "max": 200,
+        "initial": 50
+      },
+      {
+        "key": "stress",
+        "name": "응력",
+        "tex": "\\sigma",
+        "unit": "MPa",
+        "min": -10,
+        "max": 10,
+        "initial": 5
+      }
+    ],
+    "abscissa": "stress",
+    "x": "\\sigma\\;(\\mathrm{MPa})",
+    "y": "\\epsilon",
+    "extent": [
+      -10,
+      10
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c10-buoyancy",
+    "chapter": 10,
+    "engine": "buoyancy",
+    "name": "부력과 배제 부피",
+    "sections": [
+      "10.4"
+    ],
+    "question": "잠긴 부피가 부력을 어떻게 정하는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "F_B=\\rho_f V_{disp}g",
+    "conditions": "정지 유체·일정 유체 밀도·g=9.81m/s². 배제 부피는 잠긴 부분의 부피이며 전체 물체 부피와 구별한다.",
+    "controls": [
+      {
+        "key": "rho",
+        "name": "유체 밀도",
+        "tex": "\\rho_f",
+        "unit": "kg/m^3",
+        "min": 100,
+        "max": 2000,
+        "initial": 1000
+      },
+      {
+        "key": "vol",
+        "name": "배제 부피",
+        "tex": "V_{disp}",
+        "unit": "m^3",
+        "min": 0,
+        "max": 0.02,
+        "initial": 0.005
+      }
+    ],
+    "abscissa": "vol",
+    "x": "V_{disp}\\;(\\mathrm{m^3})",
+    "y": "F_B\\;(\\mathrm{N})",
+    "extent": [
+      0,
+      0.02
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c10-bernoulli",
+    "chapter": 10,
+    "engine": "bernoulli",
+    "name": "연속 흐름과 압력차",
+    "sections": [
+      "10.5"
+    ],
+    "question": "같은 높이의 관이 좁아지면 속도와 압력은 어떻게 연결되는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "A_1v_1=A_2v_2,\\quad P_2-P_1=\\frac12\\rho(v_1^2-v_2^2)",
+    "conditions": "교재의 이상 유체 가정: 정상·비압축·비점성·비회전. 같은 유선·동일 높이·양의 단면적. 압력차를 계산하며 음의 절대압력이나 공동 발생을 예측하지 않는다.",
+    "controls": [
+      {
+        "key": "rho",
+        "name": "밀도",
+        "tex": "\\rho",
+        "unit": "kg/m^3",
+        "min": 100,
+        "max": 2000,
+        "initial": 1000
+      },
+      {
+        "key": "v",
+        "name": "입구 속력",
+        "tex": "v_1",
+        "unit": "m/s",
+        "min": 0.1,
+        "max": 5,
+        "initial": 1
+      },
+      {
+        "key": "ratio",
+        "name": "출구/입구 단면적",
+        "tex": "A_2/A_1",
+        "unit": "1",
+        "min": 0.2,
+        "max": 3,
+        "initial": 0.5
+      }
+    ],
+    "abscissa": "ratio",
+    "x": "A_2/A_1",
+    "y": "P_2-P_1\\;(\\mathrm{Pa})",
+    "extent": [
+      0.2,
+      3
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c11-expansion",
+    "chapter": 11,
+    "engine": "expansion",
+    "name": "온도차와 선팽창",
+    "sections": [
+      "11.1",
+      "11.2"
+    ],
+    "question": "온도차가 길이 변화를 어떻게 정하는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "\\Delta L=\\alpha L_\\circ\\Delta T",
+    "conditions": "작은 온도 범위·선팽창계수 일정·균일 온도·자유 팽창. ΔT의 K와 °C 차이는 수치가 같다. 계수는 10⁻⁶/K로 입력한다.",
+    "controls": [
+      {
+        "key": "alpha",
+        "name": "선팽창계수",
+        "tex": "\\alpha",
+        "unit": "10^{-6}/K",
+        "min": 1,
+        "max": 30,
+        "initial": 12
+      },
+      {
+        "key": "length",
+        "name": "원래 길이",
+        "tex": "L_\\circ",
+        "unit": "m",
+        "min": 0.1,
+        "max": 5,
+        "initial": 1
+      },
+      {
+        "key": "dt",
+        "name": "온도차",
+        "tex": "\\Delta T",
+        "unit": "K",
+        "min": -50,
+        "max": 100,
+        "initial": 20
+      }
+    ],
+    "abscissa": "dt",
+    "x": "\\Delta T\\;(\\mathrm{K})",
+    "y": "\\Delta L\\;(\\mathrm{m})",
+    "extent": [
+      -50,
+      100
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c12-heat",
+    "chapter": 12,
+    "engine": "heat",
+    "name": "비열과 온도 변화",
+    "sections": [
+      "12.1"
+    ],
+    "question": "같은 열이 물질의 온도를 얼마나 바꾸는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "Q=mc\\Delta T",
+    "conditions": "상변화 없음·비열 일정·다른 에너지 전달 무시. 잠열 Q=mL은 온도 변화식과 구별한다.",
+    "controls": [
+      {
+        "key": "m",
+        "name": "질량",
+        "tex": "m",
+        "unit": "kg",
+        "min": 0.1,
+        "max": 5,
+        "initial": 1
+      },
+      {
+        "key": "c",
+        "name": "비열",
+        "tex": "c",
+        "unit": "J/(kg K)",
+        "min": 100,
+        "max": 5000,
+        "initial": 4200
+      },
+      {
+        "key": "dt",
+        "name": "온도차",
+        "tex": "\\Delta T",
+        "unit": "K",
+        "min": -20,
+        "max": 20,
+        "initial": 5
+      }
+    ],
+    "abscissa": "dt",
+    "x": "\\Delta T\\;(\\mathrm{K})",
+    "y": "Q\\;(\\mathrm{J})",
+    "extent": [
+      -20,
+      20
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c12-first-law",
+    "chapter": 12,
+    "engine": "first-law",
+    "name": "열·일과 내부에너지",
+    "sections": [
+      "12.2",
+      "12.3"
+    ],
+    "question": "같은 열을 받아도 계가 하는 일이 다르면 무엇이 달라지는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "\\Delta E_{int}=Q-W",
+    "conditions": "계가 흡수한 열 Q>0·계가 한 일 W>0인 교재 부호. 내부에너지 변화는 상태 변화이며 Q와 W는 과정에 의존한다.",
+    "controls": [
+      {
+        "key": "Q",
+        "name": "흡수한 열",
+        "tex": "Q",
+        "unit": "J",
+        "min": -100,
+        "max": 100,
+        "initial": 50
+      },
+      {
+        "key": "W",
+        "name": "계가 한 일",
+        "tex": "W",
+        "unit": "J",
+        "min": -100,
+        "max": 100,
+        "initial": 20
+      }
+    ],
+    "abscissa": "W",
+    "x": "W\\;(\\mathrm{J})",
+    "y": "\\Delta E_{int}\\;(\\mathrm{J})",
+    "extent": [
+      -100,
+      100
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c13-heat-capacity",
+    "chapter": 13,
+    "engine": "heat-capacity",
+    "name": "정압과 정적 열용량",
+    "sections": [
+      "13.1",
+      "13.2"
+    ],
+    "question": "같은 온도 증가에서 두 과정의 필요 열이 왜 다른가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "C_V=\\frac32R,\\quad C_P=C_V+R,\\quad Q_P-Q_V=nR\\Delta T",
+    "conditions": "단원자 고전 이상기체·고정 물질량·정압과 정적 경로 비교. 분자 회전·진동 자유도가 활성화되는 기체의 CV로 확대하지 않는다.",
+    "controls": [
+      {
+        "key": "n",
+        "name": "물질량",
+        "tex": "n",
+        "unit": "mol",
+        "min": 0.1,
+        "max": 3,
+        "initial": 1
+      },
+      {
+        "key": "dt",
+        "name": "온도차",
+        "tex": "\\Delta T",
+        "unit": "K",
+        "min": -100,
+        "max": 100,
+        "initial": 20
+      }
+    ],
+    "abscissa": "dt",
+    "x": "\\Delta T\\;(\\mathrm{K})",
+    "y": "Q_P-Q_V\\;(\\mathrm{J})",
+    "extent": [
+      -100,
+      100
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c12-conduction",
+    "chapter": 12,
+    "engine": "conduction",
+    "name": "평면 벽의 열전도",
+    "sections": [
+      "12.5"
+    ],
+    "question": "벽의 두께를 바꾸면 열 전달률은 어떻게 달라지는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "\\frac{dQ}{dt}=kA\\frac{T_H-T_C}{L}",
+    "conditions": "정상 일차원 평면 벽·열전도율 일정·면적 일정. 대류/복사는 같은 식으로 대체하지 않는다. 온도차는 뜨거운 면−찬 면이다.",
+    "controls": [
+      {
+        "key": "k",
+        "name": "열전도율",
+        "tex": "k",
+        "unit": "W/(m K)",
+        "min": 0.1,
+        "max": 100,
+        "initial": 1
+      },
+      {
+        "key": "A",
+        "name": "면적",
+        "tex": "A",
+        "unit": "m^2",
+        "min": 0.1,
+        "max": 2,
+        "initial": 1
+      },
+      {
+        "key": "dt",
+        "name": "양쪽 온도차",
+        "tex": "T_H-T_C",
+        "unit": "K",
+        "min": 0,
+        "max": 100,
+        "initial": 20
+      },
+      {
+        "key": "length",
+        "name": "벽 두께",
+        "tex": "L",
+        "unit": "m",
+        "min": 0.01,
+        "max": 1,
+        "initial": 0.1
+      }
+    ],
+    "abscissa": "length",
+    "x": "L\\;(\\mathrm{m})",
+    "y": "dQ/dt\\;(\\mathrm{W})",
+    "extent": [
+      0.01,
+      1
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c14-string-speed",
+    "chapter": 14,
+    "engine": "string-speed",
+    "name": "줄의 장력과 파동 속력",
+    "sections": [
+      "14.4"
+    ],
+    "question": "장력을 바꾸면 전파 속력은 어떻게 변하는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "v=\\sqrt{\\tau/\\mu}",
+    "conditions": "이상 줄·균일 선밀도·작은 횡방향 변형·고정 장력. τ는 이 절의 장력이며 회전 토크와 의미가 다르다.",
+    "controls": [
+      {
+        "key": "tension",
+        "name": "줄 장력",
+        "tex": "\\tau",
+        "unit": "N",
+        "min": 1,
+        "max": 100,
+        "initial": 20
+      },
+      {
+        "key": "mu",
+        "name": "선밀도",
+        "tex": "\\mu",
+        "unit": "kg/m",
+        "min": 0.001,
+        "max": 0.1,
+        "initial": 0.01
+      }
+    ],
+    "abscissa": "tension",
+    "x": "\\tau\\;(\\mathrm{N})",
+    "y": "v\\;(\\mathrm{m/s})",
+    "extent": [
+      1,
+      100
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c14-wave-power",
+    "chapter": 14,
+    "engine": "wave-power",
+    "name": "파동의 평균 에너지 전달",
+    "sections": [
+      "14.5"
+    ],
+    "question": "진폭이 두 배가 되면 평균 일률은 어떻게 달라지는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "P_{av}=\\frac12\\mu\\omega^2A^2v",
+    "conditions": "선형 사인파·균일 이상 줄·작은 기울기·ω=2πf. v=√(τ/μ)와 별개로 고정한 유효 전파 속력이다.",
+    "controls": [
+      {
+        "key": "mu",
+        "name": "선밀도",
+        "tex": "\\mu",
+        "unit": "kg/m",
+        "min": 0.001,
+        "max": 0.1,
+        "initial": 0.01
+      },
+      {
+        "key": "f",
+        "name": "진동수",
+        "tex": "f",
+        "unit": "Hz",
+        "min": 1,
+        "max": 20,
+        "initial": 5
+      },
+      {
+        "key": "v",
+        "name": "전파 속력",
+        "tex": "v",
+        "unit": "m/s",
+        "min": 20,
+        "max": 100,
+        "initial": 50
+      },
+      {
+        "key": "A",
+        "name": "진폭",
+        "tex": "A",
+        "unit": "m",
+        "min": 0,
+        "max": 0.01,
+        "initial": 0.005
+      }
+    ],
+    "abscissa": "A",
+    "x": "A\\;(\\mathrm{m})",
+    "y": "P_{av}\\;(\\mathrm{W})",
+    "extent": [
+      0,
+      0.01
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c14-standing",
+    "chapter": 14,
+    "engine": "standing",
+    "name": "정상파의 마디와 배",
+    "sections": [
+      "14.7",
+      "16.3"
+    ],
+    "question": "두 진행파의 중첩은 움직이지 않는 마디를 어떻게 만드는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "y=2A\\sin(kx)\\cos(\\omega t)",
+    "conditions": "같은 진폭/진동수·반대 방향·선형 중첩. k=2π/λ, ω=2πf. 유한 줄의 경계조건은 허용 파장 선택에 추가로 필요하다.",
+    "controls": [
+      {
+        "key": "A",
+        "name": "각 진행파 진폭",
+        "tex": "A",
+        "unit": "m",
+        "min": 0.001,
+        "max": 0.02,
+        "initial": 0.01
+      },
+      {
+        "key": "lambda",
+        "name": "파장",
+        "tex": "\\lambda",
+        "unit": "m",
+        "min": 0.5,
+        "max": 3,
+        "initial": 2
+      },
+      {
+        "key": "f",
+        "name": "진동수",
+        "tex": "f",
+        "unit": "Hz",
+        "min": 0.1,
+        "max": 5,
+        "initial": 1
+      },
+      {
+        "key": "t",
+        "name": "관찰 시각",
+        "tex": "t",
+        "unit": "s",
+        "min": 0,
+        "max": 2,
+        "initial": 0.1
+      }
+    ],
+    "abscissa": "t",
+    "x": "x\\;(\\mathrm{m})",
+    "y": "y\\;(\\mathrm{m})",
+    "extent": [
+      0,
+      3
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c15-sound-speed",
+    "chapter": 15,
+    "engine": "sound-speed",
+    "name": "탄성·밀도와 음속",
+    "sections": [
+      "15.1",
+      "15.2"
+    ],
+    "question": "매질의 탄성과 밀도는 음속을 어떻게 정하는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "v=\\sqrt{B/\\rho}",
+    "conditions": "균일 유체의 작은 종파·체적 탄성률 B>0·밀도>0. 고체 막대는 영률 Y의 관계로 구별한다. B는 GPa 단위이다.",
+    "controls": [
+      {
+        "key": "bulk",
+        "name": "체적 탄성률",
+        "tex": "B",
+        "unit": "GPa",
+        "min": 0.001,
+        "max": 5,
+        "initial": 2
+      },
+      {
+        "key": "rho",
+        "name": "밀도",
+        "tex": "\\rho",
+        "unit": "kg/m^3",
+        "min": 1,
+        "max": 2000,
+        "initial": 1000
+      }
+    ],
+    "abscissa": "rho",
+    "x": "\\rho\\;(\\mathrm{kg/m^3})",
+    "y": "v\\;(\\mathrm{m/s})",
+    "extent": [
+      1,
+      2000
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c15-sound-intensity",
+    "chapter": 15,
+    "engine": "sound-intensity",
+    "name": "구면파의 세기",
+    "sections": [
+      "15.3"
+    ],
+    "question": "같은 음원이 멀어질수록 단위면적 일률은 어떻게 달라지는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "I=P/(4\\pi r^2)",
+    "conditions": "균일 매질·등방 점음원·흡수/반사 무시·r>0. 가까운 실제 음원의 구조와 청감 판단을 대신하지 않는다.",
+    "controls": [
+      {
+        "key": "power",
+        "name": "음원 일률",
+        "tex": "P",
+        "unit": "W",
+        "min": 0.01,
+        "max": 10,
+        "initial": 1
+      },
+      {
+        "key": "r",
+        "name": "거리",
+        "tex": "r",
+        "unit": "m",
+        "min": 0.1,
+        "max": 10,
+        "initial": 1
+      }
+    ],
+    "abscissa": "r",
+    "x": "r\\;(\\mathrm{m})",
+    "y": "I\\;(\\mathrm{W/m^2})",
+    "extent": [
+      0.1,
+      10
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c15-doppler",
+    "chapter": 15,
+    "engine": "doppler",
+    "name": "소리의 도플러 이동",
+    "sections": [
+      "15.6"
+    ],
+    "question": "음원과 관측자의 운동은 각각 어떤 항을 바꾸는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "f^{\\prime}=f\\frac{v+v_o}{v-v_s}",
+    "conditions": "매질 정지·일직선·비상대론적 소리·v=343m/s. vo>0은 음원 쪽 관측자 운동, vs>0은 관측자 쪽 음원 운동. 아음속 범위만 사용한다.",
+    "controls": [
+      {
+        "key": "f",
+        "name": "음원 진동수",
+        "tex": "f",
+        "unit": "Hz",
+        "min": 100,
+        "max": 1000,
+        "initial": 440
+      },
+      {
+        "key": "vo",
+        "name": "관측자 접근 속도",
+        "tex": "v_o",
+        "unit": "m/s",
+        "min": -100,
+        "max": 100,
+        "initial": 0
+      },
+      {
+        "key": "vs",
+        "name": "음원 접근 속도",
+        "tex": "v_s",
+        "unit": "m/s",
+        "min": -100,
+        "max": 100,
+        "initial": 30
+      }
+    ],
+    "abscissa": "vs",
+    "x": "v_s\\;(\\mathrm{m/s})",
+    "y": "f^{\\prime}\\;(\\mathrm{Hz})",
+    "extent": [
+      -100,
+      100
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c15-mach",
+    "chapter": 15,
+    "engine": "mach",
+    "name": "초음속 충격파 각도",
+    "sections": [
+      "15.7"
+    ],
+    "question": "음원 속력이 음속보다 클 때 원뿔 각도는 어떻게 정해지는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "\\sin\\theta=v/v_s",
+    "conditions": "균일 매질·일정 초음속 음원·v=343m/s·vs>v. 충격파의 기하적 원뿔 각이며 유동·압력 분포를 계산하지 않는다.",
+    "controls": [
+      {
+        "key": "vs",
+        "name": "음원 속력",
+        "tex": "v_s",
+        "unit": "m/s",
+        "min": 344,
+        "max": 1500,
+        "initial": 686
+      }
+    ],
+    "abscissa": "vs",
+    "x": "v_s\\;(\\mathrm{m/s})",
+    "y": "\\theta\\;(\\mathrm{rad})",
+    "extent": [
+      344,
+      1500
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c16-interference-phase",
+    "chapter": 16,
+    "engine": "interference-phase",
+    "name": "경로 차이와 간섭",
+    "sections": [
+      "16.2"
+    ],
+    "question": "두 파의 위상 차이가 합성 진폭을 어떻게 바꾸는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "A_{res}=2A|\\cos(\\phi/2)|",
+    "conditions": "같은 진폭·같은 진동수·선형 중첩·위상차 φ. 여기서는 결과 진폭의 크기만 표시하며 두 파의 부호와 순간 변위를 구별한다.",
+    "controls": [
+      {
+        "key": "A",
+        "name": "각 파의 진폭",
+        "tex": "A",
+        "unit": "m",
+        "min": 0.01,
+        "max": 1,
+        "initial": 0.2
+      },
+      {
+        "key": "phase",
+        "name": "위상차",
+        "tex": "\\phi",
+        "unit": "rad",
+        "min": 0,
+        "max": 6.28318530718,
+        "initial": 3.14159265359
+      }
+    ],
+    "abscissa": "phase",
+    "x": "\\phi\\;(\\mathrm{rad})",
+    "y": "A_{res}\\;(\\mathrm{m})",
+    "extent": [
+      0,
+      6.28318530718
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c16-pipe-open",
+    "chapter": 16,
+    "engine": "pipe-open",
+    "name": "열린 관의 기본 진동수",
+    "sections": [
+      "16.4"
+    ],
+    "question": "관 길이가 기본 진동수를 어떻게 정하는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "f_1=v/(2L)",
+    "conditions": "양 끝 열린 관·끝 보정 무시·균일 공기·v=343m/s. 변위 배와 압력 마디를 구별한다.",
+    "controls": [
+      {
+        "key": "length",
+        "name": "관 길이",
+        "tex": "L",
+        "unit": "m",
+        "min": 0.1,
+        "max": 2,
+        "initial": 0.5
+      }
+    ],
+    "abscissa": "length",
+    "x": "L\\;(\\mathrm{m})",
+    "y": "f_1\\;(\\mathrm{Hz})",
+    "extent": [
+      0.1,
+      2
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c16-pipe-closed",
+    "chapter": 16,
+    "engine": "pipe-closed",
+    "name": "한쪽 닫힌 관의 기본 진동수",
+    "sections": [
+      "16.4"
+    ],
+    "question": "같은 길이에서도 끝 조건이 기본 진동수를 바꾸는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "f_1=v/(4L),\\quad f_n=nv/(4L),\\quad n=1,3,5,\\ldots",
+    "conditions": "한쪽 닫힘·반대쪽 열림·끝 보정 무시·v=343m/s. 기본 진동수를 그리며 높은 모드는 홀수만 허용한다.",
+    "controls": [
+      {
+        "key": "length",
+        "name": "관 길이",
+        "tex": "L",
+        "unit": "m",
+        "min": 0.1,
+        "max": 2,
+        "initial": 0.5
+      }
+    ],
+    "abscissa": "length",
+    "x": "L\\;(\\mathrm{m})",
+    "y": "f_1\\;(\\mathrm{Hz})",
+    "extent": [
+      0.1,
+      2
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c17-mirror",
+    "chapter": 17,
+    "engine": "mirror",
+    "name": "구면 거울의 상",
+    "sections": [
+      "17.5"
+    ],
+    "question": "거울의 초점과 물체 거리가 상거리를 어떻게 정하는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "1/p+1/i=1/f",
+    "conditions": "구면 거울·근축 광선·교재 부호 규약·오목 f>0, 볼록 f<0. f=0은 무효, p=f는 유한 상 없음. 렌즈와 식 모양이 같아도 반사 경로는 다르다.",
+    "controls": [
+      {
+        "key": "p",
+        "name": "물체 거리",
+        "tex": "p",
+        "unit": "m",
+        "min": 0.05,
+        "max": 2,
+        "initial": 0.6
+      },
+      {
+        "key": "f",
+        "name": "초점거리",
+        "tex": "f",
+        "unit": "m",
+        "min": -0.5,
+        "max": 0.5,
+        "initial": 0.2
+      }
+    ],
+    "abscissa": "p",
+    "x": "p\\;(\\mathrm{m})",
+    "y": "i\\;(\\mathrm{m})",
+    "extent": [
+      0.05,
+      2
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c18-thin-film",
+    "chapter": 18,
+    "engine": "thin-film",
+    "name": "얇은 막의 반사 간섭",
+    "sections": [
+      "18.3"
+    ],
+    "question": "막 두께와 반사 위상차가 무늬를 어떻게 바꾸는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "\\Delta\\phi=4\\pi nd/\\lambda+\\phi_{\\mathrm{ref}},\\quad I/I_\\circ=\\cos^2(\\Delta\\phi/2)",
+    "conditions": "법선 입사·결맞은 단색광·두 반사파 진폭 같음이라는 교재 밖 설명 모형이다. d는 막 두께이며 시간이 아니다. 상대 반사 위상차는 0 또는 π이다. 원문18.18의 −π와 현재 +π는 세기에서 2π 주기 때문에 같다. $I_\\circ$는 이 설명 모형의 최대 세기이며 다중 반사·Fresnel 계수·실제 투과율은 포함하지 않는다.",
+    "controls": [
+      {
+        "key": "n",
+        "name": "막 굴절률",
+        "tex": "n",
+        "unit": "1",
+        "min": 1,
+        "max": 2,
+        "initial": 1.5
+      },
+      {
+        "key": "lambda",
+        "name": "진공 파장",
+        "tex": "\\lambda",
+        "unit": "nm",
+        "min": 400,
+        "max": 700,
+        "initial": 550
+      },
+      {
+        "key": "thickness",
+        "name": "막 두께",
+        "tex": "d",
+        "unit": "nm",
+        "min": 0,
+        "max": 1000,
+        "initial": 100
+      },
+      {
+        "key": "phase",
+        "name": "상대 반사 위상차",
+        "tex": "\\phi_{ref}",
+        "unit": "rad",
+        "min": 0,
+        "max": 3.141592653589793,
+        "initial": 3.141592653589793,
+        "choices": [
+          {
+            "value": 0,
+            "label": "두 반사 사이 위상 변화 없음"
+          },
+          {
+            "value": 3.141592653589793,
+            "label": "한쪽 반사에만 π 변화"
+          }
+        ]
+      }
+    ],
+    "abscissa": "thickness",
+    "x": "d\\;(\\mathrm{nm})",
+    "y": "I/I_\\circ",
+    "extent": [
+      0,
+      1000
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c18-diffraction",
+    "chapter": 18,
+    "engine": "diffraction",
+    "name": "단일 슬릿의 회절",
+    "sections": [
+      "18.4"
+    ],
+    "question": "슬릿 폭이 중앙 밝은 영역의 폭을 어떻게 정하는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "I/I_\\circ=(\\sin\\beta/\\beta)^2,\\quad\\beta=\\pi a\\sin\\theta/\\lambda",
+    "conditions": "프라운호퍼 원거리·단색광·균일 슬릿 조명. β=0에서 연속 극한1을 사용한다. θ는 rad, a는 μm, λ는 nm.",
+    "controls": [
+      {
+        "key": "width",
+        "name": "슬릿 폭",
+        "tex": "a",
+        "unit": "μm",
+        "min": 1,
+        "max": 100,
+        "initial": 10
+      },
+      {
+        "key": "lambda",
+        "name": "파장",
+        "tex": "\\lambda",
+        "unit": "nm",
+        "min": 400,
+        "max": 700,
+        "initial": 550
+      },
+      {
+        "key": "angle",
+        "name": "관찰각",
+        "tex": "\\theta",
+        "unit": "rad",
+        "min": -0.3,
+        "max": 0.3,
+        "initial": 0.05
+      }
+    ],
+    "abscissa": "angle",
+    "x": "\\theta\\;(\\mathrm{rad})",
+    "y": "I/I_\\circ",
+    "extent": [
+      -0.3,
+      0.3
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c18-grating",
+    "chapter": 18,
+    "engine": "grating",
+    "name": "격자의 첫 밝은 방향",
+    "sections": [
+      "18.5"
+    ],
+    "question": "격자 간격이 첫 최대 각도와 가능한 차수를 어떻게 정하는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "d\\sin\\theta=m\\lambda",
+    "conditions": "결맞은 단색광·법선 입사·여러 동일 슬릿·m=1 고정. λ/d>1이면 첫 차수는 전파 방향으로 존재하지 않는다. 격자의 전체 세기/분해능은 별도이다.",
+    "controls": [
+      {
+        "key": "lambda",
+        "name": "파장",
+        "tex": "\\lambda",
+        "unit": "nm",
+        "min": 400,
+        "max": 700,
+        "initial": 550
+      },
+      {
+        "key": "spacing",
+        "name": "격자 간격",
+        "tex": "d",
+        "unit": "μm",
+        "min": 0.2,
+        "max": 5,
+        "initial": 1
+      }
+    ],
+    "abscissa": "spacing",
+    "x": "d\\;(\\mathrm{\\mu m})",
+    "y": "\\theta_1\\;(\\mathrm{rad})",
+    "extent": [
+      0.2,
+      5
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c18-malus",
+    "chapter": 18,
+    "engine": "malus",
+    "name": "편광 분석기의 세기",
+    "sections": [
+      "18.6"
+    ],
+    "question": "편광 방향과 분석기 사이각은 통과 세기를 어떻게 정하는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "I=I_\\circ\\cos^2\\theta",
+    "conditions": "이상 분석기·입사광은 선편광·I◦는 분석기 바로 앞 세기. 비편광 첫 편광기의1/2와 이 식을 구별한다.",
+    "controls": [
+      {
+        "key": "intensity",
+        "name": "입사 세기",
+        "tex": "I_\\circ",
+        "unit": "W/m^2",
+        "min": 0,
+        "max": 10,
+        "initial": 1
+      },
+      {
+        "key": "angle",
+        "name": "방향각",
+        "tex": "\\theta",
+        "unit": "rad",
+        "min": 0,
+        "max": 3.141592653589793,
+        "initial": 1.0471975512
+      }
+    ],
+    "abscissa": "angle",
+    "x": "\\theta\\;(\\mathrm{rad})",
+    "y": "I\\;(\\mathrm{W/m^2})",
+    "extent": [
+      0,
+      3.141592653589793
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c20-dipole-field",
+    "chapter": 20,
+    "engine": "dipole-field",
+    "name": "쌍극자 축 위의 전기장",
+    "sections": [
+      "20.3"
+    ],
+    "question": "멀리서 쌍극자장은 점전하장과 어떻게 다르게 감소하는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "E_x=kq[(x-a)^{-2}-(x+a)^{-2}]",
+    "conditions": "+q는 +a, −q는 −a·축 위 x>a·진공·정지 전하. 정확한 두 전하 합을 사용하며 먼거리 근사를 자동 대체하지 않는다.",
+    "controls": [
+      {
+        "key": "q",
+        "name": "전하",
+        "tex": "q",
+        "unit": "μC",
+        "min": -5,
+        "max": 5,
+        "initial": 1
+      },
+      {
+        "key": "a",
+        "name": "중심부터 전하 거리",
+        "tex": "a",
+        "unit": "m",
+        "min": 0.01,
+        "max": 0.1,
+        "initial": 0.05
+      },
+      {
+        "key": "x",
+        "name": "축 위 관찰 위치",
+        "tex": "x",
+        "unit": "m",
+        "min": 0.11,
+        "max": 2,
+        "initial": 0.5
+      }
+    ],
+    "abscissa": "x",
+    "x": "x\\;(\\mathrm{m})",
+    "y": "E_x\\;(\\mathrm{N/C})",
+    "extent": [
+      0.11,
+      2
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c20-ring-field",
+    "chapter": 20,
+    "engine": "ring-field",
+    "name": "대전 고리의 축 전기장",
+    "sections": [
+      "20.4"
+    ],
+    "question": "고리 중심에서 장이0이어도 전위가0인 것은 왜 아닌가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "E_z=kQz/(R^2+z^2)^{3/2}",
+    "conditions": "균일 고리·진공·축 위 관찰·대칭에 의해 횡성분 상쇄. 이 곡선은 고리 밖 일반 위치의 장을 대신하지 않는다.",
+    "controls": [
+      {
+        "key": "q",
+        "name": "전하",
+        "tex": "q",
+        "unit": "μC",
+        "min": -5,
+        "max": 5,
+        "initial": 1
+      },
+      {
+        "key": "radius",
+        "name": "고리 반지름",
+        "tex": "R",
+        "unit": "m",
+        "min": 0.1,
+        "max": 1,
+        "initial": 0.5
+      },
+      {
+        "key": "z",
+        "name": "축 위치",
+        "tex": "z",
+        "unit": "m",
+        "min": -2,
+        "max": 2,
+        "initial": 0.5
+      }
+    ],
+    "abscissa": "z",
+    "x": "z\\;(\\mathrm{m})",
+    "y": "E_z\\;(\\mathrm{N/C})",
+    "extent": [
+      -2,
+      2
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c20-electric-motion",
+    "chapter": 20,
+    "engine": "electric-motion",
+    "name": "균일 전기장 속 운동",
+    "sections": [
+      "20.6"
+    ],
+    "question": "전하 부호는 같은 장에서 가속도 방향을 어떻게 바꾸는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "x=x_\\circ+v_\\circ t+\\frac{qE}{2m}t^2",
+    "conditions": "균일 일정 전기장·비상대론적 질점·다른 힘 없음. x◦=0,v◦=0 고정. 조절값은 설명용 거시 질점이며 전자의 실제 궤적이 아니다.",
+    "controls": [
+      {
+        "key": "q",
+        "name": "전하",
+        "tex": "q",
+        "unit": "μC",
+        "min": -5,
+        "max": 5,
+        "initial": 1
+      },
+      {
+        "key": "E",
+        "name": "전기장 성분",
+        "tex": "E",
+        "unit": "N/C",
+        "min": -100,
+        "max": 100,
+        "initial": 20
+      },
+      {
+        "key": "m",
+        "name": "질량",
+        "tex": "m",
+        "unit": "kg",
+        "min": 0.001,
+        "max": 0.1,
+        "initial": 0.01
+      },
+      {
+        "key": "t",
+        "name": "관찰 시각",
+        "tex": "t",
+        "unit": "s",
+        "min": 0,
+        "max": 5,
+        "initial": 1
+      }
+    ],
+    "abscissa": "t",
+    "x": "t\\;(\\mathrm{s})",
+    "y": "x\\;(\\mathrm{m})",
+    "extent": [
+      0,
+      5
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c21-electric-flux",
+    "chapter": 21,
+    "engine": "electric-flux",
+    "name": "면 방향과 전기 선속",
+    "sections": [
+      "21.1"
+    ],
+    "question": "같은 장에서 면의 방향이 선속을 어떻게 바꾸는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "\\Phi_E=EA\\cos\\theta",
+    "conditions": "균일 전기장·평면 면적·θ는 면의 양의 법선과 장의 각. 열린 면 선속이며 닫힌 면의 포함 전하와 직접 같다고 처리하지 않는다.",
+    "controls": [
+      {
+        "key": "E",
+        "name": "장 크기",
+        "tex": "E",
+        "unit": "N/C",
+        "min": 0,
+        "max": 100,
+        "initial": 20
+      },
+      {
+        "key": "area",
+        "name": "면적",
+        "tex": "A",
+        "unit": "m^2",
+        "min": 0.1,
+        "max": 2,
+        "initial": 1
+      },
+      {
+        "key": "angle",
+        "name": "방향각",
+        "tex": "\\theta",
+        "unit": "rad",
+        "min": 0,
+        "max": 3.141592653589793,
+        "initial": 1.0471975512
+      }
+    ],
+    "abscissa": "angle",
+    "x": "\\theta\\;(\\mathrm{rad})",
+    "y": "\\Phi_E\\;(\\mathrm{N\\,m^2/C})",
+    "extent": [
+      0,
+      3.141592653589793
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c21-sphere-field",
+    "chapter": 21,
+    "engine": "sphere-field",
+    "name": "도체 구의 안과 밖",
+    "sections": [
+      "21.3",
+      "21.4"
+    ],
+    "question": "정전 평형 도체의 안쪽 장과 바깥쪽 장은 어떻게 다른가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "E_r=0\\;(r<R),\\quad E_r=kQ/r^2\\;(r>R)",
+    "conditions": "고립 구도체·정전평형·구대칭·외부장 없음. 표면의 극한이 불연속이며 r=R은 보류한다. 균일 절연 구와 구별한다.",
+    "controls": [
+      {
+        "key": "q",
+        "name": "전하",
+        "tex": "q",
+        "unit": "μC",
+        "min": -5,
+        "max": 5,
+        "initial": 1
+      },
+      {
+        "key": "radius",
+        "name": "구 반지름",
+        "tex": "R",
+        "unit": "m",
+        "min": 0.1,
+        "max": 1,
+        "initial": 0.5
+      },
+      {
+        "key": "r",
+        "name": "관찰 반지름",
+        "tex": "r",
+        "unit": "m",
+        "min": 0,
+        "max": 2,
+        "initial": 0.8
+      }
+    ],
+    "abscissa": "r",
+    "x": "r\\;(\\mathrm{m})",
+    "y": "E_r\\;(\\mathrm{N/C})",
+    "extent": [
+      0,
+      2
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c22-uniform-potential",
+    "chapter": 22,
+    "engine": "uniform-potential",
+    "name": "균일 장과 전위차",
+    "sections": [
+      "22.1",
+      "22.3"
+    ],
+    "question": "장 방향으로 이동하면 전위와 위치에너지는 어떻게 변하는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "\\Delta V=-E\\Delta x,\\quad\\Delta U=q\\Delta V",
+    "conditions": "정전 균일장·한 축 이동·E는 축 성분. 전위차는 시험 전하 부호와 무관하며 위치에너지 변화는 q에 의존한다.",
+    "controls": [
+      {
+        "key": "E",
+        "name": "장 성분",
+        "tex": "E",
+        "unit": "N/C",
+        "min": -100,
+        "max": 100,
+        "initial": 20
+      },
+      {
+        "key": "dx",
+        "name": "축 방향 이동",
+        "tex": "\\Delta x",
+        "unit": "m",
+        "min": -2,
+        "max": 2,
+        "initial": 1
+      }
+    ],
+    "abscissa": "dx",
+    "x": "\\Delta x\\;(\\mathrm{m})",
+    "y": "\\Delta V\\;(\\mathrm{V})",
+    "extent": [
+      -2,
+      2
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c22-dipole-potential",
+    "chapter": 22,
+    "engine": "dipole-potential",
+    "name": "쌍극자 축 전위",
+    "sections": [
+      "22.5"
+    ],
+    "question": "양·음 전하의 전위는 부호를 보존하며 어떻게 더해지는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "V=kq[(x-a)^{-1}-(x+a)^{-1}]",
+    "conditions": "+q는+a,−q는−a·축 위 x>a·진공·무한대V=0. 두 점전하의 정확한 합이다.",
+    "controls": [
+      {
+        "key": "q",
+        "name": "전하",
+        "tex": "q",
+        "unit": "μC",
+        "min": -5,
+        "max": 5,
+        "initial": 1
+      },
+      {
+        "key": "a",
+        "name": "반간격",
+        "tex": "a",
+        "unit": "m",
+        "min": 0.01,
+        "max": 0.1,
+        "initial": 0.05
+      },
+      {
+        "key": "x",
+        "name": "관찰 위치",
+        "tex": "x",
+        "unit": "m",
+        "min": 0.11,
+        "max": 2,
+        "initial": 0.5
+      }
+    ],
+    "abscissa": "x",
+    "x": "x\\;(\\mathrm{m})",
+    "y": "V\\;(\\mathrm{V})",
+    "extent": [
+      0.11,
+      2
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c22-dipole-energy",
+    "chapter": 22,
+    "engine": "dipole-energy",
+    "name": "외부 장 속 쌍극자",
+    "sections": [
+      "22.6"
+    ],
+    "question": "쌍극자의 방향이 토크와 위치에너지를 어떻게 연결하는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "U=-\\vec p\\cdot\\vec E=-pE\\cos\\theta",
+    "conditions": "균일 외부 정전장·고정 쌍극자 크기. θ=0이 최소 에너지, θ=π가 최대이다. 토크 크기와 에너지 부호는 다른 물리량이다.",
+    "controls": [
+      {
+        "key": "p",
+        "name": "쌍극자 크기",
+        "tex": "p",
+        "unit": "μC m",
+        "min": 0.1,
+        "max": 10,
+        "initial": 1
+      },
+      {
+        "key": "E",
+        "name": "장 크기",
+        "tex": "E",
+        "unit": "N/C",
+        "min": 0,
+        "max": 100,
+        "initial": 20
+      },
+      {
+        "key": "angle",
+        "name": "방향각",
+        "tex": "\\theta",
+        "unit": "rad",
+        "min": 0,
+        "max": 3.141592653589793,
+        "initial": 1.0471975512
+      }
+    ],
+    "abscissa": "angle",
+    "x": "\\theta\\;(\\mathrm{rad})",
+    "y": "U\\;(\\mathrm{J})",
+    "extent": [
+      0,
+      3.141592653589793
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c22-rod-potential",
+    "chapter": 22,
+    "engine": "rod-potential",
+    "name": "균일 막대의 수직이등분선 전위",
+    "sections": [
+      "22.7"
+    ],
+    "question": "막대 길이를 보존하며 관찰 거리가 전위를 어떻게 바꾸는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "V=\\frac{2kQ}{L}\\ln\\frac{L/2+\\sqrt{(L/2)^2+a^2}}{a}",
+    "conditions": "균일 길이 L 막대·중점 위 수직거리 a>0·무한대V=0. 원문 로그식을 같은 의미의 asinh로 계산한다. 끝점 위 식과 구별한다.",
+    "controls": [
+      {
+        "key": "q",
+        "name": "전하",
+        "tex": "q",
+        "unit": "μC",
+        "min": -5,
+        "max": 5,
+        "initial": 1
+      },
+      {
+        "key": "length",
+        "name": "막대 길이",
+        "tex": "L",
+        "unit": "m",
+        "min": 0.1,
+        "max": 2,
+        "initial": 1
+      },
+      {
+        "key": "a",
+        "name": "수직 거리",
+        "tex": "a",
+        "unit": "m",
+        "min": 0.05,
+        "max": 2,
+        "initial": 0.5
+      }
+    ],
+    "abscissa": "a",
+    "x": "a\\;(\\mathrm{m})",
+    "y": "V\\;(\\mathrm{V})",
+    "extent": [
+      0.05,
+      2
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c22-arc-potential",
+    "chapter": 22,
+    "engine": "arc-potential",
+    "name": "대전 원호 중심의 전위",
+    "sections": [
+      "22.8"
+    ],
+    "question": "고정 총전하의 원호 중심 전위는 무엇에 의존하는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "V=\\int kdq/R=kQ/R",
+    "conditions": "일정 반지름 원호·총전하Q 고정·중심 관찰·무한대V=0. 중심 전기장은 원호 각과 분포에 의존하므로 같은 식으로 대신하지 않는다.",
+    "controls": [
+      {
+        "key": "q",
+        "name": "전하",
+        "tex": "q",
+        "unit": "μC",
+        "min": -5,
+        "max": 5,
+        "initial": 1
+      },
+      {
+        "key": "r",
+        "name": "반지름",
+        "tex": "r",
+        "unit": "m",
+        "min": 0.05,
+        "max": 2,
+        "initial": 0.5
+      }
+    ],
+    "abscissa": "r",
+    "x": "R\\;(\\mathrm{m})",
+    "y": "V\\;(\\mathrm{V})",
+    "extent": [
+      0.05,
+      2
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c22-ring-potential",
+    "chapter": 22,
+    "engine": "ring-potential",
+    "name": "고리 축 전위",
+    "sections": [
+      "22.9"
+    ],
+    "question": "고리 중심의 유한 전위는 축에서 어떻게 변하는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "V=kQ/\\sqrt{R^2+z^2}",
+    "conditions": "균일 대전 고리·축 위·진공·무한대V=0. 고리 전기장과 함께 비교할 수 있다.",
+    "controls": [
+      {
+        "key": "q",
+        "name": "전하",
+        "tex": "q",
+        "unit": "μC",
+        "min": -5,
+        "max": 5,
+        "initial": 1
+      },
+      {
+        "key": "radius",
+        "name": "고리 반지름",
+        "tex": "R",
+        "unit": "m",
+        "min": 0.1,
+        "max": 1,
+        "initial": 0.5
+      },
+      {
+        "key": "z",
+        "name": "축 위치",
+        "tex": "z",
+        "unit": "m",
+        "min": -2,
+        "max": 2,
+        "initial": 0.5
+      }
+    ],
+    "abscissa": "z",
+    "x": "z\\;(\\mathrm{m})",
+    "y": "V\\;(\\mathrm{V})",
+    "extent": [
+      -2,
+      2
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c22-disk-potential",
+    "chapter": 22,
+    "engine": "disk-potential",
+    "name": "원판을 고리로 나눈 전위",
+    "sections": [
+      "22.10"
+    ],
+    "question": "원판의 반지름과 축 거리는 전위를 어떻게 정하는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "V=2\\pi k\\sigma(\\sqrt{R^2+z^2}-|z|)",
+    "conditions": "균일 면전하 원판·축 위·진공·무한대V=0. 유한 원판이며 무한 평면의 전위 기준으로 확대하지 않는다. σ는 μC/m²이다.",
+    "controls": [
+      {
+        "key": "sigma",
+        "name": "면전하밀도",
+        "tex": "\\sigma",
+        "unit": "μC/m^2",
+        "min": -5,
+        "max": 5,
+        "initial": 1
+      },
+      {
+        "key": "radius",
+        "name": "원판 반지름",
+        "tex": "R",
+        "unit": "m",
+        "min": 0.1,
+        "max": 1,
+        "initial": 0.5
+      },
+      {
+        "key": "z",
+        "name": "축 위치",
+        "tex": "z",
+        "unit": "m",
+        "min": -2,
+        "max": 2,
+        "initial": 0.5
+      }
+    ],
+    "abscissa": "z",
+    "x": "z\\;(\\mathrm{m})",
+    "y": "V\\;(\\mathrm{V})",
+    "extent": [
+      -2,
+      2
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c22-sphere-potential",
+    "chapter": 22,
+    "engine": "sphere-potential",
+    "name": "도체 구의 등전위",
+    "sections": [
+      "22.12"
+    ],
+    "question": "안쪽 장이0인 도체 구의 전위는 왜 일정한가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "V=kQ/R\\;(r\\le R),\\quad V=kQ/r\\;(r>R)",
+    "conditions": "고립 구도체·정전평형·외부장 없음·무한대V=0. 균일 체적 전하의 절연 구와 구별하며 이 모형은 절연 구 전위를 포함하지 않는다.",
+    "controls": [
+      {
+        "key": "q",
+        "name": "전하",
+        "tex": "q",
+        "unit": "μC",
+        "min": -5,
+        "max": 5,
+        "initial": 1
+      },
+      {
+        "key": "radius",
+        "name": "구 반지름",
+        "tex": "R",
+        "unit": "m",
+        "min": 0.1,
+        "max": 1,
+        "initial": 0.5
+      },
+      {
+        "key": "r",
+        "name": "관찰 반지름",
+        "tex": "r",
+        "unit": "m",
+        "min": 0,
+        "max": 2,
+        "initial": 0.8
+      }
+    ],
+    "abscissa": "r",
+    "x": "r\\;(\\mathrm{m})",
+    "y": "V\\;(\\mathrm{V})",
+    "extent": [
+      0,
+      2
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c23-plate-capacitance",
+    "chapter": 23,
+    "engine": "plate-capacitance",
+    "name": "평행판의 기하와 정전용량",
+    "sections": [
+      "23.2"
+    ],
+    "question": "판 간격을 줄이면 정전용량이 어떻게 변하는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "C_\\circ=\\varepsilon_\\circ A/d",
+    "conditions": "진공 평행판·판의 선형 크기에 비해 작은 간격·가장자리장 무시. 현재 d/√A>0.1이면 이 관찰의 근사 확인을 보류한다. 0.1은 설계 경고 기준이다.",
+    "controls": [
+      {
+        "key": "area",
+        "name": "판 면적",
+        "tex": "A",
+        "unit": "m^2",
+        "min": 0.01,
+        "max": 1,
+        "initial": 0.1
+      },
+      {
+        "key": "d",
+        "name": "판 간격",
+        "tex": "d",
+        "unit": "mm",
+        "min": 0.1,
+        "max": 10,
+        "initial": 1
+      }
+    ],
+    "abscissa": "d",
+    "x": "d\\;(\\mathrm{mm})",
+    "y": "C_\\circ\\;(\\mathrm{F})",
+    "extent": [
+      0.1,
+      10
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c23-dielectric-charge",
+    "chapter": 23,
+    "engine": "dielectric-charge",
+    "name": "유전체 삽입 · 전하 고정",
+    "sections": [
+      "23.3"
+    ],
+    "question": "전원을 떼고 유전체를 넣으면 전압은 어떻게 바뀌는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "C=\\kappa C_\\circ,\\quad\\Delta V=Q/(\\kappa C_\\circ)",
+    "conditions": "완전히 채운 선형 유전체·전원 분리·전하 고정·누설/파괴 없음. 전원 연결 시 고정 전압과 구별한다.",
+    "controls": [
+      {
+        "key": "C",
+        "name": "정전용량",
+        "tex": "C",
+        "unit": "μF",
+        "min": 1,
+        "max": 1000,
+        "initial": 100
+      },
+      {
+        "key": "Q",
+        "name": "고정 전하",
+        "tex": "Q",
+        "unit": "μC",
+        "min": 0.1,
+        "max": 100,
+        "initial": 10
+      },
+      {
+        "key": "kappa",
+        "name": "유전상수",
+        "tex": "\\kappa",
+        "unit": "1",
+        "min": 1,
+        "max": 10,
+        "initial": 2
+      }
+    ],
+    "abscissa": "kappa",
+    "x": "\\kappa",
+    "y": "\\Delta V\\;(\\mathrm{V})",
+    "extent": [
+      1,
+      10
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c23-dielectric-voltage",
+    "chapter": 23,
+    "engine": "dielectric-voltage",
+    "name": "유전체 삽입 · 전압 고정",
+    "sections": [
+      "23.3"
+    ],
+    "question": "전원이 연결된 유전체 삽입에서는 전하가 어떻게 바뀌는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "Q=\\kappa C_\\circ\\Delta V",
+    "conditions": "완전히 채운 선형 유전체·이상 전원 연결·전압 고정. 전원과의 에너지 교환을 포함하며 전하 고정 경우와 구별한다.",
+    "controls": [
+      {
+        "key": "C",
+        "name": "정전용량",
+        "tex": "C",
+        "unit": "μF",
+        "min": 1,
+        "max": 1000,
+        "initial": 100
+      },
+      {
+        "key": "V",
+        "name": "전압",
+        "tex": "V",
+        "unit": "V",
+        "min": 0,
+        "max": 20,
+        "initial": 5
+      },
+      {
+        "key": "kappa",
+        "name": "유전상수",
+        "tex": "\\kappa",
+        "unit": "1",
+        "min": 1,
+        "max": 10,
+        "initial": 2
+      }
+    ],
+    "abscissa": "kappa",
+    "x": "\\kappa",
+    "y": "Q\\;(\\mathrm{C})",
+    "extent": [
+      1,
+      10
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c23-capacitors-series",
+    "chapter": 23,
+    "engine": "capacitors-series",
+    "name": "축전기의 직렬",
+    "sections": [
+      "23.4"
+    ],
+    "question": "같은 두 축전기의 연결 방식이 등가 정전용량을 어떻게 정하는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "1/C_{eq}=1/C_1+1/C_2",
+    "conditions": "이상 선형 축전기2개·처음 중간 노드 순전하0인 직렬 또는 같은 두 단자 병렬. 등가값과 각 소자의 전압/전하 분배는 구별한다.",
+    "controls": [
+      {
+        "key": "C1",
+        "name": "첫 정전용량",
+        "tex": "C_1",
+        "unit": "μF",
+        "min": 1,
+        "max": 100,
+        "initial": 10
+      },
+      {
+        "key": "C2",
+        "name": "둘째 정전용량",
+        "tex": "C_2",
+        "unit": "μF",
+        "min": 1,
+        "max": 100,
+        "initial": 20
+      }
+    ],
+    "abscissa": "C2",
+    "x": "C_2\\;(\\mathrm{\\mu F})",
+    "y": "C_{eq}\\;(\\mathrm{F})",
+    "extent": [
+      1,
+      100
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c23-capacitors-parallel",
+    "chapter": 23,
+    "engine": "capacitors-parallel",
+    "name": "축전기의 병렬",
+    "sections": [
+      "23.4"
+    ],
+    "question": "같은 두 축전기의 연결 방식이 등가 정전용량을 어떻게 정하는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "C_{eq}=C_1+C_2",
+    "conditions": "이상 선형 축전기2개·처음 중간 노드 순전하0인 직렬 또는 같은 두 단자 병렬. 등가값과 각 소자의 전압/전하 분배는 구별한다.",
+    "controls": [
+      {
+        "key": "C1",
+        "name": "첫 정전용량",
+        "tex": "C_1",
+        "unit": "μF",
+        "min": 1,
+        "max": 100,
+        "initial": 10
+      },
+      {
+        "key": "C2",
+        "name": "둘째 정전용량",
+        "tex": "C_2",
+        "unit": "μF",
+        "min": 1,
+        "max": 100,
+        "initial": 20
+      }
+    ],
+    "abscissa": "C2",
+    "x": "C_2\\;(\\mathrm{\\mu F})",
+    "y": "C_{eq}\\;(\\mathrm{F})",
+    "extent": [
+      1,
+      100
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c24-current-density",
+    "chapter": 24,
+    "engine": "current-density",
+    "name": "전류와 전류밀도",
+    "sections": [
+      "24.1",
+      "24.2"
+    ],
+    "question": "같은 전류에서 단면적이 전류밀도를 어떻게 바꾸는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "J=I/A,\\quad\\vec J=\\sigma\\vec E",
+    "conditions": "균일 단면의 정상 전류·국소 옴 전도 관계·등방 전도체. 전하 운반자의 이동 방향과 관습적 전류 방향을 구별한다.",
+    "controls": [
+      {
+        "key": "I",
+        "name": "전류",
+        "tex": "I",
+        "unit": "A",
+        "min": -5,
+        "max": 5,
+        "initial": 1
+      },
+      {
+        "key": "area",
+        "name": "단면적",
+        "tex": "A",
+        "unit": "mm^2",
+        "min": 0.1,
+        "max": 10,
+        "initial": 1
+      }
+    ],
+    "abscissa": "area",
+    "x": "A\\;(\\mathrm{mm^2})",
+    "y": "J\\;(\\mathrm{A/m^2})",
+    "extent": [
+      0.1,
+      10
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c24-resistor-power",
+    "chapter": 24,
+    "engine": "resistor-power",
+    "name": "저항의 전력",
+    "sections": [
+      "24.3"
+    ],
+    "question": "전압이 두 배이면 저항의 전력은 몇 배로 변하는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "P=I\\Delta V=(\\Delta V)^2/R",
+    "conditions": "일정 저항·수동 저항 소자·직류. 온도에 따른 저항 변화와 전원의 내부저항은 포함하지 않는다.",
+    "controls": [
+      {
+        "key": "R",
+        "name": "저항",
+        "tex": "R",
+        "unit": "Ω",
+        "min": 1,
+        "max": 100,
+        "initial": 10
+      },
+      {
+        "key": "V",
+        "name": "전압",
+        "tex": "V",
+        "unit": "V",
+        "min": 0,
+        "max": 20,
+        "initial": 5
+      }
+    ],
+    "abscissa": "V",
+    "x": "\\Delta V\\;(\\mathrm{V})",
+    "y": "P\\;(\\mathrm{W})",
+    "extent": [
+      0,
+      20
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c24-terminal-voltage",
+    "chapter": 24,
+    "engine": "terminal-voltage",
+    "name": "기전력과 단자 전압",
+    "sections": [
+      "24.4"
+    ],
+    "question": "전류가 흐르면 내부저항 때문에 단자 전압은 어떻게 달라지는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "\\Delta V=\\mathcal E-Ir",
+    "conditions": "방전하는 전원 모형·일정 기전력/내부저항·단자 전압0 이상에서만 방전 후보를 계산한다. 실제 배터리 용량/화학 반응은 예측하지 않는다.",
+    "controls": [
+      {
+        "key": "emf",
+        "name": "기전력",
+        "tex": "\\mathcal E",
+        "unit": "V",
+        "min": 1,
+        "max": 20,
+        "initial": 5
+      },
+      {
+        "key": "internal",
+        "name": "내부저항",
+        "tex": "r",
+        "unit": "Ω",
+        "min": 0.1,
+        "max": 5,
+        "initial": 1
+      },
+      {
+        "key": "I",
+        "name": "방전 전류",
+        "tex": "I",
+        "unit": "A",
+        "min": 0,
+        "max": 10,
+        "initial": 1
+      }
+    ],
+    "abscissa": "I",
+    "x": "I\\;(\\mathrm{A})",
+    "y": "\\Delta V\\;(\\mathrm{V})",
+    "extent": [
+      0,
+      10
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c24-resistors-series",
+    "chapter": 24,
+    "engine": "resistors-series",
+    "name": "직렬 회로와 고리 규칙",
+    "sections": [
+      "24.5",
+      "24.6"
+    ],
+    "question": "같은 전원에서 둘째 저항을 바꾸면 전류가 어떻게 달라지는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "I=\\mathcal E/(R_1+R_2),\\quad\\mathcal E-IR_1-IR_2=0",
+    "conditions": "직렬 저항2개·이상 직류 전원·정상상태·전류가 같은 두 소자. 갈림점이 있는 일반 회로는 이 한 고리로 대신하지 않는다.",
+    "controls": [
+      {
+        "key": "R1",
+        "name": "첫 저항",
+        "tex": "R_1",
+        "unit": "Ω",
+        "min": 1,
+        "max": 100,
+        "initial": 10
+      },
+      {
+        "key": "R2",
+        "name": "둘째 저항",
+        "tex": "R_2",
+        "unit": "Ω",
+        "min": 1,
+        "max": 100,
+        "initial": 20
+      },
+      {
+        "key": "V",
+        "name": "전압",
+        "tex": "V",
+        "unit": "V",
+        "min": 0,
+        "max": 20,
+        "initial": 5
+      }
+    ],
+    "abscissa": "R2",
+    "x": "R_2\\;(\\mathrm{\\Omega})",
+    "y": "I\\;(\\mathrm{A})",
+    "extent": [
+      1,
+      100
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c24-resistors-parallel",
+    "chapter": 24,
+    "engine": "resistors-parallel",
+    "name": "병렬 회로와 갈림점 규칙",
+    "sections": [
+      "24.5",
+      "24.6"
+    ],
+    "question": "같은 전압에서 두 갈래 전류는 어떻게 합쳐지는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "I=I_1+I_2=\\Delta V/R_1+\\Delta V/R_2",
+    "conditions": "병렬 저항2개·이상 직류 전원·정상상태·두 소자의 전압 같음. 갈림점의 전하 축적을 무시하는 조건이다.",
+    "controls": [
+      {
+        "key": "R1",
+        "name": "첫 저항",
+        "tex": "R_1",
+        "unit": "Ω",
+        "min": 1,
+        "max": 100,
+        "initial": 10
+      },
+      {
+        "key": "R2",
+        "name": "둘째 저항",
+        "tex": "R_2",
+        "unit": "Ω",
+        "min": 1,
+        "max": 100,
+        "initial": 20
+      },
+      {
+        "key": "V",
+        "name": "전압",
+        "tex": "V",
+        "unit": "V",
+        "min": 0,
+        "max": 20,
+        "initial": 5
+      }
+    ],
+    "abscissa": "R2",
+    "x": "R_2\\;(\\mathrm{\\Omega})",
+    "y": "I\\;(\\mathrm{A})",
+    "extent": [
+      1,
+      100
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c24-rc-discharge",
+    "chapter": 24,
+    "engine": "rc-discharge",
+    "name": "RC 방전의 초기조건",
+    "sections": [
+      "24.7"
+    ],
+    "question": "전원을 떼었을 때 처음 전하가 어떻게 감소하는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "q=q_\\circ e^{-t/(RC)}",
+    "conditions": "전원 분리·이상 직렬 RC·q◦=CV◦. 충전의 초기조건과 구별한다.",
+    "controls": [
+      {
+        "key": "R",
+        "name": "저항",
+        "tex": "R",
+        "unit": "Ω",
+        "min": 1,
+        "max": 100,
+        "initial": 10
+      },
+      {
+        "key": "C",
+        "name": "정전용량",
+        "tex": "C",
+        "unit": "μF",
+        "min": 1,
+        "max": 1000,
+        "initial": 100
+      },
+      {
+        "key": "V",
+        "name": "전압",
+        "tex": "V",
+        "unit": "V",
+        "min": 0,
+        "max": 20,
+        "initial": 5
+      },
+      {
+        "key": "t",
+        "name": "관찰 시각",
+        "tex": "t",
+        "unit": "s",
+        "min": 0,
+        "max": 0.5,
+        "initial": 0.01
+      }
+    ],
+    "abscissa": "t",
+    "x": "t\\;(\\mathrm{s})",
+    "y": "q\\;(\\mathrm{C})",
+    "extent": [
+      0,
+      0.5
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c25-cyclotron",
+    "chapter": 25,
+    "engine": "cyclotron",
+    "name": "균일 자기장의 원운동",
+    "sections": [
+      "25.2"
+    ],
+    "question": "수직 속력과 자기장은 궤도 반지름을 어떻게 정하는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "r=mv_\\perp/(|q|B)",
+    "conditions": "양성자 m=1.67262192369×10⁻²⁷kg, |q|=1.602176634×10⁻¹⁹C 고정·균일B·비상대론적·v⊥B. 부호는 회전 방향을 정하며 이 그래프는 반지름 크기이다.",
+    "controls": [
+      {
+        "key": "B",
+        "name": "자기장",
+        "tex": "B",
+        "unit": "T",
+        "min": 0.01,
+        "max": 2,
+        "initial": 0.5
+      },
+      {
+        "key": "v",
+        "name": "수직 속력",
+        "tex": "v_\\perp",
+        "unit": "m/s",
+        "min": 10000,
+        "max": 1000000,
+        "initial": 100000
+      }
+    ],
+    "abscissa": "v",
+    "x": "v_\\perp\\;(\\mathrm{m/s})",
+    "y": "r\\;(\\mathrm{m})",
+    "extent": [
+      10000,
+      1000000
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c25-velocity-selector",
+    "chapter": 25,
+    "engine": "velocity-selector",
+    "name": "교차 장의 속도 선택",
+    "sections": [
+      "25.3"
+    ],
+    "question": "어떤 속도에서 전기력과 자기력이 상쇄되는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "F_y=q(E-vB),\\quad v=E/B",
+    "conditions": "E⊥B·v⊥E,B·방향은 전기력과 자기력이 반대인 배치. y축 순힘 성분을 그리며 일반3차원 로런츠 힘을 대신하지 않는다.",
+    "controls": [
+      {
+        "key": "q",
+        "name": "전하",
+        "tex": "q",
+        "unit": "μC",
+        "min": -5,
+        "max": 5,
+        "initial": 1
+      },
+      {
+        "key": "B",
+        "name": "자기장",
+        "tex": "B",
+        "unit": "T",
+        "min": 0.01,
+        "max": 2,
+        "initial": 0.5
+      },
+      {
+        "key": "E",
+        "name": "전기장 크기",
+        "tex": "E",
+        "unit": "N/C",
+        "min": 0,
+        "max": 100,
+        "initial": 20
+      },
+      {
+        "key": "v",
+        "name": "입자 속력",
+        "tex": "v",
+        "unit": "m/s",
+        "min": 0,
+        "max": 10000,
+        "initial": 40
+      }
+    ],
+    "abscissa": "v",
+    "x": "v\\;(\\mathrm{m/s})",
+    "y": "F_y\\;(\\mathrm{N})",
+    "extent": [
+      0,
+      10000
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c25-wire-force",
+    "chapter": 25,
+    "engine": "wire-force",
+    "name": "전류 도선의 자기력",
+    "sections": [
+      "25.4"
+    ],
+    "question": "도선과 자기장 사이각이 힘을 어떻게 정하는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "F=ILB\\sin\\theta",
+    "conditions": "균일 자기장·직선 도선 구간·일정 전류. 크기를 그리며 방향은 L벡터×B와 전류 방향으로 결정한다.",
+    "controls": [
+      {
+        "key": "I",
+        "name": "전류",
+        "tex": "I",
+        "unit": "A",
+        "min": 0,
+        "max": 10,
+        "initial": 2
+      },
+      {
+        "key": "length",
+        "name": "도선 길이",
+        "tex": "L",
+        "unit": "m",
+        "min": 0.1,
+        "max": 2,
+        "initial": 1
+      },
+      {
+        "key": "B",
+        "name": "자기장",
+        "tex": "B",
+        "unit": "T",
+        "min": 0.01,
+        "max": 2,
+        "initial": 0.5
+      },
+      {
+        "key": "angle",
+        "name": "방향각",
+        "tex": "\\theta",
+        "unit": "rad",
+        "min": 0,
+        "max": 3.141592653589793,
+        "initial": 1.0471975512
+      }
+    ],
+    "abscissa": "angle",
+    "x": "\\theta\\;(\\mathrm{rad})",
+    "y": "F\\;(\\mathrm{N})",
+    "extent": [
+      0,
+      3.141592653589793
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c25-loop-torque",
+    "chapter": 25,
+    "engine": "loop-torque",
+    "name": "전류 고리의 토크",
+    "sections": [
+      "25.5"
+    ],
+    "question": "고리 법선의 방향은 토크를 어떻게 정하는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "\\mu=NIA,\\quad\\tau=\\mu B\\sin\\theta",
+    "conditions": "평면 고리·균일 장·θ는 자기모멘트와B 사이각·고리 면과B의 각이 아니다. 토크 크기이며 순병진 힘0과 구별한다.",
+    "controls": [
+      {
+        "key": "N",
+        "name": "감은 수",
+        "tex": "N",
+        "unit": "1",
+        "min": 1,
+        "max": 100,
+        "initial": 10,
+        "step": 1
+      },
+      {
+        "key": "I",
+        "name": "전류",
+        "tex": "I",
+        "unit": "A",
+        "min": 0,
+        "max": 5,
+        "initial": 1
+      },
+      {
+        "key": "area",
+        "name": "고리 면적",
+        "tex": "A",
+        "unit": "m^2",
+        "min": 0.001,
+        "max": 0.1,
+        "initial": 0.01
+      },
+      {
+        "key": "B",
+        "name": "자기장",
+        "tex": "B",
+        "unit": "T",
+        "min": 0.01,
+        "max": 2,
+        "initial": 0.5
+      },
+      {
+        "key": "angle",
+        "name": "방향각",
+        "tex": "\\theta",
+        "unit": "rad",
+        "min": 0,
+        "max": 3.141592653589793,
+        "initial": 1.0471975512
+      }
+    ],
+    "abscissa": "angle",
+    "x": "\\theta\\;(\\mathrm{rad})",
+    "y": "\\tau\\;(\\mathrm{N\\,m})",
+    "extent": [
+      0,
+      3.141592653589793
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c26-parallel-wires",
+    "chapter": 26,
+    "engine": "parallel-wires",
+    "name": "평행 전류 사이 힘",
+    "sections": [
+      "26.2"
+    ],
+    "question": "같은 방향과 반대 방향 전류는 힘의 부호를 어떻게 바꾸는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "F/\\ell=\\mu_\\circ I_1I_2/(2\\pi d)",
+    "conditions": "진공의 충분히 긴 평행 직선 도선·외부장 무시. 양수는 서로 당기는 크기의 표기, 음수는 서로 밀어내는 표기이다.",
+    "controls": [
+      {
+        "key": "I1",
+        "name": "첫 전류",
+        "tex": "I_1",
+        "unit": "A",
+        "min": -10,
+        "max": 10,
+        "initial": 2
+      },
+      {
+        "key": "I2",
+        "name": "둘째 전류",
+        "tex": "I_2",
+        "unit": "A",
+        "min": -10,
+        "max": 10,
+        "initial": 3
+      },
+      {
+        "key": "d",
+        "name": "도선 간격",
+        "tex": "d",
+        "unit": "m",
+        "min": 0.01,
+        "max": 1,
+        "initial": 0.1
+      }
+    ],
+    "abscissa": "d",
+    "x": "d\\;(\\mathrm{m})",
+    "y": "F/\\ell\\;(\\mathrm{N/m})",
+    "extent": [
+      0.01,
+      1
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c26-solenoid",
+    "chapter": 26,
+    "engine": "solenoid",
+    "name": "긴 솔레노이드 내부 장",
+    "sections": [
+      "26.1",
+      "26.3"
+    ],
+    "question": "단위 길이 감김과 전류가 내부 장을 어떻게 정하는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "B=\\mu_\\circ nI",
+    "conditions": "충분히 긴 촘촘한 솔레노이드·끝에서 먼 내부·진공·정상 전류. 철심의 비선형 자기화를 같은μ◦식으로 계산하지 않는다.",
+    "controls": [
+      {
+        "key": "n",
+        "name": "단위 길이 감김",
+        "tex": "n",
+        "unit": "1/m",
+        "min": 100,
+        "max": 5000,
+        "initial": 1000
+      },
+      {
+        "key": "I",
+        "name": "전류",
+        "tex": "I",
+        "unit": "A",
+        "min": -5,
+        "max": 5,
+        "initial": 1
+      }
+    ],
+    "abscissa": "I",
+    "x": "I\\;(\\mathrm{A})",
+    "y": "B\\;(\\mathrm{T})",
+    "extent": [
+      -5,
+      5
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c26-displacement-current",
+    "chapter": 26,
+    "engine": "displacement-current",
+    "name": "변위전류와 바뀌는 전기장",
+    "sections": [
+      "26.4"
+    ],
+    "question": "축전기 판 사이 전기장이 변하면 추가 항은 무엇인가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "i_d=\\varepsilon_\\circ d\\Phi_E/dt=\\varepsilon_\\circ A\\,dE/dt",
+    "conditions": "고정 평면 면적·균일 전기장·법선 방향 E성분. 변위전류는 빈 공간을 전하가 흐르는 전도전류와 구별한다.",
+    "controls": [
+      {
+        "key": "area",
+        "name": "면적",
+        "tex": "A",
+        "unit": "m^2",
+        "min": 0.001,
+        "max": 0.1,
+        "initial": 0.01
+      },
+      {
+        "key": "rate",
+        "name": "장 변화율",
+        "tex": "dE/dt",
+        "unit": "N/(C s)",
+        "min": -100000000,
+        "max": 100000000,
+        "initial": 10000000
+      }
+    ],
+    "abscissa": "rate",
+    "x": "dE/dt\\;(\\mathrm{N/(C\\,s)})",
+    "y": "i_d\\;(\\mathrm{A})",
+    "extent": [
+      -100000000,
+      100000000
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c27-motional-emf",
+    "chapter": 27,
+    "engine": "motional-emf",
+    "name": "움직이는 막대의 기전력",
+    "sections": [
+      "27.2"
+    ],
+    "question": "막대 이동 속도가 유도 기전력을 어떻게 정하는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "|\\mathcal E|=B\\ell v",
+    "conditions": "균일 자기장·직선 막대·막대/속도/장 서로 직교. 그래프 부호는 선택한 막대 방향에 대응한 속도 성분이다. 회로가 닫히지 않으면 이 식만으로 전류를 만들지 않는다.",
+    "controls": [
+      {
+        "key": "B",
+        "name": "자기장",
+        "tex": "B",
+        "unit": "T",
+        "min": 0.01,
+        "max": 2,
+        "initial": 0.5
+      },
+      {
+        "key": "length",
+        "name": "막대 길이",
+        "tex": "\\ell",
+        "unit": "m",
+        "min": 0.1,
+        "max": 2,
+        "initial": 1
+      },
+      {
+        "key": "v",
+        "name": "이동 속도",
+        "tex": "v",
+        "unit": "m/s",
+        "min": -10,
+        "max": 10,
+        "initial": 2
+      }
+    ],
+    "abscissa": "v",
+    "x": "v\\;(\\mathrm{m/s})",
+    "y": "\\mathcal E\\;(\\mathrm{V})",
+    "extent": [
+      -10,
+      10
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c27-ac-rms",
+    "chapter": 27,
+    "engine": "ac-rms",
+    "name": "교류 전압과 실효값",
+    "sections": [
+      "27.4"
+    ],
+    "question": "정현파 진폭은 저항 발열을 정하는 실효값과 어떻게 다른가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "V_{rms}=V_\\circ/\\sqrt2,\\quad v(t)=V_\\circ\\sin\\omega t",
+    "conditions": "정현파·일정 주파수 f=1Hz·0 평균 전압·저항 발열 비교. 임의 비정현파의 rms를 진폭/√2로 계산하지 않는다.",
+    "controls": [
+      {
+        "key": "V",
+        "name": "전압",
+        "tex": "V",
+        "unit": "V",
+        "min": 0,
+        "max": 20,
+        "initial": 5
+      },
+      {
+        "key": "t",
+        "name": "관찰 시각",
+        "tex": "t",
+        "unit": "s",
+        "min": 0,
+        "max": 2,
+        "initial": 0.25
+      }
+    ],
+    "abscissa": "t",
+    "x": "t\\;(\\mathrm{s})",
+    "y": "v\\;(\\mathrm{V})",
+    "extent": [
+      0,
+      2
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c27-transformer",
+    "chapter": 27,
+    "engine": "transformer",
+    "name": "이상 변압기의 전압비",
+    "sections": [
+      "27.5"
+    ],
+    "question": "감김비를 바꾸면 이차 전압은 어떻게 달라지는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "V_s/V_p=N_s/N_p,\\quad V_pI_p=V_sI_s",
+    "conditions": "이상 변압기·교류·같은 변화 선속이 두 권선에 결합·손실 무시. 직류 정상상태나 실제 효율/포화를 예측하지 않는다.",
+    "controls": [
+      {
+        "key": "Vp",
+        "name": "일차 실효전압",
+        "tex": "V_p",
+        "unit": "V",
+        "min": 1,
+        "max": 100,
+        "initial": 10
+      },
+      {
+        "key": "ratio",
+        "name": "이차/일차 감김비",
+        "tex": "N_s/N_p",
+        "unit": "1",
+        "min": 0.1,
+        "max": 5,
+        "initial": 2
+      }
+    ],
+    "abscissa": "ratio",
+    "x": "N_s/N_p",
+    "y": "V_s\\;(\\mathrm{V})",
+    "extent": [
+      0.1,
+      5
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c28-self-induction",
+    "chapter": 28,
+    "engine": "self-induction",
+    "name": "자기유도와 변화율",
+    "sections": [
+      "28.1"
+    ],
+    "question": "전류의 값과 변화율 중 무엇이 유도 기전력을 정하는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "\\mathcal E_L=-L\\,dI/dt",
+    "conditions": "일정 선형 인덕턴스·교재 순환 방향과 전류 부호 규약. 자기유도 전압은 전류 변화에 반대하며 전류 자체에 항상 반대라고 처리하지 않는다.",
+    "controls": [
+      {
+        "key": "L",
+        "name": "인덕턴스",
+        "tex": "L",
+        "unit": "H",
+        "min": 0.01,
+        "max": 1,
+        "initial": 0.1
+      },
+      {
+        "key": "rate",
+        "name": "전류 변화율",
+        "tex": "dI/dt",
+        "unit": "A/s",
+        "min": -100,
+        "max": 100,
+        "initial": 10
+      }
+    ],
+    "abscissa": "rate",
+    "x": "dI/dt\\;(\\mathrm{A/s})",
+    "y": "\\mathcal E_L\\;(\\mathrm{V})",
+    "extent": [
+      -100,
+      100
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c28-mutual-induction",
+    "chapter": 28,
+    "engine": "mutual-induction",
+    "name": "상호유도와 두 회로",
+    "sections": [
+      "28.2"
+    ],
+    "question": "첫 회로의 전류 변화가 둘째 회로에 무엇을 만드는가?",
+    "relation": "첫 회로의 전류 변화율과 둘째 회로의 유도 기전력을 연결한다. 상호 인덕턴스는 선택한 결합의 크기이며 전류 자체와 변화율을 구별한다.",
+    "formula": "\\mathcal E_2=-M\\,dI_1/dt",
+    "conditions": "고정 기하·선형 수동 결합·선택한 감김 방향에서 $M>0$이다. 교재 밖 관찰 설계로 $L_1=L_2=0.1\\,\\mathrm{H}$를 고정한다. $M$을 바꾸면 결합계수 $k=M/\\sqrt{L_1L_2}$가 바뀌며 전류 변화율도 따로 조절한다. 현재 $M\\le0.1\\,\\mathrm{H}$는 수동 결합의 $|M|\\le\\sqrt{L_1L_2}$를 만족한다. 원문 예제의 값이나 실제 측정값을 사용한 것이 아니다.",
+    "controls": [
+      {
+        "key": "M",
+        "name": "상호 인덕턴스",
+        "tex": "M",
+        "unit": "H",
+        "min": 0.001,
+        "max": 0.1,
+        "initial": 0.01
+      },
+      {
+        "key": "rate",
+        "name": "일차 전류 변화율",
+        "tex": "dI_1/dt",
+        "unit": "A/s",
+        "min": -100,
+        "max": 100,
+        "initial": 10
+      }
+    ],
+    "abscissa": "rate",
+    "x": "dI_1/dt\\;(\\mathrm{A/s})",
+    "y": "\\mathcal E_2\\;(\\mathrm{V})",
+    "extent": [
+      -100,
+      100
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "원식의 선형 관계를 계산한다. 전체 두 회로의 시간 발전·권선의 공간 이동·자체 유도와 부하의 연립 회로는 구현하지 않았다. 교재 밖 검토: PDF970/책965의 예제28.2에 적힌 L₁=0.2 mH, L₂=0.1 mH, M=2.5 mH는 수동 결합의 에너지 비음수 조건과 양립하지 않는다. 원문 숫자는 고쳐 쓰지 않고 별도로 표시한다. 이 일관성 검토는 https://www.feynmanlectures.caltech.edu/II_17.html 의 에너지·결합계수 관계를 참고했다."
+  },
+  {
+    "id": "c28-inductor-energy",
+    "chapter": 28,
+    "engine": "inductor-energy",
+    "name": "자기장에 저장된 에너지",
+    "sections": [
+      "28.3"
+    ],
+    "question": "전류가 반대가 되어도 저장 에너지는 왜 같은가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "U_L=\\frac12LI^2",
+    "conditions": "일정 선형 인덕턴스·이상 소자·저항손실 없음. 에너지는 전류의 부호와 무관하되 장의 방향은 다르다.",
+    "controls": [
+      {
+        "key": "L",
+        "name": "인덕턴스",
+        "tex": "L",
+        "unit": "H",
+        "min": 0.01,
+        "max": 1,
+        "initial": 0.1
+      },
+      {
+        "key": "I",
+        "name": "전류",
+        "tex": "I",
+        "unit": "A",
+        "min": -5,
+        "max": 5,
+        "initial": 1
+      }
+    ],
+    "abscissa": "I",
+    "x": "I\\;(\\mathrm{A})",
+    "y": "U_L\\;(\\mathrm{J})",
+    "extent": [
+      -5,
+      5
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c28-lr-growth",
+    "chapter": 28,
+    "engine": "lr-growth",
+    "name": "LR 전류의 증가",
+    "sections": [
+      "28.4"
+    ],
+    "question": "자기유도는 전류 증가를 어떤 시간척도로 늦추는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "I=(\\mathcal E/R)(1-e^{-Rt/L}),\\quad\\tau=L/R",
+    "conditions": "이상 직류 전원·일정 R,L·I(0)=0·직렬. 방전 초기조건과 구별한다.",
+    "controls": [
+      {
+        "key": "R",
+        "name": "저항",
+        "tex": "R",
+        "unit": "Ω",
+        "min": 1,
+        "max": 100,
+        "initial": 10
+      },
+      {
+        "key": "L",
+        "name": "인덕턴스",
+        "tex": "L",
+        "unit": "H",
+        "min": 0.01,
+        "max": 1,
+        "initial": 0.1
+      },
+      {
+        "key": "V",
+        "name": "전압",
+        "tex": "V",
+        "unit": "V",
+        "min": 0,
+        "max": 20,
+        "initial": 5
+      },
+      {
+        "key": "t",
+        "name": "관찰 시각",
+        "tex": "t",
+        "unit": "s",
+        "min": 0,
+        "max": 1,
+        "initial": 0.02
+      }
+    ],
+    "abscissa": "t",
+    "x": "t\\;(\\mathrm{s})",
+    "y": "I\\;(\\mathrm{A})",
+    "extent": [
+      0,
+      1
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c28-lr-decay",
+    "chapter": 28,
+    "engine": "lr-decay",
+    "name": "LR 전류의 감소",
+    "sections": [
+      "28.4"
+    ],
+    "question": "전원을 떼어도 전류가 즉시0이 되지 않는 이유는 무엇인가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "I=I_\\circ e^{-Rt/L}",
+    "conditions": "전원 분리 뒤 닫힌 직렬 R,L 회로·I(0)=I◦·일정 R,L. 회로를 끊을 때 실제 절연 파괴/스파크는 계산하지 않는다.",
+    "controls": [
+      {
+        "key": "R",
+        "name": "저항",
+        "tex": "R",
+        "unit": "Ω",
+        "min": 1,
+        "max": 100,
+        "initial": 10
+      },
+      {
+        "key": "L",
+        "name": "인덕턴스",
+        "tex": "L",
+        "unit": "H",
+        "min": 0.01,
+        "max": 1,
+        "initial": 0.1
+      },
+      {
+        "key": "I",
+        "name": "초기 전류",
+        "tex": "I_\\circ",
+        "unit": "A",
+        "min": -5,
+        "max": 5,
+        "initial": 1
+      },
+      {
+        "key": "t",
+        "name": "관찰 시각",
+        "tex": "t",
+        "unit": "s",
+        "min": 0,
+        "max": 1,
+        "initial": 0.02
+      }
+    ],
+    "abscissa": "t",
+    "x": "t\\;(\\mathrm{s})",
+    "y": "I\\;(\\mathrm{A})",
+    "extent": [
+      0,
+      1
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c28-lc-charge",
+    "chapter": 28,
+    "engine": "lc-charge",
+    "name": "LC 에너지 교환",
+    "sections": [
+      "28.5"
+    ],
+    "question": "저항 없이 전하가 진동할 때 에너지는 어디로 이동하는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "q=Q\\cos(\\omega t),\\quad\\omega=1/\\sqrt{LC}",
+    "conditions": "외부전원 없는 이상 LC·q(0)=1μC·I(0)=0·교재I=−dq/dt. 저항이 있으면 총에너지 보존을 그대로 적용하지 않는다.",
+    "controls": [
+      {
+        "key": "L",
+        "name": "인덕턴스",
+        "tex": "L",
+        "unit": "H",
+        "min": 0.01,
+        "max": 1,
+        "initial": 0.1
+      },
+      {
+        "key": "C",
+        "name": "정전용량",
+        "tex": "C",
+        "unit": "μF",
+        "min": 1,
+        "max": 1000,
+        "initial": 100
+      },
+      {
+        "key": "t",
+        "name": "관찰 시각",
+        "tex": "t",
+        "unit": "s",
+        "min": 0,
+        "max": 0.1,
+        "initial": 0.01
+      }
+    ],
+    "abscissa": "t",
+    "x": "t\\;(\\mathrm{s})",
+    "y": "q\\;(\\mathrm{C})",
+    "extent": [
+      0,
+      0.1
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c28-ac-reactance",
+    "chapter": 28,
+    "engine": "ac-reactance",
+    "name": "유도·용량 리액턴스",
+    "sections": [
+      "28.7"
+    ],
+    "question": "주파수 변화에 대해 두 리액턴스는 왜 반대로 움직이는가?",
+    "relation": "같은 조건을 원식·현재값·곡선·값 목록에 대응한다. 가로축을 바꾸며 선택한 현재값과 전체 관계를 비교한다.",
+    "formula": "X_L=\\omega L,\\quad X_C=1/(\\omega C)",
+    "conditions": "이상 L,C·정현파 정상상태·ω>0. 이 곡선은 XL−XC이며 각 전압/전류의 위상차와 직류 극한을 구별한다.",
+    "controls": [
+      {
+        "key": "L",
+        "name": "인덕턴스",
+        "tex": "L",
+        "unit": "H",
+        "min": 0.01,
+        "max": 1,
+        "initial": 0.1
+      },
+      {
+        "key": "C",
+        "name": "정전용량",
+        "tex": "C",
+        "unit": "μF",
+        "min": 1,
+        "max": 1000,
+        "initial": 100
+      },
+      {
+        "key": "omega",
+        "name": "각주파수",
+        "tex": "\\omega",
+        "unit": "rad/s",
+        "min": 1,
+        "max": 1500,
+        "initial": 316
+      }
+    ],
+    "abscissa": "omega",
+    "x": "\\omega\\;(\\mathrm{rad/s})",
+    "y": "X_L-X_C\\;(\\mathrm{\\Omega})",
+    "extent": [
+      1,
+      1500
+    ],
+    "initialReason": "정의역 안에서 변화와 경계를 비교하기 위한 SI 초기값이다. 교재 예제값이나 실제 관측값을 뜻하지 않는다.",
+    "limits": "유한한 표본으로 그린 계산 모형이다. 원문 조건 아래 한 관계를 관찰하며 증명·실제 측정·절의 모든 사례를 대신하지 않는다."
+  },
+  {
+    "id": "c5-drag-linear",
+    "chapter": 5,
+    "engine": "drag-linear",
+    "name": "점성 항력과 종단 속도",
+    "sections": [
+      "5.2"
+    ],
+    "question": "처음 정지한 물체의 가속도는 종단 속도에 접근하며 어떻게 바뀌는가?",
+    "relation": "같은 시각에서 v와 a=g−bv/m를 별도 단위로 읽는다. 긴 시간의 v=mg/b 조건은 a=0에 대응한다.",
+    "formula": "v(t)=\\frac{mg}{b}(1-e^{-bt/m})",
+    "conditions": "아래를 양으로 둔다. 속도 비례 항력·일정 m,b,g·초기 v=0. 저속 구의 점성 항력 모형이며 고속의 제곱 항력으로 일반화하지 않는다.",
+    "controls": [
+      {
+        "key": "m",
+        "name": "질량",
+        "tex": "m",
+        "unit": "kg",
+        "min": 0.1,
+        "max": 10,
+        "initial": 1
+      },
+      {
+        "key": "b",
+        "name": "점성 계수",
+        "tex": "b",
+        "unit": "kg/s",
+        "min": 0.1,
+        "max": 100,
+        "initial": 2
+      },
+      {
+        "key": "t",
+        "name": "관찰 시각",
+        "tex": "t",
+        "unit": "s",
+        "min": 0,
+        "max": 8,
+        "initial": 1
+      }
+    ],
+    "abscissa": "t",
+    "x": "t\\;(\\mathrm{s})",
+    "y": "v\\;(\\mathrm{m/s})",
+    "extent": [
+      0,
+      8
+    ],
+    "initialReason": "정의역 안에서 조건과 변화의 차를 읽기 위한 설계값이다. 교재의 예제값·실제 측정값·사용자의 학습 기록이 아니다.",
+    "limits": "이 관찰은 표시한 원문 관계와 모형 조건의 계산이다. 모든 공간점·시간 의존·재료 응답을 포함한 일반 해석이나 실험 검증은 아니다.",
+    "evidence": {
+      "pdf": 128,
+      "printed": 112,
+      "kind": "original-section-and-equation-text-check"
+    }
+  },
+  {
+    "id": "c12-conduction-cylinder",
+    "chapter": 12,
+    "engine": "conduction-cylinder",
+    "name": "원통 벽의 정상 열전도",
+    "sections": [
+      "12.5"
+    ],
+    "question": "같은 재료·온도차에서 반지름을 바꾸면 전도 일률은 어떻게 달라지는가?",
+    "relation": "원통 면적 2πrL이 반지름에 따라 변하기 때문에 로그 온도 분포와 전도 일률이 연결된다.",
+    "formula": "H=\\frac{2\\pi kL(T_H-T_C)}{\\ln(r_C/r_H)}",
+    "conditions": "동심 원통·균일 k·정상상태·고정한 경계 온도·축 방향 끝 효과 무시. r_C>r_H>0이다. 평판의 면적을 상수로 둔 식과 구별한다.",
+    "controls": [
+      {
+        "key": "k",
+        "name": "열전도율",
+        "tex": "k",
+        "unit": "W/(m K)",
+        "min": 0.1,
+        "max": 100,
+        "initial": 1
+      },
+      {
+        "key": "length",
+        "name": "원통 길이",
+        "tex": "L",
+        "unit": "m",
+        "min": 0.1,
+        "max": 10,
+        "initial": 1
+      },
+      {
+        "key": "inner",
+        "name": "안쪽 반지름",
+        "tex": "r_H",
+        "unit": "m",
+        "min": 0.01,
+        "max": 0.1,
+        "initial": 0.05
+      },
+      {
+        "key": "dt",
+        "name": "경계 온도차",
+        "tex": "T_H-T_C",
+        "unit": "K",
+        "min": 1,
+        "max": 100,
+        "initial": 20
+      },
+      {
+        "key": "ratio",
+        "name": "반지름 비",
+        "tex": "r_C/r_H",
+        "unit": "1",
+        "min": 1.05,
+        "max": 5,
+        "initial": 2
+      }
+    ],
+    "abscissa": "ratio",
+    "x": "r_C/r_H",
+    "y": "H\\;(\\mathrm{W})",
+    "extent": [
+      1.05,
+      5
+    ],
+    "initialReason": "정의역 안에서 조건과 변화의 차를 읽기 위한 설계값이다. 교재의 예제값·실제 측정값·사용자의 학습 기록이 아니다.",
+    "limits": "이 관찰은 표시한 원문 관계와 모형 조건의 계산이다. 모든 공간점·시간 의존·재료 응답을 포함한 일반 해석이나 실험 검증은 아니다.",
+    "evidence": {
+      "pdf": 427,
+      "printed": 414,
+      "kind": "original-section-and-equation-text-check"
+    }
+  },
+  {
+    "id": "c12-conduction-series",
+    "chapter": 12,
+    "engine": "conduction-series",
+    "name": "겹친 평판의 열전도",
+    "sections": [
+      "12.5"
+    ],
+    "question": "재료층을 겹치면 같은 경계 온도차의 열전도 일률은 어떻게 바뀌는가?",
+    "relation": "층의 L/k를 더해야 정상 상태에서 두 층을 통과하는 일률이 같아진다.",
+    "formula": "H=\\frac{A(T_H-T_C)}{L_1/k_1+L_2/k_2}",
+    "conditions": "두 평판·같은 단면·정상 1차원 전도·각 k 일정·접촉 열저항 무시. 두께는 양수이다.",
+    "controls": [
+      {
+        "key": "area",
+        "name": "단면적",
+        "tex": "A",
+        "unit": "m^2",
+        "min": 0.01,
+        "max": 2,
+        "initial": 0.5
+      },
+      {
+        "key": "dt",
+        "name": "경계 온도차",
+        "tex": "T_H-T_C",
+        "unit": "K",
+        "min": 1,
+        "max": 100,
+        "initial": 20
+      },
+      {
+        "key": "L1",
+        "name": "첫 두께",
+        "tex": "L_1",
+        "unit": "m",
+        "min": 0.01,
+        "max": 0.5,
+        "initial": 0.1
+      },
+      {
+        "key": "k1",
+        "name": "첫 열전도율",
+        "tex": "k_1",
+        "unit": "W/(m K)",
+        "min": 0.1,
+        "max": 20,
+        "initial": 1
+      },
+      {
+        "key": "L2",
+        "name": "둘째 두께",
+        "tex": "L_2",
+        "unit": "m",
+        "min": 0.01,
+        "max": 0.5,
+        "initial": 0.1
+      },
+      {
+        "key": "k2",
+        "name": "둘째 열전도율",
+        "tex": "k_2",
+        "unit": "W/(m K)",
+        "min": 0.1,
+        "max": 20,
+        "initial": 2
+      }
+    ],
+    "abscissa": "L2",
+    "x": "L_2\\;(\\mathrm{m})",
+    "y": "H\\;(\\mathrm{W})",
+    "extent": [
+      0.01,
+      0.5
+    ],
+    "initialReason": "정의역 안에서 조건과 변화의 차를 읽기 위한 설계값이다. 교재의 예제값·실제 측정값·사용자의 학습 기록이 아니다.",
+    "limits": "이 관찰은 표시한 원문 관계와 모형 조건의 계산이다. 모든 공간점·시간 의존·재료 응답을 포함한 일반 해석이나 실험 검증은 아니다.",
+    "evidence": {
+      "pdf": 425,
+      "printed": 412,
+      "kind": "original-section-and-equation-text-check"
+    }
+  },
+  {
+    "id": "c21-solid-sphere-field",
+    "chapter": 21,
+    "engine": "solid-sphere-field",
+    "name": "균일한 체적 전하 구의 장",
+    "sections": [
+      "21.3"
+    ],
+    "question": "구 내부의 포함 전하 변화는 반지름에 따른 전기장을 어떻게 정하는가?",
+    "relation": "같은 가우스 면에서 내부 전하가 r³으로 늘고 면적이 r²으로 늘므로 내부 장은 r에 비례한다.",
+    "formula": "E_r=\\begin{cases}kQr/R^3&r\\le R\\\\kQ/r^2&r>R\\end{cases}",
+    "conditions": "균일한 체적 전하 Q·구 반지름 R·진공·정전기. 표면에만 전하가 있는 도체 구와 구별한다. r=0에서 E=0이고 r=R에서 연속이다.",
+    "controls": [
+      {
+        "key": "q",
+        "name": "총전하",
+        "tex": "Q",
+        "unit": "μC",
+        "min": -5,
+        "max": 5,
+        "initial": 1
+      },
+      {
+        "key": "radius",
+        "name": "구 반지름",
+        "tex": "R",
+        "unit": "m",
+        "min": 0.1,
+        "max": 1,
+        "initial": 0.5
+      },
+      {
+        "key": "r",
+        "name": "관찰 반지름",
+        "tex": "r",
+        "unit": "m",
+        "min": 0,
+        "max": 2,
+        "initial": 0.25
+      }
+    ],
+    "abscissa": "r",
+    "x": "r\\;(\\mathrm{m})",
+    "y": "E_r\\;(\\mathrm{N/C})",
+    "extent": [
+      0,
+      2
+    ],
+    "initialReason": "정의역 안에서 조건과 변화의 차를 읽기 위한 설계값이다. 교재의 예제값·실제 측정값·사용자의 학습 기록이 아니다.",
+    "limits": "이 관찰은 표시한 원문 관계와 모형 조건의 계산이다. 모든 공간점·시간 의존·재료 응답을 포함한 일반 해석이나 실험 검증은 아니다.",
+    "evidence": {
+      "pdf": 722,
+      "printed": 714,
+      "kind": "original-section-and-equation-text-check"
+    }
+  },
+  {
+    "id": "c22-solid-sphere-potential",
+    "chapter": 22,
+    "engine": "solid-sphere-potential",
+    "name": "균일한 체적 전하 구의 전위",
+    "sections": [
+      "22.11"
+    ],
+    "question": "구의 장을 적분하면 내부와 외부의 전위는 어떻게 이어지는가?",
+    "relation": "같은 반지름에서 전위와 장을 별도 단위로 읽는다. 경계 전위 연속 조건이 내부 적분의 상수를 정한다.",
+    "formula": "V(r)=\\begin{cases}\\frac{kQ}{2R}(3-r^2/R^2)&r\\le R\\\\kQ/r&r>R\\end{cases}",
+    "conditions": "균일한 체적 전하 구·무한대 V=0·진공·정전기. 도체 구 내부의 상수 전위와 구별한다.",
+    "controls": [
+      {
+        "key": "q",
+        "name": "총전하",
+        "tex": "Q",
+        "unit": "μC",
+        "min": -5,
+        "max": 5,
+        "initial": 1
+      },
+      {
+        "key": "radius",
+        "name": "구 반지름",
+        "tex": "R",
+        "unit": "m",
+        "min": 0.1,
+        "max": 1,
+        "initial": 0.5
+      },
+      {
+        "key": "r",
+        "name": "관찰 반지름",
+        "tex": "r",
+        "unit": "m",
+        "min": 0,
+        "max": 2,
+        "initial": 0.25
+      }
+    ],
+    "abscissa": "r",
+    "x": "r\\;(\\mathrm{m})",
+    "y": "V\\;(\\mathrm{V})",
+    "extent": [
+      0,
+      2
+    ],
+    "initialReason": "정의역 안에서 조건과 변화의 차를 읽기 위한 설계값이다. 교재의 예제값·실제 측정값·사용자의 학습 기록이 아니다.",
+    "limits": "이 관찰은 표시한 원문 관계와 모형 조건의 계산이다. 모든 공간점·시간 의존·재료 응답을 포함한 일반 해석이나 실험 검증은 아니다.",
+    "evidence": {
+      "pdf": 764,
+      "printed": 756,
+      "kind": "original-section-and-equation-text-check"
+    }
+  },
+  {
+    "id": "c21-line-field",
+    "chapter": 21,
+    "engine": "line-field",
+    "name": "긴 선전하와 가우스 원통",
+    "sections": [
+      "21.3"
+    ],
+    "question": "선전하에서 가우스 면 반지름을 바꾸면 포함 전하와 장은 어떻게 대응하는가?",
+    "relation": "포함 전하 λℓ와 원통 곁면 2πrℓ의 비가 역거리 장을 만든다. 양 끝 면 선속은 방향 조건 때문에 0이다.",
+    "formula": "E_r=\\lambda/(2\\pi\\epsilon_\\circ r)",
+    "conditions": "무한히 긴 선전하의 원통 대칭·진공·r>0. 유한 막대의 끝 근처는 이 모형에 포함하지 않는다.",
+    "controls": [
+      {
+        "key": "lambda",
+        "name": "선전하밀도",
+        "tex": "\\lambda",
+        "unit": "μC/m",
+        "min": -5,
+        "max": 5,
+        "initial": 1
+      },
+      {
+        "key": "r",
+        "name": "관찰 반지름",
+        "tex": "r",
+        "unit": "m",
+        "min": 0.05,
+        "max": 2,
+        "initial": 0.5
+      }
+    ],
+    "abscissa": "r",
+    "x": "r\\;(\\mathrm{m})",
+    "y": "E_r\\;(\\mathrm{N/C})",
+    "extent": [
+      0.05,
+      2
+    ],
+    "initialReason": "정의역 안에서 조건과 변화의 차를 읽기 위한 설계값이다. 교재의 예제값·실제 측정값·사용자의 학습 기록이 아니다.",
+    "limits": "이 관찰은 표시한 원문 관계와 모형 조건의 계산이다. 모든 공간점·시간 의존·재료 응답을 포함한 일반 해석이나 실험 검증은 아니다.",
+    "evidence": {
+      "pdf": 721,
+      "printed": 713,
+      "kind": "original-example-21.8-text-check"
+    }
+  },
+  {
+    "id": "c23-capacitance-cylinder",
+    "chapter": 23,
+    "engine": "capacitance-cylinder",
+    "name": "동축 원통의 정전용량",
+    "sections": [
+      "23.2"
+    ],
+    "question": "같은 길이에서 반지름 비가 전위차와 정전용량을 어떻게 정하는가?",
+    "relation": "선전하의 역거리 장을 두 전극 사이에서 적분한 로그 전위차가 정전용량에 대응한다.",
+    "formula": "C=\\frac{2\\pi\\epsilon_\\circ\\ell}{\\ln(b/a)}",
+    "conditions": "동축 도체·진공·b>a>0. 길이가 외부 반지름보다 충분히 길어 끝 효과를 무시한다. b/ℓ>0.1이면 계산을 보류하는 것은 설계용 주의 경계이며 교재의 보편 상수가 아니다.",
+    "controls": [
+      {
+        "key": "length",
+        "name": "도체 길이",
+        "tex": "\\ell",
+        "unit": "m",
+        "min": 1,
+        "max": 10,
+        "initial": 3
+      },
+      {
+        "key": "inner",
+        "name": "안쪽 반지름",
+        "tex": "a",
+        "unit": "m",
+        "min": 0.005,
+        "max": 0.05,
+        "initial": 0.01
+      },
+      {
+        "key": "ratio",
+        "name": "반지름 비",
+        "tex": "b/a",
+        "unit": "1",
+        "min": 1.05,
+        "max": 5,
+        "initial": 2
+      }
+    ],
+    "abscissa": "ratio",
+    "x": "b/a",
+    "y": "C\\;(\\mathrm{F})",
+    "extent": [
+      1.05,
+      5
+    ],
+    "initialReason": "정의역 안에서 조건과 변화의 차를 읽기 위한 설계값이다. 교재의 예제값·실제 측정값·사용자의 학습 기록이 아니다.",
+    "limits": "이 관찰은 표시한 원문 관계와 모형 조건의 계산이다. 모든 공간점·시간 의존·재료 응답을 포함한 일반 해석이나 실험 검증은 아니다.",
+    "evidence": {
+      "pdf": 785,
+      "printed": 777,
+      "kind": "original-section-and-equation-text-check"
+    }
+  },
+  {
+    "id": "c23-capacitance-sphere",
+    "chapter": 23,
+    "engine": "capacitance-sphere",
+    "name": "동심 구면의 정전용량",
+    "sections": [
+      "23.2"
+    ],
+    "question": "바깥 반지름을 크게 만들면 고립 구의 용량으로 어떻게 이어지는가?",
+    "relation": "구의 역제곱 장을 적분한 전위차에서 용량을 구하고, 무한대 바깥 전극의 극한을 구별한다.",
+    "formula": "C=4\\pi\\epsilon_\\circ\\frac{ab}{b-a}",
+    "conditions": "동심 구형 도체·진공·b>a>0. 고립 구 극한은 b→∞이며 유한한 큰 b를 무한대로 보고하지 않는다.",
+    "controls": [
+      {
+        "key": "inner",
+        "name": "안쪽 반지름",
+        "tex": "a",
+        "unit": "m",
+        "min": 0.01,
+        "max": 1,
+        "initial": 0.1
+      },
+      {
+        "key": "ratio",
+        "name": "반지름 비",
+        "tex": "b/a",
+        "unit": "1",
+        "min": 1.05,
+        "max": 20,
+        "initial": 2
+      }
+    ],
+    "abscissa": "ratio",
+    "x": "b/a",
+    "y": "C\\;(\\mathrm{F})",
+    "extent": [
+      1.05,
+      20
+    ],
+    "initialReason": "정의역 안에서 조건과 변화의 차를 읽기 위한 설계값이다. 교재의 예제값·실제 측정값·사용자의 학습 기록이 아니다.",
+    "limits": "이 관찰은 표시한 원문 관계와 모형 조건의 계산이다. 모든 공간점·시간 의존·재료 응답을 포함한 일반 해석이나 실험 검증은 아니다.",
+    "evidence": {
+      "pdf": 786,
+      "printed": 778,
+      "kind": "original-section-and-equation-text-check"
+    }
+  },
+  {
+    "id": "c26-loop-axis-field",
+    "chapter": 26,
+    "engine": "loop-axis-field",
+    "name": "전류 고리의 축 자기장",
+    "sections": [
+      "26.1"
+    ],
+    "question": "중심에서 멀어지면 고리 각 부분의 장 합이 어떻게 달라지는가?",
+    "relation": "Biot–Savart 벡터 합에서 축에 수직인 성분은 상쇄되고 축 성분만 더해진다.",
+    "formula": "B_x=\\frac{\\mu_\\circ IR^2}{2(R^2+x^2)^{3/2}}",
+    "conditions": "반지름 R의 원형 고리·정상 전류·진공·축 위 관찰점. 축 밖 일반 장은 이 계산에 포함하지 않는다.",
+    "controls": [
+      {
+        "key": "I",
+        "name": "전류",
+        "tex": "I",
+        "unit": "A",
+        "min": -10,
+        "max": 10,
+        "initial": 2
+      },
+      {
+        "key": "radius",
+        "name": "고리 반지름",
+        "tex": "R",
+        "unit": "m",
+        "min": 0.05,
+        "max": 1,
+        "initial": 0.2
+      },
+      {
+        "key": "x",
+        "name": "축 위치",
+        "tex": "x",
+        "unit": "m",
+        "min": -2,
+        "max": 2,
+        "initial": 0.3
+      }
+    ],
+    "abscissa": "x",
+    "x": "x\\;(\\mathrm{m})",
+    "y": "B_x\\;(\\mathrm{T})",
+    "extent": [
+      -2,
+      2
+    ],
+    "initialReason": "정의역 안에서 조건과 변화의 차를 읽기 위한 설계값이다. 교재의 예제값·실제 측정값·사용자의 학습 기록이 아니다.",
+    "limits": "이 관찰은 표시한 원문 관계와 모형 조건의 계산이다. 모든 공간점·시간 의존·재료 응답을 포함한 일반 해석이나 실험 검증은 아니다.",
+    "evidence": {
+      "pdf": 898,
+      "printed": 892,
+      "kind": "original-section-and-equation-text-check"
+    }
+  },
+  {
+    "id": "c26-finite-wire-field",
+    "chapter": 26,
+    "engine": "finite-wire-field",
+    "name": "유한 직선 도선의 자기장",
+    "sections": [
+      "26.1"
+    ],
+    "question": "도선 길이를 늘리면 관찰점의 장은 긴 도선 근사에 어떻게 접근하는가?",
+    "relation": "도선 요소별 방향을 합하면 끝점 각도가 장을 정한다. ℓ≫a의 근사와 정확한 중점 해를 비교한다.",
+    "formula": "B=\\frac{\\mu_\\circ I}{2\\pi a}\\frac{\\ell/2}{\\sqrt{a^2+(\\ell/2)^2}}",
+    "conditions": "직선 도선의 중점에서 수직 거리 a의 관찰점·진공·정상 전류. 끝점을 비대칭으로 둔 일반 식과 구별한다.",
+    "controls": [
+      {
+        "key": "I",
+        "name": "전류",
+        "tex": "I",
+        "unit": "A",
+        "min": -10,
+        "max": 10,
+        "initial": 2
+      },
+      {
+        "key": "a",
+        "name": "수직 거리",
+        "tex": "a",
+        "unit": "m",
+        "min": 0.05,
+        "max": 1,
+        "initial": 0.2
+      },
+      {
+        "key": "length",
+        "name": "도선 길이",
+        "tex": "\\ell",
+        "unit": "m",
+        "min": 0.05,
+        "max": 10,
+        "initial": 1
+      }
+    ],
+    "abscissa": "length",
+    "x": "\\ell\\;(\\mathrm{m})",
+    "y": "B\\;(\\mathrm{T})",
+    "extent": [
+      0.05,
+      10
+    ],
+    "initialReason": "정의역 안에서 조건과 변화의 차를 읽기 위한 설계값이다. 교재의 예제값·실제 측정값·사용자의 학습 기록이 아니다.",
+    "limits": "이 관찰은 표시한 원문 관계와 모형 조건의 계산이다. 모든 공간점·시간 의존·재료 응답을 포함한 일반 해석이나 실험 검증은 아니다.",
+    "evidence": {
+      "pdf": 897,
+      "printed": 891,
+      "kind": "original-equation-26.5-symmetric-endpoints-specialization"
+    }
+  },
+  {
+    "id": "c27-induced-electric",
+    "chapter": 27,
+    "engine": "induced-electric",
+    "name": "변하는 자기장과 순환 전기장",
+    "sections": [
+      "27.6"
+    ],
+    "question": "장 변화 영역의 안과 밖에서 유도 전기장은 반지름에 어떻게 의존하는가?",
+    "relation": "영역 안은 선속 면적이 r²으로 늘고 밖은 포함된 선속이 고정되므로 같은 순환 법칙에서 r과 1/r이 나온다.",
+    "formula": "E_\\varphi=-\\frac12\\frac{dB}{dt}\\begin{cases}r&r\\le R\\\\R^2/r&r>R\\end{cases}",
+    "conditions": "반지름 R 원 영역 안의 균일한 축 방향 B(t)·밖의 B 변화 0. 축 대칭 모형·면 법선 +z·순환 +φ. 도선이 없더라도 가상의 닫힌 경로에서 정의되는 장이다.",
+    "controls": [
+      {
+        "key": "rate",
+        "name": "자기장 변화율",
+        "tex": "dB/dt",
+        "unit": "T/s",
+        "min": -5,
+        "max": 5,
+        "initial": 1
+      },
+      {
+        "key": "radius",
+        "name": "변화 영역 반지름",
+        "tex": "R",
+        "unit": "m",
+        "min": 0.1,
+        "max": 1,
+        "initial": 0.5
+      },
+      {
+        "key": "r",
+        "name": "관찰 반지름",
+        "tex": "r",
+        "unit": "m",
+        "min": 0,
+        "max": 2,
+        "initial": 0.25
+      }
+    ],
+    "abscissa": "r",
+    "x": "r\\;(\\mathrm{m})",
+    "y": "E_\\varphi\\;(\\mathrm{V/m})",
+    "extent": [
+      0,
+      2
+    ],
+    "initialReason": "정의역 안에서 조건과 변화의 차를 읽기 위한 설계값이다. 교재의 예제값·실제 측정값·사용자의 학습 기록이 아니다.",
+    "limits": "이 관찰은 표시한 원문 관계와 모형 조건의 계산이다. 모든 공간점·시간 의존·재료 응답을 포함한 일반 해석이나 실험 검증은 아니다.",
+    "evidence": {
+      "pdf": 953,
+      "printed": 947,
+      "kind": "original-section-and-equation-text-check"
+    }
+  },
+  {
+    "id": "c24-kirchhoff-branches",
+    "chapter": 24,
+    "engine": "kirchhoff-branches",
+    "name": "두 전원과 공통 접점의 전류",
+    "sections": [
+      "24.6"
+    ],
+    "question": "한 전원의 값을 바꾸면 세 가지 전류가 접점 보존과 전압 고리를 어떻게 동시에 만족하는가?",
+    "relation": "접점의 I₁+I₂=I₃와 각 고리의 전압 조건에서 V를 구한다. 음의 가지 전류는 처음 가정한 방향의 반대이다.",
+    "formula": "I_1=(\\mathcal E_1-V)/R_1,\\ I_2=(\\mathcal E_2-V)/R_2,\\ I_3=V/R_3",
+    "conditions": "두 전원이 각각 저항 R₁,R₂를 통해 같은 접점 V에 연결되고 R₃는 접점에서 기준점으로 연결된다. 전원 음극과 R₃ 아래는 공통 기준점. 정상 직류·이상 전원·옴성 저항·변화 선속 없음. 이 배치는 설계 비교용이며 특정 교재 예제 회로를 복제한 것은 아니다.",
+    "controls": [
+      {
+        "key": "E1",
+        "name": "첫 기전력",
+        "tex": "\\mathcal E_1",
+        "unit": "V",
+        "min": 0,
+        "max": 20,
+        "initial": 10
+      },
+      {
+        "key": "E2",
+        "name": "둘째 기전력",
+        "tex": "\\mathcal E_2",
+        "unit": "V",
+        "min": 0,
+        "max": 20,
+        "initial": 5
+      },
+      {
+        "key": "R1",
+        "name": "첫 저항",
+        "tex": "R_1",
+        "unit": "Ω",
+        "min": 1,
+        "max": 100,
+        "initial": 10
+      },
+      {
+        "key": "R2",
+        "name": "둘째 저항",
+        "tex": "R_2",
+        "unit": "Ω",
+        "min": 1,
+        "max": 100,
+        "initial": 20
+      },
+      {
+        "key": "R3",
+        "name": "공통 저항",
+        "tex": "R_3",
+        "unit": "Ω",
+        "min": 1,
+        "max": 100,
+        "initial": 10
+      }
+    ],
+    "abscissa": "E2",
+    "x": "\\mathcal E_2\\;(\\mathrm{V})",
+    "y": "V\\;(\\mathrm{V})",
+    "extent": [
+      0,
+      20
+    ],
+    "initialReason": "정의역 안에서 조건과 변화의 차를 읽기 위한 설계값이다. 교재의 예제값·실제 측정값·사용자의 학습 기록이 아니다.",
+    "limits": "이 관찰은 표시한 원문 관계와 모형 조건의 계산이다. 모든 공간점·시간 의존·재료 응답을 포함한 일반 해석이나 실험 검증은 아니다.",
+    "evidence": {
+      "pdf": 842,
+      "printed": 834,
+      "kind": "original-section-and-equation-text-check"
+    }
+  },
+  {
+    "id": "c3-kinematic-velocity",
+    "chapter": 3,
+    "engine": "kinematic-velocity",
+    "name": "속도와 가속도 부호",
+    "sections": [
+      "3.3",
+      "3.4"
+    ],
+    "question": "가속도 부호만으로 속력이 커지는지 알 수 있는가?",
+    "relation": "같은 시각을 속도·가속도의 별도 그래프와 현재 위치에 대응한다. 속도와 가속도의 부호를 함께 비교한다.",
+    "formula": "v=dx/dt,\\quad a=dv/dt,\\quad x=x_\\circ+v_\\circ t+\\frac12a_\\circ t^2+\\frac16jt^3",
+    "conditions": "일차원·미분 가능한 위치 함수·관성계. 교재 밖 관찰 모형으로 일정한 가속도 변화율 j를 선택한다. j=0일 때만 등가속도 식으로 돌아간다. t≥0은 이 관찰의 시작시각 선택이며 음의 시간이 물리적으로 불가능하다는 뜻이 아니다.",
+    "controls": [
+      {
+        "key": "x0",
+        "name": "초기 위치",
+        "tex": "x_\\circ",
+        "unit": "m",
+        "min": -5,
+        "max": 5,
+        "initial": 0
+      },
+      {
+        "key": "v0",
+        "name": "초기 속도",
+        "tex": "v_\\circ",
+        "unit": "m/s",
+        "min": -8,
+        "max": 8,
+        "initial": -4
+      },
+      {
+        "key": "a0",
+        "name": "초기 가속도",
+        "tex": "a_\\circ",
+        "unit": "m/s^2",
+        "min": -8,
+        "max": 8,
+        "initial": 2
+      },
+      {
+        "key": "j",
+        "name": "가속도 변화율",
+        "tex": "j",
+        "unit": "m/s^3",
+        "min": -2,
+        "max": 2,
+        "initial": 0
+      },
+      {
+        "key": "t",
+        "name": "관찰 시각",
+        "tex": "t",
+        "unit": "s",
+        "min": 0,
+        "max": 8,
+        "initial": 1
+      }
+    ],
+    "abscissa": "t",
+    "x": "t\\;(\\mathrm{s})",
+    "y": "v\\;(\\mathrm{m/s})",
+    "extent": [
+      0,
+      8
+    ],
+    "initialReason": "음의 속도와 양의 가속도가 함께 있을 때 속력이 감소하는 상태로 시작한다. 예제 수치·실제 관측을 재현한 값이 아니다.",
+    "limits": "교재의 미분 정의로 구성한 다항식 관찰이다. 임의 운동·비미분 충돌·모든 경로의 그래프 편집은 구현하지 않는다. 순간 정지에서 반전 여부를 자동 확정하지 않는다. 유한 표본은 증명이 아니다."
+  },
+  {
+    "id": "c5-drag-quadratic",
+    "chapter": 5,
+    "engine": "drag-quadratic",
+    "name": "제곱 항력과 종단 속도",
+    "sections": [
+      "5.2",
+      "5.3"
+    ],
+    "question": "선형 항력과 속력 제곱 항력의 종단 속도는 어떻게 다른가?",
+    "relation": "같은 시각의 속도·가속도를 분리된 단위의 두 그래프로 연결한다. 중력과 저항의 균형에서 종단 속도를 비교한다.",
+    "formula": "mg-\\frac12C\\rho Av^2=m\\frac{dv}{dt},\\quad v_t=\\sqrt{\\frac{2mg}{C\\rho A}},\\quad v=v_t\\tanh(gt/v_t)",
+    "conditions": "아래를 양으로 둔 일차원 낙하·v(0)=0·일정 g·밀도·유효 단면적·C>0. 부력과 다른 힘 없음. C 일정의 제곱 항력 근사이며 저속 선형 항력 모형과 구별한다. 전체 조절 범위가 실제 유체의 근사 타당성을 보증하지 않는다.",
+    "controls": [
+      {
+        "key": "m",
+        "name": "질량",
+        "tex": "m",
+        "unit": "kg",
+        "min": 0.001,
+        "max": 100,
+        "initial": 0.05
+      },
+      {
+        "key": "Cd",
+        "name": "항력 계수",
+        "tex": "C",
+        "unit": "1",
+        "min": 0.1,
+        "max": 2,
+        "initial": 0.5
+      },
+      {
+        "key": "rho",
+        "name": "매질 밀도",
+        "tex": "\\rho",
+        "unit": "kg/m^3",
+        "min": 0.1,
+        "max": 2000,
+        "initial": 1.2
+      },
+      {
+        "key": "area",
+        "name": "유효 단면적",
+        "tex": "A",
+        "unit": "m^2",
+        "min": 0.001,
+        "max": 1,
+        "initial": 0.005
+      },
+      {
+        "key": "t",
+        "name": "관찰 시각",
+        "tex": "t",
+        "unit": "s",
+        "min": 0,
+        "max": 8,
+        "initial": 1
+      }
+    ],
+    "abscissa": "t",
+    "x": "t\\;(\\mathrm{s})",
+    "y": "v\\;(\\mathrm{m/s})",
+    "extent": [
+      0,
+      8
+    ],
+    "initialReason": "질량·공기 밀도·유효 면적을 단순한 설명값으로 선택해 초기 가속도와 종단 접근을 비교한다. 실제 물체의 측정값이나 교재 예제 수치 풀이가 아니다.",
+    "limits": "교재5.15의 미분방정식에서 얻은 교재 밖 정확해로 모형을 관찰한다. 실제 항력 계수의 속도 의존성·유동 변화·낙하 충돌·공간 궤적은 계산하지 않는다. 유한 시간의 반올림 값을 종단에 정확히 도달한 것으로 보지 않는다."
+  },
+  {
+    "id": "c6-constant-work",
+    "chapter": 6,
+    "engine": "constant-work",
+    "name": "힘과 변위의 각도·일",
+    "sections": [
+      "6.1"
+    ],
+    "question": "같은 힘과 변위에서도 일이 음수나 0이 되는 이유는 무엇인가?",
+    "relation": "힘과 변위 사이각을 내적·방향 성분·일의 부호에 대응한다. 변위와 이동거리를 구별한다.",
+    "formula": "W=\\vec F\\cdot\\vec s=Fs\\cos\\theta",
+    "conditions": "구간 동안 일정한 힘·변위 벡터·θ는 힘과 변위의 사이각. F와s는 크기이며 일은 부호 있는 스칼라이다. 변하는 힘과 곡선 경로는 선적분으로 구별한다.",
+    "controls": [
+      {
+        "key": "F",
+        "name": "힘 크기",
+        "tex": "F",
+        "unit": "N",
+        "min": 0,
+        "max": 20,
+        "initial": 5
+      },
+      {
+        "key": "distance",
+        "name": "변위 크기",
+        "tex": "s",
+        "unit": "m",
+        "min": 0,
+        "max": 10,
+        "initial": 2
+      },
+      {
+        "key": "angle",
+        "name": "힘과 변위 사이각",
+        "tex": "\\theta",
+        "unit": "rad",
+        "min": 0,
+        "max": 3.141592653589793,
+        "initial": 1.0471975511965976
+      }
+    ],
+    "abscissa": "angle",
+    "x": "\\theta\\;(\\mathrm{rad})",
+    "y": "W\\;(\\mathrm J)",
+    "extent": [
+      0,
+      3.141592653589793
+    ],
+    "initialReason": "0·직각·반대 방향을 비교할 수 있는 작은 힘과 변위로 시작한다. 실제 측정이나 교재 예제 풀이값이 아니다.",
+    "limits": "일정한 힘이 한 일의 모형이다. 마찰의 모든 상황·움직이는 받침·일반 경로 적분을 포함하지 않는다. 그림은 유한 표본이며 코사인의 부호 관계를 일반 증명으로 대신하지 않는다."
+  },
+  {
+    "id": "c27-em-plane-electric",
+    "chapter": 27,
+    "engine": "em-plane-electric",
+    "name": "전자기파의 장·위상 대응",
+    "sections": [
+      "27.7"
+    ],
+    "question": "전기장과 자기장의 서로 다른 단위는 같은 파에서 어떻게 대응하는가?",
+    "relation": "같은 위치와 시각을 E_y와 B_z의 별도 그래프에 연결한다. 두 장의 같은 위상, +x 전파, 수직 방향을 구별한다.",
+    "formula": "E=E_\\circ\\cos(kx-\\omega t),\\quad B=B_\\circ\\cos(kx-\\omega t),\\quad c=1/\\sqrt{\\mu_\\circ\\epsilon_\\circ},\\quad E_\\circ=cB_\\circ",
+    "conditions": "진공·전하와 전도전류가 없는 영역·단일 조화 평면파·+x 진행. E는 y 성분, B는 z 성분이다. 교재 밖 계산 보충으로 두 진폭에 E_◦=cB_◦를 적용한다. k=2π/λ, ω=ck, t=(t/T)λ/c이다. 교재의 2013년 μ_◦와 ε_◦ 근사 상수를 사용하며 최신 SI 정의를 검증했다고 하지 않는다.",
+    "controls": [
+      {
+        "key": "peak",
+        "name": "전기장 진폭",
+        "tex": "E_\\circ",
+        "unit": "V/m",
+        "min": 1,
+        "max": 100,
+        "initial": 20
+      },
+      {
+        "key": "wavelength",
+        "name": "파장",
+        "tex": "\\lambda",
+        "unit": "m",
+        "min": 0.25,
+        "max": 4,
+        "initial": 2
+      },
+      {
+        "key": "phase",
+        "name": "주기 대비 시각",
+        "tex": "t/T",
+        "unit": "1",
+        "min": 0,
+        "max": 1,
+        "initial": 0
+      },
+      {
+        "key": "position",
+        "name": "관찰 위치",
+        "tex": "x",
+        "unit": "m",
+        "min": 0,
+        "max": 6,
+        "initial": 1
+      }
+    ],
+    "abscissa": "position",
+    "x": "x\\;(\\mathrm m)",
+    "y": "E_y\\;(\\mathrm{V/m})",
+    "extent": [
+      0,
+      6
+    ],
+    "initialReason": "몇 주기를 종이 위에서 읽을 수 있는 파장과 단순한 전기장 진폭을 선택한다. 관측 장비 측정이나 실제광원의 값이 아니다. 시각은 수동 주기비로 시작한다.",
+    "limits": "두 그래프는 같은 한 평면파의 정확한 식을 표본으로 그린 것이다. 일반 Maxwell 편미분방정식, 경계, 물질, 반사, 임의 파형, 전체 3D 장을 모사하지 않는다. 같은 세로축에 다른 단위의 E와 B를 섞지 않으며 그림을 파동방정식의 일반 증명으로 처리하지 않는다."
+  }
+]

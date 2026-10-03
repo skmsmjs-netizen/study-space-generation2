@@ -1,0 +1,39 @@
+.physics-book { min-width: 0; }
+.physics-book h2, .physics-book h3, .physics-book h4 { overflow-wrap: anywhere; }
+.physics-reading { max-width: var(--paper-reading-max-width, 48rem); margin: var(--space-6) auto; padding: var(--space-6); background: var(--color-surface); color: var(--color-text); border: var(--border-width) solid var(--color-border); }
+.physics-prose { font-family: var(--font-reading); font-weight: var(--paper-body-weight, var(--observatory-paper-body-weight)); font-size: var(--paper-body-size, var(--observatory-paper-body-size)); line-height: var(--paper-body-line, var(--observatory-paper-body-line)); text-align: var(--paper-body-text-align, var(--observatory-body-text-align)); text-align-last: var(--observatory-body-last-line); letter-spacing: var(--paper-body-tracking, var(--observatory-paper-body-tracking)); white-space: pre-wrap; overflow-wrap: anywhere; }
+.physics-module { border: var(--border-width) solid var(--color-border); padding: var(--space-4); margin-block: var(--space-5); }
+.physics-section-list { list-style: none; padding: 0; }
+.physics-section-list li { padding: var(--space-4); border-bottom: var(--border-width) solid var(--color-border); scroll-margin-top: var(--space-6); }
+.physics-section-list .is-current { background: var(--color-background-subtle); }
+.physics-catalog-tools, .physics-workbench { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: var(--space-5); }
+.physics-workbench { align-items: start; }
+.physics-workbench > * { min-width: 0; }
+.physics-observation-list, .physics-observation-tools, .physics-plot-actions, .physics-axes { display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: center; }
+.physics-axes { justify-content: space-between; }
+.physics-number { margin-block: var(--space-4); }
+.physics-number input[type='range'] { width: 100%; min-height: var(--control-height); }
+.physics-modal.ui-modal { width: min(95vw, 72rem); max-width: 95vw; }
+.physics-modal-large.ui-modal { width: 98vw; max-width: 98vw; }
+/* design-token-exception: height -- Plotly needs a finite observation area. Text and conditions keep natural height. */
+.physics-plot { width: 100%; height: 380px; touch-action: none; }
+.physics-observation table { width: 100%; border-collapse: collapse; }
+.physics-observation td, .physics-observation th { text-align: start; padding: var(--space-2); }
+.physics-source-text { white-space: pre-wrap; overflow-wrap: anywhere; font-family: var(--font-reading); line-height: var(--paper-body-line, var(--observatory-paper-body-line)); }
+.physics-source-modal .muted { overflow-wrap: anywhere; }
+@media (max-width: 700px) {
+  .physics-catalog-tools, .physics-workbench { grid-template-columns: minmax(0, 1fr); }
+  .physics-reading { padding: var(--space-4); }
+  .physics-prose { font-size: var(--paper-body-size, var(--observatory-paper-body-compact-size)); line-height: var(--paper-body-line, var(--observatory-paper-body-line)); }
+}
+.physics-section-reader { min-width: 0; max-width: var(--paper-reading-max-width, 48rem); margin-inline: auto; }
+.physics-section-reader .math-equation { position: relative; min-width: 0; }
+
+.physics-section-reader .muted { overflow-wrap: anywhere; }
+
+.physics-spatial svg { display: block; width: 100%; max-width: var(--paper-reading-max-width); margin-inline: auto; color: var(--color-text); font-family: var(--font-interface); }
+.physics-spatial-axis { stroke: var(--color-border); fill: none; }
+.physics-spatial table { width: 100%; text-align: start; }
+.physics-spatial th, .physics-spatial td { padding: var(--space-2); text-align: start; }
+.physics-connections { border-block-start: var(--border-width) solid var(--color-border); padding-block-start: var(--space-3); }
+.physics-original-page { display: block; width: 100%; height: auto; }

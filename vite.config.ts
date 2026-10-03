@@ -1,3 +1,4 @@
+import { physicsSourcePlugin } from './scripts/physics-source-plugin';
 import { configDefaults, defineConfig } from 'vitest/config';
 import { realpathSync } from 'node:fs';
 import { localStudyAIPlugin } from './scripts/study-ai-dev.ts';
@@ -10,7 +11,7 @@ export default defineConfig({
   // WebKit #270357 can retain failed modulepreload requests across reloads.
   // Native dynamic imports retain route splitting and permit a fresh retry.
   build: { modulePreload: false, copyPublicDir: false },
-  plugins: [react(), localCodeRunnerPlugin(), localStudyAIPlugin(), publicAssetsPlugin(), conceptReadingPackPlugin(), linearSourcePlugin()],
+  plugins: [physicsSourcePlugin(),react(), localCodeRunnerPlugin(), localStudyAIPlugin(), publicAssetsPlugin(), conceptReadingPackPlugin(), linearSourcePlugin()],
   base: process.env.PAGES_BASE || '/',
   optimizeDeps: { entries: ['index.html'] },
   // Verification copies and generated reports must not reload a live input form.

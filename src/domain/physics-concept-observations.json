@@ -1,0 +1,5004 @@
+[
+  {
+    "id": "1.1",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "1.1:reading:1",
+        "name": "물리량과 단위",
+        "text": "숫자는 단위와 함께 물리량을 나타낸다. 기본 단위에서 유도 단위를 구성하고, 단위 변환은 물리량 자체를 바꾸지 않는다.",
+        "tex": ""
+      },
+      {
+        "id": "1.1:reading:2",
+        "name": "접두어와 크기",
+        "text": "접두어는 단위의 배율이다. 같은 기호처럼 보이는 물리량 이름과 단위 이름을 구별해 읽는다.",
+        "tex": ""
+      }
+    ],
+    "limits": "원문2013년 판의 단위 설명이다. 이후 바뀐SI 정의를 이 교재 본문으로 소급하지 않는다.",
+    "sourceScope": "한국어 해설은 해당 절의 이전 본문 추출본과 대조한 재서술이다. 단계 선택은 읽기 위치이며 학습 완료·정답·증명의 검증 기록이 아니다.",
+    "pdf": 21,
+    "conditions": "숫자는 단위와 함께 물리량을 나타낸다. 기본 단위에서 유도 단위를 구성하고, 단위 변환은 물리량 자체를 바꾸지 않는다.",
+    "coverage": "previous-structured-reading",
+    "relationships": []
+  },
+  {
+    "id": "1.2",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "1.2:reading:1",
+        "name": "길이·시간·질량의 기준",
+        "text": "측정값을 비교하려면 공통 기준과 단위가 필요하다. 교재의 길이·시간·질량 표준 설명은 발행 당시의 설명으로 읽는다.",
+        "tex": ""
+      },
+      {
+        "id": "1.2:reading:2",
+        "name": "측정과 정의",
+        "text": "정의된 기준과 특정 측정의 오차·정밀도는 다르다. 수치가 적혀 있다는 사실만으로 측정의 정확도를 결정하지 않는다.",
+        "tex": ""
+      }
+    ],
+    "limits": "최신SI 표준의 재정의는 이 교재 범위 밖이며 여기서 추가하지 않았다.",
+    "sourceScope": "한국어 해설은 해당 절의 이전 본문 추출본과 대조한 재서술이다. 단계 선택은 읽기 위치이며 학습 완료·정답·증명의 검증 기록이 아니다.",
+    "pdf": 23,
+    "conditions": "측정값을 비교하려면 공통 기준과 단위가 필요하다. 교재의 길이·시간·질량 표준 설명은 발행 당시의 설명으로 읽는다.",
+    "coverage": "previous-structured-reading",
+    "relationships": []
+  },
+  {
+    "id": "1.3",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "1.3:reading:1",
+        "name": "차원과 단위",
+        "text": "길이·질량·시간 차원으로 양변의 차원을 비교한다. 같은 차원은 식의 필요조건이며 물리 법칙의 충분한 검증이 아니다.",
+        "tex": "[v]=LT^{-1},\\quad[a]=LT^{-2}"
+      },
+      {
+        "id": "1.3:reading:2",
+        "name": "무차원과 수치",
+        "text": "차원 없는 비율과 단위 변환을 구별한다. 차원 해석은 수치 계수나 일반적인 함수 형태를 모두 정하지 못한다.",
+        "tex": ""
+      }
+    ],
+    "limits": "차원이 맞아도 계수·부호·적용 조건은 별도로 확인한다.",
+    "sourceScope": "한국어 해설은 해당 절의 이전 본문 추출본과 대조한 재서술이다. 단계 선택은 읽기 위치이며 학습 완료·정답·증명의 검증 기록이 아니다.",
+    "pdf": 27,
+    "conditions": "길이·질량·시간 차원으로 양변의 차원을 비교한다. 같은 차원은 식의 필요조건이며 물리 법칙의 충분한 검증이 아니다.",
+    "coverage": "previous-structured-reading",
+    "relationships": []
+  },
+  {
+    "id": "2.1",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "2.1:reading:1",
+        "name": "스칼라",
+        "text": "크기만으로 정하는 물리량과 방향이 함께 필요한 물리량을 구별한다.",
+        "tex": ""
+      },
+      {
+        "id": "2.1:reading:2",
+        "name": "벡터",
+        "text": "변위는 시작점과 끝점의 차이이며 실제 이동 경로·총거리를 모두 나타내지 않는다.",
+        "tex": ""
+      }
+    ],
+    "limits": "벡터의 성분 부호와 크기의 음수 여부를 혼동하지 않는다.",
+    "sourceScope": "한국어 해설은 해당 절의 이전 본문 추출본과 대조한 재서술이다. 단계 선택은 읽기 위치이며 학습 완료·정답·증명의 검증 기록이 아니다.",
+    "pdf": 34,
+    "conditions": "크기만으로 정하는 물리량과 방향이 함께 필요한 물리량을 구별한다.",
+    "coverage": "previous-structured-reading",
+    "relationships": []
+  },
+  {
+    "id": "2.2",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "2.2:reading:1",
+        "name": "벡터 합",
+        "text": "같은 좌표계에서 꼬리와 머리를 이어 합을 만든다.",
+        "tex": "\\vec R=\\vec A+\\vec B"
+      },
+      {
+        "id": "2.2:reading:2",
+        "name": "벡터 차",
+        "text": "반대 방향 벡터를 더하여 두 벡터의 차를 구한다.",
+        "tex": "\\vec A-\\vec B=\\vec A+(-\\vec B)"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "2.2:reading:1",
+        "toId": "2.2:reading:2",
+        "text": "방향과 크기를 함께 더해야 성분 합과 기하학적 합이 대응한다."
+      }
+    ],
+    "limits": "벡터의 위치 이동은 자유 벡터의 합을 위한 표현이다. 힘의 작용점을 임의로 옮겨 토크까지 같다고 하지 않는다.",
+    "conditions": "벡터의 위치 이동은 자유 벡터의 합을 위한 표현이다. 힘의 작용점을 임의로 옮겨 토크까지 같다고 하지 않는다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 36,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "2.3",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "2.3:reading:1",
+        "name": "직교 성분",
+        "text": "선택한 축으로 벡터를 나누어 부호 있는 성분을 읽는다.",
+        "tex": "\\vec A=A_x\\hat i+A_y\\hat j+A_z\\hat k"
+      },
+      {
+        "id": "2.3:reading:2",
+        "name": "크기 복원",
+        "text": "직교 성분의 제곱합에서 원래 벡터의 크기를 구한다.",
+        "tex": "A=\\sqrt{A_x^2+A_y^2+A_z^2}"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "2.3:reading:1",
+        "toId": "2.3:reading:2",
+        "text": "성분은 좌표계에 의존하지만 벡터 자체의 크기는 회전으로 바뀌지 않는다."
+      }
+    ],
+    "limits": "직교 단위벡터를 쓴다. 방향을 복원할 때는 성분의 부호와 사분면을 확인한다.",
+    "conditions": "직교 단위벡터를 쓴다. 방향을 복원할 때는 성분의 부호와 사분면을 확인한다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 39,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "2.4",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "2.4:reading:1",
+        "name": "내적",
+        "text": "한 벡터의 다른 벡터 방향 성분을 곱해 스칼라를 만든다.",
+        "tex": "\\vec A\\cdot\\vec B=AB\\cos\\theta"
+      },
+      {
+        "id": "2.4:reading:2",
+        "name": "외적",
+        "text": "두 벡터가 만드는 면적과 오른손 방향을 벡터로 나타낸다.",
+        "tex": "\\lvert\\vec A\\times\\vec B\\rvert=AB\\sin\\theta"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "2.4:reading:1",
+        "toId": "2.4:reading:2",
+        "text": "같은 두 벡터라도 일의 투영과 토크의 회전 방향은 서로 다른 곱을 필요로 한다."
+      }
+    ],
+    "limits": "외적의 순서를 바꾸면 부호가 바뀐다. θ는 두 벡터 사이의 각이다.",
+    "conditions": "외적의 순서를 바꾸면 부호가 바뀐다. θ는 두 벡터 사이의 각이다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 44,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "3.1",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "3.1:reading:1",
+        "name": "위치",
+        "text": "원점을 기준으로 물체의 위치를 정한다.",
+        "tex": "x_i,\\;x_f"
+      },
+      {
+        "id": "3.1:reading:2",
+        "name": "변위",
+        "text": "끝 위치와 시작 위치의 차를 읽는다.",
+        "tex": "\\Delta x=x_f-x_i"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "3.1:reading:1",
+        "toId": "3.1:reading:2",
+        "text": "위치 두 개가 변위를 정하지만 전체 이동 거리까지 정하지 않는다."
+      }
+    ],
+    "limits": "원점과 축의 양의 방향을 고정한다.",
+    "conditions": "원점과 축의 양의 방향을 고정한다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 57,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "3.2",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "3.2:reading:1",
+        "name": "평균 속도",
+        "text": "시간 구간 전체의 변위를 시간으로 나눈다.",
+        "tex": "v_{x,\\mathrm{av}}=\\Delta x/\\Delta t"
+      },
+      {
+        "id": "3.2:reading:2",
+        "name": "평균 속력",
+        "text": "총 이동 거리를 같은 시간으로 나눈다.",
+        "tex": ""
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "3.2:reading:1",
+        "toId": "3.2:reading:2",
+        "text": "되돌아오는 운동은 평균 속도가 0이어도 평균 속력이 0일 필요가 없다."
+      }
+    ],
+    "limits": "평균을 낸 시간 구간을 함께 명시한다. 총 거리를 변위의 절댓값으로 바꾸지 않는다.",
+    "conditions": "평균을 낸 시간 구간을 함께 명시한다. 총 거리를 변위의 절댓값으로 바꾸지 않는다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 58,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "3.3",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "3.3:reading:1",
+        "name": "순간 속도",
+        "text": "시간 간격을 줄인 극한에서 위치 곡선의 접선 기울기를 읽는다.",
+        "tex": "v_x=dx/dt"
+      },
+      {
+        "id": "3.3:reading:2",
+        "name": "순간 속력",
+        "text": "순간 속도의 크기로 방향과 속력을 구별한다.",
+        "tex": "v=\\lvert v_x\\rvert"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "3.3:reading:1",
+        "toId": "3.3:reading:2",
+        "text": "기울기의 부호는 운동 방향이며 기울기의 크기는 순간 속력이다."
+      }
+    ],
+    "limits": "위치 함수가 해당 시점에서 미분 가능해야 접선으로 속도를 읽을 수 있다.",
+    "conditions": "위치 함수가 해당 시점에서 미분 가능해야 접선으로 속도를 읽을 수 있다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 60,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "3.4",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "3.4:reading:1",
+        "name": "평균 가속도",
+        "text": "속도의 변화를 시간 간격으로 나눈다.",
+        "tex": "a_{x,\\mathrm{av}}=\\Delta v_x/\\Delta t"
+      },
+      {
+        "id": "3.4:reading:2",
+        "name": "순간 가속도",
+        "text": "속도 곡선의 접선 기울기에서 가속도를 읽는다.",
+        "tex": "a_x=dv_x/dt=d^2x/dt^2"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "3.4:reading:1",
+        "toId": "3.4:reading:2",
+        "text": "위치·속도·가속도는 같은 운동을 미분 관계로 연결한다."
+      }
+    ],
+    "limits": "가속도가 양수라는 것과 속력이 증가한다는 것은 다르다. 속도 부호도 확인한다.",
+    "conditions": "가속도가 양수라는 것과 속력이 증가한다는 것은 다르다. 속도 부호도 확인한다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 64,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "3.5",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "3.5:reading:1",
+        "name": "속도 변화",
+        "text": "일정한 가속도를 시간에 적분해 속도를 구한다.",
+        "tex": "v_x=v_{xi}+a_xt"
+      },
+      {
+        "id": "3.5:reading:2",
+        "name": "위치 변화",
+        "text": "속도를 시간에 적분해 위치를 구한다.",
+        "tex": "x=x_i+v_{xi}t+\\tfrac12a_xt^2"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "3.5:reading:1",
+        "toId": "3.5:reading:2",
+        "text": "속도 그래프의 넓이가 변위가 되므로 두 식의 초기값이 일치해야 한다."
+      }
+    ],
+    "limits": "a_x가 관찰 구간에서 일정해야 한다. 변하는 가속도에 그대로 쓰지 않는다.",
+    "conditions": "a_x가 관찰 구간에서 일정해야 한다. 변하는 가속도에 그대로 쓰지 않는다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 68,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "3.6",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "3.6:reading:1",
+        "name": "중력 가속도",
+        "text": "위로 향한 축에서 지표 부근의 가속도는 아래를 향한다.",
+        "tex": "a_y=-g"
+      },
+      {
+        "id": "3.6:reading:2",
+        "name": "자유낙하 궤적",
+        "text": "초기 위치·속도에 같은 중력 가속도를 적용한다.",
+        "tex": "y=y_i+v_{yi}t-\\tfrac12gt^2"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "3.6:reading:1",
+        "toId": "3.6:reading:2",
+        "text": "올라갈 때와 내려올 때 모두 가속도는 아래 방향이다."
+      }
+    ],
+    "limits": "공기 저항을 무시하고 g가 일정한 지표 부근 구간이다. 지면 충돌 이후를 같은 자유낙하로 계속 계산하지 않는다.",
+    "conditions": "공기 저항을 무시하고 g가 일정한 지표 부근 구간이다. 지면 충돌 이후를 같은 자유낙하로 계속 계산하지 않는다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 73,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "4.1",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "4.1:reading:1",
+        "name": "운동의 벡터",
+        "text": "위치 벡터를 시간에 미분해 속도를 읽는다.",
+        "tex": "\\vec v=d\\vec r/dt"
+      },
+      {
+        "id": "4.1:reading:2",
+        "name": "가속도의 벡터",
+        "text": "속도 벡터를 미분해 크기와 방향의 변화를 함께 읽는다.",
+        "tex": "\\vec a=d\\vec v/dt"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "4.1:reading:1",
+        "toId": "4.1:reading:2",
+        "text": "성분별 변화가 합쳐져 하나의 공간 궤적을 만든다."
+      }
+    ],
+    "limits": "같은 시간과 고정된 직교 좌표계를 사용한다.",
+    "conditions": "같은 시간과 고정된 직교 좌표계를 사용한다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 87,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "4.2",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "4.2:reading:1",
+        "name": "수평 운동",
+        "text": "수평 힘이 없을 때 수평 속도는 일정하다.",
+        "tex": "x=x_i+v_{xi}t"
+      },
+      {
+        "id": "4.2:reading:2",
+        "name": "수직 운동",
+        "text": "수직 방향은 일정한 중력 가속도를 따른다.",
+        "tex": "y=y_i+v_{yi}t-\\tfrac12gt^2"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "4.2:reading:1",
+        "toId": "4.2:reading:2",
+        "text": "같은 t를 두 성분에 사용해야 포물선 궤적을 얻는다."
+      }
+    ],
+    "limits": "공기 저항을 무시한다. 사거리 식의 시작·착지 높이가 같은 조건을 일반 궤적에 강제하지 않는다.",
+    "conditions": "공기 저항을 무시한다. 사거리 식의 시작·착지 높이가 같은 조건을 일반 궤적에 강제하지 않는다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 95,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "4.3",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "4.3:reading:1",
+        "name": "일정한 속력",
+        "text": "원 위의 속도는 접선 방향이므로 방향이 계속 바뀐다.",
+        "tex": "v=\\omega r"
+      },
+      {
+        "id": "4.3:reading:2",
+        "name": "구심 가속도",
+        "text": "속도의 방향 변화는 중심 방향 가속도를 필요로 한다.",
+        "tex": "a_r=v^2/r=\\omega^2r"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "4.3:reading:1",
+        "toId": "4.3:reading:2",
+        "text": "속력이 일정해도 속도 벡터가 변하므로 가속도가 0이 아니다."
+      }
+    ],
+    "limits": "반지름과 속력이 일정한 원운동이다. 구심력은 별도의 힘 종류가 아니라 중심 방향 순힘이다.",
+    "conditions": "반지름과 속력이 일정한 원운동이다. 구심력은 별도의 힘 종류가 아니라 중심 방향 순힘이다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 103,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "4.4",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "4.4:reading:1",
+        "name": "접선 성분",
+        "text": "속력의 변화를 접선 방향 가속도로 읽는다.",
+        "tex": "a_t=dv/dt"
+      },
+      {
+        "id": "4.4:reading:2",
+        "name": "반지름 성분",
+        "text": "궤적이 휘는 변화를 중심 방향 가속도로 읽는다.",
+        "tex": "a_r=v^2/r"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "4.4:reading:1",
+        "toId": "4.4:reading:2",
+        "text": "서로 직교하는 두 성분을 합쳐 전체 가속도를 만든다."
+      }
+    ],
+    "limits": "접선·반지름 방향을 구별한다. 벡터 합을 스칼라 합으로 바꾸지 않는다.",
+    "conditions": "접선·반지름 방향을 구별한다. 벡터 합을 스칼라 합으로 바꾸지 않는다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 106,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "4.5",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "4.5:reading:1",
+        "name": "변하는 속력",
+        "text": "접선 가속도가 원 위의 속력을 바꾼다.",
+        "tex": "a_t=r\\alpha"
+      },
+      {
+        "id": "4.5:reading:2",
+        "name": "전체 가속도",
+        "text": "순간 속력으로 구심 성분을 구해 두 성분을 합친다.",
+        "tex": "a=\\sqrt{a_t^2+a_r^2}"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "4.5:reading:1",
+        "toId": "4.5:reading:2",
+        "text": "비등속 원운동에는 방향 변화와 속력 변화가 동시에 있다."
+      }
+    ],
+    "limits": "고정된 반지름의 원 궤적이다. a_r의 방향은 중심을 향한다.",
+    "conditions": "고정된 반지름의 원 궤적이다. a_r의 방향은 중심을 향한다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 107,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "5.1",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "5.1:reading:1",
+        "name": "순힘",
+        "text": "물체에 작용한 힘을 벡터로 합한다.",
+        "tex": "\\sum\\vec F=m\\vec a"
+      },
+      {
+        "id": "5.1:reading:2",
+        "name": "작용·반작용",
+        "text": "상호작용하는 서로 다른 물체가 반대 방향 힘을 받는다.",
+        "tex": "\\vec F_{12}=-\\vec F_{21}"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "5.1:reading:1",
+        "toId": "5.1:reading:2",
+        "text": "한 물체의 운동을 정할 때는 그 물체에 작용한 힘만 합해야 한다."
+      }
+    ],
+    "limits": "관성계·일정 질량 조건이다. 작용·반작용을 한 물체의 힘 합에서 상쇄하지 않는다.",
+    "conditions": "관성계·일정 질량 조건이다. 작용·반작용을 한 물체의 힘 합에서 상쇄하지 않는다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 119,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "5.2",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "5.2:reading:1",
+        "name": "접촉과 장력",
+        "text": "수직항력·장력은 접촉과 줄의 조건에서 결정된다.",
+        "tex": ""
+      },
+      {
+        "id": "5.2:reading:2",
+        "name": "마찰과 항력",
+        "text": "정지마찰은 필요한 범위에서 변하고 운동마찰·항력은 별도 모형을 따른다.",
+        "tex": "f_s\\le\\mu_sN,\\quad f_k=\\mu_kN"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "5.2:reading:1",
+        "toId": "5.2:reading:2",
+        "text": "힘의 이름보다 해당 상호작용과 조건을 먼저 정해야 운동식이 맞는다."
+      }
+    ],
+    "limits": "N=mg와 장력 동일을 일반화하지 않는다. 항력의 속도 의존과 정지·운동 마찰을 구별한다.",
+    "conditions": "N=mg와 장력 동일을 일반화하지 않는다. 항력의 속도 의존과 정지·운동 마찰을 구별한다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 122,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "5.3",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "5.3:reading:1",
+        "name": "힘 그림",
+        "text": "대상 물체를 정하고 각 힘의 방향을 축에 투영한다.",
+        "tex": ""
+      },
+      {
+        "id": "5.3:reading:2",
+        "name": "성분 운동식",
+        "text": "각 축의 순힘을 같은 물체의 가속도 성분에 연결한다.",
+        "tex": "\\sum F_x=ma_x,\\quad\\sum F_y=ma_y"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "5.3:reading:1",
+        "toId": "5.3:reading:2",
+        "text": "그림에서 선택한 물체와 축이 식의 부호·제약을 결정한다."
+      }
+    ],
+    "limits": "연결된 물체의 가속도 관계는 줄·접촉 조건에서 정한다. 내부 힘과 외부 힘을 구별한다.",
+    "conditions": "연결된 물체의 가속도 관계는 줄·접촉 조건에서 정한다. 내부 힘과 외부 힘을 구별한다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 129,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "6.1",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "6.1:reading:1",
+        "name": "힘의 투영",
+        "text": "변위 방향의 힘 성분만 일을 한다.",
+        "tex": "W=\\vec F\\cdot\\Delta\\vec r"
+      },
+      {
+        "id": "6.1:reading:2",
+        "name": "직교 힘",
+        "text": "변위와 수직인 힘은 그 변위에 일을 하지 않는다.",
+        "tex": "W=F\\Delta r\\cos\\theta"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "6.1:reading:1",
+        "toId": "6.1:reading:2",
+        "text": "일은 힘의 크기만으로 정해지지 않고 힘과 변위의 대응이 필요하다."
+      }
+    ],
+    "limits": "힘이 일정한 구간이다. 음의 일과 힘 크기의 음수를 혼동하지 않는다.",
+    "conditions": "힘이 일정한 구간이다. 음의 일과 힘 크기의 음수를 혼동하지 않는다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 152,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "6.2",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "6.2:reading:1",
+        "name": "변하는 힘",
+        "text": "경로의 작은 변위마다 힘과 변위의 내적을 합한다.",
+        "tex": "W=\\int\\vec F\\cdot d\\vec r"
+      },
+      {
+        "id": "6.2:reading:2",
+        "name": "힘·위치 곡선",
+        "text": "한 축 운동에서는 F_x 곡선의 부호 있는 넓이로 일을 읽는다.",
+        "tex": "W=\\int_{x_i}^{x_f}F_x\\,dx"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "6.2:reading:1",
+        "toId": "6.2:reading:2",
+        "text": "연속 합이 정적분이 되므로 경로와 적분 방향을 유지한다."
+      }
+    ],
+    "limits": "특정 힘이 한 일과 모든 힘의 순일은 다르다.",
+    "conditions": "특정 힘이 한 일과 모든 힘의 순일은 다르다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 157,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "6.3",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "6.3:reading:1",
+        "name": "순일",
+        "text": "모든 힘이 한 일을 합한다.",
+        "tex": "W_{\\mathrm{net}}=\\Delta K"
+      },
+      {
+        "id": "6.3:reading:2",
+        "name": "운동에너지",
+        "text": "물체의 속력으로 운동에너지를 읽는다.",
+        "tex": "K=\\tfrac12mv^2"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "6.3:reading:1",
+        "toId": "6.3:reading:2",
+        "text": "순힘의 일이 속력 변화를 정하므로 방향 정보는 별도 운동식이 필요하다."
+      }
+    ],
+    "limits": "일정 질량의 뉴턴 역학이다. 한 힘의 일을 무조건 ΔK로 놓지 않는다.",
+    "conditions": "일정 질량의 뉴턴 역학이다. 한 힘의 일을 무조건 ΔK로 놓지 않는다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 163,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "6.4",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "6.4:reading:1",
+        "name": "보존력",
+        "text": "끝점이 같으면 한 일은 경로에 의존하지 않는다.",
+        "tex": "W_c=-\\Delta U"
+      },
+      {
+        "id": "6.4:reading:2",
+        "name": "퍼텐셜 에너지",
+        "text": "선택한 기준값에서 위치에너지 차를 읽는다.",
+        "tex": "F_x=-dU/dx"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "6.4:reading:1",
+        "toId": "6.4:reading:2",
+        "text": "힘의 일이 줄인 U는 운동에너지 등 다른 에너지로 연결된다."
+      }
+    ],
+    "limits": "U의 영점은 선택 가능하다. 비보존력을 하나의 위치 함수로 일반화하지 않는다.",
+    "conditions": "U의 영점은 선택 가능하다. 비보존력을 하나의 위치 함수로 일반화하지 않는다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 166,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "6.5",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "6.5:reading:1",
+        "name": "역학적 에너지",
+        "text": "운동에너지와 위치에너지를 함께 읽는다.",
+        "tex": "E_{\\mathrm{mech}}=K+U"
+      },
+      {
+        "id": "6.5:reading:2",
+        "name": "보존 조건",
+        "text": "비보존력의 순일이 없으면 합이 일정하다.",
+        "tex": "K_i+U_i=K_f+U_f"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "6.5:reading:1",
+        "toId": "6.5:reading:2",
+        "text": "속력과 위치가 바뀌어도 계의 역학적 에너지 합은 보존 조건 아래 유지된다."
+      }
+    ],
+    "limits": "비보존력이 한 순일이 0인지 확인한다. 조건 미확인은 보존 실패로 판정하지 않는다.",
+    "conditions": "비보존력이 한 순일이 0인지 확인한다. 조건 미확인은 보존 실패로 판정하지 않는다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 172,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "6.6",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "6.6:reading:1",
+        "name": "비보존력의 일",
+        "text": "마찰 등 비보존력의 일을 에너지 변화에 연결한다.",
+        "tex": "W_{nc}=\\Delta K+\\Delta U"
+      },
+      {
+        "id": "6.6:reading:2",
+        "name": "전환된 에너지",
+        "text": "역학적 에너지 감소와 전체 에너지 소멸은 다르다.",
+        "tex": ""
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "6.6:reading:1",
+        "toId": "6.6:reading:2",
+        "text": "역학적 에너지 밖의 열·내부 에너지까지 계의 경계에 따라 읽어야 한다."
+      }
+    ],
+    "limits": "계 안팎과 선택한 보존력의 U를 명시한다. 모든 마찰 상황을 한 상수 힘으로 취급하지 않는다.",
+    "conditions": "계 안팎과 선택한 보존력의 U를 명시한다. 모든 마찰 상황을 한 상수 힘으로 취급하지 않는다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 174,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "6.7",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "6.7:reading:1",
+        "name": "계의 에너지",
+        "text": "계 안의 에너지 형태와 밖으로 전달되는 에너지를 구별한다.",
+        "tex": ""
+      },
+      {
+        "id": "6.7:reading:2",
+        "name": "에너지 전달",
+        "text": "일과 열 같은 전달 경로가 계의 에너지 변화를 만든다.",
+        "tex": ""
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "6.7:reading:1",
+        "toId": "6.7:reading:2",
+        "text": "역학적 에너지 보존은 전체 에너지 장부의 제한된 경우이다."
+      }
+    ],
+    "limits": "닫힌 계와 고립계를 구별하고 해당 경계를 통과한 에너지 전달을 포함한다.",
+    "conditions": "닫힌 계와 고립계를 구별하고 해당 경계를 통과한 에너지 전달을 포함한다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 177,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "6.8",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "6.8:reading:1",
+        "name": "평균 일률",
+        "text": "시간 구간에 전달한 일을 시간으로 나눈다.",
+        "tex": "P_{\\mathrm{av}}=W/\\Delta t"
+      },
+      {
+        "id": "6.8:reading:2",
+        "name": "순간 일률",
+        "text": "힘과 속도의 내적으로 순간 전달률을 읽는다.",
+        "tex": "P=dW/dt=\\vec F\\cdot\\vec v"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "6.8:reading:1",
+        "toId": "6.8:reading:2",
+        "text": "같은 일을 해도 걸린 시간이 다르면 전달률은 달라진다."
+      }
+    ],
+    "limits": "단위 W와 일의 기호 W를 구별한다. 힘과 속도가 직교하면 순간 일률은 0이다.",
+    "conditions": "단위 W와 일의 기호 W를 구별한다. 힘과 속도가 직교하면 순간 일률은 0이다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 181,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "7.1",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "7.1:reading:1",
+        "name": "운동량",
+        "text": "질량과 속도의 곱으로 운동량 벡터를 읽는다.",
+        "tex": "\\vec p=m\\vec v"
+      },
+      {
+        "id": "7.1:reading:2",
+        "name": "충격량",
+        "text": "힘을 시간에 적분하면 운동량 변화가 된다.",
+        "tex": "\\vec J=\\int\\vec F\\,dt=\\Delta\\vec p"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "7.1:reading:1",
+        "toId": "7.1:reading:2",
+        "text": "짧은 큰 힘과 긴 작은 힘은 같은 충격량을 줄 수 있다."
+      }
+    ],
+    "limits": "질량이 일정할 때 F=m a와 연결한다. 힘의 시간 변화와 평균 힘을 구별한다.",
+    "conditions": "질량이 일정할 때 F=m a와 연결한다. 힘의 시간 변화와 평균 힘을 구별한다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 196,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "7.2",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "7.2:reading:1",
+        "name": "계의 총운동량",
+        "text": "각 물체의 운동량을 벡터로 합한다.",
+        "tex": "\\vec P=\\sum_i\\vec p_i"
+      },
+      {
+        "id": "7.2:reading:2",
+        "name": "외부 충격량",
+        "text": "외부 순충격량이 없을 때 총운동량이 보존된다.",
+        "tex": "\\Delta\\vec P=\\int\\vec F_{\\mathrm{ext}}dt"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "7.2:reading:1",
+        "toId": "7.2:reading:2",
+        "text": "내부 힘은 쌍으로 상쇄되므로 계의 총운동량 변화는 외부 힘에 달려 있다."
+      }
+    ],
+    "limits": "짧은 충돌에서도 외부 충격량을 무시할 수 있는지 확인한다.",
+    "conditions": "짧은 충돌에서도 외부 충격량을 무시할 수 있는지 확인한다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 199,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "7.3",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "7.3:reading:1",
+        "name": "운동량 보존",
+        "text": "충돌 전후의 계 운동량을 같은 축에서 비교한다.",
+        "tex": ""
+      },
+      {
+        "id": "7.3:reading:2",
+        "name": "충돌 유형",
+        "text": "탄성 충돌은 운동에너지도 보존하고 완전 비탄성 충돌은 붙어서 운동한다.",
+        "tex": ""
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "7.3:reading:1",
+        "toId": "7.3:reading:2",
+        "text": "운동량 보존만으로 에너지 보존까지 결론 내릴 수 없다."
+      }
+    ],
+    "limits": "계의 외부 충격량 무시 조건을 확인한다. 1차원 계산은 2차원 충돌 전체를 대신하지 않는다.",
+    "conditions": "계의 외부 충격량 무시 조건을 확인한다. 1차원 계산은 2차원 충돌 전체를 대신하지 않는다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 202,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "7.4",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "7.4:reading:1",
+        "name": "질량중심 위치",
+        "text": "질량을 가중치로 각 위치를 평균한다.",
+        "tex": "\\vec r_{CM}=\\frac{\\sum_i m_i\\vec r_i}{\\sum_i m_i}"
+      },
+      {
+        "id": "7.4:reading:2",
+        "name": "연속 분포",
+        "text": "잘게 나눈 질량의 합을 적분으로 바꾼다.",
+        "tex": "\\vec r_{CM}=\\frac1M\\int\\vec r\\,dm"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "7.4:reading:1",
+        "toId": "7.4:reading:2",
+        "text": "이산 질점과 연속 물체는 같은 질량 가중 관계를 사용한다."
+      }
+    ],
+    "limits": "질량 분포와 좌표 원점을 명시한다. 질량중심이 물체의 재료 안에 있을 필요는 없다.",
+    "conditions": "질량 분포와 좌표 원점을 명시한다. 질량중심이 물체의 재료 안에 있을 필요는 없다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 210,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "7.5",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "7.5:reading:1",
+        "name": "질량중심의 속도",
+        "text": "총운동량이 계 질량과 질량중심 속도를 연결한다.",
+        "tex": "\\vec P=M\\vec v_{CM}"
+      },
+      {
+        "id": "7.5:reading:2",
+        "name": "질량중심 가속도",
+        "text": "외부 순힘이 질량중심의 가속도를 정한다.",
+        "tex": "\\vec F_{\\mathrm{ext}}=M\\vec a_{CM}"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "7.5:reading:1",
+        "toId": "7.5:reading:2",
+        "text": "내부 운동이 복잡해도 전체의 병진 운동을 분리해 읽을 수 있다."
+      }
+    ],
+    "limits": "계 질량이 일정하다. 내부 에너지·회전까지 하나의 점으로 없어지는 것은 아니다.",
+    "conditions": "계 질량이 일정하다. 내부 에너지·회전까지 하나의 점으로 없어지는 것은 아니다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 214,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "7.6",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "7.6:reading:1",
+        "name": "질량 경계",
+        "text": "계에 들어오거나 나가는 질량의 운동량을 포함한다.",
+        "tex": ""
+      },
+      {
+        "id": "7.6:reading:2",
+        "name": "로켓의 추진",
+        "text": "분출 속도와 질량 변화가 로켓 속도 변화에 연결된다.",
+        "tex": "\\Delta v=u\\ln(m_i/m_f)"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "7.6:reading:1",
+        "toId": "7.6:reading:2",
+        "text": "질량이 바뀌면 고정 질량의 운동식을 그대로 적용할 수 없다."
+      }
+    ],
+    "limits": "이 식은 외력 무시·일정 상대 분출 속도의 이상 로켓이다. 분출 속도는 로켓에 대한 상대값이다.",
+    "conditions": "이 식은 외력 무시·일정 상대 분출 속도의 이상 로켓이다. 분출 속도는 로켓에 대한 상대값이다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 218,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "8.1",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "8.1:reading:1",
+        "name": "호 길이",
+        "text": "같은 각도라도 반지름에 따라 호 길이가 달라진다.",
+        "tex": "s=r\\theta"
+      },
+      {
+        "id": "8.1:reading:2",
+        "name": "라디안",
+        "text": "호 길이와 반지름의 비로 각도를 정한다.",
+        "tex": "\\theta=s/r"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "8.1:reading:1",
+        "toId": "8.1:reading:2",
+        "text": "라디안을 써야 각운동과 선운동의 미분 관계에 별도 환산 계수가 없다."
+      }
+    ],
+    "limits": "θ를 도 단위 수치 그대로 rθ에 넣지 않는다.",
+    "conditions": "θ를 도 단위 수치 그대로 rθ에 넣지 않는다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 241,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "8.2",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "8.2:reading:1",
+        "name": "각속도",
+        "text": "각 위치를 시간에 미분한다.",
+        "tex": "\\omega=d\\theta/dt"
+      },
+      {
+        "id": "8.2:reading:2",
+        "name": "각가속도",
+        "text": "각속도를 시간에 미분한다.",
+        "tex": "\\alpha=d\\omega/dt"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "8.2:reading:1",
+        "toId": "8.2:reading:2",
+        "text": "위치·속도·가속도의 관계를 회전 변수로 대응시킨다."
+      }
+    ],
+    "limits": "고정된 회전축과 부호 방향을 명시한다.",
+    "conditions": "고정된 회전축과 부호 방향을 명시한다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 242,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "8.3",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "8.3:reading:1",
+        "name": "각속도 변화",
+        "text": "일정한 각가속도를 적분한다.",
+        "tex": "\\omega=\\omega_i+\\alpha t"
+      },
+      {
+        "id": "8.3:reading:2",
+        "name": "각 위치 변화",
+        "text": "같은 초기 각속도로 회전각을 읽는다.",
+        "tex": "\\theta=\\theta_i+\\omega_it+\\tfrac12\\alpha t^2"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "8.3:reading:1",
+        "toId": "8.3:reading:2",
+        "text": "같은 시간과 초기값이 두 회전식을 연결한다."
+      }
+    ],
+    "limits": "α가 해당 구간에서 일정해야 한다.",
+    "conditions": "α가 해당 구간에서 일정해야 한다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 246,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "8.4",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "8.4:reading:1",
+        "name": "회전축 방향",
+        "text": "각속도 벡터는 오른손 규칙의 축 방향을 가진다.",
+        "tex": ""
+      },
+      {
+        "id": "8.4:reading:2",
+        "name": "순간 선속도",
+        "text": "회전축에서 위치까지의 벡터와 외적을 구한다.",
+        "tex": "\\vec v=\\vec\\omega\\times\\vec r"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "8.4:reading:1",
+        "toId": "8.4:reading:2",
+        "text": "회전축 벡터와 실제 물체의 접선 속도는 다른 방향이다."
+      }
+    ],
+    "limits": "유한 회전각의 일반적인 합을 벡터 합처럼 교환하지 않는다.",
+    "conditions": "유한 회전각의 일반적인 합을 벡터 합처럼 교환하지 않는다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 247,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "8.5",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "8.5:reading:1",
+        "name": "접선 속도",
+        "text": "축에서 먼 점일수록 같은 각속도에서 빠르다.",
+        "tex": "v=r\\omega"
+      },
+      {
+        "id": "8.5:reading:2",
+        "name": "접선·구심 가속도",
+        "text": "각가속도와 각속도가 다른 가속도 성분을 만든다.",
+        "tex": "a_t=r\\alpha,\\quad a_r=r\\omega^2"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "8.5:reading:1",
+        "toId": "8.5:reading:2",
+        "text": "강체의 모든 점은 각속도를 공유하지만 선속도는 반지름에 의존한다."
+      }
+    ],
+    "limits": "고정축 강체 회전이다. r은 회전축에서 점까지의 수직 거리이다.",
+    "conditions": "고정축 강체 회전이다. r은 회전축에서 점까지의 수직 거리이다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 247,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "8.6",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "8.6:reading:1",
+        "name": "힘과 작용점",
+        "text": "같은 힘도 회전축에서 떨어진 정도에 따라 토크가 다르다.",
+        "tex": "\\vec\\tau=\\vec r\\times\\vec F"
+      },
+      {
+        "id": "8.6:reading:2",
+        "name": "지레팔",
+        "text": "축에서 힘 작용선까지의 수직 거리를 읽는다.",
+        "tex": "\\tau=rF\\sin\\theta"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "8.6:reading:1",
+        "toId": "8.6:reading:2",
+        "text": "외적이 힘의 크기·작용점·회전 방향을 함께 담는다."
+      }
+    ],
+    "limits": "기준점과 회전축을 유지한다. 토크는 에너지와 차원이 같아도 같은 물리량이 아니다.",
+    "conditions": "기준점과 회전축을 유지한다. 토크는 에너지와 차원이 같아도 같은 물리량이 아니다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 252,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "8.7",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "8.7:reading:1",
+        "name": "관성모멘트",
+        "text": "축에 대한 질량 분포가 회전의 관성을 정한다.",
+        "tex": "I=\\sum_i m_ir_i^2=\\int r^2dm"
+      },
+      {
+        "id": "8.7:reading:2",
+        "name": "각가속도",
+        "text": "같은 축의 순토크가 회전 변화율을 정한다.",
+        "tex": "\\sum\\tau=I\\alpha"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "8.7:reading:1",
+        "toId": "8.7:reading:2",
+        "text": "질량만 같아도 축에서 질량이 놓인 거리가 다르면 회전 반응이 다르다."
+      }
+    ],
+    "limits": "고정축·일정 I 조건이다. 질량중심축과 다른 축의 I를 혼용하지 않는다.",
+    "conditions": "고정축·일정 I 조건이다. 질량중심축과 다른 축의 I를 혼용하지 않는다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 254,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "8.8",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "8.8:reading:1",
+        "name": "회전 에너지",
+        "text": "강체 각속도와 관성모멘트를 함께 사용한다.",
+        "tex": "K_{\\mathrm{rot}}=\\tfrac12I\\omega^2"
+      },
+      {
+        "id": "8.8:reading:2",
+        "name": "회전의 일률",
+        "text": "토크와 각속도가 에너지 전달률을 정한다.",
+        "tex": "P=\\tau\\omega"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "8.8:reading:1",
+        "toId": "8.8:reading:2",
+        "text": "회전 변수를 일·에너지 관계에 대응시킨다."
+      }
+    ],
+    "limits": "같은 축·부호 규약을 쓴다. 병진 에너지가 있는 물체는 그것도 포함한다.",
+    "conditions": "같은 축·부호 규약을 쓴다. 병진 에너지가 있는 물체는 그것도 포함한다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 262,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "8.9",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "8.9:reading:1",
+        "name": "병진과 회전",
+        "text": "구르는 물체에는 질량중심 병진과 자체 회전이 함께 있다.",
+        "tex": "K=\\tfrac12Mv_{CM}^2+\\tfrac12I_{CM}\\omega^2"
+      },
+      {
+        "id": "8.9:reading:2",
+        "name": "미끄럼 없는 조건",
+        "text": "접촉점의 상대 속도가 0이면 두 속도가 연결된다.",
+        "tex": "v_{CM}=R\\omega"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "8.9:reading:1",
+        "toId": "8.9:reading:2",
+        "text": "접촉 조건이 독립적인 두 운동 변수를 하나로 묶는다."
+      }
+    ],
+    "limits": "미끄러지면 v=Rω를 쓰지 않는다. 에너지 보존은 마찰의 일과 외력 조건을 별도로 확인한다.",
+    "conditions": "미끄러지면 v=Rω를 쓰지 않는다. 에너지 보존은 마찰의 일과 외력 조건을 별도로 확인한다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 266,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "9.1",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "9.1:reading:1",
+        "name": "각운동량",
+        "text": "기준점에 대한 위치와 운동량의 외적으로 정의한다.",
+        "tex": "\\vec L=\\vec r\\times\\vec p"
+      },
+      {
+        "id": "9.1:reading:2",
+        "name": "토크와 변화",
+        "text": "외부 순토크가 계의 각운동량을 바꾼다.",
+        "tex": "d\\vec L/dt=\\vec\\tau_{\\mathrm{ext}}"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "9.1:reading:1",
+        "toId": "9.1:reading:2",
+        "text": "선운동의 운동량·힘 관계가 회전에서 각운동량·토크로 대응된다."
+      }
+    ],
+    "limits": "L과 τ의 기준점을 같게 한다. 일반 강체에서 L과 ω가 항상 평행하지는 않다.",
+    "conditions": "L과 τ의 기준점을 같게 한다. 일반 강체에서 L과 ω가 항상 평행하지는 않다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 283,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "9.2",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "9.2:reading:1",
+        "name": "보존된 각운동량",
+        "text": "외부 순토크가 없으면 계의 L이 일정하다.",
+        "tex": ""
+      },
+      {
+        "id": "9.2:reading:2",
+        "name": "분포 변화",
+        "text": "같은 축의 I가 변하면 ω가 이에 대응해 변한다.",
+        "tex": "I_i\\omega_i=I_f\\omega_f"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "9.2:reading:1",
+        "toId": "9.2:reading:2",
+        "text": "각운동량 보존은 각속도나 회전 에너지의 보존과 다르다."
+      }
+    ],
+    "limits": "동일 축의 L=Iω를 쓸 조건과 외부 토크를 확인한다.",
+    "conditions": "동일 축의 L=Iω를 쓸 조건과 외부 토크를 확인한다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 291,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "9.3",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "9.3:reading:1",
+        "name": "회전의 각운동량",
+        "text": "빠른 팽이는 큰 축 방향 각운동량을 가진다.",
+        "tex": ""
+      },
+      {
+        "id": "9.3:reading:2",
+        "name": "세차",
+        "text": "중력 토크가 L의 방향을 바꾸어 축이 이동한다.",
+        "tex": "\\Omega=\\tau/L"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "9.3:reading:1",
+        "toId": "9.3:reading:2",
+        "text": "토크가 L에 수직이면 먼저 방향의 변화로 읽는다."
+      }
+    ],
+    "limits": "빠른 회전·느린 세차 근사이다. 일반적인 너테이션까지 이 식 하나로 예측하지 않는다.",
+    "conditions": "빠른 회전·느린 세차 근사이다. 일반적인 너테이션까지 이 식 하나로 예측하지 않는다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 299,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "10.1",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "10.1:reading:1",
+        "name": "밀도",
+        "text": "같은 부피에 들어 있는 질량을 읽는다.",
+        "tex": "\\rho=M/V"
+      },
+      {
+        "id": "10.1:reading:2",
+        "name": "상대 밀도",
+        "text": "기준 물질의 밀도에 대한 비로 비교한다.",
+        "tex": ""
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "10.1:reading:1",
+        "toId": "10.1:reading:2",
+        "text": "절대 밀도와 무차원 비율은 단위를 다르게 읽어야 한다."
+      }
+    ],
+    "limits": "온도·압력과 기준 물질을 함께 확인한다. 불균일 물체에는 국소 밀도와 평균 밀도를 구별한다.",
+    "conditions": "온도·압력과 기준 물질을 함께 확인한다. 불균일 물체에는 국소 밀도와 평균 밀도를 구별한다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 318,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "10.2",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "10.2:reading:1",
+        "name": "응력·변형률",
+        "text": "힘의 면적당 크기와 상대 변형을 대응시킨다.",
+        "tex": ""
+      },
+      {
+        "id": "10.2:reading:2",
+        "name": "탄성 모듈러스",
+        "text": "인장·전단·체적 변형은 다른 계수를 사용한다.",
+        "tex": "\\frac FA=Y\\frac{\\Delta L}{L}"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "10.2:reading:1",
+        "toId": "10.2:reading:2",
+        "text": "같은 탄성 관계라도 변형 종류에 따라 변수와 방향이 다르다."
+      }
+    ],
+    "limits": "선형 탄성 범위이다. 탄성 한계 밖이나 파괴를 선형식으로 계속 계산하지 않는다.",
+    "conditions": "선형 탄성 범위이다. 탄성 한계 밖이나 파괴를 선형식으로 계속 계산하지 않는다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 320,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "10.3",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "10.3:reading:1",
+        "name": "유체 압력",
+        "text": "유체의 작은 면에 작용한 수직 힘을 면적으로 나눈다.",
+        "tex": "P=F/A"
+      },
+      {
+        "id": "10.3:reading:2",
+        "name": "깊이 방향",
+        "text": "중력 아래 정지 유체는 깊이에 따라 압력이 달라진다.",
+        "tex": ""
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "10.3:reading:1",
+        "toId": "10.3:reading:2",
+        "text": "유체는 정지 상태에서 전단 응력을 유지하지 못하므로 압력으로 힘을 읽는다."
+      }
+    ],
+    "limits": "정지 유체의 압력과 흐르는 유체의 속도·점성 효과를 구별한다.",
+    "conditions": "정지 유체의 압력과 흐르는 유체의 속도·점성 효과를 구별한다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 328,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "10.4",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "10.4:reading:1",
+        "name": "정수압",
+        "text": "정지한 일정 밀도 유체에서 깊이가 압력 차를 정한다.",
+        "tex": "P=P_0+\\rho gh"
+      },
+      {
+        "id": "10.4:reading:2",
+        "name": "부력",
+        "text": "밀려난 유체의 무게가 부력을 정한다.",
+        "tex": "F_B=\\rho_{\\mathrm{fluid}}gV_{\\mathrm{displaced}}"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "10.4:reading:1",
+        "toId": "10.4:reading:2",
+        "text": "압력의 깊이 차를 표면 전체에 합하면 부력이 된다."
+      }
+    ],
+    "limits": "부피는 물체 전체가 아니라 잠겨서 밀어낸 유체 부피이다. P_0와 게이지 압력을 구별한다.",
+    "conditions": "부피는 물체 전체가 아니라 잠겨서 밀어낸 유체 부피이다. P_0와 게이지 압력을 구별한다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 330,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "10.5",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "10.5:reading:1",
+        "name": "연속 흐름",
+        "text": "일정한 정상 비압축성 흐름에서 유량이 유지된다.",
+        "tex": "Av=\\mathrm{constant}"
+      },
+      {
+        "id": "10.5:reading:2",
+        "name": "베르누이 관계",
+        "text": "같은 유선에서 압력·운동·높이 에너지 항을 연결한다.",
+        "tex": "P+\\tfrac12\\rho v^2+\\rho gy=\\mathrm{constant}"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "10.5:reading:1",
+        "toId": "10.5:reading:2",
+        "text": "단면이 속도를 바꾸고 속도 변화가 압력·높이 항과 대응한다."
+      }
+    ],
+    "limits": "정상·비점성·비압축성 흐름의 같은 유선이다. 펌프·손실을 포함한 일반 배관에 그대로 쓰지 않는다.",
+    "conditions": "정상·비점성·비압축성 흐름의 같은 유선이다. 펌프·손실을 포함한 일반 배관에 그대로 쓰지 않는다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 342,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "11.1",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "11.1:reading:1",
+        "name": "열평형",
+        "text": "서로 열평형인 계의 온도를 공통 기준으로 비교한다.",
+        "tex": ""
+      },
+      {
+        "id": "11.1:reading:2",
+        "name": "온도 눈금",
+        "text": "같은 상태를 서로 다른 눈금으로 표시한다.",
+        "tex": "T_K=T_C+273.15"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "11.1:reading:1",
+        "toId": "11.1:reading:2",
+        "text": "눈금 변환은 상태 자체를 바꾸지 않으며 절대 온도가 기체 법칙에 필요하다."
+      }
+    ],
+    "limits": "섭씨 수치를 이상기체식 T에 직접 넣지 않는다. 온도와 열을 구별한다.",
+    "conditions": "섭씨 수치를 이상기체식 T에 직접 넣지 않는다. 온도와 열을 구별한다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 370,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "11.2",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "11.2:reading:1",
+        "name": "선팽창",
+        "text": "온도 변화가 길이 변화에 연결된다.",
+        "tex": "\\Delta L=\\alpha L_0\\Delta T"
+      },
+      {
+        "id": "11.2:reading:2",
+        "name": "체적 팽창",
+        "text": "부피 변화에는 체적 팽창 계수를 쓴다.",
+        "tex": "\\Delta V=\\beta V_0\\Delta T"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "11.2:reading:1",
+        "toId": "11.2:reading:2",
+        "text": "길이 변화와 부피 변화는 같은 계수가 아니라 구조에 따라 대응한다."
+      }
+    ],
+    "limits": "작은 변화에서 계수 일정 근사이다. 등방성 고체에서 β≈3α이며 물질·온도에 따른 예외를 보존한다.",
+    "conditions": "작은 변화에서 계수 일정 근사이다. 등방성 고체에서 β≈3α이며 물질·온도에 따른 예외를 보존한다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 373,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "11.3",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "11.3:reading:1",
+        "name": "상태 변수",
+        "text": "압력·부피·온도와 몰수를 연결한다.",
+        "tex": "PV=nRT"
+      },
+      {
+        "id": "11.3:reading:2",
+        "name": "입자 수",
+        "text": "몰수 대신 분자 수와 볼츠만 상수를 쓸 수 있다.",
+        "tex": "PV=Nk_BT"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "11.3:reading:1",
+        "toId": "11.3:reading:2",
+        "text": "거시 상태와 입자 수 표현은 같은 이상기체 관계를 나타낸다."
+      }
+    ],
+    "limits": "절대 온도와 절대 압력을 쓴다. 희박 기체 근사이며 상전이·강한 분자 상호작용에 그대로 쓰지 않는다.",
+    "conditions": "절대 온도와 절대 압력을 쓴다. 희박 기체 근사이며 상전이·강한 분자 상호작용에 그대로 쓰지 않는다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 378,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "12.1",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "12.1:reading:1",
+        "name": "온도 변화",
+        "text": "온도를 바꿀 때의 열량을 비열과 연결한다.",
+        "tex": "Q=mc\\Delta T"
+      },
+      {
+        "id": "12.1:reading:2",
+        "name": "상변화",
+        "text": "온도가 유지되는 상변화에는 잠열을 사용한다.",
+        "tex": "Q=mL"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "12.1:reading:1",
+        "toId": "12.1:reading:2",
+        "text": "열을 주어도 항상 온도가 올라가는 것은 아니므로 현재 상과 과정을 먼저 정한다."
+      }
+    ],
+    "limits": "비열·잠열의 물질과 온도 범위를 확인한다. 열은 계에 저장된 물질이 아니라 에너지 전달이다.",
+    "conditions": "비열·잠열의 물질과 온도 범위를 확인한다. 열은 계에 저장된 물질이 아니라 에너지 전달이다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 392,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "12.2",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "12.2:reading:1",
+        "name": "압력·부피 일",
+        "text": "기체가 팽창하며 한 일을 적분으로 읽는다.",
+        "tex": "W=\\int P\\,dV"
+      },
+      {
+        "id": "12.2:reading:2",
+        "name": "경로의 차",
+        "text": "같은 처음·끝 상태라도 P–V 경로가 다르면 일이 다르다.",
+        "tex": ""
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "12.2:reading:1",
+        "toId": "12.2:reading:2",
+        "text": "상태 변화와 과정의 경로를 구별해야 열과 일을 비교할 수 있다."
+      }
+    ],
+    "limits": "준정적 과정의 기체 압력으로 쓴다. 교재 W는 기체가 한 일의 부호이다.",
+    "conditions": "준정적 과정의 기체 압력으로 쓴다. 교재 W는 기체가 한 일의 부호이다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 403,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "12.3",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "12.3:reading:1",
+        "name": "내부 에너지",
+        "text": "계의 에너지 상태 변화를 읽는다.",
+        "tex": "\\Delta E_{\\mathrm{int}}=Q-W"
+      },
+      {
+        "id": "12.3:reading:2",
+        "name": "열과 일",
+        "text": "들어온 열과 계가 한 일을 별도로 읽는다.",
+        "tex": ""
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "12.3:reading:1",
+        "toId": "12.3:reading:2",
+        "text": "두 전달 경로의 차가 내부 에너지 변화가 된다."
+      }
+    ],
+    "limits": "Q는 들어온 열, W는 계가 한 일이다. 다른 부호 규약의 식을 섞지 않는다.",
+    "conditions": "Q는 들어온 열, W는 계가 한 일이다. 다른 부호 규약의 식을 섞지 않는다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 408,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "12.4",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "12.4:reading:1",
+        "name": "과정의 고정값",
+        "text": "등적·등압·등온·단열은 서로 다른 조건을 고정한다.",
+        "tex": ""
+      },
+      {
+        "id": "12.4:reading:2",
+        "name": "제1법칙 적용",
+        "text": "각 과정의 조건을 먼저 대입한 뒤 Q·W·ΔE를 연결한다.",
+        "tex": "W_V=0,\\quad Q_{\\mathrm{adiabatic}}=0"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "12.4:reading:1",
+        "toId": "12.4:reading:2",
+        "text": "이름이 아니라 고정한 조건이 계산의 남는 항을 결정한다."
+      }
+    ],
+    "limits": "단열과 등온은 다르다. PV^γ 일정은 이상기체의 가역 단열 조건에서 쓴다.",
+    "conditions": "단열과 등온은 다르다. PV^γ 일정은 이상기체의 가역 단열 조건에서 쓴다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 409,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "12.5",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "12.5:reading:1",
+        "name": "전도",
+        "text": "온도 기울기에 의해 물질을 통과하는 에너지 전달을 읽는다.",
+        "tex": ""
+      },
+      {
+        "id": "12.5:reading:2",
+        "name": "대류와 복사",
+        "text": "물질의 이동과 전자기 복사는 전도와 다른 전달 경로이다.",
+        "tex": ""
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "12.5:reading:1",
+        "toId": "12.5:reading:2",
+        "text": "같은 열전달이라도 경로와 필요한 변수가 다르다."
+      }
+    ],
+    "limits": "평판 정상 전도식은 형상·온도 고정 조건이다. 복사에서는 절대 온도와 주변 온도를 함께 쓴다.",
+    "conditions": "평판 정상 전도식은 형상·온도 고정 조건이다. 복사에서는 절대 온도와 주변 온도를 함께 쓴다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 419,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "13.1",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "13.1:reading:1",
+        "name": "분자 운동",
+        "text": "분자 속도의 제곱 평균이 압력에 연결된다.",
+        "tex": "P=\\tfrac13(N/V)m\\langle v^2\\rangle"
+      },
+      {
+        "id": "13.1:reading:2",
+        "name": "온도와 에너지",
+        "text": "한 분자의 평균 병진 에너지가 절대 온도로 정해진다.",
+        "tex": "\\langle K\\rangle=\\tfrac32k_BT"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "13.1:reading:1",
+        "toId": "13.1:reading:2",
+        "text": "미시적 충돌의 통계 평균이 거시적 기체 법칙을 만든다."
+      }
+    ],
+    "limits": "N은 분자 수, V는 부피이다. 등방적 이상기체의 평형 평균이며 개별 분자의 에너지가 같다는 뜻은 아니다.",
+    "conditions": "N은 분자 수, V는 부피이다. 등방적 이상기체의 평형 평균이며 개별 분자의 에너지가 같다는 뜻은 아니다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 439,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "13.2",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "13.2:reading:1",
+        "name": "정적 몰비열",
+        "text": "부피를 고정한 에너지 변화율을 읽는다.",
+        "tex": ""
+      },
+      {
+        "id": "13.2:reading:2",
+        "name": "정압 몰비열",
+        "text": "팽창일도 필요하므로 이상기체에서 더 크다.",
+        "tex": "C_P-C_V=R"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "13.2:reading:1",
+        "toId": "13.2:reading:2",
+        "text": "같은 온도 변화도 과정 조건이 달라 필요한 열량이 다르다."
+      }
+    ],
+    "limits": "자유도 활성화와 기체 종류·온도 범위를 확인한다. 모든 온도에서 한 γ를 고정하지 않는다.",
+    "conditions": "자유도 활성화와 기체 종류·온도 범위를 확인한다. 모든 온도에서 한 γ를 고정하지 않는다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 446,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "13.3",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "13.3:reading:1",
+        "name": "속력 분포",
+        "text": "평형 기체의 분자 속력은 분포로 나타난다.",
+        "tex": ""
+      },
+      {
+        "id": "13.3:reading:2",
+        "name": "대표 속력",
+        "text": "최빈·평균·제곱평균제곱근 속력은 서로 다르다.",
+        "tex": "v_{mp}<\\langle v\\rangle<v_{rms}"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "13.3:reading:1",
+        "toId": "13.3:reading:2",
+        "text": "분포의 서로 다른 통계 요약이 서로 다른 질문에 답한다."
+      }
+    ],
+    "limits": "같은 온도·같은 분자 질량의 Maxwell 분포이다. 속력 분포를 한 방향 속도 성분 분포와 혼동하지 않는다.",
+    "conditions": "같은 온도·같은 분자 질량의 Maxwell 분포이다. 속력 분포를 한 방향 속도 성분 분포와 혼동하지 않는다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 453,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "13.4",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "13.4:reading:1",
+        "name": "이상기체",
+        "text": "분자 사이 인력과 분자 부피를 무시한 모형에서는 고정 온도의PV곡선이 쌍곡선이다.",
+        "tex": "PV=nRT"
+      },
+      {
+        "id": "13.4:reading:2",
+        "name": "비이상기체",
+        "text": "낮은 온도·높은 압력에서는 분자 상호작용을 무시하기 어렵다. 교재의 액체–증기 공존 구간과 이상기체 곡선을 구별한다.",
+        "tex": ""
+      },
+      {
+        "id": "13.4:reading:3",
+        "name": "상 평형",
+        "text": "임계온도와 두 상이 공존하는 구간을 원문과 함께 읽는다. 자료 없는 임계값·실제 물질 곡선을 생성하지 않는다.",
+        "tex": ""
+      }
+    ],
+    "limits": "원문 그림의 수치 데이터를 확보하지 못해 정량 상도/실제 기체 계산은 제공하지 않는다.",
+    "sourceScope": "한국어 해설은 해당 절의 이전 본문 추출본과 대조한 재서술이다. 단계 선택은 읽기 위치이며 학습 완료·정답·증명의 검증 기록이 아니다.",
+    "pdf": 454,
+    "conditions": "분자 사이 인력과 분자 부피를 무시한 모형에서는 고정 온도의PV곡선이 쌍곡선이다.",
+    "coverage": "previous-structured-reading",
+    "relationships": []
+  },
+  {
+    "id": "14.1",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "14.1:reading:1",
+        "name": "복원력",
+        "text": "평형점 변위에 비례하고 반대 방향인 힘을 사용한다.",
+        "tex": "F_x=-k_Hx"
+      },
+      {
+        "id": "14.1:reading:2",
+        "name": "조화 진동",
+        "text": "선형 복원력은 일정한 각진동수의 운동을 만든다.",
+        "tex": "\\omega=\\sqrt{k_H/m}"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "14.1:reading:1",
+        "toId": "14.1:reading:2",
+        "text": "힘·변위의 선형 관계가 시간에 대한 사인·코사인 해로 이어진다."
+      }
+    ],
+    "limits": "선형 탄성·일정 질량·마찰 무시 조건이다. 위상과 초기 위치·속도를 맞춘다.",
+    "conditions": "선형 탄성·일정 질량·마찰 무시 조건이다. 위상과 초기 위치·속도를 맞춘다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 462,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "14.2",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "14.2:reading:1",
+        "name": "감쇠력",
+        "text": "속도에 비례하는 저항을 복원력과 함께 쓴다.",
+        "tex": "m\\ddot x+b\\dot x+k_Hx=0"
+      },
+      {
+        "id": "14.2:reading:2",
+        "name": "감쇠 종류",
+        "text": "b와 임계값의 관계에 따라 진동·임계·과감쇠를 구별한다.",
+        "tex": "b_c=2\\sqrt{mk_H}"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "14.2:reading:1",
+        "toId": "14.2:reading:2",
+        "text": "감쇠 조건을 먼저 정해야 해의 모양을 선택할 수 있다."
+      }
+    ],
+    "limits": "선형 점성 감쇠 모형이다. 진동해를 임계·과감쇠에 그대로 사용하지 않는다.",
+    "conditions": "선형 점성 감쇠 모형이다. 진동해를 임계·과감쇠에 그대로 사용하지 않는다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 473,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "14.3",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "14.3:reading:1",
+        "name": "공간 위상",
+        "text": "같은 시간에서 파수를 통해 공간의 반복을 읽는다.",
+        "tex": "k=2\\pi/\\lambda"
+      },
+      {
+        "id": "14.3:reading:2",
+        "name": "시간 위상",
+        "text": "같은 위치에서 각진동수를 통해 시간의 반복을 읽는다.",
+        "tex": "y=A\\sin(kx-\\omega t+\\phi)"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "14.3:reading:1",
+        "toId": "14.3:reading:2",
+        "text": "공간과 시간을 연결한 위상이 파동 진행 방향과 속도를 정한다."
+      }
+    ],
+    "limits": "v=ω/k는 위상 속력이다. 매질 입자의 이동 속도와 구별한다.",
+    "conditions": "v=ω/k는 위상 속력이다. 매질 입자의 이동 속도와 구별한다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 474,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "14.4",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "14.4:reading:1",
+        "name": "줄의 장력",
+        "text": "장력이 횡방향 복원 효과를 만든다.",
+        "tex": ""
+      },
+      {
+        "id": "14.4:reading:2",
+        "name": "선밀도",
+        "text": "같은 장력에서도 단위 길이 질량이 크면 느리다.",
+        "tex": "v=\\sqrt{T/\\mu}"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "14.4:reading:1",
+        "toId": "14.4:reading:2",
+        "text": "복원 효과와 관성이 파동의 속력을 함께 정한다."
+      }
+    ],
+    "limits": "팽팽한 줄·작은 횡변위·균일 장력과 선밀도의 선형 근사이다.",
+    "conditions": "팽팽한 줄·작은 횡변위·균일 장력과 선밀도의 선형 근사이다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 481,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "14.5",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "14.5:reading:1",
+        "name": "국소 진동 에너지",
+        "text": "줄의 각 부분에 운동·탄성 에너지가 있다.",
+        "tex": ""
+      },
+      {
+        "id": "14.5:reading:2",
+        "name": "에너지 전달률",
+        "text": "진폭·각진동수·선밀도·파동 속력이 평균 일률에 연결된다.",
+        "tex": "P_{av}=\\tfrac12\\mu\\omega^2A^2v"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "14.5:reading:1",
+        "toId": "14.5:reading:2",
+        "text": "매질이 한 방향으로 계속 이동하지 않아도 파동은 에너지를 전달한다."
+      }
+    ],
+    "limits": "조화 진행파·선형 줄 조건이다. 진폭을 두 배로 하면 평균 일률은 네 배이다.",
+    "conditions": "조화 진행파·선형 줄 조건이다. 진폭을 두 배로 하면 평균 일률은 네 배이다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 483,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "14.6",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "14.6:reading:1",
+        "name": "시간의 가속도",
+        "text": "줄 조각의 순힘을 시간의 두 번 미분에 연결한다.",
+        "tex": ""
+      },
+      {
+        "id": "14.6:reading:2",
+        "name": "공간 곡률",
+        "text": "이웃한 줄의 방향 차를 공간의 두 번 미분에 연결한다.",
+        "tex": "\\frac{\\partial^2y}{\\partial x^2}=\\frac1{v^2}\\frac{\\partial^2y}{\\partial t^2}"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "14.6:reading:1",
+        "toId": "14.6:reading:2",
+        "text": "복원력의 공간 변화와 관성의 시간 변화가 같은 파동 방정식에 대응한다."
+      }
+    ],
+    "limits": "작은 기울기·균일 줄의 선형 모형이다. 유한 그래프가 모든 해의 증명은 아니다.",
+    "conditions": "작은 기울기·균일 줄의 선형 모형이다. 유한 그래프가 모든 해의 증명은 아니다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 487,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "14.7",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "14.7:reading:1",
+        "name": "반대 진행파",
+        "text": "같은 진폭·진동수의 반대 진행파를 더한다.",
+        "tex": ""
+      },
+      {
+        "id": "14.7:reading:2",
+        "name": "마디와 배",
+        "text": "시간에 무관한 진폭의 공간 분포가 생긴다.",
+        "tex": "y=2A\\sin(kx)\\cos(\\omega t)"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "14.7:reading:1",
+        "toId": "14.7:reading:2",
+        "text": "중첩과 경계 조건이 움직이지 않는 마디 위치를 정한다."
+      }
+    ],
+    "limits": "표시한 식은 특정 위상 선택이다. 진행파 하나의 에너지 전달과 정상파를 구별한다.",
+    "conditions": "표시한 식은 특정 위상 선택이다. 진행파 하나의 에너지 전달과 정상파를 구별한다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 488,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "15.1",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "15.1:reading:1",
+        "name": "압축과 관성",
+        "text": "유체의 탄성과 밀도가 음속을 정한다.",
+        "tex": "v=\\sqrt{B/\\rho}"
+      },
+      {
+        "id": "15.1:reading:2",
+        "name": "기체의 음속",
+        "text": "빠른 작은 압축은 단열 응답으로 읽는다.",
+        "tex": "v=\\sqrt{\\gamma RT/M}"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "15.1:reading:1",
+        "toId": "15.1:reading:2",
+        "text": "기체의 상태·탄성 조건이 소리의 전파 속력을 바꾼다."
+      }
+    ],
+    "limits": "B는 체적 탄성률이다. 매질별 모형과 온도 범위를 확인한다.",
+    "conditions": "B는 체적 탄성률이다. 매질별 모형과 온도 범위를 확인한다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 509,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "15.2",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "15.2:reading:1",
+        "name": "입자 변위",
+        "text": "종파의 매질 입자가 평형점 주변에서 진동한다.",
+        "tex": ""
+      },
+      {
+        "id": "15.2:reading:2",
+        "name": "압력 변화",
+        "text": "변위의 공간 기울기가 압력 변화를 만든다.",
+        "tex": ""
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "15.2:reading:1",
+        "toId": "15.2:reading:2",
+        "text": "변위와 압력의 마디·위상은 같은 위치에서 다르게 읽힌다."
+      }
+    ],
+    "limits": "작은 진폭의 선형 음파이다. 압력 마디를 변위 마디로 바꾸지 않는다.",
+    "conditions": "작은 진폭의 선형 음파이다. 압력 마디를 변위 마디로 바꾸지 않는다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 512,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "15.3",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "15.3:reading:1",
+        "name": "음파 일률",
+        "text": "단위 시간에 전달한 음파 에너지를 읽는다.",
+        "tex": ""
+      },
+      {
+        "id": "15.3:reading:2",
+        "name": "세기",
+        "text": "단위 면적을 통과하는 평균 일률을 읽는다.",
+        "tex": "I=P/A"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "15.3:reading:1",
+        "toId": "15.3:reading:2",
+        "text": "일률과 세기의 구별이 거리·면적에 따른 소리의 변화를 설명한다."
+      }
+    ],
+    "limits": "균일한 면적 분포 조건을 확인한다. 1/r²은 자유 공간의 등방 점음원·손실 무시 조건이다.",
+    "conditions": "균일한 면적 분포 조건을 확인한다. 1/r²은 자유 공간의 등방 점음원·손실 무시 조건이다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 515,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "15.4",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "15.4:reading:1",
+        "name": "기준 세기",
+        "text": "기준 I_0에 대한 양의 비를 구한다.",
+        "tex": ""
+      },
+      {
+        "id": "15.4:reading:2",
+        "name": "로그 수준",
+        "text": "큰 세기 비를 데시벨로 표현한다.",
+        "tex": "\\beta=10\\log_{10}(I/I_0)"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "15.4:reading:1",
+        "toId": "15.4:reading:2",
+        "text": "세기 차가 아니라 비율을 로그로 바꾸므로 수준을 그대로 선형 합하지 않는다."
+      }
+    ],
+    "limits": "I>0, I_0>0이다. 0 세기에 유한 dB값을 부여하지 않는다.",
+    "conditions": "I>0, I_0>0이다. 0 세기에 유한 dB값을 부여하지 않는다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 520,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "15.5",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "15.5:reading:1",
+        "name": "물리적 세기 수준",
+        "text": "데시벨은 기준 세기에 대한 로그 비율이며 주파수만으로 세기를 정하지 않는다.",
+        "tex": "\\beta=10\\log_{10}(I/I_\\circ)"
+      },
+      {
+        "id": "15.5:reading:2",
+        "name": "청각 반응",
+        "text": "교재의 가청 문턱은 주파수에 따라 달라진다. 같은 세기 수준이 언제나 같은 지각을 뜻하지 않는다.",
+        "tex": ""
+      }
+    ],
+    "limits": "개인의 청각·건강·통증 문턱을 판정하지 않는다. 원문 청각 영역 곡선을 임의 수치로 다시 만들지 않는다.",
+    "sourceScope": "한국어 해설은 해당 절의 이전 본문 추출본과 대조한 재서술이다. 단계 선택은 읽기 위치이며 학습 완료·정답·증명의 검증 기록이 아니다.",
+    "pdf": 524,
+    "conditions": "데시벨은 기준 세기에 대한 로그 비율이며 주파수만으로 세기를 정하지 않는다.",
+    "coverage": "previous-structured-reading",
+    "relationships": []
+  },
+  {
+    "id": "15.6",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "15.6:reading:1",
+        "name": "매질 기준 속도",
+        "text": "음원과 관측자의 매질에 대한 속도를 구별한다.",
+        "tex": ""
+      },
+      {
+        "id": "15.6:reading:2",
+        "name": "받는 진동수",
+        "text": "파면 간격 변화와 관측자의 통과율을 연결한다.",
+        "tex": ""
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "15.6:reading:1",
+        "toId": "15.6:reading:2",
+        "text": "음원 이동과 관측자 이동은 음향 도플러식의 서로 다른 자리에 들어간다."
+      }
+    ],
+    "limits": "매질 기준·접근/이탈 부호를 확인한다. 음속 이상의 음원은 보통 도플러식 대신 충격파 조건을 읽는다.",
+    "conditions": "매질 기준·접근/이탈 부호를 확인한다. 음속 이상의 음원은 보통 도플러식 대신 충격파 조건을 읽는다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 524,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "15.7",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "15.7:reading:1",
+        "name": "파면의 중첩",
+        "text": "음원이 음속보다 빠르면 앞서 방출한 파면이 원뿔을 만든다.",
+        "tex": ""
+      },
+      {
+        "id": "15.7:reading:2",
+        "name": "마하각",
+        "text": "음속과 음원 속력의 비가 원뿔 각도를 정한다.",
+        "tex": "\\sin\\theta=v/v_s"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "15.7:reading:1",
+        "toId": "15.7:reading:2",
+        "text": "공간 파면의 기하가 충격파 방향을 정한다."
+      }
+    ],
+    "limits": "v_s>v 조건이다. 마하각과 원뿔 전체 꼭지각을 구별한다.",
+    "conditions": "v_s>v 조건이다. 마하각과 원뿔 전체 꼭지각을 구별한다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 531,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "16.1",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "16.1:reading:1",
+        "name": "중첩",
+        "text": "선형 매질에서는 같은 위치·시간의 변위를 더한다.",
+        "tex": "y=y_1+y_2"
+      },
+      {
+        "id": "16.1:reading:2",
+        "name": "간섭",
+        "text": "위상 관계에 따라 합 진폭이 커지거나 작아진다.",
+        "tex": ""
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "16.1:reading:1",
+        "toId": "16.1:reading:2",
+        "text": "관찰 위치마다 위상이 달라지므로 에너지 소멸로 소광을 해석하지 않는다."
+      }
+    ],
+    "limits": "선형 중첩 조건이다. 비선형 큰 진폭에 그대로 적용하지 않는다.",
+    "conditions": "선형 중첩 조건이다. 비선형 큰 진폭에 그대로 적용하지 않는다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 541,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "16.2",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "16.2:reading:1",
+        "name": "경로 차",
+        "text": "두 음원의 관찰점까지 거리 차를 읽는다.",
+        "tex": ""
+      },
+      {
+        "id": "16.2:reading:2",
+        "name": "위상 차",
+        "text": "같은 주파수에서 경로 차와 초기 위상 차를 함께 쓴다.",
+        "tex": "\\Delta\\phi=2\\pi\\Delta r/\\lambda+\\phi_0"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "16.2:reading:1",
+        "toId": "16.2:reading:2",
+        "text": "경로 차가 위상 차를 만들고 위상 차가 간섭을 정한다."
+      }
+    ],
+    "limits": "결맞음·같은 진동수 조건이다. 두 음원의 진폭과 초기 위상도 보존한다.",
+    "conditions": "결맞음·같은 진동수 조건이다. 두 음원의 진폭과 초기 위상도 보존한다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 543,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "16.3",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "16.3:reading:1",
+        "name": "압력 정상파",
+        "text": "반대 방향 음파의 중첩으로 압력 마디·배를 읽는다.",
+        "tex": ""
+      },
+      {
+        "id": "16.3:reading:2",
+        "name": "변위 정상파",
+        "text": "같은 장면에서 변위 마디·배는 압력의 배·마디와 대응한다.",
+        "tex": ""
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "16.3:reading:1",
+        "toId": "16.3:reading:2",
+        "text": "같은 정상파라도 측정하는 물리량에 따라 마디 위치가 다르다."
+      }
+    ],
+    "limits": "관의 끝 조건과 압력·변위를 구별한다.",
+    "conditions": "관의 끝 조건과 압력·변위를 구별한다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 547,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "16.4",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "16.4:reading:1",
+        "name": "열린 끝",
+        "text": "열린 끝은 압력 마디·변위 배에 대응한다.",
+        "tex": ""
+      },
+      {
+        "id": "16.4:reading:2",
+        "name": "닫힌 끝",
+        "text": "닫힌 끝은 변위 마디·압력 배에 대응한다.",
+        "tex": ""
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "16.4:reading:1",
+        "toId": "16.4:reading:2",
+        "text": "경계 조건이 허용 파장과 고유 진동수를 고른다."
+      }
+    ],
+    "limits": "이상적인 관 끝 조건이다. 끝 보정과 실제 관의 손실을 무시한 길이 근사이다.",
+    "conditions": "이상적인 관 끝 조건이다. 끝 보정과 실제 관의 손실을 무시한 길이 근사이다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 551,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "16.5",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "16.5:reading:1",
+        "name": "가까운 진동수",
+        "text": "진동수가 조금 다른 두 파를 더한다.",
+        "tex": ""
+      },
+      {
+        "id": "16.5:reading:2",
+        "name": "맥놀이",
+        "text": "합 진폭의 느린 변화를 진동수 차로 읽는다.",
+        "tex": "f_{beat}=\\lvert f_1-f_2\\rvert"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "16.5:reading:1",
+        "toId": "16.5:reading:2",
+        "text": "빠른 진동 위에 느린 진폭 변화가 나타난다."
+      }
+    ],
+    "limits": "교재의 같은 진폭 모델과 일반적인 다른 진폭을 구별한다. 맥놀이 진동수와 진폭 포락선의 부호 주기를 구별한다.",
+    "conditions": "교재의 같은 진폭 모델과 일반적인 다른 진폭을 구별한다. 맥놀이 진동수와 진폭 포락선의 부호 주기를 구별한다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 559,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "17.1",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "17.1:reading:1",
+        "name": "파면과 광선",
+        "text": "광선은 파면에 수직인 진행 방향을 나타낸다. 균일 매질의 직선 진행은 기하광학 표현이다.",
+        "tex": ""
+      },
+      {
+        "id": "17.1:reading:2",
+        "name": "기하광학의 범위",
+        "text": "개구가 파장보다 충분히 크면 광선 근사가 유용하다. 개구 크기가 파장과 비슷해지면 퍼짐을 파동으로 설명해야 한다.",
+        "tex": ""
+      },
+      {
+        "id": "17.1:reading:3",
+        "name": "물리광학",
+        "text": "간섭·회절·편광은 광선을 그리는 것만으로 충분히 설명하지 못하므로 파동 관계로 연결한다.",
+        "tex": ""
+      }
+    ],
+    "limits": "광선은 물질 입자의 실제 경로라고 확정하지 않는다.",
+    "sourceScope": "한국어 해설은 해당 절의 이전 본문 추출본과 대조한 재서술이다. 단계 선택은 읽기 위치이며 학습 완료·정답·증명의 검증 기록이 아니다.",
+    "pdf": 571,
+    "conditions": "광선은 파면에 수직인 진행 방향을 나타낸다. 균일 매질의 직선 진행은 기하광학 표현이다.",
+    "coverage": "previous-structured-reading",
+    "relationships": []
+  },
+  {
+    "id": "17.2",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "17.2:reading:1",
+        "name": "반사",
+        "text": "법선 기준 입사각과 반사각이 같다.",
+        "tex": "\\theta_i=\\theta_r"
+      },
+      {
+        "id": "17.2:reading:2",
+        "name": "굴절",
+        "text": "경계 양쪽의 굴절률과 법선 각도를 연결한다.",
+        "tex": "n_1\\sin\\theta_1=n_2\\sin\\theta_2"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "17.2:reading:1",
+        "toId": "17.2:reading:2",
+        "text": "경계와 법선을 공유해야 반사·굴절 방향을 같은 그림에서 비교할 수 있다."
+      }
+    ],
+    "limits": "기하광학·해당 파장의 굴절률이다. 각도는 표면이 아니라 법선 기준이다.",
+    "conditions": "기하광학·해당 파장의 굴절률이다. 각도는 표면이 아니라 법선 기준이다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 573,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "17.3",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "17.3:reading:1",
+        "name": "임계각",
+        "text": "높은 굴절률에서 낮은 굴절률로 진행할 때 임계각을 읽는다.",
+        "tex": "\\sin\\theta_c=n_2/n_1"
+      },
+      {
+        "id": "17.3:reading:2",
+        "name": "전반사",
+        "text": "입사각이 임계각을 넘으면 전파되는 굴절광선이 없다.",
+        "tex": ""
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "17.3:reading:1",
+        "toId": "17.3:reading:2",
+        "text": "Snell 식의 실수 해 조건이 전반사 경계에 대응한다."
+      }
+    ],
+    "limits": "n_1>n_2이다. 임계각의 접선 굴절과 임계각 초과를 구별한다.",
+    "conditions": "n_1>n_2이다. 임계각의 접선 굴절과 임계각 초과를 구별한다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 578,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "17.4",
+    "mode": "process",
+    "steps": [
+      {
+        "id": "17.4:reading:1",
+        "name": "파장별 굴절률",
+        "text": "진공 밖 굴절률의 파장 의존성 때문에 서로 다른 색이 서로 다른 각도로 굴절한다.",
+        "tex": ""
+      },
+      {
+        "id": "17.4:reading:2",
+        "name": "첫 경계에서 굴절",
+        "text": "각 파장의 굴절률을 해당 파장 광선의스넬 관계에 적용한다.",
+        "tex": "n_1\\sin\\theta_1=n_2\\sin\\theta_2"
+      },
+      {
+        "id": "17.4:reading:3",
+        "name": "둘째 경계와 분산",
+        "text": "프리즘의 두 번째 경계에서도 굴절하여 색의 방향 차이를 만든다. 일반적인 정상 분산의 경향을 모든 재료/파장으로 확대하지 않는다.",
+        "tex": ""
+      }
+    ],
+    "limits": "교재의 정성 비교이다. 재료별n(λ)와 프리즘 기하를 확보하지 않아 실제 수치 광선 추적은 구현하지 않았다.",
+    "sourceScope": "한국어 해설은 해당 절의 이전 본문 추출본과 대조한 재서술이다. 단계 선택은 읽기 위치이며 학습 완료·정답·증명의 검증 기록이 아니다.",
+    "pdf": 581,
+    "conditions": "진공 밖 굴절률의 파장 의존성 때문에 서로 다른 색이 서로 다른 각도로 굴절한다.",
+    "coverage": "previous-structured-reading",
+    "relationships": []
+  },
+  {
+    "id": "17.5",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "17.5:reading:1",
+        "name": "반사 광선",
+        "text": "근축 광선의 반사 후 교점 또는 연장 교점을 읽는다.",
+        "tex": ""
+      },
+      {
+        "id": "17.5:reading:2",
+        "name": "거울의 상",
+        "text": "물체 거리·상 거리·초점거리를 부호와 함께 연결한다.",
+        "tex": "1/p+1/i=1/f,\\quad M=-i/p"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "17.5:reading:1",
+        "toId": "17.5:reading:2",
+        "text": "실제 광선의 교점은 실상이며 뒤로 연장한 교점은 허상이다."
+      }
+    ],
+    "limits": "구면 거울의 근축 근사이다. p=f에서는 유한 상 거리가 없으며 부호 규약을 보존한다.",
+    "conditions": "구면 거울의 근축 근사이다. p=f에서는 유한 상 거리가 없으며 부호 규약을 보존한다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 585,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "17.6",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "17.6:reading:1",
+        "name": "굴절면",
+        "text": "굴절률과 곡률 반지름이 상 위치를 정한다.",
+        "tex": ""
+      },
+      {
+        "id": "17.6:reading:2",
+        "name": "얇은 렌즈",
+        "text": "두 굴절면을 얇은 렌즈 근사로 합친다.",
+        "tex": "1/p+1/i=1/f"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "17.6:reading:1",
+        "toId": "17.6:reading:2",
+        "text": "면 하나의 상과 렌즈 전체의 상은 적용식·매질 조건이 다르다."
+      }
+    ],
+    "limits": "근축·얇은 렌즈 조건이다. 렌즈 주위 매질과 교재 거리·곡률 부호를 확인한다.",
+    "conditions": "근축·얇은 렌즈 조건이다. 렌즈 주위 매질과 교재 거리·곡률 부호를 확인한다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 593,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "18.1",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "18.1:reading:1",
+        "name": "결맞은 파",
+        "text": "일정한 위상 차를 가진 빛을 비교한다.",
+        "tex": ""
+      },
+      {
+        "id": "18.1:reading:2",
+        "name": "간섭 세기",
+        "text": "진폭을 먼저 더하고 그 결과의 제곱으로 세기를 읽는다.",
+        "tex": ""
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "18.1:reading:1",
+        "toId": "18.1:reading:2",
+        "text": "파의 중첩과 에너지 세기의 합은 서로 다른 단계이다."
+      }
+    ],
+    "limits": "결맞음·편광 방향·진동수 조건을 확인한다. 세기를 먼저 더해 간섭항을 없애지 않는다.",
+    "conditions": "결맞음·편광 방향·진동수 조건을 확인한다. 세기를 먼저 더해 간섭항을 없애지 않는다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 612,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "18.2",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "18.2:reading:1",
+        "name": "슬릿 경로 차",
+        "text": "두 슬릿의 빛이 스크린 점까지 다른 거리를 간다.",
+        "tex": "\\Delta r=d\\sin\\theta"
+      },
+      {
+        "id": "18.2:reading:2",
+        "name": "무늬 위치",
+        "text": "같은 위상의 빛은 정수배 파장 경로 차에서 밝다.",
+        "tex": "d\\sin\\theta=m\\lambda"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "18.2:reading:1",
+        "toId": "18.2:reading:2",
+        "text": "경로 차와 위상 차가 스크린의 밝고 어두운 위치를 정한다."
+      }
+    ],
+    "limits": "멀리 있는 스크린·작은 각도에서 y≈mλL/d이다. 정확한 각도식과 작은 각도식의 범위를 구별한다.",
+    "conditions": "멀리 있는 스크린·작은 각도에서 y≈mλL/d이다. 정확한 각도식과 작은 각도식의 범위를 구별한다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 613,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "18.3",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "18.3:reading:1",
+        "name": "경로 위상",
+        "text": "막 안의 왕복 광학 경로를 읽는다.",
+        "tex": ""
+      },
+      {
+        "id": "18.3:reading:2",
+        "name": "반사 위상",
+        "text": "낮은 굴절률에서 높은 굴절률로 반사하면 π 위상 변화가 있다.",
+        "tex": ""
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "18.3:reading:1",
+        "toId": "18.3:reading:2",
+        "text": "경로 차만으로 밝고 어두움을 정하지 않고 반사 횟수별 위상도 합한다."
+      }
+    ],
+    "limits": "수직·비스듬한 입사를 구별한다. 두 반사 진폭이 같다는 가정은 설명용 제한이다.",
+    "conditions": "수직·비스듬한 입사를 구별한다. 두 반사 진폭이 같다는 가정은 설명용 제한이다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 620,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "18.4",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "18.4:reading:1",
+        "name": "슬릿 내부 중첩",
+        "text": "슬릿의 서로 다른 점에서 온 파가 겹친다.",
+        "tex": ""
+      },
+      {
+        "id": "18.4:reading:2",
+        "name": "회절 세기",
+        "text": "단일 슬릿의 각도별 상대 세기를 읽는다.",
+        "tex": "I/I_0=(\\sin\\beta/\\beta)^2,\\quad\\beta=\\pi a\\sin\\theta/\\lambda"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "18.4:reading:1",
+        "toId": "18.4:reading:2",
+        "text": "슬릿 폭과 파장이 위상 분포를 바꾸어 무늬의 폭을 정한다."
+      }
+    ],
+    "limits": "Fraunhofer 근사이다. β=0에서 극한은 1이며 0으로 나눈 값이 아니다.",
+    "conditions": "Fraunhofer 근사이다. β=0에서 극한은 1이며 0으로 나눈 값이 아니다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 624,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "18.5",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "18.5:reading:1",
+        "name": "여러 슬릿",
+        "text": "동일 간격 슬릿의 경로 차를 맞춘다.",
+        "tex": ""
+      },
+      {
+        "id": "18.5:reading:2",
+        "name": "허용 차수",
+        "text": "회절격자의 밝은 방향을 읽는다.",
+        "tex": "d\\sin\\theta=m\\lambda"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "18.5:reading:1",
+        "toId": "18.5:reading:2",
+        "text": "위상이 맞는 방향은 차수와 파장에 의존한다."
+      }
+    ],
+    "limits": "\\lvert mλ/d\\rvert≤1의 실제 각도만 허용한다. 격자선 수와 간격을 구별한다.",
+    "conditions": "\\lvert mλ/d\\rvert≤1의 실제 각도만 허용한다. 격자선 수와 간격을 구별한다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 629,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "18.6",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "18.6:reading:1",
+        "name": "편광 방향",
+        "text": "전기장의 진동 방향을 분석기 축에 투영한다.",
+        "tex": ""
+      },
+      {
+        "id": "18.6:reading:2",
+        "name": "통과 세기",
+        "text": "진폭 투영의 제곱으로 세기를 읽는다.",
+        "tex": "I=I_0\\cos^2\\theta"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "18.6:reading:1",
+        "toId": "18.6:reading:2",
+        "text": "벡터 투영이 세기 변화로 이어진다."
+      }
+    ],
+    "limits": "선편광의 이상 분석기 조건이다. 비편광의 첫 통과와 Malus 법칙 입력 I_0를 구별한다.",
+    "conditions": "선편광의 이상 분석기 조건이다. 비편광의 첫 통과와 Malus 법칙 입력 I_0를 구별한다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 633,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "19.1",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "19.1:reading:1",
+        "name": "전하 부호",
+        "text": "양전하·음전하의 부호는 힘의 방향과 계의 순전하를 판단하는 기준이다.",
+        "tex": ""
+      },
+      {
+        "id": "19.1:reading:2",
+        "name": "보존과 양자화",
+        "text": "전하 보존은 계의 경계를 포함해 읽는다. 전하의 이산 단위와 거시적인 연속 분포 근사는 설명 수준이 다르다.",
+        "tex": ""
+      }
+    ],
+    "limits": "대전과 질량 생성·물질 생성은 같은 과정이 아니다.",
+    "sourceScope": "한국어 해설은 해당 절의 이전 본문 추출본과 대조한 재서술이다. 단계 선택은 읽기 위치이며 학습 완료·정답·증명의 검증 기록이 아니다.",
+    "pdf": 645,
+    "conditions": "양전하·음전하의 부호는 힘의 방향과 계의 순전하를 판단하는 기준이다.",
+    "coverage": "previous-structured-reading",
+    "relationships": []
+  },
+  {
+    "id": "19.2",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "19.2:reading:1",
+        "name": "도체와 절연체",
+        "text": "전하가 물질 안에서 이동하기 쉬운가에 따라 대전·전하 재배치의 설명을 구별한다.",
+        "tex": ""
+      },
+      {
+        "id": "19.2:reading:2",
+        "name": "접촉과 유도",
+        "text": "접촉에 의한 전하 이동과 외부 전하 때문에 생기는 분리를 구별한다. 접지의 연결·분리 순서는 최종 순전하를 판단할 때 필요하다.",
+        "tex": ""
+      }
+    ],
+    "limits": "전하 재배치만으로 고립 물체의 순전하가 자동 증가하지 않는다.",
+    "sourceScope": "한국어 해설은 해당 절의 이전 본문 추출본과 대조한 재서술이다. 단계 선택은 읽기 위치이며 학습 완료·정답·증명의 검증 기록이 아니다.",
+    "pdf": 647,
+    "conditions": "전하가 물질 안에서 이동하기 쉬운가에 따라 대전·전하 재배치의 설명을 구별한다.",
+    "coverage": "previous-structured-reading",
+    "relationships": []
+  },
+  {
+    "id": "19.3",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "19.3:reading:1",
+        "name": "거리와 크기",
+        "text": "점전하 사이 힘은 거리 제곱에 반비례한다.",
+        "tex": "F=k\\lvert q_1q_2\\rvert/r^2"
+      },
+      {
+        "id": "19.3:reading:2",
+        "name": "부호와 방향",
+        "text": "전하 부호가 인력·척력을 정한다.",
+        "tex": ""
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "19.3:reading:1",
+        "toId": "19.3:reading:2",
+        "text": "힘의 크기 식과 힘 벡터의 방향 정보를 함께 읽는다."
+      }
+    ],
+    "limits": "정지 점전하·진공 또는 지정 매질의 정전기 근사이다. r=0에서 유한 힘을 만들지 않는다.",
+    "conditions": "정지 점전하·진공 또는 지정 매질의 정전기 근사이다. r=0에서 유한 힘을 만들지 않는다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 650,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "20.1",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "20.1:reading:1",
+        "name": "시험 전하",
+        "text": "작은 양의 시험 전하가 받는 힘을 읽는다.",
+        "tex": "\\vec E=\\vec F/q_0"
+      },
+      {
+        "id": "20.1:reading:2",
+        "name": "장과 힘",
+        "text": "이미 주어진 장에서 실제 전하의 힘을 구한다.",
+        "tex": "\\vec F=q\\vec E"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "20.1:reading:1",
+        "toId": "20.1:reading:2",
+        "text": "전기장은 원천이 정하고 실제 전하의 부호는 힘 방향을 바꾼다."
+      }
+    ],
+    "limits": "시험 전하가 원천 분포를 크게 바꾸지 않는 정의의 극한이다.",
+    "conditions": "시험 전하가 원천 분포를 크게 바꾸지 않는 정의의 극한이다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 667,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "20.2",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "20.2:reading:1",
+        "name": "점전하 원천",
+        "text": "원천에서 관찰점까지의 거리와 방향을 정한다.",
+        "tex": "\\vec E=kq\\hat r/r^2"
+      },
+      {
+        "id": "20.2:reading:2",
+        "name": "장 중첩",
+        "text": "여러 원천의 장을 벡터로 더한다.",
+        "tex": "\\vec E=\\sum_i\\vec E_i"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "20.2:reading:1",
+        "toId": "20.2:reading:2",
+        "text": "각 전하의 방향을 보존한 합이 전체 장을 만든다."
+      }
+    ],
+    "limits": "전하 위치의 특이점은 제외한다. 크기를 먼저 더하지 않는다.",
+    "conditions": "전하 위치의 특이점은 제외한다. 크기를 먼저 더하지 않는다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 668,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "20.3",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "20.3:reading:1",
+        "name": "쌍극자 구성",
+        "text": "반대 전하 사이의 분리와 방향을 정한다.",
+        "tex": "\\vec p=q\\vec d"
+      },
+      {
+        "id": "20.3:reading:2",
+        "name": "먼 거리 장",
+        "text": "두 전하의 합을 거리·각도에 따라 읽는다.",
+        "tex": ""
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "20.3:reading:1",
+        "toId": "20.3:reading:2",
+        "text": "전하별 정확한 합과 먼 거리 쌍극자 근사를 구별한다."
+      }
+    ],
+    "limits": "p는 음전하에서 양전하 방향이다. 먼 거리 식은 분리 거리보다 충분히 먼 곳이다.",
+    "conditions": "p는 음전하에서 양전하 방향이다. 먼 거리 식은 분리 거리보다 충분히 먼 곳이다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 674,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "20.4",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "20.4:reading:1",
+        "name": "미소 전하",
+        "text": "선·면·체적 밀도로 작은 전하를 나타낸다.",
+        "tex": "dq=\\lambda\\,dl,\\quad dq=\\sigma\\,dA,\\quad dq=\\rho\\,dV"
+      },
+      {
+        "id": "20.4:reading:2",
+        "name": "장 적분",
+        "text": "각 작은 전하의 장을 방향과 함께 합한다.",
+        "tex": "\\vec E=\\int k\\hat r\\,dq/r^2"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "20.4:reading:1",
+        "toId": "20.4:reading:2",
+        "text": "밀도와 형상이 적분의 원천·방향·범위를 정한다."
+      }
+    ],
+    "limits": "λ·σ·ρ의 단위를 구별한다. 고리 축 위 관찰은 임의 공간점의 해가 아니다.",
+    "conditions": "λ·σ·ρ의 단위를 구별한다. 고리 축 위 관찰은 임의 공간점의 해가 아니다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 678,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "20.5",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "20.5:reading:1",
+        "name": "접선과 방향",
+        "text": "각 위치에서 전기력선의 접선 방향은 전기장 벡터 방향이다.",
+        "tex": ""
+      },
+      {
+        "id": "20.5:reading:2",
+        "name": "선 밀도와 크기",
+        "text": "같은 표시 규칙에서 선 밀도는 장의 크기에 대응한다. 선 개수는 표현 규칙이며 독립적인 물리 실체의 개수가 아니다.",
+        "tex": ""
+      },
+      {
+        "id": "20.5:reading:3",
+        "name": "전하와 경계",
+        "text": "선은 양전하에서 나와 음전하로 들어가며 순전하가 있으면 무한대와 이어질 수 있다. 장이 단일 방향을 가지는 위치에서 선은 교차하지 않는다.",
+        "tex": ""
+      }
+    ],
+    "limits": "전기력선은 전하가 실제로 이동한 궤적이 아니다. 원문 도형의 모양은 원본 PDF로 별도 확인한다.",
+    "sourceScope": "한국어 해설은 해당 절의 이전 본문 추출본과 대조한 재서술이다. 단계 선택은 읽기 위치이며 학습 완료·정답·증명의 검증 기록이 아니다.",
+    "pdf": 692,
+    "conditions": "각 위치에서 전기력선의 접선 방향은 전기장 벡터 방향이다.",
+    "coverage": "previous-structured-reading",
+    "relationships": []
+  },
+  {
+    "id": "20.6",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "20.6:reading:1",
+        "name": "장에 의한 가속도",
+        "text": "주어진 균일 전기장과 전하·질량을 연결한다.",
+        "tex": "\\vec a=q\\vec E/m"
+      },
+      {
+        "id": "20.6:reading:2",
+        "name": "입자의 궤적",
+        "text": "가속도를 성분별로 적분해 경로를 읽는다.",
+        "tex": ""
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "20.6:reading:1",
+        "toId": "20.6:reading:2",
+        "text": "정전기 장의 힘과 운동학이 연결되어 전하 부호별 휘는 방향이 달라진다."
+      }
+    ],
+    "limits": "비상대론·균일 장·다른 힘 무시 조건이다. 장을 입자 운동으로 매번 새로 만들지 않는다.",
+    "conditions": "비상대론·균일 장·다른 힘 무시 조건이다. 장을 입자 운동으로 매번 새로 만들지 않는다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 694,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "21.1",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "21.1:reading:1",
+        "name": "면의 방향",
+        "text": "작은 면의 법선 방향을 정한다.",
+        "tex": "d\\vec A=\\hat n\\,dA"
+      },
+      {
+        "id": "21.1:reading:2",
+        "name": "전기 선속",
+        "text": "장과 면 벡터의 내적을 합한다.",
+        "tex": "\\Phi_E=\\int\\vec E\\cdot d\\vec A"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "21.1:reading:1",
+        "toId": "21.1:reading:2",
+        "text": "장 크기만이 아니라 면의 방향과 위치별 장이 선속을 정한다."
+      }
+    ],
+    "limits": "닫힌 면은 바깥 법선이다. 열린 면의 선속과 닫힌 면의 순선속을 구별한다.",
+    "conditions": "닫힌 면은 바깥 법선이다. 열린 면의 선속과 닫힌 면의 순선속을 구별한다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 709,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "21.2",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "21.2:reading:1",
+        "name": "닫힌 면",
+        "text": "면 안에 들어 있는 순전하를 합한다.",
+        "tex": ""
+      },
+      {
+        "id": "21.2:reading:2",
+        "name": "가우스 관계",
+        "text": "닫힌 면 전체의 순선속을 안의 전하와 연결한다.",
+        "tex": "\\oint\\vec E\\cdot d\\vec A=q_{in}/\\epsilon_0"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "21.2:reading:1",
+        "toId": "21.2:reading:2",
+        "text": "장 분포가 복잡해도 순선속은 내부 전하로 정해진다."
+      }
+    ],
+    "limits": "외부 전하는 순선속에 0으로 기여해도 표면의 국소 장에는 기여한다.",
+    "conditions": "외부 전하는 순선속에 0으로 기여해도 표면의 국소 장에는 기여한다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 713,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "21.3",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "21.3:reading:1",
+        "name": "대칭 선택",
+        "text": "구·원통·평면 대칭에 맞는 가우스 면을 고른다.",
+        "tex": ""
+      },
+      {
+        "id": "21.3:reading:2",
+        "name": "장 크기 추출",
+        "text": "방향과 크기가 알려진 부분에서 적분을 단순화한다.",
+        "tex": ""
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "21.3:reading:1",
+        "toId": "21.3:reading:2",
+        "text": "가우스 법칙 자체와 대칭으로 장을 구하는 절차는 다르다."
+      }
+    ],
+    "limits": "순전하가 0이라고 E가 모든 곳에서 0이라는 뜻은 아니다. 각 분포의 내부·외부를 구별한다.",
+    "conditions": "순전하가 0이라고 E가 모든 곳에서 0이라는 뜻은 아니다. 각 분포의 내부·외부를 구별한다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 715,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "21.4",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "21.4:reading:1",
+        "name": "정전기 평형",
+        "text": "도체 내부의 자유 전하가 더 움직이지 않는다.",
+        "tex": "\\vec E_{inside}=0"
+      },
+      {
+        "id": "21.4:reading:2",
+        "name": "표면 전하",
+        "text": "남는 전하가 표면에 놓이고 표면 밖 장은 법선 방향이다.",
+        "tex": ""
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "21.4:reading:1",
+        "toId": "21.4:reading:2",
+        "text": "내부 장 0과 등전위 조건이 도체의 전하 배치를 제한한다."
+      }
+    ],
+    "limits": "정전기 평형 조건이다. 공동 안의 전하와 외부 표면 전하를 별도로 다룬다.",
+    "conditions": "정전기 평형 조건이다. 공동 안의 전하와 외부 표면 전하를 별도로 다룬다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 725,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "22.1",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "22.1:reading:1",
+        "name": "전기력의 일",
+        "text": "전기력이 한 일은 위치에너지 감소에 대응한다.",
+        "tex": "\\Delta U=-W_E"
+      },
+      {
+        "id": "22.1:reading:2",
+        "name": "위치에너지",
+        "text": "계의 전하 구성·기준 위치를 함께 읽는다.",
+        "tex": ""
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "22.1:reading:1",
+        "toId": "22.1:reading:2",
+        "text": "같은 전기장에서도 시험 전하의 부호가 에너지 변화를 바꾼다."
+      }
+    ],
+    "limits": "정전기 보존장·선택한 계와 기준점이다.",
+    "conditions": "정전기 보존장·선택한 계와 기준점이다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 739,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "22.2",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "22.2:reading:1",
+        "name": "에너지당 전하",
+        "text": "위치에너지를 전하로 나누어 전위를 정의한다.",
+        "tex": "V=U/q"
+      },
+      {
+        "id": "22.2:reading:2",
+        "name": "전위차",
+        "text": "경로에 따른 장의 내적을 적분한다.",
+        "tex": "V_f-V_i=-\\int_i^f\\vec E\\cdot d\\vec r"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "22.2:reading:1",
+        "toId": "22.2:reading:2",
+        "text": "전위차가 전하 부호와 무관한 장의 에너지 정보를 나타낸다."
+      }
+    ],
+    "limits": "정전기 조건이다. 전위의 영점과 전위차를 구별한다.",
+    "conditions": "정전기 조건이다. 전위의 영점과 전위차를 구별한다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 741,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "22.3",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "22.3:reading:1",
+        "name": "균일 장",
+        "text": "장과 변위의 방향을 비교한다.",
+        "tex": ""
+      },
+      {
+        "id": "22.3:reading:2",
+        "name": "전위차",
+        "text": "균일 장은 변위의 장 방향 투영으로 전위차를 정한다.",
+        "tex": "\\Delta V=-\\vec E\\cdot\\Delta\\vec r"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "22.3:reading:1",
+        "toId": "22.3:reading:2",
+        "text": "장 방향으로 이동하면 양의 시험 전하의 전위가 낮아진다."
+      }
+    ],
+    "limits": "E가 일정한 구간이다. 전위 0과 장 0을 같은 조건으로 보지 않는다.",
+    "conditions": "E가 일정한 구간이다. 전위 0과 장 0을 같은 조건으로 보지 않는다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 743,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "22.4",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "22.4:reading:1",
+        "name": "점전하 전위",
+        "text": "무한대 영점에서 점전하 전위를 읽는다.",
+        "tex": "V=kq/r"
+      },
+      {
+        "id": "22.4:reading:2",
+        "name": "여러 전하",
+        "text": "각 전위를 스칼라로 더한다.",
+        "tex": "V=\\sum_i kq_i/r_i"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "22.4:reading:1",
+        "toId": "22.4:reading:2",
+        "text": "전위는 방향 성분 없이 더하지만 전기장은 벡터로 더한다."
+      }
+    ],
+    "limits": "유한 거리의 점전하·정전기 조건이다. r=0은 제외한다.",
+    "conditions": "유한 거리의 점전하·정전기 조건이다. r=0은 제외한다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 749,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "22.5",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "22.5:reading:1",
+        "name": "쌍극자 전위",
+        "text": "반대 전하 전위의 차를 읽는다.",
+        "tex": ""
+      },
+      {
+        "id": "22.5:reading:2",
+        "name": "먼 거리 근사",
+        "text": "쌍극자 방향과 관찰 방향 각도로 전위를 나타낸다.",
+        "tex": "V=kp\\cos\\theta/r^2"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "22.5:reading:1",
+        "toId": "22.5:reading:2",
+        "text": "같은 원천의 각도 의존을 장과 전위에서 대응시킨다."
+      }
+    ],
+    "limits": "r이 전하 분리 거리보다 충분히 크고 영점은 무한대이다.",
+    "conditions": "r이 전하 분리 거리보다 충분히 크고 영점은 무한대이다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 753,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "22.6",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "22.6:reading:1",
+        "name": "쌍극자 토크",
+        "text": "균일 장이 쌍극자의 방향을 바꾸려 한다.",
+        "tex": "\\vec\\tau=\\vec p\\times\\vec E"
+      },
+      {
+        "id": "22.6:reading:2",
+        "name": "쌍극자 에너지",
+        "text": "장 방향 정렬이 낮은 에너지에 대응한다.",
+        "tex": "U=-\\vec p\\cdot\\vec E"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "22.6:reading:1",
+        "toId": "22.6:reading:2",
+        "text": "방향의 미분으로 토크와 에너지의 극값이 연결된다."
+      }
+    ],
+    "limits": "균일 장의 이상 쌍극자이다. 불균일 장의 순힘을 0으로 강제하지 않는다.",
+    "conditions": "균일 장의 이상 쌍극자이다. 불균일 장의 순힘을 0으로 강제하지 않는다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 755,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "22.7",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "22.7:reading:1",
+        "name": "막대 미소 전하",
+        "text": "길이에 따른 전하 밀도로 막대를 나눈다.",
+        "tex": ""
+      },
+      {
+        "id": "22.7:reading:2",
+        "name": "전위 합",
+        "text": "관찰점까지 거리별 전위를 적분한다.",
+        "tex": "V=\\int k\\,dq/r"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "22.7:reading:1",
+        "toId": "22.7:reading:2",
+        "text": "막대의 형상과 관찰 위치가 거리 함수와 적분 범위를 정한다."
+      }
+    ],
+    "limits": "균일 막대의 수직 이등분선 해와 막대 위 임의점 해를 구별한다.",
+    "conditions": "균일 막대의 수직 이등분선 해와 막대 위 임의점 해를 구별한다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 757,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "22.8",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "22.8:reading:1",
+        "name": "원호 미소 전하",
+        "text": "원호의 선밀도와 각도 범위를 정한다.",
+        "tex": ""
+      },
+      {
+        "id": "22.8:reading:2",
+        "name": "중심 전위",
+        "text": "중심에서는 모든 작은 전하가 같은 거리에 있다.",
+        "tex": "V_{center}=kQ/R"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "22.8:reading:1",
+        "toId": "22.8:reading:2",
+        "text": "같은 거리인 조건이 전위 적분을 단순하게 만든다."
+      }
+    ],
+    "limits": "관찰점은 원호 중심이다. 중심 전기장은 방향 상쇄를 따로 계산한다.",
+    "conditions": "관찰점은 원호 중심이다. 중심 전기장은 방향 상쇄를 따로 계산한다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 760,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "22.9",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "22.9:reading:1",
+        "name": "고리 축 거리",
+        "text": "축 위 점에서 고리 각 부분까지 거리가 같다.",
+        "tex": ""
+      },
+      {
+        "id": "22.9:reading:2",
+        "name": "축 전위",
+        "text": "같은 거리의 전위를 합한다.",
+        "tex": "V(z)=kQ/\\sqrt{R^2+z^2}"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "22.9:reading:1",
+        "toId": "22.9:reading:2",
+        "text": "축 대칭으로 전위가 단순화되고 미분하면 축 전기장에 대응한다."
+      }
+    ],
+    "limits": "균일 고리의 축 위 해이다. 축 밖 전위를 이 식으로 계산하지 않는다.",
+    "conditions": "균일 고리의 축 위 해이다. 축 밖 전위를 이 식으로 계산하지 않는다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 761,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "22.10",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "22.10:reading:1",
+        "name": "동심 고리",
+        "text": "원판을 작은 고리들의 합으로 나눈다.",
+        "tex": ""
+      },
+      {
+        "id": "22.10:reading:2",
+        "name": "원판 전위",
+        "text": "고리별 전위를 반지름 방향으로 적분한다.",
+        "tex": ""
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "22.10:reading:1",
+        "toId": "22.10:reading:2",
+        "text": "원판의 면밀도와 면적 요소가 고리 전위의 연속 합을 만든다."
+      }
+    ],
+    "limits": "균일 유한 원판의 축 위·무한대 영점 조건이다. 무한 평면의 전위 영점과 혼용하지 않는다.",
+    "conditions": "균일 유한 원판의 축 위·무한대 영점 조건이다. 무한 평면의 전위 영점과 혼용하지 않는다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 762,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "22.11",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "22.11:reading:1",
+        "name": "구의 내부·외부",
+        "text": "전하 분포와 반지름에 따라 전기장을 나눈다.",
+        "tex": ""
+      },
+      {
+        "id": "22.11:reading:2",
+        "name": "전위 연속",
+        "text": "경계 양쪽 전위가 같은 값에 이어지도록 장을 적분한다.",
+        "tex": ""
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "22.11:reading:1",
+        "toId": "22.11:reading:2",
+        "text": "장에 불연속이 있어도 전위까지 반드시 불연속은 아니다."
+      }
+    ],
+    "limits": "도체 표면 전하와 균일 체적 전하 구를 구별한다. 내부 공식을 교환하지 않는다.",
+    "conditions": "도체 표면 전하와 균일 체적 전하 구를 구별한다. 내부 공식을 교환하지 않는다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 764,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "22.12",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "22.12:reading:1",
+        "name": "도체 등전위",
+        "text": "정전기 평형의 도체 전체는 같은 전위이다.",
+        "tex": ""
+      },
+      {
+        "id": "22.12:reading:2",
+        "name": "표면과 장",
+        "text": "같은 전위여도 표면 형상에 따라 밖의 장은 다르다.",
+        "tex": ""
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "22.12:reading:1",
+        "toId": "22.12:reading:2",
+        "text": "등전위 조건은 장 0을 도체 밖 전체에 강제하지 않는다."
+      }
+    ],
+    "limits": "정전기 평형이다. 뾰족한 부분의 강한 장과 전위값을 구별한다.",
+    "conditions": "정전기 평형이다. 뾰족한 부분의 강한 장과 전위값을 구별한다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 765,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "22.13",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "22.13:reading:1",
+        "name": "전위 기울기",
+        "text": "전위가 변하는 방향·변화율을 읽는다.",
+        "tex": ""
+      },
+      {
+        "id": "22.13:reading:2",
+        "name": "전기장 복원",
+        "text": "전위가 가장 빨리 감소하는 방향을 장으로 읽는다.",
+        "tex": "\\vec E=-\\nabla V"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "22.13:reading:1",
+        "toId": "22.13:reading:2",
+        "text": "스칼라 전위의 공간 변화가 벡터 전기장을 만든다."
+      }
+    ],
+    "limits": "정전기·미분 가능 영역이다. 등전위 선 간격과 실제 장 크기는 좌표 축척을 보존해 비교한다.",
+    "conditions": "정전기·미분 가능 영역이다. 등전위 선 간격과 실제 장 크기는 좌표 축척을 보존해 비교한다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 766,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "22.14",
+    "mode": "process",
+    "steps": [
+      {
+        "id": "22.14:reading:1",
+        "name": "전위차와 방전",
+        "text": "중앙 도선이 벽보다 낮은 전위에 놓여 큰 전기장을 만들고 도선 주변 방전으로 전자·이온을 만든다.",
+        "tex": ""
+      },
+      {
+        "id": "22.14:reading:2",
+        "name": "입자의 대전",
+        "text": "흐르는 가스 속 입자가 충돌·이온 포획으로 대전된다. 대부분 음으로 대전된 입자에는 장과 반대 방향 힘이 작용한다.",
+        "tex": "\\vec F=q\\vec E"
+      },
+      {
+        "id": "22.14:reading:3",
+        "name": "벽과 수거",
+        "text": "대전 입자가 벽으로 이동하고 벽을 흔들어 떨어뜨린 입자를 아래에서 모은다.",
+        "tex": ""
+      }
+    ],
+    "limits": "2013년 교재의 응용 원리이다. 실제 장치의 포집 효율·최신 제품 성능을 추정하지 않는다.",
+    "sourceScope": "한국어 해설은 해당 절의 이전 본문 추출본과 대조한 재서술이다. 단계 선택은 읽기 위치이며 학습 완료·정답·증명의 검증 기록이 아니다.",
+    "pdf": 769,
+    "conditions": "도선은 벽보다 낮은 전위이다. 장 방향과 입자의 전하 부호를 함께 확인한다.",
+    "coverage": "previous-structured-reading",
+    "relationships": []
+  },
+  {
+    "id": "22.15",
+    "mode": "process",
+    "steps": [
+      {
+        "id": "22.15:reading:1",
+        "name": "띠의 대전",
+        "text": "절연 띠에 전하를 실어 움직이는 띠로 위쪽 금속 돔까지 운반한다.",
+        "tex": ""
+      },
+      {
+        "id": "22.15:reading:2",
+        "name": "도체로의 전달",
+        "text": "돔 안쪽으로 연결된 전하가 고립 도체의 바깥 표면으로 옮겨지는 성질을 사용한다.",
+        "tex": ""
+      },
+      {
+        "id": "22.15:reading:3",
+        "name": "축적과 제한",
+        "text": "전하가 축적되어 돔의 전위가 올라가지만 공기의 절연 파괴 등 실제 한계가 있다.",
+        "tex": ""
+      }
+    ],
+    "limits": "공기 절연 파괴 값은 조건에 의존한다. 교재의 대략값을 모든 환경의 고정 임계값으로 적용하지 않는다.",
+    "sourceScope": "한국어 해설은 해당 절의 이전 본문 추출본과 대조한 재서술이다. 단계 선택은 읽기 위치이며 학습 완료·정답·증명의 검증 기록이 아니다.",
+    "pdf": 770,
+    "conditions": "절연 띠에 전하를 실어 움직이는 띠로 위쪽 금속 돔까지 운반한다.",
+    "coverage": "previous-structured-reading",
+    "relationships": []
+  },
+  {
+    "id": "23.1",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "23.1:reading:1",
+        "name": "전하·전위차",
+        "text": "두 도체의 전하 크기와 전위차를 비교한다.",
+        "tex": "C=Q/\\Delta V"
+      },
+      {
+        "id": "23.1:reading:2",
+        "name": "정전용량",
+        "text": "같은 형상·매질에서 전하와 전위차의 비가 정해진다.",
+        "tex": ""
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "23.1:reading:1",
+        "toId": "23.1:reading:2",
+        "text": "C는 전하량 하나가 아니라 도체의 형상과 매질 조건을 나타낸다."
+      }
+    ],
+    "limits": "선형 정전기 조건이다. 한 판의 Q와 두 판의 순전하 합을 혼동하지 않는다.",
+    "conditions": "선형 정전기 조건이다. 한 판의 Q와 두 판의 순전하 합을 혼동하지 않는다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 781,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "23.2",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "23.2:reading:1",
+        "name": "형상에 따른 장",
+        "text": "평판·구면·원통의 장을 구한다.",
+        "tex": ""
+      },
+      {
+        "id": "23.2:reading:2",
+        "name": "전위차 적분",
+        "text": "같은 형상의 두 전극 사이 장을 적분해 C를 구한다.",
+        "tex": ""
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "23.2:reading:1",
+        "toId": "23.2:reading:2",
+        "text": "가우스 대칭과 전위 적분이 정전용량 계산의 공통 절차이다."
+      }
+    ],
+    "limits": "평행판의 C=ε₀A/d는 가장자리 효과 무시 조건이다. 다른 형상에 같은 식을 쓰지 않는다.",
+    "conditions": "평행판의 C=ε₀A/d는 가장자리 효과 무시 조건이다. 다른 형상에 같은 식을 쓰지 않는다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 783,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "23.3",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "23.3:reading:1",
+        "name": "유전체 분극",
+        "text": "분극이 주어진 자유 전하의 장을 약하게 한다.",
+        "tex": "C=\\kappa C_0"
+      },
+      {
+        "id": "23.3:reading:2",
+        "name": "연결 조건",
+        "text": "전원 분리 시 Q 고정, 전원 연결 시 ΔV 고정으로 읽는다.",
+        "tex": ""
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "23.3:reading:1",
+        "toId": "23.3:reading:2",
+        "text": "같은 유전체 삽입도 외부 회로 조건에 따라 전하·전압·에너지 변화가 다르다."
+      }
+    ],
+    "limits": "선형 유전체·해당 영역을 채운 조건이다. 절연 파괴·비선형 응답은 별도이다.",
+    "conditions": "선형 유전체·해당 영역을 채운 조건이다. 절연 파괴·비선형 응답은 별도이다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 789,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "23.4",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "23.4:reading:1",
+        "name": "직렬 연결",
+        "text": "직렬 축전기는 전하 크기를 공유하고 전위차를 나눈다.",
+        "tex": "1/C_{eq}=\\sum_i1/C_i"
+      },
+      {
+        "id": "23.4:reading:2",
+        "name": "병렬 연결",
+        "text": "병렬 축전기는 전위차를 공유하고 전하가 더해진다.",
+        "tex": "C_{eq}=\\sum_i C_i"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "23.4:reading:1",
+        "toId": "23.4:reading:2",
+        "text": "연결 구조의 공통값을 먼저 정해야 합성 용량을 구할 수 있다."
+      }
+    ],
+    "limits": "각 판·접점 연결을 실제 회로와 대조한다. 단순 배치의 가까움으로 직렬·병렬을 판정하지 않는다.",
+    "conditions": "각 판·접점 연결을 실제 회로와 대조한다. 단순 배치의 가까움으로 직렬·병렬을 판정하지 않는다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 798,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "23.5",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "23.5:reading:1",
+        "name": "충전 일",
+        "text": "전하를 조금씩 옮기는 일을 합한다.",
+        "tex": ""
+      },
+      {
+        "id": "23.5:reading:2",
+        "name": "저장 에너지",
+        "text": "같은 상태를 Q·V·C의 세 표현으로 읽는다.",
+        "tex": "U=\\frac{Q^2}{2C}=\\tfrac12CV^2=\\tfrac12QV"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "23.5:reading:1",
+        "toId": "23.5:reading:2",
+        "text": "같은 상태에서만 세 식이 등가이며 조절 중 고정 조건을 따로 정해야 한다."
+      }
+    ],
+    "limits": "선형 일정 C 조건이다. 전원 연결 시 축전기 에너지 변화만으로 전체 에너지 장부를 닫지 않는다.",
+    "conditions": "선형 일정 C 조건이다. 전원 연결 시 축전기 에너지 변화만으로 전체 에너지 장부를 닫지 않는다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 803,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "24.1",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "24.1:reading:1",
+        "name": "전하 흐름",
+        "text": "면을 통과한 전하의 시간 변화율을 읽는다.",
+        "tex": "I=dQ/dt"
+      },
+      {
+        "id": "24.1:reading:2",
+        "name": "전류밀도",
+        "text": "국소 흐름 방향과 면 법선을 연결한다.",
+        "tex": "I=\\int\\vec J\\cdot d\\vec A"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "24.1:reading:1",
+        "toId": "24.1:reading:2",
+        "text": "전류는 면 전체의 흐름이고 전류밀도는 위치별 벡터이다."
+      }
+    ],
+    "limits": "관습 전류 방향과 전자의 이동 방향을 구별한다.",
+    "conditions": "관습 전류 방향과 전자의 이동 방향을 구별한다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 817,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "24.2",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "24.2:reading:1",
+        "name": "국소 옴 관계",
+        "text": "전기장과 전류밀도를 비저항으로 연결한다.",
+        "tex": "\\vec E=\\rho\\vec J"
+      },
+      {
+        "id": "24.2:reading:2",
+        "name": "도선 저항",
+        "text": "길이·단면과 비저항으로 저항을 구한다.",
+        "tex": "R=\\rho L/A"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "24.2:reading:1",
+        "toId": "24.2:reading:2",
+        "text": "물질의 국소 응답과 물체의 형상 응답을 구별한다."
+      }
+    ],
+    "limits": "옴성·균일 도선·온도 범위를 확인한다. 비저항 ρ와 질량 밀도 ρ는 맥락으로 구별한다.",
+    "conditions": "옴성·균일 도선·온도 범위를 확인한다. 비저항 ρ와 질량 밀도 ρ는 맥락으로 구별한다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 822,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "24.3",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "24.3:reading:1",
+        "name": "전력 전달",
+        "text": "전류와 전위차로 전달률을 읽는다.",
+        "tex": "P=IV"
+      },
+      {
+        "id": "24.3:reading:2",
+        "name": "저항 발열",
+        "text": "옴성 저항에서는 등가 식으로 표현한다.",
+        "tex": "P=I^2R=V^2/R"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "24.3:reading:1",
+        "toId": "24.3:reading:2",
+        "text": "같은 부품의 전압·전류가 대응해야 세 식이 같은 전력을 나타낸다."
+      }
+    ],
+    "limits": "수동 저항의 소비 전력이다. 공급원·축전기·인덕터에 저항식을 무조건 쓰지 않는다.",
+    "conditions": "수동 저항의 소비 전력이다. 공급원·축전기·인덕터에 저항식을 무조건 쓰지 않는다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 831,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "24.4",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "24.4:reading:1",
+        "name": "기전력",
+        "text": "전원이 단위 전하당 제공하는 에너지를 읽는다.",
+        "tex": ""
+      },
+      {
+        "id": "24.4:reading:2",
+        "name": "단자 전압",
+        "text": "방전하는 전원의 내부 저항을 빼서 외부 전압을 읽는다.",
+        "tex": "V=\\mathcal E-Ir"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "24.4:reading:1",
+        "toId": "24.4:reading:2",
+        "text": "기전력과 단자 전압은 내부 저항의 전압강하 때문에 다를 수 있다."
+      }
+    ],
+    "limits": "표시 식은 방전 방향 규약이다. 충전 시 전류 방향·에너지 흐름을 따로 확인한다.",
+    "conditions": "표시 식은 방전 방향 규약이다. 충전 시 전류 방향·에너지 흐름을 따로 확인한다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 833,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "24.5",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "24.5:reading:1",
+        "name": "직렬 저항",
+        "text": "같은 전류와 전압강하 합을 사용한다.",
+        "tex": "R_{eq}=\\sum_i R_i"
+      },
+      {
+        "id": "24.5:reading:2",
+        "name": "병렬 저항",
+        "text": "같은 전위차와 전류 합을 사용한다.",
+        "tex": "1/R_{eq}=\\sum_i1/R_i"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "24.5:reading:1",
+        "toId": "24.5:reading:2",
+        "text": "접점 연결이 어떤 값이 같은지를 결정한다."
+      }
+    ],
+    "limits": "이상 도선·옴성 저항이다. 그림의 모양이 아니라 노드 연결을 읽는다.",
+    "conditions": "이상 도선·옴성 저항이다. 그림의 모양이 아니라 노드 연결을 읽는다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 837,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "24.6",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "24.6:reading:1",
+        "name": "접점 전류",
+        "text": "접점에 들어오고 나가는 전류의 합을 맞춘다.",
+        "tex": "\\sum I_{in}=\\sum I_{out}"
+      },
+      {
+        "id": "24.6:reading:2",
+        "name": "고리 전위",
+        "text": "닫힌 고리를 돌며 전위 변화의 합을 맞춘다.",
+        "tex": "\\sum\\Delta V=0"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "24.6:reading:1",
+        "toId": "24.6:reading:2",
+        "text": "전하 보존과 회로의 에너지 관계가 독립적인 방정식을 만든다."
+      }
+    ],
+    "limits": "집중 정수·준정상 회로이다. 외부 변화 자기 선속이 있는 고리는 유도 기전력을 포함한다.",
+    "conditions": "집중 정수·준정상 회로이다. 외부 변화 자기 선속이 있는 고리는 유도 기전력을 포함한다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 842,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "24.7",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "24.7:reading:1",
+        "name": "충전·방전",
+        "text": "같은 RC에서도 전원·초기 전하 조건에 따라 다른 지수식이 생긴다.",
+        "tex": ""
+      },
+      {
+        "id": "24.7:reading:2",
+        "name": "시간상수",
+        "text": "RC가 변화가 진행되는 시간 규모를 정한다.",
+        "tex": "\\tau=RC"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "24.7:reading:1",
+        "toId": "24.7:reading:2",
+        "text": "저장 에너지와 저항의 소모가 시간에 따라 연결된다."
+      }
+    ],
+    "limits": "이상 일정 R·C 조건이다. 전압·전하·전류의 초기값과 방향을 맞춘다.",
+    "conditions": "이상 일정 R·C 조건이다. 전압·전하·전류의 초기값과 방향을 맞춘다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 846,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "25.1",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "25.1:reading:1",
+        "name": "자기력",
+        "text": "속도와 자기장의 외적이 힘을 만든다.",
+        "tex": "\\vec F_B=q\\vec v\\times\\vec B"
+      },
+      {
+        "id": "25.1:reading:2",
+        "name": "힘의 일",
+        "text": "자기력은 순간 속도에 수직이므로 일률이 0이다.",
+        "tex": "\\vec F_B\\cdot\\vec v=0"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "25.1:reading:1",
+        "toId": "25.1:reading:2",
+        "text": "자기장은 속도 방향을 바꾸지만 자기력만으로 속력은 바꾸지 않는다."
+      }
+    ],
+    "limits": "점입자·주어진 장의 비상대론 모형이다. 전하 부호로 힘 방향이 뒤집힌다.",
+    "conditions": "점입자·주어진 장의 비상대론 모형이다. 전하 부호로 힘 방향이 뒤집힌다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 865,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "25.2",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "25.2:reading:1",
+        "name": "수직 속도",
+        "text": "자기장에 수직인 성분이 원운동을 한다.",
+        "tex": "r=mv_\\perp/(\\lvert q\\rvert B)"
+      },
+      {
+        "id": "25.2:reading:2",
+        "name": "평행 속도",
+        "text": "평행 성분은 자기력의 영향을 받지 않아 나선 경로를 만든다.",
+        "tex": ""
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "25.2:reading:1",
+        "toId": "25.2:reading:2",
+        "text": "속도를 두 성분으로 나누면 원·나선 운동의 차가 드러난다."
+      }
+    ],
+    "limits": "균일 B·자기력만 작용·비상대론 조건이다. v_parallel=0일 때 원운동이다.",
+    "conditions": "균일 B·자기력만 작용·비상대론 조건이다. v_parallel=0일 때 원운동이다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 869,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "25.3",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "25.3:reading:1",
+        "name": "전기·자기 힘",
+        "text": "두 힘을 벡터로 더한다.",
+        "tex": "\\vec F=q(\\vec E+\\vec v\\times\\vec B)"
+      },
+      {
+        "id": "25.3:reading:2",
+        "name": "속도 선택",
+        "text": "직교 배치에서 두 힘이 상쇄되는 속력을 읽는다.",
+        "tex": "v=E/B"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "25.3:reading:1",
+        "toId": "25.3:reading:2",
+        "text": "균형 속력은 특정 방향과 장 배치의 Lorentz 힘 0 조건이다."
+      }
+    ],
+    "limits": "E·B·v의 직교와 방향을 확인한다. 모든 방향에서 E/B이면 힘이 0인 것은 아니다.",
+    "conditions": "E·B·v의 직교와 방향을 확인한다. 모든 방향에서 E/B이면 힘이 0인 것은 아니다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 871,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "25.4",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "25.4:reading:1",
+        "name": "도선 속 전류",
+        "text": "전하의 자기력을 도선 길이로 합한다.",
+        "tex": ""
+      },
+      {
+        "id": "25.4:reading:2",
+        "name": "도선의 힘",
+        "text": "길이 벡터와 자기장의 외적을 읽는다.",
+        "tex": "\\vec F=I\\vec L\\times\\vec B"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "25.4:reading:1",
+        "toId": "25.4:reading:2",
+        "text": "미시적 전하 힘이 거시적 전류 도선의 힘으로 대응한다."
+      }
+    ],
+    "limits": "균일 장의 직선 구간이다. 곡선·비균일 장은 I dℓ×B를 적분한다.",
+    "conditions": "균일 장의 직선 구간이다. 곡선·비균일 장은 I dℓ×B를 적분한다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 875,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "25.5",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "25.5:reading:1",
+        "name": "전류 고리",
+        "text": "면적과 전류가 자기 쌍극자 모멘트를 정한다.",
+        "tex": "\\vec\\mu=NI\\vec A"
+      },
+      {
+        "id": "25.5:reading:2",
+        "name": "토크·에너지",
+        "text": "장에 대한 고리 방향을 읽는다.",
+        "tex": "\\vec\\tau=\\vec\\mu\\times\\vec B,\\quad U=-\\vec\\mu\\cdot\\vec B"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "25.5:reading:1",
+        "toId": "25.5:reading:2",
+        "text": "고리의 법선 방향이 토크와 안정 방향을 정한다."
+      }
+    ],
+    "limits": "균일 장·평면 고리이다. 감은 수 N은 정수이며 면적 벡터는 전류 오른손 방향이다.",
+    "conditions": "균일 장·평면 고리이다. 감은 수 N은 정수이며 면적 벡터는 전류 오른손 방향이다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 880,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "25.6",
+    "mode": "process",
+    "steps": [
+      {
+        "id": "25.6:reading:1",
+        "name": "비균일한 장",
+        "text": "자기병은 끝쪽 장이 강하고 가운데 장이 약하다. 균일 자기장의 한 원궤도식으로 전체를 대신하지 않는다.",
+        "tex": ""
+      },
+      {
+        "id": "25.6:reading:2",
+        "name": "나선 운동과 가둠",
+        "text": "교재는 입자가 장선을 따라 나선 운동하며 양 끝 사이에서 되돌아오는 가둠을 설명한다.",
+        "tex": ""
+      },
+      {
+        "id": "25.6:reading:3",
+        "name": "충돌과 한계",
+        "text": "충돌이 없다면 오랫동안 움직일 수 있다는 조건을 보존한다. 이 해설은 모든 초기 상태가 항상 갇힌다는 수치 판정이 아니다.",
+        "tex": ""
+      }
+    ],
+    "limits": "입자별 가둠 경계·실제 비균일장 궤적 계산은 미구현이다. 원문 정성 관계를 단계로 대응했다.",
+    "sourceScope": "한국어 해설은 해당 절의 이전 본문 추출본과 대조한 재서술이다. 단계 선택은 읽기 위치이며 학습 완료·정답·증명의 검증 기록이 아니다.",
+    "pdf": 884,
+    "conditions": "자기병은 끝쪽 장이 강하고 가운데 장이 약하다. 균일 자기장의 한 원궤도식으로 전체를 대신하지 않는다.",
+    "coverage": "previous-structured-reading",
+    "relationships": []
+  },
+  {
+    "id": "26.1",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "26.1:reading:1",
+        "name": "미소 전류",
+        "text": "전류 요소와 관찰점 방향의 외적을 구한다.",
+        "tex": "d\\vec B=\\frac{\\mu_0I}{4\\pi}\\frac{d\\vec\\ell\\times\\hat r}{r^2}"
+      },
+      {
+        "id": "26.1:reading:2",
+        "name": "자기장 합",
+        "text": "도선 전체의 요소를 적분한다.",
+        "tex": "\\vec B=\\int d\\vec B"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "26.1:reading:1",
+        "toId": "26.1:reading:2",
+        "text": "전류의 형상이 장의 방향과 적분 범위를 정한다."
+      }
+    ],
+    "limits": "정상 전류의 정자기 모형이다. 무한 직선 도선의 장을 유한 도선 끝까지 일반화하지 않는다.",
+    "conditions": "정상 전류의 정자기 모형이다. 무한 직선 도선의 장을 유한 도선 끝까지 일반화하지 않는다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 895,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "26.2",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "26.2:reading:1",
+        "name": "한 도선의 장",
+        "text": "첫 도선의 전류가 둘째 도선 위치에 장을 만든다.",
+        "tex": ""
+      },
+      {
+        "id": "26.2:reading:2",
+        "name": "다른 도선의 힘",
+        "text": "그 장과 둘째 도선 전류를 외적으로 연결한다.",
+        "tex": "F/L=\\mu_0I_1I_2/(2\\pi d)"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "26.2:reading:1",
+        "toId": "26.2:reading:2",
+        "text": "장 생성과 전류의 힘을 연결하면 평행 전류의 인력·척력을 읽는다."
+      }
+    ],
+    "limits": "길고 평행한 도선·끝 효과 무시 조건이다. 같은 방향 전류는 인력이다.",
+    "conditions": "길고 평행한 도선·끝 효과 무시 조건이다. 같은 방향 전류는 인력이다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 901,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "26.3",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "26.3:reading:1",
+        "name": "장 순환",
+        "text": "닫힌 경로의 접선 방향 자기장을 적분한다.",
+        "tex": "\\oint\\vec B\\cdot d\\vec\\ell=\\mu_0I_{in}"
+      },
+      {
+        "id": "26.3:reading:2",
+        "name": "대칭 적용",
+        "text": "경로에서 B의 방향·크기를 알 때 장 크기를 추출한다.",
+        "tex": ""
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "26.3:reading:1",
+        "toId": "26.3:reading:2",
+        "text": "법칙의 일반 관계와 대칭으로 푸는 제한된 절차를 구별한다."
+      }
+    ],
+    "limits": "정상 전류의 식이다. 변화 전기장에서는 변위전류를 포함한다.",
+    "conditions": "정상 전류의 식이다. 변화 전기장에서는 변위전류를 포함한다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 903,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "26.4",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "26.4:reading:1",
+        "name": "변하는 전기 선속",
+        "text": "충전 축전기의 틈에는 전도 전류와 다른 항이 필요하다.",
+        "tex": "I_d=\\epsilon_0d\\Phi_E/dt"
+      },
+      {
+        "id": "26.4:reading:2",
+        "name": "확장된 순환 관계",
+        "text": "전도 전류와 변위전류를 함께 포함한다.",
+        "tex": "\\oint\\vec B\\cdot d\\vec\\ell=\\mu_0(I+I_d)"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "26.4:reading:1",
+        "toId": "26.4:reading:2",
+        "text": "같은 경로에 걸친 면의 선택이 달라도 일관된 자기장을 읽는다."
+      }
+    ],
+    "limits": "변위전류는 틈을 가로질러 전하가 전도된다는 뜻이 아니다. 면 방향과 포함 선속을 맞춘다.",
+    "conditions": "변위전류는 틈을 가로질러 전하가 전도된다는 뜻이 아니다. 면 방향과 포함 선속을 맞춘다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 907,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "26.5",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "26.5:reading:1",
+        "name": "열린 면의 자기 선속",
+        "text": "열린 면의 자기 선속은 장과 면의 방향에 따라0이 아닐 수 있다.",
+        "tex": "\\Phi_B=\\int\\vec B\\cdot d\\vec A"
+      },
+      {
+        "id": "26.5:reading:2",
+        "name": "닫힌 면의 수지",
+        "text": "교재의 고전 자기장은 닫힌 면을 통해 들어온 선속과 나간 선속의 합이0이다.",
+        "tex": "\\oint\\vec B\\cdot d\\vec A=0"
+      },
+      {
+        "id": "26.5:reading:3",
+        "name": "전기 가우스 법칙과 차이",
+        "text": "전기 선속은 포함 순전하를 원천으로 가질 수 있다. 자기장0과 닫힌 자기 선속0은 같은 말이 아니다.",
+        "tex": "\\oint\\vec E\\cdot d\\vec A=q_{in}/\\varepsilon_\\circ"
+      }
+    ],
+    "limits": "열린 면/닫힌 면과 국소 장 크기를 구별한다.",
+    "sourceScope": "한국어 해설은 해당 절의 이전 본문 추출본과 대조한 재서술이다. 단계 선택은 읽기 위치이며 학습 완료·정답·증명의 검증 기록이 아니다.",
+    "pdf": 909,
+    "conditions": "열린 면의 자기 선속은 장과 면의 방향에 따라0이 아닐 수 있다.",
+    "coverage": "previous-structured-reading",
+    "relationships": []
+  },
+  {
+    "id": "26.6",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "26.6:reading:1",
+        "name": "궤도 모멘트",
+        "text": "교재의 고전 원궤도 설명에서는 전자의 관습적 전류가 전자 운동과 반대이며 궤도 자기모멘트도 각운동량과 반대다.",
+        "tex": "\\vec\\mu_\\ell=-\\frac{e}{2m_e}\\vec L"
+      },
+      {
+        "id": "26.6:reading:2",
+        "name": "스핀 모멘트",
+        "text": "스핀의 자기모멘트는 양자적 성질이다. 고전적인 작은 공의 실제 회전으로 확정하지 않는다.",
+        "tex": ""
+      },
+      {
+        "id": "26.6:reading:3",
+        "name": "설명 수준",
+        "text": "원문은 고전 모형의 결과를 소개하면서 완전한 설명에는 양자물리가 필요함을 밝힌다.",
+        "tex": ""
+      }
+    ],
+    "limits": "고전 원궤도 그림을 원자의 실제 궤도 측정이나 양자 증명으로 보고하지 않는다.",
+    "sourceScope": "한국어 해설은 해당 절의 이전 본문 추출본과 대조한 재서술이다. 단계 선택은 읽기 위치이며 학습 완료·정답·증명의 검증 기록이 아니다.",
+    "pdf": 910,
+    "conditions": "교재의 고전 원궤도 설명에서는 전자의 관습적 전류가 전자 운동과 반대이며 궤도 자기모멘트도 각운동량과 반대다.",
+    "coverage": "previous-structured-reading",
+    "relationships": []
+  },
+  {
+    "id": "26.7",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "26.7:reading:1",
+        "name": "원자 모멘트의 합",
+        "text": "원자·분자의 자기모멘트를 벡터로 더하고 단위 부피로 나누어 자화를 정의한다.",
+        "tex": "\\vec M=\\sum\\vec\\mu_{atomic}/V"
+      },
+      {
+        "id": "26.7:reading:2",
+        "name": "외부장과 물질의 기여",
+        "text": "물질을 넣기 전 장과 물질의 자화 기여를 구별하여 총장을 읽는다.",
+        "tex": "\\vec B=\\vec B_\\circ+\\vec B_M"
+      },
+      {
+        "id": "26.7:reading:3",
+        "name": "H와 M",
+        "text": "교재의 관계에서H와M은 같은 단위A/m이지만 서로 다른 양이다.",
+        "tex": "\\vec B=\\mu_\\circ(\\vec H+\\vec M)"
+      }
+    ],
+    "limits": "내부 기하·선형성·물질의 종류에 따른 조건을 생략하지 않는다.",
+    "sourceScope": "한국어 해설은 해당 절의 이전 본문 추출본과 대조한 재서술이다. 단계 선택은 읽기 위치이며 학습 완료·정답·증명의 검증 기록이 아니다.",
+    "pdf": 914,
+    "conditions": "원자·분자의 자기모멘트를 벡터로 더하고 단위 부피로 나누어 자화를 정의한다.",
+    "coverage": "previous-structured-reading",
+    "relationships": []
+  },
+  {
+    "id": "26.8",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "26.8:reading:1",
+        "name": "반자성",
+        "text": "선형 응답 범위에서χ<0이면 자화는H와 반대이다.",
+        "tex": "\\vec M=\\chi\\vec H,\\quad\\chi<0"
+      },
+      {
+        "id": "26.8:reading:2",
+        "name": "상자성",
+        "text": "선형 응답 범위에서χ>0이면 자화는H와 같은 방향이다.",
+        "tex": "\\vec M=\\chi\\vec H,\\quad\\chi>0"
+      },
+      {
+        "id": "26.8:reading:3",
+        "name": "온도와 재료",
+        "text": "반응 크기는 재료·온도·적용 범위에 의존한다. 부호 비교만으로 모든 재료의 장 반응을 계산하지 않는다.",
+        "tex": ""
+      }
+    ],
+    "limits": "강자성의 경로 의존성을 일정χ로 대체하지 않는다.",
+    "sourceScope": "한국어 해설은 해당 절의 이전 본문 추출본과 대조한 재서술이다. 단계 선택은 읽기 위치이며 학습 완료·정답·증명의 검증 기록이 아니다.",
+    "pdf": 916,
+    "conditions": "선형 응답 범위에서χ<0이면 자화는H와 반대이다.",
+    "coverage": "previous-structured-reading",
+    "relationships": []
+  },
+  {
+    "id": "26.9",
+    "mode": "process",
+    "steps": [
+      {
+        "id": "26.9:reading:1",
+        "name": "자기구역",
+        "text": "작은 구역 안에서는 모멘트가 정렬되어도 구역 방향이 흩어져 있으면 전체 순자화가 작을 수 있다.",
+        "tex": ""
+      },
+      {
+        "id": "26.9:reading:2",
+        "name": "장 증가",
+        "text": "약한 장에서 유리한 방향의 구역이 자라고, 더 강한 장에서는 구역 방향 정렬과 회전이 나타난다.",
+        "tex": ""
+      },
+      {
+        "id": "26.9:reading:3",
+        "name": "장 제거와 이력",
+        "text": "일부 변화는 되돌아가고 일부는 남는다. 잔류·포화·이력은 현재H의 한 값만으로 모두 정해지지 않는다.",
+        "tex": ""
+      }
+    ],
+    "limits": "교재의 단계 구별이다. 재료 데이터 없는 정량 히스테리시스 곡선을 생성하지 않는다.",
+    "sourceScope": "한국어 해설은 해당 절의 이전 본문 추출본과 대조한 재서술이다. 단계 선택은 읽기 위치이며 학습 완료·정답·증명의 검증 기록이 아니다.",
+    "pdf": 920,
+    "conditions": "작은 구역 안에서는 모멘트가 정렬되어도 구역 방향이 흩어져 있으면 전체 순자화가 작을 수 있다.",
+    "coverage": "previous-structured-reading",
+    "relationships": []
+  },
+  {
+    "id": "26.10",
+    "mode": "process",
+    "steps": [
+      {
+        "id": "26.10:reading:1",
+        "name": "전류와 전자석",
+        "text": "솔레노이드 전류와 연철의 자기구역 정렬을 연결한다.",
+        "tex": ""
+      },
+      {
+        "id": "26.10:reading:2",
+        "name": "기계적 작동",
+        "text": "교재의 초인종은 코일이 철심을 당겨 종을 치고, 회로가 열리면 스프링이 철심을 돌려놓는 원리이다.",
+        "tex": ""
+      },
+      {
+        "id": "26.10:reading:3",
+        "name": "보호 장치와 용도",
+        "text": "자기 차단기의 전류 감지와 접점 개방을 구별해 읽는다. 장치별 동작 순서는 원문 사례를 따라 확인한다.",
+        "tex": ""
+      }
+    ],
+    "limits": "교재에 나온 장치 원리이며 새 제품의 인증·차단 시간·성능을 검증한 것이 아니다.",
+    "sourceScope": "한국어 해설은 해당 절의 이전 본문 추출본과 대조한 재서술이다. 단계 선택은 읽기 위치이며 학습 완료·정답·증명의 검증 기록이 아니다.",
+    "pdf": 925,
+    "conditions": "솔레노이드 전류와 연철의 자기구역 정렬을 연결한다.",
+    "coverage": "previous-structured-reading",
+    "relationships": []
+  },
+  {
+    "id": "27.1",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "27.1:reading:1",
+        "name": "자기 선속",
+        "text": "면을 통과하는 B의 법선 성분을 읽는다.",
+        "tex": ""
+      },
+      {
+        "id": "27.1:reading:2",
+        "name": "유도 기전력",
+        "text": "시간에 따른 선속 변화율과 방향을 연결한다.",
+        "tex": "\\mathcal E=-N\\,d\\Phi_B/dt"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "27.1:reading:1",
+        "toId": "27.1:reading:2",
+        "text": "장·면적·방향 변화가 모두 선속 변화를 만들 수 있다."
+      }
+    ],
+    "limits": "고리 방향 규약을 맞춘다. Lenz 부호는 원래 장 자체보다 선속 변화에 대응한다.",
+    "conditions": "고리 방향 규약을 맞춘다. Lenz 부호는 원래 장 자체보다 선속 변화에 대응한다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 939,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "27.2",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "27.2:reading:1",
+        "name": "움직이는 도선",
+        "text": "도선의 전하가 v×B 힘으로 분리된다.",
+        "tex": ""
+      },
+      {
+        "id": "27.2:reading:2",
+        "name": "운동 기전력",
+        "text": "직교 배치에서 길이·속력·장을 연결한다.",
+        "tex": "\\mathcal E=B\\ell v"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "27.2:reading:1",
+        "toId": "27.2:reading:2",
+        "text": "미시적 자기력과 회로의 기전력을 함께 읽는다."
+      }
+    ],
+    "limits": "표시 식은 직선 도선·균일 장·직교 배치이다. 일반 방향은 적분과 벡터를 사용한다.",
+    "conditions": "표시 식은 직선 도선·균일 장·직교 배치이다. 일반 방향은 적분과 벡터를 사용한다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 942,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "27.3",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "27.3:reading:1",
+        "name": "회전 고리",
+        "text": "균일 장 속 고리의 면 방향이 시간에 변한다.",
+        "tex": "\\Phi_B=BA\\cos\\omega t"
+      },
+      {
+        "id": "27.3:reading:2",
+        "name": "교류 생성",
+        "text": "선속 미분이 위상이 다른 사인 기전력을 만든다.",
+        "tex": "\\mathcal E=NBA\\omega\\sin\\omega t"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "27.3:reading:1",
+        "toId": "27.3:reading:2",
+        "text": "같은 회전이 선속과 기전력의 위상 차를 만든다."
+      }
+    ],
+    "limits": "일정 ω·이상 고리·균일 B이다. 고리 자체의 전기 부하·마찰은 별도이다.",
+    "conditions": "일정 ω·이상 고리·균일 B이다. 고리 자체의 전기 부하·마찰은 별도이다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 946,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "27.4",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "27.4:reading:1",
+        "name": "교류 순간값",
+        "text": "시간에 따라 부호가 바뀌는 전압·전류를 읽는다.",
+        "tex": ""
+      },
+      {
+        "id": "27.4:reading:2",
+        "name": "실효값",
+        "text": "저항에서 같은 평균 열을 만드는 직류와 비교한다.",
+        "tex": "V_{rms}=V_{max}/\\sqrt2"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "27.4:reading:1",
+        "toId": "27.4:reading:2",
+        "text": "순간값·진폭·평균·실효값은 서로 다른 요약이다."
+      }
+    ],
+    "limits": "표시 식은 사인파이다. 일반 파형의 실효값은 제곱 평균에서 구한다.",
+    "conditions": "표시 식은 사인파이다. 일반 파형의 실효값은 제곱 평균에서 구한다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 948,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "27.5",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "27.5:reading:1",
+        "name": "공유 선속",
+        "text": "두 코일이 같은 시간 변화 자기 선속과 연결된다.",
+        "tex": ""
+      },
+      {
+        "id": "27.5:reading:2",
+        "name": "변압 비",
+        "text": "감은 수의 비가 유도 전압 비를 정한다.",
+        "tex": "V_2/V_1=N_2/N_1"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "27.5:reading:1",
+        "toId": "27.5:reading:2",
+        "text": "전압 변화와 전류 변화는 이상적인 전력 보존과 함께 읽는다."
+      }
+    ],
+    "limits": "이상 변압기·교류·누설/저항 손실 무시 조건이다. 직류 정상 상태에서 같은 변압을 기대하지 않는다.",
+    "conditions": "이상 변압기·교류·누설/저항 손실 무시 조건이다. 직류 정상 상태에서 같은 변압을 기대하지 않는다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 949,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "27.6",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "27.6:reading:1",
+        "name": "정전기장",
+        "text": "정전기장의 닫힌 경로 적분은0이며 전위차를 경로 독립적으로 읽는다.",
+        "tex": "\\oint\\vec E_s\\cdot d\\vec s=0"
+      },
+      {
+        "id": "27.6:reading:2",
+        "name": "유도 전기장",
+        "text": "변하는 자기 선속은 닫힌 경로를 따라 순환하는 전기장을 만든다. 도선이 실제로 없어도 장을 설명할 수 있다.",
+        "tex": "\\oint\\vec E\\cdot d\\vec s=-d\\Phi_B/dt"
+      },
+      {
+        "id": "27.6:reading:3",
+        "name": "전위 표현의 제한",
+        "text": "유도장에 정전위의 경로 독립성을 그대로 강제하지 않는다. 총E에는 정전기장과 유도장 성분이 함께 있을 수 있다.",
+        "tex": ""
+      }
+    ],
+    "limits": "일반 시간변화 장의 전체 공간 수치해는 구현하지 않았다.",
+    "sourceScope": "한국어 해설은 해당 절의 이전 본문 추출본과 대조한 재서술이다. 단계 선택은 읽기 위치이며 학습 완료·정답·증명의 검증 기록이 아니다.",
+    "pdf": 951,
+    "conditions": "정전기장의 닫힌 경로 적분은0이며 전위차를 경로 독립적으로 읽는다.",
+    "coverage": "previous-structured-reading",
+    "relationships": []
+  },
+  {
+    "id": "27.7",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "27.7:reading:1",
+        "name": "전기장 원천",
+        "text": "닫힌 면의 전기 선속과 포함 전하를 연결한다.",
+        "tex": "\\oint\\vec E\\cdot d\\vec A=q_{in}/\\varepsilon_\\circ"
+      },
+      {
+        "id": "27.7:reading:2",
+        "name": "자기 선속 수지",
+        "text": "닫힌 면의 순자기 선속0을 연결한다.",
+        "tex": "\\oint\\vec B\\cdot d\\vec A=0"
+      },
+      {
+        "id": "27.7:reading:3",
+        "name": "자기장 순환",
+        "text": "전도전류와 변하는 전기 선속을 자기장 순환에 연결한다.",
+        "tex": "\\oint\\vec B\\cdot d\\vec s=\\mu_\\circ(i+\\varepsilon_\\circ d\\Phi_E/dt)"
+      },
+      {
+        "id": "27.7:reading:4",
+        "name": "전기장 순환",
+        "text": "변하는 자기 선속을 전기장 순환에 연결한다.",
+        "tex": "\\oint\\vec E\\cdot d\\vec s=-d\\Phi_B/dt"
+      },
+      {
+        "id": "27.7:reading:5",
+        "name": "진공 파동",
+        "text": "전하와 전도전류가 없는 영역에서 두 순환 법칙을 결합하면 전기장·자기장의 파동방정식으로 이어진다. 이는 네 법칙을 차례로 완료하는 시간 절차가 아니다.",
+        "tex": "c=1/\\sqrt{\\mu_\\circ\\epsilon_\\circ}"
+      },
+      {
+        "id": "27.7:reading:6",
+        "name": "한 평면파의 대응",
+        "text": "같은 위치와 시각에서 E와B는 같은 위상이고 서로 수직이다. 두 그래프는 서로 다른 단위를 유지한다. 교재 밖 유도 설명: 이 선택한 평면파의 E_◦=cB_◦이며 모든 장의 관계는 아니다.",
+        "tex": "E=E_\\circ\\cos(kx-\\omega t),\\quad B=B_\\circ\\cos(kx-\\omega t)"
+      }
+    ],
+    "limits": "네 법칙은 비교·연결 구조이다. 추가 파동 도구는 한 평면파이며 일반PDE해·물질·경계·전체3D장을 구현한 것은 아니다.",
+    "sourceScope": "한국어 해설은 해당 절의 이전 본문 추출본과 대조한 재서술이다. 단계 선택은 읽기 위치이며 학습 완료·정답·증명의 검증 기록이 아니다.",
+    "pdf": 953,
+    "conditions": "진공·고정 폐곡면/폐경로·법선/순환 방향 일치. 단일 평면파는 전하·전도전류 없는 영역의 선택해이다.",
+    "coverage": "previous-structured-reading",
+    "relationships": [
+      {
+        "fromId": "27.7:reading:3",
+        "toId": "27.7:reading:5",
+        "text": "변위전류가 있는 자기장 순환 법칙이 진공 파동방정식의 한 관계를 준다."
+      },
+      {
+        "fromId": "27.7:reading:4",
+        "toId": "27.7:reading:5",
+        "text": "변하는 자기 선속에 대한 전기장 순환 법칙과 결합해 파동을 연결한다."
+      },
+      {
+        "fromId": "27.7:reading:5",
+        "toId": "27.7:reading:6",
+        "text": "일반 파동방정식의 해 가운데 단일 조화 평면파를 선택해 대응을 관찰한다."
+      }
+    ]
+  },
+  {
+    "id": "28.1",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "28.1:reading:1",
+        "name": "자기유도",
+        "text": "회로 자신의 전류 변화가 자기 선속을 바꾼다.",
+        "tex": ""
+      },
+      {
+        "id": "28.1:reading:2",
+        "name": "유도 반응",
+        "text": "자기 기전력이 전류 변화를 거스르는 방향에 생긴다.",
+        "tex": "\\mathcal E_L=-L\\,dI/dt"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "28.1:reading:1",
+        "toId": "28.1:reading:2",
+        "text": "전류값이 아니라 전류 변화율이 유도 기전력을 정한다."
+      }
+    ],
+    "limits": "선형 일정 L 조건이다. 안정된 전류에서 유도 기전력은 0이어도 자기 에너지는 남는다.",
+    "conditions": "선형 일정 L 조건이다. 안정된 전류에서 유도 기전력은 0이어도 자기 에너지는 남는다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 966,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "28.2",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "28.2:reading:1",
+        "name": "코일 사이 선속",
+        "text": "한 코일 전류가 다른 코일을 지나는 선속을 만든다.",
+        "tex": ""
+      },
+      {
+        "id": "28.2:reading:2",
+        "name": "상호유도",
+        "text": "전류의 변화율이 다른 코일의 기전력을 만든다.",
+        "tex": "\\mathcal E_2=-M\\,dI_1/dt"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "28.2:reading:1",
+        "toId": "28.2:reading:2",
+        "text": "두 코일의 배치와 공유 선속이 결합의 크기를 정한다."
+      }
+    ],
+    "limits": "선형 고정 형상·방향 규약 조건이다. 각 코일 감은 방향과 전압 부호를 유지한다.",
+    "conditions": "선형 고정 형상·방향 규약 조건이다. 각 코일 감은 방향과 전압 부호를 유지한다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 969,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "28.3",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "28.3:reading:1",
+        "name": "자기 에너지",
+        "text": "전류를 키우며 전원이 한 일이 장에 저장된다.",
+        "tex": "U=\\tfrac12LI^2"
+      },
+      {
+        "id": "28.3:reading:2",
+        "name": "에너지 밀도",
+        "text": "공간 자기장으로 같은 저장 에너지를 읽는다.",
+        "tex": "u_B=B^2/(2\\mu_0)"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "28.3:reading:1",
+        "toId": "28.3:reading:2",
+        "text": "회로의 I·L 표현과 공간의 B 표현은 같은 에너지의 서로 다른 수준이다."
+      }
+    ],
+    "limits": "선형 인덕터·진공 또는 해당 비자성 매질 근사이다. 비선형 자성 물질에 μ₀식 그대로 쓰지 않는다.",
+    "conditions": "선형 인덕터·진공 또는 해당 비자성 매질 근사이다. 비선형 자성 물질에 μ₀식 그대로 쓰지 않는다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 971,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "28.4",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "28.4:reading:1",
+        "name": "전류 성장",
+        "text": "전원의 전압을 저항·인덕터의 전압에 나눈다.",
+        "tex": ""
+      },
+      {
+        "id": "28.4:reading:2",
+        "name": "시간상수",
+        "text": "L/R이 전류의 지수 변화 시간 규모를 정한다.",
+        "tex": "\\tau=L/R"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "28.4:reading:1",
+        "toId": "28.4:reading:2",
+        "text": "인덕터는 전류의 순간 변화를 제한하고 저항은 장기값을 정한다."
+      }
+    ],
+    "limits": "일정 L·R의 이상 회로이다. 전원 연결·분리와 초기 전류를 구별한다.",
+    "conditions": "일정 L·R의 이상 회로이다. 전원 연결·분리와 초기 전류를 구별한다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 972,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "28.5",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "28.5:reading:1",
+        "name": "전하·전류",
+        "text": "축전기 전하의 변화가 전류와 연결된다.",
+        "tex": ""
+      },
+      {
+        "id": "28.5:reading:2",
+        "name": "에너지 교환",
+        "text": "축전기 전기 에너지와 인덕터 자기 에너지가 교환된다.",
+        "tex": "\\omega=1/\\sqrt{LC}"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "28.5:reading:1",
+        "toId": "28.5:reading:2",
+        "text": "저항이 없는 회로에서 두 저장 방식 사이에 진동이 생긴다."
+      }
+    ],
+    "limits": "이상 L·C·저항 무시 조건이다. 교재의 전류 방향 I=−dq/dt를 확인한다.",
+    "conditions": "이상 L·C·저항 무시 조건이다. 교재의 전류 방향 I=−dq/dt를 확인한다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 976,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "28.6",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "28.6:reading:1",
+        "name": "저항이 있는 진동",
+        "text": "저장 에너지의 일부가 저항에서 열로 변한다.",
+        "tex": "L\\ddot q+R\\dot q+q/C=0"
+      },
+      {
+        "id": "28.6:reading:2",
+        "name": "감쇠 종류",
+        "text": "R의 임계값으로 진동·임계·과감쇠를 구별한다.",
+        "tex": "R_c=2\\sqrt{L/C}"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "28.6:reading:1",
+        "toId": "28.6:reading:2",
+        "text": "기계 진동의 질량·감쇠·복원계수는 L·R·1/C에 대응한다."
+      }
+    ],
+    "limits": "자유 응답·일정 L·R·C이다. 교류 전원이 연결된 강제 응답과 구별한다.",
+    "conditions": "자유 응답·일정 L·R·C이다. 교류 전원이 연결된 강제 응답과 구별한다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 979,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "28.7",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "28.7:reading:1",
+        "name": "저항의 위상",
+        "text": "순수 저항의 전류와 전압은 같은 위상이다.",
+        "tex": ""
+      },
+      {
+        "id": "28.7:reading:2",
+        "name": "리액턴스",
+        "text": "순수 L·C에서는 전압과 전류에 서로 다른 90도 위상 차가 있다.",
+        "tex": "X_L=\\omega L,\\quad X_C=1/(\\omega C)"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "28.7:reading:1",
+        "toId": "28.7:reading:2",
+        "text": "저장 소자의 변화율 관계가 교류의 위상 차를 만든다."
+      }
+    ],
+    "limits": "정상 사인 응답이다. 전류 선행/지연의 기준은 해당 소자의 전압이다.",
+    "conditions": "정상 사인 응답이다. 전류 선행/지연의 기준은 해당 소자의 전압이다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 982,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "28.8",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "28.8:reading:1",
+        "name": "위상 벡터",
+        "text": "저항·인덕터·축전기 전압을 위상에 맞춰 더한다.",
+        "tex": ""
+      },
+      {
+        "id": "28.8:reading:2",
+        "name": "임피던스",
+        "text": "전류 진폭과 전압 진폭의 비를 읽는다.",
+        "tex": "Z=\\sqrt{R^2+(X_L-X_C)^2}"
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "28.8:reading:1",
+        "toId": "28.8:reading:2",
+        "text": "서로 다른 위상의 전압은 크기만 더해 전체 전압이 되지 않는다."
+      }
+    ],
+    "limits": "직렬·정상 사인 응답·일정 소자 조건이다. 순간값과 실효값을 섞지 않는다.",
+    "conditions": "직렬·정상 사인 응답·일정 소자 조건이다. 순간값과 실효값을 섞지 않는다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 989,
+    "coverage": "core-relations-reading"
+  },
+  {
+    "id": "28.9",
+    "mode": "comparison",
+    "steps": [
+      {
+        "id": "28.9:reading:1",
+        "name": "리액턴스 상쇄",
+        "text": "같은 ω에서 X_L과 X_C가 같아진다.",
+        "tex": "\\omega_0=1/\\sqrt{LC}"
+      },
+      {
+        "id": "28.9:reading:2",
+        "name": "직렬 전류 공명",
+        "text": "전원 전압을 고정하면 임피던스가 최소·전류가 최대이다.",
+        "tex": ""
+      }
+    ],
+    "relationships": [
+      {
+        "fromId": "28.9:reading:1",
+        "toId": "28.9:reading:2",
+        "text": "회로의 강제 정상 응답 공명과 자유 감쇠 진동수를 구별한다."
+      }
+    ],
+    "limits": "R>0의 직렬 이상 회로이다. 공명에서 각 소자 전압이 전원 전압보다 클 수 있다.",
+    "conditions": "R>0의 직렬 이상 회로이다. 공명에서 각 소자 전압이 전원 전압보다 클 수 있다.",
+    "sourceScope": "해당 절의 개념을 한국어로 재서술한 연결 해설이다. 표기는 관계를 읽기 위한 요약이며 원문의 식 번호·모든 조판 기호를 전사한 것이 아니다. 일반 적용 조건은 원문과 함께 확인한다.",
+    "pdf": 993,
+    "coverage": "core-relations-reading"
+  }
+]
