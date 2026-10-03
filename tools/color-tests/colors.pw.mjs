@@ -21,10 +21,10 @@ async function theme(page,value){
  await summary.click();
 }
 async function contrast(page,selector){
- // Audit the completed display, not a transient route/window fade.
- // Infinite loading indicators are not a reason to wait indefinitely.
- await page.evaluate(async()=>{
-  const finite=document.getAnimations().filter(a=>Number.isFinite(a.effect?.getComputedTiming().iterations));
+ // Wait for the audited route fade; unrelated animation players can stay paused.
+ await page.locator(selector).evaluate(async root=>{
+  const routes=[root,...root.querySelectorAll('main')];
+  const finite=routes.flatMap(el=>el.getAnimations()).filter(a=>a.playState==='running'&&a.playbackRate>0&&Number.isFinite(a.effect?.getComputedTiming().endTime));
   await Promise.all(finite.map(a=>a.finished.catch(()=>{})));
  });
  await page.addScriptTag({content:axe});
