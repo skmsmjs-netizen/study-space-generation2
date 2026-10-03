@@ -79,7 +79,7 @@ export function ScheduleDashboard({
     soon = active.filter(
       (s) => deadlinePending(s) && s.dueDate >= today && s.dueDate <= addDays(today, 7),
     );
-  const listRef = useRef<HTMLDivElement>(null),
+  const listRef = useRef<HTMLElement>(null),
     detailRef = useRef<HTMLElement>(null),
     returnId = useRef('');
   const selected = view.selectedDate ?? '',
@@ -375,7 +375,7 @@ export function ScheduleDashboard({
         </EmptyState>
       )}
       <div className="schedule-workspace">
-        <div className="schedule-agenda" ref={listRef} aria-label="일정 요약 목록">
+        <section className="schedule-agenda" ref={listRef} aria-label="일정 요약 목록">
           <div className="schedule-agenda-heading">
             <h2>일정 목록</h2>
             <span className="muted">{shown.length}개</span>
@@ -409,7 +409,7 @@ export function ScheduleDashboard({
               일정 더 보기 · 남은 {shown.length - limit}개
             </Button>
           )}
-        </div>
+        </section>
         <section
           className="schedule-selected"
           ref={detailRef}
