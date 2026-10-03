@@ -875,6 +875,7 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
           )}
           {route === "/subjects" && (
             <>
+              <p><a id="riley-subject-entry" data-navigation-focus="riley-subject-entry" data-reading-anchor="riley-subject-entry" onClick={event => { if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return; event.preventDefault(); event.currentTarget.focus({ preventScroll: true }); const params = new URLSearchParams(location.search); params.set("math", "riley"); params.set("mathCaller", "subjects"); history.replaceState(history.state, "", `${location.pathname}?${params}${location.hash}`); go("/math"); }} href={`${location.pathname}?${(() => { const params = new URLSearchParams(location.search); params.set('math', 'riley'); params.set('mathCaller','subjects'); return params.toString(); })()}#/math`}>수학교재 관찰 · Mathematical Methods for Physics and Engineering</a></p>
               <div className="actions">
                 <Button variant="primary" onClick={() => openDialog("subject")}>
                   과목 추가

@@ -1,0 +1,130 @@
+.riley-observatory {
+  color: var(--color-text);
+  background: var(--color-surface);
+  padding: var(--space-4);
+  container-type: inline-size;
+}
+.riley-observatory header,
+.riley-observatory section {
+  min-width: 0;
+}
+.riley-observatory h2,
+.riley-observatory h3 {
+  overflow-wrap: anywhere;
+}
+.riley-observatory .paper-body {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.riley-actions,
+.riley-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: center;
+  margin-block: var(--space-3);
+}
+.riley-filters > * {
+  flex: 1;
+  min-width: min(100%, 14rem);
+}
+.riley-list {
+  padding: 0;
+  list-style: none;
+}
+.riley-list li {
+  padding: var(--space-3);
+  border-bottom: var(--border-width) solid var(--color-border);
+  display: grid;
+  gap: var(--space-2);
+}
+.riley-list .ui-button {
+  white-space: normal;
+  text-align: start;
+  justify-content: flex-start;
+}
+.riley-instrument {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  gap: var(--space-4);
+}
+.riley-instrument > [data-observation-region='question'],
+.riley-instrument > [data-observation-region='reasoning'] {
+  grid-column: 1 / -1;
+}
+.riley-instrument input[type='range'] {
+  width: 100%;
+  accent-color: var(--color-primary);
+}
+.riley-instrument [data-observation-region='question'] h3 {
+  font-size: var(--type-title-compact-size);
+  line-height: var(--type-title-line);
+}
+.riley-plot {
+  margin: 0;
+}
+.riley-plot svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  touch-action: none;
+}
+.riley-axis {
+  stroke: var(--color-muted);
+  fill: none;
+}
+.riley-plot text {
+  fill: var(--color-text);
+  font-family: var(--font-interface);
+}
+.riley-trace {
+  stroke: var(--color-text);
+  fill: none;
+  stroke-width: 2;
+}
+.riley-trace-1 {
+  stroke: var(--color-primary);
+  stroke-dasharray: 7 4;
+}
+.riley-trace-2 {
+  stroke-dasharray: 2 4;
+}
+.riley-trace circle {
+  fill: var(--color-text);
+}
+.riley-legend {
+  display: block;
+  padding-block: var(--space-2);
+}
+.riley-table-scroll {
+  overflow: auto;
+  max-height: 20rem;
+}
+.riley-table-scroll table {
+  width: 100%;
+}
+.riley-source-path {
+  overflow-wrap: anywhere;
+}
+@container (max-width: 40rem) {
+  .riley-instrument {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .riley-instrument > * {
+    grid-column: 1;
+  }
+}
+
+.riley-source-scroll {
+  overflow: auto;
+  max-height: 65dvh;
+  min-height: 12rem;
+}
+.riley-source-scroll canvas {
+  max-width: none;
+  display: block;
+}
+.riley-source-image {
+  max-width: none;
+  height: auto;
+}

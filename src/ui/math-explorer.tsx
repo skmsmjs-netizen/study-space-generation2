@@ -45,6 +45,7 @@ const ConceptInteractives = lazy(() =>
 const MathTemplates = lazy(() =>
   import('./math-templates').then((module) => ({ default: module.MathTemplates })),
 );
+const RileyObservatory = lazy(()=>import('./riley-observatory').then(m=>({default:m.RileyObservatory})));
 const LinearAlgebraObservations = lazy(() => import('./linear-algebra-observations').then(module => ({ default: module.LinearAlgebraObservations })));
 const VectorCalculus = lazy(() => import('./vector-calculus').then(module => ({ default: module.VectorCalculus })));
 const PhysicsObservations = lazy(() => import('./physics-observations').then(module => ({ default: module.PhysicsObservations })));
@@ -189,6 +190,7 @@ export function MathExplorer({
   active?: boolean;
 }) {
   const key = mathDraftKey(data);
+  const [rileyOpen,setRileyOpen]=useState(()=>new URLSearchParams(location.search).get('math')==='riley');
   const [chemistryOpen, setChemistryOpen] = useState(() => {
     try { return sessionStorage.getItem(chemistryViewKey(data) + ':entry') === 'east'; }
     catch { return false; }
@@ -215,7 +217,7 @@ export function MathExplorer({
   const readingBlocked = useRef(readingInitial.blocked);
   const currentReading = useRef(readingView);
   currentReading.current = readingView;
-  const [graphVisited, setGraphVisited] = useState(readingInitial.view.active === 'graph');
+  const [graphVisited, setGraphVisited] = useState(!rileyOpen && readingInitial.view.active === 'graph');
   const rememberReading = (next: ReasoningView) => {
     currentReading.current = next;
     setReadingView(next);
@@ -425,14 +427,16 @@ export function MathExplorer({
       </div>
       <Select
         label="탐색할 내용"
-        value={readingView.active}
+        value={rileyOpen?'riley':readingView.active}
         onChange={(event) => {
+          if(event.target.value==='riley'){setRileyOpen(true);return;} setRileyOpen(false);
           const active = event.target.value as ReasoningView['active'];
           if (active !== 'graph' && graphVisited) captureScene();
           if (active === 'graph') setGraphVisited(true);
           rememberReading({ ...currentReading.current, active });
         }}
       >
+        <option value="riley">수학교재 · 전체 관계와 관찰</option>
         <option value="graph">함수와 공간곡선</option>
         <option value="templates">모든 과목 · 수식 유형별 탐색</option>
         <option value="series">급수의 수렴 판단</option>
@@ -441,6 +445,8 @@ export function MathExplorer({
         <option value="physics">물리 교재 · 읽기와 관찰</option>
         <option value="linear">선형대수 · 교재 관찰</option>
       </Select>
+      {rileyOpen && <Suspense fallback={<LoadingState message="수학교재 관찰을 여는 중이다."/>}><RileyObservatory key={key} data={data} repository={repository} onSaved={onSaved}/></Suspense>}
+      <Activity mode={rileyOpen?'hidden':'visible'}>
       {readingError && (
         <div>
           <ErrorState message={readingError} />
@@ -845,6 +851,7 @@ export function MathExplorer({
           )}
         </div>
       )}
+      </Activity>
     </section>
   );
 }
