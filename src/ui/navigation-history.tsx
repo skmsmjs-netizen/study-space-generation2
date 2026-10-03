@@ -94,7 +94,7 @@ export function NavigationHistoryProvider({ children }: { children: ReactNode })
     window.history.go(delta);
   };
   return <HistoryContext.Provider value={{ ...available, move }}>
-    <header className="navigation-history-bar" aria-label="화면 이동"><NavigationHistoryControls /></header>
+    <div className="navigation-history-bar"><NavigationHistoryControls /></div>
     {children}
     {fullscreen && createPortal(<div className="navigation-history-fullscreen"><NavigationHistoryControls /></div>, fullscreen)}
   </HistoryContext.Provider>;
