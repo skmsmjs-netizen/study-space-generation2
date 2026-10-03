@@ -147,8 +147,8 @@ test('math TeX symbols stay beside axes, colors separate and doubled ranges pers
   };
   await checkPlotlyLabels();
   await page.screenshot({ path: info.outputPath('latex-plotly.png') });
-  const tools = (await page.locator('.topbar details > summary').isVisible())
-    ? page.locator('.topbar details')
+  const tools = (await page.locator('.topbar .compact-menu > summary').isVisible())
+    ? page.locator('.topbar .compact-menu')
     : page.locator('.sidebar .workspace-tools');
   await tools.locator('summary').click();
   await tools.getByLabel('화면 밝기', { exact: true }).selectOption('dark');
