@@ -799,7 +799,7 @@ export function MathTemplates({
           ))}
           {item.kind === 'formula' && (
             <Textarea
-              label="LaTeX 수식 (줄마다 하나)"
+              textRole="technical" label="LaTeX 수식 (줄마다 하나)"
               rows={4}
               value={(item.tex ?? []).join('\n')}
               onChange={(e) => change({ ...item, tex: e.target.value.split('\n').filter(Boolean) })}
@@ -987,7 +987,7 @@ function DataEditor({
   return (
     <>
       <Textarea
-        label="제공한 값 (한 줄에 x, y)"
+        textRole="technical" label="제공한 값 (한 줄에 x, y)"
         rows={6}
         value={text}
         onChange={(e) => {

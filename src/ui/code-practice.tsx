@@ -646,7 +646,7 @@ export function CodeExampleEditor({
       )}
       <div className="code-input-section" ref={inputSection}>
         <Textarea
-          label="실행에 사용할 입력값"
+          textRole="technical" label="실행에 사용할 입력값"
           rows={3}
           value={content.stdin}
           disabled={isBlocked}
@@ -729,7 +729,7 @@ export function CodeExampleEditor({
           </Suspense>
           <div className="code-terminal-input">
             <Textarea
-              label="터미널에 보낼 입력"
+              textRole="technical" label="터미널에 보낼 입력"
               value={terminalInput}
               rows={2}
               disabled={phase !== 'running'}

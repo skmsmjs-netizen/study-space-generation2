@@ -75,7 +75,7 @@ export function ExperienceRecoveryControl({ data, onRecovered }: {
             {current.archives.length > limit && <Button onClick={() => setLimit(value => value + 20)}>설정 보관본 더 보기</Button>}
             {selected && <>
               <p>{selected.metadata?.reason ?? '보관 이유는 확인되지 않았습니다.'}</p>
-              <Textarea label="보관본 원문" readOnly rows={6} value={selected.raw ?? ''} />
+              <Textarea textRole="technical" label="보관본 원문" readOnly rows={6} value={selected.raw ?? ''} />
               {!selected.usable && <p>이 원문은 설정 형식을 확인하지 못해 바로 복구할 수 없습니다. 원문 내려받기에 포함해 보관할 수 있습니다.</p>}
               <Button variant="primary" disabled={!selected.usable} onClick={() => restore('archive')}>이 보관본으로 설정 복구</Button>
             </>}

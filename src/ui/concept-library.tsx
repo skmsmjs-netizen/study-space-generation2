@@ -1133,7 +1133,7 @@ function ConceptEditor({
       <details open={!content}>
         <summary>제작 데이터 직접 편집</summary>
         <Textarea
-          label="설명 제작 데이터"
+          textRole="technical" label="설명 제작 데이터"
           value={text}
           rows={18}
           onChange={(e) => change(e.target.value)}

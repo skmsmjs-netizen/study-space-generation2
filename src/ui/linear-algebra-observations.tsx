@@ -427,6 +427,7 @@ export function LinearAlgebraObservations({ data, repository, onSaved, reading =
               {spec.matrix && (
                 <>
                   <Textarea
+                    textRole="technical"
                     label={
                       spec.matrixLabel ?? (kind === 'elimination'
                         ? '확대행렬 [A | b] · 마지막 열이 b'
@@ -452,7 +453,7 @@ export function LinearAlgebraObservations({ data, repository, onSaved, reading =
               )}
               {spec.auxiliary && (
                 <>
-                  <Textarea label={spec.auxiliary.label} value={state.auxiliaryDraft ?? auxiliaryValue}
+                  <Textarea textRole="technical" label={spec.auxiliary.label} value={state.auxiliaryDraft ?? auxiliaryValue}
                     onChange={(e) => change({ auxiliaryDraft: e.target.value })} />
                   <Button onClick={() => {
                     const raw = state.auxiliaryDraft ?? spec.auxiliary!.value;

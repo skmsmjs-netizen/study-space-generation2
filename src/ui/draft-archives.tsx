@@ -110,7 +110,7 @@ export function DraftArchives({ data }: { data?: AppState }) {
         {archive.issues.length > 0 && <p role="alert">일부 정보를 읽지 못했습니다. 확인 가능한 원문만 표시하며, 다시 읽기로 재시도할 수 있습니다.</p>}
         <details><summary>원문과 식별 정보 확인</summary>
           <dl className="archive-meta"><dt>원래 저장 위치</dt><dd>{archive.sourceKey}</dd><dt>보관본 식별자</dt><dd>{archive.archiveKey}</dd></dl>
-          {archive.raw === null ? <p>원문을 읽지 못했습니다. 보관본 다시 읽기를 시도해 주세요.</p> : <Textarea label={`보관본 ${index + 1} 원문`} value={archive.raw} readOnly rows={10} hint="수정하거나 자동 적용하지 않습니다. 화면의 줄끝 표시는 브라우저에 따라 달라질 수 있으며, 내보낸 JSON의 raw 값에는 원래 문자열이 그대로 보존됩니다." />}
+          {archive.raw === null ? <p>원문을 읽지 못했습니다. 보관본 다시 읽기를 시도해 주세요.</p> : <Textarea textRole="technical" label={`보관본 ${index + 1} 원문`} value={archive.raw} readOnly rows={10} hint="수정하거나 자동 적용하지 않습니다. 화면의 줄끝 표시는 브라우저에 따라 달라질 수 있으며, 내보낸 JSON의 raw 값에는 원래 문자열이 그대로 보존됩니다." />}
         </details>
         <div className="actions"><Button disabled={archive.raw === null} onClick={() => download(archive)}>원문 내보내기</Button><Button disabled={archive.raw === null} onClick={() => void copy(archive)}>내보내기 내용 복사</Button>{target.href && <a href={target.href}>현재 대상 확인</a>}</div>
         <p className="muted">내보내기는 이 목록을 읽을 때 확인한 원문을 담습니다. 파일을 저장해도 현재 기록·초안·보관본을 변경하지 않습니다.</p>

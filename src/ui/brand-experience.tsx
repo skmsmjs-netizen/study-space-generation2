@@ -666,7 +666,7 @@ export function BrandService({
           {experience.state.support.length > 0 && (
             <>
               <Textarea
-                label="보관한 메모 찾기"
+                textRole="interface" label="보관한 메모 찾기"
                 value={query}
                 onChange={(e) => {
                   setQuery(e.target.value);
@@ -734,7 +734,7 @@ export function BrandService({
               글·이름·개인 설정·문제 메모는 첨부하지 않습니다.
             </p>
             <Textarea
-              label="공유할 기록 찾기"
+              textRole="interface" label="공유할 기록 찾기"
               value={query}
               onChange={(e) => {
                 setQuery(e.target.value);

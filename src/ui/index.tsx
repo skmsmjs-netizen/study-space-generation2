@@ -27,9 +27,10 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input({ l
   const generatedId = useId(), id = givenId || generatedId;
   return <Field id={id} label={label} hint={hint} error={error}><input {...props} ref={ref} id={id} className={classes('ui-input', className)} aria-invalid={error ? true : props['aria-invalid']} aria-describedby={description(id, hint, error, describedBy)} /></Field>;
 });
-export const Textarea = forwardRef<HTMLTextAreaElement, TextareaHTMLAttributes<HTMLTextAreaElement> & FieldProps>(function Textarea({ label, hint, error, id: givenId, className, 'aria-describedby': describedBy, ...props }, ref) {
+export type TextareaProps = TextareaHTMLAttributes<HTMLTextAreaElement> & FieldProps & { textRole?: 'prose' | 'technical' | 'interface' };
+export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(function Textarea({ label, hint, error, id: givenId, className, textRole = 'prose', 'aria-describedby': describedBy, ...props }, ref) {
   const generatedId = useId(), id = givenId || generatedId;
-  return <Field id={id} label={label} hint={hint} error={error}><textarea {...props} ref={ref} id={id} className={classes('ui-input', className)} aria-invalid={error ? true : props['aria-invalid']} aria-describedby={description(id, hint, error, describedBy)} /></Field>;
+  return <Field id={id} label={label} hint={hint} error={error}><textarea {...props} ref={ref} id={id} className={classes('ui-input', textRole === 'prose' && 'paper-memo', className)} aria-invalid={error ? true : props['aria-invalid']} aria-describedby={description(id, hint, error, describedBy)} /></Field>;
 });
 export const Select = forwardRef<HTMLSelectElement, SelectHTMLAttributes<HTMLSelectElement> & FieldProps>(function Select({ label, hint, error, id: givenId, className, 'aria-describedby': describedBy, children, ...props }, ref) {
   const generatedId = useId(), id = givenId || generatedId;

@@ -62,7 +62,7 @@ export function QuickMemos({ data, repository, onSaved, ownerId, memoId, compact
     </div>
     {error && <ErrorState message={error} />}
     {undoTrash && <div className="feedback-banner"><span role="status">메모를 휴지통으로 옮겼습니다.</span><Button onClick={() => restore(undoTrash)}>메모 복원</Button></div>}
-    {!compact && <Textarea label="메모 찾기" rows={1} value={query} placeholder="입력한 글이나 과목·주제 이름" onChange={event => { setQuery(event.target.value); setLimit(40); }} />}
+    {!compact && <Textarea textRole="interface" label="메모 찾기" rows={1} value={query} placeholder="입력한 글이나 과목·주제 이름" onChange={event => { setQuery(event.target.value); setLimit(40); }} />}
     <div className="memo-grid">{(compact ? filtered.slice(0, 3) : filtered.slice(0, Math.max(40, limit))).map((memo, index) => <article className="memo-card" key={memo.id}>
       <button type="button" className="memo-paper-preview" aria-label={`메모 ${index + 1} 열기${memo.body ? `: ${memo.body.slice(0, 35)}` : memo.strokes.length ? ': 스케치' : ': 빈 메모'}`} onClick={event => { event.currentTarget.focus({ preventScroll: true }); setEditing(memo.id); }} disabled={trash}>
         <svg viewBox={`0 0 ${MEMO_WIDTH} ${MEMO_HEIGHT}`} aria-hidden="true"><InkDrawing strokes={memo.strokes} /></svg>
