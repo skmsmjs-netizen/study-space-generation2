@@ -125,6 +125,14 @@
         "after": "Group VA: Nitrogen and the Phosphorus Family",
         "basis": "Original numbered body heading text rechecked; formula font codes retained as extraction, not displayed TeX"
       }
+    ],
+    "title_render_corrections": [
+      {
+        "section": "18.6",
+        "before": "Relating /H9004G/H11543to the Equilibrium Constant",
+        "after": "Relating ΔG° to the Equilibrium Constant",
+        "basis": "Original body heading PDF28, printed753, visually confirmed. Font encoding artifacts decoded; stable ID unchanged."
+      }
     ]
   },
   "chapters": [
@@ -5746,7 +5754,7 @@
     {
       "section": "18.6",
       "chapter": 18,
-      "source_title": "Relating /H9004G/H11543to the Equilibrium Constant",
+      "source_title": "Relating ΔG° to the Equilibrium Constant",
       "printed_start": 753,
       "id": "chem-a225de403bb7",
       "name": "자유에너지와 K",
