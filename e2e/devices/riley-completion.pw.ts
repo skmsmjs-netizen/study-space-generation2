@@ -12,8 +12,12 @@ async function pick(page: any, n: string) {
   const search = page.getByLabel('교재에서 찾기', { exact: true });
   await expect(search).toBeVisible();
   // Let the existing return-focus frame complete before typing into the next list.
-  await page.evaluate(() => new Promise<void>((resolve) =>
-    requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
+  await page.evaluate(
+    () =>
+      new Promise<void>((resolve) =>
+        requestAnimationFrame(() => requestAnimationFrame(() => resolve())),
+      ),
+  );
   await search.fill(n);
   await expect(search).toHaveValue(n);
   const s = catalog.sections.find((x) => x.number === n)!;
@@ -123,6 +127,23 @@ test('verified source original and scroll restoration reject a different pdf', a
   await expect
     .poll(() => scroll.evaluate((el) => el.scrollTop), { timeout: 60000 })
     .toBeGreaterThan(100);
+  // Same owner/book/version reuses the verified bytes in another section.
+  await dialog.getByRole('button', { name: '읽던 질문으로 돌아가기' }).click();
+  await pick(page, '23.2');
+  await page.getByRole('button', { name: '원본 PDF 연결해 읽기 · 기기 보관', exact: true }).click();
+  const other = catalog.sections.find((section) => section.number === '23.2')!;
+  await expect(dialog.locator('canvas')).toHaveAttribute('data-rendered-page', String(other.pdf), {
+    timeout: 60000,
+  });
+  await dialog.getByRole('button', { name: '읽던 질문으로 돌아가기' }).click();
+  await pick(page, '26.8');
+  await page.getByRole('button', { name: '원본 PDF 연결해 읽기 · 기기 보관', exact: true }).click();
+  await expect(dialog.locator('canvas')).toHaveAttribute('data-rendered-page', '971', {
+    timeout: 60000,
+  });
+  await expect
+    .poll(() => scroll.evaluate((el) => el.scrollTop), { timeout: 60000 })
+    .toBeGreaterThan(100);
   await dialog.getByLabel('원본 PDF 연결 · 이 기기에 보관', { exact: true }).setInputFiles({
     name: 'wrong.pdf',
     mimeType: 'application/pdf',
@@ -192,4 +213,48 @@ test('a queued list return preserves a newer search focus and typed query', asyn
   await expect(search).toHaveValue(next.number);
   await page.getByRole('button', { name: `${next.number} · ${next.title}`, exact: true }).click();
   await expect(page.locator(`[data-section-plan="${next.id}"]`)).toBeVisible();
+});
+
+test('a failed device file connection retries the captured file without selecting again', async ({
+  page,
+}) => {
+  const original = process.env.RILEY_ORIGINAL_PDF;
+  test.skip(
+    !original || !existsSync(original),
+    'Private original is checked locally, never sent to CI.',
+  );
+  test.setTimeout(120000);
+  await page.goto(root);
+  await pick(page, '26.8');
+  await page.getByRole('button', { name: '원본 PDF 연결해 읽기 · 기기 보관', exact: true }).click();
+  const dialog = page.getByRole('dialog', { name: '수학교재 원문 읽기', exact: true });
+  await page.evaluate(() => {
+    const saved = indexedDB.open.bind(indexedDB);
+    (window as unknown as { restoreRileyFileStore: () => void }).restoreRileyFileStore = () => {
+      indexedDB.open = saved;
+    };
+    indexedDB.open = () => {
+      throw new DOMException('격리된 기기 보관 실패', 'QuotaExceededError');
+    };
+  });
+  await dialog
+    .getByLabel('원본 PDF 연결 · 이 기기에 보관', { exact: true })
+    .setInputFiles(original!);
+  const retry = dialog.getByRole('button', { name: '선택한 파일 연결 다시 시도', exact: true });
+  await expect(retry).toBeEnabled({ timeout: 60000 });
+  await expect(dialog.locator('canvas')).not.toHaveAttribute('data-rendered-page', '971');
+  await page.evaluate(() =>
+    (window as unknown as { restoreRileyFileStore: () => void }).restoreRileyFileStore(),
+  );
+  await retry.click();
+  await expect(dialog.locator('canvas')).toHaveAttribute('data-rendered-page', '971', {
+    timeout: 60000,
+  });
+  await expect(retry).toHaveCount(0);
+  await dialog.getByRole('button', { name: '읽던 질문으로 돌아가기' }).click();
+  await page.reload();
+  await page.getByRole('button', { name: '원본 PDF 연결해 읽기 · 기기 보관', exact: true }).click();
+  await expect(dialog.locator('canvas')).toHaveAttribute('data-rendered-page', '971', {
+    timeout: 60000,
+  });
 });

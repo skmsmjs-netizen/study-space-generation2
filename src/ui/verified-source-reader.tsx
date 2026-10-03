@@ -3,6 +3,7 @@ import { getDocument, GlobalWorkerOptions, type PDFDocumentProxy } from 'pdfjs-d
 import worker from 'pdfjs-dist/build/pdf.worker.min.mjs?url';
 import type { AppState } from '../domain/model';
 import type { MaterialFile } from '../domain/material-source';
+import { validateDocuments } from '../domain/material-source';
 import { keepDocumentFile, readDocumentFile } from '../data/document-files';
 import { storagePrefix } from '../data/repository';
 import { readRescuedDraft, storeDraftSafely } from '../data/draft-safety';
@@ -40,6 +41,25 @@ export function VerifiedSourceReader({
   onPositionChange?: (position: Omit<Reading, 'file'>) => void;
 }) {
   const key = `${storagePrefix(data)}:verified-source:${source.id}:${contextId}:v1`;
+  const fileKey = `${storagePrefix(data)}:verified-source:${source.id}:${source.sha256}:file:v1`;
+  const validateFile = (file: unknown): MaterialFile => {
+    validateDocuments([
+      { id: 'source', name: source.title, kind: 'pdf', file, blocks: [], warnings: [] },
+    ]);
+    if (!file) throw Error('기기 원문 연결정보가 비어 있다. 기존 정보를 보존했다.');
+    const reference = file as MaterialFile;
+    if (reference.sha256 !== source.sha256 || reference.cloudPath)
+      throw Error('이 교재의 기기 원문 연결이 아니다. 기존 연결정보를 보존했다.');
+    return reference;
+  };
+  const [connection] = useState(() => {
+    try {
+      const raw = readRescuedDraft(fileKey) ?? localStorage.getItem(fileKey);
+      return { file: raw ? validateFile(JSON.parse(raw)) : undefined, error: '', blocked: false };
+    } catch (e) {
+      return { file: undefined, error: String(e), blocked: true };
+    }
+  });
   const [initial] = useState(() => {
     try {
       const raw = readRescuedDraft(key) ?? localStorage.getItem(key),
@@ -62,8 +82,11 @@ export function VerifiedSourceReader({
               (v as Reading).scroll!.y < 0)))
       )
         throw Error('원문 읽기 위치가 손상되어 덮어쓰지 않았다.');
+      const restored = { ...((v as Reading | null) ?? { page, zoom: 1 }), ...position };
+      if (restored.file) restored.file = validateFile(restored.file);
+      else if (connection.file) restored.file = connection.file;
       return {
-        value: { ...((v as Reading | null) ?? { page, zoom: 1 }), ...position },
+        value: restored,
         error: '',
         blocked: false,
       };
@@ -77,6 +100,8 @@ export function VerifiedSourceReader({
     [error, setError] = useState(''),
     [fileError, setFileError] = useState(''),
     [storageError, setStorageError] = useState(initial.error),
+    [connectionError, setConnectionError] = useState(connection.error),
+    [retryFile, setRetryFile] = useState<File | null>(null),
     [text, setText] = useState(''),
     [pageInput, setPageInput] = useState(String(initial.value.page));
   const canvas = useRef<HTMLCanvasElement>(null),
@@ -110,6 +135,18 @@ export function VerifiedSourceReader({
     setReading(v);
     persist(v);
   };
+  const rememberFile = (file: MaterialFile) => {
+    if (connection.blocked) return;
+    try {
+      const raw = JSON.stringify(validateFile(file));
+      storeDraftSafely(fileKey, raw);
+      if (localStorage.getItem(fileKey) !== raw)
+        throw Error('기기 원문 연결정보를 확인하지 못했다.');
+      setConnectionError('');
+    } catch (e) {
+      setConnectionError(String(e));
+    }
+  };
   const open = async (blob: Blob) => {
     const id = ++epoch.current;
     setBusy(true);
@@ -130,6 +167,7 @@ export function VerifiedSourceReader({
         return;
       }
       setPdf(loaded);
+      if (readingRef.current.file) rememberFile(readingRef.current.file);
       setFileError('');
     } catch (e) {
       if (mounted.current && id === epoch.current) setFileError(String(e));
@@ -234,6 +272,34 @@ export function VerifiedSourceReader({
     retain({ ...readingRef.current, page: p, scroll: { x: 0, y: 0 } });
     setPageInput(String(p));
   };
+  const connectFile = async (file: File) => {
+    const request = ++epoch.current;
+    setBusy(true);
+    setRetryFile(file);
+    try {
+      const bytes = await file.arrayBuffer(),
+        sha = [...new Uint8Array(await crypto.subtle.digest('SHA-256', bytes))]
+          .map((x) => x.toString(16).padStart(2, '0'))
+          .join('');
+      if (sha !== source.sha256)
+        throw Error('확인한 교재와 다른 파일이다. 원문을 교체하지 않았다.');
+      if (!mounted.current || request !== epoch.current) return;
+      const captured = new File([bytes], file.name, {
+        type: file.type || 'application/pdf',
+        lastModified: file.lastModified,
+      });
+      setRetryFile(captured);
+      const reference = await keepDocumentFile(data, captured);
+      if (!mounted.current || request !== epoch.current) return;
+      retain({ ...readingRef.current, file: reference });
+      await open(captured);
+    } catch (e) {
+      if (mounted.current && request === epoch.current) {
+        setFileError(String(e));
+        setBusy(false);
+      }
+    }
+  };
   return (
     <Modal open title={`${source.title} 원문 읽기`} onClose={close} className="riley-source-modal">
       <p>
@@ -247,32 +313,7 @@ export function VerifiedSourceReader({
         onChange={(e) => {
           const file = e.target.files?.[0];
           if (!file) return;
-          const request = ++epoch.current;
-          setBusy(true);
-          void (async () => {
-            try {
-              const bytes = await file.arrayBuffer(),
-                sha = [...new Uint8Array(await crypto.subtle.digest('SHA-256', bytes))]
-                  .map((x) => x.toString(16).padStart(2, '0'))
-                  .join('');
-              if (sha !== source.sha256)
-                throw Error('확인한 교재와 다른 파일이다. 원문을 교체하지 않았다.');
-              if (!mounted.current || request !== epoch.current) return;
-              const captured = new File([bytes], file.name, {
-                type: file.type || 'application/pdf',
-                lastModified: file.lastModified,
-              });
-              const reference = await keepDocumentFile(data, captured);
-              if (!mounted.current || request !== epoch.current) return;
-              retain({ ...readingRef.current, file: reference });
-              await open(captured);
-            } catch (e) {
-              if (mounted.current && request === epoch.current) {
-                setFileError(String(e));
-                setBusy(false);
-              }
-            }
-          })();
+          void connectFile(file);
         }}
       />
       <p>
@@ -281,6 +322,17 @@ export function VerifiedSourceReader({
       </p>
       {error && <ErrorState message={error} />}
       {fileError && <ErrorState message={fileError} />}
+      {fileError && retryFile && (
+        <Button disabled={busy} onClick={() => void connectFile(retryFile)}>
+          선택한 파일 연결 다시 시도
+        </Button>
+      )}
+      {connectionError && <ErrorState message={connectionError} />}
+      {connectionError && !connection.blocked && reading.file && (
+        <Button onClick={() => rememberFile(reading.file!)}>
+          기기 원문 연결정보 보관 다시 시도
+        </Button>
+      )}
       {storageError && <ErrorState message={storageError} />}
       {storageError && !initial.blocked && (
         <Button onClick={() => persist(readingRef.current)}>원문 위치 보관 다시 시도</Button>
