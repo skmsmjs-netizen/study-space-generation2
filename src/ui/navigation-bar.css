@@ -42,3 +42,33 @@
   box-shadow: inset var(--focus-width) 0 var(--color-text);
 }
 .ui-navigation-bar a:focus-visible { outline: var(--focus-width) solid var(--color-focus); outline-offset: var(--focus-offset); }
+
+/* Grouped directory navigation: labels precede indented, full-row links. */
+.ui-navigation-bar--vertical .ui-navigation-group-label {
+  padding-inline: var(--space-2);
+  color: var(--color-text);
+  font-size: var(--type-body-size);
+  line-height: var(--type-body-line);
+  font-weight: var(--type-label-weight);
+}
+.ui-navigation-group-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  min-block-size: var(--control-height);
+  inline-size: 100%;
+  border: 0;
+  border-block-end: var(--border-width) solid var(--color-border);
+  background: transparent;
+  font-family: inherit;
+  text-align: start;
+  cursor: pointer;
+}
+.ui-navigation-group-toggle:hover { background: var(--color-surface-inset); }
+.ui-navigation-group-toggle:focus-visible { outline: var(--focus-width) solid var(--color-focus); outline-offset: var(--focus-offset); }
+.ui-navigation-group[data-current-group] .ui-navigation-group-label { color: var(--color-text); }
+.ui-navigation-group[data-current-group] .ui-navigation-group-label > span:first-child { text-decoration: underline; text-underline-offset: var(--space-1); }
+.ui-navigation-group-items { min-inline-size: 0; }
+.ui-navigation-group-items[hidden] { display: none; }
+.ui-navigation-bar--vertical .ui-navigation-group-items a { padding-inline-start: var(--space-5); }

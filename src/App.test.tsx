@@ -526,15 +526,15 @@ describe('input modals keep separate drafts through close and restart', () => {
 
   it('keeps rename drafts scoped to their node and preserves a failed modal write in RAM until retry', async () => {
     const user = userEvent.setup(); await open(`/node/${firstTopic}`);
-    await user.click(screen.getByText('목차 관리', { exact: true })); await user.click(screen.getByText('이름 수정', { exact: true }));
+    await user.click(screen.getByText('목차 관리', { exact: true })); await user.click(screen.getByRole('menuitem', { name: '이름 수정' }));
     const key = `study-space:demo:modal:rename:${firstTopic}`, original = Storage.prototype.setItem;
     const spy = vi.spyOn(Storage.prototype, 'setItem').mockImplementation(function(this: Storage, name, value) { if (name === key) throw Error('quota'); original.call(this, name, value); });
     fireEvent.change(screen.getByRole('textbox', { name: '이름' }), { target: { value: '실패 뒤 남길 이름' } });
     await user.keyboard('{Escape}'); await navigate(`/node/${secondTopic}`);
-    await user.click(screen.getByText('목차 관리', { exact: true })); await user.click(screen.getByText('이름 수정', { exact: true }));
+    await user.click(screen.getByText('목차 관리', { exact: true })); await user.click(screen.getByRole('menuitem', { name: '이름 수정' }));
     expect(screen.getByRole('textbox', { name: '이름' })).toHaveValue(secondName);
     await user.keyboard('{Escape}'); await navigate(`/node/${firstTopic}`);
-    await user.click(screen.getByText('목차 관리', { exact: true })); await user.click(screen.getByText('이름 수정', { exact: true }));
+    await user.click(screen.getByText('목차 관리', { exact: true })); await user.click(screen.getByRole('menuitem', { name: '이름 수정' }));
     expect(screen.getByRole('textbox', { name: '이름' })).toHaveValue('실패 뒤 남길 이름');
     spy.mockRestore(); await user.click(within(screen.getByRole('dialog')).getByRole('button', { name: '다시 시도' }));
     expect(localStorage.getItem(key)).toContain('실패 뒤 남길 이름');

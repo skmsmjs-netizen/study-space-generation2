@@ -11,7 +11,8 @@ import { WorkspaceCommands, type WorkspaceCommand } from './ui/workspace-command
 import { ProgressiveHistory } from './ui/progressive-history';
 import { UiPerformanceAccess } from './ui/ui-performance-access';
 import { ObservatoryCover } from "./ui/observatory-cover";
-import { OBSERVATORY_MENU, OBSERVATORY_PLACES } from "./domain/observatory-place";
+import { OBSERVATORY_MENU } from "./domain/observatory-place";
+import { MobileSidebarMenu, SIDEBAR_GROUPS, useSidebarGroups } from "./ui/sidebar-menu";
 import { featureEntityForRoute, featureIdentityForRoute, featureSurfaceAttributes } from "./ui/observatory-feature-identity";
 import "./ui/observatory-feature-identity.css";
 import { ObservatoryNavigation, ObservatoryTaskReturn, useObservatoryJourney, returnFromObservatory } from "./ui/observatory-navigation";
@@ -218,6 +219,7 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
   const [data, setData] = useState(repository.getSnapshot());
   useEffect(() => repository.subscribe?.(() => setData(repository.getSnapshot())), [repository]);
   const prefix = storagePrefix(data);
+  const sidebarGroups = useSidebarGroups(prefix);
   const route = useRoute(prefix);
   useRoutePerformance(route);
   const brandExperience = useExperience(data);
@@ -586,6 +588,23 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
   const memoryTestRoute = route === "/memory-test" || route.startsWith("/memory-test/");
   const practiceRoute = route === "/practice" || route.startsWith("/practice/");
   const freeRoute = route === "/free" || route.startsWith("/free/");
+  const sidebarItems = [
+    ...OBSERVATORY_MENU.map(item => ({
+      href: `#${item.href}`, label: item.text, group: SIDEBAR_GROUPS[item.place],
+      active: route === item.href || item.href === '/record' && recordRoute || item.href === '/memos' && memoRoute ||
+        item.href === '/materials' && materialRoute && route !== '/materials/trash' || item.href === '/code' && codeRoute ||
+        item.href === '/practice' && practiceRoute || item.href === '/memory-test' && memoryTestRoute ||
+        item.href === '/subjects' && Boolean(subject) || item.href === '/recall' && route === '/recall/scheduled',
+    })),
+    ...[
+      { href: '/my-progress', label: '내 생각 다시 보기', group: '기록·계획' },
+      { href: '/backup', label: '백업·복원', group: '공통 도구' },
+      { href: '/trash', label: '휴지통', group: '공통 도구' },
+      { href: '/draft-archives', label: '초안 보관본', group: '공통 도구' },
+      { href: '/help', label: '도움말', group: '공통 도구' },
+      { href: '/about', label: 'manseeksong 소개', group: '공통 도구' },
+    ].map(item => ({ ...item, active: route === item.href, href: `#${item.href}` })),
+  ];
   const rootTitle =
     route === "/concepts" ? "개념 전집" : route === "/about" ? "manseeksong" : (route === "/help" || route === "/subscription") ? "도움말" : route === "/my-progress" ? "내 생각 다시 보기" :
     route === "/schedules" ? "일정·과제·온라인 강의" : route === "/material-cards" ? "자료 카드" : route === "/materials/trash" ? "자료 휴지통" : route === "/math" ? "수식 탐색" : memoryTestRoute ? "암기시험" : materialRoute ? "강의 자료" : practiceRoute ? "시험 연습" : codeRoute ? "코딩 연습" : route === "/statistics" ? "공부 통계" :
@@ -616,16 +635,10 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
       <button type="button" className="skip-to-study" onClick={() => document.getElementById("main")?.focus()}>공부 화면으로 건너뛰기</button>
       <aside className="sidebar">
         <BrandIdentity />
-        <NavigationBar label="주 메뉴" orientation="vertical" items={OBSERVATORY_MENU.map(item => ({href:`#${item.href}`, label:item.text, group: OBSERVATORY_PLACES.find(place => place.id === item.place)?.label ?? "공통 도구", active:route === item.href || item.href === "/record" && recordRoute || item.href === "/memos" && memoRoute || item.href === "/materials" && materialRoute || item.href === "/code" && codeRoute || item.href === "/practice" && practiceRoute || item.href === "/memory-test" && memoryTestRoute || item.href === "/subjects" && Boolean(subject)}))} />
-        <details className="sidebar-bottom workspace-tools"><summary>보관함·화면 설정</summary><div className="workspace-tools-content">
+        <NavigationBar key={prefix} label="주 메뉴" orientation="vertical" items={sidebarItems} {...sidebarGroups} scrollKey={`${prefix}:sidebar-scroll:v1`} />
+        <details className="sidebar-bottom workspace-tools"><summary>화면 설정</summary><div className="workspace-tools-content">
           <Button variant="quiet" onClick={() => openDialog("semester")}>학기 추가</Button>
           <MotionWidgets reduced={reducedMotion} onReducedChange={setReducedMotion} />
-          <a href="#/backup">백업·복원</a>
-          <a href="#/trash">휴지통</a>
-          <a href="#/draft-archives">초안 보관본</a>
-          <a href="#/my-progress">내 생각 다시 보기</a>
-          <a href="#/help">도움말</a>
-          <a href="#/about">manseeksong 소개</a>
           <ExperienceSettings data={data} />
           <UiPerformanceAccess />
           <Select
@@ -660,6 +673,7 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
             <option value="independent">독립 공부</option>
             <option value="unassigned">학기 미지정</option>
           </Select>
+          <MobileSidebarMenu items={sidebarItems} {...sidebarGroups} scrollKey={`${prefix}:mobile-sidebar-scroll:v1`} />
           <details className="compact-menu">
             <summary>공간 설정</summary>
             <a href="#/backup">백업·복원</a>

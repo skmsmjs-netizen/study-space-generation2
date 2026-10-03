@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef } from 'react';
+import { useId, useLayoutEffect, useRef } from 'react';
 import { SelectionBackground, useSelectionMotionId } from './motion';
 import './navigation-bar.css';
 
@@ -8,14 +8,35 @@ export type NavigationBarProps = {
   items: NavigationItem[];
   orientation?: 'horizontal' | 'vertical';
   className?: string;
+  collapsedGroups?: string[];
+  onToggleGroup?: (group: string) => void;
+  scrollKey?: string;
+  onNavigate?: () => void;
 };
 
 /** Route links retain native Tab, modifier-click and browser history behavior. */
-export function NavigationBar({ label, items, orientation = 'horizontal', className = '' }: NavigationBarProps) {
+export function NavigationBar({ label, items, orientation = 'horizontal', className = '', collapsedGroups = [], onToggleGroup, scrollKey, onNavigate }: NavigationBarProps) {
   const motionId = useSelectionMotionId();
+  const groupId = useId();
   const navigation = useRef<HTMLElement>(null);
   const bottomNavigation = className.split(/\s+/).includes('bottom-nav');
   const activeHref = items.find(item => item.active)?.href;
+  useLayoutEffect(() => {
+    const nav = navigation.current;
+    if (!nav || !scrollKey) return;
+    const scroller = nav.closest<HTMLElement>('.sidebar') ?? nav;
+    try {
+      const saved = Number(sessionStorage.getItem(scrollKey));
+      if (Number.isFinite(saved) && saved >= 0) scroller.scrollTop = saved;
+    } catch { /* Optional menu position never blocks navigation. */ }
+    const save = () => {
+      try { sessionStorage.setItem(scrollKey, String(scroller.scrollTop)); } catch { /* Keep this visit usable. */ }
+    };
+    scroller.addEventListener('scroll', save, { passive: true });
+    window.addEventListener('pagehide', save);
+    return () => { scroller.removeEventListener('scroll', save); window.removeEventListener('pagehide', save); };
+  }, [scrollKey]);
+  // biome-ignore lint/correctness/useExhaustiveDependencies: Route changes update aria-current before measuring and revealing the selected link.
   useLayoutEffect(() => {
     const nav = navigation.current;
     if (!nav || !bottomNavigation) return;
@@ -79,14 +100,26 @@ export function NavigationBar({ label, items, orientation = 'horizontal', classN
       else root.style.removeProperty('--bottom-navigation-inset');
     };
   }, [bottomNavigation, activeHref]);
-  const link = (item: NavigationItem) => <a key={item.href} href={item.href}
+  const link = (item: NavigationItem) => <a key={item.href} href={item.href} onClick={event => {
+    if (!event.defaultPrevented && event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) onNavigate?.();
+  }}
     data-navigation-focus={`navigation-item:${JSON.stringify([item.href, item.label])}`}
     aria-current={item.active ? 'page' : undefined}>{item.active && <SelectionBackground id={motionId} />}{item.label}</a>;
   const groups = [...new Set(items.map(item => item.group))];
   return <nav ref={navigation} aria-label={label} className={`ui-navigation-bar ui-navigation-bar--${orientation} ${className}`}>
-    {groups.some(Boolean) ? groups.map(group => <section key={group ?? 'ungrouped'} className="ui-navigation-group" aria-label={group}>
-      {group && <p className="ui-navigation-group-label">{group}</p>}
-      {items.filter(item => item.group === group).map(link)}
-    </section>) : items.map(link)}
+    {groups.some(Boolean) ? groups.map((group, index) => {
+      const collapsed = Boolean(group && collapsedGroups.includes(group));
+      const id = `${groupId}-group-${index}`;
+      const current = items.some(item => item.group === group && item.active);
+      return <section key={group ?? 'ungrouped'} className="ui-navigation-group" aria-label={group} data-current-group={current || undefined}>
+        {group && (onToggleGroup ? <button type="button" className="ui-navigation-group-label ui-navigation-group-toggle"
+          aria-expanded={!collapsed} aria-controls={id} onClick={() => onToggleGroup(group)}>
+          <span>{group}</span><span aria-hidden="true">{collapsed ? '+' : '−'}</span>
+        </button> : <p className="ui-navigation-group-label">{group}</p>)}
+        <div id={id} className="ui-navigation-group-items" hidden={collapsed}>
+          {items.filter(item => item.group === group).map(link)}
+        </div>
+      </section>;
+    }) : items.map(link)}
   </nav>;
 }

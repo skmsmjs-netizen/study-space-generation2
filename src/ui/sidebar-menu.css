@@ -1,0 +1,21 @@
+/* Breakpoint matches the existing sidebar replacement at 40rem. */
+.mobile-sidebar-menu { display: none; }
+@media (max-width: 40rem) {
+  .mobile-sidebar-menu { display: block; inline-size: 100%; min-inline-size: 0; }
+  .mobile-sidebar-menu > summary {
+    min-block-size: var(--control-height);
+    padding: var(--space-3) var(--space-4);
+    border: var(--border-width) solid var(--color-border);
+    cursor: pointer;
+    font-weight: var(--type-label-weight);
+  }
+  .mobile-sidebar-menu > summary:focus-visible { outline: var(--focus-width) solid var(--color-focus); outline-offset: var(--focus-offset); }
+  .mobile-sidebar-menu-content {
+    max-block-size: 60dvh;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: var(--space-4);
+    border: var(--border-width) solid var(--color-border);
+    background: var(--color-surface);
+  }
+}
