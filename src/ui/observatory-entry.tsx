@@ -6,7 +6,7 @@ import { ObservatoryCover } from './observatory-cover';
 const entrance = emptyState('entrance', 'personal');
 
 export function ObservatoryEntry() {
-  return <header className="observatory-entry-cover">
+  return <header className="observatory-entry-cover observatory-interior">
     <a className="entry-direct-link" href="#entry-main" onClick={event => {
       event.preventDefault();
       const main = document.getElementById('entry-main');

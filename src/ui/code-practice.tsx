@@ -235,7 +235,7 @@ export function CodePractice({ data, repository, onSaved, exampleId, trash = fal
                   </a>
                   <span className="muted">{CODE_LANGUAGES[row.language]}</span>
                 </div>
-                {row.notes && <p className="code-note-preview">{row.notes}</p>}
+                {row.notes && <p className="code-note-preview memo-preview-text">{row.notes}</p>}
                 {trash && (
                   <Button
                     onClick={() =>

@@ -980,6 +980,7 @@ function MaterialEditor({
           </p>
           <Textarea
             label="강의 내용·필기"
+            className="paper-memo"
             hint="클로바노트 전사문을 붙여 넣고 필요한 필기를 덧붙여 주세요. 화자·시간·조건·예외를 포함한 원문을 보관합니다. 붙여넣기는 15만 자까지이며, 더 긴 전사문은 파일로 가져와 주세요."
             value={content.sourceText}
             maxLength={MAX_SOURCE_TEXT}
