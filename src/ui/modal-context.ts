@@ -59,6 +59,9 @@ export function useModalEditingContext(open: boolean, draftKey: string, anchor: 
       } else {
         // A removed cell or a new draft must not inherit a different field's position.
         position = null;
+        // A quick reopen may reuse the exiting dialog DOM. An invalid hint
+        // must clear that DOM's old position as well as the stored hint.
+        dialog.scrollTop = 0; dialog.scrollLeft = 0;
         memory.current = { key, position: null };
         try { sessionStorage.removeItem(key); } catch { /* Invalid hint is ignored in memory. */ }
       }

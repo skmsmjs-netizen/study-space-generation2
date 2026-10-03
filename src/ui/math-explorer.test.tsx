@@ -100,7 +100,7 @@ it('keeps question, formula, conditions and source available in both views and p
   expect(within(dialog).getByRole('alert')).toHaveTextContent('수치식');
   fireEvent.click(within(dialog).getByRole('button', { name: /전체 화면 닫기$/ }));
   expect(screen.queryByRole('dialog')).toBeNull();
-  expect(screen.getByLabelText('a 값')).toHaveValue('1+');
+  expect(screen.getByRole('textbox', { name: 'a 값', exact: true })).toHaveValue('1+');
   expect(screen.getByRole('region', { name: '살펴볼 질문과 수식' })).toHaveTextContent(
     entry.conditions[0],
   );
@@ -139,8 +139,8 @@ it('keeps out-of-range numbers visibly uncommitted across view changes and saves
     fireEvent.click(
       within(screen.getByRole('dialog')).getByRole('button', { name: /전체 화면 닫기$/ }),
     );
-    expect(screen.getByLabelText(label)).toHaveValue('99');
-    expect(screen.getByLabelText(label)).toHaveAttribute('aria-invalid', 'true');
+    expect(screen.getByRole('textbox', { name: label, exact: true })).toHaveValue('99');
+    expect(screen.getByRole('textbox', { name: label, exact: true })).toHaveAttribute('aria-invalid', 'true');
     fireEvent.click(screen.getByRole('button', { name: '전체 화면으로 살펴보기' }));
     const reopened = within(screen.getByRole('dialog')).getByLabelText(label);
     expect(reopened).toHaveValue('99');
