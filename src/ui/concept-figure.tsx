@@ -23,6 +23,8 @@ function FigureSvg({ figure }: { figure: ConceptFigure }) {
     description = useId();
   const frame = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState(1);
+  const [labelFits, setLabelFits] = useState<Record<string, number>>({});
+  const measuredFits = useRef<Record<string, number>>({});
   useLayoutEffect(() => {
     const element = frame.current;
     if (!element) return;
@@ -35,6 +37,46 @@ function FigureSvg({ figure }: { figure: ConceptFigure }) {
     observer?.observe(element);
     return () => observer?.disconnect();
   }, [figure.viewBox[2]]);
+  useLayoutEffect(() => {
+    const element = frame.current;
+    if (!element) return;
+    let active = true;
+    const measure = () => {
+      if (!active || element.clientWidth <= 0) return;
+      const next: Record<string, number> = {};
+      const labels = new Map(Array.from(element.querySelectorAll<HTMLElement>('.concept-figure-label'))
+        .map((label) => [label.dataset.markId, label]));
+      for (const mark of figure.marks) {
+        if (mark.kind !== 'text') continue;
+        const label = labels.get(mark.id);
+        if (!label || label.scrollWidth <= 0) continue;
+        // Intrinsic layout widths exclude ReactFlow zoom; undo only this label's prior fit.
+        const naturalWidth = label.scrollWidth / Number(label.dataset.fit ?? 1);
+        const anchorX = element.clientWidth * (mark.at[0] - figure.viewBox[0]) / figure.viewBox[2];
+        const available = mark.anchor === 'middle'
+          ? 2 * Math.min(anchorX, element.clientWidth - anchorX)
+          : mark.anchor === 'end' ? anchorX : element.clientWidth - anchorX;
+        if (available > 2) next[mark.id] = naturalWidth > available ? (available - 2) / naturalWidth : 1;
+      }
+      const previous = measuredFits.current;
+      if (Object.keys(next).length === Object.keys(previous).length &&
+          Object.entries(next).every(([id, fit]) => Math.abs(fit - (previous[id] ?? 1)) < 0.001)) return;
+      measuredFits.current = next;
+      setLabelFits(next);
+    };
+    measure();
+    const observer = typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(measure);
+    observer?.observe(element);
+    element.querySelectorAll('.concept-figure-label').forEach((label) => observer?.observe(label));
+    const fonts = element.ownerDocument.fonts;
+    void fonts?.ready.then(measure);
+    fonts?.addEventListener('loadingdone', measure);
+    return () => {
+      active = false;
+      observer?.disconnect();
+      fonts?.removeEventListener('loadingdone', measure);
+    };
+  }, [figure, scale]);
   return (
     <div
       ref={frame}
@@ -77,13 +119,15 @@ function FigureSvg({ figure }: { figure: ConceptFigure }) {
               <span
                 key={mark.id}
                 className="concept-figure-label"
+                data-mark-id={mark.id}
+                data-fit={labelFits[mark.id] ?? 1}
                 data-anchor={mark.anchor}
                 data-tone={mark.tone}
                 data-concept-text={mark.text}
                 style={{
                   left: `${(100 * (mark.at[0] - figure.viewBox[0])) / figure.viewBox[2]}%`,
                   top: `${(100 * (mark.at[1] - figure.viewBox[1])) / figure.viewBox[3]}%`,
-                  fontSize: `calc(var(--type-body-size) * ${scale})`,
+                  fontSize: `calc(var(--type-body-size) * ${scale * (labelFits[mark.id] ?? 1)})`,
                 }}
               >
                 <ConceptText text={mark.text} />
