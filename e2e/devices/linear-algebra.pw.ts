@@ -211,7 +211,7 @@ test('선형대수 · 19개 관찰틀·정적 읽기·수식 실제 렌더·곡�
   await expect(scope.locator('[data-observation-region="visual"] .katex')).toHaveCount(1);
   await page.getByText('개념 연결도 펼치기', { exact: true }).click();
   await expect
-    .poll(() => scope.locator('.react-flow__viewport').evaluate((el) => el.getAttribute('style')))
+    .poll(() => scope.locator('.linear-map-viewport .react-flow__viewport').evaluate((el) => el.getAttribute('style')))
     .toContain('scale(1)');
   await page.getByRole('button', { name: '현재 개념으로 이동', exact: true }).click();
   await expect(scope.locator('.linear-map-module[data-selected="true"]')).toBeVisible();
