@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { getDocument, GlobalWorkerOptions, type PDFDocumentProxy } from 'pdfjs-dist';
 import worker from 'pdfjs-dist/build/pdf.worker.min.mjs?url';
 import type { AppState } from '../domain/model';
@@ -137,7 +137,9 @@ export function VerifiedSourceReader({
       if (mounted.current && id === epoch.current) setBusy(false);
     }
   };
-  useEffect(() => {
+  // Establish recovery ownership before the first file input can be handled.
+  // A passive setup could otherwise invalidate an already accepted file request.
+  useLayoutEffect(() => {
     mounted.current = true;
     let alive = true;
     const request = ++epoch.current;

@@ -105,8 +105,8 @@ for (const count of [0, 120, 300])
       .locator('.study-graph > .graph-actions')
       .getByRole('button', { name: '전체 보기', exact: true })
       .click();
-    await expect(stage).toHaveAttribute('aria-busy', 'false');
     await stage.scrollIntoViewIfNeeded();
+    await expect(stage).toHaveAttribute('aria-busy', 'false');
     const inside = await stage.evaluate((element) => {
       const bounds = element.getBoundingClientRect();
       return [...element.querySelectorAll('.graph-point')].every((node) => {
@@ -141,6 +141,7 @@ for (const count of [0, 120, 300])
       Math.abs(selectedBox.x + selectedBox.width / 2 - stageBox.x - stageBox.width / 2),
     ).toBeLessThan(2);
     await page.getByRole('button', { name: '이 항목 주변 보기', exact: true }).click();
+    await stage.scrollIntoViewIfNeeded();
     await expect(stage).toHaveAttribute('aria-busy', 'false');
     await expect(stage.locator('.react-flow__node')).toHaveCount(2);
     // Same-tab selection, neighbourhood, camera and layout survive leaving the graph.
@@ -160,6 +161,7 @@ for (const count of [0, 120, 300])
     );
     await expect(page.getByRole('heading', { name, exact: true }).first()).toBeVisible();
     await page.goBack();
+    await stage.scrollIntoViewIfNeeded();
     await expect(stage).toHaveAttribute('aria-busy', 'false');
     await expect(page.locator('.graph-detail h2')).toHaveText(name);
     await expect(stage.locator('.react-flow__node')).toHaveCount(2);
@@ -171,10 +173,12 @@ for (const count of [0, 120, 300])
         .evaluateAll((nodes) => nodes.map((node) => node.getAttribute('style'))),
     ).toEqual(positions);
     await page.reload();
+    await stage.scrollIntoViewIfNeeded();
     await expect(stage).toHaveAttribute('aria-busy', 'false');
     await expect(page.locator('.graph-detail h2')).toHaveText(name);
     await expect.poll(() => zoom(page)).toBeCloseTo(0.83, 3);
     await page.getByRole('button', { name: '전체 관계로 돌아가기', exact: true }).click();
+    await stage.scrollIntoViewIfNeeded();
     await expect(stage).toHaveAttribute('aria-busy', 'false');
     await expect(stage.locator('.react-flow__node')).toHaveCount(count + 11);
     if (count) {
@@ -187,9 +191,11 @@ for (const count of [0, 120, 300])
     }
     // Explicit hierarchy is still available and remains the user's choice after reload.
     await page.getByLabel('관계 배치', { exact: true }).selectOption('hierarchy');
+    await stage.scrollIntoViewIfNeeded();
     await expect(stage).toHaveAttribute('aria-busy', 'false');
     await expect.poll(() => zoom(page)).toBeGreaterThanOrEqual(0.6);
     await page.reload();
+    await stage.scrollIntoViewIfNeeded();
     await expect(stage).toHaveAttribute('aria-busy', 'false');
     await expect(page.getByLabel('관계 배치', { exact: true })).toHaveValue('hierarchy');
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1)).toBe(
