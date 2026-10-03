@@ -1,6 +1,6 @@
 {
   "version": "2.0.0",
-  "at": "2026-10-03T02:04:30.576848+00:00",
+  "at": "2026-10-03T02:59:32.794323+00:00",
   "overallStatus": "확인된 본문 범위의 개념 대응·구현 및 선택 검증 완료; 전 문항/외부 보충/독립 전원식 검증·실제 기기·서버 증거는 별도",
   "scope": {
     "pdfPages": 611,
@@ -39,7 +39,7 @@
   "browser": {
     "engine": "WebKit",
     "profiles": 5,
-    "cases": 35,
+    "cases": 65,
     "finalFailed": 0,
     "uniqueComputationFrames": 34,
     "frameVisits": 170,
@@ -95,6 +95,15 @@
         "failed": 0,
         "resetVisits": 285,
         "staticReadingVisits": 5
+      },
+      "boundedBatches": {
+        "profiles": 5,
+        "passed": 35,
+        "failed": 0,
+        "batchSize": 10,
+        "batches": 6,
+        "preservedOccurrences": 58,
+        "log": "compatibility-batches-five.log"
       }
     }
   },
@@ -238,11 +247,28 @@
       "failed": 0,
       "profile": "iPhone-17-Pro-portrait",
       "log": "compatibility-reset-production.log"
+    },
+    "productionBatches": {
+      "passed": 7,
+      "profile": "iPhone-17-Pro-portrait",
+      "log": "compatibility-batches-production.log"
+    },
+    "longTours": {
+      "passed": 2,
+      "profile": "iPad-Pro-13-landscape",
+      "log": "ci-long-tours-tablet.log",
+      "perTestTimeoutMs": 180000
+    },
+    "scrollCompletion": {
+      "passed": 1,
+      "profile": "iPhone-17-Pro-landscape",
+      "log": "os-scroll-settled.log",
+      "change": "test helper waits for real key-driven scrolling to stop before measuring; product code unchanged"
     }
   },
   "deployment": {
     "authorized": true,
-    "status": "reset correction tested; final candidate preparing",
+    "status": "CI test timing/scroll helper corrected; final candidate preparing",
     "target": "https://skmsmjs-netizen.github.io/study-space-generation2/",
     "privatePdfIncluded": false,
     "cancelledRuns": [
@@ -255,6 +281,15 @@
         "commit": "e5acc32d0d1506f533b4417e3e790f7639f59a62",
         "run": 37087090153,
         "conclusion": "cancelled before deployment; selected legacy reset must use legacy spec defaults"
+      }
+    ],
+    "failedRuns": [
+      {
+        "commit": "3d59765d9c518940baed2bc92b548089597b6c79",
+        "run": 37088503968,
+        "conclusion": "failure; deploy skipped",
+        "report": "ci-3d59765-failure-summary.json",
+        "resolution": "preserve 58 resets in six bounded batches; allow measured long34/19 tours180seconds; wait for real keyboard scrolling to settle in shared test helper"
       }
     ]
   }

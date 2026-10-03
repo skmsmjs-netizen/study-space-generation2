@@ -293,10 +293,27 @@ async function capture(page: Page, info: TestInfo, name: string) {
   await page.screenshot({ path: info.outputPath(`${name}.png`), animations: 'disabled' });
 }
 
+async function waitForDocumentScroll(page: Page) {
+  // Key-driven smooth scrolling continues after the first changed scrollY.
+  // Inspect geometry only after the browser has stopped moving the viewport.
+  await page.evaluate(() => new Promise<void>((resolve) => {
+    let previous = scrollY, still = 0;
+    const frame = () => {
+      const current = scrollY;
+      still = current === previous ? still + 1 : 0;
+      previous = current;
+      if (still >= 4) resolve();
+      else requestAnimationFrame(frame);
+    };
+    requestAnimationFrame(frame);
+  }));
+}
+
 async function reachDocumentTarget(page: Page, target: Locator) {
   // A real key event cancels pending route restoration. WebKit cannot use its
   // element-scroll command to reveal skipped content-visibility descendants.
   await page.keyboard.press('PageDown');
+  await waitForDocumentScroll(page);
   const pageSteps = await page.evaluate(
     () => Math.ceil(document.documentElement.scrollHeight / (innerHeight / 2)) + 2,
   );
@@ -308,6 +325,7 @@ async function reachDocumentTarget(page: Page, target: Locator) {
     if (position.visible) break;
     await page.keyboard.press(position.top > 0 ? 'PageDown' : 'PageUp');
     await page.waitForFunction((previous) => scrollY !== previous, position.scroll);
+    await waitForDocumentScroll(page);
   }
   await expect(target).toBeInViewport();
   await page.evaluate(

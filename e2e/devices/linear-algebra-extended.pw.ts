@@ -5,6 +5,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 const catalog=JSON.parse(fs.readFileSync(path.resolve('src/domain/linear-algebra-catalog.json'),'utf8')) as {concepts:{id:string;kind:string}[]};
 test('선형대수 확장 · 모든 새 계산틀·수식·긴 보조 입력·배치',async({page},info)=>{
+  // A bounded 34-frame tour needs more than 90 seconds in the Linux tablet runner.
+  test.setTimeout(180000);
   await page.goto('/?space=demo#/math');await page.getByRole('combobox',{name:'탐색할 내용',exact:true}).selectOption('linear');
   const concept=page.getByRole('combobox',{name:'살펴볼 개념',exact:true}),scope=page.getByRole('region',{name:'선형대수 교재와 관찰',exact:true});
   for(const kind of [...new Set(catalog.concepts.map(c=>c.kind))].filter(k=>k!=='static')){
@@ -40,10 +42,15 @@ test('선형대수 원문 인덱스 · 정의 검색·정확 위치·조건과 �
   await page.getByRole('combobox',{name:'살펴볼 개념',exact:true}).selectOption('3:FUNC');await page.getByRole('combobox',{name:'관찰 방식',exact:true}).selectOption('best');await expect(page.getByRole('textbox',{name:'최선근사 다항식 차수 · 정확한 값',exact:true})).toBeVisible();await expect(page.getByRole('alert')).toHaveCount(0);
 });
 
-test('이전 버전의 관찰 · 같은 ID의 입력·메모·시야를 확장 관찰과 분리 보존',async({page})=>{
+function previousFixtures(){
  const previousKinds=JSON.parse(fs.readFileSync(path.resolve('src/domain/linear-algebra-legacy-kinds.json'),'utf8'));const previousSpecs=JSON.parse(fs.readFileSync(path.resolve('src/domain/linear-algebra-legacy-specs.json'),'utf8'));
  const old={params:{t:2.5,n:4},inputs:{t:'1/'},matrix:'1 1 3\n2 -1 0',matrixDraft:'1 1 3\n2 -1 0',step:0,memo:'이전 관찰 메모',view:{ranges:{x:[-2,2],y:[-3,3]}}};
  const previousExamples=Object.fromEntries(catalog.concepts.filter(c=>previousKinds[c.id]!==c.kind||['power','fourier'].includes(c.kind)).map(c=>{const spec=previousSpecs[previousKinds[c.id]];return [c.id,{...old,params:{t:spec.t?.value??2,n:spec.n?.value??4},inputs:{},matrix:spec.matrix??old.matrix,matrixDraft:spec.matrix??old.matrix}]}));
+ return {previousKinds,old,previousExamples};
+}
+
+test('이전 버전의 관찰 · 같은 ID의 입력·메모·시야를 확장 관찰과 분리 보존',async({page})=>{
+ const {previousKinds,old,previousExamples}=previousFixtures();
  await page.addInitScript(({old,previousExamples})=>{if(!localStorage.getItem('linear-compat-fixture')){localStorage.setItem('linear-compat-fixture','1');localStorage.setItem('study-space:demo:linear-algebra:view:v1',JSON.stringify({version:1,selected:'0:T',readings:{...previousExamples,'0:T':old},query:''}));}},{old,previousExamples});
  await page.goto('/?space=demo#/math');await page.getByRole('combobox',{name:'탐색할 내용',exact:true}).selectOption('linear');
  const choice=page.getByRole('combobox',{name:'이 개념의 관찰',exact:true});await expect(choice).toHaveValue('previous');
@@ -56,7 +63,26 @@ test('이전 버전의 관찰 · 같은 ID의 입력·메모·시야를 확장 �
  await expect(page.getByRole('textbox',{name:'관찰 메모',exact:true})).toHaveValue('확장 관찰 메모');
  await choice.selectOption('previous');await expect(t).toHaveValue('1/');await expect(page.getByRole('textbox',{name:'관찰 메모',exact:true})).toHaveValue('이전 관찰 메모');
  const saved=JSON.parse(decodeStoredText(await page.evaluate(()=>localStorage.getItem('study-space:demo:linear-algebra:view:v1')!)));expect(saved.readings['0:T']).toEqual(old);expect(saved.variants['0:T'].memo).toBe('확장 관찰 메모');
- for(const id of Object.keys(previousExamples)){await page.getByRole('combobox',{name:'살펴볼 개념',exact:true}).selectOption(id);await choice.selectOption('previous');if(previousKinds[id]!=='static')await page.getByRole('button',{name:'값·단계 처음으로',exact:true}).click();else await expect(page.getByRole('button',{name:'값·단계 처음으로',exact:true})).toHaveCount(0);await expect(page.getByRole('region',{name:'선형대수 교재와 관찰',exact:true}).getByRole('alert')).toHaveCount(0);}
- await page.getByRole('combobox',{name:'살펴볼 개념',exact:true}).selectOption('6:POW');const oldT=page.getByRole('textbox',{name:'시작 방향의 성분 t · 정확한 값',exact:true});await expect(oldT).toHaveValue('0');await expect(page.getByRole('textbox',{name:'행렬 A · 행마다 줄바꿈',exact:true})).toHaveValue('2 1\n1 2');await oldT.fill('1');await oldT.press('Enter');await page.reload();await expect(oldT).toHaveValue('1');
+
+ await page.getByRole('combobox',{name:'살펴볼 개념',exact:true}).selectOption('6:POW');await page.getByRole('button',{name:'값·단계 처음으로',exact:true}).click();const oldT=page.getByRole('textbox',{name:'시작 방향의 성분 t · 정확한 값',exact:true});await expect(oldT).toHaveValue('0');await expect(page.getByRole('textbox',{name:'행렬 A · 행마다 줄바꿈',exact:true})).toHaveValue('2 1\n1 2');await oldT.fill('1');await oldT.press('Enter');await page.reload();await expect(oldT).toHaveValue('1');
  const resetSaved=JSON.parse(decodeStoredText(await page.evaluate(()=>localStorage.getItem('study-space:demo:linear-algebra:view:v1')!)));expect(resetSaved.readings['6:POW'].auxiliary).toBeUndefined();expect(resetSaved.readings['6:POW'].memo).toBe(old.memo);expect(resetSaved.readings['6:POW'].view).toEqual(old.view);
 });
+
+// Keep each bounded source batch within the shared CI timeout and preserve all cases.
+const resetIds=Object.keys(previousFixtures().previousExamples);
+for(let start=0;start<resetIds.length;start+=10){
+ const ids=resetIds.slice(start,start+10);
+ test(`이전 버전 초기화 · 묶음 ${start/10+1} · ${ids.length}개 원문 개념`,async({page})=>{
+  const {previousKinds,old,previousExamples}=previousFixtures();
+  await page.addInitScript(({previousExamples,selected})=>{localStorage.setItem('study-space:demo:linear-algebra:view:v1',JSON.stringify({version:1,selected,readings:previousExamples,query:''}));},{previousExamples,selected:ids[0]});
+  await page.goto('/?space=demo#/math');await page.getByRole('combobox',{name:'탐색할 내용',exact:true}).selectOption('linear');
+  const choice=page.getByRole('combobox',{name:'이 개념의 관찰',exact:true});
+  for(const id of ids){
+   await page.getByRole('combobox',{name:'살펴볼 개념',exact:true}).selectOption(id);await expect(choice).toHaveValue('previous');
+   if(previousKinds[id]!=='static')await page.getByRole('button',{name:'값·단계 처음으로',exact:true}).click();else await expect(page.getByRole('button',{name:'값·단계 처음으로',exact:true})).toHaveCount(0);
+   await expect(page.getByRole('region',{name:'선형대수 교재와 관찰',exact:true}).getByRole('alert')).toHaveCount(0);
+  }
+  const saved=JSON.parse(decodeStoredText(await page.evaluate(()=>localStorage.getItem('study-space:demo:linear-algebra:view:v1')!)));
+  for(const id of ids){expect(saved.readings[id].modelVersion).toBeUndefined();expect(saved.readings[id].params).toEqual(previousExamples[id].params);expect(saved.readings[id].matrix).toBe(previousExamples[id].matrix);expect(saved.readings[id].auxiliary).toBeUndefined();expect(saved.readings[id].memo).toBe(old.memo);expect(saved.readings[id].view).toEqual(old.view);}
+ });
+}

@@ -141,6 +141,8 @@ test('선형대수 · 읽기·경계·오입력·시야·저장·재접속·소�
 test('선형대수 · 19개 관찰틀·정적 읽기·수식 실제 렌더·곡면·연결도 기본 가독성', async ({
   page,
 }, info) => {
+  // Preserve all 19 visits under the slower Linux tablet renderer.
+  test.setTimeout(180000);
   await page.goto('?space=demo#/math');
   await page.getByRole('combobox', { name: '탐색할 내용', exact: true }).selectOption('linear');
   const concept = page.getByRole('combobox', { name: '살펴볼 개념', exact: true });
