@@ -1,4 +1,5 @@
 import { ChemistryLauncher } from './chemistry-launcher';
+import { chemistryViewKey } from '../data/chemistry-observation';
 import { Activity, lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import { MathFormula as MathText } from './math-formula';
 import { MathComparison } from './math-comparison';
@@ -188,6 +189,10 @@ export function MathExplorer({
   active?: boolean;
 }) {
   const key = mathDraftKey(data);
+  const [chemistryOpen, setChemistryOpen] = useState(() => {
+    try { return sessionStorage.getItem(chemistryViewKey(data) + ':entry') === 'east'; }
+    catch { return false; }
+  });
   const readingKey = reasoningViewKey(data);
   const [readingInitial] = useState(() => {
     try {
@@ -412,7 +417,7 @@ export function MathExplorer({
   const result = computed.result;
   return (
     <section className="math-explorer" aria-label="수식 탐색">
-      <ChemistryLauncher data={data} repository={repository} onSaved={onSaved} place="east" />
+      <ChemistryLauncher data={data} repository={repository} onSaved={onSaved} place="east" onOpenChange={setChemistryOpen} />
       <div className="math-observatory-heading">
         <span className="math-observatory-mark" aria-hidden="true" />
         <span>관측 도구</span>
@@ -576,7 +581,7 @@ export function MathExplorer({
                     </Button>
                   </div>
                 </div>
-                <Activity mode={active ? 'visible' : 'hidden'}>
+                <Activity mode={active && !chemistryOpen ? 'visible' : 'hidden'}>
                   <Suspense fallback={<LoadingState message="그래프를 여는 중입니다." />}>
                     {scene.renderer === 'plotly' ? (
                       <Plot

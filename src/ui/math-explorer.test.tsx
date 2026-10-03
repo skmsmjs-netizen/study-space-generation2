@@ -7,6 +7,7 @@ import { DEFAULT_SCENE, readScene, type MathScene, type buildScene } from '../do
 import type { StudyRepository } from '../data/repository';
 import type { TemplateView } from '../domain/math-view';
 import { mathDraftKey, readMathDraft, writeMathDraft } from '../data/math-explorer-draft';
+import { chemistryViewKey } from '../data/chemistry-observation';
 import {
   templateDraftKey,
   readTemplateWorkspace,
@@ -39,6 +40,7 @@ vi.mock('./math-explorer-plot', () => ({
 }));
 vi.mock('./math-geogebra', () => ({ MathGeoGebra: () => <div>격리된 GeoGebra 그래프</div> }));
 vi.mock('./math-template-plot', () => ({ MathTemplatePlot: () => <div>격리된 내용 그래프</div> }));
+vi.mock('./chemistry-observatory', () => ({ ChemistryObservatory: () => <div>격리된 일반화학 관찰</div> }));
 beforeEach(() => {
   localStorage.clear();
   sessionStorage.clear();
@@ -48,6 +50,21 @@ beforeEach(() => {
 function open(repo: StudyRepository) {
   return render(<MathExplorer data={repo.getSnapshot()} repository={repo} onSaved={() => {}} />);
 }
+it('opens an incoming chemistry task before starting the background graph and restores the retained scene on close', async () => {
+  const repo = new DemoRepository(localStorage), data = repo.getSnapshot();
+  const key = mathDraftKey(data);
+  const original = { ...DEFAULT_SCENE, renderer: 'plotly' as const, a: Math.PI, notes: '  기존 그래프 메모\n그대로  ' };
+  writeMathDraft(key, original);
+  sessionStorage.setItem(chemistryViewKey(data) + ':entry', 'east');
+  open(repo);
+  const dialog = await screen.findByRole('dialog', { name: '일반화학 · 교재와 관찰' });
+  await within(dialog).findByText('격리된 일반화학 관찰');
+  expect(rendererEffects).not.toContain('setup');
+  expect(readMathDraft(key)).toEqual(original);
+  fireEvent.click(within(dialog).getByRole('button', { name: '일반화학 · 교재와 관찰 닫기' }));
+  await waitFor(() => expect(rendererEffects).toContain('setup'));
+  expect(readMathDraft(key)).toEqual(original);
+});
 it('resets only the view while retaining exact controls, source formula and notes', async () => {
   const repo = new DemoRepository(localStorage);
   const key = mathDraftKey(repo.getSnapshot());
