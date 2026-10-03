@@ -5,6 +5,7 @@ import { ConceptText } from './concept-text';
 import { occurrenceRows } from './list-keys';
 import { Button } from './index';
 import { useViewContext } from './use-view-context';
+import { KnowledgeDiagram } from './knowledge-diagram';
 import './knowledge-structure.css';
 
 type Presentation = 'diagram' | 'prose';
@@ -72,7 +73,9 @@ export function KnowledgeStructure({
           </Button>
         ))}
       </div>
-      {visual.kind === 'sequence' ? (
+      {presentation === 'diagram' && visual.relations.length > 0 ? (
+        <KnowledgeDiagram visual={visual} data={data} viewKey={viewKey} />
+      ) : visual.kind === 'sequence' ? (
         <>
           <p className="knowledge-sequence-note">{copy.sequence}</p>
           <ol className="knowledge-sequence">
@@ -98,28 +101,19 @@ export function KnowledgeStructure({
           ))}
         </dl>
       )}
-      {visual.relations.length > 0 && (
+      {presentation === 'prose' && visual.relations.length > 0 && (
         <ul className="knowledge-relations" aria-label={copy.relations}>
           {occurrenceRows(visual.relations, (relation) => JSON.stringify(relation)).map(
             ({ value: relation, key }) => (
-              <li key={key} className="knowledge-connection">
-                <span className="knowledge-endpoint" data-concept-text={name(relation.from)}>
-                  <ConceptText text={name(relation.from)} />
-                </span>
-                <span className="knowledge-link">
-                  <span className="knowledge-relation-label" data-concept-text={relation.label}>
-                    <ConceptText
-                      text={relation.label.trim() ? relation.label : copy.missingRelation}
-                    />
-                  </span>
-                  <span className="knowledge-arrow" aria-hidden="true">
-                    ⟶
-                  </span>
-                  <span className="knowledge-direction">연결 대상:</span>
-                </span>
-                <span className="knowledge-endpoint" data-concept-text={name(relation.to)}>
-                  <ConceptText text={name(relation.to)} />
-                </span>
+              <li key={key} className="knowledge-prose-relation">
+                <p>
+                  ‘<ConceptText text={name(relation.from)} />
+                  ’에서 ‘<ConceptText text={name(relation.to)} />’ 방향의 연결 설명은 ‘
+                  <ConceptText
+                    text={relation.label.trim() ? relation.label : copy.missingRelation}
+                  />
+                  ’이다.
+                </p>
               </li>
             ),
           )}

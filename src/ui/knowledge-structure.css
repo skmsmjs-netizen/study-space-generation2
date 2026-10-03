@@ -136,3 +136,77 @@
     writing-mode: horizontal-tb;
   }
 }
+
+/* Reference maps use the existing graph camera; prose has full sentences, never detached arrow rows. */
+.knowledge-diagram-viewport {
+  /* design-token-exception: height -- bounded reading window, larger maps pan without shrinking text */
+  height: 34rem;
+  min-inline-size: 0;
+  border: var(--border-width) solid var(--color-border);
+  background: var(--color-surface-inset);
+  position: relative;
+}
+.knowledge-diagram-viewport .knowledge-module {
+  padding: var(--space-6);
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+.knowledge-diagram-viewport dl,
+.knowledge-diagram-viewport dd {
+  margin: 0;
+}
+.knowledge-diagram-viewport dt {
+  font-size: var(--type-heading-size);
+  font-weight: var(--type-label-weight);
+  margin-block-end: var(--space-2);
+}
+.knowledge-diagram-viewport dd {
+  font-size: var(--paper-body-size, var(--observatory-paper-body-size));
+  line-height: var(--paper-body-line, var(--observatory-paper-body-line));
+  white-space: pre-line;
+  text-align: justify;
+  text-align-last: start;
+}
+.knowledge-diagram-viewport .is-emphasized {
+  border-color: var(--color-text);
+}
+.knowledge-diagram-viewport .react-flow__handle {
+  visibility: hidden;
+}
+.knowledge-diagram-viewport .react-flow__edge-path {
+  stroke: var(--color-text);
+}
+.knowledge-diagram-label {
+  position: absolute;
+  /* design-token-exception: width -- paired with the Dagre edge-label width to reserve actual reading space */
+  width: 240px;
+  padding: var(--space-2);
+  box-sizing: border-box;
+  color: var(--color-text);
+  background: var(--color-surface-inset);
+  font-size: var(--paper-body-size, var(--observatory-paper-body-size));
+  line-height: var(--paper-body-line, var(--observatory-paper-body-line));
+  text-align: center;
+  overflow-wrap: anywhere;
+  pointer-events: none;
+}
+.knowledge-prose-relation p {
+  margin: 0;
+  text-align: justify;
+  text-align-last: start;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 40rem) {
+  .knowledge-diagram-viewport dd,
+  .knowledge-diagram-label {
+    font-size: var(--paper-body-size, var(--observatory-paper-body-compact-size));
+    line-height: var(--paper-body-line, var(--observatory-paper-body-compact-line));
+  }
+}
+.knowledge-diagram-viewport dt,
+.knowledge-diagram-viewport dd,
+.knowledge-diagram-label {
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}

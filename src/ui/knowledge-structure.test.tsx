@@ -29,10 +29,15 @@ it('preserves authored modules, mathematical notation and explicit relationship 
     <KnowledgeStructure visual={visual} data={data} viewKey="compare" />,
   );
   expect(container.querySelector('dd')?.textContent).toBe(visual.nodes[0].detail);
-  expect(document.querySelector('.concept-representations math')).not.toBeNull();
+  expect(document.querySelector('.knowledge-module math')).not.toBeNull();
+  expect(container.querySelectorAll('.react-flow__node')).toHaveLength(2);
+  expect(container.querySelectorAll('.knowledge-endpoint')).toHaveLength(0);
+  fireEvent.click(screen.getByRole('button', { name: '문장으로 읽기' }));
   const relations = screen.getByRole('list', { name: '작성된 관계' });
   expect(within(relations).getAllByRole('listitem')).toHaveLength(1);
   expect(relations).toHaveTextContent('같은 조건의 표현으로 대응한다');
+  expect(relations).toHaveTextContent('방향의 연결 설명은');
+  expect(container.querySelector('.knowledge-arrow')).toBeNull();
   expect(document.querySelector('ol')).toBeNull();
 });
 
@@ -102,11 +107,13 @@ it('keeps broken and repeated relation entries visible instead of silently inven
       viewKey="missing"
     />,
   );
+  expect(document.querySelectorAll('.react-flow__node')).toHaveLength(3);
+  fireEvent.click(screen.getByRole('button', { name: '문장으로 읽기' }));
   const relations = screen.getByRole('list', { name: '작성된 관계' });
   expect(within(relations).getAllByRole('listitem')).toHaveLength(2);
   expect(
-    Array.from(relations.querySelectorAll('.knowledge-endpoint')).filter(
-      (node) => node.textContent === '연결 대상 확인 필요 (unknown)',
+    Array.from(relations.querySelectorAll('p')).filter((p) =>
+      p.textContent?.includes('연결 대상 확인 필요 (unknown)'),
     ),
   ).toHaveLength(2);
   expect(within(relations).getAllByText('관계 설명이 비어 있습니다')).toHaveLength(2);

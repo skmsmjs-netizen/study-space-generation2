@@ -1,6 +1,7 @@
 import {StudyCanvas} from './study-canvas';
 import {ChemistrySpecialist,SPECIALISTS} from './chemistry-specialists';
 import {ChemistryRelationships} from './chemistry-relationships';
+import {sectionKnowledgeVisual} from '../domain/chemistry/relationships';
 import {useEffect,useRef,useState} from 'react';
 import {CHEMISTRY,byNumber,sectionById,mapping,MOLECULES,PROCEDURES,type ChemistrySection} from '../domain/chemistry/catalog';
 import {defaults,calculate,modelsForSection,INITIAL_REASON,type Model,type Judgment} from '../domain/chemistry/model';
@@ -54,7 +55,7 @@ export function ChemistryObservatory({data,repository,onSaved,place,onMove}:{dat
    <div className="chem-actions"><Button onClick={returnList}>원래 목록과 위치로</Button><Button onClick={()=>setSource(true)}>원문 위치 열기</Button><Button onClick={()=>setMemo(true)}>기존 메모에서 설명 고치기</Button><Button onClick={()=>setCanvas(true)}>내 관계 배치도 열기</Button></div>
    <header ref={questionRegion} tabIndex={-1} data-observation-region="question"><p>{CHEMISTRY.chapters[selected.chapter-1].name} · 현재 질문</p><h3>{SPECIALISTS[selected.section]?.question??modelsForSection(selected.section)[0]?.question??selected.question}</h3><p className="prose">조건·예외: {selected.conditions}</p><details><summary>{mapping(selected).status} · 대응 범위</summary><p className="prose">{mapping(selected).reason}</p></details></header>
    <div className="chem-actions"><Button aria-pressed={!observe} onClick={returnReading}>개념 읽기</Button><Button aria-pressed={observe} onClick={e=>openObservation(e.currentTarget)}>이 질문의 작은 관찰</Button>{observe&&<Button onClick={()=>onMove(full?'west':'east')}>{full?'자료 곁의 작은 관찰로':'전체 관찰 작업면으로'}</Button>}</div>
-   {!observe?<><KnowledgeStructure data={data} viewKey={selected.id} visual={{kind:'relation',label:selected.name,nodes:[{id:'before',label:'선행 개념',detail:selected.prerequisites},{id:'current',label:selected.name,detail:selected.new_content},{id:'next',label:'다시 쓰이는 연결',detail:selected.connections}],relations:[{from:'before',to:'current',label:'판단·표현의 출발점을 제공'},{from:'current',to:'next',label:'후속 설명의 도구로 다시 사용'}],highlighted:['current']}}/><p className="prose">이 연결은 교재에 근거한 편집 해석이며 인과·동치의 자동 판정이 아니다.</p></>:<div ref={observationRegion} tabIndex={-1} role="region" aria-label="현재 질문의 관찰">
+   {!observe?<><p className="prose">{selected.new_content}</p><KnowledgeStructure data={data} viewKey={selected.id} visual={sectionKnowledgeVisual(selected)}/><p className="prose">이 연결은 교재에 근거한 편집 해석이며 인과·동치의 자동 판정이 아니다.</p></>:<div ref={observationRegion} tabIndex={-1} role="region" aria-label="현재 질문의 관찰">
     {modelsForSection(selected.section).map(model=><Calculation key={`${selected.id}:${model.id}`} model={model} value={snapshot(`${selected.id}:${model.id}`)} update={v=>update(`${selected.id}:${model.id}`,v)} data={data}/>)}
     {['10.1','10.2'].includes(selected.section)&&<Molecular value={snapshot(selected.id)} update={v=>update(selected.id,v)}/>}
     {SPECIALISTS[selected.section]&&<ChemistrySpecialist section={selected.section} value={snapshot(selected.id)} update={v=>update(selected.id,v)}/>}

@@ -175,9 +175,7 @@ test('closed modules and labelled relationships reflow, preserve full text, scen
   // Alignment belongs to authored paragraphs; the wrapper also contains
   // technical and inline roles and deliberately retains interface defaults.
   await expect(current.locator('.concept-body > p').first()).toHaveCSS('text-align', 'justify');
-  await expect(figure.getByRole('list', { name: '작성된 관계' })).toContainText(
-    '인과를 뜻하지 않는다',
-  );
+  await expect(figure.locator('.knowledge-diagram-label')).toContainText('인과를 뜻하지 않는다');
   await expect(figure.locator('ol')).toHaveCount(0);
   await expect(figure.locator('.katex-error')).toHaveCount(0);
   await figure.screenshot({ path: info.outputPath('knowledge-compare.png') });
