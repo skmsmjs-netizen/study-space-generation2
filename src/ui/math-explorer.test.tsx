@@ -94,7 +94,7 @@ it('keeps question, formula, conditions and source available in both views and p
     entry.source.title,
   );
   expect(dialog.querySelector('[data-observation-region="question"] .katex')).not.toBeNull();
-  const input = within(dialog).getByLabelText('a 값');
+  const input = within(dialog).getByRole('textbox', { name: 'a 값' });
   fireEvent.change(input, { target: { value: '1+' } });
   fireEvent.blur(input);
   expect(within(dialog).getByRole('alert')).toHaveTextContent('수치식');
@@ -106,15 +106,15 @@ it('keeps question, formula, conditions and source available in both views and p
   );
   fireEvent.click(screen.getByRole('button', { name: '전체 화면으로 살펴보기' }));
   const reopened = screen.getByRole('dialog');
-  expect(within(reopened).getByLabelText('a 값')).toHaveValue('1+');
+  expect(within(reopened).getByRole('textbox', { name: 'a 값' })).toHaveValue('1+');
   fireEvent.change(within(reopened).getByLabelText('전체 화면의 내용'), {
     target: { value: other.id },
   });
-  expect(within(screen.getByRole('dialog')).getByLabelText('a 값')).toHaveValue('1.00');
+  expect(within(screen.getByRole('dialog')).getByRole('textbox', { name: 'a 값' })).toHaveValue('1.00');
   fireEvent.change(within(screen.getByRole('dialog')).getByLabelText('전체 화면의 내용'), {
     target: { value: entry.id },
   });
-  expect(within(screen.getByRole('dialog')).getByLabelText('a 값')).toHaveValue('1+');
+  expect(within(screen.getByRole('dialog')).getByRole('textbox', { name: 'a 값' })).toHaveValue('1+');
   expect(readTemplateWorkspace(key).entries).toEqual([entry, other]);
 });
 it('keeps out-of-range numbers visibly uncommitted across view changes and saves only corrected values', async () => {
@@ -130,7 +130,7 @@ it('keeps out-of-range numbers visibly uncommitted across view changes and saves
   await screen.findByRole('dialog');
   for (const label of ['a 값', 'x 위치 값']) {
     const before = readTemplateWorkspace(key);
-    const input = within(screen.getByRole('dialog')).getByLabelText(label);
+    const input = within(screen.getByRole('dialog')).getByRole('textbox', { name: label });
     fireEvent.change(input, { target: { value: '99' } });
     fireEvent.blur(input);
     expect(input).toHaveAttribute('aria-invalid', 'true');
@@ -142,7 +142,7 @@ it('keeps out-of-range numbers visibly uncommitted across view changes and saves
     expect(screen.getByRole('textbox', { name: label })).toHaveValue('99');
     expect(screen.getByRole('textbox', { name: label })).toHaveAttribute('aria-invalid', 'true');
     fireEvent.click(screen.getByRole('button', { name: '전체 화면으로 살펴보기' }));
-    const reopened = within(screen.getByRole('dialog')).getByLabelText(label);
+    const reopened = within(screen.getByRole('dialog')).getByRole('textbox', { name: label });
     expect(reopened).toHaveValue('99');
     expect(reopened).toHaveAttribute('aria-invalid', 'true');
     fireEvent.blur(reopened);
@@ -150,7 +150,7 @@ it('keeps out-of-range numbers visibly uncommitted across view changes and saves
     expect(readTemplateWorkspace(key)).toEqual(before);
     fireEvent.change(reopened, { target: { value: 'sqrt(2)' } });
     fireEvent.keyDown(reopened, { key: 'Enter' });
-    expect(within(screen.getByRole('dialog')).getByLabelText(label)).not.toHaveAttribute(
+    expect(within(screen.getByRole('dialog')).getByRole('textbox', { name: label })).not.toHaveAttribute(
       'aria-invalid',
       'true',
     );
