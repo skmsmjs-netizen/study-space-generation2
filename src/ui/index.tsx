@@ -4,6 +4,7 @@ import { Component, forwardRef, useEffect, useId, useRef, type ButtonHTMLAttribu
 import { createPortal } from 'react-dom';
 import './tokens.css';
 import './components.css';
+import { useVisualPresence } from './interaction-motion';
 import { BusyDots, FadeContent, NoticeEntrance, SelectionBackground, useSelectionMotionId } from './motion';
 
 const classes = (...values: (string | undefined | false)[]) => values.filter(Boolean).join(' ');
@@ -60,8 +61,9 @@ export function Tabs({ items, value, onChange, label = '보기 선택', classNam
   }}>{item.id === value && <SelectionBackground id={motionId} />}{item.label}</Button>)}</div>;
 }
 export function SegmentedControl({ items, value, onChange, label = '표시 방식', className }: TabsProps) {
+  const motionId = useSelectionMotionId();
   // biome-ignore lint/a11y/useSemanticElements: APG pressed-button group is navigation control grouping, not a form fieldset.
-  return <div role="group" aria-label={label} className={classes('ui-segmented', className)}>{items.map(item => <Button key={item.id} variant="quiet" aria-pressed={item.id === value} disabled={item.disabled} onClick={() => onChange(item.id)}>{item.label}</Button>)}</div>;
+  return <div role="group" aria-label={label} className={classes('ui-segmented', className)}>{items.map(item => <Button key={item.id} variant="quiet" aria-pressed={item.id === value} disabled={item.disabled} onClick={() => onChange(item.id)}>{item.id === value && <SelectionBackground id={motionId} />}{item.label}</Button>)}</div>;
 }
 export function Card({ className, role, ...props }: HTMLAttributes<HTMLDivElement>) { return <div {...props} role={role ?? (props['aria-label'] || props['aria-labelledby'] ? 'group' : undefined)} className={classes('ui-card', className)} />; }
 export function ListItem({ className, ...props }: HTMLAttributes<HTMLLIElement>) { return <li {...props} className={classes('ui-list-item', className)} />; }
@@ -72,6 +74,12 @@ export function Modal({ open, title, onClose, children, className, featureDialog
   const titleId = useId(), dialog = useRef<HTMLDivElement>(null), close = useRef(onClose);
   const backdropPress = useRef<{ id: number; x: number; y: number; moved: boolean } | null>(null);
   const openingControl = useRef<HTMLElement | SVGElement | null>(null);
+  const present = useVisualPresence(open, dialog);
+  const exitingView = useRef<{ title: string; children: ReactNode; className?: string; featureDialogMode?: string } | null>(null);
+  if (open) exitingView.current = { title, children, className, featureDialogMode };
+  const view = !open && present ? exitingView.current : null;
+  const shownTitle = view?.title ?? title;
+  useEffect(() => { if (!present) exitingView.current = null; }, [present]);
   close.current = onClose;
   useEffect(() => {
     if (open) return;
@@ -154,10 +162,10 @@ export function Modal({ open, title, onClose, children, className, featureDialog
       }
     };
   }, [open]);
-  if (!open) return null;
+  if (!present) return null;
   // biome-ignore lint/a11y/noStaticElementInteractions: Backdrop dismissal is optional; the labelled close button and Escape provide keyboard access.
   // biome-ignore lint/a11y/useKeyWithClickEvents: The modal's document key handler owns Escape; the backdrop is not a second tab stop.
-  return createPortal(<div className="ui-overlay"
+  return createPortal(<div className="ui-overlay" data-motion-state={open ? "open" : "closing"} aria-hidden={!open || undefined} inert={!open}
     onPointerDown={event => {
       backdropPress.current = event.target === event.currentTarget && event.button === 0
         ? { id: event.pointerId, x: event.clientX, y: event.clientY, moved: false } : null;
@@ -177,7 +185,7 @@ export function Modal({ open, title, onClose, children, className, featureDialog
     onClick={event => {
       const press = backdropPress.current; backdropPress.current = null;
       if (event.target === event.currentTarget && press && !press.moved) onClose();
-    }}><div ref={dialog} role="dialog" aria-modal="true" aria-labelledby={titleId} tabIndex={-1} className={classes('ui-modal', className)} {...featureSurfaceAttributes(featureEntityForDialog(title, featureDialogMode))}><header className="ui-modal-header"><h2 className="ui-modal-title" id={titleId}>{title}</h2><IconButton label={`${title} 닫기`} onClick={onClose}>×</IconButton></header>{children}</div></div>, document.body);
+    }}><div ref={dialog} role="dialog" aria-modal="true" aria-labelledby={titleId} tabIndex={-1} className={classes('ui-modal', view?.className ?? className)} {...featureSurfaceAttributes(featureEntityForDialog(shownTitle, view?.featureDialogMode ?? featureDialogMode))}><header className="ui-modal-header"><h2 className="ui-modal-title" id={titleId}>{shownTitle}</h2><IconButton label={`${shownTitle} 닫기`} onClick={onClose}>×</IconButton></header>{view ? view.children : children}</div></div>, document.body);
 }
 export function Sheet(props: ModalProps) { return <Modal {...props} className={classes('ui-sheet', props.className)} />; }
 export function Toast({ message, onUndo, onClose }: { message: string; onUndo?: () => void; onClose?: () => void }) {

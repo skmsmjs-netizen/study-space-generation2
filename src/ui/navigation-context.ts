@@ -1,3 +1,4 @@
+import { playRouteEntrance } from './interaction-motion';
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 // Navigation hints only. Never place study text, drafts, credentials or server state here.
@@ -145,6 +146,8 @@ export function useRoute(prefix = 'study-space:demo'): string {
   const departed = useRef(false);
   const hasNavigated = useRef(false);
   const restorationPending = useRef(false);
+  const motionJourney = useRef<{ from: string; to: string } | null>(null);
+  const stopMotion = useRef<(() => void) | null>(null);
 
   useEffect(() => {
     const previousScrollRestoration = window.history.scrollRestoration;
@@ -158,6 +161,7 @@ export function useRoute(prefix = 'study-space:demo'): string {
     const capturePosition = (hint?: Position) => {
       // A loading fallback can clamp scroll before the saved page is mounted.
       if (restorationPending.current || departed.current) return;
+      stopMotion.current?.();
       const position: Position = hint || measurePosition();
       context.current.positions[current.current] = position;
       const entries = Object.entries(context.current.positions);
@@ -193,6 +197,7 @@ export function useRoute(prefix = 'study-space:demo'): string {
       else pendingCapture.cancel();
       departed.current = false;
       hasNavigated.current = true;
+      motionJourney.current = { from: current.current, to: next };
       current.current = next;
       context.current.route = next;
       writeContext(context.current, navigationKey);
@@ -228,6 +233,7 @@ export function useRoute(prefix = 'study-space:demo'): string {
     document.addEventListener('pointercancel', cancelPointer, true);
     return () => {
       flush();
+      stopMotion.current?.();
       window.removeEventListener(BEFORE_NAVIGATE, beforeNavigate);
       window.removeEventListener('hashchange', update);
       window.removeEventListener('popstate', update);
@@ -265,6 +271,13 @@ export function useRoute(prefix = 'study-space:demo'): string {
       const readingAnchor = position?.anchor && Array.from(document.querySelectorAll<HTMLElement>('main [data-reading-anchor]')).find(element => element.dataset.readingAnchor === position.anchor!.value && isDisplayed(element));
       const x = position?.x ?? 0, y = readingAnchor && position?.anchor ? Math.max(0, window.scrollY + readingAnchor.getBoundingClientRect().top - position.anchor.offset) : position?.y ?? 0;
       if (window.scrollX !== x || window.scrollY !== y) window.scrollTo({ left: x, top: y, behavior: 'instant' });
+      const main = document.querySelector<HTMLElement>('main#main');
+      const journey = motionJourney.current;
+      if (main && journey?.to === route) {
+        stopMotion.current?.();
+        stopMotion.current = playRouteEntrance(main, journey.from, journey.to);
+        motionJourney.current = null;
+      }
       stopped = true;
     };
     restore();

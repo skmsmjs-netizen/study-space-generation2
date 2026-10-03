@@ -580,7 +580,7 @@
     "feedbackToken": "--motion-feedback",
     "transitionMs": 180,
     "transitionToken": "--motion-transition",
-    "easing": "ease-out",
+    "easing": "cubic-bezier(0.2, 0, 0.38, 0.9)",
     "easingToken": "--motion-ease",
     "reducedMs": 0,
     "pressedTranslationYPx": 1,
@@ -592,7 +592,20 @@
     "ambient": "Use current renderer timing, pause, offscreen/tab visibility and reduced-motion behavior; do not restart explicitly paused motion. Do not set universal scene FPS/duration or freeze expansion.",
     "soundEnabledByDefault": false,
     "sound": "Only after explicit enablement; independent mute and preserved preference. No sound is required to understand a result.",
-    "feedback": "Actual trigger -> existing rule -> factual feedback -> repeated-use policy. Feedback coalesces repeated status changes; never queue decorative celebrations while away."
+    "feedback": "Actual trigger -> existing rule -> factual feedback -> repeated-use policy. Feedback coalesces repeated status changes; never queue decorative celebrations while away.",
+    "interaction": {
+      "pressMs": 70,
+      "enterMs": 240,
+      "exitMs": 110,
+      "routeMs": 240,
+      "travelPx": 16,
+      "sheetTravelPx": 32,
+      "pressScale": 0.98,
+      "entranceEasing": "cubic-bezier(0, 0, 0.38, 0.9)",
+      "exitEasing": "cubic-bezier(0.2, 0, 1, 0.9)",
+      "source": "docs/interaction-motion-20261003.md",
+      "scope": "Buttons, modal/sheet/menu presence, navigation selection and committed route entrance. Immediate input and focus ownership; no animated editor copies."
+    }
   },
   "language": {
     "voice": "Calm, practical, polite Korean; state the real action/object first. Observatory presence belongs in place labels, short secondary copy and material/action continuity.",

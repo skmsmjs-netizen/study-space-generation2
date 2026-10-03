@@ -244,7 +244,16 @@
   --input-font-size: max(16px, var(--type-body-size));
   --motion-feedback: 120ms;
   --motion-transition: 180ms;
-  --motion-ease: ease-out;
+  --motion-ease: cubic-bezier(0.2, 0, 0.38, 0.9);
+  --motion-press: 70ms;
+  --motion-enter: 240ms;
+  --motion-exit: 110ms;
+  --motion-route: 240ms;
+  --motion-ease-enter: cubic-bezier(0, 0, 0.38, 0.9);
+  --motion-ease-exit: cubic-bezier(0.2, 0, 1, 0.9);
+  --motion-travel: 16px;
+  --motion-sheet-travel: 32px;
+  --motion-press-scale: .98;
   --state-disabled-opacity: .55;
   --layout-reading: 48rem;
   --layout-compact: 40rem;

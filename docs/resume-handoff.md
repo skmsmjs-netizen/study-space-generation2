@@ -1,3 +1,9 @@
+## 2026-10-03 버튼·창·메뉴·화면 이동의 기능적 모션 · 배포 준비
+
+사용자 요청으로 Fluent2/공식Carbon v10/Material navigational transitions/WCAG2.2·APG를 직접 조사해 기존 공통 Button·Modal/Sheet·ContextMenu·Tabs/SegmentedControl·NavigationBar와 실제useRoute에 연결했다. 버튼70ms·창240/110ms·메뉴180/110ms·경로240ms;목록/상세만 제목±16px,독립 과업은페이드. 닫힘은즉시inert/aria-hidden·초점복귀·잠금해제;재열기타이머취소·닫는중마지막표시보존·입력/빠른이동/OS와앱모션감소시효과취소. 원문/ID/초안/설정/저장키/개인배치/권한을유지한다.
+
+현재공개main에서분리한작업본work/ux-motion-20261003/release에서관련6파일60단위·타입/앱/백엔드빌드·디자인64CSS0오류,다섯WebKit25검사실패/skip/retry0통과. 최초하네스의주제선택/상세진입누락실패와중단로그도보존했다. backend빌드의무관한생성파일은포함하지않는다. 담당docs/interaction-motion-20261003.md와motion기준값. 필수CI/기존Pages게시/공개자산·실제조작을이어확인한다. 물리기기/IME/VoiceOver/서버Sync/학습효과·제품전체준수로확대하지않는다. 병행변경은최신remote main에서재사용하며공유소스를덮어쓰지않는다.
+
 ## 2026-10-03 선형대수 CI 검사 시간·스크롤 판단 보완
 
 3d59765/CI37088503968은빌드성공/공개skip.5환경에서58초기화단일검사가90초초과;태블릿34/19순회도전체시간초과,휴대전화가로홈은PageDown진행중좌표판단실패.5보고서는work/linear-algebra-observations-20261003/ci-3d59765-failure-summary.json과ci-final-devices에보존했다.제품코드는동일. e2e/devices/linear-algebra-extended.pw.ts에서58개를10개씩6묶음으로보존(5환경35통과/생산휴대전화7);34/19두대량순회검사는측정된Linux부담에맞춰180초(생산태블릿2통과). e2e/devices/os-ui-identity.pw.ts의reachDocumentTarget는실제키보드스크롤이정지한후위치를판단(생산휴대전화가로1통과). 해당공유검사helper만변경했고공통제품코드/다른과목수정은복사하지않았다.최종65개선형대수흐름의근거를보존하며필수새CI/공개확인을이어간다.

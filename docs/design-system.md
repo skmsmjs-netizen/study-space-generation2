@@ -83,3 +83,7 @@
 ## 공통 모션과 재생 위젯
 
 [모션 시스템](motion-system-20261001.md)에 따라 실제 busy의 장식 점, acknowledgment 뒤 저장 표시, Tabs 선택 배경, Toast/빈 상태/Modal opacity를 제공한다. 위젯은 늦게 불러오며 OS/app 모션 감소·화면 가시성·일시정지를 따른다. 입력·초점·원장 의미를 바꾸지 않는다.
+
+## 2026-10-03 버튼·창·화면 이동 모션
+
+[기능적 모션 기준과 구현](interaction-motion-20261003.md)에 Fluent 2/Carbon/Material의 관계·속도·감속 선택과 WCAG/APG의 감소·초점 복귀를 연결한다. 값 원본은 `observatory-experience-baseline.json`의 `motion.interaction`, 소비 토큰은 `tokens.css`이다. 현재 본문·개인 배치·입력·저장 계약을 유지하고, 대표 조작 확인을 모든 화면/물리 기기/학습 효과 완료로 확대하지 않는다.

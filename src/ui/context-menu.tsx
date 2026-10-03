@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
+import { useVisualPresence } from './interaction-motion';
 import './context-menu.css';
 
 export type ContextMenuItem = { id: string; label: string; onSelect: () => void; disabled?: boolean; danger?: boolean };
@@ -10,6 +11,7 @@ export function ContextMenu({ targetLabel, label = '목차 관리', items, disab
   const [open, setOpen] = useState(false);
   const id = useId();
   const trigger = useRef<HTMLButtonElement>(null), menu = useRef<HTMLDivElement>(null);
+  const present = useVisualPresence(open, menu);
   const initialFocus = useRef<'first' | 'last'>('first');
   const close = useCallback((restore = true) => {
     setOpen(false);
@@ -21,7 +23,7 @@ export function ContextMenu({ targetLabel, label = '목차 관리', items, disab
     if (!open || !menu.current || !trigger.current) return;
     const position = () => {
       if (!menu.current || !trigger.current) return;
-      const anchor = trigger.current.getBoundingClientRect(), panel = menu.current.getBoundingClientRect();
+      const anchor = trigger.current.getBoundingClientRect(), panel = { width: menu.current.offsetWidth, height: menu.current.offsetHeight };
       const margin = 8, width = window.innerWidth, height = window.innerHeight;
       menu.current.style.left = `${Math.max(margin, Math.min(anchor.right - panel.width, width - panel.width - margin))}px`;
       const below = anchor.bottom + margin;
@@ -54,7 +56,7 @@ export function ContextMenu({ targetLabel, label = '목차 관리', items, disab
         if (event.nativeEvent.isComposing || !['ArrowDown', 'ArrowUp'].includes(event.key)) return;
         event.preventDefault(); initialFocus.current = event.key === 'ArrowUp' ? 'last' : 'first'; setOpen(true);
       }}>{label}</button>
-    {open && createPortal(<div id={id} ref={menu} role="menu" aria-label={`${targetLabel}: ${label}`} tabIndex={-1} className="ui-context-menu"
+    {present && createPortal(<div data-motion-state={open ? "open" : "closing"} aria-hidden={!open || undefined} inert={!open} id={id} ref={menu} role="menu" aria-label={`${targetLabel}: ${label}`} tabIndex={-1} className="ui-context-menu"
       onKeyDown={event => {
         if (event.nativeEvent.isComposing) return;
         if (event.key === 'Escape') { event.preventDefault(); event.stopPropagation(); close(); return; }
