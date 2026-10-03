@@ -50,7 +50,7 @@ it('saves real native input events for dates/times and keeps deadline history th
 });
 it('keeps filters and calendar selection, limits accumulated cards and expands them on demand',()=>{
  const workspace=emptyRecommendations(data);workspace.schedules=Array.from({length:55},(_,i)=>({id:`s${i}`,subjectId:subjects[0],name:`긴 한국어 일정 ${i}`,kind:'assignment' as const,goalIds:[],targetIds:[],dueDate:'2026-10-08',opensDate:'',weight:null,status:'active' as const,states:{},dueMeaning:'submission' as const,note:'조건'}));saveRecommendations(data,workspace,null);
- let view=show();expect(screen.getAllByRole('button',{name:'일정 수정'})).toHaveLength(20);fireEvent.click(screen.getByRole('button',{name:/일정 더 보기/}));expect(screen.getAllByRole('button',{name:'일정 수정'})).toHaveLength(40);
+ let view=show();expect(screen.getAllByRole('button',{name:/일정 보기 ·/})).toHaveLength(20);fireEvent.click(screen.getByRole('button',{name:/일정 더 보기/}));expect(screen.getAllByRole('button',{name:/일정 보기 ·/})).toHaveLength(40);
  fireEvent.click(screen.getByRole('button',{name:'달력'}));field('달력 월','2026-10');expect(screen.getByRole('button',{name:'2026-10-08 · 일정 55개'})).toBeVisible();fireEvent.click(screen.getByRole('button',{name:'2026-10-08 · 일정 55개'}));
  const region=screen.getByRole('region',{name:'일정 관리'});expect(within(region).getByText('2026-10-08 일정')).toBeVisible();view.unmount();view=show();expect(screen.getByRole('button',{name:'달력'})).toHaveAttribute('aria-pressed','true');
 });

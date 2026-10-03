@@ -38,7 +38,7 @@ export function LearningScheduleEditor({data,workspace,subjectIds,onChange,notif
   const save=()=>{try{const schedules=[...(workspace.schedules??[])],index=schedules.findIndex(s=>s.id===draft.id);
     if(baseSchedule.current&&JSON.stringify(schedules[index])!==JSON.stringify(baseSchedule.current)){setConflicting(schedules[index]??null);throw Error('편집하는 동안 일정이 바뀌었습니다. 초안을 유지했습니다. 현재 저장 기록과 비교해 주세요.');}
     if(index<0)schedules.push(...(repeatEnd?weeklySchedules(draft,repeatEnd,()=>crypto.randomUUID()):[draft]));else schedules[index]=changeSchedule(schedules[index],{...draft,states:schedules[index].states},new Date().toISOString(),'일정 내용·기한 수정');
-    if(change({...workspace,schedules})){setOpen(false);try{clearScheduleDraft(data,draftKey.current,draftRaw.current);draftRaw.current=null;}catch{setError('일정은 저장했습니다. 이 기기의 이전 초안을 정리하지 못했습니다.');}}
+    if(change({...workspace,schedules})){window.dispatchEvent(new CustomEvent('study-space:schedule-saved',{detail:{id:draft.id,isNew:index<0}}));setOpen(false);try{clearScheduleDraft(data,draftKey.current,draftRaw.current);draftRaw.current=null;}catch{setError('일정은 저장했습니다. 이 기기의 이전 초안을 정리하지 못했습니다.');}}
   }catch(e){setError(e instanceof Error?e.message:'일정을 저장하지 못했습니다. 초안은 유지했습니다.');}};
   const update=(s:LearningSchedule,p:Partial<LearningSchedule>,reason='일정 수정')=>change({...workspace,schedules:(workspace.schedules??[]).map(v=>v.id===s.id?changeSchedule(v,p,new Date().toISOString(),reason):v)});
   const restore=(s:LearningSchedule,index:number)=>change({...workspace,schedules:(workspace.schedules??[]).map(v=>v.id===s.id?restoreSchedule(v,s.history![index].previous,new Date().toISOString()):v)});

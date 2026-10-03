@@ -62,11 +62,14 @@ test('calendar, uncertain deadlines, weekly evidence and recovery survive touch 
   );
   await page.getByRole('button', { name: '일정 저장', exact: true }).tap();
   await page.getByLabel('일정 종류 보기', { exact: true }).selectOption('all');
-  await expect(page.getByRole('heading', { name: '검증 주차 강의', exact: true })).toHaveCount(3);
+  await expect(page.getByRole('button', { name: /일정 보기 · 검증 주차 강의/ })).toHaveCount(3);
+  await page.getByRole('button',{name:'일정 보기 · 검증 주차 강의 · 1주차',exact:true}).tap();
   await page.getByLabel('검증 주차 강의 · 1주차 · 출석 확인', { exact: true }).selectOption('done');
+  await page.getByRole('button',{name:'일정 보기 · 검증 주차 강의 · 2주차',exact:true}).tap();
   await expect(page.getByLabel('검증 주차 강의 · 2주차 · 출석 확인', { exact: true })).toHaveValue(
     'unknown',
   );
+  await page.getByRole('button',{name:'일정 보기 · 검증 주차 강의 · 3주차',exact:true}).tap();
   await expect(page.getByLabel('검증 주차 강의 · 3주차 · 출석 확인', { exact: true })).toHaveValue(
     'unknown',
   );
