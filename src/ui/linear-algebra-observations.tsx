@@ -53,9 +53,8 @@ type Props = {
 const implemented = new Set<LinearKind>(
   Object.keys(LINEAR_SPECS).filter((k) => k !== 'static') as LinearKind[],
 );
-function defaultReading(kind: LinearKind): LinearReading {
-  const spec = LINEAR_SPECS[kind],
-    r = newLinearReading();
+function defaultReading(kind: LinearKind, spec = LINEAR_SPECS[kind]): LinearReading {
+  const r = newLinearReading();
   r.params = { t: spec.t?.value ?? 2, n: spec.n?.value ?? 4 };
   if (spec.matrix) r.matrix = r.matrixDraft = spec.matrix;
   if (spec.auxiliary) r.auxiliary = r.auxiliaryDraft = spec.auxiliary.value;
@@ -538,13 +537,13 @@ export function LinearAlgebraObservations({ data, repository, onSaved, reading =
             <Button
               onClick={() =>
                 change({
-                  params: defaultReading(kind).params,
+                  params: defaultReading(kind, spec).params,
                   inputs: {},
-                  matrix: defaultReading(kind).matrix,
-                  matrixDraft: defaultReading(kind).matrixDraft,
-                  auxiliary: defaultReading(kind).auxiliary,
-                  auxiliaryDraft: defaultReading(kind).auxiliaryDraft,
-                  mode: defaultReading(kind).mode,
+                  matrix: defaultReading(kind, spec).matrix,
+                  matrixDraft: defaultReading(kind, spec).matrixDraft,
+                  auxiliary: defaultReading(kind, spec).auxiliary,
+                  auxiliaryDraft: defaultReading(kind, spec).auxiliaryDraft,
+                  mode: defaultReading(kind, spec).mode,
                   imageDetached:state.image ? true : undefined,
                   step: 0,
                 })

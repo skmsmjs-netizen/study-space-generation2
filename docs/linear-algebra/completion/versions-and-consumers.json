@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-03T01:40:37.044Z",
+  "generatedAt": "2026-10-03T02:01:58.839Z",
   "baselineVersion": "2.1.0",
   "knowledgeContractVersion": "1.0.0",
   "source": {
@@ -52,7 +52,7 @@
     },
     {
       "file": "src/ui/linear-algebra-observations.tsx",
-      "sha256": "718135b65cbe7ddd92b74f8e8094b655db5596be42e1aaab79c92c5fb235f0b8"
+      "sha256": "4d0fd8bbc44f2f081f48fa254f1534b27eb4a68face5f9656d7f311abc601420"
     },
     {
       "file": "src/ui/linear-source-reader.tsx",

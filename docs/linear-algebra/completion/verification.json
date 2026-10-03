@@ -1,6 +1,6 @@
 {
   "version": "2.0.0",
-  "at": "2026-10-03T01:41:37.674613+00:00",
+  "at": "2026-10-03T02:04:30.576848+00:00",
   "overallStatus": "확인된 본문 범위의 개념 대응·구현 및 선택 검증 완료; 전 문항/외부 보충/독립 전원식 검증·실제 기기·서버 증거는 별도",
   "scope": {
     "pdfPages": 611,
@@ -46,7 +46,7 @@
     "initialCases": {
       "passed": 25,
       "failed": 5,
-      "report": "device-results.json"
+      "report": "device-results-before-reset.json"
     },
     "resolved": {
       "oldQuestionSelector": 4,
@@ -82,7 +82,20 @@
         "failed": 0,
         "log": "compatibility-core-five.log"
       },
-      "scope": "marker-less previous inputs/memo/view preserved; current model kept in separate optional variants; selection and raw draft survive reload"
+      "scope": "marker-less previous inputs/memo/view preserved; current model kept in separate optional variants; selection and raw draft survive reload",
+      "reset": {
+        "occurrences": 58,
+        "resetButtons": 57,
+        "staticWithoutControls": 1,
+        "status": "passed",
+        "log": "compatibility-reset-resolved.log",
+        "firstFailure": "test expected a reset button on a static reading; test fixed to verify no control",
+        "profiles": 5,
+        "passed": 5,
+        "failed": 0,
+        "resetVisits": 285,
+        "staticReadingVisits": 5
+      }
     }
   },
   "build": {
@@ -207,7 +220,7 @@
   "candidateChecks": {
     "base": "6318aba05e2d6d0b8d43fbe9ce5cc607559d42f7",
     "typecheck": "included in successful npm run build",
-    "build": "compatibility-candidate-build.log",
+    "build": "compatibility-reset-build.log",
     "backend": "release-backend.log",
     "fullUnits": {
       "passed": 1318,
@@ -219,17 +232,30 @@
       "failed": 0,
       "profile": "iPhone-17-Pro-portrait",
       "log": "compatibility-production.log"
+    },
+    "productionReset": {
+      "passed": 1,
+      "failed": 0,
+      "profile": "iPhone-17-Pro-portrait",
+      "log": "compatibility-reset-production.log"
     }
   },
   "deployment": {
     "authorized": true,
-    "status": "prepared; CI and actual Pages pending",
+    "status": "reset correction tested; final candidate preparing",
     "target": "https://skmsmjs-netizen.github.io/study-space-generation2/",
     "privatePdfIncluded": false,
-    "previousCancelledRun": {
-      "commit": "969cac70563cd4f55b5818f653d4a8059415237c",
-      "run": 37084941746,
-      "conclusion": "cancelled before deployment; compatibility omission corrected"
-    }
+    "cancelledRuns": [
+      {
+        "commit": "969cac70563cd4f55b5818f653d4a8059415237c",
+        "run": 37084941746,
+        "conclusion": "cancelled before deployment; compatibility omission corrected"
+      },
+      {
+        "commit": "e5acc32d0d1506f533b4417e3e790f7639f59a62",
+        "run": 37087090153,
+        "conclusion": "cancelled before deployment; selected legacy reset must use legacy spec defaults"
+      }
+    ]
   }
 }
