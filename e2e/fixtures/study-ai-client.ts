@@ -98,7 +98,7 @@ export async function generateStudyMaterial(
                     },
                   }
                 : {}),
-              cards: ['questions', 'study-pack'].includes(request.task)
+              cards: ['questions', 'study-pack', 'practice'].includes(request.task)
                 ? [
                     { question: '합성 첫 질문', answer: '합성 첫 숨긴 답', sourceIds },
                     { question: '합성 둘째 질문', answer: '합성 둘째 숨긴 답', sourceIds },

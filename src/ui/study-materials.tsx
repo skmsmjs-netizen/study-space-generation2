@@ -1,3 +1,4 @@
+import { inputAIFollowup } from '../domain/input-ai';
 import { occurrenceRows } from './list-keys';
 import {
   canonicalStudyTask,
@@ -1296,6 +1297,10 @@ function MaterialEditor({
               만들어졌습니다. 새 결과를 만들면 현재 자료로 정리할 수 있습니다.
             </p>
           )}
+          {['hint','feedback','practice'].includes(result.request?.task ?? '') && <div className="material-actions">
+            <Button onClick={()=>{try {retain(inputAIFollowup(current.current,result,'feedback'));}catch(e){setError(message(e));return;}setNotice('원래 문제·풀이·판단 기준으로 답안 검토를 준비했습니다. 실행을 누르면 생성합니다.');}}>이 답안 검토 준비</Button>
+            <Button onClick={()=>{try {retain(inputAIFollowup(current.current,result,'practice'));}catch(e){setError(message(e));return;}setNotice('원래 문제·풀이·판단 기준으로 재연습을 준비했습니다. GPT 결과를 정답 기준으로 채택하지 않았습니다.');}}>다른 맥락의 재연습 준비</Button>
+          </div>}
           {content.results.length > 1 && (
             <Select
               label="생성 결과"

@@ -1,3 +1,5 @@
+import { subjectAIInput } from './domain/input-ai';
+import { InputAIHelp } from './ui/input-ai-help';
 import { useRoutePerformance } from './ui/use-route-performance';
 import {
   useStudyWorkspace,
@@ -943,6 +945,7 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
                   />
                 )}
               </section>
+              <InputAIHelp triggerLabel="최근 기록 묶음 돌아보기" data={data} defaultTask="reflect" input={subjectAIInput(data,subject.id)} save={command=>commit(command)?.studyMaterials?.find(m=>m.id===command.id)?.version}/>
               <QuickMemos key={`memo:${subject.id}`} data={data} repository={repository} onSaved={setData} ownerId={subject.id} />
             </>
           )}
@@ -1014,6 +1017,7 @@ export function Workspace({ repository, accountControls }: { repository: StudyRe
                             <RecordCard
                               key={r.id}
                               record={r}
+                              data={data}
                               commit={commit}
                               allowNewWrittenReview={resolveCriteria(data, node.id).items.some(
                                 (item) => item.id === 'Cself1' && item.mode !== 'excluded',
@@ -1539,6 +1543,7 @@ function NarrativeEditor({
           <a href={`#/free/${stableId}`}>저장된 자유 기록 열기</a>
         </>}
         {draft.error && <><ErrorState message={draft.error} /><Button onClick={draft.retry}>{draft.blocked ? "원본 사본 보관 후 입력 이어가기" : draft.cleanupPending ? "저장한 초안 정리 다시 시도" : "초안 다시 보관"}</Button></>}
+        <InputAIHelp triggerLabel="이 글로 GPT 도움" data={data} input={{key:`narrative:${stableId}`,title:label,text:draft.body,subjectId:data.subjects.find(s=>s.id===ownerId)?.id ?? data.nodes.find(n=>n.id===ownerId)?.subjectId,topicId:data.nodes.find(n=>n.id===ownerId)?.id}} save={command=>commit(command)?.studyMaterials?.find(m=>m.id===command.id)?.version} />
         <Button disabled={draft.blocked} busy={saving} onClick={() => { void save(); }}>
           {saving ? '저장 중…' : saveError ? '저장 다시 시도' : '내용 저장'}
         </Button>
@@ -1860,6 +1865,7 @@ function RecordForm({
             setDraftBlocked(false); setDraftError("");
           } catch (reason) { setDraftError(reason instanceof DraftArchiveError ? reason.message : "초안을 보관하지 못했습니다. 원본과 현재 창의 입력은 유지했습니다. 저장 공간을 확인한 뒤 다시 시도해 주세요."); }
         }}>{draftBlocked ? "원본 사본 보관 후 입력 이어가기" : "초안 다시 보관"}</Button></>}
+        <InputAIHelp triggerLabel="작성 중인 기록으로 GPT 도움" data={data} defaultTask="organize" input={{key:`record-draft:${key}`,title:'작성 중인 공부 기록',subjectId:data.nodes.find(n=>n.id===form.selectedIds[0])?.subjectId,text:form.selectedIds.filter(id=>(form.bodies[id] ?? '').trim()).map(id=>`주제: ${data.nodes.find(n=>n.id===id)?.name ?? id}\n${form.bodies[id]}\n날짜 입력: ${JSON.stringify(form.dateEvidence)}`).join('\n\n')}} save={command=>commit(command)?.studyMaterials?.find(m=>m.id===command.id)?.version} />
         <div className="save-bar">
           <span className="muted">
             {boot.draft
@@ -1881,10 +1887,12 @@ function RecordForm({
   );
 }
 function RecordCard({
+  data,
   record,
   commit,
   allowNewWrittenReview,
 }: {
+  data: AppState;
   record: StudyRecord;
   commit: Commit;
   allowNewWrittenReview: boolean;
@@ -1903,6 +1911,7 @@ function RecordCard({
   const [editing, setEditing] = useState(body.body !== record.body);
   return (
     <Card className="record-card" data-reading-anchor={`record:${record.id}`}>
+      <InputAIHelp triggerLabel="이 기록으로 GPT 도움" data={data} defaultTask="reasoning" input={{key:`record:${record.id}`,title:'공부 기록',subjectId:record.subjectId,topicId:record.targetId,text:body.body.trim() || answer.body.trim() ? `공부 날짜 입력: ${JSON.stringify(record.dateEvidence)}\n${body.body}\n시험 전 서술 답안:\n${answer.body}` : ''}} save={command=>commit(command)?.studyMaterials?.find(m=>m.id===command.id)?.version} />
       <p className="eyebrow">
         {record.dateEvidence.kind === "exact"
           ? record.dateEvidence.date

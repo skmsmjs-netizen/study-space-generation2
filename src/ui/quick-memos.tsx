@@ -1,3 +1,4 @@
+import { InputAIHelp } from './input-ai-help';
 import { useEffect, useRef, useState, type MouseEvent } from 'react';
 import { Button, EmptyState, ErrorState, Modal, Select, Textarea } from './index';
 import { isViewPage, isViewText, useViewContext } from './use-view-context';
@@ -230,6 +231,7 @@ export function MemoEditor({ memo, data, repository, onSaved, onClose, onCopy, e
     }}>초안 원문 보관 후 편집</Button>}
     {/* biome-ignore lint/a11y/useValidAnchor: The real archives route link closes the draft dialog before normal navigation without changing its preserved original. */}
     {isBlocked && <a href="#/draft-archives" onClick={onClose}>초안 보관본 확인</a>}
+    <InputAIHelp triggerLabel="이 메모로 GPT 도움" data={data} input={{key:`memo:${memo.id}`,title:'메모',text:content.body,subjectId:data.subjects.find(s=>s.id===content.ownerId)?.id ?? data.nodes.find(n=>n.id===content.ownerId)?.subjectId,topicId:data.nodes.find(n=>n.id===content.ownerId)?.id}} defaultTask="organize" save={command=>{const next=repository.execute(command);onSaved(next);return next.studyMaterials?.find(m=>m.id===command.id)?.version;}} />
     <footer className="memo-save-bar"><span role="status">{isBlocked ? '초안 확인 필요' : status}</span><div className="actions"><Button variant="quiet" onClick={exportMemo}>메모 파일로 보관</Button>{!isBlocked && <Button onClick={flush}>지금 저장</Button>}<Button variant="primary" onClick={close}>닫기</Button></div></footer>
   </>;
   return embedded ? <div className="memo-editor canvas-memo-editor nodrag nopan nowheel">{editor}</div> : <Modal open title="작은 메모" onClose={close} className="memo-editor">{editor}</Modal>;

@@ -8,7 +8,7 @@ const output = process.env.DEVICE_RUN_DIR ? path.join(process.env.DEVICE_RUN_DIR
 const fixtureRequire = createRequire(path.join(root, 'package.json'));
 await mkdir(output, { recursive: true });
 await build({
-  entryPoints: { app: path.join(root, 'e2e/fixtures/study-ai.tsx'), 'api-budget': path.join(root, 'e2e/fixtures/api-budget.tsx') },
+  entryPoints: { app: path.join(root, 'e2e/fixtures/study-ai.tsx'), 'api-budget': path.join(root, 'e2e/fixtures/api-budget.tsx'), 'input-ai': path.join(root, 'e2e/fixtures/input-ai.tsx') },
   outdir: output,
   bundle: true,
   format: 'esm',
@@ -47,6 +47,7 @@ await writeFile(
   path.join(output, 'api-budget.html'),
   '<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>API 예산 표시 확인</title><link rel="stylesheet" href="api-budget.css"><style>main{max-width:720px;margin:24px auto;padding:16px}</style><div id="root"></div><script type="module" src="api-budget.js"></script></html>',
 );
+await writeFile(path.join(output, 'input-ai.html'), '<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>입력 GPT 도움 · 합성 확인</title><link rel="stylesheet" href="input-ai.css"><div id="root"></div><script type="module" src="input-ai.js"></script></html>');
 await preview({
   configFile: false,
   build: { outDir: output },

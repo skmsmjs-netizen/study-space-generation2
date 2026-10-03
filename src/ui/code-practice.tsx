@@ -1,3 +1,4 @@
+import { InputAIHelp } from './input-ai-help';
 import { CodeTopicLinkEditor } from './learning-links';
 import { lazy, Suspense, useEffectEvent, useEffect, useRef, useState } from 'react';
 import { Button, EmptyState, ErrorState, Input, Select, Textarea } from './index';
@@ -668,6 +669,7 @@ export function CodeExampleEditor({
           </div>
         )}
       </div>
+      <InputAIHelp triggerLabel="코드·실행 기록 검토" data={data} defaultTask="code" input={{key:`code:${example.id}`,title:content.title || '코드',text:content.code.trim() || content.notes.trim() ? `현재 코드 (${content.language}):\n${content.code}\n현재 입력:\n${content.stdin}\n메모:\n${content.notes}\n이전 실제 실행 당시 기록:\n${content.lastRun ? JSON.stringify(content.lastRun) : '실제 실행 기록 없음'}` : ''}} save={command=>{const next=repository.execute(command);onSaved(next);return next.studyMaterials?.find(m=>m.id===command.id)?.version;}} />
       <div className="code-run-actions">
         <Button variant="primary" onClick={() => start()} disabled={isBlocked || phase !== 'idle'}>
           {phase === 'loading' ? '실행 준비 중…' : phase === 'running' ? '실행 중…' : '실행'}
