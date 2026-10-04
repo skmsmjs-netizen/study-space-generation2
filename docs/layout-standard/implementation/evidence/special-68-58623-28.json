@@ -1,0 +1,73 @@
+{
+  "pageId": "68:58623",
+  "createdNodeIds": [
+    "263:33468",
+    "263:33469",
+    "263:33470",
+    "263:33471"
+  ],
+  "mutatedNodeIds": [
+    "263:33468",
+    "68:69836",
+    "68:69833",
+    "263:33469",
+    "68:69945",
+    "68:69942",
+    "263:33470",
+    "68:70094",
+    "68:70091",
+    "263:33471",
+    "68:70247",
+    "68:70244"
+  ],
+  "results": [
+    {
+      "id": "68:69833",
+      "name": "책 전체의 연결",
+      "pattern": "L196",
+      "structure": "263:33468",
+      "preserved": true,
+      "viewport": {
+        "width": 1420,
+        "height": 1063,
+        "overflow": "NONE"
+      }
+    },
+    {
+      "id": "68:69942",
+      "name": "운동의 기술에서 힘과 보존으로",
+      "pattern": "L194",
+      "structure": "263:33469",
+      "preserved": true,
+      "viewport": {
+        "width": 1878,
+        "height": 1482,
+        "overflow": "NONE"
+      }
+    },
+    {
+      "id": "68:70091",
+      "name": "물질의 반응에서 열과 분자 운동으로",
+      "pattern": "L194",
+      "structure": "263:33470",
+      "preserved": true,
+      "viewport": {
+        "width": 2052,
+        "height": 1244,
+        "overflow": "NONE"
+      }
+    },
+    {
+      "id": "68:70244",
+      "name": "진동에서 파동과 소리로",
+      "pattern": "L194",
+      "structure": "263:33471",
+      "preserved": true,
+      "viewport": {
+        "width": 1396,
+        "height": 924,
+        "overflow": "NONE"
+      }
+    }
+  ]
+}

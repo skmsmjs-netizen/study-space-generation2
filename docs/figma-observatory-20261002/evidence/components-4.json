@@ -1,0 +1,228 @@
+{
+  "status": "created",
+  "createdNodeIds": {
+    "encoding": "figma-id-ranges-v1",
+    "count": 0,
+    "groups": [],
+    "literal": []
+  },
+  "mutatedNodeIds": {
+    "encoding": "figma-id-ranges-v1",
+    "count": 0,
+    "groups": [],
+    "literal": []
+  },
+  "createdVariableIds": [],
+  "registryMap": {
+    "ObservatoryGroundDetails": {
+      "id": "SC11",
+      "name": "ObservatoryGroundDetails",
+      "source": "src/ui/observatory-atmosphere.tsx",
+      "ownerId": "20:6593",
+      "defaultComponentId": "20:6593",
+      "variantIds": [
+        "20:6593"
+      ],
+      "variants": [
+        {
+          "id": "20:6593",
+          "name": "Observatory/v2/Observatory/ObservatoryGroundDetails",
+          "properties": {},
+          "width": 480,
+          "height": 186
+        }
+      ],
+      "propertyIds": {
+        "Role": "Role#20:15",
+        "Purpose": "Purpose#20:16"
+      },
+      "representation": "Existing source-mapped component reused; consult original property definitions."
+    },
+    "ObservatoryDomeTiles": {
+      "id": "SC12",
+      "name": "ObservatoryDomeTiles",
+      "source": "src/ui/observatory-atmosphere.tsx",
+      "ownerId": "20:6605",
+      "defaultComponentId": "20:6605",
+      "variantIds": [
+        "20:6605"
+      ],
+      "variants": [
+        {
+          "id": "20:6605",
+          "name": "Observatory/v2/Observatory/ObservatoryDomeTiles",
+          "properties": {},
+          "width": 480,
+          "height": 186
+        }
+      ],
+      "propertyIds": {
+        "Role": "Role#20:17",
+        "Purpose": "Purpose#20:18"
+      },
+      "representation": "Existing source-mapped component reused; consult original property definitions."
+    },
+    "ObservatoryShockwave": {
+      "id": "SC13",
+      "name": "ObservatoryShockwave",
+      "source": "src/ui/observatory-atmosphere.tsx",
+      "ownerId": "20:6617",
+      "defaultComponentId": "20:6617",
+      "variantIds": [
+        "20:6617"
+      ],
+      "variants": [
+        {
+          "id": "20:6617",
+          "name": "Observatory/v2/Observatory/ObservatoryShockwave",
+          "properties": {},
+          "width": 480,
+          "height": 186
+        }
+      ],
+      "propertyIds": {
+        "Role": "Role#20:19",
+        "Purpose": "Purpose#20:20"
+      },
+      "representation": "Existing source-mapped component reused; consult original property definitions."
+    },
+    "ObservatoryStudySky": {
+      "id": "SC14",
+      "name": "ObservatoryStudySky",
+      "source": "src/ui/observatory-reactivity.tsx",
+      "ownerId": "20:6629",
+      "defaultComponentId": "20:6629",
+      "variantIds": [
+        "20:6629"
+      ],
+      "variants": [
+        {
+          "id": "20:6629",
+          "name": "Observatory/v2/Observatory/ObservatoryStudySky",
+          "properties": {},
+          "width": 480,
+          "height": 186
+        }
+      ],
+      "propertyIds": {
+        "Role": "Role#20:21",
+        "Purpose": "Purpose#20:22"
+      },
+      "representation": "Existing source-mapped component reused; consult original property definitions."
+    },
+    "ObservatoryStudyStation": {
+      "id": "SC15",
+      "name": "ObservatoryStudyStation",
+      "source": "src/ui/observatory-reactivity.tsx",
+      "ownerId": "20:6641",
+      "defaultComponentId": "20:6641",
+      "variantIds": [
+        "20:6641"
+      ],
+      "variants": [
+        {
+          "id": "20:6641",
+          "name": "Observatory/v2/Observatory/ObservatoryStudyStation",
+          "properties": {},
+          "width": 480,
+          "height": 212
+        }
+      ],
+      "propertyIds": {
+        "Role": "Role#20:23",
+        "Purpose": "Purpose#20:24"
+      },
+      "representation": "Existing source-mapped component reused; consult original property definitions."
+    },
+    "ObservatoryRadiance": {
+      "id": "SC16",
+      "name": "ObservatoryRadiance",
+      "source": "src/ui/observatory-radiance.tsx",
+      "ownerId": "20:6653",
+      "defaultComponentId": "20:6653",
+      "variantIds": [
+        "20:6653"
+      ],
+      "variants": [
+        {
+          "id": "20:6653",
+          "name": "Observatory/v2/Observatory/ObservatoryRadiance",
+          "properties": {},
+          "width": 480,
+          "height": 186
+        }
+      ],
+      "propertyIds": {
+        "Role": "Role#20:25",
+        "Purpose": "Purpose#20:26"
+      },
+      "representation": "Existing source-mapped component reused; consult original property definitions."
+    },
+    "ObservatoryRadianceGround": {
+      "id": "SC17",
+      "name": "ObservatoryRadianceGround",
+      "source": "src/ui/observatory-radiance.tsx",
+      "ownerId": "20:6665",
+      "defaultComponentId": "20:6665",
+      "variantIds": [
+        "20:6665"
+      ],
+      "variants": [
+        {
+          "id": "20:6665",
+          "name": "Observatory/v2/Observatory/ObservatoryRadianceGround",
+          "properties": {},
+          "width": 480,
+          "height": 186
+        }
+      ],
+      "propertyIds": {
+        "Role": "Role#20:27",
+        "Purpose": "Purpose#20:28"
+      },
+      "representation": "Existing source-mapped component reused; consult original property definitions."
+    },
+    "ObservatoryEvents": {
+      "id": "SC18",
+      "name": "ObservatoryEvents",
+      "source": "src/ui/observatory-events.tsx",
+      "ownerId": "20:6677",
+      "defaultComponentId": "20:6677",
+      "variantIds": [
+        "20:6677"
+      ],
+      "variants": [
+        {
+          "id": "20:6677",
+          "name": "Observatory/v2/Observatory/ObservatoryEvents",
+          "properties": {},
+          "width": 480,
+          "height": 186
+        }
+      ],
+      "propertyIds": {
+        "Role": "Role#20:29",
+        "Purpose": "Purpose#20:30"
+      },
+      "representation": "Existing source-mapped component reused; consult original property definitions."
+    }
+  },
+  "usable": {},
+  "icons": {
+    "arrow": "15:73",
+    "search": "15:75",
+    "check": "16:70",
+    "close": "16:72",
+    "more": "16:74"
+  },
+  "sharedWorldAssetId": "10:68",
+  "review": null,
+  "counts": {
+    "registry": 8,
+    "common": 0,
+    "variants": 8
+  },
+  "warnings": [],
+  "finalizedReview": false,
+  "scope": "Native component/state and source-contract representation; root validates rendered review and records downstream prototype behavior."
+}

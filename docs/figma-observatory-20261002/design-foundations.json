@@ -1,0 +1,3219 @@
+{
+  "schemaVersion": 1,
+  "status": "native Figma foundations and 48 component mappings created; runtime and published Code Connect are separate",
+  "checked": "2026-10-02",
+  "project": "ManSeekSong OS",
+  "baselineVersion": "2.0.0",
+  "baselineSource": {
+    "path": "docs/observatory-experience-baseline.json",
+    "sha256": "cca2931b4b7c573cc72a604cf41e905ea9beb7427cae5bc21f9301483b7405c6"
+  },
+  "canonicalBaseline": {
+    "schemaVersion": 2,
+    "version": "2.0.0",
+    "date": "2026-10-02",
+    "status": "adopted-design-baseline; implementation and deployment tracked per consumer",
+    "scope": "All current and future ManSeekSong OS UX/UI/design: observatory interior, growing pixel sky through a window, paper work surfaces, stable spatial places and clear functional language. Preserve user overrides and data meaning.",
+    "format": "Project JSON; no DTCG conformance claim",
+    "sources": {
+      "functionalColors": "docs/color-system.json",
+      "sharedTokens": "src/ui/tokens.css",
+      "scenePalette": "docs/observatory-palette.json",
+      "sceneRenderer": "src/ui/pixel-worlds.tsx",
+      "requirements": "docs/observatory-design-standard.md",
+      "spatialRouteMap": "work/observatory-spatial-20261002/route-map.json",
+      "presenceResearch": "docs/observatory-presence-details-20261002.md",
+      "paperReference": "work/observatory-spatial-20261002/paper-reference.jpg",
+      "roomRenderer": "src/ui/observatory-room.tsx",
+      "deskRenderer": "src/ui/observatory-desk.tsx",
+      "selfCompanionReference": "work/observatory-baseline-20261002/self-companion-reference.jpg"
+    },
+    "workSurfaceColors": {
+      "light": {
+        "canvas": "#F1ECE1",
+        "surface": "#FFFAF0",
+        "subtle": "#EEE3C9",
+        "text": "#302D32",
+        "muted": "#625B56",
+        "borderDecorative": "#B8AC91",
+        "borderInteractive": "#827564",
+        "focus": "#2B6E9F",
+        "selected": "#EEE3C9",
+        "selectedText": "#302D32",
+        "primary": "#1E1B4B",
+        "primaryHover": "#312E81",
+        "primaryPressed": "#110F29",
+        "onPrimary": "#FFFFFF"
+      },
+      "dark": {
+        "canvas": "#110F29",
+        "surface": "#242239",
+        "subtle": "#302D48",
+        "text": "#F5EDDD",
+        "muted": "#BCB8C5",
+        "borderDecorative": "#696278",
+        "borderInteractive": "#A79FBB",
+        "focus": "#80AEF9",
+        "selected": "#302D48",
+        "selectedText": "#F5EDDD",
+        "primary": "#E7CE84",
+        "primaryHover": "#FEE5D2",
+        "primaryPressed": "#FCB67F",
+        "onPrimary": "#110F29"
+      }
+    },
+    "sceneColors": {
+      "mode": "reference current scenePalette, not a copied/frozen palette",
+      "extendedAccents": {
+        "atmosphereBlue": "#2B6E9F",
+        "warmWindow": "#E7CE84",
+        "nebulaViolet": "#A995D6"
+      },
+      "extendedAccentUse": "Decorative sky/window roles only; functional text/actions use materials. Preserve existing chart/exam/status role mappings.",
+      "roleReferences": {
+        "deepSky": {
+          "paletteName": "night-950"
+        },
+        "navySky": {
+          "paletteName": "night-800"
+        },
+        "coldBlueAtmosphere": {
+          "paletteName": "night-450"
+        },
+        "blueStarlight": {
+          "paletteName": "cool-500"
+        },
+        "orangeBurst": {
+          "paletteName": "warm-500"
+        },
+        "warmStarlight": {
+          "paletteName": "warm-250"
+        },
+        "whiteCore": {
+          "paletteName": "star-050"
+        },
+        "violetNebula": {
+          "paletteName": "cool-400"
+        },
+        "softViolet": {
+          "baselinePath": "/sceneColors/extendedAccents/nebulaViolet"
+        },
+        "lampLight": {
+          "baselinePath": "/sceneColors/extendedAccents/warmWindow"
+        }
+      }
+    },
+    "sharedTokenReferences": {
+      "bodySize": "--type-body-size",
+      "bodyLine": "--type-body-line",
+      "captionSize": "--type-caption-size",
+      "labelSize": "--type-label-size",
+      "displaySize": "--type-display-size",
+      "displayCompact": "--type-display-compact-size",
+      "titleSize": "--type-title-size",
+      "headingSize": "--type-heading-size",
+      "space1": "--space-1",
+      "space2": "--space-2",
+      "space3": "--space-3",
+      "space4": "--space-4",
+      "space5": "--space-5",
+      "space6": "--space-6",
+      "space7": "--space-7",
+      "space8": "--space-8",
+      "spaceGroup": "--space-group",
+      "controlHeight": "--control-height",
+      "iconTarget": "--icon-target",
+      "iconSize": "--icon-size",
+      "inputFont": "--input-font-size",
+      "borderWidth": "--border-width",
+      "focusWidth": "--focus-width",
+      "focusOffset": "--focus-offset",
+      "readingWidth": "--layout-reading",
+      "dialogWidth": "--layout-dialog",
+      "feedbackDuration": "--motion-feedback",
+      "transitionDuration": "--motion-transition",
+      "easing": "--motion-ease"
+    },
+    "pixelTreatment": {
+      "edgeStepPx": 2,
+      "decorativeCornerRadiusPx": 0,
+      "workSurfaceBorderPx": 1,
+      "newPixelIconArtboardPx": 20,
+      "preferredSpriteScale": "integer; preserve native aspect ratio; responsive fallback must remain legible",
+      "pixelatedRendering": "pixel artwork only",
+      "bodyFont": "existing interface/reading/mono settings",
+      "sceneTiming": "current renderer owns scene timing, sampling and evolution; do not impose common UI duration or a fixed stage/frame count",
+      "scope": "Common controls, tabs, panels, dialogs, icons and scene props; not limited to isolated decoration",
+      "componentRadiusPx": {
+        "button": 0,
+        "input": 0,
+        "tab": 0,
+        "panel": 0,
+        "dialog": 2,
+        "toast": 0
+      },
+      "floatingShadow": {
+        "offsetXPx": 2,
+        "offsetYPx": 4,
+        "blurPx": 0,
+        "spreadPx": 0,
+        "lightColor": "#302D3233",
+        "darkColor": "#00000066"
+      },
+      "normalSurfaceShadow": "none",
+      "pressedTranslationYPx": 1,
+      "cornerTreatment": "2px stepped outlines for reusable pixel frames; do not clip focus ring or hit target",
+      "existingRadiusPolicy": "Current 4/6/8/12px radii are runtime inventory, not a permanent visual constraint. Adopt the new role-specific values through shared components."
+    },
+    "componentStates": {
+      "default": "Containing material surface + text; use interactive border when the boundary is necessary.",
+      "hover": "Containing material subtle; primaryHover for a filled primary action.",
+      "pressed": "Containing material selected with visible indicator; primaryPressed for filled primary action; 1px down.",
+      "focus": "Containing material focus ring with surface-colored gap; distinct from selected.",
+      "disabled": "No action; native/aria disabled plus factual label. Use readable material muted text without global opacity; do not make helper explanations unreadable.",
+      "busy": "in-flight request only; prevent duplicate activation of same command; preserve draft",
+      "invalid": "existing danger role + field-associated explanation; preserve entered text",
+      "readOnly": "Readable/selectable text in the material; labelled when needed; no misleading disabled appearance."
+    },
+    "uxDefaults": {
+      "theme": "Preserve saved theme/font and existing OS-following mode. Interior + paper is the observatory composition default, not authority to overwrite a selected light/dark/high-contrast setting. In user-selected dark reading, retain paper layout and use the selected readable dark surface.",
+      "sound": "off unless user explicitly enabled",
+      "ambientMotion": "keep existing user choice; respect reduced motion and pause; never auto-resume after explicit pause",
+      "workSurfaceLoopMotion": false,
+      "automaticCameraMotionWhileEditing": false,
+      "forceAvatarNavigation": false,
+      "selection": "one current selection per relevant control; persist within existing owner and scope",
+      "primaryAction": "one visually dominant action per task region; not one button limit for the whole app",
+      "input": "reuse known context; date/details/free prose remain optional where currently optional",
+      "save": "local acknowledgement labels device save; server acknowledgement labels server save; pending/conflict/error distinct",
+      "failure": "keep original draft and user input; offer retry and real recovery; no success effect before acknowledgement",
+      "return": "restore supported draft, target, filter, scroll/camera and manual layout through current persistence owners",
+      "recalculation": "data/scope/viewport change updates derived visuals; never overwrites manual Canvas coordinates or cursor/selection",
+      "empty": "show usable basic room and direct next action; no failure/locked status inferred from absence",
+      "growth": "use existing search/filter/detail and graph auto-layout policy; no arbitrary universal item limit",
+      "chart": "existing registry and user-selected chart; labels/units/evidence survive theme changes",
+      "meaning": "attempt is not mastery; decorative stars are not actual concepts unless ID links are implemented",
+      "workSurface": "Opaque paper by default under the window; saved reading/theme overrides remain higher priority."
+    },
+    "accessibilityTargets": {
+      "normalTextContrast": 4.5,
+      "largeTextContrast": 3,
+      "essentialNonTextContrast": 3,
+      "colorOnlyMeaning": false,
+      "reducedUiMotionMs": 0,
+      "source": "WCAG 2.2 relevant criteria; not a full conformance claim",
+      "scope": "Flat opaque sRGB pairs are necessary color checks only; whole-app WCAG conformance, composited scene contrast and actual assistive-technology behavior require their own evidence."
+    },
+    "changePolicy": {
+      "owner": "docs/observatory-design-standard.md explains roles; this JSON owns numeric defaults and baseline rules. Existing color/token pipeline owns generated production values; reconcile the targeted consumer explicitly.",
+      "userOverrides": "preserve; baseline applies only when no applicable user override",
+      "sceneExpansion": "current observatory source remains authoritative; update role mappings with new effects; no frozen stage/color count",
+      "exception": "record role, reason, scope, alternative and verification; no per-screen arbitrary constants",
+      "completion": "Design v2 adoption, consumer migration, rendered/device verification, deployment and long-term user effect are independent states.",
+      "existingVisualCriteria": "Revise old neutral-color dominance, rounded shapes, blur shadows and illustration hierarchy when they conflict with this identity. Preserve meaning, accessibility and user overrides; old appearance has no veto.",
+      "technologyAdaptation": {
+        "status": "Current shared defaults, adjustable with technology implementation and actual use; not permanent limits on technical expression.",
+        "scope": [
+          "color",
+          "dimensions",
+          "spacing",
+          "pixel treatment",
+          "materials and lighting",
+          "shadows",
+          "motion timing",
+          "transitions",
+          "layout and interaction presentation"
+        ],
+        "decision": "Advanced rendering, lighting, animation and interaction may justify revising the current design values. Do not constrain new technology to old numbers solely because they were previously adopted.",
+        "maintenance": "Within the authorized task, update the owning baseline/token/component and actual consumer together; record the reason, affected scope and relevant rendered/use verification. Do not introduce a new approval gate for every numerical adjustment.",
+        "preserve": "Observatory identity and symbolic self-companion viewpoint; complete original widget with external frame; readability and operability; learning/data meaning and user settings. Technical evolution does not imply permission to crop the widget, change ownership or overwrite records.",
+        "evidence": "Select existing appropriate methods/tools first. Judge changes by the intended experience and relevant accessibility, responsiveness and runtime behavior; a more advanced implementation alone is not proof of improvement.",
+        "adoptedOn": "2026-10-02"
+      }
+    },
+    "sourceOwnership": {
+      "canonicalDesign": {
+        "version": "2.0.0",
+        "colors": "/materials",
+        "spatialRules": "/spatialWorkspace",
+        "dimensions": "/metrics",
+        "pixelRules": "/pixelTreatment",
+        "motion": "/motion",
+        "copy": "/language",
+        "enginePresentation": "/enginePresentation",
+        "ruleDocument": "docs/observatory-design-standard.md"
+      },
+      "runtimeCompatibility": {
+        "mathWorkspace": {
+          "adoptedValueVersion": "1.1.0",
+          "preservedPaths": [
+            "/workSurfaceColors",
+            "/pixelTreatment"
+          ],
+          "consumedPaths": [
+            "/workSurfaceColors/light",
+            "/workSurfaceColors/dark",
+            "/pixelTreatment/componentRadiusPx"
+          ],
+          "consumer": "scripts/sync-math-observatory.mjs",
+          "generatedOutput": "src/ui/math-observatory-tokens.css",
+          "scope": ".math-explorer and its fullscreen portal",
+          "migration": "Current workSurfaceColors are compatibility values, not v2 default colors. Update the consumer deliberately and verify its material/theme mapping. A root version log is not proof of v2 color adoption."
+        }
+      },
+      "pixelCompatibility": "Pixel dimensions remain adopted v2 defaults as well as preserved v1.1 consumer inputs. There is one shared pixelTreatment object, not a competing copy.",
+      "sharedMetrics": "metrics entries with token references express adopted values at 16px root; source and consumer tokens must change together in a scoped implementation. Preserve rem scaling and user type settings.",
+      "sceneOwnership": "Current scene palette/renderers/engine own sky colors, conditions, timing and expansion. No scene count or engine range is fixed by this baseline."
+    },
+    "materials": {
+      "interior": {
+        "canvas": "#1F1E1B",
+        "surface": "#282722",
+        "subtle": "#33312D",
+        "text": "#E8E3D7",
+        "muted": "#B7B0A2",
+        "borderDecorative": "#514A42",
+        "borderInteractive": "#8B8071",
+        "focus": "#D7B477",
+        "selected": "#33312D",
+        "selectedText": "#E8E3D7",
+        "primary": "#D7B477",
+        "primaryHover": "#E5C890",
+        "primaryPressed": "#C2A062",
+        "onPrimary": "#1F1E1B"
+      },
+      "paper": {
+        "canvas": "#E4DCCD",
+        "surface": "#E4DCCD",
+        "subtle": "#D7CBB4",
+        "text": "#34312B",
+        "muted": "#5B5448",
+        "borderDecorative": "#B4A891",
+        "borderInteractive": "#796D5D",
+        "focus": "#725425",
+        "selected": "#D7CBB4",
+        "selectedText": "#34312B",
+        "primary": "#554530",
+        "primaryHover": "#473924",
+        "primaryPressed": "#3B3022",
+        "onPrimary": "#E4DCCD"
+      }
+    },
+    "materialPolicy": {
+      "composition": "Dark room/desk; framed pixel sky; opaque warm paper for the current reading/writing/calculation task. Material belongs to a region, not to the feature name.",
+      "theme": "Preserve saved theme/font and existing OS-following mode. Interior + paper is the observatory composition default, not authority to overwrite a selected light/dark/high-contrast setting. In user-selected dark reading, retain paper layout and use the selected readable dark surface.",
+      "clock": "Time changes scene lighting only; it does not automatically recolor text/paper or switch the selected UI theme.",
+      "inheritance": "Resolve control text, border, selected and focus from the containing material. Do not use dark-room gold as paper text or paper focus as a dark-room ring.",
+      "selection": "A selected fill alone is insufficient; add a check, current label or visible edge using the material interactive border/text.",
+      "focus": "Use 2px ring and 3px gap. The gap uses the containing material surface so a gold action in the interior remains separate from its gold focus ring. Do not clip the ring.",
+      "decorativeBorder": "Decorative borders/rules are not sufficient as the only boundary of a control or as a state indicator.",
+      "semanticColors": "Keep current exam-possible orange, exam-confirmed red, chart/math/status and user colors in their existing owners. Confirm contrast on the new material; if needed use a readable existing status surface plus text/icon rather than silently recolor meaning.",
+      "claims": "Own project palette: no claim of exact Claude color sampling, exact photo extraction, physically measured cosmic color, or optimality proved by research."
+    },
+    "metrics": {
+      "units": "CSS px or rem as named; rem values scale with the user root font. Pixel-art grid does not quantize text or hit targets.",
+      "type": {
+        "body": {
+          "token": "--type-body-size",
+          "rem": 1,
+          "pxAt16": 16,
+          "lineToken": "--type-body-line",
+          "line": 1.65,
+          "weight": 400
+        },
+        "label": {
+          "token": "--type-label-size",
+          "rem": 0.9375,
+          "pxAt16": 15,
+          "lineToken": "--type-label-line",
+          "line": 1.5,
+          "weight": 600
+        },
+        "caption": {
+          "token": "--type-caption-size",
+          "rem": 0.875,
+          "pxAt16": 14,
+          "lineToken": "--type-caption-line",
+          "line": 1.6,
+          "weight": 400
+        },
+        "heading": {
+          "token": "--type-heading-size",
+          "rem": 1.25,
+          "pxAt16": 20,
+          "lineToken": "--type-heading-line",
+          "line": 1.4,
+          "weight": 600
+        },
+        "title": {
+          "token": "--type-title-size",
+          "rem": 1.75,
+          "compactToken": "--type-title-compact-size",
+          "compactRem": 1.5,
+          "lineToken": "--type-title-line",
+          "line": 1.35,
+          "weight": 600
+        },
+        "input": {
+          "token": "--input-font-size",
+          "minPx": 16
+        },
+        "font": "Existing --font-interface/--font-reading/--font-mono; preserve Korean readability and personal font choices. Pixel fonts are optional short decorative labels only."
+      },
+      "space": {
+        "pxAt16": [
+          0,
+          4,
+          8,
+          12,
+          16,
+          24,
+          32,
+          48,
+          64
+        ],
+        "tokens": [
+          "--space-0",
+          "--space-1",
+          "--space-2",
+          "--space-3",
+          "--space-4",
+          "--space-5",
+          "--space-6",
+          "--space-7",
+          "--space-8"
+        ],
+        "groupPxAt16": 18,
+        "groupToken": "--space-group"
+      },
+      "control": {
+        "heightPx": 48,
+        "heightToken": "--control-height",
+        "iconTargetMinPx": 44,
+        "iconTargetToken": "--icon-target",
+        "iconArtboardPx": 20,
+        "iconToken": "--icon-size",
+        "borderPx": 1,
+        "borderToken": "--border-width",
+        "focusPx": 2,
+        "focusToken": "--focus-width",
+        "focusOffsetPx": 3,
+        "focusOffsetToken": "--focus-offset",
+        "heightPolicy": "Minimum target/height; allow growth for wrapped Korean labels. Do not shrink targets to pixel art."
+      },
+      "layout": {
+        "readingMaxRem": 48,
+        "readingToken": "--layout-reading",
+        "dialogMaxRem": 36,
+        "dialogToken": "--layout-dialog",
+        "compactContainerRem": 40,
+        "wideContainerRem": 64,
+        "pagePaddingRem": 1.5,
+        "compactPaddingRem": 1,
+        "sectionGapRem": 1.5,
+        "relatedGapRem": 0.5,
+        "formFieldGapRem": 1,
+        "responsivePolicy": "Use available container width, not device names. Collapse into one reading column below 40rem; retain independent functional controls and direct navigation. Intrinsically 2D plots/canvas keep pan/zoom and accessible values."
+      },
+      "window": {
+        "framePx": 8,
+        "compactFramePx": 4,
+        "edgeStepPx": 2,
+        "sillDepthPx": 8,
+        "compactSillDepthPx": 4,
+        "deskGapRem": 1.5,
+        "compactDeskGapRem": 1,
+        "artSizing": "Preserve the entire original widget, native aspect ratio, viewBox, scene extent and existing controls. Resize the whole widget proportionally when necessary; no cover crop, clipped edge, scene zoom/recomposition or reduced aperture to make room for the frame. Current detailed artwork remains renderer-owned. Existing user-controlled pan/zoom is preserved.",
+        "pointerPolicy": "Outside frame/sill decoration never intercepts the original widget controls, focus, pointer or touch scroll. Preserve the original interactive bounds; do not shrink them to an inset window aperture. Allow menus/focus to remain visible outside bounds through their existing overlay behavior.",
+        "placement": "Outside the complete widget content bounds. Reserve additional layout space for frame/sill; never overlay them onto the widget image or controls.",
+        "cropAllowed": false,
+        "decorativeOcclusionPx": 0
+      },
+      "paper": {
+        "paddingRem": 1.5,
+        "compactPaddingRem": 1,
+        "borderPx": 1,
+        "opacity": 1,
+        "rotationDeg": 0,
+        "textureOpacityUnderText": 0,
+        "textGlowPx": 0,
+        "textBlurPx": 0,
+        "shadow": {
+          "xPx": 2,
+          "yPx": 2,
+          "blurPx": 0,
+          "spreadPx": 0,
+          "color": "#00000033"
+        },
+        "defaultVisibleStackOffsetSheets": 0,
+        "rulePolicy": "Thin decorative rules only where they communicate grouping; no forced ruled lines behind formulas/graphs. Default one continuous document, not nested cards for every item.",
+        "scrollPolicy": "Long content grows/scrolls in the actual reading area. Never clip notes or lock paragraph heights to a decorative sheet."
+      }
+    },
+    "spatialWorkspace": {
+      "routeMap": "work/observatory-spatial-20261002/route-map.json",
+      "places": [
+        {
+          "id": "front",
+          "label": "공부 책상",
+          "facingDeg": 0,
+          "task": "오늘의 공부·기록·메모·인출"
+        },
+        {
+          "id": "left",
+          "label": "자료 책장",
+          "facingDeg": 270,
+          "task": "과목·강의 자료·자료 카드·개념 전집"
+        },
+        {
+          "id": "right",
+          "label": "탐구 작업대",
+          "facingDeg": 90,
+          "task": "수식 탐색·코딩 연습"
+        },
+        {
+          "id": "back",
+          "label": "기록·계획 벽",
+          "facingDeg": 180,
+          "task": "통계·일정과 과제·Canvas·그래프뷰·칸반"
+        }
+      ],
+      "homeAndUse": "Each function has a stable home place. A chosen source, small tool or note can stay beside the current task; do not turn for every supporting action.",
+      "global": "Find, account/settings, help and allowed AI controls remain directly available through existing scope. AI is owner-only; a global AI control is not assumed implemented.",
+      "navigation": "Keep existing functional menu labels and direct destination controls. Places supplement names. Browser Back means prior history, not the back wall. No forced avatar walking, scroll/edge-hover turn or detour through the front.",
+      "directEntry": "Valid deep link/search result opens its real target in the relevant place. Restore saved supported task state; never invent a prior caller. Missing/deleted target falls back to its usable list with a factual message.",
+      "return": "Borrowed panel closes to its caller/trigger; explicit full-list command goes to its home place. Restore supported route, target, filter, scroll/camera, focus and draft through existing persistence owners.",
+      "continuity": "No orientation animation while typing, Korean IME composition, or blocking an urgent action. Commit current draft via existing contract before unmount; a failed save preserves the original draft and recovery path. Room turn creates no study event.",
+      "viewContinuity": "Same room/window/light across places; left view keeps the front window at the right edge, right view at the left edge, back view does not duplicate it. The observatory outside the window is also the user, viewed with the gentle distance of a companion: the studying self inside and the self represented by the observatory outside. This symbolic dual viewpoint is intentional; do not remove or redesign the original observatory to enforce literal building geometry. It does not imply another account, an AI companion or measured achievement.",
+      "repeatUse": "Place meanings stay stable as data grows. Search/filter/detail handle accumulation; preserve manual Canvas positions. Distinguish persistent user choice from temporary camera or caller state, and document new persistence owners before implementation."
+    },
+    "motion": {
+      "feedbackMs": 120,
+      "feedbackToken": "--motion-feedback",
+      "transitionMs": 180,
+      "transitionToken": "--motion-transition",
+      "easing": "ease-out",
+      "easingToken": "--motion-ease",
+      "reducedMs": 0,
+      "pressedTranslationYPx": 1,
+      "orientation": "Short directional transition for an explicit place change; angle describes location, not a required 3D camera spin. Current place remains labelled; input is not delayed until animation ends.",
+      "workSurfaceLoopCount": 0,
+      "keystrokeEffectCount": 0,
+      "autosaveCelebrationCount": 0,
+      "forcedEntranceCount": 0,
+      "ambient": "Use current renderer timing, pause, offscreen/tab visibility and reduced-motion behavior; do not restart explicitly paused motion. Do not set universal scene FPS/duration or freeze expansion.",
+      "soundEnabledByDefault": false,
+      "sound": "Only after explicit enablement; independent mute and preserved preference. No sound is required to understand a result.",
+      "feedback": "Actual trigger -> existing rule -> factual feedback -> repeated-use policy. Feedback coalesces repeated status changes; never queue decorative celebrations while away."
+    },
+    "language": {
+      "voice": "Calm, practical, polite Korean; state the real action/object first. Observatory presence belongs in place labels, short secondary copy and material/action continuity.",
+      "featureNames": "Preserve functional names such as 기록/통계/수식 탐색. Do not replace save, delete, retry, exam, sync or error with ambiguous space metaphors.",
+      "frequency": "At most one short atmospheric helper line in the active task header or empty state; no repeated slogan in every row/toast. Omit if it delays the next action.",
+      "examples": [
+        {
+          "context": "resume",
+          "primary": "이어서 공부하기",
+          "secondary": "펼쳐 둔 자리에서 이어가세요.",
+          "condition": "Only when a restorable task exists."
+        },
+        {
+          "context": "materials",
+          "primary": "자료 찾기",
+          "secondary": "책상에 펼칠 자료를 골라 주세요.",
+          "condition": "Do not claim desk opening until that flow exists."
+        },
+        {
+          "context": "math",
+          "primary": "수식 탐색",
+          "secondary": "조건을 하나씩 바꾸며 살펴보세요.",
+          "condition": "Use actual manipulable conditions."
+        },
+        {
+          "context": "memo",
+          "primary": "메모 남기기",
+          "secondary": "지금 떠오른 생각을 적어 두세요.",
+          "condition": "Free text remains optional."
+        },
+        {
+          "context": "return",
+          "primary": "하던 공부로 돌아가기",
+          "secondary": "",
+          "condition": "Only with a valid caller; otherwise actual list name."
+        },
+        {
+          "context": "localSave",
+          "primary": "이 기기에 저장했어요.",
+          "secondary": "",
+          "condition": "Local acknowledgement received."
+        },
+        {
+          "context": "serverSave",
+          "primary": "서버에 저장했어요.",
+          "secondary": "",
+          "condition": "Server acknowledgement received."
+        },
+        {
+          "context": "saveError",
+          "primary": "저장하지 못했어요.",
+          "secondary": "다시 시도",
+          "condition": "State actual failure and retained draft only if verified; never show a success effect."
+        },
+        {
+          "context": "emptyStudy",
+          "primary": "공부할 주제를 골라 주세요.",
+          "secondary": "",
+          "condition": "No failure, locked room or low ability inferred from empty data."
+        }
+      ]
+    },
+    "enginePresentation": {
+      "owners": [
+        "src/domain/daily-study-dynamics.ts",
+        "src/domain/study-landscape.ts",
+        "src/domain/observatory-response.ts",
+        "src/domain/observatory-evolution.ts",
+        "src/ui/pixel-worlds.tsx"
+      ],
+      "rule": "Reuse actual observation/derived state and its existing renderer normalization. This design baseline changes presentation, not scores, thresholds, study meaning or engine formulas.",
+      "mappings": [
+        {
+          "input": "current renderer scene/time state",
+          "display": "sky, cloud, cold/warm light and scene props",
+          "constraint": "Use current palette and scene source; keep functional paper/text stable."
+        },
+        {
+          "input": "recorded study activity and existing response output",
+          "display": "existing subtle light/prop response",
+          "constraint": "An attempt is not mastery; no fabricated XP, completion or independent success."
+        },
+        {
+          "input": "local or server acknowledgement",
+          "display": "corresponding concise saved status",
+          "constraint": "No acknowledgement inferred from click, animation completion or a flush return alone."
+        },
+        {
+          "input": "actual stable-ID concept and relationship data",
+          "display": "linked graph/constellation when that integration exists",
+          "constraint": "Decorative stars are not real concepts or verified knowledge growth."
+        },
+        {
+          "input": "math/statistics calculation",
+          "display": "precise plot, formula, units, selected values and accessible data on the work surface",
+          "constraint": "Atmospheric decoration never changes axes, labels, relationship direction, semantic colors or uncertainty."
+        }
+      ],
+      "widgets": "Each widget finishes one small task; default/empty/loading/error/selection/read-only and return states inherit shared rules. Use existing engines and owners rather than duplicate a simulation."
+    },
+    "clarifications": [
+      {
+        "date": "2026-10-02",
+        "userStatements": [
+          "뭔가 동료 천문대를 보는느낌인거지..",
+          "근데 그 동료가 사실 나인 ···",
+          "단, 위젯을 자르면 안대. 위젯 바깥에 테두리를 넣는거지.."
+        ],
+        "decision": "Inside is the studying self; outside is the same self seen as a companion through the observatory. Keep the original complete widget and add the frame beyond its boundary.",
+        "reference": "work/observatory-baseline-20261002/self-companion-reference.jpg",
+        "scope": "Identity and framing criteria clarification; no production renderer change in this amendment."
+      }
+    ]
+  },
+  "materials": {
+    "interior": {
+      "canvas": "#1F1E1B",
+      "surface": "#282722",
+      "subtle": "#33312D",
+      "text": "#E8E3D7",
+      "muted": "#B7B0A2",
+      "borderDecorative": "#514A42",
+      "borderInteractive": "#8B8071",
+      "focus": "#D7B477",
+      "selected": "#33312D",
+      "selectedText": "#E8E3D7",
+      "primary": "#D7B477",
+      "primaryHover": "#E5C890",
+      "primaryPressed": "#C2A062",
+      "onPrimary": "#1F1E1B"
+    },
+    "paper": {
+      "canvas": "#E4DCCD",
+      "surface": "#E4DCCD",
+      "subtle": "#D7CBB4",
+      "text": "#34312B",
+      "muted": "#5B5448",
+      "borderDecorative": "#B4A891",
+      "borderInteractive": "#796D5D",
+      "focus": "#725425",
+      "selected": "#D7CBB4",
+      "selectedText": "#34312B",
+      "primary": "#554530",
+      "primaryHover": "#473924",
+      "primaryPressed": "#3B3022",
+      "onPrimary": "#E4DCCD"
+    }
+  },
+  "metrics": {
+    "units": "CSS px or rem as named; rem values scale with the user root font. Pixel-art grid does not quantize text or hit targets.",
+    "type": {
+      "body": {
+        "token": "--type-body-size",
+        "rem": 1,
+        "pxAt16": 16,
+        "lineToken": "--type-body-line",
+        "line": 1.65,
+        "weight": 400
+      },
+      "label": {
+        "token": "--type-label-size",
+        "rem": 0.9375,
+        "pxAt16": 15,
+        "lineToken": "--type-label-line",
+        "line": 1.5,
+        "weight": 600
+      },
+      "caption": {
+        "token": "--type-caption-size",
+        "rem": 0.875,
+        "pxAt16": 14,
+        "lineToken": "--type-caption-line",
+        "line": 1.6,
+        "weight": 400
+      },
+      "heading": {
+        "token": "--type-heading-size",
+        "rem": 1.25,
+        "pxAt16": 20,
+        "lineToken": "--type-heading-line",
+        "line": 1.4,
+        "weight": 600
+      },
+      "title": {
+        "token": "--type-title-size",
+        "rem": 1.75,
+        "compactToken": "--type-title-compact-size",
+        "compactRem": 1.5,
+        "lineToken": "--type-title-line",
+        "line": 1.35,
+        "weight": 600
+      },
+      "input": {
+        "token": "--input-font-size",
+        "minPx": 16
+      },
+      "font": "Existing --font-interface/--font-reading/--font-mono; preserve Korean readability and personal font choices. Pixel fonts are optional short decorative labels only."
+    },
+    "space": {
+      "pxAt16": [
+        0,
+        4,
+        8,
+        12,
+        16,
+        24,
+        32,
+        48,
+        64
+      ],
+      "tokens": [
+        "--space-0",
+        "--space-1",
+        "--space-2",
+        "--space-3",
+        "--space-4",
+        "--space-5",
+        "--space-6",
+        "--space-7",
+        "--space-8"
+      ],
+      "groupPxAt16": 18,
+      "groupToken": "--space-group"
+    },
+    "control": {
+      "heightPx": 48,
+      "heightToken": "--control-height",
+      "iconTargetMinPx": 44,
+      "iconTargetToken": "--icon-target",
+      "iconArtboardPx": 20,
+      "iconToken": "--icon-size",
+      "borderPx": 1,
+      "borderToken": "--border-width",
+      "focusPx": 2,
+      "focusToken": "--focus-width",
+      "focusOffsetPx": 3,
+      "focusOffsetToken": "--focus-offset",
+      "heightPolicy": "Minimum target/height; allow growth for wrapped Korean labels. Do not shrink targets to pixel art."
+    },
+    "layout": {
+      "readingMaxRem": 48,
+      "readingToken": "--layout-reading",
+      "dialogMaxRem": 36,
+      "dialogToken": "--layout-dialog",
+      "compactContainerRem": 40,
+      "wideContainerRem": 64,
+      "pagePaddingRem": 1.5,
+      "compactPaddingRem": 1,
+      "sectionGapRem": 1.5,
+      "relatedGapRem": 0.5,
+      "formFieldGapRem": 1,
+      "responsivePolicy": "Use available container width, not device names. Collapse into one reading column below 40rem; retain independent functional controls and direct navigation. Intrinsically 2D plots/canvas keep pan/zoom and accessible values."
+    },
+    "window": {
+      "framePx": 8,
+      "compactFramePx": 4,
+      "edgeStepPx": 2,
+      "sillDepthPx": 8,
+      "compactSillDepthPx": 4,
+      "deskGapRem": 1.5,
+      "compactDeskGapRem": 1,
+      "artSizing": "Preserve the entire original widget, native aspect ratio, viewBox, scene extent and existing controls. Resize the whole widget proportionally when necessary; no cover crop, clipped edge, scene zoom/recomposition or reduced aperture to make room for the frame. Current detailed artwork remains renderer-owned. Existing user-controlled pan/zoom is preserved.",
+      "pointerPolicy": "Outside frame/sill decoration never intercepts the original widget controls, focus, pointer or touch scroll. Preserve the original interactive bounds; do not shrink them to an inset window aperture. Allow menus/focus to remain visible outside bounds through their existing overlay behavior.",
+      "placement": "Outside the complete widget content bounds. Reserve additional layout space for frame/sill; never overlay them onto the widget image or controls.",
+      "cropAllowed": false,
+      "decorativeOcclusionPx": 0
+    },
+    "paper": {
+      "paddingRem": 1.5,
+      "compactPaddingRem": 1,
+      "borderPx": 1,
+      "opacity": 1,
+      "rotationDeg": 0,
+      "textureOpacityUnderText": 0,
+      "textGlowPx": 0,
+      "textBlurPx": 0,
+      "shadow": {
+        "xPx": 2,
+        "yPx": 2,
+        "blurPx": 0,
+        "spreadPx": 0,
+        "color": "#00000033"
+      },
+      "defaultVisibleStackOffsetSheets": 0,
+      "rulePolicy": "Thin decorative rules only where they communicate grouping; no forced ruled lines behind formulas/graphs. Default one continuous document, not nested cards for every item.",
+      "scrollPolicy": "Long content grows/scrolls in the actual reading area. Never clip notes or lock paragraph heights to a decorative sheet."
+    }
+  },
+  "pixelTreatment": {
+    "edgeStepPx": 2,
+    "decorativeCornerRadiusPx": 0,
+    "workSurfaceBorderPx": 1,
+    "newPixelIconArtboardPx": 20,
+    "preferredSpriteScale": "integer; preserve native aspect ratio; responsive fallback must remain legible",
+    "pixelatedRendering": "pixel artwork only",
+    "bodyFont": "existing interface/reading/mono settings",
+    "sceneTiming": "current renderer owns scene timing, sampling and evolution; do not impose common UI duration or a fixed stage/frame count",
+    "scope": "Common controls, tabs, panels, dialogs, icons and scene props; not limited to isolated decoration",
+    "componentRadiusPx": {
+      "button": 0,
+      "input": 0,
+      "tab": 0,
+      "panel": 0,
+      "dialog": 2,
+      "toast": 0
+    },
+    "floatingShadow": {
+      "offsetXPx": 2,
+      "offsetYPx": 4,
+      "blurPx": 0,
+      "spreadPx": 0,
+      "lightColor": "#302D3233",
+      "darkColor": "#00000066"
+    },
+    "normalSurfaceShadow": "none",
+    "pressedTranslationYPx": 1,
+    "cornerTreatment": "2px stepped outlines for reusable pixel frames; do not clip focus ring or hit target",
+    "existingRadiusPolicy": "Current 4/6/8/12px radii are runtime inventory, not a permanent visual constraint. Adopt the new role-specific values through shared components."
+  },
+  "motion": {
+    "feedbackMs": 120,
+    "feedbackToken": "--motion-feedback",
+    "transitionMs": 180,
+    "transitionToken": "--motion-transition",
+    "easing": "ease-out",
+    "easingToken": "--motion-ease",
+    "reducedMs": 0,
+    "pressedTranslationYPx": 1,
+    "orientation": "Short directional transition for an explicit place change; angle describes location, not a required 3D camera spin. Current place remains labelled; input is not delayed until animation ends.",
+    "workSurfaceLoopCount": 0,
+    "keystrokeEffectCount": 0,
+    "autosaveCelebrationCount": 0,
+    "forcedEntranceCount": 0,
+    "ambient": "Use current renderer timing, pause, offscreen/tab visibility and reduced-motion behavior; do not restart explicitly paused motion. Do not set universal scene FPS/duration or freeze expansion.",
+    "soundEnabledByDefault": false,
+    "sound": "Only after explicit enablement; independent mute and preserved preference. No sound is required to understand a result.",
+    "feedback": "Actual trigger -> existing rule -> factual feedback -> repeated-use policy. Feedback coalesces repeated status changes; never queue decorative celebrations while away."
+  },
+  "spatialWorkspace": {
+    "routeMap": "work/observatory-spatial-20261002/route-map.json",
+    "places": [
+      {
+        "id": "front",
+        "label": "공부 책상",
+        "facingDeg": 0,
+        "task": "오늘의 공부·기록·메모·인출"
+      },
+      {
+        "id": "left",
+        "label": "자료 책장",
+        "facingDeg": 270,
+        "task": "과목·강의 자료·자료 카드·개념 전집"
+      },
+      {
+        "id": "right",
+        "label": "탐구 작업대",
+        "facingDeg": 90,
+        "task": "수식 탐색·코딩 연습"
+      },
+      {
+        "id": "back",
+        "label": "기록·계획 벽",
+        "facingDeg": 180,
+        "task": "통계·일정과 과제·Canvas·그래프뷰·칸반"
+      }
+    ],
+    "homeAndUse": "Each function has a stable home place. A chosen source, small tool or note can stay beside the current task; do not turn for every supporting action.",
+    "global": "Find, account/settings, help and allowed AI controls remain directly available through existing scope. AI is owner-only; a global AI control is not assumed implemented.",
+    "navigation": "Keep existing functional menu labels and direct destination controls. Places supplement names. Browser Back means prior history, not the back wall. No forced avatar walking, scroll/edge-hover turn or detour through the front.",
+    "directEntry": "Valid deep link/search result opens its real target in the relevant place. Restore saved supported task state; never invent a prior caller. Missing/deleted target falls back to its usable list with a factual message.",
+    "return": "Borrowed panel closes to its caller/trigger; explicit full-list command goes to its home place. Restore supported route, target, filter, scroll/camera, focus and draft through existing persistence owners.",
+    "continuity": "No orientation animation while typing, Korean IME composition, or blocking an urgent action. Commit current draft via existing contract before unmount; a failed save preserves the original draft and recovery path. Room turn creates no study event.",
+    "viewContinuity": "Same room/window/light across places; left view keeps the front window at the right edge, right view at the left edge, back view does not duplicate it. The observatory outside the window is also the user, viewed with the gentle distance of a companion: the studying self inside and the self represented by the observatory outside. This symbolic dual viewpoint is intentional; do not remove or redesign the original observatory to enforce literal building geometry. It does not imply another account, an AI companion or measured achievement.",
+    "repeatUse": "Place meanings stay stable as data grows. Search/filter/detail handle accumulation; preserve manual Canvas positions. Distinguish persistent user choice from temporary camera or caller state, and document new persistence owners before implementation."
+  },
+  "scenePalette": {
+    "name": "Observatory · Vermilion Night",
+    "version": 1,
+    "kind": "Decorative art palette derived from current Figma primitives; not a formal color standard",
+    "references": [
+      {
+        "url": "https://lospec.com/palette-list/lospec500",
+        "use": "warm orange and vermilion contrast with cool night; not an exact import"
+      },
+      {
+        "url": "https://lospec.com/palette-list/apollo",
+        "use": "ordered light and shadow ramps; not an exact import"
+      },
+      {
+        "url": "https://www.slynyrd.com/blog/2018/1/10/pixelblog-1-color-palettes",
+        "use": "limited color ramps and hue shifting"
+      }
+    ],
+    "figmaSource": "https://www.figma.com/design/5RKglEvhscGpWAz5T6qLGQ?node-id=12-2",
+    "figmaRegistration": "blocked by Starter MCP rate limit; local editable board only",
+    "colors": [
+      {
+        "name": "night-950",
+        "label": "밤 · 가장 깊은 하늘",
+        "cssVariable": "--observatory-night-950",
+        "expression": "color-mix(in srgb, var(--primitive-brand-950) 55%, var(--primitive-common-black))",
+        "hex": "#110F29"
+      },
+      {
+        "name": "night-800",
+        "label": "밤 · 남색",
+        "cssVariable": "--observatory-night-800",
+        "expression": "var(--primitive-brand-950)",
+        "hex": "#1E1B4B"
+      },
+      {
+        "name": "night-650",
+        "label": "밤 · 먼 산",
+        "cssVariable": "--observatory-night-650",
+        "expression": "var(--primitive-brand-900)",
+        "hex": "#312E81"
+      },
+      {
+        "name": "night-450",
+        "label": "밤 · 푸른 대기",
+        "cssVariable": "--observatory-night-450",
+        "expression": "var(--primitive-common-info-900)",
+        "hex": "#1E3A8A"
+      },
+      {
+        "name": "warm-500",
+        "label": "빛 · 다홍",
+        "cssVariable": "--observatory-warm-500",
+        "expression": "color-mix(in srgb, var(--primitive-common-warning-500) 72%, var(--primitive-common-error-500))",
+        "hex": "#F66623"
+      },
+      {
+        "name": "warm-850",
+        "label": "빛 · 어두운 잔광",
+        "cssVariable": "--observatory-warm-850",
+        "expression": "color-mix(in srgb, var(--observatory-warm-500) 35%, var(--observatory-night-950))",
+        "hex": "#612D27"
+      },
+      {
+        "name": "warm-700",
+        "label": "빛 · 주황 그림자",
+        "cssVariable": "--observatory-warm-700",
+        "expression": "var(--primitive-common-warning-900)",
+        "hex": "#7C2D12"
+      },
+      {
+        "name": "warm-400",
+        "label": "빛 · 호박색",
+        "cssVariable": "--observatory-warm-400",
+        "expression": "var(--primitive-common-warning-500)",
+        "hex": "#F97316"
+      },
+      {
+        "name": "warm-250",
+        "label": "빛 · 금빛",
+        "cssVariable": "--observatory-warm-250",
+        "expression": "color-mix(in srgb, var(--primitive-common-warning-500) 45%, var(--primitive-common-warning-100))",
+        "hex": "#FCB67F"
+      },
+      {
+        "name": "warm-100",
+        "label": "빛 · 살구",
+        "cssVariable": "--observatory-warm-100",
+        "expression": "color-mix(in srgb, var(--observatory-warm-500) 45%, var(--primitive-common-white))",
+        "hex": "#FBBA9C"
+      },
+      {
+        "name": "warm-050",
+        "label": "빛 · 크림",
+        "cssVariable": "--observatory-warm-050",
+        "expression": "color-mix(in srgb, var(--observatory-warm-250) 35%, var(--primitive-common-white))",
+        "hex": "#FEE5D2"
+      },
+      {
+        "name": "cool-500",
+        "label": "별 · 푸른빛",
+        "cssVariable": "--observatory-cool-500",
+        "expression": "color-mix(in srgb, var(--primitive-common-info-500) 65%, var(--primitive-common-white))",
+        "hex": "#80AEF9"
+      },
+      {
+        "name": "cool-350",
+        "label": "별 · 청록",
+        "cssVariable": "--observatory-cool-350",
+        "expression": "color-mix(in srgb, var(--primitive-common-success-500) 50%, var(--observatory-cool-500))",
+        "hex": "#51BAAC"
+      },
+      {
+        "name": "cool-400",
+        "label": "성운 · 보랏빛",
+        "cssVariable": "--observatory-cool-400",
+        "expression": "var(--primitive-brand-400)",
+        "hex": "#818CF8"
+      },
+      {
+        "name": "cool-850",
+        "label": "오로라 · 그림자",
+        "cssVariable": "--observatory-cool-850",
+        "expression": "var(--primitive-common-success-900)",
+        "hex": "#14532D"
+      },
+      {
+        "name": "star-050",
+        "label": "별 · 가장 밝은 점",
+        "cssVariable": "--observatory-star-050",
+        "expression": "var(--primitive-common-white)",
+        "hex": "#FFFFFF"
+      }
+    ],
+    "roles": {
+      "deep": "night-950",
+      "white": "star-050",
+      "blue": "cool-500",
+      "violet": "cool-400",
+      "gold": "warm-250",
+      "mint": "cool-350",
+      "rose": "warm-100",
+      "coral": "warm-500"
+    },
+    "stages": [
+      {
+        "stage": 1,
+        "accent": "blue",
+        "horizon": "night-800"
+      },
+      {
+        "stage": 2,
+        "accent": "blue",
+        "horizon": "night-450"
+      },
+      {
+        "stage": 3,
+        "accent": "mint",
+        "horizon": "night-450"
+      },
+      {
+        "stage": 4,
+        "accent": "gold",
+        "horizon": "night-800"
+      },
+      {
+        "stage": 5,
+        "accent": "gold",
+        "horizon": "warm-700"
+      },
+      {
+        "stage": 6,
+        "accent": "violet",
+        "horizon": "night-800"
+      },
+      {
+        "stage": 7,
+        "accent": "coral",
+        "horizon": "warm-850"
+      },
+      {
+        "stage": 8,
+        "accent": "violet",
+        "horizon": "night-650"
+      },
+      {
+        "stage": 9,
+        "accent": "blue",
+        "horizon": "night-450"
+      },
+      {
+        "stage": 10,
+        "accent": "mint",
+        "horizon": "cool-850"
+      },
+      {
+        "stage": 11,
+        "accent": "coral",
+        "horizon": "warm-850"
+      },
+      {
+        "stage": 12,
+        "accent": "coral",
+        "horizon": "final"
+      }
+    ],
+    "constraints": [
+      "warm orange/vermilion primary, cream highlights, desaturated navy shadow",
+      "cool hues confined to stars, aurora and nebula accents",
+      "art aliases scoped to observatory; study/status colors unchanged",
+      "interpolated lighting/opacity can produce additional rendered colors"
+    ]
+  },
+  "colorVariables": [
+    {
+      "name": "observatory/interior/canvas",
+      "material": "interior",
+      "role": "canvas",
+      "hex": "#1F1E1B",
+      "source": "docs/observatory-experience-baseline.json#/materials/interior/canvas",
+      "scope": "Dark room shell and room controls"
+    },
+    {
+      "name": "observatory/interior/surface",
+      "material": "interior",
+      "role": "surface",
+      "hex": "#282722",
+      "source": "docs/observatory-experience-baseline.json#/materials/interior/surface",
+      "scope": "Dark room shell and room controls"
+    },
+    {
+      "name": "observatory/interior/subtle",
+      "material": "interior",
+      "role": "subtle",
+      "hex": "#33312D",
+      "source": "docs/observatory-experience-baseline.json#/materials/interior/subtle",
+      "scope": "Dark room shell and room controls"
+    },
+    {
+      "name": "observatory/interior/text",
+      "material": "interior",
+      "role": "text",
+      "hex": "#E8E3D7",
+      "source": "docs/observatory-experience-baseline.json#/materials/interior/text",
+      "scope": "Dark room shell and room controls"
+    },
+    {
+      "name": "observatory/interior/muted",
+      "material": "interior",
+      "role": "muted",
+      "hex": "#B7B0A2",
+      "source": "docs/observatory-experience-baseline.json#/materials/interior/muted",
+      "scope": "Dark room shell and room controls"
+    },
+    {
+      "name": "observatory/interior/borderDecorative",
+      "material": "interior",
+      "role": "borderDecorative",
+      "hex": "#514A42",
+      "source": "docs/observatory-experience-baseline.json#/materials/interior/borderDecorative",
+      "scope": "Dark room shell and room controls"
+    },
+    {
+      "name": "observatory/interior/borderInteractive",
+      "material": "interior",
+      "role": "borderInteractive",
+      "hex": "#8B8071",
+      "source": "docs/observatory-experience-baseline.json#/materials/interior/borderInteractive",
+      "scope": "Dark room shell and room controls"
+    },
+    {
+      "name": "observatory/interior/focus",
+      "material": "interior",
+      "role": "focus",
+      "hex": "#D7B477",
+      "source": "docs/observatory-experience-baseline.json#/materials/interior/focus",
+      "scope": "Dark room shell and room controls"
+    },
+    {
+      "name": "observatory/interior/selected",
+      "material": "interior",
+      "role": "selected",
+      "hex": "#33312D",
+      "source": "docs/observatory-experience-baseline.json#/materials/interior/selected",
+      "scope": "Dark room shell and room controls"
+    },
+    {
+      "name": "observatory/interior/selectedText",
+      "material": "interior",
+      "role": "selectedText",
+      "hex": "#E8E3D7",
+      "source": "docs/observatory-experience-baseline.json#/materials/interior/selectedText",
+      "scope": "Dark room shell and room controls"
+    },
+    {
+      "name": "observatory/interior/primary",
+      "material": "interior",
+      "role": "primary",
+      "hex": "#D7B477",
+      "source": "docs/observatory-experience-baseline.json#/materials/interior/primary",
+      "scope": "Dark room shell and room controls"
+    },
+    {
+      "name": "observatory/interior/primaryHover",
+      "material": "interior",
+      "role": "primaryHover",
+      "hex": "#E5C890",
+      "source": "docs/observatory-experience-baseline.json#/materials/interior/primaryHover",
+      "scope": "Dark room shell and room controls"
+    },
+    {
+      "name": "observatory/interior/primaryPressed",
+      "material": "interior",
+      "role": "primaryPressed",
+      "hex": "#C2A062",
+      "source": "docs/observatory-experience-baseline.json#/materials/interior/primaryPressed",
+      "scope": "Dark room shell and room controls"
+    },
+    {
+      "name": "observatory/interior/onPrimary",
+      "material": "interior",
+      "role": "onPrimary",
+      "hex": "#1F1E1B",
+      "source": "docs/observatory-experience-baseline.json#/materials/interior/onPrimary",
+      "scope": "Dark room shell and room controls"
+    },
+    {
+      "name": "observatory/paper/canvas",
+      "material": "paper",
+      "role": "canvas",
+      "hex": "#E4DCCD",
+      "source": "docs/observatory-experience-baseline.json#/materials/paper/canvas",
+      "scope": "Opaque working/reading surface"
+    },
+    {
+      "name": "observatory/paper/surface",
+      "material": "paper",
+      "role": "surface",
+      "hex": "#E4DCCD",
+      "source": "docs/observatory-experience-baseline.json#/materials/paper/surface",
+      "scope": "Opaque working/reading surface"
+    },
+    {
+      "name": "observatory/paper/subtle",
+      "material": "paper",
+      "role": "subtle",
+      "hex": "#D7CBB4",
+      "source": "docs/observatory-experience-baseline.json#/materials/paper/subtle",
+      "scope": "Opaque working/reading surface"
+    },
+    {
+      "name": "observatory/paper/text",
+      "material": "paper",
+      "role": "text",
+      "hex": "#34312B",
+      "source": "docs/observatory-experience-baseline.json#/materials/paper/text",
+      "scope": "Opaque working/reading surface"
+    },
+    {
+      "name": "observatory/paper/muted",
+      "material": "paper",
+      "role": "muted",
+      "hex": "#5B5448",
+      "source": "docs/observatory-experience-baseline.json#/materials/paper/muted",
+      "scope": "Opaque working/reading surface"
+    },
+    {
+      "name": "observatory/paper/borderDecorative",
+      "material": "paper",
+      "role": "borderDecorative",
+      "hex": "#B4A891",
+      "source": "docs/observatory-experience-baseline.json#/materials/paper/borderDecorative",
+      "scope": "Opaque working/reading surface"
+    },
+    {
+      "name": "observatory/paper/borderInteractive",
+      "material": "paper",
+      "role": "borderInteractive",
+      "hex": "#796D5D",
+      "source": "docs/observatory-experience-baseline.json#/materials/paper/borderInteractive",
+      "scope": "Opaque working/reading surface"
+    },
+    {
+      "name": "observatory/paper/focus",
+      "material": "paper",
+      "role": "focus",
+      "hex": "#725425",
+      "source": "docs/observatory-experience-baseline.json#/materials/paper/focus",
+      "scope": "Opaque working/reading surface"
+    },
+    {
+      "name": "observatory/paper/selected",
+      "material": "paper",
+      "role": "selected",
+      "hex": "#D7CBB4",
+      "source": "docs/observatory-experience-baseline.json#/materials/paper/selected",
+      "scope": "Opaque working/reading surface"
+    },
+    {
+      "name": "observatory/paper/selectedText",
+      "material": "paper",
+      "role": "selectedText",
+      "hex": "#34312B",
+      "source": "docs/observatory-experience-baseline.json#/materials/paper/selectedText",
+      "scope": "Opaque working/reading surface"
+    },
+    {
+      "name": "observatory/paper/primary",
+      "material": "paper",
+      "role": "primary",
+      "hex": "#554530",
+      "source": "docs/observatory-experience-baseline.json#/materials/paper/primary",
+      "scope": "Opaque working/reading surface"
+    },
+    {
+      "name": "observatory/paper/primaryHover",
+      "material": "paper",
+      "role": "primaryHover",
+      "hex": "#473924",
+      "source": "docs/observatory-experience-baseline.json#/materials/paper/primaryHover",
+      "scope": "Opaque working/reading surface"
+    },
+    {
+      "name": "observatory/paper/primaryPressed",
+      "material": "paper",
+      "role": "primaryPressed",
+      "hex": "#3B3022",
+      "source": "docs/observatory-experience-baseline.json#/materials/paper/primaryPressed",
+      "scope": "Opaque working/reading surface"
+    },
+    {
+      "name": "observatory/paper/onPrimary",
+      "material": "paper",
+      "role": "onPrimary",
+      "hex": "#E4DCCD",
+      "source": "docs/observatory-experience-baseline.json#/materials/paper/onPrimary",
+      "scope": "Opaque working/reading surface"
+    }
+  ],
+  "componentRegistry": [
+    {
+      "id": "UI01",
+      "name": "Button",
+      "figmaName": "Controls/Button",
+      "category": "common-ui",
+      "source": "src/ui/index.tsx",
+      "exportSource": "src/ui/index.tsx",
+      "styleSource": "src/ui/components.css",
+      "role": "명시적 행동 실행",
+      "proposedFigmaAxes": {
+        "variant": [
+          "primary",
+          "secondary",
+          "quiet",
+          "danger"
+        ],
+        "state": [
+          "default",
+          "hover",
+          "pressed",
+          "focus",
+          "disabled",
+          "busy"
+        ],
+        "material": [
+          "interior",
+          "paper"
+        ]
+      },
+      "behavior": "busy disables duplicate activation; native button, default type=button; preserve complete Korean label.",
+      "mappingStatus": "실제 Figma 부품 생성·노드 대조 완료. 소스 동작과 native 표현의 차이는 representation 및 behavior 계약을 따른다.",
+      "materialCondition": "Use containing material. Variants are not a mandatory Cartesian product; instantiate meaningful combinations only.",
+      "figma": {
+        "ownerId": "16:140",
+        "defaultComponentId": "16:76",
+        "variantIds": [
+          "16:76",
+          "16:78",
+          "16:80",
+          "16:82",
+          "16:84",
+          "16:86",
+          "16:92",
+          "16:94",
+          "16:96",
+          "16:98",
+          "16:100",
+          "16:102",
+          "16:108",
+          "16:110",
+          "16:112",
+          "16:114",
+          "16:116",
+          "16:118",
+          "16:124",
+          "16:126",
+          "16:128",
+          "16:130",
+          "16:132",
+          "16:134"
+        ],
+        "fileKey": "YHmD1PpWWfR9JGTEs77JsX"
+      }
+    },
+    {
+      "id": "UI02",
+      "name": "IconButton",
+      "figmaName": "Controls/IconButton",
+      "category": "common-ui",
+      "source": "src/ui/index.tsx",
+      "exportSource": "src/ui/index.tsx",
+      "styleSource": "src/ui/components.css",
+      "role": "이름이 있는 아이콘 행동",
+      "proposedFigmaAxes": {
+        "variant": [
+          "quiet",
+          "primary",
+          "secondary",
+          "danger"
+        ],
+        "state": [
+          "default",
+          "hover",
+          "pressed",
+          "focus",
+          "disabled",
+          "busy"
+        ],
+        "material": [
+          "interior",
+          "paper"
+        ]
+      },
+      "behavior": "Required label supplies accessible name and title; icon hidden from accessibility; 44px minimum target, 20px art.",
+      "mappingStatus": "실제 Figma 부품 생성·노드 대조 완료. 소스 동작과 native 표현의 차이는 representation 및 behavior 계약을 따른다.",
+      "materialCondition": "Use containing material. Variants are not a mandatory Cartesian product; instantiate meaningful combinations only.",
+      "figma": {
+        "ownerId": "16:159",
+        "defaultComponentId": "16:141",
+        "variantIds": [
+          "16:141",
+          "16:144",
+          "16:147",
+          "16:150",
+          "16:153",
+          "16:156"
+        ],
+        "fileKey": "YHmD1PpWWfR9JGTEs77JsX"
+      }
+    },
+    {
+      "id": "UI03",
+      "name": "Input",
+      "figmaName": "Fields/Input",
+      "category": "common-ui",
+      "source": "src/ui/index.tsx",
+      "exportSource": "src/ui/index.tsx",
+      "styleSource": "src/ui/components.css",
+      "role": "단일행 원문 입력",
+      "proposedFigmaAxes": {
+        "state": [
+          "default",
+          "hover",
+          "focus",
+          "disabled",
+          "invalid",
+          "readOnly"
+        ],
+        "content": [
+          "empty",
+          "filled",
+          "long"
+        ],
+        "helper": [
+          "none",
+          "hint",
+          "error"
+        ],
+        "material": [
+          "interior",
+          "paper"
+        ]
+      },
+      "behavior": "Label/hint/error ids linked; input font minimum16px; preserve original value, cursor and IME.",
+      "mappingStatus": "실제 Figma 부품 생성·노드 대조 완료. 소스 동작과 native 표현의 차이는 representation 및 behavior 계약을 따른다.",
+      "materialCondition": "Use containing material. Variants are not a mandatory Cartesian product; instantiate meaningful combinations only.",
+      "figma": {
+        "ownerId": "16:190",
+        "defaultComponentId": "16:160",
+        "variantIds": [
+          "16:160",
+          "16:165",
+          "16:170",
+          "16:175",
+          "16:180",
+          "16:185"
+        ],
+        "fileKey": "YHmD1PpWWfR9JGTEs77JsX"
+      }
+    },
+    {
+      "id": "UI04",
+      "name": "Textarea",
+      "figmaName": "Fields/Textarea",
+      "category": "common-ui",
+      "source": "src/ui/index.tsx",
+      "exportSource": "src/ui/index.tsx",
+      "styleSource": "src/ui/components.css",
+      "role": "긴 자유 글 입력",
+      "proposedFigmaAxes": {
+        "state": [
+          "default",
+          "hover",
+          "focus",
+          "disabled",
+          "invalid",
+          "readOnly"
+        ],
+        "content": [
+          "empty",
+          "filled",
+          "long"
+        ],
+        "helper": [
+          "none",
+          "hint",
+          "error"
+        ],
+        "material": [
+          "interior",
+          "paper"
+        ]
+      },
+      "behavior": "Current min-height144px (3×48); vertical growth/resize; no decorative paper crop or mandatory extra prose.",
+      "mappingStatus": "실제 Figma 부품 생성·노드 대조 완료. 소스 동작과 native 표현의 차이는 representation 및 behavior 계약을 따른다.",
+      "materialCondition": "Use containing material. Variants are not a mandatory Cartesian product; instantiate meaningful combinations only.",
+      "figma": {
+        "ownerId": "16:221",
+        "defaultComponentId": "16:191",
+        "variantIds": [
+          "16:191",
+          "16:196",
+          "16:201",
+          "16:206",
+          "16:211",
+          "16:216"
+        ],
+        "fileKey": "YHmD1PpWWfR9JGTEs77JsX"
+      }
+    },
+    {
+      "id": "UI05",
+      "name": "Select",
+      "figmaName": "Fields/Select",
+      "category": "common-ui",
+      "source": "src/ui/index.tsx",
+      "exportSource": "src/ui/index.tsx",
+      "styleSource": "src/ui/components.css",
+      "role": "네이티브 선택",
+      "proposedFigmaAxes": {
+        "state": [
+          "default",
+          "hover",
+          "focus",
+          "disabled",
+          "invalid"
+        ],
+        "content": [
+          "empty",
+          "selected",
+          "long"
+        ],
+        "material": [
+          "interior",
+          "paper"
+        ]
+      },
+      "behavior": "Native select behavior; no fabricated readOnly support. Wrapper focus and long label handling belong to current CSS.",
+      "mappingStatus": "실제 Figma 부품 생성·노드 대조 완료. 소스 동작과 native 표현의 차이는 representation 및 behavior 계약을 따른다.",
+      "materialCondition": "Use containing material. Variants are not a mandatory Cartesian product; instantiate meaningful combinations only.",
+      "figma": {
+        "ownerId": "16:250",
+        "defaultComponentId": "16:222",
+        "variantIds": [
+          "16:222",
+          "16:229",
+          "16:236",
+          "16:243"
+        ],
+        "fileKey": "YHmD1PpWWfR9JGTEs77JsX"
+      }
+    },
+    {
+      "id": "UI06",
+      "name": "Checkbox",
+      "figmaName": "Controls/Checkbox",
+      "category": "common-ui",
+      "source": "src/ui/index.tsx",
+      "exportSource": "src/ui/index.tsx",
+      "styleSource": "src/ui/components.css",
+      "role": "독립·복수 선택",
+      "proposedFigmaAxes": {
+        "value": [
+          "unchecked",
+          "checked",
+          "mixed"
+        ],
+        "state": [
+          "default",
+          "hover",
+          "focus",
+          "disabled"
+        ],
+        "material": [
+          "interior",
+          "paper"
+        ]
+      },
+      "behavior": "Native checkbox; indeterminate exposes mixed; a study check is an attempt, not mastery.",
+      "mappingStatus": "실제 Figma 부품 생성·노드 대조 완료. 소스 동작과 native 표현의 차이는 representation 및 behavior 계약을 따른다.",
+      "materialCondition": "Use containing material. Variants are not a mandatory Cartesian product; instantiate meaningful combinations only.",
+      "figma": {
+        "ownerId": "16:287",
+        "defaultComponentId": "16:251",
+        "variantIds": [
+          "16:251",
+          "16:254",
+          "16:257",
+          "16:260",
+          "16:265",
+          "16:270",
+          "16:275",
+          "16:279",
+          "16:283"
+        ],
+        "fileKey": "YHmD1PpWWfR9JGTEs77JsX"
+      }
+    },
+    {
+      "id": "UI07",
+      "name": "Radio",
+      "figmaName": "Controls/Radio",
+      "category": "common-ui",
+      "source": "src/ui/index.tsx",
+      "exportSource": "src/ui/index.tsx",
+      "styleSource": "src/ui/components.css",
+      "role": "같은 그룹에서 하나 선택",
+      "proposedFigmaAxes": {
+        "value": [
+          "unchecked",
+          "checked"
+        ],
+        "state": [
+          "default",
+          "hover",
+          "focus",
+          "disabled"
+        ],
+        "material": [
+          "interior",
+          "paper"
+        ]
+      },
+      "behavior": "Native radio with group name; do not transform into arbitrary multiple selection.",
+      "mappingStatus": "실제 Figma 부품 생성·노드 대조 완료. 소스 동작과 native 표현의 차이는 representation 및 behavior 계약을 따른다.",
+      "materialCondition": "Use containing material. Variants are not a mandatory Cartesian product; instantiate meaningful combinations only.",
+      "figma": {
+        "ownerId": "16:309",
+        "defaultComponentId": "16:288",
+        "variantIds": [
+          "16:288",
+          "16:291",
+          "16:294",
+          "16:297",
+          "16:301",
+          "16:305"
+        ],
+        "fileKey": "YHmD1PpWWfR9JGTEs77JsX"
+      }
+    },
+    {
+      "id": "UI08",
+      "name": "Tabs",
+      "figmaName": "Navigation/Tabs",
+      "category": "common-ui",
+      "source": "src/ui/index.tsx",
+      "exportSource": "src/ui/index.tsx",
+      "styleSource": "src/ui/components.css",
+      "role": "관련 패널 사이 이동",
+      "proposedFigmaAxes": {
+        "selection": [
+          "selected",
+          "unselected"
+        ],
+        "state": [
+          "default",
+          "hover",
+          "focus",
+          "disabled"
+        ],
+        "material": [
+          "interior",
+          "paper"
+        ]
+      },
+      "behavior": "aria-selected and optional panelId; roving Tab, Left/Right/Home/End skip disabled. Focus differs from selection.",
+      "mappingStatus": "실제 Figma 부품 생성·노드 대조 완료. 소스 동작과 native 표현의 차이는 representation 및 behavior 계약을 따른다.",
+      "materialCondition": "Use containing material. Variants are not a mandatory Cartesian product; instantiate meaningful combinations only.",
+      "figma": {
+        "ownerId": "16:326",
+        "defaultComponentId": "16:310",
+        "variantIds": [
+          "16:310",
+          "16:318"
+        ],
+        "fileKey": "YHmD1PpWWfR9JGTEs77JsX"
+      }
+    },
+    {
+      "id": "UI09",
+      "name": "SegmentedControl",
+      "figmaName": "Controls/SegmentedControl",
+      "category": "common-ui",
+      "source": "src/ui/index.tsx",
+      "exportSource": "src/ui/index.tsx",
+      "styleSource": "src/ui/components.css",
+      "role": "표시 방식 전환",
+      "proposedFigmaAxes": {
+        "selection": [
+          "selected",
+          "unselected"
+        ],
+        "state": [
+          "default",
+          "hover",
+          "focus",
+          "disabled"
+        ],
+        "material": [
+          "interior",
+          "paper"
+        ]
+      },
+      "behavior": "Button group with aria-pressed; not a tabpanel contract.",
+      "mappingStatus": "실제 Figma 부품 생성·노드 대조 완료. 소스 동작과 native 표현의 차이는 representation 및 behavior 계약을 따른다.",
+      "materialCondition": "Use containing material. Variants are not a mandatory Cartesian product; instantiate meaningful combinations only.",
+      "figma": {
+        "ownerId": "17:95",
+        "defaultComponentId": "17:81",
+        "variantIds": [
+          "17:81",
+          "17:88"
+        ],
+        "fileKey": "YHmD1PpWWfR9JGTEs77JsX"
+      }
+    },
+    {
+      "id": "UI10",
+      "name": "Card",
+      "figmaName": "Containers/Card",
+      "category": "common-ui",
+      "source": "src/ui/index.tsx",
+      "exportSource": "src/ui/index.tsx",
+      "styleSource": "src/ui/components.css",
+      "role": "관련 내용 묶음",
+      "proposedFigmaAxes": {
+        "content": [
+          "default",
+          "long",
+          "empty"
+        ],
+        "material": [
+          "interior",
+          "paper"
+        ]
+      },
+      "behavior": "Static container; accessible name gives group role. Do not make every paper paragraph a nested card.",
+      "mappingStatus": "실제 Figma 부품 생성·노드 대조 완료. 소스 동작과 native 표현의 차이는 representation 및 behavior 계약을 따른다.",
+      "materialCondition": "Use containing material. Variants are not a mandatory Cartesian product; instantiate meaningful combinations only.",
+      "figma": {
+        "ownerId": "17:96",
+        "defaultComponentId": "17:96",
+        "variantIds": [
+          "17:96"
+        ],
+        "fileKey": "YHmD1PpWWfR9JGTEs77JsX"
+      }
+    },
+    {
+      "id": "UI11",
+      "name": "ListItem",
+      "figmaName": "Containers/ListItem",
+      "category": "common-ui",
+      "source": "src/ui/index.tsx",
+      "exportSource": "src/ui/index.tsx",
+      "styleSource": "src/ui/components.css",
+      "role": "의미 있는 목록 한 행",
+      "proposedFigmaAxes": {
+        "content": [
+          "default",
+          "long",
+          "with-actions"
+        ],
+        "material": [
+          "interior",
+          "paper"
+        ]
+      },
+      "behavior": "Native li; item itself has no implied click/selected/disabled API. Nested actions own their state.",
+      "mappingStatus": "실제 Figma 부품 생성·노드 대조 완료. 소스 동작과 native 표현의 차이는 representation 및 behavior 계약을 따른다.",
+      "materialCondition": "Use containing material. Variants are not a mandatory Cartesian product; instantiate meaningful combinations only.",
+      "figma": {
+        "ownerId": "17:101",
+        "defaultComponentId": "17:101",
+        "variantIds": [
+          "17:101"
+        ],
+        "fileKey": "YHmD1PpWWfR9JGTEs77JsX"
+      }
+    },
+    {
+      "id": "UI12",
+      "name": "Modal",
+      "figmaName": "Overlays/Modal",
+      "category": "common-ui",
+      "source": "src/ui/index.tsx",
+      "exportSource": "src/ui/index.tsx",
+      "styleSource": "src/ui/components.css",
+      "role": "집중 대화상자",
+      "proposedFigmaAxes": {
+        "visibility": [
+          "closed",
+          "open"
+        ],
+        "content": [
+          "short",
+          "long"
+        ],
+        "material": [
+          "interior",
+          "paper"
+        ]
+      },
+      "behavior": "Portal, background inert, focus containment/restoration, Escape except IME composition. Caller owns commit/cancel/save failure.",
+      "mappingStatus": "실제 Figma 부품 생성·노드 대조 완료. 소스 동작과 native 표현의 차이는 representation 및 behavior 계약을 따른다.",
+      "materialCondition": "Use containing material. Variants are not a mandatory Cartesian product; instantiate meaningful combinations only.",
+      "figma": {
+        "ownerId": "17:106",
+        "defaultComponentId": "17:106",
+        "variantIds": [
+          "17:106"
+        ],
+        "fileKey": "YHmD1PpWWfR9JGTEs77JsX"
+      }
+    },
+    {
+      "id": "UI13",
+      "name": "Sheet",
+      "figmaName": "Overlays/Sheet",
+      "category": "common-ui",
+      "source": "src/ui/index.tsx",
+      "exportSource": "src/ui/index.tsx",
+      "styleSource": "src/ui/components.css",
+      "role": "넓은 보조 작업면",
+      "proposedFigmaAxes": {
+        "visibility": [
+          "closed",
+          "open"
+        ],
+        "content": [
+          "short",
+          "long"
+        ],
+        "material": [
+          "interior",
+          "paper"
+        ]
+      },
+      "behavior": "Modal wrapper; current width46rem=736 at16px root. No implemented detents/drag gesture implied.",
+      "mappingStatus": "실제 Figma 부품 생성·노드 대조 완료. 소스 동작과 native 표현의 차이는 representation 및 behavior 계약을 따른다.",
+      "materialCondition": "Use containing material. Variants are not a mandatory Cartesian product; instantiate meaningful combinations only.",
+      "figma": {
+        "ownerId": "17:114",
+        "defaultComponentId": "17:114",
+        "variantIds": [
+          "17:114"
+        ],
+        "fileKey": "YHmD1PpWWfR9JGTEs77JsX"
+      }
+    },
+    {
+      "id": "UI14",
+      "name": "Toast",
+      "figmaName": "Feedback/Toast",
+      "category": "common-ui",
+      "source": "src/ui/index.tsx",
+      "exportSource": "src/ui/index.tsx",
+      "styleSource": "src/ui/components.css",
+      "role": "일시적 사실 알림",
+      "proposedFigmaAxes": {
+        "action": [
+          "message",
+          "undo",
+          "close",
+          "undo-and-close"
+        ],
+        "material": [
+          "interior",
+          "paper"
+        ]
+      },
+      "behavior": "Polite live status, optional undo/close callbacks, no automatic expiry assumed. Save success only after real acknowledgment.",
+      "mappingStatus": "실제 Figma 부품 생성·노드 대조 완료. 소스 동작과 native 표현의 차이는 representation 및 behavior 계약을 따른다.",
+      "materialCondition": "Use containing material. Variants are not a mandatory Cartesian product; instantiate meaningful combinations only.",
+      "figma": {
+        "ownerId": "17:130",
+        "defaultComponentId": "17:124",
+        "variantIds": [
+          "17:124",
+          "17:127"
+        ],
+        "fileKey": "YHmD1PpWWfR9JGTEs77JsX"
+      }
+    },
+    {
+      "id": "UI15",
+      "name": "Breadcrumb",
+      "figmaName": "Navigation/Breadcrumb",
+      "category": "common-ui",
+      "source": "src/ui/index.tsx",
+      "exportSource": "src/ui/index.tsx",
+      "styleSource": "src/ui/components.css",
+      "role": "현재 위치와 상위 경로",
+      "proposedFigmaAxes": {
+        "item": [
+          "ancestor-link",
+          "ancestor-action",
+          "current"
+        ],
+        "material": [
+          "interior",
+          "paper"
+        ]
+      },
+      "behavior": "Named nav; current item not a fake back link. Actual caller/history preserved.",
+      "mappingStatus": "실제 Figma 부품 생성·노드 대조 완료. 소스 동작과 native 표현의 차이는 representation 및 behavior 계약을 따른다.",
+      "materialCondition": "Use containing material. Variants are not a mandatory Cartesian product; instantiate meaningful combinations only.",
+      "figma": {
+        "ownerId": "17:131",
+        "defaultComponentId": "17:131",
+        "variantIds": [
+          "17:131"
+        ],
+        "fileKey": "YHmD1PpWWfR9JGTEs77JsX"
+      }
+    },
+    {
+      "id": "UI16",
+      "name": "Search",
+      "figmaName": "Fields/Search",
+      "category": "common-ui",
+      "source": "src/ui/index.tsx",
+      "exportSource": "src/ui/index.tsx",
+      "styleSource": "src/ui/components.css",
+      "role": "검색어 입력과 검색 전달",
+      "proposedFigmaAxes": {
+        "state": [
+          "default",
+          "focus",
+          "disabled",
+          "invalid"
+        ],
+        "content": [
+          "empty",
+          "query",
+          "long",
+          "composing"
+        ],
+        "material": [
+          "interior",
+          "paper"
+        ]
+      },
+      "behavior": "Input wrapper; ordinary onChange continues, onQueryChange waits for IME composition end. Results/recovery owned by feature.",
+      "mappingStatus": "실제 Figma 부품 생성·노드 대조 완료. 소스 동작과 native 표현의 차이는 representation 및 behavior 계약을 따른다.",
+      "materialCondition": "Use containing material. Variants are not a mandatory Cartesian product; instantiate meaningful combinations only.",
+      "figma": {
+        "ownerId": "17:169",
+        "defaultComponentId": "17:137",
+        "variantIds": [
+          "17:137",
+          "17:145",
+          "17:153",
+          "17:161"
+        ],
+        "fileKey": "YHmD1PpWWfR9JGTEs77JsX"
+      }
+    },
+    {
+      "id": "UI17",
+      "name": "EmptyState",
+      "figmaName": "Feedback/EmptyState",
+      "category": "common-ui",
+      "source": "src/ui/index.tsx",
+      "exportSource": "src/ui/index.tsx",
+      "styleSource": "src/ui/components.css",
+      "role": "첫 사용·빈 결과와 가능한 다음 행동",
+      "proposedFigmaAxes": {
+        "scenario": [
+          "first-use",
+          "filtered-empty",
+          "unavailable-with-cause"
+        ],
+        "material": [
+          "interior",
+          "paper"
+        ]
+      },
+      "behavior": "Title/message/children; actual cause only. No failure/locked room/ability inference from empty data.",
+      "mappingStatus": "실제 Figma 부품 생성·노드 대조 완료. 소스 동작과 native 표현의 차이는 representation 및 behavior 계약을 따른다.",
+      "materialCondition": "Use containing material. Variants are not a mandatory Cartesian product; instantiate meaningful combinations only.",
+      "figma": {
+        "ownerId": "17:186",
+        "defaultComponentId": "17:170",
+        "variantIds": [
+          "17:170",
+          "17:178"
+        ],
+        "fileKey": "YHmD1PpWWfR9JGTEs77JsX"
+      }
+    },
+    {
+      "id": "UI18",
+      "name": "LoadingState",
+      "figmaName": "Feedback/LoadingState",
+      "category": "common-ui",
+      "source": "src/ui/index.tsx",
+      "exportSource": "src/ui/index.tsx",
+      "styleSource": "src/ui/components.css",
+      "role": "진행 중인 실제 요청",
+      "proposedFigmaAxes": {
+        "motion": [
+          "running",
+          "reduced"
+        ],
+        "material": [
+          "interior",
+          "paper"
+        ]
+      },
+      "behavior": "Polite status + aria-busy; busy dots decorative. Loading is not permission to clear draft.",
+      "mappingStatus": "실제 Figma 부품 생성·노드 대조 완료. 소스 동작과 native 표현의 차이는 representation 및 behavior 계약을 따른다.",
+      "materialCondition": "Use containing material. Variants are not a mandatory Cartesian product; instantiate meaningful combinations only.",
+      "figma": {
+        "ownerId": "17:187",
+        "defaultComponentId": "17:187",
+        "variantIds": [
+          "17:187"
+        ],
+        "fileKey": "YHmD1PpWWfR9JGTEs77JsX"
+      }
+    },
+    {
+      "id": "UI19",
+      "name": "ErrorState",
+      "figmaName": "Feedback/ErrorState",
+      "category": "common-ui",
+      "source": "src/ui/index.tsx",
+      "exportSource": "src/ui/index.tsx",
+      "styleSource": "src/ui/components.css",
+      "role": "실제 오류와 복구",
+      "proposedFigmaAxes": {
+        "recovery": [
+          "message-only",
+          "retry"
+        ],
+        "material": [
+          "interior",
+          "paper"
+        ]
+      },
+      "behavior": "Alert with title/message; onRetry optional. Explain true cause and preserve original input.",
+      "mappingStatus": "실제 Figma 부품 생성·노드 대조 완료. 소스 동작과 native 표현의 차이는 representation 및 behavior 계약을 따른다.",
+      "materialCondition": "Use containing material. Variants are not a mandatory Cartesian product; instantiate meaningful combinations only.",
+      "figma": {
+        "ownerId": "17:193",
+        "defaultComponentId": "17:193",
+        "variantIds": [
+          "17:193"
+        ],
+        "fileKey": "YHmD1PpWWfR9JGTEs77JsX"
+      }
+    },
+    {
+      "id": "UI20",
+      "name": "ScreenBoundary",
+      "figmaName": "Feedback/ScreenBoundary",
+      "category": "common-ui",
+      "source": "src/ui/index.tsx",
+      "exportSource": "src/ui/index.tsx",
+      "styleSource": "src/ui/components.css",
+      "role": "화면 렌더 실패 격리",
+      "proposedFigmaAxes": {
+        "state": [
+          "content",
+          "render-error"
+        ],
+        "material": [
+          "interior",
+          "paper"
+        ]
+      },
+      "behavior": "React error boundary for render/lazy failures; not every async/storage/network failure. Route/workspace reset owner external.",
+      "mappingStatus": "실제 Figma 부품 생성·노드 대조 완료. 소스 동작과 native 표현의 차이는 representation 및 behavior 계약을 따른다.",
+      "materialCondition": "Use containing material. Variants are not a mandatory Cartesian product; instantiate meaningful combinations only.",
+      "figma": {
+        "ownerId": "17:198",
+        "defaultComponentId": "17:198",
+        "variantIds": [
+          "17:198"
+        ],
+        "fileKey": "YHmD1PpWWfR9JGTEs77JsX"
+      }
+    },
+    {
+      "id": "UI21",
+      "name": "NavigationBar",
+      "figmaName": "Navigation/NavigationBar",
+      "category": "common-ui",
+      "source": "src/ui/navigation-bar.tsx",
+      "exportSource": "src/ui/index.tsx",
+      "styleSource": "src/ui/components.css",
+      "role": "실제 목적지 직접 이동",
+      "proposedFigmaAxes": {
+        "orientation": [
+          "horizontal",
+          "vertical"
+        ],
+        "item": [
+          "current",
+          "other"
+        ],
+        "material": [
+          "interior",
+          "paper"
+        ]
+      },
+      "behavior": "Native anchors with aria-current; native Tab/modified click. Functional names remain visible beside place identity.",
+      "mappingStatus": "실제 Figma 부품 생성·노드 대조 완료. 소스 동작과 native 표현의 차이는 representation 및 behavior 계약을 따른다.",
+      "materialCondition": "Use containing material. Variants are not a mandatory Cartesian product; instantiate meaningful combinations only.",
+      "figma": {
+        "ownerId": "17:223",
+        "defaultComponentId": "17:203",
+        "variantIds": [
+          "17:203",
+          "17:213"
+        ],
+        "fileKey": "YHmD1PpWWfR9JGTEs77JsX"
+      }
+    },
+    {
+      "id": "UI22",
+      "name": "ContextMenu",
+      "figmaName": "Overlays/ContextMenu",
+      "category": "common-ui",
+      "source": "src/ui/context-menu.tsx",
+      "exportSource": "src/ui/index.tsx",
+      "styleSource": "src/ui/components.css",
+      "role": "대상별 보조 명령",
+      "proposedFigmaAxes": {
+        "visibility": [
+          "closed",
+          "open"
+        ],
+        "item": [
+          "normal",
+          "danger",
+          "disabled"
+        ],
+        "state": [
+          "default",
+          "focus"
+        ],
+        "material": [
+          "interior",
+          "paper"
+        ]
+      },
+      "behavior": "Named trigger, portal menu, arrows/Home/End, Escape outside IME, outside/Tab dismissal and focus return. Confirmation/undo owned by commands.",
+      "mappingStatus": "실제 Figma 부품 생성·노드 대조 완료. 소스 동작과 native 표현의 차이는 representation 및 behavior 계약을 따른다.",
+      "materialCondition": "Use containing material. Variants are not a mandatory Cartesian product; instantiate meaningful combinations only.",
+      "figma": {
+        "ownerId": "17:224",
+        "defaultComponentId": "17:224",
+        "variantIds": [
+          "17:224"
+        ],
+        "fileKey": "YHmD1PpWWfR9JGTEs77JsX"
+      }
+    },
+    {
+      "id": "SC01",
+      "name": "StudyLandscapes",
+      "figmaName": "Observatory/StudyLandscapes",
+      "category": "observatory-scene",
+      "source": "src/ui/study-landscapes.tsx",
+      "role": "풍경 위젯 전체와 정지·표시·설정 저장",
+      "props": "data, subjectIds?, referenceDay/Time/Event/Variant?",
+      "states": "running/paused, system-reduced, visible/offscreen, garden/river/walk visibility, storage-error",
+      "figmaTreatment": "Whole-widget component; keep controls and original scene bounds.",
+      "runtimeLimit": "Figma static/prototype does not reproduce GPU, engine, persistence or accessibility behavior.",
+      "figma": {
+        "ownerId": "17:231",
+        "defaultComponentId": "17:231",
+        "variantIds": [
+          "17:231"
+        ],
+        "fileKey": "YHmD1PpWWfR9JGTEs77JsX"
+      },
+      "mappingStatus": "실제 Figma 부품 생성·노드 대조 완료. 소스 동작과 native 표현의 차이는 representation 및 behavior 계약을 따른다."
+    },
+    {
+      "id": "SC02",
+      "name": "ObservatoryWorld",
+      "figmaName": "Observatory/ObservatoryWorld",
+      "category": "observatory-scene",
+      "source": "src/ui/pixel-worlds.tsx",
+      "role": "원본 천문대 SVG 합성",
+      "props": "world, visible, sky?, events?, thumbnail?",
+      "states": "actual world evolution/time/event; thumbnail omits advanced layer",
+      "figmaTreatment": "Reuse existing geometry/snapshot as nested reference; no manual redesign or independent new study semantics.",
+      "runtimeLimit": "Figma static/prototype does not reproduce GPU, engine, persistence or accessibility behavior.",
+      "figma": {
+        "ownerId": "17:1910",
+        "defaultComponentId": "17:1910",
+        "variantIds": [
+          "17:1910"
+        ],
+        "fileKey": "YHmD1PpWWfR9JGTEs77JsX"
+      },
+      "mappingStatus": "실제 Figma 부품 생성·노드 대조 완료. 소스 동작과 native 표현의 차이는 representation 및 behavior 계약을 따른다."
+    },
+    {
+      "id": "SC03",
+      "name": "ObservatoryRoom",
+      "figmaName": "Observatory/ObservatoryRoom",
+      "category": "observatory-scene",
+      "source": "src/ui/observatory-room.tsx",
+      "role": "전체 위젯 외부 창틀·창턱·책상 배치",
+      "props": "children, activity",
+      "states": "wide8px/compact4px external frame; no crop; current updated consumer",
+      "figmaTreatment": "External layout frame around original widget, not a cover or crop.",
+      "runtimeLimit": "Figma static/prototype does not reproduce GPU, engine, persistence or accessibility behavior.",
+      "figma": {
+        "ownerId": "20:4808",
+        "defaultComponentId": "20:4808",
+        "variantIds": [
+          "20:4808"
+        ],
+        "fileKey": "YHmD1PpWWfR9JGTEs77JsX"
+      },
+      "mappingStatus": "실제 Figma 부품 생성·노드 대조 완료. 소스 동작과 native 표현의 차이는 representation 및 behavior 계약을 따른다."
+    },
+    {
+      "id": "SC04",
+      "name": "ObservatoryDesk",
+      "figmaName": "Observatory/ObservatoryDesk",
+      "category": "observatory-scene",
+      "source": "src/ui/observatory-desk.tsx",
+      "role": "정적인 책상 소품 벡터",
+      "props": "none",
+      "states": "decorative, pointer-events none via desk wrapper",
+      "figmaTreatment": "Reuse existing geometry/snapshot as nested reference; no manual redesign or independent new study semantics.",
+      "runtimeLimit": "Figma static/prototype does not reproduce GPU, engine, persistence or accessibility behavior.",
+      "figma": {
+        "ownerId": "20:6484",
+        "defaultComponentId": "20:6484",
+        "variantIds": [
+          "20:6484"
+        ],
+        "fileKey": "YHmD1PpWWfR9JGTEs77JsX"
+      },
+      "mappingStatus": "실제 Figma 부품 생성·노드 대조 완료. 소스 동작과 native 표현의 차이는 representation 및 behavior 계약을 따른다."
+    },
+    {
+      "id": "SC05",
+      "name": "ObservatoryAdvanced",
+      "figmaName": "Observatory/ObservatoryAdvanced",
+      "category": "observatory-scene",
+      "source": "src/ui/observatory-advanced.tsx",
+      "role": "고급 WebGL/SVG·확대 세부 표현",
+      "props": "world, night",
+      "states": "visible/hidden; runtime GPU/static SVG fallback; camera LOD independent of learning stage",
+      "figmaTreatment": "Reuse existing geometry/snapshot as nested reference; no manual redesign or independent new study semantics.",
+      "runtimeLimit": "Figma static/prototype does not reproduce GPU, engine, persistence or accessibility behavior.",
+      "figma": {
+        "ownerId": "20:6496",
+        "defaultComponentId": "20:6496",
+        "variantIds": [
+          "20:6496"
+        ],
+        "fileKey": "YHmD1PpWWfR9JGTEs77JsX"
+      },
+      "mappingStatus": "실제 Figma 부품 생성·노드 대조 완료. 소스 동작과 native 표현의 차이는 representation 및 behavior 계약을 따른다."
+    },
+    {
+      "id": "SC06",
+      "name": "ObservatorySkyDetails",
+      "figmaName": "Observatory/ObservatorySkyDetails",
+      "category": "observatory-scene",
+      "source": "src/ui/observatory-details.tsx",
+      "role": "하늘 세부 표현",
+      "props": "evolution",
+      "states": "renderer-owned evolution",
+      "figmaTreatment": "Reuse existing geometry/snapshot as nested reference; no manual redesign or independent new study semantics.",
+      "runtimeLimit": "Figma static/prototype does not reproduce GPU, engine, persistence or accessibility behavior.",
+      "figma": {
+        "ownerId": "20:6515",
+        "defaultComponentId": "20:6515",
+        "variantIds": [
+          "20:6515"
+        ],
+        "fileKey": "YHmD1PpWWfR9JGTEs77JsX"
+      },
+      "mappingStatus": "실제 Figma 부품 생성·노드 대조 완료. 소스 동작과 native 표현의 차이는 representation 및 behavior 계약을 따른다."
+    },
+    {
+      "id": "SC07",
+      "name": "ObservatoryStationDetails",
+      "figmaName": "Observatory/ObservatoryStationDetails",
+      "category": "observatory-scene",
+      "source": "src/ui/observatory-details.tsx",
+      "role": "천문대 건물 세부 표현",
+      "props": "evolution",
+      "states": "renderer-owned evolution",
+      "figmaTreatment": "Reuse existing geometry/snapshot as nested reference; no manual redesign or independent new study semantics.",
+      "runtimeLimit": "Figma static/prototype does not reproduce GPU, engine, persistence or accessibility behavior.",
+      "figma": {
+        "ownerId": "20:6527",
+        "defaultComponentId": "20:6527",
+        "variantIds": [
+          "20:6527"
+        ],
+        "fileKey": "YHmD1PpWWfR9JGTEs77JsX"
+      },
+      "mappingStatus": "실제 Figma 부품 생성·노드 대조 완료. 소스 동작과 native 표현의 차이는 representation 및 behavior 계약을 따른다."
+    },
+    {
+      "id": "SC08",
+      "name": "ObservatoryTimeSky",
+      "figmaName": "Observatory/ObservatoryTimeSky",
+      "category": "observatory-scene",
+      "source": "src/ui/observatory-time-sky.tsx",
+      "role": "시간에 따른 장식 하늘",
+      "props": "sky, detail",
+      "states": "morning/day/sunset/night/late-night/dawn; no real astronomy claim",
+      "figmaTreatment": "Reuse existing geometry/snapshot as nested reference; no manual redesign or independent new study semantics.",
+      "runtimeLimit": "Figma static/prototype does not reproduce GPU, engine, persistence or accessibility behavior.",
+      "figma": {
+        "ownerId": "20:6539",
+        "defaultComponentId": "20:6539",
+        "variantIds": [
+          "20:6539"
+        ],
+        "fileKey": "YHmD1PpWWfR9JGTEs77JsX"
+      },
+      "mappingStatus": "실제 Figma 부품 생성·노드 대조 완료. 소스 동작과 native 표현의 차이는 representation 및 behavior 계약을 따른다."
+    },
+    {
+      "id": "SC09",
+      "name": "ObservatoryTimeGround",
+      "figmaName": "Observatory/ObservatoryTimeGround",
+      "category": "observatory-scene",
+      "source": "src/ui/observatory-time-sky.tsx",
+      "role": "시간에 따른 장식 지면",
+      "props": "sky",
+      "states": "same time palette; no paper/text theme autochange",
+      "figmaTreatment": "Reuse existing geometry/snapshot as nested reference; no manual redesign or independent new study semantics.",
+      "runtimeLimit": "Figma static/prototype does not reproduce GPU, engine, persistence or accessibility behavior.",
+      "figma": {
+        "ownerId": "20:6560",
+        "defaultComponentId": "20:6560",
+        "variantIds": [
+          "20:6560"
+        ],
+        "fileKey": "YHmD1PpWWfR9JGTEs77JsX"
+      },
+      "mappingStatus": "실제 Figma 부품 생성·노드 대조 완료. 소스 동작과 native 표현의 차이는 representation 및 behavior 계약을 따른다."
+    },
+    {
+      "id": "SC10",
+      "name": "ObservatoryClouds",
+      "figmaName": "Observatory/ObservatoryClouds",
+      "category": "observatory-scene",
+      "source": "src/ui/observatory-atmosphere.tsx",
+      "role": "픽셀 구름",
+      "props": "evolution",
+      "states": "renderer-owned density and movement",
+      "figmaTreatment": "Reuse existing geometry/snapshot as nested reference; no manual redesign or independent new study semantics.",
+      "runtimeLimit": "Figma static/prototype does not reproduce GPU, engine, persistence or accessibility behavior.",
+      "figma": {
+        "ownerId": "20:6581",
+        "defaultComponentId": "20:6581",
+        "variantIds": [
+          "20:6581"
+        ],
+        "fileKey": "YHmD1PpWWfR9JGTEs77JsX"
+      },
+      "mappingStatus": "실제 Figma 부품 생성·노드 대조 완료. 소스 동작과 native 표현의 차이는 representation 및 behavior 계약을 따른다."
+    },
+    {
+      "id": "SC11",
+      "name": "ObservatoryGroundDetails",
+      "figmaName": "Observatory/ObservatoryGroundDetails",
+      "category": "observatory-scene",
+      "source": "src/ui/observatory-atmosphere.tsx",
+      "role": "지면 세부",
+      "props": "none",
+      "states": "decorative",
+      "figmaTreatment": "Reuse existing geometry/snapshot as nested reference; no manual redesign or independent new study semantics.",
+      "runtimeLimit": "Figma static/prototype does not reproduce GPU, engine, persistence or accessibility behavior.",
+      "figma": {
+        "ownerId": "20:6593",
+        "defaultComponentId": "20:6593",
+        "variantIds": [
+          "20:6593"
+        ],
+        "fileKey": "YHmD1PpWWfR9JGTEs77JsX"
+      },
+      "mappingStatus": "실제 Figma 부품 생성·노드 대조 완료. 소스 동작과 native 표현의 차이는 representation 및 behavior 계약을 따른다."
+    },
+    {
+      "id": "SC12",
+      "name": "ObservatoryDomeTiles",
+      "figmaName": "Observatory/ObservatoryDomeTiles",
+      "category": "observatory-scene",
+      "source": "src/ui/observatory-atmosphere.tsx",
+      "role": "천문대 돔 타일",
+      "props": "none",
+      "states": "original building geometry",
+      "figmaTreatment": "Reuse existing geometry/snapshot as nested reference; no manual redesign or independent new study semantics.",
+      "runtimeLimit": "Figma static/prototype does not reproduce GPU, engine, persistence or accessibility behavior.",
+      "figma": {
+        "ownerId": "20:6605",
+        "defaultComponentId": "20:6605",
+        "variantIds": [
+          "20:6605"
+        ],
+        "fileKey": "YHmD1PpWWfR9JGTEs77JsX"
+      },
+      "mappingStatus": "실제 Figma 부품 생성·노드 대조 완료. 소스 동작과 native 표현의 차이는 representation 및 behavior 계약을 따른다."
+    },
+    {
+      "id": "SC13",
+      "name": "ObservatoryShockwave",
+      "figmaName": "Observatory/ObservatoryShockwave",
+      "category": "observatory-scene",
+      "source": "src/ui/observatory-atmosphere.tsx",
+      "role": "기존 반응 엔진의 파동 표현",
+      "props": "echo",
+      "states": "actual engine parameter, not new study score",
+      "figmaTreatment": "Reuse existing geometry/snapshot as nested reference; no manual redesign or independent new study semantics.",
+      "runtimeLimit": "Figma static/prototype does not reproduce GPU, engine, persistence or accessibility behavior.",
+      "figma": {
+        "ownerId": "20:6617",
+        "defaultComponentId": "20:6617",
+        "variantIds": [
+          "20:6617"
+        ],
+        "fileKey": "YHmD1PpWWfR9JGTEs77JsX"
+      },
+      "mappingStatus": "실제 Figma 부품 생성·노드 대조 완료. 소스 동작과 native 표현의 차이는 representation 및 behavior 계약을 따른다."
+    },
+    {
+      "id": "SC14",
+      "name": "ObservatoryStudySky",
+      "figmaName": "Observatory/ObservatoryStudySky",
+      "category": "observatory-scene",
+      "source": "src/ui/observatory-reactivity.tsx",
+      "role": "관측된 공부 활동의 하늘 반응",
+      "props": "world",
+      "states": "existing response only",
+      "figmaTreatment": "Reuse existing geometry/snapshot as nested reference; no manual redesign or independent new study semantics.",
+      "runtimeLimit": "Figma static/prototype does not reproduce GPU, engine, persistence or accessibility behavior.",
+      "figma": {
+        "ownerId": "20:6629",
+        "defaultComponentId": "20:6629",
+        "variantIds": [
+          "20:6629"
+        ],
+        "fileKey": "YHmD1PpWWfR9JGTEs77JsX"
+      },
+      "mappingStatus": "실제 Figma 부품 생성·노드 대조 완료. 소스 동작과 native 표현의 차이는 representation 및 behavior 계약을 따른다."
+    },
+    {
+      "id": "SC15",
+      "name": "ObservatoryStudyStation",
+      "figmaName": "Observatory/ObservatoryStudyStation",
+      "category": "observatory-scene",
+      "source": "src/ui/observatory-reactivity.tsx",
+      "role": "관측된 공부 활동의 천문대 반응",
+      "props": "world",
+      "states": "existing response only",
+      "figmaTreatment": "Reuse existing geometry/snapshot as nested reference; no manual redesign or independent new study semantics.",
+      "runtimeLimit": "Figma static/prototype does not reproduce GPU, engine, persistence or accessibility behavior.",
+      "figma": {
+        "ownerId": "20:6641",
+        "defaultComponentId": "20:6641",
+        "variantIds": [
+          "20:6641"
+        ],
+        "fileKey": "YHmD1PpWWfR9JGTEs77JsX"
+      },
+      "mappingStatus": "실제 Figma 부품 생성·노드 대조 완료. 소스 동작과 native 표현의 차이는 representation 및 behavior 계약을 따른다."
+    },
+    {
+      "id": "SC16",
+      "name": "ObservatoryRadiance",
+      "figmaName": "Observatory/ObservatoryRadiance",
+      "category": "observatory-scene",
+      "source": "src/ui/observatory-radiance.tsx",
+      "role": "기존 빛 표현",
+      "props": "world",
+      "states": "renderer-owned light",
+      "figmaTreatment": "Reuse existing geometry/snapshot as nested reference; no manual redesign or independent new study semantics.",
+      "runtimeLimit": "Figma static/prototype does not reproduce GPU, engine, persistence or accessibility behavior.",
+      "figma": {
+        "ownerId": "20:6653",
+        "defaultComponentId": "20:6653",
+        "variantIds": [
+          "20:6653"
+        ],
+        "fileKey": "YHmD1PpWWfR9JGTEs77JsX"
+      },
+      "mappingStatus": "실제 Figma 부품 생성·노드 대조 완료. 소스 동작과 native 표현의 차이는 representation 및 behavior 계약을 따른다."
+    },
+    {
+      "id": "SC17",
+      "name": "ObservatoryRadianceGround",
+      "figmaName": "Observatory/ObservatoryRadianceGround",
+      "category": "observatory-scene",
+      "source": "src/ui/observatory-radiance.tsx",
+      "role": "지면의 반응광",
+      "props": "world",
+      "states": "renderer-owned light",
+      "figmaTreatment": "Reuse existing geometry/snapshot as nested reference; no manual redesign or independent new study semantics.",
+      "runtimeLimit": "Figma static/prototype does not reproduce GPU, engine, persistence or accessibility behavior.",
+      "figma": {
+        "ownerId": "20:6665",
+        "defaultComponentId": "20:6665",
+        "variantIds": [
+          "20:6665"
+        ],
+        "fileKey": "YHmD1PpWWfR9JGTEs77JsX"
+      },
+      "mappingStatus": "실제 Figma 부품 생성·노드 대조 완료. 소스 동작과 native 표현의 차이는 representation 및 behavior 계약을 따른다."
+    },
+    {
+      "id": "SC18",
+      "name": "ObservatoryEvents",
+      "figmaName": "Observatory/ObservatoryEvents",
+      "category": "observatory-scene",
+      "source": "src/ui/observatory-events.tsx",
+      "role": "시간·세계의 장식 현상 집합",
+      "props": "events, sky, ground?",
+      "states": "sky/ground, actual event base/variant/phase/population",
+      "figmaTreatment": "Reuse existing geometry/snapshot as nested reference; no manual redesign or independent new study semantics.",
+      "runtimeLimit": "Figma static/prototype does not reproduce GPU, engine, persistence or accessibility behavior.",
+      "figma": {
+        "ownerId": "20:6677",
+        "defaultComponentId": "20:6677",
+        "variantIds": [
+          "20:6677"
+        ],
+        "fileKey": "YHmD1PpWWfR9JGTEs77JsX"
+      },
+      "mappingStatus": "실제 Figma 부품 생성·노드 대조 완료. 소스 동작과 native 표현의 차이는 representation 및 behavior 계약을 따른다."
+    },
+    {
+      "id": "SC19",
+      "name": "ObservatoryEventVariationSymbol",
+      "figmaName": "Observatory/ObservatoryEventVariationSymbol",
+      "category": "observatory-scene",
+      "source": "src/ui/observatory-event-variations.tsx",
+      "role": "현상별 재사용 SVG 도형",
+      "props": "event, children",
+      "states": "base variant or recipe; no unbounded instance copy",
+      "figmaTreatment": "Reuse existing geometry/snapshot as nested reference; no manual redesign or independent new study semantics.",
+      "runtimeLimit": "Figma static/prototype does not reproduce GPU, engine, persistence or accessibility behavior.",
+      "figma": {
+        "ownerId": "21:5121",
+        "defaultComponentId": "21:5121",
+        "variantIds": [
+          "21:5121"
+        ],
+        "fileKey": "YHmD1PpWWfR9JGTEs77JsX"
+      },
+      "mappingStatus": "실제 Figma 부품 생성·노드 대조 완료. 소스 동작과 native 표현의 차이는 representation 및 behavior 계약을 따른다."
+    },
+    {
+      "id": "SC20",
+      "name": "ObservatoryEventVariation",
+      "figmaName": "Observatory/ObservatoryEventVariation",
+      "category": "observatory-scene",
+      "source": "src/ui/observatory-event-variations.tsx",
+      "role": "현상 도형 인스턴스",
+      "props": "event, index, symbolId",
+      "states": "variant-derived composition/motion",
+      "figmaTreatment": "Reuse existing geometry/snapshot as nested reference; no manual redesign or independent new study semantics.",
+      "runtimeLimit": "Figma static/prototype does not reproduce GPU, engine, persistence or accessibility behavior.",
+      "figma": {
+        "ownerId": "21:5138",
+        "defaultComponentId": "21:5138",
+        "variantIds": [
+          "21:5138"
+        ],
+        "fileKey": "YHmD1PpWWfR9JGTEs77JsX"
+      },
+      "mappingStatus": "실제 Figma 부품 생성·노드 대조 완료. 소스 동작과 native 표현의 차이는 representation 및 behavior 계약을 따른다."
+    },
+    {
+      "id": "MO01",
+      "name": "BusyDots",
+      "figmaName": "Motion/BusyDots",
+      "category": "motion",
+      "source": "src/ui/motion.tsx",
+      "role": "Delayed loading dots",
+      "currentMotion": "120ms delay, dot size20, speed1.5; static dots when reduced",
+      "conditions": "Actual state only; manual pause, reduced motion, page visibility and offscreen behavior respected. No working-surface loops, keystroke effects or autosave celebration.",
+      "figma": {
+        "ownerId": "21:5175",
+        "defaultComponentId": "21:5157",
+        "variantIds": [
+          "21:5157",
+          "21:5163",
+          "21:5169"
+        ],
+        "fileKey": "YHmD1PpWWfR9JGTEs77JsX"
+      },
+      "mappingStatus": "실제 Figma 부품 생성·노드 대조 완료. 소스 동작과 native 표현의 차이는 representation 및 behavior 계약을 따른다."
+    },
+    {
+      "id": "MO02",
+      "name": "SavedMark",
+      "figmaName": "Motion/SavedMark",
+      "category": "motion",
+      "source": "src/ui/motion.tsx",
+      "role": "Acknowledged-save mark",
+      "currentMotion": "24×24 SVG, stroke1.75, draw/opacity180ms easeOut; reduced0",
+      "conditions": "Actual state only; manual pause, reduced motion, page visibility and offscreen behavior respected. No working-surface loops, keystroke effects or autosave celebration.",
+      "figma": {
+        "ownerId": "21:5194",
+        "defaultComponentId": "21:5176",
+        "variantIds": [
+          "21:5176",
+          "21:5182",
+          "21:5188"
+        ],
+        "fileKey": "YHmD1PpWWfR9JGTEs77JsX"
+      },
+      "mappingStatus": "실제 Figma 부품 생성·노드 대조 완료. 소스 동작과 native 표현의 차이는 representation 및 behavior 계약을 따른다."
+    },
+    {
+      "id": "MO03",
+      "name": "SelectionBackground",
+      "figmaName": "Motion/SelectionBackground",
+      "category": "motion",
+      "source": "src/ui/motion.tsx",
+      "role": "Shared selection surface",
+      "currentMotion": "layout transition180ms easeOut; reduced0",
+      "conditions": "Actual state only; manual pause, reduced motion, page visibility and offscreen behavior respected. No working-surface loops, keystroke effects or autosave celebration.",
+      "figma": {
+        "ownerId": "21:5216",
+        "defaultComponentId": "21:5195",
+        "variantIds": [
+          "21:5195",
+          "21:5202",
+          "21:5209"
+        ],
+        "fileKey": "YHmD1PpWWfR9JGTEs77JsX"
+      },
+      "mappingStatus": "실제 Figma 부품 생성·노드 대조 완료. 소스 동작과 native 표현의 차이는 representation 및 behavior 계약을 따른다."
+    },
+    {
+      "id": "MO04",
+      "name": "NoticeEntrance",
+      "figmaName": "Motion/NoticeEntrance",
+      "category": "motion",
+      "source": "src/ui/motion.tsx",
+      "role": "Notice appearance",
+      "currentMotion": "opacity0.9→1,180ms easeOut; reduced0",
+      "conditions": "Actual state only; manual pause, reduced motion, page visibility and offscreen behavior respected. No working-surface loops, keystroke effects or autosave celebration.",
+      "figma": {
+        "ownerId": "21:5229",
+        "defaultComponentId": "21:5217",
+        "variantIds": [
+          "21:5217",
+          "21:5221",
+          "21:5225"
+        ],
+        "fileKey": "YHmD1PpWWfR9JGTEs77JsX"
+      },
+      "mappingStatus": "실제 Figma 부품 생성·노드 대조 완료. 소스 동작과 native 표현의 차이는 representation 및 behavior 계약을 따른다."
+    },
+    {
+      "id": "MO05",
+      "name": "FadeContent",
+      "figmaName": "Motion/FadeContent",
+      "category": "motion",
+      "source": "src/ui/motion.tsx",
+      "role": "Content appearance",
+      "currentMotion": "GSAP opacity0.9→1,180ms power2.out; cleanup and reduced-motion check",
+      "conditions": "Actual state only; manual pause, reduced motion, page visibility and offscreen behavior respected. No working-surface loops, keystroke effects or autosave celebration.",
+      "figma": {
+        "ownerId": "21:5242",
+        "defaultComponentId": "21:5230",
+        "variantIds": [
+          "21:5230",
+          "21:5234",
+          "21:5238"
+        ],
+        "fileKey": "YHmD1PpWWfR9JGTEs77JsX"
+      },
+      "mappingStatus": "실제 Figma 부품 생성·노드 대조 완료. 소스 동작과 native 표현의 차이는 representation 및 behavior 계약을 따른다."
+    },
+    {
+      "id": "BR01",
+      "name": "BrandWordmark",
+      "figmaName": "Brand/Wordmark",
+      "category": "brand",
+      "source": "src/ui/brand-wordmark.tsx",
+      "assetSource": "assets/brand/manseeksong-os.svg",
+      "role": "Existing outlined ManSeekSong OS product wordmark",
+      "variants": {
+        "material": [
+          "interior",
+          "paper"
+        ]
+      },
+      "conditions": "Bind existing path color to material text; keep aspect ratio and original geometry; do not confuse company manseeksong with product ManSeekSong OS.",
+      "figma": {
+        "ownerId": "21:5243",
+        "defaultComponentId": "21:5243",
+        "variantIds": [
+          "21:5243"
+        ],
+        "fileKey": "YHmD1PpWWfR9JGTEs77JsX"
+      },
+      "mappingStatus": "실제 Figma 부품 생성·노드 대조 완료. 소스 동작과 native 표현의 차이는 representation 및 behavior 계약을 따른다."
+    }
+  ],
+  "fontPlan": {
+    "source": "src/ui/tokens.css; assets/brand/README.md; assets/brand/wordmark-design.json",
+    "runtimeInterface": "-apple-system, BlinkMacSystemFont, \"Apple SD Gothic Neo\", \"Noto Sans KR\", sans-serif",
+    "runtimeReading": "var(--font-interface)",
+    "runtimeMono": "ui-monospace, SFMono-Regular, monospace",
+    "webFontFaceInInspectedScope": "No @font-face or @fontsource declaration found in package.json, src/ui, public at inspection time.",
+    "packagedFonts": [
+      {
+        "path": "assets/brand/InterVariable.ttf",
+        "purpose": "Source for outlined ManSeekSong OS wordmark, not current Korean body font.",
+        "licensePath": "assets/brand/OFL.txt",
+        "license": "SIL Open Font License 1.1, as bundled.",
+        "source": "https://github.com/rsms/inter/blob/master/docs/font-files/InterVariable.ttf",
+        "wordmarkAxes": {
+          "wght": 500,
+          "opsz": 32
+        },
+        "wordmarkTrackingEm": -0.018,
+        "figmaAvailability": "Local asset exists; no Figma font listing or font load success verified. Local OS font install not checked."
+      }
+    ],
+    "wordmark": {
+      "asset": "assets/brand/manseeksong-os.svg",
+      "code": "src/ui/brand-wordmark.tsx",
+      "treatment": "Import the existing outlined SVG without retyping; preserve viewBox and geometry, bind currentColor to containing material text.",
+      "viewBox": "115.761 -1534.000 16108.569 1986.000"
+    },
+    "figmaFontSelection": {
+      "preferredKoreanFamilies": [
+        "Apple SD Gothic Neo",
+        "Noto Sans KR"
+      ],
+      "procedure": "Use the actual Figma available-font list, then load the exact existing family/style before creating editable text. System aliases cannot be passed as a concrete Figma font. Select available Korean-capable face and map 400/600 explicitly. Preserve user-font allowance; do not silently treat Inter as the Korean typeface.",
+      "availability": "Remote Figma access restored by parent after purchase; this source-audit subtask did not list/load remote fonts. Actual font validation belongs to the Figma production task.",
+      "fallbackCondition": "If preferred fonts are absent, choose an actually listed Korean-capable font and label that local design fallback explicitly. A screenshot/outlined fallback is not editable text or proof that the product font is loaded."
+    },
+    "pixelFonts": "Optional short decorative labels only; no enforced pixel font for Korean paragraphs, fields or long records."
+  },
+  "knownDifferences": [
+    {
+      "id": "D01",
+      "status": "remaining current-vs-adopted styling difference",
+      "source": "src/ui/tokens.css; src/ui/components.css",
+      "finding": "Current global runtime retains indigo/gray role aliases, 4/6/8/12px radii, blurred overlay shadow and disabled opacity .55. Adopted v2 materials/radii/no-global-opacity remain the Figma target; not proof of app migration."
+    },
+    {
+      "id": "D02",
+      "status": "intentional legacy consumer",
+      "source": "src/ui/math-observatory-tokens.css; scripts/sync-math-observatory.mjs",
+      "finding": "Math consumer retains v1.1 workSurfaceColors while sharing current pixelTreatment. Use canonical v2 /materials for new foundations, preserve consumer version distinction."
+    },
+    {
+      "id": "D03",
+      "status": "concurrent source correction observed; visual/interaction verification outside this task",
+      "source": "src/ui/observatory-room.tsx; src/ui/observatory-room.css; src/ui/study-landscapes.tsx; src/ui/observatory-pointer.ts",
+      "finding": "Earlier overlay/aperture/slice inspection was superseded while this task ran. Latest source now reads baseline frame8/4px, reserves border/sill layout space, renders scene with meet, and uses full SVG pointer bounds. Do not repeat old defect as current; code changes do not establish runtime/deployment verification."
+    },
+    {
+      "id": "D04",
+      "status": "spatial adoption does not prove every route migration",
+      "source": "docs/observatory-experience-baseline.json#/spatialWorkspace",
+      "finding": "Four places and continuity are adopted design. Route/page inventory and implementation evidence are owned by the separate mapping task."
+    },
+    {
+      "id": "D05",
+      "status": "remote Figma unverified",
+      "source": "Parent reported Pro/Full plus successful metadata/libraries",
+      "finding": "Remote access restored after initial limit. This local source map alone does not establish variable binding, loaded font, editable node or prototype behavior; use separate Figma production evidence."
+    }
+  ],
+  "scope": "All 22 exported common UI components from src/ui/index.tsx, all 20 exported visual observatory components in the selected scene modules, 5 shared motion components, and the existing brand wordmark. Feature-specific screen modules belong to the separate route/screen inventory.",
+  "sourceHierarchy": [
+    {
+      "rank": 1,
+      "kind": "user decision and identity",
+      "source": "docs/observatory-design-standard.md",
+      "rule": "Entire original widget, external frame, no decorative occlusion, personal settings and original learning data preserved."
+    },
+    {
+      "rank": 2,
+      "kind": "adopted design values",
+      "source": "docs/observatory-experience-baseline.json",
+      "rule": "/materials /metrics /spatialWorkspace /pixelTreatment /motion /language /enginePresentation own v2 design values; these are adjustable shared defaults, not ceilings."
+    },
+    {
+      "rank": 3,
+      "kind": "scene palette and renderer",
+      "source": "docs/observatory-palette.json; src/ui/pixel-worlds.tsx",
+      "rule": "Reuse original geometry, decorative time/response engine and palette; do not replace with a newly invented observatory."
+    },
+    {
+      "rank": 4,
+      "kind": "functional color meaning",
+      "source": "docs/color-system.json; src/ui/tokens.css",
+      "rule": "Keep exam/chart/status meanings; decorative scene colors do not redefine them."
+    },
+    {
+      "rank": 5,
+      "kind": "current implementation",
+      "source": "src/ui/index.tsx; src/ui/components.css; src/ui/tokens.css",
+      "rule": "Names, props and behavior inventory are implementation facts. Current styling does not automatically equal adopted v2."
+    },
+    {
+      "rank": 6,
+      "kind": "legacy compatibility",
+      "source": "docs/observatory-experience-baseline.json#/workSurfaceColors",
+      "rule": "Retained v1.1 math consumer values, not the v2 materials source."
+    }
+  ],
+  "sceneVariables": [
+    {
+      "name": "observatory/scene/night-950",
+      "role": "밤 · 가장 깊은 하늘",
+      "hex": "#110F29",
+      "cssVariable": "--observatory-night-950",
+      "source": "docs/observatory-palette.json#/colors",
+      "condition": "Decorative scene only; snapshot does not freeze palette expansion or user overrides."
+    },
+    {
+      "name": "observatory/scene/night-800",
+      "role": "밤 · 남색",
+      "hex": "#1E1B4B",
+      "cssVariable": "--observatory-night-800",
+      "source": "docs/observatory-palette.json#/colors",
+      "condition": "Decorative scene only; snapshot does not freeze palette expansion or user overrides."
+    },
+    {
+      "name": "observatory/scene/night-650",
+      "role": "밤 · 먼 산",
+      "hex": "#312E81",
+      "cssVariable": "--observatory-night-650",
+      "source": "docs/observatory-palette.json#/colors",
+      "condition": "Decorative scene only; snapshot does not freeze palette expansion or user overrides."
+    },
+    {
+      "name": "observatory/scene/night-450",
+      "role": "밤 · 푸른 대기",
+      "hex": "#1E3A8A",
+      "cssVariable": "--observatory-night-450",
+      "source": "docs/observatory-palette.json#/colors",
+      "condition": "Decorative scene only; snapshot does not freeze palette expansion or user overrides."
+    },
+    {
+      "name": "observatory/scene/warm-500",
+      "role": "빛 · 다홍",
+      "hex": "#F66623",
+      "cssVariable": "--observatory-warm-500",
+      "source": "docs/observatory-palette.json#/colors",
+      "condition": "Decorative scene only; snapshot does not freeze palette expansion or user overrides."
+    },
+    {
+      "name": "observatory/scene/warm-850",
+      "role": "빛 · 어두운 잔광",
+      "hex": "#612D27",
+      "cssVariable": "--observatory-warm-850",
+      "source": "docs/observatory-palette.json#/colors",
+      "condition": "Decorative scene only; snapshot does not freeze palette expansion or user overrides."
+    },
+    {
+      "name": "observatory/scene/warm-700",
+      "role": "빛 · 주황 그림자",
+      "hex": "#7C2D12",
+      "cssVariable": "--observatory-warm-700",
+      "source": "docs/observatory-palette.json#/colors",
+      "condition": "Decorative scene only; snapshot does not freeze palette expansion or user overrides."
+    },
+    {
+      "name": "observatory/scene/warm-400",
+      "role": "빛 · 호박색",
+      "hex": "#F97316",
+      "cssVariable": "--observatory-warm-400",
+      "source": "docs/observatory-palette.json#/colors",
+      "condition": "Decorative scene only; snapshot does not freeze palette expansion or user overrides."
+    },
+    {
+      "name": "observatory/scene/warm-250",
+      "role": "빛 · 금빛",
+      "hex": "#FCB67F",
+      "cssVariable": "--observatory-warm-250",
+      "source": "docs/observatory-palette.json#/colors",
+      "condition": "Decorative scene only; snapshot does not freeze palette expansion or user overrides."
+    },
+    {
+      "name": "observatory/scene/warm-100",
+      "role": "빛 · 살구",
+      "hex": "#FBBA9C",
+      "cssVariable": "--observatory-warm-100",
+      "source": "docs/observatory-palette.json#/colors",
+      "condition": "Decorative scene only; snapshot does not freeze palette expansion or user overrides."
+    },
+    {
+      "name": "observatory/scene/warm-050",
+      "role": "빛 · 크림",
+      "hex": "#FEE5D2",
+      "cssVariable": "--observatory-warm-050",
+      "source": "docs/observatory-palette.json#/colors",
+      "condition": "Decorative scene only; snapshot does not freeze palette expansion or user overrides."
+    },
+    {
+      "name": "observatory/scene/cool-500",
+      "role": "별 · 푸른빛",
+      "hex": "#80AEF9",
+      "cssVariable": "--observatory-cool-500",
+      "source": "docs/observatory-palette.json#/colors",
+      "condition": "Decorative scene only; snapshot does not freeze palette expansion or user overrides."
+    },
+    {
+      "name": "observatory/scene/cool-350",
+      "role": "별 · 청록",
+      "hex": "#51BAAC",
+      "cssVariable": "--observatory-cool-350",
+      "source": "docs/observatory-palette.json#/colors",
+      "condition": "Decorative scene only; snapshot does not freeze palette expansion or user overrides."
+    },
+    {
+      "name": "observatory/scene/cool-400",
+      "role": "성운 · 보랏빛",
+      "hex": "#818CF8",
+      "cssVariable": "--observatory-cool-400",
+      "source": "docs/observatory-palette.json#/colors",
+      "condition": "Decorative scene only; snapshot does not freeze palette expansion or user overrides."
+    },
+    {
+      "name": "observatory/scene/cool-850",
+      "role": "오로라 · 그림자",
+      "hex": "#14532D",
+      "cssVariable": "--observatory-cool-850",
+      "source": "docs/observatory-palette.json#/colors",
+      "condition": "Decorative scene only; snapshot does not freeze palette expansion or user overrides."
+    },
+    {
+      "name": "observatory/scene/star-050",
+      "role": "별 · 가장 밝은 점",
+      "hex": "#FFFFFF",
+      "cssVariable": "--observatory-star-050",
+      "source": "docs/observatory-palette.json#/colors",
+      "condition": "Decorative scene only; snapshot does not freeze palette expansion or user overrides."
+    }
+  ],
+  "sceneRoleReferences": [
+    {
+      "role": "deepSky",
+      "paletteName": "night-950",
+      "hex": "#110F29"
+    },
+    {
+      "role": "navySky",
+      "paletteName": "night-800",
+      "hex": "#1E1B4B"
+    },
+    {
+      "role": "coldBlueAtmosphere",
+      "paletteName": "night-450",
+      "hex": "#1E3A8A"
+    },
+    {
+      "role": "blueStarlight",
+      "paletteName": "cool-500",
+      "hex": "#80AEF9"
+    },
+    {
+      "role": "orangeBurst",
+      "paletteName": "warm-500",
+      "hex": "#F66623"
+    },
+    {
+      "role": "warmStarlight",
+      "paletteName": "warm-250",
+      "hex": "#FCB67F"
+    },
+    {
+      "role": "whiteCore",
+      "paletteName": "star-050",
+      "hex": "#FFFFFF"
+    },
+    {
+      "role": "violetNebula",
+      "paletteName": "cool-400",
+      "hex": "#818CF8"
+    },
+    {
+      "role": "softViolet",
+      "baselinePath": "/sceneColors/extendedAccents/nebulaViolet",
+      "hex": "#A995D6"
+    },
+    {
+      "role": "lampLight",
+      "baselinePath": "/sceneColors/extendedAccents/warmWindow",
+      "hex": "#E7CE84"
+    }
+  ],
+  "typeStyles": [
+    {
+      "name": "observatory/type/body",
+      "fontRole": "interface or reading by content",
+      "fontSizePx": 16,
+      "lineHeightPercent": 165,
+      "lineHeightPx": 26.4,
+      "fontWeight": 400,
+      "source": "docs/observatory-experience-baseline.json#/metrics/type/body",
+      "condition": "16px root preview only; runtime rem follows user font sizing. No fixed-height clipping."
+    },
+    {
+      "name": "observatory/type/label",
+      "fontRole": "interface or reading by content",
+      "fontSizePx": 15,
+      "lineHeightPercent": 150,
+      "lineHeightPx": 22.5,
+      "fontWeight": 600,
+      "source": "docs/observatory-experience-baseline.json#/metrics/type/label",
+      "condition": "16px root preview only; runtime rem follows user font sizing. No fixed-height clipping."
+    },
+    {
+      "name": "observatory/type/caption",
+      "fontRole": "interface or reading by content",
+      "fontSizePx": 14,
+      "lineHeightPercent": 160,
+      "lineHeightPx": 22.400000000000002,
+      "fontWeight": 400,
+      "source": "docs/observatory-experience-baseline.json#/metrics/type/caption",
+      "condition": "16px root preview only; runtime rem follows user font sizing. No fixed-height clipping."
+    },
+    {
+      "name": "observatory/type/heading",
+      "fontRole": "interface or reading by content",
+      "fontSizePx": 20,
+      "lineHeightPercent": 140,
+      "lineHeightPx": 28,
+      "fontWeight": 600,
+      "source": "docs/observatory-experience-baseline.json#/metrics/type/heading",
+      "condition": "16px root preview only; runtime rem follows user font sizing. No fixed-height clipping."
+    },
+    {
+      "name": "observatory/type/title",
+      "fontRole": "interface or reading by content",
+      "fontSizePx": 28,
+      "lineHeightPercent": 135,
+      "lineHeightPx": 37.800000000000004,
+      "fontWeight": 600,
+      "compactFontSizePx": 24,
+      "source": "docs/observatory-experience-baseline.json#/metrics/type/title",
+      "condition": "16px root preview only; runtime rem follows user font sizing. No fixed-height clipping."
+    }
+  ],
+  "componentStateDefinitions": {
+    "default": "Containing material surface + text; use interactive border when the boundary is necessary.",
+    "hover": "Containing material subtle; primaryHover for a filled primary action.",
+    "pressed": "Containing material selected with visible indicator; primaryPressed for filled primary action; 1px down.",
+    "focus": "Containing material focus ring with surface-colored gap; distinct from selected.",
+    "disabled": "No action; native/aria disabled plus factual label. Use readable material muted text without global opacity; do not make helper explanations unreadable.",
+    "busy": "in-flight request only; prevent duplicate activation of same command; preserve draft",
+    "invalid": "existing danger role + field-associated explanation; preserve entered text",
+    "readOnly": "Readable/selectable text in the material; labelled when needed; no misleading disabled appearance."
+  },
+  "registryChecksum": {
+    "commonUI": 22,
+    "observatoryScene": 20,
+    "motion": 5,
+    "brand": 1,
+    "total": 48,
+    "uniqueNames": 48,
+    "scope": "Visual exports in the listed source modules; excludes hooks, geometry helpers, data models and feature screen modules.",
+    "internalParts": [
+      {
+        "name": "Field",
+        "source": "src/ui/index.tsx",
+        "status": "Private composition used by Input/Textarea/Select; not a separately exported component."
+      }
+    ]
+  },
+  "widgetAsset": {
+    "source": "src/ui/pixel-worlds.tsx#ObservatoryWorld",
+    "geometrySource": "src/ui/observatory-geometry.ts",
+    "viewBox": "0 -100 960 400",
+    "width": 960,
+    "height": 400,
+    "aspectRatio": 2.4,
+    "fit": "meet",
+    "frameOutside": true,
+    "occlusionPx": 0,
+    "cropAllowed": false,
+    "controls": "Retain current pause/visibility/settings controls; decorative assets alone are not the whole functional widget.",
+    "symbolicViewpoint": "Studying self inside, same self represented like a companion in the original observatory outside. Preserve original building.",
+    "SSR": {
+      "dataFactory": "buildStudyLandscape({userId,namespace,subjects:[],sessions:[],records:[]},undefined,fixedReferenceDay)",
+      "timeFactory": "observatorySkyAt(observatoryPreviewTime(\"night\"))",
+      "eventFactory": "buildObservatoryEvents(world,instant,\"figma-synthetic\")",
+      "presentation": "observatoryPresentation(world,undefined,sky)",
+      "visible": [
+        "garden",
+        "river",
+        "walk"
+      ],
+      "thumbnail": false,
+      "synthetic": true,
+      "cssDependencies": [
+        "src/ui/tokens.css",
+        "src/ui/study-landscapes.css",
+        "src/ui/observatory-palette.css",
+        "src/ui/observatory-advanced.css",
+        "src/ui/observatory-reactivity.css"
+      ],
+      "exportCondition": "Resolve CSS variables, color-mix and inherited computed SVG paint styles before Figma SVG import; preserve defs/use/clipPath/gradient ids. SSR does not capture WebGL canvas pixels, animation, pointer behavior or controls. Mark static SVG reference, not exact live GPU render."
+    }
+  },
+  "sourceSnapshot": {
+    "kind": "working-tree files during concurrent work",
+    "head": "9ca470c6be8127bddd2008b8e156c63ad4f33342",
+    "capturedAt": "2026-10-01T17:16:02.205Z",
+    "files": [
+      {
+        "path": "docs/observatory-experience-baseline.json",
+        "sha256": "cca2931b4b7c573cc72a604cf41e905ea9beb7427cae5bc21f9301483b7405c6"
+      },
+      {
+        "path": "docs/observatory-design-standard.md",
+        "sha256": "796b0e75b1f6b675ca4c10b0c8c27bc291b5a40adebf313db797c297e9321bea"
+      },
+      {
+        "path": "docs/observatory-palette.json",
+        "sha256": "75e6f40ea6df861419e1b808684e585ce7dd96d03a91fe14b3ff47e6b21aa6d4"
+      },
+      {
+        "path": "src/ui/tokens.css",
+        "sha256": "3c0d3b76f816b5cc79a874ac446acd850763849ad9c71125ba134aac0f091d62"
+      },
+      {
+        "path": "src/ui/components.css",
+        "sha256": "84d8a526d6a2d6119ea75dcbd944bb664c4cf41e36b2e3fb9c14c9f2a858c81b"
+      },
+      {
+        "path": "src/ui/index.tsx",
+        "sha256": "faf9fcbdc7c2e20741e99976f374153f0a4a112896d7d003f96366215e76f792"
+      },
+      {
+        "path": "src/ui/navigation-bar.tsx",
+        "sha256": "25e505880a81c79087f17515617ed30c07d78853531b597b7c045320e53f9b2a"
+      },
+      {
+        "path": "src/ui/context-menu.tsx",
+        "sha256": "4c902ee84c931310bc95111b215d8ceaf0c9596ce46027b4a4107f2299257f37"
+      },
+      {
+        "path": "src/ui/motion.tsx",
+        "sha256": "48db1e780ef005bea06b9f9996df286eacc0cfe0f9ef3897f02c3db07cbeecb1"
+      },
+      {
+        "path": "src/ui/study-landscapes.tsx",
+        "sha256": "5edc579586a99bd3f902a7a64ea43af053e2d6ddd3c26e2af434341765f53fe2"
+      },
+      {
+        "path": "src/ui/observatory-room.tsx",
+        "sha256": "c66ba2f27063aa80e3b03dd46330d80d5235d0b87e915e867c5e377397d3445e"
+      },
+      {
+        "path": "src/ui/observatory-room.css",
+        "sha256": "d43e34f615634c9e7dfbd1c610db1d9b316237a10f0eed60385e79638aacadce"
+      },
+      {
+        "path": "src/ui/observatory-geometry.ts",
+        "sha256": "0366e4b4a1de3d66b68033868562890d7bf610b38b652f2ec306c57365f9f54f"
+      },
+      {
+        "path": "src/ui/observatory-pointer.ts",
+        "sha256": "abf56c725cc2a24cfde75049fd7163b252b9486a34368eb1c0dde2fed8f13e28"
+      },
+      {
+        "path": "src/ui/math-observatory-tokens.css",
+        "sha256": "14b63de3f8000335c26f13b45877c41bfad35deba736c581290babc2e957317e"
+      },
+      {
+        "path": "assets/brand/InterVariable.ttf",
+        "sha256": "4989b125924991b90d05b2d16e0e388c48f7d5bb8b30539bbf9c755278d0ccaf"
+      },
+      {
+        "path": "assets/brand/OFL.txt",
+        "sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a"
+      },
+      {
+        "path": "assets/brand/wordmark-design.json",
+        "sha256": "fe1f31f18567a149a42a700b182448f78e0b1eba1ff80c78159f243616889aa5"
+      }
+    ],
+    "warning": "HEAD does not imply these working-tree files are committed. Recheck owners when consumers change."
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"pageId\":\"3:73\",\"name\":\"전집 · 원리형\",\"rootCount\":349,\"publicationCount\":349,\"nativeParagraphCount\":867,\"richParagraphCount\":484,\"renderedNative95TextCount\":966,\"problems\":[],\"representativeRoots\":[{\"id\":\"43:19\",\"name\":\"OS판본 · 04-026 · 026c38cbb8fe\",\"width\":1584,\"height\":1173.771484375},{\"id\":\"46:677\",\"name\":\"OS판본 · 01-005 · 0090a1101fbf\",\"width\":2400,\"height\":966.18603515625},{\"id\":\"46:796\",\"name\":\"OS판본 · 01-001 · aca748d78b11\",\"width\":2400,\"height\":1117.199951171875}],\"createdNodeIds\":[],\"mutatedNodeIds\":[]}"
+    }
+  ],
+  "isError": false
+}

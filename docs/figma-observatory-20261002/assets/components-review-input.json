@@ -1,0 +1,519 @@
+{
+  "pageId": "7:70",
+  "foundations": {
+    "collections": {
+      "primitives": "VariableCollectionId:7:78",
+      "material": "VariableCollectionId:7:79",
+      "metrics": "VariableCollectionId:7:80"
+    },
+    "modes": [
+      {
+        "name": "Interior",
+        "modeId": "7:1"
+      },
+      {
+        "name": "Paper",
+        "modeId": "7:2"
+      }
+    ],
+    "variables": {
+      "primitive/interior/canvas": {
+        "id": "VariableID:7:81"
+      },
+      "primitive/interior/surface": {
+        "id": "VariableID:7:82"
+      },
+      "primitive/interior/subtle": {
+        "id": "VariableID:7:83"
+      },
+      "primitive/interior/text": {
+        "id": "VariableID:7:84"
+      },
+      "primitive/interior/muted": {
+        "id": "VariableID:7:85"
+      },
+      "primitive/interior/borderDecorative": {
+        "id": "VariableID:7:86"
+      },
+      "primitive/interior/borderInteractive": {
+        "id": "VariableID:7:87"
+      },
+      "primitive/interior/focus": {
+        "id": "VariableID:7:88"
+      },
+      "primitive/interior/selected": {
+        "id": "VariableID:7:89"
+      },
+      "primitive/interior/selectedText": {
+        "id": "VariableID:7:90"
+      },
+      "primitive/interior/primary": {
+        "id": "VariableID:7:91"
+      },
+      "primitive/interior/primaryHover": {
+        "id": "VariableID:7:92"
+      },
+      "primitive/interior/primaryPressed": {
+        "id": "VariableID:7:93"
+      },
+      "primitive/interior/onPrimary": {
+        "id": "VariableID:7:94"
+      },
+      "primitive/paper/canvas": {
+        "id": "VariableID:7:95"
+      },
+      "primitive/paper/surface": {
+        "id": "VariableID:7:96"
+      },
+      "primitive/paper/subtle": {
+        "id": "VariableID:7:97"
+      },
+      "primitive/paper/text": {
+        "id": "VariableID:7:98"
+      },
+      "primitive/paper/muted": {
+        "id": "VariableID:7:99"
+      },
+      "primitive/paper/borderDecorative": {
+        "id": "VariableID:7:100"
+      },
+      "primitive/paper/borderInteractive": {
+        "id": "VariableID:7:101"
+      },
+      "primitive/paper/focus": {
+        "id": "VariableID:7:102"
+      },
+      "primitive/paper/selected": {
+        "id": "VariableID:7:103"
+      },
+      "primitive/paper/selectedText": {
+        "id": "VariableID:7:104"
+      },
+      "primitive/paper/primary": {
+        "id": "VariableID:7:105"
+      },
+      "primitive/paper/primaryHover": {
+        "id": "VariableID:7:106"
+      },
+      "primitive/paper/primaryPressed": {
+        "id": "VariableID:7:107"
+      },
+      "primitive/paper/onPrimary": {
+        "id": "VariableID:7:108"
+      },
+      "material/canvas": {
+        "id": "VariableID:7:109"
+      },
+      "material/surface": {
+        "id": "VariableID:7:110"
+      },
+      "material/subtle": {
+        "id": "VariableID:7:111"
+      },
+      "material/text": {
+        "id": "VariableID:7:112"
+      },
+      "material/muted": {
+        "id": "VariableID:7:113"
+      },
+      "material/borderDecorative": {
+        "id": "VariableID:7:114"
+      },
+      "material/borderInteractive": {
+        "id": "VariableID:7:115"
+      },
+      "material/focus": {
+        "id": "VariableID:7:116"
+      },
+      "material/selected": {
+        "id": "VariableID:7:117"
+      },
+      "material/selectedText": {
+        "id": "VariableID:7:118"
+      },
+      "material/primary": {
+        "id": "VariableID:7:119"
+      },
+      "material/primaryHover": {
+        "id": "VariableID:7:120"
+      },
+      "material/primaryPressed": {
+        "id": "VariableID:7:121"
+      },
+      "material/onPrimary": {
+        "id": "VariableID:7:122"
+      },
+      "space/0": {
+        "id": "VariableID:7:123"
+      },
+      "space/4": {
+        "id": "VariableID:7:124"
+      },
+      "space/8": {
+        "id": "VariableID:7:125"
+      },
+      "space/12": {
+        "id": "VariableID:7:126"
+      },
+      "space/16": {
+        "id": "VariableID:7:127"
+      },
+      "space/24": {
+        "id": "VariableID:7:128"
+      },
+      "space/32": {
+        "id": "VariableID:7:129"
+      },
+      "space/48": {
+        "id": "VariableID:7:130"
+      },
+      "space/64": {
+        "id": "VariableID:7:131"
+      },
+      "control/height": {
+        "id": "VariableID:7:132"
+      },
+      "control/icon-target": {
+        "id": "VariableID:7:133"
+      },
+      "border/width": {
+        "id": "VariableID:7:134"
+      },
+      "focus/width": {
+        "id": "VariableID:7:135"
+      },
+      "radius/control": {
+        "id": "VariableID:7:136"
+      },
+      "radius/dialog": {
+        "id": "VariableID:7:137"
+      },
+      "motion/feedback": {
+        "id": "VariableID:7:138"
+      },
+      "motion/navigation": {
+        "id": "VariableID:7:139"
+      },
+      "motion/reduced": {
+        "id": "VariableID:7:140"
+      }
+    },
+    "textStyles": {
+      "Body": "S:0ed1e468a727e7f6b4cfe5df9fede5b786c93484,",
+      "Label": "S:57e137d821e57f2a65506aae778891f8769014bb,",
+      "Caption": "S:befdc25f9b2e8c63313b60a0d4aea208900d629a,",
+      "Heading": "S:a12f8ca10ba0d22e77eaf7ad3092a28a3779de86,",
+      "Title": "S:9c730b18d11b0b822b1b5cb4828120b4eb39915f,",
+      "TitleCompact": "S:8579bbbd27aef7f9309ddc31f958d7598925587a,",
+      "Code": "S:2dbd5754c8da299cad06f2184af84cc5101eb9b7,"
+    },
+    "fonts": {
+      "font": {
+        "family": "Noto Sans KR",
+        "style": "Regular"
+      },
+      "boldFont": {
+        "family": "Noto Sans KR",
+        "style": "Regular",
+        "variationSettings": {
+          "wght": 600
+        }
+      }
+    }
+  },
+  "registry": [],
+  "finalizeReview": true,
+  "allRegistry": [
+    {
+      "id": "UI01",
+      "name": "Button",
+      "figmaName": "Controls/Button",
+      "role": "명시적 행동 실행"
+    },
+    {
+      "id": "UI02",
+      "name": "IconButton",
+      "figmaName": "Controls/IconButton",
+      "role": "이름이 있는 아이콘 행동"
+    },
+    {
+      "id": "UI03",
+      "name": "Input",
+      "figmaName": "Fields/Input",
+      "role": "단일행 원문 입력"
+    },
+    {
+      "id": "UI04",
+      "name": "Textarea",
+      "figmaName": "Fields/Textarea",
+      "role": "긴 자유 글 입력"
+    },
+    {
+      "id": "UI05",
+      "name": "Select",
+      "figmaName": "Fields/Select",
+      "role": "네이티브 선택"
+    },
+    {
+      "id": "UI06",
+      "name": "Checkbox",
+      "figmaName": "Controls/Checkbox",
+      "role": "독립·복수 선택"
+    },
+    {
+      "id": "UI07",
+      "name": "Radio",
+      "figmaName": "Controls/Radio",
+      "role": "같은 그룹에서 하나 선택"
+    },
+    {
+      "id": "UI08",
+      "name": "Tabs",
+      "figmaName": "Navigation/Tabs",
+      "role": "관련 패널 사이 이동"
+    },
+    {
+      "id": "UI09",
+      "name": "SegmentedControl",
+      "figmaName": "Controls/SegmentedControl",
+      "role": "표시 방식 전환"
+    },
+    {
+      "id": "UI10",
+      "name": "Card",
+      "figmaName": "Containers/Card",
+      "role": "관련 내용 묶음"
+    },
+    {
+      "id": "UI11",
+      "name": "ListItem",
+      "figmaName": "Containers/ListItem",
+      "role": "의미 있는 목록 한 행"
+    },
+    {
+      "id": "UI12",
+      "name": "Modal",
+      "figmaName": "Overlays/Modal",
+      "role": "집중 대화상자"
+    },
+    {
+      "id": "UI13",
+      "name": "Sheet",
+      "figmaName": "Overlays/Sheet",
+      "role": "넓은 보조 작업면"
+    },
+    {
+      "id": "UI14",
+      "name": "Toast",
+      "figmaName": "Feedback/Toast",
+      "role": "일시적 사실 알림"
+    },
+    {
+      "id": "UI15",
+      "name": "Breadcrumb",
+      "figmaName": "Navigation/Breadcrumb",
+      "role": "현재 위치와 상위 경로"
+    },
+    {
+      "id": "UI16",
+      "name": "Search",
+      "figmaName": "Fields/Search",
+      "role": "검색어 입력과 검색 전달"
+    },
+    {
+      "id": "UI17",
+      "name": "EmptyState",
+      "figmaName": "Feedback/EmptyState",
+      "role": "첫 사용·빈 결과와 가능한 다음 행동"
+    },
+    {
+      "id": "UI18",
+      "name": "LoadingState",
+      "figmaName": "Feedback/LoadingState",
+      "role": "진행 중인 실제 요청"
+    },
+    {
+      "id": "UI19",
+      "name": "ErrorState",
+      "figmaName": "Feedback/ErrorState",
+      "role": "실제 오류와 복구"
+    },
+    {
+      "id": "UI20",
+      "name": "ScreenBoundary",
+      "figmaName": "Feedback/ScreenBoundary",
+      "role": "화면 렌더 실패 격리"
+    },
+    {
+      "id": "UI21",
+      "name": "NavigationBar",
+      "figmaName": "Navigation/NavigationBar",
+      "role": "실제 목적지 직접 이동"
+    },
+    {
+      "id": "UI22",
+      "name": "ContextMenu",
+      "figmaName": "Overlays/ContextMenu",
+      "role": "대상별 보조 명령"
+    },
+    {
+      "id": "SC01",
+      "name": "StudyLandscapes",
+      "figmaName": "Observatory/StudyLandscapes",
+      "role": "풍경 위젯 전체와 정지·표시·설정 저장"
+    },
+    {
+      "id": "SC02",
+      "name": "ObservatoryWorld",
+      "figmaName": "Observatory/ObservatoryWorld",
+      "role": "원본 천문대 SVG 합성"
+    },
+    {
+      "id": "SC03",
+      "name": "ObservatoryRoom",
+      "figmaName": "Observatory/ObservatoryRoom",
+      "role": "전체 위젯 외부 창틀·창턱·책상 배치"
+    },
+    {
+      "id": "SC04",
+      "name": "ObservatoryDesk",
+      "figmaName": "Observatory/ObservatoryDesk",
+      "role": "정적인 책상 소품 벡터"
+    },
+    {
+      "id": "SC05",
+      "name": "ObservatoryAdvanced",
+      "figmaName": "Observatory/ObservatoryAdvanced",
+      "role": "고급 WebGL/SVG·확대 세부 표현"
+    },
+    {
+      "id": "SC06",
+      "name": "ObservatorySkyDetails",
+      "figmaName": "Observatory/ObservatorySkyDetails",
+      "role": "하늘 세부 표현"
+    },
+    {
+      "id": "SC07",
+      "name": "ObservatoryStationDetails",
+      "figmaName": "Observatory/ObservatoryStationDetails",
+      "role": "천문대 건물 세부 표현"
+    },
+    {
+      "id": "SC08",
+      "name": "ObservatoryTimeSky",
+      "figmaName": "Observatory/ObservatoryTimeSky",
+      "role": "시간에 따른 장식 하늘"
+    },
+    {
+      "id": "SC09",
+      "name": "ObservatoryTimeGround",
+      "figmaName": "Observatory/ObservatoryTimeGround",
+      "role": "시간에 따른 장식 지면"
+    },
+    {
+      "id": "SC10",
+      "name": "ObservatoryClouds",
+      "figmaName": "Observatory/ObservatoryClouds",
+      "role": "픽셀 구름"
+    },
+    {
+      "id": "SC11",
+      "name": "ObservatoryGroundDetails",
+      "figmaName": "Observatory/ObservatoryGroundDetails",
+      "role": "지면 세부"
+    },
+    {
+      "id": "SC12",
+      "name": "ObservatoryDomeTiles",
+      "figmaName": "Observatory/ObservatoryDomeTiles",
+      "role": "천문대 돔 타일"
+    },
+    {
+      "id": "SC13",
+      "name": "ObservatoryShockwave",
+      "figmaName": "Observatory/ObservatoryShockwave",
+      "role": "기존 반응 엔진의 파동 표현"
+    },
+    {
+      "id": "SC14",
+      "name": "ObservatoryStudySky",
+      "figmaName": "Observatory/ObservatoryStudySky",
+      "role": "관측된 공부 활동의 하늘 반응"
+    },
+    {
+      "id": "SC15",
+      "name": "ObservatoryStudyStation",
+      "figmaName": "Observatory/ObservatoryStudyStation",
+      "role": "관측된 공부 활동의 천문대 반응"
+    },
+    {
+      "id": "SC16",
+      "name": "ObservatoryRadiance",
+      "figmaName": "Observatory/ObservatoryRadiance",
+      "role": "기존 빛 표현"
+    },
+    {
+      "id": "SC17",
+      "name": "ObservatoryRadianceGround",
+      "figmaName": "Observatory/ObservatoryRadianceGround",
+      "role": "지면의 반응광"
+    },
+    {
+      "id": "SC18",
+      "name": "ObservatoryEvents",
+      "figmaName": "Observatory/ObservatoryEvents",
+      "role": "시간·세계의 장식 현상 집합"
+    },
+    {
+      "id": "SC19",
+      "name": "ObservatoryEventVariationSymbol",
+      "figmaName": "Observatory/ObservatoryEventVariationSymbol",
+      "role": "현상별 재사용 SVG 도형"
+    },
+    {
+      "id": "SC20",
+      "name": "ObservatoryEventVariation",
+      "figmaName": "Observatory/ObservatoryEventVariation",
+      "role": "현상 도형 인스턴스"
+    },
+    {
+      "id": "MO01",
+      "name": "BusyDots",
+      "figmaName": "Motion/BusyDots",
+      "role": "Delayed loading dots"
+    },
+    {
+      "id": "MO02",
+      "name": "SavedMark",
+      "figmaName": "Motion/SavedMark",
+      "role": "Acknowledged-save mark"
+    },
+    {
+      "id": "MO03",
+      "name": "SelectionBackground",
+      "figmaName": "Motion/SelectionBackground",
+      "role": "Shared selection surface"
+    },
+    {
+      "id": "MO04",
+      "name": "NoticeEntrance",
+      "figmaName": "Motion/NoticeEntrance",
+      "role": "Notice appearance"
+    },
+    {
+      "id": "MO05",
+      "name": "FadeContent",
+      "figmaName": "Motion/FadeContent",
+      "role": "Content appearance"
+    },
+    {
+      "id": "BR01",
+      "name": "BrandWordmark",
+      "figmaName": "Brand/Wordmark",
+      "role": "Existing outlined ManSeekSong OS product wordmark"
+    }
+  ],
+  "assets": {
+    "worldAssetId": "10:68"
+  }
+}

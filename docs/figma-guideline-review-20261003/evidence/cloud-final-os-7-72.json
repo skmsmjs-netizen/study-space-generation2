@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"pageId\":\"7:72\",\"name\":\"11 서쪽 · 자료 책장\",\"rootCount\":75,\"wrappers\":110,\"sizes\":{\"16\":79,\"18\":31},\"problemCount\":0,\"problems\":[],\"forms\":[{\"id\":\"402:1674\",\"close\":1,\"width\":336,\"height\":600},{\"id\":\"402:1732\",\"close\":1,\"width\":336,\"height\":528},{\"id\":\"402:1755\",\"close\":1,\"width\":336,\"height\":591},{\"id\":\"402:1782\",\"close\":1,\"width\":336,\"height\":528},{\"id\":\"402:1805\",\"close\":1,\"width\":336,\"height\":600},{\"id\":\"402:1872\",\"close\":1,\"width\":336,\"height\":600}],\"hubActions\":[{\"id\":\"391:2121\",\"actions\":[{\"type\":\"NODE\",\"destinationId\":\"402:1674\",\"navigation\":\"SWAP\",\"transition\":null,\"resetVideoPosition\":false,\"resetScrollPosition\":false}]},{\"id\":\"391:2123\",\"actions\":[{\"type\":\"NODE\",\"destinationId\":\"402:1732\",\"navigation\":\"SWAP\",\"transition\":null,\"resetVideoPosition\":false,\"resetScrollPosition\":false}]},{\"id\":\"391:2125\",\"actions\":[{\"type\":\"NODE\",\"destinationId\":\"402:1755\",\"navigation\":\"SWAP\",\"transition\":null,\"resetVideoPosition\":false,\"resetScrollPosition\":false}]},{\"id\":\"391:2127\",\"actions\":[{\"type\":\"NODE\",\"destinationId\":\"402:1782\",\"navigation\":\"SWAP\",\"transition\":null,\"resetVideoPosition\":false,\"resetScrollPosition\":false}]},{\"id\":\"391:2129\",\"actions\":[{\"type\":\"NODE\",\"destinationId\":\"402:1805\",\"navigation\":\"SWAP\",\"transition\":null,\"resetVideoPosition\":false,\"resetScrollPosition\":false}]},{\"id\":\"391:2131\",\"actions\":[{\"type\":\"NODE\",\"destinationId\":\"402:1872\",\"navigation\":\"SWAP\",\"transition\":null,\"resetVideoPosition\":false,\"resetScrollPosition\":false}]}],\"sourcePreserved\":true,\"mathPreserved\":true,\"removedDerivedVectorCount\":0,\"createdNodeIds\":[],\"mutatedNodeIds\":[],\"removedNodeIds\":[]}"
+    }
+  ],
+  "isError": false
+}

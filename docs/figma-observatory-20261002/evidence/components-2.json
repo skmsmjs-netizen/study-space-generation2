@@ -1,0 +1,165 @@
+{
+  "status": "created",
+  "createdNodeIds": [],
+  "mutatedNodeIds": [],
+  "createdVariableIds": [],
+  "registryMap": {
+    "EmptyState": {
+      "id": "UI17",
+      "name": "EmptyState",
+      "source": "src/ui/index.tsx",
+      "role": "첫 사용·빈 결과와 가능한 다음 행동",
+      "ownerId": "17:186",
+      "ownerType": "COMPONENT_SET",
+      "defaultComponentId": "17:170",
+      "variantIds": [
+        "17:170",
+        "17:178"
+      ],
+      "propertyIds": {
+        "Title": "Title#17:55",
+        "Message": "Message#17:58",
+        "NoResultsTitle": "NoResultsTitle#17:61",
+        "NoResultsMessage": "NoResultsMessage#17:64"
+      },
+      "representation": "Existing source-mapped component reused; consult original property definitions."
+    },
+    "LoadingState": {
+      "id": "UI18",
+      "name": "LoadingState",
+      "source": "src/ui/index.tsx",
+      "role": "진행 중인 실제 요청",
+      "ownerId": "17:187",
+      "ownerType": "COMPONENT",
+      "defaultComponentId": "17:187",
+      "variantIds": [
+        "17:187"
+      ],
+      "propertyIds": {
+        "Message": "Message#17:67"
+      },
+      "representation": "Existing source-mapped component reused; consult original property definitions."
+    },
+    "ErrorState": {
+      "id": "UI19",
+      "name": "ErrorState",
+      "source": "src/ui/index.tsx",
+      "role": "실제 오류와 복구",
+      "ownerId": "17:193",
+      "ownerType": "COMPONENT",
+      "defaultComponentId": "17:193",
+      "variantIds": [
+        "17:193"
+      ],
+      "propertyIds": {
+        "Title": "Title#17:68",
+        "Message": "Message#17:69"
+      },
+      "representation": "Existing source-mapped component reused; consult original property definitions."
+    },
+    "ScreenBoundary": {
+      "id": "UI20",
+      "name": "ScreenBoundary",
+      "source": "src/ui/index.tsx",
+      "role": "화면 렌더 실패 격리",
+      "ownerId": "17:198",
+      "ownerType": "COMPONENT",
+      "defaultComponentId": "17:198",
+      "variantIds": [
+        "17:198"
+      ],
+      "propertyIds": {
+        "Title": "Title#17:70",
+        "Message": "Message#17:71"
+      },
+      "representation": "Existing source-mapped component reused; consult original property definitions."
+    },
+    "NavigationBar": {
+      "id": "UI21",
+      "name": "NavigationBar",
+      "source": "src/ui/navigation-bar.tsx",
+      "role": "실제 목적지 직접 이동",
+      "ownerId": "17:223",
+      "ownerType": "COMPONENT_SET",
+      "defaultComponentId": "17:203",
+      "variantIds": [
+        "17:203",
+        "17:213"
+      ],
+      "propertyIds": {
+        "Place 0": "Place 0#17:72",
+        "Place 1": "Place 1#17:75",
+        "Place 2": "Place 2#17:78",
+        "Place 3": "Place 3#17:81"
+      },
+      "representation": "Existing source-mapped component reused; consult original property definitions."
+    },
+    "ContextMenu": {
+      "id": "UI22",
+      "name": "ContextMenu",
+      "source": "src/ui/context-menu.tsx",
+      "role": "대상별 보조 명령",
+      "ownerId": "17:224",
+      "ownerType": "COMPONENT",
+      "defaultComponentId": "17:224",
+      "variantIds": [
+        "17:224"
+      ],
+      "propertyIds": {
+        "Command 0": "Command 0#17:84",
+        "Command 1": "Command 1#17:85",
+        "Command 2": "Command 2#17:86"
+      },
+      "representation": "Existing source-mapped component reused; consult original property definitions."
+    },
+    "StudyLandscapes": {
+      "id": "SC01",
+      "name": "StudyLandscapes",
+      "source": "src/ui/study-landscapes.tsx",
+      "role": "풍경 위젯 전체와 정지·표시·설정 저장",
+      "ownerId": "17:231",
+      "ownerType": "COMPONENT",
+      "defaultComponentId": "17:231",
+      "variantIds": [
+        "17:231"
+      ],
+      "propertyIds": {
+        "Purpose": "Purpose#17:87"
+      },
+      "representation": "Existing source-mapped component reused; consult original property definitions."
+    },
+    "ObservatoryWorld": {
+      "id": "SC02",
+      "name": "ObservatoryWorld",
+      "source": "src/ui/pixel-worlds.tsx",
+      "role": "원본 천문대 SVG 합성",
+      "ownerId": "17:1910",
+      "ownerType": "COMPONENT",
+      "defaultComponentId": "17:1910",
+      "variantIds": [
+        "17:1910"
+      ],
+      "propertyIds": {
+        "Purpose": "Purpose#17:88"
+      },
+      "representation": "Existing source-mapped component reused; consult original property definitions."
+    }
+  },
+  "icons": {
+    "arrow": "15:73",
+    "search": "15:75",
+    "check": "16:70",
+    "close": "16:72",
+    "more": "16:74"
+  },
+  "sharedWorldAssetId": "10:68",
+  "review": null,
+  "counts": {
+    "registry": 8,
+    "common": 6,
+    "variants": 10
+  },
+  "warnings": [],
+  "finalizedReview": false,
+  "scope": "Native component/state and source-contract representation; root validates rendered review and records downstream prototype behavior."
+}

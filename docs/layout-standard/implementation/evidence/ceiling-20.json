@@ -1,0 +1,114 @@
+{
+  "pageId": "7:75",
+  "createdNodeIds": [
+    "256:6814",
+    "256:6815",
+    "256:6816",
+    "256:6817"
+  ],
+  "mutatedNodeIds": [
+    "256:6814",
+    "29:5344",
+    "29:5345",
+    "29:5346",
+    "29:5347",
+    "29:5356",
+    "29:5357",
+    "29:5361",
+    "29:5331",
+    "256:6815",
+    "29:5387",
+    "29:5388",
+    "29:5389",
+    "29:5390",
+    "29:5392",
+    "29:5393",
+    "29:5374",
+    "256:6816",
+    "29:5423",
+    "29:5424",
+    "29:5425",
+    "29:5426",
+    "29:5427",
+    "29:5428",
+    "29:5429",
+    "29:5430",
+    "29:5431",
+    "29:5438",
+    "29:5439",
+    "29:5410",
+    "256:6817",
+    "29:5476",
+    "29:5477",
+    "29:5478",
+    "29:5479",
+    "29:5480",
+    "29:5463"
+  ],
+  "results": [
+    {
+      "id": "29:5331",
+      "name": "O15@ipad-landscape",
+      "pattern": "L048",
+      "scope": "overlay",
+      "viewport": {
+        "width": 1376,
+        "height": 1032,
+        "overflow": "VERTICAL"
+      },
+      "preserved": true,
+      "scroll": "VERTICAL",
+      "sceneRatios": [],
+      "structure": "256:6814",
+      "bodyHeight": 415
+    },
+    {
+      "id": "29:5374",
+      "name": "O21@ipad-landscape",
+      "pattern": "L198",
+      "scope": "overlay",
+      "viewport": {
+        "width": 1376,
+        "height": 1032,
+        "overflow": "VERTICAL"
+      },
+      "preserved": true,
+      "scroll": "VERTICAL",
+      "sceneRatios": [],
+      "structure": "256:6815",
+      "bodyHeight": 368
+    },
+    {
+      "id": "29:5410",
+      "name": "U01@ipad-landscape",
+      "pattern": "L064",
+      "scope": "surface",
+      "viewport": {
+        "width": 1376,
+        "height": 1032,
+        "overflow": "VERTICAL"
+      },
+      "preserved": true,
+      "scroll": "VERTICAL",
+      "sceneRatios": [],
+      "structure": "256:6816",
+      "bodyHeight": 941
+    },
+    {
+      "id": "29:5463",
+      "name": "U02@ipad-landscape",
+      "pattern": "L053",
+      "scope": "surface",
+      "viewport": {
+        "width": 1376,
+        "height": 1032,
+        "overflow": "VERTICAL"
+      },
+      "preserved": true,
+      "scroll": "VERTICAL",
+      "sceneRatios": [],
+      "structure": "256:6817",
+      "bodyHeight": 309
+    }
+  ]
+}

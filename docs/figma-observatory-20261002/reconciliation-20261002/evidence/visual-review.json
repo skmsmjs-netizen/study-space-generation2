@@ -1,0 +1,57 @@
+{
+  "reviewedAt": "2026-10-02T03:50:21.960777+00:00",
+  "method": "Actual Figma node screenshot tool image inspected by root in the current conversation; no raster file path is claimed.",
+  "representatives": [
+    {
+      "nodeId": "74:72874",
+      "scope": "split desktop memo",
+      "verified": [
+        "all source and memo fields fit within own panels",
+        "source text retained",
+        "labels/buttons readable on paper",
+        "bottom source note fits"
+      ]
+    },
+    {
+      "nodeId": "75:79999",
+      "scope": "narrow math A/B",
+      "verified": [
+        "multiline title and body do not overlap",
+        "table rows readable",
+        "axes and both source curves within chart",
+        "actions readable",
+        "bottom note fits"
+      ],
+      "additionalReadback": {
+        "dashedCurve": "75:80032",
+        "dashPattern": [
+          7,
+          5
+        ],
+        "solidCurve": "75:80033"
+      }
+    },
+    {
+      "nodeId": "75:80976",
+      "scope": "narrow search",
+      "verified": [
+        "title and search fields do not overlap",
+        "result card readable",
+        "result action and return visible",
+        "preservation note fits"
+      ]
+    }
+  ],
+  "previousScreenshots": [
+    "SC05 source SVG",
+    "SC16 source SVG",
+    "R04 iPhone",
+    "R05 iPhone",
+    "F06 68:62802",
+    "final index82:246"
+  ],
+  "outstandingObservedDefects": [],
+  "allFramesManuallyReviewed": false,
+  "pixelIdentityVerified": false,
+  "runtimeVerified": false
+}

@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"pageId\":\"7:75\",\"name\":\"14 위쪽 · 공통 도구\",\"rootCount\":161,\"wrappers\":923,\"sizes\":{\"16\":856,\"18\":67},\"problemCount\":0,\"problems\":[],\"forms\":[{\"id\":\"406:3943\",\"close\":1,\"width\":336,\"height\":600},{\"id\":\"406:4001\",\"close\":1,\"width\":336,\"height\":528},{\"id\":\"406:4024\",\"close\":1,\"width\":336,\"height\":591},{\"id\":\"406:4051\",\"close\":1,\"width\":336,\"height\":528},{\"id\":\"406:4074\",\"close\":1,\"width\":336,\"height\":600},{\"id\":\"406:4141\",\"close\":1,\"width\":336,\"height\":600}],\"hubActions\":[{\"id\":\"391:37525\",\"actions\":[{\"type\":\"NODE\",\"destinationId\":\"406:3943\",\"navigation\":\"SWAP\",\"transition\":null,\"resetVideoPosition\":false,\"resetScrollPosition\":false}]},{\"id\":\"391:37527\",\"actions\":[{\"type\":\"NODE\",\"destinationId\":\"406:4001\",\"navigation\":\"SWAP\",\"transition\":null,\"resetVideoPosition\":false,\"resetScrollPosition\":false}]},{\"id\":\"391:37529\",\"actions\":[{\"type\":\"NODE\",\"destinationId\":\"406:4024\",\"navigation\":\"SWAP\",\"transition\":null,\"resetVideoPosition\":false,\"resetScrollPosition\":false}]},{\"id\":\"391:37531\",\"actions\":[{\"type\":\"NODE\",\"destinationId\":\"406:4051\",\"navigation\":\"SWAP\",\"transition\":null,\"resetVideoPosition\":false,\"resetScrollPosition\":false}]},{\"id\":\"391:37533\",\"actions\":[{\"type\":\"NODE\",\"destinationId\":\"406:4074\",\"navigation\":\"SWAP\",\"transition\":null,\"resetVideoPosition\":false,\"resetScrollPosition\":false}]},{\"id\":\"391:37535\",\"actions\":[{\"type\":\"NODE\",\"destinationId\":\"406:4141\",\"navigation\":\"SWAP\",\"transition\":null,\"resetVideoPosition\":false,\"resetScrollPosition\":false}]}],\"sourcePreserved\":true,\"mathPreserved\":true,\"removedDerivedVectorCount\":0,\"createdNodeIds\":[],\"mutatedNodeIds\":[],\"removedNodeIds\":[]}"
+    }
+  ],
+  "isError": false
+}

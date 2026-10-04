@@ -1,0 +1,1169 @@
+{
+  "observedAt": "2026-10-02T02:37:30.526Z",
+  "scope": "Read-only comparison of current shared production source against frozen 111-entity Figma inventory; production/UI runtime/publication not executed.",
+  "baseline": {
+    "path": "docs/figma-observatory-20261002/screen-inventory.json",
+    "sha256": "531a6d145526fce9306f686596570e3d0fe7482165b36679943eea8a3cebbe72",
+    "entities": 111,
+    "productionTsx": 104
+  },
+  "preview": {
+    "url": "http://127.0.0.1:5752/study-space-generation2/?space=demo&preview=final20261002#/subjects",
+    "releaseDirectory": "work/frontend-followup-20261002/release",
+    "releaseCommit": "5e5b3ec35afcbf1da64078155de54f6b9172ee0c",
+    "representsCurrentSharedSnapshot": false,
+    "reason": "All seven new TSX modules are absent from this preserved release tree."
+  },
+  "counts": {
+    "baselineProductionTsx": 104,
+    "currentProductionTsx": 111,
+    "newTsx": 7,
+    "changedTsx": 11,
+    "newExportedRenderedComponents": 9,
+    "newModalCalls": 4,
+    "currentMainNavigation": 18,
+    "newMainRoutes": 0,
+    "unknownRoutePredicates": 0,
+    "newModuleModalCalls": 3
+  },
+  "newFiles": [
+    {
+      "path": "src/ui/study-workspace.tsx",
+      "sha256": "cdf3787c1d7b7fc7ac6dab52a21d53a67b7808b742841d1411636b82accdc33f",
+      "baselineSha256": null,
+      "sourceReadAt": "2026-10-02T02:37:28.580Z",
+      "sourceMtime": "2026-10-02T02:36:54.724Z",
+      "reachableFromMain": true,
+      "importedBy": [
+        "src/App.tsx"
+      ],
+      "inventoryRefs": [],
+      "releaseExists": false,
+      "releaseSha256": null
+    },
+    {
+      "path": "src/ui/workspace-commands.tsx",
+      "sha256": "d312d8f41b6e5bffc6178c57642c893b853a618df9f83ea424eba48ec2884446",
+      "baselineSha256": null,
+      "sourceReadAt": "2026-10-02T02:37:28.791Z",
+      "sourceMtime": "2026-10-02T02:33:54.411Z",
+      "reachableFromMain": true,
+      "importedBy": [
+        "src/App.tsx"
+      ],
+      "inventoryRefs": [],
+      "releaseExists": false,
+      "releaseSha256": null
+    },
+    {
+      "path": "src/ui/progressive-history.tsx",
+      "sha256": "93609c7e6d310b8b770f10a227b9b257d0c9b33403594d50e7d0c862a023fd77",
+      "baselineSha256": null,
+      "sourceReadAt": "2026-10-02T02:37:28.830Z",
+      "sourceMtime": "2026-10-02T02:29:49.353Z",
+      "reachableFromMain": true,
+      "importedBy": [
+        "src/ui/topic-recall.tsx",
+        "src/App.tsx"
+      ],
+      "inventoryRefs": [],
+      "releaseExists": false,
+      "releaseSha256": null
+    },
+    {
+      "path": "src/ui/ui-performance-panel.tsx",
+      "sha256": "cbc48f58630a4a498ed2d086a37468102716bd4080091f48aa969ad699167a02",
+      "baselineSha256": null,
+      "sourceReadAt": "2026-10-02T02:37:28.869Z",
+      "sourceMtime": "2026-10-02T02:29:49.321Z",
+      "reachableFromMain": true,
+      "importedBy": [
+        "src/ui/ui-performance-access.tsx"
+      ],
+      "inventoryRefs": [],
+      "releaseExists": false,
+      "releaseSha256": null
+    },
+    {
+      "path": "src/ui/ui-performance-access.tsx",
+      "sha256": "0621aea7f4b2c2403a90601a1190bf9896f970a133ede0583ea011d318b4a7d8",
+      "baselineSha256": null,
+      "sourceReadAt": "2026-10-02T02:37:28.907Z",
+      "sourceMtime": "2026-10-02T02:33:54.418Z",
+      "reachableFromMain": true,
+      "importedBy": [
+        "src/App.tsx"
+      ],
+      "inventoryRefs": [],
+      "releaseExists": false,
+      "releaseSha256": null
+    },
+    {
+      "path": "src/ui/math-comparison.tsx",
+      "sha256": "107602daa6b3d11cebe4f9429c6561e2508d741b745a27956e5ae9fa2543bfd3",
+      "baselineSha256": null,
+      "sourceReadAt": "2026-10-02T02:37:30.418Z",
+      "sourceMtime": "2026-10-02T02:36:29.002Z",
+      "reachableFromMain": true,
+      "importedBy": [
+        "src/ui/math-explorer.tsx"
+      ],
+      "inventoryRefs": [],
+      "releaseExists": false,
+      "releaseSha256": null
+    },
+    {
+      "path": "src/ui/concept-text.tsx",
+      "sha256": "29b388dccfa693e17f15e5d6adf6dd71d20995d2a5b6997ebca752a31f59d3b2",
+      "baselineSha256": null,
+      "sourceReadAt": "2026-10-02T02:37:30.474Z",
+      "sourceMtime": "2026-10-01T19:19:32.265Z",
+      "reachableFromMain": true,
+      "importedBy": [
+        "src/ui/concept-figure.tsx",
+        "src/ui/concept-library.tsx"
+      ],
+      "inventoryRefs": [],
+      "releaseExists": false,
+      "releaseSha256": null
+    }
+  ],
+  "changedFiles": [
+    {
+      "path": "src/ui/observatory-navigation.tsx",
+      "sha256": "82c56082f3c98db9a591b431f21743e7034995657f1bac6ff457bd5c7ff360b9",
+      "baselineSha256": "e97319e06d421ca25a2cfbde5419a6a1ea29e362c9a1c4d2f4f6954b7c79bd83",
+      "sourceReadAt": "2026-10-02T02:37:28.577Z",
+      "sourceMtime": "2026-10-02T02:33:54.434Z",
+      "reachableFromMain": true,
+      "importedBy": [
+        "src/ui/study-workspace.tsx",
+        "src/App.tsx"
+      ],
+      "inventoryRefs": [
+        "U01"
+      ],
+      "releaseExists": true,
+      "releaseSha256": "e97319e06d421ca25a2cfbde5419a6a1ea29e362c9a1c4d2f4f6954b7c79bd83"
+    },
+    {
+      "path": "src/ui/workspace-search.tsx",
+      "sha256": "3421250ebb6a8332bda3314d6cad101582bde276710c609c10feae1017b0810e",
+      "baselineSha256": "a6f852081bd3c9639d6a19fb06b58a7f1950a4cdbdbb70a8bfcc1a6b403dd4c1",
+      "sourceReadAt": "2026-10-02T02:37:30.412Z",
+      "sourceMtime": "2026-10-02T02:35:22.790Z",
+      "reachableFromMain": true,
+      "importedBy": [
+        "src/App.tsx"
+      ],
+      "inventoryRefs": [
+        "R18"
+      ],
+      "releaseExists": true,
+      "releaseSha256": "a6f852081bd3c9639d6a19fb06b58a7f1950a4cdbdbb70a8bfcc1a6b403dd4c1"
+    },
+    {
+      "path": "src/ui/quick-memos.tsx",
+      "sha256": "7b8d2b6705bbe1d0809833ba1478ec0067ab5eaae511c03ca9c522b52ac8a07a",
+      "baselineSha256": "3b63390b4a969a2af5bdad2347e1d18cb5a47bdce09300388913cee13591b3ac",
+      "sourceReadAt": "2026-10-02T02:37:30.414Z",
+      "sourceMtime": "2026-10-01T18:14:14.845Z",
+      "reachableFromMain": true,
+      "importedBy": [
+        "src/ui/study-canvas.tsx",
+        "src/App.tsx"
+      ],
+      "inventoryRefs": [
+        "O23",
+        "O24",
+        "R01",
+        "R06",
+        "R22",
+        "R23"
+      ],
+      "releaseExists": true,
+      "releaseSha256": "7dcb3a4ea541716a29513d749e7add6c8bcf26b294e6447e62d00c26511e0659"
+    },
+    {
+      "path": "src/ui/topic-recall.tsx",
+      "sha256": "8652ea0b93f0266ebc04c9048c921e11e76c3f3144b51fe15e6b2de107324855",
+      "baselineSha256": "195a6143853175f41af576541eee56200fa65bf415bec2e7f77f34d6acfbc245",
+      "sourceReadAt": "2026-10-02T02:37:30.415Z",
+      "sourceMtime": "2026-10-02T02:34:07.832Z",
+      "reachableFromMain": true,
+      "importedBy": [
+        "src/App.tsx"
+      ],
+      "inventoryRefs": [
+        "R14",
+        "R29"
+      ],
+      "releaseExists": true,
+      "releaseSha256": "82a49f4ccddbef1f02ac26184dd05f57eabc8250a3e129623633fa97336439cf"
+    },
+    {
+      "path": "src/ui/statistics-plot.tsx",
+      "sha256": "590640a042541fc23772408db976f501b0690a7fad50a313d8f4db6f2c3eae9d",
+      "baselineSha256": "e4a714e5b4f2ca61b0a5f65c2aa136c2a211533ea619f6b2a869c9dfcf09ab53",
+      "sourceReadAt": "2026-10-02T02:37:30.415Z",
+      "sourceMtime": "2026-10-02T02:28:47.933Z",
+      "reachableFromMain": true,
+      "importedBy": [
+        "src/ui/statistics-gallery.tsx",
+        "src/ui/statistics.tsx"
+      ],
+      "inventoryRefs": [
+        "U36"
+      ],
+      "releaseExists": true,
+      "releaseSha256": "e4a714e5b4f2ca61b0a5f65c2aa136c2a211533ea619f6b2a869c9dfcf09ab53"
+    },
+    {
+      "path": "src/ui/statistics-gallery.tsx",
+      "sha256": "dbfc9ec4e0fd6e3f3ed3329ef6f1dc3d11cfe4981b72fad27113d0003f4eaa0c",
+      "baselineSha256": "abc0947439d2b38436a94c66dcdce0cd8b818688021c68f19716942974589712",
+      "sourceReadAt": "2026-10-02T02:37:30.416Z",
+      "sourceMtime": "2026-10-02T02:28:47.933Z",
+      "reachableFromMain": true,
+      "importedBy": [
+        "src/ui/statistics.tsx"
+      ],
+      "inventoryRefs": [
+        "R02",
+        "U36"
+      ],
+      "releaseExists": true,
+      "releaseSha256": "abc0947439d2b38436a94c66dcdce0cd8b818688021c68f19716942974589712"
+    },
+    {
+      "path": "src/ui/statistics.tsx",
+      "sha256": "0a0ff14298eb04b5d736190f4ebcc6ac130739f655c91fd497384e72f12abafd",
+      "baselineSha256": "904ac17e1f0337d5dba646d80cb3a76df201eb4327b216b8d78cfa8689c3d16f",
+      "sourceReadAt": "2026-10-02T02:37:30.417Z",
+      "sourceMtime": "2026-10-02T02:36:29.035Z",
+      "reachableFromMain": true,
+      "importedBy": [
+        "src/App.tsx"
+      ],
+      "inventoryRefs": [
+        "O26",
+        "R01",
+        "R02"
+      ],
+      "releaseExists": true,
+      "releaseSha256": "904ac17e1f0337d5dba646d80cb3a76df201eb4327b216b8d78cfa8689c3d16f"
+    },
+    {
+      "path": "src/ui/math-explorer.tsx",
+      "sha256": "75a63d8df7d47e39fad1b98e70ec71a9c1f840aac33f42bb44d22fdc1c06509d",
+      "baselineSha256": "cc45c6742bbee2107f03aaae49703b6a0b14723f06f16fb96783fdc32d70c111",
+      "sourceReadAt": "2026-10-02T02:37:30.473Z",
+      "sourceMtime": "2026-10-02T02:34:39.598Z",
+      "reachableFromMain": true,
+      "importedBy": [
+        "src/App.tsx"
+      ],
+      "inventoryRefs": [
+        "R09"
+      ],
+      "releaseExists": true,
+      "releaseSha256": "cc5fae4c49693f6ab1689694d297d57b07118105d2048671311d24273ca6af4a"
+    },
+    {
+      "path": "src/ui/concept-figure.tsx",
+      "sha256": "94c7945dbb53fba67873cd91b61ef083e3128ab75113c895b34e2601a2af6d7c",
+      "baselineSha256": "76dc23631e049ee3ce4a80e3a5946ee88f4c11c2ea662fa52956c5eca0e6d270",
+      "sourceReadAt": "2026-10-02T02:37:30.517Z",
+      "sourceMtime": "2026-10-01T20:46:56.071Z",
+      "reachableFromMain": true,
+      "importedBy": [
+        "src/ui/concept-library.tsx"
+      ],
+      "inventoryRefs": [
+        "U33"
+      ],
+      "releaseExists": false,
+      "releaseSha256": null
+    },
+    {
+      "path": "src/ui/concept-library.tsx",
+      "sha256": "af644a4414f6596711e4ad3ee6b9586bb2a610bc6e8dc4cb641502c749d62cb9",
+      "baselineSha256": "633139969dbf2bf5eb3d99b66d71e487666767151ed9f91b2aa10e1d4f4fe5ef",
+      "sourceReadAt": "2026-10-02T02:37:30.518Z",
+      "sourceMtime": "2026-10-02T02:23:31.615Z",
+      "reachableFromMain": true,
+      "importedBy": [
+        "src/App.tsx"
+      ],
+      "inventoryRefs": [
+        "R09",
+        "R13"
+      ],
+      "releaseExists": true,
+      "releaseSha256": "7757de52aceded029e5061558a36230bab1b00659c10f2257db9e91cf7978c1f"
+    },
+    {
+      "path": "src/App.tsx",
+      "sha256": "67b9ff1872ec1ac1e4abe7e816b5de7cb7b651dc970bf52ca2d2b6461c6fbaac",
+      "baselineSha256": "0de539d052a248653d0eb522e11a73d6182a1abd6e32a3ccecc3097e8ebf8ef5",
+      "sourceReadAt": "2026-10-02T02:37:30.519Z",
+      "sourceMtime": "2026-10-02T02:33:54.341Z",
+      "reachableFromMain": true,
+      "importedBy": [
+        "src/main.tsx"
+      ],
+      "inventoryRefs": [
+        "O01",
+        "O02",
+        "O03",
+        "O04",
+        "O05",
+        "O06",
+        "O07",
+        "R01",
+        "R04",
+        "R05",
+        "R19",
+        "R20",
+        "R21",
+        "R30",
+        "R31",
+        "R32",
+        "R34",
+        "R39",
+        "R40",
+        "R41",
+        "U01",
+        "U41"
+      ],
+      "releaseExists": true,
+      "releaseSha256": "b86f45248281e8fdfdfdd472d740dd0fc6bb22f51dabc36803614ebb79a3b1ec"
+    }
+  ],
+  "newComponents": [
+    {
+      "name": "StudyWorkspace",
+      "source": "src/ui/study-workspace.tsx",
+      "line": 74,
+      "sourceSha256": "cdf3787c1d7b7fc7ac6dab52a21d53a67b7808b742841d1411636b82accdc33f",
+      "signature": "({ controller, source, renderTool, sourceTitle, }: { controller: { state: WorkState; layout: DeskLayout; setLayout: (next: DeskLayout) => boolean; openTool: (tool: \"code\" | \"math\" | \"memo\" | \"record\") => boolean; change: (next: WorkState) => boolean; error: string; reload: () => void; retry: () => boolean; key: string; }; source: ReactNode; renderTool: (tool: \"code\" | \"math\" | \"memo\" | \"record\") => ReactNode; sourceTitle: string; }): Element",
+      "props": [
+        {
+          "name": "controller",
+          "optional": false,
+          "type": "{ state: WorkState; layout: DeskLayout; setLayout: (next: DeskLayout) => boolean; openTool: (tool: \"code\" | \"math\" | \"memo\" | \"record\") => boolean; change: (next: WorkState) => boolean; error: string; reload: () => void; retry: () => boolean; key: string; }"
+        },
+        {
+          "name": "source",
+          "optional": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "renderTool",
+          "optional": false,
+          "type": "(tool: \"code\" | \"math\" | \"memo\" | \"record\") => ReactNode"
+        },
+        {
+          "name": "sourceTitle",
+          "optional": false,
+          "type": "string"
+        }
+      ],
+      "calls": [
+        {
+          "path": "src/App.tsx",
+          "line": 1646,
+          "openingJsx": "<StudyWorkspace\n                key={`${data.namespace}:${data.userId}:${deskMaterial?.id ?? route}`}\n                controller={studyWorkspace}\n                sourceTitle={deskMaterial?.title ?? '강의 자료'}\n                source={\n                  <Suspense fallback={<LoadingState message=\"강의 자료를 여는 중입니다.\" />}>\n                    <StudyMaterials\n                      data={data}\n                      repository={repository}\n                      onSaved={setData}\n                      subjectIds={shownSubjects.map((item) => item.id)}\n                      materialId={\n                        route.startsWith('/materials/')\n                          ? decodeURIComponent(route.slice('/materials/'.length))\n                          : undefined\n                      }\n                      trash={route === '/materials/trash'}\n                    />\n                  </Suspense>\n                }\n                renderTool={(tool) => (\n                  <Suspense fallback={<LoadingState message=\"곁 도구를 여는 중입니다.\" />}>\n                    {tool === 'memo' ? (\n                      <QuickMemos\n                        data={data}\n                        repository={repository}\n                        onSaved={setData}\n                        ownerId={deskMaterial?.topicId ?? deskMaterial?.subjectId}\n                        compact\n                      />\n                    ) : tool === 'math' ? (\n                      <MathExplorer data={data} repository={repository} onSaved={setData} />\n                    ) : tool === 'code' ? (\n                      <CodePractice data={data} repository={repository} onSaved={setData} />\n                    ) : (\n                      <RecordForm\n                        data={data}\n                        subjectIds={shownSubjects.map((item) => item.id)}\n                        initialTarget={deskMaterial?.topicId ?? undefined}\n                        commit={commit}\n                        onSaved={(warning, cleanupKey) => {\n                          if (cleanupKey)\n                            setCleanupKeys((previous) =>\n                              previous.includes(cleanupKey) ? previous : [...previous, cleanupKey],\n                            );\n                          setNotice({ message: warning || '공부 기록을 저장했습니다.' });\n                        }}\n                      />\n                    )}\n                  </Suspense>\n                )}\n              />"
+        }
+      ],
+      "reachableFromMain": true,
+      "existingFigmaNodeId": null
+    },
+    {
+      "name": "SavedWorkspaces",
+      "source": "src/ui/study-workspace.tsx",
+      "line": 189,
+      "sourceSha256": "cdf3787c1d7b7fc7ac6dab52a21d53a67b7808b742841d1411636b82accdc33f",
+      "signature": "({ controller, data, route, }: { controller: { state: WorkState; layout: DeskLayout; setLayout: (next: DeskLayout) => boolean; openTool: (tool: \"code\" | \"math\" | \"memo\" | \"record\") => boolean; change: (next: WorkState) => boolean; error: string; reload: () => void; retry: () => boolean; key: string; }; data: AppState; route: string; }): Element",
+      "props": [
+        {
+          "name": "controller",
+          "optional": false,
+          "type": "{ state: WorkState; layout: DeskLayout; setLayout: (next: DeskLayout) => boolean; openTool: (tool: \"code\" | \"math\" | \"memo\" | \"record\") => boolean; change: (next: WorkState) => boolean; error: string; reload: () => void; retry: () => boolean; key: string; }"
+        },
+        {
+          "name": "data",
+          "optional": false,
+          "type": "AppState"
+        },
+        {
+          "name": "route",
+          "optional": false,
+          "type": "string"
+        }
+      ],
+      "calls": [
+        {
+          "path": "src/App.tsx",
+          "line": 1012,
+          "openingJsx": "<SavedWorkspaces controller={studyWorkspace} data={data} route={route} />"
+        }
+      ],
+      "reachableFromMain": true,
+      "existingFigmaNodeId": null
+    },
+    {
+      "name": "WorkspaceStorageNotice",
+      "source": "src/ui/study-workspace.tsx",
+      "line": 346,
+      "sourceSha256": "cdf3787c1d7b7fc7ac6dab52a21d53a67b7808b742841d1411636b82accdc33f",
+      "signature": "({ controller }: { controller: { state: WorkState; layout: DeskLayout; setLayout: (next: DeskLayout) => boolean; openTool: (tool: \"code\" | \"math\" | \"memo\" | \"record\") => boolean; change: (next: WorkState) => boolean; error: string; reload: () => void; retry: () => boolean; key: string; }; }): Element | null",
+      "props": [
+        {
+          "name": "controller",
+          "optional": false,
+          "type": "{ state: WorkState; layout: DeskLayout; setLayout: (next: DeskLayout) => boolean; openTool: (tool: \"code\" | \"math\" | \"memo\" | \"record\") => boolean; change: (next: WorkState) => boolean; error: string; reload: () => void; retry: () => boolean; key: string; }"
+        }
+      ],
+      "calls": [
+        {
+          "path": "src/ui/study-workspace.tsx",
+          "line": 217,
+          "openingJsx": "<WorkspaceStorageNotice controller={controller}/>"
+        },
+        {
+          "path": "src/App.tsx",
+          "line": 1015,
+          "openingJsx": "<WorkspaceStorageNotice controller={studyWorkspace} />"
+        }
+      ],
+      "reachableFromMain": true,
+      "existingFigmaNodeId": null
+    },
+    {
+      "name": "WorkspaceCommands",
+      "source": "src/ui/workspace-commands.tsx",
+      "line": 11,
+      "sourceSha256": "d312d8f41b6e5bffc6178c57642c893b853a618df9f83ea424eba48ec2884446",
+      "signature": "({ commands }: { commands: WorkspaceCommand[]; }): Element",
+      "props": [
+        {
+          "name": "commands",
+          "optional": false,
+          "type": "WorkspaceCommand[]"
+        }
+      ],
+      "calls": [
+        {
+          "path": "src/App.tsx",
+          "line": 1011,
+          "openingJsx": "<WorkspaceCommands commands={workspaceCommands} />"
+        }
+      ],
+      "reachableFromMain": true,
+      "existingFigmaNodeId": null
+    },
+    {
+      "name": "ProgressiveHistory",
+      "source": "src/ui/progressive-history.tsx",
+      "line": 9,
+      "sourceSha256": "93609c7e6d310b8b770f10a227b9b257d0c9b33403594d50e7d0c862a023fd77",
+      "signature": "({ data, name, total, label, children, collapsible }: Props): Element",
+      "props": [
+        {
+          "name": "data",
+          "optional": false,
+          "type": "Pick<AppState, \"namespace\" | \"userId\">"
+        },
+        {
+          "name": "name",
+          "optional": false,
+          "type": "string"
+        },
+        {
+          "name": "total",
+          "optional": false,
+          "type": "number"
+        },
+        {
+          "name": "label",
+          "optional": false,
+          "type": "string"
+        },
+        {
+          "name": "children",
+          "optional": false,
+          "type": "(limit: number) => ReactNode"
+        },
+        {
+          "name": "collapsible",
+          "optional": true,
+          "type": "boolean | undefined"
+        }
+      ],
+      "calls": [
+        {
+          "path": "src/ui/topic-recall.tsx",
+          "line": 243,
+          "openingJsx": "<ProgressiveHistory data={data} name={`recall-reviews:${card.id}`} total={card.reviews.length} label=\"자기 평가 기록\" collapsible>"
+        },
+        {
+          "path": "src/ui/topic-recall.tsx",
+          "line": 245,
+          "openingJsx": "<ProgressiveHistory key={topic.id} data={data} name={`recall-memos:${topic.id}`} total={prior.length} label=\"이전 메모\" collapsible>"
+        },
+        {
+          "path": "src/App.tsx",
+          "line": 1492,
+          "openingJsx": "<ProgressiveHistory\n                      data={data}\n                      name={`records:${node.id}`}\n                      total={records.filter((r) => r.targetId === node.id).length}\n                      label=\"공부 기록\"\n                    >"
+        }
+      ],
+      "reachableFromMain": true,
+      "existingFigmaNodeId": null
+    },
+    {
+      "name": "UiPerformancePanel",
+      "source": "src/ui/ui-performance-panel.tsx",
+      "line": 12,
+      "sourceSha256": "cbc48f58630a4a498ed2d086a37468102716bd4080091f48aa969ad699167a02",
+      "signature": "(): Element",
+      "props": [],
+      "calls": [
+        {
+          "path": "src/ui/ui-performance-access.tsx",
+          "line": 12,
+          "openingJsx": "<UiPerformancePanel />"
+        }
+      ],
+      "reachableFromMain": true,
+      "existingFigmaNodeId": null
+    },
+    {
+      "name": "UiPerformanceAccess",
+      "source": "src/ui/ui-performance-access.tsx",
+      "line": 4,
+      "sourceSha256": "0621aea7f4b2c2403a90601a1190bf9896f970a133ede0583ea011d318b4a7d8",
+      "signature": "(): Element",
+      "props": [],
+      "calls": [
+        {
+          "path": "src/App.tsx",
+          "line": 1013,
+          "openingJsx": "<UiPerformanceAccess />"
+        }
+      ],
+      "reachableFromMain": true,
+      "existingFigmaNodeId": null
+    },
+    {
+      "name": "MathComparison",
+      "source": "src/ui/math-comparison.tsx",
+      "line": 12,
+      "sourceSha256": "107602daa6b3d11cebe4f9429c6561e2508d741b745a27956e5ae9fa2543bfd3",
+      "signature": "({ ownerKey, scene, result }: { ownerKey: string; scene: MathScene; result: { points: (Vec3 | null)[]; sample: (value: number) => Vec3 | null; sampleKey: string; point: Vec3 | null; at: number; min: number; max: number; tex: string; vectors: { reason: string; T?: undefined; N?: undefined; B?: undefined; curvature?: undefined; } | { T: Vec3; reason: string; N?: undefined; B?: undefined; curvature?: undefined; } | { T: Vec3; N: Vec3; B: Vec3; curvature: number; reason: string; } | null; frameError: string; missing: number; breakBefore: boolean[]; } | null | undefined; }): Element",
+      "props": [
+        {
+          "name": "ownerKey",
+          "optional": false,
+          "type": "string"
+        },
+        {
+          "name": "scene",
+          "optional": false,
+          "type": "MathScene"
+        },
+        {
+          "name": "result",
+          "optional": false,
+          "type": "{ points: (Vec3 | null)[]; sample: (value: number) => Vec3 | null; sampleKey: string; point: Vec3 | null; at: number; min: number; max: number; tex: string; vectors: { reason: string; T?: undefined; N?: undefined; B?: undefined; curvature?: undefined; } | { T: Vec3; reason: string; N?: undefined; B?: undefined; curvature?: undefined; } | { T: Vec3; N: Vec3; B: Vec3; curvature: number; reason: string; } | null; frameError: string; missing: number; breakBefore: boolean[]; } | null | undefined"
+        }
+      ],
+      "calls": [
+        {
+          "path": "src/ui/math-explorer.tsx",
+          "line": 502,
+          "openingJsx": "<MathComparison key={key} ownerKey={key} scene={geometry} result={result} />"
+        }
+      ],
+      "reachableFromMain": true,
+      "existingFigmaNodeId": null
+    },
+    {
+      "name": "ConceptText",
+      "source": "src/ui/concept-text.tsx",
+      "line": 56,
+      "sourceSha256": "29b388dccfa693e17f15e5d6adf6dd71d20995d2a5b6997ebca752a31f59d3b2",
+      "signature": "({ text }: { text: string; }): Element",
+      "props": [
+        {
+          "name": "text",
+          "optional": false,
+          "type": "string"
+        }
+      ],
+      "calls": [
+        {
+          "path": "src/ui/concept-figure.tsx",
+          "line": 137,
+          "openingJsx": "<ConceptText text={figure.caption ?? figure.description} />"
+        },
+        {
+          "path": "src/ui/concept-figure.tsx",
+          "line": 208,
+          "openingJsx": "<ConceptText text={figure.description} />"
+        },
+        {
+          "path": "src/ui/concept-figure.tsx",
+          "line": 212,
+          "openingJsx": "<ConceptText text={mark.text} />"
+        },
+        {
+          "path": "src/ui/concept-library.tsx",
+          "line": 1126,
+          "openingJsx": "<ConceptText text={s.body} />"
+        },
+        {
+          "path": "src/ui/concept-library.tsx",
+          "line": 1130,
+          "openingJsx": "<ConceptText text={s.math} />"
+        },
+        {
+          "path": "src/ui/concept-library.tsx",
+          "line": 1132,
+          "openingJsx": "<ConceptText text={s.caption} />"
+        },
+        {
+          "path": "src/ui/concept-library.tsx",
+          "line": 1133,
+          "openingJsx": "<ConceptText text={s.takeaway} />"
+        },
+        {
+          "path": "src/ui/concept-library.tsx",
+          "line": 1169,
+          "openingJsx": "<ConceptText text={visual.label} />"
+        },
+        {
+          "path": "src/ui/concept-library.tsx",
+          "line": 1176,
+          "openingJsx": "<ConceptText text={node.label} />"
+        },
+        {
+          "path": "src/ui/concept-library.tsx",
+          "line": 1177,
+          "openingJsx": "<ConceptText text={node.detail} />"
+        },
+        {
+          "path": "src/ui/concept-library.tsx",
+          "line": 1185,
+          "openingJsx": "<ConceptText text={names.get(r.from) ?? ''} />"
+        },
+        {
+          "path": "src/ui/concept-library.tsx",
+          "line": 1187,
+          "openingJsx": "<ConceptText text={names.get(r.to) ?? ''} />"
+        },
+        {
+          "path": "src/ui/concept-library.tsx",
+          "line": 1188,
+          "openingJsx": "<ConceptText text={r.label} />"
+        }
+      ],
+      "reachableFromMain": true,
+      "existingFigmaNodeId": null
+    }
+  ],
+  "newOverlays": [
+    {
+      "source": "src/ui/study-workspace.tsx",
+      "line": 216,
+      "title": "\"작업 구성 보관함\""
+    },
+    {
+      "source": "src/ui/workspace-commands.tsx",
+      "line": 60,
+      "title": "\"지금 할 일 찾기\""
+    },
+    {
+      "source": "src/ui/ui-performance-access.tsx",
+      "line": 11,
+      "title": "\"반응 속도 확인\""
+    },
+    {
+      "source": "src/ui/concept-figure.tsx",
+      "line": 139,
+      "title": "{figure.label}",
+      "classification": "existing module gained a new Modal",
+      "baselineProof": "verified-baseline-diffs.json: baseline SHA exactly matches inventory; old module had no Modal"
+    }
+  ],
+  "dependencies": [
+    {
+      "path": "src/data/study-workspace.ts",
+      "sha256": "b83f2f1ee3c7818887c643f85d9bcdb98bd50fb071326d6c4e5a9c83c18a19df",
+      "sourceMtime": "2026-10-02T02:36:54.724Z"
+    },
+    {
+      "path": "src/data/ui-performance.ts",
+      "sha256": "25c2bc32193645d5801184e7023ca2f4561445754a4e465e1c5330bde334bc25",
+      "sourceMtime": "2026-10-02T02:29:49.290Z"
+    },
+    {
+      "path": "src/ui/study-workspace.css",
+      "sha256": "533b73e8ddf2f044ef2f0b5b9ae755a55d4d2e5dc2dcbfd98d4548b168e00e3d",
+      "sourceMtime": "2026-10-02T02:36:54.724Z"
+    },
+    {
+      "path": "src/ui/math-comparison.css",
+      "sha256": "ca2b32f89c98f12441b4ca9832d02b2a7a2c9476e6854c76cc3f3d364ec4708f",
+      "sourceMtime": "2026-10-02T02:34:39.565Z"
+    },
+    {
+      "path": "src/ui/math-comparison-model.ts",
+      "sha256": "0a4c5b3c1ca9acd7cf4dae30fe9fe4506c8031e8880d8ac76ad96adeb3e831e7",
+      "sourceMtime": "2026-10-02T02:34:39.501Z"
+    }
+  ],
+  "currentNavigation": [
+    {
+      "href": "/",
+      "text": "오늘"
+    },
+    {
+      "href": "/statistics",
+      "text": "통계"
+    },
+    {
+      "href": "/schedules",
+      "text": "일정·과제"
+    },
+    {
+      "href": "/subjects",
+      "text": "과목"
+    },
+    {
+      "href": "/record",
+      "text": "기록"
+    },
+    {
+      "href": "/memos",
+      "text": "메모"
+    },
+    {
+      "href": "/materials",
+      "text": "강의 자료"
+    },
+    {
+      "href": "/code",
+      "text": "코딩 연습"
+    },
+    {
+      "href": "/math",
+      "text": "수식 탐색"
+    },
+    {
+      "href": "/practice",
+      "text": "시험 연습"
+    },
+    {
+      "href": "/memory-test",
+      "text": "암기시험"
+    },
+    {
+      "href": "/material-cards",
+      "text": "자료 카드"
+    },
+    {
+      "href": "/concepts",
+      "text": "개념 전집"
+    },
+    {
+      "href": "/recall",
+      "text": "주제 카드"
+    },
+    {
+      "href": "/canvas",
+      "text": "Canvas"
+    },
+    {
+      "href": "/graph",
+      "text": "그래프뷰"
+    },
+    {
+      "href": "/board",
+      "text": "칸반보드"
+    },
+    {
+      "href": "/search",
+      "text": "찾기"
+    }
+  ],
+  "routePredicates": [
+    {
+      "line": 843,
+      "expression": "route.startsWith('/record')",
+      "literal": "/record"
+    },
+    {
+      "line": 844,
+      "expression": "route === '/memos'",
+      "literal": "/memos"
+    },
+    {
+      "line": 844,
+      "expression": "route.startsWith('/memos/')",
+      "literal": "/memos/"
+    },
+    {
+      "line": 845,
+      "expression": "route === '/materials'",
+      "literal": "/materials"
+    },
+    {
+      "line": 845,
+      "expression": "route.startsWith('/materials/')",
+      "literal": "/materials/"
+    },
+    {
+      "line": 846,
+      "expression": "route === '/code'",
+      "literal": "/code"
+    },
+    {
+      "line": 846,
+      "expression": "route.startsWith('/code/')",
+      "literal": "/code/"
+    },
+    {
+      "line": 847,
+      "expression": "route === '/memory-test'",
+      "literal": "/memory-test"
+    },
+    {
+      "line": 847,
+      "expression": "route.startsWith('/memory-test/')",
+      "literal": "/memory-test/"
+    },
+    {
+      "line": 848,
+      "expression": "route === '/practice'",
+      "literal": "/practice"
+    },
+    {
+      "line": 848,
+      "expression": "route.startsWith('/practice/')",
+      "literal": "/practice/"
+    },
+    {
+      "line": 849,
+      "expression": "route === '/free'",
+      "literal": "/free"
+    },
+    {
+      "line": 849,
+      "expression": "route.startsWith('/free/')",
+      "literal": "/free/"
+    },
+    {
+      "line": 851,
+      "expression": "route === '/concepts'",
+      "literal": "/concepts"
+    },
+    {
+      "line": 853,
+      "expression": "route === '/about'",
+      "literal": "/about"
+    },
+    {
+      "line": 855,
+      "expression": "route === '/help'",
+      "literal": "/help"
+    },
+    {
+      "line": 855,
+      "expression": "route === '/subscription'",
+      "literal": "/subscription"
+    },
+    {
+      "line": 857,
+      "expression": "route === '/my-progress'",
+      "literal": "/my-progress"
+    },
+    {
+      "line": 859,
+      "expression": "route === '/schedules'",
+      "literal": "/schedules"
+    },
+    {
+      "line": 861,
+      "expression": "route === '/material-cards'",
+      "literal": "/material-cards"
+    },
+    {
+      "line": 863,
+      "expression": "route === '/math'",
+      "literal": "/math"
+    },
+    {
+      "line": 873,
+      "expression": "route === '/statistics'",
+      "literal": "/statistics"
+    },
+    {
+      "line": 875,
+      "expression": "route === '/backup'",
+      "literal": "/backup"
+    },
+    {
+      "line": 877,
+      "expression": "route === '/graph'",
+      "literal": "/graph"
+    },
+    {
+      "line": 879,
+      "expression": "route === '/board'",
+      "literal": "/board"
+    },
+    {
+      "line": 881,
+      "expression": "route === '/canvas'",
+      "literal": "/canvas"
+    },
+    {
+      "line": 883,
+      "expression": "route === '/recall'",
+      "literal": "/recall"
+    },
+    {
+      "line": 883,
+      "expression": "route === '/recall/scheduled'",
+      "literal": "/recall/scheduled"
+    },
+    {
+      "line": 887,
+      "expression": "route === '/draft-archives'",
+      "literal": "/draft-archives"
+    },
+    {
+      "line": 889,
+      "expression": "route === '/subjects'",
+      "literal": "/subjects"
+    },
+    {
+      "line": 891,
+      "expression": "route === '/search'",
+      "literal": "/search"
+    },
+    {
+      "line": 893,
+      "expression": "route === '/trash'",
+      "literal": "/trash"
+    },
+    {
+      "line": 895,
+      "expression": "route.startsWith('/free')",
+      "literal": "/free"
+    },
+    {
+      "line": 915,
+      "expression": "route === '/'",
+      "literal": "/"
+    },
+    {
+      "line": 915,
+      "expression": "route === '/canvas'",
+      "literal": "/canvas"
+    },
+    {
+      "line": 1004,
+      "expression": "route === '/'",
+      "literal": "/"
+    },
+    {
+      "line": 1018,
+      "expression": "route !== '/'",
+      "literal": "/"
+    },
+    {
+      "line": 1028,
+      "expression": "route !== '/'",
+      "literal": "/"
+    },
+    {
+      "line": 1108,
+      "expression": "route === '/'",
+      "literal": "/"
+    },
+    {
+      "line": 1115,
+      "expression": "route === '/subscription'",
+      "literal": "/subscription"
+    },
+    {
+      "line": 1118,
+      "expression": "route === '/draft-archives'",
+      "literal": "/draft-archives"
+    },
+    {
+      "line": 1119,
+      "expression": "route === '/schedules'",
+      "literal": "/schedules"
+    },
+    {
+      "line": 1131,
+      "expression": "route === '/statistics'",
+      "literal": "/statistics"
+    },
+    {
+      "line": 1140,
+      "expression": "route === '/'",
+      "literal": "/"
+    },
+    {
+      "line": 1278,
+      "expression": "route === '/subjects'",
+      "literal": "/subjects"
+    },
+    {
+      "line": 1531,
+      "expression": "route.startsWith('/record/')",
+      "literal": "/record/"
+    },
+    {
+      "line": 1558,
+      "expression": "route === '/concepts'",
+      "literal": "/concepts"
+    },
+    {
+      "line": 1568,
+      "expression": "route === '/graph'",
+      "literal": "/graph"
+    },
+    {
+      "line": 1577,
+      "expression": "route === '/board'",
+      "literal": "/board"
+    },
+    {
+      "line": 1588,
+      "expression": "route === '/canvas'",
+      "literal": "/canvas"
+    },
+    {
+      "line": 1625,
+      "expression": "route === '/recall'",
+      "literal": "/recall"
+    },
+    {
+      "line": 1625,
+      "expression": "route === '/recall/scheduled'",
+      "literal": "/recall/scheduled"
+    },
+    {
+      "line": 1628,
+      "expression": "route === '/recall/scheduled'",
+      "literal": "/recall/scheduled"
+    },
+    {
+      "line": 1642,
+      "expression": "route.startsWith('/memos/')",
+      "literal": "/memos/"
+    },
+    {
+      "line": 1658,
+      "expression": "route.startsWith('/materials/')",
+      "literal": "/materials/"
+    },
+    {
+      "line": 1662,
+      "expression": "route === '/materials/trash'",
+      "literal": "/materials/trash"
+    },
+    {
+      "line": 1699,
+      "expression": "route === '/math'",
+      "literal": "/math"
+    },
+    {
+      "line": 1715,
+      "expression": "route.startsWith('/code/')",
+      "literal": "/code/"
+    },
+    {
+      "line": 1719,
+      "expression": "route === '/material-cards'",
+      "literal": "/material-cards"
+    },
+    {
+      "line": 1736,
+      "expression": "route.startsWith('/memory-test/result/')",
+      "literal": "/memory-test/result/"
+    },
+    {
+      "line": 1741,
+      "expression": "route.startsWith('/memory-test/')",
+      "literal": "/memory-test/"
+    },
+    {
+      "line": 1741,
+      "expression": "route.startsWith('/memory-test/result/')",
+      "literal": "/memory-test/result/"
+    },
+    {
+      "line": 1757,
+      "expression": "route.startsWith('/practice/')",
+      "literal": "/practice/"
+    },
+    {
+      "line": 1762,
+      "expression": "route === '/search'",
+      "literal": "/search"
+    },
+    {
+      "line": 1772,
+      "expression": "route === '/trash'",
+      "literal": "/trash"
+    },
+    {
+      "line": 1809,
+      "expression": "route === '/backup'",
+      "literal": "/backup"
+    },
+    {
+      "line": 1814,
+      "expression": "route === '/trash'",
+      "literal": "/trash"
+    },
+    {
+      "line": 1817,
+      "expression": "route === '/trash'",
+      "literal": "/trash"
+    },
+    {
+      "line": 1850,
+      "expression": "route !== '/schedules'",
+      "literal": "/schedules"
+    },
+    {
+      "line": 2541,
+      "expression": "route === '/free'",
+      "literal": "/free"
+    },
+    {
+      "line": 2542,
+      "expression": "route === '/free/new'",
+      "literal": "/free/new"
+    },
+    {
+      "line": 2549,
+      "expression": "route !== '/free'",
+      "literal": "/free"
+    },
+    {
+      "line": 2551,
+      "expression": "route !== '/free'",
+      "literal": "/free"
+    }
+  ],
+  "unknownLiteralRoutes": [],
+  "sourceDriftDuringRead": []
+}

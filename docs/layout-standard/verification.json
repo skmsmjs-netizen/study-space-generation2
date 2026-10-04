@@ -1,0 +1,19 @@
+{
+  "checkedAt": "2026-10-02",
+  "registeredEntries": 199,
+  "roles": 25,
+  "profiles": 10,
+  "entities": 111,
+  "futureElementClasses": 24,
+  "duplicateOrMissingEntities": 0,
+  "invalidPatternReferences": 0,
+  "rejectedUnknownOrWrongPrimaryKinds": [
+    "L999",
+    "L014",
+    "L091",
+    "L118"
+  ],
+  "sourceReferences": 164,
+  "missingSourceFiles": [],
+  "scope": "Contract/document coverage and source existence, not UI execution or deployment."
+}

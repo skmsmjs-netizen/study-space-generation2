@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"pageId\":\"74:400\",\"fit\":{\"originAdjustedCount\":4,\"grownCount\":0,\"removedTemporaryNodeIds\":[\"390:36652\",\"390:36653\",\"390:36654\",\"390:36655\",\"390:36656\"],\"mutatedNodeIds\":[\"350:37360\",\"350:37364\",\"350:37368\",\"350:37372\"],\"samples\":[]},\"ceilingCount\":0,\"createdNodeIds\":[],\"mutatedNodeIds\":[\"350:37360\",\"350:37364\",\"350:37368\",\"350:37372\"]}"
+    }
+  ],
+  "isError": false
+}

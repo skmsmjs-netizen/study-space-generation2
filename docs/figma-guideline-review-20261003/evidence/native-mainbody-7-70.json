@@ -1,0 +1,220 @@
+{
+  "type": "result",
+  "result": {
+    "task": "mainbody",
+    "pageId": "7:70",
+    "convertedCount": 20,
+    "sourcePreserved": true,
+    "styleIds": [
+      "S:ee5b536b1b285a9f491514f91d5c4a30dc9cde3a,",
+      "S:6a995bce8c99cb7522d5b2d50d4e97f63f8b186d,",
+      "S:dcd92b8ddb0b86c2c2f10b0cbe6ec0b019fb1c96,",
+      "S:1848d68d3855d7afc05321b29104af2daca9d4ff,"
+    ],
+    "sources": [
+      {
+        "id": "16:199",
+        "font": "ManSeekSong Paper",
+        "width": 280,
+        "size": 16,
+        "sourcePreserved": true
+      },
+      {
+        "id": "16:204",
+        "font": "ManSeekSong Paper",
+        "width": 282,
+        "size": 16,
+        "sourcePreserved": true
+      },
+      {
+        "id": "16:209",
+        "font": "ManSeekSong Paper",
+        "width": 280,
+        "size": 16,
+        "sourcePreserved": true
+      },
+      {
+        "id": "16:214",
+        "font": "ManSeekSong Paper",
+        "width": 280,
+        "size": 16,
+        "sourcePreserved": true
+      },
+      {
+        "id": "16:219",
+        "font": "ManSeekSong Paper",
+        "width": 280,
+        "size": 16,
+        "sourcePreserved": true
+      },
+      {
+        "id": "17:98",
+        "font": "ManSeekSong Paper",
+        "width": 304,
+        "size": 16,
+        "sourcePreserved": true
+      },
+      {
+        "id": "17:108",
+        "font": "ManSeekSong Paper",
+        "width": 302,
+        "size": 16,
+        "sourcePreserved": true
+      },
+      {
+        "id": "17:116",
+        "font": "ManSeekSong Paper",
+        "width": 302,
+        "size": 16,
+        "sourcePreserved": true
+      },
+      {
+        "id": "17:118",
+        "font": "ManSeekSong Paper",
+        "width": 272,
+        "size": 16,
+        "sourcePreserved": true
+      },
+      {
+        "id": "17:175",
+        "font": "ManSeekSong Paper",
+        "width": 304,
+        "size": 16,
+        "sourcePreserved": true
+      },
+      {
+        "id": "17:183",
+        "font": "ManSeekSong Paper",
+        "width": 304,
+        "size": 16,
+        "sourcePreserved": true
+      },
+      {
+        "id": "17:195",
+        "font": "ManSeekSong Paper",
+        "width": 302,
+        "size": 16,
+        "sourcePreserved": true
+      },
+      {
+        "id": "17:200",
+        "font": "ManSeekSong Paper",
+        "width": 302,
+        "size": 16,
+        "sourcePreserved": true
+      },
+      {
+        "id": "20:6501",
+        "font": "ManSeekSong Paper",
+        "width": 176,
+        "size": 16,
+        "sourcePreserved": true
+      },
+      {
+        "id": "21:5143",
+        "font": "ManSeekSong Paper",
+        "width": 176,
+        "size": 16,
+        "sourcePreserved": true
+      },
+      {
+        "id": "21:5148",
+        "font": "ManSeekSong Paper",
+        "width": 184,
+        "size": 16,
+        "sourcePreserved": true
+      },
+      {
+        "id": "178:812",
+        "font": "ManSeekSong Paper",
+        "width": 1040,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "178:813",
+        "font": "ManSeekSong Paper",
+        "width": 1040,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "178:814",
+        "font": "ManSeekSong Paper",
+        "width": 1040,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "178:815",
+        "font": "ManSeekSong Paper",
+        "width": 1040,
+        "size": 18,
+        "sourcePreserved": true
+      }
+    ],
+    "createdNodeIds": [],
+    "mutatedNodeIds": [
+      "340:902",
+      "16:199",
+      "340:899",
+      "340:906",
+      "16:204",
+      "340:903",
+      "340:910",
+      "16:209",
+      "340:907",
+      "340:914",
+      "16:214",
+      "340:911",
+      "340:918",
+      "16:219",
+      "340:915",
+      "340:922",
+      "17:98",
+      "340:919",
+      "340:926",
+      "17:108",
+      "340:923",
+      "340:930",
+      "17:116",
+      "340:927",
+      "340:934",
+      "17:118",
+      "340:931",
+      "340:938",
+      "17:175",
+      "340:935",
+      "340:942",
+      "17:183",
+      "340:939",
+      "340:946",
+      "17:195",
+      "340:943",
+      "340:950",
+      "17:200",
+      "340:947",
+      "340:954",
+      "20:6501",
+      "340:951",
+      "340:958",
+      "21:5143",
+      "340:955",
+      "340:962",
+      "21:5148",
+      "340:959",
+      "340:966",
+      "178:812",
+      "340:963",
+      "340:970",
+      "178:813",
+      "340:967",
+      "340:974",
+      "178:814",
+      "340:971",
+      "340:978",
+      "178:815",
+      "340:975"
+    ]
+  }
+}

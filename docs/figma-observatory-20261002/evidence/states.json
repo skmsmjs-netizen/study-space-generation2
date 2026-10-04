@@ -1,0 +1,583 @@
+{
+  "status": "created",
+  "pageId": "7:76",
+  "rootId": "14:68",
+  "stateCount": 42,
+  "transitionCount": 32,
+  "prototypeCount": 32,
+  "prototypeFailures": [],
+  "stateNodes": {
+    "SAVE-CHECKING": "14:73",
+    "SAVE-LOCAL-WRITING": "14:95",
+    "SAVE-PENDING": "14:115",
+    "SAVE-SAVING": "14:139",
+    "SAVE-SAVED": "14:161",
+    "SAVE-ERROR": "14:183",
+    "SAVE-LOCAL-ERROR": "14:205",
+    "SAVE-CONFLICT": "14:227",
+    "SAVE-ARCHIVING": "14:254",
+    "AUTH-CHECKING": "14:271",
+    "AUTH-SIGNED-OUT": "14:290",
+    "AUTH-PENDING": "14:312",
+    "AUTH-APPROVED": "14:331",
+    "AUTH-REJECTED": "14:348",
+    "AUTH-SUSPENDED": "14:365",
+    "AUTH-EXPIRED": "14:382",
+    "EDIT-DIRTY": "14:401",
+    "EDIT-OTHER-WINDOW": "14:422",
+    "EDIT-RESTORED-DRAFT": "14:444",
+    "BACKUP-COLLECTING": "14:466",
+    "BACKUP-PREPARED": "14:483",
+    "BACKUP-INVALID": "14:500",
+    "BACKUP-PREVIEW": "14:519",
+    "BACKUP-WAITING-RESTART": "14:543",
+    "BACKUP-RECOVERING": "14:560",
+    "BACKUP-RESTORED": "14:577",
+    "BACKUP-ROLLED-BACK": "14:596",
+    "BACKUP-MISSING-ORIGINAL": "14:615",
+    "BACKUP-OWNER-CHANGED": "14:634",
+    "AI-OWNER-READY": "14:651",
+    "AI-FORBIDDEN": "14:673",
+    "AI-GENERATING": "14:690",
+    "AI-PREVIEW": "14:710",
+    "AI-FAILED": "14:739",
+    "AI-LIMIT": "14:759",
+    "AI-UNCERTAIN": "14:779",
+    "CONTENT-EMPTY": "14:799",
+    "CONTENT-NO-RESULT": "14:816",
+    "CONTENT-ERROR": "14:838",
+    "CONTENT-UNAVAILABLE": "14:857",
+    "RENDER-FALLBACK": "14:874",
+    "RENDER-PAUSED": "14:893"
+  },
+  "previewNodes": {
+    "SAVE-CHECKING": "14:76",
+    "SAVE-LOCAL-WRITING": "14:98",
+    "SAVE-PENDING": "14:118",
+    "SAVE-SAVING": "14:142",
+    "SAVE-SAVED": "14:164",
+    "SAVE-ERROR": "14:186",
+    "SAVE-LOCAL-ERROR": "14:208",
+    "SAVE-CONFLICT": "14:230",
+    "SAVE-ARCHIVING": "14:257",
+    "AUTH-CHECKING": "14:274",
+    "AUTH-SIGNED-OUT": "14:293",
+    "AUTH-PENDING": "14:315",
+    "AUTH-APPROVED": "14:334",
+    "AUTH-REJECTED": "14:351",
+    "AUTH-SUSPENDED": "14:368",
+    "AUTH-EXPIRED": "14:385",
+    "EDIT-DIRTY": "14:404",
+    "EDIT-OTHER-WINDOW": "14:425",
+    "EDIT-RESTORED-DRAFT": "14:447",
+    "BACKUP-COLLECTING": "14:469",
+    "BACKUP-PREPARED": "14:486",
+    "BACKUP-INVALID": "14:503",
+    "BACKUP-PREVIEW": "14:522",
+    "BACKUP-WAITING-RESTART": "14:546",
+    "BACKUP-RECOVERING": "14:563",
+    "BACKUP-RESTORED": "14:580",
+    "BACKUP-ROLLED-BACK": "14:599",
+    "BACKUP-MISSING-ORIGINAL": "14:618",
+    "BACKUP-OWNER-CHANGED": "14:637",
+    "AI-OWNER-READY": "14:654",
+    "AI-FORBIDDEN": "14:676",
+    "AI-GENERATING": "14:693",
+    "AI-PREVIEW": "14:713",
+    "AI-FAILED": "14:742",
+    "AI-LIMIT": "14:762",
+    "AI-UNCERTAIN": "14:782",
+    "CONTENT-EMPTY": "14:802",
+    "CONTENT-NO-RESULT": "14:819",
+    "CONTENT-ERROR": "14:841",
+    "CONTENT-UNAVAILABLE": "14:860",
+    "RENDER-FALLBACK": "14:877",
+    "RENDER-PAUSED": "14:896"
+  },
+  "actionNodes": {
+    "SAVE-CHECKING": [
+      "14:86",
+      "14:88"
+    ],
+    "SAVE-LOCAL-WRITING": [
+      "14:108"
+    ],
+    "SAVE-PENDING": [
+      "14:128",
+      "14:130",
+      "14:132"
+    ],
+    "SAVE-SAVING": [
+      "14:152",
+      "14:154"
+    ],
+    "SAVE-SAVED": [
+      "14:174",
+      "14:176"
+    ],
+    "SAVE-ERROR": [
+      "14:196",
+      "14:198"
+    ],
+    "SAVE-LOCAL-ERROR": [
+      "14:218",
+      "14:220"
+    ],
+    "SAVE-CONFLICT": [
+      "14:241",
+      "14:243",
+      "14:245",
+      "14:247"
+    ],
+    "SAVE-ARCHIVING": [
+      "14:264"
+    ],
+    "AUTH-CHECKING": [
+      "14:281",
+      "14:283"
+    ],
+    "AUTH-SIGNED-OUT": [
+      "14:303",
+      "14:305"
+    ],
+    "AUTH-PENDING": [
+      "14:322",
+      "14:324"
+    ],
+    "AUTH-APPROVED": [
+      "14:341"
+    ],
+    "AUTH-REJECTED": [
+      "14:358"
+    ],
+    "AUTH-SUSPENDED": [
+      "14:375"
+    ],
+    "AUTH-EXPIRED": [
+      "14:392",
+      "14:394"
+    ],
+    "EDIT-DIRTY": [
+      "14:411",
+      "14:413",
+      "14:415"
+    ],
+    "EDIT-OTHER-WINDOW": [
+      "14:435",
+      "14:437"
+    ],
+    "EDIT-RESTORED-DRAFT": [
+      "14:457",
+      "14:459"
+    ],
+    "BACKUP-COLLECTING": [
+      "14:476"
+    ],
+    "BACKUP-PREPARED": [
+      "14:493"
+    ],
+    "BACKUP-INVALID": [
+      "14:510",
+      "14:512"
+    ],
+    "BACKUP-PREVIEW": [
+      "14:532",
+      "14:534",
+      "14:536"
+    ],
+    "BACKUP-WAITING-RESTART": [
+      "14:553"
+    ],
+    "BACKUP-RECOVERING": [
+      "14:570"
+    ],
+    "BACKUP-RESTORED": [
+      "14:587",
+      "14:589"
+    ],
+    "BACKUP-ROLLED-BACK": [
+      "14:606",
+      "14:608"
+    ],
+    "BACKUP-MISSING-ORIGINAL": [
+      "14:625",
+      "14:627"
+    ],
+    "BACKUP-OWNER-CHANGED": [
+      "14:644"
+    ],
+    "AI-OWNER-READY": [
+      "14:662",
+      "14:664",
+      "14:666"
+    ],
+    "AI-FORBIDDEN": [
+      "14:683"
+    ],
+    "AI-GENERATING": [
+      "14:701",
+      "14:703"
+    ],
+    "AI-PREVIEW": [
+      "14:728",
+      "14:730",
+      "14:732"
+    ],
+    "AI-FAILED": [
+      "14:750",
+      "14:752"
+    ],
+    "AI-LIMIT": [
+      "14:770",
+      "14:772"
+    ],
+    "AI-UNCERTAIN": [
+      "14:790",
+      "14:792"
+    ],
+    "CONTENT-EMPTY": [
+      "14:809"
+    ],
+    "CONTENT-NO-RESULT": [
+      "14:829",
+      "14:831"
+    ],
+    "CONTENT-ERROR": [
+      "14:848",
+      "14:850"
+    ],
+    "CONTENT-UNAVAILABLE": [
+      "14:867"
+    ],
+    "RENDER-FALLBACK": [
+      "14:884",
+      "14:886"
+    ],
+    "RENDER-PAUSED": [
+      "14:903",
+      "14:905"
+    ]
+  },
+  "transitionNodes": [
+    {
+      "id": "T01",
+      "from": "EDIT-DIRTY",
+      "to": "SAVE-LOCAL-WRITING",
+      "flowNodeId": "14:915",
+      "triggerNodeId": "14:922",
+      "destinationLinkNodeId": "14:921",
+      "destinationNodeId": "14:95",
+      "prototypeConnected": true
+    },
+    {
+      "id": "T02",
+      "from": "SAVE-LOCAL-WRITING",
+      "to": "SAVE-PENDING",
+      "flowNodeId": "14:926",
+      "triggerNodeId": "14:933",
+      "destinationLinkNodeId": "14:932",
+      "destinationNodeId": "14:115",
+      "prototypeConnected": true
+    },
+    {
+      "id": "T03",
+      "from": "SAVE-LOCAL-WRITING",
+      "to": "SAVE-LOCAL-ERROR",
+      "flowNodeId": "14:937",
+      "triggerNodeId": "14:944",
+      "destinationLinkNodeId": "14:943",
+      "destinationNodeId": "14:205",
+      "prototypeConnected": true
+    },
+    {
+      "id": "T04",
+      "from": "SAVE-PENDING",
+      "to": "SAVE-SAVING",
+      "flowNodeId": "14:948",
+      "triggerNodeId": "14:955",
+      "destinationLinkNodeId": "14:954",
+      "destinationNodeId": "14:139",
+      "prototypeConnected": true
+    },
+    {
+      "id": "T05",
+      "from": "SAVE-SAVING",
+      "to": "SAVE-SAVED",
+      "flowNodeId": "14:959",
+      "triggerNodeId": "14:966",
+      "destinationLinkNodeId": "14:965",
+      "destinationNodeId": "14:161",
+      "prototypeConnected": true
+    },
+    {
+      "id": "T06",
+      "from": "SAVE-SAVING",
+      "to": "SAVE-ERROR",
+      "flowNodeId": "14:970",
+      "triggerNodeId": "14:977",
+      "destinationLinkNodeId": "14:976",
+      "destinationNodeId": "14:183",
+      "prototypeConnected": true
+    },
+    {
+      "id": "T07",
+      "from": "SAVE-ERROR",
+      "to": "SAVE-SAVING",
+      "flowNodeId": "14:981",
+      "triggerNodeId": "14:988",
+      "destinationLinkNodeId": "14:987",
+      "destinationNodeId": "14:139",
+      "prototypeConnected": true
+    },
+    {
+      "id": "T08",
+      "from": "SAVE-SAVING",
+      "to": "SAVE-CONFLICT",
+      "flowNodeId": "14:992",
+      "triggerNodeId": "14:999",
+      "destinationLinkNodeId": "14:998",
+      "destinationNodeId": "14:227",
+      "prototypeConnected": true
+    },
+    {
+      "id": "T09",
+      "from": "SAVE-CONFLICT",
+      "to": "SAVE-ARCHIVING",
+      "flowNodeId": "14:1003",
+      "triggerNodeId": "14:1010",
+      "destinationLinkNodeId": "14:1009",
+      "destinationNodeId": "14:254",
+      "prototypeConnected": true
+    },
+    {
+      "id": "T10",
+      "from": "SAVE-ARCHIVING",
+      "to": "SAVE-SAVED",
+      "flowNodeId": "14:1014",
+      "triggerNodeId": "14:1021",
+      "destinationLinkNodeId": "14:1020",
+      "destinationNodeId": "14:161",
+      "prototypeConnected": true
+    },
+    {
+      "id": "T11",
+      "from": "SAVE-ARCHIVING",
+      "to": "SAVE-ERROR",
+      "flowNodeId": "14:1025",
+      "triggerNodeId": "14:1032",
+      "destinationLinkNodeId": "14:1031",
+      "destinationNodeId": "14:183",
+      "prototypeConnected": true
+    },
+    {
+      "id": "T12",
+      "from": "SAVE-CHECKING",
+      "to": "SAVE-SAVED",
+      "flowNodeId": "14:1036",
+      "triggerNodeId": "14:1043",
+      "destinationLinkNodeId": "14:1042",
+      "destinationNodeId": "14:161",
+      "prototypeConnected": true
+    },
+    {
+      "id": "T13",
+      "from": "SAVE-CHECKING",
+      "to": "SAVE-CONFLICT",
+      "flowNodeId": "14:1047",
+      "triggerNodeId": "14:1054",
+      "destinationLinkNodeId": "14:1053",
+      "destinationNodeId": "14:227",
+      "prototypeConnected": true
+    },
+    {
+      "id": "T14",
+      "from": "AUTH-SIGNED-OUT",
+      "to": "AUTH-CHECKING",
+      "flowNodeId": "14:1058",
+      "triggerNodeId": "14:1065",
+      "destinationLinkNodeId": "14:1064",
+      "destinationNodeId": "14:271",
+      "prototypeConnected": true
+    },
+    {
+      "id": "T15",
+      "from": "AUTH-CHECKING",
+      "to": "AUTH-PENDING",
+      "flowNodeId": "14:1069",
+      "triggerNodeId": "14:1076",
+      "destinationLinkNodeId": "14:1075",
+      "destinationNodeId": "14:312",
+      "prototypeConnected": true
+    },
+    {
+      "id": "T16",
+      "from": "AUTH-CHECKING",
+      "to": "AUTH-APPROVED",
+      "flowNodeId": "14:1080",
+      "triggerNodeId": "14:1087",
+      "destinationLinkNodeId": "14:1086",
+      "destinationNodeId": "14:331",
+      "prototypeConnected": true
+    },
+    {
+      "id": "T17",
+      "from": "AUTH-CHECKING",
+      "to": "AUTH-REJECTED",
+      "flowNodeId": "14:1091",
+      "triggerNodeId": "14:1098",
+      "destinationLinkNodeId": "14:1097",
+      "destinationNodeId": "14:348",
+      "prototypeConnected": true
+    },
+    {
+      "id": "T18",
+      "from": "AUTH-CHECKING",
+      "to": "AUTH-SUSPENDED",
+      "flowNodeId": "14:1102",
+      "triggerNodeId": "14:1109",
+      "destinationLinkNodeId": "14:1108",
+      "destinationNodeId": "14:365",
+      "prototypeConnected": true
+    },
+    {
+      "id": "T19",
+      "from": "AUTH-APPROVED",
+      "to": "AUTH-EXPIRED",
+      "flowNodeId": "14:1113",
+      "triggerNodeId": "14:1120",
+      "destinationLinkNodeId": "14:1119",
+      "destinationNodeId": "14:382",
+      "prototypeConnected": true
+    },
+    {
+      "id": "T20",
+      "from": "BACKUP-COLLECTING",
+      "to": "BACKUP-PREPARED",
+      "flowNodeId": "14:1124",
+      "triggerNodeId": "14:1131",
+      "destinationLinkNodeId": "14:1130",
+      "destinationNodeId": "14:483",
+      "prototypeConnected": true
+    },
+    {
+      "id": "T21",
+      "from": "BACKUP-PREPARED",
+      "to": "BACKUP-OWNER-CHANGED",
+      "flowNodeId": "14:1135",
+      "triggerNodeId": "14:1142",
+      "destinationLinkNodeId": "14:1141",
+      "destinationNodeId": "14:634",
+      "prototypeConnected": true
+    },
+    {
+      "id": "T22",
+      "from": "BACKUP-PREVIEW",
+      "to": "BACKUP-WAITING-RESTART",
+      "flowNodeId": "14:1146",
+      "triggerNodeId": "14:1153",
+      "destinationLinkNodeId": "14:1152",
+      "destinationNodeId": "14:543",
+      "prototypeConnected": true
+    },
+    {
+      "id": "T23",
+      "from": "BACKUP-WAITING-RESTART",
+      "to": "BACKUP-RECOVERING",
+      "flowNodeId": "14:1157",
+      "triggerNodeId": "14:1164",
+      "destinationLinkNodeId": "14:1163",
+      "destinationNodeId": "14:560",
+      "prototypeConnected": true
+    },
+    {
+      "id": "T24",
+      "from": "BACKUP-RECOVERING",
+      "to": "BACKUP-RESTORED",
+      "flowNodeId": "14:1168",
+      "triggerNodeId": "14:1175",
+      "destinationLinkNodeId": "14:1174",
+      "destinationNodeId": "14:577",
+      "prototypeConnected": true
+    },
+    {
+      "id": "T25",
+      "from": "BACKUP-RECOVERING",
+      "to": "BACKUP-ROLLED-BACK",
+      "flowNodeId": "14:1179",
+      "triggerNodeId": "14:1186",
+      "destinationLinkNodeId": "14:1185",
+      "destinationNodeId": "14:596",
+      "prototypeConnected": true
+    },
+    {
+      "id": "T26",
+      "from": "BACKUP-RESTORED",
+      "to": "SAVE-CONFLICT",
+      "flowNodeId": "14:1190",
+      "triggerNodeId": "14:1197",
+      "destinationLinkNodeId": "14:1196",
+      "destinationNodeId": "14:227",
+      "prototypeConnected": true
+    },
+    {
+      "id": "T27",
+      "from": "AI-OWNER-READY",
+      "to": "AI-GENERATING",
+      "flowNodeId": "14:1201",
+      "triggerNodeId": "14:1208",
+      "destinationLinkNodeId": "14:1207",
+      "destinationNodeId": "14:690",
+      "prototypeConnected": true
+    },
+    {
+      "id": "T28",
+      "from": "AI-OWNER-READY",
+      "to": "AI-LIMIT",
+      "flowNodeId": "14:1212",
+      "triggerNodeId": "14:1219",
+      "destinationLinkNodeId": "14:1218",
+      "destinationNodeId": "14:759",
+      "prototypeConnected": true
+    },
+    {
+      "id": "T29",
+      "from": "AI-GENERATING",
+      "to": "AI-PREVIEW",
+      "flowNodeId": "14:1223",
+      "triggerNodeId": "14:1230",
+      "destinationLinkNodeId": "14:1229",
+      "destinationNodeId": "14:710",
+      "prototypeConnected": true
+    },
+    {
+      "id": "T30",
+      "from": "AI-GENERATING",
+      "to": "AI-FAILED",
+      "flowNodeId": "14:1234",
+      "triggerNodeId": "14:1241",
+      "destinationLinkNodeId": "14:1240",
+      "destinationNodeId": "14:739",
+      "prototypeConnected": true
+    },
+    {
+      "id": "T31",
+      "from": "AI-GENERATING",
+      "to": "AI-UNCERTAIN",
+      "flowNodeId": "14:1245",
+      "triggerNodeId": "14:1252",
+      "destinationLinkNodeId": "14:1251",
+      "destinationNodeId": "14:779",
+      "prototypeConnected": true
+    },
+    {
+      "id": "T32",
+      "from": "AI-OWNER-READY",
+      "to": "AI-FORBIDDEN",
+      "flowNodeId": "14:1256",
+      "triggerNodeId": "14:1263",
+      "destinationLinkNodeId": "14:1262",
+      "destinationNodeId": "14:673",
+      "prototypeConnected": true
+    }
+  ]
+}

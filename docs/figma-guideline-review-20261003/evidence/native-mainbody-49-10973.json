@@ -1,0 +1,200 @@
+{
+  "type": "result",
+  "result": {
+    "task": "mainbody",
+    "pageId": "49:10973",
+    "convertedCount": 18,
+    "sourcePreserved": true,
+    "styleIds": [
+      "S:ee5b536b1b285a9f491514f91d5c4a30dc9cde3a,",
+      "S:6a995bce8c99cb7522d5b2d50d4e97f63f8b186d,",
+      "S:dcd92b8ddb0b86c2c2f10b0cbe6ec0b019fb1c96,",
+      "S:1848d68d3855d7afc05321b29104af2daca9d4ff,"
+    ],
+    "sources": [
+      {
+        "id": "55:70",
+        "font": "ManSeekSong Paper",
+        "width": 2436,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "87:327",
+        "font": "ManSeekSong Paper",
+        "width": 504,
+        "size": 16,
+        "sourcePreserved": true
+      },
+      {
+        "id": "87:337",
+        "font": "ManSeekSong Paper",
+        "width": 254,
+        "size": 16,
+        "sourcePreserved": true
+      },
+      {
+        "id": "87:347",
+        "font": "ManSeekSong Paper",
+        "width": 504,
+        "size": 16,
+        "sourcePreserved": true
+      },
+      {
+        "id": "55:314",
+        "font": "ManSeekSong Paper",
+        "width": 1278,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "87:352",
+        "font": "ManSeekSong Paper",
+        "width": 504,
+        "size": 16,
+        "sourcePreserved": true
+      },
+      {
+        "id": "55:359",
+        "font": "ManSeekSong Paper",
+        "width": 520,
+        "size": 16,
+        "sourcePreserved": true
+      },
+      {
+        "id": "55:366",
+        "font": "ManSeekSong Paper",
+        "width": 520,
+        "size": 16,
+        "sourcePreserved": true
+      },
+      {
+        "id": "55:372",
+        "font": "ManSeekSong Paper",
+        "width": 520,
+        "size": 16,
+        "sourcePreserved": true
+      },
+      {
+        "id": "55:377",
+        "font": "ManSeekSong Paper",
+        "width": 2386,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "55:487",
+        "font": "ManSeekSong Paper",
+        "width": 710,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "87:372",
+        "font": "ManSeekSong Paper",
+        "width": 504,
+        "size": 16,
+        "sourcePreserved": true
+      },
+      {
+        "id": "87:382",
+        "font": "ManSeekSong Paper",
+        "width": 504,
+        "size": 16,
+        "sourcePreserved": true
+      },
+      {
+        "id": "87:392",
+        "font": "ManSeekSong Paper",
+        "width": 504,
+        "size": 16,
+        "sourcePreserved": true
+      },
+      {
+        "id": "178:31752",
+        "font": "ManSeekSong Paper",
+        "width": 1040,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "178:31753",
+        "font": "ManSeekSong Paper",
+        "width": 1040,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "178:31754",
+        "font": "ManSeekSong Paper",
+        "width": 1040,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "178:31755",
+        "font": "ManSeekSong Paper",
+        "width": 1040,
+        "size": 18,
+        "sourcePreserved": true
+      }
+    ],
+    "createdNodeIds": [],
+    "mutatedNodeIds": [
+      "350:783",
+      "55:70",
+      "350:780",
+      "350:787",
+      "87:327",
+      "350:784",
+      "350:791",
+      "87:337",
+      "350:788",
+      "350:795",
+      "87:347",
+      "350:792",
+      "350:799",
+      "55:314",
+      "350:796",
+      "350:803",
+      "87:352",
+      "350:800",
+      "350:807",
+      "55:359",
+      "350:804",
+      "350:811",
+      "55:366",
+      "350:808",
+      "350:815",
+      "55:372",
+      "350:812",
+      "350:819",
+      "55:377",
+      "350:816",
+      "350:823",
+      "55:487",
+      "350:820",
+      "350:827",
+      "87:372",
+      "350:824",
+      "350:831",
+      "87:382",
+      "350:828",
+      "350:835",
+      "87:392",
+      "350:832",
+      "350:839",
+      "178:31752",
+      "350:836",
+      "350:843",
+      "178:31753",
+      "350:840",
+      "350:847",
+      "178:31754",
+      "350:844",
+      "350:851",
+      "178:31755",
+      "350:848"
+    ]
+  }
+}

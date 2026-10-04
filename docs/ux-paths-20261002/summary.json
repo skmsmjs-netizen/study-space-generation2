@@ -1,0 +1,81 @@
+{
+  "capturedAt": "2026-10-02T03:27:44.072Z",
+  "coverage": {
+    "surfaces": {
+      "expected": 111,
+      "registered": 111,
+      "missing": []
+    },
+    "source": {
+      "capturedFiles": 283,
+      "reachableModules": 280,
+      "explicitContractFiles": 3,
+      "reachableTsx": 112,
+      "parseErrors": 0,
+      "actions": 1462,
+      "classifiedActions": 1462,
+      "originalMappedActions": 1438,
+      "extensionMappedActions": 127,
+      "unclassifiedActions": 0,
+      "branches": 3130,
+      "handlers": 3821,
+      "renderSites": 1526,
+      "stateVariables": 790,
+      "effects": 170,
+      "declarativeStates": 307
+    },
+    "paths": 6657,
+    "originalFlows": 14,
+    "commonStates": 42,
+    "commonTransitions": 32,
+    "sourceChangesDuringCapture": []
+  },
+  "checksums": {
+    "surfaceIds": "d175ecae11746923aca739d7734625ce910224f5a5da3281a460bb952197f54f",
+    "sourceFiles": "c080b1b82f58bf46d05fac967061f05dab35509e011193b6e812e44f783f8ebe",
+    "actionIds": "aaf2a8517653b4f5437d23918ce804461a613b194f1d95c57f518cba2c11ff42"
+  },
+  "extensions": [
+    {
+      "id": "A01",
+      "status": "source-bound-runtime-unverified"
+    },
+    {
+      "id": "A02",
+      "status": "source-bound-runtime-unverified"
+    },
+    {
+      "id": "A03",
+      "status": "source-bound-runtime-unverified"
+    },
+    {
+      "id": "A04",
+      "status": "source-bound-runtime-unverified"
+    },
+    {
+      "id": "A05",
+      "status": "source-bound-runtime-unverified"
+    },
+    {
+      "id": "A06",
+      "status": "source-bound-runtime-unverified"
+    },
+    {
+      "id": "A07",
+      "status": "source-bound-runtime-unverified"
+    },
+    {
+      "id": "A08",
+      "status": "source-bound-runtime-unverified"
+    },
+    {
+      "id": "A09",
+      "status": "source-bound-runtime-unverified"
+    },
+    {
+      "id": "A10",
+      "status": "source-bound-runtime-unverified"
+    }
+  ],
+  "runtimeTested": false
+}

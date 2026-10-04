@@ -1,0 +1,43 @@
+/* The adopted L patterns drive existing task surfaces. No authored 2D layout,
+   camera, card order, saved split ratio or document position is changed. */
+.main-content[data-layout-pattern='L025'] {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+.main-content[data-layout-pattern='L025'] > * {
+  min-inline-size: 0;
+}
+.main-content:is([data-layout-profile='P02'], [data-layout-profile='P06'])
+  :is(.subject-grid, .concept-list, .statistics-gallery) {
+  align-items: start;
+}
+.main-content:is([data-layout-profile='P03'], [data-layout-profile='P04'], [data-layout-profile='P10']) {
+  margin-inline: auto;
+}
+.main-content[data-layout-profile='P05'] :is(.math-workspace, .code-workspace),
+.main-content[data-layout-profile='P03'] .study-workspace {
+  min-inline-size: 0;
+  align-items: start;
+}
+:is([data-layout-pattern], .observatory-paper) :is(.ui-field, .ui-card, fieldset) {
+  min-inline-size: 0;
+}
+:is([data-layout-pattern], .observatory-paper) :is(.ui-error, .ui-empty, .ui-loading) {
+  overflow-wrap: anywhere;
+}
+/* Modal boundaries retain their existing focus trap and local scrolling. */
+.ui-modal[data-layout-wrapper='L170'] {
+  max-inline-size: min(var(--layout-reading), calc(100vw - var(--space-5) * 2));
+}
+@media (max-width: 40rem) {
+  .main-content[data-layout-narrow='L025'] {
+    min-inline-size: 0;
+    inline-size: 100%;
+  }
+}
+
+/* Preserve each hierarchy hue while raising contrast on the paper surface. */
+.observatory-workspace .role-unit .role-label { color: color-mix(in srgb, var(--color-hierarchy-unit) 75%, var(--color-text)); }
+.observatory-workspace .role-outline .role-label { color: color-mix(in srgb, var(--color-hierarchy-outline) 75%, var(--color-text)); }
+.observatory-workspace .role-topic .role-label { color: color-mix(in srgb, var(--color-hierarchy-topic) 75%, var(--color-text)); }

@@ -1,0 +1,1051 @@
+{
+  "pageId": "7:73",
+  "pageKey": "workbench",
+  "foundations": {
+    "collections": {
+      "primitives": "VariableCollectionId:7:78",
+      "material": "VariableCollectionId:7:79",
+      "metrics": "VariableCollectionId:7:80"
+    },
+    "modes": [
+      {
+        "name": "Interior",
+        "modeId": "7:1"
+      },
+      {
+        "name": "Paper",
+        "modeId": "7:2"
+      }
+    ],
+    "variables": {
+      "primitive/interior/canvas": {
+        "id": "VariableID:7:81",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/surface": {
+        "id": "VariableID:7:82",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/subtle": {
+        "id": "VariableID:7:83",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/text": {
+        "id": "VariableID:7:84",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/muted": {
+        "id": "VariableID:7:85",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/borderDecorative": {
+        "id": "VariableID:7:86",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/borderInteractive": {
+        "id": "VariableID:7:87",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/focus": {
+        "id": "VariableID:7:88",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/selected": {
+        "id": "VariableID:7:89",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/selectedText": {
+        "id": "VariableID:7:90",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/primary": {
+        "id": "VariableID:7:91",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/primaryHover": {
+        "id": "VariableID:7:92",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/primaryPressed": {
+        "id": "VariableID:7:93",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/onPrimary": {
+        "id": "VariableID:7:94",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/canvas": {
+        "id": "VariableID:7:95",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/surface": {
+        "id": "VariableID:7:96",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/subtle": {
+        "id": "VariableID:7:97",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/text": {
+        "id": "VariableID:7:98",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/muted": {
+        "id": "VariableID:7:99",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/borderDecorative": {
+        "id": "VariableID:7:100",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/borderInteractive": {
+        "id": "VariableID:7:101",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/focus": {
+        "id": "VariableID:7:102",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/selected": {
+        "id": "VariableID:7:103",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/selectedText": {
+        "id": "VariableID:7:104",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/primary": {
+        "id": "VariableID:7:105",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/primaryHover": {
+        "id": "VariableID:7:106",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/primaryPressed": {
+        "id": "VariableID:7:107",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/onPrimary": {
+        "id": "VariableID:7:108",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "material/canvas": {
+        "id": "VariableID:7:109",
+        "type": "COLOR",
+        "scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL"
+        ]
+      },
+      "material/surface": {
+        "id": "VariableID:7:110",
+        "type": "COLOR",
+        "scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL"
+        ]
+      },
+      "material/subtle": {
+        "id": "VariableID:7:111",
+        "type": "COLOR",
+        "scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL"
+        ]
+      },
+      "material/text": {
+        "id": "VariableID:7:112",
+        "type": "COLOR",
+        "scopes": [
+          "TEXT_FILL"
+        ]
+      },
+      "material/muted": {
+        "id": "VariableID:7:113",
+        "type": "COLOR",
+        "scopes": [
+          "TEXT_FILL"
+        ]
+      },
+      "material/borderDecorative": {
+        "id": "VariableID:7:114",
+        "type": "COLOR",
+        "scopes": [
+          "STROKE_COLOR"
+        ]
+      },
+      "material/borderInteractive": {
+        "id": "VariableID:7:115",
+        "type": "COLOR",
+        "scopes": [
+          "STROKE_COLOR"
+        ]
+      },
+      "material/focus": {
+        "id": "VariableID:7:116",
+        "type": "COLOR",
+        "scopes": [
+          "STROKE_COLOR"
+        ]
+      },
+      "material/selected": {
+        "id": "VariableID:7:117",
+        "type": "COLOR",
+        "scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL"
+        ]
+      },
+      "material/selectedText": {
+        "id": "VariableID:7:118",
+        "type": "COLOR",
+        "scopes": [
+          "TEXT_FILL"
+        ]
+      },
+      "material/primary": {
+        "id": "VariableID:7:119",
+        "type": "COLOR",
+        "scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL"
+        ]
+      },
+      "material/primaryHover": {
+        "id": "VariableID:7:120",
+        "type": "COLOR",
+        "scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL"
+        ]
+      },
+      "material/primaryPressed": {
+        "id": "VariableID:7:121",
+        "type": "COLOR",
+        "scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL"
+        ]
+      },
+      "material/onPrimary": {
+        "id": "VariableID:7:122",
+        "type": "COLOR",
+        "scopes": [
+          "TEXT_FILL"
+        ]
+      },
+      "space/0": {
+        "id": "VariableID:7:123",
+        "type": "FLOAT",
+        "scopes": [
+          "GAP"
+        ]
+      },
+      "space/4": {
+        "id": "VariableID:7:124",
+        "type": "FLOAT",
+        "scopes": [
+          "GAP"
+        ]
+      },
+      "space/8": {
+        "id": "VariableID:7:125",
+        "type": "FLOAT",
+        "scopes": [
+          "GAP"
+        ]
+      },
+      "space/12": {
+        "id": "VariableID:7:126",
+        "type": "FLOAT",
+        "scopes": [
+          "GAP"
+        ]
+      },
+      "space/16": {
+        "id": "VariableID:7:127",
+        "type": "FLOAT",
+        "scopes": [
+          "GAP"
+        ]
+      },
+      "space/24": {
+        "id": "VariableID:7:128",
+        "type": "FLOAT",
+        "scopes": [
+          "GAP"
+        ]
+      },
+      "space/32": {
+        "id": "VariableID:7:129",
+        "type": "FLOAT",
+        "scopes": [
+          "GAP"
+        ]
+      },
+      "space/48": {
+        "id": "VariableID:7:130",
+        "type": "FLOAT",
+        "scopes": [
+          "GAP"
+        ]
+      },
+      "space/64": {
+        "id": "VariableID:7:131",
+        "type": "FLOAT",
+        "scopes": [
+          "GAP"
+        ]
+      },
+      "control/height": {
+        "id": "VariableID:7:132",
+        "type": "FLOAT",
+        "scopes": [
+          "WIDTH_HEIGHT"
+        ]
+      },
+      "control/icon-target": {
+        "id": "VariableID:7:133",
+        "type": "FLOAT",
+        "scopes": [
+          "WIDTH_HEIGHT"
+        ]
+      },
+      "border/width": {
+        "id": "VariableID:7:134",
+        "type": "FLOAT",
+        "scopes": [
+          "STROKE_FLOAT"
+        ]
+      },
+      "focus/width": {
+        "id": "VariableID:7:135",
+        "type": "FLOAT",
+        "scopes": [
+          "STROKE_FLOAT"
+        ]
+      },
+      "radius/control": {
+        "id": "VariableID:7:136",
+        "type": "FLOAT",
+        "scopes": [
+          "CORNER_RADIUS"
+        ]
+      },
+      "radius/dialog": {
+        "id": "VariableID:7:137",
+        "type": "FLOAT",
+        "scopes": [
+          "CORNER_RADIUS"
+        ]
+      },
+      "motion/feedback": {
+        "id": "VariableID:7:138",
+        "type": "FLOAT",
+        "scopes": []
+      },
+      "motion/navigation": {
+        "id": "VariableID:7:139",
+        "type": "FLOAT",
+        "scopes": []
+      },
+      "motion/reduced": {
+        "id": "VariableID:7:140",
+        "type": "FLOAT",
+        "scopes": []
+      }
+    },
+    "textStyles": {
+      "Body": "S:0ed1e468a727e7f6b4cfe5df9fede5b786c93484,",
+      "Label": "S:57e137d821e57f2a65506aae778891f8769014bb,",
+      "Caption": "S:befdc25f9b2e8c63313b60a0d4aea208900d629a,",
+      "Heading": "S:a12f8ca10ba0d22e77eaf7ad3092a28a3779de86,",
+      "Title": "S:9c730b18d11b0b822b1b5cb4828120b4eb39915f,",
+      "TitleCompact": "S:8579bbbd27aef7f9309ddc31f958d7598925587a,",
+      "Code": "S:2dbd5754c8da299cad06f2184af84cc5101eb9b7,"
+    },
+    "fonts": {
+      "font": {
+        "family": "Noto Sans KR",
+        "style": "Regular"
+      },
+      "boldFont": {
+        "family": "Noto Sans KR",
+        "style": "Regular",
+        "variationSettings": {
+          "wght": 600
+        }
+      },
+      "axes": [
+        "wght"
+      ]
+    }
+  },
+  "materials": {
+    "interior": {
+      "canvas": "#1F1E1B",
+      "surface": "#282722",
+      "subtle": "#33312D",
+      "text": "#E8E3D7",
+      "muted": "#B7B0A2",
+      "borderDecorative": "#514A42",
+      "borderInteractive": "#8B8071",
+      "focus": "#D7B477",
+      "selected": "#33312D",
+      "selectedText": "#E8E3D7",
+      "primary": "#D7B477",
+      "primaryHover": "#E5C890",
+      "primaryPressed": "#C2A062",
+      "onPrimary": "#1F1E1B"
+    },
+    "paper": {
+      "canvas": "#E4DCCD",
+      "surface": "#E4DCCD",
+      "subtle": "#D7CBB4",
+      "text": "#34312B",
+      "muted": "#5B5448",
+      "borderDecorative": "#B4A891",
+      "borderInteractive": "#796D5D",
+      "focus": "#725425",
+      "selected": "#D7CBB4",
+      "selectedText": "#34312B",
+      "primary": "#554530",
+      "primaryHover": "#473924",
+      "primaryPressed": "#3B3022",
+      "onPrimary": "#E4DCCD"
+    }
+  },
+  "reusable": {
+    "buttonPrimary": "16:76",
+    "buttonQuiet": "16:108",
+    "world": "10:68"
+  },
+  "profiles": [
+    {
+      "key": "ipad-landscape",
+      "label": "iPad Pro 13인치 가로",
+      "width": 1376,
+      "height": 1032,
+      "scale": 2
+    },
+    {
+      "key": "iphone-portrait",
+      "label": "iPhone 17 Pro 세로",
+      "width": 402,
+      "height": 681,
+      "scale": 3
+    },
+    {
+      "key": "iphone-landscape",
+      "label": "iPhone 17 Pro 가로",
+      "width": 756,
+      "height": 352,
+      "scale": 3
+    },
+    {
+      "key": "ipad-portrait",
+      "label": "iPad Pro 13인치 세로",
+      "width": 1032,
+      "height": 1376,
+      "scale": 2
+    },
+    {
+      "key": "ipad-narrow",
+      "label": "iPad Pro 13인치 좁은 창",
+      "width": 517,
+      "height": 1200,
+      "scale": 2
+    }
+  ],
+  "homeId": "R01",
+  "screens": [
+    {
+      "id": "R08",
+      "title": "코딩 연습",
+      "route": "/code",
+      "primary": true,
+      "kind": "main",
+      "homePlace": "workbench",
+      "pageKey": "workbench",
+      "layoutFamily": "code-editor-terminal",
+      "source": "src/ui/code-practice.tsx:76 · CodePractice",
+      "sourceRefs": [
+        {
+          "path": "src/ui/code-practice.tsx",
+          "export": "CodePractice",
+          "line": 76
+        }
+      ],
+      "states": [
+        "목록",
+        "편집",
+        "실행 중",
+        "입력 대기",
+        "결과·오류",
+        "충돌 초안",
+        "휴지통"
+      ],
+      "actions": [
+        "예제 추가",
+        "예제 찾기",
+        "예제 언어",
+        "예제 제목",
+        "언어",
+        "코드 입력",
+        "실행 방식",
+        "실행에 사용할 입력값",
+        "입력 없이 실행",
+        "실행",
+        "중단",
+        "터미널에 보낼 입력",
+        "입력 보내기",
+        "결과 보기",
+        "다시 실행",
+        "내용·설명",
+        "초안을 별도 예제로 보관",
+        "파일로 보관",
+        "예제 복사",
+        "주제 연결"
+      ],
+      "returnContract": "예제 목록·연결 주제; 코드와 커서·초안 유지",
+      "placeVariants": [],
+      "blocks": [
+        {
+          "label": "예제 목록",
+          "type": "code-library",
+          "content": "제목·언어·검색·더 보기. 합성 예: 급수 항의 합 / Python.",
+          "actions": [
+            "예제 추가",
+            "예제 찾기",
+            "예제 언어"
+          ],
+          "source": "src/ui/code-practice.tsx:76 · CodePractice",
+          "contentPolicy": "기능 설명·합성 예시만, 실제 개인 원문 없음",
+          "id": "R08-B01",
+          "ui": {
+            "fields": [
+              {
+                "label": "예제 찾기",
+                "value": "",
+                "kind": "search"
+              },
+              {
+                "label": "예제 언어",
+                "value": "Python",
+                "kind": "select"
+              }
+            ],
+            "rows": [
+              "급수 항의 합 · Python",
+              "행렬과 벡터 · Python"
+            ],
+            "actions": [
+              "예제 추가",
+              {
+                "label": "예제 열기",
+                "to": "R25"
+              }
+            ]
+          }
+        },
+        {
+          "label": "예제와 소스",
+          "type": "code-editor",
+          "content": "제목·언어·Monaco/터치 편집. 합성 소스: print(sum(range(1, 6))).",
+          "actions": [
+            "예제 제목",
+            "언어",
+            "코드 입력"
+          ],
+          "source": "src/ui/source-editor.tsx:11 · module",
+          "contentPolicy": "기능 설명·합성 예시만, 실제 개인 원문 없음",
+          "id": "R08-B02",
+          "ui": {
+            "fields": [
+              {
+                "label": "예제 제목",
+                "value": "급수 항의 합",
+                "kind": "input"
+              },
+              {
+                "label": "언어",
+                "value": "Python",
+                "kind": "select"
+              }
+            ],
+            "rows": [],
+            "code": "values = range(1, 6)\nprint(sum(values))",
+            "actions": []
+          }
+        },
+        {
+          "label": "실행 설정",
+          "type": "runtime-controls",
+          "content": "실행 방식과 입력값. 구문 확인과 실행 성공·학습 성과를 구별.",
+          "actions": [
+            "실행 방식",
+            "실행에 사용할 입력값",
+            "입력 없이 실행",
+            "실행",
+            "중단"
+          ],
+          "source": "src/ui/code-practice.tsx:76 · CodePractice",
+          "contentPolicy": "기능 설명·합성 예시만, 실제 개인 원문 없음",
+          "id": "R08-B03",
+          "ui": {
+            "fields": [
+              {
+                "label": "실행 방식",
+                "value": "입력값을 미리 적기",
+                "kind": "select"
+              },
+              {
+                "label": "실행에 사용할 입력값",
+                "value": "",
+                "kind": "textarea"
+              }
+            ],
+            "rows": [],
+            "actions": [
+              "실행",
+              "입력 없이 실행",
+              "중단"
+            ]
+          }
+        },
+        {
+          "label": "터미널",
+          "type": "terminal",
+          "content": "실행 스트림·입력 대기와 입력 전송.",
+          "actions": [
+            "터미널에 보낼 입력",
+            "입력 보내기"
+          ],
+          "source": "src/ui/code-terminal.tsx:13 · module",
+          "contentPolicy": "기능 설명·합성 예시만, 실제 개인 원문 없음",
+          "id": "R08-B04",
+          "ui": {
+            "fields": [
+              {
+                "label": "터미널에 보낼 입력",
+                "value": "",
+                "kind": "input"
+              }
+            ],
+            "rows": [],
+            "code": "$ python main.py\n15\n프로세스가 종료되었습니다.",
+            "actions": [
+              "입력 보내기"
+            ]
+          }
+        },
+        {
+          "label": "실행 결과",
+          "type": "result-panel",
+          "content": "표준 출력·오류·종료 상태. 합성 결과: 15.",
+          "actions": [
+            "결과 보기",
+            "다시 실행"
+          ],
+          "source": "src/ui/code-practice.tsx:76 · CodePractice",
+          "contentPolicy": "기능 설명·합성 예시만, 실제 개인 원문 없음",
+          "id": "R08-B05",
+          "ui": {
+            "fields": [],
+            "rows": [
+              "출력",
+              "15",
+              "종료 코드 · 0"
+            ],
+            "actions": [
+              "다시 실행"
+            ]
+          }
+        },
+        {
+          "label": "설명·연결·보관",
+          "type": "code-notes-and-links",
+          "content": "설명·주제 연결·별도 초안·파일·복사·휴지통.",
+          "actions": [
+            "내용·설명",
+            "초안을 별도 예제로 보관",
+            "파일로 보관",
+            "예제 복사",
+            "주제 연결"
+          ],
+          "source": "src/ui/learning-links.tsx:11 · module",
+          "contentPolicy": "기능 설명·합성 예시만, 실제 개인 원문 없음",
+          "id": "R08-B06",
+          "ui": {
+            "fields": [
+              {
+                "label": "내용·설명",
+                "value": "1부터 5까지의 합을 출력한다.",
+                "kind": "textarea"
+              },
+              {
+                "label": "연결할 주제",
+                "value": "급수",
+                "kind": "select"
+              }
+            ],
+            "rows": [],
+            "actions": [
+              "저장",
+              "파일로 보관",
+              "예제 복사"
+            ]
+          }
+        }
+      ],
+      "statePlan": [
+        "목록",
+        "편집",
+        "실행 중",
+        "입력 대기",
+        "결과·오류",
+        "충돌 초안",
+        "휴지통"
+      ]
+    },
+    {
+      "id": "R09",
+      "title": "수식 탐색",
+      "route": "/math",
+      "primary": true,
+      "kind": "main",
+      "homePlace": "workbench",
+      "pageKey": "workbench",
+      "layoutFamily": "math-instrument-paper",
+      "source": "src/ui/math-explorer.tsx:174 · MathExplorer",
+      "sourceRefs": [
+        {
+          "path": "src/ui/math-explorer.tsx",
+          "export": "MathExplorer",
+          "line": 174
+        }
+      ],
+      "states": [
+        "함수",
+        "공간곡선",
+        "수식 유형",
+        "급수",
+        "개념",
+        "정의 불가",
+        "읽기 복구"
+      ],
+      "actions": [
+        "탐색할 내용",
+        "그래프 종류",
+        "수식 예시",
+        "수식 입력",
+        "슬라이더 시작",
+        "슬라이더 끝",
+        "그래프 도구",
+        "확대",
+        "축소",
+        "시점 복귀",
+        "곡선 위 위치 t",
+        "T·N·B 벡터 보기",
+        "유형 선택",
+        "조건 수정",
+        "전체 화면",
+        "파일 가져오기",
+        "파일로 보관",
+        "판정 단계 열기",
+        "조건 확인",
+        "읽던 위치 복귀",
+        "개념 선택",
+        "이전",
+        "다음",
+        "인터랙티브 조작",
+        "제목 (선택)",
+        "관찰·메모 (선택)",
+        "저장",
+        "저장한 탐색 열기"
+      ],
+      "returnContract": "선택 유형·읽던 단계·그래프 시점 유지",
+      "placeVariants": [],
+      "blocks": [
+        {
+          "label": "관측 도구 · 수식·좌표·변화",
+          "type": "mode-switch",
+          "content": "함수와 공간곡선 / 모든 과목 수식 유형 / 급수의 수렴 판단 / 개념 탐구실.",
+          "actions": [
+            "탐색할 내용"
+          ],
+          "source": "src/ui/math-explorer.tsx:174 · MathExplorer",
+          "contentPolicy": "기능 설명·합성 예시만, 실제 개인 원문 없음",
+          "id": "R09-B01",
+          "ui": {
+            "fields": [
+              {
+                "label": "탐색할 내용",
+                "value": "함수와 공간곡선",
+                "kind": "select"
+              }
+            ],
+            "rows": [],
+            "actions": []
+          }
+        },
+        {
+          "label": "수식과 변수",
+          "type": "formula-controls",
+          "content": "y(x) 또는 x(t),y(t),z(t), 예시·변수·범위. 합성 예: x=t,y=t²,z=t/2.",
+          "actions": [
+            "그래프 종류",
+            "수식 예시",
+            "수식 입력",
+            "슬라이더 시작",
+            "슬라이더 끝"
+          ],
+          "source": "src/ui/math-explorer.tsx:174 · MathExplorer",
+          "contentPolicy": "기능 설명·합성 예시만, 실제 개인 원문 없음",
+          "id": "R09-B02",
+          "ui": {
+            "fields": [
+              {
+                "label": "그래프 종류",
+                "value": "함수",
+                "kind": "select"
+              },
+              {
+                "label": "수식 예시",
+                "value": "직접 입력",
+                "kind": "select"
+              },
+              {
+                "label": "y(x)",
+                "value": "x^2",
+                "kind": "input"
+              },
+              {
+                "label": "슬라이더 시작",
+                "value": "-2",
+                "kind": "input"
+              },
+              {
+                "label": "슬라이더 끝",
+                "value": "2",
+                "kind": "input"
+              }
+            ],
+            "rows": [],
+            "actions": []
+          }
+        },
+        {
+          "label": "정밀 그래프와 현재 좌표",
+          "type": "interactive-plot",
+          "content": "Plot/GeoGebra·확대·시점·곡선 위치·T/N/B 성분·정의 불가.",
+          "actions": [
+            "그래프 도구",
+            "확대",
+            "축소",
+            "시점 복귀",
+            "곡선 위 위치 t",
+            "T·N·B 벡터 보기"
+          ],
+          "source": "src/ui/math-explorer-plot.tsx:28 · module",
+          "contentPolicy": "기능 설명·합성 예시만, 실제 개인 원문 없음",
+          "id": "R09-B03",
+          "ui": {
+            "fields": [
+              {
+                "label": "그래프 도구",
+                "value": "기본 그래프",
+                "kind": "select"
+              },
+              {
+                "label": "그래프 위 위치 x",
+                "value": "1.00",
+                "kind": "input"
+              }
+            ],
+            "rows": [
+              "현재 좌표 · (1.00, 1.00)"
+            ],
+            "chart": "math",
+            "chartTitle": "y = x²",
+            "actions": [
+              "확대",
+              "축소",
+              "시점 복귀"
+            ]
+          }
+        },
+        {
+          "label": "수식 유형별 탐색",
+          "type": "template-catalog",
+          "content": "유형마다 문제·조건·수식·그래프·변수·해석. 전체 화면·파일·저장.",
+          "actions": [
+            "유형 선택",
+            "조건 수정",
+            "전체 화면",
+            "파일 가져오기",
+            "파일로 보관"
+          ],
+          "source": "src/ui/math-templates.tsx:31 · module",
+          "contentPolicy": "기능 설명·합성 예시만, 실제 개인 원문 없음",
+          "id": "R09-B04",
+          "ui": {
+            "fields": [
+              {
+                "label": "탐색 유형",
+                "value": "함수의 변화",
+                "kind": "select"
+              },
+              {
+                "label": "조건",
+                "value": "x ∈ [-2, 2]",
+                "kind": "input"
+              }
+            ],
+            "rows": [
+              "수식 · y = x²",
+              "x가 0에서 멀어질수록 y가 커진다."
+            ],
+            "actions": [
+              "전체 화면",
+              "파일 가져오기",
+              "파일로 보관"
+            ]
+          }
+        },
+        {
+          "label": "급수의 수렴 판단",
+          "type": "reasoning-flow",
+          "content": "판정 순서·성립 조건·반례·원 정리와 읽던 단계.",
+          "actions": [
+            "판정 단계 열기",
+            "조건 확인",
+            "읽던 위치 복귀"
+          ],
+          "source": "src/ui/integral-reasoning.tsx:19 · module",
+          "contentPolicy": "기능 설명·합성 예시만, 실제 개인 원문 없음",
+          "id": "R09-B05",
+          "ui": {
+            "fields": [],
+            "rows": [
+              "1. 항이 0으로 가는지 확인",
+              "2. 항의 부호와 형태를 살펴보기",
+              "3. 비교·적분·비율 판정의 조건 확인"
+            ],
+            "actions": [
+              "판정 단계 열기",
+              "조건 확인"
+            ]
+          }
+        },
+        {
+          "label": "개념 탐구실",
+          "type": "concept-reader",
+          "content": "개념 본문·정밀 도해·실제 인터랙티브.",
+          "actions": [
+            "개념 선택",
+            "이전",
+            "다음",
+            "인터랙티브 조작"
+          ],
+          "source": "src/ui/concept-library.tsx:43 · module",
+          "contentPolicy": "기능 설명·합성 예시만, 실제 개인 원문 없음",
+          "id": "R09-B06",
+          "ui": {
+            "fields": [],
+            "rows": [
+              "급수의 수렴",
+              "부분합의 수열이 유한한 값에 가까워지는지 살펴본다."
+            ],
+            "actions": [
+              {
+                "label": "개념 선택",
+                "to": "R13"
+              },
+              "이전",
+              "다음"
+            ]
+          }
+        },
+        {
+          "label": "관찰과 저장한 탐색",
+          "type": "notes-and-saved-sessions",
+          "content": "선택 제목·관찰 메모·저장 탐색·현재 흐름 파일.",
+          "actions": [
+            "제목 (선택)",
+            "관찰·메모 (선택)",
+            "저장",
+            "파일로 보관",
+            "저장한 탐색 열기"
+          ],
+          "source": "src/ui/math-explorer.tsx:174 · MathExplorer",
+          "contentPolicy": "기능 설명·합성 예시만, 실제 개인 원문 없음",
+          "id": "R09-B07",
+          "ui": {
+            "fields": [
+              {
+                "label": "제목 (선택)",
+                "value": "제곱 함수의 변화",
+                "kind": "input"
+              },
+              {
+                "label": "관찰·메모 (선택)",
+                "value": "x와 -x에서 같은 함수값을 갖는다.",
+                "kind": "textarea"
+              }
+            ],
+            "rows": [
+              "저장한 탐색 · 제곱 함수의 변화"
+            ],
+            "actions": [
+              "저장",
+              "파일로 보관",
+              "저장한 탐색 열기"
+            ]
+          }
+        }
+      ],
+      "statePlan": [
+        "함수",
+        "공간곡선",
+        "수식 유형",
+        "급수",
+        "개념",
+        "정의 불가",
+        "읽기 복구"
+      ]
+    }
+  ],
+  "startY": 100,
+  "batchId": "workbench-01",
+  "contentPolicy": "합성 설계 설명만. 실제 개인 원문 없음. 루트 빌더는 의미 없는 행·임의 학습 통계를 추가하지 않아야 함."
+}

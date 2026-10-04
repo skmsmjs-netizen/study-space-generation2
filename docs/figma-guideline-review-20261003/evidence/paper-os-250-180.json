@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"pageId\":\"250:180\",\"createdNodeIds\":[\"342:39097\",\"342:39100\"],\"mutatedNodeIds\":[\"250:183\",\"250:181\"],\"updatedCount\":1,\"results\":[{\"sourceId\":\"250:183\",\"wrapperId\":\"342:39097\",\"outlineId\":\"342:39100\",\"role\":\"compact\",\"font\":{\"family\":\"NanumMyeongjo\",\"style\":\"Bold\"},\"size\":16,\"alignment\":\"JUSTIFIED\",\"scale\":0.9499999710102185,\"sourcePreserved\":true,\"width\":302,\"height\":60}],\"allSourcesPreserved\":true,\"allGlyphScalesPass\":true,\"skipped\":[],\"clipFixedIds\":[]}"
+    }
+  ],
+  "isError": false
+}

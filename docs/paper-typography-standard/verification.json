@@ -1,0 +1,109 @@
+{
+  "date": "2026-10-02",
+  "scope": "Figma foundation specimens and project instructions only",
+  "fileKey": "YHmD1PpWWfR9JGTEs77JsX",
+  "pageId": "7:69",
+  "boardId": "241:202",
+  "languages": [
+    "ko",
+    "en"
+  ],
+  "specimens": 8,
+  "font": "NanumMyeongjo/Bold",
+  "weight": 700,
+  "roleSizesPx": {
+    "body": 18,
+    "compact": 16,
+    "preview": 14,
+    "memo": 16
+  },
+  "textStyles": 5,
+  "variables": 17,
+  "editableSources": 8,
+  "outlineReferences": 8,
+  "glyphScaleMeasurements": [
+    {
+      "language": "ko",
+      "role": "body",
+      "scaleX": 0.9500000305612699,
+      "originalTextPreserved": true
+    },
+    {
+      "language": "en",
+      "role": "body",
+      "scaleX": 0.9500000457506352,
+      "originalTextPreserved": true
+    },
+    {
+      "language": "ko",
+      "role": "compact",
+      "scaleX": 0.95,
+      "originalTextPreserved": true
+    },
+    {
+      "language": "en",
+      "role": "compact",
+      "scaleX": 0.9499999956629219,
+      "originalTextPreserved": true
+    },
+    {
+      "language": "ko",
+      "role": "preview",
+      "scaleX": 0.95,
+      "originalTextPreserved": true
+    },
+    {
+      "language": "en",
+      "role": "preview",
+      "scaleX": 0.9499999696635943,
+      "originalTextPreserved": true
+    },
+    {
+      "language": "ko",
+      "role": "memo",
+      "scaleX": 0.95,
+      "originalTextPreserved": true
+    },
+    {
+      "language": "en",
+      "role": "memo",
+      "scaleX": 0.9500000346904588,
+      "originalTextPreserved": true
+    }
+  ],
+  "structuralAudit": {
+    "overlapCount": 0,
+    "overflowCount": 0,
+    "existingPageCount": 27,
+    "existingFoundationsPreserved": [
+      "7:148",
+      "178:187"
+    ]
+  },
+  "visualAudit": {
+    "file": "figma-overview.png",
+    "reviewed": true,
+    "lastLinesStart": true,
+    "corrected": [
+      "Auto-layout text height and frame sizing; final screenshot replaces initial overlapping render"
+    ]
+  },
+  "runtime": {
+    "status": "paused",
+    "baselineEdited": false,
+    "generatorEdited": false,
+    "cssEdited": false,
+    "storageServerDeploymentEdited": false
+  },
+  "tracking": {
+    "existingIssue": "MAN-16",
+    "read": true,
+    "scopeRecordedLocally": true,
+    "externalIssueMutation": false
+  },
+  "limitations": [
+    "Figma95%visualsareoutlines;nativeeditabletextsretained",
+    "Actualinput/IME/caretandruntimeapplicationnotperformed",
+    "OlderexistingFigmaUIpagesnotallconverted"
+  ]
+}

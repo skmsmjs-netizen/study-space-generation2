@@ -1,0 +1,301 @@
+{
+  "pageId": "7:70",
+  "foundations": {
+    "collections": {
+      "primitives": "VariableCollectionId:7:78",
+      "material": "VariableCollectionId:7:79",
+      "metrics": "VariableCollectionId:7:80"
+    },
+    "modes": [
+      {
+        "name": "Interior",
+        "modeId": "7:1"
+      },
+      {
+        "name": "Paper",
+        "modeId": "7:2"
+      }
+    ],
+    "variables": {
+      "primitive/interior/canvas": {
+        "id": "VariableID:7:81"
+      },
+      "primitive/interior/surface": {
+        "id": "VariableID:7:82"
+      },
+      "primitive/interior/subtle": {
+        "id": "VariableID:7:83"
+      },
+      "primitive/interior/text": {
+        "id": "VariableID:7:84"
+      },
+      "primitive/interior/muted": {
+        "id": "VariableID:7:85"
+      },
+      "primitive/interior/borderDecorative": {
+        "id": "VariableID:7:86"
+      },
+      "primitive/interior/borderInteractive": {
+        "id": "VariableID:7:87"
+      },
+      "primitive/interior/focus": {
+        "id": "VariableID:7:88"
+      },
+      "primitive/interior/selected": {
+        "id": "VariableID:7:89"
+      },
+      "primitive/interior/selectedText": {
+        "id": "VariableID:7:90"
+      },
+      "primitive/interior/primary": {
+        "id": "VariableID:7:91"
+      },
+      "primitive/interior/primaryHover": {
+        "id": "VariableID:7:92"
+      },
+      "primitive/interior/primaryPressed": {
+        "id": "VariableID:7:93"
+      },
+      "primitive/interior/onPrimary": {
+        "id": "VariableID:7:94"
+      },
+      "primitive/paper/canvas": {
+        "id": "VariableID:7:95"
+      },
+      "primitive/paper/surface": {
+        "id": "VariableID:7:96"
+      },
+      "primitive/paper/subtle": {
+        "id": "VariableID:7:97"
+      },
+      "primitive/paper/text": {
+        "id": "VariableID:7:98"
+      },
+      "primitive/paper/muted": {
+        "id": "VariableID:7:99"
+      },
+      "primitive/paper/borderDecorative": {
+        "id": "VariableID:7:100"
+      },
+      "primitive/paper/borderInteractive": {
+        "id": "VariableID:7:101"
+      },
+      "primitive/paper/focus": {
+        "id": "VariableID:7:102"
+      },
+      "primitive/paper/selected": {
+        "id": "VariableID:7:103"
+      },
+      "primitive/paper/selectedText": {
+        "id": "VariableID:7:104"
+      },
+      "primitive/paper/primary": {
+        "id": "VariableID:7:105"
+      },
+      "primitive/paper/primaryHover": {
+        "id": "VariableID:7:106"
+      },
+      "primitive/paper/primaryPressed": {
+        "id": "VariableID:7:107"
+      },
+      "primitive/paper/onPrimary": {
+        "id": "VariableID:7:108"
+      },
+      "material/canvas": {
+        "id": "VariableID:7:109"
+      },
+      "material/surface": {
+        "id": "VariableID:7:110"
+      },
+      "material/subtle": {
+        "id": "VariableID:7:111"
+      },
+      "material/text": {
+        "id": "VariableID:7:112"
+      },
+      "material/muted": {
+        "id": "VariableID:7:113"
+      },
+      "material/borderDecorative": {
+        "id": "VariableID:7:114"
+      },
+      "material/borderInteractive": {
+        "id": "VariableID:7:115"
+      },
+      "material/focus": {
+        "id": "VariableID:7:116"
+      },
+      "material/selected": {
+        "id": "VariableID:7:117"
+      },
+      "material/selectedText": {
+        "id": "VariableID:7:118"
+      },
+      "material/primary": {
+        "id": "VariableID:7:119"
+      },
+      "material/primaryHover": {
+        "id": "VariableID:7:120"
+      },
+      "material/primaryPressed": {
+        "id": "VariableID:7:121"
+      },
+      "material/onPrimary": {
+        "id": "VariableID:7:122"
+      },
+      "space/0": {
+        "id": "VariableID:7:123"
+      },
+      "space/4": {
+        "id": "VariableID:7:124"
+      },
+      "space/8": {
+        "id": "VariableID:7:125"
+      },
+      "space/12": {
+        "id": "VariableID:7:126"
+      },
+      "space/16": {
+        "id": "VariableID:7:127"
+      },
+      "space/24": {
+        "id": "VariableID:7:128"
+      },
+      "space/32": {
+        "id": "VariableID:7:129"
+      },
+      "space/48": {
+        "id": "VariableID:7:130"
+      },
+      "space/64": {
+        "id": "VariableID:7:131"
+      },
+      "control/height": {
+        "id": "VariableID:7:132"
+      },
+      "control/icon-target": {
+        "id": "VariableID:7:133"
+      },
+      "border/width": {
+        "id": "VariableID:7:134"
+      },
+      "focus/width": {
+        "id": "VariableID:7:135"
+      },
+      "radius/control": {
+        "id": "VariableID:7:136"
+      },
+      "radius/dialog": {
+        "id": "VariableID:7:137"
+      },
+      "motion/feedback": {
+        "id": "VariableID:7:138"
+      },
+      "motion/navigation": {
+        "id": "VariableID:7:139"
+      },
+      "motion/reduced": {
+        "id": "VariableID:7:140"
+      }
+    },
+    "textStyles": {
+      "Body": "S:0ed1e468a727e7f6b4cfe5df9fede5b786c93484,",
+      "Label": "S:57e137d821e57f2a65506aae778891f8769014bb,",
+      "Caption": "S:befdc25f9b2e8c63313b60a0d4aea208900d629a,",
+      "Heading": "S:a12f8ca10ba0d22e77eaf7ad3092a28a3779de86,",
+      "Title": "S:9c730b18d11b0b822b1b5cb4828120b4eb39915f,",
+      "TitleCompact": "S:8579bbbd27aef7f9309ddc31f958d7598925587a,",
+      "Code": "S:2dbd5754c8da299cad06f2184af84cc5101eb9b7,"
+    },
+    "fonts": {
+      "font": {
+        "family": "Noto Sans KR",
+        "style": "Regular"
+      },
+      "boldFont": {
+        "family": "Noto Sans KR",
+        "style": "Regular",
+        "variationSettings": {
+          "wght": 600
+        }
+      }
+    }
+  },
+  "registry": [
+    {
+      "id": "UI09",
+      "name": "SegmentedControl",
+      "figmaName": "Controls/SegmentedControl",
+      "category": "common-ui",
+      "source": "src/ui/index.tsx",
+      "role": "표시 방식 전환",
+      "behavior": "Button group with aria-pressed; not a tabpanel contract."
+    },
+    {
+      "id": "UI10",
+      "name": "Card",
+      "figmaName": "Containers/Card",
+      "category": "common-ui",
+      "source": "src/ui/index.tsx",
+      "role": "관련 내용 묶음",
+      "behavior": "Static container; accessible name gives group role. Do not make every paper paragraph a nested card."
+    },
+    {
+      "id": "UI11",
+      "name": "ListItem",
+      "figmaName": "Containers/ListItem",
+      "category": "common-ui",
+      "source": "src/ui/index.tsx",
+      "role": "의미 있는 목록 한 행",
+      "behavior": "Native li; item itself has no implied click/selected/disabled API. Nested actions own their state."
+    },
+    {
+      "id": "UI12",
+      "name": "Modal",
+      "figmaName": "Overlays/Modal",
+      "category": "common-ui",
+      "source": "src/ui/index.tsx",
+      "role": "집중 대화상자",
+      "behavior": "Portal, background inert, focus containment/restoration, Escape except IME composition. Caller owns commit/cancel/save failure."
+    },
+    {
+      "id": "UI13",
+      "name": "Sheet",
+      "figmaName": "Overlays/Sheet",
+      "category": "common-ui",
+      "source": "src/ui/index.tsx",
+      "role": "넓은 보조 작업면",
+      "behavior": "Modal wrapper; current width46rem=736 at16px root. No implemented detents/drag gesture implied."
+    },
+    {
+      "id": "UI14",
+      "name": "Toast",
+      "figmaName": "Feedback/Toast",
+      "category": "common-ui",
+      "source": "src/ui/index.tsx",
+      "role": "일시적 사실 알림",
+      "behavior": "Polite live status, optional undo/close callbacks, no automatic expiry assumed. Save success only after real acknowledgment."
+    },
+    {
+      "id": "UI15",
+      "name": "Breadcrumb",
+      "figmaName": "Navigation/Breadcrumb",
+      "category": "common-ui",
+      "source": "src/ui/index.tsx",
+      "role": "현재 위치와 상위 경로",
+      "behavior": "Named nav; current item not a fake back link. Actual caller/history preserved."
+    },
+    {
+      "id": "UI16",
+      "name": "Search",
+      "figmaName": "Fields/Search",
+      "category": "common-ui",
+      "source": "src/ui/index.tsx",
+      "role": "검색어 입력과 검색 전달",
+      "behavior": "Input wrapper; ordinary onChange continues, onQueryChange waits for IME composition end. Results/recovery owned by feature."
+    }
+  ],
+  "assets": {
+    "worldAssetId": "10:68"
+  }
+}

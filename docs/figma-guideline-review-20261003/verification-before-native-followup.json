@@ -1,0 +1,182 @@
+{
+  "date": "2026-10-03",
+  "status": "partial-external-editor-block",
+  "scope": {
+    "osPages": 28,
+    "conceptPages": 11,
+    "initiallyInspectedPages": 39,
+    "initiallyInspectedNodes": 295136,
+    "visualInspection": "representative nodes only"
+  },
+  "os": {
+    "readBackPages": 28,
+    "paperWrappers": 2695,
+    "paperRoles": {
+      "body18": 1516,
+      "compact16": 1160,
+      "visibleOutlines": 2679,
+      "preview14": 19,
+      "editableComponentReferences": 16
+    },
+    "paperProblems": 0,
+    "ceilingInstanceButtons": 344,
+    "ceilingProblems": 0,
+    "navigationSourceVariants": 16,
+    "registeredLayoutTargets": 239,
+    "layoutTargetsConfirmed": 239,
+    "staleGuidanceCandidates": 0,
+    "temporaryNodesRemaining": 0
+  },
+  "concept": {
+    "allPagesStructurallyInspected": true,
+    "allChangesAccepted": false,
+    "typesWithBodyPassExecuted": [
+      "정의형",
+      "원리형",
+      "절차형",
+      "구별형",
+      "구조형",
+      "관점형"
+    ],
+    "processTypeConfirmedLatestBatchRoots": 45,
+    "failedProcessBatch": 2,
+    "failedProcessBatchDebugUuid": "f2fd1fb8-7af5-4b6a-8005-2ce48c3c6342",
+    "blockedPath": "use_figma on FRPuAwx3q2Jka1VZOjuMil including constant read",
+    "readOnlyScreenshotMetadataAvailable": true,
+    "remaining": [
+      "과정형 미실행 배치 및 실패 배치 상태 재조회",
+      "앞선 단어 윤곽 조판의 기준선 보정",
+      "기존 원문 공백 프레임을 쓴 일부 문단의 표시 공백 복구",
+      "안내·공통 부품·사용 흐름의 최신 본문 대응",
+      "내용 증가에 따른 원본 생성 프레임 간 간격과 최종 시각 확인"
+    ]
+  },
+  "limitations": [
+    "Reusable component editable text remains native width; 95 percent is a hidden outline reference for 16 sources",
+    "Cross-page common-tool entries use Figma reference URLs except same-page navigation on the common page",
+    "Whole 39-page semantic and visual acceptance is not complete",
+    "Initial old design page remains a historical reference, not a current screen approval",
+    "No app/server/deployment changes in this task"
+  ],
+  "screenshots": [
+    "evidence/final-book.png",
+    "evidence/final-narrow.png",
+    "evidence/final-ceiling-hub.png",
+    "evidence/final-navigation.png",
+    "evidence/final-concept-preserved.png"
+  ],
+  "perPageEvidence": [
+    {
+      "pageId": "0:1",
+      "path": "evidence/read-final-0-1.json"
+    },
+    {
+      "pageId": "154:68",
+      "path": "evidence/read-final-154-68.json"
+    },
+    {
+      "pageId": "170:180",
+      "path": "evidence/read-final-170-180.json"
+    },
+    {
+      "pageId": "227:180",
+      "path": "evidence/read-final-227-180.json"
+    },
+    {
+      "pageId": "250:180",
+      "path": "evidence/read-final-250-180.json"
+    },
+    {
+      "pageId": "49:10972",
+      "path": "evidence/read-final-49-10972.json"
+    },
+    {
+      "pageId": "49:10973",
+      "path": "evidence/read-final-49-10973.json"
+    },
+    {
+      "pageId": "49:10974",
+      "path": "evidence/read-final-49-10974.json"
+    },
+    {
+      "pageId": "52:68",
+      "path": "evidence/read-final-52-68.json"
+    },
+    {
+      "pageId": "52:69",
+      "path": "evidence/read-final-52-69.json"
+    },
+    {
+      "pageId": "52:70",
+      "path": "evidence/read-final-52-70.json"
+    },
+    {
+      "pageId": "52:71",
+      "path": "evidence/read-final-52-71.json"
+    },
+    {
+      "pageId": "52:72",
+      "path": "evidence/read-final-52-72.json"
+    },
+    {
+      "pageId": "61:10753",
+      "path": "evidence/read-final-61-10753.json"
+    },
+    {
+      "pageId": "68:58623",
+      "path": "evidence/read-final-68-58623.json"
+    },
+    {
+      "pageId": "7:68",
+      "path": "evidence/read-final-7-68.json"
+    },
+    {
+      "pageId": "7:69",
+      "path": "evidence/read-final-7-69.json"
+    },
+    {
+      "pageId": "7:70",
+      "path": "evidence/read-final-7-70.json"
+    },
+    {
+      "pageId": "7:71",
+      "path": "evidence/read-final-7-71.json"
+    },
+    {
+      "pageId": "7:72",
+      "path": "evidence/read-final-7-72.json"
+    },
+    {
+      "pageId": "7:73",
+      "path": "evidence/read-final-7-73.json"
+    },
+    {
+      "pageId": "7:74",
+      "path": "evidence/read-final-7-74.json"
+    },
+    {
+      "pageId": "7:75",
+      "path": "evidence/read-final-7-75.json"
+    },
+    {
+      "pageId": "7:76",
+      "path": "evidence/read-final-7-76.json"
+    },
+    {
+      "pageId": "7:77",
+      "path": "evidence/read-final-7-77.json"
+    },
+    {
+      "pageId": "73:68",
+      "path": "evidence/read-final-73-68.json"
+    },
+    {
+      "pageId": "74:399",
+      "path": "evidence/read-final-74-399.json"
+    },
+    {
+      "pageId": "74:400",
+      "path": "evidence/read-final-74-400.json"
+    }
+  ]
+}

@@ -1,0 +1,493 @@
+{
+  "boardId": "75:83931",
+  "frames": [
+    {
+      "feature": "XD11",
+      "stateIndex": 0,
+      "state": "목록",
+      "profile": "ipad-landscape",
+      "id": "75:83948",
+      "returnTarget": "28:11253",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD11",
+      "stateIndex": 1,
+      "state": "상세읽기",
+      "profile": "iphone-portrait",
+      "id": "75:83978",
+      "returnTarget": "28:11372",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD11",
+      "stateIndex": 2,
+      "state": "수식포함본문",
+      "profile": "ipad-landscape",
+      "id": "75:83990",
+      "returnTarget": "28:11253",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD11",
+      "stateIndex": 3,
+      "state": "아래첨자도해label",
+      "profile": "iphone-portrait",
+      "id": "75:84002",
+      "returnTarget": "28:11372",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD11",
+      "stateIndex": 4,
+      "state": "기존목록위치복귀",
+      "profile": "ipad-landscape",
+      "id": "75:84015",
+      "returnTarget": "28:11253",
+      "returnConnection": "figma-node-url"
+    }
+  ],
+  "mappings": [
+    {
+      "id": "UI33",
+      "name": "ConceptText",
+      "ownerId": "75:84056",
+      "defaultComponentId": "75:84052",
+      "variants": [
+        {
+          "id": "75:84052",
+          "name": "Width=wide, State=representative",
+          "properties": {
+            "Width": "wide",
+            "State": "representative"
+          }
+        },
+        {
+          "id": "75:84054",
+          "name": "Width=narrow, State=representative",
+          "properties": {
+            "Width": "narrow",
+            "State": "representative"
+          }
+        }
+      ],
+      "source": "src/ui/concept-text.tsx",
+      "sourceSha256": "29b388dccfa693e17f15e5d6adf6dd71d20995d2a5b6997ebca752a31f59d3b2",
+      "signature": "({ text }: { text: string; }): Element"
+    }
+  ],
+  "entryRequests": [
+    {
+      "feature": "XD11",
+      "label": "개념 선택",
+      "sourceId": "28:11253",
+      "targetId": "75:83948",
+      "profile": "ipad-landscape"
+    },
+    {
+      "feature": "XD11",
+      "label": "개념 선택",
+      "sourceId": "28:11372",
+      "targetId": "75:83978",
+      "profile": "iphone-portrait"
+    }
+  ],
+  "links": [
+    {
+      "from": "75:83938",
+      "to": "75:83948",
+      "action": "inspect-state",
+      "connection": "native-prototype"
+    },
+    {
+      "from": "75:83940",
+      "to": "75:83978",
+      "action": "inspect-state",
+      "connection": "native-prototype"
+    },
+    {
+      "from": "75:83942",
+      "to": "75:83990",
+      "action": "inspect-state",
+      "connection": "native-prototype"
+    },
+    {
+      "from": "75:83944",
+      "to": "75:84002",
+      "action": "inspect-state",
+      "connection": "native-prototype"
+    },
+    {
+      "from": "75:83946",
+      "to": "75:84015",
+      "action": "inspect-state",
+      "connection": "native-prototype"
+    },
+    {
+      "from": "75:83992",
+      "to": "75:84015",
+      "action": "back",
+      "connection": "native-prototype"
+    }
+  ],
+  "unconnectedActions": [
+    {
+      "feature": "XD11",
+      "stateIndex": 0,
+      "action": "open",
+      "targetState": 1,
+      "reason": "Different viewport specimen; use design-state index. Not connected as product behavior."
+    },
+    {
+      "feature": "XD11",
+      "stateIndex": 1,
+      "action": "back",
+      "targetState": 4,
+      "reason": "Different viewport specimen; use design-state index. Not connected as product behavior."
+    },
+    {
+      "feature": "XD11",
+      "stateIndex": 3,
+      "action": "back",
+      "targetState": 4,
+      "reason": "Different viewport specimen; use design-state index. Not connected as product behavior."
+    },
+    {
+      "feature": "XD11",
+      "stateIndex": 4,
+      "action": "open",
+      "targetState": 1,
+      "reason": "Different viewport specimen; use design-state index. Not connected as product behavior."
+    }
+  ],
+  "createdNodeIdsEncoded": {
+    "format": "prefix-plus-inclusive-ranges-v1",
+    "literal": [],
+    "groups": [
+      [
+        "75:",
+        [
+          [
+            83931,
+            83938
+          ],
+          [
+            83940,
+            83940
+          ],
+          [
+            83942,
+            83942
+          ],
+          [
+            83944,
+            83944
+          ],
+          [
+            83946,
+            83946
+          ],
+          [
+            83948,
+            83966
+          ],
+          [
+            83972,
+            83972
+          ],
+          [
+            83974,
+            83974
+          ],
+          [
+            83977,
+            83980
+          ],
+          [
+            83982,
+            83986
+          ],
+          [
+            83989,
+            83992
+          ],
+          [
+            83994,
+            83998
+          ],
+          [
+            84001,
+            84004
+          ],
+          [
+            84006,
+            84011
+          ],
+          [
+            84014,
+            84033
+          ],
+          [
+            84039,
+            84039
+          ],
+          [
+            84041,
+            84041
+          ],
+          [
+            84044,
+            84044
+          ],
+          [
+            84051,
+            84057
+          ]
+        ]
+      ],
+      [
+        "I75:83938;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:83940;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:83942;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:83944;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:83946;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:83972;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:83974;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:83980;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:83986;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:83992;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:83998;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:84004;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:84011;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:84039;16:",
+        [
+          [
+            115,
+            115
+          ]
+        ]
+      ],
+      [
+        "I75:84041;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:84057;75:",
+        [
+          [
+            84053,
+            84053
+          ]
+        ]
+      ],
+      [
+        "I75:83960;16:",
+        [
+          [
+            167,
+            168
+          ]
+        ]
+      ],
+      [
+        "I75:83966;16:",
+        [
+          [
+            77,
+            77
+          ]
+        ]
+      ],
+      [
+        "I75:84027;16:",
+        [
+          [
+            167,
+            168
+          ]
+        ]
+      ],
+      [
+        "I75:84033;16:",
+        [
+          [
+            77,
+            77
+          ]
+        ]
+      ]
+    ]
+  },
+  "mutatedNodeIdsEncoded": {
+    "format": "prefix-plus-inclusive-ranges-v1",
+    "literal": [],
+    "groups": [
+      [
+        "75:",
+        [
+          [
+            83938,
+            83938
+          ],
+          [
+            83940,
+            83940
+          ],
+          [
+            83942,
+            83942
+          ],
+          [
+            83944,
+            83944
+          ],
+          [
+            83946,
+            83946
+          ],
+          [
+            83974,
+            83974
+          ],
+          [
+            83986,
+            83986
+          ],
+          [
+            83992,
+            83992
+          ],
+          [
+            83998,
+            83998
+          ],
+          [
+            84011,
+            84011
+          ],
+          [
+            84041,
+            84041
+          ]
+        ]
+      ]
+    ]
+  },
+  "counts": {
+    "features": 1,
+    "states": 5,
+    "newComponents": 1,
+    "links": 6,
+    "nativeInstances": 20
+  },
+  "sourceFrozenAt": "2026-10-02T02:37:30.526Z"
+}

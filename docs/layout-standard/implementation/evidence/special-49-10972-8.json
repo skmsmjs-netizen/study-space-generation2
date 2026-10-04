@@ -1,0 +1,73 @@
+{
+  "pageId": "49:10972",
+  "createdNodeIds": [
+    "263:33427",
+    "263:33428",
+    "263:33429",
+    "263:33430"
+  ],
+  "mutatedNodeIds": [
+    "263:33427",
+    "79:98426",
+    "79:96583",
+    "263:33428",
+    "79:100279",
+    "79:98432",
+    "263:33429",
+    "79:102249",
+    "79:100285",
+    "263:33430",
+    "79:104201",
+    "79:102255"
+  ],
+  "results": [
+    {
+      "id": "79:96583",
+      "name": "펼쳐 읽기 / 이중·삼중적분",
+      "pattern": "L190",
+      "structure": "263:33427",
+      "preserved": true,
+      "viewport": {
+        "width": 1376,
+        "height": 1024,
+        "overflow": "NONE"
+      }
+    },
+    {
+      "id": "79:98432",
+      "name": "펼쳐 읽기 / 몬테카를로 근사",
+      "pattern": "L190",
+      "structure": "263:33428",
+      "preserved": true,
+      "viewport": {
+        "width": 1376,
+        "height": 1024,
+        "overflow": "NONE"
+      }
+    },
+    {
+      "id": "79:100285",
+      "name": "펼쳐 읽기 / 변수변환과 야코비안",
+      "pattern": "L190",
+      "structure": "263:33429",
+      "preserved": true,
+      "viewport": {
+        "width": 1376,
+        "height": 1024,
+        "overflow": "NONE"
+      }
+    },
+    {
+      "id": "79:102255",
+      "name": "펼쳐 읽기 / 질량중심·확률·기댓값",
+      "pattern": "L190",
+      "structure": "263:33430",
+      "preserved": true,
+      "viewport": {
+        "width": 1376,
+        "height": 1024,
+        "overflow": "NONE"
+      }
+    }
+  ]
+}

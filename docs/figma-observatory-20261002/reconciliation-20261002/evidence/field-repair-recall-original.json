@@ -1,0 +1,98 @@
+{
+  "pageId": "7:71",
+  "createdNodeIds": [],
+  "mutatedNodeIds": [
+    "I74:11376;16:223",
+    "I74:11376;16:225",
+    "74:11375",
+    "74:11376",
+    "I74:11376;16:224",
+    "I74:11376;16:228",
+    "I74:11386;16:223",
+    "I74:11386;16:225",
+    "74:11385",
+    "74:11386",
+    "I74:11386;16:224",
+    "I74:11386;16:228",
+    "I74:11395;16:223",
+    "I74:11395;16:225",
+    "74:11394",
+    "74:11395",
+    "I74:11395;16:224",
+    "I74:11395;16:228",
+    "I74:11406;16:192",
+    "I74:11406;16:194",
+    "74:11405",
+    "74:11406",
+    "I74:11406;16:193",
+    "I74:11406;16:195"
+  ],
+  "fields": [
+    {
+      "rootId": "28:9251",
+      "key": "R29",
+      "nodeId": "74:11376",
+      "kind": "Select",
+      "label": "과목",
+      "value": "모든 과목",
+      "width": 1264,
+      "height": 115,
+      "labelMatches": true,
+      "valueMatches": true
+    },
+    {
+      "rootId": "28:9251",
+      "key": "R29",
+      "nodeId": "74:11386",
+      "kind": "Select",
+      "label": "단원",
+      "value": "모든 단원",
+      "width": 1264,
+      "height": 115,
+      "labelMatches": true,
+      "valueMatches": true
+    },
+    {
+      "rootId": "28:9251",
+      "key": "R29",
+      "nodeId": "74:11395",
+      "kind": "Select",
+      "label": "복습할 덱",
+      "value": "기본 덱",
+      "width": 1264,
+      "height": 115,
+      "labelMatches": true,
+      "valueMatches": true
+    },
+    {
+      "rootId": "28:9251",
+      "key": "R29",
+      "nodeId": "74:11406",
+      "kind": "Textarea",
+      "label": "글",
+      "value": "항이 음수가 아닌지 먼저 확인한다.",
+      "width": 1264,
+      "height": 128,
+      "labelMatches": true,
+      "valueMatches": true
+    }
+  ],
+  "layouts": [
+    {
+      "rootId": "28:9251",
+      "width": 1376,
+      "height": 1032,
+      "blockId": "74:11366",
+      "blockWidth": 1312,
+      "blockHeight": 937,
+      "workSurfaceHeight": 1065,
+      "overflowDirection": "VERTICAL",
+      "clipsContent": true
+    }
+  ],
+  "counts": {
+    "fields": 4,
+    "mismatches": 0
+  },
+  "runtimeVerified": false
+}

@@ -1,0 +1,77 @@
+{
+  "pageId": "68:58623",
+  "createdNodeIds": [
+    "263:33496",
+    "263:33497",
+    "263:33498",
+    "263:33499"
+  ],
+  "mutatedNodeIds": [
+    "263:33496",
+    "68:71274",
+    "68:71277",
+    "68:71265",
+    "263:33497",
+    "68:71294",
+    "68:71297",
+    "68:71285",
+    "263:33498",
+    "68:71314",
+    "68:71317",
+    "68:71305",
+    "263:33499",
+    "68:71334",
+    "68:71337",
+    "68:71325"
+  ],
+  "results": [
+    {
+      "id": "68:71265",
+      "name": "관측 기본틀 · 가우스 법칙",
+      "pattern": "L194",
+      "structure": "263:33496",
+      "preserved": true,
+      "viewport": {
+        "width": 640,
+        "height": 744,
+        "overflow": "NONE"
+      }
+    },
+    {
+      "id": "68:71285",
+      "name": "관측 기본틀 · 전위",
+      "pattern": "L194",
+      "structure": "263:33497",
+      "preserved": true,
+      "viewport": {
+        "width": 640,
+        "height": 744,
+        "overflow": "NONE"
+      }
+    },
+    {
+      "id": "68:71305",
+      "name": "관측 기본틀 · 축전기와 정전용량",
+      "pattern": "L194",
+      "structure": "263:33498",
+      "preserved": true,
+      "viewport": {
+        "width": 640,
+        "height": 744,
+        "overflow": "NONE"
+      }
+    },
+    {
+      "id": "68:71325",
+      "name": "관측 기본틀 · 전기 회로",
+      "pattern": "L194",
+      "structure": "263:33499",
+      "preserved": true,
+      "viewport": {
+        "width": 640,
+        "height": 744,
+        "overflow": "NONE"
+      }
+    }
+  ]
+}

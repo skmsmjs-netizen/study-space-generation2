@@ -1,0 +1,1621 @@
+{
+  "boardId": "75:81825",
+  "frames": [
+    {
+      "feature": "XD09",
+      "stateIndex": 0,
+      "state": "선택없음",
+      "profile": "ipad-landscape",
+      "id": "75:81846",
+      "returnTarget": "29:347",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD09",
+      "stateIndex": 1,
+      "state": "날짜선택",
+      "profile": "iphone-portrait",
+      "id": "75:81972",
+      "returnTarget": "29:566",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD09",
+      "stateIndex": 2,
+      "state": "과목선택",
+      "profile": "ipad-landscape",
+      "id": "75:82098",
+      "returnTarget": "29:347",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD09",
+      "stateIndex": 3,
+      "state": "값행선택",
+      "profile": "iphone-portrait",
+      "id": "75:82224",
+      "returnTarget": "29:566",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD09",
+      "stateIndex": 4,
+      "state": "원기록선택",
+      "profile": "ipad-landscape",
+      "id": "75:82350",
+      "returnTarget": "29:347",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD09",
+      "stateIndex": 5,
+      "state": "선택유효근거없음",
+      "profile": "iphone-portrait",
+      "id": "75:82492",
+      "returnTarget": "29:566",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD09",
+      "stateIndex": 6,
+      "state": "해제",
+      "profile": "ipad-landscape",
+      "id": "75:82618",
+      "returnTarget": "29:347",
+      "returnConnection": "figma-node-url"
+    }
+  ],
+  "mappings": [],
+  "entryRequests": [
+    {
+      "feature": "XD09",
+      "label": "함께 선택할 시작일",
+      "sourceId": "29:347",
+      "targetId": "75:81846",
+      "profile": "ipad-landscape"
+    },
+    {
+      "feature": "XD09",
+      "label": "함께 선택할 시작일",
+      "sourceId": "29:566",
+      "targetId": "75:81972",
+      "profile": "iphone-portrait"
+    }
+  ],
+  "links": [
+    {
+      "from": "75:81832",
+      "to": "75:81846",
+      "action": "inspect-state",
+      "connection": "native-prototype"
+    },
+    {
+      "from": "75:81834",
+      "to": "75:81972",
+      "action": "inspect-state",
+      "connection": "native-prototype"
+    },
+    {
+      "from": "75:81836",
+      "to": "75:82098",
+      "action": "inspect-state",
+      "connection": "native-prototype"
+    },
+    {
+      "from": "75:81838",
+      "to": "75:82224",
+      "action": "inspect-state",
+      "connection": "native-prototype"
+    },
+    {
+      "from": "75:81840",
+      "to": "75:82350",
+      "action": "inspect-state",
+      "connection": "native-prototype"
+    },
+    {
+      "from": "75:81842",
+      "to": "75:82492",
+      "action": "inspect-state",
+      "connection": "native-prototype"
+    },
+    {
+      "from": "75:81844",
+      "to": "75:82618",
+      "action": "inspect-state",
+      "connection": "native-prototype"
+    },
+    {
+      "from": "75:81873",
+      "to": "75:82098",
+      "action": "과목을 함께 선택",
+      "connection": "native-prototype"
+    },
+    {
+      "from": "75:81875",
+      "to": "75:82618",
+      "action": "공유 선택 해제",
+      "connection": "native-prototype"
+    },
+    {
+      "from": "75:81966",
+      "to": "75:82350",
+      "action": "선택한 원기록 보기",
+      "connection": "native-prototype"
+    },
+    {
+      "from": "75:82090",
+      "to": "75:82224",
+      "action": "함께 선택",
+      "connection": "native-prototype"
+    },
+    {
+      "from": "75:82127",
+      "to": "75:82618",
+      "action": "공유 선택 해제",
+      "connection": "native-prototype"
+    },
+    {
+      "from": "75:82218",
+      "to": "75:82350",
+      "action": "선택한 원기록 보기",
+      "connection": "native-prototype"
+    },
+    {
+      "from": "75:82249",
+      "to": "75:81972",
+      "action": "날짜를 함께 선택",
+      "connection": "native-prototype"
+    },
+    {
+      "from": "75:82377",
+      "to": "75:82098",
+      "action": "과목을 함께 선택",
+      "connection": "native-prototype"
+    },
+    {
+      "from": "75:82379",
+      "to": "75:82618",
+      "action": "공유 선택 해제",
+      "connection": "native-prototype"
+    },
+    {
+      "from": "75:82517",
+      "to": "75:81972",
+      "action": "날짜를 함께 선택",
+      "connection": "native-prototype"
+    },
+    {
+      "from": "75:82610",
+      "to": "75:82224",
+      "action": "함께 선택",
+      "connection": "native-prototype"
+    },
+    {
+      "from": "75:82645",
+      "to": "75:82098",
+      "action": "과목을 함께 선택",
+      "connection": "native-prototype"
+    },
+    {
+      "from": "75:82738",
+      "to": "75:82350",
+      "action": "선택한 원기록 보기",
+      "connection": "native-prototype"
+    }
+  ],
+  "unconnectedActions": [
+    {
+      "feature": "XD09",
+      "stateIndex": 0,
+      "action": "날짜를 함께 선택",
+      "targetState": 1,
+      "reason": "Different viewport specimen; use design-state index. Not connected as product behavior."
+    },
+    {
+      "feature": "XD09",
+      "stateIndex": 0,
+      "action": "함께 선택",
+      "targetState": 3,
+      "reason": "Different viewport specimen; use design-state index. Not connected as product behavior."
+    },
+    {
+      "feature": "XD09",
+      "stateIndex": 1,
+      "action": "과목을 함께 선택",
+      "targetState": 2,
+      "reason": "Different viewport specimen; use design-state index. Not connected as product behavior."
+    },
+    {
+      "feature": "XD09",
+      "stateIndex": 1,
+      "action": "공유 선택 해제",
+      "targetState": 6,
+      "reason": "Different viewport specimen; use design-state index. Not connected as product behavior."
+    },
+    {
+      "feature": "XD09",
+      "stateIndex": 1,
+      "action": "선택한 원기록 보기",
+      "targetState": 4,
+      "reason": "Different viewport specimen; use design-state index. Not connected as product behavior."
+    },
+    {
+      "feature": "XD09",
+      "stateIndex": 2,
+      "action": "날짜를 함께 선택",
+      "targetState": 1,
+      "reason": "Different viewport specimen; use design-state index. Not connected as product behavior."
+    },
+    {
+      "feature": "XD09",
+      "stateIndex": 2,
+      "action": "함께 선택",
+      "targetState": 3,
+      "reason": "Different viewport specimen; use design-state index. Not connected as product behavior."
+    },
+    {
+      "feature": "XD09",
+      "stateIndex": 3,
+      "action": "과목을 함께 선택",
+      "targetState": 2,
+      "reason": "Different viewport specimen; use design-state index. Not connected as product behavior."
+    },
+    {
+      "feature": "XD09",
+      "stateIndex": 3,
+      "action": "공유 선택 해제",
+      "targetState": 6,
+      "reason": "Different viewport specimen; use design-state index. Not connected as product behavior."
+    },
+    {
+      "feature": "XD09",
+      "stateIndex": 3,
+      "action": "선택한 원기록 보기",
+      "targetState": 4,
+      "reason": "Different viewport specimen; use design-state index. Not connected as product behavior."
+    },
+    {
+      "feature": "XD09",
+      "stateIndex": 4,
+      "action": "날짜를 함께 선택",
+      "targetState": 1,
+      "reason": "Different viewport specimen; use design-state index. Not connected as product behavior."
+    },
+    {
+      "feature": "XD09",
+      "stateIndex": 4,
+      "action": "함께 선택",
+      "targetState": 3,
+      "reason": "Different viewport specimen; use design-state index. Not connected as product behavior."
+    },
+    {
+      "feature": "XD09",
+      "stateIndex": 4,
+      "action": "close",
+      "targetState": 3,
+      "reason": "Different viewport specimen; use design-state index. Not connected as product behavior."
+    },
+    {
+      "feature": "XD09",
+      "stateIndex": 5,
+      "action": "과목을 함께 선택",
+      "targetState": 2,
+      "reason": "Different viewport specimen; use design-state index. Not connected as product behavior."
+    },
+    {
+      "feature": "XD09",
+      "stateIndex": 5,
+      "action": "공유 선택 해제",
+      "targetState": 6,
+      "reason": "Different viewport specimen; use design-state index. Not connected as product behavior."
+    },
+    {
+      "feature": "XD09",
+      "stateIndex": 5,
+      "action": "선택한 원기록 보기",
+      "targetState": 4,
+      "reason": "Different viewport specimen; use design-state index. Not connected as product behavior."
+    },
+    {
+      "feature": "XD09",
+      "stateIndex": 6,
+      "action": "날짜를 함께 선택",
+      "targetState": 1,
+      "reason": "Different viewport specimen; use design-state index. Not connected as product behavior."
+    },
+    {
+      "feature": "XD09",
+      "stateIndex": 6,
+      "action": "함께 선택",
+      "targetState": 3,
+      "reason": "Different viewport specimen; use design-state index. Not connected as product behavior."
+    }
+  ],
+  "createdNodeIdsEncoded": {
+    "format": "prefix-plus-inclusive-ranges-v1",
+    "literal": [],
+    "groups": [
+      [
+        "75:",
+        [
+          [
+            81825,
+            81832
+          ],
+          [
+            81834,
+            81834
+          ],
+          [
+            81836,
+            81836
+          ],
+          [
+            81838,
+            81838
+          ],
+          [
+            81840,
+            81840
+          ],
+          [
+            81842,
+            81842
+          ],
+          [
+            81844,
+            81844
+          ],
+          [
+            81846,
+            81848
+          ],
+          [
+            81853,
+            81853
+          ],
+          [
+            81858,
+            81858
+          ],
+          [
+            81863,
+            81863
+          ],
+          [
+            81870,
+            81871
+          ],
+          [
+            81873,
+            81873
+          ],
+          [
+            81875,
+            81875
+          ],
+          [
+            81877,
+            81964
+          ],
+          [
+            81966,
+            81966
+          ],
+          [
+            81968,
+            81968
+          ],
+          [
+            81971,
+            81974
+          ],
+          [
+            81979,
+            81979
+          ],
+          [
+            81984,
+            81984
+          ],
+          [
+            81989,
+            81989
+          ],
+          [
+            81996,
+            81997
+          ],
+          [
+            81999,
+            81999
+          ],
+          [
+            82001,
+            82001
+          ],
+          [
+            82003,
+            82090
+          ],
+          [
+            82092,
+            82092
+          ],
+          [
+            82094,
+            82094
+          ],
+          [
+            82097,
+            82100
+          ],
+          [
+            82105,
+            82105
+          ],
+          [
+            82110,
+            82110
+          ],
+          [
+            82115,
+            82115
+          ],
+          [
+            82122,
+            82123
+          ],
+          [
+            82125,
+            82125
+          ],
+          [
+            82127,
+            82127
+          ],
+          [
+            82129,
+            82216
+          ],
+          [
+            82218,
+            82218
+          ],
+          [
+            82220,
+            82220
+          ],
+          [
+            82223,
+            82226
+          ],
+          [
+            82231,
+            82231
+          ],
+          [
+            82236,
+            82236
+          ],
+          [
+            82241,
+            82241
+          ],
+          [
+            82248,
+            82249
+          ],
+          [
+            82251,
+            82251
+          ],
+          [
+            82253,
+            82253
+          ],
+          [
+            82255,
+            82342
+          ],
+          [
+            82344,
+            82344
+          ],
+          [
+            82346,
+            82346
+          ],
+          [
+            82349,
+            82352
+          ],
+          [
+            82357,
+            82357
+          ],
+          [
+            82362,
+            82362
+          ],
+          [
+            82367,
+            82367
+          ],
+          [
+            82374,
+            82375
+          ],
+          [
+            82377,
+            82377
+          ],
+          [
+            82379,
+            82379
+          ],
+          [
+            82381,
+            82468
+          ],
+          [
+            82470,
+            82470
+          ],
+          [
+            82472,
+            82473
+          ],
+          [
+            82481,
+            82481
+          ],
+          [
+            82483,
+            82484
+          ],
+          [
+            82486,
+            82486
+          ],
+          [
+            82488,
+            82488
+          ],
+          [
+            82491,
+            82494
+          ],
+          [
+            82499,
+            82499
+          ],
+          [
+            82504,
+            82504
+          ],
+          [
+            82509,
+            82509
+          ],
+          [
+            82516,
+            82517
+          ],
+          [
+            82519,
+            82519
+          ],
+          [
+            82521,
+            82521
+          ],
+          [
+            82523,
+            82610
+          ],
+          [
+            82612,
+            82612
+          ],
+          [
+            82614,
+            82614
+          ],
+          [
+            82617,
+            82620
+          ],
+          [
+            82625,
+            82625
+          ],
+          [
+            82630,
+            82630
+          ],
+          [
+            82635,
+            82635
+          ],
+          [
+            82642,
+            82643
+          ],
+          [
+            82645,
+            82645
+          ],
+          [
+            82647,
+            82647
+          ],
+          [
+            82649,
+            82736
+          ],
+          [
+            82738,
+            82738
+          ],
+          [
+            82740,
+            82740
+          ],
+          [
+            82743,
+            82743
+          ]
+        ]
+      ],
+      [
+        "I75:81832;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:81834;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:81836;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:81838;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:81840;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:81842;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:81844;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:81848;17:",
+        [
+          [
+            97,
+            100
+          ]
+        ]
+      ],
+      [
+        "I75:81853;16:",
+        [
+          [
+            166,
+            169
+          ]
+        ]
+      ],
+      [
+        "I75:81858;16:",
+        [
+          [
+            166,
+            169
+          ]
+        ]
+      ],
+      [
+        "I75:81863;16:",
+        [
+          [
+            223,
+            226
+          ],
+          [
+            228,
+            228
+          ]
+        ]
+      ],
+      [
+        "I75:81863;16:226;15:",
+        [
+          [
+            74,
+            74
+          ]
+        ]
+      ],
+      [
+        "I75:81871;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:81873;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:81875;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:81964;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:81966;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:81968;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:81974;17:",
+        [
+          [
+            97,
+            100
+          ]
+        ]
+      ],
+      [
+        "I75:81979;16:",
+        [
+          [
+            166,
+            169
+          ]
+        ]
+      ],
+      [
+        "I75:81984;16:",
+        [
+          [
+            166,
+            169
+          ]
+        ]
+      ],
+      [
+        "I75:81989;16:",
+        [
+          [
+            223,
+            226
+          ],
+          [
+            228,
+            228
+          ]
+        ]
+      ],
+      [
+        "I75:81989;16:226;15:",
+        [
+          [
+            74,
+            74
+          ]
+        ]
+      ],
+      [
+        "I75:81997;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:81999;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:82001;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:82090;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:82092;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:82094;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:82100;17:",
+        [
+          [
+            97,
+            100
+          ]
+        ]
+      ],
+      [
+        "I75:82105;16:",
+        [
+          [
+            166,
+            169
+          ]
+        ]
+      ],
+      [
+        "I75:82110;16:",
+        [
+          [
+            166,
+            169
+          ]
+        ]
+      ],
+      [
+        "I75:82115;16:",
+        [
+          [
+            223,
+            226
+          ],
+          [
+            228,
+            228
+          ]
+        ]
+      ],
+      [
+        "I75:82115;16:226;15:",
+        [
+          [
+            74,
+            74
+          ]
+        ]
+      ],
+      [
+        "I75:82123;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:82125;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:82127;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:82216;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:82218;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:82220;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:82226;17:",
+        [
+          [
+            97,
+            100
+          ]
+        ]
+      ],
+      [
+        "I75:82231;16:",
+        [
+          [
+            166,
+            169
+          ]
+        ]
+      ],
+      [
+        "I75:82236;16:",
+        [
+          [
+            166,
+            169
+          ]
+        ]
+      ],
+      [
+        "I75:82241;16:",
+        [
+          [
+            223,
+            226
+          ],
+          [
+            228,
+            228
+          ]
+        ]
+      ],
+      [
+        "I75:82241;16:226;15:",
+        [
+          [
+            74,
+            74
+          ]
+        ]
+      ],
+      [
+        "I75:82249;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:82251;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:82253;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:82342;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:82344;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:82346;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:82352;17:",
+        [
+          [
+            97,
+            100
+          ]
+        ]
+      ],
+      [
+        "I75:82357;16:",
+        [
+          [
+            166,
+            169
+          ]
+        ]
+      ],
+      [
+        "I75:82362;16:",
+        [
+          [
+            166,
+            169
+          ]
+        ]
+      ],
+      [
+        "I75:82367;16:",
+        [
+          [
+            223,
+            226
+          ],
+          [
+            228,
+            228
+          ]
+        ]
+      ],
+      [
+        "I75:82367;16:226;15:",
+        [
+          [
+            74,
+            74
+          ]
+        ]
+      ],
+      [
+        "I75:82375;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:82377;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:82379;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:82468;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:82470;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:82473;17:",
+        [
+          [
+            107,
+            113
+          ]
+        ]
+      ],
+      [
+        "I75:82481;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:82484;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:82486;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:82488;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:82494;17:",
+        [
+          [
+            97,
+            100
+          ]
+        ]
+      ],
+      [
+        "I75:82499;16:",
+        [
+          [
+            166,
+            169
+          ]
+        ]
+      ],
+      [
+        "I75:82504;16:",
+        [
+          [
+            166,
+            169
+          ]
+        ]
+      ],
+      [
+        "I75:82509;16:",
+        [
+          [
+            223,
+            226
+          ],
+          [
+            228,
+            228
+          ]
+        ]
+      ],
+      [
+        "I75:82509;16:226;15:",
+        [
+          [
+            74,
+            74
+          ]
+        ]
+      ],
+      [
+        "I75:82517;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:82519;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:82521;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:82610;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:82612;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:82614;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:82620;17:",
+        [
+          [
+            97,
+            100
+          ]
+        ]
+      ],
+      [
+        "I75:82625;16:",
+        [
+          [
+            166,
+            169
+          ]
+        ]
+      ],
+      [
+        "I75:82630;16:",
+        [
+          [
+            166,
+            169
+          ]
+        ]
+      ],
+      [
+        "I75:82635;16:",
+        [
+          [
+            223,
+            226
+          ],
+          [
+            228,
+            228
+          ]
+        ]
+      ],
+      [
+        "I75:82635;16:226;15:",
+        [
+          [
+            74,
+            74
+          ]
+        ]
+      ],
+      [
+        "I75:82643;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:82645;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:82647;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:82736;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:82738;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:82740;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ]
+    ]
+  },
+  "mutatedNodeIdsEncoded": {
+    "format": "prefix-plus-inclusive-ranges-v1",
+    "literal": [],
+    "groups": [
+      [
+        "75:",
+        [
+          [
+            81832,
+            81832
+          ],
+          [
+            81834,
+            81834
+          ],
+          [
+            81836,
+            81836
+          ],
+          [
+            81838,
+            81838
+          ],
+          [
+            81840,
+            81840
+          ],
+          [
+            81842,
+            81842
+          ],
+          [
+            81844,
+            81844
+          ],
+          [
+            81873,
+            81873
+          ],
+          [
+            81875,
+            81875
+          ],
+          [
+            81966,
+            81966
+          ],
+          [
+            81968,
+            81968
+          ],
+          [
+            82090,
+            82090
+          ],
+          [
+            82094,
+            82094
+          ],
+          [
+            82127,
+            82127
+          ],
+          [
+            82218,
+            82218
+          ],
+          [
+            82220,
+            82220
+          ],
+          [
+            82249,
+            82249
+          ],
+          [
+            82346,
+            82346
+          ],
+          [
+            82377,
+            82377
+          ],
+          [
+            82379,
+            82379
+          ],
+          [
+            82488,
+            82488
+          ],
+          [
+            82517,
+            82517
+          ],
+          [
+            82610,
+            82610
+          ],
+          [
+            82614,
+            82614
+          ],
+          [
+            82645,
+            82645
+          ],
+          [
+            82738,
+            82738
+          ],
+          [
+            82740,
+            82740
+          ]
+        ]
+      ]
+    ]
+  },
+  "counts": {
+    "features": 1,
+    "states": 7,
+    "newComponents": 0,
+    "links": 20,
+    "nativeInstances": 88
+  },
+  "sourceFrozenAt": "2026-10-02T02:37:30.526Z"
+}

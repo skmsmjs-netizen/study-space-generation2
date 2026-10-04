@@ -19,8 +19,8 @@ export default defineConfig({
     // The installed runtime can be linked outside this checkout. Permit only
     // that dependency directory alongside the workspace, including worker URLs.
     fs: { allow: ['.', realpathSync(new URL('./node_modules', import.meta.url))] },
-    watch: { ignored: ['**/work/**', '**/outputs/**', 'scripts/concept-design.test.mjs'] },
+    watch: { ignored: ['**/work/**', '**/handoff/**', '**/outputs/**', 'scripts/concept-design.test.mjs'] },
   },
   test: { environment: 'jsdom', setupFiles: ['./src/test-setup.ts'], css: true,
-    exclude: [...configDefaults.exclude, '**/work/**', '**/outputs/**', 'scripts/concept-design.test.mjs'] },
+    exclude: [...configDefaults.exclude, '**/work/**', '**/handoff/**', '**/outputs/**', 'scripts/concept-design.test.mjs'] },
 });

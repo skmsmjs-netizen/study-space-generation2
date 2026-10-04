@@ -1,0 +1,161 @@
+.study-graph {
+  display: grid;
+  gap: var(--space-4);
+  min-width: 0;
+}
+.graph-toolbar {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  align-items: end;
+  gap: var(--space-3);
+}
+.graph-toolbar .ui-choice {
+  grid-column: 1 / -1;
+}
+.graph-actions {
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+  flex-wrap: wrap;
+}
+.graph-actions > span {
+  color: var(--color-muted);
+  margin-right: auto;
+}
+.graph-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 16rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+.graph-stage {
+  height: min(65vh, 680px);
+  min-height: 390px;
+  background: var(--color-surface);
+}
+.graph-dot {
+  width: 44px;
+  height: 44px;
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+.graph-point {
+  width: var(--graph-node-size, 16px);
+  height: var(--graph-node-size, 16px);
+  border-radius: var(--radius-pill);
+  background: var(--color-muted);
+  border: 2px solid var(--color-surface);
+}
+.graph-kind-topic .graph-point {
+  background: var(--color-hierarchy-topic);
+}
+.graph-kind-unit .graph-point {
+  background: var(--color-hierarchy-unit);
+}
+.graph-kind-outline .graph-point,
+.graph-kind-concept .graph-point {
+  background: var(--color-hierarchy-outline);
+}
+.graph-dot.is-selected .graph-point {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 3px;
+}
+.graph-dot .react-flow__handle {
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  min-width: 1px;
+  min-height: 1px;
+}
+.graph-label {
+  position: absolute;
+  top: 48px;
+  left: 50%;
+  transform: translateX(-50%) scale(var(--graph-label-scale, 1));
+  transform-origin: top center;
+  width: max-content;
+  max-width: 192px;
+  text-align: center;
+  color: var(--color-text);
+  font-size: var(--type-caption-size);
+  line-height: var(--type-label-line);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  visibility: hidden;
+  pointer-events: none;
+  background: var(--color-surface);
+}
+.graph-detail {
+  padding: var(--space-4);
+  border-left: 1px solid var(--color-border);
+  max-height: 680px;
+  overflow-y: auto;
+}
+.graph-detail h2 {
+  font-size: var(--type-heading-size);
+  overflow-wrap: anywhere;
+}
+.graph-detail > .ui-button {
+  width: 100%;
+  text-align: left;
+  display: grid;
+  justify-content: start;
+  margin-bottom: var(--space-2);
+}
+.graph-detail small,
+.graph-legend,
+.graph-detail > span {
+  color: var(--color-muted);
+}
+.graph-body {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.graph-list > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  padding-block: var(--space-3);
+}
+.graph-stage .react-flow__controls-button {
+  color: var(--color-text);
+  background: var(--color-surface);
+  border-color: var(--color-border);
+  width: 44px;
+  height: 44px;
+}
+.graph-stage .react-flow__edge-text {
+  fill: var(--color-text);
+}
+.graph-stage .react-flow__edge-textbg {
+  fill: var(--color-surface);
+}
+@media (max-width: 64rem) {
+  .graph-layout {
+    grid-template-columns: 1fr;
+  }
+  .graph-detail {
+    border-left: 0;
+    border-top: 1px solid var(--color-border);
+    max-height: 350px;
+  }
+}
+@media (max-width: 40rem) {
+  .graph-toolbar {
+    grid-template-columns: 1fr;
+  }
+  .graph-stage {
+    min-height: 350px;
+    height: 55vh;
+  }
+}
+
+.graph-dot.has-label .graph-label,
+.graph-dot.is-selected .graph-label,
+.graph-dot:hover .graph-label,
+.react-flow__node:focus .graph-label {
+  visibility: visible;
+}

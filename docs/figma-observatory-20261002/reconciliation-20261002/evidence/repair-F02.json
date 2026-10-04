@@ -1,0 +1,36 @@
+{
+  "pageId": "7:76",
+  "flowId": "F02",
+  "createdNodeIds": [],
+  "mutatedNodeIds": [
+    "I68:57300;16:109",
+    "68:57300",
+    "I68:56886;74:67647"
+  ],
+  "repaired": [
+    {
+      "fromKey": "F02-S04",
+      "oldLabel": "비교 판정",
+      "label": "비교 판정",
+      "kind": "Link",
+      "sourceId": "R19",
+      "fromFrameId": "68:56885",
+      "instanceId": "68:56886",
+      "toFrameId": "68:56968",
+      "toRouteId": "R20",
+      "prototypeControlId": "68:57300",
+      "branch": "primary",
+      "screenControlId": "I68:56886;74:67647",
+      "bindingLocation": "screen-instance",
+      "conditionOnly": false
+    }
+  ],
+  "phaseChanges": [],
+  "issues": [],
+  "counts": {
+    "repaired": 1,
+    "actualBindings": 1,
+    "scenarioConditions": 0
+  },
+  "runtimeVerified": false
+}

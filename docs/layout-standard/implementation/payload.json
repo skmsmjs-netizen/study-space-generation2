@@ -1,0 +1,1190 @@
+{
+  "fileKey": "YHmD1PpWWfR9JGTEs77JsX",
+  "patterns": [
+    {
+      "id": "L025",
+      "title": "Single-column Layout",
+      "kind": "screen-content-pattern"
+    },
+    {
+      "id": "L037",
+      "title": "Card Grid Layout",
+      "kind": "screen-content-pattern"
+    },
+    {
+      "id": "L040",
+      "title": "Magazine / Editorial Layout",
+      "kind": "screen-content-pattern"
+    },
+    {
+      "id": "L043",
+      "title": "List Layout",
+      "kind": "screen-content-pattern"
+    },
+    {
+      "id": "L045",
+      "title": "Master–Detail Layout",
+      "kind": "screen-content-pattern"
+    },
+    {
+      "id": "L048",
+      "title": "Widget Layout",
+      "kind": "screen-content-pattern"
+    },
+    {
+      "id": "L049",
+      "title": "Kanban Layout",
+      "kind": "screen-content-pattern"
+    },
+    {
+      "id": "L053",
+      "title": "Form Layout",
+      "kind": "screen-content-pattern"
+    },
+    {
+      "id": "L055",
+      "title": "Search–Results Layout",
+      "kind": "screen-content-pattern"
+    },
+    {
+      "id": "L062",
+      "title": "Canvas Layout",
+      "kind": "screen-content-pattern"
+    },
+    {
+      "id": "L064",
+      "title": "Top Navigation Layout",
+      "kind": "navigation-utility-pattern"
+    },
+    {
+      "id": "L070",
+      "title": "Inspector / Utility Panel Layout",
+      "kind": "navigation-utility-pattern"
+    },
+    {
+      "id": "L081",
+      "title": "Documentation Layout",
+      "kind": "specialized-screen-pattern"
+    },
+    {
+      "id": "L082",
+      "title": "IDE Layout",
+      "kind": "specialized-screen-pattern"
+    },
+    {
+      "id": "L160",
+      "title": "Button",
+      "kind": "component-layout-recipe"
+    },
+    {
+      "id": "L170",
+      "title": "Modal",
+      "kind": "component-layout-recipe"
+    },
+    {
+      "id": "L187",
+      "title": "Resizable Split Pane — 폭을 조절하는 분할면",
+      "kind": "added-workspace-pattern"
+    },
+    {
+      "id": "L188",
+      "title": "Docked Multi-pane Workspace — 붙여 놓는 다중 작업면",
+      "kind": "added-workspace-pattern"
+    },
+    {
+      "id": "L189",
+      "title": "Tree–Detail Workspace — 계층 색인과 상세",
+      "kind": "added-workspace-pattern"
+    },
+    {
+      "id": "L190",
+      "title": "Document–Annotation Workspace — 원자료와 기록지",
+      "kind": "added-workspace-pattern"
+    },
+    {
+      "id": "L191",
+      "title": "Contextual Side Sheet / Bottom Sheet — 현재 과업의 곁면",
+      "kind": "added-workspace-pattern"
+    },
+    {
+      "id": "L192",
+      "title": "Anchored Popover / Command Surface — 실행자에 붙는 짧은 면",
+      "kind": "added-workspace-pattern"
+    },
+    {
+      "id": "L193",
+      "title": "Question–Response–Explanation — 질문·내 답·설명 공개",
+      "kind": "added-workspace-pattern"
+    },
+    {
+      "id": "L194",
+      "title": "Parameter–Visualization–Evidence — 조절·관찰·근거",
+      "kind": "added-workspace-pattern"
+    },
+    {
+      "id": "L195",
+      "title": "Data View–Record Detail — 여러 표현과 원기록",
+      "kind": "added-workspace-pattern"
+    },
+    {
+      "id": "L196",
+      "title": "Graph–Detail Workspace — 관계 지도와 원문",
+      "kind": "added-workspace-pattern"
+    },
+    {
+      "id": "L197",
+      "title": "Schedule–Agenda Detail — 시간표와 선택 과업",
+      "kind": "added-workspace-pattern"
+    },
+    {
+      "id": "L198",
+      "title": "Settings–Operation–Recovery — 변경·실행·복구",
+      "kind": "added-workspace-pattern"
+    }
+  ],
+  "entities": {
+    "R01": {
+      "primaryPattern": "L025",
+      "profileId": "P01",
+      "scope": "screen",
+      "name": "오늘",
+      "roleId": "today"
+    },
+    "R02": {
+      "primaryPattern": "L195",
+      "profileId": "P06",
+      "scope": "screen",
+      "name": "통계",
+      "roleId": "statistics"
+    },
+    "R03": {
+      "primaryPattern": "L197",
+      "profileId": "P09",
+      "scope": "screen",
+      "name": "일정·과제",
+      "roleId": "schedule"
+    },
+    "R04": {
+      "primaryPattern": "L037",
+      "profileId": "P02",
+      "scope": "screen",
+      "name": "과목",
+      "roleId": "subjects"
+    },
+    "R05": {
+      "primaryPattern": "L053",
+      "profileId": "P01",
+      "scope": "screen",
+      "name": "기록",
+      "roleId": "study-record"
+    },
+    "R06": {
+      "primaryPattern": "L045",
+      "profileId": "P03",
+      "scope": "screen",
+      "name": "메모",
+      "roleId": "notes"
+    },
+    "R07": {
+      "primaryPattern": "L045",
+      "profileId": "P03",
+      "scope": "screen",
+      "name": "강의 자료",
+      "roleId": "materials"
+    },
+    "R08": {
+      "primaryPattern": "L082",
+      "profileId": "P05",
+      "scope": "screen",
+      "name": "코딩 연습",
+      "roleId": "code"
+    },
+    "R09": {
+      "primaryPattern": "L194",
+      "profileId": "P05",
+      "scope": "screen",
+      "name": "수식 탐색",
+      "roleId": "math"
+    },
+    "R10": {
+      "primaryPattern": "L193",
+      "profileId": "P04",
+      "scope": "screen",
+      "name": "시험 연습",
+      "roleId": "exam-practice"
+    },
+    "R11": {
+      "primaryPattern": "L193",
+      "profileId": "P04",
+      "scope": "screen",
+      "name": "암기시험",
+      "roleId": "memory-test"
+    },
+    "R12": {
+      "primaryPattern": "L037",
+      "profileId": "P02",
+      "scope": "screen",
+      "name": "자료 카드",
+      "roleId": "material-cards"
+    },
+    "R13": {
+      "primaryPattern": "L045",
+      "profileId": "P02",
+      "scope": "screen",
+      "name": "개념 전집",
+      "roleId": "concepts"
+    },
+    "R14": {
+      "primaryPattern": "L193",
+      "profileId": "P04",
+      "scope": "screen",
+      "name": "주제 카드",
+      "roleId": "recall"
+    },
+    "R15": {
+      "primaryPattern": "L062",
+      "profileId": "P07",
+      "scope": "screen",
+      "name": "Canvas",
+      "roleId": "canvas"
+    },
+    "R16": {
+      "primaryPattern": "L196",
+      "profileId": "P07",
+      "scope": "screen",
+      "name": "그래프뷰",
+      "roleId": "graph"
+    },
+    "R17": {
+      "primaryPattern": "L049",
+      "profileId": "P08",
+      "scope": "screen",
+      "name": "칸반보드",
+      "roleId": "board"
+    },
+    "R18": {
+      "primaryPattern": "L055",
+      "profileId": "P02",
+      "scope": "screen",
+      "name": "찾기",
+      "roleId": "search"
+    },
+    "R19": {
+      "primaryPattern": "L189",
+      "profileId": "P02",
+      "scope": "screen",
+      "name": "과목 상세",
+      "roleId": "subjects"
+    },
+    "R20": {
+      "primaryPattern": "L045",
+      "profileId": "P01",
+      "scope": "screen",
+      "name": "단원·주제 상세",
+      "roleId": "study-record"
+    },
+    "R21": {
+      "primaryPattern": "L053",
+      "profileId": "P01",
+      "scope": "screen",
+      "name": "선택 주제 기록",
+      "roleId": "study-record"
+    },
+    "R22": {
+      "primaryPattern": "L190",
+      "profileId": "P03",
+      "scope": "screen",
+      "name": "메모 상세",
+      "roleId": "notes"
+    },
+    "R23": {
+      "primaryPattern": "L190",
+      "profileId": "P03",
+      "scope": "screen",
+      "name": "자료 상세·새 자료",
+      "roleId": "materials"
+    },
+    "R24": {
+      "primaryPattern": "L045",
+      "profileId": "P10",
+      "scope": "screen",
+      "name": "강의 자료 휴지통",
+      "roleId": "recovery"
+    },
+    "R25": {
+      "primaryPattern": "L082",
+      "profileId": "P05",
+      "scope": "screen",
+      "name": "코드 예제 상세",
+      "roleId": "code"
+    },
+    "R26": {
+      "primaryPattern": "L193",
+      "profileId": "P04",
+      "scope": "screen",
+      "name": "주제 지정 시험 연습",
+      "roleId": "exam-practice"
+    },
+    "R27": {
+      "primaryPattern": "L193",
+      "profileId": "P04",
+      "scope": "screen",
+      "name": "주제 지정 암기시험",
+      "roleId": "memory-test"
+    },
+    "R28": {
+      "primaryPattern": "L193",
+      "profileId": "P04",
+      "scope": "screen",
+      "name": "암기시험 결과",
+      "roleId": "memory-test"
+    },
+    "R29": {
+      "primaryPattern": "L193",
+      "profileId": "P04",
+      "scope": "screen",
+      "name": "예약 복습",
+      "roleId": "recall"
+    },
+    "R30": {
+      "primaryPattern": "L045",
+      "profileId": "P03",
+      "scope": "screen",
+      "name": "자유 기록 목록·기본 글",
+      "roleId": "notes"
+    },
+    "R31": {
+      "primaryPattern": "L025",
+      "profileId": "P03",
+      "scope": "screen",
+      "name": "새 자유 기록",
+      "roleId": "notes"
+    },
+    "R32": {
+      "primaryPattern": "L025",
+      "profileId": "P03",
+      "scope": "screen",
+      "name": "자유 기록 상세",
+      "roleId": "notes"
+    },
+    "R33": {
+      "primaryPattern": "L198",
+      "profileId": "P10",
+      "scope": "screen",
+      "name": "전체 백업·복구",
+      "roleId": "recovery"
+    },
+    "R34": {
+      "primaryPattern": "L045",
+      "profileId": "P10",
+      "scope": "screen",
+      "name": "휴지통",
+      "roleId": "recovery"
+    },
+    "R35": {
+      "primaryPattern": "L045",
+      "profileId": "P10",
+      "scope": "screen",
+      "name": "초안 보관본",
+      "roleId": "recovery"
+    },
+    "R36": {
+      "primaryPattern": "L025",
+      "profileId": "P01",
+      "scope": "screen",
+      "name": "내 생각",
+      "roleId": "reflection"
+    },
+    "R37": {
+      "primaryPattern": "L081",
+      "profileId": "P10",
+      "scope": "screen",
+      "name": "도움말·문제 메모",
+      "roleId": "workspace-controls"
+    },
+    "R38": {
+      "primaryPattern": "L040",
+      "profileId": "P10",
+      "scope": "screen",
+      "name": "소개",
+      "roleId": "workspace-controls"
+    },
+    "R39": {
+      "primaryPattern": "L198",
+      "profileId": "P10",
+      "scope": "screen",
+      "name": "기존 구독 링크",
+      "roleId": "workspace-controls"
+    },
+    "R40": {
+      "primaryPattern": "L198",
+      "profileId": "P10",
+      "scope": "screen",
+      "name": "기존 계정 링크",
+      "roleId": "account"
+    },
+    "R41": {
+      "primaryPattern": "L025",
+      "profileId": "P02",
+      "scope": "screen",
+      "name": "찾을 수 없는 항목",
+      "roleId": "search"
+    },
+    "O01": {
+      "primaryPattern": "L053",
+      "profileId": "P02",
+      "scope": "overlay",
+      "name": "학기 추가",
+      "roleId": "subjects"
+    },
+    "O02": {
+      "primaryPattern": "L053",
+      "profileId": "P02",
+      "scope": "overlay",
+      "name": "과목 추가",
+      "roleId": "subjects"
+    },
+    "O03": {
+      "primaryPattern": "L053",
+      "profileId": "P02",
+      "scope": "overlay",
+      "name": "목차 추가",
+      "roleId": "outline"
+    },
+    "O04": {
+      "primaryPattern": "L053",
+      "profileId": "P02",
+      "scope": "overlay",
+      "name": "여러 목차 추가",
+      "roleId": "outline"
+    },
+    "O05": {
+      "primaryPattern": "L053",
+      "profileId": "P10",
+      "scope": "overlay",
+      "name": "휴지통으로 옮길까요?",
+      "roleId": "recovery"
+    },
+    "O06": {
+      "primaryPattern": "L053",
+      "profileId": "P02",
+      "scope": "overlay",
+      "name": "이름 수정",
+      "roleId": "outline"
+    },
+    "O07": {
+      "primaryPattern": "L053",
+      "profileId": "P02",
+      "scope": "overlay",
+      "name": "목차 위치 옮기기",
+      "roleId": "outline"
+    },
+    "O08": {
+      "primaryPattern": "L053",
+      "profileId": "P10",
+      "scope": "overlay",
+      "name": "가입 계정 관리",
+      "roleId": "account"
+    },
+    "O09": {
+      "primaryPattern": "L053",
+      "profileId": "P10",
+      "scope": "overlay",
+      "name": "내 계정",
+      "roleId": "account"
+    },
+    "O10": {
+      "primaryPattern": "L053",
+      "profileId": "P01",
+      "scope": "overlay",
+      "name": "다음에 펼칠 곳을 남겨둘까요?",
+      "roleId": "today"
+    },
+    "O11": {
+      "primaryPattern": "L053",
+      "profileId": "P01",
+      "scope": "overlay",
+      "name": "공부 기준 조정",
+      "roleId": "study-record"
+    },
+    "O12": {
+      "primaryPattern": "L198",
+      "profileId": "P10",
+      "scope": "overlay",
+      "name": "이어가기 설정 복구",
+      "roleId": "workspace-controls"
+    },
+    "O13": {
+      "primaryPattern": "L053",
+      "profileId": "P09",
+      "scope": "overlay",
+      "name": "시험·과제·강의 일정",
+      "roleId": "schedule"
+    },
+    "O14": {
+      "primaryPattern": "L194",
+      "profileId": "P05",
+      "scope": "overlay",
+      "name": "수식 탐색 전체 화면",
+      "roleId": "math"
+    },
+    "O15": {
+      "primaryPattern": "L048",
+      "profileId": "P10",
+      "scope": "overlay",
+      "name": "움직임 위젯",
+      "roleId": "workspace-controls"
+    },
+    "O16": {
+      "primaryPattern": "L053",
+      "profileId": "P09",
+      "scope": "overlay",
+      "name": "다음에 확인할 내용",
+      "roleId": "schedule"
+    },
+    "O17": {
+      "primaryPattern": "L053",
+      "profileId": "P09",
+      "scope": "overlay",
+      "name": "학기 기간",
+      "roleId": "schedule"
+    },
+    "O18": {
+      "primaryPattern": "L053",
+      "profileId": "P04",
+      "scope": "overlay",
+      "name": "지금 확인한 결과",
+      "roleId": "exam-practice"
+    },
+    "O19": {
+      "primaryPattern": "L053",
+      "profileId": "P02",
+      "scope": "overlay",
+      "name": "공부할 목차 만들기",
+      "roleId": "outline"
+    },
+    "O20": {
+      "primaryPattern": "L053",
+      "profileId": "P04",
+      "scope": "overlay",
+      "name": "답안에서 수행 결과 남기기",
+      "roleId": "exam-practice"
+    },
+    "O21": {
+      "primaryPattern": "L198",
+      "profileId": "P10",
+      "scope": "overlay",
+      "name": "내 기록의 저장 상태",
+      "roleId": "recovery"
+    },
+    "O22": {
+      "primaryPattern": "L053",
+      "profileId": "P02",
+      "scope": "overlay",
+      "name": "사진으로 목차·내용 가져오기",
+      "roleId": "outline"
+    },
+    "O23": {
+      "primaryPattern": "L053",
+      "profileId": "P03",
+      "scope": "overlay",
+      "name": "메모를 휴지통으로 옮길까요?",
+      "roleId": "notes"
+    },
+    "O24": {
+      "primaryPattern": "L053",
+      "profileId": "P03",
+      "scope": "overlay",
+      "name": "작은 메모",
+      "roleId": "notes"
+    },
+    "O25": {
+      "primaryPattern": "L053",
+      "profileId": "P09",
+      "scope": "overlay",
+      "name": "강의 주차 만들기",
+      "roleId": "schedule"
+    },
+    "O26": {
+      "primaryPattern": "L043",
+      "profileId": "P06",
+      "scope": "overlay",
+      "name": "통계의 원기록",
+      "roleId": "statistics"
+    },
+    "O27": {
+      "primaryPattern": "L053",
+      "profileId": "P08",
+      "scope": "overlay",
+      "name": "카드 추가·편집",
+      "roleId": "board"
+    },
+    "O28": {
+      "primaryPattern": "L053",
+      "profileId": "P08",
+      "scope": "overlay",
+      "name": "보드 열",
+      "roleId": "board"
+    },
+    "O29": {
+      "primaryPattern": "L053",
+      "profileId": "P01",
+      "scope": "overlay",
+      "name": "이 주제부터 해볼까요?",
+      "roleId": "today"
+    },
+    "U01": {
+      "primaryPattern": "L064",
+      "profileId": "P10",
+      "scope": "surface",
+      "name": "앱 내비게이션·범위·테마",
+      "roleId": "workspace-controls"
+    },
+    "U02": {
+      "primaryPattern": "L053",
+      "profileId": "P10",
+      "scope": "surface",
+      "name": "개인 공간 진입·인증",
+      "roleId": "account"
+    },
+    "U03": {
+      "primaryPattern": "L053",
+      "profileId": "P10",
+      "scope": "surface",
+      "name": "로그인·가입",
+      "roleId": "account"
+    },
+    "U04": {
+      "primaryPattern": "L025",
+      "profileId": "P10",
+      "scope": "surface",
+      "name": "가입 승인 대기·제한",
+      "roleId": "account"
+    },
+    "U05": {
+      "primaryPattern": "L198",
+      "profileId": "P10",
+      "scope": "surface",
+      "name": "내 계정·탈퇴",
+      "roleId": "account"
+    },
+    "U06": {
+      "primaryPattern": "L045",
+      "profileId": "P10",
+      "scope": "surface",
+      "name": "가입 계정 관리",
+      "roleId": "account"
+    },
+    "U07": {
+      "primaryPattern": "L198",
+      "profileId": "P10",
+      "scope": "surface",
+      "name": "내 기록의 저장 상태",
+      "roleId": "recovery"
+    },
+    "U08": {
+      "primaryPattern": "L198",
+      "profileId": "P10",
+      "scope": "surface",
+      "name": "전체 복구 진입",
+      "roleId": "recovery"
+    },
+    "U09": {
+      "primaryPattern": "L025",
+      "profileId": "P01",
+      "scope": "surface",
+      "name": "이어가기와 다음 위치",
+      "roleId": "today"
+    },
+    "U10": {
+      "primaryPattern": "L053",
+      "profileId": "P10",
+      "scope": "surface",
+      "name": "읽기 폭·이어가기 복구",
+      "roleId": "workspace-controls"
+    },
+    "U11": {
+      "primaryPattern": "L048",
+      "profileId": "P01",
+      "scope": "surface",
+      "name": "천문대 원본 위젯",
+      "roleId": "today"
+    },
+    "U12": {
+      "primaryPattern": "L048",
+      "profileId": "P01",
+      "scope": "surface",
+      "name": "천문대 세부 렌더러",
+      "roleId": "today"
+    },
+    "U13": {
+      "primaryPattern": "L048",
+      "profileId": "P01",
+      "scope": "surface",
+      "name": "작은 도구와 시계",
+      "roleId": "today"
+    },
+    "U14": {
+      "primaryPattern": "L025",
+      "profileId": "P01",
+      "scope": "surface",
+      "name": "오늘·한 주 공부",
+      "roleId": "today"
+    },
+    "U15": {
+      "primaryPattern": "L025",
+      "profileId": "P01",
+      "scope": "surface",
+      "name": "공부 시작 제안",
+      "roleId": "today"
+    },
+    "U16": {
+      "primaryPattern": "L189",
+      "profileId": "P02",
+      "scope": "surface",
+      "name": "목차와 항목 관리",
+      "roleId": "outline"
+    },
+    "U17": {
+      "primaryPattern": "L053",
+      "profileId": "P02",
+      "scope": "surface",
+      "name": "표·사진 목차 만들기",
+      "roleId": "outline"
+    },
+    "U18": {
+      "primaryPattern": "L197",
+      "profileId": "P09",
+      "scope": "surface",
+      "name": "학기·강의 주차",
+      "roleId": "schedule"
+    },
+    "U19": {
+      "primaryPattern": "L053",
+      "profileId": "P01",
+      "scope": "surface",
+      "name": "공부 기준·TRACE",
+      "roleId": "study-record"
+    },
+    "U20": {
+      "primaryPattern": "L053",
+      "profileId": "P04",
+      "scope": "surface",
+      "name": "답안에서 수행 결과",
+      "roleId": "exam-practice"
+    },
+    "U21": {
+      "primaryPattern": "L053",
+      "profileId": "P09",
+      "scope": "surface",
+      "name": "일정 편집",
+      "roleId": "schedule"
+    },
+    "U22": {
+      "primaryPattern": "L198",
+      "profileId": "P09",
+      "scope": "surface",
+      "name": "다음 공부 기준·결과",
+      "roleId": "schedule"
+    },
+    "U23": {
+      "primaryPattern": "L190",
+      "profileId": "P03",
+      "scope": "surface",
+      "name": "자료 출처·PDF 구간",
+      "roleId": "materials"
+    },
+    "U24": {
+      "primaryPattern": "L190",
+      "profileId": "P03",
+      "scope": "surface",
+      "name": "자료 퀴즈·관계·대화",
+      "roleId": "materials"
+    },
+    "U25": {
+      "primaryPattern": "L045",
+      "profileId": "P02",
+      "scope": "surface",
+      "name": "카드·코드 주제 연결",
+      "roleId": "material-cards"
+    },
+    "U26": {
+      "primaryPattern": "L198",
+      "profileId": "P04",
+      "scope": "surface",
+      "name": "덱·카드·Anki 가져오기",
+      "roleId": "recall"
+    },
+    "U27": {
+      "primaryPattern": "L053",
+      "profileId": "P04",
+      "scope": "surface",
+      "name": "복습 설정·최적화",
+      "roleId": "recall"
+    },
+    "U28": {
+      "primaryPattern": "L053",
+      "profileId": "P04",
+      "scope": "surface",
+      "name": "암기 항목 생성",
+      "roleId": "memory-test"
+    },
+    "U29": {
+      "primaryPattern": "L190",
+      "profileId": "P03",
+      "scope": "surface",
+      "name": "펜·OCR·PDF 배경",
+      "roleId": "ink"
+    },
+    "U30": {
+      "primaryPattern": "L082",
+      "profileId": "P05",
+      "scope": "surface",
+      "name": "코드 편집·구문·터미널",
+      "roleId": "code"
+    },
+    "U31": {
+      "primaryPattern": "L194",
+      "profileId": "P05",
+      "scope": "surface",
+      "name": "수식·그래프·카메라",
+      "roleId": "math"
+    },
+    "U32": {
+      "primaryPattern": "L194",
+      "profileId": "P05",
+      "scope": "surface",
+      "name": "수식 유형·전체 화면",
+      "roleId": "math"
+    },
+    "U33": {
+      "primaryPattern": "L194",
+      "profileId": "P05",
+      "scope": "surface",
+      "name": "급수·개념 도해",
+      "roleId": "math"
+    },
+    "U34": {
+      "primaryPattern": "L062",
+      "profileId": "P07",
+      "scope": "surface",
+      "name": "Canvas 편집·이관",
+      "roleId": "canvas"
+    },
+    "U35": {
+      "primaryPattern": "L196",
+      "profileId": "P07",
+      "scope": "surface",
+      "name": "Canvas·그래프 보기",
+      "roleId": "graph"
+    },
+    "U36": {
+      "primaryPattern": "L195",
+      "profileId": "P06",
+      "scope": "surface",
+      "name": "통계 여러 그래프·값",
+      "roleId": "statistics"
+    },
+    "U37": {
+      "primaryPattern": "L198",
+      "profileId": "P10",
+      "scope": "surface",
+      "name": "GPT 연결·문맥·사용량",
+      "roleId": "api-connection"
+    },
+    "U38": {
+      "primaryPattern": "L048",
+      "profileId": "P10",
+      "scope": "surface",
+      "name": "움직임 위젯",
+      "roleId": "workspace-controls"
+    },
+    "U39": {
+      "primaryPattern": "L025",
+      "profileId": "P01",
+      "scope": "surface",
+      "name": "브랜드·관련 생각",
+      "roleId": "reflection"
+    },
+    "U40": {
+      "primaryPattern": "L025",
+      "profileId": "P10",
+      "scope": "surface",
+      "name": "공통 부품·오류·포커스",
+      "roleId": "workspace-controls"
+    },
+    "U41": {
+      "primaryPattern": "L025",
+      "profileId": "P03",
+      "scope": "surface",
+      "name": "장문 원문·기록 수정",
+      "roleId": "notes"
+    }
+  },
+  "future": [
+    {
+      "id": "FE01",
+      "role": "전체 하늘/픽셀 위젯",
+      "primaryPattern": "L048",
+      "registeredStructureGuidance": "공통 커버 +34/35, 외부 틀",
+      "growthAndPreservation": "전체 비율·내부 조작·초점 보존; crop 금지",
+      "sizePolicy": "Use existing role tokens; content height grows; declare axis min/max and intrinsic 2D exceptions.",
+      "reflowPolicy": "Declare registered narrow form and meaningful order; retain task context.",
+      "status": "required-when-element-is-used",
+      "implementationClaim": false
+    },
+    {
+      "id": "FE02",
+      "role": "장소·기능 이동",
+      "primaryPattern": "L064",
+      "registeredStructureGuidance": "64/65/66, 필요 시69",
+      "growthAndPreservation": "네 자리+천장 구별; 장식 핫스폿만으로 접근시키지 않음",
+      "sizePolicy": "Use existing role tokens; content height grows; declare axis min/max and intrinsic 2D exceptions.",
+      "reflowPolicy": "Declare registered narrow form and meaningful order; retain task context.",
+      "status": "required-when-element-is-used",
+      "implementationClaim": false
+    },
+    {
+      "id": "FE03",
+      "role": "화면 제목/현재 대상/소속",
+      "primaryPattern": "L025",
+      "registeredStructureGuidance": "현재 프로필 시작",
+      "growthAndPreservation": "긴 제목 줄바꿈, ID/출처 맥락 유지",
+      "sizePolicy": "Use existing role tokens; content height grows; declare axis min/max and intrinsic 2D exceptions.",
+      "reflowPolicy": "Declare registered narrow form and meaningful order; retain task context.",
+      "status": "required-when-element-is-used",
+      "implementationClaim": false
+    },
+    {
+      "id": "FE04",
+      "role": "주 행동/취소/되돌리기",
+      "primaryPattern": "L160",
+      "registeredStructureGuidance": "86 흐름/104 중첩",
+      "growthAndPreservation": "여러 줄·키보드·터치 목표를 보존",
+      "sizePolicy": "Use existing role tokens; content height grows; declare axis min/max and intrinsic 2D exceptions.",
+      "reflowPolicy": "Declare registered narrow form and meaningful order; retain task context.",
+      "status": "required-when-element-is-used",
+      "implementationClaim": false
+    },
+    {
+      "id": "FE05",
+      "role": "짧은 상태/저장 결과",
+      "primaryPattern": "L025",
+      "registeredStructureGuidance": "관련 행동 옆",
+      "growthAndPreservation": "상태 변화가 초점/입력을 뺏지 않음",
+      "sizePolicy": "Use existing role tokens; content height grows; declare axis min/max and intrinsic 2D exceptions.",
+      "reflowPolicy": "Declare registered narrow form and meaningful order; retain task context.",
+      "status": "required-when-element-is-used",
+      "implementationClaim": false
+    },
+    {
+      "id": "FE06",
+      "role": "목차/파일/계층",
+      "primaryPattern": "L189",
+      "registeredStructureGuidance": "189 색인",
+      "growthAndPreservation": "깊이·긴 이름·선택/펼침 보존",
+      "sizePolicy": "Use existing role tokens; content height grows; declare axis min/max and intrinsic 2D exceptions.",
+      "reflowPolicy": "Declare registered narrow form and meaningful order; retain task context.",
+      "status": "required-when-element-is-used",
+      "implementationClaim": false
+    },
+    {
+      "id": "FE07",
+      "role": "검색/필터/정렬",
+      "primaryPattern": "L055",
+      "registeredStructureGuidance": "55/56, 192 짧은 선택",
+      "growthAndPreservation": "결과 없음·조건 해제·현재 범위 표시",
+      "sizePolicy": "Use existing role tokens; content height grows; declare axis min/max and intrinsic 2D exceptions.",
+      "reflowPolicy": "Declare registered narrow form and meaningful order; retain task context.",
+      "status": "required-when-element-is-used",
+      "implementationClaim": false
+    },
+    {
+      "id": "FE08",
+      "role": "본문/해설/자유 글",
+      "primaryPattern": "L025",
+      "registeredStructureGuidance": "25/81/P01",
+      "growthAndPreservation": "양쪽 정렬; 높이 성장; 원문 보존",
+      "sizePolicy": "Use existing role tokens; content height grows; declare axis min/max and intrinsic 2D exceptions.",
+      "reflowPolicy": "Declare registered narrow form and meaningful order; retain task context.",
+      "status": "required-when-element-is-used",
+      "implementationClaim": false
+    },
+    {
+      "id": "FE09",
+      "role": "수식/코드/긴 URL",
+      "primaryPattern": "L194",
+      "registeredStructureGuidance": "190/194의 해당 면",
+      "growthAndPreservation": "본문 justify를 강제하지 않음; 의미 보존 줄바꿈/지역 스크롤",
+      "sizePolicy": "Use existing role tokens; content height grows; declare axis min/max and intrinsic 2D exceptions.",
+      "reflowPolicy": "Declare registered narrow form and meaningful order; retain task context.",
+      "status": "required-when-element-is-used",
+      "implementationClaim": false
+    },
+    {
+      "id": "FE10",
+      "role": "필기/PDF/OCR",
+      "primaryPattern": "L190",
+      "registeredStructureGuidance": "190",
+      "growthAndPreservation": "원본/인식문 구별; 페이지·좌표·확대 유지",
+      "sizePolicy": "Use existing role tokens; content height grows; declare axis min/max and intrinsic 2D exceptions.",
+      "reflowPolicy": "Declare registered narrow form and meaningful order; retain task context.",
+      "status": "required-when-element-is-used",
+      "implementationClaim": false
+    },
+    {
+      "id": "FE11",
+      "role": "질문/답/기준 설명",
+      "primaryPattern": "L193",
+      "registeredStructureGuidance": "193",
+      "growthAndPreservation": "공개 단계·수정·질문 복귀 보존",
+      "sizePolicy": "Use existing role tokens; content height grows; declare axis min/max and intrinsic 2D exceptions.",
+      "reflowPolicy": "Declare registered narrow form and meaningful order; retain task context.",
+      "status": "required-when-element-is-used",
+      "implementationClaim": false
+    },
+    {
+      "id": "FE12",
+      "role": "조절기/값/단위/범례",
+      "primaryPattern": "L194",
+      "registeredStructureGuidance": "194",
+      "growthAndPreservation": "조절기와 그림의 연결, 실패 시 현재값 제공",
+      "sizePolicy": "Use existing role tokens; content height grows; declare axis min/max and intrinsic 2D exceptions.",
+      "reflowPolicy": "Declare registered narrow form and meaningful order; retain task context.",
+      "status": "required-when-element-is-used",
+      "implementationClaim": false
+    },
+    {
+      "id": "FE13",
+      "role": "그래프/비교표/원기록",
+      "primaryPattern": "L195",
+      "registeredStructureGuidance": "195",
+      "growthAndPreservation": "분모/범위·같은 자료·원기록 연결",
+      "sizePolicy": "Use existing role tokens; content height grows; declare axis min/max and intrinsic 2D exceptions.",
+      "reflowPolicy": "Declare registered narrow form and meaningful order; retain task context.",
+      "status": "required-when-element-is-used",
+      "implementationClaim": false
+    },
+    {
+      "id": "FE14",
+      "role": "2D/3D 공간/노드/선",
+      "primaryPattern": "L196",
+      "registeredStructureGuidance": "196",
+      "growthAndPreservation": "의미 관계·선택·개인 배치·시점 구별",
+      "sizePolicy": "Use existing role tokens; content height grows; declare axis min/max and intrinsic 2D exceptions.",
+      "reflowPolicy": "Declare registered narrow form and meaningful order; retain task context.",
+      "status": "required-when-element-is-used",
+      "implementationClaim": false
+    },
+    {
+      "id": "FE15",
+      "role": "보드 열/작업 카드",
+      "primaryPattern": "L049",
+      "registeredStructureGuidance": "49/P08",
+      "growthAndPreservation": "가로 탐색·이동 대안·긴 카드",
+      "sizePolicy": "Use existing role tokens; content height grows; declare axis min/max and intrinsic 2D exceptions.",
+      "reflowPolicy": "Declare registered narrow form and meaningful order; retain task context.",
+      "status": "required-when-element-is-used",
+      "implementationClaim": false
+    },
+    {
+      "id": "FE16",
+      "role": "날짜/시간/미정 일정",
+      "primaryPattern": "L197",
+      "registeredStructureGuidance": "197",
+      "growthAndPreservation": "날짜순/미정 분리·기간 유지",
+      "sizePolicy": "Use existing role tokens; content height grows; declare axis min/max and intrinsic 2D exceptions.",
+      "reflowPolicy": "Declare registered narrow form and meaningful order; retain task context.",
+      "status": "required-when-element-is-used",
+      "implementationClaim": false
+    },
+    {
+      "id": "FE17",
+      "role": "추가 속성/도움말",
+      "primaryPattern": "L070",
+      "registeredStructureGuidance": "70/191/81",
+      "growthAndPreservation": "주면을 유지; 길어지면 정식 상세면",
+      "sizePolicy": "Use existing role tokens; content height grows; declare axis min/max and intrinsic 2D exceptions.",
+      "reflowPolicy": "Declare registered narrow form and meaningful order; retain task context.",
+      "status": "required-when-element-is-used",
+      "implementationClaim": false
+    },
+    {
+      "id": "FE18",
+      "role": "오류/빈 상태/권한 거부",
+      "primaryPattern": "L025",
+      "registeredStructureGuidance": "각 프로필 내부 상태",
+      "growthAndPreservation": "별도 레이아웃 종류 대신 같은 과업의 복구 행동",
+      "sizePolicy": "Use existing role tokens; content height grows; declare axis min/max and intrinsic 2D exceptions.",
+      "reflowPolicy": "Declare registered narrow form and meaningful order; retain task context.",
+      "status": "required-when-element-is-used",
+      "implementationClaim": false
+    },
+    {
+      "id": "FE19",
+      "role": "업로드/내보내기/처리 경과",
+      "primaryPattern": "L198",
+      "registeredStructureGuidance": "198/191",
+      "growthAndPreservation": "실제 범위/진행·중단·재시도·원본 보존",
+      "sizePolicy": "Use existing role tokens; content height grows; declare axis min/max and intrinsic 2D exceptions.",
+      "reflowPolicy": "Declare registered narrow form and meaningful order; retain task context.",
+      "status": "required-when-element-is-used",
+      "implementationClaim": false
+    },
+    {
+      "id": "FE20",
+      "role": "백업/휴지통/초안/버전 비교",
+      "primaryPattern": "L198",
+      "registeredStructureGuidance": "198, 45, 77",
+      "growthAndPreservation": "대상 ID/이력·취소·복원·실제 결과",
+      "sizePolicy": "Use existing role tokens; content height grows; declare axis min/max and intrinsic 2D exceptions.",
+      "reflowPolicy": "Declare registered narrow form and meaningful order; retain task context.",
+      "status": "required-when-element-is-used",
+      "implementationClaim": false
+    },
+    {
+      "id": "FE21",
+      "role": "API/AI 대화·실행 로그",
+      "primaryPattern": "L188",
+      "registeredStructureGuidance": "188/198, 42 기록",
+      "growthAndPreservation": "원문·실행/응답·비용/권한 구별; 자동 추가가 입력을 밀어내지 않음",
+      "sizePolicy": "Use existing role tokens; content height grows; declare axis min/max and intrinsic 2D exceptions.",
+      "reflowPolicy": "Declare registered narrow form and meaningful order; retain task context.",
+      "status": "required-when-element-is-used",
+      "implementationClaim": false
+    },
+    {
+      "id": "FE22",
+      "role": "영상/음성/시간 연결 메모",
+      "primaryPattern": "L190",
+      "registeredStructureGuidance": "190, 50 Timeline",
+      "growthAndPreservation": "재생 위치·자막/대체 정보; 자동재생 강제 안 함",
+      "sizePolicy": "Use existing role tokens; content height grows; declare axis min/max and intrinsic 2D exceptions.",
+      "reflowPolicy": "Declare registered narrow form and meaningful order; retain task context.",
+      "status": "required-when-element-is-used",
+      "implementationClaim": false
+    },
+    {
+      "id": "FE23",
+      "role": "협업/공유·주석 작성자",
+      "primaryPattern": "L190",
+      "registeredStructureGuidance": "190/198의 관련 면",
+      "growthAndPreservation": "실제 권한/연결이 있을 때만 표시; 없는 동료를 생성하지 않음",
+      "sizePolicy": "Use existing role tokens; content height grows; declare axis min/max and intrinsic 2D exceptions.",
+      "reflowPolicy": "Declare registered narrow form and meaningful order; retain task context.",
+      "status": "conditional-existing-exclusions-preserved",
+      "implementationClaim": false
+    },
+    {
+      "id": "FE24",
+      "role": "결제/지원 등 조건부 운영 기능",
+      "primaryPattern": "L198",
+      "registeredStructureGuidance": "198/76 후보",
+      "growthAndPreservation": "실제 계약/운영 정보가 있을 때만; 미래 예시를 현행 기능으로 표시하지 않음",
+      "sizePolicy": "Use existing role tokens; content height grows; declare axis min/max and intrinsic 2D exceptions.",
+      "reflowPolicy": "Declare registered narrow form and meaningful order; retain task context.",
+      "status": "conditional-existing-exclusions-preserved",
+      "implementationClaim": false
+    }
+  ]
+}

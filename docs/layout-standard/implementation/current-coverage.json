@@ -1,0 +1,4554 @@
+{
+  "R01": {
+    "primaryPattern": "L025",
+    "profileId": "P01",
+    "scope": "screen",
+    "name": "오늘",
+    "roleId": "today",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "26:68",
+        "name": "R01@ipad-landscape",
+        "pattern": "L025",
+        "scope": "screen",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999138327235
+        ],
+        "structure": "249:2604",
+        "bodyHeight": 2399,
+        "pageId": "7:71"
+      },
+      {
+        "id": "26:1877",
+        "name": "R01@iphone-portrait",
+        "pattern": "L025",
+        "scope": "screen",
+        "viewport": {
+          "width": 402,
+          "height": 681,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999256424513
+        ],
+        "structure": "255:2604",
+        "bodyHeight": 2842,
+        "pageId": "7:71"
+      },
+      {
+        "id": "26:3681",
+        "name": "R01@iphone-landscape",
+        "pattern": "L025",
+        "scope": "screen",
+        "viewport": {
+          "width": 756,
+          "height": 352,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999208192593
+        ],
+        "structure": "255:2605",
+        "bodyHeight": 2399,
+        "pageId": "7:71"
+      },
+      {
+        "id": "26:5490",
+        "name": "R01@ipad-portrait",
+        "pattern": "L025",
+        "scope": "screen",
+        "viewport": {
+          "width": 1032,
+          "height": 1376,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999423289875
+        ],
+        "structure": "255:2606",
+        "bodyHeight": 2399,
+        "pageId": "7:71"
+      },
+      {
+        "id": "26:7299",
+        "name": "R01@ipad-narrow",
+        "pattern": "L025",
+        "scope": "screen",
+        "viewport": {
+          "width": 517,
+          "height": 1200,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.4000000575577127
+        ],
+        "structure": "255:2607",
+        "bodyHeight": 2751,
+        "pageId": "7:71"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "R02": {
+    "primaryPattern": "L195",
+    "profileId": "P06",
+    "scope": "screen",
+    "name": "통계",
+    "roleId": "statistics",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "29:347",
+        "name": "R02@ipad-landscape",
+        "pattern": "L195",
+        "scope": "screen",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999138327235
+        ],
+        "structure": "256:3526",
+        "bodyHeight": 2607,
+        "pageId": "7:74"
+      },
+      {
+        "id": "29:566",
+        "name": "R02@iphone-portrait",
+        "pattern": "L195",
+        "scope": "screen",
+        "viewport": {
+          "width": 402,
+          "height": 681,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999256424513
+        ],
+        "structure": "256:3532",
+        "bodyHeight": 4117,
+        "pageId": "7:74"
+      },
+      {
+        "id": "29:780",
+        "name": "R02@iphone-landscape",
+        "pattern": "L195",
+        "scope": "screen",
+        "viewport": {
+          "width": 756,
+          "height": 352,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999208192593
+        ],
+        "structure": "256:3535",
+        "bodyHeight": 4117,
+        "pageId": "7:74"
+      },
+      {
+        "id": "29:999",
+        "name": "R02@ipad-portrait",
+        "pattern": "L195",
+        "scope": "screen",
+        "viewport": {
+          "width": 1032,
+          "height": 1376,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999423289875
+        ],
+        "structure": "256:3538",
+        "bodyHeight": 2607,
+        "pageId": "7:74"
+      },
+      {
+        "id": "29:1218",
+        "name": "R02@ipad-narrow",
+        "pattern": "L195",
+        "scope": "screen",
+        "viewport": {
+          "width": 517,
+          "height": 1200,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.4000000575577127
+        ],
+        "structure": "256:3544",
+        "bodyHeight": 4149,
+        "pageId": "7:74"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "R03": {
+    "primaryPattern": "L197",
+    "profileId": "P09",
+    "scope": "screen",
+    "name": "일정·과제",
+    "roleId": "schedule",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "29:1432",
+        "name": "R03@ipad-landscape",
+        "pattern": "L197",
+        "scope": "screen",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999138327235
+        ],
+        "structure": "256:3547",
+        "bodyHeight": 2509,
+        "pageId": "7:74"
+      },
+      {
+        "id": "29:1643",
+        "name": "R03@iphone-portrait",
+        "pattern": "L197",
+        "scope": "screen",
+        "viewport": {
+          "width": 402,
+          "height": 681,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999256424513
+        ],
+        "structure": "256:3553",
+        "bodyHeight": 3140.84130859375,
+        "pageId": "7:74"
+      },
+      {
+        "id": "29:1849",
+        "name": "R03@iphone-landscape",
+        "pattern": "L197",
+        "scope": "screen",
+        "viewport": {
+          "width": 756,
+          "height": 352,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999208192593
+        ],
+        "structure": "256:3556",
+        "bodyHeight": 2851,
+        "pageId": "7:74"
+      },
+      {
+        "id": "29:2060",
+        "name": "R03@ipad-portrait",
+        "pattern": "L197",
+        "scope": "screen",
+        "viewport": {
+          "width": 1032,
+          "height": 1376,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999423289875
+        ],
+        "structure": "256:3559",
+        "bodyHeight": 2509,
+        "pageId": "7:74"
+      },
+      {
+        "id": "29:2271",
+        "name": "R03@ipad-narrow",
+        "pattern": "L197",
+        "scope": "screen",
+        "viewport": {
+          "width": 517,
+          "height": 1200,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.4000000575577127
+        ],
+        "structure": "256:3565",
+        "bodyHeight": 3188.5556640625,
+        "pageId": "7:74"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "R04": {
+    "primaryPattern": "L037",
+    "profileId": "P02",
+    "scope": "screen",
+    "name": "과목",
+    "roleId": "subjects",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "28:9818",
+        "name": "R04@ipad-landscape",
+        "pattern": "L037",
+        "scope": "screen",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999138327235
+        ],
+        "structure": "256:1467",
+        "bodyHeight": 657,
+        "pageId": "7:72"
+      },
+      {
+        "id": "28:9888",
+        "name": "R04@iphone-portrait",
+        "pattern": "L037",
+        "scope": "screen",
+        "viewport": {
+          "width": 402,
+          "height": 681,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999256424513
+        ],
+        "structure": "256:1472",
+        "bodyHeight": 1008,
+        "pageId": "7:72"
+      },
+      {
+        "id": "28:9953",
+        "name": "R04@iphone-landscape",
+        "pattern": "L037",
+        "scope": "screen",
+        "viewport": {
+          "width": 756,
+          "height": 352,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999208192593
+        ],
+        "structure": "256:1475",
+        "bodyHeight": 823,
+        "pageId": "7:72"
+      },
+      {
+        "id": "28:10023",
+        "name": "R04@ipad-portrait",
+        "pattern": "L037",
+        "scope": "screen",
+        "viewport": {
+          "width": 1032,
+          "height": 1376,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999423289875
+        ],
+        "structure": "256:1478",
+        "bodyHeight": 657,
+        "pageId": "7:72"
+      },
+      {
+        "id": "28:10093",
+        "name": "R04@ipad-narrow",
+        "pattern": "L037",
+        "scope": "screen",
+        "viewport": {
+          "width": 517,
+          "height": 1200,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.4000000575577127
+        ],
+        "structure": "256:1483",
+        "bodyHeight": 992,
+        "pageId": "7:72"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "R05": {
+    "primaryPattern": "L053",
+    "profileId": "P01",
+    "scope": "screen",
+    "name": "기록",
+    "roleId": "study-record",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "26:9103",
+        "name": "R05@ipad-landscape",
+        "pattern": "L053",
+        "scope": "screen",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999138327235
+        ],
+        "structure": "249:2607",
+        "bodyHeight": 1878,
+        "pageId": "7:71"
+      },
+      {
+        "id": "26:9203",
+        "name": "R05@iphone-portrait",
+        "pattern": "L053",
+        "scope": "screen",
+        "viewport": {
+          "width": 402,
+          "height": 681,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999256424513
+        ],
+        "structure": "255:2610",
+        "bodyHeight": 1854,
+        "pageId": "7:71"
+      },
+      {
+        "id": "26:9298",
+        "name": "R05@iphone-landscape",
+        "pattern": "L053",
+        "scope": "screen",
+        "viewport": {
+          "width": 756,
+          "height": 352,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999208192593
+        ],
+        "structure": "255:2613",
+        "bodyHeight": 1822,
+        "pageId": "7:71"
+      },
+      {
+        "id": "59:27556",
+        "name": "R05 날짜 펼침@ipad-landscape",
+        "pattern": "L053",
+        "scope": "screen",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999138327235
+        ],
+        "structure": "255:2735",
+        "bodyHeight": 2238,
+        "pageId": "7:71"
+      },
+      {
+        "id": "59:27729",
+        "name": "R05 날짜 펼침@iphone-portrait",
+        "pattern": "L053",
+        "scope": "screen",
+        "viewport": {
+          "width": 402,
+          "height": 681,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999256424513
+        ],
+        "structure": "255:2738",
+        "bodyHeight": 2198,
+        "pageId": "7:71"
+      },
+      {
+        "id": "59:27899",
+        "name": "R05 날짜 펼침@iphone-landscape",
+        "pattern": "L053",
+        "scope": "screen",
+        "viewport": {
+          "width": 756,
+          "height": 352,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999208192593
+        ],
+        "structure": "255:2741",
+        "bodyHeight": 2182,
+        "pageId": "7:71"
+      },
+      {
+        "id": "59:28072",
+        "name": "R05 날짜 펼침@ipad-portrait",
+        "pattern": "L053",
+        "scope": "screen",
+        "viewport": {
+          "width": 1032,
+          "height": 1376,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999423289875
+        ],
+        "structure": "255:2744",
+        "bodyHeight": 2238,
+        "pageId": "7:71"
+      },
+      {
+        "id": "59:28245",
+        "name": "R05 날짜 펼침@ipad-narrow",
+        "pattern": "L053",
+        "scope": "screen",
+        "viewport": {
+          "width": 517,
+          "height": 1200,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.4000000575577127
+        ],
+        "structure": "255:2747",
+        "bodyHeight": 2214,
+        "pageId": "7:71"
+      },
+      {
+        "id": "26:9398",
+        "name": "R05@ipad-portrait",
+        "pattern": "L053",
+        "scope": "screen",
+        "viewport": {
+          "width": 1032,
+          "height": 1376,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999423289875
+        ],
+        "structure": "255:2616",
+        "bodyHeight": 1878,
+        "pageId": "7:71"
+      },
+      {
+        "id": "26:9498",
+        "name": "R05@ipad-narrow",
+        "pattern": "L053",
+        "scope": "screen",
+        "viewport": {
+          "width": 517,
+          "height": 1200,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.4000000575577127
+        ],
+        "structure": "255:2619",
+        "bodyHeight": 1854,
+        "pageId": "7:71"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "R06": {
+    "primaryPattern": "L045",
+    "profileId": "P03",
+    "scope": "screen",
+    "name": "메모",
+    "roleId": "notes",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "27:19266",
+        "name": "R06@iphone-landscape",
+        "pattern": "L045",
+        "scope": "screen",
+        "viewport": {
+          "width": 756,
+          "height": 352,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999208192593
+        ],
+        "structure": "255:2631",
+        "bodyHeight": 1812,
+        "pageId": "7:71"
+      },
+      {
+        "id": "27:19358",
+        "name": "R06@ipad-portrait",
+        "pattern": "L045",
+        "scope": "screen",
+        "viewport": {
+          "width": 1032,
+          "height": 1376,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999423289875
+        ],
+        "structure": "255:2634",
+        "bodyHeight": 1419,
+        "pageId": "7:71"
+      },
+      {
+        "id": "27:19450",
+        "name": "R06@ipad-narrow",
+        "pattern": "L045",
+        "scope": "screen",
+        "viewport": {
+          "width": 517,
+          "height": 1200,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.4000000575577127
+        ],
+        "structure": "255:2640",
+        "bodyHeight": 2228,
+        "pageId": "7:71"
+      },
+      {
+        "id": "27:19087",
+        "name": "R06@ipad-landscape",
+        "pattern": "L045",
+        "scope": "screen",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999138327235
+        ],
+        "structure": "255:2622",
+        "bodyHeight": 1419,
+        "pageId": "7:71"
+      },
+      {
+        "id": "27:19179",
+        "name": "R06@iphone-portrait",
+        "pattern": "L045",
+        "scope": "screen",
+        "viewport": {
+          "width": 402,
+          "height": 681,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999256424513
+        ],
+        "structure": "255:2628",
+        "bodyHeight": 2283,
+        "pageId": "7:71"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "R07": {
+    "primaryPattern": "L045",
+    "profileId": "P03",
+    "scope": "screen",
+    "name": "강의 자료",
+    "roleId": "materials",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "28:10158",
+        "name": "R07@ipad-landscape",
+        "pattern": "L045",
+        "scope": "screen",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999138327235
+        ],
+        "structure": "256:1486",
+        "bodyHeight": 2609,
+        "pageId": "7:72"
+      },
+      {
+        "id": "28:10299",
+        "name": "R07@iphone-portrait",
+        "pattern": "L045",
+        "scope": "screen",
+        "viewport": {
+          "width": 402,
+          "height": 681,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999256424513
+        ],
+        "structure": "256:1492",
+        "bodyHeight": 3520,
+        "pageId": "7:72"
+      },
+      {
+        "id": "28:10435",
+        "name": "R07@iphone-landscape",
+        "pattern": "L045",
+        "scope": "screen",
+        "viewport": {
+          "width": 756,
+          "height": 352,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999208192593
+        ],
+        "structure": "256:1495",
+        "bodyHeight": 3018,
+        "pageId": "7:72"
+      },
+      {
+        "id": "28:10576",
+        "name": "R07@ipad-portrait",
+        "pattern": "L045",
+        "scope": "screen",
+        "viewport": {
+          "width": 1032,
+          "height": 1376,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999423289875
+        ],
+        "structure": "256:1498",
+        "bodyHeight": 2609,
+        "pageId": "7:72"
+      },
+      {
+        "id": "28:10717",
+        "name": "R07@ipad-narrow",
+        "pattern": "L045",
+        "scope": "screen",
+        "viewport": {
+          "width": 517,
+          "height": 1200,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.4000000575577127
+        ],
+        "structure": "256:1504",
+        "bodyHeight": 3516,
+        "pageId": "7:72"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "R08": {
+    "primaryPattern": "L082",
+    "profileId": "P05",
+    "scope": "screen",
+    "name": "코딩 연습",
+    "roleId": "code",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "28:12179",
+        "name": "R08@ipad-landscape",
+        "pattern": "L082",
+        "scope": "screen",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999138327235
+        ],
+        "structure": "256:2232",
+        "bodyHeight": 2234,
+        "pageId": "7:73"
+      },
+      {
+        "id": "28:12295",
+        "name": "R08@iphone-portrait",
+        "pattern": "L082",
+        "scope": "screen",
+        "viewport": {
+          "width": 402,
+          "height": 681,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999256424513
+        ],
+        "structure": "256:2238",
+        "bodyHeight": 3038,
+        "pageId": "7:73"
+      },
+      {
+        "id": "28:12406",
+        "name": "R08@iphone-landscape",
+        "pattern": "L082",
+        "scope": "screen",
+        "viewport": {
+          "width": 756,
+          "height": 352,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999208192593
+        ],
+        "structure": "256:2241",
+        "bodyHeight": 2782,
+        "pageId": "7:73"
+      },
+      {
+        "id": "28:12522",
+        "name": "R08@ipad-portrait",
+        "pattern": "L082",
+        "scope": "screen",
+        "viewport": {
+          "width": 1032,
+          "height": 1376,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999423289875
+        ],
+        "structure": "256:2244",
+        "bodyHeight": 2234,
+        "pageId": "7:73"
+      },
+      {
+        "id": "28:12638",
+        "name": "R08@ipad-narrow",
+        "pattern": "L082",
+        "scope": "screen",
+        "viewport": {
+          "width": 517,
+          "height": 1200,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.4000000575577127
+        ],
+        "structure": "256:2250",
+        "bodyHeight": 3070,
+        "pageId": "7:73"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "R09": {
+    "primaryPattern": "L194",
+    "profileId": "P05",
+    "scope": "screen",
+    "name": "수식 탐색",
+    "roleId": "math",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "28:12749",
+        "name": "R09@ipad-landscape",
+        "pattern": "L194",
+        "scope": "screen",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999138327235
+        ],
+        "structure": "256:2253",
+        "bodyHeight": 3177,
+        "pageId": "7:73"
+      },
+      {
+        "id": "28:12906",
+        "name": "R09@iphone-portrait",
+        "pattern": "L194",
+        "scope": "screen",
+        "viewport": {
+          "width": 402,
+          "height": 681,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999256424513
+        ],
+        "structure": "256:2259",
+        "bodyHeight": 3986,
+        "pageId": "7:73"
+      },
+      {
+        "id": "28:13058",
+        "name": "R09@iphone-landscape",
+        "pattern": "L194",
+        "scope": "screen",
+        "viewport": {
+          "width": 756,
+          "height": 352,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999208192593
+        ],
+        "structure": "256:2262",
+        "bodyHeight": 3464,
+        "pageId": "7:73"
+      },
+      {
+        "id": "28:13215",
+        "name": "R09@ipad-portrait",
+        "pattern": "L194",
+        "scope": "screen",
+        "viewport": {
+          "width": 1032,
+          "height": 1376,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999423289875
+        ],
+        "structure": "256:2265",
+        "bodyHeight": 3177,
+        "pageId": "7:73"
+      },
+      {
+        "id": "28:13372",
+        "name": "R09@ipad-narrow",
+        "pattern": "L194",
+        "scope": "screen",
+        "viewport": {
+          "width": 517,
+          "height": 1200,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.4000000575577127
+        ],
+        "structure": "256:2271",
+        "bodyHeight": 4008,
+        "pageId": "7:73"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "R10": {
+    "primaryPattern": "L193",
+    "profileId": "P04",
+    "scope": "screen",
+    "name": "시험 연습",
+    "roleId": "exam-practice",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "27:19537",
+        "name": "R10@ipad-landscape",
+        "pattern": "L193",
+        "scope": "screen",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999138327235
+        ],
+        "structure": "255:2643",
+        "bodyHeight": 2177,
+        "pageId": "7:71"
+      },
+      {
+        "id": "27:19629",
+        "name": "R10@iphone-portrait",
+        "pattern": "L193",
+        "scope": "screen",
+        "viewport": {
+          "width": 402,
+          "height": 681,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999256424513
+        ],
+        "structure": "255:2646",
+        "bodyHeight": 2283,
+        "pageId": "7:71"
+      },
+      {
+        "id": "27:19716",
+        "name": "R10@iphone-landscape",
+        "pattern": "L193",
+        "scope": "screen",
+        "viewport": {
+          "width": 756,
+          "height": 352,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999208192593
+        ],
+        "structure": "255:2649",
+        "bodyHeight": 2177,
+        "pageId": "7:71"
+      },
+      {
+        "id": "27:19808",
+        "name": "R10@ipad-portrait",
+        "pattern": "L193",
+        "scope": "screen",
+        "viewport": {
+          "width": 1032,
+          "height": 1376,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999423289875
+        ],
+        "structure": "255:2652",
+        "bodyHeight": 2177,
+        "pageId": "7:71"
+      },
+      {
+        "id": "27:19900",
+        "name": "R10@ipad-narrow",
+        "pattern": "L193",
+        "scope": "screen",
+        "viewport": {
+          "width": 517,
+          "height": 1200,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.4000000575577127
+        ],
+        "structure": "255:2655",
+        "bodyHeight": 2273,
+        "pageId": "7:71"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "R11": {
+    "primaryPattern": "L193",
+    "profileId": "P04",
+    "scope": "screen",
+    "name": "암기시험",
+    "roleId": "memory-test",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "27:19997",
+        "name": "R11@ipad-landscape",
+        "pattern": "L193",
+        "scope": "screen",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999138327235
+        ],
+        "structure": "255:2658",
+        "bodyHeight": 2930,
+        "pageId": "7:71"
+      },
+      {
+        "id": "27:20120",
+        "name": "R11@iphone-portrait",
+        "pattern": "L193",
+        "scope": "screen",
+        "viewport": {
+          "width": 402,
+          "height": 681,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999256424513
+        ],
+        "structure": "255:2661",
+        "bodyHeight": 3340,
+        "pageId": "7:71"
+      },
+      {
+        "id": "27:20238",
+        "name": "R11@iphone-landscape",
+        "pattern": "L193",
+        "scope": "screen",
+        "viewport": {
+          "width": 756,
+          "height": 352,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999208192593
+        ],
+        "structure": "255:2664",
+        "bodyHeight": 2930,
+        "pageId": "7:71"
+      },
+      {
+        "id": "27:20361",
+        "name": "R11@ipad-portrait",
+        "pattern": "L193",
+        "scope": "screen",
+        "viewport": {
+          "width": 1032,
+          "height": 1376,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999423289875
+        ],
+        "structure": "255:2667",
+        "bodyHeight": 2930,
+        "pageId": "7:71"
+      },
+      {
+        "id": "27:20484",
+        "name": "R11@ipad-narrow",
+        "pattern": "L193",
+        "scope": "screen",
+        "viewport": {
+          "width": 517,
+          "height": 1200,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.4000000575577127
+        ],
+        "structure": "255:2670",
+        "bodyHeight": 3346,
+        "pageId": "7:71"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "R12": {
+    "primaryPattern": "L037",
+    "profileId": "P02",
+    "scope": "screen",
+    "name": "자료 카드",
+    "roleId": "material-cards",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "28:11018",
+        "name": "R12@iphone-landscape",
+        "pattern": "L037",
+        "scope": "screen",
+        "viewport": {
+          "width": 756,
+          "height": 352,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999208192593
+        ],
+        "structure": "256:1516",
+        "bodyHeight": 1480,
+        "pageId": "7:72"
+      },
+      {
+        "id": "28:11098",
+        "name": "R12@ipad-portrait",
+        "pattern": "L037",
+        "scope": "screen",
+        "viewport": {
+          "width": 1032,
+          "height": 1376,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999423289875
+        ],
+        "structure": "256:1519",
+        "bodyHeight": 952,
+        "pageId": "7:72"
+      },
+      {
+        "id": "28:11178",
+        "name": "R12@ipad-narrow",
+        "pattern": "L037",
+        "scope": "screen",
+        "viewport": {
+          "width": 517,
+          "height": 1200,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.4000000575577127
+        ],
+        "structure": "256:1525",
+        "bodyHeight": 1640,
+        "pageId": "7:72"
+      },
+      {
+        "id": "28:10863",
+        "name": "R12@ipad-landscape",
+        "pattern": "L037",
+        "scope": "screen",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999138327235
+        ],
+        "structure": "256:1507",
+        "bodyHeight": 952,
+        "pageId": "7:72"
+      },
+      {
+        "id": "28:10943",
+        "name": "R12@iphone-portrait",
+        "pattern": "L037",
+        "scope": "screen",
+        "viewport": {
+          "width": 402,
+          "height": 681,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999256424513
+        ],
+        "structure": "256:1513",
+        "bodyHeight": 1624,
+        "pageId": "7:72"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "R13": {
+    "primaryPattern": "L045",
+    "profileId": "P02",
+    "scope": "screen",
+    "name": "개념 전집",
+    "roleId": "concepts",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "28:11253",
+        "name": "R13@ipad-landscape",
+        "pattern": "L045",
+        "scope": "screen",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999138327235
+        ],
+        "structure": "256:1528",
+        "bodyHeight": 1600,
+        "pageId": "7:72"
+      },
+      {
+        "id": "28:11372",
+        "name": "R13@iphone-portrait",
+        "pattern": "L045",
+        "scope": "screen",
+        "viewport": {
+          "width": 402,
+          "height": 681,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999256424513
+        ],
+        "structure": "256:1534",
+        "bodyHeight": 2561,
+        "pageId": "7:72"
+      },
+      {
+        "id": "28:11486",
+        "name": "R13@iphone-landscape",
+        "pattern": "L045",
+        "scope": "screen",
+        "viewport": {
+          "width": 756,
+          "height": 352,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999208192593
+        ],
+        "structure": "256:1537",
+        "bodyHeight": 2199,
+        "pageId": "7:72"
+      },
+      {
+        "id": "28:11605",
+        "name": "R13@ipad-portrait",
+        "pattern": "L045",
+        "scope": "screen",
+        "viewport": {
+          "width": 1032,
+          "height": 1376,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999423289875
+        ],
+        "structure": "256:1540",
+        "bodyHeight": 1600,
+        "pageId": "7:72"
+      },
+      {
+        "id": "28:11724",
+        "name": "R13@ipad-narrow",
+        "pattern": "L045",
+        "scope": "screen",
+        "viewport": {
+          "width": 517,
+          "height": 1200,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.4000000575577127
+        ],
+        "structure": "256:1546",
+        "bodyHeight": 2551,
+        "pageId": "7:72"
+      },
+      {
+        "id": "59:28484",
+        "name": "R13 공개 호환형@ipad-landscape",
+        "pattern": "L045",
+        "scope": "screen",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999138327235
+        ],
+        "structure": "256:1560",
+        "bodyHeight": 1566,
+        "pageId": "7:72"
+      },
+      {
+        "id": "59:28613",
+        "name": "R13 공개 호환형@iphone-portrait",
+        "pattern": "L045",
+        "scope": "screen",
+        "viewport": {
+          "width": 402,
+          "height": 681,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999256424513
+        ],
+        "structure": "256:1566",
+        "bodyHeight": 2515,
+        "pageId": "7:72"
+      },
+      {
+        "id": "59:28739",
+        "name": "R13 공개 호환형@iphone-landscape",
+        "pattern": "L045",
+        "scope": "screen",
+        "viewport": {
+          "width": 756,
+          "height": 352,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999208192593
+        ],
+        "structure": "256:1569",
+        "bodyHeight": 2165,
+        "pageId": "7:72"
+      },
+      {
+        "id": "59:28868",
+        "name": "R13 공개 호환형@ipad-portrait",
+        "pattern": "L045",
+        "scope": "screen",
+        "viewport": {
+          "width": 1032,
+          "height": 1376,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999423289875
+        ],
+        "structure": "256:1572",
+        "bodyHeight": 1566,
+        "pageId": "7:72"
+      },
+      {
+        "id": "59:28997",
+        "name": "R13 공개 호환형@ipad-narrow",
+        "pattern": "L045",
+        "scope": "screen",
+        "viewport": {
+          "width": 517,
+          "height": 1200,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.4000000575577127
+        ],
+        "structure": "256:1578",
+        "bodyHeight": 2453,
+        "pageId": "7:72"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "R14": {
+    "primaryPattern": "L193",
+    "profileId": "P04",
+    "scope": "screen",
+    "name": "주제 카드",
+    "roleId": "recall",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "27:20602",
+        "name": "R14@ipad-landscape",
+        "pattern": "L193",
+        "scope": "screen",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999138327235
+        ],
+        "structure": "255:2673",
+        "bodyHeight": 2530,
+        "pageId": "7:71"
+      },
+      {
+        "id": "27:20718",
+        "name": "R14@iphone-portrait",
+        "pattern": "L193",
+        "scope": "screen",
+        "viewport": {
+          "width": 402,
+          "height": 681,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999256424513
+        ],
+        "structure": "255:2676",
+        "bodyHeight": 2948,
+        "pageId": "7:71"
+      },
+      {
+        "id": "27:20829",
+        "name": "R14@iphone-landscape",
+        "pattern": "L193",
+        "scope": "screen",
+        "viewport": {
+          "width": 756,
+          "height": 352,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999208192593
+        ],
+        "structure": "255:2679",
+        "bodyHeight": 2530,
+        "pageId": "7:71"
+      },
+      {
+        "id": "27:20945",
+        "name": "R14@ipad-portrait",
+        "pattern": "L193",
+        "scope": "screen",
+        "viewport": {
+          "width": 1032,
+          "height": 1376,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999423289875
+        ],
+        "structure": "255:2682",
+        "bodyHeight": 2530,
+        "pageId": "7:71"
+      },
+      {
+        "id": "27:21061",
+        "name": "R14@ipad-narrow",
+        "pattern": "L193",
+        "scope": "screen",
+        "viewport": {
+          "width": 517,
+          "height": 1200,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.4000000575577127
+        ],
+        "structure": "255:2685",
+        "bodyHeight": 2954,
+        "pageId": "7:71"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "R15": {
+    "primaryPattern": "L062",
+    "profileId": "P07",
+    "scope": "screen",
+    "name": "Canvas",
+    "roleId": "canvas",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "29:2736",
+        "name": "R15@iphone-landscape",
+        "pattern": "L062",
+        "scope": "screen",
+        "viewport": {
+          "width": 756,
+          "height": 352,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999208192593
+        ],
+        "structure": "256:3574",
+        "bodyHeight": 2642,
+        "pageId": "7:74"
+      },
+      {
+        "id": "29:2863",
+        "name": "R15@ipad-portrait",
+        "pattern": "L062",
+        "scope": "screen",
+        "viewport": {
+          "width": 1032,
+          "height": 1376,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999423289875
+        ],
+        "structure": "256:3577",
+        "bodyHeight": 2642,
+        "pageId": "7:74"
+      },
+      {
+        "id": "29:2990",
+        "name": "R15@ipad-narrow",
+        "pattern": "L062",
+        "scope": "screen",
+        "viewport": {
+          "width": 517,
+          "height": 1200,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.4000000575577127
+        ],
+        "structure": "256:3580",
+        "bodyHeight": 3314,
+        "pageId": "7:74"
+      },
+      {
+        "id": "29:2487",
+        "name": "R15@ipad-landscape",
+        "pattern": "L062",
+        "scope": "screen",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999138327235
+        ],
+        "structure": "256:3568",
+        "bodyHeight": 2642,
+        "pageId": "7:74"
+      },
+      {
+        "id": "29:2614",
+        "name": "R15@iphone-portrait",
+        "pattern": "L062",
+        "scope": "screen",
+        "viewport": {
+          "width": 402,
+          "height": 681,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999256424513
+        ],
+        "structure": "256:3571",
+        "bodyHeight": 3282,
+        "pageId": "7:74"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "R16": {
+    "primaryPattern": "L196",
+    "profileId": "P07",
+    "scope": "screen",
+    "name": "그래프뷰",
+    "roleId": "graph",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "29:3112",
+        "name": "R16@ipad-landscape",
+        "pattern": "L196",
+        "scope": "screen",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999138327235
+        ],
+        "structure": "256:3583",
+        "bodyHeight": 1896,
+        "pageId": "7:74"
+      },
+      {
+        "id": "29:3220",
+        "name": "R16@iphone-portrait",
+        "pattern": "L196",
+        "scope": "screen",
+        "viewport": {
+          "width": 402,
+          "height": 681,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999256424513
+        ],
+        "structure": "256:3589",
+        "bodyHeight": 2605,
+        "pageId": "7:74"
+      },
+      {
+        "id": "29:3323",
+        "name": "R16@iphone-landscape",
+        "pattern": "L196",
+        "scope": "screen",
+        "viewport": {
+          "width": 756,
+          "height": 352,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999208192593
+        ],
+        "structure": "256:3592",
+        "bodyHeight": 2461,
+        "pageId": "7:74"
+      },
+      {
+        "id": "29:3431",
+        "name": "R16@ipad-portrait",
+        "pattern": "L196",
+        "scope": "screen",
+        "viewport": {
+          "width": 1032,
+          "height": 1376,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999423289875
+        ],
+        "structure": "256:3595",
+        "bodyHeight": 1896,
+        "pageId": "7:74"
+      },
+      {
+        "id": "29:3539",
+        "name": "R16@ipad-narrow",
+        "pattern": "L196",
+        "scope": "screen",
+        "viewport": {
+          "width": 517,
+          "height": 1200,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.4000000575577127
+        ],
+        "structure": "256:3601",
+        "bodyHeight": 2621,
+        "pageId": "7:74"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "R17": {
+    "primaryPattern": "L049",
+    "profileId": "P08",
+    "scope": "screen",
+    "name": "칸반보드",
+    "roleId": "board",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "29:3652",
+        "name": "R17@ipad-landscape",
+        "pattern": "L049",
+        "scope": "screen",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999138327235
+        ],
+        "structure": "256:3604",
+        "bodyHeight": 1233,
+        "pageId": "7:74"
+      },
+      {
+        "id": "29:3773",
+        "name": "R17@iphone-portrait",
+        "pattern": "L049",
+        "scope": "screen",
+        "viewport": {
+          "width": 402,
+          "height": 681,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999256424513
+        ],
+        "structure": "256:3609",
+        "bodyHeight": 3151,
+        "pageId": "7:74"
+      },
+      {
+        "id": "29:3894",
+        "name": "R17@iphone-landscape",
+        "pattern": "L049",
+        "scope": "screen",
+        "viewport": {
+          "width": 756,
+          "height": 352,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999208192593
+        ],
+        "structure": "256:3612",
+        "bodyHeight": 2639,
+        "pageId": "7:74"
+      },
+      {
+        "id": "29:4015",
+        "name": "R17@ipad-portrait",
+        "pattern": "L049",
+        "scope": "screen",
+        "viewport": {
+          "width": 1032,
+          "height": 1376,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999423289875
+        ],
+        "structure": "256:3615",
+        "bodyHeight": 1568,
+        "pageId": "7:74"
+      },
+      {
+        "id": "29:4136",
+        "name": "R17@ipad-narrow",
+        "pattern": "L049",
+        "scope": "screen",
+        "viewport": {
+          "width": 517,
+          "height": 1200,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.4000000575577127
+        ],
+        "structure": "256:3621",
+        "bodyHeight": 3183,
+        "pageId": "7:74"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "R18": {
+    "primaryPattern": "L055",
+    "profileId": "P02",
+    "scope": "screen",
+    "name": "찾기",
+    "roleId": "search",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "29:4495",
+        "name": "R18@ipad-landscape",
+        "pattern": "L055",
+        "scope": "screen",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999138327235
+        ],
+        "structure": "256:6768",
+        "bodyHeight": 1228,
+        "pageId": "7:75"
+      },
+      {
+        "id": "29:4560",
+        "name": "R18@iphone-portrait",
+        "pattern": "L055",
+        "scope": "screen",
+        "viewport": {
+          "width": 402,
+          "height": 681,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999256424513
+        ],
+        "structure": "256:6771",
+        "bodyHeight": 1324,
+        "pageId": "7:75"
+      },
+      {
+        "id": "29:4625",
+        "name": "R18@iphone-landscape",
+        "pattern": "L055",
+        "scope": "screen",
+        "viewport": {
+          "width": 756,
+          "height": 352,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999208192593
+        ],
+        "structure": "256:6774",
+        "bodyHeight": 1228,
+        "pageId": "7:75"
+      },
+      {
+        "id": "29:4690",
+        "name": "R18@ipad-portrait",
+        "pattern": "L055",
+        "scope": "screen",
+        "viewport": {
+          "width": 1032,
+          "height": 1376,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999423289875
+        ],
+        "structure": "256:6777",
+        "bodyHeight": 1228,
+        "pageId": "7:75"
+      },
+      {
+        "id": "29:4755",
+        "name": "R18@ipad-narrow",
+        "pattern": "L055",
+        "scope": "screen",
+        "viewport": {
+          "width": 517,
+          "height": 1200,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.4000000575577127
+        ],
+        "structure": "256:6780",
+        "bodyHeight": 1324,
+        "pageId": "7:75"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "R19": {
+    "primaryPattern": "L189",
+    "profileId": "P02",
+    "scope": "screen",
+    "name": "과목 상세",
+    "roleId": "subjects",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "28:11848",
+        "name": "R19@ipad-landscape",
+        "pattern": "L189",
+        "scope": "screen",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999138327235
+        ],
+        "structure": "256:1549",
+        "bodyHeight": 614,
+        "pageId": "7:72"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "R20": {
+    "primaryPattern": "L045",
+    "profileId": "P01",
+    "scope": "screen",
+    "name": "단원·주제 상세",
+    "roleId": "study-record",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "28:8964",
+        "name": "R20@ipad-landscape",
+        "pattern": "L045",
+        "scope": "screen",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999138327235
+        ],
+        "structure": "255:2688",
+        "bodyHeight": 717,
+        "pageId": "7:71"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "R21": {
+    "primaryPattern": "L053",
+    "profileId": "P01",
+    "scope": "screen",
+    "name": "선택 주제 기록",
+    "roleId": "study-record",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "28:9012",
+        "name": "R21@ipad-landscape",
+        "pattern": "L053",
+        "scope": "screen",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999138327235
+        ],
+        "structure": "255:2691",
+        "bodyHeight": 662,
+        "pageId": "7:71"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "R22": {
+    "primaryPattern": "L190",
+    "profileId": "P03",
+    "scope": "screen",
+    "name": "메모 상세",
+    "roleId": "notes",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "28:9054",
+        "name": "R22@ipad-landscape",
+        "pattern": "L190",
+        "scope": "screen",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999138327235
+        ],
+        "structure": "255:2694",
+        "bodyHeight": 708,
+        "pageId": "7:71"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "R23": {
+    "primaryPattern": "L190",
+    "profileId": "P03",
+    "scope": "screen",
+    "name": "자료 상세·새 자료",
+    "roleId": "materials",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "28:9093",
+        "name": "R23@ipad-landscape",
+        "pattern": "L190",
+        "scope": "screen",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999138327235
+        ],
+        "structure": "255:2697",
+        "bodyHeight": 922,
+        "pageId": "7:71"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "R24": {
+    "primaryPattern": "L045",
+    "profileId": "P10",
+    "scope": "screen",
+    "name": "강의 자료 휴지통",
+    "roleId": "recovery",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "29:4824",
+        "name": "R24@ipad-landscape",
+        "pattern": "L045",
+        "scope": "screen",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999138327235
+        ],
+        "structure": "256:6783",
+        "bodyHeight": 368,
+        "pageId": "7:75"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "R25": {
+    "primaryPattern": "L082",
+    "profileId": "P05",
+    "scope": "screen",
+    "name": "코드 예제 상세",
+    "roleId": "code",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "29:260",
+        "name": "R25@ipad-landscape",
+        "pattern": "L082",
+        "scope": "screen",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999138327235
+        ],
+        "structure": "256:2274",
+        "bodyHeight": 1452,
+        "pageId": "7:73"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "R26": {
+    "primaryPattern": "L193",
+    "profileId": "P04",
+    "scope": "screen",
+    "name": "주제 지정 시험 연습",
+    "roleId": "exam-practice",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "28:9134",
+        "name": "R26@ipad-landscape",
+        "pattern": "L193",
+        "scope": "screen",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999138327235
+        ],
+        "structure": "255:2703",
+        "bodyHeight": 597,
+        "pageId": "7:71"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "R27": {
+    "primaryPattern": "L193",
+    "profileId": "P04",
+    "scope": "screen",
+    "name": "주제 지정 암기시험",
+    "roleId": "memory-test",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "28:9172",
+        "name": "R27@ipad-landscape",
+        "pattern": "L193",
+        "scope": "screen",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999138327235
+        ],
+        "structure": "255:2706",
+        "bodyHeight": 703,
+        "pageId": "7:71"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "R28": {
+    "primaryPattern": "L193",
+    "profileId": "P04",
+    "scope": "screen",
+    "name": "암기시험 결과",
+    "roleId": "memory-test",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "28:9213",
+        "name": "R28@ipad-landscape",
+        "pattern": "L193",
+        "scope": "screen",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999138327235
+        ],
+        "structure": "255:2709",
+        "bodyHeight": 511,
+        "pageId": "7:71"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "R29": {
+    "primaryPattern": "L193",
+    "profileId": "P04",
+    "scope": "screen",
+    "name": "예약 복습",
+    "roleId": "recall",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "28:9251",
+        "name": "R29@ipad-landscape",
+        "pattern": "L193",
+        "scope": "screen",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999138327235
+        ],
+        "structure": "255:2712",
+        "bodyHeight": 1161,
+        "pageId": "7:71"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "R30": {
+    "primaryPattern": "L045",
+    "profileId": "P03",
+    "scope": "screen",
+    "name": "자유 기록 목록·기본 글",
+    "roleId": "notes",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "28:9288",
+        "name": "R30@ipad-landscape",
+        "pattern": "L045",
+        "scope": "screen",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999138327235
+        ],
+        "structure": "255:2715",
+        "bodyHeight": 494,
+        "pageId": "7:71"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "R31": {
+    "primaryPattern": "L025",
+    "profileId": "P03",
+    "scope": "screen",
+    "name": "새 자유 기록",
+    "roleId": "notes",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "28:9326",
+        "name": "R31@ipad-landscape",
+        "pattern": "L025",
+        "scope": "screen",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999138327235
+        ],
+        "structure": "255:2718",
+        "bodyHeight": 455,
+        "pageId": "7:71"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "R32": {
+    "primaryPattern": "L025",
+    "profileId": "P03",
+    "scope": "screen",
+    "name": "자유 기록 상세",
+    "roleId": "notes",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "28:9361",
+        "name": "R32@ipad-landscape",
+        "pattern": "L025",
+        "scope": "screen",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999138327235
+        ],
+        "structure": "255:2721",
+        "bodyHeight": 455,
+        "pageId": "7:71"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "R33": {
+    "primaryPattern": "L198",
+    "profileId": "P10",
+    "scope": "screen",
+    "name": "전체 백업·복구",
+    "roleId": "recovery",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "29:4858",
+        "name": "R33@ipad-landscape",
+        "pattern": "L198",
+        "scope": "screen",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999138327235
+        ],
+        "structure": "256:6786",
+        "bodyHeight": 368,
+        "pageId": "7:75"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "R34": {
+    "primaryPattern": "L045",
+    "profileId": "P10",
+    "scope": "screen",
+    "name": "휴지통",
+    "roleId": "recovery",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "29:4894",
+        "name": "R34@ipad-landscape",
+        "pattern": "L045",
+        "scope": "screen",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999138327235
+        ],
+        "structure": "256:6789",
+        "bodyHeight": 368,
+        "pageId": "7:75"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "R35": {
+    "primaryPattern": "L045",
+    "profileId": "P10",
+    "scope": "screen",
+    "name": "초안 보관본",
+    "roleId": "recovery",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "29:4926",
+        "name": "R35@ipad-landscape",
+        "pattern": "L045",
+        "scope": "screen",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999138327235
+        ],
+        "structure": "256:6792",
+        "bodyHeight": 427,
+        "pageId": "7:75"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "R36": {
+    "primaryPattern": "L025",
+    "profileId": "P01",
+    "scope": "screen",
+    "name": "내 생각",
+    "roleId": "reflection",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "29:4257",
+        "name": "R36@ipad-landscape",
+        "pattern": "L025",
+        "scope": "screen",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999138327235
+        ],
+        "structure": "256:3624",
+        "bodyHeight": 494,
+        "pageId": "7:74"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "R37": {
+    "primaryPattern": "L081",
+    "profileId": "P10",
+    "scope": "screen",
+    "name": "도움말·문제 메모",
+    "roleId": "workspace-controls",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "29:4964",
+        "name": "R37@ipad-landscape",
+        "pattern": "L081",
+        "scope": "screen",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999138327235
+        ],
+        "structure": "256:6795",
+        "bodyHeight": 496,
+        "pageId": "7:75"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "R38": {
+    "primaryPattern": "L040",
+    "profileId": "P10",
+    "scope": "screen",
+    "name": "소개",
+    "roleId": "workspace-controls",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "29:5002",
+        "name": "R38@ipad-landscape",
+        "pattern": "L040",
+        "scope": "screen",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999138327235
+        ],
+        "structure": "256:6798",
+        "bodyHeight": 363,
+        "pageId": "7:75"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "R39": {
+    "primaryPattern": "L198",
+    "profileId": "P10",
+    "scope": "screen",
+    "name": "기존 구독 링크",
+    "roleId": "workspace-controls",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "29:5033",
+        "name": "R39@ipad-landscape",
+        "pattern": "L198",
+        "scope": "screen",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999138327235
+        ],
+        "structure": "256:6801",
+        "bodyHeight": 309,
+        "pageId": "7:75"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "R40": {
+    "primaryPattern": "L198",
+    "profileId": "P10",
+    "scope": "screen",
+    "name": "기존 계정 링크",
+    "roleId": "account",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "29:5063",
+        "name": "R40@ipad-landscape",
+        "pattern": "L198",
+        "scope": "screen",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999138327235
+        ],
+        "structure": "256:6804",
+        "bodyHeight": 309,
+        "pageId": "7:75"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "R41": {
+    "primaryPattern": "L025",
+    "profileId": "P02",
+    "scope": "screen",
+    "name": "찾을 수 없는 항목",
+    "roleId": "search",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "29:5093",
+        "name": "R41@ipad-landscape",
+        "pattern": "L025",
+        "scope": "screen",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [
+          2.3999999138327235
+        ],
+        "structure": "256:6807",
+        "bodyHeight": 368,
+        "pageId": "7:75"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "O01": {
+    "primaryPattern": "L053",
+    "profileId": "P02",
+    "scope": "overlay",
+    "name": "학기 추가",
+    "roleId": "subjects",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "29:5125",
+        "name": "O01@ipad-landscape",
+        "pattern": "L053",
+        "scope": "overlay",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [],
+        "structure": "256:6808",
+        "bodyHeight": 377,
+        "pageId": "7:75"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "O02": {
+    "primaryPattern": "L053",
+    "profileId": "P02",
+    "scope": "overlay",
+    "name": "과목 추가",
+    "roleId": "subjects",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "28:11892",
+        "name": "O02@ipad-landscape",
+        "pattern": "L053",
+        "scope": "overlay",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [],
+        "structure": "256:1550",
+        "bodyHeight": 377,
+        "pageId": "7:72"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "O03": {
+    "primaryPattern": "L053",
+    "profileId": "P02",
+    "scope": "overlay",
+    "name": "목차 추가",
+    "roleId": "outline",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "28:11924",
+        "name": "O03@ipad-landscape",
+        "pattern": "L053",
+        "scope": "overlay",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [],
+        "structure": "256:1551",
+        "bodyHeight": 522,
+        "pageId": "7:72"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "O04": {
+    "primaryPattern": "L053",
+    "profileId": "P02",
+    "scope": "overlay",
+    "name": "여러 목차 추가",
+    "roleId": "outline",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "28:11960",
+        "name": "O04@ipad-landscape",
+        "pattern": "L053",
+        "scope": "overlay",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [],
+        "structure": "256:1552",
+        "bodyHeight": 509,
+        "pageId": "7:72"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "O05": {
+    "primaryPattern": "L053",
+    "profileId": "P10",
+    "scope": "overlay",
+    "name": "휴지통으로 옮길까요?",
+    "roleId": "recovery",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "29:5158",
+        "name": "O05@ipad-landscape",
+        "pattern": "L053",
+        "scope": "overlay",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [],
+        "structure": "256:6809",
+        "bodyHeight": 368,
+        "pageId": "7:75"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "O06": {
+    "primaryPattern": "L053",
+    "profileId": "P02",
+    "scope": "overlay",
+    "name": "이름 수정",
+    "roleId": "outline",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "28:11995",
+        "name": "O06@ipad-landscape",
+        "pattern": "L053",
+        "scope": "overlay",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [],
+        "structure": "256:1553",
+        "bodyHeight": 377,
+        "pageId": "7:72"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "O07": {
+    "primaryPattern": "L053",
+    "profileId": "P02",
+    "scope": "overlay",
+    "name": "목차 위치 옮기기",
+    "roleId": "outline",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "28:12027",
+        "name": "O07@ipad-landscape",
+        "pattern": "L053",
+        "scope": "overlay",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [],
+        "structure": "256:1554",
+        "bodyHeight": 415,
+        "pageId": "7:72"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "O08": {
+    "primaryPattern": "L053",
+    "profileId": "P10",
+    "scope": "overlay",
+    "name": "가입 계정 관리",
+    "roleId": "account",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "29:5192",
+        "name": "O08@ipad-landscape",
+        "pattern": "L053",
+        "scope": "overlay",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [],
+        "structure": "256:6810",
+        "bodyHeight": 309,
+        "pageId": "7:75"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "O09": {
+    "primaryPattern": "L053",
+    "profileId": "P10",
+    "scope": "overlay",
+    "name": "내 계정",
+    "roleId": "account",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "29:5226",
+        "name": "O09@ipad-landscape",
+        "pattern": "L053",
+        "scope": "overlay",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [],
+        "structure": "256:6811",
+        "bodyHeight": 377,
+        "pageId": "7:75"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "O10": {
+    "primaryPattern": "L053",
+    "profileId": "P01",
+    "scope": "overlay",
+    "name": "다음에 펼칠 곳을 남겨둘까요?",
+    "roleId": "today",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "29:5262",
+        "name": "O10@ipad-landscape",
+        "pattern": "L053",
+        "scope": "overlay",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [],
+        "structure": "256:6812",
+        "bodyHeight": 455,
+        "pageId": "7:75"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "O11": {
+    "primaryPattern": "L053",
+    "profileId": "P01",
+    "scope": "overlay",
+    "name": "공부 기준 조정",
+    "roleId": "study-record",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "28:9398",
+        "name": "O11@ipad-landscape",
+        "pattern": "L053",
+        "scope": "overlay",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [],
+        "structure": "255:2722",
+        "bodyHeight": 600,
+        "pageId": "7:71"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "O12": {
+    "primaryPattern": "L198",
+    "profileId": "P10",
+    "scope": "overlay",
+    "name": "이어가기 설정 복구",
+    "roleId": "workspace-controls",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "29:5297",
+        "name": "O12@ipad-landscape",
+        "pattern": "L198",
+        "scope": "overlay",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [],
+        "structure": "256:6813",
+        "bodyHeight": 368,
+        "pageId": "7:75"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "O13": {
+    "primaryPattern": "L053",
+    "profileId": "P09",
+    "scope": "overlay",
+    "name": "시험·과제·강의 일정",
+    "roleId": "schedule",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "29:4293",
+        "name": "O13@ipad-landscape",
+        "pattern": "L053",
+        "scope": "overlay",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [],
+        "structure": "256:3625",
+        "bodyHeight": 961,
+        "pageId": "7:74"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "O14": {
+    "primaryPattern": "L194",
+    "profileId": "P05",
+    "scope": "overlay",
+    "name": "수식 탐색 전체 화면",
+    "roleId": "math",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "29:295",
+        "name": "O14@ipad-landscape",
+        "pattern": "L194",
+        "scope": "overlay",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [],
+        "structure": "256:2275",
+        "bodyHeight": 718,
+        "pageId": "7:73"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "O15": {
+    "primaryPattern": "L048",
+    "profileId": "P10",
+    "scope": "overlay",
+    "name": "움직임 위젯",
+    "roleId": "workspace-controls",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "29:5331",
+        "name": "O15@ipad-landscape",
+        "pattern": "L048",
+        "scope": "overlay",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [],
+        "structure": "256:6814",
+        "bodyHeight": 415,
+        "pageId": "7:75"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "O16": {
+    "primaryPattern": "L053",
+    "profileId": "P09",
+    "scope": "overlay",
+    "name": "다음에 확인할 내용",
+    "roleId": "schedule",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "28:9437",
+        "name": "O16@ipad-landscape",
+        "pattern": "L053",
+        "scope": "overlay",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [],
+        "structure": "255:2723",
+        "bodyHeight": 709,
+        "pageId": "7:71"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "O17": {
+    "primaryPattern": "L053",
+    "profileId": "P09",
+    "scope": "overlay",
+    "name": "학기 기간",
+    "roleId": "schedule",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "28:9477",
+        "name": "O17@ipad-landscape",
+        "pattern": "L053",
+        "scope": "overlay",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [],
+        "structure": "255:2724",
+        "bodyHeight": 629,
+        "pageId": "7:71"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "O18": {
+    "primaryPattern": "L053",
+    "profileId": "P04",
+    "scope": "overlay",
+    "name": "지금 확인한 결과",
+    "roleId": "exam-practice",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "28:9516",
+        "name": "O18@ipad-landscape",
+        "pattern": "L053",
+        "scope": "overlay",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [],
+        "structure": "255:2725",
+        "bodyHeight": 890,
+        "pageId": "7:71"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "O19": {
+    "primaryPattern": "L053",
+    "profileId": "P02",
+    "scope": "overlay",
+    "name": "공부할 목차 만들기",
+    "roleId": "outline",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "28:12060",
+        "name": "O19@ipad-landscape",
+        "pattern": "L053",
+        "scope": "overlay",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [],
+        "structure": "256:1555",
+        "bodyHeight": 427,
+        "pageId": "7:72"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "O20": {
+    "primaryPattern": "L053",
+    "profileId": "P04",
+    "scope": "overlay",
+    "name": "답안에서 수행 결과 남기기",
+    "roleId": "exam-practice",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "28:9561",
+        "name": "O20@ipad-landscape",
+        "pattern": "L053",
+        "scope": "overlay",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [],
+        "structure": "255:2726",
+        "bodyHeight": 745,
+        "pageId": "7:71"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "O21": {
+    "primaryPattern": "L198",
+    "profileId": "P10",
+    "scope": "overlay",
+    "name": "내 기록의 저장 상태",
+    "roleId": "recovery",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "29:5374",
+        "name": "O21@ipad-landscape",
+        "pattern": "L198",
+        "scope": "overlay",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [],
+        "structure": "256:6815",
+        "bodyHeight": 368,
+        "pageId": "7:75"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "O22": {
+    "primaryPattern": "L053",
+    "profileId": "P02",
+    "scope": "overlay",
+    "name": "사진으로 목차·내용 가져오기",
+    "roleId": "outline",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "28:12098",
+        "name": "O22@ipad-landscape",
+        "pattern": "L053",
+        "scope": "overlay",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [],
+        "structure": "256:1556",
+        "bodyHeight": 368,
+        "pageId": "7:72"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "O23": {
+    "primaryPattern": "L053",
+    "profileId": "P03",
+    "scope": "overlay",
+    "name": "메모를 휴지통으로 옮길까요?",
+    "roleId": "notes",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "28:9602",
+        "name": "O23@ipad-landscape",
+        "pattern": "L053",
+        "scope": "overlay",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [],
+        "structure": "255:2727",
+        "bodyHeight": 366,
+        "pageId": "7:71"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "O24": {
+    "primaryPattern": "L053",
+    "profileId": "P03",
+    "scope": "overlay",
+    "name": "작은 메모",
+    "roleId": "notes",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "28:9636",
+        "name": "O24@ipad-landscape",
+        "pattern": "L053",
+        "scope": "overlay",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [],
+        "structure": "255:2728",
+        "bodyHeight": 455,
+        "pageId": "7:71"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "O25": {
+    "primaryPattern": "L053",
+    "profileId": "P09",
+    "scope": "overlay",
+    "name": "강의 주차 만들기",
+    "roleId": "schedule",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "29:4342",
+        "name": "O25@ipad-landscape",
+        "pattern": "L053",
+        "scope": "overlay",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [],
+        "structure": "256:3626",
+        "bodyHeight": 629,
+        "pageId": "7:74"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "O26": {
+    "primaryPattern": "L043",
+    "profileId": "P06",
+    "scope": "overlay",
+    "name": "통계의 원기록",
+    "roleId": "statistics",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "29:4383",
+        "name": "O26@ipad-landscape",
+        "pattern": "L043",
+        "scope": "overlay",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [],
+        "structure": "256:3627",
+        "bodyHeight": 368,
+        "pageId": "7:74"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "O27": {
+    "primaryPattern": "L053",
+    "profileId": "P08",
+    "scope": "overlay",
+    "name": "카드 추가·편집",
+    "roleId": "board",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "29:4417",
+        "name": "O27@ipad-landscape",
+        "pattern": "L053",
+        "scope": "overlay",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [],
+        "structure": "256:3628",
+        "bodyHeight": 709,
+        "pageId": "7:74"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "O28": {
+    "primaryPattern": "L053",
+    "profileId": "P08",
+    "scope": "overlay",
+    "name": "보드 열",
+    "roleId": "board",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "29:4461",
+        "name": "O28@ipad-landscape",
+        "pattern": "L053",
+        "scope": "overlay",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [],
+        "structure": "256:3629",
+        "bodyHeight": 377,
+        "pageId": "7:74"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "O29": {
+    "primaryPattern": "L053",
+    "profileId": "P01",
+    "scope": "overlay",
+    "name": "이 주제부터 해볼까요?",
+    "roleId": "today",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "28:9671",
+        "name": "O29@ipad-landscape",
+        "pattern": "L053",
+        "scope": "overlay",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [],
+        "structure": "255:2729",
+        "bodyHeight": 366,
+        "pageId": "7:71"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "U01": {
+    "primaryPattern": "L064",
+    "profileId": "P10",
+    "scope": "surface",
+    "name": "앱 내비게이션·범위·테마",
+    "roleId": "workspace-controls",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "29:5410",
+        "name": "U01@ipad-landscape",
+        "pattern": "L064",
+        "scope": "surface",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [],
+        "structure": "256:6816",
+        "bodyHeight": 941,
+        "pageId": "7:75"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "U02": {
+    "primaryPattern": "L053",
+    "profileId": "P10",
+    "scope": "surface",
+    "name": "개인 공간 진입·인증",
+    "roleId": "account",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "29:5463",
+        "name": "U02@ipad-landscape",
+        "pattern": "L053",
+        "scope": "surface",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [],
+        "structure": "256:6817",
+        "bodyHeight": 309,
+        "pageId": "7:75"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "U03": {
+    "primaryPattern": "L053",
+    "profileId": "P10",
+    "scope": "surface",
+    "name": "로그인·가입",
+    "roleId": "account",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "29:5493",
+        "name": "U03@ipad-landscape",
+        "pattern": "L053",
+        "scope": "surface",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [],
+        "structure": "256:6818",
+        "bodyHeight": 526,
+        "pageId": "7:75"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "U04": {
+    "primaryPattern": "L025",
+    "profileId": "P10",
+    "scope": "surface",
+    "name": "가입 승인 대기·제한",
+    "roleId": "account",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "29:5533",
+        "name": "U04@ipad-landscape",
+        "pattern": "L025",
+        "scope": "surface",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [],
+        "structure": "256:6819",
+        "bodyHeight": 309,
+        "pageId": "7:75"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "U05": {
+    "primaryPattern": "L198",
+    "profileId": "P10",
+    "scope": "surface",
+    "name": "내 계정·탈퇴",
+    "roleId": "account",
+    "mode": "new-layout-projection",
+    "frames": [
+      {
+        "entityId": "U05",
+        "pattern": "L198",
+        "boardId": "263:900",
+        "variantIds": [
+          "263:903",
+          "263:925"
+        ],
+        "sourceCardId": "74:521"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "U06": {
+    "primaryPattern": "L045",
+    "profileId": "P10",
+    "scope": "surface",
+    "name": "가입 계정 관리",
+    "roleId": "account",
+    "mode": "new-layout-projection",
+    "frames": [
+      {
+        "entityId": "U06",
+        "pattern": "L045",
+        "boardId": "263:948",
+        "variantIds": [
+          "263:951",
+          "263:962"
+        ],
+        "sourceCardId": "74:527"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "U07": {
+    "primaryPattern": "L198",
+    "profileId": "P10",
+    "scope": "surface",
+    "name": "내 기록의 저장 상태",
+    "roleId": "recovery",
+    "mode": "new-layout-projection",
+    "frames": [
+      {
+        "entityId": "U07",
+        "pattern": "L198",
+        "boardId": "263:972",
+        "variantIds": [
+          "263:975",
+          "263:997"
+        ],
+        "sourceCardId": "74:533"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "U08": {
+    "primaryPattern": "L198",
+    "profileId": "P10",
+    "scope": "surface",
+    "name": "전체 복구 진입",
+    "roleId": "recovery",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "29:5565",
+        "name": "U08@ipad-landscape",
+        "pattern": "L198",
+        "scope": "surface",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [],
+        "structure": "256:6820",
+        "bodyHeight": 309,
+        "pageId": "7:75"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "U09": {
+    "primaryPattern": "L025",
+    "profileId": "P01",
+    "scope": "surface",
+    "name": "이어가기와 다음 위치",
+    "roleId": "today",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "29:5597",
+        "name": "U09@ipad-landscape",
+        "pattern": "L025",
+        "scope": "surface",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [],
+        "structure": "256:6821",
+        "bodyHeight": 366,
+        "pageId": "7:75"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "U10": {
+    "primaryPattern": "L053",
+    "profileId": "P10",
+    "scope": "surface",
+    "name": "읽기 폭·이어가기 복구",
+    "roleId": "workspace-controls",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "29:5631",
+        "name": "U10@ipad-landscape",
+        "pattern": "L053",
+        "scope": "surface",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [],
+        "structure": "256:6822",
+        "bodyHeight": 415,
+        "pageId": "7:75"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "U11": {
+    "primaryPattern": "L048",
+    "profileId": "P01",
+    "scope": "surface",
+    "name": "천문대 원본 위젯",
+    "roleId": "today",
+    "mode": "new-layout-projection",
+    "frames": [
+      {
+        "entityId": "U11",
+        "pattern": "L048",
+        "boardId": "263:1020",
+        "variantIds": [
+          "263:1023",
+          "263:1034"
+        ],
+        "sourceCardId": "74:557"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "U12": {
+    "primaryPattern": "L048",
+    "profileId": "P01",
+    "scope": "surface",
+    "name": "천문대 세부 렌더러",
+    "roleId": "today",
+    "mode": "new-layout-projection",
+    "frames": [
+      {
+        "entityId": "U12",
+        "pattern": "L048",
+        "boardId": "263:32521",
+        "variantIds": [
+          "263:32524",
+          "263:32535"
+        ],
+        "sourceCardId": "74:563"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "U13": {
+    "primaryPattern": "L048",
+    "profileId": "P01",
+    "scope": "surface",
+    "name": "작은 도구와 시계",
+    "roleId": "today",
+    "mode": "new-layout-projection",
+    "frames": [
+      {
+        "entityId": "U13",
+        "pattern": "L048",
+        "boardId": "263:32547",
+        "variantIds": [
+          "263:32550",
+          "263:32561"
+        ],
+        "sourceCardId": "74:569"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "U14": {
+    "primaryPattern": "L025",
+    "profileId": "P01",
+    "scope": "surface",
+    "name": "오늘·한 주 공부",
+    "roleId": "today",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "28:9705",
+        "name": "U14@ipad-landscape",
+        "pattern": "L025",
+        "scope": "surface",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [],
+        "structure": "255:2730",
+        "bodyHeight": 425,
+        "pageId": "7:71"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "U15": {
+    "primaryPattern": "L025",
+    "profileId": "P01",
+    "scope": "surface",
+    "name": "공부 시작 제안",
+    "roleId": "today",
+    "mode": "new-layout-projection",
+    "frames": [
+      {
+        "entityId": "U15",
+        "pattern": "L025",
+        "boardId": "263:32573",
+        "variantIds": [
+          "263:32576",
+          "263:32588"
+        ],
+        "sourceCardId": "74:581"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "U16": {
+    "primaryPattern": "L189",
+    "profileId": "P02",
+    "scope": "surface",
+    "name": "목차와 항목 관리",
+    "roleId": "outline",
+    "mode": "new-layout-projection",
+    "frames": [
+      {
+        "entityId": "U16",
+        "pattern": "L189",
+        "boardId": "263:32601",
+        "variantIds": [
+          "263:32604",
+          "263:32615"
+        ],
+        "sourceCardId": "74:587"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "U17": {
+    "primaryPattern": "L053",
+    "profileId": "P02",
+    "scope": "surface",
+    "name": "표·사진 목차 만들기",
+    "roleId": "outline",
+    "mode": "new-layout-projection",
+    "frames": [
+      {
+        "entityId": "U17",
+        "pattern": "L053",
+        "boardId": "263:32625",
+        "variantIds": [
+          "263:32628",
+          "263:32650"
+        ],
+        "sourceCardId": "74:593"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "U18": {
+    "primaryPattern": "L197",
+    "profileId": "P09",
+    "scope": "surface",
+    "name": "학기·강의 주차",
+    "roleId": "schedule",
+    "mode": "new-layout-projection",
+    "frames": [
+      {
+        "entityId": "U18",
+        "pattern": "L197",
+        "boardId": "263:32673",
+        "variantIds": [
+          "263:32676",
+          "263:32687"
+        ],
+        "sourceCardId": "74:599"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "U19": {
+    "primaryPattern": "L053",
+    "profileId": "P01",
+    "scope": "surface",
+    "name": "공부 기준·TRACE",
+    "roleId": "study-record",
+    "mode": "new-layout-projection",
+    "frames": [
+      {
+        "entityId": "U19",
+        "pattern": "L053",
+        "boardId": "263:32697",
+        "variantIds": [
+          "263:32700",
+          "263:32722"
+        ],
+        "sourceCardId": "74:605"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "U20": {
+    "primaryPattern": "L053",
+    "profileId": "P04",
+    "scope": "surface",
+    "name": "답안에서 수행 결과",
+    "roleId": "exam-practice",
+    "mode": "new-layout-projection",
+    "frames": [
+      {
+        "entityId": "U20",
+        "pattern": "L053",
+        "boardId": "263:32745",
+        "variantIds": [
+          "263:32748",
+          "263:32770"
+        ],
+        "sourceCardId": "74:611"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "U21": {
+    "primaryPattern": "L053",
+    "profileId": "P09",
+    "scope": "surface",
+    "name": "일정 편집",
+    "roleId": "schedule",
+    "mode": "new-layout-projection",
+    "frames": [
+      {
+        "entityId": "U21",
+        "pattern": "L053",
+        "boardId": "263:32793",
+        "variantIds": [
+          "263:32796",
+          "263:32818"
+        ],
+        "sourceCardId": "74:67143"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "U22": {
+    "primaryPattern": "L198",
+    "profileId": "P09",
+    "scope": "surface",
+    "name": "다음 공부 기준·결과",
+    "roleId": "schedule",
+    "mode": "new-layout-projection",
+    "frames": [
+      {
+        "entityId": "U22",
+        "pattern": "L198",
+        "boardId": "263:32841",
+        "variantIds": [
+          "263:32844",
+          "263:32866"
+        ],
+        "sourceCardId": "74:67149"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "U23": {
+    "primaryPattern": "L190",
+    "profileId": "P03",
+    "scope": "surface",
+    "name": "자료 출처·PDF 구간",
+    "roleId": "materials",
+    "mode": "new-layout-projection",
+    "frames": [
+      {
+        "entityId": "U23",
+        "pattern": "L190",
+        "boardId": "263:32889",
+        "variantIds": [
+          "263:32892",
+          "263:32913"
+        ],
+        "sourceCardId": "74:67155"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "U24": {
+    "primaryPattern": "L190",
+    "profileId": "P03",
+    "scope": "surface",
+    "name": "자료 퀴즈·관계·대화",
+    "roleId": "materials",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "28:12134",
+        "name": "U24@ipad-landscape",
+        "pattern": "L190",
+        "scope": "surface",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [],
+        "structure": "256:1557",
+        "bodyHeight": 617,
+        "pageId": "7:72"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "U25": {
+    "primaryPattern": "L045",
+    "profileId": "P02",
+    "scope": "surface",
+    "name": "카드·코드 주제 연결",
+    "roleId": "material-cards",
+    "mode": "new-layout-projection",
+    "frames": [
+      {
+        "entityId": "U25",
+        "pattern": "L045",
+        "boardId": "263:32933",
+        "variantIds": [
+          "263:32936",
+          "263:32947"
+        ],
+        "sourceCardId": "74:67167"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "U26": {
+    "primaryPattern": "L198",
+    "profileId": "P04",
+    "scope": "surface",
+    "name": "덱·카드·Anki 가져오기",
+    "roleId": "recall",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "28:9739",
+        "name": "U26@ipad-landscape",
+        "pattern": "L198",
+        "scope": "surface",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [],
+        "structure": "255:2731",
+        "bodyHeight": 749,
+        "pageId": "7:71"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "U27": {
+    "primaryPattern": "L053",
+    "profileId": "P04",
+    "scope": "surface",
+    "name": "복습 설정·최적화",
+    "roleId": "recall",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "28:9781",
+        "name": "U27@ipad-landscape",
+        "pattern": "L053",
+        "scope": "surface",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [],
+        "structure": "255:2732",
+        "bodyHeight": 559,
+        "pageId": "7:71"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "U28": {
+    "primaryPattern": "L053",
+    "profileId": "P04",
+    "scope": "surface",
+    "name": "암기 항목 생성",
+    "roleId": "memory-test",
+    "mode": "new-layout-projection",
+    "frames": [
+      {
+        "entityId": "U28",
+        "pattern": "L053",
+        "boardId": "263:32957",
+        "variantIds": [
+          "263:32960",
+          "263:32982"
+        ],
+        "sourceCardId": "74:67185"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "U29": {
+    "primaryPattern": "L190",
+    "profileId": "P03",
+    "scope": "surface",
+    "name": "펜·OCR·PDF 배경",
+    "roleId": "ink",
+    "mode": "new-layout-projection",
+    "frames": [
+      {
+        "entityId": "U29",
+        "pattern": "L190",
+        "boardId": "263:33005",
+        "variantIds": [
+          "263:33008",
+          "263:33029"
+        ],
+        "sourceCardId": "74:67191"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "U30": {
+    "primaryPattern": "L082",
+    "profileId": "P05",
+    "scope": "surface",
+    "name": "코드 편집·구문·터미널",
+    "roleId": "code",
+    "mode": "new-layout-projection",
+    "frames": [
+      {
+        "entityId": "U30",
+        "pattern": "L082",
+        "boardId": "263:33049",
+        "variantIds": [
+          "263:33052",
+          "263:33076"
+        ],
+        "sourceCardId": "74:67197"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "U31": {
+    "primaryPattern": "L194",
+    "profileId": "P05",
+    "scope": "surface",
+    "name": "수식·그래프·카메라",
+    "roleId": "math",
+    "mode": "new-layout-projection",
+    "frames": [
+      {
+        "entityId": "U31",
+        "pattern": "L194",
+        "boardId": "263:33099",
+        "variantIds": [
+          "263:33102",
+          "263:33126"
+        ],
+        "sourceCardId": "74:67203"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "U32": {
+    "primaryPattern": "L194",
+    "profileId": "P05",
+    "scope": "surface",
+    "name": "수식 유형·전체 화면",
+    "roleId": "math",
+    "mode": "new-layout-projection",
+    "frames": [
+      {
+        "entityId": "U32",
+        "pattern": "L194",
+        "boardId": "263:33149",
+        "variantIds": [
+          "263:33152",
+          "263:33176"
+        ],
+        "sourceCardId": "74:67209"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "U33": {
+    "primaryPattern": "L194",
+    "profileId": "P05",
+    "scope": "surface",
+    "name": "급수·개념 도해",
+    "roleId": "math",
+    "mode": "new-layout-projection",
+    "frames": [
+      {
+        "entityId": "U33",
+        "pattern": "L194",
+        "boardId": "263:33199",
+        "variantIds": [
+          "263:33202",
+          "263:33226"
+        ],
+        "sourceCardId": "74:67215"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "U34": {
+    "primaryPattern": "L062",
+    "profileId": "P07",
+    "scope": "surface",
+    "name": "Canvas 편집·이관",
+    "roleId": "canvas",
+    "mode": "new-layout-projection",
+    "frames": [
+      {
+        "entityId": "U34",
+        "pattern": "L062",
+        "boardId": "263:33249",
+        "variantIds": [
+          "263:33252",
+          "263:33261"
+        ],
+        "sourceCardId": "74:67221"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "U35": {
+    "primaryPattern": "L196",
+    "profileId": "P07",
+    "scope": "surface",
+    "name": "Canvas·그래프 보기",
+    "roleId": "graph",
+    "mode": "new-layout-projection",
+    "frames": [
+      {
+        "entityId": "U35",
+        "pattern": "L196",
+        "boardId": "263:33271",
+        "variantIds": [
+          "263:33274",
+          "263:33285"
+        ],
+        "sourceCardId": "74:67227"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "U36": {
+    "primaryPattern": "L195",
+    "profileId": "P06",
+    "scope": "surface",
+    "name": "통계 여러 그래프·값",
+    "roleId": "statistics",
+    "mode": "new-layout-projection",
+    "frames": [
+      {
+        "entityId": "U36",
+        "pattern": "L195",
+        "boardId": "263:33295",
+        "variantIds": [
+          "263:33298",
+          "263:33310"
+        ],
+        "sourceCardId": "74:67233"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "U37": {
+    "primaryPattern": "L198",
+    "profileId": "P10",
+    "scope": "surface",
+    "name": "GPT 연결·문맥·사용량",
+    "roleId": "api-connection",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "29:5664",
+        "name": "U37@ipad-landscape",
+        "pattern": "L198",
+        "scope": "surface",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [],
+        "structure": "256:6823",
+        "bodyHeight": 565,
+        "pageId": "7:75"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "U38": {
+    "primaryPattern": "L048",
+    "profileId": "P10",
+    "scope": "surface",
+    "name": "움직임 위젯",
+    "roleId": "workspace-controls",
+    "mode": "new-layout-projection",
+    "frames": [
+      {
+        "entityId": "U38",
+        "pattern": "L048",
+        "boardId": "263:33323",
+        "variantIds": [
+          "263:33326",
+          "263:33337"
+        ],
+        "sourceCardId": "74:67245"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "U39": {
+    "primaryPattern": "L025",
+    "profileId": "P01",
+    "scope": "surface",
+    "name": "브랜드·관련 생각",
+    "roleId": "reflection",
+    "mode": "existing-frames",
+    "frames": [
+      {
+        "id": "29:5709",
+        "name": "U39@ipad-landscape",
+        "pattern": "L025",
+        "scope": "surface",
+        "viewport": {
+          "width": 1376,
+          "height": 1032,
+          "overflow": "VERTICAL"
+        },
+        "preserved": true,
+        "scroll": "VERTICAL",
+        "sceneRatios": [],
+        "structure": "256:6824",
+        "bodyHeight": 425,
+        "pageId": "7:75"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "U40": {
+    "primaryPattern": "L025",
+    "profileId": "P10",
+    "scope": "surface",
+    "name": "공통 부품·오류·포커스",
+    "roleId": "workspace-controls",
+    "mode": "new-layout-projection",
+    "frames": [
+      {
+        "entityId": "U40",
+        "pattern": "L025",
+        "boardId": "263:33349",
+        "variantIds": [
+          "263:33352",
+          "263:33364"
+        ],
+        "sourceCardId": "74:67257"
+      }
+    ],
+    "runtimeCertified": false
+  },
+  "U41": {
+    "primaryPattern": "L025",
+    "profileId": "P03",
+    "scope": "surface",
+    "name": "장문 원문·기록 수정",
+    "roleId": "notes",
+    "mode": "new-layout-projection",
+    "frames": [
+      {
+        "entityId": "U41",
+        "pattern": "L025",
+        "boardId": "263:33377",
+        "variantIds": [
+          "263:33380",
+          "263:33392"
+        ],
+        "sourceCardId": "74:67263"
+      }
+    ],
+    "runtimeCertified": false
+  }
+}

@@ -1,0 +1,241 @@
+{
+  "date": "2026-10-02",
+  "scope": "Figma structure and conditional criteria; not whole-app value validation",
+  "counts": {
+    "existingPagesPreserved": 24,
+    "totalPages": 26,
+    "librarySections": 9,
+    "criteriaSections": 6,
+    "detailBoards": 18,
+    "navigationBoards": 2,
+    "detailCards": 164,
+    "navigationCards": 14,
+    "components": 59,
+    "variablesWithConditions": 81,
+    "textStylesWithConditions": 7,
+    "roles": 25,
+    "compositions": 10,
+    "entities": 111,
+    "mockups": 29,
+    "newPagesInThisTask": 1,
+    "concurrentPagesOutsideScope": 1
+  },
+  "governance": {
+    "boards": 18,
+    "cards": 164,
+    "texts": 634,
+    "links": 125,
+    "resolvedTargets": 69,
+    "sections": 6,
+    "overlapping": [],
+    "colorMismatches": [],
+    "errors": []
+  },
+  "navigation": {
+    "uniquePageNames": true,
+    "linksChecked": 14,
+    "errors": [],
+    "pageCountObserved": 26,
+    "concurrentPagePreserved": "170:180"
+  },
+  "library": {
+    "preservedLibraryRoots": 59,
+    "componentContracts": 59,
+    "sections": 9,
+    "overlap": [],
+    "errors": [],
+    "asset": {
+      "id": "10:68",
+      "w": 960,
+      "h": 400,
+      "children": 0,
+      "hash": "a29eed5732e2a59cf3ced274f25d09fa4e5bac62"
+    }
+  },
+  "valuePreservation": {
+    "variablesUnchanged": true,
+    "canonicalBaselineSha256": "443d645f05af21424b658dd9f2670c0035beb357febd6e608f6b49ce52250e59"
+  },
+  "generators": {
+    "regression": {
+      "date": "2026-10-02",
+      "scope": "Isolated current-generator regression: real function bodies/preflight fragments with synthetic Figma trees; no remote call or application runtime execution.",
+      "sourceFiles": {
+        "docs/figma-observatory-20261002/scripts/build-foundations.js": "09a8b217a2f7b6280bcfcb031567252e07b4acf64be3f9091d5beb5d692f74de",
+        "docs/figma-observatory-20261002/scripts/build-world-asset.js": "060a66abb492a07c1be0f89cb8c0a59f65e4275d49269f38ce5acacd00e0c870",
+        "docs/figma-observatory-20261002/scripts/build-components.js": "790b6d0f57e67995fdfa388c5c7c2ae766fe6f3c8f886a745cf4fefdf7ab1f43",
+        "work/figma-reconcile-20261002/scene-assets/import-scenes.js": "603580ded1cb09f704d255ff7ea4246220b9574915a4206a5edb0d01ecfe8e59"
+      },
+      "counts": {
+        "total": 24,
+        "passed": 24,
+        "failed": 0
+      },
+      "results": [
+        {
+          "name": "syntax:foundations",
+          "passed": true
+        },
+        {
+          "name": "syntax:world",
+          "passed": true
+        },
+        {
+          "name": "syntax:components",
+          "passed": true
+        },
+        {
+          "name": "syntax:scenes",
+          "passed": true
+        },
+        {
+          "name": "renamed-page:explicit-ID-reuse-preserves-name",
+          "passed": true
+        },
+        {
+          "name": "renamed-page:verified-ledger-reuse",
+          "passed": true
+        },
+        {
+          "name": "renamed-page:no-silent-name-based-creation",
+          "passed": true
+        },
+        {
+          "name": "page:explicit-missing-ID-rejected-even-allowCreate",
+          "passed": true
+        },
+        {
+          "name": "page:conflicting-ledgers-rejected",
+          "passed": true
+        },
+        {
+          "name": "page:new-creation-requires-explicit-flag",
+          "passed": true
+        },
+        {
+          "name": "page:preflight-before-any-creation",
+          "passed": true
+        },
+        {
+          "name": "world:SECTION-descendant-reused-by-ID",
+          "passed": true
+        },
+        {
+          "name": "world:SECTION-descendant-reused-by-name",
+          "passed": true
+        },
+        {
+          "name": "world:wrong-PAGE-rejected",
+          "passed": true
+        },
+        {
+          "name": "world:unknown-explicit-ID-not-created",
+          "passed": true
+        },
+        {
+          "name": "world:valid-new-source-creates-whole-image-only",
+          "passed": true
+        },
+        {
+          "name": "components:SECTION-world-preflight-passes",
+          "passed": true
+        },
+        {
+          "name": "components:wrong-PAGE-world-rejected",
+          "passed": true
+        },
+        {
+          "name": "components:SECTION-review-found-by-actual-lookup",
+          "passed": true
+        },
+        {
+          "name": "preview-board:SECTION-reuse-by-ledger",
+          "passed": true
+        },
+        {
+          "name": "preview-board:SECTION-reuse-by-name",
+          "passed": true
+        },
+        {
+          "name": "preview-board:wrong-PAGE-rejected",
+          "passed": true
+        },
+        {
+          "name": "preview-board:stale-ID-no-fallback",
+          "passed": true
+        },
+        {
+          "name": "metadata:OS-criteria-suffix-survives-foundation-and-functional-token-reruns",
+          "passed": true
+        }
+      ],
+      "limits": [
+        "Full foundation/component generation not executed; the changed page lookup and world preflight plus actual Review lookup were exercised.",
+        "Scene preview board preflight was exercised; row creation and live rendering are outside this regression.",
+        "Synthetic image hash and nested SECTION trees are test fixtures, not remote evidence."
+      ]
+    },
+    "remoteWorldReuse": {
+      "createdNodeIds": [],
+      "mutatedNodeIds": [],
+      "assetId": "10:68",
+      "partId": "10:68",
+      "part": null,
+      "bounds": {
+        "width": 960,
+        "height": 400
+      },
+      "children": [],
+      "representation": "image-mockup",
+      "imageHash": "a29eed5732e2a59cf3ced274f25d09fa4e5bac62",
+      "svgSha256": null,
+      "sourceSvgPreservedLocally": true,
+      "webAppChanged": false,
+      "reused": true
+    },
+    "documentationBoardReusedWithoutCreation": [
+      "162:32274",
+      "162:32328"
+    ]
+  },
+  "visualReview": {
+    "passingNodes": [
+      "155:180",
+      "163:180",
+      "162:822",
+      "162:27575",
+      "162:32274",
+      "158:796"
+    ],
+    "method": "Actual Figma screenshot inspection; text/spacing, dark/paper hierarchy and section layout",
+    "corrections": [
+      "Restored transparent sections to preserve existing component backdrop",
+      "Repaired 88 fallback paints on two reused mockup boards while preserving semantic bindings",
+      "Clarified actual renderer entry chains and pixel treatment scope"
+    ],
+    "notClaimed": [
+      "Every existing app screen pixel equality",
+      "Physical device/IME/VoiceOver",
+      "New app runtime validation or deployment",
+      "Optimality of all numerical values or long-term usability"
+    ]
+  },
+  "evidenceDirectory": "work/figma-os-structure-20261002",
+  "blockingErrors": [],
+  "geometryEvidence": "work/figma-os-structure-20261002/final-geometry.json",
+  "localContractValidation": {
+    "method": "Independent read-only comparison with current canonical source files and final Figma ledger",
+    "fileAndJsonPointerReferences": 202,
+    "roles": 25,
+    "entities": 111,
+    "missingEntities": 0,
+    "duplicateEntities": 0,
+    "unregisteredEntities": 0,
+    "componentSourceAndOwnerMatches": 59,
+    "componentCriterionCardLinks": 59,
+    "mockupSourceAndOwnerMatches": 29,
+    "mockupCriterionCardLinks": 29,
+    "boardIdMatches": 18,
+    "errors": []
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "TypeError: cannot read property 'characters' of undefined\n    at <anonymous> (PLUGIN_1_SOURCE:30:89)\n"
+    },
+    {
+      "type": "text",
+      "text": "Figma Debug UUID: fe7c772b-429d-4a55-bdb4-2fd698973de5"
+    }
+  ],
+  "structuredContent": {
+    "error": {
+      "message": "TypeError: cannot read property 'characters' of undefined\n    at <anonymous> (PLUGIN_1_SOURCE:30:89)\n",
+      "debugUuid": "fe7c772b-429d-4a55-bdb4-2fd698973de5"
+    },
+    "safeToRetryWithoutCanvasRead": true,
+    "error_code": "INVALID_ARGUMENT"
+  },
+  "isError": true
+}

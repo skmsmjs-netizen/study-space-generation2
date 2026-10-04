@@ -1,0 +1,60 @@
+import { fireEvent,render,screen,within } from '@testing-library/react';
+import { beforeEach,expect,it,vi } from 'vitest';
+import { createDemoState } from '../domain/fixtures';
+import { emptyRecommendations,readRecommendations,saveRecommendations, recommendationKey } from '../data/recommendations';
+import { readScheduleView } from '../data/schedule-view';
+import { NextStudy } from './next-study';
+const data=createDemoState(),subjects=data.subjects.map(s=>s.id);
+const show=()=>render(<NextStudy onlySchedules data={data} subjectIds={subjects}/>);
+const field=(name:string,value:string)=>fireEvent.input(screen.getByLabelText(name,{exact:true}),{target:{value}});
+const change=(name:string,value:string)=>fireEvent.change(screen.getByLabelText(name,{exact:true}),{target:{value}});
+beforeEach(()=>{localStorage.clear();sessionStorage.clear();vi.restoreAllMocks();});
+it('clears empty search and date filters while preserving the selected archive, calendar and schedule evidence', () => {
+ const workspace=emptyRecommendations(data);
+ workspace.schedules=[{id:'archived',subjectId:subjects[0],name:'보관한 과제 원문',kind:'assignment',goalIds:[],targetIds:[],dueDate:'2026-10-08',opensDate:'',weight:null,status:'ended',states:{prepare:'done'},dueMeaning:'submission',note:'  조건과 예외\n그대로  '}];
+ const saved=saveRecommendations(data,workspace,null);
+ let view=show();
+ change('일정 보관 상태','ended');
+ fireEvent.click(screen.getByRole('button',{name:'달력'}));
+ field('달력 월','2026-10');
+ change('일정 종류 보기','exam');
+ change('일정 찾기','일치하지 않는 이름');
+ fireEvent.click(screen.getByRole('button',{name:'2026-10-09 · 일정 0개'}));
+ expect(screen.getByRole('heading',{name:'이 날짜에는 일정이 없습니다'})).toBeVisible();
+ fireEvent.click(screen.getByRole('button',{name:'검색·날짜 조건 해제'}));
+ expect(screen.getByRole('heading',{name:'보관한 과제 원문'})).toBeVisible();
+ expect(screen.getByLabelText('일정 보관 상태')).toHaveValue('ended');
+ expect(screen.getByLabelText('달력 월')).toHaveValue('2026-10');
+ expect(screen.queryByRole('button',{name:'모든 날짜 보기'})).toBeNull();
+ expect(localStorage.getItem(recommendationKey(data))).toBe(saved);
+ view.unmount();view=show();
+ expect(readScheduleView(data,'2026-10')).toMatchObject({view:'calendar',status:'ended',kind:'all',query:'',month:'2026-10'});
+ expect(screen.getByRole('heading',{name:'보관한 과제 원문'})).toBeVisible();
+ expect(localStorage.getItem(recommendationKey(data))).toBe(saved);
+});
+it('registers an unknown deadline with a review date, retains exact draft after reopening, separates submission and restores trash',()=>{
+ let view=show();fireEvent.click(screen.getByRole('button',{name:'과제 추가'}));
+ change('일정 이름','마감 미정인 과제');field('공지 확인일 · 선택','2026-10-02');change('일정 메모 · 선택','  원문과 예외\n다음 줄  ');
+ fireEvent.click(screen.getByRole('button',{name:'닫고 초안 보관'}));view.unmount();view=show();fireEvent.click(screen.getByRole('button',{name:'과제 추가'}));expect(screen.getByLabelText('일정 메모 · 선택')).toHaveValue('  원문과 예외\n다음 줄  ');expect(screen.getByLabelText('공지 확인일 · 선택')).toHaveValue('2026-10-02');
+ fireEvent.click(screen.getByRole('button',{name:'일정 저장'}));change('마감 미정인 과제 · 과제 준비','done');expect(readRecommendations(data).workspace.schedules![0].states).toEqual({prepare:'done'});
+ fireEvent.click(screen.getByRole('button',{name:'휴지통으로 이동'}));change('일정 보관 상태','trash');fireEvent.click(screen.getByRole('button',{name:'일정 복원'}));change('일정 보관 상태','active');expect(screen.getByRole('heading',{name:'마감 미정인 과제'})).toBeVisible();
+ expect(readRecommendations(data).workspace.schedules![0].note).toBe('  원문과 예외\n다음 줄  ');expect(readRecommendations(data).workspace.schedules![0].history).toHaveLength(3);
+ fireEvent.click(screen.getByText('과목 공지 확인 기록'));change('공지 확인한 과목',subjects[0]);fireEvent.click(screen.getByRole('button',{name:'공지 확인했어요'}));view.unmount();view=show();expect(readRecommendations(data).workspace.scheduleChecks).toHaveLength(1);expect(readRecommendations(data).workspace.schedules![0].states).toEqual({prepare:'done'});
+});
+it('saves real native input events for dates/times and keeps deadline history through reload and undo',()=>{
+ let view=show();fireEvent.click(screen.getByRole('button',{name:'온라인 강의 추가'}));change('일정 이름','온라인 수업');field('시작 가능일 · 선택','2026-10-01');field('시작 가능 시각 · 선택','08:00');field('일정 기한 · 선택','2026-10-08');field('기한 시각 · 선택','23:00');fireEvent.click(screen.getByRole('button',{name:'일정 저장'}));
+ change('온라인 수업 · 강의 재생','done');expect(readRecommendations(data).workspace.schedules![0].states).toEqual({watch:'done'});
+ fireEvent.click(screen.getByRole('button',{name:'일정 수정'}));field('일정 기한 · 선택','2026-10-09');fireEvent.click(screen.getByRole('button',{name:'일정 저장'}));view.unmount();view=show();
+ const saved=readRecommendations(data).workspace.schedules![0];expect(saved.dueDate).toBe('2026-10-09');expect(saved.dueTime).toBe('23:00');expect(saved.history?.at(-1)?.previous.dueDate).toBe('2026-10-08');
+ fireEvent.click(screen.getByRole('button',{name:'마지막 변경 되돌리기'}));expect(readRecommendations(data).workspace.schedules![0].dueDate).toBe('2026-10-08');expect(readRecommendations(data).workspace.schedules![0].states).toEqual({watch:'done'});
+});
+it('keeps filters and calendar selection, limits accumulated cards and expands them on demand',()=>{
+ const workspace=emptyRecommendations(data);workspace.schedules=Array.from({length:55},(_,i)=>({id:`s${i}`,subjectId:subjects[0],name:`긴 한국어 일정 ${i}`,kind:'assignment' as const,goalIds:[],targetIds:[],dueDate:'2026-10-08',opensDate:'',weight:null,status:'active' as const,states:{},dueMeaning:'submission' as const,note:'조건'}));saveRecommendations(data,workspace,null);
+ let view=show();expect(screen.getAllByRole('button',{name:'일정 수정'})).toHaveLength(20);fireEvent.click(screen.getByRole('button',{name:/일정 더 보기/}));expect(screen.getAllByRole('button',{name:'일정 수정'})).toHaveLength(40);
+ fireEvent.click(screen.getByRole('button',{name:'달력'}));field('달력 월','2026-10');expect(screen.getByRole('button',{name:'2026-10-08 · 일정 55개'})).toBeVisible();fireEvent.click(screen.getByRole('button',{name:'2026-10-08 · 일정 55개'}));
+ const region=screen.getByRole('region',{name:'일정 관리'});expect(within(region).getByText('2026-10-08 일정')).toBeVisible();view.unmount();view=show();expect(screen.getByRole('button',{name:'달력'})).toHaveAttribute('aria-pressed','true');
+});
+it('retains input on a failed write and rejects invalid source URLs',()=>{
+ show();fireEvent.click(screen.getByRole('button',{name:'과제 추가'}));change('일정 이름','원문 보존');change('공지·강의 주소 · 선택','javascript:alert(1)');fireEvent.click(screen.getByRole('button',{name:'일정 저장'}));expect(screen.getAllByRole('alert').some(e=>e.textContent?.includes('주소'))).toBe(true);expect(screen.getByLabelText('일정 이름')).toHaveValue('원문 보존');
+ change('공지·강의 주소 · 선택','');vi.spyOn(Storage.prototype,'setItem').mockImplementation(()=>{throw new DOMException('full','QuotaExceededError');});fireEvent.click(screen.getByRole('button',{name:'일정 저장'}));expect(screen.getByRole('dialog')).toBeVisible();expect(screen.getByLabelText('일정 이름')).toHaveValue('원문 보존');expect(readRecommendations(data).workspace.schedules??[]).toHaveLength(0);
+});

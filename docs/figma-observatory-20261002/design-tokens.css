@@ -1,0 +1,81 @@
+/* Figma design token export; production adoption is separately tracked. */
+:root {
+  --obs-interior-canvas: #1F1E1B;
+  --obs-interior-surface: #282722;
+  --obs-interior-subtle: #33312D;
+  --obs-interior-text: #E8E3D7;
+  --obs-interior-muted: #B7B0A2;
+  --obs-interior-borderDecorative: #514A42;
+  --obs-interior-borderInteractive: #8B8071;
+  --obs-interior-focus: #D7B477;
+  --obs-interior-selected: #33312D;
+  --obs-interior-selectedText: #E8E3D7;
+  --obs-interior-primary: #D7B477;
+  --obs-interior-primaryHover: #E5C890;
+  --obs-interior-primaryPressed: #C2A062;
+  --obs-interior-onPrimary: #1F1E1B;
+  --obs-paper-canvas: #E4DCCD;
+  --obs-paper-surface: #E4DCCD;
+  --obs-paper-subtle: #D7CBB4;
+  --obs-paper-text: #34312B;
+  --obs-paper-muted: #5B5448;
+  --obs-paper-borderDecorative: #B4A891;
+  --obs-paper-borderInteractive: #796D5D;
+  --obs-paper-focus: #725425;
+  --obs-paper-selected: #D7CBB4;
+  --obs-paper-selectedText: #34312B;
+  --obs-paper-primary: #554530;
+  --obs-paper-primaryHover: #473924;
+  --obs-paper-primaryPressed: #3B3022;
+  --obs-paper-onPrimary: #E4DCCD;
+  --obs-space-0: 0px;
+  --obs-space-4: 4px;
+  --obs-space-8: 8px;
+  --obs-space-12: 12px;
+  --obs-space-16: 16px;
+  --obs-space-24: 24px;
+  --obs-space-32: 32px;
+  --obs-space-48: 48px;
+  --obs-space-64: 64px;
+  --obs-control-height: 48px;
+  --obs-control-icon-target: 44px;
+  --obs-border-width: 1px;
+  --obs-focus-width: 2px;
+  --obs-radius-control: 0px;
+  --obs-radius-dialog: 2px;
+  --obs-motion-feedback: 120ms;
+  --obs-motion-navigation: 180ms;
+  --obs-motion-reduced: 0ms;
+}
+[data-observatory-material="interior"] {
+  --obs-material-canvas: var(--obs-interior-canvas);
+  --obs-material-surface: var(--obs-interior-surface);
+  --obs-material-subtle: var(--obs-interior-subtle);
+  --obs-material-text: var(--obs-interior-text);
+  --obs-material-muted: var(--obs-interior-muted);
+  --obs-material-borderDecorative: var(--obs-interior-borderDecorative);
+  --obs-material-borderInteractive: var(--obs-interior-borderInteractive);
+  --obs-material-focus: var(--obs-interior-focus);
+  --obs-material-selected: var(--obs-interior-selected);
+  --obs-material-selectedText: var(--obs-interior-selectedText);
+  --obs-material-primary: var(--obs-interior-primary);
+  --obs-material-primaryHover: var(--obs-interior-primaryHover);
+  --obs-material-primaryPressed: var(--obs-interior-primaryPressed);
+  --obs-material-onPrimary: var(--obs-interior-onPrimary);
+}
+[data-observatory-material="paper"] {
+  --obs-material-canvas: var(--obs-paper-canvas);
+  --obs-material-surface: var(--obs-paper-surface);
+  --obs-material-subtle: var(--obs-paper-subtle);
+  --obs-material-text: var(--obs-paper-text);
+  --obs-material-muted: var(--obs-paper-muted);
+  --obs-material-borderDecorative: var(--obs-paper-borderDecorative);
+  --obs-material-borderInteractive: var(--obs-paper-borderInteractive);
+  --obs-material-focus: var(--obs-paper-focus);
+  --obs-material-selected: var(--obs-paper-selected);
+  --obs-material-selectedText: var(--obs-paper-selectedText);
+  --obs-material-primary: var(--obs-paper-primary);
+  --obs-material-primaryHover: var(--obs-paper-primaryHover);
+  --obs-material-primaryPressed: var(--obs-paper-primaryPressed);
+  --obs-material-onPrimary: var(--obs-paper-onPrimary);
+}

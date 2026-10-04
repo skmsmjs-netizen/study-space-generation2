@@ -1,0 +1,464 @@
+{
+  "pageId": "7:71",
+  "entryLinks": [
+    {
+      "feature": "XD01",
+      "label": "빠른 명령",
+      "sourceId": "26:68",
+      "targetId": "74:71889",
+      "profile": "ipad-landscape",
+      "profileLabel": "넓은 상태",
+      "targetState": "닫힘",
+      "controlId": "83:100467",
+      "connected": true,
+      "connection": "figma-node-url",
+      "presentation": "figma-review-panel",
+      "panelId": "83:100461",
+      "sourcePreserved": true
+    },
+    {
+      "feature": "XD03",
+      "label": "작업 구성",
+      "sourceId": "26:68",
+      "targetId": "74:73848",
+      "profile": "ipad-landscape",
+      "profileLabel": "넓은 상태",
+      "targetState": "빈 보관함",
+      "controlId": "83:100472",
+      "connected": true,
+      "connection": "figma-node-url",
+      "presentation": "figma-review-panel",
+      "panelId": "83:100461",
+      "sourcePreserved": true
+    },
+    {
+      "feature": "XD04",
+      "label": "저장 다시 시도",
+      "sourceId": "26:68",
+      "targetId": "75:74329",
+      "profile": "ipad-landscape",
+      "profileLabel": "넓은 상태",
+      "targetState": "정상 숨김",
+      "controlId": "83:100477",
+      "connected": true,
+      "connection": "figma-node-url",
+      "presentation": "figma-review-panel",
+      "panelId": "83:100461",
+      "sourcePreserved": true
+    },
+    {
+      "feature": "XD05",
+      "label": "반응 속도 확인",
+      "sourceId": "26:68",
+      "targetId": "75:74577",
+      "profile": "ipad-landscape",
+      "profileLabel": "넓은 상태",
+      "targetState": "측정 없음",
+      "controlId": "83:100482",
+      "connected": true,
+      "connection": "figma-node-url",
+      "presentation": "figma-review-panel",
+      "panelId": "83:100461",
+      "sourcePreserved": true
+    },
+    {
+      "feature": "XD12",
+      "label": "네 장소 이동",
+      "sourceId": "26:68",
+      "targetId": "75:85526",
+      "profile": "ipad-landscape",
+      "profileLabel": "넓은 상태",
+      "targetState": "정지",
+      "controlId": "83:100487",
+      "connected": true,
+      "connection": "figma-node-url",
+      "presentation": "figma-review-panel",
+      "panelId": "83:100461",
+      "sourcePreserved": true
+    },
+    {
+      "feature": "XD01",
+      "label": "빠른 명령",
+      "sourceId": "26:1877",
+      "targetId": "74:71897",
+      "profile": "iphone-portrait",
+      "profileLabel": "좁은 상태",
+      "targetState": "24명령 목록",
+      "controlId": "83:100496",
+      "connected": true,
+      "connection": "figma-node-url",
+      "presentation": "figma-review-panel",
+      "panelId": "83:100490",
+      "sourcePreserved": true
+    },
+    {
+      "feature": "XD03",
+      "label": "작업 구성",
+      "sourceId": "26:1877",
+      "targetId": "74:73881",
+      "profile": "iphone-portrait",
+      "profileLabel": "좁은 상태",
+      "targetState": "기존 구성이 있음",
+      "controlId": "83:100501",
+      "connected": true,
+      "connection": "figma-node-url",
+      "presentation": "figma-review-panel",
+      "panelId": "83:100490",
+      "sourcePreserved": true
+    },
+    {
+      "feature": "XD04",
+      "label": "저장 다시 시도",
+      "sourceId": "26:1877",
+      "targetId": "75:74336",
+      "profile": "iphone-portrait",
+      "profileLabel": "좁은 상태",
+      "targetState": "읽기 실패",
+      "controlId": "83:100506",
+      "connected": true,
+      "connection": "figma-node-url",
+      "presentation": "figma-review-panel",
+      "panelId": "83:100490",
+      "sourcePreserved": true
+    },
+    {
+      "feature": "XD05",
+      "label": "반응 속도 확인",
+      "sourceId": "26:1877",
+      "targetId": "75:74618",
+      "profile": "iphone-portrait",
+      "profileLabel": "좁은 상태",
+      "targetState": "세션 측정 있음",
+      "controlId": "83:100511",
+      "connected": true,
+      "connection": "figma-node-url",
+      "presentation": "figma-review-panel",
+      "panelId": "83:100490",
+      "sourcePreserved": true
+    },
+    {
+      "feature": "XD12",
+      "label": "네 장소 이동",
+      "sourceId": "26:1877",
+      "targetId": "75:85562",
+      "profile": "iphone-portrait",
+      "profileLabel": "좁은 상태",
+      "targetState": "장소변경0.18초",
+      "controlId": "83:100516",
+      "connected": true,
+      "connection": "figma-node-url",
+      "presentation": "figma-review-panel",
+      "panelId": "83:100490",
+      "sourcePreserved": true
+    },
+    {
+      "feature": "XD06",
+      "label": "공부 기록 더 보기",
+      "sourceId": "28:8964",
+      "targetId": "75:77795",
+      "profile": "ipad-landscape",
+      "profileLabel": "넓은 상태",
+      "targetState": "40개 이하",
+      "controlId": "83:100525",
+      "connected": true,
+      "connection": "figma-node-url",
+      "presentation": "figma-review-panel",
+      "panelId": "83:100519",
+      "sourcePreserved": true
+    },
+    {
+      "feature": "XD06",
+      "label": "공부 기록 더 보기",
+      "sourceId": "28:8964",
+      "targetId": "75:78566",
+      "profile": "iphone-portrait",
+      "profileLabel": "좁은 상태",
+      "targetState": "접힘",
+      "controlId": "83:100530",
+      "connected": true,
+      "connection": "figma-node-url",
+      "presentation": "figma-review-panel",
+      "panelId": "83:100519",
+      "sourcePreserved": true
+    }
+  ],
+  "sources": [
+    {
+      "sourceId": "26:68",
+      "before": {
+        "x": 100,
+        "y": 100,
+        "width": 1376,
+        "height": 1032,
+        "parentId": "7:71",
+        "childIds": [
+          "26:69",
+          "26:72",
+          "56:25908",
+          "26:81"
+        ]
+      },
+      "after": {
+        "x": 100,
+        "y": 100,
+        "width": 1376,
+        "height": 1032,
+        "parentId": "7:71",
+        "childIds": [
+          "26:69",
+          "26:72",
+          "56:25908",
+          "26:81"
+        ]
+      },
+      "geometryPreserved": true
+    },
+    {
+      "sourceId": "26:1877",
+      "before": {
+        "x": 1572,
+        "y": 100,
+        "width": 402,
+        "height": 681,
+        "parentId": "7:71",
+        "childIds": [
+          "26:1878",
+          "26:1881",
+          "56:25932",
+          "26:1890"
+        ]
+      },
+      "after": {
+        "x": 1572,
+        "y": 100,
+        "width": 402,
+        "height": 681,
+        "parentId": "7:71",
+        "childIds": [
+          "26:1878",
+          "26:1881",
+          "56:25932",
+          "26:1890"
+        ]
+      },
+      "geometryPreserved": true
+    },
+    {
+      "sourceId": "28:8964",
+      "before": {
+        "x": 100,
+        "y": 14500,
+        "width": 1376,
+        "height": 1032,
+        "parentId": "7:71",
+        "childIds": [
+          "28:8965",
+          "28:8968",
+          "56:26828",
+          "28:8977"
+        ]
+      },
+      "after": {
+        "x": 100,
+        "y": 14500,
+        "width": 1376,
+        "height": 1032,
+        "parentId": "7:71",
+        "childIds": [
+          "28:8965",
+          "28:8968",
+          "56:26828",
+          "28:8977"
+        ]
+      },
+      "geometryPreserved": true
+    }
+  ],
+  "panels": [
+    {
+      "sourceId": "26:68",
+      "panelId": "83:100461",
+      "x": 1524,
+      "y": 1732,
+      "width": 360,
+      "height": 406,
+      "overlapCount": 0
+    },
+    {
+      "sourceId": "26:1877",
+      "panelId": "83:100490",
+      "x": 2022,
+      "y": 1348,
+      "width": 360,
+      "height": 406,
+      "overlapCount": 0
+    },
+    {
+      "sourceId": "28:8964",
+      "panelId": "83:100519",
+      "x": 1524,
+      "y": 14500,
+      "width": 360,
+      "height": 199,
+      "overlapCount": 0
+    }
+  ],
+  "decisions": [
+    {
+      "sourceId": "26:68",
+      "feature": "XD01",
+      "profile": "ipad-landscape",
+      "reason": "No unambiguous existing product button with this literal label."
+    },
+    {
+      "sourceId": "26:68",
+      "feature": "XD03",
+      "profile": "ipad-landscape",
+      "reason": "No unambiguous existing product button with this literal label."
+    },
+    {
+      "sourceId": "26:68",
+      "feature": "XD04",
+      "profile": "ipad-landscape",
+      "reason": "No unambiguous existing product button with this literal label."
+    },
+    {
+      "sourceId": "26:68",
+      "feature": "XD05",
+      "profile": "ipad-landscape",
+      "reason": "No unambiguous existing product button with this literal label."
+    },
+    {
+      "sourceId": "26:68",
+      "feature": "XD12",
+      "profile": "ipad-landscape",
+      "reason": "No unambiguous existing product button with this literal label."
+    },
+    {
+      "sourceId": "26:1877",
+      "feature": "XD01",
+      "profile": "iphone-portrait",
+      "reason": "No unambiguous existing product button with this literal label."
+    },
+    {
+      "sourceId": "26:1877",
+      "feature": "XD03",
+      "profile": "iphone-portrait",
+      "reason": "No unambiguous existing product button with this literal label."
+    },
+    {
+      "sourceId": "26:1877",
+      "feature": "XD04",
+      "profile": "iphone-portrait",
+      "reason": "No unambiguous existing product button with this literal label."
+    },
+    {
+      "sourceId": "26:1877",
+      "feature": "XD05",
+      "profile": "iphone-portrait",
+      "reason": "No unambiguous existing product button with this literal label."
+    },
+    {
+      "sourceId": "26:1877",
+      "feature": "XD12",
+      "profile": "iphone-portrait",
+      "reason": "No unambiguous existing product button with this literal label."
+    },
+    {
+      "sourceId": "28:8964",
+      "feature": "XD06",
+      "profile": "ipad-landscape",
+      "reason": "One literal control has more than one condition destination; keep separate review links."
+    },
+    {
+      "sourceId": "28:8964",
+      "feature": "XD06",
+      "profile": "iphone-portrait",
+      "reason": "One literal control has more than one condition destination; keep separate review links."
+    }
+  ],
+  "createdNodeIds": [
+    "83:100461",
+    "83:100462",
+    "83:100463",
+    "83:100464",
+    "83:100465",
+    "83:100466",
+    "83:100467",
+    "I83:100467;16:109",
+    "83:100470",
+    "83:100471",
+    "83:100472",
+    "I83:100472;16:109",
+    "83:100475",
+    "83:100476",
+    "83:100477",
+    "I83:100477;16:109",
+    "83:100480",
+    "83:100481",
+    "83:100482",
+    "I83:100482;16:109",
+    "83:100485",
+    "83:100486",
+    "83:100487",
+    "I83:100487;16:109",
+    "83:100490",
+    "83:100491",
+    "83:100492",
+    "83:100493",
+    "83:100494",
+    "83:100495",
+    "83:100496",
+    "I83:100496;16:109",
+    "83:100499",
+    "83:100500",
+    "83:100501",
+    "I83:100501;16:109",
+    "83:100504",
+    "83:100505",
+    "83:100506",
+    "I83:100506;16:109",
+    "83:100509",
+    "83:100510",
+    "83:100511",
+    "I83:100511;16:109",
+    "83:100514",
+    "83:100515",
+    "83:100516",
+    "I83:100516;16:109",
+    "83:100519",
+    "83:100520",
+    "83:100521",
+    "83:100522",
+    "83:100523",
+    "83:100524",
+    "83:100525",
+    "I83:100525;16:109",
+    "83:100528",
+    "83:100529",
+    "83:100530",
+    "I83:100530;16:109"
+  ],
+  "mutatedNodeIds": [
+    "83:100467",
+    "83:100472",
+    "83:100477",
+    "83:100482",
+    "83:100487",
+    "83:100496",
+    "83:100501",
+    "83:100506",
+    "83:100511",
+    "83:100516",
+    "83:100525",
+    "83:100530"
+  ],
+  "counts": {
+    "requests": 12,
+    "connected": 12,
+    "productControls": 0,
+    "reviewControls": 12,
+    "panels": 3
+  },
+  "sourceFrozenAt": "2026-10-02T02:37:30.526Z"
+}

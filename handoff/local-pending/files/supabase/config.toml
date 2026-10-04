@@ -1,0 +1,17 @@
+project_id = "study-space-generation2"
+[functions.study-command]
+# Every non-preflight request is verified against Auth /user by command-handler.
+# Legacy-secret-only gateway verification cannot accept current asymmetric JWTs.
+verify_jwt = false
+
+[functions.study-ai]
+# study-ai validates JWT against Auth and checks approval on every call.
+verify_jwt = false
+
+[functions.study-notifications]
+# Auth /user on account requests; a distinct secret on cron dispatch.
+verify_jwt = false
+
+[functions.study-openai-api]
+# Verify Auth /user, approved owner and current session before each request/RPC.
+verify_jwt = false

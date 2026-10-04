@@ -1,0 +1,393 @@
+{
+  "pageId": "7:76",
+  "createdNodeIds": {
+    "encoding": "figma-factorized-id-ranges-v1",
+    "count": 271,
+    "ranges": [
+      [
+        "63:",
+        [
+          [
+            15092,
+            15362
+          ]
+        ]
+      ]
+    ],
+    "literal": [],
+    "products": []
+  },
+  "virtualDescendantIds": {
+    "encoding": "figma-factorized-id-ranges-v1",
+    "count": 0,
+    "ranges": [],
+    "literal": [],
+    "products": []
+  },
+  "mutatedNodeIds": {
+    "encoding": "figma-factorized-id-ranges-v1",
+    "count": 7,
+    "ranges": [
+      [
+        "63:",
+        [
+          15139,
+          15162,
+          15165,
+          15168,
+          15171,
+          15255,
+          15321
+        ]
+      ]
+    ],
+    "literal": [],
+    "products": []
+  },
+  "topLevelNodeIds": [
+    "63:15121",
+    "63:15142",
+    "63:15174",
+    "63:15194",
+    "63:15214",
+    "63:15232",
+    "63:15258",
+    "63:15276",
+    "63:15296",
+    "63:15324",
+    "63:15344",
+    "63:15362"
+  ],
+  "library": {
+    "AI-PREVIEW": {
+      "id": "63:15121",
+      "sourceFrameId": "14:710",
+      "kind": "state",
+      "taskReturnPlaceholderId": null,
+      "width": 800,
+      "height": 932,
+      "fonts": [
+        {
+          "family": "Noto Sans KR",
+          "style": "Regular",
+          "variationSettings": {
+            "wght": 600
+          }
+        },
+        {
+          "family": "Noto Sans KR",
+          "style": "Regular",
+          "variationSettings": {
+            "wght": 400
+          }
+        }
+      ],
+      "sourceDescendants": 28,
+      "cloneDescendants": 28,
+      "originalPreserved": true
+    },
+    "AUTH-APPROVED": {
+      "id": "63:15142",
+      "sourceFrameId": "14:331",
+      "kind": "state",
+      "taskReturnPlaceholderId": null,
+      "width": 800,
+      "height": 760,
+      "fonts": [
+        {
+          "family": "Noto Sans KR",
+          "style": "Regular",
+          "variationSettings": {
+            "wght": 600
+          }
+        },
+        {
+          "family": "Noto Sans KR",
+          "style": "Regular",
+          "variationSettings": {
+            "wght": 400
+          }
+        }
+      ],
+      "sourceDescendants": 19,
+      "cloneDescendants": 19,
+      "originalPreserved": true
+    },
+    "AUTH-CHECKING": {
+      "id": "63:15174",
+      "sourceFrameId": "14:271",
+      "kind": "state",
+      "taskReturnPlaceholderId": null,
+      "width": 800,
+      "height": 1143,
+      "fonts": [
+        {
+          "family": "Noto Sans KR",
+          "style": "Regular",
+          "variationSettings": {
+            "wght": 600
+          }
+        },
+        {
+          "family": "Noto Sans KR",
+          "style": "Regular",
+          "variationSettings": {
+            "wght": 400
+          }
+        }
+      ],
+      "sourceDescendants": 30,
+      "cloneDescendants": 30,
+      "originalPreserved": true
+    },
+    "AUTH-EXPIRED": {
+      "id": "63:15194",
+      "sourceFrameId": "14:382",
+      "kind": "state",
+      "taskReturnPlaceholderId": null,
+      "width": 800,
+      "height": 723,
+      "fonts": [
+        {
+          "family": "Noto Sans KR",
+          "style": "Regular",
+          "variationSettings": {
+            "wght": 600
+          }
+        },
+        {
+          "family": "Noto Sans KR",
+          "style": "Regular",
+          "variationSettings": {
+            "wght": 400
+          }
+        }
+      ],
+      "sourceDescendants": 18,
+      "cloneDescendants": 18,
+      "originalPreserved": true
+    },
+    "AUTH-PENDING": {
+      "id": "63:15214",
+      "sourceFrameId": "14:312",
+      "kind": "state",
+      "taskReturnPlaceholderId": null,
+      "width": 800,
+      "height": 723,
+      "fonts": [
+        {
+          "family": "Noto Sans KR",
+          "style": "Regular",
+          "variationSettings": {
+            "wght": 600
+          }
+        },
+        {
+          "family": "Noto Sans KR",
+          "style": "Regular",
+          "variationSettings": {
+            "wght": 400
+          }
+        }
+      ],
+      "sourceDescendants": 18,
+      "cloneDescendants": 18,
+      "originalPreserved": true
+    },
+    "AUTH-REJECTED": {
+      "id": "63:15232",
+      "sourceFrameId": "14:348",
+      "kind": "state",
+      "taskReturnPlaceholderId": null,
+      "width": 800,
+      "height": 655,
+      "fonts": [
+        {
+          "family": "Noto Sans KR",
+          "style": "Regular",
+          "variationSettings": {
+            "wght": 600
+          }
+        },
+        {
+          "family": "Noto Sans KR",
+          "style": "Regular",
+          "variationSettings": {
+            "wght": 400
+          }
+        }
+      ],
+      "sourceDescendants": 16,
+      "cloneDescendants": 16,
+      "originalPreserved": true
+    },
+    "AUTH-SIGNED-OUT": {
+      "id": "63:15258",
+      "sourceFrameId": "14:290",
+      "kind": "state",
+      "taskReturnPlaceholderId": null,
+      "width": 800,
+      "height": 886,
+      "fonts": [
+        {
+          "family": "Noto Sans KR",
+          "style": "Regular",
+          "variationSettings": {
+            "wght": 600
+          }
+        },
+        {
+          "family": "Noto Sans KR",
+          "style": "Regular",
+          "variationSettings": {
+            "wght": 400
+          }
+        }
+      ],
+      "sourceDescendants": 24,
+      "cloneDescendants": 24,
+      "originalPreserved": true
+    },
+    "AUTH-SUSPENDED": {
+      "id": "63:15276",
+      "sourceFrameId": "14:365",
+      "kind": "state",
+      "taskReturnPlaceholderId": null,
+      "width": 800,
+      "height": 655,
+      "fonts": [
+        {
+          "family": "Noto Sans KR",
+          "style": "Regular",
+          "variationSettings": {
+            "wght": 600
+          }
+        },
+        {
+          "family": "Noto Sans KR",
+          "style": "Regular",
+          "variationSettings": {
+            "wght": 400
+          }
+        }
+      ],
+      "sourceDescendants": 16,
+      "cloneDescendants": 16,
+      "originalPreserved": true
+    },
+    "BACKUP-INVALID": {
+      "id": "63:15296",
+      "sourceFrameId": "14:500",
+      "kind": "state",
+      "taskReturnPlaceholderId": null,
+      "width": 800,
+      "height": 723,
+      "fonts": [
+        {
+          "family": "Noto Sans KR",
+          "style": "Regular",
+          "variationSettings": {
+            "wght": 600
+          }
+        },
+        {
+          "family": "Noto Sans KR",
+          "style": "Regular",
+          "variationSettings": {
+            "wght": 400
+          }
+        }
+      ],
+      "sourceDescendants": 18,
+      "cloneDescendants": 18,
+      "originalPreserved": true
+    },
+    "BACKUP-PREVIEW": {
+      "id": "63:15324",
+      "sourceFrameId": "14:519",
+      "kind": "state",
+      "taskReturnPlaceholderId": null,
+      "width": 800,
+      "height": 990,
+      "fonts": [
+        {
+          "family": "Noto Sans KR",
+          "style": "Regular",
+          "variationSettings": {
+            "wght": 600
+          }
+        },
+        {
+          "family": "Noto Sans KR",
+          "style": "Regular",
+          "variationSettings": {
+            "wght": 400
+          }
+        }
+      ],
+      "sourceDescendants": 26,
+      "cloneDescendants": 26,
+      "originalPreserved": true
+    },
+    "BACKUP-ROLLED-BACK": {
+      "id": "63:15344",
+      "sourceFrameId": "14:596",
+      "kind": "state",
+      "taskReturnPlaceholderId": null,
+      "width": 800,
+      "height": 723,
+      "fonts": [
+        {
+          "family": "Noto Sans KR",
+          "style": "Regular",
+          "variationSettings": {
+            "wght": 600
+          }
+        },
+        {
+          "family": "Noto Sans KR",
+          "style": "Regular",
+          "variationSettings": {
+            "wght": 400
+          }
+        }
+      ],
+      "sourceDescendants": 18,
+      "cloneDescendants": 18,
+      "originalPreserved": true
+    },
+    "CONTENT-EMPTY": {
+      "id": "63:15362",
+      "sourceFrameId": "14:799",
+      "kind": "state",
+      "taskReturnPlaceholderId": null,
+      "width": 800,
+      "height": 655,
+      "fonts": [
+        {
+          "family": "Noto Sans KR",
+          "style": "Regular",
+          "variationSettings": {
+            "wght": 600
+          }
+        },
+        {
+          "family": "Noto Sans KR",
+          "style": "Regular",
+          "variationSettings": {
+            "wght": 400
+          }
+        }
+      ],
+      "sourceDescendants": 16,
+      "cloneDescendants": 16,
+      "originalPreserved": true
+    }
+  },
+  "counts": {
+    "components": 12,
+    "screens": 0,
+    "states": 12
+  },
+  "runtimeVerified": false
+}

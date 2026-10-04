@@ -1,0 +1,467 @@
+{
+  "components": [
+    {
+      "id": "10:68",
+      "name": "Observatory/v2/__Asset/OriginalObservatory",
+      "variants": []
+    },
+    {
+      "id": "15:73",
+      "name": "Observatory/v2/__Icon/arrow",
+      "variants": []
+    },
+    {
+      "id": "15:75",
+      "name": "Observatory/v2/__Icon/search",
+      "variants": []
+    },
+    {
+      "id": "16:70",
+      "name": "Observatory/v2/__Icon/check",
+      "variants": []
+    },
+    {
+      "id": "16:72",
+      "name": "Observatory/v2/__Icon/close",
+      "variants": []
+    },
+    {
+      "id": "16:74",
+      "name": "Observatory/v2/__Icon/more",
+      "variants": []
+    },
+    {
+      "id": "16:140",
+      "name": "Observatory/v2/Controls/Button",
+      "variants": [
+        {
+          "id": "16:76",
+          "name": "Kind=primary, State=default"
+        },
+        {
+          "id": "16:78",
+          "name": "Kind=primary, State=hover"
+        },
+        {
+          "id": "16:80",
+          "name": "Kind=primary, State=pressed"
+        },
+        {
+          "id": "16:82",
+          "name": "Kind=primary, State=focus"
+        },
+        {
+          "id": "16:84",
+          "name": "Kind=primary, State=disabled"
+        },
+        {
+          "id": "16:86",
+          "name": "Kind=primary, State=busy"
+        },
+        {
+          "id": "16:92",
+          "name": "Kind=secondary, State=default"
+        },
+        {
+          "id": "16:94",
+          "name": "Kind=secondary, State=hover"
+        },
+        {
+          "id": "16:96",
+          "name": "Kind=secondary, State=pressed"
+        },
+        {
+          "id": "16:98",
+          "name": "Kind=secondary, State=focus"
+        },
+        {
+          "id": "16:100",
+          "name": "Kind=secondary, State=disabled"
+        },
+        {
+          "id": "16:102",
+          "name": "Kind=secondary, State=busy"
+        },
+        {
+          "id": "16:108",
+          "name": "Kind=quiet, State=default"
+        },
+        {
+          "id": "16:110",
+          "name": "Kind=quiet, State=hover"
+        },
+        {
+          "id": "16:112",
+          "name": "Kind=quiet, State=pressed"
+        },
+        {
+          "id": "16:114",
+          "name": "Kind=quiet, State=focus"
+        },
+        {
+          "id": "16:116",
+          "name": "Kind=quiet, State=disabled"
+        },
+        {
+          "id": "16:118",
+          "name": "Kind=quiet, State=busy"
+        },
+        {
+          "id": "16:124",
+          "name": "Kind=danger, State=default"
+        },
+        {
+          "id": "16:126",
+          "name": "Kind=danger, State=hover"
+        },
+        {
+          "id": "16:128",
+          "name": "Kind=danger, State=pressed"
+        },
+        {
+          "id": "16:130",
+          "name": "Kind=danger, State=focus"
+        },
+        {
+          "id": "16:132",
+          "name": "Kind=danger, State=disabled"
+        },
+        {
+          "id": "16:134",
+          "name": "Kind=danger, State=busy"
+        }
+      ]
+    },
+    {
+      "id": "16:159",
+      "name": "Observatory/v2/Controls/IconButton",
+      "variants": [
+        {
+          "id": "16:141",
+          "name": "State=default"
+        },
+        {
+          "id": "16:144",
+          "name": "State=hover"
+        },
+        {
+          "id": "16:147",
+          "name": "State=pressed"
+        },
+        {
+          "id": "16:150",
+          "name": "State=focus"
+        },
+        {
+          "id": "16:153",
+          "name": "State=disabled"
+        },
+        {
+          "id": "16:156",
+          "name": "State=busy"
+        }
+      ]
+    },
+    {
+      "id": "16:190",
+      "name": "Observatory/v2/Fields/Input",
+      "variants": [
+        {
+          "id": "16:160",
+          "name": "State=empty"
+        },
+        {
+          "id": "16:165",
+          "name": "State=default"
+        },
+        {
+          "id": "16:170",
+          "name": "State=focus"
+        },
+        {
+          "id": "16:175",
+          "name": "State=disabled"
+        },
+        {
+          "id": "16:180",
+          "name": "State=invalid"
+        },
+        {
+          "id": "16:185",
+          "name": "State=readOnly"
+        }
+      ]
+    },
+    {
+      "id": "16:221",
+      "name": "Observatory/v2/Fields/Textarea",
+      "variants": [
+        {
+          "id": "16:191",
+          "name": "State=empty"
+        },
+        {
+          "id": "16:196",
+          "name": "State=default"
+        },
+        {
+          "id": "16:201",
+          "name": "State=focus"
+        },
+        {
+          "id": "16:206",
+          "name": "State=disabled"
+        },
+        {
+          "id": "16:211",
+          "name": "State=invalid"
+        },
+        {
+          "id": "16:216",
+          "name": "State=readOnly"
+        }
+      ]
+    },
+    {
+      "id": "16:250",
+      "name": "Observatory/v2/Fields/Select",
+      "variants": [
+        {
+          "id": "16:222",
+          "name": "State=default"
+        },
+        {
+          "id": "16:229",
+          "name": "State=focus"
+        },
+        {
+          "id": "16:236",
+          "name": "State=disabled"
+        },
+        {
+          "id": "16:243",
+          "name": "State=invalid"
+        }
+      ]
+    },
+    {
+      "id": "16:287",
+      "name": "Observatory/v2/Controls/Checkbox",
+      "variants": [
+        {
+          "id": "16:251",
+          "name": "Value=unchecked, State=default"
+        },
+        {
+          "id": "16:254",
+          "name": "Value=unchecked, State=focus"
+        },
+        {
+          "id": "16:257",
+          "name": "Value=unchecked, State=disabled"
+        },
+        {
+          "id": "16:260",
+          "name": "Value=checked, State=default"
+        },
+        {
+          "id": "16:265",
+          "name": "Value=checked, State=focus"
+        },
+        {
+          "id": "16:270",
+          "name": "Value=checked, State=disabled"
+        },
+        {
+          "id": "16:275",
+          "name": "Value=mixed, State=default"
+        },
+        {
+          "id": "16:279",
+          "name": "Value=mixed, State=focus"
+        },
+        {
+          "id": "16:283",
+          "name": "Value=mixed, State=disabled"
+        }
+      ]
+    },
+    {
+      "id": "16:309",
+      "name": "Observatory/v2/Controls/Radio",
+      "variants": [
+        {
+          "id": "16:288",
+          "name": "Value=unchecked, State=default"
+        },
+        {
+          "id": "16:291",
+          "name": "Value=unchecked, State=focus"
+        },
+        {
+          "id": "16:294",
+          "name": "Value=unchecked, State=disabled"
+        },
+        {
+          "id": "16:297",
+          "name": "Value=checked, State=default"
+        },
+        {
+          "id": "16:301",
+          "name": "Value=checked, State=focus"
+        },
+        {
+          "id": "16:305",
+          "name": "Value=checked, State=disabled"
+        }
+      ]
+    },
+    {
+      "id": "16:326",
+      "name": "Observatory/v2/Navigation/Tabs",
+      "variants": [
+        {
+          "id": "16:310",
+          "name": "Selection=first"
+        },
+        {
+          "id": "16:318",
+          "name": "Selection=second"
+        }
+      ]
+    },
+    {
+      "id": "17:95",
+      "name": "Observatory/v2/Controls/SegmentedControl",
+      "variants": [
+        {
+          "id": "17:81",
+          "name": "Selection=first"
+        },
+        {
+          "id": "17:88",
+          "name": "Selection=second"
+        }
+      ]
+    },
+    {
+      "id": "17:96",
+      "name": "Observatory/v2/Containers/Card",
+      "variants": []
+    },
+    {
+      "id": "17:101",
+      "name": "Observatory/v2/Containers/ListItem",
+      "variants": []
+    },
+    {
+      "id": "17:106",
+      "name": "Observatory/v2/Overlays/Modal",
+      "variants": []
+    },
+    {
+      "id": "17:114",
+      "name": "Observatory/v2/Overlays/Sheet",
+      "variants": []
+    },
+    {
+      "id": "17:130",
+      "name": "Observatory/v2/Feedback/Toast",
+      "variants": [
+        {
+          "id": "17:124",
+          "name": "Action=close"
+        },
+        {
+          "id": "17:127",
+          "name": "Action=undo"
+        }
+      ]
+    },
+    {
+      "id": "17:131",
+      "name": "Observatory/v2/Navigation/Breadcrumb",
+      "variants": []
+    },
+    {
+      "id": "17:169",
+      "name": "Observatory/v2/Fields/Search",
+      "variants": [
+        {
+          "id": "17:137",
+          "name": "State=empty"
+        },
+        {
+          "id": "17:145",
+          "name": "State=default"
+        },
+        {
+          "id": "17:153",
+          "name": "State=focus"
+        },
+        {
+          "id": "17:161",
+          "name": "State=invalid"
+        }
+      ]
+    },
+    {
+      "id": "17:186",
+      "name": "Observatory/v2/Feedback/EmptyState",
+      "variants": [
+        {
+          "id": "17:170",
+          "name": "Scenario=initial"
+        },
+        {
+          "id": "17:178",
+          "name": "Scenario=filtered"
+        }
+      ]
+    },
+    {
+      "id": "17:187",
+      "name": "Observatory/v2/Feedback/LoadingState",
+      "variants": []
+    },
+    {
+      "id": "17:193",
+      "name": "Observatory/v2/Feedback/ErrorState",
+      "variants": []
+    },
+    {
+      "id": "17:198",
+      "name": "Observatory/v2/Feedback/ScreenBoundary",
+      "variants": []
+    },
+    {
+      "id": "17:223",
+      "name": "Observatory/v2/Navigation/NavigationBar",
+      "variants": [
+        {
+          "id": "17:203",
+          "name": "Orientation=horizontal"
+        },
+        {
+          "id": "17:213",
+          "name": "Orientation=vertical"
+        }
+      ]
+    },
+    {
+      "id": "17:224",
+      "name": "Observatory/v2/Overlays/ContextMenu",
+      "variants": []
+    },
+    {
+      "id": "17:231",
+      "name": "Observatory/v2/Observatory/StudyLandscapes",
+      "variants": []
+    },
+    {
+      "id": "17:1910",
+      "name": "Observatory/v2/Observatory/ObservatoryWorld",
+      "variants": []
+    }
+  ]
+}

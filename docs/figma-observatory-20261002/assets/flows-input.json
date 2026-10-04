@@ -1,0 +1,2708 @@
+{
+  "schemaVersion": 1,
+  "pageId": "7:76",
+  "fileUrl": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX",
+  "foundations": {
+    "collections": {
+      "primitives": "VariableCollectionId:7:78",
+      "material": "VariableCollectionId:7:79",
+      "metrics": "VariableCollectionId:7:80"
+    },
+    "modes": [
+      {
+        "name": "Interior",
+        "modeId": "7:1"
+      },
+      {
+        "name": "Paper",
+        "modeId": "7:2"
+      }
+    ],
+    "variables": {
+      "primitive/interior/canvas": {
+        "id": "VariableID:7:81"
+      },
+      "primitive/interior/surface": {
+        "id": "VariableID:7:82"
+      },
+      "primitive/interior/subtle": {
+        "id": "VariableID:7:83"
+      },
+      "primitive/interior/text": {
+        "id": "VariableID:7:84"
+      },
+      "primitive/interior/muted": {
+        "id": "VariableID:7:85"
+      },
+      "primitive/interior/borderDecorative": {
+        "id": "VariableID:7:86"
+      },
+      "primitive/interior/borderInteractive": {
+        "id": "VariableID:7:87"
+      },
+      "primitive/interior/focus": {
+        "id": "VariableID:7:88"
+      },
+      "primitive/interior/selected": {
+        "id": "VariableID:7:89"
+      },
+      "primitive/interior/selectedText": {
+        "id": "VariableID:7:90"
+      },
+      "primitive/interior/primary": {
+        "id": "VariableID:7:91"
+      },
+      "primitive/interior/primaryHover": {
+        "id": "VariableID:7:92"
+      },
+      "primitive/interior/primaryPressed": {
+        "id": "VariableID:7:93"
+      },
+      "primitive/interior/onPrimary": {
+        "id": "VariableID:7:94"
+      },
+      "primitive/paper/canvas": {
+        "id": "VariableID:7:95"
+      },
+      "primitive/paper/surface": {
+        "id": "VariableID:7:96"
+      },
+      "primitive/paper/subtle": {
+        "id": "VariableID:7:97"
+      },
+      "primitive/paper/text": {
+        "id": "VariableID:7:98"
+      },
+      "primitive/paper/muted": {
+        "id": "VariableID:7:99"
+      },
+      "primitive/paper/borderDecorative": {
+        "id": "VariableID:7:100"
+      },
+      "primitive/paper/borderInteractive": {
+        "id": "VariableID:7:101"
+      },
+      "primitive/paper/focus": {
+        "id": "VariableID:7:102"
+      },
+      "primitive/paper/selected": {
+        "id": "VariableID:7:103"
+      },
+      "primitive/paper/selectedText": {
+        "id": "VariableID:7:104"
+      },
+      "primitive/paper/primary": {
+        "id": "VariableID:7:105"
+      },
+      "primitive/paper/primaryHover": {
+        "id": "VariableID:7:106"
+      },
+      "primitive/paper/primaryPressed": {
+        "id": "VariableID:7:107"
+      },
+      "primitive/paper/onPrimary": {
+        "id": "VariableID:7:108"
+      },
+      "material/canvas": {
+        "id": "VariableID:7:109"
+      },
+      "material/surface": {
+        "id": "VariableID:7:110"
+      },
+      "material/subtle": {
+        "id": "VariableID:7:111"
+      },
+      "material/text": {
+        "id": "VariableID:7:112"
+      },
+      "material/muted": {
+        "id": "VariableID:7:113"
+      },
+      "material/borderDecorative": {
+        "id": "VariableID:7:114"
+      },
+      "material/borderInteractive": {
+        "id": "VariableID:7:115"
+      },
+      "material/focus": {
+        "id": "VariableID:7:116"
+      },
+      "material/selected": {
+        "id": "VariableID:7:117"
+      },
+      "material/selectedText": {
+        "id": "VariableID:7:118"
+      },
+      "material/primary": {
+        "id": "VariableID:7:119"
+      },
+      "material/primaryHover": {
+        "id": "VariableID:7:120"
+      },
+      "material/primaryPressed": {
+        "id": "VariableID:7:121"
+      },
+      "material/onPrimary": {
+        "id": "VariableID:7:122"
+      },
+      "space/0": {
+        "id": "VariableID:7:123"
+      },
+      "space/4": {
+        "id": "VariableID:7:124"
+      },
+      "space/8": {
+        "id": "VariableID:7:125"
+      },
+      "space/12": {
+        "id": "VariableID:7:126"
+      },
+      "space/16": {
+        "id": "VariableID:7:127"
+      },
+      "space/24": {
+        "id": "VariableID:7:128"
+      },
+      "space/32": {
+        "id": "VariableID:7:129"
+      },
+      "space/48": {
+        "id": "VariableID:7:130"
+      },
+      "space/64": {
+        "id": "VariableID:7:131"
+      },
+      "control/height": {
+        "id": "VariableID:7:132"
+      },
+      "control/icon-target": {
+        "id": "VariableID:7:133"
+      },
+      "border/width": {
+        "id": "VariableID:7:134"
+      },
+      "focus/width": {
+        "id": "VariableID:7:135"
+      },
+      "radius/control": {
+        "id": "VariableID:7:136"
+      },
+      "radius/dialog": {
+        "id": "VariableID:7:137"
+      },
+      "motion/feedback": {
+        "id": "VariableID:7:138"
+      },
+      "motion/navigation": {
+        "id": "VariableID:7:139"
+      },
+      "motion/reduced": {
+        "id": "VariableID:7:140"
+      }
+    },
+    "textStyles": {
+      "Body": "S:0ed1e468a727e7f6b4cfe5df9fede5b786c93484,",
+      "Label": "S:57e137d821e57f2a65506aae778891f8769014bb,",
+      "Caption": "S:befdc25f9b2e8c63313b60a0d4aea208900d629a,",
+      "Heading": "S:a12f8ca10ba0d22e77eaf7ad3092a28a3779de86,",
+      "Title": "S:9c730b18d11b0b822b1b5cb4828120b4eb39915f,",
+      "TitleCompact": "S:8579bbbd27aef7f9309ddc31f958d7598925587a,",
+      "Code": "S:2dbd5754c8da299cad06f2184af84cc5101eb9b7,"
+    },
+    "fonts": {
+      "font": {
+        "family": "Noto Sans KR",
+        "style": "Regular"
+      },
+      "boldFont": {
+        "family": "Noto Sans KR",
+        "style": "Regular",
+        "variationSettings": {
+          "wght": 600
+        }
+      },
+      "axes": [
+        "wght"
+      ]
+    }
+  },
+  "flows": [
+    {
+      "id": "F01",
+      "name": "공부하고 여러 주제 기록",
+      "steps": [
+        "R01",
+        "R05",
+        "주제 여러 개 선택",
+        "공부함·선택 메모·TRACE",
+        "저장",
+        "현재 주제/자료 출발지 또는 R01"
+      ],
+      "preservation": "원문/날짜 불확실/반복을 유지; 성공과 실패/초안 상태 구별",
+      "prototypeVerified": false
+    },
+    {
+      "id": "F02",
+      "name": "과목과 실제 범위 만들기",
+      "steps": [
+        "R04",
+        "O02/U17",
+        "R19",
+        "목차 추가·주차",
+        "R20"
+      ],
+      "preservation": "ID·계층·기존 연결 보존; 생성/중복 미리보기",
+      "prototypeVerified": false
+    },
+    {
+      "id": "F03",
+      "name": "자료를 펼쳐 다음 공부로",
+      "steps": [
+        "R07",
+        "R23",
+        "전사문 붙여넣기/파일·기존 음성",
+        "선택 범위 정리",
+        "R12",
+        "R11"
+      ],
+      "preservation": "원문·수정 전·등록 당시 출처, 소유자 AI 권한 유지",
+      "prototypeVerified": false
+    },
+    {
+      "id": "F04",
+      "name": "시험처럼 풀고 복기",
+      "steps": [
+        "R20",
+        "R26",
+        "설정·진행·복기",
+        "R22",
+        "U20"
+      ],
+      "preservation": "시간 초과는 실패 아님; 응답과 실제 수행 결과 구별",
+      "prototypeVerified": false
+    },
+    {
+      "id": "F05",
+      "name": "암기시험을 직접 비교",
+      "steps": [
+        "R11",
+        "항목 선택",
+        "글·필기 답안",
+        "비교",
+        "R28"
+      ],
+      "preservation": "내 답안·기준·그림·미확인·직접 판단 유지",
+      "prototypeVerified": false
+    },
+    {
+      "id": "F06",
+      "name": "예약 복습과 되돌리기",
+      "steps": [
+        "R29",
+        "범위/덱",
+        "글·필기",
+        "설명 공개",
+        "자기 평가",
+        "다음 카드",
+        "평가 되돌리기"
+      ],
+      "preservation": "메모 저장·자기 평가·독립 수행은 별개; 원 답안 보존",
+      "prototypeVerified": false
+    },
+    {
+      "id": "F07",
+      "name": "코드와 주제 연결",
+      "steps": [
+        "R08",
+        "R25",
+        "편집·입력",
+        "실행·터미널",
+        "결과",
+        "주제 연결",
+        "R20"
+      ],
+      "preservation": "구문/실행/학습 성과 구분; 코드·초안·커서 보존",
+      "prototypeVerified": false
+    },
+    {
+      "id": "F08",
+      "name": "수식과 개념 탐구",
+      "steps": [
+        "R09",
+        "유형/조건",
+        "그래프·좌표 조작",
+        "관찰·저장",
+        "저장 탐색 재열기"
+      ],
+      "preservation": "계산·정의 불가·축/단위 유지; 임의 엔진값 변경 금지",
+      "prototypeVerified": false
+    },
+    {
+      "id": "F09",
+      "name": "관계와 원문 왕복",
+      "steps": [
+        "R15/R16",
+        "카드·관계 선택",
+        "R20/R13",
+        "실제 이전 시점"
+      ],
+      "preservation": "Canvas 사용자 좌표 보존; 그래프 배치와 의미 관계 구별",
+      "prototypeVerified": false
+    },
+    {
+      "id": "F10",
+      "name": "계획의 자료 누적",
+      "steps": [
+        "R03",
+        "O13",
+        "일정 목록/달력",
+        "단계별 상태",
+        "이력/복원"
+      ],
+      "preservation": "보관·공지 확인·실제 제출/출석/학습 구별",
+      "prototypeVerified": false
+    },
+    {
+      "id": "F11",
+      "name": "찾고 돌아오기",
+      "steps": [
+        "R18",
+        "검색·범위",
+        "실제 결과 딥링크",
+        "브라우저 뒤로"
+      ],
+      "preservation": "검색어·필터·스크롤·포커스 복원; 가짜 호출 이력 금지",
+      "prototypeVerified": false
+    },
+    {
+      "id": "F12",
+      "name": "저장 실패와 복구",
+      "steps": [
+        "편집",
+        "U07 오류/미전송",
+        "재시도/사본",
+        "R33 또는 R35",
+        "원 과업"
+      ],
+      "preservation": "서버/기기/초안/파일 증거를 구별; 자동 덮어쓰기 금지",
+      "prototypeVerified": false
+    },
+    {
+      "id": "F13",
+      "name": "계정 진입과 제한",
+      "steps": [
+        "U03",
+        "메일 확인",
+        "U04 승인",
+        "U02",
+        "U01",
+        "U05/U06"
+      ],
+      "preservation": "관리자·승인과 민석 전용 AI 권한 구별",
+      "prototypeVerified": false
+    },
+    {
+      "id": "F14",
+      "name": "네 장소와 현재 과업",
+      "steps": [
+        "18개 직접 메뉴",
+        "고정 장소",
+        "보조 자료 펼치기",
+        "호출한 과업"
+      ],
+      "preservation": "현재 소스에 네 장소·실제 호출자·공부 원자료 복귀가 연결됨. 이번 조사는 런타임·배포 검증을 하지 않았음.",
+      "prototypeVerified": false
+    }
+  ],
+  "coverageNodes": {
+    "routes": {
+      "R01": [
+        "26:68",
+        "26:1877",
+        "26:3681",
+        "26:5490",
+        "26:7299"
+      ],
+      "R02": [
+        "29:347",
+        "29:566",
+        "29:780",
+        "29:999",
+        "29:1218"
+      ],
+      "R03": [
+        "29:1432",
+        "29:1643",
+        "29:1849",
+        "29:2060",
+        "29:2271"
+      ],
+      "R04": [
+        "28:9818",
+        "28:9888",
+        "28:9953",
+        "28:10023",
+        "28:10093"
+      ],
+      "R05": [
+        "26:9103",
+        "26:9203",
+        "26:9298",
+        "26:9398",
+        "26:9498"
+      ],
+      "R06": [
+        "27:19087",
+        "27:19179",
+        "27:19266",
+        "27:19358",
+        "27:19450"
+      ],
+      "R07": [
+        "28:10158",
+        "28:10299",
+        "28:10435",
+        "28:10576",
+        "28:10717"
+      ],
+      "R08": [
+        "28:12179",
+        "28:12295",
+        "28:12406",
+        "28:12522",
+        "28:12638"
+      ],
+      "R09": [
+        "28:12749",
+        "28:12906",
+        "28:13058",
+        "28:13215",
+        "28:13372"
+      ],
+      "R10": [
+        "27:19537",
+        "27:19629",
+        "27:19716",
+        "27:19808",
+        "27:19900"
+      ],
+      "R11": [
+        "27:19997",
+        "27:20120",
+        "27:20238",
+        "27:20361",
+        "27:20484"
+      ],
+      "R12": [
+        "28:10863",
+        "28:10943",
+        "28:11018",
+        "28:11098",
+        "28:11178"
+      ],
+      "R13": [
+        "28:11253",
+        "28:11372",
+        "28:11486",
+        "28:11605",
+        "28:11724"
+      ],
+      "R14": [
+        "27:20602",
+        "27:20718",
+        "27:20829",
+        "27:20945",
+        "27:21061"
+      ],
+      "R15": [
+        "29:2487",
+        "29:2614",
+        "29:2736",
+        "29:2863",
+        "29:2990"
+      ],
+      "R16": [
+        "29:3112",
+        "29:3220",
+        "29:3323",
+        "29:3431",
+        "29:3539"
+      ],
+      "R17": [
+        "29:3652",
+        "29:3773",
+        "29:3894",
+        "29:4015",
+        "29:4136"
+      ],
+      "R18": [
+        "29:4495",
+        "29:4560",
+        "29:4625",
+        "29:4690",
+        "29:4755"
+      ],
+      "R19": [
+        "28:11848"
+      ],
+      "R20": [
+        "28:8964"
+      ],
+      "R21": [
+        "28:9012"
+      ],
+      "R22": [
+        "28:9054"
+      ],
+      "R23": [
+        "28:9093"
+      ],
+      "R24": [
+        "29:4824"
+      ],
+      "R25": [
+        "29:260"
+      ],
+      "R26": [
+        "28:9134"
+      ],
+      "R27": [
+        "28:9172"
+      ],
+      "R28": [
+        "28:9213"
+      ],
+      "R29": [
+        "28:9251"
+      ],
+      "R30": [
+        "28:9288"
+      ],
+      "R31": [
+        "28:9326"
+      ],
+      "R32": [
+        "28:9361"
+      ],
+      "R33": [
+        "29:4858"
+      ],
+      "R34": [
+        "29:4894"
+      ],
+      "R35": [
+        "29:4926"
+      ],
+      "R36": [
+        "29:4257"
+      ],
+      "R37": [
+        "29:4964"
+      ],
+      "R38": [
+        "29:5002"
+      ],
+      "R39": [
+        "29:5033"
+      ],
+      "R40": [
+        "29:5063"
+      ],
+      "R41": [
+        "29:5093"
+      ]
+    },
+    "modals": {
+      "O01": [
+        "29:5125"
+      ],
+      "O02": [
+        "28:11892"
+      ],
+      "O03": [
+        "28:11924"
+      ],
+      "O04": [
+        "28:11960"
+      ],
+      "O05": [
+        "29:5158"
+      ],
+      "O06": [
+        "28:11995"
+      ],
+      "O07": [
+        "28:12027"
+      ],
+      "O08": [
+        "29:5192"
+      ],
+      "O09": [
+        "29:5226"
+      ],
+      "O10": [
+        "29:5262"
+      ],
+      "O11": [
+        "28:9398"
+      ],
+      "O12": [
+        "29:5297"
+      ],
+      "O13": [
+        "29:4293"
+      ],
+      "O14": [
+        "29:295"
+      ],
+      "O15": [
+        "29:5331"
+      ],
+      "O16": [
+        "28:9437"
+      ],
+      "O17": [
+        "28:9477"
+      ],
+      "O18": [
+        "28:9516"
+      ],
+      "O19": [
+        "28:12060"
+      ],
+      "O20": [
+        "28:9561"
+      ],
+      "O21": [
+        "29:5374"
+      ],
+      "O22": [
+        "28:12098"
+      ],
+      "O23": [
+        "28:9602"
+      ],
+      "O24": [
+        "28:9636"
+      ],
+      "O25": [
+        "29:4342"
+      ],
+      "O26": [
+        "29:4383"
+      ],
+      "O27": [
+        "29:4417"
+      ],
+      "O28": [
+        "29:4461"
+      ],
+      "O29": [
+        "28:9671"
+      ]
+    },
+    "surfaces": {
+      "U01": [
+        "29:5410"
+      ],
+      "U02": [
+        "29:5463"
+      ],
+      "U03": [
+        "29:5493"
+      ],
+      "U04": [
+        "29:5533"
+      ],
+      "U05": [
+        "29:5226"
+      ],
+      "U06": [
+        "29:5192"
+      ],
+      "U07": [
+        "29:5374"
+      ],
+      "U08": [
+        "29:5565"
+      ],
+      "U09": [
+        "29:5597"
+      ],
+      "U10": [
+        "29:5631"
+      ],
+      "U11": [
+        "26:87",
+        "26:1891",
+        "26:3700",
+        "26:5509",
+        "26:7313"
+      ],
+      "U12": [
+        "26:87",
+        "26:1891",
+        "26:3700",
+        "26:5509",
+        "26:7313"
+      ],
+      "U13": [
+        "26:1766",
+        "26:3570",
+        "26:5379",
+        "26:7188",
+        "26:8992"
+      ],
+      "U14": [
+        "28:9705"
+      ],
+      "U15": [
+        "28:9671"
+      ],
+      "U16": [
+        "28:11862",
+        "28:8978"
+      ],
+      "U17": [
+        "28:12060",
+        "28:12098"
+      ],
+      "U18": [
+        "29:4342"
+      ],
+      "U19": [
+        "28:9398",
+        "26:9159",
+        "26:9254",
+        "26:9354",
+        "26:9454",
+        "26:9549"
+      ],
+      "U20": [
+        "28:9561"
+      ],
+      "U21": [
+        "29:4293"
+      ],
+      "U22": [
+        "28:9437",
+        "28:9477",
+        "28:9516"
+      ],
+      "U23": [
+        "28:10207",
+        "28:10343",
+        "28:10484",
+        "28:10625",
+        "28:10761"
+      ],
+      "U24": [
+        "28:12134"
+      ],
+      "U25": [
+        "28:10912",
+        "28:10987",
+        "28:11067",
+        "28:11147",
+        "28:11222",
+        "28:12263",
+        "28:12374",
+        "28:12490",
+        "28:12606",
+        "28:12717"
+      ],
+      "U26": [
+        "28:9739"
+      ],
+      "U27": [
+        "28:9781"
+      ],
+      "U28": [
+        "27:20048",
+        "27:20166",
+        "27:20289",
+        "27:20412",
+        "27:20530"
+      ],
+      "U29": [
+        "27:19134",
+        "27:19221",
+        "27:19313",
+        "27:19405",
+        "27:19492",
+        "27:20065",
+        "27:20183",
+        "27:20306",
+        "27:20429",
+        "27:20547",
+        "27:20656",
+        "27:20767",
+        "27:20883",
+        "27:20999",
+        "27:21110"
+      ],
+      "U30": [
+        "28:12215",
+        "28:12326",
+        "28:12442",
+        "28:12558",
+        "28:12669",
+        "28:12243",
+        "28:12354",
+        "28:12470",
+        "28:12586",
+        "28:12697"
+      ],
+      "U31": [
+        "28:12793",
+        "28:12945",
+        "28:13102",
+        "28:13259",
+        "28:13411"
+      ],
+      "U32": [
+        "28:12830",
+        "28:12982",
+        "28:13139",
+        "28:13296",
+        "28:13448",
+        "29:295"
+      ],
+      "U33": [
+        "28:12849",
+        "28:13001",
+        "28:13158",
+        "28:13315",
+        "28:13467",
+        "28:11315",
+        "28:11429",
+        "28:11548",
+        "28:11667",
+        "28:11781"
+      ],
+      "U34": [
+        "29:2537",
+        "29:2659",
+        "29:2786",
+        "29:2913",
+        "29:3035",
+        "29:2589",
+        "29:2711",
+        "29:2838",
+        "29:2965",
+        "29:3087"
+      ],
+      "U35": [
+        "29:2569",
+        "29:2691",
+        "29:2818",
+        "29:2945",
+        "29:3067",
+        "29:3197",
+        "29:3300",
+        "29:3408",
+        "29:3516",
+        "29:3619"
+      ],
+      "U36": [
+        "29:385",
+        "29:599",
+        "29:818",
+        "29:1037",
+        "29:1251",
+        "29:506",
+        "29:720",
+        "29:939",
+        "29:1158",
+        "29:1372",
+        "29:531",
+        "29:745",
+        "29:964",
+        "29:1183",
+        "29:1397",
+        "29:541",
+        "29:755",
+        "29:974",
+        "29:1193",
+        "29:1407"
+      ],
+      "U37": [
+        "29:5664"
+      ],
+      "U38": [
+        "29:5331"
+      ],
+      "U39": [
+        "29:5709"
+      ],
+      "U40": [
+        "7:70"
+      ],
+      "U41": [
+        "28:8978",
+        "28:9302",
+        "28:9340",
+        "28:9375"
+      ]
+    },
+    "components": {
+      "UI01": "16:140",
+      "UI02": "16:159",
+      "UI03": "16:190",
+      "UI04": "16:221",
+      "UI05": "16:250",
+      "UI06": "16:287",
+      "UI07": "16:309",
+      "UI08": "16:326",
+      "UI09": "17:95",
+      "UI10": "17:96",
+      "UI11": "17:101",
+      "UI12": "17:106",
+      "UI13": "17:114",
+      "UI14": "17:130",
+      "UI15": "17:131",
+      "UI16": "17:169",
+      "UI17": "17:186",
+      "UI18": "17:187",
+      "UI19": "17:193",
+      "UI20": "17:198",
+      "UI21": "17:223",
+      "UI22": "17:224",
+      "SC01": "17:231",
+      "SC02": "17:1910",
+      "SC03": "20:4808",
+      "SC04": "20:6484",
+      "SC05": "20:6496",
+      "SC06": "20:6515",
+      "SC07": "20:6527",
+      "SC08": "20:6539",
+      "SC09": "20:6560",
+      "SC10": "20:6581",
+      "SC11": "20:6593",
+      "SC12": "20:6605",
+      "SC13": "20:6617",
+      "SC14": "20:6629",
+      "SC15": "20:6641",
+      "SC16": "20:6653",
+      "SC17": "20:6665",
+      "SC18": "20:6677",
+      "SC19": "21:5121",
+      "SC20": "21:5138",
+      "MO01": "21:5175",
+      "MO02": "21:5194",
+      "MO03": "21:5216",
+      "MO04": "21:5229",
+      "MO05": "21:5242",
+      "BR01": "21:5243"
+    },
+    "sources": {
+      "D01": "20:3646",
+      "D02": "20:3664",
+      "D03": "20:3682",
+      "D04": "20:3700",
+      "D05": "20:3718",
+      "D06": "20:3737",
+      "D07": "20:3755",
+      "D08": "20:3774",
+      "D09": "20:3793",
+      "D10": "20:3811",
+      "D11": "20:3830",
+      "D12": "20:3848",
+      "D13": "20:3866",
+      "D14": "20:3885",
+      "D15": "20:3903",
+      "D16": "20:3921",
+      "D17": "20:3939",
+      "D18": "20:3957",
+      "D19": "20:3975",
+      "D20": "20:3993",
+      "D21": "20:4011",
+      "D22": "20:4029",
+      "D23": "20:4047",
+      "D24": "20:4065",
+      "D25": "20:4083",
+      "D26": "20:4101",
+      "D27": "20:4119",
+      "D28": "20:4137",
+      "F01": "20:4188",
+      "F02": "20:4207",
+      "F03": "20:4226",
+      "F04": "20:4245",
+      "F05": "20:4265",
+      "F06": "20:4283",
+      "F07": "20:4301",
+      "F08": "20:4319",
+      "F09": "20:4337",
+      "F10": "20:4356",
+      "F11": "20:4374",
+      "F12": "20:4393",
+      "F13": "20:4411",
+      "F14": "20:4431",
+      "F15": "20:4449",
+      "F16": "20:4467",
+      "F17": "20:4485",
+      "F18": "20:4503",
+      "F19": "20:4521",
+      "F20": "20:4539",
+      "F21": "20:4558",
+      "F22": "20:4578",
+      "F23": "20:4598",
+      "F24": "20:4617",
+      "F25": "20:4637",
+      "F26": "20:4656",
+      "F27": "20:4674",
+      "F28": "20:4693",
+      "F29": "20:4711",
+      "F30": "20:4729",
+      "F31": "20:4747",
+      "Q01": "22:72",
+      "Q02": "22:90",
+      "Q03": "22:108",
+      "Q04": "22:126",
+      "Q05": "22:145",
+      "Q06": "22:164",
+      "Q07": "22:183",
+      "Q08": "22:202",
+      "Q09": "22:220",
+      "Q10": "22:238",
+      "Q11": "22:257",
+      "Q12": "22:276",
+      "Q13": "22:295",
+      "Q14": "22:314",
+      "Q15": "22:332",
+      "Q16": "22:351",
+      "Q17": "22:370",
+      "Q18": "22:388",
+      "Q19": "22:407",
+      "Q20": "22:426",
+      "Q21": "22:444",
+      "Q22": "22:462",
+      "Q23": "22:480",
+      "Q24": "22:498",
+      "Q25": "22:517",
+      "Q26": "22:536",
+      "Q27": "22:556",
+      "Q28": "22:576",
+      "S01": "22:633",
+      "S02": "22:651",
+      "S03": "22:669",
+      "S04": "22:687",
+      "S05": "22:705",
+      "S06": "22:723",
+      "S07": "22:742",
+      "S08": "22:760",
+      "S09": "22:778",
+      "S10": "22:796",
+      "S11": "22:814",
+      "S12": "22:832",
+      "S13": "22:850",
+      "S14": "22:868",
+      "S15": "22:886",
+      "S16": "22:904",
+      "S17": "22:922",
+      "S18": "22:941",
+      "S19": "22:960",
+      "S20": "22:979",
+      "S21": "22:998",
+      "S22": "22:1017",
+      "S23": "22:1035",
+      "S24": "22:1053",
+      "S25": "22:1072",
+      "S26": "22:1091",
+      "S27": "22:1109",
+      "S28": "22:1127",
+      "S29": "22:1145",
+      "S30": "22:1163",
+      "S31": "22:1181",
+      "S32": "22:1199",
+      "S33": "22:1218",
+      "S34": "22:1237"
+    },
+    "states": {
+      "SAVE-CHECKING": "14:73",
+      "SAVE-LOCAL-WRITING": "14:95",
+      "SAVE-PENDING": "14:115",
+      "SAVE-SAVING": "14:139",
+      "SAVE-SAVED": "14:161",
+      "SAVE-ERROR": "14:183",
+      "SAVE-LOCAL-ERROR": "14:205",
+      "SAVE-CONFLICT": "14:227",
+      "SAVE-ARCHIVING": "14:254",
+      "AUTH-CHECKING": "14:271",
+      "AUTH-SIGNED-OUT": "14:290",
+      "AUTH-PENDING": "14:312",
+      "AUTH-APPROVED": "14:331",
+      "AUTH-REJECTED": "14:348",
+      "AUTH-SUSPENDED": "14:365",
+      "AUTH-EXPIRED": "14:382",
+      "EDIT-DIRTY": "14:401",
+      "EDIT-OTHER-WINDOW": "14:422",
+      "EDIT-RESTORED-DRAFT": "14:444",
+      "BACKUP-COLLECTING": "14:466",
+      "BACKUP-PREPARED": "14:483",
+      "BACKUP-INVALID": "14:500",
+      "BACKUP-PREVIEW": "14:519",
+      "BACKUP-WAITING-RESTART": "14:543",
+      "BACKUP-RECOVERING": "14:560",
+      "BACKUP-RESTORED": "14:577",
+      "BACKUP-ROLLED-BACK": "14:596",
+      "BACKUP-MISSING-ORIGINAL": "14:615",
+      "BACKUP-OWNER-CHANGED": "14:634",
+      "AI-OWNER-READY": "14:651",
+      "AI-FORBIDDEN": "14:673",
+      "AI-GENERATING": "14:690",
+      "AI-PREVIEW": "14:710",
+      "AI-FAILED": "14:739",
+      "AI-LIMIT": "14:759",
+      "AI-UNCERTAIN": "14:779",
+      "CONTENT-EMPTY": "14:799",
+      "CONTENT-NO-RESULT": "14:816",
+      "CONTENT-ERROR": "14:838",
+      "CONTENT-UNAVAILABLE": "14:857",
+      "RENDER-FALLBACK": "14:874",
+      "RENDER-PAUSED": "14:893"
+    },
+    "transitions": {
+      "T01": "14:922",
+      "T02": "14:933",
+      "T03": "14:944",
+      "T04": "14:955",
+      "T05": "14:966",
+      "T06": "14:977",
+      "T07": "14:988",
+      "T08": "14:999",
+      "T09": "14:1010",
+      "T10": "14:1021",
+      "T11": "14:1032",
+      "T12": "14:1043",
+      "T13": "14:1054",
+      "T14": "14:1065",
+      "T15": "14:1076",
+      "T16": "14:1087",
+      "T17": "14:1098",
+      "T18": "14:1109",
+      "T19": "14:1120",
+      "T20": "14:1131",
+      "T21": "14:1142",
+      "T22": "14:1153",
+      "T23": "14:1164",
+      "T24": "14:1175",
+      "T25": "14:1186",
+      "T26": "14:1197",
+      "T27": "14:1208",
+      "T28": "14:1219",
+      "T29": "14:1230",
+      "T30": "14:1241",
+      "T31": "14:1252",
+      "T32": "14:1263"
+    }
+  },
+  "screenMap": {
+    "R01@ipad-landscape": {
+      "id": "26:68",
+      "routeId": "R01",
+      "profile": "ipad-landscape",
+      "pageId": "7:71"
+    },
+    "R01@iphone-portrait": {
+      "id": "26:1877",
+      "routeId": "R01",
+      "profile": "iphone-portrait",
+      "pageId": "7:71"
+    },
+    "R01@iphone-landscape": {
+      "id": "26:3681",
+      "routeId": "R01",
+      "profile": "iphone-landscape",
+      "pageId": "7:71"
+    },
+    "R01@ipad-portrait": {
+      "id": "26:5490",
+      "routeId": "R01",
+      "profile": "ipad-portrait",
+      "pageId": "7:71"
+    },
+    "R01@ipad-narrow": {
+      "id": "26:7299",
+      "routeId": "R01",
+      "profile": "ipad-narrow",
+      "pageId": "7:71"
+    },
+    "R05@ipad-landscape": {
+      "id": "26:9103",
+      "routeId": "R05",
+      "profile": "ipad-landscape",
+      "pageId": "7:71"
+    },
+    "R05@iphone-portrait": {
+      "id": "26:9203",
+      "routeId": "R05",
+      "profile": "iphone-portrait",
+      "pageId": "7:71"
+    },
+    "R05@iphone-landscape": {
+      "id": "26:9298",
+      "routeId": "R05",
+      "profile": "iphone-landscape",
+      "pageId": "7:71"
+    },
+    "R05@ipad-portrait": {
+      "id": "26:9398",
+      "routeId": "R05",
+      "profile": "ipad-portrait",
+      "pageId": "7:71"
+    },
+    "R05@ipad-narrow": {
+      "id": "26:9498",
+      "routeId": "R05",
+      "profile": "ipad-narrow",
+      "pageId": "7:71"
+    },
+    "R06@ipad-landscape": {
+      "id": "27:19087",
+      "routeId": "R06",
+      "profile": "ipad-landscape",
+      "pageId": "7:71"
+    },
+    "R06@iphone-portrait": {
+      "id": "27:19179",
+      "routeId": "R06",
+      "profile": "iphone-portrait",
+      "pageId": "7:71"
+    },
+    "R06@iphone-landscape": {
+      "id": "27:19266",
+      "routeId": "R06",
+      "profile": "iphone-landscape",
+      "pageId": "7:71"
+    },
+    "R06@ipad-portrait": {
+      "id": "27:19358",
+      "routeId": "R06",
+      "profile": "ipad-portrait",
+      "pageId": "7:71"
+    },
+    "R06@ipad-narrow": {
+      "id": "27:19450",
+      "routeId": "R06",
+      "profile": "ipad-narrow",
+      "pageId": "7:71"
+    },
+    "R10@ipad-landscape": {
+      "id": "27:19537",
+      "routeId": "R10",
+      "profile": "ipad-landscape",
+      "pageId": "7:71"
+    },
+    "R10@iphone-portrait": {
+      "id": "27:19629",
+      "routeId": "R10",
+      "profile": "iphone-portrait",
+      "pageId": "7:71"
+    },
+    "R10@iphone-landscape": {
+      "id": "27:19716",
+      "routeId": "R10",
+      "profile": "iphone-landscape",
+      "pageId": "7:71"
+    },
+    "R10@ipad-portrait": {
+      "id": "27:19808",
+      "routeId": "R10",
+      "profile": "ipad-portrait",
+      "pageId": "7:71"
+    },
+    "R10@ipad-narrow": {
+      "id": "27:19900",
+      "routeId": "R10",
+      "profile": "ipad-narrow",
+      "pageId": "7:71"
+    },
+    "R11@ipad-landscape": {
+      "id": "27:19997",
+      "routeId": "R11",
+      "profile": "ipad-landscape",
+      "pageId": "7:71"
+    },
+    "R11@iphone-portrait": {
+      "id": "27:20120",
+      "routeId": "R11",
+      "profile": "iphone-portrait",
+      "pageId": "7:71"
+    },
+    "R11@iphone-landscape": {
+      "id": "27:20238",
+      "routeId": "R11",
+      "profile": "iphone-landscape",
+      "pageId": "7:71"
+    },
+    "R11@ipad-portrait": {
+      "id": "27:20361",
+      "routeId": "R11",
+      "profile": "ipad-portrait",
+      "pageId": "7:71"
+    },
+    "R11@ipad-narrow": {
+      "id": "27:20484",
+      "routeId": "R11",
+      "profile": "ipad-narrow",
+      "pageId": "7:71"
+    },
+    "R14@ipad-landscape": {
+      "id": "27:20602",
+      "routeId": "R14",
+      "profile": "ipad-landscape",
+      "pageId": "7:71"
+    },
+    "R14@iphone-portrait": {
+      "id": "27:20718",
+      "routeId": "R14",
+      "profile": "iphone-portrait",
+      "pageId": "7:71"
+    },
+    "R14@iphone-landscape": {
+      "id": "27:20829",
+      "routeId": "R14",
+      "profile": "iphone-landscape",
+      "pageId": "7:71"
+    },
+    "R14@ipad-portrait": {
+      "id": "27:20945",
+      "routeId": "R14",
+      "profile": "ipad-portrait",
+      "pageId": "7:71"
+    },
+    "R14@ipad-narrow": {
+      "id": "27:21061",
+      "routeId": "R14",
+      "profile": "ipad-narrow",
+      "pageId": "7:71"
+    },
+    "R20@ipad-landscape": {
+      "id": "28:8964",
+      "routeId": "R20",
+      "profile": "ipad-landscape",
+      "pageId": "7:71"
+    },
+    "R21@ipad-landscape": {
+      "id": "28:9012",
+      "routeId": "R21",
+      "profile": "ipad-landscape",
+      "pageId": "7:71"
+    },
+    "R22@ipad-landscape": {
+      "id": "28:9054",
+      "routeId": "R22",
+      "profile": "ipad-landscape",
+      "pageId": "7:71"
+    },
+    "R23@ipad-landscape": {
+      "id": "28:9093",
+      "routeId": "R23",
+      "profile": "ipad-landscape",
+      "pageId": "7:71"
+    },
+    "R26@ipad-landscape": {
+      "id": "28:9134",
+      "routeId": "R26",
+      "profile": "ipad-landscape",
+      "pageId": "7:71"
+    },
+    "R27@ipad-landscape": {
+      "id": "28:9172",
+      "routeId": "R27",
+      "profile": "ipad-landscape",
+      "pageId": "7:71"
+    },
+    "R28@ipad-landscape": {
+      "id": "28:9213",
+      "routeId": "R28",
+      "profile": "ipad-landscape",
+      "pageId": "7:71"
+    },
+    "R29@ipad-landscape": {
+      "id": "28:9251",
+      "routeId": "R29",
+      "profile": "ipad-landscape",
+      "pageId": "7:71"
+    },
+    "R30@ipad-landscape": {
+      "id": "28:9288",
+      "routeId": "R30",
+      "profile": "ipad-landscape",
+      "pageId": "7:71"
+    },
+    "R31@ipad-landscape": {
+      "id": "28:9326",
+      "routeId": "R31",
+      "profile": "ipad-landscape",
+      "pageId": "7:71"
+    },
+    "R32@ipad-landscape": {
+      "id": "28:9361",
+      "routeId": "R32",
+      "profile": "ipad-landscape",
+      "pageId": "7:71"
+    },
+    "O11@ipad-landscape": {
+      "id": "28:9398",
+      "routeId": "O11",
+      "profile": "ipad-landscape",
+      "pageId": "7:71"
+    },
+    "O16@ipad-landscape": {
+      "id": "28:9437",
+      "routeId": "O16",
+      "profile": "ipad-landscape",
+      "pageId": "7:71"
+    },
+    "O17@ipad-landscape": {
+      "id": "28:9477",
+      "routeId": "O17",
+      "profile": "ipad-landscape",
+      "pageId": "7:71"
+    },
+    "O18@ipad-landscape": {
+      "id": "28:9516",
+      "routeId": "O18",
+      "profile": "ipad-landscape",
+      "pageId": "7:71"
+    },
+    "O20@ipad-landscape": {
+      "id": "28:9561",
+      "routeId": "O20",
+      "profile": "ipad-landscape",
+      "pageId": "7:71"
+    },
+    "O23@ipad-landscape": {
+      "id": "28:9602",
+      "routeId": "O23",
+      "profile": "ipad-landscape",
+      "pageId": "7:71"
+    },
+    "O24@ipad-landscape": {
+      "id": "28:9636",
+      "routeId": "O24",
+      "profile": "ipad-landscape",
+      "pageId": "7:71"
+    },
+    "O29@ipad-landscape": {
+      "id": "28:9671",
+      "routeId": "O29",
+      "profile": "ipad-landscape",
+      "pageId": "7:71"
+    },
+    "U14@ipad-landscape": {
+      "id": "28:9705",
+      "routeId": "U14",
+      "profile": "ipad-landscape",
+      "pageId": "7:71"
+    },
+    "U26@ipad-landscape": {
+      "id": "28:9739",
+      "routeId": "U26",
+      "profile": "ipad-landscape",
+      "pageId": "7:71"
+    },
+    "U27@ipad-landscape": {
+      "id": "28:9781",
+      "routeId": "U27",
+      "profile": "ipad-landscape",
+      "pageId": "7:71"
+    },
+    "R18@ipad-landscape": {
+      "id": "29:4495",
+      "routeId": "R18",
+      "profile": "ipad-landscape",
+      "pageId": "7:75"
+    },
+    "R18@iphone-portrait": {
+      "id": "29:4560",
+      "routeId": "R18",
+      "profile": "iphone-portrait",
+      "pageId": "7:75"
+    },
+    "R18@iphone-landscape": {
+      "id": "29:4625",
+      "routeId": "R18",
+      "profile": "iphone-landscape",
+      "pageId": "7:75"
+    },
+    "R18@ipad-portrait": {
+      "id": "29:4690",
+      "routeId": "R18",
+      "profile": "ipad-portrait",
+      "pageId": "7:75"
+    },
+    "R18@ipad-narrow": {
+      "id": "29:4755",
+      "routeId": "R18",
+      "profile": "ipad-narrow",
+      "pageId": "7:75"
+    },
+    "R24@ipad-landscape": {
+      "id": "29:4824",
+      "routeId": "R24",
+      "profile": "ipad-landscape",
+      "pageId": "7:75"
+    },
+    "R33@ipad-landscape": {
+      "id": "29:4858",
+      "routeId": "R33",
+      "profile": "ipad-landscape",
+      "pageId": "7:75"
+    },
+    "R34@ipad-landscape": {
+      "id": "29:4894",
+      "routeId": "R34",
+      "profile": "ipad-landscape",
+      "pageId": "7:75"
+    },
+    "R35@ipad-landscape": {
+      "id": "29:4926",
+      "routeId": "R35",
+      "profile": "ipad-landscape",
+      "pageId": "7:75"
+    },
+    "R37@ipad-landscape": {
+      "id": "29:4964",
+      "routeId": "R37",
+      "profile": "ipad-landscape",
+      "pageId": "7:75"
+    },
+    "R38@ipad-landscape": {
+      "id": "29:5002",
+      "routeId": "R38",
+      "profile": "ipad-landscape",
+      "pageId": "7:75"
+    },
+    "R39@ipad-landscape": {
+      "id": "29:5033",
+      "routeId": "R39",
+      "profile": "ipad-landscape",
+      "pageId": "7:75"
+    },
+    "R40@ipad-landscape": {
+      "id": "29:5063",
+      "routeId": "R40",
+      "profile": "ipad-landscape",
+      "pageId": "7:75"
+    },
+    "R41@ipad-landscape": {
+      "id": "29:5093",
+      "routeId": "R41",
+      "profile": "ipad-landscape",
+      "pageId": "7:75"
+    },
+    "O01@ipad-landscape": {
+      "id": "29:5125",
+      "routeId": "O01",
+      "profile": "ipad-landscape",
+      "pageId": "7:75"
+    },
+    "O05@ipad-landscape": {
+      "id": "29:5158",
+      "routeId": "O05",
+      "profile": "ipad-landscape",
+      "pageId": "7:75"
+    },
+    "O08@ipad-landscape": {
+      "id": "29:5192",
+      "routeId": "O08",
+      "profile": "ipad-landscape",
+      "pageId": "7:75"
+    },
+    "O09@ipad-landscape": {
+      "id": "29:5226",
+      "routeId": "O09",
+      "profile": "ipad-landscape",
+      "pageId": "7:75"
+    },
+    "O10@ipad-landscape": {
+      "id": "29:5262",
+      "routeId": "O10",
+      "profile": "ipad-landscape",
+      "pageId": "7:75"
+    },
+    "O12@ipad-landscape": {
+      "id": "29:5297",
+      "routeId": "O12",
+      "profile": "ipad-landscape",
+      "pageId": "7:75"
+    },
+    "O15@ipad-landscape": {
+      "id": "29:5331",
+      "routeId": "O15",
+      "profile": "ipad-landscape",
+      "pageId": "7:75"
+    },
+    "O21@ipad-landscape": {
+      "id": "29:5374",
+      "routeId": "O21",
+      "profile": "ipad-landscape",
+      "pageId": "7:75"
+    },
+    "U01@ipad-landscape": {
+      "id": "29:5410",
+      "routeId": "U01",
+      "profile": "ipad-landscape",
+      "pageId": "7:75"
+    },
+    "U02@ipad-landscape": {
+      "id": "29:5463",
+      "routeId": "U02",
+      "profile": "ipad-landscape",
+      "pageId": "7:75"
+    },
+    "U03@ipad-landscape": {
+      "id": "29:5493",
+      "routeId": "U03",
+      "profile": "ipad-landscape",
+      "pageId": "7:75"
+    },
+    "U04@ipad-landscape": {
+      "id": "29:5533",
+      "routeId": "U04",
+      "profile": "ipad-landscape",
+      "pageId": "7:75"
+    },
+    "U08@ipad-landscape": {
+      "id": "29:5565",
+      "routeId": "U08",
+      "profile": "ipad-landscape",
+      "pageId": "7:75"
+    },
+    "U09@ipad-landscape": {
+      "id": "29:5597",
+      "routeId": "U09",
+      "profile": "ipad-landscape",
+      "pageId": "7:75"
+    },
+    "U10@ipad-landscape": {
+      "id": "29:5631",
+      "routeId": "U10",
+      "profile": "ipad-landscape",
+      "pageId": "7:75"
+    },
+    "U37@ipad-landscape": {
+      "id": "29:5664",
+      "routeId": "U37",
+      "profile": "ipad-landscape",
+      "pageId": "7:75"
+    },
+    "U39@ipad-landscape": {
+      "id": "29:5709",
+      "routeId": "U39",
+      "profile": "ipad-landscape",
+      "pageId": "7:75"
+    },
+    "R04@ipad-landscape": {
+      "id": "28:9818",
+      "routeId": "R04",
+      "profile": "ipad-landscape",
+      "pageId": "7:72"
+    },
+    "R04@iphone-portrait": {
+      "id": "28:9888",
+      "routeId": "R04",
+      "profile": "iphone-portrait",
+      "pageId": "7:72"
+    },
+    "R04@iphone-landscape": {
+      "id": "28:9953",
+      "routeId": "R04",
+      "profile": "iphone-landscape",
+      "pageId": "7:72"
+    },
+    "R04@ipad-portrait": {
+      "id": "28:10023",
+      "routeId": "R04",
+      "profile": "ipad-portrait",
+      "pageId": "7:72"
+    },
+    "R04@ipad-narrow": {
+      "id": "28:10093",
+      "routeId": "R04",
+      "profile": "ipad-narrow",
+      "pageId": "7:72"
+    },
+    "R07@ipad-landscape": {
+      "id": "28:10158",
+      "routeId": "R07",
+      "profile": "ipad-landscape",
+      "pageId": "7:72"
+    },
+    "R07@iphone-portrait": {
+      "id": "28:10299",
+      "routeId": "R07",
+      "profile": "iphone-portrait",
+      "pageId": "7:72"
+    },
+    "R07@iphone-landscape": {
+      "id": "28:10435",
+      "routeId": "R07",
+      "profile": "iphone-landscape",
+      "pageId": "7:72"
+    },
+    "R07@ipad-portrait": {
+      "id": "28:10576",
+      "routeId": "R07",
+      "profile": "ipad-portrait",
+      "pageId": "7:72"
+    },
+    "R07@ipad-narrow": {
+      "id": "28:10717",
+      "routeId": "R07",
+      "profile": "ipad-narrow",
+      "pageId": "7:72"
+    },
+    "R12@ipad-landscape": {
+      "id": "28:10863",
+      "routeId": "R12",
+      "profile": "ipad-landscape",
+      "pageId": "7:72"
+    },
+    "R12@iphone-portrait": {
+      "id": "28:10943",
+      "routeId": "R12",
+      "profile": "iphone-portrait",
+      "pageId": "7:72"
+    },
+    "R12@iphone-landscape": {
+      "id": "28:11018",
+      "routeId": "R12",
+      "profile": "iphone-landscape",
+      "pageId": "7:72"
+    },
+    "R12@ipad-portrait": {
+      "id": "28:11098",
+      "routeId": "R12",
+      "profile": "ipad-portrait",
+      "pageId": "7:72"
+    },
+    "R12@ipad-narrow": {
+      "id": "28:11178",
+      "routeId": "R12",
+      "profile": "ipad-narrow",
+      "pageId": "7:72"
+    },
+    "R13@ipad-landscape": {
+      "id": "28:11253",
+      "routeId": "R13",
+      "profile": "ipad-landscape",
+      "pageId": "7:72"
+    },
+    "R13@iphone-portrait": {
+      "id": "28:11372",
+      "routeId": "R13",
+      "profile": "iphone-portrait",
+      "pageId": "7:72"
+    },
+    "R13@iphone-landscape": {
+      "id": "28:11486",
+      "routeId": "R13",
+      "profile": "iphone-landscape",
+      "pageId": "7:72"
+    },
+    "R13@ipad-portrait": {
+      "id": "28:11605",
+      "routeId": "R13",
+      "profile": "ipad-portrait",
+      "pageId": "7:72"
+    },
+    "R13@ipad-narrow": {
+      "id": "28:11724",
+      "routeId": "R13",
+      "profile": "ipad-narrow",
+      "pageId": "7:72"
+    },
+    "R19@ipad-landscape": {
+      "id": "28:11848",
+      "routeId": "R19",
+      "profile": "ipad-landscape",
+      "pageId": "7:72"
+    },
+    "O02@ipad-landscape": {
+      "id": "28:11892",
+      "routeId": "O02",
+      "profile": "ipad-landscape",
+      "pageId": "7:72"
+    },
+    "O03@ipad-landscape": {
+      "id": "28:11924",
+      "routeId": "O03",
+      "profile": "ipad-landscape",
+      "pageId": "7:72"
+    },
+    "O04@ipad-landscape": {
+      "id": "28:11960",
+      "routeId": "O04",
+      "profile": "ipad-landscape",
+      "pageId": "7:72"
+    },
+    "O06@ipad-landscape": {
+      "id": "28:11995",
+      "routeId": "O06",
+      "profile": "ipad-landscape",
+      "pageId": "7:72"
+    },
+    "O07@ipad-landscape": {
+      "id": "28:12027",
+      "routeId": "O07",
+      "profile": "ipad-landscape",
+      "pageId": "7:72"
+    },
+    "O19@ipad-landscape": {
+      "id": "28:12060",
+      "routeId": "O19",
+      "profile": "ipad-landscape",
+      "pageId": "7:72"
+    },
+    "O22@ipad-landscape": {
+      "id": "28:12098",
+      "routeId": "O22",
+      "profile": "ipad-landscape",
+      "pageId": "7:72"
+    },
+    "U24@ipad-landscape": {
+      "id": "28:12134",
+      "routeId": "U24",
+      "profile": "ipad-landscape",
+      "pageId": "7:72"
+    },
+    "R02@ipad-landscape": {
+      "id": "29:347",
+      "routeId": "R02",
+      "profile": "ipad-landscape",
+      "pageId": "7:74"
+    },
+    "R02@iphone-portrait": {
+      "id": "29:566",
+      "routeId": "R02",
+      "profile": "iphone-portrait",
+      "pageId": "7:74"
+    },
+    "R02@iphone-landscape": {
+      "id": "29:780",
+      "routeId": "R02",
+      "profile": "iphone-landscape",
+      "pageId": "7:74"
+    },
+    "R02@ipad-portrait": {
+      "id": "29:999",
+      "routeId": "R02",
+      "profile": "ipad-portrait",
+      "pageId": "7:74"
+    },
+    "R02@ipad-narrow": {
+      "id": "29:1218",
+      "routeId": "R02",
+      "profile": "ipad-narrow",
+      "pageId": "7:74"
+    },
+    "R03@ipad-landscape": {
+      "id": "29:1432",
+      "routeId": "R03",
+      "profile": "ipad-landscape",
+      "pageId": "7:74"
+    },
+    "R03@iphone-portrait": {
+      "id": "29:1643",
+      "routeId": "R03",
+      "profile": "iphone-portrait",
+      "pageId": "7:74"
+    },
+    "R03@iphone-landscape": {
+      "id": "29:1849",
+      "routeId": "R03",
+      "profile": "iphone-landscape",
+      "pageId": "7:74"
+    },
+    "R03@ipad-portrait": {
+      "id": "29:2060",
+      "routeId": "R03",
+      "profile": "ipad-portrait",
+      "pageId": "7:74"
+    },
+    "R03@ipad-narrow": {
+      "id": "29:2271",
+      "routeId": "R03",
+      "profile": "ipad-narrow",
+      "pageId": "7:74"
+    },
+    "R15@ipad-landscape": {
+      "id": "29:2487",
+      "routeId": "R15",
+      "profile": "ipad-landscape",
+      "pageId": "7:74"
+    },
+    "R15@iphone-portrait": {
+      "id": "29:2614",
+      "routeId": "R15",
+      "profile": "iphone-portrait",
+      "pageId": "7:74"
+    },
+    "R15@iphone-landscape": {
+      "id": "29:2736",
+      "routeId": "R15",
+      "profile": "iphone-landscape",
+      "pageId": "7:74"
+    },
+    "R15@ipad-portrait": {
+      "id": "29:2863",
+      "routeId": "R15",
+      "profile": "ipad-portrait",
+      "pageId": "7:74"
+    },
+    "R15@ipad-narrow": {
+      "id": "29:2990",
+      "routeId": "R15",
+      "profile": "ipad-narrow",
+      "pageId": "7:74"
+    },
+    "R16@ipad-landscape": {
+      "id": "29:3112",
+      "routeId": "R16",
+      "profile": "ipad-landscape",
+      "pageId": "7:74"
+    },
+    "R16@iphone-portrait": {
+      "id": "29:3220",
+      "routeId": "R16",
+      "profile": "iphone-portrait",
+      "pageId": "7:74"
+    },
+    "R16@iphone-landscape": {
+      "id": "29:3323",
+      "routeId": "R16",
+      "profile": "iphone-landscape",
+      "pageId": "7:74"
+    },
+    "R16@ipad-portrait": {
+      "id": "29:3431",
+      "routeId": "R16",
+      "profile": "ipad-portrait",
+      "pageId": "7:74"
+    },
+    "R16@ipad-narrow": {
+      "id": "29:3539",
+      "routeId": "R16",
+      "profile": "ipad-narrow",
+      "pageId": "7:74"
+    },
+    "R17@ipad-landscape": {
+      "id": "29:3652",
+      "routeId": "R17",
+      "profile": "ipad-landscape",
+      "pageId": "7:74"
+    },
+    "R17@iphone-portrait": {
+      "id": "29:3773",
+      "routeId": "R17",
+      "profile": "iphone-portrait",
+      "pageId": "7:74"
+    },
+    "R17@iphone-landscape": {
+      "id": "29:3894",
+      "routeId": "R17",
+      "profile": "iphone-landscape",
+      "pageId": "7:74"
+    },
+    "R17@ipad-portrait": {
+      "id": "29:4015",
+      "routeId": "R17",
+      "profile": "ipad-portrait",
+      "pageId": "7:74"
+    },
+    "R17@ipad-narrow": {
+      "id": "29:4136",
+      "routeId": "R17",
+      "profile": "ipad-narrow",
+      "pageId": "7:74"
+    },
+    "R36@ipad-landscape": {
+      "id": "29:4257",
+      "routeId": "R36",
+      "profile": "ipad-landscape",
+      "pageId": "7:74"
+    },
+    "O13@ipad-landscape": {
+      "id": "29:4293",
+      "routeId": "O13",
+      "profile": "ipad-landscape",
+      "pageId": "7:74"
+    },
+    "O25@ipad-landscape": {
+      "id": "29:4342",
+      "routeId": "O25",
+      "profile": "ipad-landscape",
+      "pageId": "7:74"
+    },
+    "O26@ipad-landscape": {
+      "id": "29:4383",
+      "routeId": "O26",
+      "profile": "ipad-landscape",
+      "pageId": "7:74"
+    },
+    "O27@ipad-landscape": {
+      "id": "29:4417",
+      "routeId": "O27",
+      "profile": "ipad-landscape",
+      "pageId": "7:74"
+    },
+    "O28@ipad-landscape": {
+      "id": "29:4461",
+      "routeId": "O28",
+      "profile": "ipad-landscape",
+      "pageId": "7:74"
+    },
+    "R08@ipad-landscape": {
+      "id": "28:12179",
+      "routeId": "R08",
+      "profile": "ipad-landscape",
+      "pageId": "7:73"
+    },
+    "R08@iphone-portrait": {
+      "id": "28:12295",
+      "routeId": "R08",
+      "profile": "iphone-portrait",
+      "pageId": "7:73"
+    },
+    "R08@iphone-landscape": {
+      "id": "28:12406",
+      "routeId": "R08",
+      "profile": "iphone-landscape",
+      "pageId": "7:73"
+    },
+    "R08@ipad-portrait": {
+      "id": "28:12522",
+      "routeId": "R08",
+      "profile": "ipad-portrait",
+      "pageId": "7:73"
+    },
+    "R08@ipad-narrow": {
+      "id": "28:12638",
+      "routeId": "R08",
+      "profile": "ipad-narrow",
+      "pageId": "7:73"
+    },
+    "R09@ipad-landscape": {
+      "id": "28:12749",
+      "routeId": "R09",
+      "profile": "ipad-landscape",
+      "pageId": "7:73"
+    },
+    "R09@iphone-portrait": {
+      "id": "28:12906",
+      "routeId": "R09",
+      "profile": "iphone-portrait",
+      "pageId": "7:73"
+    },
+    "R09@iphone-landscape": {
+      "id": "28:13058",
+      "routeId": "R09",
+      "profile": "iphone-landscape",
+      "pageId": "7:73"
+    },
+    "R09@ipad-portrait": {
+      "id": "28:13215",
+      "routeId": "R09",
+      "profile": "ipad-portrait",
+      "pageId": "7:73"
+    },
+    "R09@ipad-narrow": {
+      "id": "28:13372",
+      "routeId": "R09",
+      "profile": "ipad-narrow",
+      "pageId": "7:73"
+    },
+    "R25@ipad-landscape": {
+      "id": "29:260",
+      "routeId": "R25",
+      "profile": "ipad-landscape",
+      "pageId": "7:73"
+    },
+    "O14@ipad-landscape": {
+      "id": "29:295",
+      "routeId": "O14",
+      "profile": "ipad-landscape",
+      "pageId": "7:73"
+    }
+  },
+  "names": {
+    "R01": "오늘",
+    "R02": "통계",
+    "R03": "일정·과제",
+    "R04": "과목",
+    "R05": "기록",
+    "R06": "메모",
+    "R07": "강의 자료",
+    "R08": "코딩 연습",
+    "R09": "수식 탐색",
+    "R10": "시험 연습",
+    "R11": "암기시험",
+    "R12": "자료 카드",
+    "R13": "개념 전집",
+    "R14": "주제 카드",
+    "R15": "Canvas",
+    "R16": "그래프뷰",
+    "R17": "칸반보드",
+    "R18": "찾기",
+    "R19": "과목 상세",
+    "R20": "단원·주제 상세",
+    "R21": "선택 주제 기록",
+    "R22": "메모 상세",
+    "R23": "자료 상세·새 자료",
+    "R24": "강의 자료 휴지통",
+    "R25": "코드 예제 상세",
+    "R26": "주제 지정 시험 연습",
+    "R27": "주제 지정 암기시험",
+    "R28": "암기시험 결과",
+    "R29": "예약 복습",
+    "R30": "자유 기록 목록·기본 글",
+    "R31": "새 자유 기록",
+    "R32": "자유 기록 상세",
+    "R33": "전체 백업·복구",
+    "R34": "휴지통",
+    "R35": "초안 보관본",
+    "R36": "내 생각",
+    "R37": "도움말·문제 메모",
+    "R38": "소개",
+    "R39": "기존 구독 링크",
+    "R40": "기존 계정 링크",
+    "R41": "찾을 수 없는 항목",
+    "O01": "학기 추가",
+    "O02": "과목 추가",
+    "O03": "목차 추가",
+    "O04": "여러 목차 추가",
+    "O05": "휴지통으로 옮길까요?",
+    "O06": "이름 수정",
+    "O07": "목차 위치 옮기기",
+    "O08": "가입 계정 관리",
+    "O09": "내 계정",
+    "O10": "다음에 펼칠 곳을 남겨둘까요?",
+    "O11": "공부 기준 조정",
+    "O12": "이어가기 설정 복구",
+    "O13": "시험·과제·강의 일정",
+    "O14": "수식 탐색 전체 화면",
+    "O15": "움직임 위젯",
+    "O16": "다음에 확인할 내용",
+    "O17": "학기 기간",
+    "O18": "지금 확인한 결과",
+    "O19": "공부할 목차 만들기",
+    "O20": "답안에서 수행 결과 남기기",
+    "O21": "내 기록의 저장 상태",
+    "O22": "사진으로 목차·내용 가져오기",
+    "O23": "메모를 휴지통으로 옮길까요?",
+    "O24": "작은 메모",
+    "O25": "강의 주차 만들기",
+    "O26": "통계의 원기록",
+    "O27": "카드 추가·편집",
+    "O28": "보드 열",
+    "O29": "이 주제부터 해볼까요?",
+    "U01": "앱 내비게이션·범위·테마",
+    "U02": "개인 공간 진입·인증",
+    "U03": "로그인·가입",
+    "U04": "가입 승인 대기·제한",
+    "U05": "내 계정·탈퇴",
+    "U06": "가입 계정 관리",
+    "U07": "내 기록의 저장 상태",
+    "U08": "전체 복구 진입",
+    "U09": "이어가기와 다음 위치",
+    "U10": "읽기 폭·이어가기 복구",
+    "U11": "천문대 원본 위젯",
+    "U12": "천문대 세부 렌더러",
+    "U13": "작은 도구와 시계",
+    "U14": "오늘·한 주 공부",
+    "U15": "공부 시작 제안",
+    "U16": "목차와 항목 관리",
+    "U17": "표·사진 목차 만들기",
+    "U18": "학기·강의 주차",
+    "U19": "공부 기준·TRACE",
+    "U20": "답안에서 수행 결과",
+    "U21": "일정 편집",
+    "U22": "다음 공부 기준·결과",
+    "U23": "자료 출처·PDF 구간",
+    "U24": "자료 퀴즈·관계·대화",
+    "U25": "카드·코드 주제 연결",
+    "U26": "덱·카드·Anki 가져오기",
+    "U27": "복습 설정·최적화",
+    "U28": "암기 항목 생성",
+    "U29": "펜·OCR·PDF 배경",
+    "U30": "코드 편집·구문·터미널",
+    "U31": "수식·그래프·카메라",
+    "U32": "수식 유형·전체 화면",
+    "U33": "급수·개념 도해",
+    "U34": "Canvas 편집·이관",
+    "U35": "Canvas·그래프 보기",
+    "U36": "통계 여러 그래프·값",
+    "U37": "GPT 연결·문맥·사용량",
+    "U38": "움직임 위젯",
+    "U39": "브랜드·관련 생각",
+    "U40": "공통 부품·오류·포커스",
+    "U41": "장문 원문·기록 수정"
+  },
+  "placeTargets": {
+    "place:desk": {
+      "routeId": "R01",
+      "path": "/",
+      "sourceId": "front"
+    },
+    "place:library": {
+      "routeId": "R04",
+      "path": "/subjects",
+      "sourceId": "left"
+    },
+    "place:workbench": {
+      "routeId": "R09",
+      "path": "/math",
+      "sourceId": "right"
+    },
+    "place:wall": {
+      "routeId": "R02",
+      "path": "/statistics",
+      "sourceId": "back"
+    }
+  },
+  "mainRouteIds": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18"
+  ],
+  "bindingDetails": {
+    "U01": {
+      "representation": "screen",
+      "requiredTargets": [],
+      "missingDependencies": [],
+      "evidence": [
+        "evidence/screens-global-05.json"
+      ]
+    },
+    "U02": {
+      "representation": "screen",
+      "requiredTargets": [],
+      "missingDependencies": [],
+      "evidence": [
+        "evidence/screens-global-05.json"
+      ]
+    },
+    "U03": {
+      "representation": "screen",
+      "requiredTargets": [],
+      "missingDependencies": [],
+      "evidence": [
+        "evidence/screens-global-05.json"
+      ]
+    },
+    "U04": {
+      "representation": "screen",
+      "requiredTargets": [],
+      "missingDependencies": [],
+      "evidence": [
+        "evidence/screens-global-06.json"
+      ]
+    },
+    "U05": {
+      "representation": "explicit-reuse",
+      "requiredTargets": [
+        "O09"
+      ],
+      "missingDependencies": [],
+      "evidence": [
+        "evidence/screens-global-04.json"
+      ]
+    },
+    "U06": {
+      "representation": "explicit-reuse",
+      "requiredTargets": [
+        "O08"
+      ],
+      "missingDependencies": [],
+      "evidence": [
+        "evidence/screens-global-04.json"
+      ]
+    },
+    "U07": {
+      "representation": "explicit-reuse",
+      "requiredTargets": [
+        "O21"
+      ],
+      "missingDependencies": [],
+      "evidence": [
+        "evidence/screens-global-05.json"
+      ]
+    },
+    "U08": {
+      "representation": "screen",
+      "requiredTargets": [],
+      "missingDependencies": [],
+      "evidence": [
+        "evidence/screens-global-06.json"
+      ]
+    },
+    "U09": {
+      "representation": "screen",
+      "requiredTargets": [],
+      "missingDependencies": [],
+      "evidence": [
+        "evidence/screens-global-06.json"
+      ]
+    },
+    "U10": {
+      "representation": "screen",
+      "requiredTargets": [],
+      "missingDependencies": [],
+      "evidence": [
+        "evidence/screens-global-06.json"
+      ]
+    },
+    "U11": {
+      "representation": "explicit-reuse",
+      "requiredTargets": [
+        "R01-B01"
+      ],
+      "missingDependencies": [],
+      "evidence": [
+        "evidence/screens-desk-01.json"
+      ]
+    },
+    "U12": {
+      "representation": "explicit-reuse",
+      "requiredTargets": [
+        "U11"
+      ],
+      "missingDependencies": [],
+      "evidence": [
+        "evidence/screens-desk-01.json"
+      ]
+    },
+    "U13": {
+      "representation": "explicit-reuse",
+      "requiredTargets": [
+        "R01-B02"
+      ],
+      "missingDependencies": [],
+      "evidence": [
+        "evidence/screens-desk-01.json"
+      ]
+    },
+    "U14": {
+      "representation": "screen",
+      "requiredTargets": [],
+      "missingDependencies": [],
+      "evidence": [
+        "evidence/screens-desk-07.json"
+      ]
+    },
+    "U15": {
+      "representation": "explicit-reuse",
+      "requiredTargets": [
+        "O29"
+      ],
+      "missingDependencies": [],
+      "evidence": [
+        "evidence/screens-desk-07.json"
+      ]
+    },
+    "U16": {
+      "representation": "explicit-reuse",
+      "requiredTargets": [
+        "R19-B01",
+        "R20-B01"
+      ],
+      "missingDependencies": [],
+      "evidence": [
+        "evidence/screens-library-03.json",
+        "evidence/screens-desk-04.json"
+      ]
+    },
+    "U17": {
+      "representation": "explicit-reuse",
+      "requiredTargets": [
+        "O19",
+        "O22"
+      ],
+      "missingDependencies": [],
+      "evidence": [
+        "evidence/screens-library-04.json"
+      ]
+    },
+    "U18": {
+      "representation": "explicit-reuse",
+      "requiredTargets": [
+        "O25"
+      ],
+      "missingDependencies": [],
+      "evidence": [
+        "evidence/screens-wall-04.json"
+      ]
+    },
+    "U19": {
+      "representation": "explicit-reuse",
+      "requiredTargets": [
+        "O11",
+        "R05-B03"
+      ],
+      "missingDependencies": [],
+      "evidence": [
+        "evidence/screens-desk-06.json",
+        "evidence/screens-desk-01.json"
+      ]
+    },
+    "U20": {
+      "representation": "explicit-reuse",
+      "requiredTargets": [
+        "O20"
+      ],
+      "missingDependencies": [],
+      "evidence": [
+        "evidence/screens-desk-07.json"
+      ]
+    },
+    "U21": {
+      "representation": "explicit-reuse",
+      "requiredTargets": [
+        "O13"
+      ],
+      "missingDependencies": [],
+      "evidence": [
+        "evidence/screens-wall-04.json"
+      ]
+    },
+    "U22": {
+      "representation": "explicit-reuse",
+      "requiredTargets": [
+        "O16",
+        "O17",
+        "O18"
+      ],
+      "missingDependencies": [],
+      "evidence": [
+        "evidence/screens-desk-06.json"
+      ]
+    },
+    "U23": {
+      "representation": "explicit-reuse",
+      "requiredTargets": [
+        "R07-B03"
+      ],
+      "missingDependencies": [],
+      "evidence": [
+        "evidence/screens-library-01.json"
+      ]
+    },
+    "U24": {
+      "representation": "screen",
+      "requiredTargets": [],
+      "missingDependencies": [],
+      "evidence": [
+        "evidence/screens-library-04.json"
+      ]
+    },
+    "U25": {
+      "representation": "explicit-reuse",
+      "requiredTargets": [
+        "R12-B04",
+        "R08-B06"
+      ],
+      "missingDependencies": [],
+      "evidence": [
+        "evidence/screens-library-02.json",
+        "evidence/screens-workbench-01.json"
+      ]
+    },
+    "U26": {
+      "representation": "screen",
+      "requiredTargets": [],
+      "missingDependencies": [],
+      "evidence": [
+        "evidence/screens-desk-08.json"
+      ]
+    },
+    "U27": {
+      "representation": "screen",
+      "requiredTargets": [],
+      "missingDependencies": [],
+      "evidence": [
+        "evidence/screens-desk-08.json"
+      ]
+    },
+    "U28": {
+      "representation": "explicit-reuse",
+      "requiredTargets": [
+        "R11-B03"
+      ],
+      "missingDependencies": [],
+      "evidence": [
+        "evidence/screens-desk-03.json"
+      ]
+    },
+    "U29": {
+      "representation": "explicit-reuse",
+      "requiredTargets": [
+        "R06-B03",
+        "R11-B04",
+        "R14-B04"
+      ],
+      "missingDependencies": [],
+      "evidence": [
+        "evidence/screens-desk-02.json",
+        "evidence/screens-desk-03.json"
+      ]
+    },
+    "U30": {
+      "representation": "explicit-reuse",
+      "requiredTargets": [
+        "R08-B02",
+        "R08-B04"
+      ],
+      "missingDependencies": [],
+      "evidence": [
+        "evidence/screens-workbench-01.json"
+      ]
+    },
+    "U31": {
+      "representation": "explicit-reuse",
+      "requiredTargets": [
+        "R09-B03"
+      ],
+      "missingDependencies": [],
+      "evidence": [
+        "evidence/screens-workbench-01.json"
+      ]
+    },
+    "U32": {
+      "representation": "explicit-reuse",
+      "requiredTargets": [
+        "R09-B04",
+        "O14"
+      ],
+      "missingDependencies": [],
+      "evidence": [
+        "evidence/screens-workbench-01.json",
+        "evidence/screens-workbench-02.json"
+      ]
+    },
+    "U33": {
+      "representation": "explicit-reuse",
+      "requiredTargets": [
+        "R09-B05",
+        "R13-B04"
+      ],
+      "missingDependencies": [],
+      "evidence": [
+        "evidence/screens-workbench-01.json",
+        "evidence/screens-library-02.json"
+      ]
+    },
+    "U34": {
+      "representation": "explicit-reuse",
+      "requiredTargets": [
+        "R15-B03",
+        "R15-B06"
+      ],
+      "missingDependencies": [],
+      "evidence": [
+        "evidence/screens-wall-02.json"
+      ]
+    },
+    "U35": {
+      "representation": "explicit-reuse",
+      "requiredTargets": [
+        "R15-B05",
+        "R16-B05"
+      ],
+      "missingDependencies": [],
+      "evidence": [
+        "evidence/screens-wall-02.json"
+      ]
+    },
+    "U36": {
+      "representation": "explicit-reuse",
+      "requiredTargets": [
+        "R02-B02",
+        "R02-B04",
+        "R02-B05",
+        "R02-B06"
+      ],
+      "missingDependencies": [],
+      "evidence": [
+        "evidence/screens-wall-01.json"
+      ]
+    },
+    "U37": {
+      "representation": "screen",
+      "requiredTargets": [],
+      "missingDependencies": [],
+      "evidence": [
+        "evidence/screens-global-06.json"
+      ]
+    },
+    "U38": {
+      "representation": "explicit-reuse",
+      "requiredTargets": [
+        "O15"
+      ],
+      "missingDependencies": [],
+      "evidence": [
+        "evidence/screens-global-05.json"
+      ]
+    },
+    "U39": {
+      "representation": "screen",
+      "requiredTargets": [],
+      "missingDependencies": [],
+      "evidence": [
+        "evidence/screens-global-07.json"
+      ]
+    },
+    "U40": {
+      "representation": "explicit-reuse",
+      "requiredTargets": [
+        "7:70"
+      ],
+      "missingDependencies": [],
+      "evidence": [
+        "evidence/foundations.json",
+        "evidence/components-review.json"
+      ]
+    },
+    "U41": {
+      "representation": "explicit-reuse",
+      "requiredTargets": [
+        "R20-B01",
+        "R30-B01",
+        "R31-B01",
+        "R32-B01"
+      ],
+      "missingDependencies": [],
+      "evidence": [
+        "evidence/screens-desk-04.json",
+        "evidence/screens-desk-05.json",
+        "evidence/screens-desk-06.json"
+      ]
+    }
+  },
+  "source": {
+    "inventory": "screen-inventory.json#/flows",
+    "inventorySha256": "531a6d145526fce9306f686596570e3d0fe7482165b36679943eea8a3cebbe72",
+    "bindings": "assets/index-input-bound.json",
+    "bindingsSha256": "0542713155ef29e326585da3a47490dcc1d003377205d6d4ad783586fc6d660e"
+  },
+  "runtimeVerified": false
+}

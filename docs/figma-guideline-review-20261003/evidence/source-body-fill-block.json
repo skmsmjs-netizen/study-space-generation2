@@ -1,0 +1,10 @@
+{
+  "applied": false,
+  "nativeConnectionError": "Sky Computer Use native pipe startup failed, including fresh kernel/bundle/list_apps retries",
+  "remoteError": "ManSeekSong Paper Bold does not exist in remote font loader",
+  "debugUuid": "68d1c596-fdfb-4833-816b-7a443a9e4a94",
+  "preparedTask": {
+    "task": "sourcefill",
+    "pageId": "3:70"
+  }
+}

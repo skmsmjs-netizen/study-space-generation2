@@ -1,0 +1,21 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Error: in get_parent: The node with id \"340:860\" does not exist\n    at get (<input>:52:11)\n    at <anonymous> (PLUGIN_1_SOURCE:21:14)\n"
+    },
+    {
+      "type": "text",
+      "text": "Figma Debug UUID: 382281c9-2bce-4fc1-b175-06081bd53c41"
+    }
+  ],
+  "structuredContent": {
+    "error": {
+      "message": "Error: in get_parent: The node with id \"340:860\" does not exist\n    at get (<input>:52:11)\n    at <anonymous> (PLUGIN_1_SOURCE:21:14)\n",
+      "debugUuid": "382281c9-2bce-4fc1-b175-06081bd53c41"
+    },
+    "safeToRetryWithoutCanvasRead": true,
+    "error_code": "INVALID_ARGUMENT"
+  },
+  "isError": true
+}

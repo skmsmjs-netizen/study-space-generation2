@@ -1,0 +1,1598 @@
+{
+  "pageId": "7:76",
+  "createdNodeIds": {
+    "encoding": "figma-factorized-id-ranges-v1",
+    "count": 1358,
+    "ranges": [
+      [
+        "63:",
+        [
+          [
+            2106,
+            2214
+          ],
+          [
+            3931,
+            3932
+          ],
+          [
+            3969,
+            4169
+          ],
+          [
+            4206,
+            4207
+          ],
+          [
+            4248,
+            4431
+          ],
+          [
+            4472,
+            4473
+          ],
+          [
+            4500,
+            4553
+          ],
+          [
+            4580,
+            4581
+          ],
+          [
+            4645,
+            4744
+          ],
+          [
+            4808,
+            4809
+          ],
+          [
+            4867,
+            4977
+          ],
+          [
+            5035,
+            5036
+          ],
+          [
+            5088,
+            5182
+          ],
+          [
+            5234,
+            5235
+          ],
+          [
+            5299,
+            5431
+          ],
+          [
+            5495,
+            5496
+          ],
+          [
+            5543,
+            5639
+          ],
+          [
+            5686,
+            5687
+          ],
+          [
+            5721,
+            5778
+          ],
+          [
+            5812,
+            5813
+          ],
+          [
+            5860,
+            5953
+          ],
+          [
+            6000,
+            6001
+          ],
+          [
+            6056,
+            6153
+          ],
+          [
+            6208,
+            6209
+          ]
+        ]
+      ]
+    ],
+    "literal": [],
+    "products": []
+  },
+  "virtualDescendantIds": {
+    "encoding": "figma-factorized-id-ranges-v1",
+    "count": 2151,
+    "ranges": [],
+    "literal": [],
+    "products": [
+      {
+        "prefixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 3,
+          "ranges": [
+            [
+              "I63:",
+              [
+                2115,
+                4654,
+                5552
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": []
+        },
+        "suffixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 19,
+          "ranges": [
+            [
+              "53:",
+              [
+                [
+                  12795,
+                  12813
+                ]
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": []
+        }
+      },
+      {
+        "prefixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 1,
+          "ranges": [
+            [
+              "I63:",
+              [
+                2122
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": []
+        },
+        "suffixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 1671,
+          "ranges": [
+            [
+              "10:",
+              [
+                [
+                  69,
+                  103
+                ],
+                [
+                  105,
+                  107
+                ]
+              ]
+            ],
+            [
+              "11:",
+              [
+                [
+                  68,
+                  558
+                ]
+              ]
+            ],
+            [
+              "12:",
+              [
+                [
+                  68,
+                  870
+                ],
+                [
+                  872,
+                  985
+                ],
+                [
+                  987,
+                  994
+                ]
+              ]
+            ],
+            [
+              "13:",
+              [
+                [
+                  68,
+                  284
+                ]
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": []
+        }
+      },
+      {
+        "prefixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 74,
+          "ranges": [
+            [
+              "I63:",
+              [
+                2124,
+                2132,
+                2141,
+                2151,
+                2167,
+                2192,
+                2199,
+                2213,
+                4122,
+                4147,
+                4156,
+                4165,
+                4168,
+                4274,
+                4285,
+                4303,
+                4395,
+                4415,
+                4427,
+                4430,
+                4521,
+                4525,
+                4552,
+                4680,
+                4708,
+                4740,
+                4743,
+                4891,
+                4925,
+                4943,
+                4948,
+                4957,
+                4965,
+                4971,
+                4976,
+                5116,
+                5142,
+                5154,
+                5163,
+                5176,
+                5181,
+                5373,
+                5390,
+                5401,
+                5409,
+                5425,
+                5430,
+                5572,
+                5586,
+                5599,
+                5613,
+                5626,
+                5634,
+                5638,
+                5742,
+                5749,
+                5758,
+                5767,
+                5774,
+                5777,
+                5890,
+                5894,
+                5897,
+                5907,
+                5933,
+                5947,
+                5952,
+                6077,
+                6092,
+                6107,
+                6124,
+                6137,
+                6148,
+                6152
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": []
+        },
+        "suffixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 1,
+          "ranges": [
+            [
+              "16:",
+              [
+                77
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": []
+        }
+      },
+      {
+        "prefixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 86,
+          "ranges": [
+            [
+              "I63:",
+              [
+                2125,
+                [
+                  2133,
+                  2134
+                ],
+                2142,
+                2168,
+                [
+                  2200,
+                  2201
+                ],
+                2214,
+                4123,
+                4169,
+                [
+                  4275,
+                  4276
+                ],
+                4304,
+                [
+                  4396,
+                  4398
+                ],
+                4416,
+                4431,
+                4526,
+                4535,
+                4538,
+                4553,
+                4709,
+                4723,
+                4725,
+                4744,
+                4892,
+                4926,
+                4944,
+                [
+                  4949,
+                  4952
+                ],
+                4958,
+                4966,
+                [
+                  4972,
+                  4973
+                ],
+                4977,
+                5117,
+                [
+                  5143,
+                  5144
+                ],
+                [
+                  5177,
+                  5178
+                ],
+                5182,
+                [
+                  5374,
+                  5375
+                ],
+                [
+                  5391,
+                  5392
+                ],
+                5402,
+                [
+                  5410,
+                  5411
+                ],
+                [
+                  5426,
+                  5427
+                ],
+                5431,
+                5587,
+                [
+                  5600,
+                  5601
+                ],
+                [
+                  5614,
+                  5615
+                ],
+                5627,
+                5635,
+                5639,
+                [
+                  5750,
+                  5751
+                ],
+                5759,
+                5778,
+                5895,
+                5898,
+                [
+                  5908,
+                  5909
+                ],
+                5934,
+                [
+                  5948,
+                  5949
+                ],
+                5953,
+                [
+                  6078,
+                  6079
+                ],
+                [
+                  6093,
+                  6094
+                ],
+                6108,
+                6125,
+                [
+                  6138,
+                  6141
+                ],
+                6149,
+                6153
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": []
+        },
+        "suffixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 1,
+          "ranges": [
+            [
+              "16:",
+              [
+                109
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": []
+        }
+      },
+      {
+        "prefixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 12,
+          "ranges": [
+            [
+              "I63:",
+              [
+                2149,
+                4689,
+                4716,
+                4911,
+                4919,
+                5170,
+                5423,
+                5579,
+                5584,
+                5609,
+                5945,
+                6105
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": []
+        },
+        "suffixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 2,
+          "ranges": [
+            [
+              "16:",
+              [
+                [
+                  198,
+                  199
+                ]
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": []
+        }
+      },
+      {
+        "prefixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 6,
+          "ranges": [
+            [
+              "I63:",
+              [
+                2161,
+                4669,
+                4674,
+                4694,
+                4702,
+                4721
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": []
+        },
+        "suffixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 3,
+          "ranges": [
+            [
+              "16:",
+              [
+                [
+                  261,
+                  262
+                ]
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": [
+            {
+              "prefixes": {
+                "encoding": "figma-factorized-id-ranges-v1",
+                "count": 1,
+                "ranges": [
+                  [
+                    "16:",
+                    [
+                      262
+                    ]
+                  ]
+                ],
+                "literal": [],
+                "products": []
+              },
+              "suffixes": {
+                "encoding": "figma-factorized-id-ranges-v1",
+                "count": 1,
+                "ranges": [
+                  [
+                    "16:",
+                    [
+                      71
+                    ]
+                  ]
+                ],
+                "literal": [],
+                "products": []
+              }
+            }
+          ]
+        }
+      },
+      {
+        "prefixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 6,
+          "ranges": [
+            [
+              "I63:",
+              [
+                2165,
+                4004,
+                4425,
+                4678,
+                4706,
+                4923
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": []
+        },
+        "suffixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 1,
+          "ranges": [
+            [
+              "16:",
+              [
+                252
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": []
+        }
+      },
+      {
+        "prefixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 3,
+          "ranges": [
+            [
+              "I63:",
+              [
+                3978,
+                4257,
+                6065
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": []
+        },
+        "suffixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 19,
+          "ranges": [
+            [
+              "53:",
+              [
+                [
+                  13081,
+                  13099
+                ]
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": []
+        }
+      },
+      {
+        "prefixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 16,
+          "ranges": [
+            [
+              "I63:",
+              [
+                3988,
+                3992,
+                4664,
+                4898,
+                5123,
+                5332,
+                5336,
+                5340,
+                5351,
+                5388,
+                5418,
+                5884,
+                5940,
+                6100,
+                6122,
+                6135
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": []
+        },
+        "suffixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 2,
+          "ranges": [
+            [
+              "16:",
+              [
+                [
+                  167,
+                  168
+                ]
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": []
+        }
+      },
+      {
+        "prefixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 5,
+          "ranges": [
+            [
+              "I63:",
+              [
+                4291,
+                4889,
+                5110,
+                5150,
+                5740
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": []
+        },
+        "suffixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 2,
+          "ranges": [
+            [
+              "16:",
+              [
+                [
+                  162,
+                  163
+                ]
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": []
+        }
+      },
+      {
+        "prefixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 4,
+          "ranges": [
+            [
+              "I63:",
+              [
+                4509,
+                4876,
+                5730,
+                5869
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": []
+        },
+        "suffixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 19,
+          "ranges": [
+            [
+              "53:",
+              [
+                [
+                  12889,
+                  12907
+                ]
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": []
+        }
+      },
+      {
+        "prefixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 2,
+          "ranges": [
+            [
+              "I63:",
+              [
+                5097,
+                5308
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": []
+        },
+        "suffixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 19,
+          "ranges": [
+            [
+              "53:",
+              [
+                [
+                  12987,
+                  13005
+                ]
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": []
+        }
+      },
+      {
+        "prefixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 1,
+          "ranges": [
+            [
+              "I63:",
+              [
+                5140
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": []
+        },
+        "suffixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 2,
+          "ranges": [
+            [
+              "16:",
+              [
+                [
+                  193,
+                  194
+                ]
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": []
+        }
+      }
+    ]
+  },
+  "mutatedNodeIds": {
+    "encoding": "figma-factorized-id-ranges-v1",
+    "count": 132,
+    "ranges": [
+      [
+        "63:",
+        [
+          [
+            2112,
+            2114
+          ],
+          2168,
+          2192,
+          2214,
+          [
+            3974,
+            3976
+          ],
+          [
+            4168,
+            4169
+          ],
+          [
+            4253,
+            4255
+          ],
+          [
+            4430,
+            4431
+          ],
+          4505,
+          [
+            4507,
+            4508
+          ],
+          4535,
+          4538,
+          [
+            4552,
+            4553
+          ],
+          [
+            4651,
+            4653
+          ],
+          4744,
+          4872,
+          [
+            4874,
+            4875
+          ],
+          4892,
+          [
+            4976,
+            4977
+          ],
+          [
+            5093,
+            5094
+          ],
+          5096,
+          [
+            5181,
+            5182
+          ],
+          [
+            5304,
+            5305
+          ],
+          5307,
+          5409,
+          [
+            5430,
+            5431
+          ],
+          [
+            5549,
+            5551
+          ],
+          5587,
+          5639,
+          5726,
+          [
+            5728,
+            5729
+          ],
+          [
+            5777,
+            5778
+          ],
+          5865,
+          [
+            5867,
+            5868
+          ],
+          [
+            5952,
+            5953
+          ],
+          [
+            6061,
+            6063
+          ],
+          [
+            6152,
+            6153
+          ]
+        ]
+      ]
+    ],
+    "literal": [],
+    "products": [
+      {
+        "prefixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 1,
+          "ranges": [
+            [
+              "I63:",
+              [
+                2115
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": []
+        },
+        "suffixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 5,
+          "ranges": [
+            [
+              "53:",
+              [
+                12799,
+                12802,
+                12805,
+                12810,
+                12812
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": []
+        }
+      },
+      {
+        "prefixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 1,
+          "ranges": [
+            [
+              "I63:",
+              [
+                3978
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": []
+        },
+        "suffixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 5,
+          "ranges": [
+            [
+              "53:",
+              [
+                13082,
+                13085,
+                13088,
+                13096,
+                13098
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": []
+        }
+      },
+      {
+        "prefixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 2,
+          "ranges": [
+            [
+              "I63:",
+              [
+                4257,
+                6065
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": []
+        },
+        "suffixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 6,
+          "ranges": [
+            [
+              "53:",
+              [
+                13082,
+                13085,
+                13088,
+                13091,
+                13096,
+                13098
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": []
+        }
+      },
+      {
+        "prefixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 1,
+          "ranges": [
+            [
+              "I63:",
+              [
+                4509
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": []
+        },
+        "suffixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 5,
+          "ranges": [
+            [
+              "53:",
+              [
+                12890,
+                12896,
+                12899,
+                12904,
+                12906
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": []
+        }
+      },
+      {
+        "prefixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 2,
+          "ranges": [
+            [
+              "I63:",
+              [
+                4654,
+                5552
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": []
+        },
+        "suffixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 6,
+          "ranges": [
+            [
+              "53:",
+              [
+                12796,
+                12799,
+                12802,
+                12805,
+                12810,
+                12812
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": []
+        }
+      },
+      {
+        "prefixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 3,
+          "ranges": [
+            [
+              "I63:",
+              [
+                4876,
+                5730,
+                5869
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": []
+        },
+        "suffixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 6,
+          "ranges": [
+            [
+              "53:",
+              [
+                12890,
+                12893,
+                12896,
+                12899,
+                12904,
+                12906
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": []
+        }
+      },
+      {
+        "prefixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 1,
+          "ranges": [
+            [
+              "I63:",
+              [
+                5097
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": []
+        },
+        "suffixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 6,
+          "ranges": [
+            [
+              "53:",
+              [
+                12988,
+                12991,
+                12994,
+                12997,
+                13002,
+                13004
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": []
+        }
+      },
+      {
+        "prefixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 1,
+          "ranges": [
+            [
+              "I63:",
+              [
+                5308
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": []
+        },
+        "suffixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 5,
+          "ranges": [
+            [
+              "53:",
+              [
+                12988,
+                12991,
+                12997,
+                13002,
+                13004
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": []
+        }
+      }
+    ]
+  },
+  "topLevelNodeIds": [
+    "63:3932",
+    "63:4207",
+    "63:4473",
+    "63:4581",
+    "63:4809",
+    "63:5036",
+    "63:5235",
+    "63:5496",
+    "63:5687",
+    "63:5813",
+    "63:6001",
+    "63:6209"
+  ],
+  "library": {
+    "R01": {
+      "id": "63:3932",
+      "sourceFrameId": "26:68",
+      "kind": "screen",
+      "taskReturnPlaceholderId": "63:3931",
+      "width": 1376,
+      "height": 1032,
+      "fonts": [
+        {
+          "family": "Noto Sans KR",
+          "style": "Regular",
+          "variationSettings": {
+            "wght": 600
+          }
+        },
+        {
+          "family": "Noto Sans KR",
+          "style": "Regular",
+          "variationSettings": {
+            "wght": 400
+          }
+        }
+      ],
+      "sourceDescendants": 127,
+      "cloneDescendants": 1821,
+      "originalPreserved": true
+    },
+    "R02": {
+      "id": "63:4207",
+      "sourceFrameId": "29:347",
+      "kind": "screen",
+      "taskReturnPlaceholderId": "63:4206",
+      "width": 1376,
+      "height": 1032,
+      "fonts": [
+        {
+          "family": "Noto Sans KR",
+          "style": "Regular",
+          "variationSettings": {
+            "wght": 600
+          }
+        },
+        {
+          "family": "Noto Sans KR",
+          "style": "Regular",
+          "variationSettings": {
+            "wght": 400
+          }
+        }
+      ],
+      "sourceDescendants": 219,
+      "cloneDescendants": 232,
+      "originalPreserved": true
+    },
+    "R03": {
+      "id": "63:4473",
+      "sourceFrameId": "29:1432",
+      "kind": "screen",
+      "taskReturnPlaceholderId": "63:4472",
+      "width": 1376,
+      "height": 1032,
+      "fonts": [
+        {
+          "family": "Noto Sans KR",
+          "style": "Regular",
+          "variationSettings": {
+            "wght": 600
+          }
+        },
+        {
+          "family": "Noto Sans KR",
+          "style": "Regular",
+          "variationSettings": {
+            "wght": 400
+          }
+        }
+      ],
+      "sourceDescendants": 202,
+      "cloneDescendants": 221,
+      "originalPreserved": true
+    },
+    "R04": {
+      "id": "63:4581",
+      "sourceFrameId": "28:9818",
+      "kind": "screen",
+      "taskReturnPlaceholderId": "63:4580",
+      "width": 1376,
+      "height": 1032,
+      "fonts": [
+        {
+          "family": "Noto Sans KR",
+          "style": "Regular",
+          "variationSettings": {
+            "wght": 600
+          }
+        },
+        {
+          "family": "Noto Sans KR",
+          "style": "Regular",
+          "variationSettings": {
+            "wght": 400
+          }
+        }
+      ],
+      "sourceDescendants": 72,
+      "cloneDescendants": 80,
+      "originalPreserved": true
+    },
+    "R05": {
+      "id": "63:4809",
+      "sourceFrameId": "26:9103",
+      "kind": "screen",
+      "taskReturnPlaceholderId": "63:4808",
+      "width": 1376,
+      "height": 1032,
+      "fonts": [
+        {
+          "family": "Noto Sans KR",
+          "style": "Regular",
+          "variationSettings": {
+            "wght": 600
+          }
+        },
+        {
+          "family": "Noto Sans KR",
+          "style": "Regular",
+          "variationSettings": {
+            "wght": 400
+          }
+        }
+      ],
+      "sourceDescendants": 118,
+      "cloneDescendants": 150,
+      "originalPreserved": true
+    },
+    "R07": {
+      "id": "63:5036",
+      "sourceFrameId": "28:10158",
+      "kind": "screen",
+      "taskReturnPlaceholderId": "63:5035",
+      "width": 1376,
+      "height": 1032,
+      "fonts": [
+        {
+          "family": "Noto Sans KR",
+          "style": "Regular",
+          "variationSettings": {
+            "wght": 600
+          }
+        },
+        {
+          "family": "Noto Sans KR",
+          "style": "Regular",
+          "variationSettings": {
+            "wght": 400
+          }
+        }
+      ],
+      "sourceDescendants": 129,
+      "cloneDescendants": 159,
+      "originalPreserved": true
+    },
+    "R08": {
+      "id": "63:5235",
+      "sourceFrameId": "28:12179",
+      "kind": "screen",
+      "taskReturnPlaceholderId": "63:5234",
+      "width": 1376,
+      "height": 1032,
+      "fonts": [
+        {
+          "family": "Noto Sans KR",
+          "style": "Regular",
+          "variationSettings": {
+            "wght": 600
+          }
+        },
+        {
+          "family": "Noto Sans KR",
+          "style": "Regular",
+          "variationSettings": {
+            "wght": 400
+          }
+        },
+        {
+          "family": "JetBrains Mono",
+          "style": "Regular",
+          "variationSettings": {
+            "wght": 400
+          }
+        }
+      ],
+      "sourceDescendants": 113,
+      "cloneDescendants": 136,
+      "originalPreserved": true
+    },
+    "R09": {
+      "id": "63:5496",
+      "sourceFrameId": "28:12749",
+      "kind": "screen",
+      "taskReturnPlaceholderId": "63:5495",
+      "width": 1376,
+      "height": 1032,
+      "fonts": [
+        {
+          "family": "Noto Sans KR",
+          "style": "Regular",
+          "variationSettings": {
+            "wght": 600
+          }
+        },
+        {
+          "family": "Noto Sans KR",
+          "style": "Regular",
+          "variationSettings": {
+            "wght": 400
+          }
+        }
+      ],
+      "sourceDescendants": 151,
+      "cloneDescendants": 182,
+      "originalPreserved": true
+    },
+    "R11": {
+      "id": "63:5687",
+      "sourceFrameId": "27:19997",
+      "kind": "screen",
+      "taskReturnPlaceholderId": "63:5686",
+      "width": 1376,
+      "height": 1032,
+      "fonts": [
+        {
+          "family": "Noto Sans KR",
+          "style": "Regular",
+          "variationSettings": {
+            "wght": 600
+          }
+        },
+        {
+          "family": "Noto Sans KR",
+          "style": "Regular",
+          "variationSettings": {
+            "wght": 400
+          }
+        }
+      ],
+      "sourceDescendants": 115,
+      "cloneDescendants": 137,
+      "originalPreserved": true
+    },
+    "R12": {
+      "id": "63:5813",
+      "sourceFrameId": "28:10863",
+      "kind": "screen",
+      "taskReturnPlaceholderId": "63:5812",
+      "width": 1376,
+      "height": 1032,
+      "fonts": [
+        {
+          "family": "Noto Sans KR",
+          "style": "Regular",
+          "variationSettings": {
+            "wght": 600
+          }
+        },
+        {
+          "family": "Noto Sans KR",
+          "style": "Regular",
+          "variationSettings": {
+            "wght": 400
+          }
+        }
+      ],
+      "sourceDescendants": 76,
+      "cloneDescendants": 89,
+      "originalPreserved": true
+    },
+    "R13": {
+      "id": "63:6001",
+      "sourceFrameId": "28:11253",
+      "kind": "screen",
+      "taskReturnPlaceholderId": "63:6000",
+      "width": 1376,
+      "height": 1032,
+      "fonts": [
+        {
+          "family": "Noto Sans KR",
+          "style": "Regular",
+          "variationSettings": {
+            "wght": 600
+          }
+        },
+        {
+          "family": "Noto Sans KR",
+          "style": "Regular",
+          "variationSettings": {
+            "wght": 400
+          }
+        }
+      ],
+      "sourceDescendants": 112,
+      "cloneDescendants": 134,
+      "originalPreserved": true
+    },
+    "R15": {
+      "id": "63:6209",
+      "sourceFrameId": "29:2487",
+      "kind": "screen",
+      "taskReturnPlaceholderId": "63:6208",
+      "width": 1376,
+      "height": 1032,
+      "fonts": [
+        {
+          "family": "Noto Sans KR",
+          "style": "Regular",
+          "variationSettings": {
+            "wght": 600
+          }
+        },
+        {
+          "family": "Noto Sans KR",
+          "style": "Regular",
+          "variationSettings": {
+            "wght": 400
+          }
+        }
+      ],
+      "sourceDescendants": 116,
+      "cloneDescendants": 144,
+      "originalPreserved": true
+    }
+  },
+  "counts": {
+    "components": 12,
+    "screens": 12,
+    "states": 0
+  },
+  "runtimeVerified": false
+}

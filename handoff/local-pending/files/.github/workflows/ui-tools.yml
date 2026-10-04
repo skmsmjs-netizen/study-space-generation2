@@ -1,0 +1,42 @@
+name: UI workshop checks
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'src/ui/**'
+      - 'src/**/*.css'
+      - 'scripts/check-design-tokens.mjs'
+      - 'scripts/design-tokens.node-test.mjs'
+      - '.storybook/**'
+      - 'e2e/**'
+      - 'playwright.config.ts'
+      - 'playwright.devices.config.ts'
+      - 'src/App.tsx'
+      - 'src/data/**'
+      - 'src/domain/**'
+      - 'tsconfig.tooling.json'
+      - 'biome.json'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/ui-tools.yml'
+permissions:
+  contents: read
+jobs:
+  ui-workshop:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npm run test:design
+      - run: npm run check:design
+      - run: npm run typecheck:tools
+      - run: npm run lint:tools
+      - run: npm run format:tools:check
+      - run: npm run storybook:build
+      - run: npx playwright install --with-deps chromium firefox webkit
+      - run: npm run test:ui:all

@@ -1,0 +1,36 @@
+{
+  "pageId": "7:76",
+  "flowId": "F09",
+  "createdNodeIds": [],
+  "mutatedNodeIds": [
+    "I68:74225;16:109",
+    "68:74225",
+    "I68:73209;74:67612"
+  ],
+  "repaired": [
+    {
+      "fromKey": "F09-S02",
+      "oldLabel": "원 항목 열기",
+      "label": "선택한 카드 열기 ↗",
+      "kind": "Link",
+      "sourceId": "R15",
+      "fromFrameId": "68:73208",
+      "instanceId": "68:73209",
+      "toFrameId": "68:73381",
+      "toRouteId": "R20",
+      "prototypeControlId": "68:74225",
+      "branch": "primary",
+      "screenControlId": "I68:73209;74:67612",
+      "bindingLocation": "screen-instance",
+      "conditionOnly": false
+    }
+  ],
+  "phaseChanges": [],
+  "issues": [],
+  "counts": {
+    "repaired": 1,
+    "actualBindings": 1,
+    "scenarioConditions": 0
+  },
+  "runtimeVerified": false
+}

@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"pageId\":\"3:74\",\"name\":\"전집 · 절차형\",\"rootCount\":62,\"publicationCount\":62,\"nativeParagraphCount\":214,\"richParagraphCount\":78,\"renderedNative95TextCount\":220,\"problems\":[],\"representativeRoots\":[{\"id\":\"46:1314\",\"name\":\"OS판본 · 01-014 · e2841d890b3d\",\"width\":2400,\"height\":710},{\"id\":\"46:1382\",\"name\":\"OS판본 · 01-030 · 032670384249\",\"width\":2400,\"height\":756.5599975585938},{\"id\":\"46:1764\",\"name\":\"OS판본 · 01-039 · ac24cb624cf0\",\"width\":2400,\"height\":710}],\"createdNodeIds\":[],\"mutatedNodeIds\":[]}"
+    }
+  ],
+  "isError": false
+}

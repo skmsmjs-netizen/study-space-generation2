@@ -1,0 +1,1 @@
+{"content":[{"type":"text","text":"An unexpected error occurred."},{"type":"text","text":"Figma Debug UUID: bb56937a-f27f-4c3c-a256-2991a060eba4"}],"structuredContent":{"error":{"message":"An unexpected error occurred.","debugUuid":"bb56937a-f27f-4c3c-a256-2991a060eba4"},"safeToRetryWithoutCanvasRead":false,"error_code":"INVALID_ARGUMENT"},"isError":true}

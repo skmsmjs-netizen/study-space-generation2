@@ -1,0 +1,275 @@
+{
+  "status": "applied-with-one-native-editor-blocked-fix",
+  "approvedBy": "user remainder instruction; no new approval pending",
+  "next": {
+    "nativePluginTask": {
+      "task": "sourcefill",
+      "pageId": "3:70"
+    },
+    "preconditions": [
+      "native desktop editing connection restored",
+      "local ManSeekSong Paper fonts available in target file"
+    ],
+    "preserve": [
+      "original text4:30 characters/ID",
+      "component4:29 ID and all instance overrides",
+      "science geometry and manual layouts"
+    ],
+    "after": [
+      "fit generated publication frames on seven type pages only if wrapping changes height",
+      "check representative long module/changed width",
+      "reopen in normal mode and click representative ceiling SWAP/CLOSE"
+    ],
+    "doNotRepeat": [
+      "old process45/26/96 batch plan",
+      "239 registered layout pass",
+      "full native paragraph and typography pass without new evidence"
+    ]
+  },
+  "blockingEvidence": {
+    "computerUse": "Sky Computer Use native pipe startup failed, including fresh kernel/bundle/list_apps retries",
+    "remoteFont": "ManSeekSong Paper Bold does not exist in remote font loader",
+    "debugUuid": "68d1c596-fdfb-4833-816b-7a443a9e4a94"
+  },
+  "previousPlanHistory": {
+    "fileKey": "FRPuAwx3q2Jka1VZOjuMil",
+    "pageId": "3:77",
+    "requiresCanvasReadBeforeRetry": true,
+    "batches": [
+      {
+        "roots": [
+          "46:3558",
+          "46:7729",
+          "47:3192",
+          "47:3673",
+          "47:3754",
+          "48:3706",
+          "48:3753",
+          "48:3868",
+          "48:3909",
+          "48:3977",
+          "48:4022",
+          "49:4068",
+          "49:4103",
+          "49:4219",
+          "49:4235",
+          "49:4251",
+          "49:4267",
+          "50:3091",
+          "50:3162"
+        ],
+        "weight": 1061,
+        "index": 0,
+        "status": "confirmed-applied"
+      },
+      {
+        "roots": [
+          "50:3226",
+          "50:3366",
+          "50:3382",
+          "50:3398",
+          "50:6211",
+          "50:6227",
+          "50:6272",
+          "50:6397",
+          "50:6457",
+          "50:6500",
+          "51:3770",
+          "51:3786",
+          "51:3802",
+          "51:3869",
+          "51:3885",
+          "51:3901",
+          "51:6620",
+          "51:6735",
+          "51:6844",
+          "52:3631",
+          "52:3698",
+          "52:3776",
+          "52:3851",
+          "52:3894",
+          "52:3969",
+          "52:5077"
+        ],
+        "weight": 1171,
+        "index": 1,
+        "status": "confirmed-applied"
+      },
+      {
+        "roots": [
+          "52:5148",
+          "52:5209",
+          "53:3961",
+          "53:4020",
+          "53:4177",
+          "53:5574",
+          "53:5649",
+          "53:5663",
+          "53:5677",
+          "53:5762",
+          "53:5926",
+          "54:3449",
+          "54:3536",
+          "54:3579",
+          "54:5561",
+          "54:5629",
+          "54:5672",
+          "54:5715",
+          "54:5756",
+          "54:5831",
+          "55:3918",
+          "55:3932",
+          "55:3946",
+          "55:3960",
+          "55:3974",
+          "55:3988"
+        ],
+        "weight": 1060,
+        "index": 2,
+        "status": "failed-state-read-required"
+      },
+      {
+        "roots": [
+          "55:5212",
+          "55:5452",
+          "55:5466",
+          "55:5480",
+          "55:5565",
+          "55:5666",
+          "56:4350",
+          "56:4431",
+          "56:4472",
+          "56:5465",
+          "56:5688",
+          "56:5814",
+          "56:5876",
+          "56:5917",
+          "56:5931",
+          "57:4194",
+          "57:4879"
+        ],
+        "weight": 1147,
+        "index": 3,
+        "status": "not-executed"
+      },
+      {
+        "roots": [
+          "57:5006",
+          "57:6263",
+          "57:6277",
+          "57:6318",
+          "57:6359",
+          "57:6400",
+          "57:6441",
+          "62:9558",
+          "62:9603",
+          "62:9737",
+          "62:9758",
+          "62:9828",
+          "62:9959",
+          "62:10025",
+          "62:10677",
+          "62:10779",
+          "62:10799",
+          "62:11040",
+          "62:11106",
+          "63:7754",
+          "63:7797",
+          "63:7838"
+        ],
+        "weight": 1048,
+        "index": 4,
+        "status": "not-executed"
+      },
+      {
+        "roots": [
+          "63:8093",
+          "63:8745",
+          "63:8784",
+          "63:12316",
+          "63:12355",
+          "63:12413",
+          "63:12429",
+          "63:12700",
+          "63:12903",
+          "64:10709",
+          "64:11253",
+          "64:11523",
+          "64:11642",
+          "64:12374"
+        ],
+        "weight": 1176,
+        "index": 5,
+        "status": "not-executed"
+      },
+      {
+        "roots": [
+          "64:12438",
+          "65:8620",
+          "65:8861",
+          "65:9224",
+          "65:9373",
+          "65:9564",
+          "65:9846",
+          "66:11506",
+          "66:12044",
+          "66:12115"
+        ],
+        "weight": 1182,
+        "index": 6,
+        "status": "not-executed"
+      },
+      {
+        "roots": [
+          "66:12303",
+          "66:12369",
+          "66:12759",
+          "66:15718",
+          "66:15963",
+          "66:16144",
+          "66:16499",
+          "66:16852",
+          "66:17091",
+          "67:8604",
+          "67:8695"
+        ],
+        "weight": 1188,
+        "index": 7,
+        "status": "not-executed"
+      },
+      {
+        "roots": [
+          "67:9057",
+          "67:9075",
+          "67:9093",
+          "67:9111",
+          "67:9201",
+          "67:9219",
+          "67:9260",
+          "67:9301",
+          "67:9400",
+          "67:9462",
+          "67:11717",
+          "67:11732",
+          "67:11795",
+          "67:11834",
+          "67:11873",
+          "67:11967",
+          "67:12006",
+          "67:12045",
+          "67:12597",
+          "67:12636",
+          "67:12954",
+          "67:13283"
+        ],
+        "weight": 931,
+        "index": 8,
+        "status": "not-executed"
+      }
+    ],
+    "preservedSourcesAndMath": true,
+    "latestUpdater": "concept-paper-preservation-update.js",
+    "earlierParagraphRepair": "concept-gap-repair.js",
+    "repairRequiresPilot": true
+  }
+}

@@ -1,0 +1,633 @@
+{
+  "createdNodeIds": [
+    "7:68",
+    "7:69",
+    "7:70",
+    "7:71",
+    "7:72",
+    "7:73",
+    "7:74",
+    "7:75",
+    "7:76",
+    "7:77",
+    "7:148",
+    "7:149",
+    "7:150",
+    "7:151",
+    "7:152",
+    "7:153",
+    "7:154",
+    "7:155",
+    "7:156",
+    "7:157",
+    "7:158",
+    "7:159",
+    "7:160",
+    "7:161",
+    "7:162",
+    "7:163",
+    "7:164",
+    "7:165",
+    "7:166",
+    "7:167",
+    "7:168",
+    "7:169",
+    "7:170",
+    "7:171",
+    "7:172",
+    "7:173",
+    "7:174",
+    "7:175",
+    "7:176",
+    "7:177",
+    "7:178",
+    "7:179",
+    "7:180",
+    "7:181",
+    "7:182",
+    "7:183",
+    "7:184",
+    "7:185",
+    "7:186",
+    "7:187",
+    "7:188",
+    "7:189",
+    "7:190",
+    "7:191",
+    "7:192",
+    "7:193",
+    "7:194",
+    "7:195",
+    "7:196",
+    "7:197",
+    "7:198",
+    "7:199",
+    "7:200",
+    "7:201",
+    "7:202",
+    "7:203",
+    "7:204",
+    "7:205",
+    "7:206",
+    "7:207",
+    "7:208",
+    "7:209",
+    "7:210",
+    "7:211",
+    "7:212",
+    "7:213",
+    "7:214",
+    "7:215",
+    "7:216",
+    "7:217",
+    "7:218",
+    "7:219",
+    "7:220",
+    "7:221",
+    "7:222",
+    "7:223",
+    "7:224",
+    "7:225",
+    "7:226",
+    "7:227",
+    "7:228",
+    "7:229",
+    "7:230",
+    "7:231",
+    "7:232",
+    "7:233",
+    "7:234",
+    "7:235",
+    "7:236",
+    "7:237",
+    "7:238",
+    "7:239",
+    "7:240",
+    "7:241",
+    "7:242",
+    "7:243",
+    "7:244",
+    "7:245",
+    "7:246",
+    "7:247",
+    "7:248",
+    "7:249",
+    "7:250",
+    "7:251",
+    "7:252",
+    "7:253",
+    "7:254",
+    "7:255",
+    "7:256",
+    "7:257",
+    "7:258",
+    "7:259",
+    "7:260",
+    "7:261",
+    "7:262",
+    "7:263",
+    "7:264",
+    "7:265",
+    "7:266",
+    "7:267",
+    "7:268",
+    "7:269",
+    "7:270",
+    "7:271",
+    "7:272",
+    "7:273",
+    "7:274",
+    "7:275",
+    "7:276",
+    "7:277",
+    "7:278",
+    "7:279",
+    "7:280",
+    "7:281",
+    "7:282",
+    "7:283",
+    "7:284",
+    "7:285"
+  ],
+  "pages": {
+    "index": "7:68",
+    "foundations": "7:69",
+    "components": "7:70",
+    "desk": "7:71",
+    "library": "7:72",
+    "workbench": "7:73",
+    "wall": "7:74",
+    "global": "7:75",
+    "states": "7:76",
+    "research": "7:77"
+  },
+  "collections": {
+    "primitives": "VariableCollectionId:7:78",
+    "material": "VariableCollectionId:7:79",
+    "metrics": "VariableCollectionId:7:80"
+  },
+  "modes": [
+    {
+      "name": "Interior",
+      "modeId": "7:1"
+    },
+    {
+      "name": "Paper",
+      "modeId": "7:2"
+    }
+  ],
+  "variables": {
+    "primitive/interior/canvas": {
+      "id": "VariableID:7:81",
+      "type": "COLOR",
+      "scopes": []
+    },
+    "primitive/interior/surface": {
+      "id": "VariableID:7:82",
+      "type": "COLOR",
+      "scopes": []
+    },
+    "primitive/interior/subtle": {
+      "id": "VariableID:7:83",
+      "type": "COLOR",
+      "scopes": []
+    },
+    "primitive/interior/text": {
+      "id": "VariableID:7:84",
+      "type": "COLOR",
+      "scopes": []
+    },
+    "primitive/interior/muted": {
+      "id": "VariableID:7:85",
+      "type": "COLOR",
+      "scopes": []
+    },
+    "primitive/interior/borderDecorative": {
+      "id": "VariableID:7:86",
+      "type": "COLOR",
+      "scopes": []
+    },
+    "primitive/interior/borderInteractive": {
+      "id": "VariableID:7:87",
+      "type": "COLOR",
+      "scopes": []
+    },
+    "primitive/interior/focus": {
+      "id": "VariableID:7:88",
+      "type": "COLOR",
+      "scopes": []
+    },
+    "primitive/interior/selected": {
+      "id": "VariableID:7:89",
+      "type": "COLOR",
+      "scopes": []
+    },
+    "primitive/interior/selectedText": {
+      "id": "VariableID:7:90",
+      "type": "COLOR",
+      "scopes": []
+    },
+    "primitive/interior/primary": {
+      "id": "VariableID:7:91",
+      "type": "COLOR",
+      "scopes": []
+    },
+    "primitive/interior/primaryHover": {
+      "id": "VariableID:7:92",
+      "type": "COLOR",
+      "scopes": []
+    },
+    "primitive/interior/primaryPressed": {
+      "id": "VariableID:7:93",
+      "type": "COLOR",
+      "scopes": []
+    },
+    "primitive/interior/onPrimary": {
+      "id": "VariableID:7:94",
+      "type": "COLOR",
+      "scopes": []
+    },
+    "primitive/paper/canvas": {
+      "id": "VariableID:7:95",
+      "type": "COLOR",
+      "scopes": []
+    },
+    "primitive/paper/surface": {
+      "id": "VariableID:7:96",
+      "type": "COLOR",
+      "scopes": []
+    },
+    "primitive/paper/subtle": {
+      "id": "VariableID:7:97",
+      "type": "COLOR",
+      "scopes": []
+    },
+    "primitive/paper/text": {
+      "id": "VariableID:7:98",
+      "type": "COLOR",
+      "scopes": []
+    },
+    "primitive/paper/muted": {
+      "id": "VariableID:7:99",
+      "type": "COLOR",
+      "scopes": []
+    },
+    "primitive/paper/borderDecorative": {
+      "id": "VariableID:7:100",
+      "type": "COLOR",
+      "scopes": []
+    },
+    "primitive/paper/borderInteractive": {
+      "id": "VariableID:7:101",
+      "type": "COLOR",
+      "scopes": []
+    },
+    "primitive/paper/focus": {
+      "id": "VariableID:7:102",
+      "type": "COLOR",
+      "scopes": []
+    },
+    "primitive/paper/selected": {
+      "id": "VariableID:7:103",
+      "type": "COLOR",
+      "scopes": []
+    },
+    "primitive/paper/selectedText": {
+      "id": "VariableID:7:104",
+      "type": "COLOR",
+      "scopes": []
+    },
+    "primitive/paper/primary": {
+      "id": "VariableID:7:105",
+      "type": "COLOR",
+      "scopes": []
+    },
+    "primitive/paper/primaryHover": {
+      "id": "VariableID:7:106",
+      "type": "COLOR",
+      "scopes": []
+    },
+    "primitive/paper/primaryPressed": {
+      "id": "VariableID:7:107",
+      "type": "COLOR",
+      "scopes": []
+    },
+    "primitive/paper/onPrimary": {
+      "id": "VariableID:7:108",
+      "type": "COLOR",
+      "scopes": []
+    },
+    "material/canvas": {
+      "id": "VariableID:7:109",
+      "type": "COLOR",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ]
+    },
+    "material/surface": {
+      "id": "VariableID:7:110",
+      "type": "COLOR",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ]
+    },
+    "material/subtle": {
+      "id": "VariableID:7:111",
+      "type": "COLOR",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ]
+    },
+    "material/text": {
+      "id": "VariableID:7:112",
+      "type": "COLOR",
+      "scopes": [
+        "TEXT_FILL"
+      ]
+    },
+    "material/muted": {
+      "id": "VariableID:7:113",
+      "type": "COLOR",
+      "scopes": [
+        "TEXT_FILL"
+      ]
+    },
+    "material/borderDecorative": {
+      "id": "VariableID:7:114",
+      "type": "COLOR",
+      "scopes": [
+        "STROKE_COLOR"
+      ]
+    },
+    "material/borderInteractive": {
+      "id": "VariableID:7:115",
+      "type": "COLOR",
+      "scopes": [
+        "STROKE_COLOR"
+      ]
+    },
+    "material/focus": {
+      "id": "VariableID:7:116",
+      "type": "COLOR",
+      "scopes": [
+        "STROKE_COLOR"
+      ]
+    },
+    "material/selected": {
+      "id": "VariableID:7:117",
+      "type": "COLOR",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ]
+    },
+    "material/selectedText": {
+      "id": "VariableID:7:118",
+      "type": "COLOR",
+      "scopes": [
+        "TEXT_FILL"
+      ]
+    },
+    "material/primary": {
+      "id": "VariableID:7:119",
+      "type": "COLOR",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ]
+    },
+    "material/primaryHover": {
+      "id": "VariableID:7:120",
+      "type": "COLOR",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ]
+    },
+    "material/primaryPressed": {
+      "id": "VariableID:7:121",
+      "type": "COLOR",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ]
+    },
+    "material/onPrimary": {
+      "id": "VariableID:7:122",
+      "type": "COLOR",
+      "scopes": [
+        "TEXT_FILL"
+      ]
+    },
+    "space/0": {
+      "id": "VariableID:7:123",
+      "type": "FLOAT",
+      "scopes": [
+        "GAP"
+      ]
+    },
+    "space/4": {
+      "id": "VariableID:7:124",
+      "type": "FLOAT",
+      "scopes": [
+        "GAP"
+      ]
+    },
+    "space/8": {
+      "id": "VariableID:7:125",
+      "type": "FLOAT",
+      "scopes": [
+        "GAP"
+      ]
+    },
+    "space/12": {
+      "id": "VariableID:7:126",
+      "type": "FLOAT",
+      "scopes": [
+        "GAP"
+      ]
+    },
+    "space/16": {
+      "id": "VariableID:7:127",
+      "type": "FLOAT",
+      "scopes": [
+        "GAP"
+      ]
+    },
+    "space/24": {
+      "id": "VariableID:7:128",
+      "type": "FLOAT",
+      "scopes": [
+        "GAP"
+      ]
+    },
+    "space/32": {
+      "id": "VariableID:7:129",
+      "type": "FLOAT",
+      "scopes": [
+        "GAP"
+      ]
+    },
+    "space/48": {
+      "id": "VariableID:7:130",
+      "type": "FLOAT",
+      "scopes": [
+        "GAP"
+      ]
+    },
+    "space/64": {
+      "id": "VariableID:7:131",
+      "type": "FLOAT",
+      "scopes": [
+        "GAP"
+      ]
+    },
+    "control/height": {
+      "id": "VariableID:7:132",
+      "type": "FLOAT",
+      "scopes": [
+        "WIDTH_HEIGHT"
+      ]
+    },
+    "control/icon-target": {
+      "id": "VariableID:7:133",
+      "type": "FLOAT",
+      "scopes": [
+        "WIDTH_HEIGHT"
+      ]
+    },
+    "border/width": {
+      "id": "VariableID:7:134",
+      "type": "FLOAT",
+      "scopes": [
+        "STROKE_FLOAT"
+      ]
+    },
+    "focus/width": {
+      "id": "VariableID:7:135",
+      "type": "FLOAT",
+      "scopes": [
+        "STROKE_FLOAT"
+      ]
+    },
+    "radius/control": {
+      "id": "VariableID:7:136",
+      "type": "FLOAT",
+      "scopes": [
+        "CORNER_RADIUS"
+      ]
+    },
+    "radius/dialog": {
+      "id": "VariableID:7:137",
+      "type": "FLOAT",
+      "scopes": [
+        "CORNER_RADIUS"
+      ]
+    },
+    "motion/feedback": {
+      "id": "VariableID:7:138",
+      "type": "FLOAT",
+      "scopes": []
+    },
+    "motion/navigation": {
+      "id": "VariableID:7:139",
+      "type": "FLOAT",
+      "scopes": []
+    },
+    "motion/reduced": {
+      "id": "VariableID:7:140",
+      "type": "FLOAT",
+      "scopes": []
+    }
+  },
+  "textStyles": {
+    "Body": "S:0ed1e468a727e7f6b4cfe5df9fede5b786c93484,",
+    "Label": "S:57e137d821e57f2a65506aae778891f8769014bb,",
+    "Caption": "S:befdc25f9b2e8c63313b60a0d4aea208900d629a,",
+    "Heading": "S:a12f8ca10ba0d22e77eaf7ad3092a28a3779de86,",
+    "Title": "S:9c730b18d11b0b822b1b5cb4828120b4eb39915f,",
+    "TitleCompact": "S:8579bbbd27aef7f9309ddc31f958d7598925587a,",
+    "Code": "S:2dbd5754c8da299cad06f2184af84cc5101eb9b7,"
+  },
+  "fonts": {
+    "font": {
+      "family": "Noto Sans KR",
+      "style": "Regular"
+    },
+    "boldFont": {
+      "family": "Noto Sans KR",
+      "style": "Regular",
+      "variationSettings": {
+        "wght": 600
+      }
+    },
+    "axes": [
+      "wght"
+    ]
+  },
+  "board": {
+    "id": "7:148",
+    "width": 1424,
+    "height": 2293
+  },
+  "fontReadback": [
+    {
+      "id": "7:149",
+      "font": {
+        "family": "Noto Sans KR",
+        "style": "Regular",
+        "variationSettings": {
+          "wght": 600
+        }
+      },
+      "weight": 600
+    },
+    {
+      "id": "7:150",
+      "font": {
+        "family": "Noto Sans KR",
+        "style": "Regular",
+        "variationSettings": {
+          "wght": 400
+        }
+      },
+      "weight": 400
+    },
+    {
+      "id": "7:152",
+      "font": {
+        "family": "Noto Sans KR",
+        "style": "Regular",
+        "variationSettings": {
+          "wght": 600
+        }
+      },
+      "weight": 600
+    },
+    {
+      "id": "7:156",
+      "font": {
+        "family": "Noto Sans KR",
+        "style": "Regular",
+        "variationSettings": {
+          "wght": 600
+        }
+      },
+      "weight": 600
+    },
+    {
+      "id": "7:157",
+      "font": {
+        "family": "Noto Sans KR",
+        "style": "Regular",
+        "variationSettings": {
+          "wght": 400
+        }
+      },
+      "weight": 400
+    }
+  ]
+}

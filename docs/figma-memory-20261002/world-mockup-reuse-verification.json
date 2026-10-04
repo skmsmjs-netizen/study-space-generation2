@@ -1,0 +1,130 @@
+{
+  "checkedAtUtc": "2026-10-02T04:24:44.577Z",
+  "generator": "docs/figma-observatory-20261002/scripts/build-world-asset.js",
+  "generatorSha256": "d40bb1723c167537a61b08ca220e31821823aff393e1cec81f44bfe6afe8997d",
+  "verificationScriptSha256": "3de31475dc249267418115dc8faedfa410eb8a94fdb47be63721d3bac98771bd",
+  "syntax": "pass",
+  "verificationType": "local mocked Figma Plugin API; actual generator body executed",
+  "cases": [
+    {
+      "case": "direct-image-fill two retries",
+      "passed": true,
+      "ownerSnapshotPreserved": true,
+      "writes": 0,
+      "outputs": [
+        {
+          "assetId": "10:68",
+          "partId": "10:68",
+          "created": 0,
+          "mutated": 0,
+          "reused": true
+        },
+        {
+          "assetId": "10:68",
+          "partId": "10:68",
+          "created": 0,
+          "mutated": 0,
+          "reused": true
+        }
+      ]
+    },
+    {
+      "case": "one-image-rectangle two retries",
+      "passed": true,
+      "ownerSnapshotPreserved": true,
+      "writes": 0,
+      "outputs": [
+        {
+          "assetId": "10:68",
+          "partId": "90:10",
+          "created": 0,
+          "mutated": 0,
+          "reused": true
+        },
+        {
+          "assetId": "10:68",
+          "partId": "90:10",
+          "created": 0,
+          "mutated": 0,
+          "reused": true
+        }
+      ]
+    },
+    {
+      "case": "native vector is not imported or overlaid",
+      "passed": true,
+      "expectedError": "RASTER_MIGRATION_REQUIRED",
+      "ownerSnapshotPreserved": true,
+      "writes": 0
+    },
+    {
+      "case": "component type alone is not image evidence",
+      "passed": true,
+      "expectedError": "RASTER_MIGRATION_REQUIRED",
+      "ownerSnapshotPreserved": true,
+      "writes": 0
+    },
+    {
+      "case": "different direct image hash is preserved and rejected",
+      "passed": true,
+      "expectedError": "RASTER_MIGRATION_REQUIRED",
+      "ownerSnapshotPreserved": true,
+      "writes": 0
+    },
+    {
+      "case": "different rectangle image hash is preserved and rejected",
+      "passed": true,
+      "expectedError": "RASTER_MIGRATION_REQUIRED",
+      "ownerSnapshotPreserved": true,
+      "writes": 0
+    },
+    {
+      "case": "wrong direct master bounds rejected",
+      "passed": true,
+      "expectedError": "EXISTING_BOUNDS_MISMATCH",
+      "ownerSnapshotPreserved": true,
+      "writes": 0
+    },
+    {
+      "case": "offset image rectangle rejected",
+      "passed": true,
+      "expectedError": "EXISTING_BOUNDS_MISMATCH",
+      "ownerSnapshotPreserved": true,
+      "writes": 0
+    },
+    {
+      "case": "extra native child rejected",
+      "passed": true,
+      "expectedError": "RASTER_MIGRATION_REQUIRED",
+      "ownerSnapshotPreserved": true,
+      "writes": 0
+    },
+    {
+      "case": "CROP paint cannot silently change full bounds",
+      "passed": true,
+      "expectedError": "RASTER_MIGRATION_REQUIRED",
+      "ownerSnapshotPreserved": true,
+      "writes": 0
+    }
+  ],
+  "sourceContractSnapshot": {
+    "file": "docs/figma-memory-20261002/mockup-contracts.json",
+    "sha256": "a624e6da488a9225302484ab59bf6e8c941417bcc7e5350a8cceefb0f9c5f248",
+    "contractCount": 29,
+    "snapshotsEdited": false,
+    "drift": [
+      {
+        "id": "RUNTIME-StudyStatistics",
+        "name": "StudyStatistics",
+        "file": "src/ui/statistics.tsx",
+        "snapshotSha256": "989fe8b8d2d06da9a90da5d4515bc61c610a038f6a97e6795acf8029eb24ddfa",
+        "currentSha256": "d39b326c920aee4f80c8fb8e7bec94f2354606e6b9b52ee423c93c39dcb1b5b4"
+      }
+    ],
+    "note": "Contract SHA values remain preserved snapshots. Drift describes concurrent current source changes; this result does not claim that all 29 source files still match."
+  },
+  "totalNodeWrites": 0,
+  "remoteFigmaCalls": 0,
+  "webAppSourceEdits": 0,
+  "limitation": "No remote retry, rendering or webapp flow was executed; remote master identity/representation is supplied by parent evidence."
+}

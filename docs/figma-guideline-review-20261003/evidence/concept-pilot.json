@@ -1,0 +1,21 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Error: in clone: The node with id \"I46:318;4:30\" does not exist\n    at <anonymous> (PLUGIN_1_SOURCE:29:35)\n"
+    },
+    {
+      "type": "text",
+      "text": "Figma Debug UUID: 9dac2630-9ae0-4cfd-a0c8-08fc89c9ebf8"
+    }
+  ],
+  "structuredContent": {
+    "error": {
+      "message": "Error: in clone: The node with id \"I46:318;4:30\" does not exist\n    at <anonymous> (PLUGIN_1_SOURCE:29:35)\n",
+      "debugUuid": "9dac2630-9ae0-4cfd-a0c8-08fc89c9ebf8"
+    },
+    "safeToRetryWithoutCanvasRead": true,
+    "error_code": "INVALID_ARGUMENT"
+  },
+  "isError": true
+}

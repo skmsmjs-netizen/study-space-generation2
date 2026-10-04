@@ -1,0 +1,10 @@
+{
+  "name": "ManSeekSong OS 개념 조판",
+  "id": "1687788466819538502",
+  "api": "1.0.0",
+  "main": "code.js",
+  "ui": "ui.html",
+  "editorType": ["figma"],
+  "documentAccess": "dynamic-page",
+  "networkAccess": {"allowedDomains": ["none"]}
+}

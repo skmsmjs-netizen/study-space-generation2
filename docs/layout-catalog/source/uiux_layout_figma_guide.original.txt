@@ -1,0 +1,3688 @@
+# UI·UX 레이아웃 종류 사전 — Figma 통합판
+부제: 그리드 시스템부터 웹·앱 화면 패턴까지
+
+작성 목적: Figma·웹앱·문서·대시보드 작업에서 “어떤 레이아웃을 써야 하는가”를 빠르게 판단하기 위한 실무용 분류표.
+
+---
+
+## 0. 먼저 구분해야 할 것
+
+디자인에서 “레이아웃”이라는 말은 여러 개념을 한꺼번에 가리킨다. 아래 네 층을 분리해서 보면 혼동이 크게 줄어든다.
+
+1. **Grid System**  
+   화면을 어떤 기준선과 칸으로 나눌지 정한다.  
+   예: Column Grid, Modular Grid, Baseline Grid.
+
+2. **Page / Screen Layout Pattern**  
+   실제 화면의 큰 구조를 정한다.  
+   예: Sidebar + Main, Split Screen, Dashboard, Master–Detail.
+
+3. **Composition System**  
+   시선을 어디에 두고 어떤 비율로 배치할지 정한다.  
+   예: Rule of Thirds, Golden Ratio, Radial Composition.
+
+4. **Spacing / Sizing System**  
+   요소 사이 간격과 크기에 반복 규칙을 준다.  
+   예: 4pt Grid, 8pt Grid.
+
+실무에서는 이들을 하나만 고르는 것이 아니라 겹쳐 쓴다.
+
+예:
+
+> Responsive 12-column Grid  
+> + Sidebar–Main Layout  
+> + Modular Card Layout  
+> + Baseline Grid  
+> + 8pt Spacing System
+
+---
+
+# PART I. 기본 그리드 시스템
+
+## 1. Manuscript Grid
+다른 이름: Single-column Grid, Block Grid
+
+가장 단순한 그리드다. 하나의 큰 콘텐츠 영역을 중심으로 구성한다.
+
+### 구조
+```text
+┌─────────────────────┐
+│                     │
+│       CONTENT       │
+│                     │
+│                     │
+└─────────────────────┘
+```
+
+### 적합한 용도
+- 책
+- 논문
+- 기사
+- 블로그
+- 리포트
+- 긴 설명문
+- 도움말 문서
+
+### 장점
+- 읽기 흐름이 안정적이다.
+- 구조가 단순하다.
+- 긴 글에 집중하기 좋다.
+
+### 단점
+- 정보 종류가 많으면 단조롭다.
+- 대시보드나 복잡한 앱에는 부족하다.
+
+---
+
+## 2. Column Grid
+
+화면을 여러 개의 세로 열로 나눈다.
+
+### 구조
+```text
+│  │  │  │  │  │  │
+│  │  │  │  │  │  │
+│  │  │  │  │  │  │
+```
+
+### 흔한 열 수
+- Mobile: 4 columns
+- Tablet: 6~8 columns
+- Desktop: 12 columns
+- 고밀도 데스크톱 UI: 12~16 columns
+
+### 핵심 요소
+- Column
+- Gutter
+- Margin
+- Container
+- Span
+
+### 적합한 용도
+- 웹사이트
+- 웹앱
+- 랜딩페이지
+- 관리자 화면
+- 뉴스
+- 쇼핑몰
+
+### 실무 포인트
+웹에서 가장 기본적인 레이아웃 시스템 중 하나다.  
+12-column은 2, 3, 4, 6 등 여러 비율로 쉽게 나눌 수 있어 특히 유연하다.
+
+---
+
+## 3. Modular Grid
+
+Column Grid에 가로 행(Row)을 추가해 일정한 모듈을 만든다.
+
+### 구조
+```text
+┌───┬───┬───┐
+│   │   │   │
+├───┼───┼───┤
+│   │   │   │
+├───┼───┼───┤
+│   │   │   │
+└───┴───┴───┘
+```
+
+### 적합한 용도
+- 카드 UI
+- 대시보드
+- 갤러리
+- 뉴스 목록
+- 쇼핑몰
+- 포트폴리오
+- 데이터 화면
+
+### 장점
+- 정렬이 매우 쉽다.
+- 반복되는 콘텐츠에 강하다.
+- 시각적 리듬이 생긴다.
+
+### 단점
+- 지나치게 엄격하면 화면이 기계적으로 보일 수 있다.
+
+---
+
+## 4. Hierarchical Grid
+
+내용의 중요도에 따라 영역 크기와 위치를 다르게 배분한다.
+
+### 구조
+```text
+┌───────────────────┐
+│                   │
+│      PRIMARY      │
+│                   │
+├───────────┬───────┤
+│ SECONDARY │ THIRD │
+└───────────┴───────┘
+```
+
+### 적합한 용도
+- 뉴스
+- 포트폴리오
+- 랜딩페이지
+- 홈 화면
+- 콘텐츠 큐레이션
+- 잡지형 웹사이트
+
+### 핵심
+균등한 칸보다 **정보 위계**가 우선이다.
+
+### 장점
+- 중요한 콘텐츠를 즉시 강조할 수 있다.
+- 화면이 풍부하고 역동적으로 보인다.
+
+### 단점
+- 규칙을 잘못 잡으면 정렬감이 무너진다.
+
+---
+
+## 5. Baseline Grid
+
+텍스트가 놓이는 수평 기준선을 일정 간격으로 반복한다.
+
+### 구조
+```text
+────────────
+본문
+────────────
+본문
+────────────
+본문
+────────────
+```
+
+### 목적
+- 행간 정렬
+- 제목·본문·캡션의 수직 리듬 통일
+- 여러 컬럼 사이 텍스트 기준선 정렬
+
+### 적합한 용도
+- 책
+- 잡지
+- 논문
+- 뉴스
+- 텍스트 중심 웹
+- 디자인 시스템
+
+### 핵심
+Baseline Grid는 “영역 배치”보다 **타이포그래피의 수직 리듬**을 다룬다.
+
+---
+
+## 6. Compound Grid
+
+둘 이상의 Grid를 동시에 겹쳐 사용하는 방식이다.
+
+예:
+- 12-column + 4-column
+- Column Grid + Baseline Grid
+- Modular Grid + Hierarchical Grid
+
+### 적합한 용도
+- 복잡한 웹사이트
+- 고급 편집 디자인
+- 대형 제품 UI
+- 다양한 콘텐츠가 공존하는 서비스
+
+현대 UI는 실제로 대부분 Compound Grid에 가깝다.
+
+---
+
+## 7. Fluid Grid
+
+열 폭이 고정 픽셀이 아니라 화면 크기에 따라 유동적으로 변한다.
+
+### 개념식
+```text
+Column Width
+= (Container Width − Total Gutter Width) / Column Count
+```
+
+### 적합한 용도
+- 반응형 웹
+- 다양한 모니터 크기를 지원하는 웹앱
+
+### 특징
+- 화면이 넓어지면 열도 넓어진다.
+- `%`, `fr`, `minmax()` 등과 잘 맞는다.
+
+---
+
+## 8. Fixed Grid
+
+그리드의 크기를 고정 단위로 유지한다.
+
+### 적합한 용도
+- 특정 해상도 전용 화면
+- 키오스크
+- 일부 편집물
+- 고정형 내부 시스템
+
+### 단점
+반응형 환경에서는 단독 사용하기 어렵다.
+
+---
+
+## 9. Responsive Grid
+
+화면 폭에 따라 그리드 구조 자체가 변한다.
+
+예:
+```text
+Mobile   → 4 columns
+Tablet   → 8 columns
+Desktop  → 12 columns
+```
+
+변할 수 있는 요소:
+- column count
+- margin
+- gutter
+- container width
+- content span
+- visibility
+- order
+
+현대 웹·앱의 기본 구조다.
+
+---
+
+## 10. Adaptive Grid
+
+미리 정해 둔 몇 개의 레이아웃을 breakpoint마다 교체한다.
+
+Responsive가 “연속적으로 유동적”이라면 Adaptive는 “구간별 레이아웃 전환” 성격이 더 강하다.
+
+예:
+```text
+< 600px      → Mobile Layout
+600~1024px   → Tablet Layout
+> 1024px     → Desktop Layout
+```
+
+---
+
+## 11. Nested Grid
+
+큰 Grid 안에 또 다른 Grid를 넣는다.
+
+예:
+```text
+12-column 전체 화면
+└─ Main 9 columns
+   └─ 내부 Card 영역 3-column Grid
+```
+
+복잡한 앱에서는 매우 흔하다.
+
+---
+
+## 12. Subgrid
+
+부모 Grid의 기준선을 자식 요소가 이어받는 방식이다.
+
+웹 구현에서는 CSS `subgrid`와 연결된다.
+
+### 장점
+서로 다른 카드 내부의 제목·본문·버튼을 같은 기준선에 맞추기 쉽다.
+
+---
+
+# PART II. 간격·크기 시스템
+
+## 13. 4pt Grid
+
+모든 간격과 크기를 4의 배수 중심으로 구성한다.
+
+```text
+4
+8
+12
+16
+20
+24
+28
+32
+...
+```
+
+### 적합한 항목
+- padding
+- gap
+- margin
+- icon size
+- control height
+
+### 장점
+세밀한 UI 조정에 좋다.
+
+---
+
+## 14. 8pt Grid
+
+8을 기본 단위로 사용한다.
+
+```text
+8
+16
+24
+32
+40
+48
+64
+...
+```
+
+### 특징
+많은 디자인 시스템에서 사용되는 대표적 spacing 접근법이다.
+
+실무에서는 흔히:
+
+> 기본 리듬 = 8pt  
+> 세밀한 보정 = 4pt
+
+방식을 쓴다.
+
+---
+
+## 15. 2x Grid
+
+크기와 간격을 배수 관계로 구성한다.
+
+IBM Carbon Design System의 대표적인 기반 체계가 이 접근을 사용한다.
+
+예:
+```text
+8 → 16 → 32 → 64
+```
+
+단순 spacing뿐 아니라:
+- typography
+- columns
+- boxes
+- icons
+- illustrations
+
+등에 공통 기하 규칙을 준다.
+
+---
+
+# PART III. 비례·구도 기반 그리드
+
+## 16. Rule of Thirds Grid
+
+화면을 3 × 3으로 나누는 삼분할 구도다.
+
+```text
+┌─────┬─────┬─────┐
+│     │     │     │
+├─────┼─────┼─────┤
+│     │     │     │
+├─────┼─────┼─────┤
+│     │     │     │
+└─────┴─────┴─────┘
+```
+
+### 적합한 용도
+- 사진
+- 포스터
+- Hero Section
+- 광고
+- 프레젠테이션
+
+---
+
+## 17. Golden Ratio Grid
+
+황금비 약 `1 : 1.618`을 이용한다.
+
+### 활용
+- Main / Sidebar 비율
+- 이미지 / 텍스트 비율
+- 큰 영역 / 작은 영역 분리
+- 편집 디자인
+
+### 주의
+일반적인 UI Grid라기보다 **비례 구성 원리**에 가깝다.
+
+---
+
+## 18. Golden Spiral
+
+황금비 사각형을 반복하며 만들어지는 나선형 흐름을 이용한다.
+
+### 적합한 용도
+- 사진
+- 포스터
+- 광고
+- 예술적 레이아웃
+
+UI 구조의 기본 틀로 직접 사용하는 경우는 드물다.
+
+---
+
+## 19. Fibonacci Grid
+
+1, 1, 2, 3, 5, 8, 13…의 비율을 활용한다.
+
+### 활용
+- 공간 크기 비례
+- 타이포 스케일
+- 카드 크기
+- 시각적 위계
+
+---
+
+## 20. Diagonal Grid
+
+대각선을 주요 정렬 기준으로 사용한다.
+
+### 적합한 용도
+- 포스터
+- 패션
+- 스포츠
+- 프로모션
+- 강한 시각적 움직임이 필요한 화면
+
+---
+
+## 21. Radial Grid
+
+중심점에서 바깥으로 방사형 기준선을 만든다.
+
+### 적합한 용도
+- 원형 메뉴
+- 인포그래픽
+- 시계
+- 로고
+- 데이터 시각화
+
+---
+
+## 22. Polar Grid
+
+반지름과 각도를 기준으로 공간을 나눈다.
+
+Radial Grid보다 수학적·데이터 시각화 성격이 강하다.
+
+---
+
+## 23. Isometric Grid
+
+보통 30°/60° 계열의 축을 사용하는 기하학적 그리드다.
+
+### 적합한 용도
+- 아이소메트릭 일러스트
+- 건축 표현
+- 게임 맵
+- 3D 인포그래픽
+- 시스템 다이어그램
+
+일반적인 웹 화면 구조용으로는 잘 쓰지 않는다.
+
+---
+
+## 24. Axonometric Grid
+
+평행 투영 계열의 기하 그리드다.
+
+Isometric은 Axonometric의 한 종류다.
+
+### 적합한 용도
+- 기술 다이어그램
+- 건축
+- 제품 설명
+- 공간 표현
+
+---
+
+# PART IV. 웹·앱의 대표 화면 레이아웃
+
+## 25. Single-column Layout
+
+한 줄의 주요 콘텐츠 흐름을 사용한다.
+
+### 적합
+- 모바일
+- 블로그
+- 문서
+- 기사
+- 설정 화면
+
+---
+
+## 26. Two-column Layout
+
+두 영역으로 화면을 나눈다.
+
+예:
+```text
+┌──────────┬───────────────────┐
+│ Sidebar  │ Main              │
+└──────────┴───────────────────┘
+```
+
+### 적합
+- 문서
+- 웹앱
+- 설정
+- 탐색 화면
+
+---
+
+## 27. Three-column Layout
+
+세 개의 수직 영역을 사용한다.
+
+예:
+```text
+Nav | List | Detail
+```
+
+### 적합
+- 메일
+- 파일 관리
+- 생산성 도구
+- 관리자 앱
+
+---
+
+## 28. Sidebar–Content Layout
+
+좌측 또는 우측에 보조 탐색 영역을 두고 나머지를 Main으로 사용한다.
+
+가장 대표적인 앱 레이아웃 중 하나다.
+
+### 변형
+- Fixed Sidebar
+- Collapsible Sidebar
+- Floating Sidebar
+- Dual Sidebar
+
+---
+
+## 29. Holy Grail Layout
+
+전통적인 웹 레이아웃 형태다.
+
+```text
+┌───────────────────────┐
+│ Header                │
+├──────┬─────────┬──────┤
+│ Left │ Main    │Right │
+├──────┴─────────┴──────┤
+│ Footer                │
+└───────────────────────┘
+```
+
+---
+
+## 30. Split-screen Layout
+
+화면을 두 개의 큰 영역으로 거의 동등하게 나눈다.
+
+```text
+┌────────────┬────────────┐
+│            │            │
+│   LEFT     │   RIGHT    │
+│            │            │
+└────────────┴────────────┘
+```
+
+### 적합
+- 로그인
+- 제품 소개
+- 비교
+- 이미지 + 설명
+- Before / After
+
+---
+
+## 31. Asymmetric Layout
+
+좌우나 상하 비율을 의도적으로 다르게 잡는다.
+
+예:
+```text
+70% | 30%
+65% | 35%
+```
+
+### 장점
+시각적 위계가 강해진다.
+
+---
+
+## 32. Symmetric Layout
+
+중심축 기준으로 균형을 맞춘다.
+
+### 적합
+- 브랜드 사이트
+- 공식 페이지
+- 고급 제품 소개
+- 단순 랜딩페이지
+
+---
+
+## 33. Centered Container Layout
+
+콘텐츠 최대 폭을 제한하고 화면 가운데 배치한다.
+
+예:
+```text
+|        ┌─────────────┐        |
+|        │  CONTENT    │        |
+|        └─────────────┘        |
+```
+
+### 적합
+- 문서
+- SaaS
+- 블로그
+- 설정 화면
+
+---
+
+## 34. Full-width Layout
+
+화면 폭 전체를 적극적으로 사용한다.
+
+### 적합
+- 대시보드
+- 지도
+- 데이터 테이블
+- 영상
+- 시각화
+
+---
+
+## 35. Full-bleed Layout
+
+이미지나 배경이 컨테이너 밖까지 화면 끝에 닿는다.
+
+### 적합
+- 사진
+- 브랜드 사이트
+- 에디토리얼
+- 랜딩페이지
+
+---
+
+## 36. Hero-first Layout
+
+첫 화면 대부분을 Hero 영역이 차지한다.
+
+### 구성
+- 강한 Headline
+- Visual
+- CTA
+- Supporting copy
+
+### 적합
+- 랜딩페이지
+- 제품 소개
+- 캠페인
+
+---
+
+## 37. Card Grid Layout
+
+동일하거나 유사한 카드들을 격자로 배치한다.
+
+### 적합
+- 쇼핑몰
+- 강의 목록
+- 프로젝트
+- 대시보드
+- 콘텐츠 탐색
+
+---
+
+## 38. Masonry Layout
+
+카드 높이가 달라도 빈 공간을 최소화하며 쌓는다.
+
+Pinterest형 구조로 잘 알려져 있다.
+
+### 적합
+- 이미지 피드
+- 포트폴리오
+- 비정형 콘텐츠 카드
+
+### 주의
+강한 행 정렬이 필요한 데이터 UI에는 부적합하다.
+
+---
+
+## 39. Bento Grid Layout
+
+크기가 다른 직사각형 블록을 하나의 모듈형 판에 조합한다.
+
+### 특징
+- Modular Grid + Hierarchical Grid 성격
+- 기능·정보별 중요도를 크기로 표현
+- 최근 제품 소개 및 대시보드 UI에서 자주 보인다.
+
+### 적합
+- 제품 소개
+- 기능 소개
+- 개인 대시보드
+- 요약 홈
+
+---
+
+## 40. Magazine / Editorial Layout
+
+텍스트·이미지·인용·여백을 다양한 크기로 조합한다.
+
+### 기반
+- Multi-column
+- Baseline Grid
+- Hierarchical Grid
+- Asymmetric Composition
+
+### 적합
+- 뉴스
+- 매거진
+- 브랜드 스토리
+- 긴 읽기 콘텐츠
+
+---
+
+## 41. Newspaper Layout
+
+여러 열에 많은 텍스트와 정보를 밀도 높게 배치한다.
+
+### 특징
+- 높은 정보 밀도
+- 강한 타이포 위계
+- 여러 기사 동시 노출
+
+---
+
+## 42. Feed Layout
+
+시간이나 추천 순서대로 콘텐츠를 연속 배치한다.
+
+### 적합
+- SNS
+- 뉴스
+- 활동 기록
+- 알림
+
+### 변형
+- Single Feed
+- Mixed Media Feed
+- Infinite Scroll Feed
+
+---
+
+## 43. List Layout
+
+행 단위로 콘텐츠를 반복한다.
+
+### 적합
+- 메일
+- 파일
+- 할 일
+- 기록
+- 검색 결과
+
+카드보다 정보 밀도를 높이기 쉽다.
+
+---
+
+## 44. Table Layout
+
+행과 열을 통해 구조화된 데이터를 비교한다.
+
+### 적합
+- 관리자
+- 통계
+- 재고
+- 사용자 목록
+- 학습 기록
+
+---
+
+## 45. Master–Detail Layout
+
+왼쪽에 목록, 오른쪽에 선택 항목의 상세 정보를 보여준다.
+
+```text
+┌────────────┬────────────────────┐
+│ List       │ Detail             │
+│            │                    │
+└────────────┴────────────────────┘
+```
+
+### 적합
+- 메일
+- 파일
+- 노트
+- 학습 기록
+- CRM
+
+---
+
+## 46. List–Detail–Inspector Layout
+
+Master–Detail에 세 번째 속성/설정 영역을 추가한다.
+
+```text
+Navigation | Content | Inspector
+```
+
+### 적합
+- Figma류 편집기
+- IDE
+- 고급 생산성 도구
+- 관리자 도구
+
+---
+
+## 47. Dashboard Layout
+
+여러 지표·카드·그래프·표를 한 화면에 조합한다.
+
+### 일반 구성
+- Summary Cards
+- Charts
+- Tables
+- Filters
+- Alerts
+- Recent Activity
+
+### 기반
+Modular Grid가 매우 잘 맞는다.
+
+---
+
+## 48. Widget Layout
+
+작은 독립 모듈 여러 개를 사용자가 조합한다.
+
+### 적합
+- 홈 대시보드
+- 개인화 페이지
+- 모니터링 시스템
+
+---
+
+## 49. Kanban Layout
+
+상태별 세로 열에 카드를 배치한다.
+
+```text
+TODO | DOING | DONE
+```
+
+### 적합
+- 프로젝트 관리
+- 업무 상태 관리
+- 학습 진행 관리
+
+---
+
+## 50. Timeline Layout
+
+시간축을 기준으로 항목을 정렬한다.
+
+### 방향
+- Vertical Timeline
+- Horizontal Timeline
+
+### 적합
+- 역사
+- 활동 기록
+- 프로젝트 진행
+- 버전 기록
+
+---
+
+## 51. Calendar Layout
+
+시간을 날짜 단위 격자로 배치한다.
+
+### 변형
+- Month
+- Week
+- Day
+- Agenda
+
+---
+
+## 52. Scheduler Layout
+
+Calendar보다 일정 시간축과 자원 관리에 초점을 둔다.
+
+### 적합
+- 예약
+- 수업
+- 병원
+- 회의실
+- 근무표
+
+---
+
+## 53. Form Layout
+
+입력 작업 중심의 레이아웃이다.
+
+### 대표 유형
+- Single-column Form
+- Two-column Form
+- Grouped Form
+- Inline Form
+
+대부분의 경우 긴 폼은 Single-column이 읽기와 오류 방지에 유리하다.
+
+---
+
+## 54. Wizard / Stepper Layout
+
+복잡한 입력을 여러 단계로 나눈다.
+
+```text
+1. 기본정보 → 2. 옵션 → 3. 확인 → 4. 완료
+```
+
+### 적합
+- 가입
+- 결제
+- 신청
+- 설치
+- 복잡한 설정
+
+---
+
+## 55. Search–Results Layout
+
+검색창과 결과 영역을 중심으로 구성한다.
+
+### 구성
+- Query
+- Filter
+- Sort
+- Results
+- Pagination / Infinite Scroll
+
+---
+
+## 56. Faceted Search Layout
+
+여러 필터 조건을 동시에 적용할 수 있는 검색 화면이다.
+
+대표:
+```text
+Filter Sidebar | Results
+```
+
+### 적합
+- 쇼핑몰
+- 논문 검색
+- 데이터베이스
+- 파일 검색
+
+---
+
+## 57. Map–List Layout
+
+지도와 장소 목록을 나란히 배치한다.
+
+```text
+List | Map
+```
+
+### 적합
+- 부동산
+- 여행
+- 음식점
+- 배송
+- 위치 검색
+
+---
+
+## 58. Gallery Layout
+
+이미지나 미디어 탐색이 중심이다.
+
+### 유형
+- Uniform Grid
+- Masonry
+- Justified Gallery
+- Carousel
+- Filmstrip
+
+---
+
+## 59. Carousel Layout
+
+한 줄의 콘텐츠를 수평으로 넘겨 본다.
+
+### 적합
+- 추천
+- 미디어
+- 상품
+- 사진
+
+### 주의
+핵심 정보 전체를 Carousel 안에 숨기는 것은 피하는 편이 좋다.
+
+---
+
+## 60. Filmstrip Layout
+
+작은 썸네일을 연속 배치하고 큰 미리보기와 연결한다.
+
+### 적합
+- 사진
+- 영상
+- 프레젠테이션
+- 편집기
+
+---
+
+## 61. Immersive Fullscreen Layout
+
+UI를 최소화하고 콘텐츠가 화면을 거의 전부 차지한다.
+
+### 적합
+- 지도
+- 사진 편집
+- 영상
+- 게임
+- 공간형 콘텐츠
+
+---
+
+## 62. Canvas Layout
+
+고정된 문서 흐름보다 자유로운 2D 공간에 객체를 배치한다.
+
+### 적합
+- Figma
+- 화이트보드
+- 다이어그램
+- 노드 편집기
+
+---
+
+## 63. Infinite Canvas Layout
+
+Canvas가 사실상 무한히 확장되는 방식이다.
+
+### 적합
+- 마인드맵
+- 설계도
+- 연구 구조화
+- 아이디어 보드
+
+---
+
+# PART V. 탐색 구조 중심 레이아웃
+
+## 64. Top Navigation Layout
+
+상단에 글로벌 탐색을 둔다.
+
+### 적합
+- 일반 웹사이트
+- 랜딩페이지
+- 비교적 메뉴 수가 적은 서비스
+
+---
+
+## 65. Side Navigation Layout
+
+왼쪽 또는 오른쪽에 주요 메뉴를 세로로 배치한다.
+
+### 적합
+- 웹앱
+- SaaS
+- 관리자 도구
+- 문서
+
+---
+
+## 66. Bottom Navigation Layout
+
+주요 메뉴를 화면 하단에 둔다.
+
+### 적합
+- 모바일 앱
+- 핵심 섹션이 3~5개 정도인 서비스
+
+---
+
+## 67. Tabbed Layout
+
+같은 수준의 콘텐츠를 탭으로 전환한다.
+
+### 적합
+- 상세 화면
+- 설정
+- 프로필
+- 데이터 뷰
+
+---
+
+## 68. Accordion Layout
+
+정보를 접고 펼치는 방식이다.
+
+### 적합
+- FAQ
+- 설정
+- 모바일 정보 구조
+- 긴 보조 설명
+
+---
+
+## 69. Drawer Layout
+
+필요할 때 옆에서 패널이 등장한다.
+
+### 적합
+- 모바일 메뉴
+- Filter
+- 설정
+- 보조 작업
+
+---
+
+## 70. Inspector / Utility Panel Layout
+
+주요 콘텐츠 옆에 속성·설정·보조 정보를 표시한다.
+
+### 적합
+- 디자인 도구
+- 문서 편집
+- 관리자 도구
+- 데이터 편집
+
+---
+
+# PART VI. 사용자의 시선 흐름을 이용한 구성
+
+## 71. F-pattern Layout
+
+사용자가 왼쪽에서 시작해 위쪽을 길게 읽고, 아래로 내려가며 점차 짧게 훑는 패턴을 고려한다.
+
+### 적합
+- 기사
+- 검색 결과
+- 텍스트가 많은 웹페이지
+
+주의: F-pattern은 “반드시 이렇게 디자인해야 한다”는 Grid가 아니라 관찰된 탐색 경향을 설명하는 모델이다.
+
+---
+
+## 72. Z-pattern Layout
+
+시선이 좌상단 → 우상단 → 좌하단 → 우하단으로 이동하도록 구성한다.
+
+### 적합
+- 단순 랜딩페이지
+- 광고
+- Hero 화면
+- CTA 중심 페이지
+
+---
+
+## 73. Layer-cake Pattern
+
+사용자가 제목과 소제목을 먼저 훑으며 필요한 영역을 찾는 읽기 패턴이다.
+
+### 적합
+- 문서
+- 도움말
+- 긴 글
+- 학습 콘텐츠
+
+---
+
+## 74. Gutenberg Diagram
+
+서구권 좌→우 읽기 환경에서 화면의 시각적 중력과 시선 흐름을 설명하는 전통적 모델이다.
+
+현대 UI에서는 절대 법칙이 아니라 참고용 구성 원리로 보는 것이 좋다.
+
+---
+
+# PART VII. 특수 목적 레이아웃
+
+## 75. Comparison Layout
+
+여러 대상을 동일 기준으로 나란히 비교한다.
+
+### 적합
+- 요금제
+- 제품
+- 기능
+- 후보안
+
+---
+
+## 76. Pricing Layout
+
+가격·플랜의 비교와 선택을 중심으로 설계한다.
+
+보통 3~4개의 수직 카드 구조를 사용한다.
+
+---
+
+## 77. Before–After Layout
+
+두 상태를 직접 비교한다.
+
+### 형태
+- Side by Side
+- Slider
+- Overlay
+
+---
+
+## 78. Storytelling Layout
+
+스크롤 순서에 따라 이야기를 단계적으로 전달한다.
+
+### 적합
+- 브랜드
+- 데이터 저널리즘
+- 연구 설명
+- 캠페인
+
+---
+
+## 79. Scrollytelling Layout
+
+스크롤 진행에 맞춰 그래픽·텍스트·애니메이션 상태가 변한다.
+
+### 적합
+- 데이터 시각화
+- 장문 인터랙티브 기사
+- 제품 설명
+
+---
+
+## 80. Sticky Narrative Layout
+
+한 영역은 고정하고 다른 콘텐츠만 스크롤한다.
+
+예:
+```text
+Sticky Graphic | Scrolling Explanation
+```
+
+---
+
+## 81. Documentation Layout
+
+일반적인 구조:
+
+```text
+Sidebar Navigation
+        +
+Article
+        +
+Table of Contents
+```
+
+### 적합
+- API 문서
+- 개발자 문서
+- 학습 자료
+- 지식베이스
+
+---
+
+## 82. IDE Layout
+
+전형적인 개발 도구 구조:
+
+```text
+Activity Bar | File Tree | Editor | Inspector
+                       + Bottom Panel
+```
+
+### 특징
+다중 패널·리사이즈·탭·분할 뷰가 핵심이다.
+
+---
+
+## 83. Data-dense Enterprise Layout
+
+화면당 가능한 많은 작업과 데이터를 제공한다.
+
+### 특징
+- 좁은 spacing
+- Table 중심
+- Toolbar
+- Filter
+- Split panel
+- Dense controls
+
+### 적합
+- ERP
+- CRM
+- 운영 시스템
+- 내부 관리자 도구
+
+---
+
+## 84. Command-center Layout
+
+실시간 상태 감시와 즉시 조작에 초점을 둔다.
+
+### 특징
+- 주요 KPI
+- Alert
+- Map
+- Timeline
+- Status Panel
+
+### 적합
+- 관제
+- 네트워크
+- 서버
+- 운영
+- 물류
+
+---
+
+# PART VIII. CSS 구현 관점에서의 레이아웃 방식
+
+## 85. Normal Flow
+
+HTML 요소가 기본 문서 흐름에 따라 위에서 아래로 배치되는 방식.
+
+모든 웹 레이아웃의 출발점이다.
+
+---
+
+## 86. Flexbox Layout
+
+1차원(Row 또는 Column) 배치에 강하다.
+
+### 적합
+- 버튼 그룹
+- Toolbar
+- Navigation
+- 카드 내부
+- 정렬
+
+---
+
+## 87. CSS Grid Layout
+
+행과 열을 동시에 다루는 2차원 레이아웃 시스템이다.
+
+### 적합
+- 페이지 전체
+- Dashboard
+- Card Grid
+- 복잡한 영역 배치
+
+---
+
+## 88. Absolute / Positioned Layout
+
+요소를 특정 좌표 관계에 배치한다.
+
+### 적합
+- Badge
+- Overlay
+- Floating element
+- 장식 요소
+
+전체 페이지 구조를 Absolute Positioning만으로 만드는 방식은 일반적으로 유지보수가 어렵다.
+
+---
+
+## 89. Multi-column Layout
+
+텍스트를 신문처럼 여러 열에 흘려 보낸다.
+
+### 적합
+- Editorial
+- 긴 텍스트
+- 잡지형 페이지
+
+---
+
+## 90. Container-query-driven Layout
+
+브라우저 전체 폭이 아니라 **컴포넌트가 들어 있는 컨테이너의 폭**에 따라 내부 레이아웃을 바꾼다.
+
+### 적합
+- 재사용 가능한 카드
+- Widget
+- 복합 Dashboard
+- 디자인 시스템 컴포넌트
+
+---
+
+# PART IX. 혼동하기 쉬운 개념 정리
+
+## Grid와 Layout은 같은 말이 아니다
+
+예:
+
+- `12-column Grid` = 배치 기준
+- `Sidebar + Main Layout` = 실제 화면 구조
+
+하나의 Sidebar Layout을 12-column Grid 위에 구현할 수 있다.
+
+---
+
+## 4pt / 8pt는 Column Grid의 대체재가 아니다
+
+둘은 역할이 다르다.
+
+```text
+12-column → 큰 영역 구조
+8pt       → 요소 간격과 크기 리듬
+Baseline  → 텍스트 수직 리듬
+```
+
+동시에 사용한다.
+
+---
+
+## Bento는 독립적인 Grid 이론이라기보다 Layout Pattern에 가깝다
+
+대부분 다음의 조합으로 이해하면 정확하다.
+
+> Modular Grid + Hierarchical Grid + 다양한 Card Span
+
+---
+
+## Golden Ratio는 모든 UI에 적용해야 하는 규칙이 아니다
+
+황금비는 유용한 구성 도구 중 하나일 뿐이다.  
+사용성, 정보량, 반응형 요구보다 우선하지 않는다.
+
+---
+
+## F-pattern과 Z-pattern도 Grid가 아니다
+
+사용자의 시선 흐름을 설명하거나 유도하는 **읽기·구도 모델**이다.
+
+---
+
+# PART X. 상황별 빠른 선택표
+
+| 상황 | 우선 고려할 레이아웃 |
+|---|---|
+| 논문·긴 글 | Manuscript + Baseline |
+| 블로그 | Single-column + Centered Container |
+| 뉴스 | Hierarchical + Column + Baseline |
+| 쇼핑몰 | Column + Modular + Card Grid |
+| 포트폴리오 | Hierarchical + Masonry 또는 Bento |
+| 관리자 페이지 | Sidebar + Modular + Table |
+| 데이터 대시보드 | Responsive Column + Modular |
+| 메일 앱 | Master–Detail |
+| 파일 관리 | Sidebar + List–Detail |
+| Figma형 편집기 | Canvas + Inspector + Multi-panel |
+| 학습 입력 앱 | Sidebar + Master–Detail + Modular |
+| 모바일 앱 | Single-column + Bottom Navigation |
+| 긴 입력 폼 | Single-column Form |
+| 가입 절차 | Wizard / Stepper |
+| 일정 관리 | Calendar / Scheduler |
+| 프로젝트 관리 | Kanban |
+| 지도 서비스 | Map–List |
+| 이미지 서비스 | Gallery / Masonry |
+| 제품 소개 | Hero-first + Hierarchical |
+| 브랜드 사이트 | Full-bleed + Editorial |
+| 기술 문서 | Documentation Layout |
+| 관제 화면 | Command-center + Data-dense |
+
+---
+
+# PART XI. 현대 웹앱용 권장 조합
+
+범용 SaaS나 생산성 웹앱이라면 다음과 같은 조합이 안정적이다.
+
+```text
+Responsive Grid
+└── 12-column Desktop / 8-column Tablet / 4-column Mobile
+
+Page Shell
+├── Header
+├── Sidebar
+└── Main Content
+
+Main Content
+├── Hierarchical Grid
+├── Modular Grid
+└── Master–Detail 필요 시 적용
+
+Internal Rhythm
+├── 8pt Spacing
+├── 4pt Fine Adjustment
+└── Baseline / Typography Rhythm
+```
+
+즉, “한 가지 레이아웃을 고른다”기보다 다음 네 질문을 차례로 결정하는 방식이 좋다.
+
+1. 화면을 몇 개의 큰 영역으로 나눌 것인가?
+2. 콘텐츠 중요도를 어떻게 표현할 것인가?
+3. 반복 콘텐츠를 어떤 Grid로 정렬할 것인가?
+4. 간격과 타이포 리듬을 어떤 단위로 통일할 것인가?
+
+---
+
+# PART XII. 레이아웃 선택 체크리스트
+
+레이아웃을 정하기 전에 다음을 확인한다.
+
+### 정보 구조
+- 콘텐츠 종류는 몇 개인가?
+- 각 콘텐츠의 중요도 차이가 큰가?
+- 동시에 비교해야 하는 정보가 있는가?
+
+### 작업 구조
+- 사용자는 읽는가, 입력하는가, 비교하는가, 관리하는가?
+- 한 화면에서 여러 작업을 동시에 해야 하는가?
+- 상세 화면과 목록을 동시에 보여줘야 하는가?
+
+### 정보 밀도
+- 저밀도: Hero, Editorial, Bento
+- 중밀도: Card Grid, List
+- 고밀도: Table, Master–Detail, Dashboard
+
+### 반응형
+- 모바일에서 열이 어떻게 줄어드는가?
+- Sidebar는 Drawer로 바뀌는가?
+- 두 패널은 세로로 쌓이는가?
+- 중요한 콘텐츠 순서는 유지되는가?
+
+### 시각적 위계
+- 가장 먼저 보여야 할 것은 무엇인가?
+- 보조 정보는 어디에 두는가?
+- 시선이 자연스럽게 다음 행동으로 이동하는가?
+
+---
+
+# PART XIII. 핵심 용어
+
+## Column
+세로 방향의 구조 단위.
+
+## Row
+가로 방향의 구조 단위.
+
+## Gutter
+Column 사이의 간격.
+
+## Margin
+그리드와 화면 가장자리 사이 여백.
+
+## Container
+콘텐츠를 감싸는 최대 또는 유동 폭 영역.
+
+## Span
+하나의 요소가 차지하는 Column 수.
+
+## Track
+CSS Grid에서 Row 또는 Column 하나의 공간.
+
+## Grid Line
+Grid 영역을 구분하는 선.
+
+## Grid Cell
+하나의 Row와 Column이 교차해 생기는 단위 칸.
+
+## Grid Area
+여러 Cell을 합친 영역.
+
+## Breakpoint
+레이아웃 전환이 발생하는 화면 폭 기준.
+
+## Key Line
+여러 요소가 공통으로 정렬되는 시각적 기준선.
+
+## Vertical Rhythm
+텍스트·컴포넌트의 세로 간격이 반복되는 리듬.
+
+## Density
+한 화면에 들어가는 정보의 양.
+
+---
+
+# PART XIV. 최종 분류 요약
+
+## A. Grid System
+- Manuscript
+- Column
+- Modular
+- Hierarchical
+- Baseline
+- Compound
+- Fixed
+- Fluid
+- Responsive
+- Adaptive
+- Nested
+- Subgrid
+
+## B. Spacing / Sizing
+- 4pt
+- 8pt
+- 2x Grid
+
+## C. Composition
+- Rule of Thirds
+- Golden Ratio
+- Golden Spiral
+- Fibonacci
+- Diagonal
+- Radial
+- Polar
+- Isometric
+- Axonometric
+
+## D. Page / App Layout
+- Single-column
+- Two-column
+- Three-column
+- Sidebar–Content
+- Holy Grail
+- Split-screen
+- Symmetric
+- Asymmetric
+- Centered Container
+- Full-width
+- Full-bleed
+- Hero-first
+- Card Grid
+- Masonry
+- Bento
+- Magazine / Editorial
+- Newspaper
+- Feed
+- List
+- Table
+- Master–Detail
+- List–Detail–Inspector
+- Dashboard
+- Widget
+- Kanban
+- Timeline
+- Calendar
+- Scheduler
+- Form
+- Wizard
+- Search Results
+- Faceted Search
+- Map–List
+- Gallery
+- Carousel
+- Filmstrip
+- Immersive Fullscreen
+- Canvas
+- Infinite Canvas
+
+## E. Navigation Layout
+- Top Navigation
+- Side Navigation
+- Bottom Navigation
+- Tabs
+- Accordion
+- Drawer
+- Inspector / Utility Panel
+
+## F. Reading / Attention Pattern
+- F-pattern
+- Z-pattern
+- Layer-cake Pattern
+- Gutenberg Diagram
+
+## G. Specialized Layout
+- Comparison
+- Pricing
+- Before–After
+- Storytelling
+- Scrollytelling
+- Sticky Narrative
+- Documentation
+- IDE
+- Data-dense Enterprise
+- Command-center
+
+## H. Web Implementation
+- Normal Flow
+- Flexbox
+- CSS Grid
+- Positioned Layout
+- Multi-column
+- Container-query-driven Layout
+
+---
+
+# 참고 자료
+
+- MDN Web Docs — CSS Grid Layout  
+  https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Grid_layout
+
+- MDN Web Docs — CSS Layout  
+  https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout
+
+- Apple Human Interface Guidelines — Layout  
+  https://developer.apple.com/design/human-interface-guidelines/layout
+
+- IBM Carbon Design System — 2x Grid  
+  https://www.carbondesignsystem.com/building-blocks/foundations/2x-grid/overview
+
+- Josef Müller-Brockmann, *Grid Systems in Graphic Design*
+
+- Timothy Samara, *Making and Breaking the Grid*
+
+---
+
+# 한 줄 결론
+
+현대 UI·UX 레이아웃은 하나의 그리드를 고르는 문제가 아니라,
+
+> **Page Structure + Grid + Information Hierarchy + Spacing + Typography Rhythm + Responsive Behavior**
+
+를 하나의 시스템으로 조합하는 문제다.
+---
+
+# PART XV. Figma 레이아웃 시스템 통합 사전
+
+이 장은 앞의 “레이아웃 종류”를 Figma에서 실제로 구현할 때 사용하는 기능과 연결한다.
+
+중요한 구분부터 잡으면 다음과 같다.
+
+```text
+화면 구조를 설계한다
+    ↓
+Layout Guide로 기준선을 잡는다
+    ↓
+Auto Layout으로 실제 배치 규칙을 만든다
+    ↓
+Hug / Fill / Fixed / Min / Max로 크기 반응을 정한다
+    ↓
+Constraints로 부모가 변할 때 위치 관계를 정한다
+    ↓
+Component와 Variant로 반복 가능한 시스템으로 만든다
+```
+
+Figma에서는 예전에 `Layout Grid`라고 부르던 기능이 2025년부터 `Layout Guide`라는 이름으로 바뀌었다.  
+이 기능은 Auto Layout의 `Grid flow`와는 별개의 기능이다.
+
+---
+
+## 91. Frame
+
+Figma 레이아웃의 기본 컨테이너다.
+
+Frame은 단순한 사각형이 아니라 다음 역할을 수행할 수 있다.
+
+- 자식 레이어를 포함한다.
+- Auto Layout을 적용할 수 있다.
+- Constraints의 기준이 된다.
+- Layout Guide를 가질 수 있다.
+- Clip content를 적용할 수 있다.
+- Prototype viewport가 될 수 있다.
+- Component의 기반이 될 수 있다.
+
+웹 개발 관점에서는 대체로 `div`와 비슷한 컨테이너 개념으로 이해하면 쉽다.
+
+### Group과 Frame의 차이
+
+Group은 여러 객체를 묶는 데 가깝다.
+
+Frame은 레이아웃·반응형·클리핑·Auto Layout·Constraints의 기준이 되는 구조적 컨테이너다.
+
+실제 UI 설계에서는 단순 Group보다 Frame을 중심으로 구조를 잡는 편이 좋다.
+
+---
+
+## 92. Section
+
+Canvas 위에서 여러 Frame이나 Component를 큰 작업 단위로 묶는 상위 정리 영역이다.
+
+### 적합한 용도
+- 페이지별 화면 정리
+- 기능별 화면 묶기
+- 디자인 시스템 영역 구분
+- 작업 상태 구분
+
+예:
+
+```text
+Section: Login
+├─ Desktop
+├─ Tablet
+└─ Mobile
+```
+
+Section은 사용자에게 보여지는 실제 UI 레이아웃이라기보다 Figma 파일의 작업 구조를 관리하기 위한 기능에 가깝다.
+
+---
+
+# PART XVI. Layout Guide
+
+## 93. Layout Guide
+
+Frame 위에 표시하는 시각적 정렬 기준선이다.
+
+Figma의 Layout Guide에는 크게 다음 유형이 있다.
+
+- Uniform Grid
+- Columns
+- Rows
+
+Layout Guide는 실제 객체를 자동 배치하지 않는다.
+
+즉:
+
+```text
+Layout Guide = 설계 기준선
+Auto Layout   = 객체 배치 규칙
+```
+
+이다.
+
+---
+
+## 94. Uniform Grid Guide
+
+정사각형 간격의 Grid를 Frame 전체에 깐다.
+
+예:
+
+```text
+8 × 8
+8 × 8
+8 × 8
+```
+
+### 적합
+- 아이콘
+- 8pt Grid
+- 세밀한 정렬
+- 픽셀 단위 UI
+- 작은 컴포넌트
+
+---
+
+## 95. Column Layout Guide
+
+Frame을 여러 개의 세로 Column으로 나눈다.
+
+설정 요소:
+
+- Count
+- Width
+- Gutter
+- Margin
+- Alignment
+
+### 대표 예
+
+```text
+Desktop
+12 columns
+
+Tablet
+8 columns
+
+Mobile
+4 columns
+```
+
+### 활용 예
+
+```text
+Desktop 12-column
+
+Sidebar  = 3 columns
+Main     = 9 columns
+```
+
+---
+
+## 96. Row Layout Guide
+
+Frame을 가로 방향의 여러 영역으로 나눈다.
+
+### 적합
+- Editorial Layout
+- Dashboard
+- 복잡한 세로 리듬
+- 일정 높이를 유지해야 하는 영역
+
+---
+
+## 97. Fixed Layout Guide
+
+Column이나 Row의 폭을 고정한다.
+
+화면 크기가 변해도 Grid 자체의 폭은 일정하게 유지될 수 있다.
+
+### 적합
+- 고정 폭 콘텐츠
+- Desktop-first 편집 레이아웃
+- 특정 디바이스 전용 화면
+
+---
+
+## 98. Stretch Layout Guide
+
+Frame의 크기가 변하면 Column 또는 Row도 함께 늘어나거나 줄어든다.
+
+### 적합
+- 반응형 웹
+- 유동 폭 Dashboard
+- 다양한 Desktop Width
+
+---
+
+## 99. Layout Guide Style
+
+자주 사용하는 Layout Guide 설정을 Style로 저장해 여러 Frame에 재사용할 수 있다.
+
+예:
+
+```text
+Grid/Desktop/12
+Grid/Tablet/8
+Grid/Mobile/4
+Grid/Icon/8pt
+```
+
+---
+
+# PART XVII. Auto Layout
+
+## 100. Auto Layout
+
+자식 요소의 방향·간격·패딩·정렬·크기 반응을 규칙으로 정의하는 Figma의 핵심 레이아웃 기능이다.
+
+Auto Layout이 적용된 Frame은 콘텐츠 변화에 따라 스스로 재배치된다.
+
+대표 사용 예:
+
+- 버튼
+- Input
+- List
+- Navigation
+- Card
+- Table Row
+- Modal
+- Sidebar
+- Dashboard
+- 전체 Page Layout
+
+단축키:
+
+```text
+Shift + A
+```
+
+---
+
+## 101. Horizontal Auto Layout
+
+자식 요소를 왼쪽에서 오른쪽 방향으로 배치한다.
+
+```text
+[ Icon ] [ Label ] [ Badge ]
+```
+
+### 적합
+- 버튼
+- Navigation
+- Toolbar
+- Chip
+- Tab
+- Table Row
+
+웹 개념으로 보면 `display: flex; flex-direction: row;`와 비슷하다.
+
+---
+
+## 102. Vertical Auto Layout
+
+자식 요소를 위에서 아래로 배치한다.
+
+```text
+Title
+Description
+Input
+Button
+```
+
+### 적합
+- Form
+- Card
+- Sidebar
+- Feed
+- Modal
+- Page Section
+
+웹에서는 `flex-direction: column`과 비슷하다.
+
+---
+
+## 103. Grid Auto Layout Flow
+
+Figma의 Auto Layout은 Horizontal과 Vertical뿐 아니라 Grid Flow도 지원한다.
+
+Grid Flow에서는 행과 열을 동시에 다룰 수 있다.
+
+### 적합
+- Card Grid
+- Gallery
+- Dashboard
+- Bento
+- 반복 모듈
+
+### 중요한 구분
+
+```text
+Layout Guide의 Grid
+→ 눈에 보이는 설계 기준선
+
+Auto Layout의 Grid Flow
+→ 실제 객체를 배치하는 레이아웃 규칙
+```
+
+둘은 같은 기능이 아니다.
+
+---
+
+## 104. Nested Auto Layout
+
+Auto Layout 안에 Auto Layout을 넣는 방식이다.
+
+현대 UI 설계에서 가장 중요한 패턴 중 하나다.
+
+예:
+
+```text
+Card
+└─ Vertical Auto Layout
+   ├─ Header
+   │  └─ Horizontal Auto Layout
+   │     ├─ Avatar
+   │     └─ User Info
+   ├─ Image
+   └─ Actions
+      └─ Horizontal Auto Layout
+```
+
+이렇게 하면 2차원처럼 보이는 복잡한 화면도 여러 개의 단순한 1차원 레이아웃을 중첩해 만들 수 있다.
+
+---
+
+# PART XVIII. Auto Layout Direction과 Flow
+
+## 105. Flow Direction
+
+Auto Layout에서 자식 요소가 흐르는 방향이다.
+
+대표:
+
+- Horizontal
+- Vertical
+- Grid
+
+레이아웃을 설계할 때는 먼저 다음을 묻는다.
+
+> 이 영역의 콘텐츠는 기본적으로 어느 방향으로 흐르는가?
+
+---
+
+## 106. Wrap
+
+공간이 부족하면 다음 줄 또는 다음 열로 요소를 넘긴다.
+
+Horizontal Wrap:
+
+```text
+[A] [B] [C] [D]
+
+폭이 줄어들면
+
+[A] [B]
+[C] [D]
+```
+
+### 적합
+- Tag
+- Chip
+- 카드 목록
+- 반응형 버튼 그룹
+- 썸네일 목록
+
+Figma의 Wrap은 Masonry와 다르다.
+
+Masonry처럼 빈 공간을 찾아 끼워 넣는 것이 아니라 순서를 유지하며 다음 Row 또는 Column으로 넘긴다.
+
+---
+
+# PART XIX. Padding과 Gap
+
+## 107. Padding
+
+부모 Frame의 경계와 자식 콘텐츠 사이의 내부 여백이다.
+
+```text
+┌──────────────────────┐
+│      Padding         │
+│   ┌──────────────┐   │
+│   │   Content    │   │
+│   └──────────────┘   │
+│                      │
+└──────────────────────┘
+```
+
+구성:
+
+- Top
+- Right
+- Bottom
+- Left
+
+또는
+
+- Horizontal
+- Vertical
+
+---
+
+## 108. Gap
+
+형제 요소 사이의 거리다.
+
+```text
+[A] ← 8px → [B]
+```
+
+### 예
+
+```text
+Button
+Padding X = 16
+Padding Y = 8
+Icon–Text Gap = 8
+```
+
+8pt System과 함께 쓰면 레이아웃 일관성을 만들기 쉽다.
+
+---
+
+## 109. Fixed Gap
+
+Gap을 명시적인 숫자로 지정한다.
+
+예:
+
+```text
+4
+8
+12
+16
+24
+32
+```
+
+반복되는 UI에서 가장 기본적인 방식이다.
+
+---
+
+## 110. Auto Gap
+
+남은 공간을 형제 요소 사이에 자동 배분한다.
+
+Figma의 Auto spacing에는 다음 배분 방식이 있다.
+
+- Between
+- Evenly
+- Around
+
+웹 CSS 개념으로 대응하면:
+
+```text
+Between → space-between
+Evenly  → space-evenly
+Around  → space-around
+```
+
+### 예
+
+```text
+Logo                      Profile
+```
+
+Header처럼 양 끝에 요소를 보내고 싶을 때 유용하다.
+
+---
+
+## 111. Negative Gap
+
+Gap에 음수 값을 넣어 요소를 겹칠 수 있다.
+
+예:
+
+```text
+Avatar Stack
+
+(O)(O)(O)(O)
+```
+
+### 적합
+- Avatar Group
+- 겹친 카드
+- 장식 요소
+
+의도적인 Overlap일 때만 사용하는 것이 좋다.
+
+---
+
+# PART XX. Alignment
+
+## 112. Primary-axis Alignment
+
+Auto Layout의 진행 방향을 기준으로 요소를 배치하는 방식이다.
+
+Horizontal Layout이라면 가로축이 Primary Axis다.
+
+Vertical Layout이라면 세로축이 Primary Axis다.
+
+---
+
+## 113. Counter-axis Alignment
+
+Auto Layout의 진행 방향과 직각인 축의 정렬이다.
+
+예:
+
+Horizontal Layout에서
+
+```text
+Top
+Center
+Bottom
+```
+
+정렬이 Counter-axis Alignment가 된다.
+
+---
+
+## 114. Start Alignment
+
+시작점에 정렬한다.
+
+```text
+| A B C                    |
+```
+
+---
+
+## 115. Center Alignment
+
+가운데에 정렬한다.
+
+```text
+|        A B C             |
+```
+
+---
+
+## 116. End Alignment
+
+끝에 정렬한다.
+
+```text
+|                    A B C |
+```
+
+---
+
+## 117. Baseline Alignment
+
+텍스트의 박스 중심이 아니라 글자의 Baseline을 기준으로 맞춘다.
+
+예:
+
+```text
+Big Text   small text
+────────── ──────────
+    동일한 Baseline
+```
+
+서로 다른 Font Size를 한 줄에 배치할 때 특히 중요하다.
+
+---
+
+# PART XXI. Figma Resizing의 핵심
+
+## 118. Fixed
+
+요소의 Width 또는 Height를 고정한다.
+
+```text
+Width = 240px
+Height = 48px
+```
+
+부모나 콘텐츠가 바뀌어도 해당 축 크기가 변하지 않는다.
+
+### 적합
+- Icon
+- Avatar
+- 일정 크기 Button
+- Thumbnail
+- 특정 Panel
+
+---
+
+## 119. Hug Contents
+
+자식 콘텐츠를 감싸는 최소 크기로 부모가 자동 조절된다.
+
+개념:
+
+```text
+Frame Size
+=
+Content Size
++
+Padding
+```
+
+### 대표 예: Button
+
+```text
+[ 확인 ]
+```
+
+텍스트를 바꾸면:
+
+```text
+[ 변경사항 저장 ]
+```
+
+버튼도 자동으로 넓어진다.
+
+### 적합
+- Button
+- Chip
+- Badge
+- Tag
+- 콘텐츠 길이가 변하는 컴포넌트
+
+---
+
+## 120. Fill Container
+
+부모가 제공하는 사용 가능한 공간을 자식이 채운다.
+
+예:
+
+```text
+Parent Width = 800
+
+[ Sidebar ][          Main Fill          ]
+```
+
+### 적합
+- Main Content
+- Input
+- Search Bar
+- Table
+- 반응형 Card
+- Page Section
+
+Fill Container는 Auto Layout 내부의 자식 요소에서 사용한다.
+
+---
+
+## 121. Hug + Fill 조합
+
+가장 자주 쓰는 패턴 중 하나다.
+
+예:
+
+```text
+Header
+
+Logo = Hug
+Search = Fill
+Profile = Hug
+```
+
+결과:
+
+```text
+[Logo][──────── Search ────────][Profile]
+```
+
+화면이 커지면 Search만 늘어난다.
+
+---
+
+## 122. Fixed + Fill 조합
+
+예:
+
+```text
+Sidebar = Fixed 280
+Main = Fill
+```
+
+화면 폭이 달라져도 Sidebar는 일정하고 Main만 확장된다.
+
+---
+
+## 123. Hug + Fixed 조합
+
+예:
+
+```text
+Button Height = Fixed 40
+Button Width = Hug
+```
+
+텍스트에 따라 Width만 변하고 Height는 유지된다.
+
+실무 Button에서 매우 흔하다.
+
+---
+
+# PART XXII. Minimum / Maximum Size
+
+## 124. Min Width
+
+요소가 일정 너비 이하로 줄어들지 않도록 제한한다.
+
+예:
+
+```text
+Card
+Min Width = 240
+```
+
+반응형 화면이 지나치게 좁아지는 것을 방지한다.
+
+---
+
+## 125. Max Width
+
+요소가 일정 너비 이상으로 커지지 않도록 제한한다.
+
+예:
+
+```text
+Article
+Width = Fill
+Max Width = 720
+```
+
+큰 모니터에서도 본문이 과도하게 넓어지는 것을 방지한다.
+
+---
+
+## 126. Min Height
+
+콘텐츠가 적더라도 최소 높이를 유지한다.
+
+### 적합
+- Empty State
+- Card
+- Hero
+- Panel
+
+---
+
+## 127. Max Height
+
+콘텐츠가 많아도 일정 높이 이상 늘어나지 않도록 한다.
+
+이후 콘텐츠는 Scroll, Clip, Truncate 등의 별도 동작이 필요할 수 있다.
+
+---
+
+## 128. Fill + Max Width 패턴
+
+현대 반응형 웹의 핵심 패턴이다.
+
+```text
+Section = Fill
+
+Content
+Width = Fill
+Max Width = 1200
+```
+
+결과:
+
+```text
+작은 화면 → 화면에 맞게 줄어듦
+큰 화면   → 1200px 이상 커지지 않음
+```
+
+---
+
+# PART XXIII. Constraints
+
+## 129. Constraints
+
+부모 Frame의 크기가 변할 때 자식 객체가 어느 위치 또는 크기 관계를 유지할지 지정한다.
+
+Constraints는 Auto Layout과 다른 문제를 해결한다.
+
+```text
+Auto Layout
+→ 형제 요소 사이의 흐름
+
+Constraints
+→ 부모가 Resize될 때 자식이 어떻게 반응하는가
+```
+
+---
+
+## 130. Left Constraint
+
+부모 왼쪽과의 거리를 유지한다.
+
+```text
+|← 16 →[Object]
+```
+
+---
+
+## 131. Right Constraint
+
+부모 오른쪽과의 거리를 유지한다.
+
+```text
+[Object]← 16 →|
+```
+
+---
+
+## 132. Left + Right Constraint
+
+왼쪽과 오른쪽 간격을 모두 유지한다.
+
+부모가 넓어지면 객체 폭도 함께 늘어난다.
+
+### 적합
+- Search Bar
+- Divider
+- Full-width Input
+
+---
+
+## 133. Center Constraint
+
+부모 중심을 기준으로 상대 위치를 유지한다.
+
+### 적합
+- 중앙 Logo
+- Modal 내부 장식
+- 중앙 Indicator
+
+---
+
+## 134. Scale Constraint
+
+부모 크기가 변할 때 비율에 따라 객체도 함께 Scale된다.
+
+### 적합
+- Illustration
+- 일부 장식 Graphics
+
+UI Text나 일반 Control에는 신중하게 사용해야 한다.
+
+---
+
+## 135. Top Constraint
+
+부모 상단과의 거리를 유지한다.
+
+---
+
+## 136. Bottom Constraint
+
+부모 하단과의 거리를 유지한다.
+
+---
+
+## 137. Top + Bottom Constraint
+
+상단·하단 거리를 모두 유지한다.
+
+부모 Height가 바뀌면 객체 Height도 늘어나거나 줄어든다.
+
+---
+
+# PART XXIV. Ignore Auto Layout
+
+## 138. Ignore Auto Layout
+
+Auto Layout Frame 안에 있지만 해당 객체만 자동 흐름에서 제외한다.
+
+과거에는 Figma에서 Absolute Position이라고 불리던 기능이다.
+
+### 개념
+
+```text
+Auto Layout Children
+
+A
+B
+C
+
++ Floating Badge
+  → Ignore Auto Layout
+```
+
+Badge는 A/B/C의 배치 계산에 영향을 주지 않는다.
+
+### 적합
+- Badge
+- Floating Button
+- Decoration
+- Notification Dot
+- Overlay Icon
+- 카드 모서리 장식
+
+---
+
+## 139. Auto Layout + Ignore Auto Layout 패턴
+
+예:
+
+```text
+Card
+├─ Image
+├─ Content
+└─ Badge ← Ignore Auto Layout
+```
+
+Badge는 카드 우상단에 자유롭게 배치하면서 Card의 콘텐츠 흐름은 유지할 수 있다.
+
+---
+
+# PART XXV. Positioning 개념
+
+## 140. Relative / Flow Position
+
+부모 Auto Layout 규칙에 따라 배치되는 기본 위치 방식이다.
+
+주변 요소가 변하면 함께 재배치된다.
+
+---
+
+## 141. Absolute Position
+
+일반적인 웹 개념에서는 부모를 기준으로 자유롭게 좌표를 지정하는 방식이다.
+
+Figma Design의 Auto Layout에서는 현재 `Ignore Auto Layout` 기능이 이에 가까운 역할을 한다.
+
+---
+
+## 142. Fixed Position
+
+Viewport에 고정되어 Scroll해도 같은 위치에 남는다.
+
+### 적합
+- Fixed Header
+- Bottom Navigation
+- Floating Action Button
+- Chat Widget
+
+---
+
+## 143. Sticky Position
+
+처음에는 일반 흐름에 있다가 특정 Scroll 지점부터 화면에 붙는다.
+
+### 적합
+- Table Header
+- Section Navigation
+- Filter Bar
+- Sticky Sidebar
+
+---
+
+# PART XXVI. Text Resizing과 레이아웃
+
+## 144. Auto Width Text
+
+텍스트 내용에 맞게 Width가 늘어난다.
+
+### 적합
+- Label
+- Badge
+- Button Text
+- 짧은 제목
+
+---
+
+## 145. Fixed-width / Wrapping Text
+
+Text Box의 Width를 제한하고 내용이 길어지면 줄바꿈한다.
+
+### 적합
+- Body Text
+- Card Description
+- Article
+- Form Description
+
+---
+
+## 146. Fill-width Text
+
+부모의 사용 가능한 Width를 채우게 한다.
+
+반응형 Card나 Page에서 매우 자주 사용한다.
+
+---
+
+## 147. Truncate
+
+공간을 넘는 텍스트를 잘라 표시한다.
+
+대표 형태:
+
+```text
+아주 긴 파일 이름입니...
+```
+
+### 적합
+- File List
+- Table
+- Card Title
+- Navigation
+
+---
+
+## 148. Max Lines
+
+텍스트가 표시될 최대 줄 수를 제한한다.
+
+예:
+
+```text
+Max Lines = 2
+```
+
+Card Height를 일정하게 유지할 때 유용하다.
+
+---
+
+# PART XXVII. Responsive Figma Pattern
+
+## 149. Responsive Frame
+
+부모 Frame Width를 변경했을 때 자식 Layout도 자연스럽게 재배치되는 구조다.
+
+주요 도구:
+
+- Auto Layout
+- Fill
+- Hug
+- Fixed
+- Min / Max
+- Wrap
+- Constraints
+- Layout Guide
+
+---
+
+## 150. Breakpoint
+
+레이아웃 구조가 바뀌는 기준 Width다.
+
+대표적 개념:
+
+```text
+Mobile
+Tablet
+Desktop
+Wide Desktop
+```
+
+중요한 점은 특정 숫자 자체보다 **콘텐츠가 깨지는 지점**을 기준으로 잡는 것이다.
+
+---
+
+## 151. Responsive Reflow
+
+화면 폭이 줄면서 같은 요소들이 새 위치로 재배치되는 현상이다.
+
+예:
+
+```text
+Desktop
+
+Image | Text
+
+Mobile
+
+Image
+Text
+```
+
+단순 Scale과 다르다.
+
+Responsive Design에서는 대부분 Scale보다 Reflow가 더 중요하다.
+
+---
+
+## 152. Stack Switching
+
+Desktop에서는 Horizontal Auto Layout,
+
+Mobile에서는 Vertical Auto Layout으로 바꾸는 패턴이다.
+
+```text
+Desktop
+[A][B]
+
+Mobile
+[A]
+[B]
+```
+
+---
+
+## 153. Responsive Sidebar Pattern
+
+Desktop:
+
+```text
+Sidebar | Main
+```
+
+Mobile:
+
+```text
+Main
++
+Drawer Navigation
+```
+
+Sidebar를 단순히 작게 줄이기보다 Navigation Pattern 자체를 전환하는 것이 일반적이다.
+
+---
+
+## 154. Responsive Card Grid
+
+Desktop:
+
+```text
+[A][B][C][D]
+```
+
+Tablet:
+
+```text
+[A][B]
+[C][D]
+```
+
+Mobile:
+
+```text
+[A]
+[B]
+[C]
+[D]
+```
+
+구현 원리:
+
+- Grid Auto Layout 또는 Wrap
+- Min Width
+- Fill Container
+- Gap
+- Breakpoint
+
+---
+
+# PART XXVIII. Component와 Layout
+
+## 155. Component
+
+반복되는 UI를 하나의 원본 구조로 만든다.
+
+예:
+
+- Button
+- Input
+- Card
+- Navbar
+- List Item
+- Modal
+
+Layout System을 제대로 만들려면 Component 내부에 Auto Layout이 들어가는 경우가 많다.
+
+---
+
+## 156. Instance
+
+Component의 복제본이다.
+
+원본 구조를 유지하면서 텍스트·속성·일부 콘텐츠를 바꿀 수 있다.
+
+---
+
+## 157. Variant
+
+하나의 Component Family 안에 여러 상태를 정의한다.
+
+예:
+
+```text
+Button
+
+Size
+- Small
+- Medium
+- Large
+
+State
+- Default
+- Hover
+- Disabled
+
+Type
+- Primary
+- Secondary
+```
+
+---
+
+## 158. Component Property
+
+Instance에서 변경 가능한 옵션을 정의한다.
+
+예:
+
+- Text
+- Boolean
+- Instance Swap
+- Variant
+
+Layout 구조와 함께 사용하면 범용 Component를 만들 수 있다.
+
+---
+
+## 159. Nested Component
+
+Component 안에 다른 Component를 넣는다.
+
+예:
+
+```text
+Card
+├─ Avatar Component
+├─ Badge Component
+└─ Button Component
+```
+
+Nested Auto Layout과 함께 디자인 시스템의 핵심 구조가 된다.
+
+---
+
+# PART XXIX. Figma 레이아웃과 웹 CSS 대응표
+
+| Figma | 웹/CSS에서 가까운 개념 |
+|---|---|
+| Frame | div / container |
+| Auto Layout Horizontal | flex-direction: row |
+| Auto Layout Vertical | flex-direction: column |
+| Grid Auto Layout | CSS Grid에 가까운 2D flow |
+| Gap | gap |
+| Padding | padding |
+| Fill Container | flex-grow / width: 100% / fr 계열 |
+| Hug Contents | fit-content / intrinsic sizing |
+| Fixed | 고정 width / height |
+| Min Width | min-width |
+| Max Width | max-width |
+| Wrap | flex-wrap |
+| Auto Gap Between | justify-content: space-between |
+| Auto Gap Evenly | space-evenly |
+| Auto Gap Around | space-around |
+| Ignore Auto Layout | absolute positioning과 유사 |
+| Constraints | anchoring / responsive positioning |
+| Layout Guide | design grid / guide |
+| Component | reusable UI component |
+| Variant | component state / variant |
+
+완전히 동일한 개념은 아니지만 구현 사고를 연결할 때 유용한 대응표다.
+
+---
+
+# PART XXX. 실무에서 자주 쓰는 Figma 레이아웃 공식
+
+## 160. Button
+
+```text
+Button Frame
+Auto Layout = Horizontal
+Width = Hug
+Height = Fixed
+Padding X = 16
+Padding Y = 10
+Gap = 8
+
+Icon = Fixed
+Label = Hug
+```
+
+---
+
+## 161. Full-width Button
+
+```text
+Button Frame
+Width = Fill
+Height = Fixed
+```
+
+---
+
+## 162. Input
+
+```text
+Input
+Width = Fill
+Height = Fixed
+Padding X = 12~16
+
+Text
+Width = Fill
+
+Icon
+Width = Fixed
+```
+
+---
+
+## 163. Card
+
+```text
+Card
+Auto Layout = Vertical
+Width = Fill
+Min Width = 필요값
+Max Width = 필요값
+Height = Hug
+Padding = 16~24
+Gap = 12~16
+```
+
+---
+
+## 164. Header
+
+```text
+Header
+Auto Layout = Horizontal
+Width = Fill
+
+Logo = Hug
+Navigation = Hug
+Spacer / Search = Fill
+Profile = Hug
+```
+
+---
+
+## 165. Sidebar + Main
+
+```text
+Page
+Auto Layout = Horizontal
+
+Sidebar
+Width = Fixed
+
+Main
+Width = Fill
+Min Width = 0 또는 적절한 최소값
+```
+
+---
+
+## 166. Article
+
+```text
+Page Section
+Width = Fill
+
+Article
+Width = Fill
+Max Width = 680~800
+```
+
+긴 글은 너무 넓어지지 않게 Max Width를 두는 편이 좋다.
+
+---
+
+## 167. Dashboard
+
+```text
+Dashboard
+Width = Fill
+Auto Layout / Grid
+Gap = 16~24
+
+Widget
+Width = Fill
+Min Width = 적절한 값
+```
+
+---
+
+## 168. Responsive Card Row
+
+```text
+Container
+Horizontal Auto Layout
+Wrap = On
+Gap = 16
+
+Card
+Width = Fill 또는 Min Width 기반
+```
+
+---
+
+## 169. Table Row
+
+```text
+Row
+Horizontal Auto Layout
+Width = Fill
+
+Cell A = Fixed
+Cell B = Fill
+Cell C = Fixed
+Cell D = Fixed
+```
+
+---
+
+## 170. Modal
+
+```text
+Overlay
+Center Alignment
+
+Modal
+Width = Fill
+Min Width = 필요값
+Max Width = 480~640
+Height = Hug
+Vertical Auto Layout
+```
+
+---
+
+# PART XXXI. 레이아웃 설계 시 흔한 실패
+
+## 171. 모든 객체를 Fixed로 만드는 것
+
+문제:
+
+- 텍스트가 길어지면 깨진다.
+- 화면이 바뀌면 빈 공간 또는 Overflow가 생긴다.
+- Component 재사용성이 낮다.
+
+해결:
+
+> Fixed가 필요한 축만 Fixed로 두고 Hug와 Fill을 적극적으로 조합한다.
+
+---
+
+## 172. 모든 객체를 Fill로 만드는 것
+
+Fill 역시 과하게 쓰면 모든 요소가 불필요하게 늘어난다.
+
+예:
+
+```text
+Icon = Fill
+```
+
+같은 설정은 대부분 부적절하다.
+
+Icon이나 작은 Control은 Fixed가 더 자연스럽다.
+
+---
+
+## 173. 모든 객체를 Hug로 만드는 것
+
+부모 공간을 채워야 하는 콘텐츠까지 Hug로 두면 화면에 큰 빈 공간이 생긴다.
+
+예:
+
+```text
+Search Input
+Width = Hug
+```
+
+보다는
+
+```text
+Width = Fill
+```
+
+이 더 적절한 경우가 많다.
+
+---
+
+## 174. Auto Layout 없이 수동 좌표만 사용하는 것
+
+초기 화면은 맞아 보여도:
+
+- Text 수정
+- Translation
+- Resize
+- Variant
+- Responsive
+- 콘텐츠 추가
+
+시 쉽게 깨진다.
+
+---
+
+## 175. 깊은 Auto Layout Nesting 남용
+
+Auto Layout 중첩 자체는 정상적이지만 의미 없는 Frame이 지나치게 많으면 구조 파악이 어렵다.
+
+원칙:
+
+> 시각적·기능적 그룹을 표현할 이유가 있을 때 Frame을 만든다.
+
+---
+
+## 176. Layout Guide만 만들고 객체를 수동 배치하는 것
+
+Layout Guide는 자동 레이아웃 엔진이 아니다.
+
+반응형 동작이 필요하면 Auto Layout, Constraints, Min/Max 등을 함께 써야 한다.
+
+---
+
+## 177. Mobile을 Desktop 축소판으로 만드는 것
+
+Responsive Design은 단순 축소가 아니다.
+
+필요하면:
+
+- Sidebar → Drawer
+- Table → Card/List
+- Horizontal → Vertical
+- Secondary controls → More menu
+
+처럼 구조 자체가 바뀌어야 한다.
+
+---
+
+# PART XXXII. Figma 레이아웃 선택 의사결정
+
+## 178. 요소가 콘텐츠 크기에 따라 늘어나야 하는가?
+
+YES:
+
+```text
+Hug Contents
+```
+
+예:
+- Button
+- Chip
+- Badge
+
+---
+
+## 179. 남는 공간을 채워야 하는가?
+
+YES:
+
+```text
+Fill Container
+```
+
+예:
+- Search
+- Main
+- Input
+- Table
+
+---
+
+## 180. 크기가 반드시 일정해야 하는가?
+
+YES:
+
+```text
+Fixed
+```
+
+예:
+- Icon
+- Avatar
+- 일부 Sidebar
+- 일정 높이 Control
+
+---
+
+## 181. 너무 작아지면 안 되는가?
+
+YES:
+
+```text
+Min Width / Min Height
+```
+
+---
+
+## 182. 너무 커지면 안 되는가?
+
+YES:
+
+```text
+Max Width / Max Height
+```
+
+---
+
+## 183. 요소가 한 줄에 안 들어가면 다음 줄로 가야 하는가?
+
+YES:
+
+```text
+Wrap
+```
+
+---
+
+## 184. 형제들과 관계없이 특정 위치에 떠 있어야 하는가?
+
+YES:
+
+```text
+Ignore Auto Layout
++
+Constraints
+```
+
+---
+
+## 185. 부모가 커질 때 특정 Edge와의 거리를 유지해야 하는가?
+
+YES:
+
+```text
+Constraints
+```
+
+---
+
+## 186. 화면의 큰 기준선을 먼저 만들고 싶은가?
+
+YES:
+
+```text
+Layout Guide
+```
+
+---
+
+# PART XXXIII. 권장 Figma 구조 예시
+
+웹앱 화면 하나를 다음처럼 구성할 수 있다.
+
+```text
+Page / Desktop
+│
+├─ Layout Guide
+│  └─ 12 Columns
+│
+└─ App Shell · Horizontal Auto Layout
+   │
+   ├─ Sidebar
+   │  ├─ Width: Fixed
+   │  └─ Vertical Auto Layout
+   │
+   └─ Main
+      ├─ Width: Fill
+      ├─ Vertical Auto Layout
+      │
+      ├─ Header
+      │  └─ Horizontal Auto Layout
+      │
+      ├─ Toolbar
+      │  └─ Horizontal Auto Layout
+      │
+      └─ Content
+         └─ Grid / Nested Auto Layout
+```
+
+Mobile:
+
+```text
+Page / Mobile
+│
+├─ 4-column Layout Guide
+│
+└─ Main
+   ├─ Top Bar
+   ├─ Content
+   └─ Bottom Navigation
+
+Sidebar → Drawer로 전환
+```
+
+---
+
+# PART XXXIV. 학습 입력 웹앱에 적용한다면
+
+학습 기록·목차·통계·상세 정보를 다루는 생산성 앱이라면 다음 구조가 잘 맞는다.
+
+```text
+Desktop
+┌─────────────────────────────────────────────┐
+│ Top Bar                                     │
+├─────────────┬───────────────────────────────┤
+│ Sidebar     │ Main                          │
+│ Fixed       │ Fill                          │
+│             │                               │
+│ 과목        │ Header                        │
+│ 단원        │ ├─ Title                      │
+│ 목차        │ └─ Actions                    │
+│             │                               │
+│             │ Content                       │
+│             │ ├─ Overview                   │
+│             │ ├─ Study Records              │
+│             │ └─ Statistics                 │
+└─────────────┴───────────────────────────────┘
+```
+
+권장 Figma 규칙:
+
+```text
+Page
+12-column Layout Guide
+
+App Shell
+Horizontal Auto Layout
+
+Sidebar
+Fixed Width
+
+Main
+Fill Container
+
+Sections
+Vertical Auto Layout
+Width = Fill
+
+Cards
+Width = Fill
+Height = Hug
+
+Form Inputs
+Width = Fill
+Height = Fixed
+
+Buttons
+Primary CTA → Fixed Height + Hug Width
+Full-width Mobile CTA → Fixed Height + Fill Width
+
+Main Content
+Max Width를 필요에 따라 설정
+
+Spacing
+8pt Base
+4pt Fine Step
+```
+
+핵심은 “좌표를 맞추는 디자인”이 아니라 “규칙을 만들어 결과적으로 맞게 되는 디자인”이다.
+
+---
+
+# PART XXXV. 최종 Figma 핵심 분류표
+
+## 구조
+- Frame
+- Section
+
+## 기준선
+- Layout Guide
+- Uniform Grid
+- Columns
+- Rows
+- Fixed Guide
+- Stretch Guide
+
+## 자동 배치
+- Auto Layout
+- Horizontal
+- Vertical
+- Grid
+- Nested Auto Layout
+- Wrap
+
+## 간격
+- Padding
+- Gap
+- Auto Gap
+- Negative Gap
+
+## 크기
+- Fixed
+- Hug Contents
+- Fill Container
+- Min Width / Height
+- Max Width / Height
+
+## 정렬
+- Start
+- Center
+- End
+- Baseline
+
+## 부모 크기 대응
+- Constraints
+- Left / Right
+- Top / Bottom
+- Center
+- Scale
+
+## 예외 배치
+- Ignore Auto Layout
+- Absolute-like Positioning
+- Fixed
+- Sticky
+
+## 콘텐츠 대응
+- Text Wrap
+- Truncate
+- Max Lines
+
+## 재사용
+- Component
+- Instance
+- Variant
+- Component Property
+- Nested Component
+
+## 반응형
+- Breakpoint
+- Reflow
+- Stack Switching
+- Responsive Sidebar
+- Responsive Grid
+
+---
+
+# PART XXXVI. Figma 레이아웃을 보는 가장 중요한 관점
+
+레이아웃을 설계할 때 객체 하나하나의 좌표부터 정하지 않는다.
+
+다음 순서로 생각한다.
+
+```text
+1. 이 화면에는 어떤 정보 영역이 필요한가?
+2. 각 영역의 위계는 무엇인가?
+3. 큰 영역은 어떤 Grid에 맞출 것인가?
+4. 각 영역의 콘텐츠는 가로로 흐르는가, 세로로 흐르는가?
+5. 어떤 요소가 Hug이고 어떤 요소가 Fill인가?
+6. 어떤 크기는 Fixed여야 하는가?
+7. Min / Max가 필요한가?
+8. 폭이 부족해지면 Wrap할 것인가, Stack을 바꿀 것인가?
+9. 일반 Flow에서 벗어나야 하는 객체가 있는가?
+10. 이 구조를 Component로 재사용할 수 있는가?
+```
+
+좋은 Figma 파일은 정지된 화면을 정교하게 그린 파일이 아니라,
+
+> **콘텐츠와 화면 크기가 바뀌어도 의도한 구조를 유지하는 레이아웃 규칙의 집합**
+
+에 가깝다.
+
+---
+
+# Figma 공식 참고 자료
+
+- Guide to Auto Layout  
+  https://help.figma.com/hc/en-us/articles/360040451373-Guide-to-auto-layout
+
+- Horizontal and Vertical Auto Layout Flows  
+  https://help.figma.com/hc/en-us/articles/31289464393751-Use-the-horizontal-and-vertical-flows-in-auto-layout
+
+- Grid Auto Layout Flow  
+  https://help.figma.com/hc/en-us/articles/31289469907863-Use-the-grid-auto-layout-flow
+
+- Combine Vertical, Horizontal, and Grid Auto Layout  
+  https://help.figma.com/hc/en-us/articles/31441443713047-Combine-vertical-horizontal-and-grid-auto-layout-flows
+
+- Create Layout Guides  
+  https://help.figma.com/hc/en-us/articles/360040450513-Create-layout-guides
+
+- Combine Layout Guides and Constraints  
+  https://help.figma.com/hc/en-us/articles/360039957934-Combine-layout-guides-and-constraints
+
+- Responsive Card with Auto Layout and Constraints  
+  https://help.figma.com/hc/en-us/articles/18894664907287-Create-a-responsive-card-with-auto-layout-and-constraints

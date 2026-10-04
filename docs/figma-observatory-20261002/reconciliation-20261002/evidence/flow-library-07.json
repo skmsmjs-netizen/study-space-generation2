@@ -1,0 +1,109 @@
+{
+  "pageId": "7:76",
+  "createdNodeIds": {
+    "encoding": "figma-factorized-id-ranges-v1",
+    "count": 55,
+    "ranges": [
+      [
+        "63:",
+        [
+          [
+            15644,
+            15698
+          ]
+        ]
+      ]
+    ],
+    "literal": [],
+    "products": []
+  },
+  "virtualDescendantIds": {
+    "encoding": "figma-factorized-id-ranges-v1",
+    "count": 0,
+    "ranges": [],
+    "literal": [],
+    "products": []
+  },
+  "mutatedNodeIds": {
+    "encoding": "figma-factorized-id-ranges-v1",
+    "count": 3,
+    "ranges": [
+      [
+        "63:",
+        [
+          15689,
+          15692,
+          15695
+        ]
+      ]
+    ],
+    "literal": [],
+    "products": []
+  },
+  "topLevelNodeIds": [
+    "63:15666",
+    "63:15698"
+  ],
+  "library": {
+    "SAVE-SAVED": {
+      "id": "63:15666",
+      "sourceFrameId": "14:161",
+      "kind": "state",
+      "taskReturnPlaceholderId": null,
+      "width": 800,
+      "height": 837,
+      "fonts": [
+        {
+          "family": "Noto Sans KR",
+          "style": "Regular",
+          "variationSettings": {
+            "wght": 600
+          }
+        },
+        {
+          "family": "Noto Sans KR",
+          "style": "Regular",
+          "variationSettings": {
+            "wght": 400
+          }
+        }
+      ],
+      "sourceDescendants": 21,
+      "cloneDescendants": 21,
+      "originalPreserved": true
+    },
+    "SAVE-SAVING": {
+      "id": "63:15698",
+      "sourceFrameId": "14:139",
+      "kind": "state",
+      "taskReturnPlaceholderId": null,
+      "width": 800,
+      "height": 1152,
+      "fonts": [
+        {
+          "family": "Noto Sans KR",
+          "style": "Regular",
+          "variationSettings": {
+            "wght": 600
+          }
+        },
+        {
+          "family": "Noto Sans KR",
+          "style": "Regular",
+          "variationSettings": {
+            "wght": 400
+          }
+        }
+      ],
+      "sourceDescendants": 30,
+      "cloneDescendants": 30,
+      "originalPreserved": true
+    }
+  },
+  "counts": {
+    "components": 2,
+    "screens": 0,
+    "states": 2
+  },
+  "runtimeVerified": false
+}

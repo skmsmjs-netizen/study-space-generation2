@@ -1,0 +1,1084 @@
+{
+  "type": "result",
+  "result": {
+    "task": "read",
+    "pageId": "3:73",
+    "pages": [
+      {
+        "id": "0:1",
+        "name": "00 · 기준과 연결"
+      },
+      {
+        "id": "3:70",
+        "name": "01 · 공통 부품"
+      },
+      {
+        "id": "3:71",
+        "name": "02 · 사용 흐름"
+      },
+      {
+        "id": "3:72",
+        "name": "전집 · 정의형"
+      },
+      {
+        "id": "3:73",
+        "name": "전집 · 원리형"
+      },
+      {
+        "id": "3:74",
+        "name": "전집 · 절차형"
+      },
+      {
+        "id": "3:75",
+        "name": "전집 · 구별형"
+      },
+      {
+        "id": "3:76",
+        "name": "전집 · 구조형"
+      },
+      {
+        "id": "3:77",
+        "name": "전집 · 과정형"
+      },
+      {
+        "id": "3:78",
+        "name": "전집 · 관점형"
+      },
+      {
+        "id": "35:2",
+        "name": "03 · 수식 벡터"
+      }
+    ],
+    "fonts": [
+      {
+        "fontName": {
+          "family": "ManSeekSong Paper",
+          "style": "Bold"
+        }
+      },
+      {
+        "fontName": {
+          "family": "ManSeekSong Paper",
+          "style": "ExtraBold"
+        }
+      },
+      {
+        "fontName": {
+          "family": "ManSeekSong Paper",
+          "style": "Regular"
+        }
+      },
+      {
+        "fontName": {
+          "family": "Nanum Brush Script",
+          "style": "Regular"
+        }
+      },
+      {
+        "fontName": {
+          "family": "Nanum Gothic",
+          "style": "Bold"
+        }
+      },
+      {
+        "fontName": {
+          "family": "Nanum Gothic",
+          "style": "ExtraBold"
+        }
+      },
+      {
+        "fontName": {
+          "family": "Nanum Gothic",
+          "style": "Regular"
+        }
+      },
+      {
+        "fontName": {
+          "family": "Nanum Myeongjo",
+          "style": "Bold"
+        }
+      },
+      {
+        "fontName": {
+          "family": "Nanum Myeongjo",
+          "style": "ExtraBold"
+        }
+      },
+      {
+        "fontName": {
+          "family": "Nanum Myeongjo",
+          "style": "Regular"
+        }
+      },
+      {
+        "fontName": {
+          "family": "Nanum Pen",
+          "style": "Regular"
+        }
+      },
+      {
+        "fontName": {
+          "family": "Nanum Pen Script",
+          "style": "Regular"
+        }
+      },
+      {
+        "fontName": {
+          "family": "NanumGothic",
+          "style": "Bold"
+        }
+      },
+      {
+        "fontName": {
+          "family": "NanumGothic",
+          "style": "ExtraBold"
+        }
+      },
+      {
+        "fontName": {
+          "family": "NanumGothic",
+          "style": "Regular"
+        }
+      },
+      {
+        "fontName": {
+          "family": "NanumGothicCoding",
+          "style": "Bold"
+        }
+      },
+      {
+        "fontName": {
+          "family": "NanumGothicCoding",
+          "style": "Regular"
+        }
+      },
+      {
+        "fontName": {
+          "family": "NanumMyeongjo",
+          "style": "Bold"
+        }
+      },
+      {
+        "fontName": {
+          "family": "NanumMyeongjo",
+          "style": "ExtraBold"
+        }
+      },
+      {
+        "fontName": {
+          "family": "NanumMyeongjo",
+          "style": "Regular"
+        }
+      }
+    ],
+    "roots": [
+      {
+        "id": "70:13045",
+        "name": "OS판본 · 05-069 · a85294099f40",
+        "type": "FRAME",
+        "width": 1584,
+        "height": 1055.199951171875,
+        "sourceHash": "ad2e26a2",
+        "mathHash": "f022ca18",
+        "paragraphs": [
+          {
+            "id": "70:13236",
+            "name": "본문 문단",
+            "type": "FRAME",
+            "visible": true,
+            "width": 648,
+            "height": 72,
+            "atoms": [
+              {
+                "id": "70:13238",
+                "type": "TEXT",
+                "name": "가상 모임에서",
+                "text": "가상 모임에서",
+                "parent": "70:13237",
+                "visible": false,
+                "width": 102,
+                "height": 36
+              },
+              {
+                "id": "70:13239",
+                "type": "FRAME",
+                "name": "원문 띄어쓰기",
+                "parent": "70:13237",
+                "visible": true,
+                "width": 4,
+                "height": 33.29999923706055
+              },
+              {
+                "id": "70:13246",
+                "type": "TEXT",
+                "name": "의 지급액이",
+                "text": "의 지급액이",
+                "parent": "70:13237",
+                "visible": false,
+                "width": 86,
+                "height": 36
+              },
+              {
+                "id": "70:13247",
+                "type": "FRAME",
+                "name": "원문 띄어쓰기",
+                "parent": "70:13237",
+                "visible": true,
+                "width": 4,
+                "height": 33.29999923706055
+              },
+              {
+                "id": "70:13256",
+                "type": "TEXT",
+                "name": "에서",
+                "text": "에서",
+                "parent": "70:13237",
+                "visible": false,
+                "width": 34,
+                "height": 36
+              },
+              {
+                "id": "70:13257",
+                "type": "FRAME",
+                "name": "원문 띄어쓰기",
+                "parent": "70:13237",
+                "visible": true,
+                "width": 4,
+                "height": 33.29999923706055
+              },
+              {
+                "id": "70:13266",
+                "type": "TEXT",
+                "name": "으로 늘었다고 해 봐요. 자기 금액만",
+                "text": "으로 늘었다고 해 봐요. 자기 금액만",
+                "parent": "70:13237",
+                "visible": false,
+                "width": 251,
+                "height": 36
+              },
+              {
+                "id": "70:13267",
+                "type": "FRAME",
+                "name": "원문 띄어쓰기",
+                "parent": "70:13237",
+                "visible": true,
+                "width": 4,
+                "height": 33.29999923706055
+              },
+              {
+                "id": "70:13269",
+                "type": "TEXT",
+                "name": "비교하면",
+                "text": "비교하면",
+                "parent": "70:13268",
+                "visible": false,
+                "width": 66,
+                "height": 36
+              },
+              {
+                "id": "70:13270",
+                "type": "FRAME",
+                "name": "원문 띄어쓰기",
+                "parent": "70:13268",
+                "visible": true,
+                "width": 4,
+                "height": 33.29999923706055
+              },
+              {
+                "id": "70:13278",
+                "type": "TEXT",
+                "name": "을 더 받는 변화예요.",
+                "text": "을 더 받는 변화예요.",
+                "parent": "70:13268",
+                "visible": false,
+                "width": 146,
+                "height": 36
+              },
+              {
+                "id": "70:13248",
+                "type": "FRAME",
+                "name": "$20\\,\\text{원}$",
+                "parent": "127:1837",
+                "visible": true,
+                "width": 39.00600051879883,
+                "height": 17.100000381469727
+              },
+              {
+                "id": "70:13255",
+                "type": "TEXT",
+                "name": "원",
+                "text": "원",
+                "parent": "70:13254",
+                "visible": true,
+                "width": 15,
+                "height": 19
+              },
+              {
+                "id": "70:13258",
+                "type": "FRAME",
+                "name": "$25\\,\\text{원}$",
+                "parent": "127:1837",
+                "visible": true,
+                "width": 39.00600051879883,
+                "height": 17.100000381469727
+              },
+              {
+                "id": "70:13265",
+                "type": "TEXT",
+                "name": "원",
+                "text": "원",
+                "parent": "70:13264",
+                "visible": true,
+                "width": 15,
+                "height": 19
+              },
+              {
+                "id": "70:13271",
+                "type": "FRAME",
+                "name": "$5\\,\\text{원}$",
+                "parent": "127:1841",
+                "visible": true,
+                "width": 30.006000518798828,
+                "height": 17.100000381469727
+              },
+              {
+                "id": "70:13277",
+                "type": "TEXT",
+                "name": "원",
+                "text": "원",
+                "parent": "70:13276",
+                "visible": true,
+                "width": 15,
+                "height": 19
+              }
+            ]
+          },
+          {
+            "id": "127:1845",
+            "name": "본문 문단 · 700/95% / 70:13279",
+            "type": "FRAME",
+            "visible": true,
+            "width": 648,
+            "height": 72,
+            "atoms": []
+          },
+          {
+            "id": "70:13279",
+            "name": "본문 문단",
+            "type": "INSTANCE",
+            "visible": false,
+            "width": 682.1052856445312,
+            "height": 72
+          },
+          {
+            "id": "70:13474",
+            "name": "본문 문단",
+            "type": "FRAME",
+            "visible": true,
+            "width": 648,
+            "height": 72,
+            "atoms": [
+              {
+                "id": "70:13476",
+                "type": "TEXT",
+                "name": "같은 모임에서",
+                "text": "같은 모임에서",
+                "parent": "70:13475",
+                "visible": false,
+                "width": 102,
+                "height": 36
+              },
+              {
+                "id": "70:13477",
+                "type": "FRAME",
+                "name": "원문 띄어쓰기",
+                "parent": "70:13475",
+                "visible": true,
+                "width": 4,
+                "height": 33.29999923706055
+              },
+              {
+                "id": "70:13484",
+                "type": "TEXT",
+                "name": "는",
+                "text": "는",
+                "parent": "70:13475",
+                "visible": false,
+                "width": 18,
+                "height": 36
+              },
+              {
+                "id": "70:13485",
+                "type": "FRAME",
+                "name": "원문 띄어쓰기",
+                "parent": "70:13475",
+                "visible": true,
+                "width": 4,
+                "height": 33.29999923706055
+              },
+              {
+                "id": "70:13494",
+                "type": "TEXT",
+                "name": ",",
+                "text": ",",
+                "parent": "70:13475",
+                "visible": false,
+                "width": 5,
+                "height": 36
+              },
+              {
+                "id": "70:13495",
+                "type": "FRAME",
+                "name": "원문 띄어쓰기",
+                "parent": "70:13475",
+                "visible": true,
+                "width": 4,
+                "height": 33.29999923706055
+              },
+              {
+                "id": "70:13502",
+                "type": "TEXT",
+                "name": "는",
+                "text": "는",
+                "parent": "70:13475",
+                "visible": false,
+                "width": 18,
+                "height": 36
+              },
+              {
+                "id": "70:13503",
+                "type": "FRAME",
+                "name": "원문 띄어쓰기",
+                "parent": "70:13475",
+                "visible": true,
+                "width": 4,
+                "height": 33.29999923706055
+              },
+              {
+                "id": "70:13512",
+                "type": "TEXT",
+                "name": "을 받게 됐다고 해 봐요. 이전에는 둘 다",
+                "text": "을 받게 됐다고 해 봐요. 이전에는 둘 다",
+                "parent": "70:13475",
+                "visible": false,
+                "width": 275,
+                "height": 36
+              },
+              {
+                "id": "70:13513",
+                "type": "FRAME",
+                "name": "원문 띄어쓰기",
+                "parent": "70:13475",
+                "visible": true,
+                "width": 4,
+                "height": 33.29999923706055
+              },
+              {
+                "id": "70:13522",
+                "type": "TEXT",
+                "name": "이라",
+                "text": "이라",
+                "parent": "70:13475",
+                "visible": false,
+                "width": 34,
+                "height": 36
+              },
+              {
+                "id": "70:13523",
+                "type": "FRAME",
+                "name": "원문 띄어쓰기",
+                "parent": "70:13475",
+                "visible": true,
+                "width": 4,
+                "height": 33.29999923706055
+              },
+              {
+                "id": "70:13525",
+                "type": "TEXT",
+                "name": "차이가 없었지만 이제 차이는",
+                "text": "차이가 없었지만 이제 차이는",
+                "parent": "70:13524",
+                "visible": false,
+                "width": 207,
+                "height": 36
+              },
+              {
+                "id": "70:13526",
+                "type": "FRAME",
+                "name": "원문 띄어쓰기",
+                "parent": "70:13524",
+                "visible": true,
+                "width": 4,
+                "height": 33.29999923706055
+              },
+              {
+                "id": "70:13535",
+                "type": "TEXT",
+                "name": "이에요.",
+                "text": "이에요.",
+                "parent": "70:13524",
+                "visible": false,
+                "width": 54,
+                "height": 36
+              },
+              {
+                "id": "70:13486",
+                "type": "FRAME",
+                "name": "$25\\,\\text{원}$",
+                "parent": "127:1880",
+                "visible": true,
+                "width": 39.00600051879883,
+                "height": 17.100000381469727
+              },
+              {
+                "id": "70:13493",
+                "type": "TEXT",
+                "name": "원",
+                "text": "원",
+                "parent": "70:13492",
+                "visible": true,
+                "width": 15,
+                "height": 19
+              },
+              {
+                "id": "70:13504",
+                "type": "FRAME",
+                "name": "$40\\,\\text{원}$",
+                "parent": "127:1880",
+                "visible": true,
+                "width": 39.00600051879883,
+                "height": 17.100000381469727
+              },
+              {
+                "id": "70:13511",
+                "type": "TEXT",
+                "name": "원",
+                "text": "원",
+                "parent": "70:13510",
+                "visible": true,
+                "width": 15,
+                "height": 19
+              },
+              {
+                "id": "70:13514",
+                "type": "FRAME",
+                "name": "$20\\,\\text{원}$",
+                "parent": "127:1880",
+                "visible": true,
+                "width": 39.00600051879883,
+                "height": 17.100000381469727
+              },
+              {
+                "id": "70:13521",
+                "type": "TEXT",
+                "name": "원",
+                "text": "원",
+                "parent": "70:13520",
+                "visible": true,
+                "width": 15,
+                "height": 19
+              },
+              {
+                "id": "70:13527",
+                "type": "FRAME",
+                "name": "$15\\,\\text{원}$",
+                "parent": "127:1884",
+                "visible": true,
+                "width": 39.00600051879883,
+                "height": 17.100000381469727
+              },
+              {
+                "id": "70:13534",
+                "type": "TEXT",
+                "name": "원",
+                "text": "원",
+                "parent": "70:13533",
+                "visible": true,
+                "width": 15,
+                "height": 19
+              }
+            ]
+          },
+          {
+            "id": "70:13536",
+            "name": "본문 문단",
+            "type": "FRAME",
+            "visible": true,
+            "width": 648,
+            "height": 108,
+            "atoms": [
+              {
+                "id": "70:13544",
+                "type": "TEXT",
+                "name": "가",
+                "text": "가",
+                "parent": "70:13537",
+                "visible": false,
+                "width": 18,
+                "height": 36
+              },
+              {
+                "id": "70:13545",
+                "type": "FRAME",
+                "name": "원문 띄어쓰기",
+                "parent": "70:13537",
+                "visible": true,
+                "width": 4,
+                "height": 33.29999923706055
+              },
+              {
+                "id": "70:13552",
+                "type": "TEXT",
+                "name": "를 비교 대상으로 삼고 자신이 부당하게 덜 받는다고 느끼면 상대적 박탈감을 느낄",
+                "text": "를 비교 대상으로 삼고 자신이 부당하게 덜 받는다고 느끼면 상대적 박탈감을 느낄",
+                "parent": "70:13537",
+                "visible": false,
+                "width": 578,
+                "height": 36
+              },
+              {
+                "id": "70:13553",
+                "type": "FRAME",
+                "name": "원문 띄어쓰기",
+                "parent": "70:13537",
+                "visible": true,
+                "width": 4,
+                "height": 33.29999923706055
+              },
+              {
+                "id": "70:13555",
+                "type": "TEXT",
+                "name": "수 있어요. 객관적 금액이 늘어도 비교 속 불만은 커질 수 있다는 뜻이에요. 모든 격차가",
+                "text": "수 있어요. 객관적 금액이 늘어도 비교 속 불만은 커질 수 있다는 뜻이에요. 모든 격차가",
+                "parent": "70:13554",
+                "visible": false,
+                "width": 609,
+                "height": 36
+              },
+              {
+                "id": "70:13556",
+                "type": "FRAME",
+                "name": "원문 띄어쓰기",
+                "parent": "70:13554",
+                "visible": true,
+                "width": 4,
+                "height": 33.29999923706055
+              },
+              {
+                "id": "70:13558",
+                "type": "TEXT",
+                "name": "반드시 그런 감정을 만들거나 절대적 어려움이 중요하지 않다는 뜻은 아니에요.",
+                "text": "반드시 그런 감정을 만들거나 절대적 어려움이 중요하지 않다는 뜻은 아니에요.",
+                "parent": "70:13557",
+                "visible": false,
+                "width": 558,
+                "height": 36
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "70:12685",
+        "name": "OS판본 · 05-061 · ea451f8ed24e",
+        "type": "FRAME",
+        "width": 1584,
+        "height": 1250.800048828125,
+        "sourceHash": "6f48c251",
+        "mathHash": "e736ae5",
+        "paragraphs": [
+          {
+            "id": "70:12822",
+            "name": "본문 문단",
+            "type": "FRAME",
+            "visible": true,
+            "width": 648,
+            "height": 36,
+            "atoms": [
+              {
+                "id": "70:12824",
+                "type": "TEXT",
+                "name": "가상의 사람이 일로",
+                "text": "가상의 사람이 일로",
+                "parent": "70:12823",
+                "visible": false,
+                "width": 165,
+                "height": 36
+              },
+              {
+                "id": "70:12825",
+                "type": "FRAME",
+                "name": "원문 띄어쓰기",
+                "parent": "70:12823",
+                "visible": true,
+                "width": 4,
+                "height": 33.29999923706055
+              },
+              {
+                "id": "70:12834",
+                "type": "TEXT",
+                "name": "을 벌고 필수 생활비도",
+                "text": "을 벌고 필수 생활비도",
+                "parent": "70:12823",
+                "visible": false,
+                "width": 199,
+                "height": 36
+              },
+              {
+                "id": "70:12835",
+                "type": "FRAME",
+                "name": "원문 띄어쓰기",
+                "parent": "70:12823",
+                "visible": true,
+                "width": 4,
+                "height": 33.29999923706055
+              },
+              {
+                "id": "70:12844",
+                "type": "TEXT",
+                "name": "이 들어 남는 돈이 없다고 해 봐요.",
+                "text": "이 들어 남는 돈이 없다고 해 봐요.",
+                "parent": "70:12823",
+                "visible": false,
+                "width": 319,
+                "height": 36
+              },
+              {
+                "id": "70:12826",
+                "type": "FRAME",
+                "name": "$40\\,\\text{원}$",
+                "parent": "123:1810",
+                "visible": true,
+                "width": 39.00600051879883,
+                "height": 17.100000381469727
+              },
+              {
+                "id": "70:12833",
+                "type": "TEXT",
+                "name": "원",
+                "text": "원",
+                "parent": "70:12832",
+                "visible": true,
+                "width": 15,
+                "height": 19
+              },
+              {
+                "id": "70:12836",
+                "type": "FRAME",
+                "name": "$40\\,\\text{원}$",
+                "parent": "123:1810",
+                "visible": true,
+                "width": 39.00600051879883,
+                "height": 17.100000381469727
+              },
+              {
+                "id": "70:12843",
+                "type": "TEXT",
+                "name": "원",
+                "text": "원",
+                "parent": "70:12842",
+                "visible": true,
+                "width": 15,
+                "height": 19
+              }
+            ]
+          },
+          {
+            "id": "70:12845",
+            "name": "본문 문단",
+            "type": "FRAME",
+            "visible": true,
+            "width": 648,
+            "height": 108,
+            "atoms": [
+              {
+                "id": "70:12856",
+                "type": "TEXT",
+                "name": "짜리 장비가 있으면 더 소득이 높은 일을 할 수 있지만, 지금은 그 돈을 모으기",
+                "text": "짜리 장비가 있으면 더 소득이 높은 일을 할 수 있지만, 지금은 그 돈을 모으기",
+                "parent": "70:12846",
+                "visible": false,
+                "width": 714,
+                "height": 36
+              },
+              {
+                "id": "70:12857",
+                "type": "FRAME",
+                "name": "원문 띄어쓰기",
+                "parent": "70:12846",
+                "visible": true,
+                "width": 4,
+                "height": 33.29999923706055
+              },
+              {
+                "id": "70:12859",
+                "type": "TEXT",
+                "name": "어려워요. 장비 없이 낮은 소득→모을 여유 없음→장비를 못 삼이라는 고리가 있어요.",
+                "text": "어려워요. 장비 없이 낮은 소득→모을 여유 없음→장비를 못 삼이라는 고리가 있어요.",
+                "parent": "70:12858",
+                "visible": false,
+                "width": 731,
+                "height": 36
+              },
+              {
+                "id": "70:12860",
+                "type": "FRAME",
+                "name": "원문 띄어쓰기",
+                "parent": "70:12858",
+                "visible": true,
+                "width": 4,
+                "height": 33.29999923706055
+              },
+              {
+                "id": "70:12862",
+                "type": "TEXT",
+                "name": "이것은 생활 조건을 단순하게 놓은 가상 모형이에요.",
+                "text": "이것은 생활 조건을 단순하게 놓은 가상 모형이에요.",
+                "parent": "70:12861",
+                "visible": false,
+                "width": 448,
+                "height": 36
+              },
+              {
+                "id": "70:12847",
+                "type": "FRAME",
+                "name": "$100\\,\\text{원}$",
+                "parent": "123:1874",
+                "visible": true,
+                "width": 48.00600051879883,
+                "height": 17.100000381469727
+              },
+              {
+                "id": "70:12855",
+                "type": "TEXT",
+                "name": "원",
+                "text": "원",
+                "parent": "70:12854",
+                "visible": true,
+                "width": 15,
+                "height": 19
+              }
+            ]
+          },
+          {
+            "id": "70:13000",
+            "name": "본문 문단",
+            "type": "FRAME",
+            "visible": true,
+            "width": 648,
+            "height": 108,
+            "atoms": [
+              {
+                "id": "70:13002",
+                "type": "TEXT",
+                "name": "같은 가정에서 장비를 얻어 소득이",
+                "text": "같은 가정에서 장비를 얻어 소득이",
+                "parent": "70:13001",
+                "visible": false,
+                "width": 297,
+                "height": 36
+              },
+              {
+                "id": "70:13003",
+                "type": "FRAME",
+                "name": "원문 띄어쓰기",
+                "parent": "70:13001",
+                "visible": true,
+                "width": 4,
+                "height": 33.29999923706055
+              },
+              {
+                "id": "70:13012",
+                "type": "TEXT",
+                "name": "이 되고 필수 비용이",
+                "text": "이 되고 필수 비용이",
+                "parent": "70:13001",
+                "visible": false,
+                "width": 182,
+                "height": 36
+              },
+              {
+                "id": "70:13013",
+                "type": "FRAME",
+                "name": "원문 띄어쓰기",
+                "parent": "70:13001",
+                "visible": true,
+                "width": 4,
+                "height": 33.29999923706055
+              },
+              {
+                "id": "70:13022",
+                "type": "FRAME",
+                "name": "원문 띄어쓰기",
+                "parent": "70:13001",
+                "visible": true,
+                "width": 4,
+                "height": 33.29999923706055
+              },
+              {
+                "id": "70:13023",
+                "type": "TEXT",
+                "name": "그대로면",
+                "text": "그대로면",
+                "parent": "70:13001",
+                "visible": false,
+                "width": 66,
+                "height": 36
+              },
+              {
+                "id": "70:13024",
+                "type": "FRAME",
+                "name": "원문 띄어쓰기",
+                "parent": "70:13001",
+                "visible": true,
+                "width": 4,
+                "height": 33.29999923706055
+              },
+              {
+                "id": "70:13033",
+                "type": "TEXT",
+                "name": "을 남길",
+                "text": "을 남길",
+                "parent": "70:13001",
+                "visible": false,
+                "width": 67,
+                "height": 36
+              },
+              {
+                "id": "70:13034",
+                "type": "FRAME",
+                "name": "원문 띄어쓰기",
+                "parent": "70:13001",
+                "visible": true,
+                "width": 4,
+                "height": 33.29999923706055
+              },
+              {
+                "id": "70:13036",
+                "type": "TEXT",
+                "name": "수 있어요. 부족한 자원이 낮은 소득 조건을 유지시켜 벗어나기 어렵게 하는 자기강화",
+                "text": "수 있어요. 부족한 자원이 낮은 소득 조건을 유지시켜 벗어나기 어렵게 하는 자기강화",
+                "parent": "70:13035",
+                "visible": false,
+                "width": 744,
+                "height": 36
+              },
+              {
+                "id": "70:13037",
+                "type": "FRAME",
+                "name": "원문 띄어쓰기",
+                "parent": "70:13035",
+                "visible": true,
+                "width": 4,
+                "height": 33.29999923706055
+              },
+              {
+                "id": "70:13039",
+                "type": "TEXT",
+                "name": "구조가 빈곤의 함정이에요.",
+                "text": "구조가 빈곤의 함정이에요.",
+                "parent": "70:13038",
+                "visible": false,
+                "width": 218,
+                "height": 36
+              },
+              {
+                "id": "70:13004",
+                "type": "FRAME",
+                "name": "$50\\,\\text{원}$",
+                "parent": "123:1931",
+                "visible": true,
+                "width": 39.00600051879883,
+                "height": 17.100000381469727
+              },
+              {
+                "id": "70:13011",
+                "type": "TEXT",
+                "name": "원",
+                "text": "원",
+                "parent": "70:13010",
+                "visible": true,
+                "width": 15,
+                "height": 19
+              },
+              {
+                "id": "70:13014",
+                "type": "FRAME",
+                "name": "$40\\,\\text{원}$",
+                "parent": "123:1931",
+                "visible": true,
+                "width": 39.00600051879883,
+                "height": 17.100000381469727
+              },
+              {
+                "id": "70:13021",
+                "type": "TEXT",
+                "name": "원",
+                "text": "원",
+                "parent": "70:13020",
+                "visible": true,
+                "width": 15,
+                "height": 19
+              },
+              {
+                "id": "70:13025",
+                "type": "FRAME",
+                "name": "$10\\,\\text{원}$",
+                "parent": "123:1931",
+                "visible": true,
+                "width": 39.00600051879883,
+                "height": 17.100000381469727
+              },
+              {
+                "id": "70:13032",
+                "type": "TEXT",
+                "name": "원",
+                "text": "원",
+                "parent": "70:13031",
+                "visible": true,
+                "width": 15,
+                "height": 19
+              }
+            ]
+          },
+          {
+            "id": "123:1940",
+            "name": "본문 문단 · 700/95% / 70:13040",
+            "type": "FRAME",
+            "visible": true,
+            "width": 648,
+            "height": 108,
+            "atoms": []
+          },
+          {
+            "id": "70:13040",
+            "name": "본문 문단",
+            "type": "INSTANCE",
+            "visible": false,
+            "width": 682.1052856445312,
+            "height": 108
+          },
+          {
+            "id": "123:1945",
+            "name": "본문 문단 · 700/95% / 70:13042",
+            "type": "FRAME",
+            "visible": true,
+            "width": 648,
+            "height": 72,
+            "atoms": []
+          },
+          {
+            "id": "70:13042",
+            "name": "본문 문단",
+            "type": "INSTANCE",
+            "visible": false,
+            "width": 682.1052856445312,
+            "height": 72
+          }
+        ]
+      }
+    ],
+    "createdNodeIds": [],
+    "mutatedNodeIds": []
+  }
+}

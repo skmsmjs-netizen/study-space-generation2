@@ -1,0 +1,165 @@
+{
+  "name": "Observatory · Vermilion Night",
+  "version": 1,
+  "kind": "Decorative art palette derived from current Figma primitives; not a formal color standard",
+  "references": [
+    {
+      "url": "https://lospec.com/palette-list/lospec500",
+      "use": "warm orange and vermilion contrast with cool night; not an exact import"
+    },
+    {
+      "url": "https://lospec.com/palette-list/apollo",
+      "use": "ordered light and shadow ramps; not an exact import"
+    },
+    {
+      "url": "https://www.slynyrd.com/blog/2018/1/10/pixelblog-1-color-palettes",
+      "use": "limited color ramps and hue shifting"
+    }
+  ],
+  "figmaSource": "https://www.figma.com/design/5RKglEvhscGpWAz5T6qLGQ?node-id=12-2",
+  "figmaRegistration": "blocked by Starter MCP rate limit; local editable board only",
+  "colors": [
+    {
+      "name": "night-950",
+      "label": "밤 · 가장 깊은 하늘",
+      "cssVariable": "--observatory-night-950",
+      "expression": "color-mix(in srgb, var(--primitive-brand-950) 55%, var(--primitive-common-black))",
+      "hex": "#110F29"
+    },
+    {
+      "name": "night-800",
+      "label": "밤 · 남색",
+      "cssVariable": "--observatory-night-800",
+      "expression": "var(--primitive-brand-950)",
+      "hex": "#1E1B4B"
+    },
+    {
+      "name": "night-650",
+      "label": "밤 · 먼 산",
+      "cssVariable": "--observatory-night-650",
+      "expression": "var(--primitive-brand-900)",
+      "hex": "#312E81"
+    },
+    {
+      "name": "night-450",
+      "label": "밤 · 푸른 대기",
+      "cssVariable": "--observatory-night-450",
+      "expression": "var(--primitive-common-info-900)",
+      "hex": "#1E3A8A"
+    },
+    {
+      "name": "warm-500",
+      "label": "빛 · 다홍",
+      "cssVariable": "--observatory-warm-500",
+      "expression": "color-mix(in srgb, var(--primitive-common-warning-500) 72%, var(--primitive-common-error-500))",
+      "hex": "#F66623"
+    },
+    {
+      "name": "warm-850",
+      "label": "빛 · 어두운 잔광",
+      "cssVariable": "--observatory-warm-850",
+      "expression": "color-mix(in srgb, var(--observatory-warm-500) 35%, var(--observatory-night-950))",
+      "hex": "#612D27"
+    },
+    {
+      "name": "warm-700",
+      "label": "빛 · 주황 그림자",
+      "cssVariable": "--observatory-warm-700",
+      "expression": "var(--primitive-common-warning-900)",
+      "hex": "#7C2D12"
+    },
+    {
+      "name": "warm-400",
+      "label": "빛 · 호박색",
+      "cssVariable": "--observatory-warm-400",
+      "expression": "var(--primitive-common-warning-500)",
+      "hex": "#F97316"
+    },
+    {
+      "name": "warm-250",
+      "label": "빛 · 금빛",
+      "cssVariable": "--observatory-warm-250",
+      "expression": "color-mix(in srgb, var(--primitive-common-warning-500) 45%, var(--primitive-common-warning-100))",
+      "hex": "#FCB67F"
+    },
+    {
+      "name": "warm-100",
+      "label": "빛 · 살구",
+      "cssVariable": "--observatory-warm-100",
+      "expression": "color-mix(in srgb, var(--observatory-warm-500) 45%, var(--primitive-common-white))",
+      "hex": "#FBBA9C"
+    },
+    {
+      "name": "warm-050",
+      "label": "빛 · 크림",
+      "cssVariable": "--observatory-warm-050",
+      "expression": "color-mix(in srgb, var(--observatory-warm-250) 35%, var(--primitive-common-white))",
+      "hex": "#FEE5D2"
+    },
+    {
+      "name": "cool-500",
+      "label": "별 · 푸른빛",
+      "cssVariable": "--observatory-cool-500",
+      "expression": "color-mix(in srgb, var(--primitive-common-info-500) 65%, var(--primitive-common-white))",
+      "hex": "#80AEF9"
+    },
+    {
+      "name": "cool-350",
+      "label": "별 · 청록",
+      "cssVariable": "--observatory-cool-350",
+      "expression": "color-mix(in srgb, var(--primitive-common-success-500) 50%, var(--observatory-cool-500))",
+      "hex": "#51BAAC"
+    },
+    {
+      "name": "cool-400",
+      "label": "성운 · 보랏빛",
+      "cssVariable": "--observatory-cool-400",
+      "expression": "var(--primitive-brand-400)",
+      "hex": "#818CF8"
+    },
+    {
+      "name": "cool-850",
+      "label": "오로라 · 그림자",
+      "cssVariable": "--observatory-cool-850",
+      "expression": "var(--primitive-common-success-900)",
+      "hex": "#14532D"
+    },
+    {
+      "name": "star-050",
+      "label": "별 · 가장 밝은 점",
+      "cssVariable": "--observatory-star-050",
+      "expression": "var(--primitive-common-white)",
+      "hex": "#FFFFFF"
+    }
+  ],
+  "roles": {
+    "deep": "night-950",
+    "white": "star-050",
+    "blue": "cool-500",
+    "violet": "cool-400",
+    "gold": "warm-250",
+    "mint": "cool-350",
+    "rose": "warm-100",
+    "coral": "warm-500"
+  },
+  "stages": [
+    { "stage": 1, "accent": "blue", "horizon": "night-800" },
+    { "stage": 2, "accent": "blue", "horizon": "night-450" },
+    { "stage": 3, "accent": "mint", "horizon": "night-450" },
+    { "stage": 4, "accent": "gold", "horizon": "night-800" },
+    { "stage": 5, "accent": "gold", "horizon": "warm-700" },
+    { "stage": 6, "accent": "violet", "horizon": "night-800" },
+    { "stage": 7, "accent": "coral", "horizon": "warm-850" },
+    { "stage": 8, "accent": "violet", "horizon": "night-650" },
+    { "stage": 9, "accent": "blue", "horizon": "night-450" },
+    { "stage": 10, "accent": "mint", "horizon": "cool-850" },
+    { "stage": 11, "accent": "coral", "horizon": "warm-850" },
+    { "stage": 12, "accent": "coral", "horizon": "final" }
+  ],
+  "constraints": [
+    "warm orange/vermilion primary, cream highlights, desaturated navy shadow",
+    "cool hues confined to stars, aurora and nebula accents",
+    "art aliases scoped to observatory; study/status colors unchanged",
+    "interpolated lighting/opacity can produce additional rendered colors"
+  ]
+}

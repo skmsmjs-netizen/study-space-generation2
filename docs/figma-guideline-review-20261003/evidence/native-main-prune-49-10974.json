@@ -1,0 +1,20 @@
+{
+  "type": "result",
+  "result": {
+    "task": "prune",
+    "pageId": "49:10974",
+    "removedDerivedVectorCount": 6,
+    "removedNodeIds": [
+      "350:940",
+      "350:944",
+      "350:948",
+      "350:952",
+      "350:956",
+      "350:960"
+    ],
+    "sourcePreserved": true,
+    "mathPreserved": true,
+    "createdNodeIds": [],
+    "mutatedNodeIds": []
+  }
+}

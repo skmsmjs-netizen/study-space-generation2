@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"fileKey\":\"FRPuAwx3q2Jka1VZOjuMil\",\"pageId\":\"3:70\",\"pageName\":\"01 · 공통 부품\",\"total\":34,\"count\":{\"COMPONENT_SET\":1,\"COMPONENT\":15,\"TEXT\":18},\"fontCounts\":{\"{\\\"family\\\":\\\"Noto Sans KR\\\",\\\"style\\\":\\\"Medium\\\",\\\"variationSettings\\\":{\\\"wght\\\":500}}\":14,\"{\\\"family\\\":\\\"Noto Sans KR\\\",\\\"style\\\":\\\"Regular\\\",\\\"variationSettings\\\":{\\\"wght\\\":400}}\":4},\"styleCounts\":{\"OS / Label\":11,\"Concept paper / Book title\":1,\"Concept paper / Lead\":1,\"Concept paper / Intro\":1,\"Concept paper / Section\":1,\"Concept paper / Body\":1,\"Concept paper / Takeaway\":1,\"OS / Caption\":1},\"roles\":{\"heading-label\":11,\"other\":7},\"paperCount\":0,\"mismatchCount\":0,\"mismatchIds\":[],\"mismatchIdsTruncated\":false,\"samples\":[],\"roots\":[{\"id\":\"4:22\",\"name\":\"OS / Button\",\"type\":\"COMPONENT_SET\",\"w\":944,\"h\":176,\"layout\":\"NONE\",\"clip\":true,\"children\":10},{\"id\":\"4:23\",\"name\":\"OS / ReadingHeading\",\"type\":\"COMPONENT\",\"w\":640,\"h\":162,\"layout\":\"VERTICAL\",\"clip\":false,\"children\":3},{\"id\":\"4:27\",\"name\":\"OS / SceneHeading\",\"type\":\"COMPONENT\",\"w\":640,\"h\":28,\"layout\":\"VERTICAL\",\"clip\":false,\"children\":1},{\"id\":\"4:29\",\"name\":\"OS / BodyText\",\"type\":\"COMPONENT\",\"w\":640,\"h\":33,\"layout\":\"VERTICAL\",\"clip\":false,\"children\":1},{\"id\":\"4:31\",\"name\":\"OS / Takeaway\",\"type\":\"COMPONENT\",\"w\":640,\"h\":58,\"layout\":\"VERTICAL\",\"clip\":false,\"children\":1},{\"id\":\"4:33\",\"name\":\"OS / ShelfItem\",\"type\":\"COMPONENT\",\"w\":320,\"h\":90,\"layout\":\"VERTICAL\",\"clip\":false,\"children\":2}],\"rootCount\":6,\"clipSuspects\":[],\"clipSuspectCount\":0,\"textHash\":\"b104a5ee\",\"reactionHash\":\"741638a5\"}"
+    }
+  ],
+  "isError": false
+}

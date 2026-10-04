@@ -1,0 +1,113 @@
+{
+  "pageId": "7:72",
+  "createdNodeIds": [
+    "256:1553",
+    "256:1554",
+    "256:1555",
+    "256:1556"
+  ],
+  "mutatedNodeIds": [
+    "256:1553",
+    "28:12008",
+    "28:12009",
+    "28:12010",
+    "28:12011",
+    "28:12012",
+    "28:12013",
+    "28:12014",
+    "28:11995",
+    "256:1554",
+    "28:12040",
+    "28:12041",
+    "28:12042",
+    "28:12043",
+    "28:12044",
+    "28:12045",
+    "28:12046",
+    "28:12047",
+    "28:12027",
+    "256:1555",
+    "28:12073",
+    "28:12074",
+    "28:12075",
+    "28:12076",
+    "28:12078",
+    "28:12080",
+    "28:12081",
+    "28:12060",
+    "256:1556",
+    "28:12111",
+    "28:12112",
+    "28:12113",
+    "28:12114",
+    "28:12116",
+    "28:12117",
+    "28:12098"
+  ],
+  "results": [
+    {
+      "id": "28:11995",
+      "name": "O06@ipad-landscape",
+      "pattern": "L053",
+      "scope": "overlay",
+      "viewport": {
+        "width": 1376,
+        "height": 1032,
+        "overflow": "VERTICAL"
+      },
+      "preserved": true,
+      "scroll": "VERTICAL",
+      "sceneRatios": [],
+      "structure": "256:1553",
+      "bodyHeight": 377
+    },
+    {
+      "id": "28:12027",
+      "name": "O07@ipad-landscape",
+      "pattern": "L053",
+      "scope": "overlay",
+      "viewport": {
+        "width": 1376,
+        "height": 1032,
+        "overflow": "VERTICAL"
+      },
+      "preserved": true,
+      "scroll": "VERTICAL",
+      "sceneRatios": [],
+      "structure": "256:1554",
+      "bodyHeight": 415
+    },
+    {
+      "id": "28:12060",
+      "name": "O19@ipad-landscape",
+      "pattern": "L053",
+      "scope": "overlay",
+      "viewport": {
+        "width": 1376,
+        "height": 1032,
+        "overflow": "VERTICAL"
+      },
+      "preserved": true,
+      "scroll": "VERTICAL",
+      "sceneRatios": [],
+      "structure": "256:1555",
+      "bodyHeight": 427
+    },
+    {
+      "id": "28:12098",
+      "name": "O22@ipad-landscape",
+      "pattern": "L053",
+      "scope": "overlay",
+      "viewport": {
+        "width": 1376,
+        "height": 1032,
+        "overflow": "VERTICAL"
+      },
+      "preserved": true,
+      "scroll": "VERTICAL",
+      "sceneRatios": [],
+      "structure": "256:1556",
+      "bodyHeight": 368
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "checkedAt": "2026-10-02",
+  "status": "passed",
+  "adoptionLinksChecked": [
+    "AGENTS.md",
+    "generation2/AGENTS.md",
+    "generation2/docs/observatory-design-standard.md",
+    "generation2/docs/observatory-feature-identities.md",
+    "generation2/docs/design-ui-ux-priority.md",
+    "generation2/docs/design-system.md",
+    "docs/프로젝트 문서 안내.md",
+    "generation2/docs/layout-catalog/README.md",
+    "generation2/docs/resume-handoff.md",
+    "generation2/docs/layout-standard.md",
+    "generation2/docs/layout-standard/README.md"
+  ],
+  "sourceSnapshotsMatch": {
+    "guide": true,
+    "catalog": true,
+    "identity": true,
+    "inventory": true,
+    "baseline": true
+  },
+  "originalPreserved": true,
+  "originalByteOffsetInCombined": 584,
+  "contractCounts": {
+    "entries": 199,
+    "roles": 25,
+    "profiles": 10,
+    "entities": 111,
+    "future": 24
+  },
+  "figmaCounts": {
+    "boards": 50,
+    "nodes": 976,
+    "existingPagesPreserved": 26,
+    "wideNarrowExamples": 20
+  },
+  "images": {
+    "overview": {
+      "bytes": 242227,
+      "width": 1008,
+      "height": 1007,
+      "sha256": "ddb1d8299f9455c2389bd3cb4456607d6de8bd7ff3c2a0680b770dc669e94d79"
+    },
+    "instrument-profile": {
+      "bytes": 65803,
+      "width": 1512,
+      "height": 720,
+      "sha256": "b5edad26ae68dc53e52517d9d550691f5705d211050d6190e41140ae6ed86927"
+    }
+  },
+  "runtimeAndDeploymentCertified": false
+}

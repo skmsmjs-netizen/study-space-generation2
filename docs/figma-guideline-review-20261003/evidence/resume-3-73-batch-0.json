@@ -1,0 +1,21 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Error: Unbreakable atom exceeds width\n    at rowsFor (PLUGIN_3_SOURCE:18:629)\n    at <anonymous> (PLUGIN_3_SOURCE:40:29)\n"
+    },
+    {
+      "type": "text",
+      "text": "Figma Debug UUID: 13fc0e89-56b5-4d01-86d5-c20c2b50068c"
+    }
+  ],
+  "structuredContent": {
+    "error": {
+      "message": "Error: Unbreakable atom exceeds width\n    at rowsFor (PLUGIN_3_SOURCE:18:629)\n    at <anonymous> (PLUGIN_3_SOURCE:40:29)\n",
+      "debugUuid": "13fc0e89-56b5-4d01-86d5-c20c2b50068c"
+    },
+    "safeToRetryWithoutCanvasRead": true,
+    "error_code": "INVALID_ARGUMENT"
+  },
+  "isError": true
+}

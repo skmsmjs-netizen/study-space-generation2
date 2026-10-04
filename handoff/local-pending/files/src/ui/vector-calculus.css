@@ -1,0 +1,163 @@
+/* design-token-exception: SVG geometry attributes and numerical graph coordinates -- mathematical units, not UI layout tokens. */
+.vector-calculus {
+  min-inline-size: 0;
+  container-type: inline-size;
+}
+.vector-calculus h2,
+.vector-calculus h3 {
+  margin-block: var(--space-3);
+}
+.vector-paper {
+  background: var(--color-surface);
+  color: var(--color-text);
+  border: var(--border-width) solid var(--color-border);
+  padding: var(--space-4);
+}
+.vector-paper .vector-caption {
+  font-size: var(--observatory-paper-preview-size);
+  margin-block: 0;
+}
+.vector-paper p,
+.vector-paper textarea {
+  font-family: var(--font-reading);
+  font-weight: var(--paper-body-weight, var(--observatory-paper-body-weight));
+  font-size: var(--paper-body-size, var(--observatory-paper-body-size));
+  line-height: var(--paper-body-line, var(--observatory-paper-body-line));
+  letter-spacing: var(--paper-body-tracking, var(--observatory-paper-body-tracking));
+  text-align: justify;
+  text-align-last: start;
+  overflow-wrap: anywhere;
+}
+.vector-catalog {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--layout-dialog)), 1fr));
+  gap: var(--space-3);
+  list-style: none;
+  padding: 0;
+}
+.vector-catalog > li {
+  min-inline-size: 0;
+}
+.vector-catalog .ui-button {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  text-align: start;
+  inline-size: 100%;
+  block-size: 100%;
+  gap: var(--space-2);
+  white-space: normal;
+}
+.vector-observation-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: var(--space-4);
+  align-items: start;
+}
+.vector-plot {
+  touch-action: none;
+  inline-size: 100%;
+  aspect-ratio: 1;
+  display: block;
+  background: var(--color-surface-inset);
+  border: var(--border-width) solid var(--color-border);
+}
+.vector-plot:focus-visible {
+  outline: var(--border-width) solid var(--color-focus);
+  outline-offset: var(--space-1);
+}
+.vector-plot text {
+  fill: var(--color-text);
+}
+.vector-plot .vector-axis {
+  stroke: var(--color-muted);
+}
+.vector-plot .vector-trace {
+  stroke: var(--color-text);
+  fill: none;
+}
+.vector-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-block: var(--space-3);
+}
+.vector-controls {
+  display: grid;
+  gap: var(--space-3);
+}
+.vector-controls input[type='range'] {
+  inline-size: 100%;
+  margin-inline: 0;
+  box-sizing: border-box;
+  accent-color: var(--color-focus);
+}
+.vector-observation-grid > * {
+  min-inline-size: 0;
+}
+.vector-values {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--space-2);
+  font-variant-numeric: tabular-nums;
+}
+.vector-values dt,
+.vector-values dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.vector-result,
+.vector-detail {
+  border-block-start: var(--border-width) solid var(--color-border);
+  padding-block: var(--space-3);
+}
+.vector-source-frame {
+  inline-size: 100%;
+  block-size: var(--layout-dialog);
+  border: var(--border-width) solid var(--color-border);
+}
+.vector-reference {
+  overflow-wrap: anywhere;
+}
+.vector-full {
+  inline-size: min(100%, calc(var(--layout-reading) + var(--layout-dialog)));
+}
+@container (max-width: 48rem) {
+  .vector-observation-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .vector-paper {
+    padding: var(--space-3);
+  }
+  .vector-paper p,
+  .vector-paper textarea {
+    font-size: var(--paper-input-size, var(--observatory-paper-body-compact-size));
+    line-height: var(--observatory-paper-body-compact-line);
+    letter-spacing: var(--observatory-paper-body-compact-tracking);
+  }
+}
+.vector-source-scroll {
+  max-block-size: var(--layout-reading);
+  overflow: auto;
+  border: var(--border-width) solid var(--color-border);
+  background: var(--color-surface-inset);
+}
+.vector-source-scroll canvas {
+  display: block;
+}
+.vector-source-text {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-family: var(--font-reading);
+  font-weight: var(--paper-body-weight, var(--observatory-paper-body-weight));
+  font-size: var(--paper-input-size, var(--observatory-paper-body-compact-size));
+  line-height: var(--observatory-paper-body-compact-line);
+  margin-block: var(--space-3);
+}
+.vector-controls select {
+  inline-size: 100%;
+}
+/* Plotly requires an explicit, stable viewport even in the source shelf. */
+.vector-calculus .math-plot {
+  block-size: var(--layout-dialog);
+}

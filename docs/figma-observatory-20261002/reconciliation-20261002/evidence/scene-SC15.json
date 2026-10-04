@@ -1,0 +1,73 @@
+{
+  "boardId": "60:10519",
+  "rows": [
+    {
+      "id": "SC15",
+      "name": "ObservatoryStudyStation",
+      "ownerId": "20:6641",
+      "rowId": "68:10665",
+      "assetId": "68:10678",
+      "ownerInstanceId": "68:10666",
+      "svgSha256": "9b2b6db29c72773396014072ad1f2b9c2417109f80560d4f4007e2960702b6f2",
+      "vectorNodes": 9,
+      "ownerPreserved": true,
+      "representation": "Existing source-contract component preserved; linked side-by-side with one editable asset generated from the actual React source using synthetic static props."
+    }
+  ],
+  "count": 1,
+  "createdNodeIds": {
+    "encoding": "figma-id-ranges-v1",
+    "count": 23,
+    "groups": [
+      [
+        "68:",
+        [
+          [
+            10665,
+            10666
+          ],
+          [
+            10678,
+            10687
+          ]
+        ]
+      ],
+      [
+        "I68:10666;20:",
+        [
+          [
+            6642,
+            6647
+          ],
+          [
+            6649,
+            6652
+          ]
+        ]
+      ],
+      [
+        "I68:10666;20:6647;15:",
+        [
+          74
+        ]
+      ]
+    ],
+    "literal": []
+  },
+  "mutatedNodeIds": {
+    "encoding": "figma-id-ranges-v1",
+    "count": 1,
+    "groups": [
+      [
+        "60:",
+        [
+          10519
+        ]
+      ]
+    ],
+    "literal": []
+  },
+  "originalOwnersPreserved": true,
+  "originalWorldPreserved": true,
+  "layout": "Separate auto-layout board beyond existing rightmost node; existing cards not moved or resized."
+}

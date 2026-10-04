@@ -1,0 +1,822 @@
+{
+  "boardId": "75:77772",
+  "frames": [
+    {
+      "feature": "XD06",
+      "stateIndex": 0,
+      "state": "40개 이하",
+      "profile": "ipad-landscape",
+      "id": "75:77795",
+      "returnTarget": "28:8964",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD06",
+      "stateIndex": 1,
+      "state": "처음40개",
+      "profile": "ipad-landscape",
+      "id": "75:77812",
+      "returnTarget": "28:8964",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD06",
+      "stateIndex": 2,
+      "state": "80개 등40개단위 확장",
+      "profile": "ipad-landscape",
+      "id": "75:77945",
+      "returnTarget": "28:8964",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD06",
+      "stateIndex": 3,
+      "state": "전체펼침",
+      "profile": "ipad-landscape",
+      "id": "75:78198",
+      "returnTarget": "28:8964",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD06",
+      "stateIndex": 4,
+      "state": "접힘",
+      "profile": "iphone-portrait",
+      "id": "75:78566",
+      "returnTarget": "28:8964",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD06",
+      "stateIndex": 5,
+      "state": "접힘해제",
+      "profile": "iphone-portrait",
+      "id": "75:78574",
+      "returnTarget": "28:8964",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD06",
+      "stateIndex": 6,
+      "state": "자기평가80개",
+      "profile": "iphone-portrait",
+      "id": "75:78709",
+      "returnTarget": "28:8964",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD06",
+      "stateIndex": 7,
+      "state": "자기평가전체120개",
+      "profile": "iphone-portrait",
+      "id": "75:78964",
+      "returnTarget": "28:8964",
+      "returnConnection": "figma-node-url"
+    }
+  ],
+  "mappings": [
+    {
+      "id": "UI29",
+      "name": "ProgressiveHistory",
+      "ownerId": "75:79609",
+      "defaultComponentId": "75:79353",
+      "variants": [
+        {
+          "id": "75:79353",
+          "name": "Width=wide, State=representative",
+          "properties": {
+            "Width": "wide",
+            "State": "representative"
+          }
+        },
+        {
+          "id": "75:79481",
+          "name": "Width=narrow, State=representative",
+          "properties": {
+            "Width": "narrow",
+            "State": "representative"
+          }
+        }
+      ],
+      "source": "src/ui/progressive-history.tsx",
+      "sourceSha256": "93609c7e6d310b8b770f10a227b9b257d0c9b33403594d50e7d0c862a023fd77",
+      "signature": "({ data, name, total, label, children, collapsible }: Props): Element"
+    }
+  ],
+  "entryRequests": [
+    {
+      "feature": "XD06",
+      "label": "공부 기록 더 보기",
+      "sourceId": "28:8964",
+      "targetId": "75:77795",
+      "profile": "ipad-landscape"
+    },
+    {
+      "feature": "XD06",
+      "label": "공부 기록 더 보기",
+      "sourceId": "28:8964",
+      "targetId": "75:78566",
+      "profile": "iphone-portrait"
+    }
+  ],
+  "links": [
+    {
+      "from": "75:77779",
+      "to": "75:77795",
+      "action": "inspect-state",
+      "connection": "native-prototype"
+    },
+    {
+      "from": "75:77781",
+      "to": "75:77812",
+      "action": "inspect-state",
+      "connection": "native-prototype"
+    },
+    {
+      "from": "75:77783",
+      "to": "75:77945",
+      "action": "inspect-state",
+      "connection": "native-prototype"
+    },
+    {
+      "from": "75:77785",
+      "to": "75:78198",
+      "action": "inspect-state",
+      "connection": "native-prototype"
+    },
+    {
+      "from": "75:77787",
+      "to": "75:78566",
+      "action": "inspect-state",
+      "connection": "native-prototype"
+    },
+    {
+      "from": "75:77789",
+      "to": "75:78574",
+      "action": "inspect-state",
+      "connection": "native-prototype"
+    },
+    {
+      "from": "75:77791",
+      "to": "75:78709",
+      "action": "inspect-state",
+      "connection": "native-prototype"
+    },
+    {
+      "from": "75:77793",
+      "to": "75:78964",
+      "action": "inspect-state",
+      "connection": "native-prototype"
+    },
+    {
+      "from": "75:77937",
+      "to": "75:77945",
+      "action": "공부 기록 더 보기",
+      "connection": "native-prototype"
+    },
+    {
+      "from": "75:77939",
+      "to": "75:78198",
+      "action": "공부 기록 모두 펼치기",
+      "connection": "native-prototype"
+    },
+    {
+      "from": "75:78192",
+      "to": "75:78198",
+      "action": "공부 기록 모두 펼치기",
+      "connection": "native-prototype"
+    },
+    {
+      "from": "75:78568",
+      "to": "75:78574",
+      "action": "toggle",
+      "connection": "native-prototype"
+    },
+    {
+      "from": "75:78576",
+      "to": "75:78566",
+      "action": "toggle",
+      "connection": "native-prototype"
+    },
+    {
+      "from": "75:78701",
+      "to": "75:78709",
+      "action": "자기 평가 기록 더 보기",
+      "connection": "native-prototype"
+    },
+    {
+      "from": "75:78703",
+      "to": "75:78964",
+      "action": "자기 평가 기록 모두 펼치기",
+      "connection": "native-prototype"
+    },
+    {
+      "from": "75:78711",
+      "to": "75:78566",
+      "action": "toggle",
+      "connection": "native-prototype"
+    },
+    {
+      "from": "75:78958",
+      "to": "75:78964",
+      "action": "자기 평가 기록 모두 펼치기",
+      "connection": "native-prototype"
+    },
+    {
+      "from": "75:78966",
+      "to": "75:78566",
+      "action": "toggle",
+      "connection": "native-prototype"
+    }
+  ],
+  "unconnectedActions": [],
+  "createdNodeIdsEncoded": {
+    "format": "prefix-plus-inclusive-ranges-v1",
+    "literal": [],
+    "groups": [
+      [
+        "75:",
+        [
+          [
+            77772,
+            77779
+          ],
+          [
+            77781,
+            77781
+          ],
+          [
+            77783,
+            77783
+          ],
+          [
+            77785,
+            77785
+          ],
+          [
+            77787,
+            77787
+          ],
+          [
+            77789,
+            77789
+          ],
+          [
+            77791,
+            77791
+          ],
+          [
+            77793,
+            77793
+          ],
+          [
+            77795,
+            77808
+          ],
+          [
+            77811,
+            77937
+          ],
+          [
+            77939,
+            77939
+          ],
+          [
+            77941,
+            77941
+          ],
+          [
+            77944,
+            78190
+          ],
+          [
+            78192,
+            78192
+          ],
+          [
+            78194,
+            78194
+          ],
+          [
+            78197,
+            78562
+          ],
+          [
+            78565,
+            78568
+          ],
+          [
+            78570,
+            78570
+          ],
+          [
+            78573,
+            78576
+          ],
+          [
+            78578,
+            78701
+          ],
+          [
+            78703,
+            78703
+          ],
+          [
+            78705,
+            78705
+          ],
+          [
+            78708,
+            78711
+          ],
+          [
+            78713,
+            78956
+          ],
+          [
+            78958,
+            78958
+          ],
+          [
+            78960,
+            78960
+          ],
+          [
+            78963,
+            78966
+          ],
+          [
+            78968,
+            79330
+          ],
+          [
+            79333,
+            79333
+          ],
+          [
+            79352,
+            79477
+          ],
+          [
+            79479,
+            79479
+          ],
+          [
+            79481,
+            79605
+          ],
+          [
+            79607,
+            79607
+          ],
+          [
+            79609,
+            79610
+          ]
+        ]
+      ],
+      [
+        "I75:77779;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:77781;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:77783;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:77785;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:77787;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:77789;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:77791;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:77793;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:77808;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:77937;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:77939;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:77941;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:78190;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:78192;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:78194;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:78562;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:78568;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:78570;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:78576;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:78701;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:78703;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:78705;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:78711;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:78956;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:78958;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:78960;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:78966;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:79330;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:79477;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:79479;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:79605;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:79607;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:79610;75:",
+        [
+          [
+            79354,
+            79477
+          ],
+          [
+            79479,
+            79479
+          ]
+        ]
+      ],
+      [
+        "I75:79610;75:79477;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:79610;75:79479;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ]
+    ]
+  },
+  "mutatedNodeIdsEncoded": {
+    "format": "prefix-plus-inclusive-ranges-v1",
+    "literal": [],
+    "groups": [
+      [
+        "75:",
+        [
+          [
+            77779,
+            77779
+          ],
+          [
+            77781,
+            77781
+          ],
+          [
+            77783,
+            77783
+          ],
+          [
+            77785,
+            77785
+          ],
+          [
+            77787,
+            77787
+          ],
+          [
+            77789,
+            77789
+          ],
+          [
+            77791,
+            77791
+          ],
+          [
+            77793,
+            77793
+          ],
+          [
+            77808,
+            77808
+          ],
+          [
+            77937,
+            77937
+          ],
+          [
+            77939,
+            77939
+          ],
+          [
+            77941,
+            77941
+          ],
+          [
+            78192,
+            78192
+          ],
+          [
+            78194,
+            78194
+          ],
+          [
+            78562,
+            78562
+          ],
+          [
+            78568,
+            78568
+          ],
+          [
+            78570,
+            78570
+          ],
+          [
+            78576,
+            78576
+          ],
+          [
+            78701,
+            78701
+          ],
+          [
+            78703,
+            78703
+          ],
+          [
+            78705,
+            78705
+          ],
+          [
+            78711,
+            78711
+          ],
+          [
+            78958,
+            78958
+          ],
+          [
+            78960,
+            78960
+          ],
+          [
+            78966,
+            78966
+          ],
+          [
+            79330,
+            79330
+          ]
+        ]
+      ]
+    ]
+  },
+  "counts": {
+    "features": 1,
+    "states": 8,
+    "newComponents": 1,
+    "links": 18,
+    "nativeInstances": 35
+  },
+  "sourceFrozenAt": "2026-10-02T02:37:30.526Z"
+}

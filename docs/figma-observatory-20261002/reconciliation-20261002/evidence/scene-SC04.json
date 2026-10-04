@@ -1,0 +1,66 @@
+{
+  "boardId": "60:10519",
+  "rows": [
+    {
+      "id": "SC04",
+      "name": "ObservatoryDesk",
+      "ownerId": "20:6484",
+      "rowId": "60:10520",
+      "assetId": "60:10533",
+      "ownerInstanceId": "60:10521",
+      "svgSha256": "8cfe74ceef38463d2f1b6b70e94b1908444c6844cbe113d67536d1bde535e56e",
+      "vectorNodes": 34,
+      "ownerPreserved": true,
+      "representation": "Existing source-contract component preserved; linked side-by-side with one editable asset generated from the actual React source using synthetic static props."
+    }
+  ],
+  "count": 1,
+  "createdNodeIds": {
+    "encoding": "figma-id-ranges-v1",
+    "count": 49,
+    "groups": [
+      [
+        "60:",
+        [
+          [
+            10519,
+            10521
+          ],
+          [
+            10533,
+            10567
+          ]
+        ]
+      ],
+      [
+        "I60:10521;20:",
+        [
+          [
+            6485,
+            6490
+          ],
+          [
+            6492,
+            6495
+          ]
+        ]
+      ],
+      [
+        "I60:10521;20:6490;15:",
+        [
+          74
+        ]
+      ]
+    ],
+    "literal": []
+  },
+  "mutatedNodeIds": {
+    "encoding": "figma-id-ranges-v1",
+    "count": 0,
+    "groups": [],
+    "literal": []
+  },
+  "originalOwnersPreserved": true,
+  "originalWorldPreserved": true,
+  "layout": "Separate auto-layout board beyond existing rightmost node; existing cards not moved or resized."
+}

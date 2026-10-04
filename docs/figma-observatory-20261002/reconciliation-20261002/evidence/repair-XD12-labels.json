@@ -1,0 +1,81 @@
+{
+  "changed": [
+    {
+      "frameId": "75:85526",
+      "controlId": "75:85554",
+      "oldLabel": "수식 작업대",
+      "newLabel": "탐구 작업대",
+      "reactionsPreserved": true
+    },
+    {
+      "frameId": "75:85526",
+      "controlId": "75:85556",
+      "oldLabel": "기록 벽",
+      "newLabel": "기록과 계획",
+      "reactionsPreserved": true
+    },
+    {
+      "frameId": "75:85562",
+      "controlId": "75:85590",
+      "oldLabel": "수식 작업대",
+      "newLabel": "탐구 작업대",
+      "reactionsPreserved": true
+    },
+    {
+      "frameId": "75:85562",
+      "controlId": "75:85592",
+      "oldLabel": "기록 벽",
+      "newLabel": "기록과 계획",
+      "reactionsPreserved": true
+    },
+    {
+      "frameId": "75:85598",
+      "controlId": "75:85626",
+      "oldLabel": "수식 작업대",
+      "newLabel": "탐구 작업대",
+      "reactionsPreserved": true
+    },
+    {
+      "frameId": "75:85598",
+      "controlId": "75:85628",
+      "oldLabel": "기록 벽",
+      "newLabel": "기록과 계획",
+      "reactionsPreserved": true
+    },
+    {
+      "frameId": "75:85634",
+      "controlId": "75:85662",
+      "oldLabel": "수식 작업대",
+      "newLabel": "탐구 작업대",
+      "reactionsPreserved": true
+    },
+    {
+      "frameId": "75:85634",
+      "controlId": "75:85664",
+      "oldLabel": "기록 벽",
+      "newLabel": "기록과 계획",
+      "reactionsPreserved": true
+    }
+  ],
+  "createdNodeIds": [],
+  "mutatedNodeIds": [
+    "75:85554",
+    "I75:85554;16:109",
+    "75:85556",
+    "I75:85556;16:109",
+    "75:85590",
+    "I75:85590;16:109",
+    "75:85592",
+    "I75:85592;16:109",
+    "75:85626",
+    "I75:85626;16:109",
+    "75:85628",
+    "I75:85628;16:109",
+    "75:85662",
+    "I75:85662;16:109",
+    "75:85664",
+    "I75:85664;16:109"
+  ],
+  "errors": [],
+  "scope": "Only 8 supplemental XD12 demo Button labels; actual ObservatoryNavigation instance and all link destinations retained."
+}

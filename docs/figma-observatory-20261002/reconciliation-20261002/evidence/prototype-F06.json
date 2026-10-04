@@ -1,0 +1,837 @@
+{
+  "pageId": "7:76",
+  "createdNodeIds": {
+    "encoding": "figma-factorized-id-ranges-v1",
+    "count": 173,
+    "ranges": [
+      [
+        "68:",
+        [
+          [
+            62802,
+            62803
+          ],
+          [
+            62866,
+            62883
+          ],
+          [
+            62942,
+            62959
+          ],
+          [
+            63018,
+            63035
+          ],
+          [
+            63094,
+            63111
+          ],
+          [
+            63170,
+            63187
+          ],
+          [
+            63246,
+            63263
+          ],
+          [
+            63322,
+            63339
+          ],
+          [
+            63398,
+            63402
+          ],
+          [
+            63426,
+            63438
+          ],
+          [
+            63497,
+            63501
+          ],
+          [
+            63526,
+            63537
+          ],
+          63540,
+          63543,
+          63546,
+          63549,
+          63552,
+          63555,
+          63558,
+          63561,
+          63564,
+          63567
+        ]
+      ]
+    ],
+    "literal": [],
+    "products": []
+  },
+  "mutatedNodeIds": {
+    "encoding": "figma-factorized-id-ranges-v1",
+    "count": 21,
+    "ranges": [
+      [
+        "68:",
+        [
+          63537,
+          63540,
+          63543,
+          63546,
+          63549,
+          63552,
+          63555,
+          63558,
+          63561,
+          63564,
+          63567
+        ]
+      ],
+      [
+        "7:",
+        [
+          76
+        ]
+      ]
+    ],
+    "literal": [],
+    "products": [
+      {
+        "prefixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 9,
+          "ranges": [
+            [
+              "I68:",
+              [
+                62803,
+                62883,
+                62959,
+                63035,
+                63111,
+                63187,
+                63263,
+                63339,
+                63438
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": []
+        },
+        "suffixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 1,
+          "ranges": [
+            [
+              "63:",
+              [
+                14175
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": []
+        }
+      }
+    ]
+  },
+  "topLevelNodeIds": [
+    "68:62802",
+    "68:62882",
+    "68:62958",
+    "68:63034",
+    "68:63110",
+    "68:63186",
+    "68:63262",
+    "68:63338",
+    "68:63437"
+  ],
+  "instanceDescendantCounts": {
+    "encoding": "columnar-v1",
+    "columns": [
+      "id",
+      "count"
+    ],
+    "rows": [
+      [
+        "68:62803",
+        58
+      ],
+      [
+        "68:62883",
+        58
+      ],
+      [
+        "68:62959",
+        58
+      ],
+      [
+        "68:63035",
+        58
+      ],
+      [
+        "68:63111",
+        58
+      ],
+      [
+        "68:63187",
+        58
+      ],
+      [
+        "68:63263",
+        58
+      ],
+      [
+        "68:63339",
+        58
+      ],
+      [
+        "68:63402",
+        23
+      ],
+      [
+        "68:63438",
+        58
+      ],
+      [
+        "68:63501",
+        24
+      ],
+      [
+        "68:63537",
+        1
+      ],
+      [
+        "68:63540",
+        1
+      ],
+      [
+        "68:63543",
+        1
+      ],
+      [
+        "68:63546",
+        1
+      ],
+      [
+        "68:63549",
+        1
+      ],
+      [
+        "68:63552",
+        1
+      ],
+      [
+        "68:63555",
+        1
+      ],
+      [
+        "68:63558",
+        1
+      ],
+      [
+        "68:63561",
+        1
+      ],
+      [
+        "68:63564",
+        1
+      ],
+      [
+        "68:63567",
+        1
+      ]
+    ]
+  },
+  "flow": {
+    "id": "F06",
+    "startNodeId": "68:62802",
+    "originalStepCount": 7,
+    "stepNodes": [
+      {
+        "nodeId": "68:62802",
+        "originalIndex": 0,
+        "originalText": "R29"
+      },
+      {
+        "nodeId": "68:62882",
+        "originalIndex": 1,
+        "originalText": "범위/덱"
+      },
+      {
+        "nodeId": "68:62958",
+        "originalIndex": 2,
+        "originalText": "글·필기"
+      },
+      {
+        "nodeId": "68:63034",
+        "originalIndex": 3,
+        "originalText": "설명 공개"
+      },
+      {
+        "nodeId": "68:63110",
+        "originalIndex": 4,
+        "originalText": "자기 평가"
+      },
+      {
+        "nodeId": "68:63186",
+        "originalIndex": 5,
+        "originalText": "다음 카드"
+      },
+      {
+        "nodeId": "68:63262",
+        "originalIndex": 6,
+        "originalText": "평가 되돌리기"
+      }
+    ],
+    "edges": {
+      "encoding": "columnar-v1",
+      "columns": [
+        "controlId",
+        "fromFrameId",
+        "toFrameId",
+        "kind",
+        "branch",
+        "expectedReturn",
+        "callerIsHome",
+        "directEntryFallback",
+        "toRouteId",
+        "bindingLocation"
+      ],
+      "rows": [
+        [
+          "68:63537",
+          "68:62802",
+          "68:62882",
+          "NAVIGATE",
+          "primary",
+          false,
+          false,
+          null,
+          "R29",
+          "prototype-panel"
+        ],
+        [
+          "68:63540",
+          "68:62882",
+          "68:62958",
+          "NAVIGATE",
+          "primary",
+          false,
+          false,
+          null,
+          "R29",
+          "prototype-panel"
+        ],
+        [
+          "68:63543",
+          "68:62958",
+          "68:63034",
+          "NAVIGATE",
+          "primary",
+          false,
+          false,
+          null,
+          "R29",
+          "prototype-panel"
+        ],
+        [
+          "68:63546",
+          "68:63034",
+          "68:63110",
+          "NAVIGATE",
+          "primary",
+          false,
+          false,
+          null,
+          "R29",
+          "prototype-panel"
+        ],
+        [
+          "68:63549",
+          "68:63110",
+          "68:63186",
+          "NAVIGATE",
+          "primary",
+          false,
+          false,
+          null,
+          "R29",
+          "prototype-panel"
+        ],
+        [
+          "68:63552",
+          "68:63186",
+          "68:63262",
+          "NAVIGATE",
+          "primary",
+          false,
+          false,
+          null,
+          "R29",
+          "prototype-panel"
+        ],
+        [
+          "68:63555",
+          "68:63262",
+          "68:62802",
+          "NAVIGATE",
+          "restart",
+          null,
+          null,
+          null,
+          "R29",
+          "prototype-panel"
+        ],
+        [
+          "68:63558",
+          "68:62958",
+          "68:63338",
+          "NAVIGATE",
+          "scenario",
+          null,
+          null,
+          null,
+          "R29",
+          "prototype-panel"
+        ],
+        [
+          "68:63561",
+          "68:63338",
+          "68:62958",
+          "NAVIGATE",
+          "return",
+          true,
+          null,
+          null,
+          "R29",
+          "prototype-panel"
+        ],
+        [
+          "68:63564",
+          "68:62958",
+          "68:63437",
+          "NAVIGATE",
+          "scenario",
+          null,
+          null,
+          null,
+          "R29",
+          "prototype-panel"
+        ],
+        [
+          "68:63567",
+          "68:63437",
+          "68:62958",
+          "NAVIGATE",
+          "return",
+          true,
+          null,
+          null,
+          "R29",
+          "prototype-panel"
+        ]
+      ]
+    },
+    "screenInstances": {
+      "encoding": "columnar-v1",
+      "columns": [
+        "nodeId",
+        "mainComponentId",
+        "sourceFrameId",
+        "stageKey"
+      ],
+      "rows": [
+        [
+          "68:62803",
+          "63:14176",
+          "28:9251",
+          "F06-S01"
+        ],
+        [
+          "68:62883",
+          "63:14176",
+          "28:9251",
+          "F06-S02"
+        ],
+        [
+          "68:62959",
+          "63:14176",
+          "28:9251",
+          "F06-S03"
+        ],
+        [
+          "68:63035",
+          "63:14176",
+          "28:9251",
+          "F06-S04"
+        ],
+        [
+          "68:63111",
+          "63:14176",
+          "28:9251",
+          "F06-S05"
+        ],
+        [
+          "68:63187",
+          "63:14176",
+          "28:9251",
+          "F06-S06"
+        ],
+        [
+          "68:63263",
+          "63:14176",
+          "28:9251",
+          "F06-S07"
+        ],
+        [
+          "68:63339",
+          "63:14176",
+          "28:9251",
+          "F06-B1"
+        ],
+        [
+          "68:63438",
+          "63:14176",
+          "28:9251",
+          "F06-B2"
+        ]
+      ]
+    },
+    "taskReturnInstances": {
+      "encoding": "columnar-v1",
+      "columns": [
+        "stageKey",
+        "nodeId",
+        "componentId",
+        "context",
+        "callerStageKey",
+        "studySourceStageKey",
+        "visible",
+        "callerControlId"
+      ],
+      "rows": [
+        [
+          "F06-S01",
+          "I68:62803;63:14175",
+          "53:13179",
+          "none",
+          null,
+          null,
+          false,
+          null
+        ],
+        [
+          "F06-S02",
+          "I68:62883;63:14175",
+          "53:13179",
+          "none",
+          null,
+          null,
+          false,
+          null
+        ],
+        [
+          "F06-S03",
+          "I68:62959;63:14175",
+          "53:13179",
+          "none",
+          null,
+          null,
+          false,
+          null
+        ],
+        [
+          "F06-S04",
+          "I68:63035;63:14175",
+          "53:13179",
+          "none",
+          null,
+          null,
+          false,
+          null
+        ],
+        [
+          "F06-S05",
+          "I68:63111;63:14175",
+          "53:13179",
+          "none",
+          null,
+          null,
+          false,
+          null
+        ],
+        [
+          "F06-S06",
+          "I68:63187;63:14175",
+          "53:13179",
+          "none",
+          null,
+          null,
+          false,
+          null
+        ],
+        [
+          "F06-S07",
+          "I68:63263;63:14175",
+          "53:13179",
+          "none",
+          null,
+          null,
+          false,
+          null
+        ],
+        [
+          "F06-B1",
+          "I68:63339;63:14175",
+          "53:13179",
+          "none",
+          null,
+          null,
+          false,
+          null
+        ],
+        [
+          "F06-B2",
+          "I68:63438;63:14175",
+          "53:13179",
+          "none",
+          null,
+          null,
+          false,
+          null
+        ]
+      ]
+    }
+  },
+  "stageMap": {
+    "encoding": "columnar-v1",
+    "columns": [
+      "key",
+      "id",
+      "instanceId",
+      "actionPanelId",
+      "sourceId",
+      "originalIndex"
+    ],
+    "rows": [
+      [
+        "F06-S01",
+        "68:62802",
+        "68:62803",
+        "68:62871",
+        "R29",
+        0
+      ],
+      [
+        "F06-S02",
+        "68:62882",
+        "68:62883",
+        "68:62947",
+        "R29",
+        1
+      ],
+      [
+        "F06-S03",
+        "68:62958",
+        "68:62959",
+        "68:63023",
+        "R29",
+        2
+      ],
+      [
+        "F06-S04",
+        "68:63034",
+        "68:63035",
+        "68:63099",
+        "R29",
+        3
+      ],
+      [
+        "F06-S05",
+        "68:63110",
+        "68:63111",
+        "68:63175",
+        "R29",
+        4
+      ],
+      [
+        "F06-S06",
+        "68:63186",
+        "68:63187",
+        "68:63251",
+        "R29",
+        5
+      ],
+      [
+        "F06-S07",
+        "68:63262",
+        "68:63263",
+        "68:63327",
+        "R29",
+        6
+      ],
+      [
+        "F06-B1",
+        "68:63338",
+        "68:63339",
+        "68:63426",
+        "R29",
+        null
+      ],
+      [
+        "F06-B2",
+        "68:63437",
+        "68:63438",
+        "68:63526",
+        "R29",
+        null
+      ]
+    ]
+  },
+  "bindings": {
+    "encoding": "columnar-v1",
+    "columns": [
+      "fromKey",
+      "label",
+      "screenControlId",
+      "prototypeControlId",
+      "toKey"
+    ],
+    "rows": [
+      [
+        "F06-S01",
+        "예약 복습",
+        null,
+        "68:63537",
+        "F06-S02"
+      ],
+      [
+        "F06-S02",
+        "기본 덱",
+        null,
+        "68:63540",
+        "F06-S03"
+      ],
+      [
+        "F06-S03",
+        "설명 확인하고 평가",
+        null,
+        "68:63543",
+        "F06-S04"
+      ],
+      [
+        "F06-S04",
+        "설명 확인하고 평가",
+        null,
+        "68:63546",
+        "F06-S05"
+      ],
+      [
+        "F06-S05",
+        "알맞음",
+        null,
+        "68:63549",
+        "F06-S06"
+      ],
+      [
+        "F06-S06",
+        "메모만 저장하고 다음",
+        null,
+        "68:63552",
+        "F06-S07"
+      ],
+      [
+        "F06-S07",
+        "과업 처음부터 다시 보기",
+        null,
+        "68:63555",
+        "F06-S01"
+      ],
+      [
+        "F06-S03",
+        "되돌리기 조건 보기",
+        null,
+        "68:63558",
+        "F06-B1"
+      ],
+      [
+        "F06-B1",
+        "호출한 과업으로 돌아가기",
+        null,
+        "68:63561",
+        "F06-S03"
+      ],
+      [
+        "F06-S03",
+        "보관 실패 조건 보기",
+        null,
+        "68:63564",
+        "F06-B2"
+      ],
+      [
+        "F06-B2",
+        "작성한 내용으로 돌아가기",
+        null,
+        "68:63567",
+        "F06-S03"
+      ]
+    ]
+  },
+  "missingSourceActions": {
+    "encoding": "columnar-v1",
+    "columns": [
+      "fromKey",
+      "label",
+      "sourceId"
+    ],
+    "rows": [
+      [
+        "F06-S01",
+        "예약 복습",
+        "R29"
+      ],
+      [
+        "F06-S02",
+        "기본 덱",
+        "R29"
+      ],
+      [
+        "F06-S03",
+        "설명 확인하고 평가",
+        "R29"
+      ],
+      [
+        "F06-S04",
+        "설명 확인하고 평가",
+        "R29"
+      ],
+      [
+        "F06-S05",
+        "알맞음",
+        "R29"
+      ],
+      [
+        "F06-S06",
+        "메모만 저장하고 다음",
+        "R29"
+      ]
+    ]
+  },
+  "counts": {
+    "originalSteps": 7,
+    "stages": 9,
+    "edges": 11,
+    "actualScreenBindings": 0,
+    "prototypePanelBindings": 11,
+    "taskReturnInstances": 9,
+    "visibleTaskReturns": 0,
+    "virtualInstanceDescendants": 580
+  },
+  "runtimeVerified": false
+}

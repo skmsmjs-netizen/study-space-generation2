@@ -1,0 +1,161 @@
+{
+  "pageId": "7:73",
+  "entryLinks": [
+    {
+      "feature": "XD07",
+      "label": "현재 조건을 A로 고정",
+      "sourceId": "28:12749",
+      "targetId": "75:79989",
+      "profile": "ipad-landscape",
+      "profileLabel": "넓은 상태",
+      "targetState": "A없음",
+      "controlId": "83:100585",
+      "connected": true,
+      "connection": "figma-node-url",
+      "presentation": "figma-review-panel",
+      "panelId": "83:100579",
+      "sourcePreserved": true
+    },
+    {
+      "feature": "XD07",
+      "label": "현재 조건을 A로 고정",
+      "sourceId": "28:12906",
+      "targetId": "75:79999",
+      "profile": "iphone-portrait",
+      "profileLabel": "좁은 상태",
+      "targetState": "함수 A/B 같은축",
+      "controlId": "83:100594",
+      "connected": true,
+      "connection": "figma-node-url",
+      "presentation": "figma-review-panel",
+      "panelId": "83:100588",
+      "sourcePreserved": true
+    }
+  ],
+  "sources": [
+    {
+      "sourceId": "28:12749",
+      "before": {
+        "x": 100,
+        "y": 2251,
+        "width": 1376,
+        "height": 1032,
+        "parentId": "7:73",
+        "childIds": [
+          "28:12750",
+          "28:12753",
+          "56:27879",
+          "28:12762"
+        ]
+      },
+      "after": {
+        "x": 100,
+        "y": 2251,
+        "width": 1376,
+        "height": 1032,
+        "parentId": "7:73",
+        "childIds": [
+          "28:12750",
+          "28:12753",
+          "56:27879",
+          "28:12762"
+        ]
+      },
+      "geometryPreserved": true
+    },
+    {
+      "sourceId": "28:12906",
+      "before": {
+        "x": 1572,
+        "y": 2251,
+        "width": 402,
+        "height": 681,
+        "parentId": "7:73",
+        "childIds": [
+          "28:12907",
+          "28:12910",
+          "56:27903",
+          "28:12919"
+        ]
+      },
+      "after": {
+        "x": 1572,
+        "y": 2251,
+        "width": 402,
+        "height": 681,
+        "parentId": "7:73",
+        "childIds": [
+          "28:12907",
+          "28:12910",
+          "56:27903",
+          "28:12919"
+        ]
+      },
+      "geometryPreserved": true
+    }
+  ],
+  "panels": [
+    {
+      "sourceId": "28:12749",
+      "panelId": "83:100579",
+      "x": 1524,
+      "y": 2059,
+      "width": 360,
+      "height": 130,
+      "overlapCount": 0
+    },
+    {
+      "sourceId": "28:12906",
+      "panelId": "83:100588",
+      "x": 2022,
+      "y": 2059,
+      "width": 360,
+      "height": 130,
+      "overlapCount": 0
+    }
+  ],
+  "decisions": [
+    {
+      "sourceId": "28:12749",
+      "feature": "XD07",
+      "profile": "ipad-landscape",
+      "reason": "No unambiguous existing product button with this literal label."
+    },
+    {
+      "sourceId": "28:12906",
+      "feature": "XD07",
+      "profile": "iphone-portrait",
+      "reason": "No unambiguous existing product button with this literal label."
+    }
+  ],
+  "createdNodeIds": [
+    "83:100579",
+    "83:100580",
+    "83:100581",
+    "83:100582",
+    "83:100583",
+    "83:100584",
+    "83:100585",
+    "I83:100585;16:109",
+    "83:100588",
+    "83:100589",
+    "83:100590",
+    "83:100591",
+    "83:100592",
+    "83:100593",
+    "83:100594",
+    "I83:100594;16:109"
+  ],
+  "mutatedNodeIds": [
+    "83:100585",
+    "83:100594"
+  ],
+  "counts": {
+    "requests": 2,
+    "connected": 2,
+    "productControls": 0,
+    "reviewControls": 2,
+    "panels": 2
+  },
+  "sourceFrozenAt": "2026-10-02T02:37:30.526Z"
+}

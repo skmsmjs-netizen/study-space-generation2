@@ -1,0 +1,73 @@
+{
+  "pageId": "68:58623",
+  "createdNodeIds": [
+    "263:33460",
+    "263:33461",
+    "263:33462",
+    "263:33463"
+  ],
+  "mutatedNodeIds": [
+    "263:33460",
+    "68:69753",
+    "68:69751",
+    "263:33461",
+    "68:69763",
+    "68:69761",
+    "263:33462",
+    "68:69773",
+    "68:69771",
+    "263:33463",
+    "68:69783",
+    "68:69781"
+  ],
+  "results": [
+    {
+      "id": "68:69751",
+      "name": "관측 상태 · loading",
+      "pattern": "L198",
+      "structure": "263:33460",
+      "preserved": true,
+      "viewport": {
+        "width": 544,
+        "height": 384,
+        "overflow": "NONE"
+      }
+    },
+    {
+      "id": "68:69761",
+      "name": "관측 상태 · render-error",
+      "pattern": "L198",
+      "structure": "263:33461",
+      "preserved": true,
+      "viewport": {
+        "width": 544,
+        "height": 384,
+        "overflow": "NONE"
+      }
+    },
+    {
+      "id": "68:69771",
+      "name": "관측 상태 · invalid",
+      "pattern": "L198",
+      "structure": "263:33462",
+      "preserved": true,
+      "viewport": {
+        "width": 544,
+        "height": 384,
+        "overflow": "NONE"
+      }
+    },
+    {
+      "id": "68:69781",
+      "name": "관측 상태 · saving",
+      "pattern": "L198",
+      "structure": "263:33463",
+      "preserved": true,
+      "viewport": {
+        "width": 544,
+        "height": 384,
+        "overflow": "NONE"
+      }
+    }
+  ]
+}

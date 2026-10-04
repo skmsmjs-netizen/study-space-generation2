@@ -1,0 +1,473 @@
+{
+  "boardId": "75:74316",
+  "frames": [
+    {
+      "feature": "XD04",
+      "stateIndex": 0,
+      "state": "정상 숨김",
+      "profile": "ipad-landscape",
+      "id": "75:74329",
+      "returnTarget": "26:68",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD04",
+      "stateIndex": 1,
+      "state": "읽기 실패",
+      "profile": "iphone-portrait",
+      "id": "75:74336",
+      "returnTarget": "26:1877",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD04",
+      "stateIndex": 2,
+      "state": "쓰기 실패·현재 화면 유지",
+      "profile": "ipad-landscape",
+      "id": "75:74352",
+      "returnTarget": "26:68",
+      "returnConnection": "figma-node-url"
+    }
+  ],
+  "mappings": [
+    {
+      "id": "UI28",
+      "name": "WorkspaceStorageNotice",
+      "ownerId": "75:74396",
+      "defaultComponentId": "75:74374",
+      "variants": [
+        {
+          "id": "75:74374",
+          "name": "Width=wide, State=representative",
+          "properties": {
+            "Width": "wide",
+            "State": "representative"
+          }
+        },
+        {
+          "id": "75:74385",
+          "name": "Width=narrow, State=representative",
+          "properties": {
+            "Width": "narrow",
+            "State": "representative"
+          }
+        }
+      ],
+      "source": "src/ui/study-workspace.tsx",
+      "sourceSha256": "cdf3787c1d7b7fc7ac6dab52a21d53a67b7808b742841d1411636b82accdc33f",
+      "signature": "({ controller }: { controller: { state: WorkState; layout: DeskLayout; setLayout: (next: DeskLayout) => boolean; openTool: (tool: \"code\" | \"math\" | \"memo\" | \"record\") => boolean; change: (next: WorkState) => boolean; error: string; reload: () => void; retry: () => boolean; key: string; }; }): Element | null"
+    }
+  ],
+  "entryRequests": [
+    {
+      "feature": "XD04",
+      "label": "저장 다시 시도",
+      "sourceId": "26:68",
+      "targetId": "75:74329",
+      "profile": "ipad-landscape"
+    },
+    {
+      "feature": "XD04",
+      "label": "저장 다시 시도",
+      "sourceId": "26:1877",
+      "targetId": "75:74336",
+      "profile": "iphone-portrait"
+    }
+  ],
+  "links": [
+    {
+      "from": "75:74323",
+      "to": "75:74329",
+      "action": "inspect-state",
+      "connection": "native-prototype"
+    },
+    {
+      "from": "75:74325",
+      "to": "75:74336",
+      "action": "inspect-state",
+      "connection": "native-prototype"
+    },
+    {
+      "from": "75:74327",
+      "to": "75:74352",
+      "action": "inspect-state",
+      "connection": "native-prototype"
+    },
+    {
+      "from": "75:74360",
+      "to": "75:74329",
+      "action": "저장 다시 시도",
+      "connection": "native-prototype"
+    },
+    {
+      "from": "75:74362",
+      "to": "75:74329",
+      "action": "다시 읽기",
+      "connection": "native-prototype"
+    }
+  ],
+  "unconnectedActions": [
+    {
+      "feature": "XD04",
+      "stateIndex": 1,
+      "action": "저장 다시 시도",
+      "targetState": 0,
+      "reason": "Different viewport specimen; use design-state index. Not connected as product behavior."
+    },
+    {
+      "feature": "XD04",
+      "stateIndex": 1,
+      "action": "다시 읽기",
+      "targetState": 0,
+      "reason": "Different viewport specimen; use design-state index. Not connected as product behavior."
+    }
+  ],
+  "createdNodeIdsEncoded": {
+    "format": "prefix-plus-inclusive-ranges-v1",
+    "literal": [],
+    "groups": [
+      [
+        "75:",
+        [
+          [
+            74316,
+            74323
+          ],
+          [
+            74325,
+            74325
+          ],
+          [
+            74327,
+            74327
+          ],
+          [
+            74329,
+            74332
+          ],
+          [
+            74335,
+            74338
+          ],
+          [
+            74343,
+            74344
+          ],
+          [
+            74346,
+            74346
+          ],
+          [
+            74348,
+            74348
+          ],
+          [
+            74351,
+            74354
+          ],
+          [
+            74359,
+            74360
+          ],
+          [
+            74362,
+            74362
+          ],
+          [
+            74364,
+            74364
+          ],
+          [
+            74367,
+            74367
+          ],
+          [
+            74373,
+            74375
+          ],
+          [
+            74380,
+            74381
+          ],
+          [
+            74383,
+            74383
+          ],
+          [
+            74385,
+            74386
+          ],
+          [
+            74391,
+            74392
+          ],
+          [
+            74394,
+            74394
+          ],
+          [
+            74396,
+            74397
+          ]
+        ]
+      ],
+      [
+        "I75:74323;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:74325;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:74327;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:74332;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:74338;17:",
+        [
+          [
+            194,
+            197
+          ]
+        ]
+      ],
+      [
+        "I75:74344;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:74346;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:74348;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:74354;17:",
+        [
+          [
+            194,
+            197
+          ]
+        ]
+      ],
+      [
+        "I75:74360;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:74362;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:74364;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:74375;17:",
+        [
+          [
+            194,
+            197
+          ]
+        ]
+      ],
+      [
+        "I75:74381;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:74383;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:74386;17:",
+        [
+          [
+            194,
+            197
+          ]
+        ]
+      ],
+      [
+        "I75:74392;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:74394;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:74397;75:",
+        [
+          [
+            74375,
+            74375
+          ],
+          [
+            74380,
+            74381
+          ],
+          [
+            74383,
+            74383
+          ]
+        ]
+      ],
+      [
+        "I75:74397;75:74375;17:",
+        [
+          [
+            194,
+            197
+          ]
+        ]
+      ],
+      [
+        "I75:74397;75:74381;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:74397;75:74383;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ]
+    ]
+  },
+  "mutatedNodeIdsEncoded": {
+    "format": "prefix-plus-inclusive-ranges-v1",
+    "literal": [],
+    "groups": [
+      [
+        "75:",
+        [
+          [
+            74323,
+            74323
+          ],
+          [
+            74325,
+            74325
+          ],
+          [
+            74327,
+            74327
+          ],
+          [
+            74332,
+            74332
+          ],
+          [
+            74348,
+            74348
+          ],
+          [
+            74360,
+            74360
+          ],
+          [
+            74362,
+            74362
+          ],
+          [
+            74364,
+            74364
+          ]
+        ]
+      ]
+    ]
+  },
+  "counts": {
+    "features": 1,
+    "states": 3,
+    "newComponents": 1,
+    "links": 5,
+    "nativeInstances": 22
+  },
+  "sourceFrozenAt": "2026-10-02T02:37:30.526Z"
+}

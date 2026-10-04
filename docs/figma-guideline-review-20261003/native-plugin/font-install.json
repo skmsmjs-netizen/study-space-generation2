@@ -1,0 +1,29 @@
+[
+  {
+    "font": "manseek-paper-extrabold-95.ttf",
+    "family": "ManSeekSong Paper",
+    "style": "ExtraBold",
+    "characters": 11884,
+    "sha256": "d08aa798b0a6228f09554fc8204f1a6dfed7f384c30cc3c1d60342e176b4b037",
+    "woffSource": "generation2/src/ui/fonts/paper/manseek-paper-extrabold-95.woff2",
+    "horizontalMetricsPreserved": true
+  },
+  {
+    "font": "manseek-paper-regular-95.ttf",
+    "family": "ManSeekSong Paper",
+    "style": "Regular",
+    "characters": 11882,
+    "sha256": "223f4e87573ea64cbdc266b02e8b444d8cee076a77706656251979defe5288dc",
+    "woffSource": "generation2/src/ui/fonts/paper/manseek-paper-regular-95.woff2",
+    "horizontalMetricsPreserved": true
+  },
+  {
+    "font": "manseek-paper-bold-95.ttf",
+    "family": "ManSeekSong Paper",
+    "style": "Bold",
+    "characters": 11882,
+    "sha256": "30646a40cda51b4603108e2dd95cc6972206cdddf0e32433f2eb5796437e92d3",
+    "woffSource": "generation2/src/ui/fonts/paper/manseek-paper-bold-95.woff2",
+    "horizontalMetricsPreserved": true
+  }
+]

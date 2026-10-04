@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "policyId": "figma-scene-image-mockups-20261002",
+  "scope": "Figma design representation only; no webapp runtime or storage changes",
+  "adoptedReason": "현재 파일의 레이어 누적을 줄이되 복잡 위젯의 실제 웹앱 기능과 원본을 보존한다.",
+  "defaultRepresentation": {
+    "complexWidgets": "image-mockup",
+    "sourceSceneAssets": "one IMAGE rectangle inside the existing/new source component",
+    "simpleControls": "native Figma text, layout, editable controls and state/prototype links",
+    "noNativeSvgFallback": true
+  },
+  "budgets": {
+    "kind": "project-working-budget",
+    "officialFigmaLimit": false,
+    "sceneAssetImageRectangles": 1,
+    "newNativeSceneSvgNodes": 0,
+    "maxSourceRowsPerImportCall": 8,
+    "maxCopiedSourceOwnerDescendants": 64,
+    "displayMaxWidth": 720,
+    "aspectRatioRelativeTolerance": 0.001,
+    "rationale": "레이어 확대가 발생한 경로에서 1개 이미지로 재사용하고 작은 재시도 배치로 가져온다. 8/64/720과 비율 허용 오차는 프로젝트의 현재 작업값이며 공식 한도나 웹앱 렌더링 상한이 아니다. 필요한 변경은 이 원본과 실제 소비 경로를 함께 갱신한다.",
+    "maxWorldAssetDescendants": 1
+  },
+  "imagePreparation": {
+    "requiredSteps": [
+      "완전한 원본 장면 또는 명시된 합성 상태를 렌더하고 전체 bounds를 유지한다.",
+      "PNG 원본과 SVG/source SHA 및 합성 상태를 로컬 담당 원장에 보관한다.",
+      "Figma upload_assets로 현재 파일에 업로드한다.",
+      "완료된 현재 파일 imageHash와 논리 width/height를 생성기에 전달한다."
+    ],
+    "supportedUploadTool": "upload_assets",
+    "disallowedUploadEntrypoints": [
+      "figma.createImage",
+      "figma.createImageAsync"
+    ],
+    "reuseValidation": [
+      "current-file getImageByHash",
+      "image getSizeAsync aspect ratio",
+      "optional fileKey match",
+      "source contract SHA and existing component/instance IDs",
+      "whole-world master is the named original component on the verified component page, logical 960x400, zero descendants with direct image fill or one complete image rectangle; native vector/contract-only masters are rejected before instance copying"
+    ],
+    "missingImageBehavior": "IMAGE_UPLOAD_REQUIRED before creating scene layers; bytes/URL/SVG-only inputs are not fallback authorization",
+    "unknownOrChangedExistingAsset": "Fail with RASTER_MIGRATION_REQUIRED/readback required. The generator never deletes existing vectors or overlays another scene."
+  },
+  "preservation": {
+    "webAppSourceFilesChanged": false,
+    "functionsRemoved": 0,
+    "keep": [
+      "original local SVG geometry and computed-paint files",
+      "raw source and free writing",
+      "component/owner/instance IDs and their descriptions/source references",
+      "whole-scene viewBox and outer widget boundary",
+      "data IDs, drafts, history, learning meaning, personal layout/preferences",
+      "native Figma controls, important labels, input areas, states and prototype navigation"
+    ],
+    "replacementBoundary": "장식/복잡 렌더링의 Figma 표현만 이미지로 치환한다. 실제 SVG/GPU/ReactFlow/Plotly/GeoGebra/필기/코드 실행은 src/ui 담당 구현이 수행한다."
+  },
+  "entryPoints": [
+    {
+      "file": "docs/figma-observatory-20261002/scripts/build-world-asset.js",
+      "input": "mockup:{imageHash,width:960,height:400,scope:whole-scene,fileKey?}; assetId?; new asset requires source/sourceSha256/svgSha256",
+      "compatibility": "기존 파일명과 반환 assetId/partId/part/bounds/children 유지. 기존 master의 직접 IMAGE fill/자식0 및 IMAGE 사각형/자식1을 전체960×400·동일hash·원본비율 확인 후 그대로 재사용한다. 직접fill의 partId는 assetId, 사각형의 partId는 기존 사각형ID이다. native벡터·다른모양·다른hash는 별도수정이 필요하다. part/svg-only 구 입력은 생성 전 IMAGE_UPLOAD_REQUIRED. 5개 slice의 재실행 대신 완전한 1개 합성 장면을 전달한다."
+    },
+    {
+      "file": "work/figma-reconcile-20261002/scene-assets/import-scenes.js",
+      "input": "entry retains source manifest fields and adds mockup:{imageHash,width,height,fileKey?}",
+      "compatibility": "기존 owner/board/row/asset/ownerInstance/SVG SHA 원장 및 반환 ID 압축 인코딩 유지. 기존 소스 SVG는 읽지 않고 보존. 벡터 재치환은 별도 확인된 작업이다. 기존 ledger의 없는 ID/SHA 불일치는 읽기 오류로 종료한다."
+    },
+    {
+      "file": "docs/figma-observatory-20261002/scripts/build-components.js",
+      "input": "SC01–SC03: assets.worldAssetId or verified existing named image master; otherwise worldMockup. Other scenes: sceneMockups[name].",
+      "compatibility": "이미지 형태/현재파일 hash/전체비율/원래ID·페이지/0–1하위 예산을 확인한 기존 master만 복사한다. native벡터/계약도식 master는 생성 전 RASTER_MIGRATION_REQUIRED. SC01–SC03 개별 sceneMockups/sceneSvgs는 WHOLE_WORLD_PATH_REQUIRED로 거부해 정지·설정 native조작과 외부틀·창턱을 공유 whole-world 경로에서 보존한다. 신규 worldSvg/sceneSvgs-only import는 image preparation 오류. 간단한 brandSvg의 기존 별도 흐름은 보존한다."
+    }
+  ],
+  "staleEmbeddedCalls": {
+    "policy": "do-not-execute; regenerate from the current entry point and prepared image hashes",
+    "paths": [
+      "docs/figma-observatory-20261002/assets/*-call-*.json",
+      "work/figma-reconcile-20261002/scene-assets/SC*.compressed.code.js",
+      "work/figma-reconcile-20261002/scene-assets/import-scenes-compressed.js"
+    ],
+    "reason": "이 파일들은 작성 시점의 구 생성기 코드를 내장한다. 원본 증거로 보존하지만 최신 생성기의 SVG fallback 차단을 자동 상속하지 않는다.",
+    "prepareTransmission": "prepare-transmission.mjs는 현 import-scenes.js를 읽지만 현재 구 SVG-only 입력으로 재포장하면 실행은 IMAGE_UPLOAD_REQUIRED에서 멈춘다. 준비된 mockup metadata를 보존하는 별도 입력을 사용한다."
+  },
+  "completionEvidence": [
+    "local generator syntax and mocked entry-point behavior",
+    "remote target component descendant counts, IDs and representative full-view visual comparison",
+    "webapp source retained; Figma mockup does not implement runtime or imply product deployment"
+  ],
+  "apiContractSource": "figma-use/SKILL.md and references/api-reference.md Images: upload_assets is the only supported upload path; imageHash reuse is supported after upload. Plugin API signatures checked in references/plugin-api-standalone.d.ts."
+}

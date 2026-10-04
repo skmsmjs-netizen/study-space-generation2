@@ -1,0 +1,2467 @@
+{
+  "schemaVersion": "1.0.0",
+  "date": "2026-10-02",
+  "title": "ManSeekSong OS 조건부 디자인 기준과 Figma 구조",
+  "status": "Figma structure applied and scoped structural/visual checks completed; existing numeric defaults retained",
+  "scope": "Figma organization and criteria linkage. No new numeric defaults, runtime/storage change, publication or whole-product usability claim.",
+  "pathBase": "generation2 repository root",
+  "referenceConvention": "source objects use path and optional RFC 6901 pointer; ID bindings reuse their source inventories.",
+  "figma": {
+    "fileKey": "YHmD1PpWWfR9JGTEs77JsX",
+    "structureNodes": {
+      "entry": "155:180",
+      "criteriaIndex": "163:180",
+      "pageId": "154:68",
+      "ledger": "docs/figma-os-structure-20261002/figma-state.json",
+      "sections": {
+        "00 사용법과 채택": "163:827",
+        "01 공통 기초": "163:828",
+        "02 부품과 상태": "163:829",
+        "03 과업과 기능 역할": "163:830",
+        "04 목업과 실제 구현": "163:831",
+        "05 검증과 변경": "163:832"
+      },
+      "boards": {
+        "G00": "162:180",
+        "G01": "162:822",
+        "G02": "162:3288",
+        "G03-1": "162:3320",
+        "G03-2": "162:27036",
+        "G03-3": "162:27330",
+        "G04": "162:27446",
+        "G05-desk": "162:27575",
+        "G05-library": "162:27934",
+        "G05-workbench": "162:32180",
+        "G05-wall": "162:32194",
+        "G05-global": "162:32228",
+        "G06": "162:32257",
+        "G07-1": "162:32274",
+        "G07-2": "162:32328",
+        "G07-3": "162:32382",
+        "G08": "162:32422",
+        "G09": "162:32448"
+      }
+    },
+    "publicationEvidence": "Existing Figma file edited and read back. This is not library publication or webapp deployment."
+  },
+  "ownership": {
+    "numericDefaults": "docs/observatory-experience-baseline.json",
+    "roleDefinitions": "docs/observatory-feature-identities.json",
+    "componentMappings": [
+      "docs/figma-observatory-20261002/reconciliation-20261002/component-api-map.json",
+      "docs/figma-observatory-20261002/reconciliation-20261002/component-api-delta.json"
+    ],
+    "mockupBindings": "docs/figma-memory-20261002/mockup-contracts.json",
+    "stateInventory": "docs/figma-observatory-20261002/screen-inventory.json",
+    "thisContract": "Group/use-condition/adjustment/pass-condition/evidence links only; do not duplicate token values as another source of truth."
+  },
+  "principles": [
+    "값과 역할·사용 조건·조정 규칙·통과 조건·증거 범위를 함께 관리한다.",
+    "기존 값을 전부 미검증으로 돌리지 않고 일치하는 기존 근거를 재사용한다.",
+    "Figma 외형/구조 확인과 실제 입력·계산·저장·복귀 확인을 구별한다.",
+    "천문대 실내·원본 위젯 전체·외부 창틀·종이 작업면·방향/천장 복귀와 원문/개인 설정을 보존한다.",
+    "피드백이나 기술 발전에 따라 원본과 실제 소비 경로를 함께 바꾸며 이전 숫자를 표현의 상한으로 삼지 않는다."
+  ],
+  "sourceSnapshots": [
+    {
+      "path": "docs/observatory-experience-baseline.json",
+      "sha256": "443d645f05af21424b658dd9f2670c0035beb357febd6e608f6b49ce52250e59",
+      "meaning": "Reference capture, not a lock; compare only changed dependencies before reuse."
+    },
+    {
+      "path": "docs/observatory-feature-identities.json",
+      "sha256": "b716172386c0381f93a9cc724a688fec1ef7ee246b409ff063311e0d03660a77",
+      "meaning": "Reference capture, not a lock; compare only changed dependencies before reuse."
+    },
+    {
+      "path": "docs/figma-observatory-20261002/screen-inventory.json",
+      "sha256": "531a6d145526fce9306f686596570e3d0fe7482165b36679943eea8a3cebbe72",
+      "meaning": "Reference capture, not a lock; compare only changed dependencies before reuse."
+    },
+    {
+      "path": "docs/figma-memory-20261002/mockup-contracts.json",
+      "sha256": "a624e6da488a9225302484ab59bf6e8c941417bcc7e5350a8cceefb0f9c5f248",
+      "meaning": "Reference capture, not a lock; compare only changed dependencies before reuse."
+    },
+    {
+      "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-map.json",
+      "sha256": "e63ceed6ca4bbb30b80dc4727bd662de5321f2e4189ae78413bd4da1aa1c7c6c",
+      "meaning": "Reference capture, not a lock; compare only changed dependencies before reuse."
+    },
+    {
+      "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-delta.json",
+      "sha256": "71e6c1dbfe39310cd18e82d52d93d1a9caaf2351f0bbade335653c5ab4f37a75",
+      "meaning": "Reference capture, not a lock; compare only changed dependencies before reuse."
+    },
+    {
+      "path": "src/ui/tokens.css",
+      "sha256": "a3d41c5fe8f34da5739064fe8f43d34f1b730d3162e467e506ba2e5979b095f6",
+      "meaning": "Reference capture, not a lock; compare only changed dependencies before reuse."
+    },
+    {
+      "path": "scripts/sync-observatory-ui.mjs",
+      "sha256": "063a1178506e58468191fa895a7b1f65580150125ab7219fb907cf0441915c41",
+      "meaning": "Reference capture, not a lock; compare only changed dependencies before reuse."
+    },
+    {
+      "path": "scripts/sync-math-observatory.mjs",
+      "sha256": "ff6b3702525d8e14cef01cd7829a127f0ef6da3ac6973bcaaaacedcd6dbc8037",
+      "meaning": "Reference capture, not a lock; compare only changed dependencies before reuse."
+    },
+    {
+      "path": "src/ui/observatory-ui-tokens.css",
+      "sha256": "b292c9a0879f469a4e2c6f1f337845ffee8d358adf6f40af4a809d194ca61918",
+      "meaning": "Reference capture, not a lock; compare only changed dependencies before reuse."
+    },
+    {
+      "path": "src/ui/math-observatory-tokens.css",
+      "sha256": "f6bb942567993ecfbbe21712dbe7fe629252d96bb94088c2125898673570547a",
+      "meaning": "Reference capture, not a lock; compare only changed dependencies before reuse."
+    },
+    {
+      "path": "src/ui/observatory-feature-identity.ts",
+      "sha256": "9b74a6a7b66604060fe7cb7d34be4130d4c96443796a6e031b54298ea57e55e2",
+      "meaning": "Reference capture, not a lock; compare only changed dependencies before reuse."
+    },
+    {
+      "path": "src/ui/observatory-feature-identity.css",
+      "sha256": "e804040006fe4d77f5e1c148e64b63ae7592c985652b6de5c23d32dd97c0d8d0",
+      "meaning": "Reference capture, not a lock; compare only changed dependencies before reuse."
+    }
+  ],
+  "foundationGroups": [
+    {
+      "id": "material",
+      "label": "실내·종이·상태 색",
+      "valueSources": [
+        {
+          "path": "docs/observatory-experience-baseline.json",
+          "pointer": "/materials"
+        },
+        {
+          "path": "docs/observatory-experience-baseline.json",
+          "pointer": "/materialPolicy"
+        },
+        {
+          "path": "docs/observatory-experience-baseline.json",
+          "pointer": "/accessibilityTargets"
+        }
+      ],
+      "useCondition": "동일 재료의 전경·배경·경계·초점과 상태를 함께 평가한다.",
+      "adjustmentRule": "개인 테마·의미색을 보존하며 배경이 달라지면 색 쌍 전체를 다시 확인한다.",
+      "passCondition": "본문/조작 대비, 색 외 상태 단서, 어두운 실내와 종이의 위계가 유지된다.",
+      "runtimeSources": [
+        "scripts/sync-observatory-ui.mjs",
+        "src/ui/observatory-ui-tokens.css",
+        "src/ui/observatory-workspace.css",
+        "scripts/sync-math-observatory.mjs"
+      ],
+      "evidenceRefs": [
+        "existing-runtime-scoped",
+        "existing-figma-scoped"
+      ],
+      "verificationStatus": "adopted-default-with-scoped-evidence; untested combinations remain unverified",
+      "changeOwner": "canonical value owner + affected shared component/renderer owner",
+      "figmaRepresentation": "native variables/styles and editable constrained specimen; artwork may reference whole-image mockup"
+    },
+    {
+      "id": "type",
+      "label": "글꼴·크기·행간·읽기 폭",
+      "valueSources": [
+        {
+          "path": "docs/observatory-experience-baseline.json",
+          "pointer": "/metrics/type"
+        },
+        {
+          "path": "docs/observatory-experience-baseline.json",
+          "pointer": "/metrics/layout"
+        }
+      ],
+      "useCondition": "실제 한글·수식·긴 제목과 선택한 서체/대체 서체를 함께 사용한다.",
+      "adjustmentRule": "rem 확대·개인 서체를 보존하고 내용과 줄바꿈에 맞춰 높이가 늘어난다.",
+      "passCondition": "잘림/겹침 없이 읽히며 글자·간격 확대 후 정보와 조작이 남는다.",
+      "runtimeSources": [
+        "src/ui/tokens.css",
+        "scripts/sync-observatory-ui.mjs",
+        "src/ui/observatory-feature-identity.css"
+      ],
+      "evidenceRefs": [
+        "existing-runtime-scoped",
+        "existing-figma-scoped"
+      ],
+      "verificationStatus": "adopted-default-with-scoped-evidence; untested combinations remain unverified",
+      "changeOwner": "canonical value owner + affected shared component/renderer owner",
+      "figmaRepresentation": "native variables/styles and editable constrained specimen; artwork may reference whole-image mockup"
+    },
+    {
+      "id": "spacing",
+      "label": "간격·정렬·구역 관계",
+      "valueSources": [
+        {
+          "path": "docs/observatory-experience-baseline.json",
+          "pointer": "/metrics/space"
+        },
+        {
+          "path": "docs/observatory-experience-baseline.json",
+          "pointer": "/metrics/paper"
+        },
+        {
+          "path": "docs/observatory-experience-baseline.json",
+          "pointer": "/metrics/layout"
+        }
+      ],
+      "useCondition": "관련 항목 내부, 독립 구역 사이, 종이 안쪽 여백을 역할별로 구분한다.",
+      "adjustmentRule": "현재 컨테이너와 내용 길이로 재배치하며 개인 배치와 항목 순서는 유지한다.",
+      "passCondition": "긴 내용·빈 상태·여러 항목에서 묶음/위계가 보이고 불필요한 중첩 카드가 생기지 않는다.",
+      "runtimeSources": [
+        "src/ui/tokens.css",
+        "src/ui/observatory-workspace.css",
+        "src/ui/observatory-feature-identity.css"
+      ],
+      "evidenceRefs": [
+        "existing-runtime-scoped",
+        "existing-figma-scoped"
+      ],
+      "verificationStatus": "adopted-default-with-scoped-evidence; untested combinations remain unverified",
+      "changeOwner": "canonical value owner + affected shared component/renderer owner",
+      "figmaRepresentation": "native variables/styles and editable constrained specimen; artwork may reference whole-image mockup"
+    },
+    {
+      "id": "layout",
+      "label": "너비·높이·반응형",
+      "valueSources": [
+        {
+          "path": "docs/observatory-experience-baseline.json",
+          "pointer": "/metrics/layout"
+        },
+        {
+          "path": "docs/observatory-experience-baseline.json",
+          "pointer": "/metrics/paper/scrollPolicy"
+        },
+        {
+          "path": "docs/observatory-experience-baseline.json",
+          "pointer": "/spatialWorkspace"
+        }
+      ],
+      "useCondition": "읽기/연습/제어와 관측/통계/공간 작업의 폭 요구를 구분한다.",
+      "adjustmentRule": "컨테이너 폭에 맞춰 열을 바꾸고 장문 높이는 늘린다. 2차원 면은 기존 이동·확대와 값 목록을 보존한다.",
+      "passCondition": "필수 내용·직접 이동·복귀가 남고 개인 Canvas 좌표와 읽기 폭 선택을 덮어쓰지 않는다.",
+      "runtimeSources": [
+        "src/ui/observatory-feature-identity.css",
+        "src/ui/observatory-workspace.css",
+        "src/ui/observatory-navigation.tsx"
+      ],
+      "evidenceRefs": [
+        "existing-runtime-scoped",
+        "existing-figma-scoped"
+      ],
+      "verificationStatus": "adopted-default-with-scoped-evidence; untested combinations remain unverified",
+      "changeOwner": "canonical value owner + affected shared component/renderer owner",
+      "figmaRepresentation": "native variables/styles and editable constrained specimen; artwork may reference whole-image mockup"
+    },
+    {
+      "id": "control",
+      "label": "조작·초점·입력",
+      "valueSources": [
+        {
+          "path": "docs/observatory-experience-baseline.json",
+          "pointer": "/metrics/control"
+        },
+        {
+          "path": "docs/observatory-experience-baseline.json",
+          "pointer": "/componentStates"
+        }
+      ],
+      "useCondition": "긴 한국어 라벨·입력 오류·busy·disabled·readOnly를 구분한다.",
+      "adjustmentRule": "최소 높이/조작 면적을 유지하며 라벨 줄바꿈에 맞춰 커진다. 픽셀 격자에 터치 면적을 축소하지 않는다.",
+      "passCondition": "키보드 초점이 보이고 설명이 연결되며 한글 입력/초안/복귀/중복 요청 방지가 유지된다.",
+      "runtimeSources": [
+        "src/ui/index.tsx",
+        "src/ui/components.stories.tsx",
+        "src/ui/observatory-workspace.css"
+      ],
+      "evidenceRefs": [
+        "existing-runtime-scoped",
+        "existing-figma-scoped"
+      ],
+      "verificationStatus": "adopted-default-with-scoped-evidence; untested combinations remain unverified",
+      "changeOwner": "canonical value owner + affected shared component/renderer owner",
+      "figmaRepresentation": "native variables/styles and editable constrained specimen; artwork may reference whole-image mockup"
+    },
+    {
+      "id": "window",
+      "label": "원본 위젯·바깥 창틀",
+      "valueSources": [
+        {
+          "path": "docs/observatory-experience-baseline.json",
+          "pointer": "/metrics/window"
+        },
+        {
+          "path": "docs/observatory-experience-baseline.json",
+          "pointer": "/clarifications"
+        }
+      ],
+      "useCondition": "원본 전체 범위·비율·조작부 바깥에 창틀과 창턱의 자리를 확보한다.",
+      "adjustmentRule": "컨테이너에 맞춰 전체 위젯 비율을 유지하고 축소한다. 외부 테두리는 입력을 가로채지 않는다.",
+      "passCondition": "원본 잘림/장식 가림이 없고 메뉴·초점·포인터·터치와 기존 화면 범위를 보존한다.",
+      "runtimeSources": [
+        "src/ui/observatory-cover.tsx",
+        "src/ui/observatory-cover.css",
+        "src/ui/observatory-room.tsx",
+        "src/ui/pixel-worlds.tsx"
+      ],
+      "evidenceRefs": [
+        "existing-runtime-scoped",
+        "existing-figma-scoped"
+      ],
+      "verificationStatus": "adopted-default-with-scoped-evidence; untested combinations remain unverified",
+      "changeOwner": "canonical value owner + affected shared component/renderer owner",
+      "figmaRepresentation": "native variables/styles and editable constrained specimen; artwork may reference whole-image mockup"
+    },
+    {
+      "id": "pixel",
+      "label": "픽셀·모서리·재료 표현",
+      "valueSources": [
+        {
+          "path": "docs/observatory-experience-baseline.json",
+          "pointer": "/pixelTreatment"
+        },
+        {
+          "path": "docs/observatory-experience-baseline.json",
+          "pointer": "/metrics/paper"
+        }
+      ],
+      "useCondition": "픽셀 아트·외부 틀·공통 부품의 표현과 본문/정밀 수식을 구분한다.",
+      "adjustmentRule": "현재 기술 표현을 허용하면서 원본 비율과 읽기/초점/조작 영역을 보존한다.",
+      "passCondition": "픽셀 미감이 유지되며 본문을 픽셀 글꼴로 강제하거나 종이 장식으로 글을 자르지 않는다.",
+      "runtimeSources": [
+        "scripts/sync-observatory-ui.mjs",
+        "src/ui/observatory-ui-tokens.css",
+        "src/ui/observatory-workspace.css"
+      ],
+      "evidenceRefs": [
+        "existing-runtime-scoped",
+        "existing-figma-scoped"
+      ],
+      "verificationStatus": "adopted-default-with-scoped-evidence; untested combinations remain unverified",
+      "changeOwner": "canonical value owner + affected shared component/renderer owner",
+      "figmaRepresentation": "native variables/styles and editable constrained specimen; artwork may reference whole-image mockup"
+    },
+    {
+      "id": "motion",
+      "label": "전환·상태 반응·하늘 움직임",
+      "valueSources": [
+        {
+          "path": "docs/observatory-experience-baseline.json",
+          "pointer": "/motion"
+        },
+        {
+          "path": "docs/observatory-experience-baseline.json",
+          "pointer": "/enginePresentation"
+        }
+      ],
+      "useCondition": "공통 UI 피드백과 장면 엔진의 시간/상태 반응을 구분한다.",
+      "adjustmentRule": "명시적 정지·동작 감소·보이지 않는 면과 개인 설정을 존중한다. 장면 엔진에 공통 UI 시간값을 강제하지 않는다.",
+      "passCondition": "입력을 지연시키지 않고 복귀/저장 의미가 명확하며 관측 없는 숙달·성과를 연출하지 않는다.",
+      "runtimeSources": [
+        "src/ui/observatory-navigation.tsx",
+        "src/ui/observatory-reactivity.tsx",
+        "src/ui/observatory-render-budget.ts",
+        "src/ui/observatory-room.tsx"
+      ],
+      "evidenceRefs": [
+        "existing-runtime-scoped",
+        "existing-figma-scoped"
+      ],
+      "verificationStatus": "adopted-default-with-scoped-evidence; untested combinations remain unverified",
+      "changeOwner": "canonical value owner + affected shared component/renderer owner",
+      "figmaRepresentation": "native variables/styles and editable constrained specimen; artwork may reference whole-image mockup"
+    }
+  ],
+  "componentStructure": {
+    "stateIds": [
+      "default",
+      "hover",
+      "pressed",
+      "focus",
+      "disabled",
+      "busy",
+      "invalid",
+      "readOnly"
+    ],
+    "states": [
+      {
+        "id": "default",
+        "source": {
+          "path": "docs/observatory-experience-baseline.json",
+          "pointer": "/componentStates/default"
+        }
+      },
+      {
+        "id": "hover",
+        "source": {
+          "path": "docs/observatory-experience-baseline.json",
+          "pointer": "/componentStates/hover"
+        }
+      },
+      {
+        "id": "pressed",
+        "source": {
+          "path": "docs/observatory-experience-baseline.json",
+          "pointer": "/componentStates/pressed"
+        }
+      },
+      {
+        "id": "focus",
+        "source": {
+          "path": "docs/observatory-experience-baseline.json",
+          "pointer": "/componentStates/focus"
+        }
+      },
+      {
+        "id": "disabled",
+        "source": {
+          "path": "docs/observatory-experience-baseline.json",
+          "pointer": "/componentStates/disabled"
+        }
+      },
+      {
+        "id": "busy",
+        "source": {
+          "path": "docs/observatory-experience-baseline.json",
+          "pointer": "/componentStates/busy"
+        }
+      },
+      {
+        "id": "invalid",
+        "source": {
+          "path": "docs/observatory-experience-baseline.json",
+          "pointer": "/componentStates/invalid"
+        }
+      },
+      {
+        "id": "readOnly",
+        "source": {
+          "path": "docs/observatory-experience-baseline.json",
+          "pointer": "/componentStates/readOnly"
+        }
+      }
+    ],
+    "components": [
+      {
+        "id": "UI01",
+        "name": "Button",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-map.json",
+          "pointer": "/rows/0"
+        },
+        "runtimeSource": "src/ui/index.tsx",
+        "figmaOwnerId": "16:140"
+      },
+      {
+        "id": "UI02",
+        "name": "IconButton",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-map.json",
+          "pointer": "/rows/1"
+        },
+        "runtimeSource": "src/ui/index.tsx",
+        "figmaOwnerId": "16:159"
+      },
+      {
+        "id": "UI03",
+        "name": "Input",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-map.json",
+          "pointer": "/rows/2"
+        },
+        "runtimeSource": "src/ui/index.tsx",
+        "figmaOwnerId": "16:190"
+      },
+      {
+        "id": "UI04",
+        "name": "Textarea",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-map.json",
+          "pointer": "/rows/3"
+        },
+        "runtimeSource": "src/ui/index.tsx",
+        "figmaOwnerId": "16:221"
+      },
+      {
+        "id": "UI05",
+        "name": "Select",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-map.json",
+          "pointer": "/rows/4"
+        },
+        "runtimeSource": "src/ui/index.tsx",
+        "figmaOwnerId": "16:250"
+      },
+      {
+        "id": "UI06",
+        "name": "Checkbox",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-map.json",
+          "pointer": "/rows/5"
+        },
+        "runtimeSource": "src/ui/index.tsx",
+        "figmaOwnerId": "16:287"
+      },
+      {
+        "id": "UI07",
+        "name": "Radio",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-map.json",
+          "pointer": "/rows/6"
+        },
+        "runtimeSource": "src/ui/index.tsx",
+        "figmaOwnerId": "16:309"
+      },
+      {
+        "id": "UI08",
+        "name": "Tabs",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-map.json",
+          "pointer": "/rows/7"
+        },
+        "runtimeSource": "src/ui/index.tsx",
+        "figmaOwnerId": "16:326"
+      },
+      {
+        "id": "UI09",
+        "name": "SegmentedControl",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-map.json",
+          "pointer": "/rows/8"
+        },
+        "runtimeSource": "src/ui/index.tsx",
+        "figmaOwnerId": "17:95"
+      },
+      {
+        "id": "UI10",
+        "name": "Card",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-map.json",
+          "pointer": "/rows/9"
+        },
+        "runtimeSource": "src/ui/index.tsx",
+        "figmaOwnerId": "17:96"
+      },
+      {
+        "id": "UI11",
+        "name": "ListItem",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-map.json",
+          "pointer": "/rows/10"
+        },
+        "runtimeSource": "src/ui/index.tsx",
+        "figmaOwnerId": "17:101"
+      },
+      {
+        "id": "UI12",
+        "name": "Modal",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-map.json",
+          "pointer": "/rows/11"
+        },
+        "runtimeSource": "src/ui/index.tsx",
+        "figmaOwnerId": "17:106"
+      },
+      {
+        "id": "UI13",
+        "name": "Sheet",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-map.json",
+          "pointer": "/rows/12"
+        },
+        "runtimeSource": "src/ui/index.tsx",
+        "figmaOwnerId": "17:114"
+      },
+      {
+        "id": "UI14",
+        "name": "Toast",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-map.json",
+          "pointer": "/rows/13"
+        },
+        "runtimeSource": "src/ui/index.tsx",
+        "figmaOwnerId": "17:130"
+      },
+      {
+        "id": "UI15",
+        "name": "Breadcrumb",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-map.json",
+          "pointer": "/rows/14"
+        },
+        "runtimeSource": "src/ui/index.tsx",
+        "figmaOwnerId": "17:131"
+      },
+      {
+        "id": "UI16",
+        "name": "Search",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-map.json",
+          "pointer": "/rows/15"
+        },
+        "runtimeSource": "src/ui/index.tsx",
+        "figmaOwnerId": "17:169"
+      },
+      {
+        "id": "UI17",
+        "name": "EmptyState",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-map.json",
+          "pointer": "/rows/16"
+        },
+        "runtimeSource": "src/ui/index.tsx",
+        "figmaOwnerId": "17:186"
+      },
+      {
+        "id": "UI18",
+        "name": "LoadingState",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-map.json",
+          "pointer": "/rows/17"
+        },
+        "runtimeSource": "src/ui/index.tsx",
+        "figmaOwnerId": "17:187"
+      },
+      {
+        "id": "UI19",
+        "name": "ErrorState",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-map.json",
+          "pointer": "/rows/18"
+        },
+        "runtimeSource": "src/ui/index.tsx",
+        "figmaOwnerId": "17:193"
+      },
+      {
+        "id": "UI20",
+        "name": "ScreenBoundary",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-map.json",
+          "pointer": "/rows/19"
+        },
+        "runtimeSource": "src/ui/index.tsx",
+        "figmaOwnerId": "17:198"
+      },
+      {
+        "id": "UI21",
+        "name": "NavigationBar",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-map.json",
+          "pointer": "/rows/20"
+        },
+        "runtimeSource": "src/ui/navigation-bar.tsx",
+        "figmaOwnerId": "17:223"
+      },
+      {
+        "id": "UI22",
+        "name": "ContextMenu",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-map.json",
+          "pointer": "/rows/21"
+        },
+        "runtimeSource": "src/ui/context-menu.tsx",
+        "figmaOwnerId": "17:224"
+      },
+      {
+        "id": "SC01",
+        "name": "StudyLandscapes",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-map.json",
+          "pointer": "/rows/22"
+        },
+        "runtimeSource": "src/ui/study-landscapes.tsx",
+        "figmaOwnerId": "17:231"
+      },
+      {
+        "id": "SC02",
+        "name": "ObservatoryWorld",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-map.json",
+          "pointer": "/rows/23"
+        },
+        "runtimeSource": "src/ui/pixel-worlds.tsx",
+        "figmaOwnerId": "17:1910"
+      },
+      {
+        "id": "SC03",
+        "name": "ObservatoryRoom",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-map.json",
+          "pointer": "/rows/24"
+        },
+        "runtimeSource": "src/ui/observatory-room.tsx",
+        "figmaOwnerId": "20:4808"
+      },
+      {
+        "id": "SC04",
+        "name": "ObservatoryDesk",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-map.json",
+          "pointer": "/rows/25"
+        },
+        "runtimeSource": "src/ui/observatory-desk.tsx",
+        "figmaOwnerId": "20:6484"
+      },
+      {
+        "id": "SC05",
+        "name": "ObservatoryAdvanced",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-map.json",
+          "pointer": "/rows/26"
+        },
+        "runtimeSource": "src/ui/observatory-advanced.tsx",
+        "figmaOwnerId": "20:6496"
+      },
+      {
+        "id": "SC06",
+        "name": "ObservatorySkyDetails",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-map.json",
+          "pointer": "/rows/27"
+        },
+        "runtimeSource": "src/ui/observatory-details.tsx",
+        "figmaOwnerId": "20:6515"
+      },
+      {
+        "id": "SC07",
+        "name": "ObservatoryStationDetails",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-map.json",
+          "pointer": "/rows/28"
+        },
+        "runtimeSource": "src/ui/observatory-details.tsx",
+        "figmaOwnerId": "20:6527"
+      },
+      {
+        "id": "SC08",
+        "name": "ObservatoryTimeSky",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-map.json",
+          "pointer": "/rows/29"
+        },
+        "runtimeSource": "src/ui/observatory-time-sky.tsx",
+        "figmaOwnerId": "20:6539"
+      },
+      {
+        "id": "SC09",
+        "name": "ObservatoryTimeGround",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-map.json",
+          "pointer": "/rows/30"
+        },
+        "runtimeSource": "src/ui/observatory-time-sky.tsx",
+        "figmaOwnerId": "20:6560"
+      },
+      {
+        "id": "SC10",
+        "name": "ObservatoryClouds",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-map.json",
+          "pointer": "/rows/31"
+        },
+        "runtimeSource": "src/ui/observatory-atmosphere.tsx",
+        "figmaOwnerId": "20:6581"
+      },
+      {
+        "id": "SC11",
+        "name": "ObservatoryGroundDetails",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-map.json",
+          "pointer": "/rows/32"
+        },
+        "runtimeSource": "src/ui/observatory-atmosphere.tsx",
+        "figmaOwnerId": "20:6593"
+      },
+      {
+        "id": "SC12",
+        "name": "ObservatoryDomeTiles",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-map.json",
+          "pointer": "/rows/33"
+        },
+        "runtimeSource": "src/ui/observatory-atmosphere.tsx",
+        "figmaOwnerId": "20:6605"
+      },
+      {
+        "id": "SC13",
+        "name": "ObservatoryShockwave",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-map.json",
+          "pointer": "/rows/34"
+        },
+        "runtimeSource": "src/ui/observatory-atmosphere.tsx",
+        "figmaOwnerId": "20:6617"
+      },
+      {
+        "id": "SC14",
+        "name": "ObservatoryStudySky",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-map.json",
+          "pointer": "/rows/35"
+        },
+        "runtimeSource": "src/ui/observatory-reactivity.tsx",
+        "figmaOwnerId": "20:6629"
+      },
+      {
+        "id": "SC15",
+        "name": "ObservatoryStudyStation",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-map.json",
+          "pointer": "/rows/36"
+        },
+        "runtimeSource": "src/ui/observatory-reactivity.tsx",
+        "figmaOwnerId": "20:6641"
+      },
+      {
+        "id": "SC16",
+        "name": "ObservatoryRadiance",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-map.json",
+          "pointer": "/rows/37"
+        },
+        "runtimeSource": "src/ui/observatory-radiance.tsx",
+        "figmaOwnerId": "20:6653"
+      },
+      {
+        "id": "SC17",
+        "name": "ObservatoryRadianceGround",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-map.json",
+          "pointer": "/rows/38"
+        },
+        "runtimeSource": "src/ui/observatory-radiance.tsx",
+        "figmaOwnerId": "20:6665"
+      },
+      {
+        "id": "SC18",
+        "name": "ObservatoryEvents",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-map.json",
+          "pointer": "/rows/39"
+        },
+        "runtimeSource": "src/ui/observatory-events.tsx",
+        "figmaOwnerId": "20:6677"
+      },
+      {
+        "id": "SC19",
+        "name": "ObservatoryEventVariationSymbol",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-map.json",
+          "pointer": "/rows/40"
+        },
+        "runtimeSource": "src/ui/observatory-event-variations.tsx",
+        "figmaOwnerId": "21:5121"
+      },
+      {
+        "id": "SC20",
+        "name": "ObservatoryEventVariation",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-map.json",
+          "pointer": "/rows/41"
+        },
+        "runtimeSource": "src/ui/observatory-event-variations.tsx",
+        "figmaOwnerId": "21:5138"
+      },
+      {
+        "id": "MO01",
+        "name": "BusyDots",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-map.json",
+          "pointer": "/rows/42"
+        },
+        "runtimeSource": "src/ui/motion.tsx",
+        "figmaOwnerId": "21:5175"
+      },
+      {
+        "id": "MO02",
+        "name": "SavedMark",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-map.json",
+          "pointer": "/rows/43"
+        },
+        "runtimeSource": "src/ui/motion.tsx",
+        "figmaOwnerId": "21:5194"
+      },
+      {
+        "id": "MO03",
+        "name": "SelectionBackground",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-map.json",
+          "pointer": "/rows/44"
+        },
+        "runtimeSource": "src/ui/motion.tsx",
+        "figmaOwnerId": "21:5216"
+      },
+      {
+        "id": "MO04",
+        "name": "NoticeEntrance",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-map.json",
+          "pointer": "/rows/45"
+        },
+        "runtimeSource": "src/ui/motion.tsx",
+        "figmaOwnerId": "21:5229"
+      },
+      {
+        "id": "MO05",
+        "name": "FadeContent",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-map.json",
+          "pointer": "/rows/46"
+        },
+        "runtimeSource": "src/ui/motion.tsx",
+        "figmaOwnerId": "21:5242"
+      },
+      {
+        "id": "BR01",
+        "name": "BrandWordmark",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-map.json",
+          "pointer": "/rows/47"
+        },
+        "runtimeSource": "src/ui/brand-wordmark.tsx",
+        "figmaOwnerId": "21:5243"
+      },
+      {
+        "id": "UI23",
+        "name": "ObservatoryNavigation",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-map.json",
+          "pointer": "/rows/48"
+        },
+        "runtimeSource": "src/ui/observatory-navigation.tsx",
+        "figmaOwnerId": "53:13178"
+      },
+      {
+        "id": "UI24",
+        "name": "ObservatoryTaskReturn",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-map.json",
+          "pointer": "/rows/49"
+        },
+        "runtimeSource": "src/ui/observatory-navigation.tsx",
+        "figmaOwnerId": "53:13281"
+      },
+      {
+        "id": "UI25",
+        "name": "WorkspaceCommands",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-delta.json",
+          "pointer": "/rows/0"
+        },
+        "runtimeSource": "src/ui/workspace-commands.tsx",
+        "figmaOwnerId": "74:72248"
+      },
+      {
+        "id": "UI26",
+        "name": "StudyWorkspace",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-delta.json",
+          "pointer": "/rows/1"
+        },
+        "runtimeSource": "src/ui/study-workspace.tsx",
+        "figmaOwnerId": "74:73677"
+      },
+      {
+        "id": "UI27",
+        "name": "SavedWorkspaces",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-delta.json",
+          "pointer": "/rows/2"
+        },
+        "runtimeSource": "src/ui/study-workspace.tsx",
+        "figmaOwnerId": "74:74147"
+      },
+      {
+        "id": "UI28",
+        "name": "WorkspaceStorageNotice",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-delta.json",
+          "pointer": "/rows/3"
+        },
+        "runtimeSource": "src/ui/study-workspace.tsx",
+        "figmaOwnerId": "75:74396"
+      },
+      {
+        "id": "UI29",
+        "name": "ProgressiveHistory",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-delta.json",
+          "pointer": "/rows/4"
+        },
+        "runtimeSource": "src/ui/progressive-history.tsx",
+        "figmaOwnerId": "75:79609"
+      },
+      {
+        "id": "UI30",
+        "name": "UiPerformanceAccess",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-delta.json",
+          "pointer": "/rows/5"
+        },
+        "runtimeSource": "src/ui/ui-performance-access.tsx",
+        "figmaOwnerId": "75:74869"
+      },
+      {
+        "id": "UI31",
+        "name": "UiPerformancePanel",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-delta.json",
+          "pointer": "/rows/6"
+        },
+        "runtimeSource": "src/ui/ui-performance-panel.tsx",
+        "figmaOwnerId": "75:74923"
+      },
+      {
+        "id": "UI32",
+        "name": "MathComparison",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-delta.json",
+          "pointer": "/rows/7"
+        },
+        "runtimeSource": "src/ui/math-comparison.tsx",
+        "figmaOwnerId": "75:80544"
+      },
+      {
+        "id": "UI33",
+        "name": "ConceptText",
+        "definition": {
+          "path": "docs/figma-observatory-20261002/reconciliation-20261002/component-api-delta.json",
+          "pointer": "/rows/8"
+        },
+        "runtimeSource": "src/ui/concept-text.tsx",
+        "figmaOwnerId": "75:84056"
+      }
+    ],
+    "detailFields": [
+      "actual props/API",
+      "label and content sizing",
+      "relevant states",
+      "entry/exit and focus",
+      "error/retry and preservation",
+      "narrow/long-content rule"
+    ],
+    "stateScope": "Only states meaningful to the component. Source statePlan governs contextual empty/result/error/return conditions; variants alone do not execute behavior.",
+    "stateContract": {
+      "path": "docs/observatory-experience-baseline.json",
+      "pointer": "/componentStates"
+    },
+    "representation": "Existing component/API mapping; use relevant states, not every cross-product."
+  },
+  "compositions": [
+    {
+      "id": "journal",
+      "label": "연속 기록",
+      "rule": "대상/기간 → 이어지는 기록·답안 → 선택 입력·이력. 읽고 쓰는 한 열의 연속성을 우선한다.",
+      "identityIds": [
+        "today",
+        "study-record",
+        "reflection"
+      ],
+      "source": {
+        "path": "docs/observatory-feature-identities.md"
+      }
+    },
+    {
+      "id": "catalogue",
+      "label": "목록·계층·찾기",
+      "rule": "범위/찾기 → 항목 목록·계층·출처 → 선택 상세. 항목의 소속과 찾기를 우선한다.",
+      "identityIds": [
+        "subjects",
+        "outline",
+        "material-cards",
+        "concepts",
+        "search"
+      ],
+      "source": {
+        "path": "docs/observatory-feature-identities.md"
+      }
+    },
+    {
+      "id": "document",
+      "label": "원문·필기",
+      "rule": "원문/필기/페이지가 주면, 도구는 곁면. 본문/그림을 종이 높이에 맞춰 자르지 않는다.",
+      "identityIds": [
+        "notes",
+        "ink",
+        "materials"
+      ],
+      "source": {
+        "path": "docs/observatory-feature-identities.md"
+      }
+    },
+    {
+      "id": "practice",
+      "label": "질문·답·인출",
+      "rule": "범위/조건 → 질문/내 답 → 명시적 설명 공개 → 직접 결과/되돌리기. 답과 기준의 공개 단계를 구별한다.",
+      "identityIds": [
+        "exam-practice",
+        "memory-test",
+        "recall"
+      ],
+      "source": {
+        "path": "docs/observatory-feature-identities.md"
+      }
+    },
+    {
+      "id": "instrument",
+      "label": "조절·관찰·실행",
+      "rule": "질문/조건 → 조작/관찰 → 현재값·실행 결과 → 근거. 원문 편집과 결과를 비교 가능한 면으로 둔다.",
+      "identityIds": [
+        "code",
+        "math"
+      ],
+      "source": {
+        "path": "docs/observatory-feature-identities.md"
+      }
+    },
+    {
+      "id": "analysis",
+      "label": "여러 그래프·근거",
+      "rule": "범위 → 다른 질문을 맡은 여러 그래프 → 선택 값/분모 → 원기록. 좁은 화면에서는 같은 순서로 이어 읽는다.",
+      "identityIds": [
+        "statistics"
+      ],
+      "source": {
+        "path": "docs/observatory-feature-identities.md"
+      }
+    },
+    {
+      "id": "spatial",
+      "label": "관계·개인 배치",
+      "rule": "2차원 면 → 선택한 대상 → 상세/원문. 시점 조절과 실제 자료 배치를 분리한다.",
+      "identityIds": [
+        "canvas",
+        "graph"
+      ],
+      "source": {
+        "path": "docs/observatory-feature-identities.md"
+      }
+    },
+    {
+      "id": "board",
+      "label": "열·카드·이동",
+      "rule": "보드 범위 → 이름 붙은 열 → 카드 → 이동/편집. 가로 탐색과 명시적 이동 경로를 함께 둔다.",
+      "identityIds": [
+        "board"
+      ],
+      "source": {
+        "path": "docs/observatory-feature-identities.md"
+      }
+    },
+    {
+      "id": "timeline",
+      "label": "기간·일정",
+      "rule": "기간/학기 → 날짜순 일정과 상태 → 선택 과업/다음 행동. 달력과 목록의 자료를 일치시킨다.",
+      "identityIds": [
+        "schedule"
+      ],
+      "source": {
+        "path": "docs/observatory-feature-identities.md"
+      }
+    },
+    {
+      "id": "control",
+      "label": "상태·설정·복구",
+      "rule": "현재 상태·권한 → 실제 변경/전송/복구 범위 → 명시적 실행 → 결과/실패. 위험과 보존 범위를 행동 근처에 둔다.",
+      "identityIds": [
+        "workspace-controls",
+        "api-connection",
+        "account",
+        "recovery"
+      ],
+      "source": {
+        "path": "docs/observatory-feature-identities.md"
+      }
+    }
+  ],
+  "identities": [
+    {
+      "id": "today",
+      "label": "오늘",
+      "metaphor": "오늘 펼친 책상",
+      "place": "desk",
+      "compositionId": "journal",
+      "entityIds": [
+        "R01",
+        "O10",
+        "O29",
+        "U09",
+        "U11",
+        "U12",
+        "U13",
+        "U14",
+        "U15"
+      ],
+      "definition": {
+        "path": "docs/observatory-feature-identities.json",
+        "pointer": "/identities/0"
+      }
+    },
+    {
+      "id": "study-record",
+      "label": "공부 기록·주제 상세",
+      "metaphor": "관측일지",
+      "place": "desk",
+      "compositionId": "journal",
+      "entityIds": [
+        "R05",
+        "R20",
+        "R21",
+        "O11",
+        "U19"
+      ],
+      "definition": {
+        "path": "docs/observatory-feature-identities.json",
+        "pointer": "/identities/1"
+      }
+    },
+    {
+      "id": "notes",
+      "label": "메모·자유 기록",
+      "metaphor": "곁에 둔 기록지",
+      "place": "desk",
+      "compositionId": "document",
+      "entityIds": [
+        "R06",
+        "R22",
+        "R30",
+        "R31",
+        "R32",
+        "O23",
+        "O24",
+        "U41"
+      ],
+      "definition": {
+        "path": "docs/observatory-feature-identities.json",
+        "pointer": "/identities/2"
+      }
+    },
+    {
+      "id": "ink",
+      "label": "필기·OCR·PDF 배경",
+      "metaphor": "손으로 쓰는 관측지",
+      "place": "desk",
+      "compositionId": "document",
+      "entityIds": [
+        "U29"
+      ],
+      "definition": {
+        "path": "docs/observatory-feature-identities.json",
+        "pointer": "/identities/3"
+      }
+    },
+    {
+      "id": "subjects",
+      "label": "과목·학기 등록",
+      "metaphor": "공부 범위의 책등",
+      "place": "library",
+      "compositionId": "catalogue",
+      "entityIds": [
+        "R04",
+        "R19",
+        "O01",
+        "O02"
+      ],
+      "definition": {
+        "path": "docs/observatory-feature-identities.json",
+        "pointer": "/identities/4"
+      }
+    },
+    {
+      "id": "outline",
+      "label": "목차 관리",
+      "metaphor": "공부 범위의 색인",
+      "place": "library",
+      "compositionId": "catalogue",
+      "entityIds": [
+        "O03",
+        "O04",
+        "O06",
+        "O07",
+        "O19",
+        "O22",
+        "U16",
+        "U17"
+      ],
+      "definition": {
+        "path": "docs/observatory-feature-identities.json",
+        "pointer": "/identities/5"
+      }
+    },
+    {
+      "id": "materials",
+      "label": "강의 자료·PDF",
+      "metaphor": "펼쳐 보는 원자료",
+      "place": "library",
+      "compositionId": "document",
+      "entityIds": [
+        "R07",
+        "R23",
+        "U23",
+        "U24"
+      ],
+      "definition": {
+        "path": "docs/observatory-feature-identities.json",
+        "pointer": "/identities/6"
+      }
+    },
+    {
+      "id": "material-cards",
+      "label": "자료 카드·주제 연결",
+      "metaphor": "출처가 붙은 발췌함",
+      "place": "library",
+      "compositionId": "catalogue",
+      "entityIds": [
+        "R12",
+        "U25"
+      ],
+      "definition": {
+        "path": "docs/observatory-feature-identities.json",
+        "pointer": "/identities/7"
+      }
+    },
+    {
+      "id": "concepts",
+      "label": "개념 전집",
+      "metaphor": "참조 사전",
+      "place": "library",
+      "compositionId": "catalogue",
+      "entityIds": [
+        "R13"
+      ],
+      "definition": {
+        "path": "docs/observatory-feature-identities.json",
+        "pointer": "/identities/8"
+      }
+    },
+    {
+      "id": "exam-practice",
+      "label": "시험 연습·수행 결과",
+      "metaphor": "실행을 확인하는 연습지",
+      "place": "desk",
+      "compositionId": "practice",
+      "entityIds": [
+        "R10",
+        "R26",
+        "O18",
+        "O20",
+        "U20"
+      ],
+      "definition": {
+        "path": "docs/observatory-feature-identities.json",
+        "pointer": "/identities/9"
+      }
+    },
+    {
+      "id": "memory-test",
+      "label": "암기시험",
+      "metaphor": "기억을 꺼내 쓰는 답안지",
+      "place": "desk",
+      "compositionId": "practice",
+      "entityIds": [
+        "R11",
+        "R27",
+        "R28",
+        "U28"
+      ],
+      "definition": {
+        "path": "docs/observatory-feature-identities.json",
+        "pointer": "/identities/10"
+      }
+    },
+    {
+      "id": "recall",
+      "label": "주제 카드·Anki·예약 복습",
+      "metaphor": "인출 카드함",
+      "place": "desk",
+      "compositionId": "practice",
+      "entityIds": [
+        "R14",
+        "R29",
+        "U26",
+        "U27"
+      ],
+      "definition": {
+        "path": "docs/observatory-feature-identities.json",
+        "pointer": "/identities/11"
+      }
+    },
+    {
+      "id": "code",
+      "label": "코딩 연습",
+      "metaphor": "실행 실험대",
+      "place": "workbench",
+      "compositionId": "instrument",
+      "entityIds": [
+        "R08",
+        "R25",
+        "U30"
+      ],
+      "definition": {
+        "path": "docs/observatory-feature-identities.json",
+        "pointer": "/identities/12"
+      }
+    },
+    {
+      "id": "math",
+      "label": "수식 탐색·개념 도해",
+      "metaphor": "조건을 조절하는 관측기",
+      "place": "workbench",
+      "compositionId": "instrument",
+      "entityIds": [
+        "R09",
+        "O14",
+        "U31",
+        "U32",
+        "U33"
+      ],
+      "definition": {
+        "path": "docs/observatory-feature-identities.json",
+        "pointer": "/identities/13"
+      }
+    },
+    {
+      "id": "statistics",
+      "label": "통계·여러 그래프·원기록",
+      "metaphor": "공부의 관측판",
+      "place": "wall",
+      "compositionId": "analysis",
+      "entityIds": [
+        "R02",
+        "O26",
+        "U36"
+      ],
+      "definition": {
+        "path": "docs/observatory-feature-identities.json",
+        "pointer": "/identities/14"
+      }
+    },
+    {
+      "id": "canvas",
+      "label": "Canvas",
+      "metaphor": "내가 놓은 관계 배치도",
+      "place": "wall",
+      "compositionId": "spatial",
+      "entityIds": [
+        "R15",
+        "U34"
+      ],
+      "definition": {
+        "path": "docs/observatory-feature-identities.json",
+        "pointer": "/identities/15"
+      }
+    },
+    {
+      "id": "graph",
+      "label": "그래프뷰",
+      "metaphor": "관계 탐색 지도",
+      "place": "wall",
+      "compositionId": "spatial",
+      "entityIds": [
+        "R16",
+        "U35"
+      ],
+      "definition": {
+        "path": "docs/observatory-feature-identities.json",
+        "pointer": "/identities/16"
+      }
+    },
+    {
+      "id": "board",
+      "label": "칸반보드",
+      "metaphor": "진행을 옮기는 작업 보드",
+      "place": "wall",
+      "compositionId": "board",
+      "entityIds": [
+        "R17",
+        "O27",
+        "O28"
+      ],
+      "definition": {
+        "path": "docs/observatory-feature-identities.json",
+        "pointer": "/identities/17"
+      }
+    },
+    {
+      "id": "schedule",
+      "label": "일정·과제·다음 공부",
+      "metaphor": "앞으로 펼칠 계획표",
+      "place": "wall",
+      "compositionId": "timeline",
+      "entityIds": [
+        "R03",
+        "O13",
+        "O16",
+        "O17",
+        "O25",
+        "U18",
+        "U21",
+        "U22"
+      ],
+      "definition": {
+        "path": "docs/observatory-feature-identities.json",
+        "pointer": "/identities/18"
+      }
+    },
+    {
+      "id": "reflection",
+      "label": "내 생각",
+      "metaphor": "기록을 돌아보는 여백",
+      "place": "wall",
+      "compositionId": "journal",
+      "entityIds": [
+        "R36",
+        "U39"
+      ],
+      "definition": {
+        "path": "docs/observatory-feature-identities.json",
+        "pointer": "/identities/19"
+      }
+    },
+    {
+      "id": "search",
+      "label": "찾기",
+      "metaphor": "공간 전체의 색인등",
+      "place": "global",
+      "compositionId": "catalogue",
+      "entityIds": [
+        "R18",
+        "R41"
+      ],
+      "definition": {
+        "path": "docs/observatory-feature-identities.json",
+        "pointer": "/identities/20"
+      }
+    },
+    {
+      "id": "workspace-controls",
+      "label": "공간 설정·도움말",
+      "metaphor": "공간을 조율하는 천장 조명",
+      "place": "global",
+      "compositionId": "control",
+      "entityIds": [
+        "R37",
+        "R38",
+        "R39",
+        "O12",
+        "O15",
+        "U01",
+        "U10",
+        "U38",
+        "U40"
+      ],
+      "definition": {
+        "path": "docs/observatory-feature-identities.json",
+        "pointer": "/identities/21"
+      }
+    },
+    {
+      "id": "api-connection",
+      "label": "API·GPT 연결·사용량",
+      "metaphor": "외부 연산 연결대",
+      "place": "global",
+      "compositionId": "control",
+      "entityIds": [
+        "U37"
+      ],
+      "definition": {
+        "path": "docs/observatory-feature-identities.json",
+        "pointer": "/identities/22"
+      }
+    },
+    {
+      "id": "account",
+      "label": "계정·가입·승인·탈퇴",
+      "metaphor": "개인 공간의 출입 관리",
+      "place": "global",
+      "compositionId": "control",
+      "entityIds": [
+        "R40",
+        "O08",
+        "O09",
+        "U02",
+        "U03",
+        "U04",
+        "U05",
+        "U06"
+      ],
+      "definition": {
+        "path": "docs/observatory-feature-identities.json",
+        "pointer": "/identities/23"
+      }
+    },
+    {
+      "id": "recovery",
+      "label": "저장 상태·백업·휴지통·초안",
+      "metaphor": "기록 보관함과 복구대",
+      "place": "global",
+      "compositionId": "control",
+      "entityIds": [
+        "R24",
+        "R33",
+        "R34",
+        "R35",
+        "O05",
+        "O21",
+        "U07",
+        "U08"
+      ],
+      "definition": {
+        "path": "docs/observatory-feature-identities.json",
+        "pointer": "/identities/24"
+      }
+    }
+  ],
+  "entityCoverage": {
+    "source": {
+      "path": "docs/figma-observatory-20261002/screen-inventory.json"
+    },
+    "counts": {
+      "routes": 41,
+      "overlays": 29,
+      "surfaces": 41,
+      "total": 111
+    },
+    "binding": "identities[].entityIds; every current inventory ID occurs exactly once",
+    "statePlanSource": {
+      "path": "docs/figma-observatory-20261002/screen-inventory.json",
+      "pointer": "/statePlan"
+    },
+    "flowSource": {
+      "path": "docs/figma-observatory-20261002/screen-inventory.json",
+      "pointer": "/flows"
+    },
+    "routeBindings": {
+      "path": "docs/observatory-feature-identities.json",
+      "pointer": "/routeBindings"
+    },
+    "dialogBindings": {
+      "path": "docs/observatory-feature-identities.json",
+      "pointer": "/dialogBindings"
+    },
+    "contextOverrides": {
+      "path": "docs/observatory-feature-identities.json",
+      "pointer": "/contextOverrides"
+    },
+    "extensions": {
+      "path": "docs/observatory-feature-identities.json",
+      "pointer": "/extensions"
+    }
+  },
+  "mockups": {
+    "policy": {
+      "path": "docs/figma-memory-20261002/widget-policy.json"
+    },
+    "contracts": [
+      {
+        "id": "SC01",
+        "name": "StudyLandscapes",
+        "definition": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/0"
+        },
+        "runtimeSource": "src/ui/study-landscapes.tsx",
+        "runtimeSymbol": "StudyLandscapes",
+        "rendererEntry": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/0/actualEntry"
+        },
+        "existingFigmaOwnerId": "17:231",
+        "nativeBoundary": "Only the Figma visual subtree; no src/ui or storage behavior is replaced or removed"
+      },
+      {
+        "id": "SC02",
+        "name": "ObservatoryWorld",
+        "definition": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/1"
+        },
+        "runtimeSource": "src/ui/pixel-worlds.tsx",
+        "runtimeSymbol": "ObservatoryWorld",
+        "rendererEntry": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/1/actualEntry"
+        },
+        "existingFigmaOwnerId": "17:1910",
+        "nativeBoundary": "Only the Figma visual subtree; no src/ui or storage behavior is replaced or removed"
+      },
+      {
+        "id": "SC03",
+        "name": "ObservatoryRoom",
+        "definition": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/2"
+        },
+        "runtimeSource": "src/ui/observatory-room.tsx",
+        "runtimeSymbol": "ObservatoryRoom",
+        "rendererEntry": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/2/actualEntry"
+        },
+        "existingFigmaOwnerId": "20:4808",
+        "nativeBoundary": "Only the Figma visual subtree; no src/ui or storage behavior is replaced or removed"
+      },
+      {
+        "id": "SC04",
+        "name": "ObservatoryDesk",
+        "definition": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/3"
+        },
+        "runtimeSource": "src/ui/observatory-desk.tsx",
+        "runtimeSymbol": "ObservatoryDesk",
+        "rendererEntry": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/3/actualEntry"
+        },
+        "existingFigmaOwnerId": "20:6484",
+        "nativeBoundary": "Only the Figma visual subtree; no src/ui or storage behavior is replaced or removed"
+      },
+      {
+        "id": "SC05",
+        "name": "ObservatoryAdvanced",
+        "definition": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/4"
+        },
+        "runtimeSource": "src/ui/observatory-advanced.tsx",
+        "runtimeSymbol": "ObservatoryAdvanced",
+        "rendererEntry": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/4/actualEntry"
+        },
+        "existingFigmaOwnerId": "20:6496",
+        "nativeBoundary": "Only the Figma visual subtree; no src/ui or storage behavior is replaced or removed"
+      },
+      {
+        "id": "SC06",
+        "name": "ObservatorySkyDetails",
+        "definition": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/5"
+        },
+        "runtimeSource": "src/ui/observatory-details.tsx",
+        "runtimeSymbol": "ObservatorySkyDetails",
+        "rendererEntry": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/5/actualEntry"
+        },
+        "existingFigmaOwnerId": "20:6515",
+        "nativeBoundary": "Only the Figma visual subtree; no src/ui or storage behavior is replaced or removed"
+      },
+      {
+        "id": "SC07",
+        "name": "ObservatoryStationDetails",
+        "definition": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/6"
+        },
+        "runtimeSource": "src/ui/observatory-details.tsx",
+        "runtimeSymbol": "ObservatoryStationDetails",
+        "rendererEntry": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/6/actualEntry"
+        },
+        "existingFigmaOwnerId": "20:6527",
+        "nativeBoundary": "Only the Figma visual subtree; no src/ui or storage behavior is replaced or removed"
+      },
+      {
+        "id": "SC08",
+        "name": "ObservatoryTimeSky",
+        "definition": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/7"
+        },
+        "runtimeSource": "src/ui/observatory-time-sky.tsx",
+        "runtimeSymbol": "ObservatoryTimeSky",
+        "rendererEntry": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/7/actualEntry"
+        },
+        "existingFigmaOwnerId": "20:6539",
+        "nativeBoundary": "Only the Figma visual subtree; no src/ui or storage behavior is replaced or removed"
+      },
+      {
+        "id": "SC09",
+        "name": "ObservatoryTimeGround",
+        "definition": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/8"
+        },
+        "runtimeSource": "src/ui/observatory-time-sky.tsx",
+        "runtimeSymbol": "ObservatoryTimeGround",
+        "rendererEntry": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/8/actualEntry"
+        },
+        "existingFigmaOwnerId": "20:6560",
+        "nativeBoundary": "Only the Figma visual subtree; no src/ui or storage behavior is replaced or removed"
+      },
+      {
+        "id": "SC10",
+        "name": "ObservatoryClouds",
+        "definition": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/9"
+        },
+        "runtimeSource": "src/ui/observatory-atmosphere.tsx",
+        "runtimeSymbol": "ObservatoryClouds",
+        "rendererEntry": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/9/actualEntry"
+        },
+        "existingFigmaOwnerId": "20:6581",
+        "nativeBoundary": "Only the Figma visual subtree; no src/ui or storage behavior is replaced or removed"
+      },
+      {
+        "id": "SC11",
+        "name": "ObservatoryGroundDetails",
+        "definition": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/10"
+        },
+        "runtimeSource": "src/ui/observatory-atmosphere.tsx",
+        "runtimeSymbol": "ObservatoryGroundDetails",
+        "rendererEntry": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/10/actualEntry"
+        },
+        "existingFigmaOwnerId": "20:6593",
+        "nativeBoundary": "Only the Figma visual subtree; no src/ui or storage behavior is replaced or removed"
+      },
+      {
+        "id": "SC12",
+        "name": "ObservatoryDomeTiles",
+        "definition": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/11"
+        },
+        "runtimeSource": "src/ui/observatory-atmosphere.tsx",
+        "runtimeSymbol": "ObservatoryDomeTiles",
+        "rendererEntry": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/11/actualEntry"
+        },
+        "existingFigmaOwnerId": "20:6605",
+        "nativeBoundary": "Only the Figma visual subtree; no src/ui or storage behavior is replaced or removed"
+      },
+      {
+        "id": "SC13",
+        "name": "ObservatoryShockwave",
+        "definition": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/12"
+        },
+        "runtimeSource": "src/ui/observatory-atmosphere.tsx",
+        "runtimeSymbol": "ObservatoryShockwave",
+        "rendererEntry": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/12/actualEntry"
+        },
+        "existingFigmaOwnerId": "20:6617",
+        "nativeBoundary": "Only the Figma visual subtree; no src/ui or storage behavior is replaced or removed"
+      },
+      {
+        "id": "SC14",
+        "name": "ObservatoryStudySky",
+        "definition": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/13"
+        },
+        "runtimeSource": "src/ui/observatory-reactivity.tsx",
+        "runtimeSymbol": "ObservatoryStudySky",
+        "rendererEntry": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/13/actualEntry"
+        },
+        "existingFigmaOwnerId": "20:6629",
+        "nativeBoundary": "Only the Figma visual subtree; no src/ui or storage behavior is replaced or removed"
+      },
+      {
+        "id": "SC15",
+        "name": "ObservatoryStudyStation",
+        "definition": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/14"
+        },
+        "runtimeSource": "src/ui/observatory-reactivity.tsx",
+        "runtimeSymbol": "ObservatoryStudyStation",
+        "rendererEntry": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/14/actualEntry"
+        },
+        "existingFigmaOwnerId": "20:6641",
+        "nativeBoundary": "Only the Figma visual subtree; no src/ui or storage behavior is replaced or removed"
+      },
+      {
+        "id": "SC16",
+        "name": "ObservatoryRadiance",
+        "definition": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/15"
+        },
+        "runtimeSource": "src/ui/observatory-radiance.tsx",
+        "runtimeSymbol": "ObservatoryRadiance",
+        "rendererEntry": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/15/actualEntry"
+        },
+        "existingFigmaOwnerId": "20:6653",
+        "nativeBoundary": "Only the Figma visual subtree; no src/ui or storage behavior is replaced or removed"
+      },
+      {
+        "id": "SC17",
+        "name": "ObservatoryRadianceGround",
+        "definition": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/16"
+        },
+        "runtimeSource": "src/ui/observatory-radiance.tsx",
+        "runtimeSymbol": "ObservatoryRadianceGround",
+        "rendererEntry": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/16/actualEntry"
+        },
+        "existingFigmaOwnerId": "20:6665",
+        "nativeBoundary": "Only the Figma visual subtree; no src/ui or storage behavior is replaced or removed"
+      },
+      {
+        "id": "SC18",
+        "name": "ObservatoryEvents",
+        "definition": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/17"
+        },
+        "runtimeSource": "src/ui/observatory-events.tsx",
+        "runtimeSymbol": "ObservatoryEvents",
+        "rendererEntry": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/17/actualEntry"
+        },
+        "existingFigmaOwnerId": "20:6677",
+        "nativeBoundary": "Only the Figma visual subtree; no src/ui or storage behavior is replaced or removed"
+      },
+      {
+        "id": "SC19",
+        "name": "ObservatoryEventVariationSymbol",
+        "definition": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/18"
+        },
+        "runtimeSource": "src/ui/observatory-event-variations.tsx",
+        "runtimeSymbol": "ObservatoryEventVariationSymbol",
+        "rendererEntry": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/18/actualEntry"
+        },
+        "existingFigmaOwnerId": "21:5121",
+        "nativeBoundary": "Only the Figma visual subtree; no src/ui or storage behavior is replaced or removed"
+      },
+      {
+        "id": "SC20",
+        "name": "ObservatoryEventVariation",
+        "definition": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/19"
+        },
+        "runtimeSource": "src/ui/observatory-event-variations.tsx",
+        "runtimeSymbol": "ObservatoryEventVariation",
+        "rendererEntry": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/19/actualEntry"
+        },
+        "existingFigmaOwnerId": "21:5138",
+        "nativeBoundary": "Only the Figma visual subtree; no src/ui or storage behavior is replaced or removed"
+      },
+      {
+        "id": "RUNTIME-ObservatoryPlaceArt",
+        "name": "ObservatoryPlaceArt",
+        "definition": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/20"
+        },
+        "runtimeSource": "src/ui/observatory-place-art.tsx",
+        "runtimeSymbol": "ObservatoryPlaceArt",
+        "rendererEntry": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/20/actualEntry"
+        },
+        "existingFigmaOwnerId": null,
+        "nativeBoundary": "place scene art only; keep location/route/collapse/return controls"
+      },
+      {
+        "id": "RUNTIME-MathExplorer",
+        "name": "MathExplorer",
+        "definition": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/21"
+        },
+        "runtimeSource": "src/ui/math-explorer.tsx",
+        "runtimeSymbol": "MathExplorer",
+        "rendererEntry": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/21/actualEntry"
+        },
+        "existingFigmaOwnerId": null,
+        "nativeBoundary": "plot picture only; keep formula input, variables, comparison selection, reset and accessible value/source controls"
+      },
+      {
+        "id": "RUNTIME-ConceptInteractives",
+        "name": "ConceptInteractives",
+        "definition": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/22"
+        },
+        "runtimeSource": "src/ui/concept-interactives.tsx",
+        "runtimeSymbol": "ConceptInteractives",
+        "rendererEntry": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/22/actualEntry"
+        },
+        "existingFigmaOwnerId": null,
+        "nativeBoundary": "interactive illustration only; keep selection/view controls, loading/error/retry and restored view contract"
+      },
+      {
+        "id": "RUNTIME-StudyStatistics",
+        "name": "StudyStatistics",
+        "definition": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/23"
+        },
+        "runtimeSource": "src/ui/statistics.tsx",
+        "runtimeSymbol": "StudyStatistics",
+        "rendererEntry": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/23/actualEntry"
+        },
+        "existingFigmaOwnerId": null,
+        "nativeBoundary": "chart drawing only; keep metric, units, denominator, chart choice, value lists and source access"
+      },
+      {
+        "id": "RUNTIME-StudyGraph",
+        "name": "StudyGraph",
+        "definition": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/24"
+        },
+        "runtimeSource": "src/ui/study-graph.tsx",
+        "runtimeSymbol": "StudyGraph",
+        "rendererEntry": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/24/actualEntry"
+        },
+        "existingFigmaOwnerId": null,
+        "nativeBoundary": "dense graph drawing only; keep find/filter/open/keyboard/value controls and current node IDs"
+      },
+      {
+        "id": "RUNTIME-StudyCanvas",
+        "name": "StudyCanvas",
+        "definition": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/25"
+        },
+        "runtimeSource": "src/ui/study-canvas.tsx",
+        "runtimeSymbol": "StudyCanvas",
+        "rendererEntry": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/25/actualEntry"
+        },
+        "existingFigmaOwnerId": null,
+        "nativeBoundary": "static canvas specimen only; keep editing/selecting/source/undo/restore controls and personal positions/links"
+      },
+      {
+        "id": "RUNTIME-MemoInkPad",
+        "name": "MemoInkPad",
+        "definition": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/26"
+        },
+        "runtimeSource": "src/ui/memo-ink-pad.tsx",
+        "runtimeSymbol": "MemoInkPad",
+        "rendererEntry": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/26/actualEntry"
+        },
+        "existingFigmaOwnerId": null,
+        "nativeBoundary": "synthetic handwriting surface only; keep native tool/undo/color/input controls and original ink strokes"
+      },
+      {
+        "id": "RUNTIME-CodePractice",
+        "name": "CodePractice",
+        "definition": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/27"
+        },
+        "runtimeSource": "src/ui/code-practice.tsx",
+        "runtimeSymbol": "CodePractice",
+        "rendererEntry": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/27/actualEntry"
+        },
+        "existingFigmaOwnerId": null,
+        "nativeBoundary": "editor/output picture only; keep inputs/run/status/source links and actual executor permissions"
+      },
+      {
+        "id": "RUNTIME-ConceptFigureView",
+        "name": "ConceptFigureView",
+        "definition": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/28"
+        },
+        "runtimeSource": "src/ui/concept-figure.tsx",
+        "runtimeSymbol": "ConceptFigureView",
+        "rendererEntry": {
+          "path": "docs/figma-memory-20261002/mockup-contracts.json",
+          "pointer": "/contracts/28/actualEntry"
+        },
+        "existingFigmaOwnerId": null,
+        "nativeBoundary": "diagram drawing only; keep source text, labels needed for understanding and actual zoom/pan/edit controls"
+      }
+    ],
+    "editableInFigma": [
+      "whole widget bounds",
+      "external frame",
+      "labels and controls",
+      "layout rules",
+      "important states and prototype links",
+      "runtime binding"
+    ],
+    "runtimeOnly": [
+      "real text input/IME",
+      "calculation and code execution",
+      "GPU/animation timing and performance",
+      "real save/authentication/recovery",
+      "real data-driven graph/ink behavior"
+    ],
+    "noOwnerInference": "A null existingFigmaOwnerId is unknown in that contract, not evidence the product feature or design is absent. Link the known owning screen and actual source before claiming coverage.",
+    "passCondition": "원본 전체 범위·비율·바깥 틀과 native 조작/상태/복귀를 보존하고 동작은 실제 renderer에서 확인한다.",
+    "evidenceRefs": [
+      "existing-mockup-binding"
+    ],
+    "verificationStatus": "Source-linked; no new runtime or all-mockup remote verification in this contract."
+  },
+  "adoptionWorkflow": [
+    {
+      "id": "candidate",
+      "label": "후보와 근거 확인",
+      "required": [
+        "reason/role",
+        "source value or observation",
+        "affected components/compositions",
+        "preservation constraints"
+      ],
+      "result": "Existing default stays active until an evidence-backed replacement is ready."
+    },
+    {
+      "id": "representative-application",
+      "label": "대표 과업에 실제 적용",
+      "required": [
+        "real font and content",
+        "relevant narrow/long/empty/error states",
+        "actual renderer for image-only mockups",
+        "existing user settings"
+      ],
+      "result": "Visible specimen and executable task for the affected scope."
+    },
+    {
+      "id": "calibration",
+      "label": "문제 원인 보정",
+      "required": [
+        "observed failure",
+        "implementation vs role-specific vs common-value cause",
+        "smallest responsible change",
+        "related recheck"
+      ],
+      "result": "Resolved issue with evidence; do not accumulate ad hoc offsets."
+    },
+    {
+      "id": "scoped-adoption",
+      "label": "확인한 범위의 공통값 채택",
+      "required": [
+        "source/consumer consistency",
+        "pass-condition results",
+        "versions and tested scope",
+        "remaining limits"
+      ],
+      "result": "Update owning tokens/rules and relevant Figma specimens together; no universal optimum claim."
+    },
+    {
+      "id": "maintenance",
+      "label": "변경된 조건만 재확인",
+      "required": [
+        "changed source/content/font/container/technology",
+        "affected roles and consumers",
+        "preserved user state",
+        "migration/revert path if needed"
+      ],
+      "result": "Reuse matching evidence; new or failed conditions receive focused verification."
+    }
+  ],
+  "representativeTasks": [
+    {
+      "place": "desk",
+      "direction": "north",
+      "identityIds": [
+        "study-record",
+        "notes",
+        "exam-practice"
+      ],
+      "conditions": [
+        "multiple topics",
+        "long Korean notes",
+        "optional empty fields",
+        "save failure and return"
+      ]
+    },
+    {
+      "place": "shelf",
+      "direction": "west",
+      "identityIds": [
+        "subjects",
+        "materials",
+        "concepts"
+      ],
+      "conditions": [
+        "long titles",
+        "hierarchy",
+        "Korean and formula reading",
+        "source and reading-position return"
+      ]
+    },
+    {
+      "place": "workbench",
+      "direction": "east",
+      "identityIds": [
+        "math",
+        "code"
+      ],
+      "conditions": [
+        "input and result comparison",
+        "formula/code error",
+        "narrow controls",
+        "actual calculation/stop/reset"
+      ]
+    },
+    {
+      "place": "wall",
+      "direction": "south",
+      "identityIds": [
+        "statistics",
+        "canvas",
+        "graph",
+        "board",
+        "schedule"
+      ],
+      "conditions": [
+        "accumulated records",
+        "multiple graphs and evidence",
+        "personal layout",
+        "long card/calendar content"
+      ]
+    },
+    {
+      "place": "common",
+      "direction": "up",
+      "identityIds": [
+        "workspace-controls",
+        "search",
+        "api-connection",
+        "account",
+        "recovery"
+      ],
+      "conditions": [
+        "open from each place",
+        "current permission/storage state",
+        "cancel or failure",
+        "same task/direction/draft/focus return"
+      ]
+    }
+  ],
+  "verificationPolicy": {
+    "structure": "Resolve references, unique IDs, complete source-set coverage and real Figma readback. This contract file cannot prove remote application.",
+    "visual": "Inspect real rendered representative specimens for clipping, wrapping, contrast, hierarchy and original widget preservation.",
+    "interaction": "Use actual shared components and actual app for typing, calculation, save/reload, focus and return.",
+    "tools": [
+      "src/ui/components.stories.tsx",
+      "src/ui/observatory-workspace.stories.tsx",
+      "scripts/check-design-tokens.mjs",
+      "docs/device-environments.md"
+    ],
+    "deviceScope": "Reuse the agreed five browser profiles where the affected flow warrants it; simulation is not physical Pencil/IME/VoiceOver evidence.",
+    "regressionScope": "Test affected role families and states; do not make unrelated whole-app QA a prerequisite for a small change.",
+    "experienceLimit": "Automated structure/contrast checks do not establish comfort, observatory presence, long-term usability or learning effect."
+  },
+  "evidence": [
+    {
+      "id": "existing-runtime-scoped",
+      "source": "docs/observatory-feature-identities-implementation-20261002.md",
+      "scope": "Existing report: 25 role bindings, 111 entity coverage, 10 representative compositions and 5 flows × 5 WebKit profiles = 25 passes; source/version conditions in original evidence apply.",
+      "notClaimed": "All entity/state combinations, physical devices, remote API/server, public deployment or long-term effect."
+    },
+    {
+      "id": "existing-figma-scoped",
+      "source": "docs/figma-observatory-20261002/reconciliation-20261002/report.md",
+      "scope": "Existing report: preserved 111 entities/155 frames, 59 component types, 14 tasks and representative state/connection readbacks.",
+      "notClaimed": "Current turn remote revalidation, all responsive text states or runtime execution."
+    },
+    {
+      "id": "existing-mockup-binding",
+      "source": "docs/figma-memory-20261002/README.md",
+      "scope": "Existing report: 29 source bindings, full 960×400 shared world image and native wrapper preservation; named source hashes are capture snapshots.",
+      "notClaimed": "All 29 images newly rendered or source existence proving interaction/save."
+    }
+  ],
+  "sourceDriftNotes": [
+    {
+      "source": {
+        "path": "docs/observatory-experience-baseline.json",
+        "pointer": "/sourceOwnership/runtimeCompatibility/mathWorkspace"
+      },
+      "observedSource": "scripts/sync-math-observatory.mjs",
+      "finding": "Canonical ownership narrative still records workSurfaceColors/v1.1 compatibility, while current generator imports materialColor and reads materials.paper/interior through sync-observatory-ui.mjs.",
+      "handling": "Use current code consumer mapping here. Canonical narrative correction belongs to its owner; no baseline values changed by this contract."
+    }
+  ],
+  "methodSources": [
+    {
+      "kind": "design-system practice",
+      "url": "https://design-system.service.gov.uk/community/contribution-criteria/",
+      "application": "Adopt components with usability, consistency, contextual evidence; not a universal numerical standard."
+    },
+    {
+      "kind": "tool layout behavior",
+      "url": "https://help.figma.com/hc/en-us/articles/360040451373-Guide-to-auto-layout",
+      "application": "Editable structure with content/container sizing; actual behavior still belongs to the application."
+    },
+    {
+      "kind": "accessibility criterion",
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/text-spacing.html",
+      "application": "User text-spacing adaptation without content/function loss, not prescribed default typography."
+    },
+    {
+      "kind": "token interchange specification",
+      "url": "https://www.designtokens.org/tr/2025.10/format/",
+      "application": "Reuse semantic role and source-reference separation. This project JSON makes no DTCG conformance or W3C certification claim."
+    }
+  ],
+  "suggestedFigmaSections": [
+    {
+      "key": "overview",
+      "name": "OS 기준 안내",
+      "contents": [
+        "원본과 소비 경로",
+        "사용법·보존",
+        "적용 범위와 근거"
+      ]
+    },
+    {
+      "key": "foundations",
+      "name": "공통 기초",
+      "contents": [
+        "재료색",
+        "글자",
+        "간격",
+        "반응형",
+        "조작",
+        "창문",
+        "픽셀",
+        "모션"
+      ]
+    },
+    {
+      "key": "components",
+      "name": "부품과 상태",
+      "contents": [
+        "기존59부품 참조",
+        "8공통 상태",
+        "속성·크기·복귀 조건"
+      ]
+    },
+    {
+      "key": "compositions",
+      "name": "과업 구성과 기능 역할",
+      "contents": [
+        "10구성",
+        "25역할",
+        "111entity의 원본 참조"
+      ]
+    },
+    {
+      "key": "mockups",
+      "name": "목업과 실제 구현",
+      "contents": [
+        "29계약",
+        "native 경계",
+        "실제 renderer와 검증 조건"
+      ]
+    },
+    {
+      "key": "validation",
+      "name": "기준값 적용·보정",
+      "contents": [
+        "후보→대표 적용→보정→범위 채택→유지",
+        "5자리 대표 과업",
+        "기존 근거·새 미검증 조건"
+      ]
+    }
+  ],
+  "verification": {
+    "date": "2026-10-02",
+    "performed": "local JSON parse, exact ID-set coverage and every local path/JSON pointer validation",
+    "counts": {
+      "foundationGroups": 8,
+      "componentStates": 8,
+      "components": 59,
+      "compositions": 10,
+      "identities": 25,
+      "entities": 111,
+      "mockups": 29
+    },
+    "missingEntities": [],
+    "duplicateEntities": [],
+    "unregisteredEntities": [],
+    "remoteFigmaAppliedByThisFile": true,
+    "runtimeExecutedInThisContractTask": false,
+    "resolvedSourceReferences": 202,
+    "remoteEvidence": "docs/figma-os-structure-20261002/verification.json"
+  },
+  "identityDetails": {
+    "fields": [
+      "purpose",
+      "primaryAction",
+      "design",
+      "ux",
+      "ui",
+      "preserve",
+      "repeatUse",
+      "guidance"
+    ],
+    "runtimeBinding": "src/ui/observatory-feature-identity.ts",
+    "validation": "Use each role definition and its entity statePlan; preserve user overrides and actual entry/return context."
+  },
+  "compositionDefaults": {
+    "runtimeSources": [
+      "src/ui/observatory-feature-identity.ts",
+      "src/ui/observatory-feature-identity.css"
+    ],
+    "requiredFoundationIds": [
+      "material",
+      "type",
+      "spacing",
+      "layout",
+      "control"
+    ],
+    "passCondition": "해당 역할의 원문·순서·조작·보존·반복 조건을 대표 과업에서 확인한다.",
+    "evidenceRefs": [
+      "existing-runtime-scoped"
+    ],
+    "verificationLimit": "대표 구성 확인은 연결된 모든 entity/상태의 실행 완료가 아니다."
+  }
+}

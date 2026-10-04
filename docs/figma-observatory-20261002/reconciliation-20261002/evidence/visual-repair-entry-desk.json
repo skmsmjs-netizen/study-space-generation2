@@ -1,0 +1,209 @@
+{
+  "pageId": "7:71",
+  "rootIds": [
+    "83:100461",
+    "83:100490",
+    "83:100519"
+  ],
+  "createdNodeIds": [],
+  "mutatedNodeIdsEncoded": {
+    "format": "prefix-plus-inclusive-ranges-v1",
+    "literal": [],
+    "groups": [
+      [
+        "83:",
+        [
+          [
+            100461,
+            100467
+          ],
+          [
+            100470,
+            100472
+          ],
+          [
+            100475,
+            100477
+          ],
+          [
+            100480,
+            100482
+          ],
+          [
+            100485,
+            100487
+          ],
+          [
+            100490,
+            100496
+          ],
+          [
+            100499,
+            100501
+          ],
+          [
+            100504,
+            100506
+          ],
+          [
+            100509,
+            100511
+          ],
+          [
+            100514,
+            100516
+          ],
+          [
+            100519,
+            100525
+          ],
+          [
+            100528,
+            100530
+          ]
+        ]
+      ],
+      [
+        "I83:100467;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I83:100472;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I83:100477;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I83:100482;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I83:100487;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I83:100496;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I83:100501;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I83:100506;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I83:100511;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I83:100516;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I83:100525;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I83:100530;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ]
+    ]
+  },
+  "counts": {
+    "roots": 3,
+    "texts": 33,
+    "mutated": 60,
+    "collapsedTexts": 0,
+    "horizontalOverflow": 0,
+    "wrongTextMode": 0,
+    "paperModeMismatch": 0,
+    "sourceTextChanges": 0,
+    "rootOverlaps": 0,
+    "sourceGeometryChanges": 0,
+    "svgRepairs": 0,
+    "absoluteSubtrees": 0
+  },
+  "svg": [],
+  "absoluteSubtrees": [],
+  "rootOverlaps": [],
+  "sourceGeometry": [
+    {
+      "id": "26:68",
+      "preserved": true
+    },
+    {
+      "id": "26:1877",
+      "preserved": true
+    },
+    {
+      "id": "28:8964",
+      "preserved": true
+    }
+  ],
+  "issues": [],
+  "scope": "Task-owned delta screens/variants/guideboards/review panels only. Existing155 canonical screens and common owners remain untouched. Paper colour bindings retained."
+}

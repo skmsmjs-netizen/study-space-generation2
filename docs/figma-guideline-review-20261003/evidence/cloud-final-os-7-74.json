@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"pageId\":\"7:74\",\"name\":\"13 남쪽 · 기록·계획 벽\",\"rootCount\":72,\"wrappers\":71,\"sizes\":{\"16\":51,\"18\":20},\"problemCount\":0,\"problems\":[],\"forms\":[{\"id\":\"404:1611\",\"close\":1,\"width\":336,\"height\":600},{\"id\":\"404:1669\",\"close\":1,\"width\":336,\"height\":528},{\"id\":\"404:1692\",\"close\":1,\"width\":336,\"height\":591},{\"id\":\"404:1719\",\"close\":1,\"width\":336,\"height\":528},{\"id\":\"404:1742\",\"close\":1,\"width\":336,\"height\":600},{\"id\":\"404:1809\",\"close\":1,\"width\":336,\"height\":600}],\"hubActions\":[{\"id\":\"391:36474\",\"actions\":[{\"type\":\"NODE\",\"destinationId\":\"404:1611\",\"navigation\":\"SWAP\",\"transition\":null,\"resetVideoPosition\":false,\"resetScrollPosition\":false}]},{\"id\":\"391:36476\",\"actions\":[{\"type\":\"NODE\",\"destinationId\":\"404:1669\",\"navigation\":\"SWAP\",\"transition\":null,\"resetVideoPosition\":false,\"resetScrollPosition\":false}]},{\"id\":\"391:36478\",\"actions\":[{\"type\":\"NODE\",\"destinationId\":\"404:1692\",\"navigation\":\"SWAP\",\"transition\":null,\"resetVideoPosition\":false,\"resetScrollPosition\":false}]},{\"id\":\"391:36480\",\"actions\":[{\"type\":\"NODE\",\"destinationId\":\"404:1719\",\"navigation\":\"SWAP\",\"transition\":null,\"resetVideoPosition\":false,\"resetScrollPosition\":false}]},{\"id\":\"391:36482\",\"actions\":[{\"type\":\"NODE\",\"destinationId\":\"404:1742\",\"navigation\":\"SWAP\",\"transition\":null,\"resetVideoPosition\":false,\"resetScrollPosition\":false}]},{\"id\":\"391:36484\",\"actions\":[{\"type\":\"NODE\",\"destinationId\":\"404:1809\",\"navigation\":\"SWAP\",\"transition\":null,\"resetVideoPosition\":false,\"resetScrollPosition\":false}]}],\"sourcePreserved\":true,\"mathPreserved\":true,\"removedDerivedVectorCount\":0,\"createdNodeIds\":[],\"mutatedNodeIds\":[],\"removedNodeIds\":[]}"
+    }
+  ],
+  "isError": false
+}

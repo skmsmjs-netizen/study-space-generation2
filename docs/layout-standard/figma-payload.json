@@ -1,0 +1,4242 @@
+{
+  "pageId": "227:180",
+  "overviewId": "227:181",
+  "profiles": [
+    {
+      "id": "P01",
+      "composition": "journal",
+      "primaryPattern": "L025",
+      "secondaryCandidates": [
+        "L042",
+        "L045",
+        "L053"
+      ],
+      "sequence": "대상→기록/답→선택 입력/이력"
+    },
+    {
+      "id": "P02",
+      "composition": "catalogue",
+      "primaryPattern": "L045",
+      "secondaryCandidates": [
+        "L189",
+        "L055",
+        "L056"
+      ],
+      "sequence": "범위/찾기→목록/계층→상세"
+    },
+    {
+      "id": "P03",
+      "composition": "document",
+      "primaryPattern": "L190",
+      "secondaryCandidates": [
+        "L187",
+        "L060",
+        "L081"
+      ],
+      "sequence": "원자료→내 기록/주석→출처 복귀"
+    },
+    {
+      "id": "P04",
+      "composition": "practice",
+      "primaryPattern": "L193",
+      "secondaryCandidates": [
+        "L054",
+        "L075"
+      ],
+      "sequence": "범위/질문→내 답→공개 설명→수정"
+    },
+    {
+      "id": "P05",
+      "composition": "instrument",
+      "primaryPattern": "L194",
+      "secondaryCandidates": [
+        "L187",
+        "L188",
+        "L082"
+      ],
+      "sequence": "질문/조건→조절/관찰→값/근거"
+    },
+    {
+      "id": "P06",
+      "composition": "analysis",
+      "primaryPattern": "L195",
+      "secondaryCandidates": [
+        "L047",
+        "L044",
+        "L045"
+      ],
+      "sequence": "범위→여러 표현→선택 값→원기록"
+    },
+    {
+      "id": "P07",
+      "composition": "spatial",
+      "primaryPattern": "L196",
+      "secondaryCandidates": [
+        "L062",
+        "L063",
+        "L070"
+      ],
+      "sequence": "관계 지도→선택→상세/원문"
+    },
+    {
+      "id": "P08",
+      "composition": "board",
+      "primaryPattern": "L049",
+      "secondaryCandidates": [
+        "L045",
+        "L070"
+      ],
+      "sequence": "범위→이름 붙은 열→카드→이동/편집"
+    },
+    {
+      "id": "P09",
+      "composition": "timeline",
+      "primaryPattern": "L197",
+      "secondaryCandidates": [
+        "L050",
+        "L051",
+        "L052"
+      ],
+      "sequence": "기간→달력/목록→선택 과업"
+    },
+    {
+      "id": "P10",
+      "composition": "control",
+      "primaryPattern": "L198",
+      "secondaryCandidates": [
+        "L053",
+        "L081",
+        "L191"
+      ],
+      "sequence": "상태/권한→실행 범위→실행→결과/복구"
+    }
+  ],
+  "roles": [
+    {
+      "id": "today",
+      "label": "오늘",
+      "composition": "journal",
+      "place": "desk",
+      "entities": [
+        "R01",
+        "O10",
+        "O29",
+        "U09",
+        "U11",
+        "U12",
+        "U13",
+        "U14",
+        "U15"
+      ]
+    },
+    {
+      "id": "study-record",
+      "label": "공부 기록·주제 상세",
+      "composition": "journal",
+      "place": "desk",
+      "entities": [
+        "R05",
+        "R20",
+        "R21",
+        "O11",
+        "U19"
+      ]
+    },
+    {
+      "id": "notes",
+      "label": "메모·자유 기록",
+      "composition": "document",
+      "place": "desk",
+      "entities": [
+        "R06",
+        "R22",
+        "R30",
+        "R31",
+        "R32",
+        "O23",
+        "O24",
+        "U41"
+      ]
+    },
+    {
+      "id": "ink",
+      "label": "필기·OCR·PDF 배경",
+      "composition": "document",
+      "place": "desk",
+      "entities": [
+        "U29"
+      ]
+    },
+    {
+      "id": "subjects",
+      "label": "과목·학기 등록",
+      "composition": "catalogue",
+      "place": "library",
+      "entities": [
+        "R04",
+        "R19",
+        "O01",
+        "O02"
+      ]
+    },
+    {
+      "id": "outline",
+      "label": "목차 관리",
+      "composition": "catalogue",
+      "place": "library",
+      "entities": [
+        "O03",
+        "O04",
+        "O06",
+        "O07",
+        "O19",
+        "O22",
+        "U16",
+        "U17"
+      ]
+    },
+    {
+      "id": "materials",
+      "label": "강의 자료·PDF",
+      "composition": "document",
+      "place": "library",
+      "entities": [
+        "R07",
+        "R23",
+        "U23",
+        "U24"
+      ]
+    },
+    {
+      "id": "material-cards",
+      "label": "자료 카드·주제 연결",
+      "composition": "catalogue",
+      "place": "library",
+      "entities": [
+        "R12",
+        "U25"
+      ]
+    },
+    {
+      "id": "concepts",
+      "label": "개념 전집",
+      "composition": "catalogue",
+      "place": "library",
+      "entities": [
+        "R13"
+      ]
+    },
+    {
+      "id": "exam-practice",
+      "label": "시험 연습·수행 결과",
+      "composition": "practice",
+      "place": "desk",
+      "entities": [
+        "R10",
+        "R26",
+        "O18",
+        "O20",
+        "U20"
+      ]
+    },
+    {
+      "id": "memory-test",
+      "label": "암기시험",
+      "composition": "practice",
+      "place": "desk",
+      "entities": [
+        "R11",
+        "R27",
+        "R28",
+        "U28"
+      ]
+    },
+    {
+      "id": "recall",
+      "label": "주제 카드·Anki·예약 복습",
+      "composition": "practice",
+      "place": "desk",
+      "entities": [
+        "R14",
+        "R29",
+        "U26",
+        "U27"
+      ]
+    },
+    {
+      "id": "code",
+      "label": "코딩 연습",
+      "composition": "instrument",
+      "place": "workbench",
+      "entities": [
+        "R08",
+        "R25",
+        "U30"
+      ]
+    },
+    {
+      "id": "math",
+      "label": "수식 탐색·개념 도해",
+      "composition": "instrument",
+      "place": "workbench",
+      "entities": [
+        "R09",
+        "O14",
+        "U31",
+        "U32",
+        "U33"
+      ]
+    },
+    {
+      "id": "statistics",
+      "label": "통계·여러 그래프·원기록",
+      "composition": "analysis",
+      "place": "wall",
+      "entities": [
+        "R02",
+        "O26",
+        "U36"
+      ]
+    },
+    {
+      "id": "canvas",
+      "label": "Canvas",
+      "composition": "spatial",
+      "place": "wall",
+      "entities": [
+        "R15",
+        "U34"
+      ]
+    },
+    {
+      "id": "graph",
+      "label": "그래프뷰",
+      "composition": "spatial",
+      "place": "wall",
+      "entities": [
+        "R16",
+        "U35"
+      ]
+    },
+    {
+      "id": "board",
+      "label": "칸반보드",
+      "composition": "board",
+      "place": "wall",
+      "entities": [
+        "R17",
+        "O27",
+        "O28"
+      ]
+    },
+    {
+      "id": "schedule",
+      "label": "일정·과제·다음 공부",
+      "composition": "timeline",
+      "place": "wall",
+      "entities": [
+        "R03",
+        "O13",
+        "O16",
+        "O17",
+        "O25",
+        "U18",
+        "U21",
+        "U22"
+      ]
+    },
+    {
+      "id": "reflection",
+      "label": "내 생각",
+      "composition": "journal",
+      "place": "wall",
+      "entities": [
+        "R36",
+        "U39"
+      ]
+    },
+    {
+      "id": "search",
+      "label": "찾기",
+      "composition": "catalogue",
+      "place": "global",
+      "entities": [
+        "R18",
+        "R41"
+      ]
+    },
+    {
+      "id": "workspace-controls",
+      "label": "공간 설정·도움말",
+      "composition": "control",
+      "place": "global",
+      "entities": [
+        "R37",
+        "R38",
+        "R39",
+        "O12",
+        "O15",
+        "U01",
+        "U10",
+        "U38",
+        "U40"
+      ]
+    },
+    {
+      "id": "api-connection",
+      "label": "API·GPT 연결·사용량",
+      "composition": "control",
+      "place": "global",
+      "entities": [
+        "U37"
+      ]
+    },
+    {
+      "id": "account",
+      "label": "계정·가입·승인·탈퇴",
+      "composition": "control",
+      "place": "global",
+      "entities": [
+        "R40",
+        "O08",
+        "O09",
+        "U02",
+        "U03",
+        "U04",
+        "U05",
+        "U06"
+      ]
+    },
+    {
+      "id": "recovery",
+      "label": "저장 상태·백업·휴지통·초안",
+      "composition": "control",
+      "place": "global",
+      "entities": [
+        "R24",
+        "R33",
+        "R34",
+        "R35",
+        "O05",
+        "O21",
+        "U07",
+        "U08"
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "entityId": "R01",
+      "name": "오늘",
+      "scope": "screen",
+      "profileId": "P01",
+      "primaryPattern": "L025",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "R02",
+      "name": "통계",
+      "scope": "screen",
+      "profileId": "P06",
+      "primaryPattern": "L195",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "R03",
+      "name": "일정·과제",
+      "scope": "screen",
+      "profileId": "P09",
+      "primaryPattern": "L197",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "R04",
+      "name": "과목",
+      "scope": "screen",
+      "profileId": "P02",
+      "primaryPattern": "L037",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "R05",
+      "name": "기록",
+      "scope": "screen",
+      "profileId": "P01",
+      "primaryPattern": "L053",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "R06",
+      "name": "메모",
+      "scope": "screen",
+      "profileId": "P03",
+      "primaryPattern": "L045",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "R07",
+      "name": "강의 자료",
+      "scope": "screen",
+      "profileId": "P03",
+      "primaryPattern": "L045",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "R08",
+      "name": "코딩 연습",
+      "scope": "screen",
+      "profileId": "P05",
+      "primaryPattern": "L082",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "R09",
+      "name": "수식 탐색",
+      "scope": "screen",
+      "profileId": "P05",
+      "primaryPattern": "L194",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "R10",
+      "name": "시험 연습",
+      "scope": "screen",
+      "profileId": "P04",
+      "primaryPattern": "L193",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "R11",
+      "name": "암기시험",
+      "scope": "screen",
+      "profileId": "P04",
+      "primaryPattern": "L193",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "R12",
+      "name": "자료 카드",
+      "scope": "screen",
+      "profileId": "P02",
+      "primaryPattern": "L037",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "R13",
+      "name": "개념 전집",
+      "scope": "screen",
+      "profileId": "P02",
+      "primaryPattern": "L045",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "R14",
+      "name": "주제 카드",
+      "scope": "screen",
+      "profileId": "P04",
+      "primaryPattern": "L193",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "R15",
+      "name": "Canvas",
+      "scope": "screen",
+      "profileId": "P07",
+      "primaryPattern": "L062",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "R16",
+      "name": "그래프뷰",
+      "scope": "screen",
+      "profileId": "P07",
+      "primaryPattern": "L196",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "R17",
+      "name": "칸반보드",
+      "scope": "screen",
+      "profileId": "P08",
+      "primaryPattern": "L049",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "R18",
+      "name": "찾기",
+      "scope": "screen",
+      "profileId": "P02",
+      "primaryPattern": "L055",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "R19",
+      "name": "과목 상세",
+      "scope": "screen",
+      "profileId": "P02",
+      "primaryPattern": "L189",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "R20",
+      "name": "단원·주제 상세",
+      "scope": "screen",
+      "profileId": "P01",
+      "primaryPattern": "L045",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "R21",
+      "name": "선택 주제 기록",
+      "scope": "screen",
+      "profileId": "P01",
+      "primaryPattern": "L053",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "R22",
+      "name": "메모 상세",
+      "scope": "screen",
+      "profileId": "P03",
+      "primaryPattern": "L190",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "R23",
+      "name": "자료 상세·새 자료",
+      "scope": "screen",
+      "profileId": "P03",
+      "primaryPattern": "L190",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "R24",
+      "name": "강의 자료 휴지통",
+      "scope": "screen",
+      "profileId": "P10",
+      "primaryPattern": "L045",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "R25",
+      "name": "코드 예제 상세",
+      "scope": "screen",
+      "profileId": "P05",
+      "primaryPattern": "L082",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "R26",
+      "name": "주제 지정 시험 연습",
+      "scope": "screen",
+      "profileId": "P04",
+      "primaryPattern": "L193",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "R27",
+      "name": "주제 지정 암기시험",
+      "scope": "screen",
+      "profileId": "P04",
+      "primaryPattern": "L193",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "R28",
+      "name": "암기시험 결과",
+      "scope": "screen",
+      "profileId": "P04",
+      "primaryPattern": "L193",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "R29",
+      "name": "예약 복습",
+      "scope": "screen",
+      "profileId": "P04",
+      "primaryPattern": "L193",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "R30",
+      "name": "자유 기록 목록·기본 글",
+      "scope": "screen",
+      "profileId": "P03",
+      "primaryPattern": "L045",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "R31",
+      "name": "새 자유 기록",
+      "scope": "screen",
+      "profileId": "P03",
+      "primaryPattern": "L025",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "R32",
+      "name": "자유 기록 상세",
+      "scope": "screen",
+      "profileId": "P03",
+      "primaryPattern": "L025",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "R33",
+      "name": "전체 백업·복구",
+      "scope": "screen",
+      "profileId": "P10",
+      "primaryPattern": "L198",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "R34",
+      "name": "휴지통",
+      "scope": "screen",
+      "profileId": "P10",
+      "primaryPattern": "L045",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "R35",
+      "name": "초안 보관본",
+      "scope": "screen",
+      "profileId": "P10",
+      "primaryPattern": "L045",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "R36",
+      "name": "내 생각",
+      "scope": "screen",
+      "profileId": "P01",
+      "primaryPattern": "L025",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "R37",
+      "name": "도움말·문제 메모",
+      "scope": "screen",
+      "profileId": "P10",
+      "primaryPattern": "L081",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "R38",
+      "name": "소개",
+      "scope": "screen",
+      "profileId": "P10",
+      "primaryPattern": "L040",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "R39",
+      "name": "기존 구독 링크",
+      "scope": "screen",
+      "profileId": "P10",
+      "primaryPattern": "L198",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "R40",
+      "name": "기존 계정 링크",
+      "scope": "screen",
+      "profileId": "P10",
+      "primaryPattern": "L198",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "R41",
+      "name": "찾을 수 없는 항목",
+      "scope": "screen",
+      "profileId": "P02",
+      "primaryPattern": "L025",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "O01",
+      "name": "학기 추가",
+      "scope": "overlay",
+      "profileId": "P02",
+      "primaryPattern": "L053",
+      "wrapperPattern": "L170"
+    },
+    {
+      "entityId": "O02",
+      "name": "과목 추가",
+      "scope": "overlay",
+      "profileId": "P02",
+      "primaryPattern": "L053",
+      "wrapperPattern": "L170"
+    },
+    {
+      "entityId": "O03",
+      "name": "목차 추가",
+      "scope": "overlay",
+      "profileId": "P02",
+      "primaryPattern": "L053",
+      "wrapperPattern": "L170"
+    },
+    {
+      "entityId": "O04",
+      "name": "여러 목차 추가",
+      "scope": "overlay",
+      "profileId": "P02",
+      "primaryPattern": "L053",
+      "wrapperPattern": "L170"
+    },
+    {
+      "entityId": "O05",
+      "name": "휴지통으로 옮길까요?",
+      "scope": "overlay",
+      "profileId": "P10",
+      "primaryPattern": "L053",
+      "wrapperPattern": "L170"
+    },
+    {
+      "entityId": "O06",
+      "name": "이름 수정",
+      "scope": "overlay",
+      "profileId": "P02",
+      "primaryPattern": "L053",
+      "wrapperPattern": "L170"
+    },
+    {
+      "entityId": "O07",
+      "name": "목차 위치 옮기기",
+      "scope": "overlay",
+      "profileId": "P02",
+      "primaryPattern": "L053",
+      "wrapperPattern": "L170"
+    },
+    {
+      "entityId": "O08",
+      "name": "가입 계정 관리",
+      "scope": "overlay",
+      "profileId": "P10",
+      "primaryPattern": "L053",
+      "wrapperPattern": "L170"
+    },
+    {
+      "entityId": "O09",
+      "name": "내 계정",
+      "scope": "overlay",
+      "profileId": "P10",
+      "primaryPattern": "L053",
+      "wrapperPattern": "L170"
+    },
+    {
+      "entityId": "O10",
+      "name": "다음에 펼칠 곳을 남겨둘까요?",
+      "scope": "overlay",
+      "profileId": "P01",
+      "primaryPattern": "L053",
+      "wrapperPattern": "L170"
+    },
+    {
+      "entityId": "O11",
+      "name": "공부 기준 조정",
+      "scope": "overlay",
+      "profileId": "P01",
+      "primaryPattern": "L053",
+      "wrapperPattern": "L170"
+    },
+    {
+      "entityId": "O12",
+      "name": "이어가기 설정 복구",
+      "scope": "overlay",
+      "profileId": "P10",
+      "primaryPattern": "L198",
+      "wrapperPattern": "L170"
+    },
+    {
+      "entityId": "O13",
+      "name": "시험·과제·강의 일정",
+      "scope": "overlay",
+      "profileId": "P09",
+      "primaryPattern": "L053",
+      "wrapperPattern": "L170"
+    },
+    {
+      "entityId": "O14",
+      "name": "수식 탐색 전체 화면",
+      "scope": "overlay",
+      "profileId": "P05",
+      "primaryPattern": "L194",
+      "wrapperPattern": "L061"
+    },
+    {
+      "entityId": "O15",
+      "name": "움직임 위젯",
+      "scope": "overlay",
+      "profileId": "P10",
+      "primaryPattern": "L048",
+      "wrapperPattern": "L170"
+    },
+    {
+      "entityId": "O16",
+      "name": "다음에 확인할 내용",
+      "scope": "overlay",
+      "profileId": "P09",
+      "primaryPattern": "L053",
+      "wrapperPattern": "L170"
+    },
+    {
+      "entityId": "O17",
+      "name": "학기 기간",
+      "scope": "overlay",
+      "profileId": "P09",
+      "primaryPattern": "L053",
+      "wrapperPattern": "L170"
+    },
+    {
+      "entityId": "O18",
+      "name": "지금 확인한 결과",
+      "scope": "overlay",
+      "profileId": "P04",
+      "primaryPattern": "L053",
+      "wrapperPattern": "L170"
+    },
+    {
+      "entityId": "O19",
+      "name": "공부할 목차 만들기",
+      "scope": "overlay",
+      "profileId": "P02",
+      "primaryPattern": "L053",
+      "wrapperPattern": "L170"
+    },
+    {
+      "entityId": "O20",
+      "name": "답안에서 수행 결과 남기기",
+      "scope": "overlay",
+      "profileId": "P04",
+      "primaryPattern": "L053",
+      "wrapperPattern": "L170"
+    },
+    {
+      "entityId": "O21",
+      "name": "내 기록의 저장 상태",
+      "scope": "overlay",
+      "profileId": "P10",
+      "primaryPattern": "L198",
+      "wrapperPattern": "L170"
+    },
+    {
+      "entityId": "O22",
+      "name": "사진으로 목차·내용 가져오기",
+      "scope": "overlay",
+      "profileId": "P02",
+      "primaryPattern": "L053",
+      "wrapperPattern": "L170"
+    },
+    {
+      "entityId": "O23",
+      "name": "메모를 휴지통으로 옮길까요?",
+      "scope": "overlay",
+      "profileId": "P03",
+      "primaryPattern": "L053",
+      "wrapperPattern": "L170"
+    },
+    {
+      "entityId": "O24",
+      "name": "작은 메모",
+      "scope": "overlay",
+      "profileId": "P03",
+      "primaryPattern": "L053",
+      "wrapperPattern": "L170"
+    },
+    {
+      "entityId": "O25",
+      "name": "강의 주차 만들기",
+      "scope": "overlay",
+      "profileId": "P09",
+      "primaryPattern": "L053",
+      "wrapperPattern": "L170"
+    },
+    {
+      "entityId": "O26",
+      "name": "통계의 원기록",
+      "scope": "overlay",
+      "profileId": "P06",
+      "primaryPattern": "L043",
+      "wrapperPattern": "L170"
+    },
+    {
+      "entityId": "O27",
+      "name": "카드 추가·편집",
+      "scope": "overlay",
+      "profileId": "P08",
+      "primaryPattern": "L053",
+      "wrapperPattern": "L170"
+    },
+    {
+      "entityId": "O28",
+      "name": "보드 열",
+      "scope": "overlay",
+      "profileId": "P08",
+      "primaryPattern": "L053",
+      "wrapperPattern": "L170"
+    },
+    {
+      "entityId": "O29",
+      "name": "이 주제부터 해볼까요?",
+      "scope": "overlay",
+      "profileId": "P01",
+      "primaryPattern": "L053",
+      "wrapperPattern": "L170"
+    },
+    {
+      "entityId": "U01",
+      "name": "앱 내비게이션·범위·테마",
+      "scope": "surface",
+      "profileId": "P10",
+      "primaryPattern": "L064",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "U02",
+      "name": "개인 공간 진입·인증",
+      "scope": "surface",
+      "profileId": "P10",
+      "primaryPattern": "L053",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "U03",
+      "name": "로그인·가입",
+      "scope": "surface",
+      "profileId": "P10",
+      "primaryPattern": "L053",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "U04",
+      "name": "가입 승인 대기·제한",
+      "scope": "surface",
+      "profileId": "P10",
+      "primaryPattern": "L025",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "U05",
+      "name": "내 계정·탈퇴",
+      "scope": "surface",
+      "profileId": "P10",
+      "primaryPattern": "L198",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "U06",
+      "name": "가입 계정 관리",
+      "scope": "surface",
+      "profileId": "P10",
+      "primaryPattern": "L045",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "U07",
+      "name": "내 기록의 저장 상태",
+      "scope": "surface",
+      "profileId": "P10",
+      "primaryPattern": "L198",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "U08",
+      "name": "전체 복구 진입",
+      "scope": "surface",
+      "profileId": "P10",
+      "primaryPattern": "L198",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "U09",
+      "name": "이어가기와 다음 위치",
+      "scope": "surface",
+      "profileId": "P01",
+      "primaryPattern": "L025",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "U10",
+      "name": "읽기 폭·이어가기 복구",
+      "scope": "surface",
+      "profileId": "P10",
+      "primaryPattern": "L053",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "U11",
+      "name": "천문대 원본 위젯",
+      "scope": "surface",
+      "profileId": "P01",
+      "primaryPattern": "L048",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "U12",
+      "name": "천문대 세부 렌더러",
+      "scope": "surface",
+      "profileId": "P01",
+      "primaryPattern": "L048",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "U13",
+      "name": "작은 도구와 시계",
+      "scope": "surface",
+      "profileId": "P01",
+      "primaryPattern": "L048",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "U14",
+      "name": "오늘·한 주 공부",
+      "scope": "surface",
+      "profileId": "P01",
+      "primaryPattern": "L025",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "U15",
+      "name": "공부 시작 제안",
+      "scope": "surface",
+      "profileId": "P01",
+      "primaryPattern": "L025",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "U16",
+      "name": "목차와 항목 관리",
+      "scope": "surface",
+      "profileId": "P02",
+      "primaryPattern": "L189",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "U17",
+      "name": "표·사진 목차 만들기",
+      "scope": "surface",
+      "profileId": "P02",
+      "primaryPattern": "L053",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "U18",
+      "name": "학기·강의 주차",
+      "scope": "surface",
+      "profileId": "P09",
+      "primaryPattern": "L197",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "U19",
+      "name": "공부 기준·TRACE",
+      "scope": "surface",
+      "profileId": "P01",
+      "primaryPattern": "L053",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "U20",
+      "name": "답안에서 수행 결과",
+      "scope": "surface",
+      "profileId": "P04",
+      "primaryPattern": "L053",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "U21",
+      "name": "일정 편집",
+      "scope": "surface",
+      "profileId": "P09",
+      "primaryPattern": "L053",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "U22",
+      "name": "다음 공부 기준·결과",
+      "scope": "surface",
+      "profileId": "P09",
+      "primaryPattern": "L198",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "U23",
+      "name": "자료 출처·PDF 구간",
+      "scope": "surface",
+      "profileId": "P03",
+      "primaryPattern": "L190",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "U24",
+      "name": "자료 퀴즈·관계·대화",
+      "scope": "surface",
+      "profileId": "P03",
+      "primaryPattern": "L190",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "U25",
+      "name": "카드·코드 주제 연결",
+      "scope": "surface",
+      "profileId": "P02",
+      "primaryPattern": "L045",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "U26",
+      "name": "덱·카드·Anki 가져오기",
+      "scope": "surface",
+      "profileId": "P04",
+      "primaryPattern": "L198",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "U27",
+      "name": "복습 설정·최적화",
+      "scope": "surface",
+      "profileId": "P04",
+      "primaryPattern": "L053",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "U28",
+      "name": "암기 항목 생성",
+      "scope": "surface",
+      "profileId": "P04",
+      "primaryPattern": "L053",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "U29",
+      "name": "펜·OCR·PDF 배경",
+      "scope": "surface",
+      "profileId": "P03",
+      "primaryPattern": "L190",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "U30",
+      "name": "코드 편집·구문·터미널",
+      "scope": "surface",
+      "profileId": "P05",
+      "primaryPattern": "L082",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "U31",
+      "name": "수식·그래프·카메라",
+      "scope": "surface",
+      "profileId": "P05",
+      "primaryPattern": "L194",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "U32",
+      "name": "수식 유형·전체 화면",
+      "scope": "surface",
+      "profileId": "P05",
+      "primaryPattern": "L194",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "U33",
+      "name": "급수·개념 도해",
+      "scope": "surface",
+      "profileId": "P05",
+      "primaryPattern": "L194",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "U34",
+      "name": "Canvas 편집·이관",
+      "scope": "surface",
+      "profileId": "P07",
+      "primaryPattern": "L062",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "U35",
+      "name": "Canvas·그래프 보기",
+      "scope": "surface",
+      "profileId": "P07",
+      "primaryPattern": "L196",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "U36",
+      "name": "통계 여러 그래프·값",
+      "scope": "surface",
+      "profileId": "P06",
+      "primaryPattern": "L195",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "U37",
+      "name": "GPT 연결·문맥·사용량",
+      "scope": "surface",
+      "profileId": "P10",
+      "primaryPattern": "L198",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "U38",
+      "name": "움직임 위젯",
+      "scope": "surface",
+      "profileId": "P10",
+      "primaryPattern": "L048",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "U39",
+      "name": "브랜드·관련 생각",
+      "scope": "surface",
+      "profileId": "P01",
+      "primaryPattern": "L025",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "U40",
+      "name": "공통 부품·오류·포커스",
+      "scope": "surface",
+      "profileId": "P10",
+      "primaryPattern": "L025",
+      "wrapperPattern": null
+    },
+    {
+      "entityId": "U41",
+      "name": "장문 원문·기록 수정",
+      "scope": "surface",
+      "profileId": "P03",
+      "primaryPattern": "L025",
+      "wrapperPattern": null
+    }
+  ],
+  "future": [
+    {
+      "id": "FE01",
+      "role": "전체 하늘/픽셀 위젯",
+      "primaryPattern": "L048",
+      "registeredStructureGuidance": "공통 커버 +34/35, 외부 틀",
+      "growthAndPreservation": "전체 비율·내부 조작·초점 보존; crop 금지",
+      "sizePolicy": "Use existing role tokens; content height grows; declare axis min/max and intrinsic 2D exceptions.",
+      "reflowPolicy": "Declare registered narrow form and meaningful order; retain task context.",
+      "status": "required-when-element-is-used",
+      "implementationClaim": false
+    },
+    {
+      "id": "FE02",
+      "role": "장소·기능 이동",
+      "primaryPattern": "L064",
+      "registeredStructureGuidance": "64/65/66, 필요 시69",
+      "growthAndPreservation": "네 자리+천장 구별; 장식 핫스폿만으로 접근시키지 않음",
+      "sizePolicy": "Use existing role tokens; content height grows; declare axis min/max and intrinsic 2D exceptions.",
+      "reflowPolicy": "Declare registered narrow form and meaningful order; retain task context.",
+      "status": "required-when-element-is-used",
+      "implementationClaim": false
+    },
+    {
+      "id": "FE03",
+      "role": "화면 제목/현재 대상/소속",
+      "primaryPattern": "L025",
+      "registeredStructureGuidance": "현재 프로필 시작",
+      "growthAndPreservation": "긴 제목 줄바꿈, ID/출처 맥락 유지",
+      "sizePolicy": "Use existing role tokens; content height grows; declare axis min/max and intrinsic 2D exceptions.",
+      "reflowPolicy": "Declare registered narrow form and meaningful order; retain task context.",
+      "status": "required-when-element-is-used",
+      "implementationClaim": false
+    },
+    {
+      "id": "FE04",
+      "role": "주 행동/취소/되돌리기",
+      "primaryPattern": "L160",
+      "registeredStructureGuidance": "86 흐름/104 중첩",
+      "growthAndPreservation": "여러 줄·키보드·터치 목표를 보존",
+      "sizePolicy": "Use existing role tokens; content height grows; declare axis min/max and intrinsic 2D exceptions.",
+      "reflowPolicy": "Declare registered narrow form and meaningful order; retain task context.",
+      "status": "required-when-element-is-used",
+      "implementationClaim": false
+    },
+    {
+      "id": "FE05",
+      "role": "짧은 상태/저장 결과",
+      "primaryPattern": "L025",
+      "registeredStructureGuidance": "관련 행동 옆",
+      "growthAndPreservation": "상태 변화가 초점/입력을 뺏지 않음",
+      "sizePolicy": "Use existing role tokens; content height grows; declare axis min/max and intrinsic 2D exceptions.",
+      "reflowPolicy": "Declare registered narrow form and meaningful order; retain task context.",
+      "status": "required-when-element-is-used",
+      "implementationClaim": false
+    },
+    {
+      "id": "FE06",
+      "role": "목차/파일/계층",
+      "primaryPattern": "L189",
+      "registeredStructureGuidance": "189 색인",
+      "growthAndPreservation": "깊이·긴 이름·선택/펼침 보존",
+      "sizePolicy": "Use existing role tokens; content height grows; declare axis min/max and intrinsic 2D exceptions.",
+      "reflowPolicy": "Declare registered narrow form and meaningful order; retain task context.",
+      "status": "required-when-element-is-used",
+      "implementationClaim": false
+    },
+    {
+      "id": "FE07",
+      "role": "검색/필터/정렬",
+      "primaryPattern": "L055",
+      "registeredStructureGuidance": "55/56, 192 짧은 선택",
+      "growthAndPreservation": "결과 없음·조건 해제·현재 범위 표시",
+      "sizePolicy": "Use existing role tokens; content height grows; declare axis min/max and intrinsic 2D exceptions.",
+      "reflowPolicy": "Declare registered narrow form and meaningful order; retain task context.",
+      "status": "required-when-element-is-used",
+      "implementationClaim": false
+    },
+    {
+      "id": "FE08",
+      "role": "본문/해설/자유 글",
+      "primaryPattern": "L025",
+      "registeredStructureGuidance": "25/81/P01",
+      "growthAndPreservation": "양쪽 정렬; 높이 성장; 원문 보존",
+      "sizePolicy": "Use existing role tokens; content height grows; declare axis min/max and intrinsic 2D exceptions.",
+      "reflowPolicy": "Declare registered narrow form and meaningful order; retain task context.",
+      "status": "required-when-element-is-used",
+      "implementationClaim": false
+    },
+    {
+      "id": "FE09",
+      "role": "수식/코드/긴 URL",
+      "primaryPattern": "L194",
+      "registeredStructureGuidance": "190/194의 해당 면",
+      "growthAndPreservation": "본문 justify를 강제하지 않음; 의미 보존 줄바꿈/지역 스크롤",
+      "sizePolicy": "Use existing role tokens; content height grows; declare axis min/max and intrinsic 2D exceptions.",
+      "reflowPolicy": "Declare registered narrow form and meaningful order; retain task context.",
+      "status": "required-when-element-is-used",
+      "implementationClaim": false
+    },
+    {
+      "id": "FE10",
+      "role": "필기/PDF/OCR",
+      "primaryPattern": "L190",
+      "registeredStructureGuidance": "190",
+      "growthAndPreservation": "원본/인식문 구별; 페이지·좌표·확대 유지",
+      "sizePolicy": "Use existing role tokens; content height grows; declare axis min/max and intrinsic 2D exceptions.",
+      "reflowPolicy": "Declare registered narrow form and meaningful order; retain task context.",
+      "status": "required-when-element-is-used",
+      "implementationClaim": false
+    },
+    {
+      "id": "FE11",
+      "role": "질문/답/기준 설명",
+      "primaryPattern": "L193",
+      "registeredStructureGuidance": "193",
+      "growthAndPreservation": "공개 단계·수정·질문 복귀 보존",
+      "sizePolicy": "Use existing role tokens; content height grows; declare axis min/max and intrinsic 2D exceptions.",
+      "reflowPolicy": "Declare registered narrow form and meaningful order; retain task context.",
+      "status": "required-when-element-is-used",
+      "implementationClaim": false
+    },
+    {
+      "id": "FE12",
+      "role": "조절기/값/단위/범례",
+      "primaryPattern": "L194",
+      "registeredStructureGuidance": "194",
+      "growthAndPreservation": "조절기와 그림의 연결, 실패 시 현재값 제공",
+      "sizePolicy": "Use existing role tokens; content height grows; declare axis min/max and intrinsic 2D exceptions.",
+      "reflowPolicy": "Declare registered narrow form and meaningful order; retain task context.",
+      "status": "required-when-element-is-used",
+      "implementationClaim": false
+    },
+    {
+      "id": "FE13",
+      "role": "그래프/비교표/원기록",
+      "primaryPattern": "L195",
+      "registeredStructureGuidance": "195",
+      "growthAndPreservation": "분모/범위·같은 자료·원기록 연결",
+      "sizePolicy": "Use existing role tokens; content height grows; declare axis min/max and intrinsic 2D exceptions.",
+      "reflowPolicy": "Declare registered narrow form and meaningful order; retain task context.",
+      "status": "required-when-element-is-used",
+      "implementationClaim": false
+    },
+    {
+      "id": "FE14",
+      "role": "2D/3D 공간/노드/선",
+      "primaryPattern": "L196",
+      "registeredStructureGuidance": "196",
+      "growthAndPreservation": "의미 관계·선택·개인 배치·시점 구별",
+      "sizePolicy": "Use existing role tokens; content height grows; declare axis min/max and intrinsic 2D exceptions.",
+      "reflowPolicy": "Declare registered narrow form and meaningful order; retain task context.",
+      "status": "required-when-element-is-used",
+      "implementationClaim": false
+    },
+    {
+      "id": "FE15",
+      "role": "보드 열/작업 카드",
+      "primaryPattern": "L049",
+      "registeredStructureGuidance": "49/P08",
+      "growthAndPreservation": "가로 탐색·이동 대안·긴 카드",
+      "sizePolicy": "Use existing role tokens; content height grows; declare axis min/max and intrinsic 2D exceptions.",
+      "reflowPolicy": "Declare registered narrow form and meaningful order; retain task context.",
+      "status": "required-when-element-is-used",
+      "implementationClaim": false
+    },
+    {
+      "id": "FE16",
+      "role": "날짜/시간/미정 일정",
+      "primaryPattern": "L197",
+      "registeredStructureGuidance": "197",
+      "growthAndPreservation": "날짜순/미정 분리·기간 유지",
+      "sizePolicy": "Use existing role tokens; content height grows; declare axis min/max and intrinsic 2D exceptions.",
+      "reflowPolicy": "Declare registered narrow form and meaningful order; retain task context.",
+      "status": "required-when-element-is-used",
+      "implementationClaim": false
+    },
+    {
+      "id": "FE17",
+      "role": "추가 속성/도움말",
+      "primaryPattern": "L070",
+      "registeredStructureGuidance": "70/191/81",
+      "growthAndPreservation": "주면을 유지; 길어지면 정식 상세면",
+      "sizePolicy": "Use existing role tokens; content height grows; declare axis min/max and intrinsic 2D exceptions.",
+      "reflowPolicy": "Declare registered narrow form and meaningful order; retain task context.",
+      "status": "required-when-element-is-used",
+      "implementationClaim": false
+    },
+    {
+      "id": "FE18",
+      "role": "오류/빈 상태/권한 거부",
+      "primaryPattern": "L025",
+      "registeredStructureGuidance": "각 프로필 내부 상태",
+      "growthAndPreservation": "별도 레이아웃 종류 대신 같은 과업의 복구 행동",
+      "sizePolicy": "Use existing role tokens; content height grows; declare axis min/max and intrinsic 2D exceptions.",
+      "reflowPolicy": "Declare registered narrow form and meaningful order; retain task context.",
+      "status": "required-when-element-is-used",
+      "implementationClaim": false
+    },
+    {
+      "id": "FE19",
+      "role": "업로드/내보내기/처리 경과",
+      "primaryPattern": "L198",
+      "registeredStructureGuidance": "198/191",
+      "growthAndPreservation": "실제 범위/진행·중단·재시도·원본 보존",
+      "sizePolicy": "Use existing role tokens; content height grows; declare axis min/max and intrinsic 2D exceptions.",
+      "reflowPolicy": "Declare registered narrow form and meaningful order; retain task context.",
+      "status": "required-when-element-is-used",
+      "implementationClaim": false
+    },
+    {
+      "id": "FE20",
+      "role": "백업/휴지통/초안/버전 비교",
+      "primaryPattern": "L198",
+      "registeredStructureGuidance": "198, 45, 77",
+      "growthAndPreservation": "대상 ID/이력·취소·복원·실제 결과",
+      "sizePolicy": "Use existing role tokens; content height grows; declare axis min/max and intrinsic 2D exceptions.",
+      "reflowPolicy": "Declare registered narrow form and meaningful order; retain task context.",
+      "status": "required-when-element-is-used",
+      "implementationClaim": false
+    },
+    {
+      "id": "FE21",
+      "role": "API/AI 대화·실행 로그",
+      "primaryPattern": "L188",
+      "registeredStructureGuidance": "188/198, 42 기록",
+      "growthAndPreservation": "원문·실행/응답·비용/권한 구별; 자동 추가가 입력을 밀어내지 않음",
+      "sizePolicy": "Use existing role tokens; content height grows; declare axis min/max and intrinsic 2D exceptions.",
+      "reflowPolicy": "Declare registered narrow form and meaningful order; retain task context.",
+      "status": "required-when-element-is-used",
+      "implementationClaim": false
+    },
+    {
+      "id": "FE22",
+      "role": "영상/음성/시간 연결 메모",
+      "primaryPattern": "L190",
+      "registeredStructureGuidance": "190, 50 Timeline",
+      "growthAndPreservation": "재생 위치·자막/대체 정보; 자동재생 강제 안 함",
+      "sizePolicy": "Use existing role tokens; content height grows; declare axis min/max and intrinsic 2D exceptions.",
+      "reflowPolicy": "Declare registered narrow form and meaningful order; retain task context.",
+      "status": "required-when-element-is-used",
+      "implementationClaim": false
+    },
+    {
+      "id": "FE23",
+      "role": "협업/공유·주석 작성자",
+      "primaryPattern": "L190",
+      "registeredStructureGuidance": "190/198의 관련 면",
+      "growthAndPreservation": "실제 권한/연결이 있을 때만 표시; 없는 동료를 생성하지 않음",
+      "sizePolicy": "Use existing role tokens; content height grows; declare axis min/max and intrinsic 2D exceptions.",
+      "reflowPolicy": "Declare registered narrow form and meaningful order; retain task context.",
+      "status": "conditional-existing-exclusions-preserved",
+      "implementationClaim": false
+    },
+    {
+      "id": "FE24",
+      "role": "결제/지원 등 조건부 운영 기능",
+      "primaryPattern": "L198",
+      "registeredStructureGuidance": "198/76 후보",
+      "growthAndPreservation": "실제 계약/운영 정보가 있을 때만; 미래 예시를 현행 기능으로 표시하지 않음",
+      "sizePolicy": "Use existing role tokens; content height grows; declare axis min/max and intrinsic 2D exceptions.",
+      "reflowPolicy": "Declare registered narrow form and meaningful order; retain task context.",
+      "status": "conditional-existing-exclusions-preserved",
+      "implementationClaim": false
+    }
+  ],
+  "entries": [
+    {
+      "id": "L000",
+      "number": 0,
+      "title": "먼저 구분해야 할 것",
+      "origin": "attachment",
+      "kind": "classification-introduction",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 8,
+      "correctionIds": []
+    },
+    {
+      "id": "L001",
+      "number": 1,
+      "title": "Manuscript Grid",
+      "origin": "attachment",
+      "kind": "grid-system",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 42,
+      "correctionIds": []
+    },
+    {
+      "id": "L002",
+      "number": 2,
+      "title": "Column Grid",
+      "origin": "attachment",
+      "kind": "grid-system",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 77,
+      "correctionIds": [
+        "C01"
+      ]
+    },
+    {
+      "id": "L003",
+      "number": 3,
+      "title": "Modular Grid",
+      "origin": "attachment",
+      "kind": "grid-system",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 115,
+      "correctionIds": []
+    },
+    {
+      "id": "L004",
+      "number": 4,
+      "title": "Hierarchical Grid",
+      "origin": "attachment",
+      "kind": "grid-system",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 149,
+      "correctionIds": []
+    },
+    {
+      "id": "L005",
+      "number": 5,
+      "title": "Baseline Grid",
+      "origin": "attachment",
+      "kind": "grid-system",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 184,
+      "correctionIds": []
+    },
+    {
+      "id": "L006",
+      "number": 6,
+      "title": "Compound Grid",
+      "origin": "attachment",
+      "kind": "grid-system",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 217,
+      "correctionIds": [
+        "C19"
+      ]
+    },
+    {
+      "id": "L007",
+      "number": 7,
+      "title": "Fluid Grid",
+      "origin": "attachment",
+      "kind": "grid-system",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 236,
+      "correctionIds": [
+        "C02"
+      ]
+    },
+    {
+      "id": "L008",
+      "number": 8,
+      "title": "Fixed Grid",
+      "origin": "attachment",
+      "kind": "grid-system",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 256,
+      "correctionIds": []
+    },
+    {
+      "id": "L009",
+      "number": 9,
+      "title": "Responsive Grid",
+      "origin": "attachment",
+      "kind": "grid-system",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 271,
+      "correctionIds": [
+        "C01",
+        "C03"
+      ]
+    },
+    {
+      "id": "L010",
+      "number": 10,
+      "title": "Adaptive Grid",
+      "origin": "attachment",
+      "kind": "grid-system",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 295,
+      "correctionIds": [
+        "C03"
+      ]
+    },
+    {
+      "id": "L011",
+      "number": 11,
+      "title": "Nested Grid",
+      "origin": "attachment",
+      "kind": "grid-system",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 310,
+      "correctionIds": [
+        "C19",
+        "C20"
+      ]
+    },
+    {
+      "id": "L012",
+      "number": 12,
+      "title": "Subgrid",
+      "origin": "attachment",
+      "kind": "grid-system",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 325,
+      "correctionIds": [
+        "C20"
+      ]
+    },
+    {
+      "id": "L013",
+      "number": 13,
+      "title": "4pt Grid",
+      "origin": "attachment",
+      "kind": "spacing-sizing-system",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 338,
+      "correctionIds": [
+        "C04"
+      ]
+    },
+    {
+      "id": "L014",
+      "number": 14,
+      "title": "8pt Grid",
+      "origin": "attachment",
+      "kind": "spacing-sizing-system",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 366,
+      "correctionIds": [
+        "C04"
+      ]
+    },
+    {
+      "id": "L015",
+      "number": 15,
+      "title": "2x Grid",
+      "origin": "attachment",
+      "kind": "spacing-sizing-system",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 393,
+      "correctionIds": [
+        "C04"
+      ]
+    },
+    {
+      "id": "L016",
+      "number": 16,
+      "title": "Rule of Thirds Grid",
+      "origin": "attachment",
+      "kind": "composition-tool",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 417,
+      "correctionIds": [
+        "C05"
+      ]
+    },
+    {
+      "id": "L017",
+      "number": 17,
+      "title": "Golden Ratio Grid",
+      "origin": "attachment",
+      "kind": "composition-tool",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 440,
+      "correctionIds": [
+        "C05"
+      ]
+    },
+    {
+      "id": "L018",
+      "number": 18,
+      "title": "Golden Spiral",
+      "origin": "attachment",
+      "kind": "composition-tool",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 455,
+      "correctionIds": [
+        "C05"
+      ]
+    },
+    {
+      "id": "L019",
+      "number": 19,
+      "title": "Fibonacci Grid",
+      "origin": "attachment",
+      "kind": "composition-tool",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 469,
+      "correctionIds": [
+        "C05"
+      ]
+    },
+    {
+      "id": "L020",
+      "number": 20,
+      "title": "Diagonal Grid",
+      "origin": "attachment",
+      "kind": "composition-tool",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 481,
+      "correctionIds": [
+        "C05"
+      ]
+    },
+    {
+      "id": "L021",
+      "number": 21,
+      "title": "Radial Grid",
+      "origin": "attachment",
+      "kind": "composition-tool",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 494,
+      "correctionIds": [
+        "C05"
+      ]
+    },
+    {
+      "id": "L022",
+      "number": 22,
+      "title": "Polar Grid",
+      "origin": "attachment",
+      "kind": "composition-tool",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 507,
+      "correctionIds": [
+        "C05"
+      ]
+    },
+    {
+      "id": "L023",
+      "number": 23,
+      "title": "Isometric Grid",
+      "origin": "attachment",
+      "kind": "composition-tool",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 515,
+      "correctionIds": [
+        "C05"
+      ]
+    },
+    {
+      "id": "L024",
+      "number": 24,
+      "title": "Axonometric Grid",
+      "origin": "attachment",
+      "kind": "composition-tool",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 530,
+      "correctionIds": [
+        "C05"
+      ]
+    },
+    {
+      "id": "L025",
+      "number": 25,
+      "title": "Single-column Layout",
+      "origin": "attachment",
+      "kind": "screen-content-pattern",
+      "primaryScreenCandidate": true,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 546,
+      "correctionIds": []
+    },
+    {
+      "id": "L026",
+      "number": 26,
+      "title": "Two-column Layout",
+      "origin": "attachment",
+      "kind": "screen-content-pattern",
+      "primaryScreenCandidate": true,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 559,
+      "correctionIds": []
+    },
+    {
+      "id": "L027",
+      "number": 27,
+      "title": "Three-column Layout",
+      "origin": "attachment",
+      "kind": "screen-content-pattern",
+      "primaryScreenCandidate": true,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 578,
+      "correctionIds": []
+    },
+    {
+      "id": "L028",
+      "number": 28,
+      "title": "Sidebar–Content Layout",
+      "origin": "attachment",
+      "kind": "screen-content-pattern",
+      "primaryScreenCandidate": true,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 595,
+      "correctionIds": []
+    },
+    {
+      "id": "L029",
+      "number": 29,
+      "title": "Holy Grail Layout",
+      "origin": "attachment",
+      "kind": "screen-content-pattern",
+      "primaryScreenCandidate": true,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 609,
+      "correctionIds": []
+    },
+    {
+      "id": "L030",
+      "number": 30,
+      "title": "Split-screen Layout",
+      "origin": "attachment",
+      "kind": "screen-content-pattern",
+      "primaryScreenCandidate": true,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 625,
+      "correctionIds": []
+    },
+    {
+      "id": "L031",
+      "number": 31,
+      "title": "Asymmetric Layout",
+      "origin": "attachment",
+      "kind": "visual-balance-modifier",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 646,
+      "correctionIds": [
+        "C06"
+      ]
+    },
+    {
+      "id": "L032",
+      "number": 32,
+      "title": "Symmetric Layout",
+      "origin": "attachment",
+      "kind": "visual-balance-modifier",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 661,
+      "correctionIds": [
+        "C06"
+      ]
+    },
+    {
+      "id": "L033",
+      "number": 33,
+      "title": "Centered Container Layout",
+      "origin": "attachment",
+      "kind": "container-width-modifier",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 673,
+      "correctionIds": []
+    },
+    {
+      "id": "L034",
+      "number": 34,
+      "title": "Full-width Layout",
+      "origin": "attachment",
+      "kind": "container-width-modifier",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 692,
+      "correctionIds": []
+    },
+    {
+      "id": "L035",
+      "number": 35,
+      "title": "Full-bleed Layout",
+      "origin": "attachment",
+      "kind": "container-width-modifier",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 705,
+      "correctionIds": [
+        "C07"
+      ]
+    },
+    {
+      "id": "L036",
+      "number": 36,
+      "title": "Hero-first Layout",
+      "origin": "attachment",
+      "kind": "screen-content-pattern",
+      "primaryScreenCandidate": true,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 717,
+      "correctionIds": []
+    },
+    {
+      "id": "L037",
+      "number": 37,
+      "title": "Card Grid Layout",
+      "origin": "attachment",
+      "kind": "screen-content-pattern",
+      "primaryScreenCandidate": true,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 734,
+      "correctionIds": []
+    },
+    {
+      "id": "L038",
+      "number": 38,
+      "title": "Masonry Layout",
+      "origin": "attachment",
+      "kind": "screen-content-pattern",
+      "primaryScreenCandidate": true,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 747,
+      "correctionIds": [
+        "C07",
+        "C08"
+      ]
+    },
+    {
+      "id": "L039",
+      "number": 39,
+      "title": "Bento Grid Layout",
+      "origin": "attachment",
+      "kind": "screen-content-pattern",
+      "primaryScreenCandidate": true,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 763,
+      "correctionIds": [
+        "C07"
+      ]
+    },
+    {
+      "id": "L040",
+      "number": 40,
+      "title": "Magazine / Editorial Layout",
+      "origin": "attachment",
+      "kind": "screen-content-pattern",
+      "primaryScreenCandidate": true,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 780,
+      "correctionIds": []
+    },
+    {
+      "id": "L041",
+      "number": 41,
+      "title": "Newspaper Layout",
+      "origin": "attachment",
+      "kind": "screen-content-pattern",
+      "primaryScreenCandidate": true,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 798,
+      "correctionIds": []
+    },
+    {
+      "id": "L042",
+      "number": 42,
+      "title": "Feed Layout",
+      "origin": "attachment",
+      "kind": "screen-content-pattern",
+      "primaryScreenCandidate": true,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 809,
+      "correctionIds": []
+    },
+    {
+      "id": "L043",
+      "number": 43,
+      "title": "List Layout",
+      "origin": "attachment",
+      "kind": "screen-content-pattern",
+      "primaryScreenCandidate": true,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 826,
+      "correctionIds": []
+    },
+    {
+      "id": "L044",
+      "number": 44,
+      "title": "Table Layout",
+      "origin": "attachment",
+      "kind": "screen-content-pattern",
+      "primaryScreenCandidate": true,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 841,
+      "correctionIds": []
+    },
+    {
+      "id": "L045",
+      "number": 45,
+      "title": "Master–Detail Layout",
+      "origin": "attachment",
+      "kind": "screen-content-pattern",
+      "primaryScreenCandidate": true,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 854,
+      "correctionIds": []
+    },
+    {
+      "id": "L046",
+      "number": 46,
+      "title": "List–Detail–Inspector Layout",
+      "origin": "attachment",
+      "kind": "screen-content-pattern",
+      "primaryScreenCandidate": true,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 874,
+      "correctionIds": [
+        "C09"
+      ]
+    },
+    {
+      "id": "L047",
+      "number": 47,
+      "title": "Dashboard Layout",
+      "origin": "attachment",
+      "kind": "screen-content-pattern",
+      "primaryScreenCandidate": true,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 890,
+      "correctionIds": []
+    },
+    {
+      "id": "L048",
+      "number": 48,
+      "title": "Widget Layout",
+      "origin": "attachment",
+      "kind": "screen-content-pattern",
+      "primaryScreenCandidate": true,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 907,
+      "correctionIds": []
+    },
+    {
+      "id": "L049",
+      "number": 49,
+      "title": "Kanban Layout",
+      "origin": "attachment",
+      "kind": "screen-content-pattern",
+      "primaryScreenCandidate": true,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 918,
+      "correctionIds": []
+    },
+    {
+      "id": "L050",
+      "number": 50,
+      "title": "Timeline Layout",
+      "origin": "attachment",
+      "kind": "screen-content-pattern",
+      "primaryScreenCandidate": true,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 933,
+      "correctionIds": []
+    },
+    {
+      "id": "L051",
+      "number": 51,
+      "title": "Calendar Layout",
+      "origin": "attachment",
+      "kind": "screen-content-pattern",
+      "primaryScreenCandidate": true,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 949,
+      "correctionIds": []
+    },
+    {
+      "id": "L052",
+      "number": 52,
+      "title": "Scheduler Layout",
+      "origin": "attachment",
+      "kind": "screen-content-pattern",
+      "primaryScreenCandidate": true,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 961,
+      "correctionIds": []
+    },
+    {
+      "id": "L053",
+      "number": 53,
+      "title": "Form Layout",
+      "origin": "attachment",
+      "kind": "screen-content-pattern",
+      "primaryScreenCandidate": true,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 974,
+      "correctionIds": []
+    },
+    {
+      "id": "L054",
+      "number": 54,
+      "title": "Wizard / Stepper Layout",
+      "origin": "attachment",
+      "kind": "screen-content-pattern",
+      "primaryScreenCandidate": true,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 988,
+      "correctionIds": []
+    },
+    {
+      "id": "L055",
+      "number": 55,
+      "title": "Search–Results Layout",
+      "origin": "attachment",
+      "kind": "screen-content-pattern",
+      "primaryScreenCandidate": true,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 1005,
+      "correctionIds": []
+    },
+    {
+      "id": "L056",
+      "number": 56,
+      "title": "Faceted Search Layout",
+      "origin": "attachment",
+      "kind": "screen-content-pattern",
+      "primaryScreenCandidate": true,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 1018,
+      "correctionIds": []
+    },
+    {
+      "id": "L057",
+      "number": 57,
+      "title": "Map–List Layout",
+      "origin": "attachment",
+      "kind": "screen-content-pattern",
+      "primaryScreenCandidate": true,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 1035,
+      "correctionIds": []
+    },
+    {
+      "id": "L058",
+      "number": 58,
+      "title": "Gallery Layout",
+      "origin": "attachment",
+      "kind": "screen-content-pattern",
+      "primaryScreenCandidate": true,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 1052,
+      "correctionIds": []
+    },
+    {
+      "id": "L059",
+      "number": 59,
+      "title": "Carousel Layout",
+      "origin": "attachment",
+      "kind": "screen-content-pattern",
+      "primaryScreenCandidate": true,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 1065,
+      "correctionIds": []
+    },
+    {
+      "id": "L060",
+      "number": 60,
+      "title": "Filmstrip Layout",
+      "origin": "attachment",
+      "kind": "screen-content-pattern",
+      "primaryScreenCandidate": true,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 1080,
+      "correctionIds": []
+    },
+    {
+      "id": "L061",
+      "number": 61,
+      "title": "Immersive Fullscreen Layout",
+      "origin": "attachment",
+      "kind": "viewport-mode",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 1092,
+      "correctionIds": [
+        "C07"
+      ]
+    },
+    {
+      "id": "L062",
+      "number": 62,
+      "title": "Canvas Layout",
+      "origin": "attachment",
+      "kind": "screen-content-pattern",
+      "primaryScreenCandidate": true,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 1105,
+      "correctionIds": []
+    },
+    {
+      "id": "L063",
+      "number": 63,
+      "title": "Infinite Canvas Layout",
+      "origin": "attachment",
+      "kind": "screen-content-pattern",
+      "primaryScreenCandidate": true,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 1117,
+      "correctionIds": []
+    },
+    {
+      "id": "L064",
+      "number": 64,
+      "title": "Top Navigation Layout",
+      "origin": "attachment",
+      "kind": "navigation-utility-pattern",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 1131,
+      "correctionIds": []
+    },
+    {
+      "id": "L065",
+      "number": 65,
+      "title": "Side Navigation Layout",
+      "origin": "attachment",
+      "kind": "navigation-utility-pattern",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 1142,
+      "correctionIds": []
+    },
+    {
+      "id": "L066",
+      "number": 66,
+      "title": "Bottom Navigation Layout",
+      "origin": "attachment",
+      "kind": "navigation-utility-pattern",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 1154,
+      "correctionIds": []
+    },
+    {
+      "id": "L067",
+      "number": 67,
+      "title": "Tabbed Layout",
+      "origin": "attachment",
+      "kind": "navigation-utility-pattern",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 1164,
+      "correctionIds": []
+    },
+    {
+      "id": "L068",
+      "number": 68,
+      "title": "Accordion Layout",
+      "origin": "attachment",
+      "kind": "navigation-utility-pattern",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 1176,
+      "correctionIds": []
+    },
+    {
+      "id": "L069",
+      "number": 69,
+      "title": "Drawer Layout",
+      "origin": "attachment",
+      "kind": "navigation-utility-pattern",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 1188,
+      "correctionIds": []
+    },
+    {
+      "id": "L070",
+      "number": 70,
+      "title": "Inspector / Utility Panel Layout",
+      "origin": "attachment",
+      "kind": "navigation-utility-pattern",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 1200,
+      "correctionIds": []
+    },
+    {
+      "id": "L071",
+      "number": 71,
+      "title": "F-pattern Layout",
+      "origin": "attachment",
+      "kind": "reading-attention-model",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 1214,
+      "correctionIds": [
+        "C05"
+      ]
+    },
+    {
+      "id": "L072",
+      "number": 72,
+      "title": "Z-pattern Layout",
+      "origin": "attachment",
+      "kind": "reading-attention-model",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 1227,
+      "correctionIds": [
+        "C05"
+      ]
+    },
+    {
+      "id": "L073",
+      "number": 73,
+      "title": "Layer-cake Pattern",
+      "origin": "attachment",
+      "kind": "reading-attention-model",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 1239,
+      "correctionIds": [
+        "C05"
+      ]
+    },
+    {
+      "id": "L074",
+      "number": 74,
+      "title": "Gutenberg Diagram",
+      "origin": "attachment",
+      "kind": "reading-attention-model",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 1251,
+      "correctionIds": [
+        "C05"
+      ]
+    },
+    {
+      "id": "L075",
+      "number": 75,
+      "title": "Comparison Layout",
+      "origin": "attachment",
+      "kind": "specialized-screen-pattern",
+      "primaryScreenCandidate": true,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 1261,
+      "correctionIds": []
+    },
+    {
+      "id": "L076",
+      "number": 76,
+      "title": "Pricing Layout",
+      "origin": "attachment",
+      "kind": "specialized-screen-pattern",
+      "primaryScreenCandidate": true,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 1273,
+      "correctionIds": [
+        "C19"
+      ]
+    },
+    {
+      "id": "L077",
+      "number": 77,
+      "title": "Before–After Layout",
+      "origin": "attachment",
+      "kind": "specialized-screen-pattern",
+      "primaryScreenCandidate": true,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 1281,
+      "correctionIds": []
+    },
+    {
+      "id": "L078",
+      "number": 78,
+      "title": "Storytelling Layout",
+      "origin": "attachment",
+      "kind": "specialized-screen-pattern",
+      "primaryScreenCandidate": true,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 1292,
+      "correctionIds": []
+    },
+    {
+      "id": "L079",
+      "number": 79,
+      "title": "Scrollytelling Layout",
+      "origin": "attachment",
+      "kind": "specialized-screen-pattern",
+      "primaryScreenCandidate": true,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 1304,
+      "correctionIds": []
+    },
+    {
+      "id": "L080",
+      "number": 80,
+      "title": "Sticky Narrative Layout",
+      "origin": "attachment",
+      "kind": "specialized-screen-pattern",
+      "primaryScreenCandidate": true,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 1315,
+      "correctionIds": []
+    },
+    {
+      "id": "L081",
+      "number": 81,
+      "title": "Documentation Layout",
+      "origin": "attachment",
+      "kind": "specialized-screen-pattern",
+      "primaryScreenCandidate": true,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 1326,
+      "correctionIds": []
+    },
+    {
+      "id": "L082",
+      "number": 82,
+      "title": "IDE Layout",
+      "origin": "attachment",
+      "kind": "specialized-screen-pattern",
+      "primaryScreenCandidate": true,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 1346,
+      "correctionIds": []
+    },
+    {
+      "id": "L083",
+      "number": 83,
+      "title": "Data-dense Enterprise Layout",
+      "origin": "attachment",
+      "kind": "specialized-screen-pattern",
+      "primaryScreenCandidate": true,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 1360,
+      "correctionIds": [
+        "C10"
+      ]
+    },
+    {
+      "id": "L084",
+      "number": 84,
+      "title": "Command-center Layout",
+      "origin": "attachment",
+      "kind": "specialized-screen-pattern",
+      "primaryScreenCandidate": true,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 1380,
+      "correctionIds": []
+    },
+    {
+      "id": "L085",
+      "number": 85,
+      "title": "Normal Flow",
+      "origin": "attachment",
+      "kind": "css-mechanism",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 1402,
+      "correctionIds": []
+    },
+    {
+      "id": "L086",
+      "number": 86,
+      "title": "Flexbox Layout",
+      "origin": "attachment",
+      "kind": "css-mechanism",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 1410,
+      "correctionIds": []
+    },
+    {
+      "id": "L087",
+      "number": 87,
+      "title": "CSS Grid Layout",
+      "origin": "attachment",
+      "kind": "css-mechanism",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 1423,
+      "correctionIds": []
+    },
+    {
+      "id": "L088",
+      "number": 88,
+      "title": "Absolute / Positioned Layout",
+      "origin": "attachment",
+      "kind": "css-mechanism",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 1435,
+      "correctionIds": []
+    },
+    {
+      "id": "L089",
+      "number": 89,
+      "title": "Multi-column Layout",
+      "origin": "attachment",
+      "kind": "css-mechanism",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 1449,
+      "correctionIds": [
+        "C08"
+      ]
+    },
+    {
+      "id": "L090",
+      "number": 90,
+      "title": "Container-query-driven Layout",
+      "origin": "attachment",
+      "kind": "css-mechanism",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 1460,
+      "correctionIds": []
+    },
+    {
+      "id": "L091",
+      "number": 91,
+      "title": "Frame",
+      "origin": "attachment",
+      "kind": "figma-structure-object",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 1824,
+      "correctionIds": [
+        "C11",
+        "C18"
+      ]
+    },
+    {
+      "id": "L092",
+      "number": 92,
+      "title": "Section",
+      "origin": "attachment",
+      "kind": "figma-structure-object",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 1850,
+      "correctionIds": [
+        "C18"
+      ]
+    },
+    {
+      "id": "L093",
+      "number": 93,
+      "title": "Layout Guide",
+      "origin": "attachment",
+      "kind": "figma-guide",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 1875,
+      "correctionIds": [
+        "C12",
+        "C18"
+      ]
+    },
+    {
+      "id": "L094",
+      "number": 94,
+      "title": "Uniform Grid Guide",
+      "origin": "attachment",
+      "kind": "figma-guide",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 1898,
+      "correctionIds": [
+        "C18"
+      ]
+    },
+    {
+      "id": "L095",
+      "number": 95,
+      "title": "Column Layout Guide",
+      "origin": "attachment",
+      "kind": "figma-guide",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 1919,
+      "correctionIds": [
+        "C01",
+        "C18"
+      ]
+    },
+    {
+      "id": "L096",
+      "number": 96,
+      "title": "Row Layout Guide",
+      "origin": "attachment",
+      "kind": "figma-guide",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 1955,
+      "correctionIds": [
+        "C18"
+      ]
+    },
+    {
+      "id": "L097",
+      "number": 97,
+      "title": "Fixed Layout Guide",
+      "origin": "attachment",
+      "kind": "figma-guide",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 1967,
+      "correctionIds": [
+        "C18"
+      ]
+    },
+    {
+      "id": "L098",
+      "number": 98,
+      "title": "Stretch Layout Guide",
+      "origin": "attachment",
+      "kind": "figma-guide",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 1980,
+      "correctionIds": [
+        "C18"
+      ]
+    },
+    {
+      "id": "L099",
+      "number": 99,
+      "title": "Layout Guide Style",
+      "origin": "attachment",
+      "kind": "figma-guide",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 1991,
+      "correctionIds": [
+        "C18"
+      ]
+    },
+    {
+      "id": "L100",
+      "number": 100,
+      "title": "Auto Layout",
+      "origin": "attachment",
+      "kind": "figma-flow",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2008,
+      "correctionIds": [
+        "C18"
+      ]
+    },
+    {
+      "id": "L101",
+      "number": 101,
+      "title": "Horizontal Auto Layout",
+      "origin": "attachment",
+      "kind": "figma-flow",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2035,
+      "correctionIds": [
+        "C18"
+      ]
+    },
+    {
+      "id": "L102",
+      "number": 102,
+      "title": "Vertical Auto Layout",
+      "origin": "attachment",
+      "kind": "figma-flow",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2055,
+      "correctionIds": [
+        "C18"
+      ]
+    },
+    {
+      "id": "L103",
+      "number": 103,
+      "title": "Grid Auto Layout Flow",
+      "origin": "attachment",
+      "kind": "figma-flow",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2078,
+      "correctionIds": [
+        "C12",
+        "C18"
+      ]
+    },
+    {
+      "id": "L104",
+      "number": 104,
+      "title": "Nested Auto Layout",
+      "origin": "attachment",
+      "kind": "figma-flow",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2105,
+      "correctionIds": [
+        "C18"
+      ]
+    },
+    {
+      "id": "L105",
+      "number": 105,
+      "title": "Flow Direction",
+      "origin": "attachment",
+      "kind": "figma-flow",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2131,
+      "correctionIds": [
+        "C18"
+      ]
+    },
+    {
+      "id": "L106",
+      "number": 106,
+      "title": "Wrap",
+      "origin": "attachment",
+      "kind": "figma-flow",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2147,
+      "correctionIds": [
+        "C08",
+        "C18"
+      ]
+    },
+    {
+      "id": "L107",
+      "number": 107,
+      "title": "Padding",
+      "origin": "attachment",
+      "kind": "spacing-alignment-property",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2177,
+      "correctionIds": [
+        "C18"
+      ]
+    },
+    {
+      "id": "L108",
+      "number": 108,
+      "title": "Gap",
+      "origin": "attachment",
+      "kind": "spacing-alignment-property",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2205,
+      "correctionIds": [
+        "C18"
+      ]
+    },
+    {
+      "id": "L109",
+      "number": 109,
+      "title": "Fixed Gap",
+      "origin": "attachment",
+      "kind": "spacing-alignment-property",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2226,
+      "correctionIds": [
+        "C18"
+      ]
+    },
+    {
+      "id": "L110",
+      "number": 110,
+      "title": "Auto Gap",
+      "origin": "attachment",
+      "kind": "spacing-alignment-property",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2245,
+      "correctionIds": [
+        "C12",
+        "C18"
+      ]
+    },
+    {
+      "id": "L111",
+      "number": 111,
+      "title": "Negative Gap",
+      "origin": "attachment",
+      "kind": "spacing-alignment-property",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2273,
+      "correctionIds": [
+        "C13",
+        "C18"
+      ]
+    },
+    {
+      "id": "L112",
+      "number": 112,
+      "title": "Primary-axis Alignment",
+      "origin": "attachment",
+      "kind": "spacing-alignment-property",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2296,
+      "correctionIds": [
+        "C18"
+      ]
+    },
+    {
+      "id": "L113",
+      "number": 113,
+      "title": "Counter-axis Alignment",
+      "origin": "attachment",
+      "kind": "spacing-alignment-property",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2306,
+      "correctionIds": [
+        "C18"
+      ]
+    },
+    {
+      "id": "L114",
+      "number": 114,
+      "title": "Start Alignment",
+      "origin": "attachment",
+      "kind": "spacing-alignment-property",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2324,
+      "correctionIds": [
+        "C18"
+      ]
+    },
+    {
+      "id": "L115",
+      "number": 115,
+      "title": "Center Alignment",
+      "origin": "attachment",
+      "kind": "spacing-alignment-property",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2334,
+      "correctionIds": [
+        "C18"
+      ]
+    },
+    {
+      "id": "L116",
+      "number": 116,
+      "title": "End Alignment",
+      "origin": "attachment",
+      "kind": "spacing-alignment-property",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2344,
+      "correctionIds": [
+        "C18"
+      ]
+    },
+    {
+      "id": "L117",
+      "number": 117,
+      "title": "Baseline Alignment",
+      "origin": "attachment",
+      "kind": "spacing-alignment-property",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2354,
+      "correctionIds": [
+        "C18"
+      ]
+    },
+    {
+      "id": "L118",
+      "number": 118,
+      "title": "Fixed",
+      "origin": "attachment",
+      "kind": "sizing-property",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2372,
+      "correctionIds": [
+        "C15",
+        "C18"
+      ]
+    },
+    {
+      "id": "L119",
+      "number": 119,
+      "title": "Hug Contents",
+      "origin": "attachment",
+      "kind": "sizing-property",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2392,
+      "correctionIds": [
+        "C18"
+      ]
+    },
+    {
+      "id": "L120",
+      "number": 120,
+      "title": "Fill Container",
+      "origin": "attachment",
+      "kind": "sizing-property",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2429,
+      "correctionIds": [
+        "C18"
+      ]
+    },
+    {
+      "id": "L121",
+      "number": 121,
+      "title": "Hug + Fill 조합",
+      "origin": "attachment",
+      "kind": "sizing-property",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2453,
+      "correctionIds": [
+        "C18"
+      ]
+    },
+    {
+      "id": "L122",
+      "number": 122,
+      "title": "Fixed + Fill 조합",
+      "origin": "attachment",
+      "kind": "sizing-property",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2477,
+      "correctionIds": [
+        "C18"
+      ]
+    },
+    {
+      "id": "L123",
+      "number": 123,
+      "title": "Hug + Fixed 조합",
+      "origin": "attachment",
+      "kind": "sizing-property",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2490,
+      "correctionIds": [
+        "C15",
+        "C18",
+        "C19"
+      ]
+    },
+    {
+      "id": "L124",
+      "number": 124,
+      "title": "Min Width",
+      "origin": "attachment",
+      "kind": "sizing-property",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2507,
+      "correctionIds": [
+        "C18"
+      ]
+    },
+    {
+      "id": "L125",
+      "number": 125,
+      "title": "Max Width",
+      "origin": "attachment",
+      "kind": "sizing-property",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2522,
+      "correctionIds": [
+        "C18"
+      ]
+    },
+    {
+      "id": "L126",
+      "number": 126,
+      "title": "Min Height",
+      "origin": "attachment",
+      "kind": "sizing-property",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2538,
+      "correctionIds": [
+        "C18"
+      ]
+    },
+    {
+      "id": "L127",
+      "number": 127,
+      "title": "Max Height",
+      "origin": "attachment",
+      "kind": "sizing-property",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2550,
+      "correctionIds": [
+        "C15",
+        "C18"
+      ]
+    },
+    {
+      "id": "L128",
+      "number": 128,
+      "title": "Fill + Max Width 패턴",
+      "origin": "attachment",
+      "kind": "sizing-property",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2558,
+      "correctionIds": [
+        "C18"
+      ]
+    },
+    {
+      "id": "L129",
+      "number": 129,
+      "title": "Constraints",
+      "origin": "attachment",
+      "kind": "constraint-property",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2581,
+      "correctionIds": [
+        "C14",
+        "C18"
+      ]
+    },
+    {
+      "id": "L130",
+      "number": 130,
+      "title": "Left Constraint",
+      "origin": "attachment",
+      "kind": "constraint-property",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2597,
+      "correctionIds": [
+        "C18"
+      ]
+    },
+    {
+      "id": "L131",
+      "number": 131,
+      "title": "Right Constraint",
+      "origin": "attachment",
+      "kind": "constraint-property",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2607,
+      "correctionIds": [
+        "C18"
+      ]
+    },
+    {
+      "id": "L132",
+      "number": 132,
+      "title": "Left + Right Constraint",
+      "origin": "attachment",
+      "kind": "constraint-property",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2617,
+      "correctionIds": [
+        "C18"
+      ]
+    },
+    {
+      "id": "L133",
+      "number": 133,
+      "title": "Center Constraint",
+      "origin": "attachment",
+      "kind": "constraint-property",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2630,
+      "correctionIds": [
+        "C18"
+      ]
+    },
+    {
+      "id": "L134",
+      "number": 134,
+      "title": "Scale Constraint",
+      "origin": "attachment",
+      "kind": "constraint-property",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2641,
+      "correctionIds": [
+        "C18"
+      ]
+    },
+    {
+      "id": "L135",
+      "number": 135,
+      "title": "Top Constraint",
+      "origin": "attachment",
+      "kind": "constraint-property",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2653,
+      "correctionIds": [
+        "C18"
+      ]
+    },
+    {
+      "id": "L136",
+      "number": 136,
+      "title": "Bottom Constraint",
+      "origin": "attachment",
+      "kind": "constraint-property",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2659,
+      "correctionIds": [
+        "C18"
+      ]
+    },
+    {
+      "id": "L137",
+      "number": 137,
+      "title": "Top + Bottom Constraint",
+      "origin": "attachment",
+      "kind": "constraint-property",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2665,
+      "correctionIds": [
+        "C18"
+      ]
+    },
+    {
+      "id": "L138",
+      "number": 138,
+      "title": "Ignore Auto Layout",
+      "origin": "attachment",
+      "kind": "positioning-property-pattern",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2675,
+      "correctionIds": [
+        "C13",
+        "C14",
+        "C18"
+      ]
+    },
+    {
+      "id": "L139",
+      "number": 139,
+      "title": "Auto Layout + Ignore Auto Layout 패턴",
+      "origin": "attachment",
+      "kind": "positioning-property-pattern",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2706,
+      "correctionIds": [
+        "C13",
+        "C14",
+        "C18"
+      ]
+    },
+    {
+      "id": "L140",
+      "number": 140,
+      "title": "Relative / Flow Position",
+      "origin": "attachment",
+      "kind": "positioning-property-pattern",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2723,
+      "correctionIds": [
+        "C13",
+        "C18"
+      ]
+    },
+    {
+      "id": "L141",
+      "number": 141,
+      "title": "Absolute Position",
+      "origin": "attachment",
+      "kind": "positioning-property-pattern",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2731,
+      "correctionIds": [
+        "C13",
+        "C18"
+      ]
+    },
+    {
+      "id": "L142",
+      "number": 142,
+      "title": "Fixed Position",
+      "origin": "attachment",
+      "kind": "positioning-property-pattern",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2739,
+      "correctionIds": [
+        "C13",
+        "C18"
+      ]
+    },
+    {
+      "id": "L143",
+      "number": 143,
+      "title": "Sticky Position",
+      "origin": "attachment",
+      "kind": "positioning-property-pattern",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2751,
+      "correctionIds": [
+        "C13",
+        "C18"
+      ]
+    },
+    {
+      "id": "L144",
+      "number": 144,
+      "title": "Auto Width Text",
+      "origin": "attachment",
+      "kind": "text-sizing-property",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2765,
+      "correctionIds": [
+        "C18"
+      ]
+    },
+    {
+      "id": "L145",
+      "number": 145,
+      "title": "Fixed-width / Wrapping Text",
+      "origin": "attachment",
+      "kind": "text-sizing-property",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2777,
+      "correctionIds": [
+        "C18"
+      ]
+    },
+    {
+      "id": "L146",
+      "number": 146,
+      "title": "Fill-width Text",
+      "origin": "attachment",
+      "kind": "text-sizing-property",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2789,
+      "correctionIds": [
+        "C18"
+      ]
+    },
+    {
+      "id": "L147",
+      "number": 147,
+      "title": "Truncate",
+      "origin": "attachment",
+      "kind": "text-sizing-property",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2797,
+      "correctionIds": [
+        "C15",
+        "C18"
+      ]
+    },
+    {
+      "id": "L148",
+      "number": 148,
+      "title": "Max Lines",
+      "origin": "attachment",
+      "kind": "text-sizing-property",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2815,
+      "correctionIds": [
+        "C15",
+        "C18"
+      ]
+    },
+    {
+      "id": "L149",
+      "number": 149,
+      "title": "Responsive Frame",
+      "origin": "attachment",
+      "kind": "responsive-transformation-pattern",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2831,
+      "correctionIds": [
+        "C16",
+        "C18"
+      ]
+    },
+    {
+      "id": "L150",
+      "number": 150,
+      "title": "Breakpoint",
+      "origin": "attachment",
+      "kind": "responsive-transformation-pattern",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2848,
+      "correctionIds": [
+        "C16",
+        "C18"
+      ]
+    },
+    {
+      "id": "L151",
+      "number": 151,
+      "title": "Responsive Reflow",
+      "origin": "attachment",
+      "kind": "responsive-transformation-pattern",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2865,
+      "correctionIds": [
+        "C16",
+        "C18"
+      ]
+    },
+    {
+      "id": "L152",
+      "number": 152,
+      "title": "Stack Switching",
+      "origin": "attachment",
+      "kind": "responsive-transformation-pattern",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2888,
+      "correctionIds": [
+        "C16",
+        "C18"
+      ]
+    },
+    {
+      "id": "L153",
+      "number": 153,
+      "title": "Responsive Sidebar Pattern",
+      "origin": "attachment",
+      "kind": "responsive-transformation-pattern",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2905,
+      "correctionIds": [
+        "C16",
+        "C18"
+      ]
+    },
+    {
+      "id": "L154",
+      "number": 154,
+      "title": "Responsive Card Grid",
+      "origin": "attachment",
+      "kind": "responsive-transformation-pattern",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2925,
+      "correctionIds": [
+        "C16",
+        "C18"
+      ]
+    },
+    {
+      "id": "L155",
+      "number": 155,
+      "title": "Component",
+      "origin": "attachment",
+      "kind": "component-system-object",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2961,
+      "correctionIds": [
+        "C01",
+        "C18"
+      ]
+    },
+    {
+      "id": "L156",
+      "number": 156,
+      "title": "Instance",
+      "origin": "attachment",
+      "kind": "component-system-object",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2978,
+      "correctionIds": [
+        "C01",
+        "C11",
+        "C18"
+      ]
+    },
+    {
+      "id": "L157",
+      "number": 157,
+      "title": "Variant",
+      "origin": "attachment",
+      "kind": "component-system-object",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 2986,
+      "correctionIds": [
+        "C01",
+        "C11",
+        "C18"
+      ]
+    },
+    {
+      "id": "L158",
+      "number": 158,
+      "title": "Component Property",
+      "origin": "attachment",
+      "kind": "component-system-object",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 3012,
+      "correctionIds": [
+        "C01",
+        "C18"
+      ]
+    },
+    {
+      "id": "L159",
+      "number": 159,
+      "title": "Nested Component",
+      "origin": "attachment",
+      "kind": "component-system-object",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 3027,
+      "correctionIds": [
+        "C01",
+        "C18"
+      ]
+    },
+    {
+      "id": "L160",
+      "number": 160,
+      "title": "Button",
+      "origin": "attachment",
+      "kind": "component-layout-recipe",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 3075,
+      "correctionIds": [
+        "C01",
+        "C15"
+      ]
+    },
+    {
+      "id": "L161",
+      "number": 161,
+      "title": "Full-width Button",
+      "origin": "attachment",
+      "kind": "component-layout-recipe",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 3092,
+      "correctionIds": [
+        "C01",
+        "C15"
+      ]
+    },
+    {
+      "id": "L162",
+      "number": 162,
+      "title": "Input",
+      "origin": "attachment",
+      "kind": "component-layout-recipe",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 3102,
+      "correctionIds": [
+        "C01",
+        "C15"
+      ]
+    },
+    {
+      "id": "L163",
+      "number": 163,
+      "title": "Card",
+      "origin": "attachment",
+      "kind": "component-layout-recipe",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 3119,
+      "correctionIds": [
+        "C01"
+      ]
+    },
+    {
+      "id": "L164",
+      "number": 164,
+      "title": "Header",
+      "origin": "attachment",
+      "kind": "component-layout-recipe",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 3134,
+      "correctionIds": [
+        "C01"
+      ]
+    },
+    {
+      "id": "L165",
+      "number": 165,
+      "title": "Sidebar + Main",
+      "origin": "attachment",
+      "kind": "component-layout-recipe",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 3149,
+      "correctionIds": [
+        "C01"
+      ]
+    },
+    {
+      "id": "L166",
+      "number": 166,
+      "title": "Article",
+      "origin": "attachment",
+      "kind": "component-layout-recipe",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 3165,
+      "correctionIds": [
+        "C01"
+      ]
+    },
+    {
+      "id": "L167",
+      "number": 167,
+      "title": "Dashboard",
+      "origin": "attachment",
+      "kind": "component-layout-recipe",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 3180,
+      "correctionIds": [
+        "C01"
+      ]
+    },
+    {
+      "id": "L168",
+      "number": 168,
+      "title": "Responsive Card Row",
+      "origin": "attachment",
+      "kind": "component-layout-recipe",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 3195,
+      "correctionIds": [
+        "C01"
+      ]
+    },
+    {
+      "id": "L169",
+      "number": 169,
+      "title": "Table Row",
+      "origin": "attachment",
+      "kind": "component-layout-recipe",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 3209,
+      "correctionIds": [
+        "C01"
+      ]
+    },
+    {
+      "id": "L170",
+      "number": 170,
+      "title": "Modal",
+      "origin": "attachment",
+      "kind": "component-layout-recipe",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 3224,
+      "correctionIds": [
+        "C01",
+        "C17"
+      ]
+    },
+    {
+      "id": "L171",
+      "number": 171,
+      "title": "모든 객체를 Fixed로 만드는 것",
+      "origin": "attachment",
+      "kind": "failure-advice",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 3242,
+      "correctionIds": []
+    },
+    {
+      "id": "L172",
+      "number": 172,
+      "title": "모든 객체를 Fill로 만드는 것",
+      "origin": "attachment",
+      "kind": "failure-advice",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 3256,
+      "correctionIds": []
+    },
+    {
+      "id": "L173",
+      "number": 173,
+      "title": "모든 객체를 Hug로 만드는 것",
+      "origin": "attachment",
+      "kind": "failure-advice",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 3272,
+      "correctionIds": []
+    },
+    {
+      "id": "L174",
+      "number": 174,
+      "title": "Auto Layout 없이 수동 좌표만 사용하는 것",
+      "origin": "attachment",
+      "kind": "failure-advice",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 3293,
+      "correctionIds": []
+    },
+    {
+      "id": "L175",
+      "number": 175,
+      "title": "깊은 Auto Layout Nesting 남용",
+      "origin": "attachment",
+      "kind": "failure-advice",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 3308,
+      "correctionIds": []
+    },
+    {
+      "id": "L176",
+      "number": 176,
+      "title": "Layout Guide만 만들고 객체를 수동 배치하는 것",
+      "origin": "attachment",
+      "kind": "failure-advice",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 3318,
+      "correctionIds": []
+    },
+    {
+      "id": "L177",
+      "number": 177,
+      "title": "Mobile을 Desktop 축소판으로 만드는 것",
+      "origin": "attachment",
+      "kind": "failure-advice",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 3326,
+      "correctionIds": [
+        "C16"
+      ]
+    },
+    {
+      "id": "L178",
+      "number": 178,
+      "title": "요소가 콘텐츠 크기에 따라 늘어나야 하는가?",
+      "origin": "attachment",
+      "kind": "decision-question",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 3343,
+      "correctionIds": []
+    },
+    {
+      "id": "L179",
+      "number": 179,
+      "title": "남는 공간을 채워야 하는가?",
+      "origin": "attachment",
+      "kind": "decision-question",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 3358,
+      "correctionIds": []
+    },
+    {
+      "id": "L180",
+      "number": 180,
+      "title": "크기가 반드시 일정해야 하는가?",
+      "origin": "attachment",
+      "kind": "decision-question",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 3374,
+      "correctionIds": []
+    },
+    {
+      "id": "L181",
+      "number": 181,
+      "title": "너무 작아지면 안 되는가?",
+      "origin": "attachment",
+      "kind": "decision-question",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 3390,
+      "correctionIds": []
+    },
+    {
+      "id": "L182",
+      "number": 182,
+      "title": "너무 커지면 안 되는가?",
+      "origin": "attachment",
+      "kind": "decision-question",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 3400,
+      "correctionIds": []
+    },
+    {
+      "id": "L183",
+      "number": 183,
+      "title": "요소가 한 줄에 안 들어가면 다음 줄로 가야 하는가?",
+      "origin": "attachment",
+      "kind": "decision-question",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 3410,
+      "correctionIds": []
+    },
+    {
+      "id": "L184",
+      "number": 184,
+      "title": "형제들과 관계없이 특정 위치에 떠 있어야 하는가?",
+      "origin": "attachment",
+      "kind": "decision-question",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 3420,
+      "correctionIds": [
+        "C13"
+      ]
+    },
+    {
+      "id": "L185",
+      "number": 185,
+      "title": "부모가 커질 때 특정 Edge와의 거리를 유지해야 하는가?",
+      "origin": "attachment",
+      "kind": "decision-question",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 3432,
+      "correctionIds": [
+        "C13",
+        "C14"
+      ]
+    },
+    {
+      "id": "L186",
+      "number": 186,
+      "title": "화면의 큰 기준선을 먼저 만들고 싶은가?",
+      "origin": "attachment",
+      "kind": "decision-question",
+      "primaryScreenCandidate": false,
+      "sourceFile": "source/uiux_layout_figma_guide.original.txt",
+      "sourceLine": 3442,
+      "correctionIds": []
+    },
+    {
+      "id": "L187",
+      "number": 187,
+      "title": "Resizable Split Pane — 폭을 조절하는 분할면",
+      "origin": "project-review-addition",
+      "kind": "added-workspace-pattern",
+      "primaryScreenCandidate": true,
+      "sourceFile": "expansion.md",
+      "correctionIds": [],
+      "sourceLine": 67
+    },
+    {
+      "id": "L188",
+      "number": 188,
+      "title": "Docked Multi-pane Workspace — 붙여 놓는 다중 작업면",
+      "origin": "project-review-addition",
+      "kind": "added-workspace-pattern",
+      "primaryScreenCandidate": true,
+      "sourceFile": "expansion.md",
+      "correctionIds": [],
+      "sourceLine": 77
+    },
+    {
+      "id": "L189",
+      "number": 189,
+      "title": "Tree–Detail Workspace — 계층 색인과 상세",
+      "origin": "project-review-addition",
+      "kind": "added-workspace-pattern",
+      "primaryScreenCandidate": true,
+      "sourceFile": "expansion.md",
+      "correctionIds": [],
+      "sourceLine": 85
+    },
+    {
+      "id": "L190",
+      "number": 190,
+      "title": "Document–Annotation Workspace — 원자료와 기록지",
+      "origin": "project-review-addition",
+      "kind": "added-workspace-pattern",
+      "primaryScreenCandidate": true,
+      "sourceFile": "expansion.md",
+      "correctionIds": [],
+      "sourceLine": 93
+    },
+    {
+      "id": "L191",
+      "number": 191,
+      "title": "Contextual Side Sheet / Bottom Sheet — 현재 과업의 곁면",
+      "origin": "project-review-addition",
+      "kind": "added-workspace-pattern",
+      "primaryScreenCandidate": false,
+      "sourceFile": "expansion.md",
+      "correctionIds": [],
+      "sourceLine": 101
+    },
+    {
+      "id": "L192",
+      "number": 192,
+      "title": "Anchored Popover / Command Surface — 실행자에 붙는 짧은 면",
+      "origin": "project-review-addition",
+      "kind": "added-workspace-pattern",
+      "primaryScreenCandidate": false,
+      "sourceFile": "expansion.md",
+      "correctionIds": [],
+      "sourceLine": 109
+    },
+    {
+      "id": "L193",
+      "number": 193,
+      "title": "Question–Response–Explanation — 질문·내 답·설명 공개",
+      "origin": "project-review-addition",
+      "kind": "added-workspace-pattern",
+      "primaryScreenCandidate": true,
+      "sourceFile": "expansion.md",
+      "correctionIds": [],
+      "sourceLine": 117
+    },
+    {
+      "id": "L194",
+      "number": 194,
+      "title": "Parameter–Visualization–Evidence — 조절·관찰·근거",
+      "origin": "project-review-addition",
+      "kind": "added-workspace-pattern",
+      "primaryScreenCandidate": true,
+      "sourceFile": "expansion.md",
+      "correctionIds": [],
+      "sourceLine": 125
+    },
+    {
+      "id": "L195",
+      "number": 195,
+      "title": "Data View–Record Detail — 여러 표현과 원기록",
+      "origin": "project-review-addition",
+      "kind": "added-workspace-pattern",
+      "primaryScreenCandidate": true,
+      "sourceFile": "expansion.md",
+      "correctionIds": [],
+      "sourceLine": 133
+    },
+    {
+      "id": "L196",
+      "number": 196,
+      "title": "Graph–Detail Workspace — 관계 지도와 원문",
+      "origin": "project-review-addition",
+      "kind": "added-workspace-pattern",
+      "primaryScreenCandidate": true,
+      "sourceFile": "expansion.md",
+      "correctionIds": [],
+      "sourceLine": 141
+    },
+    {
+      "id": "L197",
+      "number": 197,
+      "title": "Schedule–Agenda Detail — 시간표와 선택 과업",
+      "origin": "project-review-addition",
+      "kind": "added-workspace-pattern",
+      "primaryScreenCandidate": true,
+      "sourceFile": "expansion.md",
+      "correctionIds": [],
+      "sourceLine": 149
+    },
+    {
+      "id": "L198",
+      "number": 198,
+      "title": "Settings–Operation–Recovery — 변경·실행·복구",
+      "origin": "project-review-addition",
+      "kind": "added-workspace-pattern",
+      "primaryScreenCandidate": true,
+      "sourceFile": "expansion.md",
+      "correctionIds": [],
+      "sourceLine": 157
+    }
+  ],
+  "metrics": {
+    "units": "CSS px or rem as named; rem values scale with the user root font. Pixel-art grid does not quantize text or hit targets.",
+    "type": {
+      "body": {
+        "token": "--type-body-size",
+        "rem": 1,
+        "pxAt16": 16,
+        "lineToken": "--type-body-line",
+        "line": 1.65,
+        "weight": 400
+      },
+      "label": {
+        "token": "--type-label-size",
+        "rem": 0.9375,
+        "pxAt16": 15,
+        "lineToken": "--type-label-line",
+        "line": 1.5,
+        "weight": 600
+      },
+      "caption": {
+        "token": "--type-caption-size",
+        "rem": 0.875,
+        "pxAt16": 14,
+        "lineToken": "--type-caption-line",
+        "line": 1.6,
+        "weight": 400
+      },
+      "heading": {
+        "token": "--type-heading-size",
+        "rem": 1.25,
+        "pxAt16": 20,
+        "lineToken": "--type-heading-line",
+        "line": 1.4,
+        "weight": 600
+      },
+      "title": {
+        "token": "--type-title-size",
+        "rem": 1.75,
+        "compactToken": "--type-title-compact-size",
+        "compactRem": 1.5,
+        "lineToken": "--type-title-line",
+        "line": 1.35,
+        "weight": 600
+      },
+      "input": {
+        "token": "--input-font-size",
+        "minPx": 16
+      },
+      "font": "Existing --font-interface/--font-reading/--font-mono; preserve Korean readability and personal font choices. Pixel fonts are optional short decorative labels only."
+    },
+    "space": {
+      "pxAt16": [
+        0,
+        4,
+        8,
+        12,
+        16,
+        24,
+        32,
+        48,
+        64
+      ],
+      "tokens": [
+        "--space-0",
+        "--space-1",
+        "--space-2",
+        "--space-3",
+        "--space-4",
+        "--space-5",
+        "--space-6",
+        "--space-7",
+        "--space-8"
+      ],
+      "groupPxAt16": 18,
+      "groupToken": "--space-group"
+    },
+    "control": {
+      "heightPx": 48,
+      "heightToken": "--control-height",
+      "iconTargetMinPx": 44,
+      "iconTargetToken": "--icon-target",
+      "iconArtboardPx": 20,
+      "iconToken": "--icon-size",
+      "borderPx": 1,
+      "borderToken": "--border-width",
+      "focusPx": 2,
+      "focusToken": "--focus-width",
+      "focusOffsetPx": 3,
+      "focusOffsetToken": "--focus-offset",
+      "heightPolicy": "Minimum target/height; allow growth for wrapped Korean labels. Do not shrink targets to pixel art."
+    },
+    "layout": {
+      "readingMaxRem": 48,
+      "readingToken": "--layout-reading",
+      "dialogMaxRem": 36,
+      "dialogToken": "--layout-dialog",
+      "compactContainerRem": 40,
+      "wideContainerRem": 64,
+      "pagePaddingRem": 1.5,
+      "compactPaddingRem": 1,
+      "sectionGapRem": 1.5,
+      "relatedGapRem": 0.5,
+      "formFieldGapRem": 1,
+      "responsivePolicy": "Use available container width, not device names. Collapse into one reading column below 40rem; retain independent functional controls and direct navigation. Intrinsically 2D plots/canvas keep pan/zoom and accessible values."
+    },
+    "window": {
+      "framePx": 8,
+      "compactFramePx": 4,
+      "edgeStepPx": 2,
+      "sillDepthPx": 8,
+      "compactSillDepthPx": 4,
+      "deskGapRem": 1.5,
+      "compactDeskGapRem": 1,
+      "artSizing": "Preserve the entire original widget, native aspect ratio, viewBox, scene extent and existing controls. Resize the whole widget proportionally when necessary; no cover crop, clipped edge, scene zoom/recomposition or reduced aperture to make room for the frame. Current detailed artwork remains renderer-owned. Existing user-controlled pan/zoom is preserved.",
+      "pointerPolicy": "Outside frame/sill decoration never intercepts the original widget controls, focus, pointer or touch scroll. Preserve the original interactive bounds; do not shrink them to an inset window aperture. Allow menus/focus to remain visible outside bounds through their existing overlay behavior.",
+      "placement": "Outside the complete widget content bounds. Reserve additional layout space for frame/sill; never overlay them onto the widget image or controls.",
+      "cropAllowed": false,
+      "decorativeOcclusionPx": 0
+    },
+    "paper": {
+      "bodyAlignment": {
+        "textAlign": "justify",
+        "lastLine": "start",
+        "scope": "Prose paragraphs and authored knowledge/module explanations; preserve explicit line breaks, source text and notation. Headings, controls, tables, mathematical/code alignment and spatial labels keep their semantic alignment.",
+        "justification": "inter-word",
+        "wordBreak": "normal",
+        "lineBreak": "normal",
+        "overflowWrap": "break-word",
+        "hyphens": "manual"
+      },
+      "paddingRem": 1.5,
+      "compactPaddingRem": 1,
+      "borderPx": 1,
+      "opacity": 1,
+      "rotationDeg": 0,
+      "textureOpacityUnderText": 0,
+      "textGlowPx": 0,
+      "textBlurPx": 0,
+      "shadow": {
+        "xPx": 2,
+        "yPx": 2,
+        "blurPx": 0,
+        "spreadPx": 0,
+        "color": "#00000033"
+      },
+      "defaultVisibleStackOffsetSheets": 0,
+      "rulePolicy": "Thin decorative rules only where they communicate grouping; no forced ruled lines behind formulas/graphs. Default one continuous document, not nested cards for every item.",
+      "scrollPolicy": "Long content grows/scrolls in the actual reading area. Never clip notes or lock paragraph heights to a decorative sheet.",
+      "bodyTypography": {
+        "fontRole": "--font-reading",
+        "weight": 500,
+        "previousWeight": 400,
+        "lineHeight": 2,
+        "letterSpacingEm": -0.05,
+        "compact": {
+          "maxContentWidthRem": 40,
+          "lineHeight": 1.85,
+          "letterSpacingEm": -0.025
+        },
+        "glyphScaleX": 1,
+        "identity": "Slightly firmer ink on warm paper. Weight 400 to 500 is a project aesthetic choice, not evidence of improved learning or readability.",
+        "source": {
+          "typography": "/Users/manseeksong/obsidianvault/송민석/.obsidian/snippets/자간 및 장평 조정.css",
+          "alignment": "/Users/manseeksong/Documents/ChatGPT/학술 지식 보관소/snippets/한글 문단 양쪽 맞춤.css",
+          "originalDesktopScaleX": 0.95
+        },
+        "adaptation": "Reuse original desktop/compact line height and tracking; raise only the default prose weight. Do not copy scaleX into web reading/editing: preserve glyph geometry, caret/touch coordinates and saved reading width. Use actual reading-container width with viewport fallback for portals.",
+        "preservation": "Defaults only; keep existing reading font, font size, explicit source line breaks, emphasis, user CSS overrides and saved width. Headings, captions, controls, quotes, lists, tables, code and math retain their role styles."
+      }
+    }
+  },
+  "snapshots": {
+    "guide": {
+      "path": "layout-catalog/uiux_layout_figma_guide.expanded.txt",
+      "sha256": "e427708870c373bb58e792548b3ee2c8114400493bab2e057726dcf11ad18778"
+    },
+    "catalog": {
+      "path": "layout-catalog/catalog.json",
+      "sha256": "f98877b8480644a6f072ab89ee0af2c98d47458b28d26d168cde9ac2ac665762"
+    },
+    "identity": {
+      "path": "observatory-feature-identities.json",
+      "sha256": "b716172386c0381f93a9cc724a688fec1ef7ee246b409ff063311e0d03660a77"
+    },
+    "inventory": {
+      "path": "figma-observatory-20261002/screen-inventory.json",
+      "sha256": "531a6d145526fce9306f686596570e3d0fe7482165b36679943eea8a3cebbe72"
+    },
+    "baseline": {
+      "path": "observatory-experience-baseline.json",
+      "sha256": "09caf5a919ebccd4d3ec1a802b9e143ad1c83d81afd241a9aac8a1a4b789f89b"
+    }
+  }
+}

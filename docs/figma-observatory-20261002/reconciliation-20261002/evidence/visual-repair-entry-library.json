@@ -1,0 +1,136 @@
+{
+  "pageId": "7:72",
+  "rootIds": [
+    "83:100533",
+    "83:100542",
+    "83:100551",
+    "83:100565"
+  ],
+  "createdNodeIds": [],
+  "mutatedNodeIdsEncoded": {
+    "format": "prefix-plus-inclusive-ranges-v1",
+    "literal": [],
+    "groups": [
+      [
+        "83:",
+        [
+          [
+            100533,
+            100539
+          ],
+          [
+            100542,
+            100548
+          ],
+          [
+            100551,
+            100557
+          ],
+          [
+            100560,
+            100562
+          ],
+          [
+            100565,
+            100571
+          ],
+          [
+            100574,
+            100576
+          ]
+        ]
+      ],
+      [
+        "I83:100539;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I83:100548;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I83:100557;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I83:100562;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I83:100571;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I83:100576;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ]
+    ]
+  },
+  "counts": {
+    "roots": 4,
+    "texts": 24,
+    "mutated": 40,
+    "collapsedTexts": 0,
+    "horizontalOverflow": 0,
+    "wrongTextMode": 0,
+    "paperModeMismatch": 0,
+    "sourceTextChanges": 0,
+    "rootOverlaps": 0,
+    "sourceGeometryChanges": 0,
+    "svgRepairs": 0,
+    "absoluteSubtrees": 0
+  },
+  "svg": [],
+  "absoluteSubtrees": [],
+  "rootOverlaps": [],
+  "sourceGeometry": [
+    {
+      "id": "28:10158",
+      "preserved": true
+    },
+    {
+      "id": "28:10299",
+      "preserved": true
+    },
+    {
+      "id": "28:11253",
+      "preserved": true
+    },
+    {
+      "id": "28:11372",
+      "preserved": true
+    }
+  ],
+  "issues": [],
+  "scope": "Task-owned delta screens/variants/guideboards/review panels only. Existing155 canonical screens and common owners remain untouched. Paper colour bindings retained."
+}

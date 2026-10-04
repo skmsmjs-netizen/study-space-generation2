@@ -1,0 +1,612 @@
+{
+  "boardId": "75:85511",
+  "frames": [
+    {
+      "feature": "XD12",
+      "stateIndex": 0,
+      "state": "정지",
+      "profile": "ipad-landscape",
+      "id": "75:85526",
+      "returnTarget": "26:68",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD12",
+      "stateIndex": 1,
+      "state": "장소변경0.18초",
+      "profile": "iphone-portrait",
+      "id": "75:85562",
+      "returnTarget": "26:1877",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD12",
+      "stateIndex": 2,
+      "state": "움직임줄이기0초",
+      "profile": "ipad-landscape",
+      "id": "75:85598",
+      "returnTarget": "26:68",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD12",
+      "stateIndex": 3,
+      "state": "같은장소내이동",
+      "profile": "iphone-portrait",
+      "id": "75:85634",
+      "returnTarget": "26:1877",
+      "returnConnection": "figma-node-url"
+    }
+  ],
+  "mappings": [],
+  "entryRequests": [
+    {
+      "feature": "XD12",
+      "label": "네 장소 이동",
+      "sourceId": "26:68",
+      "targetId": "75:85526",
+      "profile": "ipad-landscape"
+    },
+    {
+      "feature": "XD12",
+      "label": "네 장소 이동",
+      "sourceId": "26:1877",
+      "targetId": "75:85562",
+      "profile": "iphone-portrait"
+    }
+  ],
+  "links": [
+    {
+      "from": "75:85518",
+      "to": "75:85526",
+      "action": "inspect-state",
+      "connection": "native-prototype"
+    },
+    {
+      "from": "75:85520",
+      "to": "75:85562",
+      "action": "inspect-state",
+      "connection": "native-prototype"
+    },
+    {
+      "from": "75:85522",
+      "to": "75:85598",
+      "action": "inspect-state",
+      "connection": "native-prototype"
+    },
+    {
+      "from": "75:85524",
+      "to": "75:85634",
+      "action": "inspect-state",
+      "connection": "native-prototype"
+    },
+    {
+      "from": "75:85622",
+      "to": "75:85526",
+      "action": "공부 책상",
+      "connection": "native-prototype"
+    },
+    {
+      "from": "75:85660",
+      "to": "75:85562",
+      "action": "자료 책장",
+      "connection": "native-prototype"
+    },
+    {
+      "from": "75:85662",
+      "to": "75:85562",
+      "action": "수식 작업대",
+      "connection": "native-prototype"
+    },
+    {
+      "from": "75:85664",
+      "to": "75:85562",
+      "action": "기록 벽",
+      "connection": "native-prototype"
+    }
+  ],
+  "unconnectedActions": [
+    {
+      "feature": "XD12",
+      "stateIndex": 0,
+      "action": "자료 책장",
+      "targetState": 1,
+      "reason": "Different viewport specimen; use design-state index. Not connected as product behavior."
+    },
+    {
+      "feature": "XD12",
+      "stateIndex": 0,
+      "action": "수식 작업대",
+      "targetState": 1,
+      "reason": "Different viewport specimen; use design-state index. Not connected as product behavior."
+    },
+    {
+      "feature": "XD12",
+      "stateIndex": 0,
+      "action": "기록 벽",
+      "targetState": 1,
+      "reason": "Different viewport specimen; use design-state index. Not connected as product behavior."
+    },
+    {
+      "feature": "XD12",
+      "stateIndex": 1,
+      "action": "공부 책상",
+      "targetState": 0,
+      "reason": "Different viewport specimen; use design-state index. Not connected as product behavior."
+    },
+    {
+      "feature": "XD12",
+      "stateIndex": 2,
+      "action": "자료 책장",
+      "targetState": 1,
+      "reason": "Different viewport specimen; use design-state index. Not connected as product behavior."
+    },
+    {
+      "feature": "XD12",
+      "stateIndex": 2,
+      "action": "수식 작업대",
+      "targetState": 1,
+      "reason": "Different viewport specimen; use design-state index. Not connected as product behavior."
+    },
+    {
+      "feature": "XD12",
+      "stateIndex": 2,
+      "action": "기록 벽",
+      "targetState": 1,
+      "reason": "Different viewport specimen; use design-state index. Not connected as product behavior."
+    },
+    {
+      "feature": "XD12",
+      "stateIndex": 3,
+      "action": "공부 책상",
+      "targetState": 0,
+      "reason": "Different viewport specimen; use design-state index. Not connected as product behavior."
+    }
+  ],
+  "createdNodeIdsEncoded": {
+    "format": "prefix-plus-inclusive-ranges-v1",
+    "literal": [],
+    "groups": [
+      [
+        "75:",
+        [
+          [
+            85511,
+            85518
+          ],
+          [
+            85520,
+            85520
+          ],
+          [
+            85522,
+            85522
+          ],
+          [
+            85524,
+            85524
+          ],
+          [
+            85526,
+            85528
+          ],
+          [
+            85548,
+            85550
+          ],
+          [
+            85552,
+            85552
+          ],
+          [
+            85554,
+            85554
+          ],
+          [
+            85556,
+            85556
+          ],
+          [
+            85558,
+            85558
+          ],
+          [
+            85561,
+            85564
+          ],
+          [
+            85584,
+            85586
+          ],
+          [
+            85588,
+            85588
+          ],
+          [
+            85590,
+            85590
+          ],
+          [
+            85592,
+            85592
+          ],
+          [
+            85594,
+            85594
+          ],
+          [
+            85597,
+            85600
+          ],
+          [
+            85620,
+            85622
+          ],
+          [
+            85624,
+            85624
+          ],
+          [
+            85626,
+            85626
+          ],
+          [
+            85628,
+            85628
+          ],
+          [
+            85630,
+            85630
+          ],
+          [
+            85633,
+            85636
+          ],
+          [
+            85656,
+            85658
+          ],
+          [
+            85660,
+            85660
+          ],
+          [
+            85662,
+            85662
+          ],
+          [
+            85664,
+            85664
+          ],
+          [
+            85666,
+            85666
+          ],
+          [
+            85669,
+            85669
+          ]
+        ]
+      ],
+      [
+        "I75:85518;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:85520;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:85522;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:85524;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:85528;53:",
+        [
+          [
+            12795,
+            12813
+          ]
+        ]
+      ],
+      [
+        "I75:85550;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:85552;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:85554;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:85556;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:85558;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:85564;53:",
+        [
+          [
+            13034,
+            13052
+          ]
+        ]
+      ],
+      [
+        "I75:85586;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:85588;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:85590;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:85592;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:85594;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:85600;53:",
+        [
+          [
+            12795,
+            12813
+          ]
+        ]
+      ],
+      [
+        "I75:85622;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:85624;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:85626;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:85628;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:85630;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:85636;53:",
+        [
+          [
+            12842,
+            12860
+          ]
+        ]
+      ],
+      [
+        "I75:85658;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:85660;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:85662;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:85664;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I75:85666;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ]
+    ]
+  },
+  "mutatedNodeIdsEncoded": {
+    "format": "prefix-plus-inclusive-ranges-v1",
+    "literal": [],
+    "groups": [
+      [
+        "75:",
+        [
+          [
+            85518,
+            85518
+          ],
+          [
+            85520,
+            85520
+          ],
+          [
+            85522,
+            85522
+          ],
+          [
+            85524,
+            85524
+          ],
+          [
+            85558,
+            85558
+          ],
+          [
+            85594,
+            85594
+          ],
+          [
+            85622,
+            85622
+          ],
+          [
+            85630,
+            85630
+          ],
+          [
+            85660,
+            85660
+          ],
+          [
+            85662,
+            85662
+          ],
+          [
+            85664,
+            85664
+          ],
+          [
+            85666,
+            85666
+          ]
+        ]
+      ]
+    ]
+  },
+  "counts": {
+    "features": 1,
+    "states": 4,
+    "newComponents": 0,
+    "links": 8,
+    "nativeInstances": 28
+  },
+  "sourceFrozenAt": "2026-10-02T02:37:30.526Z"
+}

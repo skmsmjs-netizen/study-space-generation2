@@ -1,0 +1,584 @@
+{
+  "pageId": "7:71",
+  "createdNodeIds": [
+    "43:21204",
+    "I43:21204;16:166",
+    "I43:21204;16:167",
+    "I43:21204;16:168",
+    "I43:21204;16:169",
+    "43:21209",
+    "I43:21209;16:261",
+    "I43:21209;16:262",
+    "I43:21209;16:262;16:71",
+    "I43:21209;16:264",
+    "43:21214",
+    "I43:21214;16:261",
+    "I43:21214;16:262",
+    "I43:21214;16:262;16:71",
+    "I43:21214;16:264",
+    "43:21219",
+    "I43:21219;16:252",
+    "I43:21219;16:253",
+    "43:21222",
+    "I43:21222;16:197",
+    "I43:21222;16:198",
+    "I43:21222;16:199",
+    "I43:21222;16:200",
+    "43:21227",
+    "I43:21227;16:197",
+    "I43:21227;16:198",
+    "I43:21227;16:199",
+    "I43:21227;16:200",
+    "43:21232",
+    "I43:21232;16:261",
+    "I43:21232;16:262",
+    "I43:21232;16:262;16:71",
+    "I43:21232;16:264",
+    "43:21237",
+    "I43:21237;16:261",
+    "I43:21237;16:262",
+    "I43:21237;16:262;16:71",
+    "I43:21237;16:264",
+    "43:21242",
+    "I43:21242;16:261",
+    "I43:21242;16:262",
+    "I43:21242;16:262;16:71",
+    "I43:21242;16:264",
+    "43:21247",
+    "I43:21247;16:252",
+    "I43:21247;16:253",
+    "43:21250",
+    "I43:21250;16:166",
+    "I43:21250;16:167",
+    "I43:21250;16:168",
+    "I43:21250;16:169"
+  ],
+  "removedNodeIds": [],
+  "mutatedNodeIds": [
+    "26:9220",
+    "26:9221",
+    "26:9222",
+    "26:9223",
+    "26:9224",
+    "26:9226",
+    "26:9227",
+    "26:9228",
+    "26:9230",
+    "26:9231",
+    "26:9239",
+    "26:9240",
+    "26:9243",
+    "26:9244",
+    "26:9246",
+    "26:9247",
+    "26:9248",
+    "26:9250",
+    "26:9251",
+    "26:9252",
+    "26:9257",
+    "26:9258",
+    "26:9259",
+    "26:9261",
+    "26:9262",
+    "26:9276",
+    "26:9277"
+  ],
+  "instances": {
+    "26:9220": "43:21204",
+    "26:9222": "43:21209",
+    "26:9226": "43:21214",
+    "26:9230": "43:21219",
+    "26:9239": "43:21222",
+    "26:9243": "43:21227",
+    "26:9246": "43:21232",
+    "26:9250": "43:21237",
+    "26:9257": "43:21242",
+    "26:9261": "43:21247",
+    "26:9276": "43:21250"
+  },
+  "replacements": [
+    {
+      "nodeId": "26:9220",
+      "instanceId": "43:21204",
+      "mainComponentId": "16:165",
+      "kind": "Input",
+      "state": "default",
+      "selection": null,
+      "frameId": "26:9203",
+      "label": "주제 찾기",
+      "value": "급수",
+      "width": 338,
+      "height": 52,
+      "explicitMaterialMode": "7:2",
+      "nativeVisualIds": [
+        "26:9221"
+      ],
+      "originalOpacity": [
+        {
+          "id": "26:9221",
+          "opacity": 1
+        }
+      ],
+      "originalPaints": {
+        "fills": [
+          {
+            "type": "SOLID",
+            "visible": true,
+            "opacity": 1,
+            "blendMode": "NORMAL",
+            "color": {
+              "r": 0.8941176533699036,
+              "g": 0.8627451062202454,
+              "b": 0.8039215803146362
+            },
+            "boundVariables": {
+              "color": {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:7:110"
+              }
+            }
+          }
+        ],
+        "strokes": [
+          {
+            "type": "SOLID",
+            "visible": true,
+            "opacity": 1,
+            "blendMode": "NORMAL",
+            "color": {
+              "r": 0.4745098054409027,
+              "g": 0.4274509847164154,
+              "b": 0.364705890417099
+            },
+            "boundVariables": {
+              "color": {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:7:115"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "nodeId": "26:9222",
+      "instanceId": "43:21209",
+      "mainComponentId": "16:260",
+      "kind": "Checkbox",
+      "state": "default",
+      "selection": "checked",
+      "frameId": "26:9203",
+      "label": "미적분 / 비교 판정",
+      "value": null,
+      "width": 20,
+      "height": 20,
+      "explicitMaterialMode": "7:2",
+      "nativeVisualIds": [
+        "26:9223",
+        "26:9224"
+      ],
+      "originalOpacity": [
+        {
+          "id": "26:9223",
+          "opacity": 1
+        },
+        {
+          "id": "26:9224",
+          "opacity": 1
+        }
+      ],
+      "originalPaints": null
+    },
+    {
+      "nodeId": "26:9226",
+      "instanceId": "43:21214",
+      "mainComponentId": "16:260",
+      "kind": "Checkbox",
+      "state": "default",
+      "selection": "checked",
+      "frameId": "26:9203",
+      "label": "미적분 / 적분 판정",
+      "value": null,
+      "width": 20,
+      "height": 20,
+      "explicitMaterialMode": "7:2",
+      "nativeVisualIds": [
+        "26:9227",
+        "26:9228"
+      ],
+      "originalOpacity": [
+        {
+          "id": "26:9227",
+          "opacity": 1
+        },
+        {
+          "id": "26:9228",
+          "opacity": 1
+        }
+      ],
+      "originalPaints": null
+    },
+    {
+      "nodeId": "26:9230",
+      "instanceId": "43:21219",
+      "mainComponentId": "16:251",
+      "kind": "Checkbox",
+      "state": "default",
+      "selection": "unchecked",
+      "frameId": "26:9203",
+      "label": "미적분 / 교대급수",
+      "value": null,
+      "width": 20,
+      "height": 20,
+      "explicitMaterialMode": "7:2",
+      "nativeVisualIds": [
+        "26:9231"
+      ],
+      "originalOpacity": [
+        {
+          "id": "26:9231",
+          "opacity": 1
+        }
+      ],
+      "originalPaints": null
+    },
+    {
+      "nodeId": "26:9239",
+      "instanceId": "43:21222",
+      "mainComponentId": "16:196",
+      "kind": "Textarea",
+      "state": "default",
+      "selection": null,
+      "frameId": "26:9203",
+      "label": "비교 판정 · 메모",
+      "value": "두 급수의 항이 음수가 아닌지 먼저 확인했다.",
+      "width": 338,
+      "height": 132,
+      "explicitMaterialMode": "7:2",
+      "nativeVisualIds": [
+        "26:9240"
+      ],
+      "originalOpacity": [
+        {
+          "id": "26:9240",
+          "opacity": 1
+        }
+      ],
+      "originalPaints": {
+        "fills": [
+          {
+            "type": "SOLID",
+            "visible": true,
+            "opacity": 1,
+            "blendMode": "NORMAL",
+            "color": {
+              "r": 0.8941176533699036,
+              "g": 0.8627451062202454,
+              "b": 0.8039215803146362
+            },
+            "boundVariables": {
+              "color": {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:7:110"
+              }
+            }
+          }
+        ],
+        "strokes": [
+          {
+            "type": "SOLID",
+            "visible": true,
+            "opacity": 1,
+            "blendMode": "NORMAL",
+            "color": {
+              "r": 0.4745098054409027,
+              "g": 0.4274509847164154,
+              "b": 0.364705890417099
+            },
+            "boundVariables": {
+              "color": {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:7:115"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "nodeId": "26:9243",
+      "instanceId": "43:21227",
+      "mainComponentId": "16:196",
+      "kind": "Textarea",
+      "state": "default",
+      "selection": null,
+      "frameId": "26:9203",
+      "label": "적분 판정 · 메모",
+      "value": "감소 조건을 다시 살펴보기.",
+      "width": 338,
+      "height": 132,
+      "explicitMaterialMode": "7:2",
+      "nativeVisualIds": [
+        "26:9244"
+      ],
+      "originalOpacity": [
+        {
+          "id": "26:9244",
+          "opacity": 1
+        }
+      ],
+      "originalPaints": {
+        "fills": [
+          {
+            "type": "SOLID",
+            "visible": true,
+            "opacity": 1,
+            "blendMode": "NORMAL",
+            "color": {
+              "r": 0.8941176533699036,
+              "g": 0.8627451062202454,
+              "b": 0.8039215803146362
+            },
+            "boundVariables": {
+              "color": {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:7:110"
+              }
+            }
+          }
+        ],
+        "strokes": [
+          {
+            "type": "SOLID",
+            "visible": true,
+            "opacity": 1,
+            "blendMode": "NORMAL",
+            "color": {
+              "r": 0.4745098054409027,
+              "g": 0.4274509847164154,
+              "b": 0.364705890417099
+            },
+            "boundVariables": {
+              "color": {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:7:115"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "nodeId": "26:9246",
+      "instanceId": "43:21232",
+      "mainComponentId": "16:260",
+      "kind": "Checkbox",
+      "state": "default",
+      "selection": "checked",
+      "frameId": "26:9203",
+      "label": "비교 판정 · 공부함",
+      "value": null,
+      "width": 20,
+      "height": 20,
+      "explicitMaterialMode": "7:2",
+      "nativeVisualIds": [
+        "26:9247",
+        "26:9248"
+      ],
+      "originalOpacity": [
+        {
+          "id": "26:9247",
+          "opacity": 1
+        },
+        {
+          "id": "26:9248",
+          "opacity": 1
+        }
+      ],
+      "originalPaints": null
+    },
+    {
+      "nodeId": "26:9250",
+      "instanceId": "43:21237",
+      "mainComponentId": "16:260",
+      "kind": "Checkbox",
+      "state": "default",
+      "selection": "checked",
+      "frameId": "26:9203",
+      "label": "적분 판정 · 공부함",
+      "value": null,
+      "width": 20,
+      "height": 20,
+      "explicitMaterialMode": "7:2",
+      "nativeVisualIds": [
+        "26:9251",
+        "26:9252"
+      ],
+      "originalOpacity": [
+        {
+          "id": "26:9251",
+          "opacity": 1
+        },
+        {
+          "id": "26:9252",
+          "opacity": 1
+        }
+      ],
+      "originalPaints": null
+    },
+    {
+      "nodeId": "26:9257",
+      "instanceId": "43:21242",
+      "mainComponentId": "16:260",
+      "kind": "Checkbox",
+      "state": "default",
+      "selection": "checked",
+      "frameId": "26:9203",
+      "label": "개념과 조건 살펴보기",
+      "value": null,
+      "width": 20,
+      "height": 20,
+      "explicitMaterialMode": "7:2",
+      "nativeVisualIds": [
+        "26:9258",
+        "26:9259"
+      ],
+      "originalOpacity": [
+        {
+          "id": "26:9258",
+          "opacity": 1
+        },
+        {
+          "id": "26:9259",
+          "opacity": 1
+        }
+      ],
+      "originalPaints": null
+    },
+    {
+      "nodeId": "26:9261",
+      "instanceId": "43:21247",
+      "mainComponentId": "16:251",
+      "kind": "Checkbox",
+      "state": "default",
+      "selection": "unchecked",
+      "frameId": "26:9203",
+      "label": "내 말로 설명하기",
+      "value": null,
+      "width": 20,
+      "height": 20,
+      "explicitMaterialMode": "7:2",
+      "nativeVisualIds": [
+        "26:9262"
+      ],
+      "originalOpacity": [
+        {
+          "id": "26:9262",
+          "opacity": 1
+        }
+      ],
+      "originalPaints": null
+    },
+    {
+      "nodeId": "26:9276",
+      "instanceId": "43:21250",
+      "mainComponentId": "16:165",
+      "kind": "Input",
+      "state": "default",
+      "selection": null,
+      "frameId": "26:9203",
+      "label": "공부한 날짜",
+      "value": "2026-10-02",
+      "width": 338,
+      "height": 52,
+      "explicitMaterialMode": "7:2",
+      "nativeVisualIds": [
+        "26:9277"
+      ],
+      "originalOpacity": [
+        {
+          "id": "26:9277",
+          "opacity": 1
+        }
+      ],
+      "originalPaints": {
+        "fills": [
+          {
+            "type": "SOLID",
+            "visible": true,
+            "opacity": 1,
+            "blendMode": "NORMAL",
+            "color": {
+              "r": 0.8941176533699036,
+              "g": 0.8627451062202454,
+              "b": 0.8039215803146362
+            },
+            "boundVariables": {
+              "color": {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:7:110"
+              }
+            }
+          }
+        ],
+        "strokes": [
+          {
+            "type": "SOLID",
+            "visible": true,
+            "opacity": 1,
+            "blendMode": "NORMAL",
+            "color": {
+              "r": 0.4745098054409027,
+              "g": 0.4274509847164154,
+              "b": 0.364705890417099
+            },
+            "boundVariables": {
+              "color": {
+                "type": "VARIABLE_ALIAS",
+                "id": "VariableID:7:115"
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "reused": [],
+  "skipped": [
+    {
+      "nodeId": "26:9272",
+      "frameId": "26:9203",
+      "name": "입력 / 날짜 정밀도",
+      "reason": "Select: 선택 ▾ 표시와 원래 값·화살표를 보존; Input으로 변환하지 않음"
+    }
+  ],
+  "failed": [],
+  "preservation": [
+    {
+      "frameId": "26:9203",
+      "preservedOriginalNodeCount": 77,
+      "changedOriginalNodeIds": []
+    }
+  ],
+  "counts": {
+    "viewports": 1,
+    "viewportIdsChanged": 0,
+    "blockIdsChanged": 0,
+    "converted": 11,
+    "Input": 2,
+    "Textarea": 2,
+    "Checkbox": 7,
+    "reused": 0,
+    "skipped": 1,
+    "failed": 0,
+    "unprocessedAfterFailure": 0
+  },
+  "notes": [
+    "Only actual Input/Textarea/Checkbox builder shapes are converted. Select and uncertain structures remain visible and are reported.",
+    "Original node IDs, label/value text, width/height, coordinates and reactions are retained. Invisible source visuals retain layout participation.",
+    "Each new instance is explicitly Paper mode. Existing master components are never edited or detached.",
+    "Instance Label/Hint duplication is hidden; checkbox labels remain the original visible native text.",
+    "Paper field padding is represented by component Control; original 13px Value offsets and original multiline height override library defaults.",
+    "A failed individual conversion removes its new instance and restores source paint/opacity. Returned IDs include removed transient nodes."
+  ]
+}

@@ -1,0 +1,1175 @@
+{
+  "pageId": "227:180",
+  "pageName": "05 레이아웃 · 패턴·전환·복귀",
+  "overviewId": "227:181",
+  "nodeCount": 976,
+  "pages": [
+    {
+      "id": "7:68",
+      "name": "00 안내 · 기준과 전체 목차"
+    },
+    {
+      "id": "7:69",
+      "name": "01 기초 · 색·글자·간격"
+    },
+    {
+      "id": "7:70",
+      "name": "02 부품 · 속성·상태·코드"
+    },
+    {
+      "id": "154:68",
+      "name": "03 기준 운영 · 조건과 검증"
+    },
+    {
+      "id": "170:180",
+      "name": "04 교육 · 구조·명명·어휘"
+    },
+    {
+      "id": "227:180",
+      "name": "05 레이아웃 · 패턴·전환·복귀"
+    },
+    {
+      "id": "7:71",
+      "name": "10 북쪽 · 공부 책상"
+    },
+    {
+      "id": "7:72",
+      "name": "11 서쪽 · 자료 책장"
+    },
+    {
+      "id": "7:73",
+      "name": "12 동쪽 · 탐구 작업대"
+    },
+    {
+      "id": "7:74",
+      "name": "13 남쪽 · 기록·계획 벽"
+    },
+    {
+      "id": "7:75",
+      "name": "14 위쪽 · 공통 도구"
+    },
+    {
+      "id": "7:76",
+      "name": "20 UX · 상태·실패·복귀"
+    },
+    {
+      "id": "73:68",
+      "name": "21 UX · 전체 경우·경로"
+    },
+    {
+      "id": "61:10753",
+      "name": "30 수학 · 정체성·디자인"
+    },
+    {
+      "id": "49:10972",
+      "name": "31 수학 · 관측실"
+    },
+    {
+      "id": "49:10973",
+      "name": "32 수학 · 인터랙티브"
+    },
+    {
+      "id": "49:10974",
+      "name": "33 수학 · 부품·콘텐츠"
+    },
+    {
+      "id": "52:68",
+      "name": "40 물리 · 시작"
+    },
+    {
+      "id": "52:69",
+      "name": "41 물리 · 관측실"
+    },
+    {
+      "id": "52:70",
+      "name": "42 물리 · 인터랙티브"
+    },
+    {
+      "id": "52:71",
+      "name": "43 물리 · 부품·상태"
+    },
+    {
+      "id": "52:72",
+      "name": "44 물리 · 개념 연결"
+    },
+    {
+      "id": "68:58623",
+      "name": "50 통합 · 이동 프로토타입"
+    },
+    {
+      "id": "74:399",
+      "name": "51 통합 · 종이책 읽기"
+    },
+    {
+      "id": "74:400",
+      "name": "52 통합 · LaTeX 수식"
+    },
+    {
+      "id": "7:77",
+      "name": "80 근거 · 연구·기술·출처"
+    },
+    {
+      "id": "0:1",
+      "name": "90 초기 설계 · 공부 기록 iPad"
+    }
+  ],
+  "boards": [
+    {
+      "id": "227:181",
+      "name": "LAYOUT-00 · 천문대 레이아웃 기준",
+      "x": 200,
+      "y": 120,
+      "width": 1008,
+      "height": 1006.3333740234375
+    },
+    {
+      "id": "228:191",
+      "name": "LAYOUT-01 · 등록 패턴 선택과 변경",
+      "x": 1272,
+      "y": 120,
+      "width": 1008,
+      "height": 916
+    },
+    {
+      "id": "228:213",
+      "name": "LAYOUT-02 · 값·성장·전환·복귀",
+      "x": 2344,
+      "y": 120,
+      "width": 1008,
+      "height": 1134
+    },
+    {
+      "id": "235:180",
+      "name": "LAYOUT-P01 · journal",
+      "x": 200,
+      "y": 1350,
+      "width": 1512,
+      "height": 841
+    },
+    {
+      "id": "235:221",
+      "name": "LAYOUT-P02 · catalogue",
+      "x": 1776,
+      "y": 1350,
+      "width": 1512,
+      "height": 720
+    },
+    {
+      "id": "235:258",
+      "name": "LAYOUT-P03 · document",
+      "x": 200,
+      "y": 2255,
+      "width": 1512,
+      "height": 720
+    },
+    {
+      "id": "235:295",
+      "name": "LAYOUT-P04 · practice",
+      "x": 1776,
+      "y": 2255,
+      "width": 1512,
+      "height": 841
+    },
+    {
+      "id": "235:336",
+      "name": "LAYOUT-P05 · instrument",
+      "x": 200,
+      "y": 3160,
+      "width": 1512,
+      "height": 720
+    },
+    {
+      "id": "235:373",
+      "name": "LAYOUT-P06 · analysis",
+      "x": 1776,
+      "y": 3160,
+      "width": 1512,
+      "height": 720
+    },
+    {
+      "id": "235:410",
+      "name": "LAYOUT-P07 · spatial",
+      "x": 200,
+      "y": 3944,
+      "width": 1512,
+      "height": 720
+    },
+    {
+      "id": "235:447",
+      "name": "LAYOUT-P08 · board",
+      "x": 1776,
+      "y": 3944,
+      "width": 1512,
+      "height": 831
+    },
+    {
+      "id": "235:490",
+      "name": "LAYOUT-P09 · timeline",
+      "x": 200,
+      "y": 4839,
+      "width": 1512,
+      "height": 720
+    },
+    {
+      "id": "235:527",
+      "name": "LAYOUT-P10 · control",
+      "x": 1776,
+      "y": 4839,
+      "width": 1512,
+      "height": 841
+    },
+    {
+      "id": "235:32047",
+      "name": "LAYOUT-현재 · screen · 0",
+      "x": 3500,
+      "y": 120,
+      "width": 1008,
+      "height": 1320
+    },
+    {
+      "id": "235:32066",
+      "name": "LAYOUT-현재 · screen · 15",
+      "x": 4572,
+      "y": 120,
+      "width": 1008,
+      "height": 1320
+    },
+    {
+      "id": "235:32085",
+      "name": "LAYOUT-현재 · screen · 30",
+      "x": 3500,
+      "y": 1504,
+      "width": 1008,
+      "height": 1016
+    },
+    {
+      "id": "235:32100",
+      "name": "LAYOUT-현재 · overlay · 0",
+      "x": 4572,
+      "y": 1504,
+      "width": 1008,
+      "height": 1320
+    },
+    {
+      "id": "235:32119",
+      "name": "LAYOUT-현재 · overlay · 15",
+      "x": 3500,
+      "y": 2888,
+      "width": 1008,
+      "height": 1244
+    },
+    {
+      "id": "235:32137",
+      "name": "LAYOUT-현재 · surface · 0",
+      "x": 4572,
+      "y": 2888,
+      "width": 1008,
+      "height": 1320
+    },
+    {
+      "id": "235:32156",
+      "name": "LAYOUT-현재 · surface · 15",
+      "x": 3500,
+      "y": 4272,
+      "width": 1008,
+      "height": 1320
+    },
+    {
+      "id": "235:32175",
+      "name": "LAYOUT-현재 · surface · 30",
+      "x": 4572,
+      "y": 4272,
+      "width": 1008,
+      "height": 1016
+    },
+    {
+      "id": "235:32190",
+      "name": "LAYOUT-미래 · 0",
+      "x": 3500,
+      "y": 5656,
+      "width": 1008,
+      "height": 1358
+    },
+    {
+      "id": "235:32217",
+      "name": "LAYOUT-미래 · 8",
+      "x": 4572,
+      "y": 5656,
+      "width": 1008,
+      "height": 1358
+    },
+    {
+      "id": "235:32244",
+      "name": "LAYOUT-미래 · 16",
+      "x": 3500,
+      "y": 7078,
+      "width": 1008,
+      "height": 1358
+    },
+    {
+      "id": "235:32271",
+      "name": "LAYOUT-색인 · classification-introduction",
+      "x": 5700,
+      "y": 120,
+      "width": 1008,
+      "height": 220
+    },
+    {
+      "id": "235:32276",
+      "name": "LAYOUT-색인 · grid-system",
+      "x": 6772,
+      "y": 120,
+      "width": 1008,
+      "height": 770
+    },
+    {
+      "id": "235:32292",
+      "name": "LAYOUT-색인 · spacing-sizing-system",
+      "x": 7844,
+      "y": 120,
+      "width": 1008,
+      "height": 320
+    },
+    {
+      "id": "235:32299",
+      "name": "LAYOUT-색인 · composition-tool",
+      "x": 5700,
+      "y": 954,
+      "width": 1008,
+      "height": 620
+    },
+    {
+      "id": "235:32312",
+      "name": "LAYOUT-색인 · screen-content-pattern",
+      "x": 6772,
+      "y": 954,
+      "width": 1008,
+      "height": 1820
+    },
+    {
+      "id": "235:32349",
+      "name": "LAYOUT-색인 · visual-balance-modifier",
+      "x": 7844,
+      "y": 954,
+      "width": 1008,
+      "height": 270
+    },
+    {
+      "id": "235:32355",
+      "name": "LAYOUT-색인 · container-width-modifier",
+      "x": 5700,
+      "y": 2838,
+      "width": 1008,
+      "height": 320
+    },
+    {
+      "id": "235:32362",
+      "name": "LAYOUT-색인 · viewport-mode",
+      "x": 6772,
+      "y": 2838,
+      "width": 1008,
+      "height": 220
+    },
+    {
+      "id": "235:32367",
+      "name": "LAYOUT-색인 · navigation-utility-pattern",
+      "x": 7844,
+      "y": 2838,
+      "width": 1008,
+      "height": 520
+    },
+    {
+      "id": "235:32378",
+      "name": "LAYOUT-색인 · reading-attention-model",
+      "x": 5700,
+      "y": 3422,
+      "width": 1008,
+      "height": 370
+    },
+    {
+      "id": "235:32386",
+      "name": "LAYOUT-색인 · specialized-screen-pattern",
+      "x": 6772,
+      "y": 3422,
+      "width": 1008,
+      "height": 670
+    },
+    {
+      "id": "235:32400",
+      "name": "LAYOUT-색인 · css-mechanism",
+      "x": 7844,
+      "y": 3422,
+      "width": 1008,
+      "height": 470
+    },
+    {
+      "id": "235:32410",
+      "name": "LAYOUT-색인 · figma-structure-object",
+      "x": 5700,
+      "y": 4156,
+      "width": 1008,
+      "height": 270
+    },
+    {
+      "id": "235:32416",
+      "name": "LAYOUT-색인 · figma-guide",
+      "x": 6772,
+      "y": 4156,
+      "width": 1008,
+      "height": 520
+    },
+    {
+      "id": "235:32427",
+      "name": "LAYOUT-색인 · figma-flow",
+      "x": 7844,
+      "y": 4156,
+      "width": 1008,
+      "height": 520
+    },
+    {
+      "id": "235:32438",
+      "name": "LAYOUT-색인 · spacing-alignment-property",
+      "x": 5700,
+      "y": 4740,
+      "width": 1008,
+      "height": 720
+    },
+    {
+      "id": "235:32453",
+      "name": "LAYOUT-색인 · sizing-property",
+      "x": 6772,
+      "y": 4740,
+      "width": 1008,
+      "height": 720
+    },
+    {
+      "id": "235:32468",
+      "name": "LAYOUT-색인 · constraint-property",
+      "x": 7844,
+      "y": 4740,
+      "width": 1008,
+      "height": 620
+    },
+    {
+      "id": "235:32481",
+      "name": "LAYOUT-색인 · positioning-property-pattern",
+      "x": 5700,
+      "y": 5524,
+      "width": 1008,
+      "height": 470
+    },
+    {
+      "id": "235:32491",
+      "name": "LAYOUT-색인 · text-sizing-property",
+      "x": 6772,
+      "y": 5524,
+      "width": 1008,
+      "height": 420
+    },
+    {
+      "id": "235:32500",
+      "name": "LAYOUT-색인 · responsive-transformation-pattern",
+      "x": 7844,
+      "y": 5524,
+      "width": 1008,
+      "height": 470
+    },
+    {
+      "id": "235:32510",
+      "name": "LAYOUT-색인 · component-system-object",
+      "x": 5700,
+      "y": 6058,
+      "width": 1008,
+      "height": 420
+    },
+    {
+      "id": "235:32519",
+      "name": "LAYOUT-색인 · component-layout-recipe",
+      "x": 6772,
+      "y": 6058,
+      "width": 1008,
+      "height": 720
+    },
+    {
+      "id": "235:32534",
+      "name": "LAYOUT-색인 · failure-advice",
+      "x": 7844,
+      "y": 6058,
+      "width": 1008,
+      "height": 520
+    },
+    {
+      "id": "235:32545",
+      "name": "LAYOUT-색인 · decision-question",
+      "x": 5700,
+      "y": 6842,
+      "width": 1008,
+      "height": 620
+    },
+    {
+      "id": "235:32558",
+      "name": "LAYOUT-색인 · added-workspace-pattern",
+      "x": 6772,
+      "y": 6842,
+      "width": 1008,
+      "height": 770
+    }
+  ],
+  "originalScene": {
+    "id": "228:183",
+    "width": 944,
+    "height": 393.3333435058594,
+    "ratio": 2.3999999379303514,
+    "outerId": "228:182",
+    "outerWidth": 960,
+    "outerHeight": 411.3333435058594,
+    "clipsContent": false
+  },
+  "validation": {
+    "boardCount": 50,
+    "unfinishedBoards": [],
+    "overlaps": [],
+    "overflow": [],
+    "entityCount": 111,
+    "uniqueEntities": 111,
+    "entryCount": 199,
+    "uniqueEntries": 199,
+    "futureCount": 24,
+    "profileCount": 10,
+    "proseCount": 130,
+    "missingPaperWeight": [],
+    "originalAspectPreserved": true,
+    "originalPagesPreserved": true,
+    "visualInspection": {
+      "overview": "passed; full scene, outside frame, interior/paper separation",
+      "instrument": "passed; side-by-side and sequential alternatives, readable text, no clipping",
+      "basis": "Actual Figma screenshot inspection; does not certify actual app runtime."
+    },
+    "screenShotsDownloadedVia": "Inline tool response after sandbox DNS blocked screenshot URL download"
+  },
+  "fileKey": "YHmD1PpWWfR9JGTEs77JsX",
+  "checkedAt": "2026-10-02",
+  "entityNodes": [
+    {
+      "entityId": "R01",
+      "nodeId": "235:32049",
+      "boardId": "235:32047"
+    },
+    {
+      "entityId": "R02",
+      "nodeId": "235:32050",
+      "boardId": "235:32047"
+    },
+    {
+      "entityId": "R03",
+      "nodeId": "235:32051",
+      "boardId": "235:32047"
+    },
+    {
+      "entityId": "R04",
+      "nodeId": "235:32052",
+      "boardId": "235:32047"
+    },
+    {
+      "entityId": "R05",
+      "nodeId": "235:32053",
+      "boardId": "235:32047"
+    },
+    {
+      "entityId": "R06",
+      "nodeId": "235:32054",
+      "boardId": "235:32047"
+    },
+    {
+      "entityId": "R07",
+      "nodeId": "235:32055",
+      "boardId": "235:32047"
+    },
+    {
+      "entityId": "R08",
+      "nodeId": "235:32056",
+      "boardId": "235:32047"
+    },
+    {
+      "entityId": "R09",
+      "nodeId": "235:32057",
+      "boardId": "235:32047"
+    },
+    {
+      "entityId": "R10",
+      "nodeId": "235:32058",
+      "boardId": "235:32047"
+    },
+    {
+      "entityId": "R11",
+      "nodeId": "235:32059",
+      "boardId": "235:32047"
+    },
+    {
+      "entityId": "R12",
+      "nodeId": "235:32060",
+      "boardId": "235:32047"
+    },
+    {
+      "entityId": "R13",
+      "nodeId": "235:32061",
+      "boardId": "235:32047"
+    },
+    {
+      "entityId": "R14",
+      "nodeId": "235:32062",
+      "boardId": "235:32047"
+    },
+    {
+      "entityId": "R15",
+      "nodeId": "235:32063",
+      "boardId": "235:32047"
+    },
+    {
+      "entityId": "R16",
+      "nodeId": "235:32068",
+      "boardId": "235:32066"
+    },
+    {
+      "entityId": "R17",
+      "nodeId": "235:32069",
+      "boardId": "235:32066"
+    },
+    {
+      "entityId": "R18",
+      "nodeId": "235:32070",
+      "boardId": "235:32066"
+    },
+    {
+      "entityId": "R19",
+      "nodeId": "235:32071",
+      "boardId": "235:32066"
+    },
+    {
+      "entityId": "R20",
+      "nodeId": "235:32072",
+      "boardId": "235:32066"
+    },
+    {
+      "entityId": "R21",
+      "nodeId": "235:32073",
+      "boardId": "235:32066"
+    },
+    {
+      "entityId": "R22",
+      "nodeId": "235:32074",
+      "boardId": "235:32066"
+    },
+    {
+      "entityId": "R23",
+      "nodeId": "235:32075",
+      "boardId": "235:32066"
+    },
+    {
+      "entityId": "R24",
+      "nodeId": "235:32076",
+      "boardId": "235:32066"
+    },
+    {
+      "entityId": "R25",
+      "nodeId": "235:32077",
+      "boardId": "235:32066"
+    },
+    {
+      "entityId": "R26",
+      "nodeId": "235:32078",
+      "boardId": "235:32066"
+    },
+    {
+      "entityId": "R27",
+      "nodeId": "235:32079",
+      "boardId": "235:32066"
+    },
+    {
+      "entityId": "R28",
+      "nodeId": "235:32080",
+      "boardId": "235:32066"
+    },
+    {
+      "entityId": "R29",
+      "nodeId": "235:32081",
+      "boardId": "235:32066"
+    },
+    {
+      "entityId": "R30",
+      "nodeId": "235:32082",
+      "boardId": "235:32066"
+    },
+    {
+      "entityId": "R31",
+      "nodeId": "235:32087",
+      "boardId": "235:32085"
+    },
+    {
+      "entityId": "R32",
+      "nodeId": "235:32088",
+      "boardId": "235:32085"
+    },
+    {
+      "entityId": "R33",
+      "nodeId": "235:32089",
+      "boardId": "235:32085"
+    },
+    {
+      "entityId": "R34",
+      "nodeId": "235:32090",
+      "boardId": "235:32085"
+    },
+    {
+      "entityId": "R35",
+      "nodeId": "235:32091",
+      "boardId": "235:32085"
+    },
+    {
+      "entityId": "R36",
+      "nodeId": "235:32092",
+      "boardId": "235:32085"
+    },
+    {
+      "entityId": "R37",
+      "nodeId": "235:32093",
+      "boardId": "235:32085"
+    },
+    {
+      "entityId": "R38",
+      "nodeId": "235:32094",
+      "boardId": "235:32085"
+    },
+    {
+      "entityId": "R39",
+      "nodeId": "235:32095",
+      "boardId": "235:32085"
+    },
+    {
+      "entityId": "R40",
+      "nodeId": "235:32096",
+      "boardId": "235:32085"
+    },
+    {
+      "entityId": "R41",
+      "nodeId": "235:32097",
+      "boardId": "235:32085"
+    },
+    {
+      "entityId": "O01",
+      "nodeId": "235:32102",
+      "boardId": "235:32100"
+    },
+    {
+      "entityId": "O02",
+      "nodeId": "235:32103",
+      "boardId": "235:32100"
+    },
+    {
+      "entityId": "O03",
+      "nodeId": "235:32104",
+      "boardId": "235:32100"
+    },
+    {
+      "entityId": "O04",
+      "nodeId": "235:32105",
+      "boardId": "235:32100"
+    },
+    {
+      "entityId": "O05",
+      "nodeId": "235:32106",
+      "boardId": "235:32100"
+    },
+    {
+      "entityId": "O06",
+      "nodeId": "235:32107",
+      "boardId": "235:32100"
+    },
+    {
+      "entityId": "O07",
+      "nodeId": "235:32108",
+      "boardId": "235:32100"
+    },
+    {
+      "entityId": "O08",
+      "nodeId": "235:32109",
+      "boardId": "235:32100"
+    },
+    {
+      "entityId": "O09",
+      "nodeId": "235:32110",
+      "boardId": "235:32100"
+    },
+    {
+      "entityId": "O10",
+      "nodeId": "235:32111",
+      "boardId": "235:32100"
+    },
+    {
+      "entityId": "O11",
+      "nodeId": "235:32112",
+      "boardId": "235:32100"
+    },
+    {
+      "entityId": "O12",
+      "nodeId": "235:32113",
+      "boardId": "235:32100"
+    },
+    {
+      "entityId": "O13",
+      "nodeId": "235:32114",
+      "boardId": "235:32100"
+    },
+    {
+      "entityId": "O14",
+      "nodeId": "235:32115",
+      "boardId": "235:32100"
+    },
+    {
+      "entityId": "O15",
+      "nodeId": "235:32116",
+      "boardId": "235:32100"
+    },
+    {
+      "entityId": "O16",
+      "nodeId": "235:32121",
+      "boardId": "235:32119"
+    },
+    {
+      "entityId": "O17",
+      "nodeId": "235:32122",
+      "boardId": "235:32119"
+    },
+    {
+      "entityId": "O18",
+      "nodeId": "235:32123",
+      "boardId": "235:32119"
+    },
+    {
+      "entityId": "O19",
+      "nodeId": "235:32124",
+      "boardId": "235:32119"
+    },
+    {
+      "entityId": "O20",
+      "nodeId": "235:32125",
+      "boardId": "235:32119"
+    },
+    {
+      "entityId": "O21",
+      "nodeId": "235:32126",
+      "boardId": "235:32119"
+    },
+    {
+      "entityId": "O22",
+      "nodeId": "235:32127",
+      "boardId": "235:32119"
+    },
+    {
+      "entityId": "O23",
+      "nodeId": "235:32128",
+      "boardId": "235:32119"
+    },
+    {
+      "entityId": "O24",
+      "nodeId": "235:32129",
+      "boardId": "235:32119"
+    },
+    {
+      "entityId": "O25",
+      "nodeId": "235:32130",
+      "boardId": "235:32119"
+    },
+    {
+      "entityId": "O26",
+      "nodeId": "235:32131",
+      "boardId": "235:32119"
+    },
+    {
+      "entityId": "O27",
+      "nodeId": "235:32132",
+      "boardId": "235:32119"
+    },
+    {
+      "entityId": "O28",
+      "nodeId": "235:32133",
+      "boardId": "235:32119"
+    },
+    {
+      "entityId": "O29",
+      "nodeId": "235:32134",
+      "boardId": "235:32119"
+    },
+    {
+      "entityId": "U01",
+      "nodeId": "235:32139",
+      "boardId": "235:32137"
+    },
+    {
+      "entityId": "U02",
+      "nodeId": "235:32140",
+      "boardId": "235:32137"
+    },
+    {
+      "entityId": "U03",
+      "nodeId": "235:32141",
+      "boardId": "235:32137"
+    },
+    {
+      "entityId": "U04",
+      "nodeId": "235:32142",
+      "boardId": "235:32137"
+    },
+    {
+      "entityId": "U05",
+      "nodeId": "235:32143",
+      "boardId": "235:32137"
+    },
+    {
+      "entityId": "U06",
+      "nodeId": "235:32144",
+      "boardId": "235:32137"
+    },
+    {
+      "entityId": "U07",
+      "nodeId": "235:32145",
+      "boardId": "235:32137"
+    },
+    {
+      "entityId": "U08",
+      "nodeId": "235:32146",
+      "boardId": "235:32137"
+    },
+    {
+      "entityId": "U09",
+      "nodeId": "235:32147",
+      "boardId": "235:32137"
+    },
+    {
+      "entityId": "U10",
+      "nodeId": "235:32148",
+      "boardId": "235:32137"
+    },
+    {
+      "entityId": "U11",
+      "nodeId": "235:32149",
+      "boardId": "235:32137"
+    },
+    {
+      "entityId": "U12",
+      "nodeId": "235:32150",
+      "boardId": "235:32137"
+    },
+    {
+      "entityId": "U13",
+      "nodeId": "235:32151",
+      "boardId": "235:32137"
+    },
+    {
+      "entityId": "U14",
+      "nodeId": "235:32152",
+      "boardId": "235:32137"
+    },
+    {
+      "entityId": "U15",
+      "nodeId": "235:32153",
+      "boardId": "235:32137"
+    },
+    {
+      "entityId": "U16",
+      "nodeId": "235:32158",
+      "boardId": "235:32156"
+    },
+    {
+      "entityId": "U17",
+      "nodeId": "235:32159",
+      "boardId": "235:32156"
+    },
+    {
+      "entityId": "U18",
+      "nodeId": "235:32160",
+      "boardId": "235:32156"
+    },
+    {
+      "entityId": "U19",
+      "nodeId": "235:32161",
+      "boardId": "235:32156"
+    },
+    {
+      "entityId": "U20",
+      "nodeId": "235:32162",
+      "boardId": "235:32156"
+    },
+    {
+      "entityId": "U21",
+      "nodeId": "235:32163",
+      "boardId": "235:32156"
+    },
+    {
+      "entityId": "U22",
+      "nodeId": "235:32164",
+      "boardId": "235:32156"
+    },
+    {
+      "entityId": "U23",
+      "nodeId": "235:32165",
+      "boardId": "235:32156"
+    },
+    {
+      "entityId": "U24",
+      "nodeId": "235:32166",
+      "boardId": "235:32156"
+    },
+    {
+      "entityId": "U25",
+      "nodeId": "235:32167",
+      "boardId": "235:32156"
+    },
+    {
+      "entityId": "U26",
+      "nodeId": "235:32168",
+      "boardId": "235:32156"
+    },
+    {
+      "entityId": "U27",
+      "nodeId": "235:32169",
+      "boardId": "235:32156"
+    },
+    {
+      "entityId": "U28",
+      "nodeId": "235:32170",
+      "boardId": "235:32156"
+    },
+    {
+      "entityId": "U29",
+      "nodeId": "235:32171",
+      "boardId": "235:32156"
+    },
+    {
+      "entityId": "U30",
+      "nodeId": "235:32172",
+      "boardId": "235:32156"
+    },
+    {
+      "entityId": "U31",
+      "nodeId": "235:32177",
+      "boardId": "235:32175"
+    },
+    {
+      "entityId": "U32",
+      "nodeId": "235:32178",
+      "boardId": "235:32175"
+    },
+    {
+      "entityId": "U33",
+      "nodeId": "235:32179",
+      "boardId": "235:32175"
+    },
+    {
+      "entityId": "U34",
+      "nodeId": "235:32180",
+      "boardId": "235:32175"
+    },
+    {
+      "entityId": "U35",
+      "nodeId": "235:32181",
+      "boardId": "235:32175"
+    },
+    {
+      "entityId": "U36",
+      "nodeId": "235:32182",
+      "boardId": "235:32175"
+    },
+    {
+      "entityId": "U37",
+      "nodeId": "235:32183",
+      "boardId": "235:32175"
+    },
+    {
+      "entityId": "U38",
+      "nodeId": "235:32184",
+      "boardId": "235:32175"
+    },
+    {
+      "entityId": "U39",
+      "nodeId": "235:32185",
+      "boardId": "235:32175"
+    },
+    {
+      "entityId": "U40",
+      "nodeId": "235:32186",
+      "boardId": "235:32175"
+    },
+    {
+      "entityId": "U41",
+      "nodeId": "235:32187",
+      "boardId": "235:32175"
+    }
+  ],
+  "profileNodes": [
+    {
+      "profileId": "P01",
+      "boardId": "235:180",
+      "wideId": "235:184",
+      "narrowId": "235:202"
+    },
+    {
+      "profileId": "P02",
+      "boardId": "235:221",
+      "wideId": "235:225",
+      "narrowId": "235:241"
+    },
+    {
+      "profileId": "P03",
+      "boardId": "235:258",
+      "wideId": "235:262",
+      "narrowId": "235:278"
+    },
+    {
+      "profileId": "P04",
+      "boardId": "235:295",
+      "wideId": "235:299",
+      "narrowId": "235:317"
+    },
+    {
+      "profileId": "P05",
+      "boardId": "235:336",
+      "wideId": "235:340",
+      "narrowId": "235:356"
+    },
+    {
+      "profileId": "P06",
+      "boardId": "235:373",
+      "wideId": "235:377",
+      "narrowId": "235:393"
+    },
+    {
+      "profileId": "P07",
+      "boardId": "235:410",
+      "wideId": "235:414",
+      "narrowId": "235:430"
+    },
+    {
+      "profileId": "P08",
+      "boardId": "235:447",
+      "wideId": "235:451",
+      "narrowId": "235:470"
+    },
+    {
+      "profileId": "P09",
+      "boardId": "235:490",
+      "wideId": "235:494",
+      "narrowId": "235:510"
+    },
+    {
+      "profileId": "P10",
+      "boardId": "235:527",
+      "wideId": "235:531",
+      "narrowId": "235:549"
+    }
+  ],
+  "evidence": {
+    "overview": "evidence/overview.png",
+    "instrument": "evidence/instrument-profile.png"
+  }
+}

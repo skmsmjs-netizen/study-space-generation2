@@ -1,0 +1,77 @@
+{
+  "pageId": "68:58623",
+  "createdNodeIds": [
+    "263:33484",
+    "263:33485",
+    "263:33486",
+    "263:33487"
+  ],
+  "mutatedNodeIds": [
+    "263:33484",
+    "68:71034",
+    "68:71037",
+    "68:71025",
+    "263:33485",
+    "68:71054",
+    "68:71057",
+    "68:71045",
+    "263:33486",
+    "68:71074",
+    "68:71077",
+    "68:71065",
+    "263:33487",
+    "68:71094",
+    "68:71097",
+    "68:71085"
+  ],
+  "results": [
+    {
+      "id": "68:71025",
+      "name": "관측 기본틀 · 각운동량",
+      "pattern": "L194",
+      "structure": "263:33484",
+      "preserved": true,
+      "viewport": {
+        "width": 640,
+        "height": 744,
+        "overflow": "NONE"
+      }
+    },
+    {
+      "id": "68:71045",
+      "name": "관측 기본틀 · 물질의 역학적 성질",
+      "pattern": "L194",
+      "structure": "263:33485",
+      "preserved": true,
+      "viewport": {
+        "width": 640,
+        "height": 744,
+        "overflow": "NONE"
+      }
+    },
+    {
+      "id": "68:71065",
+      "name": "관측 기본틀 · 물질의 열적 성질",
+      "pattern": "L194",
+      "structure": "263:33486",
+      "preserved": true,
+      "viewport": {
+        "width": 640,
+        "height": 744,
+        "overflow": "NONE"
+      }
+    },
+    {
+      "id": "68:71085",
+      "name": "관측 기본틀 · 열과 열역학 제1법칙",
+      "pattern": "L194",
+      "structure": "263:33487",
+      "preserved": true,
+      "viewport": {
+        "width": 640,
+        "height": 744,
+        "overflow": "NONE"
+      }
+    }
+  ]
+}

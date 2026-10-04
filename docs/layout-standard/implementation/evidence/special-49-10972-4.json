@@ -1,0 +1,73 @@
+{
+  "pageId": "49:10972",
+  "createdNodeIds": [
+    "263:33423",
+    "263:33424",
+    "263:33425",
+    "263:33426"
+  ],
+  "mutatedNodeIds": [
+    "263:33423",
+    "79:90606",
+    "79:88651",
+    "263:33424",
+    "79:92661",
+    "79:90822",
+    "263:33425",
+    "79:94647",
+    "79:92687",
+    "263:33426",
+    "79:96577",
+    "79:94653"
+  ],
+  "results": [
+    {
+      "id": "79:88651",
+      "name": "펼쳐 읽기 / 벡터값 함수와 호의 길이",
+      "pattern": "L190",
+      "structure": "263:33423",
+      "preserved": true,
+      "viewport": {
+        "width": 1376,
+        "height": 1024,
+        "overflow": "NONE"
+      }
+    },
+    {
+      "id": "79:90822",
+      "name": "펼쳐 읽기 / 다변수 함수와 편미분",
+      "pattern": "L190",
+      "structure": "263:33424",
+      "preserved": true,
+      "viewport": {
+        "width": 1376,
+        "height": 1024,
+        "overflow": "NONE"
+      }
+    },
+    {
+      "id": "79:92687",
+      "name": "펼쳐 읽기 / 접평면과 그래디언트",
+      "pattern": "L190",
+      "structure": "263:33425",
+      "preserved": true,
+      "viewport": {
+        "width": 1376,
+        "height": 1024,
+        "overflow": "NONE"
+      }
+    },
+    {
+      "id": "79:94653",
+      "name": "펼쳐 읽기 / 극값과 최적화",
+      "pattern": "L190",
+      "structure": "263:33426",
+      "preserved": true,
+      "viewport": {
+        "width": 1376,
+        "height": 1024,
+        "overflow": "NONE"
+      }
+    }
+  ]
+}

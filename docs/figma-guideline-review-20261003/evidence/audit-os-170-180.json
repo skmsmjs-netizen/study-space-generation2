@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"fileKey\":\"YHmD1PpWWfR9JGTEs77JsX\",\"pageId\":\"170:180\",\"pageName\":\"04 교육 · 구조·명명·어휘\",\"total\":722,\"count\":{\"SECTION\":4,\"FRAME\":40,\"TEXT\":677,\"INSTANCE\":1},\"fontCounts\":{\"{\\\"family\\\":\\\"Noto Sans KR\\\",\\\"style\\\":\\\"Regular\\\",\\\"variationSettings\\\":{\\\"wght\\\":600}}\":42,\"{\\\"family\\\":\\\"Noto Sans KR\\\",\\\"style\\\":\\\"Regular\\\",\\\"variationSettings\\\":{\\\"wght\\\":400}}\":635},\"styleCounts\":{\"Observatory/Title\":40,\"Observatory/Heading\":1,\"Observatory/Body\":635,\"Observatory/Label\":1},\"roles\":{\"heading-label\":41,\"documentation\":635,\"formula-code\":1},\"paperCount\":0,\"mismatchCount\":0,\"mismatchIds\":[],\"mismatchIdsTruncated\":false,\"samples\":[],\"roots\":[{\"id\":\"179:180\",\"name\":\"01 교육 / 기준·위계·전체 파일·명명\",\"type\":\"SECTION\",\"w\":2528,\"h\":2976,\"children\":6},{\"id\":\"179:181\",\"name\":\"02 교육 / 속성·상태·곡률 사례\",\"type\":\"SECTION\",\"w\":2528,\"h\":7286,\"children\":3},{\"id\":\"179:182\",\"name\":\"03 교육 / 개발 책임·학습 과업·유지\",\"type\":\"SECTION\",\"w\":2528,\"h\":894,\"children\":3},{\"id\":\"179:183\",\"name\":\"04 교육 / 사전 27분야·412항목\",\"type\":\"SECTION\",\"w\":2672,\"h\":16682,\"children\":27},{\"id\":\"179:184\",\"name\":\"교육 / E12 / 교육 목차 · 대상을 찾고 원래 자리로 돌아가기\",\"type\":\"FRAME\",\"w\":1152,\"h\":1740,\"layout\":\"VERTICAL\",\"clip\":true,\"children\":40}],\"rootCount\":5,\"clipSuspects\":[],\"clipSuspectCount\":0,\"textHash\":\"bbeb3921\",\"reactionHash\":\"741638a5\"}"
+    }
+  ],
+  "isError": false
+}

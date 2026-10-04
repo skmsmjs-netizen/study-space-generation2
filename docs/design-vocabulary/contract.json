@@ -1,0 +1,1061 @@
+{
+  "version": "1.0.0",
+  "adoptedAt": "2026-10-02",
+  "vocabularySource": "../../../docs/웹앱_설계_용어사전.md",
+  "nodeTypes": {
+    "DOCUMENT": {
+      "label": "파일",
+      "termId": "term-24ac0a2181f0",
+      "officialType": "DOCUMENT",
+      "supplement": false,
+      "source": "https://developers.figma.com/docs/plugins/api/nodes/"
+    },
+    "PAGE": {
+      "label": "페이지",
+      "termId": "term-7d5516fdcc55",
+      "officialType": "PAGE",
+      "supplement": false,
+      "source": "https://developers.figma.com/docs/plugins/api/nodes/"
+    },
+    "SECTION": {
+      "label": "섹션",
+      "termId": "term-cfd50f17f24e",
+      "officialType": "SECTION",
+      "supplement": false,
+      "source": "https://developers.figma.com/docs/plugins/api/nodes/"
+    },
+    "FRAME": {
+      "label": "프레임",
+      "termId": "term-1641c3120bf6",
+      "officialType": "FRAME",
+      "supplement": false,
+      "source": "https://developers.figma.com/docs/plugins/api/nodes/"
+    },
+    "GROUP": {
+      "label": "그룹",
+      "termId": "term-661e731cf64c",
+      "officialType": "GROUP",
+      "supplement": false,
+      "source": "https://developers.figma.com/docs/plugins/api/nodes/"
+    },
+    "COMPONENT": {
+      "label": "메인 컴포넌트",
+      "termId": "term-09aa67e7ad38",
+      "officialType": "COMPONENT",
+      "supplement": false,
+      "source": "https://developers.figma.com/docs/plugins/api/nodes/"
+    },
+    "COMPONENT_SET": {
+      "label": "컴포넌트 세트",
+      "termId": "term-ce3845071fce",
+      "officialType": "COMPONENT_SET",
+      "supplement": false,
+      "source": "https://developers.figma.com/docs/plugins/api/nodes/"
+    },
+    "INSTANCE": {
+      "label": "인스턴스",
+      "termId": "term-05c50da2caf8",
+      "officialType": "INSTANCE",
+      "supplement": false,
+      "source": "https://developers.figma.com/docs/plugins/api/nodes/"
+    },
+    "TEXT": {
+      "label": "텍스트 레이어",
+      "termId": "term-e56a34763203",
+      "officialType": "TEXT",
+      "supplement": true,
+      "source": "https://developers.figma.com/docs/plugins/api/nodes/"
+    },
+    "TEXT_PATH": {
+      "label": "경로 텍스트",
+      "termId": "term-e56a34763203",
+      "officialType": "TEXT_PATH",
+      "supplement": true,
+      "source": "https://developers.figma.com/docs/plugins/api/nodes/"
+    },
+    "VECTOR": {
+      "label": "벡터 경로",
+      "termId": "term-e56a34763203",
+      "officialType": "VECTOR",
+      "supplement": true,
+      "source": "https://developers.figma.com/docs/plugins/api/nodes/"
+    },
+    "LINE": {
+      "label": "선 레이어",
+      "termId": "term-e56a34763203",
+      "officialType": "LINE",
+      "supplement": true,
+      "source": "https://developers.figma.com/docs/plugins/api/nodes/"
+    },
+    "RECTANGLE": {
+      "label": "사각형 레이어",
+      "termId": "term-e56a34763203",
+      "officialType": "RECTANGLE",
+      "supplement": true,
+      "source": "https://developers.figma.com/docs/plugins/api/nodes/"
+    },
+    "ELLIPSE": {
+      "label": "타원 레이어",
+      "termId": "term-e56a34763203",
+      "officialType": "ELLIPSE",
+      "supplement": true,
+      "source": "https://developers.figma.com/docs/plugins/api/nodes/"
+    },
+    "POLYGON": {
+      "label": "다각형 레이어",
+      "termId": "term-e56a34763203",
+      "officialType": "POLYGON",
+      "supplement": true,
+      "source": "https://developers.figma.com/docs/plugins/api/nodes/"
+    },
+    "STAR": {
+      "label": "별 레이어",
+      "termId": "term-e56a34763203",
+      "officialType": "STAR",
+      "supplement": true,
+      "source": "https://developers.figma.com/docs/plugins/api/nodes/"
+    },
+    "BOOLEAN_OPERATION": {
+      "label": "도형 불리언 연산",
+      "termId": "term-e56a34763203",
+      "officialType": "BOOLEAN_OPERATION",
+      "supplement": true,
+      "source": "https://developers.figma.com/docs/plugins/api/nodes/"
+    },
+    "SLICE": {
+      "label": "내보내기 영역",
+      "termId": "term-c3138c5c7c5a",
+      "officialType": "SLICE",
+      "supplement": true,
+      "source": "https://developers.figma.com/docs/plugins/api/nodes/"
+    }
+  },
+  "nativeProperties": {
+    "width": {
+      "label": "크기·최소/최대 폭과 높이",
+      "termId": "term-1c35b4f33345",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "height": {
+      "label": "크기·최소/최대 폭과 높이",
+      "termId": "term-1c35b4f33345",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "minWidth": {
+      "label": "크기·최소/최대 폭과 높이",
+      "termId": "term-1c35b4f33345",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "maxWidth": {
+      "label": "크기·최소/최대 폭과 높이",
+      "termId": "term-1c35b4f33345",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "minHeight": {
+      "label": "크기·최소/최대 폭과 높이",
+      "termId": "term-1c35b4f33345",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "maxHeight": {
+      "label": "크기·최소/최대 폭과 높이",
+      "termId": "term-1c35b4f33345",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "x": {
+      "label": "위치·좌표·좌표 변환",
+      "termId": "term-bfff81e92bdc",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "y": {
+      "label": "위치·좌표·좌표 변환",
+      "termId": "term-bfff81e92bdc",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "relativeTransform": {
+      "label": "위치·좌표·좌표 변환",
+      "termId": "term-bfff81e92bdc",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "absoluteTransform": {
+      "label": "위치·좌표·좌표 변환",
+      "termId": "term-bfff81e92bdc",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "rotation": {
+      "label": "회전 각도",
+      "termId": "term-43f9727207e5",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "fills": {
+      "label": "채우기·채우기 스타일",
+      "termId": "term-fbaf61ee97ab",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "fillStyleId": {
+      "label": "채우기·채우기 스타일",
+      "termId": "term-fbaf61ee97ab",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "strokes": {
+      "label": "선·선 굵기·정렬·끝·이음·점선",
+      "termId": "term-fbaf61ee97ab",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "strokeStyleId": {
+      "label": "선·선 굵기·정렬·끝·이음·점선",
+      "termId": "term-fbaf61ee97ab",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "strokeWeight": {
+      "label": "선·선 굵기·정렬·끝·이음·점선",
+      "termId": "term-fbaf61ee97ab",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "strokeAlign": {
+      "label": "선·선 굵기·정렬·끝·이음·점선",
+      "termId": "term-fbaf61ee97ab",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "strokeCap": {
+      "label": "선·선 굵기·정렬·끝·이음·점선",
+      "termId": "term-fbaf61ee97ab",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "strokeJoin": {
+      "label": "선·선 굵기·정렬·끝·이음·점선",
+      "termId": "term-fbaf61ee97ab",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "dashPattern": {
+      "label": "선·선 굵기·정렬·끝·이음·점선",
+      "termId": "term-fbaf61ee97ab",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "effects": {
+      "label": "효과·효과 스타일",
+      "termId": "term-fbaf61ee97ab",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "effectStyleId": {
+      "label": "효과·효과 스타일",
+      "termId": "term-fbaf61ee97ab",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "opacity": {
+      "label": "투명도",
+      "termId": "term-6a61f1715cdf",
+      "mappingKind": "exact-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "cornerRadius": {
+      "label": "모서리 반경·모서리 다듬기",
+      "termId": "term-45670ef3a8b9",
+      "mappingKind": "exact-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "topLeftRadius": {
+      "label": "모서리 반경·모서리 다듬기",
+      "termId": "term-45670ef3a8b9",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "topRightRadius": {
+      "label": "모서리 반경·모서리 다듬기",
+      "termId": "term-45670ef3a8b9",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "bottomLeftRadius": {
+      "label": "모서리 반경·모서리 다듬기",
+      "termId": "term-45670ef3a8b9",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "bottomRightRadius": {
+      "label": "모서리 반경·모서리 다듬기",
+      "termId": "term-45670ef3a8b9",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "cornerSmoothing": {
+      "label": "모서리 반경·모서리 다듬기",
+      "termId": "term-45670ef3a8b9",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "fontName": {
+      "label": "글꼴·서체",
+      "termId": "term-fe0ce3f5bf84",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "fontFamily": {
+      "label": "글꼴·서체",
+      "termId": "term-fe0ce3f5bf84",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "fontStyle": {
+      "label": "글자 굵기·글꼴 스타일",
+      "termId": "term-268c2ed3b2c6",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "fontWeight": {
+      "label": "글자 굵기·글꼴 스타일",
+      "termId": "term-268c2ed3b2c6",
+      "mappingKind": "exact-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "fontSize": {
+      "label": "글자 크기",
+      "termId": "term-07d74faab937",
+      "mappingKind": "exact-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "lineHeight": {
+      "label": "행간",
+      "termId": "term-f5ce15e117b8",
+      "mappingKind": "exact-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "letterSpacing": {
+      "label": "자간",
+      "termId": "term-097eb6a641cb",
+      "mappingKind": "exact-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "textAlignHorizontal": {
+      "label": "텍스트 정렬",
+      "termId": "term-e9d329ea9c31",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "textAlignVertical": {
+      "label": "텍스트 정렬",
+      "termId": "term-e9d329ea9c31",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "characters": {
+      "label": "텍스트 내용",
+      "termId": "term-e56a34763203",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "textStyleId": {
+      "label": "텍스트 스타일",
+      "termId": "term-0228a1176204",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "textAutoResize": {
+      "label": "텍스트 크기 조정",
+      "termId": "term-c8a0868d2ee0",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "textTruncation": {
+      "label": "말줄임·최대 줄 수",
+      "termId": "term-a5249cd62b58",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "maxLines": {
+      "label": "말줄임·최대 줄 수",
+      "termId": "term-a5249cd62b58",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "paragraphSpacing": {
+      "label": "문단 간격·들여쓰기",
+      "termId": "term-5ee32a521292",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "paragraphIndent": {
+      "label": "문단 간격·들여쓰기",
+      "termId": "term-5ee32a521292",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "layoutMode": {
+      "label": "오토 레이아웃 배치 방향",
+      "termId": "term-854447e03bd2",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "layoutWrap": {
+      "label": "오토 레이아웃 줄바꿈",
+      "termId": "term-7284b9812f28",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "primaryAxisAlignItems": {
+      "label": "주축·교차축 정렬",
+      "termId": "term-e9d329ea9c31",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "counterAxisAlignItems": {
+      "label": "주축·교차축 정렬",
+      "termId": "term-e9d329ea9c31",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "counterAxisAlignContent": {
+      "label": "주축·교차축 정렬",
+      "termId": "term-e9d329ea9c31",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "itemSpacing": {
+      "label": "항목 간격·행/열 간격",
+      "termId": "term-667d0339cdb2",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "counterAxisSpacing": {
+      "label": "항목 간격·행/열 간격",
+      "termId": "term-667d0339cdb2",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "gridRowGap": {
+      "label": "항목 간격·행/열 간격",
+      "termId": "term-667d0339cdb2",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "gridColumnGap": {
+      "label": "항목 간격·행/열 간격",
+      "termId": "term-667d0339cdb2",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "paddingTop": {
+      "label": "위·오른쪽·아래·왼쪽 안쪽 여백",
+      "termId": "term-8d27ed1d58c2",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "paddingRight": {
+      "label": "위·오른쪽·아래·왼쪽 안쪽 여백",
+      "termId": "term-8d27ed1d58c2",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "paddingBottom": {
+      "label": "위·오른쪽·아래·왼쪽 안쪽 여백",
+      "termId": "term-8d27ed1d58c2",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "paddingLeft": {
+      "label": "위·오른쪽·아래·왼쪽 안쪽 여백",
+      "termId": "term-8d27ed1d58c2",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "layoutSizingHorizontal": {
+      "label": "고정·내용에 맞춤·컨테이너 채우기",
+      "termId": "term-a246218eee19",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "layoutSizingVertical": {
+      "label": "고정·내용에 맞춤·컨테이너 채우기",
+      "termId": "term-a246218eee19",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "primaryAxisSizingMode": {
+      "label": "고정·내용에 맞춤·컨테이너 채우기",
+      "termId": "term-a246218eee19",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "counterAxisSizingMode": {
+      "label": "고정·내용에 맞춤·컨테이너 채우기",
+      "termId": "term-a246218eee19",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "layoutGrow": {
+      "label": "자식의 확장·정렬",
+      "termId": "term-a246218eee19",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "layoutAlign": {
+      "label": "자식의 확장·정렬",
+      "termId": "term-a246218eee19",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "layoutPositioning": {
+      "label": "자동 흐름/절대 배치",
+      "termId": "term-0943786c43ef",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "layoutGrids": {
+      "label": "격자·행·열·영역 차지",
+      "termId": "term-cc510838b64d",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "gridRowCount": {
+      "label": "격자·행·열·영역 차지",
+      "termId": "term-cc510838b64d",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "gridColumnCount": {
+      "label": "격자·행·열·영역 차지",
+      "termId": "term-cc510838b64d",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "gridRowSpan": {
+      "label": "격자·행·열·영역 차지",
+      "termId": "term-cc510838b64d",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "gridColumnSpan": {
+      "label": "격자·행·열·영역 차지",
+      "termId": "term-cc510838b64d",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "constraints": {
+      "label": "부모 변화에 대한 제약",
+      "termId": "term-66f883fb8007",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "clipsContent": {
+      "label": "프레임 밖 내용 자르기",
+      "termId": "term-a1c68885c650",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "visible": {
+      "label": "레이어 표시 여부",
+      "termId": "term-e56a34763203",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "locked": {
+      "label": "편집 잠금",
+      "termId": "term-b8f0c4ae0951",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "blendMode": {
+      "label": "색 혼합 방식",
+      "termId": "term-fbaf61ee97ab",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "mainComponent": {
+      "label": "인스턴스의 재사용 원본",
+      "termId": "term-09aa67e7ad38",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "componentId": {
+      "label": "인스턴스의 재사용 원본",
+      "termId": "term-09aa67e7ad38",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "componentProperties": {
+      "label": "실제 컴포넌트 속성·속성 연결",
+      "termId": "term-9671c6013b82",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "componentPropertyDefinitions": {
+      "label": "실제 컴포넌트 속성·속성 연결",
+      "termId": "term-9671c6013b82",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "componentPropertyReferences": {
+      "label": "실제 컴포넌트 속성·속성 연결",
+      "termId": "term-9671c6013b82",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "variantProperties": {
+      "label": "변형 속성과 값",
+      "termId": "term-09767030d621",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "variantGroupProperties": {
+      "label": "변형 속성과 값",
+      "termId": "term-09767030d621",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "boundVariables": {
+      "label": "변수 연결·명시/해석된 모드",
+      "termId": "term-dc312e4c95d0",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "explicitVariableModes": {
+      "label": "변수 연결·명시/해석된 모드",
+      "termId": "term-dc312e4c95d0",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "resolvedVariableModes": {
+      "label": "변수 연결·명시/해석된 모드",
+      "termId": "term-dc312e4c95d0",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "reactions": {
+      "label": "프로토타입 진입·상호작용 연결",
+      "termId": "term-2dcd33a88749",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "prototypeStartNodeId": {
+      "label": "프로토타입 진입·상호작용 연결",
+      "termId": "term-2dcd33a88749",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "flowStartingPoints": {
+      "label": "프로토타입 진입·상호작용 연결",
+      "termId": "term-2dcd33a88749",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "overflowDirection": {
+      "label": "스크롤 가능 방향",
+      "termId": "term-a1c68885c650",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "isMask": {
+      "label": "마스크·마스크 종류",
+      "termId": "term-ac1bc2e5905b",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "maskType": {
+      "label": "마스크·마스크 종류",
+      "termId": "term-ac1bc2e5905b",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "vectorPaths": {
+      "label": "벡터 경로·제어점/연결",
+      "termId": "term-e56a34763203",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "vectorNetwork": {
+      "label": "벡터 경로·제어점/연결",
+      "termId": "term-e56a34763203",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "arcData": {
+      "label": "타원/원의 호 범위",
+      "termId": "term-e56a34763203",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "exportSettings": {
+      "label": "내보내기 설정",
+      "termId": "term-980f24094e07",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "annotations": {
+      "label": "주석·설명·문서 연결",
+      "termId": "term-980f24094e07",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "description": {
+      "label": "주석·설명·문서 연결",
+      "termId": "term-980f24094e07",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "descriptionMarkdown": {
+      "label": "주석·설명·문서 연결",
+      "termId": "term-980f24094e07",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "documentationLinks": {
+      "label": "주석·설명·문서 연결",
+      "termId": "term-980f24094e07",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "name": {
+      "label": "역할명·안정 ID·타입·부모·자식",
+      "termId": "term-5d6d78614987",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "id": {
+      "label": "역할명·안정 ID·타입·부모·자식",
+      "termId": "term-5d6d78614987",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "type": {
+      "label": "역할명·안정 ID·타입·부모·자식",
+      "termId": "term-5d6d78614987",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "parent": {
+      "label": "역할명·안정 ID·타입·부모·자식",
+      "termId": "term-5d6d78614987",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    },
+    "children": {
+      "label": "역할명·안정 ID·타입·부모·자식",
+      "termId": "term-5d6d78614987",
+      "mappingKind": "facet-of-term",
+      "note": "사전의 상위 어휘와 연결한 공식 Figma 속성입니다. 같은 줄의 속성들이 서로 같은 값이라는 뜻은 아닙니다."
+    }
+  },
+  "componentPropertyNames": {
+    "label": {
+      "label": "레이블",
+      "termId": "term-a36f9c2cd6d0"
+    },
+    "title": {
+      "label": "레이블",
+      "termId": "term-a36f9c2cd6d0"
+    },
+    "body": {
+      "label": "본문 문구",
+      "termId": "term-9671c6013b82",
+      "mappingKind": "project-context-label"
+    },
+    "message": {
+      "label": "상태 메시지",
+      "termId": "term-2062f4066cc1"
+    },
+    "hint": {
+      "label": "도움말",
+      "termId": "term-84d43bfce379"
+    },
+    "placeholder": {
+      "label": "플레이스홀더",
+      "termId": "term-8ccffb834e8a"
+    },
+    "error": {
+      "label": "오류 상태",
+      "termId": "term-58fece489082"
+    },
+    "state": {
+      "label": "상태 변형",
+      "termId": "term-8eb3af9017cf",
+      "mappingKind": "project-context-label"
+    },
+    "kind": {
+      "label": "변형",
+      "termId": "term-09767030d621"
+    },
+    "size": {
+      "label": "크기 변형",
+      "termId": "term-09767030d621",
+      "mappingKind": "project-context-label"
+    },
+    "width": {
+      "label": "반응형 설계",
+      "termId": "term-274690483375"
+    },
+    "selection": {
+      "label": "선택됨",
+      "termId": "term-86ae4f2de162"
+    },
+    "value": {
+      "label": "현재 표시 값",
+      "termId": "term-9671c6013b82",
+      "mappingKind": "project-context-label"
+    },
+    "icon": {
+      "label": "인스턴스 교체",
+      "termId": "term-9021d501494e"
+    },
+    "orientation": {
+      "label": "배치 방향",
+      "termId": "term-854447e03bd2"
+    },
+    "scenario": {
+      "label": "사용 시나리오",
+      "termId": "term-552672aac10c"
+    },
+    "action": {
+      "label": "핵심 과업",
+      "termId": "term-e703d72b62a7"
+    },
+    "context": {
+      "label": "사용 맥락",
+      "termId": "term-77748fb072fb"
+    },
+    "place": {
+      "label": "전역 탐색",
+      "termId": "term-f3bc5ae9e5a4"
+    },
+    "shortcuts": {
+      "label": "단축키 표시 여부",
+      "termId": "term-dc18999622db",
+      "mappingKind": "project-context-label"
+    },
+    "question": {
+      "label": "질문 문구",
+      "termId": "term-9671c6013b82",
+      "mappingKind": "project-context-label"
+    },
+    "condition": {
+      "label": "제약 조건 (Constraint)",
+      "termId": "term-6506b7690629"
+    },
+    "readonlynotice": {
+      "label": "읽기 전용 안내 문구",
+      "termId": "term-545b7e927e4b",
+      "mappingKind": "project-context-label"
+    },
+    "busylabel": {
+      "label": "처리 중 레이블",
+      "termId": "term-7798c073957b",
+      "mappingKind": "project-context-label"
+    },
+    "dangerlabel": {
+      "label": "파괴적 동작",
+      "termId": "term-3719f10d5321"
+    },
+    "closelabel": {
+      "label": "닫기 레이블",
+      "termId": "term-fe7de585e1fc",
+      "mappingKind": "project-context-label"
+    },
+    "undolabel": {
+      "label": "되돌리기 레이블",
+      "termId": "term-4250f6006fdc",
+      "mappingKind": "project-context-label"
+    },
+    "takeaway": {
+      "label": "핵심 요점 문구",
+      "termId": "term-9671c6013b82",
+      "mappingKind": "project-context-label"
+    },
+    "readstatus": {
+      "label": "출처 확인 상태",
+      "termId": "term-6416ed0a2aba",
+      "mappingKind": "project-context-label"
+    },
+    "source": {
+      "label": "원문 출처 링크",
+      "termId": "term-f857d5c6f38a",
+      "mappingKind": "project-context-label"
+    },
+    "destination": {
+      "label": "설계 연결 대상",
+      "termId": "term-55cee4c15bfd",
+      "mappingKind": "project-context-label"
+    },
+    "principle": {
+      "label": "채택한 설계 원칙",
+      "termId": "term-3ef69c0c0ced",
+      "mappingKind": "project-context-label"
+    },
+    "application": {
+      "label": "제품 적용 설명",
+      "termId": "term-bcf1004d965b",
+      "mappingKind": "project-context-label"
+    },
+    "detail": {
+      "label": "보충 설명 문구",
+      "termId": "term-9671c6013b82",
+      "mappingKind": "project-context-label"
+    },
+    "command": {
+      "label": "실행 명령 이름",
+      "termId": "term-fe7de585e1fc",
+      "mappingKind": "project-context-label"
+    },
+    "noresultstitle": {
+      "label": "검색 결과 없음 제목",
+      "termId": "term-73639d4f8da5",
+      "mappingKind": "project-context-label"
+    },
+    "noresultsmessage": {
+      "label": "검색 결과 없음 안내",
+      "termId": "term-1b748727a739",
+      "mappingKind": "project-context-label"
+    },
+    "purpose": {
+      "label": "부품의 용도·과업 설명",
+      "termId": "term-e703d72b62a7",
+      "mappingKind": "project-context-label"
+    },
+    "role": {
+      "label": "부품·내용의 역할 설명",
+      "termId": "term-9671c6013b82",
+      "mappingKind": "project-context-label"
+    },
+    "contract": {
+      "label": "부품 동작·보존 계약",
+      "termId": "term-3ef69c0c0ced",
+      "mappingKind": "project-context-label"
+    },
+    "angle": {
+      "label": "관측각도 θ · 변형 선택",
+      "termId": "term-09767030d621",
+      "mappingKind": "project-context-label"
+    },
+    "range": {
+      "label": "입력 범위와 직접 입력 안내",
+      "termId": "term-6506b7690629",
+      "mappingKind": "project-context-label"
+    },
+    "exception": {
+      "label": "적용 조건의 예외 설명",
+      "termId": "term-6506b7690629",
+      "mappingKind": "project-context-label"
+    },
+    "concepts": {
+      "label": "관련 개념 목록",
+      "termId": "term-e17402e03210",
+      "mappingKind": "project-context-label"
+    },
+    "time": {
+      "label": "관측의 매개시간 t 표시",
+      "termId": "term-9671c6013b82",
+      "mappingKind": "project-context-label"
+    },
+    "unit": {
+      "label": "값의 단위 표기",
+      "termId": "term-a36f9c2cd6d0",
+      "mappingKind": "project-context-label"
+    }
+  },
+  "states": {
+    "default": {
+      "label": "기본 상태",
+      "termId": "term-af844a9e2a54"
+    },
+    "hover": {
+      "label": "호버",
+      "termId": "term-76106fa2d4a1"
+    },
+    "pressed": {
+      "label": "누름 상태",
+      "termId": "term-1dd7051b50d0"
+    },
+    "focus": {
+      "label": "포커스",
+      "termId": "term-8b34920e1fdb"
+    },
+    "selected": {
+      "label": "선택됨",
+      "termId": "term-86ae4f2de162"
+    },
+    "disabled": {
+      "label": "비활성",
+      "termId": "term-b632ecb8040c"
+    },
+    "readOnly": {
+      "label": "읽기 전용",
+      "termId": "term-545b7e927e4b"
+    },
+    "loading": {
+      "label": "로딩",
+      "termId": "term-7798c073957b"
+    },
+    "busy": {
+      "label": "로딩",
+      "termId": "term-7798c073957b"
+    },
+    "invalid": {
+      "label": "오류 상태",
+      "termId": "term-58fece489082"
+    },
+    "empty": {
+      "label": "빈 상태",
+      "termId": "term-9cbd99672e14"
+    },
+    "offline": {
+      "label": "오프라인",
+      "termId": "term-47ee6474fcea"
+    },
+    "error": {
+      "label": "오류 상태",
+      "termId": "term-58fece489082"
+    },
+    "checked": {
+      "label": "선택됨",
+      "termId": "term-86ae4f2de162"
+    },
+    "unchecked": {
+      "label": "기본 상태",
+      "termId": "term-af844a9e2a54"
+    },
+    "mixed": {
+      "label": "선택됨",
+      "termId": "term-86ae4f2de162"
+    }
+  },
+  "fallback": {
+    "label": "컴포넌트 속성",
+    "termId": "term-9671c6013b82",
+    "status": "specific-semantic-label-unverified"
+  },
+  "axes": [
+    "file-containment",
+    "product-context",
+    "atomic-composition",
+    "vocabulary-concept",
+    "property",
+    "state",
+    "value",
+    "code-responsibility"
+  ],
+  "source": {
+    "figma": "https://help.figma.com/hc/en-us/articles/39747637290263-Components-collection-Tips-for-component-management",
+    "atomic": "https://atomicdesign.bradfrost.com/chapter-2/",
+    "skos": "https://www.w3.org/TR/skos-reference/",
+    "dtcg": "https://www.designtokens.org/tr/2025.10/format/"
+  }
+}

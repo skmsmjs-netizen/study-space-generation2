@@ -1,0 +1,1116 @@
+{
+  "sourceFrozenAt": "2026-10-02T02:37:30.526Z",
+  "owners": [
+    {
+      "id": "UI25",
+      "name": "WorkspaceCommands",
+      "ownerId": "74:72248",
+      "defaultComponentId": "74:72242",
+      "variants": [
+        {
+          "id": "74:72242",
+          "name": "Width=wide, State=representative",
+          "properties": {
+            "Width": "wide",
+            "State": "representative"
+          }
+        },
+        {
+          "id": "74:72245",
+          "name": "Width=narrow, State=representative",
+          "properties": {
+            "Width": "narrow",
+            "State": "representative"
+          }
+        }
+      ],
+      "source": "src/ui/workspace-commands.tsx",
+      "sourceSha256": "d312d8f41b6e5bffc6178c57642c893b853a618df9f83ea424eba48ec2884446",
+      "signature": "({ commands }: { commands: WorkspaceCommand[]; }): Element"
+    },
+    {
+      "id": "UI26",
+      "name": "StudyWorkspace",
+      "ownerId": "74:73677",
+      "defaultComponentId": "74:73526",
+      "variants": [
+        {
+          "id": "74:73526",
+          "name": "Width=wide, State=representative",
+          "properties": {
+            "Width": "wide",
+            "State": "representative"
+          }
+        },
+        {
+          "id": "74:73599",
+          "name": "Width=narrow, State=representative",
+          "properties": {
+            "Width": "narrow",
+            "State": "representative"
+          }
+        }
+      ],
+      "source": "src/ui/study-workspace.tsx",
+      "sourceSha256": "cdf3787c1d7b7fc7ac6dab52a21d53a67b7808b742841d1411636b82accdc33f",
+      "signature": "({ controller, source, renderTool, sourceTitle, }: { controller: { state: WorkState; layout: DeskLayout; setLayout: (next: DeskLayout) => boolean; openTool: (tool: \"code\" | \"math\" | \"memo\" | \"record\") => boolean; change: (next: WorkState) => boolean; error: string; reload: () => void; retry: () => boolean; key: string; }; source: ReactNode; renderTool: (tool: \"code\" | \"math\" | \"memo\" | \"record\") => ReactNode; sourceTitle: string; }): Element"
+    },
+    {
+      "id": "UI27",
+      "name": "SavedWorkspaces",
+      "ownerId": "74:74147",
+      "defaultComponentId": "74:74087",
+      "variants": [
+        {
+          "id": "74:74087",
+          "name": "Width=wide, State=representative",
+          "properties": {
+            "Width": "wide",
+            "State": "representative"
+          }
+        },
+        {
+          "id": "74:74117",
+          "name": "Width=narrow, State=representative",
+          "properties": {
+            "Width": "narrow",
+            "State": "representative"
+          }
+        }
+      ],
+      "source": "src/ui/study-workspace.tsx",
+      "sourceSha256": "cdf3787c1d7b7fc7ac6dab52a21d53a67b7808b742841d1411636b82accdc33f",
+      "signature": "({ controller, data, route, }: { controller: { state: WorkState; layout: DeskLayout; setLayout: (next: DeskLayout) => boolean; openTool: (tool: \"code\" | \"math\" | \"memo\" | \"record\") => boolean; change: (next: WorkState) => boolean; error: string; reload: () => void; retry: () => boolean; key: string; }; data: AppState; route: string; }): Element"
+    },
+    {
+      "id": "UI28",
+      "name": "WorkspaceStorageNotice",
+      "ownerId": "75:74396",
+      "defaultComponentId": "75:74374",
+      "variants": [
+        {
+          "id": "75:74374",
+          "name": "Width=wide, State=representative",
+          "properties": {
+            "Width": "wide",
+            "State": "representative"
+          }
+        },
+        {
+          "id": "75:74385",
+          "name": "Width=narrow, State=representative",
+          "properties": {
+            "Width": "narrow",
+            "State": "representative"
+          }
+        }
+      ],
+      "source": "src/ui/study-workspace.tsx",
+      "sourceSha256": "cdf3787c1d7b7fc7ac6dab52a21d53a67b7808b742841d1411636b82accdc33f",
+      "signature": "({ controller }: { controller: { state: WorkState; layout: DeskLayout; setLayout: (next: DeskLayout) => boolean; openTool: (tool: \"code\" | \"math\" | \"memo\" | \"record\") => boolean; change: (next: WorkState) => boolean; error: string; reload: () => void; retry: () => boolean; key: string; }; }): Element | null"
+    },
+    {
+      "id": "UI30",
+      "name": "UiPerformanceAccess",
+      "ownerId": "75:74869",
+      "defaultComponentId": "75:74863",
+      "variants": [
+        {
+          "id": "75:74863",
+          "name": "Width=wide, State=representative",
+          "properties": {
+            "Width": "wide",
+            "State": "representative"
+          }
+        },
+        {
+          "id": "75:74866",
+          "name": "Width=narrow, State=representative",
+          "properties": {
+            "Width": "narrow",
+            "State": "representative"
+          }
+        }
+      ],
+      "source": "src/ui/ui-performance-access.tsx",
+      "sourceSha256": "0621aea7f4b2c2403a90601a1190bf9896f970a133ede0583ea011d318b4a7d8",
+      "signature": "(): Element"
+    },
+    {
+      "id": "UI31",
+      "name": "UiPerformancePanel",
+      "ownerId": "75:74923",
+      "defaultComponentId": "75:74873",
+      "variants": [
+        {
+          "id": "75:74873",
+          "name": "Width=wide, State=representative",
+          "properties": {
+            "Width": "wide",
+            "State": "representative"
+          }
+        },
+        {
+          "id": "75:74898",
+          "name": "Width=narrow, State=representative",
+          "properties": {
+            "Width": "narrow",
+            "State": "representative"
+          }
+        }
+      ],
+      "source": "src/ui/ui-performance-panel.tsx",
+      "sourceSha256": "cbc48f58630a4a498ed2d086a37468102716bd4080091f48aa969ad699167a02",
+      "signature": "(): Element"
+    },
+    {
+      "id": "UI29",
+      "name": "ProgressiveHistory",
+      "ownerId": "75:79609",
+      "defaultComponentId": "75:79353",
+      "variants": [
+        {
+          "id": "75:79353",
+          "name": "Width=wide, State=representative",
+          "properties": {
+            "Width": "wide",
+            "State": "representative"
+          }
+        },
+        {
+          "id": "75:79481",
+          "name": "Width=narrow, State=representative",
+          "properties": {
+            "Width": "narrow",
+            "State": "representative"
+          }
+        }
+      ],
+      "source": "src/ui/progressive-history.tsx",
+      "sourceSha256": "93609c7e6d310b8b770f10a227b9b257d0c9b33403594d50e7d0c862a023fd77",
+      "signature": "({ data, name, total, label, children, collapsible }: Props): Element"
+    },
+    {
+      "id": "UI32",
+      "name": "MathComparison",
+      "ownerId": "75:80544",
+      "defaultComponentId": "75:80416",
+      "variants": [
+        {
+          "id": "75:80416",
+          "name": "Width=wide, State=representative",
+          "properties": {
+            "Width": "wide",
+            "State": "representative"
+          }
+        },
+        {
+          "id": "75:80480",
+          "name": "Width=narrow, State=representative",
+          "properties": {
+            "Width": "narrow",
+            "State": "representative"
+          }
+        }
+      ],
+      "source": "src/ui/math-comparison.tsx",
+      "sourceSha256": "107602daa6b3d11cebe4f9429c6561e2508d741b745a27956e5ae9fa2543bfd3",
+      "signature": "({ ownerKey, scene, result }: { ownerKey: string; scene: MathScene; result: { points: (Vec3 | null)[]; sample: (value: number) => Vec3 | null; sampleKey: string; point: Vec3 | null; at: number; min: number; max: number; tex: string; vectors: { reason: string; T?: undefined; N?: undefined; B?: undefined; curvature?: undefined; } | { T: Vec3; reason: string; N?: undefined; B?: undefined; curvature?: undefined; } | { T: Vec3; N: Vec3; B: Vec3; curvature: number; reason: string; } | null; frameError: string; missing: number; breakBefore: boolean[]; } | null | undefined; }): Element"
+    },
+    {
+      "id": "UI33",
+      "name": "ConceptText",
+      "ownerId": "75:84056",
+      "defaultComponentId": "75:84052",
+      "variants": [
+        {
+          "id": "75:84052",
+          "name": "Width=wide, State=representative",
+          "properties": {
+            "Width": "wide",
+            "State": "representative"
+          }
+        },
+        {
+          "id": "75:84054",
+          "name": "Width=narrow, State=representative",
+          "properties": {
+            "Width": "narrow",
+            "State": "representative"
+          }
+        }
+      ],
+      "source": "src/ui/concept-text.tsx",
+      "sourceSha256": "29b388dccfa693e17f15e5d6adf6dd71d20995d2a5b6997ebca752a31f59d3b2",
+      "signature": "({ text }: { text: string; }): Element"
+    }
+  ],
+  "frames": [
+    {
+      "feature": "XD01",
+      "stateIndex": 0,
+      "state": "닫힘",
+      "profile": "ipad-landscape",
+      "id": "74:71889",
+      "returnTarget": "26:68",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD01",
+      "stateIndex": 1,
+      "state": "24명령 목록",
+      "profile": "iphone-portrait",
+      "id": "74:71897",
+      "returnTarget": "26:1877",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD01",
+      "stateIndex": 2,
+      "state": "검색 일치",
+      "profile": "ipad-landscape",
+      "id": "74:71968",
+      "returnTarget": "26:68",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD01",
+      "stateIndex": 3,
+      "state": "일치 없음",
+      "profile": "iphone-portrait",
+      "id": "74:71995",
+      "returnTarget": "26:1877",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD01",
+      "stateIndex": 4,
+      "state": "자료/주제 미선택으로 일부 명령 disabled+사유",
+      "profile": "ipad-landscape",
+      "id": "74:72026",
+      "returnTarget": "26:68",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD01",
+      "stateIndex": 5,
+      "state": "결과 키보드 초점",
+      "profile": "iphone-portrait",
+      "id": "74:72103",
+      "returnTarget": "26:1877",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD02",
+      "stateIndex": 0,
+      "state": "접힘",
+      "profile": "ipad-landscape",
+      "id": "74:72837",
+      "returnTarget": "28:10158",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD02",
+      "stateIndex": 1,
+      "state": "wide 메모",
+      "profile": "ipad-landscape",
+      "id": "74:72874",
+      "returnTarget": "28:10158",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD02",
+      "stateIndex": 2,
+      "state": "wide 수식",
+      "profile": "ipad-landscape",
+      "id": "74:72952",
+      "returnTarget": "28:10158",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD02",
+      "stateIndex": 3,
+      "state": "wide 코드",
+      "profile": "ipad-landscape",
+      "id": "74:73044",
+      "returnTarget": "28:10158",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD02",
+      "stateIndex": 4,
+      "state": "wide 기록",
+      "profile": "ipad-landscape",
+      "id": "74:73118",
+      "returnTarget": "28:10158",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD02",
+      "stateIndex": 5,
+      "state": "narrow 자료",
+      "profile": "iphone-portrait",
+      "id": "74:73213",
+      "returnTarget": "28:10299",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD02",
+      "stateIndex": 6,
+      "state": "narrow 도구",
+      "profile": "iphone-portrait",
+      "id": "74:73274",
+      "returnTarget": "28:10299",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD02",
+      "stateIndex": 7,
+      "state": "툴 지연 로딩",
+      "profile": "ipad-landscape",
+      "id": "74:73329",
+      "returnTarget": "28:10158",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD02",
+      "stateIndex": 8,
+      "state": "자료만 크게",
+      "profile": "ipad-landscape",
+      "id": "74:73393",
+      "returnTarget": "28:10158",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD02",
+      "stateIndex": 9,
+      "state": "도구만 크게",
+      "profile": "ipad-landscape",
+      "id": "74:73449",
+      "returnTarget": "28:10158",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD03",
+      "stateIndex": 0,
+      "state": "빈 보관함",
+      "profile": "ipad-landscape",
+      "id": "74:73848",
+      "returnTarget": "26:68",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD03",
+      "stateIndex": 1,
+      "state": "기존 구성이 있음",
+      "profile": "iphone-portrait",
+      "id": "74:73881",
+      "returnTarget": "26:1877",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD03",
+      "stateIndex": 2,
+      "state": "이름 수정 중",
+      "profile": "ipad-landscape",
+      "id": "74:73916",
+      "returnTarget": "26:68",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD03",
+      "stateIndex": 3,
+      "state": "삭제 후 되돌리기",
+      "profile": "iphone-portrait",
+      "id": "74:73960",
+      "returnTarget": "26:1877",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD03",
+      "stateIndex": 4,
+      "state": "대상 자료 없음",
+      "profile": "ipad-landscape",
+      "id": "74:73988",
+      "returnTarget": "26:68",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD03",
+      "stateIndex": 5,
+      "state": "저장 실패 안내",
+      "profile": "iphone-portrait",
+      "id": "74:74024",
+      "returnTarget": "26:1877",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD04",
+      "stateIndex": 0,
+      "state": "정상 숨김",
+      "profile": "ipad-landscape",
+      "id": "75:74329",
+      "returnTarget": "26:68",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD04",
+      "stateIndex": 1,
+      "state": "읽기 실패",
+      "profile": "iphone-portrait",
+      "id": "75:74336",
+      "returnTarget": "26:1877",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD04",
+      "stateIndex": 2,
+      "state": "쓰기 실패·현재 화면 유지",
+      "profile": "ipad-landscape",
+      "id": "75:74352",
+      "returnTarget": "26:68",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD05",
+      "stateIndex": 0,
+      "state": "측정 없음",
+      "profile": "ipad-landscape",
+      "id": "75:74577",
+      "returnTarget": "26:68",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD05",
+      "stateIndex": 1,
+      "state": "세션 측정 있음",
+      "profile": "iphone-portrait",
+      "id": "75:74618",
+      "returnTarget": "26:1877",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD05",
+      "stateIndex": 2,
+      "state": "요청 측정 펼침",
+      "profile": "ipad-landscape",
+      "id": "75:74659",
+      "returnTarget": "26:68",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD05",
+      "stateIndex": 3,
+      "state": "내려받기 요청됨",
+      "profile": "iphone-portrait",
+      "id": "75:74716",
+      "returnTarget": "26:1877",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD05",
+      "stateIndex": 4,
+      "state": "파일 생성 실패",
+      "profile": "ipad-landscape",
+      "id": "75:74758",
+      "returnTarget": "26:68",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD05",
+      "stateIndex": 5,
+      "state": "측정 비움",
+      "profile": "iphone-portrait",
+      "id": "75:74800",
+      "returnTarget": "26:1877",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD06",
+      "stateIndex": 0,
+      "state": "40개 이하",
+      "profile": "ipad-landscape",
+      "id": "75:77795",
+      "returnTarget": "28:8964",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD06",
+      "stateIndex": 1,
+      "state": "처음40개",
+      "profile": "ipad-landscape",
+      "id": "75:77812",
+      "returnTarget": "28:8964",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD06",
+      "stateIndex": 2,
+      "state": "80개 등40개단위 확장",
+      "profile": "ipad-landscape",
+      "id": "75:77945",
+      "returnTarget": "28:8964",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD06",
+      "stateIndex": 3,
+      "state": "전체펼침",
+      "profile": "ipad-landscape",
+      "id": "75:78198",
+      "returnTarget": "28:8964",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD06",
+      "stateIndex": 4,
+      "state": "접힘",
+      "profile": "iphone-portrait",
+      "id": "75:78566",
+      "returnTarget": "28:8964",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD06",
+      "stateIndex": 5,
+      "state": "접힘해제",
+      "profile": "iphone-portrait",
+      "id": "75:78574",
+      "returnTarget": "28:8964",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD06",
+      "stateIndex": 6,
+      "state": "자기평가80개",
+      "profile": "iphone-portrait",
+      "id": "75:78709",
+      "returnTarget": "28:8964",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD06",
+      "stateIndex": 7,
+      "state": "자기평가전체120개",
+      "profile": "iphone-portrait",
+      "id": "75:78964",
+      "returnTarget": "28:8964",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD07",
+      "stateIndex": 0,
+      "state": "A없음",
+      "profile": "ipad-landscape",
+      "id": "75:79989",
+      "returnTarget": "28:12749",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD07",
+      "stateIndex": 1,
+      "state": "함수 A/B 같은축",
+      "profile": "iphone-portrait",
+      "id": "75:79999",
+      "returnTarget": "28:12906",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD07",
+      "stateIndex": 2,
+      "state": "3차원곡선 xy/xz/yz정사영",
+      "profile": "ipad-landscape",
+      "id": "75:80068",
+      "returnTarget": "28:12749",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD07",
+      "stateIndex": 3,
+      "state": "다른종류여서겹치지않음",
+      "profile": "iphone-portrait",
+      "id": "75:80148",
+      "returnTarget": "28:12906",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD07",
+      "stateIndex": 4,
+      "state": "B계산불가",
+      "profile": "ipad-landscape",
+      "id": "75:80195",
+      "returnTarget": "28:12749",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD07",
+      "stateIndex": 5,
+      "state": "복원내용손상",
+      "profile": "iphone-portrait",
+      "id": "75:80241",
+      "returnTarget": "28:12906",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD07",
+      "stateIndex": 6,
+      "state": "탭보관실패",
+      "profile": "ipad-landscape",
+      "id": "75:80258",
+      "returnTarget": "28:12749",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD07",
+      "stateIndex": 7,
+      "state": "확대및범위고정",
+      "profile": "iphone-portrait",
+      "id": "75:80328",
+      "returnTarget": "28:12906",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD08",
+      "stateIndex": 0,
+      "state": "검색어없음",
+      "profile": "ipad-landscape",
+      "id": "75:80868",
+      "returnTarget": "29:4495",
+      "returnConnection": "native-prototype"
+    },
+    {
+      "feature": "XD08",
+      "stateIndex": 1,
+      "state": "결과대기",
+      "profile": "iphone-portrait",
+      "id": "75:80905",
+      "returnTarget": "29:4560",
+      "returnConnection": "native-prototype"
+    },
+    {
+      "feature": "XD08",
+      "stateIndex": 2,
+      "state": "일치이유순",
+      "profile": "ipad-landscape",
+      "id": "75:80937",
+      "returnTarget": "29:4495",
+      "returnConnection": "native-prototype"
+    },
+    {
+      "feature": "XD08",
+      "stateIndex": 3,
+      "state": "원래목록순",
+      "profile": "iphone-portrait",
+      "id": "75:80976",
+      "returnTarget": "29:4560",
+      "returnConnection": "native-prototype"
+    },
+    {
+      "feature": "XD08",
+      "stateIndex": 4,
+      "state": "종류필터",
+      "profile": "ipad-landscape",
+      "id": "75:81015",
+      "returnTarget": "29:4495",
+      "returnConnection": "native-prototype"
+    },
+    {
+      "feature": "XD08",
+      "stateIndex": 5,
+      "state": "결과없음",
+      "profile": "iphone-portrait",
+      "id": "75:81054",
+      "returnTarget": "29:4560",
+      "returnConnection": "native-prototype"
+    },
+    {
+      "feature": "XD08",
+      "stateIndex": 6,
+      "state": "검색실패",
+      "profile": "ipad-landscape",
+      "id": "75:81098",
+      "returnTarget": "29:4495",
+      "returnConnection": "native-prototype"
+    },
+    {
+      "feature": "XD08",
+      "stateIndex": 7,
+      "state": "40개넘음",
+      "profile": "iphone-portrait",
+      "id": "75:81136",
+      "returnTarget": "29:4560",
+      "returnConnection": "native-prototype"
+    },
+    {
+      "feature": "XD08",
+      "stateIndex": 8,
+      "state": "검색결과80개모두표시",
+      "profile": "iphone-portrait",
+      "id": "75:81372",
+      "returnTarget": "29:4560",
+      "returnConnection": "native-prototype"
+    },
+    {
+      "feature": "XD09",
+      "stateIndex": 0,
+      "state": "선택없음",
+      "profile": "ipad-landscape",
+      "id": "75:81846",
+      "returnTarget": "29:347",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD09",
+      "stateIndex": 1,
+      "state": "날짜선택",
+      "profile": "iphone-portrait",
+      "id": "75:81972",
+      "returnTarget": "29:566",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD09",
+      "stateIndex": 2,
+      "state": "과목선택",
+      "profile": "ipad-landscape",
+      "id": "75:82098",
+      "returnTarget": "29:347",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD09",
+      "stateIndex": 3,
+      "state": "값행선택",
+      "profile": "iphone-portrait",
+      "id": "75:82224",
+      "returnTarget": "29:566",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD09",
+      "stateIndex": 4,
+      "state": "원기록선택",
+      "profile": "ipad-landscape",
+      "id": "75:82350",
+      "returnTarget": "29:347",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD09",
+      "stateIndex": 5,
+      "state": "선택유효근거없음",
+      "profile": "iphone-portrait",
+      "id": "75:82492",
+      "returnTarget": "29:566",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD09",
+      "stateIndex": 6,
+      "state": "해제",
+      "profile": "ipad-landscape",
+      "id": "75:82618",
+      "returnTarget": "29:347",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD10",
+      "stateIndex": 0,
+      "state": "본문도해",
+      "profile": "ipad-landscape",
+      "id": "75:83312",
+      "returnTarget": "28:11253",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD10",
+      "stateIndex": 1,
+      "state": "확대모달",
+      "profile": "iphone-portrait",
+      "id": "75:83322",
+      "returnTarget": "28:11372",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD10",
+      "stateIndex": 2,
+      "state": "pan/zoom변경",
+      "profile": "ipad-landscape",
+      "id": "75:83352",
+      "returnTarget": "28:11253",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD10",
+      "stateIndex": 3,
+      "state": "설명펼침",
+      "profile": "iphone-portrait",
+      "id": "75:83382",
+      "returnTarget": "28:11372",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD10",
+      "stateIndex": 4,
+      "state": "보존viewport로다시열기",
+      "profile": "ipad-landscape",
+      "id": "75:83420",
+      "returnTarget": "28:11253",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD11",
+      "stateIndex": 0,
+      "state": "목록",
+      "profile": "ipad-landscape",
+      "id": "75:83948",
+      "returnTarget": "28:11253",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD11",
+      "stateIndex": 1,
+      "state": "상세읽기",
+      "profile": "iphone-portrait",
+      "id": "75:83978",
+      "returnTarget": "28:11372",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD11",
+      "stateIndex": 2,
+      "state": "수식포함본문",
+      "profile": "ipad-landscape",
+      "id": "75:83990",
+      "returnTarget": "28:11253",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD11",
+      "stateIndex": 3,
+      "state": "아래첨자도해label",
+      "profile": "iphone-portrait",
+      "id": "75:84002",
+      "returnTarget": "28:11372",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD11",
+      "stateIndex": 4,
+      "state": "기존목록위치복귀",
+      "profile": "ipad-landscape",
+      "id": "75:84015",
+      "returnTarget": "28:11253",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD12",
+      "stateIndex": 0,
+      "state": "정지",
+      "profile": "ipad-landscape",
+      "id": "75:85526",
+      "returnTarget": "26:68",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD12",
+      "stateIndex": 1,
+      "state": "장소변경0.18초",
+      "profile": "iphone-portrait",
+      "id": "75:85562",
+      "returnTarget": "26:1877",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD12",
+      "stateIndex": 2,
+      "state": "움직임줄이기0초",
+      "profile": "ipad-landscape",
+      "id": "75:85598",
+      "returnTarget": "26:68",
+      "returnConnection": "figma-node-url"
+    },
+    {
+      "feature": "XD12",
+      "stateIndex": 3,
+      "state": "같은장소내이동",
+      "profile": "iphone-portrait",
+      "id": "75:85634",
+      "returnTarget": "26:1877",
+      "returnConnection": "figma-node-url"
+    }
+  ],
+  "entryRequests": [
+    {
+      "feature": "XD01",
+      "label": "빠른 명령",
+      "sourceId": "26:68",
+      "targetId": "74:71889",
+      "profile": "ipad-landscape"
+    },
+    {
+      "feature": "XD01",
+      "label": "빠른 명령",
+      "sourceId": "26:1877",
+      "targetId": "74:71897",
+      "profile": "iphone-portrait"
+    },
+    {
+      "feature": "XD02",
+      "label": "곁 도구 펼치기",
+      "sourceId": "28:10158",
+      "targetId": "74:72837",
+      "profile": "ipad-landscape"
+    },
+    {
+      "feature": "XD02",
+      "label": "곁 도구 펼치기",
+      "sourceId": "28:10299",
+      "targetId": "74:73213",
+      "profile": "iphone-portrait"
+    },
+    {
+      "feature": "XD03",
+      "label": "작업 구성",
+      "sourceId": "26:68",
+      "targetId": "74:73848",
+      "profile": "ipad-landscape"
+    },
+    {
+      "feature": "XD03",
+      "label": "작업 구성",
+      "sourceId": "26:1877",
+      "targetId": "74:73881",
+      "profile": "iphone-portrait"
+    },
+    {
+      "feature": "XD04",
+      "label": "저장 다시 시도",
+      "sourceId": "26:68",
+      "targetId": "75:74329",
+      "profile": "ipad-landscape"
+    },
+    {
+      "feature": "XD04",
+      "label": "저장 다시 시도",
+      "sourceId": "26:1877",
+      "targetId": "75:74336",
+      "profile": "iphone-portrait"
+    },
+    {
+      "feature": "XD05",
+      "label": "반응 속도 확인",
+      "sourceId": "26:68",
+      "targetId": "75:74577",
+      "profile": "ipad-landscape"
+    },
+    {
+      "feature": "XD05",
+      "label": "반응 속도 확인",
+      "sourceId": "26:1877",
+      "targetId": "75:74618",
+      "profile": "iphone-portrait"
+    },
+    {
+      "feature": "XD06",
+      "label": "공부 기록 더 보기",
+      "sourceId": "28:8964",
+      "targetId": "75:77795",
+      "profile": "ipad-landscape"
+    },
+    {
+      "feature": "XD06",
+      "label": "공부 기록 더 보기",
+      "sourceId": "28:8964",
+      "targetId": "75:78566",
+      "profile": "iphone-portrait"
+    },
+    {
+      "feature": "XD07",
+      "label": "현재 조건을 A로 고정",
+      "sourceId": "28:12749",
+      "targetId": "75:79989",
+      "profile": "ipad-landscape"
+    },
+    {
+      "feature": "XD07",
+      "label": "현재 조건을 A로 고정",
+      "sourceId": "28:12906",
+      "targetId": "75:79999",
+      "profile": "iphone-portrait"
+    },
+    {
+      "feature": "XD08",
+      "label": "검색 자료 종류",
+      "sourceId": "29:4495",
+      "targetId": "75:80868",
+      "profile": "ipad-landscape"
+    },
+    {
+      "feature": "XD08",
+      "label": "검색 자료 종류",
+      "sourceId": "29:4560",
+      "targetId": "75:80905",
+      "profile": "iphone-portrait"
+    },
+    {
+      "feature": "XD09",
+      "label": "함께 선택할 시작일",
+      "sourceId": "29:347",
+      "targetId": "75:81846",
+      "profile": "ipad-landscape"
+    },
+    {
+      "feature": "XD09",
+      "label": "함께 선택할 시작일",
+      "sourceId": "29:566",
+      "targetId": "75:81972",
+      "profile": "iphone-portrait"
+    },
+    {
+      "feature": "XD10",
+      "label": "도해 크게 보기",
+      "sourceId": "28:11253",
+      "targetId": "75:83312",
+      "profile": "ipad-landscape"
+    },
+    {
+      "feature": "XD10",
+      "label": "도해 크게 보기",
+      "sourceId": "28:11372",
+      "targetId": "75:83322",
+      "profile": "iphone-portrait"
+    },
+    {
+      "feature": "XD11",
+      "label": "개념 선택",
+      "sourceId": "28:11253",
+      "targetId": "75:83948",
+      "profile": "ipad-landscape"
+    },
+    {
+      "feature": "XD11",
+      "label": "개념 선택",
+      "sourceId": "28:11372",
+      "targetId": "75:83978",
+      "profile": "iphone-portrait"
+    },
+    {
+      "feature": "XD12",
+      "label": "네 장소 이동",
+      "sourceId": "26:68",
+      "targetId": "75:85526",
+      "profile": "ipad-landscape"
+    },
+    {
+      "feature": "XD12",
+      "label": "네 장소 이동",
+      "sourceId": "26:1877",
+      "targetId": "75:85562",
+      "profile": "iphone-portrait"
+    }
+  ],
+  "newOwners": 9,
+  "frameCount": 77,
+  "entryCount": 24
+}

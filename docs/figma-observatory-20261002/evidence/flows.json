@@ -1,0 +1,2263 @@
+{
+  "pageId": "7:76",
+  "introId": "35:11254",
+  "createdNodeIds": {
+    "encoding": "figma-id-ranges-v1",
+    "count": 587,
+    "groups": [
+      [
+        "35:",
+        [
+          [
+            11254,
+            11278
+          ],
+          [
+            11280,
+            11285
+          ],
+          [
+            11287,
+            11308
+          ],
+          [
+            11310,
+            11322
+          ],
+          [
+            11324,
+            11329
+          ],
+          [
+            11331,
+            11332
+          ],
+          [
+            11334,
+            11335
+          ],
+          [
+            11337,
+            11342
+          ],
+          [
+            11344,
+            11355
+          ],
+          [
+            11357,
+            11369
+          ],
+          [
+            11371,
+            11376
+          ],
+          [
+            11378,
+            11394
+          ],
+          [
+            11396,
+            11401
+          ],
+          [
+            11403,
+            11415
+          ],
+          [
+            11417,
+            11422
+          ],
+          [
+            11424,
+            11435
+          ],
+          [
+            11437,
+            11442
+          ],
+          [
+            11444,
+            11456
+          ],
+          [
+            11458,
+            11479
+          ],
+          [
+            11481,
+            11493
+          ],
+          [
+            11495,
+            11539
+          ],
+          [
+            11541,
+            11546
+          ],
+          [
+            11548,
+            11575
+          ],
+          [
+            11577,
+            11589
+          ],
+          [
+            11591,
+            11624
+          ],
+          [
+            11626,
+            11627
+          ],
+          [
+            11629,
+            11639
+          ],
+          [
+            11641,
+            11642
+          ],
+          [
+            11644,
+            11662
+          ],
+          [
+            11664,
+            11669
+          ],
+          [
+            11671,
+            11699
+          ],
+          [
+            11701,
+            11734
+          ],
+          [
+            11736,
+            11747
+          ],
+          [
+            11749,
+            11750
+          ],
+          [
+            11752,
+            11769
+          ],
+          [
+            11771,
+            11781
+          ],
+          [
+            11783,
+            11789
+          ],
+          [
+            11791,
+            11796
+          ],
+          [
+            11798,
+            11803
+          ],
+          [
+            11805,
+            11806
+          ],
+          [
+            11808,
+            11820
+          ],
+          [
+            11822,
+            11823
+          ],
+          [
+            11825,
+            11826
+          ],
+          [
+            11828,
+            11829
+          ],
+          [
+            11831,
+            11832
+          ],
+          [
+            11834,
+            11835
+          ],
+          [
+            11837,
+            11838
+          ],
+          [
+            11840,
+            11841
+          ],
+          [
+            11843,
+            11844
+          ],
+          [
+            11846,
+            11847
+          ],
+          [
+            11849,
+            11850
+          ],
+          [
+            11852,
+            11853
+          ],
+          [
+            11855,
+            11856
+          ],
+          [
+            11858,
+            11859
+          ],
+          [
+            11861,
+            11862
+          ],
+          [
+            11864,
+            11865
+          ],
+          [
+            11867,
+            11868
+          ],
+          [
+            11870,
+            11871
+          ],
+          [
+            11873,
+            11878
+          ],
+          [
+            11880,
+            11881
+          ],
+          [
+            11883,
+            11884
+          ],
+          [
+            11886,
+            11887
+          ],
+          [
+            11889,
+            11902
+          ]
+        ]
+      ]
+    ],
+    "literal": []
+  },
+  "mutatedNodeIds": {
+    "encoding": "figma-id-ranges-v1",
+    "count": 1,
+    "groups": [
+      [
+        "7:",
+        [
+          76
+        ]
+      ]
+    ],
+    "literal": []
+  },
+  "observedNodeIds": {
+    "encoding": "figma-id-ranges-v1",
+    "count": 40,
+    "groups": [
+      [
+        "26:",
+        [
+          68,
+          9103
+        ]
+      ],
+      [
+        "28:",
+        [
+          8964,
+          9054,
+          9093,
+          9134,
+          9213,
+          9251,
+          9561,
+          9818,
+          10158,
+          10863,
+          11253,
+          11848,
+          11892,
+          12060,
+          12098,
+          12179,
+          12749
+        ]
+      ],
+      [
+        "27:",
+        [
+          19087,
+          19537,
+          19997,
+          20602
+        ]
+      ],
+      [
+        "29:",
+        [
+          260,
+          347,
+          1432,
+          2487,
+          3112,
+          3652,
+          4293,
+          4495,
+          4858,
+          4926,
+          5192,
+          5226,
+          5374,
+          5410,
+          5463,
+          5493,
+          5533
+        ]
+      ]
+    ],
+    "literal": []
+  },
+  "flowMap": {
+    "F01": {
+      "id": "35:11269",
+      "title": "공부하고 여러 주제 기록",
+      "steps": [
+        {
+          "index": 0,
+          "nodeId": "35:11273",
+          "originalText": "R01",
+          "basis": "source-explicit-ids",
+          "referencedIds": [
+            "R01"
+          ],
+          "links": [
+            {
+              "sourceId": "R01",
+              "nodeId": "26:68",
+              "anchorId": "35:11277",
+              "kind": "screen",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=26-68"
+            }
+          ],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 1,
+          "nodeId": "35:11280",
+          "originalText": "R05",
+          "basis": "source-explicit-ids",
+          "referencedIds": [
+            "R05"
+          ],
+          "links": [
+            {
+              "sourceId": "R05",
+              "nodeId": "26:9103",
+              "anchorId": "35:11284",
+              "kind": "screen",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=26-9103"
+            }
+          ],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 2,
+          "nodeId": "35:11287",
+          "originalText": "주제 여러 개 선택",
+          "basis": "non-route-step-preserved",
+          "referencedIds": [],
+          "links": [],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 3,
+          "nodeId": "35:11293",
+          "originalText": "공부함·선택 메모·TRACE",
+          "basis": "non-route-step-preserved",
+          "referencedIds": [],
+          "links": [],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 4,
+          "nodeId": "35:11298",
+          "originalText": "저장",
+          "basis": "non-route-step-preserved",
+          "referencedIds": [],
+          "links": [],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 5,
+          "nodeId": "35:11303",
+          "originalText": "현재 주제/자료 출발지 또는 R01",
+          "basis": "source-explicit-ids",
+          "referencedIds": [
+            "R01"
+          ],
+          "links": [
+            {
+              "sourceId": "R01",
+              "nodeId": "26:68",
+              "anchorId": "35:11307",
+              "kind": "screen",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=26-68"
+            }
+          ],
+          "runtimeExecuted": false
+        }
+      ],
+      "preservationId": "35:11310",
+      "prototypeVerified": false
+    },
+    "F02": {
+      "id": "35:11313",
+      "title": "과목과 실제 범위 만들기",
+      "steps": [
+        {
+          "index": 0,
+          "nodeId": "35:11317",
+          "originalText": "R04",
+          "basis": "source-explicit-ids",
+          "referencedIds": [
+            "R04"
+          ],
+          "links": [
+            {
+              "sourceId": "R04",
+              "nodeId": "28:9818",
+              "anchorId": "35:11321",
+              "kind": "screen",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=28-9818"
+            }
+          ],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 1,
+          "nodeId": "35:11324",
+          "originalText": "O02/U17",
+          "basis": "source-explicit-ids",
+          "referencedIds": [
+            "O02",
+            "U17"
+          ],
+          "links": [
+            {
+              "sourceId": "O02",
+              "nodeId": "28:11892",
+              "anchorId": "35:11328",
+              "kind": "screen",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=28-11892"
+            },
+            {
+              "sourceId": "U17",
+              "nodeId": "28:12060",
+              "anchorId": "35:11331",
+              "kind": "explicit-reuse",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=28-12060"
+            },
+            {
+              "sourceId": "U17",
+              "nodeId": "28:12098",
+              "anchorId": "35:11334",
+              "kind": "explicit-reuse",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=28-12098"
+            }
+          ],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 2,
+          "nodeId": "35:11337",
+          "originalText": "R19",
+          "basis": "source-explicit-ids",
+          "referencedIds": [
+            "R19"
+          ],
+          "links": [
+            {
+              "sourceId": "R19",
+              "nodeId": "28:11848",
+              "anchorId": "35:11341",
+              "kind": "screen",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=28-11848"
+            }
+          ],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 3,
+          "nodeId": "35:11345",
+          "originalText": "목차 추가·주차",
+          "basis": "non-route-step-preserved",
+          "referencedIds": [],
+          "links": [],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 4,
+          "nodeId": "35:11350",
+          "originalText": "R20",
+          "basis": "source-explicit-ids",
+          "referencedIds": [
+            "R20"
+          ],
+          "links": [
+            {
+              "sourceId": "R20",
+              "nodeId": "28:8964",
+              "anchorId": "35:11354",
+              "kind": "screen",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=28-8964"
+            }
+          ],
+          "runtimeExecuted": false
+        }
+      ],
+      "preservationId": "35:11357",
+      "prototypeVerified": false
+    },
+    "F03": {
+      "id": "35:11360",
+      "title": "자료를 펼쳐 다음 공부로",
+      "steps": [
+        {
+          "index": 0,
+          "nodeId": "35:11364",
+          "originalText": "R07",
+          "basis": "source-explicit-ids",
+          "referencedIds": [
+            "R07"
+          ],
+          "links": [
+            {
+              "sourceId": "R07",
+              "nodeId": "28:10158",
+              "anchorId": "35:11368",
+              "kind": "screen",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=28-10158"
+            }
+          ],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 1,
+          "nodeId": "35:11371",
+          "originalText": "R23",
+          "basis": "source-explicit-ids",
+          "referencedIds": [
+            "R23"
+          ],
+          "links": [
+            {
+              "sourceId": "R23",
+              "nodeId": "28:9093",
+              "anchorId": "35:11375",
+              "kind": "screen",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=28-9093"
+            }
+          ],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 2,
+          "nodeId": "35:11378",
+          "originalText": "전사문 붙여넣기/파일·기존 음성",
+          "basis": "non-route-step-preserved",
+          "referencedIds": [],
+          "links": [],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 3,
+          "nodeId": "35:11384",
+          "originalText": "선택 범위 정리",
+          "basis": "non-route-step-preserved",
+          "referencedIds": [],
+          "links": [],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 4,
+          "nodeId": "35:11389",
+          "originalText": "R12",
+          "basis": "source-explicit-ids",
+          "referencedIds": [
+            "R12"
+          ],
+          "links": [
+            {
+              "sourceId": "R12",
+              "nodeId": "28:10863",
+              "anchorId": "35:11393",
+              "kind": "screen",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=28-10863"
+            }
+          ],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 5,
+          "nodeId": "35:11396",
+          "originalText": "R11",
+          "basis": "source-explicit-ids",
+          "referencedIds": [
+            "R11"
+          ],
+          "links": [
+            {
+              "sourceId": "R11",
+              "nodeId": "27:19997",
+              "anchorId": "35:11400",
+              "kind": "screen",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=27-19997"
+            }
+          ],
+          "runtimeExecuted": false
+        }
+      ],
+      "preservationId": "35:11403",
+      "prototypeVerified": false
+    },
+    "F04": {
+      "id": "35:11406",
+      "title": "시험처럼 풀고 복기",
+      "steps": [
+        {
+          "index": 0,
+          "nodeId": "35:11410",
+          "originalText": "R20",
+          "basis": "source-explicit-ids",
+          "referencedIds": [
+            "R20"
+          ],
+          "links": [
+            {
+              "sourceId": "R20",
+              "nodeId": "28:8964",
+              "anchorId": "35:11414",
+              "kind": "screen",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=28-8964"
+            }
+          ],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 1,
+          "nodeId": "35:11417",
+          "originalText": "R26",
+          "basis": "source-explicit-ids",
+          "referencedIds": [
+            "R26"
+          ],
+          "links": [
+            {
+              "sourceId": "R26",
+              "nodeId": "28:9134",
+              "anchorId": "35:11421",
+              "kind": "screen",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=28-9134"
+            }
+          ],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 2,
+          "nodeId": "35:11424",
+          "originalText": "설정·진행·복기",
+          "basis": "non-route-step-preserved",
+          "referencedIds": [],
+          "links": [],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 3,
+          "nodeId": "35:11430",
+          "originalText": "R22",
+          "basis": "source-explicit-ids",
+          "referencedIds": [
+            "R22"
+          ],
+          "links": [
+            {
+              "sourceId": "R22",
+              "nodeId": "28:9054",
+              "anchorId": "35:11434",
+              "kind": "screen",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=28-9054"
+            }
+          ],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 4,
+          "nodeId": "35:11437",
+          "originalText": "U20",
+          "basis": "source-explicit-ids",
+          "referencedIds": [
+            "U20"
+          ],
+          "links": [
+            {
+              "sourceId": "U20",
+              "nodeId": "28:9561",
+              "anchorId": "35:11441",
+              "kind": "explicit-reuse",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=28-9561"
+            }
+          ],
+          "runtimeExecuted": false
+        }
+      ],
+      "preservationId": "35:11444",
+      "prototypeVerified": false
+    },
+    "F05": {
+      "id": "35:11447",
+      "title": "암기시험을 직접 비교",
+      "steps": [
+        {
+          "index": 0,
+          "nodeId": "35:11451",
+          "originalText": "R11",
+          "basis": "source-explicit-ids",
+          "referencedIds": [
+            "R11"
+          ],
+          "links": [
+            {
+              "sourceId": "R11",
+              "nodeId": "27:19997",
+              "anchorId": "35:11455",
+              "kind": "screen",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=27-19997"
+            }
+          ],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 1,
+          "nodeId": "35:11458",
+          "originalText": "항목 선택",
+          "basis": "non-route-step-preserved",
+          "referencedIds": [],
+          "links": [],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 2,
+          "nodeId": "35:11463",
+          "originalText": "글·필기 답안",
+          "basis": "non-route-step-preserved",
+          "referencedIds": [],
+          "links": [],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 3,
+          "nodeId": "35:11469",
+          "originalText": "비교",
+          "basis": "non-route-step-preserved",
+          "referencedIds": [],
+          "links": [],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 4,
+          "nodeId": "35:11474",
+          "originalText": "R28",
+          "basis": "source-explicit-ids",
+          "referencedIds": [
+            "R28"
+          ],
+          "links": [
+            {
+              "sourceId": "R28",
+              "nodeId": "28:9213",
+              "anchorId": "35:11478",
+              "kind": "screen",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=28-9213"
+            }
+          ],
+          "runtimeExecuted": false
+        }
+      ],
+      "preservationId": "35:11481",
+      "prototypeVerified": false
+    },
+    "F06": {
+      "id": "35:11484",
+      "title": "예약 복습과 되돌리기",
+      "steps": [
+        {
+          "index": 0,
+          "nodeId": "35:11488",
+          "originalText": "R29",
+          "basis": "source-explicit-ids",
+          "referencedIds": [
+            "R29"
+          ],
+          "links": [
+            {
+              "sourceId": "R29",
+              "nodeId": "28:9251",
+              "anchorId": "35:11492",
+              "kind": "screen",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=28-9251"
+            }
+          ],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 1,
+          "nodeId": "35:11495",
+          "originalText": "범위/덱",
+          "basis": "non-route-step-preserved",
+          "referencedIds": [],
+          "links": [],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 2,
+          "nodeId": "35:11500",
+          "originalText": "글·필기",
+          "basis": "non-route-step-preserved",
+          "referencedIds": [],
+          "links": [],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 3,
+          "nodeId": "35:11506",
+          "originalText": "설명 공개",
+          "basis": "non-route-step-preserved",
+          "referencedIds": [],
+          "links": [],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 4,
+          "nodeId": "35:11511",
+          "originalText": "자기 평가",
+          "basis": "non-route-step-preserved",
+          "referencedIds": [],
+          "links": [],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 5,
+          "nodeId": "35:11516",
+          "originalText": "다음 카드",
+          "basis": "non-route-step-preserved",
+          "referencedIds": [],
+          "links": [],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 6,
+          "nodeId": "35:11522",
+          "originalText": "평가 되돌리기",
+          "basis": "non-route-step-preserved",
+          "referencedIds": [],
+          "links": [],
+          "runtimeExecuted": false
+        }
+      ],
+      "preservationId": "35:11527",
+      "prototypeVerified": false
+    },
+    "F07": {
+      "id": "35:11530",
+      "title": "코드와 주제 연결",
+      "steps": [
+        {
+          "index": 0,
+          "nodeId": "35:11534",
+          "originalText": "R08",
+          "basis": "source-explicit-ids",
+          "referencedIds": [
+            "R08"
+          ],
+          "links": [
+            {
+              "sourceId": "R08",
+              "nodeId": "28:12179",
+              "anchorId": "35:11538",
+              "kind": "screen",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=28-12179"
+            }
+          ],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 1,
+          "nodeId": "35:11541",
+          "originalText": "R25",
+          "basis": "source-explicit-ids",
+          "referencedIds": [
+            "R25"
+          ],
+          "links": [
+            {
+              "sourceId": "R25",
+              "nodeId": "29:260",
+              "anchorId": "35:11545",
+              "kind": "screen",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=29-260"
+            }
+          ],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 2,
+          "nodeId": "35:11548",
+          "originalText": "편집·입력",
+          "basis": "non-route-step-preserved",
+          "referencedIds": [],
+          "links": [],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 3,
+          "nodeId": "35:11554",
+          "originalText": "실행·터미널",
+          "basis": "non-route-step-preserved",
+          "referencedIds": [],
+          "links": [],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 4,
+          "nodeId": "35:11559",
+          "originalText": "결과",
+          "basis": "non-route-step-preserved",
+          "referencedIds": [],
+          "links": [],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 5,
+          "nodeId": "35:11564",
+          "originalText": "주제 연결",
+          "basis": "non-route-step-preserved",
+          "referencedIds": [],
+          "links": [],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 6,
+          "nodeId": "35:11570",
+          "originalText": "R20",
+          "basis": "source-explicit-ids",
+          "referencedIds": [
+            "R20"
+          ],
+          "links": [
+            {
+              "sourceId": "R20",
+              "nodeId": "28:8964",
+              "anchorId": "35:11574",
+              "kind": "screen",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=28-8964"
+            }
+          ],
+          "runtimeExecuted": false
+        }
+      ],
+      "preservationId": "35:11577",
+      "prototypeVerified": false
+    },
+    "F08": {
+      "id": "35:11580",
+      "title": "수식과 개념 탐구",
+      "steps": [
+        {
+          "index": 0,
+          "nodeId": "35:11584",
+          "originalText": "R09",
+          "basis": "source-explicit-ids",
+          "referencedIds": [
+            "R09"
+          ],
+          "links": [
+            {
+              "sourceId": "R09",
+              "nodeId": "28:12749",
+              "anchorId": "35:11588",
+              "kind": "screen",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=28-12749"
+            }
+          ],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 1,
+          "nodeId": "35:11591",
+          "originalText": "유형/조건",
+          "basis": "non-route-step-preserved",
+          "referencedIds": [],
+          "links": [],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 2,
+          "nodeId": "35:11596",
+          "originalText": "그래프·좌표 조작",
+          "basis": "non-route-step-preserved",
+          "referencedIds": [],
+          "links": [],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 3,
+          "nodeId": "35:11602",
+          "originalText": "관찰·저장",
+          "basis": "non-route-step-preserved",
+          "referencedIds": [],
+          "links": [],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 4,
+          "nodeId": "35:11607",
+          "originalText": "저장 탐색 재열기",
+          "basis": "non-route-step-preserved",
+          "referencedIds": [],
+          "links": [],
+          "runtimeExecuted": false
+        }
+      ],
+      "preservationId": "35:11612",
+      "prototypeVerified": false
+    },
+    "F09": {
+      "id": "35:11615",
+      "title": "관계와 원문 왕복",
+      "steps": [
+        {
+          "index": 0,
+          "nodeId": "35:11619",
+          "originalText": "R15/R16",
+          "basis": "source-explicit-ids",
+          "referencedIds": [
+            "R15",
+            "R16"
+          ],
+          "links": [
+            {
+              "sourceId": "R15",
+              "nodeId": "29:2487",
+              "anchorId": "35:11623",
+              "kind": "screen",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=29-2487"
+            },
+            {
+              "sourceId": "R16",
+              "nodeId": "29:3112",
+              "anchorId": "35:11626",
+              "kind": "screen",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=29-3112"
+            }
+          ],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 1,
+          "nodeId": "35:11629",
+          "originalText": "카드·관계 선택",
+          "basis": "non-route-step-preserved",
+          "referencedIds": [],
+          "links": [],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 2,
+          "nodeId": "35:11634",
+          "originalText": "R20/R13",
+          "basis": "source-explicit-ids",
+          "referencedIds": [
+            "R20",
+            "R13"
+          ],
+          "links": [
+            {
+              "sourceId": "R20",
+              "nodeId": "28:8964",
+              "anchorId": "35:11638",
+              "kind": "screen",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=28-8964"
+            },
+            {
+              "sourceId": "R13",
+              "nodeId": "28:11253",
+              "anchorId": "35:11641",
+              "kind": "screen",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=28-11253"
+            }
+          ],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 3,
+          "nodeId": "35:11645",
+          "originalText": "실제 이전 시점",
+          "basis": "non-route-step-preserved",
+          "referencedIds": [],
+          "links": [],
+          "runtimeExecuted": false
+        }
+      ],
+      "preservationId": "35:11650",
+      "prototypeVerified": false
+    },
+    "F10": {
+      "id": "35:11653",
+      "title": "계획의 자료 누적",
+      "steps": [
+        {
+          "index": 0,
+          "nodeId": "35:11657",
+          "originalText": "R03",
+          "basis": "source-explicit-ids",
+          "referencedIds": [
+            "R03"
+          ],
+          "links": [
+            {
+              "sourceId": "R03",
+              "nodeId": "29:1432",
+              "anchorId": "35:11661",
+              "kind": "screen",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=29-1432"
+            }
+          ],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 1,
+          "nodeId": "35:11664",
+          "originalText": "O13",
+          "basis": "source-explicit-ids",
+          "referencedIds": [
+            "O13"
+          ],
+          "links": [
+            {
+              "sourceId": "O13",
+              "nodeId": "29:4293",
+              "anchorId": "35:11668",
+              "kind": "screen",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=29-4293"
+            }
+          ],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 2,
+          "nodeId": "35:11671",
+          "originalText": "일정 목록/달력",
+          "basis": "non-route-step-preserved",
+          "referencedIds": [],
+          "links": [],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 3,
+          "nodeId": "35:11677",
+          "originalText": "단계별 상태",
+          "basis": "non-route-step-preserved",
+          "referencedIds": [],
+          "links": [],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 4,
+          "nodeId": "35:11682",
+          "originalText": "이력/복원",
+          "basis": "non-route-step-preserved",
+          "referencedIds": [],
+          "links": [],
+          "runtimeExecuted": false
+        }
+      ],
+      "preservationId": "35:11687",
+      "prototypeVerified": false
+    },
+    "F11": {
+      "id": "35:11690",
+      "title": "찾고 돌아오기",
+      "steps": [
+        {
+          "index": 0,
+          "nodeId": "35:11694",
+          "originalText": "R18",
+          "basis": "source-explicit-ids",
+          "referencedIds": [
+            "R18"
+          ],
+          "links": [
+            {
+              "sourceId": "R18",
+              "nodeId": "29:4495",
+              "anchorId": "35:11698",
+              "kind": "screen",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=29-4495"
+            }
+          ],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 1,
+          "nodeId": "35:11701",
+          "originalText": "검색·범위",
+          "basis": "non-route-step-preserved",
+          "referencedIds": [],
+          "links": [],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 2,
+          "nodeId": "35:11706",
+          "originalText": "실제 결과 딥링크",
+          "basis": "non-route-step-preserved",
+          "referencedIds": [],
+          "links": [],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 3,
+          "nodeId": "35:11712",
+          "originalText": "브라우저 뒤로",
+          "basis": "non-route-step-preserved",
+          "referencedIds": [],
+          "links": [],
+          "runtimeExecuted": false
+        }
+      ],
+      "preservationId": "35:11717",
+      "prototypeVerified": false
+    },
+    "F12": {
+      "id": "35:11720",
+      "title": "저장 실패와 복구",
+      "steps": [
+        {
+          "index": 0,
+          "nodeId": "35:11724",
+          "originalText": "편집",
+          "basis": "non-route-step-preserved",
+          "referencedIds": [],
+          "links": [],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 1,
+          "nodeId": "35:11729",
+          "originalText": "U07 오류/미전송",
+          "basis": "source-explicit-ids",
+          "referencedIds": [
+            "U07"
+          ],
+          "links": [
+            {
+              "sourceId": "U07",
+              "nodeId": "29:5374",
+              "anchorId": "35:11733",
+              "kind": "explicit-reuse",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=29-5374"
+            }
+          ],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 2,
+          "nodeId": "35:11736",
+          "originalText": "재시도/사본",
+          "basis": "non-route-step-preserved",
+          "referencedIds": [],
+          "links": [],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 3,
+          "nodeId": "35:11742",
+          "originalText": "R33 또는 R35",
+          "basis": "source-explicit-ids",
+          "referencedIds": [
+            "R33",
+            "R35"
+          ],
+          "links": [
+            {
+              "sourceId": "R33",
+              "nodeId": "29:4858",
+              "anchorId": "35:11746",
+              "kind": "screen",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=29-4858"
+            },
+            {
+              "sourceId": "R35",
+              "nodeId": "29:4926",
+              "anchorId": "35:11749",
+              "kind": "screen",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=29-4926"
+            }
+          ],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 4,
+          "nodeId": "35:11752",
+          "originalText": "원 과업",
+          "basis": "non-route-step-preserved",
+          "referencedIds": [],
+          "links": [],
+          "runtimeExecuted": false
+        }
+      ],
+      "preservationId": "35:11757",
+      "prototypeVerified": false
+    },
+    "F13": {
+      "id": "35:11760",
+      "title": "계정 진입과 제한",
+      "steps": [
+        {
+          "index": 0,
+          "nodeId": "35:11764",
+          "originalText": "U03",
+          "basis": "source-explicit-ids",
+          "referencedIds": [
+            "U03"
+          ],
+          "links": [
+            {
+              "sourceId": "U03",
+              "nodeId": "29:5493",
+              "anchorId": "35:11768",
+              "kind": "screen",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=29-5493"
+            }
+          ],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 1,
+          "nodeId": "35:11771",
+          "originalText": "메일 확인",
+          "basis": "non-route-step-preserved",
+          "referencedIds": [],
+          "links": [],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 2,
+          "nodeId": "35:11776",
+          "originalText": "U04 승인",
+          "basis": "source-explicit-ids",
+          "referencedIds": [
+            "U04"
+          ],
+          "links": [
+            {
+              "sourceId": "U04",
+              "nodeId": "29:5533",
+              "anchorId": "35:11780",
+              "kind": "screen",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=29-5533"
+            }
+          ],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 3,
+          "nodeId": "35:11784",
+          "originalText": "U02",
+          "basis": "source-explicit-ids",
+          "referencedIds": [
+            "U02"
+          ],
+          "links": [
+            {
+              "sourceId": "U02",
+              "nodeId": "29:5463",
+              "anchorId": "35:11788",
+              "kind": "screen",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=29-5463"
+            }
+          ],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 4,
+          "nodeId": "35:11791",
+          "originalText": "U01",
+          "basis": "source-explicit-ids",
+          "referencedIds": [
+            "U01"
+          ],
+          "links": [
+            {
+              "sourceId": "U01",
+              "nodeId": "29:5410",
+              "anchorId": "35:11795",
+              "kind": "screen",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=29-5410"
+            }
+          ],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 5,
+          "nodeId": "35:11798",
+          "originalText": "U05/U06",
+          "basis": "source-explicit-ids",
+          "referencedIds": [
+            "U05",
+            "U06"
+          ],
+          "links": [
+            {
+              "sourceId": "U05",
+              "nodeId": "29:5226",
+              "anchorId": "35:11802",
+              "kind": "explicit-reuse",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=29-5226"
+            },
+            {
+              "sourceId": "U06",
+              "nodeId": "29:5192",
+              "anchorId": "35:11805",
+              "kind": "explicit-reuse",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=29-5192"
+            }
+          ],
+          "runtimeExecuted": false
+        }
+      ],
+      "preservationId": "35:11808",
+      "prototypeVerified": false
+    },
+    "F14": {
+      "id": "35:11811",
+      "title": "네 장소와 현재 과업",
+      "steps": [
+        {
+          "index": 0,
+          "nodeId": "35:11815",
+          "originalText": "18개 직접 메뉴",
+          "basis": "explicit-main-menu-inventory",
+          "referencedIds": [
+            "R01",
+            "R02",
+            "R03",
+            "R04",
+            "R05",
+            "R06",
+            "R07",
+            "R08",
+            "R09",
+            "R10",
+            "R11",
+            "R12",
+            "R13",
+            "R14",
+            "R15",
+            "R16",
+            "R17",
+            "R18"
+          ],
+          "links": [
+            {
+              "sourceId": "R01",
+              "nodeId": "26:68",
+              "anchorId": "35:11819",
+              "kind": "screen",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=26-68"
+            },
+            {
+              "sourceId": "R02",
+              "nodeId": "29:347",
+              "anchorId": "35:11822",
+              "kind": "screen",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=29-347"
+            },
+            {
+              "sourceId": "R03",
+              "nodeId": "29:1432",
+              "anchorId": "35:11825",
+              "kind": "screen",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=29-1432"
+            },
+            {
+              "sourceId": "R04",
+              "nodeId": "28:9818",
+              "anchorId": "35:11828",
+              "kind": "screen",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=28-9818"
+            },
+            {
+              "sourceId": "R05",
+              "nodeId": "26:9103",
+              "anchorId": "35:11831",
+              "kind": "screen",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=26-9103"
+            },
+            {
+              "sourceId": "R06",
+              "nodeId": "27:19087",
+              "anchorId": "35:11834",
+              "kind": "screen",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=27-19087"
+            },
+            {
+              "sourceId": "R07",
+              "nodeId": "28:10158",
+              "anchorId": "35:11837",
+              "kind": "screen",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=28-10158"
+            },
+            {
+              "sourceId": "R08",
+              "nodeId": "28:12179",
+              "anchorId": "35:11840",
+              "kind": "screen",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=28-12179"
+            },
+            {
+              "sourceId": "R09",
+              "nodeId": "28:12749",
+              "anchorId": "35:11843",
+              "kind": "screen",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=28-12749"
+            },
+            {
+              "sourceId": "R10",
+              "nodeId": "27:19537",
+              "anchorId": "35:11846",
+              "kind": "screen",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=27-19537"
+            },
+            {
+              "sourceId": "R11",
+              "nodeId": "27:19997",
+              "anchorId": "35:11849",
+              "kind": "screen",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=27-19997"
+            },
+            {
+              "sourceId": "R12",
+              "nodeId": "28:10863",
+              "anchorId": "35:11852",
+              "kind": "screen",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=28-10863"
+            },
+            {
+              "sourceId": "R13",
+              "nodeId": "28:11253",
+              "anchorId": "35:11855",
+              "kind": "screen",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=28-11253"
+            },
+            {
+              "sourceId": "R14",
+              "nodeId": "27:20602",
+              "anchorId": "35:11858",
+              "kind": "screen",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=27-20602"
+            },
+            {
+              "sourceId": "R15",
+              "nodeId": "29:2487",
+              "anchorId": "35:11861",
+              "kind": "screen",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=29-2487"
+            },
+            {
+              "sourceId": "R16",
+              "nodeId": "29:3112",
+              "anchorId": "35:11864",
+              "kind": "screen",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=29-3112"
+            },
+            {
+              "sourceId": "R17",
+              "nodeId": "29:3652",
+              "anchorId": "35:11867",
+              "kind": "screen",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=29-3652"
+            },
+            {
+              "sourceId": "R18",
+              "nodeId": "29:4495",
+              "anchorId": "35:11870",
+              "kind": "screen",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=29-4495"
+            }
+          ],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 1,
+          "nodeId": "35:11873",
+          "originalText": "고정 장소",
+          "basis": "actual-source-place-defaults",
+          "referencedIds": [
+            "R01",
+            "R04",
+            "R09",
+            "R02"
+          ],
+          "links": [
+            {
+              "sourceId": "R01",
+              "nodeId": "26:68",
+              "anchorId": "35:11877",
+              "kind": "screen",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=26-68"
+            },
+            {
+              "sourceId": "R04",
+              "nodeId": "28:9818",
+              "anchorId": "35:11880",
+              "kind": "screen",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=28-9818"
+            },
+            {
+              "sourceId": "R09",
+              "nodeId": "28:12749",
+              "anchorId": "35:11883",
+              "kind": "screen",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=28-12749"
+            },
+            {
+              "sourceId": "R02",
+              "nodeId": "29:347",
+              "anchorId": "35:11886",
+              "kind": "screen",
+              "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=29-347"
+            }
+          ],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 2,
+          "nodeId": "35:11889",
+          "originalText": "보조 자료 펼치기",
+          "basis": "non-route-step-preserved",
+          "referencedIds": [],
+          "links": [],
+          "runtimeExecuted": false
+        },
+        {
+          "index": 3,
+          "nodeId": "35:11895",
+          "originalText": "호출한 과업",
+          "basis": "non-route-step-preserved",
+          "referencedIds": [],
+          "links": [],
+          "runtimeExecuted": false
+        }
+      ],
+      "preservationId": "35:11900",
+      "prototypeVerified": false
+    }
+  },
+  "links": [
+    {
+      "flowId": "F01",
+      "step": 0,
+      "sourceId": "R01",
+      "nodeId": "26:68",
+      "anchorId": "35:11277",
+      "kind": "screen",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=26-68"
+    },
+    {
+      "flowId": "F01",
+      "step": 1,
+      "sourceId": "R05",
+      "nodeId": "26:9103",
+      "anchorId": "35:11284",
+      "kind": "screen",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=26-9103"
+    },
+    {
+      "flowId": "F01",
+      "step": 5,
+      "sourceId": "R01",
+      "nodeId": "26:68",
+      "anchorId": "35:11307",
+      "kind": "screen",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=26-68"
+    },
+    {
+      "flowId": "F02",
+      "step": 0,
+      "sourceId": "R04",
+      "nodeId": "28:9818",
+      "anchorId": "35:11321",
+      "kind": "screen",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=28-9818"
+    },
+    {
+      "flowId": "F02",
+      "step": 1,
+      "sourceId": "O02",
+      "nodeId": "28:11892",
+      "anchorId": "35:11328",
+      "kind": "screen",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=28-11892"
+    },
+    {
+      "flowId": "F02",
+      "step": 1,
+      "sourceId": "U17",
+      "nodeId": "28:12060",
+      "anchorId": "35:11331",
+      "kind": "explicit-reuse",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=28-12060"
+    },
+    {
+      "flowId": "F02",
+      "step": 1,
+      "sourceId": "U17",
+      "nodeId": "28:12098",
+      "anchorId": "35:11334",
+      "kind": "explicit-reuse",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=28-12098"
+    },
+    {
+      "flowId": "F02",
+      "step": 2,
+      "sourceId": "R19",
+      "nodeId": "28:11848",
+      "anchorId": "35:11341",
+      "kind": "screen",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=28-11848"
+    },
+    {
+      "flowId": "F02",
+      "step": 4,
+      "sourceId": "R20",
+      "nodeId": "28:8964",
+      "anchorId": "35:11354",
+      "kind": "screen",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=28-8964"
+    },
+    {
+      "flowId": "F03",
+      "step": 0,
+      "sourceId": "R07",
+      "nodeId": "28:10158",
+      "anchorId": "35:11368",
+      "kind": "screen",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=28-10158"
+    },
+    {
+      "flowId": "F03",
+      "step": 1,
+      "sourceId": "R23",
+      "nodeId": "28:9093",
+      "anchorId": "35:11375",
+      "kind": "screen",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=28-9093"
+    },
+    {
+      "flowId": "F03",
+      "step": 4,
+      "sourceId": "R12",
+      "nodeId": "28:10863",
+      "anchorId": "35:11393",
+      "kind": "screen",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=28-10863"
+    },
+    {
+      "flowId": "F03",
+      "step": 5,
+      "sourceId": "R11",
+      "nodeId": "27:19997",
+      "anchorId": "35:11400",
+      "kind": "screen",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=27-19997"
+    },
+    {
+      "flowId": "F04",
+      "step": 0,
+      "sourceId": "R20",
+      "nodeId": "28:8964",
+      "anchorId": "35:11414",
+      "kind": "screen",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=28-8964"
+    },
+    {
+      "flowId": "F04",
+      "step": 1,
+      "sourceId": "R26",
+      "nodeId": "28:9134",
+      "anchorId": "35:11421",
+      "kind": "screen",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=28-9134"
+    },
+    {
+      "flowId": "F04",
+      "step": 3,
+      "sourceId": "R22",
+      "nodeId": "28:9054",
+      "anchorId": "35:11434",
+      "kind": "screen",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=28-9054"
+    },
+    {
+      "flowId": "F04",
+      "step": 4,
+      "sourceId": "U20",
+      "nodeId": "28:9561",
+      "anchorId": "35:11441",
+      "kind": "explicit-reuse",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=28-9561"
+    },
+    {
+      "flowId": "F05",
+      "step": 0,
+      "sourceId": "R11",
+      "nodeId": "27:19997",
+      "anchorId": "35:11455",
+      "kind": "screen",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=27-19997"
+    },
+    {
+      "flowId": "F05",
+      "step": 4,
+      "sourceId": "R28",
+      "nodeId": "28:9213",
+      "anchorId": "35:11478",
+      "kind": "screen",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=28-9213"
+    },
+    {
+      "flowId": "F06",
+      "step": 0,
+      "sourceId": "R29",
+      "nodeId": "28:9251",
+      "anchorId": "35:11492",
+      "kind": "screen",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=28-9251"
+    },
+    {
+      "flowId": "F07",
+      "step": 0,
+      "sourceId": "R08",
+      "nodeId": "28:12179",
+      "anchorId": "35:11538",
+      "kind": "screen",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=28-12179"
+    },
+    {
+      "flowId": "F07",
+      "step": 1,
+      "sourceId": "R25",
+      "nodeId": "29:260",
+      "anchorId": "35:11545",
+      "kind": "screen",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=29-260"
+    },
+    {
+      "flowId": "F07",
+      "step": 6,
+      "sourceId": "R20",
+      "nodeId": "28:8964",
+      "anchorId": "35:11574",
+      "kind": "screen",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=28-8964"
+    },
+    {
+      "flowId": "F08",
+      "step": 0,
+      "sourceId": "R09",
+      "nodeId": "28:12749",
+      "anchorId": "35:11588",
+      "kind": "screen",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=28-12749"
+    },
+    {
+      "flowId": "F09",
+      "step": 0,
+      "sourceId": "R15",
+      "nodeId": "29:2487",
+      "anchorId": "35:11623",
+      "kind": "screen",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=29-2487"
+    },
+    {
+      "flowId": "F09",
+      "step": 0,
+      "sourceId": "R16",
+      "nodeId": "29:3112",
+      "anchorId": "35:11626",
+      "kind": "screen",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=29-3112"
+    },
+    {
+      "flowId": "F09",
+      "step": 2,
+      "sourceId": "R20",
+      "nodeId": "28:8964",
+      "anchorId": "35:11638",
+      "kind": "screen",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=28-8964"
+    },
+    {
+      "flowId": "F09",
+      "step": 2,
+      "sourceId": "R13",
+      "nodeId": "28:11253",
+      "anchorId": "35:11641",
+      "kind": "screen",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=28-11253"
+    },
+    {
+      "flowId": "F10",
+      "step": 0,
+      "sourceId": "R03",
+      "nodeId": "29:1432",
+      "anchorId": "35:11661",
+      "kind": "screen",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=29-1432"
+    },
+    {
+      "flowId": "F10",
+      "step": 1,
+      "sourceId": "O13",
+      "nodeId": "29:4293",
+      "anchorId": "35:11668",
+      "kind": "screen",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=29-4293"
+    },
+    {
+      "flowId": "F11",
+      "step": 0,
+      "sourceId": "R18",
+      "nodeId": "29:4495",
+      "anchorId": "35:11698",
+      "kind": "screen",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=29-4495"
+    },
+    {
+      "flowId": "F12",
+      "step": 1,
+      "sourceId": "U07",
+      "nodeId": "29:5374",
+      "anchorId": "35:11733",
+      "kind": "explicit-reuse",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=29-5374"
+    },
+    {
+      "flowId": "F12",
+      "step": 3,
+      "sourceId": "R33",
+      "nodeId": "29:4858",
+      "anchorId": "35:11746",
+      "kind": "screen",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=29-4858"
+    },
+    {
+      "flowId": "F12",
+      "step": 3,
+      "sourceId": "R35",
+      "nodeId": "29:4926",
+      "anchorId": "35:11749",
+      "kind": "screen",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=29-4926"
+    },
+    {
+      "flowId": "F13",
+      "step": 0,
+      "sourceId": "U03",
+      "nodeId": "29:5493",
+      "anchorId": "35:11768",
+      "kind": "screen",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=29-5493"
+    },
+    {
+      "flowId": "F13",
+      "step": 2,
+      "sourceId": "U04",
+      "nodeId": "29:5533",
+      "anchorId": "35:11780",
+      "kind": "screen",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=29-5533"
+    },
+    {
+      "flowId": "F13",
+      "step": 3,
+      "sourceId": "U02",
+      "nodeId": "29:5463",
+      "anchorId": "35:11788",
+      "kind": "screen",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=29-5463"
+    },
+    {
+      "flowId": "F13",
+      "step": 4,
+      "sourceId": "U01",
+      "nodeId": "29:5410",
+      "anchorId": "35:11795",
+      "kind": "screen",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=29-5410"
+    },
+    {
+      "flowId": "F13",
+      "step": 5,
+      "sourceId": "U05",
+      "nodeId": "29:5226",
+      "anchorId": "35:11802",
+      "kind": "explicit-reuse",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=29-5226"
+    },
+    {
+      "flowId": "F13",
+      "step": 5,
+      "sourceId": "U06",
+      "nodeId": "29:5192",
+      "anchorId": "35:11805",
+      "kind": "explicit-reuse",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=29-5192"
+    },
+    {
+      "flowId": "F14",
+      "step": 0,
+      "sourceId": "R01",
+      "nodeId": "26:68",
+      "anchorId": "35:11819",
+      "kind": "screen",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=26-68"
+    },
+    {
+      "flowId": "F14",
+      "step": 0,
+      "sourceId": "R02",
+      "nodeId": "29:347",
+      "anchorId": "35:11822",
+      "kind": "screen",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=29-347"
+    },
+    {
+      "flowId": "F14",
+      "step": 0,
+      "sourceId": "R03",
+      "nodeId": "29:1432",
+      "anchorId": "35:11825",
+      "kind": "screen",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=29-1432"
+    },
+    {
+      "flowId": "F14",
+      "step": 0,
+      "sourceId": "R04",
+      "nodeId": "28:9818",
+      "anchorId": "35:11828",
+      "kind": "screen",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=28-9818"
+    },
+    {
+      "flowId": "F14",
+      "step": 0,
+      "sourceId": "R05",
+      "nodeId": "26:9103",
+      "anchorId": "35:11831",
+      "kind": "screen",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=26-9103"
+    },
+    {
+      "flowId": "F14",
+      "step": 0,
+      "sourceId": "R06",
+      "nodeId": "27:19087",
+      "anchorId": "35:11834",
+      "kind": "screen",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=27-19087"
+    },
+    {
+      "flowId": "F14",
+      "step": 0,
+      "sourceId": "R07",
+      "nodeId": "28:10158",
+      "anchorId": "35:11837",
+      "kind": "screen",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=28-10158"
+    },
+    {
+      "flowId": "F14",
+      "step": 0,
+      "sourceId": "R08",
+      "nodeId": "28:12179",
+      "anchorId": "35:11840",
+      "kind": "screen",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=28-12179"
+    },
+    {
+      "flowId": "F14",
+      "step": 0,
+      "sourceId": "R09",
+      "nodeId": "28:12749",
+      "anchorId": "35:11843",
+      "kind": "screen",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=28-12749"
+    },
+    {
+      "flowId": "F14",
+      "step": 0,
+      "sourceId": "R10",
+      "nodeId": "27:19537",
+      "anchorId": "35:11846",
+      "kind": "screen",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=27-19537"
+    },
+    {
+      "flowId": "F14",
+      "step": 0,
+      "sourceId": "R11",
+      "nodeId": "27:19997",
+      "anchorId": "35:11849",
+      "kind": "screen",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=27-19997"
+    },
+    {
+      "flowId": "F14",
+      "step": 0,
+      "sourceId": "R12",
+      "nodeId": "28:10863",
+      "anchorId": "35:11852",
+      "kind": "screen",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=28-10863"
+    },
+    {
+      "flowId": "F14",
+      "step": 0,
+      "sourceId": "R13",
+      "nodeId": "28:11253",
+      "anchorId": "35:11855",
+      "kind": "screen",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=28-11253"
+    },
+    {
+      "flowId": "F14",
+      "step": 0,
+      "sourceId": "R14",
+      "nodeId": "27:20602",
+      "anchorId": "35:11858",
+      "kind": "screen",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=27-20602"
+    },
+    {
+      "flowId": "F14",
+      "step": 0,
+      "sourceId": "R15",
+      "nodeId": "29:2487",
+      "anchorId": "35:11861",
+      "kind": "screen",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=29-2487"
+    },
+    {
+      "flowId": "F14",
+      "step": 0,
+      "sourceId": "R16",
+      "nodeId": "29:3112",
+      "anchorId": "35:11864",
+      "kind": "screen",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=29-3112"
+    },
+    {
+      "flowId": "F14",
+      "step": 0,
+      "sourceId": "R17",
+      "nodeId": "29:3652",
+      "anchorId": "35:11867",
+      "kind": "screen",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=29-3652"
+    },
+    {
+      "flowId": "F14",
+      "step": 0,
+      "sourceId": "R18",
+      "nodeId": "29:4495",
+      "anchorId": "35:11870",
+      "kind": "screen",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=29-4495"
+    },
+    {
+      "flowId": "F14",
+      "step": 1,
+      "sourceId": "R01",
+      "nodeId": "26:68",
+      "anchorId": "35:11877",
+      "kind": "screen",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=26-68"
+    },
+    {
+      "flowId": "F14",
+      "step": 1,
+      "sourceId": "R04",
+      "nodeId": "28:9818",
+      "anchorId": "35:11880",
+      "kind": "screen",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=28-9818"
+    },
+    {
+      "flowId": "F14",
+      "step": 1,
+      "sourceId": "R09",
+      "nodeId": "28:12749",
+      "anchorId": "35:11883",
+      "kind": "screen",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=28-12749"
+    },
+    {
+      "flowId": "F14",
+      "step": 1,
+      "sourceId": "R02",
+      "nodeId": "29:347",
+      "anchorId": "35:11886",
+      "kind": "screen",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=29-347"
+    }
+  ],
+  "unresolved": [],
+  "counts": {
+    "flows": 14,
+    "originalSteps": 74,
+    "referenceLinks": 62,
+    "unresolved": 0
+  },
+  "runtimeVerified": false
+}

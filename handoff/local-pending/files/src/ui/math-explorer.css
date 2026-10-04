@@ -1,0 +1,574 @@
+.math-explorer {
+  --color-math-curve: var(--primitive-common-warning-700);
+  --color-math-point: var(--color-math-curve);
+  --color-math-tangent: var(--primitive-common-info-700);
+  --color-math-normal: var(--primitive-common-success-700);
+  --color-math-binormal: var(--primitive-common-error-700);
+  min-width: 0;
+  container-name: math-observation;
+  container-type: inline-size;
+}
+.math-explorer > .ui-field:first-child {
+  margin-bottom: var(--space-5);
+  max-width: 30rem;
+}
+.math-intro {
+  margin-block: 0 var(--space-4);
+}
+.math-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(16rem, 18rem);
+  gap: var(--space-5);
+  align-items: start;
+  margin-block-end: var(--space-4);
+}
+.math-visual,
+.math-controls {
+  min-width: 0;
+}
+.math-controls {
+  border-inline-start: 1px solid var(--color-border);
+  padding-inline-start: var(--space-5);
+}
+.math-plot-footer,
+.math-view-actions,
+.math-legend {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.math-plot-footer {
+  justify-content: space-between;
+}
+.math-legend {
+  font-size: var(--type-caption-size);
+}
+.math-legend span {
+  border-bottom: 2px solid currentColor;
+}
+.math-vector-T {
+  color: var(--color-math-tangent);
+}
+.math-point {
+  color: var(--color-math-point);
+}
+.math-curve {
+  color: var(--color-math-curve);
+}
+.math-vector-N {
+  color: var(--color-math-normal);
+}
+.math-vector-B {
+  color: var(--color-math-binormal);
+}
+.math-start,
+.math-interval {
+  display: flex;
+  align-items: end;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-block: var(--space-4);
+}
+.math-start .ui-field,
+.math-interval .ui-field {
+  flex: 1;
+  min-inline-size: min(100%, 8rem);
+}
+.math-inputs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+  gap: var(--space-4);
+}
+.math-inputs input {
+  font-family: var(--font-mono);
+}
+.math-help {
+  font-size: var(--type-caption-size);
+}
+.math-equation {
+  overflow-x: auto;
+  max-width: 100%;
+  padding-block: var(--space-3);
+}
+.math-plot {
+  position: relative;
+  width: 100%;
+  height: clamp(320px, calc(100dvh - 420px), 460px);
+  min-width: 0;
+  border-block: 1px solid var(--color-border);
+  /* The renderer owns gestures here; the rest of the page remains scrollable. */
+  touch-action: none;
+  overscroll-behavior: contain;
+}
+/* GeoGebra's keyboard camera helpers must become usable when focused.
+   Their unfocused 1px boxes must not intercept a graph touch. */
+.math-geogebra-host input.slider.accessibilityControl {
+  pointer-events: none;
+  width: 0 !important;
+  height: 0 !important;
+}
+.math-geogebra-host input.slider.accessibilityControl:focus {
+  box-sizing: border-box;
+  pointer-events: auto;
+  position: absolute !important;
+  inset-inline-start: var(--space-4);
+  inset-block-end: var(--space-4);
+  width: calc(100% - var(--space-4) * 2) !important;
+  height: var(--control-height) !important;
+  opacity: 1 !important;
+  overflow: visible !important;
+  accent-color: var(--color-primary);
+  background: var(--color-surface);
+  outline: var(--focus-width) solid var(--color-focus);
+  outline-offset: var(--focus-offset);
+}
+.math-geogebra-host {
+  position: relative;
+  /* The official injector writes a fixed inline width. Keep the host responsive. */
+  width: 100% !important;
+  height: clamp(320px, calc(100dvh - 420px), 460px) !important;
+  overflow: hidden;
+}
+.math-values {
+  display: grid;
+  gap: var(--space-2);
+  margin-block-start: var(--space-4);
+  border-block-start: 1px solid var(--color-border);
+  padding-block-start: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--type-caption-size);
+}
+.math-values strong {
+  font-family: var(--font-interface);
+}
+.math-values summary {
+  cursor: pointer;
+  font-family: var(--font-interface);
+}
+.math-values p {
+  margin-block: var(--space-2);
+  overflow-wrap: anywhere;
+}
+.math-sliders {
+  display: grid;
+  gap: var(--space-3);
+  margin-block: var(--space-3) var(--space-4);
+}
+.math-sliders > button {
+  justify-self: start;
+}
+.math-slider {
+  min-inline-size: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-2);
+}
+.math-slider-heading,
+.math-slider-limits {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+.math-slider-heading {
+  flex-wrap: wrap;
+  align-items: center;
+}
+.math-slider-heading .ui-field {
+  inline-size: min(100%, 7rem);
+}
+.math-slider-heading .ui-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+.math-slider-heading .ui-input {
+  font-family: var(--font-mono);
+  text-align: end;
+}
+.math-slider-limits {
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+  font-size: var(--type-caption-size);
+}
+.math-slider input[type='range'] {
+  width: 100%;
+  min-inline-size: 0;
+  margin: 0;
+  min-height: 44px;
+  accent-color: var(--color-primary);
+}
+@media (min-width: 55rem) {
+  .math-slider input[type='range'] {
+    min-height: 32px;
+  }
+}
+.math-definition {
+  border-block: 1px solid var(--color-border);
+  padding-block: var(--space-3);
+}
+.math-definition summary {
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.math-editor summary {
+  cursor: pointer;
+  padding-block: var(--space-3);
+  min-height: 44px;
+}
+.math-notes {
+  display: grid;
+  gap: var(--space-4);
+  margin-block: var(--space-5);
+}
+.math-saved ul {
+  list-style: none;
+  padding: 0;
+}
+.math-saved li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+}
+@media (max-width: 55rem) {
+  .math-workspace {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .math-controls {
+    border-inline-start: 0;
+    padding-inline-start: 0;
+    border-block-start: 1px solid var(--color-border);
+    padding-block-start: var(--space-3);
+  }
+  .math-sliders {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+  .math-sliders > :first-child,
+  .math-sliders > button {
+    grid-column: 1 / -1;
+  }
+}
+@media (max-width: 40rem) {
+  .math-plot {
+    height: 320px;
+  }
+  .math-geogebra-host {
+    height: 320px !important;
+  }
+  .math-sliders {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .math-interval {
+    align-items: start;
+  }
+}
+
+.math-flat-scaffold {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.math-geogebra-host input.slider.accessibilityControl:focus[min='-90'] {
+  inset-block-end: calc(var(--space-4) * 2 + var(--control-height));
+}
+
+:root[data-theme='dark'] .math-explorer {
+  --color-math-curve: var(--primitive-common-warning-500);
+  --color-math-point: var(--color-math-curve);
+  --color-math-tangent: var(--primitive-common-info-100);
+  --color-math-normal: var(--primitive-common-success-500);
+  --color-math-binormal: var(--primitive-common-error-100);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']):not([data-theme='dark']) .math-explorer {
+    --color-math-curve: var(--primitive-common-warning-500);
+    --color-math-point: var(--color-math-curve);
+    --color-math-tangent: var(--primitive-common-info-100);
+    --color-math-normal: var(--primitive-common-success-500);
+    --color-math-binormal: var(--primitive-common-error-100);
+  }
+}
+
+/* Native keyboard helpers live inside a zero-sized, absolutely placed parent. */
+.math-geogebra-host .accessibilityView {
+  position: static !important;
+}
+
+.math-graph-symbol-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  white-space: nowrap;
+  /* Fixed graph glyph boxes retain the TeX baseline. */
+  line-height: var(--type-math-symbol-line);
+  background: var(--color-surface);
+}
+.math-graph-symbol .katex {
+  /* KaTeX uses the local fixed graph label size. */
+  font-size: var(--type-math-symbol-size);
+}
+
+.math-equation-row + .math-equation-row {
+  margin-top: var(--space-3);
+}
+
+.math-plot-symbols {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.math-plot-symbols > .math-graph-symbol {
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+@container study-content (max-width: 40rem) {
+  .math-workspace {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .math-controls {
+    border-inline-start: 0;
+    padding-inline-start: 0;
+    border-block-start: var(--border-width) solid var(--color-border);
+    padding-block-start: var(--space-3);
+  }
+}
+
+.math-slider-heading {
+  flex-wrap: wrap;
+}
+.math-slider-heading .ui-field {
+  max-inline-size: 100%;
+}
+.math-start .ui-field,
+.math-interval .ui-field {
+  min-inline-size: min(8rem, 100%);
+}
+
+.math-equation {
+  display: block;
+  min-inline-size: 0;
+}
+@container workspace-content (max-width: 40rem) {
+  .math-workspace {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .math-controls {
+    border-inline-start: 0;
+    padding-inline-start: 0;
+    border-block-start: var(--border-width) solid var(--color-border);
+    padding-block-start: var(--space-3);
+  }
+  .math-sliders {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.math-camera-controls {
+  border: 0;
+  padding: 0;
+  margin-inline: 0;
+  display: flex;
+  align-items: end;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-block: var(--space-2) var(--space-3);
+  min-width: 0;
+}
+.math-camera-controls > .ui-field {
+  min-inline-size: min(100%, 11rem);
+  flex: 1;
+  max-inline-size: 16rem;
+}
+.math-camera-turns {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-inline-size: 0;
+  display: flex;
+  gap: var(--space-2);
+}
+.math-camera-turns button {
+  min-inline-size: 44px;
+}
+.math-point-focus-note {
+  margin-block: 0 var(--space-2);
+  color: var(--color-muted);
+  font-size: var(--type-caption-size);
+}
+
+/* Observe the available work surface, including a narrow pane on a wide screen. */
+@container math-observation (max-width: 55rem) {
+  .math-workspace {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .math-controls {
+    border-inline-start: 0;
+    padding-inline-start: 0;
+    border-block-start: var(--border-width) solid var(--color-border);
+    padding-block-start: var(--space-3);
+  }
+}
+
+/* O14: keep the existing parameter–visualization workspace in the top layer.
+   Fullscreen dimensions follow the available viewport and safe areas. */
+.math-graph-dialog {
+  position: static;
+  display: block;
+  inline-size: 100%;
+  max-inline-size: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  color: inherit;
+  background: transparent;
+}
+.math-fullscreen-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-block: var(--space-3);
+}
+.math-graph-options > summary {
+  display: none;
+}
+.is-fullscreen .math-graph-options > summary {
+  display: flex;
+  align-items: center;
+  min-block-size: var(--control-height);
+  cursor: pointer;
+  font-size: var(--type-caption-size);
+}
+.is-fullscreen .math-graph-options {
+  flex: none;
+  max-block-size: 35%;
+  overflow: auto;
+}
+.math-graph-dialog.is-fullscreen {
+  position: fixed;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100dvh;
+  max-block-size: none;
+  overflow: hidden;
+  background: var(--color-surface);
+}
+.math-graph-dialog::backdrop {
+  background: var(--color-overlay);
+}
+.is-fullscreen .math-graph-surface {
+  box-sizing: border-box;
+  block-size: 100%;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  padding: max(var(--space-3), env(safe-area-inset-top)) max(var(--space-3), env(safe-area-inset-right)) max(var(--space-3), env(safe-area-inset-bottom)) max(var(--space-3), env(safe-area-inset-left));
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+.is-fullscreen .math-fullscreen-actions {
+  margin-block: 0 var(--space-3);
+}
+.math-explorer .math-graph-dialog.is-fullscreen .math-workspace {
+  grid-template-columns: minmax(0, 1fr) minmax(14rem, 18rem);
+  grid-template-rows: minmax(0, 1fr);
+  min-block-size: 0;
+  margin: 0;
+  align-items: stretch;
+  overflow: auto;
+}
+.is-fullscreen .math-visual {
+  display: flex;
+  flex-direction: column;
+  min-block-size: 0;
+}
+.is-fullscreen .math-plot,
+.is-fullscreen .math-geogebra-host {
+  flex: 1;
+  /* Renderer hosts fill the remaining graph pane rather than the card height. */
+  height: 100% !important;
+  min-block-size: 0;
+}
+.is-fullscreen .math-geogebra {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-block-size: 0;
+}
+.is-fullscreen .math-controls {
+  overflow: auto;
+}
+@media (max-width: 55rem) {
+  .math-explorer .math-graph-dialog.is-fullscreen .math-workspace {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr) auto;
+    gap: var(--space-3);
+  }
+  .is-fullscreen .math-controls {
+    /* Leave most of the viewport for observation; all controls remain scrollable. */
+    max-block-size: 28dvh;
+  }
+}
+@media (max-height: 32rem) and (min-width: 40rem) {
+  .math-explorer .math-graph-dialog.is-fullscreen .math-workspace {
+    grid-template-columns: minmax(0, 1fr) minmax(14rem, 32%);
+    grid-template-rows: minmax(0, 1fr);
+  }
+  .is-fullscreen .math-controls {
+    max-block-size: none;
+  }
+  .is-fullscreen .math-visual {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: auto auto minmax(0, 1fr);
+  }
+  .is-fullscreen .math-plot-footer {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+  .is-fullscreen .math-graph-options {
+    max-block-size: none;
+    grid-column: 1;
+    grid-row: 2;
+  }
+  .is-fullscreen .math-graph-options:last-child {
+    grid-column: 2;
+  }
+  .is-fullscreen .math-plot,
+  .is-fullscreen .math-geogebra {
+    grid-column: 1 / -1;
+    grid-row: 3;
+  }
+  .is-fullscreen .math-point-focus-note {
+    grid-column: 1 / -1;
+    grid-row: 4;
+  }
+  .is-fullscreen .math-camera-controls {
+    /* Preserve all camera actions in one horizontally scrollable toolbar. */
+    flex-wrap: nowrap;
+    align-items: center;
+    flex: none;
+    overflow: auto;
+  }
+  .is-fullscreen .math-camera-controls > * {
+    flex-shrink: 0;
+  }
+  .is-fullscreen .math-camera-controls > .ui-field {
+    min-inline-size: 11rem;
+  }
+}

@@ -1,0 +1,939 @@
+{
+  "pageId": "7:76",
+  "createdNodeIds": [
+    "74:67333",
+    "74:67334",
+    "74:67335",
+    "74:67336",
+    "74:67338",
+    "74:67339",
+    "74:67341",
+    "74:67342",
+    "74:67343",
+    "74:67350",
+    "74:67351",
+    "74:67352",
+    "74:67359",
+    "74:67360",
+    "74:67361",
+    "74:67368",
+    "74:67369",
+    "74:67370",
+    "74:67371",
+    "74:67372",
+    "74:67377",
+    "74:67378",
+    "74:67380",
+    "74:67381",
+    "74:67383",
+    "74:67384",
+    "74:67386",
+    "74:67387",
+    "74:67388",
+    "74:67389",
+    "74:67390",
+    "74:67391",
+    "74:67393",
+    "74:67394",
+    "74:67396",
+    "74:67397",
+    "74:67399",
+    "74:67400",
+    "74:67402",
+    "74:67403",
+    "74:67404",
+    "74:67405",
+    "74:67407",
+    "74:67408",
+    "74:67409",
+    "74:67410",
+    "74:67412",
+    "74:67413",
+    "74:67419",
+    "74:67420",
+    "74:67421",
+    "74:67422",
+    "74:67423",
+    "74:67428",
+    "74:67429",
+    "74:67430",
+    "74:67437",
+    "74:67438",
+    "74:67439",
+    "74:67444",
+    "74:67445",
+    "74:67447",
+    "74:67448",
+    "74:67449",
+    "74:67456",
+    "74:67457",
+    "74:67459",
+    "74:67460",
+    "74:67462",
+    "74:67463",
+    "74:67464",
+    "74:67465",
+    "74:67466",
+    "74:67467",
+    "74:67468",
+    "74:67473",
+    "74:67474",
+    "74:67476",
+    "74:67477",
+    "74:67479",
+    "74:67480",
+    "74:67482",
+    "74:67483",
+    "74:67484",
+    "74:67485",
+    "74:67486",
+    "74:67487",
+    "74:67488",
+    "74:67493",
+    "74:67494",
+    "74:67496",
+    "74:67497",
+    "74:67499",
+    "74:67500",
+    "74:67502",
+    "74:67503",
+    "74:67504",
+    "74:67505",
+    "74:67506",
+    "74:67507",
+    "74:67509",
+    "74:67510",
+    "74:67511",
+    "74:67518",
+    "74:67519",
+    "74:67521",
+    "74:67522",
+    "74:67524",
+    "74:67525",
+    "74:67531",
+    "74:67532",
+    "74:67533",
+    "74:67534",
+    "74:67536",
+    "74:67537",
+    "74:67539",
+    "74:67540",
+    "74:67541",
+    "74:67546",
+    "74:67547",
+    "74:67549",
+    "74:67550",
+    "74:67552",
+    "74:67553",
+    "74:67554",
+    "74:67561",
+    "74:67562",
+    "74:67563",
+    "74:67566",
+    "74:67567",
+    "74:67573",
+    "74:67574",
+    "74:67575",
+    "74:67576",
+    "74:67577",
+    "74:67582",
+    "74:67583",
+    "74:67584",
+    "74:67589",
+    "74:67590",
+    "74:67596",
+    "74:67597",
+    "74:67598",
+    "74:67599",
+    "74:67607",
+    "74:67608",
+    "74:67609",
+    "74:67610",
+    "74:67611",
+    "74:67612",
+    "74:67617",
+    "74:67618",
+    "74:67619",
+    "74:67620",
+    "74:67622",
+    "74:67623",
+    "74:67625",
+    "74:67626",
+    "74:67634",
+    "74:67635",
+    "74:67636",
+    "74:67637",
+    "74:67642",
+    "74:67643",
+    "74:67644",
+    "74:67645",
+    "74:67646",
+    "74:67647"
+  ],
+  "mutatedNodeIds": [
+    "63:14131",
+    "I74:67336;16:77",
+    "I74:67339;16:77",
+    "I74:67343;16:223",
+    "I74:67352;16:223",
+    "I74:67361;16:223",
+    "I74:67372;16:192",
+    "I74:67378;16:77",
+    "I74:67381;16:77",
+    "I74:67384;16:77",
+    "I74:67391;16:77",
+    "I74:67394;16:77",
+    "I74:67397;16:77",
+    "I74:67400;16:77",
+    "I74:67405;16:77",
+    "I74:67410;16:77",
+    "I74:67413;16:77",
+    "63:14132",
+    "63:13824",
+    "I74:67423;16:161",
+    "I74:67430;16:223",
+    "I74:67439;16:192",
+    "I74:67445;16:77",
+    "I74:67449;16:223",
+    "I74:67457;16:77",
+    "I74:67460;16:77",
+    "I74:67468;16:161",
+    "I74:67474;16:77",
+    "I74:67477;16:77",
+    "I74:67480;16:77",
+    "I74:67488;16:192",
+    "I74:67494;16:77",
+    "I74:67497;16:77",
+    "I74:67500;16:77",
+    "I74:67507;16:77",
+    "I74:67511;16:223",
+    "I74:67519;16:77",
+    "I74:67522;16:77",
+    "63:13825",
+    "63:13721",
+    "I74:67534;16:77",
+    "I74:67537;16:77",
+    "I74:67541;16:192",
+    "I74:67547;16:77",
+    "I74:67550;16:77",
+    "I74:67554;16:223",
+    "I74:67563;16:253",
+    "I74:67567;16:77",
+    "63:13900",
+    "I74:67577;16:192",
+    "I74:67584;16:192",
+    "I74:67590;16:77",
+    "63:13621",
+    "I74:67599;16:77",
+    "63:6066",
+    "62:30427",
+    "I74:67620;16:77",
+    "I74:67623;16:77",
+    "I74:67626;16:77",
+    "63:3979",
+    "63:13415"
+  ],
+  "results": [
+    {
+      "key": "R29",
+      "rootId": "63:14176",
+      "blockId": "74:67333",
+      "controls": [
+        {
+          "id": "74:67336",
+          "label": "예약 복습",
+          "kind": "Button",
+          "phase": "common"
+        },
+        {
+          "id": "74:67339",
+          "label": "무작위 연습",
+          "kind": "Button",
+          "phase": "common"
+        },
+        {
+          "id": "74:67343",
+          "label": "과목",
+          "kind": "Select",
+          "phase": "common"
+        },
+        {
+          "id": "74:67352",
+          "label": "단원",
+          "kind": "Select",
+          "phase": "common"
+        },
+        {
+          "id": "74:67361",
+          "label": "복습할 덱",
+          "kind": "Select",
+          "phase": "common"
+        },
+        {
+          "id": "74:67372",
+          "label": "글",
+          "kind": "Textarea",
+          "phase": "common"
+        },
+        {
+          "id": "74:67378",
+          "label": "메모만 저장하고 다음",
+          "kind": "Button",
+          "phase": "common"
+        },
+        {
+          "id": "74:67381",
+          "label": "건너뛰기",
+          "kind": "Button",
+          "phase": "common"
+        },
+        {
+          "id": "74:67384",
+          "label": "설명 확인하고 평가",
+          "kind": "Button",
+          "phase": "reveal-button"
+        },
+        {
+          "id": "74:67391",
+          "label": "다시",
+          "kind": "Button",
+          "phase": "revealed"
+        },
+        {
+          "id": "74:67394",
+          "label": "어려움",
+          "kind": "Button",
+          "phase": "revealed"
+        },
+        {
+          "id": "74:67397",
+          "label": "알맞음",
+          "kind": "Button",
+          "phase": "revealed"
+        },
+        {
+          "id": "74:67400",
+          "label": "쉬움",
+          "kind": "Button",
+          "phase": "revealed"
+        },
+        {
+          "id": "74:67405",
+          "label": "마지막 평가 되돌리기",
+          "kind": "Button",
+          "phase": "last-review"
+        },
+        {
+          "id": "74:67410",
+          "label": "자기 평가 저장 다시 시도",
+          "kind": "Button",
+          "phase": "error"
+        },
+        {
+          "id": "74:67413",
+          "label": "평가 취소하고 초안 유지",
+          "kind": "Button",
+          "phase": "error"
+        }
+      ],
+      "phases": [
+        {
+          "id": "74:67335",
+          "phase": "common"
+        },
+        {
+          "id": "74:67338",
+          "phase": "common"
+        },
+        {
+          "id": "74:67341",
+          "phase": "common"
+        },
+        {
+          "id": "74:67350",
+          "phase": "common"
+        },
+        {
+          "id": "74:67359",
+          "phase": "common"
+        },
+        {
+          "id": "74:67368",
+          "phase": "common"
+        },
+        {
+          "id": "74:67370",
+          "phase": "common"
+        },
+        {
+          "id": "74:67377",
+          "phase": "common"
+        },
+        {
+          "id": "74:67380",
+          "phase": "common"
+        },
+        {
+          "id": "74:67383",
+          "phase": "reveal-button"
+        },
+        {
+          "id": "74:67386",
+          "phase": "revealed"
+        },
+        {
+          "id": "74:67388",
+          "phase": "revealed"
+        },
+        {
+          "id": "74:67390",
+          "phase": "revealed"
+        },
+        {
+          "id": "74:67393",
+          "phase": "revealed"
+        },
+        {
+          "id": "74:67396",
+          "phase": "revealed"
+        },
+        {
+          "id": "74:67399",
+          "phase": "revealed"
+        },
+        {
+          "id": "74:67402",
+          "phase": "pending"
+        },
+        {
+          "id": "74:67404",
+          "phase": "last-review"
+        },
+        {
+          "id": "74:67407",
+          "phase": "undone"
+        },
+        {
+          "id": "74:67409",
+          "phase": "error"
+        },
+        {
+          "id": "74:67412",
+          "phase": "error"
+        }
+      ],
+      "preservedHiddenNodeIds": [
+        "63:14132"
+      ],
+      "source": "src/ui/topic-recall.tsx; src/ui/recall-decks.tsx; src/domain/recall-scheduler.ts"
+    },
+    {
+      "key": "R25",
+      "rootId": "63:13867",
+      "blockId": "74:67419",
+      "controls": [
+        {
+          "id": "74:67423",
+          "label": "예제 제목",
+          "kind": "Input",
+          "phase": "common"
+        },
+        {
+          "id": "74:67430",
+          "label": "언어",
+          "kind": "Select",
+          "phase": "common"
+        },
+        {
+          "id": "74:67439",
+          "label": "소스 코드",
+          "kind": "Textarea",
+          "phase": "common"
+        },
+        {
+          "id": "74:67445",
+          "label": "시작 코드 넣기",
+          "kind": "Button",
+          "phase": "common"
+        },
+        {
+          "id": "74:67449",
+          "label": "실행 방식",
+          "kind": "Select",
+          "phase": "common"
+        },
+        {
+          "id": "74:67457",
+          "label": "실행",
+          "kind": "Button",
+          "phase": "idle"
+        },
+        {
+          "id": "74:67460",
+          "label": "입력 없이 실행",
+          "kind": "Button",
+          "phase": "idle"
+        },
+        {
+          "id": "74:67468",
+          "label": "터미널 입력",
+          "kind": "Input",
+          "phase": "terminal"
+        },
+        {
+          "id": "74:67474",
+          "label": "입력 보내기",
+          "kind": "Button",
+          "phase": "terminal"
+        },
+        {
+          "id": "74:67477",
+          "label": "입력 끝내기 (EOF)",
+          "kind": "Button",
+          "phase": "terminal"
+        },
+        {
+          "id": "74:67480",
+          "label": "중지",
+          "kind": "Button",
+          "phase": "terminal"
+        },
+        {
+          "id": "74:67488",
+          "label": "내용·설명",
+          "kind": "Textarea",
+          "phase": "common"
+        },
+        {
+          "id": "74:67494",
+          "label": "파일로 보관",
+          "kind": "Button",
+          "phase": "common"
+        },
+        {
+          "id": "74:67497",
+          "label": "지금 저장",
+          "kind": "Button",
+          "phase": "common"
+        },
+        {
+          "id": "74:67500",
+          "label": "사본 만들기",
+          "kind": "Button",
+          "phase": "common"
+        },
+        {
+          "id": "74:67505",
+          "label": "비교 판정",
+          "kind": "Link",
+          "phase": "common"
+        },
+        {
+          "id": "74:67507",
+          "label": "공부 주제 연결",
+          "kind": "Button",
+          "phase": "common"
+        },
+        {
+          "id": "74:67511",
+          "label": "코드 예제의 주제",
+          "kind": "Select",
+          "phase": "link-edit"
+        },
+        {
+          "id": "74:67519",
+          "label": "주제 연결 저장",
+          "kind": "Button",
+          "phase": "link-edit"
+        },
+        {
+          "id": "74:67522",
+          "label": "취소",
+          "kind": "Button",
+          "phase": "link-edit"
+        }
+      ],
+      "phases": [
+        {
+          "id": "74:67421",
+          "phase": "common"
+        },
+        {
+          "id": "74:67428",
+          "phase": "common"
+        },
+        {
+          "id": "74:67437",
+          "phase": "common"
+        },
+        {
+          "id": "74:67444",
+          "phase": "common"
+        },
+        {
+          "id": "74:67447",
+          "phase": "common"
+        },
+        {
+          "id": "74:67456",
+          "phase": "idle"
+        },
+        {
+          "id": "74:67459",
+          "phase": "idle"
+        },
+        {
+          "id": "74:67462",
+          "phase": "terminal"
+        },
+        {
+          "id": "74:67464",
+          "phase": "terminal"
+        },
+        {
+          "id": "74:67466",
+          "phase": "terminal"
+        },
+        {
+          "id": "74:67473",
+          "phase": "terminal"
+        },
+        {
+          "id": "74:67476",
+          "phase": "terminal"
+        },
+        {
+          "id": "74:67479",
+          "phase": "terminal"
+        },
+        {
+          "id": "74:67482",
+          "phase": "result"
+        },
+        {
+          "id": "74:67484",
+          "phase": "result"
+        },
+        {
+          "id": "74:67486",
+          "phase": "common"
+        },
+        {
+          "id": "74:67493",
+          "phase": "common"
+        },
+        {
+          "id": "74:67496",
+          "phase": "common"
+        },
+        {
+          "id": "74:67499",
+          "phase": "common"
+        },
+        {
+          "id": "74:67502",
+          "phase": "common"
+        },
+        {
+          "id": "74:67504",
+          "phase": "common"
+        },
+        {
+          "id": "74:67506",
+          "phase": "common"
+        },
+        {
+          "id": "74:67509",
+          "phase": "link-edit"
+        },
+        {
+          "id": "74:67518",
+          "phase": "link-edit"
+        },
+        {
+          "id": "74:67521",
+          "phase": "link-edit"
+        },
+        {
+          "id": "74:67524",
+          "phase": "error"
+        }
+      ],
+      "preservedHiddenNodeIds": [
+        "63:13825"
+      ],
+      "source": "src/ui/code-practice.tsx; src/ui/learning-links.tsx: CodeTopicLinkEditor"
+    },
+    {
+      "key": "R23",
+      "rootId": "63:13788",
+      "blockId": "74:67531",
+      "controls": [
+        {
+          "id": "74:67534",
+          "label": "문서·사진·자막 가져오기",
+          "kind": "Button",
+          "phase": "common"
+        },
+        {
+          "id": "74:67537",
+          "label": "전사문 파일 가져오기",
+          "kind": "Button",
+          "phase": "common"
+        },
+        {
+          "id": "74:67541",
+          "label": "강의 내용·필기",
+          "kind": "Textarea",
+          "phase": "common"
+        },
+        {
+          "id": "74:67547",
+          "label": "요약과 카드 만들기",
+          "kind": "Button",
+          "phase": "common"
+        },
+        {
+          "id": "74:67550",
+          "label": "자료 저장",
+          "kind": "Button",
+          "phase": "common"
+        },
+        {
+          "id": "74:67554",
+          "label": "암기 항목을 넣을 주제",
+          "kind": "Select",
+          "phase": "common"
+        },
+        {
+          "id": "74:67563",
+          "label": "질문과 답을 원자료와 대조했어요",
+          "kind": "Checkbox",
+          "phase": "common"
+        },
+        {
+          "id": "74:67567",
+          "label": "암기 항목으로 등록",
+          "kind": "Button",
+          "phase": "common"
+        }
+      ],
+      "phases": [
+        {
+          "id": "74:67533",
+          "phase": "common"
+        },
+        {
+          "id": "74:67536",
+          "phase": "common"
+        },
+        {
+          "id": "74:67539",
+          "phase": "common"
+        },
+        {
+          "id": "74:67546",
+          "phase": "common"
+        },
+        {
+          "id": "74:67549",
+          "phase": "common"
+        },
+        {
+          "id": "74:67552",
+          "phase": "common"
+        },
+        {
+          "id": "74:67561",
+          "phase": "common"
+        },
+        {
+          "id": "74:67566",
+          "phase": "common"
+        }
+      ],
+      "preservedHiddenNodeIds": [],
+      "source": "src/ui/study-materials.tsx; src/ui/material-sources.tsx; src/ui/learning-links.tsx: UseMaterialCard"
+    },
+    {
+      "key": "R26",
+      "rootId": "63:13941",
+      "blockId": "74:67573",
+      "controls": [
+        {
+          "id": "74:67577",
+          "label": "막힌 곳",
+          "kind": "Textarea",
+          "phase": "common"
+        },
+        {
+          "id": "74:67584",
+          "label": "다음에 해 볼 것",
+          "kind": "Textarea",
+          "phase": "common"
+        },
+        {
+          "id": "74:67590",
+          "label": "연습 기록 남기기",
+          "kind": "Button",
+          "phase": "common"
+        }
+      ],
+      "phases": [
+        {
+          "id": "74:67575",
+          "phase": "common"
+        },
+        {
+          "id": "74:67582",
+          "phase": "common"
+        },
+        {
+          "id": "74:67589",
+          "phase": "common"
+        }
+      ],
+      "preservedHiddenNodeIds": [],
+      "source": "src/ui/exam-practice.tsx:373-378"
+    },
+    {
+      "key": "R22",
+      "rootId": "63:13671",
+      "blockId": "74:67596",
+      "controls": [
+        {
+          "id": "74:67599",
+          "label": "이 답안으로 수행 결과 남기기",
+          "kind": "Button",
+          "phase": "common"
+        }
+      ],
+      "phases": [
+        {
+          "id": "74:67598",
+          "phase": "common"
+        }
+      ],
+      "preservedHiddenNodeIds": [],
+      "source": "src/ui/performance-from-source.tsx:45"
+    },
+    {
+      "key": "R15",
+      "rootId": "63:6209",
+      "blockId": "74:67607",
+      "controls": [
+        {
+          "id": "74:67612",
+          "label": "선택한 카드 열기 ↗",
+          "kind": "Link",
+          "phase": "common"
+        }
+      ],
+      "phases": [
+        {
+          "id": "74:67609",
+          "phase": "common"
+        },
+        {
+          "id": "74:67611",
+          "phase": "common"
+        }
+      ],
+      "preservedHiddenNodeIds": [],
+      "source": "src/ui/study-canvas.tsx:1129"
+    },
+    {
+      "key": "O21",
+      "rootId": "62:30466",
+      "blockId": "74:67617",
+      "controls": [
+        {
+          "id": "74:67620",
+          "label": "서버 저장 다시 시도",
+          "kind": "Button",
+          "phase": "common"
+        },
+        {
+          "id": "74:67623",
+          "label": "서버 기록 다시 불러오기",
+          "kind": "Button",
+          "phase": "common"
+        },
+        {
+          "id": "74:67626",
+          "label": "이 기기의 기록·보관본 내려받기",
+          "kind": "Button",
+          "phase": "common"
+        }
+      ],
+      "phases": [
+        {
+          "id": "74:67619",
+          "phase": "common"
+        },
+        {
+          "id": "74:67622",
+          "phase": "common"
+        },
+        {
+          "id": "74:67625",
+          "phase": "common"
+        }
+      ],
+      "preservedHiddenNodeIds": [],
+      "source": "src/ui/personal-space.tsx: saving modal"
+    },
+    {
+      "key": "R02",
+      "rootId": "63:4207",
+      "blockId": "74:67634",
+      "controls": [
+        {
+          "id": "74:67637",
+          "label": "기록",
+          "kind": "Link",
+          "phase": "common"
+        }
+      ],
+      "phases": [
+        {
+          "id": "74:67636",
+          "phase": "common"
+        }
+      ],
+      "preservedHiddenNodeIds": [],
+      "source": "src/App.tsx: navItems / NavigationBar"
+    },
+    {
+      "key": "R19",
+      "rootId": "63:13467",
+      "blockId": "74:67642",
+      "controls": [
+        {
+          "id": "74:67647",
+          "label": "비교 판정",
+          "kind": "Link",
+          "phase": "common"
+        }
+      ],
+      "phases": [
+        {
+          "id": "74:67644",
+          "phase": "common"
+        },
+        {
+          "id": "74:67646",
+          "phase": "common"
+        }
+      ],
+      "preservedHiddenNodeIds": [],
+      "source": "src/App.tsx: subject nodes / topic href"
+    }
+  ],
+  "counts": {
+    "targets": 9,
+    "created": 168,
+    "mutated": 61
+  },
+  "runtimeVerified": false
+}

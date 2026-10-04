@@ -1,0 +1,173 @@
+{
+  "status": "created",
+  "createdNodeIds": [],
+  "mutatedNodeIds": [],
+  "createdVariableIds": [],
+  "registryMap": {
+    "SegmentedControl": {
+      "id": "UI09",
+      "name": "SegmentedControl",
+      "source": "src/ui/index.tsx",
+      "role": "표시 방식 전환",
+      "ownerId": "17:95",
+      "ownerType": "COMPONENT_SET",
+      "defaultComponentId": "17:81",
+      "variantIds": [
+        "17:81",
+        "17:88"
+      ],
+      "propertyIds": {
+        "Item 1": "Item 1#17:0",
+        "Item 2": "Item 2#17:3",
+        "Item 3": "Item 3#17:6"
+      },
+      "representation": "Existing source-mapped component reused; consult original property definitions."
+    },
+    "Card": {
+      "id": "UI10",
+      "name": "Card",
+      "source": "src/ui/index.tsx",
+      "role": "관련 내용 묶음",
+      "ownerId": "17:96",
+      "ownerType": "COMPONENT",
+      "defaultComponentId": "17:96",
+      "variantIds": [
+        "17:96"
+      ],
+      "propertyIds": {
+        "Title": "Title#17:9",
+        "Body": "Body#17:10",
+        "Detail": "Detail#17:11"
+      },
+      "representation": "Existing source-mapped component reused; consult original property definitions."
+    },
+    "ListItem": {
+      "id": "UI11",
+      "name": "ListItem",
+      "source": "src/ui/index.tsx",
+      "role": "의미 있는 목록 한 행",
+      "ownerId": "17:101",
+      "ownerType": "COMPONENT",
+      "defaultComponentId": "17:101",
+      "variantIds": [
+        "17:101"
+      ],
+      "propertyIds": {
+        "Title": "Title#17:12",
+        "Detail": "Detail#17:13"
+      },
+      "representation": "Existing source-mapped component reused; consult original property definitions."
+    },
+    "Modal": {
+      "id": "UI12",
+      "name": "Modal",
+      "source": "src/ui/index.tsx",
+      "role": "집중 대화상자",
+      "ownerId": "17:106",
+      "ownerType": "COMPONENT",
+      "defaultComponentId": "17:106",
+      "variantIds": [
+        "17:106"
+      ],
+      "propertyIds": {
+        "Title": "Title#17:14",
+        "Body": "Body#17:15"
+      },
+      "representation": "Existing source-mapped component reused; consult original property definitions."
+    },
+    "Sheet": {
+      "id": "UI13",
+      "name": "Sheet",
+      "source": "src/ui/index.tsx",
+      "role": "넓은 보조 작업면",
+      "ownerId": "17:114",
+      "ownerType": "COMPONENT",
+      "defaultComponentId": "17:114",
+      "variantIds": [
+        "17:114"
+      ],
+      "propertyIds": {
+        "Title": "Title#17:16",
+        "Body": "Body#17:17"
+      },
+      "representation": "Existing source-mapped component reused; consult original property definitions."
+    },
+    "Toast": {
+      "id": "UI14",
+      "name": "Toast",
+      "source": "src/ui/index.tsx",
+      "role": "일시적 사실 알림",
+      "ownerId": "17:130",
+      "ownerType": "COMPONENT_SET",
+      "defaultComponentId": "17:124",
+      "variantIds": [
+        "17:124",
+        "17:127"
+      ],
+      "propertyIds": {
+        "Message": "Message#17:18",
+        "CloseLabel": "CloseLabel#17:21",
+        "UndoLabel": "UndoLabel#17:24"
+      },
+      "representation": "Existing source-mapped component reused; consult original property definitions."
+    },
+    "Breadcrumb": {
+      "id": "UI15",
+      "name": "Breadcrumb",
+      "source": "src/ui/index.tsx",
+      "role": "현재 위치와 상위 경로",
+      "ownerId": "17:131",
+      "ownerType": "COMPONENT",
+      "defaultComponentId": "17:131",
+      "variantIds": [
+        "17:131"
+      ],
+      "propertyIds": {
+        "Crumb 0": "Crumb 0#17:27",
+        "Crumb 1": "Crumb 1#17:28",
+        "Crumb 2": "Crumb 2#17:29"
+      },
+      "representation": "Existing source-mapped component reused; consult original property definitions."
+    },
+    "Search": {
+      "id": "UI16",
+      "name": "Search",
+      "source": "src/ui/index.tsx",
+      "role": "검색어 입력과 검색 전달",
+      "ownerId": "17:169",
+      "ownerType": "COMPONENT_SET",
+      "defaultComponentId": "17:137",
+      "variantIds": [
+        "17:137",
+        "17:145",
+        "17:153",
+        "17:161"
+      ],
+      "propertyIds": {
+        "Label": "Label#17:30",
+        "Placeholder": "Placeholder#17:35",
+        "Hint": "Hint#17:40",
+        "Value": "Value#17:45",
+        "Error": "Error#17:50"
+      },
+      "representation": "Existing source-mapped component reused; consult original property definitions."
+    }
+  },
+  "icons": {
+    "arrow": "15:73",
+    "search": "15:75",
+    "check": "16:70",
+    "close": "16:72",
+    "more": "16:74"
+  },
+  "sharedWorldAssetId": "10:68",
+  "review": null,
+  "counts": {
+    "registry": 8,
+    "common": 8,
+    "variants": 13
+  },
+  "warnings": [],
+  "finalizedReview": false,
+  "scope": "Native component/state and source-contract representation; root validates rendered review and records downstream prototype behavior."
+}

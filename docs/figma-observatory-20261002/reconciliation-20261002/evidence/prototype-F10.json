@@ -1,0 +1,917 @@
+{
+  "pageId": "7:76",
+  "createdNodeIds": {
+    "encoding": "figma-factorized-id-ranges-v1",
+    "count": 122,
+    "ranges": [
+      [
+        "68:",
+        [
+          [
+            74270,
+            74271
+          ],
+          [
+            74508,
+            74523
+          ],
+          [
+            74610,
+            74625
+          ],
+          [
+            74856,
+            74871
+          ],
+          [
+            75102,
+            75117
+          ],
+          [
+            75348,
+            75363
+          ],
+          [
+            75594,
+            75598
+          ],
+          [
+            75622,
+            75632
+          ],
+          [
+            75863,
+            75867
+          ],
+          [
+            75892,
+            75901
+          ],
+          75905,
+          75909,
+          75913,
+          75917,
+          75920,
+          75923,
+          75926,
+          75929,
+          75932
+        ]
+      ]
+    ],
+    "literal": [],
+    "products": []
+  },
+  "mutatedNodeIds": {
+    "encoding": "figma-factorized-id-ranges-v1",
+    "count": 24,
+    "ranges": [
+      [
+        "68:",
+        [
+          75901,
+          75905,
+          75909,
+          75913,
+          75917,
+          75920,
+          75923,
+          75926,
+          75929,
+          75932
+        ]
+      ],
+      [
+        "7:",
+        [
+          76
+        ]
+      ]
+    ],
+    "literal": [],
+    "products": [
+      {
+        "prefixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 1,
+          "ranges": [
+            [
+              "I68:",
+              [
+                74271
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": []
+        },
+        "suffixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 2,
+          "ranges": [
+            [
+              "63:",
+              [
+                4274,
+                4472
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": []
+        }
+      },
+      {
+        "prefixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 1,
+          "ranges": [
+            [
+              "I68:",
+              [
+                74523
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": []
+        },
+        "suffixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 4,
+          "ranges": [
+            [
+              "62:",
+              [
+                30191,
+                30232
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": [
+            {
+              "prefixes": {
+                "encoding": "figma-factorized-id-ranges-v1",
+                "count": 1,
+                "ranges": [
+                  [
+                    "62:",
+                    [
+                      30232
+                    ]
+                  ]
+                ],
+                "literal": [],
+                "products": []
+              },
+              "suffixes": {
+                "encoding": "figma-factorized-id-ranges-v1",
+                "count": 2,
+                "ranges": [
+                  [
+                    "53:",
+                    [
+                      [
+                        13182,
+                        13183
+                      ]
+                    ]
+                  ]
+                ],
+                "literal": [],
+                "products": []
+              }
+            }
+          ]
+        }
+      },
+      {
+        "prefixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 1,
+          "ranges": [
+            [
+              "I68:",
+              [
+                74625
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": []
+        },
+        "suffixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 2,
+          "ranges": [
+            [
+              "63:",
+              [
+                4304,
+                4472
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": []
+        }
+      },
+      {
+        "prefixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 1,
+          "ranges": [
+            [
+              "I68:",
+              [
+                74871
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": []
+        },
+        "suffixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 2,
+          "ranges": [
+            [
+              "63:",
+              [
+                4415,
+                4472
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": []
+        }
+      },
+      {
+        "prefixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 3,
+          "ranges": [
+            [
+              "I68:",
+              [
+                75117,
+                75363,
+                75632
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": []
+        },
+        "suffixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 1,
+          "ranges": [
+            [
+              "63:",
+              [
+                4472
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": []
+        }
+      }
+    ]
+  },
+  "topLevelNodeIds": [
+    "68:74270",
+    "68:74522",
+    "68:74624",
+    "68:74870",
+    "68:75116",
+    "68:75362",
+    "68:75631"
+  ],
+  "instanceDescendantCounts": {
+    "encoding": "columnar-v1",
+    "columns": [
+      "id",
+      "count"
+    ],
+    "rows": [
+      [
+        "68:74271",
+        230
+      ],
+      [
+        "68:74523",
+        80
+      ],
+      [
+        "68:74625",
+        230
+      ],
+      [
+        "68:74871",
+        230
+      ],
+      [
+        "68:75117",
+        230
+      ],
+      [
+        "68:75363",
+        230
+      ],
+      [
+        "68:75598",
+        23
+      ],
+      [
+        "68:75632",
+        230
+      ],
+      [
+        "68:75867",
+        24
+      ],
+      [
+        "68:75901",
+        1
+      ],
+      [
+        "68:75905",
+        1
+      ],
+      [
+        "68:75909",
+        1
+      ],
+      [
+        "68:75913",
+        1
+      ],
+      [
+        "68:75917",
+        1
+      ],
+      [
+        "68:75920",
+        1
+      ],
+      [
+        "68:75923",
+        1
+      ],
+      [
+        "68:75926",
+        1
+      ],
+      [
+        "68:75929",
+        1
+      ],
+      [
+        "68:75932",
+        1
+      ]
+    ]
+  },
+  "flow": {
+    "id": "F10",
+    "startNodeId": "68:74270",
+    "originalStepCount": 5,
+    "stepNodes": [
+      {
+        "nodeId": "68:74270",
+        "originalIndex": 0,
+        "originalText": "R03"
+      },
+      {
+        "nodeId": "68:74522",
+        "originalIndex": 1,
+        "originalText": "O13"
+      },
+      {
+        "nodeId": "68:74624",
+        "originalIndex": 2,
+        "originalText": "일정 목록/달력"
+      },
+      {
+        "nodeId": "68:74870",
+        "originalIndex": 3,
+        "originalText": "단계별 상태"
+      },
+      {
+        "nodeId": "68:75116",
+        "originalIndex": 4,
+        "originalText": "이력/복원"
+      }
+    ],
+    "edges": {
+      "encoding": "columnar-v1",
+      "columns": [
+        "controlId",
+        "fromFrameId",
+        "toFrameId",
+        "kind",
+        "branch",
+        "expectedReturn",
+        "callerIsHome",
+        "directEntryFallback",
+        "toRouteId",
+        "bindingLocation"
+      ],
+      "rows": [
+        [
+          "68:75901",
+          "68:74270",
+          "68:74522",
+          "NAVIGATE",
+          "primary",
+          false,
+          false,
+          null,
+          "O13",
+          "prototype-panel"
+        ],
+        [
+          "I68:74271;63:4274",
+          "68:74270",
+          "68:74522",
+          "NAVIGATE",
+          "primary",
+          false,
+          false,
+          null,
+          "O13",
+          "screen-instance"
+        ],
+        [
+          "68:75905",
+          "68:74522",
+          "68:74624",
+          "NAVIGATE",
+          "primary",
+          false,
+          false,
+          null,
+          "R03",
+          "prototype-panel"
+        ],
+        [
+          "I68:74523;62:30191",
+          "68:74522",
+          "68:74624",
+          "NAVIGATE",
+          "primary",
+          false,
+          false,
+          null,
+          "R03",
+          "screen-instance"
+        ],
+        [
+          "68:75909",
+          "68:74624",
+          "68:74870",
+          "NAVIGATE",
+          "primary",
+          false,
+          false,
+          null,
+          "R03",
+          "prototype-panel"
+        ],
+        [
+          "I68:74625;63:4304",
+          "68:74624",
+          "68:74870",
+          "NAVIGATE",
+          "primary",
+          false,
+          false,
+          null,
+          "R03",
+          "screen-instance"
+        ],
+        [
+          "68:75913",
+          "68:74870",
+          "68:75116",
+          "NAVIGATE",
+          "primary",
+          false,
+          false,
+          null,
+          "R03",
+          "prototype-panel"
+        ],
+        [
+          "I68:74871;63:4415",
+          "68:74870",
+          "68:75116",
+          "NAVIGATE",
+          "primary",
+          false,
+          false,
+          null,
+          "R03",
+          "screen-instance"
+        ],
+        [
+          "68:75917",
+          "68:75116",
+          "68:74270",
+          "NAVIGATE",
+          "restart",
+          null,
+          null,
+          null,
+          "R03",
+          "prototype-panel"
+        ],
+        [
+          "68:75920",
+          "68:74624",
+          "68:75362",
+          "NAVIGATE",
+          "scenario",
+          null,
+          null,
+          null,
+          "R03",
+          "prototype-panel"
+        ],
+        [
+          "68:75923",
+          "68:75362",
+          "68:74624",
+          "NAVIGATE",
+          "return",
+          true,
+          null,
+          null,
+          "R03",
+          "prototype-panel"
+        ],
+        [
+          "68:75926",
+          "68:74624",
+          "68:75631",
+          "NAVIGATE",
+          "scenario",
+          null,
+          null,
+          null,
+          "R03",
+          "prototype-panel"
+        ],
+        [
+          "68:75929",
+          "68:75631",
+          "68:74624",
+          "NAVIGATE",
+          "return",
+          true,
+          null,
+          null,
+          "R03",
+          "prototype-panel"
+        ],
+        [
+          "68:75932",
+          "68:74522",
+          "68:74270",
+          "NAVIGATE",
+          "actual-caller-return",
+          true,
+          false,
+          null,
+          "R03",
+          "prototype-panel"
+        ],
+        [
+          "I68:74523;62:30232;53:13182",
+          "68:74522",
+          "68:74270",
+          "NAVIGATE",
+          "actual-caller-return",
+          true,
+          false,
+          null,
+          "R03",
+          "screen-instance"
+        ]
+      ]
+    },
+    "screenInstances": {
+      "encoding": "columnar-v1",
+      "columns": [
+        "nodeId",
+        "mainComponentId",
+        "sourceFrameId",
+        "stageKey"
+      ],
+      "rows": [
+        [
+          "68:74271",
+          "63:4473",
+          "29:1432",
+          "F10-S01"
+        ],
+        [
+          "68:74523",
+          "62:30233",
+          "29:4293",
+          "F10-S02"
+        ],
+        [
+          "68:74625",
+          "63:4473",
+          "29:1432",
+          "F10-S03"
+        ],
+        [
+          "68:74871",
+          "63:4473",
+          "29:1432",
+          "F10-S04"
+        ],
+        [
+          "68:75117",
+          "63:4473",
+          "29:1432",
+          "F10-S05"
+        ],
+        [
+          "68:75363",
+          "63:4473",
+          "29:1432",
+          "F10-B1"
+        ],
+        [
+          "68:75632",
+          "63:4473",
+          "29:1432",
+          "F10-B2"
+        ]
+      ]
+    },
+    "taskReturnInstances": {
+      "encoding": "columnar-v1",
+      "columns": [
+        "stageKey",
+        "nodeId",
+        "componentId",
+        "context",
+        "callerStageKey",
+        "studySourceStageKey",
+        "visible",
+        "callerControlId"
+      ],
+      "rows": [
+        [
+          "F10-S01",
+          "I68:74271;63:4472",
+          "53:13179",
+          "none",
+          null,
+          null,
+          false,
+          null
+        ],
+        [
+          "F10-S02",
+          "I68:74523;62:30232",
+          "53:13181",
+          "caller",
+          "F10-S01",
+          null,
+          true,
+          "I68:74523;62:30232;53:13182"
+        ],
+        [
+          "F10-S03",
+          "I68:74625;63:4472",
+          "53:13179",
+          "none",
+          null,
+          null,
+          false,
+          null
+        ],
+        [
+          "F10-S04",
+          "I68:74871;63:4472",
+          "53:13179",
+          "none",
+          null,
+          null,
+          false,
+          null
+        ],
+        [
+          "F10-S05",
+          "I68:75117;63:4472",
+          "53:13179",
+          "none",
+          null,
+          null,
+          false,
+          null
+        ],
+        [
+          "F10-B1",
+          "I68:75363;63:4472",
+          "53:13179",
+          "none",
+          null,
+          null,
+          false,
+          null
+        ],
+        [
+          "F10-B2",
+          "I68:75632;63:4472",
+          "53:13179",
+          "none",
+          null,
+          null,
+          false,
+          null
+        ]
+      ]
+    }
+  },
+  "stageMap": {
+    "encoding": "columnar-v1",
+    "columns": [
+      "key",
+      "id",
+      "instanceId",
+      "actionPanelId",
+      "sourceId",
+      "originalIndex"
+    ],
+    "rows": [
+      [
+        "F10-S01",
+        "68:74270",
+        "68:74271",
+        "68:74513",
+        "R03",
+        0
+      ],
+      [
+        "F10-S02",
+        "68:74522",
+        "68:74523",
+        "68:74615",
+        "O13",
+        1
+      ],
+      [
+        "F10-S03",
+        "68:74624",
+        "68:74625",
+        "68:74861",
+        "R03",
+        2
+      ],
+      [
+        "F10-S04",
+        "68:74870",
+        "68:74871",
+        "68:75107",
+        "R03",
+        3
+      ],
+      [
+        "F10-S05",
+        "68:75116",
+        "68:75117",
+        "68:75353",
+        "R03",
+        4
+      ],
+      [
+        "F10-B1",
+        "68:75362",
+        "68:75363",
+        "68:75622",
+        "R03",
+        null
+      ],
+      [
+        "F10-B2",
+        "68:75631",
+        "68:75632",
+        "68:75892",
+        "R03",
+        null
+      ]
+    ]
+  },
+  "bindings": {
+    "encoding": "columnar-v1",
+    "columns": [
+      "fromKey",
+      "label",
+      "screenControlId",
+      "prototypeControlId",
+      "toKey"
+    ],
+    "rows": [
+      [
+        "F10-S01",
+        "과제 추가",
+        "I68:74271;63:4274",
+        "68:75901",
+        "F10-S02"
+      ],
+      [
+        "F10-S02",
+        "일정 저장",
+        "I68:74523;62:30191",
+        "68:75905",
+        "F10-S03"
+      ],
+      [
+        "F10-S03",
+        "달력",
+        "I68:74625;63:4304",
+        "68:75909",
+        "F10-S04"
+      ],
+      [
+        "F10-S04",
+        "일정 수정",
+        "I68:74871;63:4415",
+        "68:75913",
+        "F10-S05"
+      ],
+      [
+        "F10-S05",
+        "과업 처음부터 다시 보기",
+        null,
+        "68:75917",
+        "F10-S01"
+      ],
+      [
+        "F10-S03",
+        "취소 조건 보기",
+        null,
+        "68:75920",
+        "F10-B1"
+      ],
+      [
+        "F10-B1",
+        "작성한 내용으로 돌아가기",
+        null,
+        "68:75923",
+        "F10-S03"
+      ],
+      [
+        "F10-S03",
+        "실패 조건 보기",
+        null,
+        "68:75926",
+        "F10-B2"
+      ],
+      [
+        "F10-B2",
+        "작성한 내용으로 돌아가기",
+        null,
+        "68:75929",
+        "F10-S03"
+      ],
+      [
+        "F10-S02",
+        "돌아가기 · 일정·과제",
+        "I68:74523;62:30232;53:13182",
+        "68:75932",
+        "F10-S01"
+      ]
+    ]
+  },
+  "missingSourceActions": {
+    "encoding": "columnar-v1",
+    "columns": [
+      "fromKey",
+      "label",
+      "sourceId"
+    ],
+    "rows": []
+  },
+  "counts": {
+    "originalSteps": 5,
+    "stages": 7,
+    "edges": 15,
+    "actualScreenBindings": 5,
+    "prototypePanelBindings": 10,
+    "taskReturnInstances": 7,
+    "visibleTaskReturns": 1,
+    "virtualInstanceDescendants": 1517
+  },
+  "runtimeVerified": false
+}

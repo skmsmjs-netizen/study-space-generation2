@@ -1,0 +1,361 @@
+{
+  "date": "2026-10-02",
+  "scope": "현재 generation2 웹앱 개발을 위한 대표 자료 조사; 인터넷 모든 자료의 전수 수집은 아님",
+  "expected_source_entries": 121,
+  "expected_domains": 20,
+  "request_types": [
+    "대표 사이트",
+    "기준",
+    "표준",
+    "라이브러리",
+    "고급 스킬",
+    "고급 기술"
+  ],
+  "domains": [
+    {
+      "id": "C01",
+      "title": "사용자 연구·문제 정의·사용성 평가",
+      "reports": [
+        "design-ux.md"
+      ],
+      "source_ids": [
+        "D04",
+        "D06",
+        "D07"
+      ],
+      "status": "조사와 선정 근거 작성"
+    },
+    {
+      "id": "C02",
+      "title": "정보 구조·사용 흐름·콘텐츠",
+      "reports": [
+        "design-ux.md"
+      ],
+      "source_ids": [
+        "D05",
+        "D08",
+        "D21",
+        "D22",
+        "D23",
+        "D24",
+        "D25",
+        "D26",
+        "D27",
+        "D28"
+      ],
+      "status": "조사와 선정 근거 작성"
+    },
+    {
+      "id": "C03",
+      "title": "디자인 시스템·토큰·정체성",
+      "reports": [
+        "design-ux.md"
+      ],
+      "source_ids": [
+        "D03",
+        "D09",
+        "D11",
+        "D12",
+        "D13"
+      ],
+      "status": "조사와 선정 근거 작성"
+    },
+    {
+      "id": "C04",
+      "title": "한글 조판·색·반응형",
+      "reports": [
+        "design-ux.md",
+        "frontend-graphics.md"
+      ],
+      "source_ids": [
+        "D18",
+        "D19",
+        "D20",
+        "F04",
+        "F31"
+      ],
+      "status": "조사와 선정 근거 작성"
+    },
+    {
+      "id": "C05",
+      "title": "접근성·키보드·터치·모션",
+      "reports": [
+        "design-ux.md",
+        "quality-storage.md"
+      ],
+      "source_ids": [
+        "D01",
+        "D02",
+        "D10",
+        "F13",
+        "Q04"
+      ],
+      "status": "조사와 선정 근거 작성"
+    },
+    {
+      "id": "C06",
+      "title": "Figma·컴포넌트·코드 연결",
+      "reports": [
+        "design-ux.md"
+      ],
+      "source_ids": [
+        "D13",
+        "D14",
+        "D15",
+        "D16",
+        "D17"
+      ],
+      "status": "조사와 선정 근거 작성"
+    },
+    {
+      "id": "C07",
+      "title": "프론트엔드 구조·웹 플랫폼",
+      "reports": [
+        "frontend-graphics.md"
+      ],
+      "source_ids": [
+        "F01",
+        "F02",
+        "F03",
+        "F04"
+      ],
+      "status": "조사와 선정 근거 작성"
+    },
+    {
+      "id": "C08",
+      "title": "공통 조작·폼·입력",
+      "reports": [
+        "frontend-graphics.md"
+      ],
+      "source_ids": [
+        "F02",
+        "F03",
+        "F04",
+        "F05",
+        "F06",
+        "F07",
+        "F08"
+      ],
+      "status": "조사와 선정 근거 작성"
+    },
+    {
+      "id": "C09",
+      "title": "상태·비동기·복잡한 전이",
+      "reports": [
+        "frontend-graphics.md"
+      ],
+      "source_ids": [
+        "F09",
+        "F11",
+        "F12"
+      ],
+      "status": "조사와 선정 근거 작성"
+    },
+    {
+      "id": "C10",
+      "title": "모션·픽셀 자산·상호작용",
+      "reports": [
+        "frontend-graphics.md"
+      ],
+      "source_ids": [
+        "F13",
+        "F14",
+        "F15",
+        "F16",
+        "F17",
+        "F27",
+        "F28",
+        "F29",
+        "F30",
+        "F31"
+      ],
+      "status": "조사와 선정 근거 작성"
+    },
+    {
+      "id": "C11",
+      "title": "GPU·Canvas·WebGL·WebGPU",
+      "reports": [
+        "frontend-graphics.md"
+      ],
+      "source_ids": [
+        "F18",
+        "F19",
+        "F20",
+        "F21",
+        "F22",
+        "F23",
+        "F24"
+      ],
+      "status": "조사와 선정 근거 작성"
+    },
+    {
+      "id": "C12",
+      "title": "성능·누적·작업 분산·기기",
+      "reports": [
+        "frontend-graphics.md",
+        "quality-storage.md"
+      ],
+      "source_ids": [
+        "F10",
+        "F20",
+        "F21",
+        "F22",
+        "F23",
+        "F24",
+        "F25",
+        "F26",
+        "Q05",
+        "Q06",
+        "Q28"
+      ],
+      "status": "조사와 선정 근거 작성"
+    },
+    {
+      "id": "C13",
+      "title": "통계·과학 시각화",
+      "reports": [
+        "specialized.md"
+      ],
+      "source_ids": [
+        "S01",
+        "S02",
+        "S03",
+        "S04",
+        "S05",
+        "S06"
+      ],
+      "status": "조사와 선정 근거 작성"
+    },
+    {
+      "id": "C14",
+      "title": "그래프·Canvas·필기",
+      "reports": [
+        "specialized.md"
+      ],
+      "source_ids": [
+        "S07",
+        "S08",
+        "S09",
+        "S10",
+        "S11",
+        "S12",
+        "S23"
+      ],
+      "status": "조사와 선정 근거 작성"
+    },
+    {
+      "id": "C15",
+      "title": "수식·수학 인터랙티브",
+      "reports": [
+        "specialized.md"
+      ],
+      "source_ids": [
+        "S13",
+        "S14",
+        "S15",
+        "S16",
+        "S34"
+      ],
+      "status": "조사와 선정 근거 작성"
+    },
+    {
+      "id": "C16",
+      "title": "편집·자료·파일·로컬 실행",
+      "reports": [
+        "specialized.md"
+      ],
+      "source_ids": [
+        "S17",
+        "S18",
+        "S19",
+        "S20",
+        "S21",
+        "S22",
+        "S24"
+      ],
+      "status": "조사와 선정 근거 작성"
+    },
+    {
+      "id": "C17",
+      "title": "저장·오프라인·동기화·복구",
+      "reports": [
+        "quality-storage.md"
+      ],
+      "source_ids": [
+        "Q13",
+        "Q14",
+        "Q15",
+        "Q16",
+        "Q17",
+        "Q18",
+        "Q19",
+        "Q26",
+        "Q27"
+      ],
+      "status": "조사와 선정 근거 작성"
+    },
+    {
+      "id": "C18",
+      "title": "인증·권한·서버·보안",
+      "reports": [
+        "quality-storage.md"
+      ],
+      "source_ids": [
+        "Q07",
+        "Q08",
+        "Q09",
+        "Q10",
+        "Q11",
+        "Q12"
+      ],
+      "status": "조사와 선정 근거 작성"
+    },
+    {
+      "id": "C19",
+      "title": "검증·CI·관측·유지보수",
+      "reports": [
+        "quality-storage.md"
+      ],
+      "source_ids": [
+        "Q01",
+        "Q02",
+        "Q03",
+        "Q04",
+        "Q05",
+        "Q06",
+        "Q20",
+        "Q21",
+        "Q22",
+        "Q23",
+        "Q24",
+        "Q25",
+        "Q26",
+        "Q27",
+        "Q28"
+      ],
+      "status": "조사와 선정 근거 작성"
+    },
+    {
+      "id": "C20",
+      "title": "AI·에이전트·스킬·평가",
+      "reports": [
+        "specialized.md",
+        "design-ux.md",
+        "frontend-graphics.md",
+        "quality-storage.md"
+      ],
+      "source_ids": [
+        "S25",
+        "S26",
+        "S27",
+        "S28",
+        "S29",
+        "S30",
+        "S31",
+        "S32",
+        "S33"
+      ],
+      "status": "조사와 선정 근거 작성"
+    }
+  ]
+}

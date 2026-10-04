@@ -1,0 +1,494 @@
+{
+  "pageId": "7:75",
+  "observedNodeIds": [],
+  "createdNodeIds": [
+    "45:10000",
+    "I45:10000;16:166",
+    "I45:10000;16:167",
+    "I45:10000;16:168",
+    "I45:10000;16:169",
+    "45:10005",
+    "I45:10005;16:166",
+    "I45:10005;16:167",
+    "I45:10005;16:168",
+    "I45:10005;16:169",
+    "45:10010",
+    "I45:10010;16:166",
+    "I45:10010;16:167",
+    "I45:10010;16:168",
+    "I45:10010;16:169",
+    "45:10015",
+    "I45:10015;16:166",
+    "I45:10015;16:167",
+    "I45:10015;16:168",
+    "I45:10015;16:169",
+    "45:10020",
+    "I45:10020;16:166",
+    "I45:10020;16:167",
+    "I45:10020;16:168",
+    "I45:10020;16:169",
+    "45:10025",
+    "I45:10025;16:166",
+    "I45:10025;16:167",
+    "I45:10025;16:168",
+    "I45:10025;16:169",
+    "45:10030",
+    "I45:10030;16:166",
+    "I45:10030;16:167",
+    "I45:10030;16:168",
+    "I45:10030;16:169",
+    "45:10035",
+    "I45:10035;16:252",
+    "I45:10035;16:253",
+    "45:10038",
+    "I45:10038;16:261",
+    "I45:10038;16:262",
+    "I45:10038;16:262;16:71",
+    "I45:10038;16:264",
+    "45:10043",
+    "I45:10043;16:166",
+    "I45:10043;16:167",
+    "I45:10043;16:168",
+    "I45:10043;16:169",
+    "45:10048",
+    "I45:10048;16:166",
+    "I45:10048;16:167",
+    "I45:10048;16:168",
+    "I45:10048;16:169",
+    "45:10053",
+    "I45:10053;16:252",
+    "I45:10053;16:253",
+    "45:10056",
+    "I45:10056;16:166",
+    "I45:10056;16:167",
+    "I45:10056;16:168",
+    "I45:10056;16:169",
+    "45:10061",
+    "I45:10061;16:197",
+    "I45:10061;16:198",
+    "I45:10061;16:199",
+    "I45:10061;16:200",
+    "45:10066",
+    "I45:10066;16:166",
+    "I45:10066;16:167",
+    "I45:10066;16:168",
+    "I45:10066;16:169",
+    "45:10071",
+    "I45:10071;16:192",
+    "I45:10071;16:193",
+    "I45:10071;16:194",
+    "I45:10071;16:195"
+  ],
+  "removedNodeIds": [],
+  "mutatedNodeIds": [
+    "29:4512",
+    "29:4513",
+    "29:4577",
+    "29:4578",
+    "29:4642",
+    "29:4643",
+    "29:4707",
+    "29:4708",
+    "29:4772",
+    "29:4773",
+    "29:5682",
+    "29:5683",
+    "29:5685",
+    "29:5686",
+    "29:5687",
+    "29:5688",
+    "29:5357",
+    "29:5358",
+    "29:5359",
+    "29:5510",
+    "29:5511",
+    "29:5513",
+    "29:5514",
+    "29:5515",
+    "29:5516",
+    "29:5243",
+    "29:5244",
+    "29:5279",
+    "29:5280",
+    "29:5142",
+    "29:5143",
+    "29:4982",
+    "29:4983"
+  ],
+  "instances": {
+    "29:4512": "45:10000",
+    "29:4577": "45:10005",
+    "29:4642": "45:10010",
+    "29:4707": "45:10015",
+    "29:4772": "45:10020",
+    "29:5682": "45:10025",
+    "29:5685": "45:10030",
+    "29:5687": "45:10035",
+    "29:5357": "45:10038",
+    "29:5510": "45:10043",
+    "29:5513": "45:10048",
+    "29:5515": "45:10053",
+    "29:5243": "45:10056",
+    "29:5279": "45:10061",
+    "29:5142": "45:10066",
+    "29:4982": "45:10071"
+  },
+  "replacements": {
+    "encoding": "columnar-v1",
+    "columns": [
+      "nodeId",
+      "instanceId",
+      "mainComponentId",
+      "kind",
+      "state",
+      "selection",
+      "frameId"
+    ],
+    "rows": [
+      [
+        "29:4512",
+        "45:10000",
+        "16:165",
+        "Input",
+        "default",
+        null,
+        "29:4495"
+      ],
+      [
+        "29:4577",
+        "45:10005",
+        "16:165",
+        "Input",
+        "default",
+        null,
+        "29:4560"
+      ],
+      [
+        "29:4642",
+        "45:10010",
+        "16:165",
+        "Input",
+        "default",
+        null,
+        "29:4625"
+      ],
+      [
+        "29:4707",
+        "45:10015",
+        "16:165",
+        "Input",
+        "default",
+        null,
+        "29:4690"
+      ],
+      [
+        "29:4772",
+        "45:10020",
+        "16:165",
+        "Input",
+        "default",
+        null,
+        "29:4755"
+      ],
+      [
+        "29:5682",
+        "45:10025",
+        "16:165",
+        "Input",
+        "default",
+        null,
+        "29:5664"
+      ],
+      [
+        "29:5685",
+        "45:10030",
+        "16:165",
+        "Input",
+        "default",
+        null,
+        "29:5664"
+      ],
+      [
+        "29:5687",
+        "45:10035",
+        "16:251",
+        "Checkbox",
+        "default",
+        "unchecked",
+        "29:5664"
+      ],
+      [
+        "29:5357",
+        "45:10038",
+        "16:260",
+        "Checkbox",
+        "default",
+        "checked",
+        "29:5331"
+      ],
+      [
+        "29:5510",
+        "45:10043",
+        "16:165",
+        "Input",
+        "default",
+        null,
+        "29:5493"
+      ],
+      [
+        "29:5513",
+        "45:10048",
+        "16:165",
+        "Input",
+        "default",
+        null,
+        "29:5493"
+      ],
+      [
+        "29:5515",
+        "45:10053",
+        "16:251",
+        "Checkbox",
+        "default",
+        "unchecked",
+        "29:5493"
+      ],
+      [
+        "29:5243",
+        "45:10056",
+        "16:165",
+        "Input",
+        "default",
+        null,
+        "29:5226"
+      ],
+      [
+        "29:5279",
+        "45:10061",
+        "16:196",
+        "Textarea",
+        "default",
+        null,
+        "29:5262"
+      ],
+      [
+        "29:5142",
+        "45:10066",
+        "16:165",
+        "Input",
+        "default",
+        null,
+        "29:5125"
+      ],
+      [
+        "29:4982",
+        "45:10071",
+        "16:191",
+        "Textarea",
+        "empty",
+        null,
+        "29:4964"
+      ]
+    ]
+  },
+  "reused": [],
+  "skipped": [
+    {
+      "nodeId": "29:5648",
+      "frameId": "29:5631",
+      "name": "입력 / 읽기 폭",
+      "reason": "Select: 선택 ▾ 표시와 원래 값·화살표를 보존; Input으로 변환하지 않음"
+    },
+    {
+      "nodeId": "29:5428",
+      "frameId": "29:5410",
+      "name": "입력 / 공부 범위",
+      "reason": "Select: 선택 ▾ 표시와 원래 값·화살표를 보존; Input으로 변환하지 않음"
+    },
+    {
+      "nodeId": "29:5442",
+      "frameId": "29:5410",
+      "name": "입력 / 공부 범위",
+      "reason": "Select: 선택 ▾ 표시와 원래 값·화살표를 보존; Input으로 변환하지 않음"
+    }
+  ],
+  "failed": [],
+  "preservation": [
+    {
+      "frameId": "29:4495",
+      "preservedOriginalNodeCount": 46,
+      "changedOriginalNodeIds": []
+    },
+    {
+      "frameId": "29:4560",
+      "preservedOriginalNodeCount": 46,
+      "changedOriginalNodeIds": []
+    },
+    {
+      "frameId": "29:4625",
+      "preservedOriginalNodeCount": 46,
+      "changedOriginalNodeIds": []
+    },
+    {
+      "frameId": "29:4690",
+      "preservedOriginalNodeCount": 46,
+      "changedOriginalNodeIds": []
+    },
+    {
+      "frameId": "29:4755",
+      "preservedOriginalNodeCount": 46,
+      "changedOriginalNodeIds": []
+    },
+    {
+      "frameId": "29:5709",
+      "preservedOriginalNodeCount": 24,
+      "changedOriginalNodeIds": []
+    },
+    {
+      "frameId": "29:5533",
+      "preservedOriginalNodeCount": 20,
+      "changedOriginalNodeIds": []
+    },
+    {
+      "frameId": "29:5565",
+      "preservedOriginalNodeCount": 20,
+      "changedOriginalNodeIds": []
+    },
+    {
+      "frameId": "29:5597",
+      "preservedOriginalNodeCount": 22,
+      "changedOriginalNodeIds": []
+    },
+    {
+      "frameId": "29:5631",
+      "preservedOriginalNodeCount": 22,
+      "changedOriginalNodeIds": []
+    },
+    {
+      "frameId": "29:5664",
+      "preservedOriginalNodeCount": 31,
+      "changedOriginalNodeIds": []
+    },
+    {
+      "frameId": "29:5331",
+      "preservedOriginalNodeCount": 28,
+      "changedOriginalNodeIds": []
+    },
+    {
+      "frameId": "29:5374",
+      "preservedOriginalNodeCount": 23,
+      "changedOriginalNodeIds": []
+    },
+    {
+      "frameId": "29:5410",
+      "preservedOriginalNodeCount": 36,
+      "changedOriginalNodeIds": []
+    },
+    {
+      "frameId": "29:5463",
+      "preservedOriginalNodeCount": 19,
+      "changedOriginalNodeIds": []
+    },
+    {
+      "frameId": "29:5493",
+      "preservedOriginalNodeCount": 28,
+      "changedOriginalNodeIds": []
+    },
+    {
+      "frameId": "29:5158",
+      "preservedOriginalNodeCount": 22,
+      "changedOriginalNodeIds": []
+    },
+    {
+      "frameId": "29:5192",
+      "preservedOriginalNodeCount": 21,
+      "changedOriginalNodeIds": []
+    },
+    {
+      "frameId": "29:5226",
+      "preservedOriginalNodeCount": 23,
+      "changedOriginalNodeIds": []
+    },
+    {
+      "frameId": "29:5262",
+      "preservedOriginalNodeCount": 23,
+      "changedOriginalNodeIds": []
+    },
+    {
+      "frameId": "29:5297",
+      "preservedOriginalNodeCount": 22,
+      "changedOriginalNodeIds": []
+    },
+    {
+      "frameId": "29:5002",
+      "preservedOriginalNodeCount": 21,
+      "changedOriginalNodeIds": []
+    },
+    {
+      "frameId": "29:5033",
+      "preservedOriginalNodeCount": 19,
+      "changedOriginalNodeIds": []
+    },
+    {
+      "frameId": "29:5063",
+      "preservedOriginalNodeCount": 19,
+      "changedOriginalNodeIds": []
+    },
+    {
+      "frameId": "29:5093",
+      "preservedOriginalNodeCount": 21,
+      "changedOriginalNodeIds": []
+    },
+    {
+      "frameId": "29:5125",
+      "preservedOriginalNodeCount": 21,
+      "changedOriginalNodeIds": []
+    },
+    {
+      "frameId": "29:4824",
+      "preservedOriginalNodeCount": 22,
+      "changedOriginalNodeIds": []
+    },
+    {
+      "frameId": "29:4858",
+      "preservedOriginalNodeCount": 23,
+      "changedOriginalNodeIds": []
+    },
+    {
+      "frameId": "29:4894",
+      "preservedOriginalNodeCount": 21,
+      "changedOriginalNodeIds": []
+    },
+    {
+      "frameId": "29:4926",
+      "preservedOriginalNodeCount": 25,
+      "changedOriginalNodeIds": []
+    },
+    {
+      "frameId": "29:4964",
+      "preservedOriginalNodeCount": 25,
+      "changedOriginalNodeIds": []
+    }
+  ],
+  "counts": {
+    "viewports": 31,
+    "viewportIdsChanged": 0,
+    "blockIdsChanged": 0,
+    "converted": 16,
+    "Input": 11,
+    "Textarea": 2,
+    "Checkbox": 3,
+    "reused": 0,
+    "skipped": 3,
+    "failed": 0,
+    "unprocessedAfterFailure": 0
+  },
+  "notes": [
+    "Only actual Input/Textarea/Checkbox builder shapes are converted. Select and uncertain structures remain visible and are reported.",
+    "Original node IDs, label/value text, width/height, coordinates and reactions are retained. Invisible source visuals retain layout participation.",
+    "Each new instance is explicitly Paper mode. Existing master components are never edited or detached.",
+    "Instance Label/Hint duplication is hidden; checkbox labels remain the original visible native text.",
+    "Paper field padding is represented by component Control; original 13px Value offsets and original multiline height override library defaults.",
+    "A failed individual conversion removes its new instance and restores source paint/opacity. Returned IDs include removed transient nodes."
+  ]
+}

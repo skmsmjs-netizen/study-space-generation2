@@ -1,0 +1,250 @@
+{
+  "boardId": "82:246",
+  "mainId": "36:92",
+  "observedNodeIds": [
+    "82:246",
+    "36:92",
+    "82:247",
+    "82:248",
+    "82:249",
+    "82:250",
+    "82:251",
+    "82:253",
+    "82:255",
+    "82:257",
+    "82:259",
+    "82:261",
+    "82:263",
+    "82:265",
+    "82:267",
+    "82:269",
+    "82:271",
+    "82:273",
+    "82:275",
+    "82:277",
+    "82:279",
+    "82:281",
+    "82:283",
+    "82:285",
+    "82:287",
+    "82:289",
+    "82:291",
+    "82:293",
+    "82:295",
+    "82:297",
+    "82:299",
+    "82:301",
+    "82:303",
+    "82:305",
+    "82:307",
+    "82:309",
+    "82:311"
+  ],
+  "links": [
+    {
+      "controlId": "82:251",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=68-43420",
+      "targetId": "68:43420",
+      "connected": true
+    },
+    {
+      "controlId": "82:253",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=68-56607",
+      "targetId": "68:56607",
+      "connected": true
+    },
+    {
+      "controlId": "82:255",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=68-57342",
+      "targetId": "68:57342",
+      "connected": true
+    },
+    {
+      "controlId": "82:257",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=68-60336",
+      "targetId": "68:60336",
+      "connected": true
+    },
+    {
+      "controlId": "82:259",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=68-61654",
+      "targetId": "68:61654",
+      "connected": true
+    },
+    {
+      "controlId": "82:261",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=68-62802",
+      "targetId": "68:62802",
+      "connected": true
+    },
+    {
+      "controlId": "82:263",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=68-63570",
+      "targetId": "68:63570",
+      "connected": true
+    },
+    {
+      "controlId": "82:265",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=68-71425",
+      "targetId": "68:71425",
+      "connected": true
+    },
+    {
+      "controlId": "82:267",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=68-73029",
+      "targetId": "68:73029",
+      "connected": true
+    },
+    {
+      "controlId": "82:269",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=68-74270",
+      "targetId": "68:74270",
+      "connected": true
+    },
+    {
+      "controlId": "82:271",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=68-75985",
+      "targetId": "68:75985",
+      "connected": true
+    },
+    {
+      "controlId": "82:273",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=68-77137",
+      "targetId": "68:77137",
+      "connected": true
+    },
+    {
+      "controlId": "82:275",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=68-78133",
+      "targetId": "68:78133",
+      "connected": true
+    },
+    {
+      "controlId": "82:277",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=68-78946",
+      "targetId": "68:78946",
+      "connected": true
+    },
+    {
+      "controlId": "82:279",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=74-71870",
+      "targetId": "74:71870",
+      "connected": true
+    },
+    {
+      "controlId": "82:281",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=74-72810",
+      "targetId": "74:72810",
+      "connected": true
+    },
+    {
+      "controlId": "82:283",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=74-73829",
+      "targetId": "74:73829",
+      "connected": true
+    },
+    {
+      "controlId": "82:285",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=75-74316",
+      "targetId": "75:74316",
+      "connected": true
+    },
+    {
+      "controlId": "82:287",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=75-74558",
+      "targetId": "75:74558",
+      "connected": true
+    },
+    {
+      "controlId": "82:289",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=75-77772",
+      "targetId": "75:77772",
+      "connected": true
+    },
+    {
+      "controlId": "82:291",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=75-79966",
+      "targetId": "75:79966",
+      "connected": true
+    },
+    {
+      "controlId": "82:293",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=75-80843",
+      "targetId": "75:80843",
+      "connected": true
+    },
+    {
+      "controlId": "82:295",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=75-81825",
+      "targetId": "75:81825",
+      "connected": true
+    },
+    {
+      "controlId": "82:297",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=75-83295",
+      "targetId": "75:83295",
+      "connected": true
+    },
+    {
+      "controlId": "82:299",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=75-83931",
+      "targetId": "75:83931",
+      "connected": true
+    },
+    {
+      "controlId": "82:301",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=75-85511",
+      "targetId": "75:85511",
+      "connected": true
+    },
+    {
+      "controlId": "82:303",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=71-10709",
+      "targetId": "71:10709",
+      "connected": true
+    },
+    {
+      "controlId": "82:305",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=60-10519",
+      "targetId": "60:10519",
+      "connected": true
+    },
+    {
+      "controlId": "82:307",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=26-9203",
+      "targetId": "26:9203",
+      "connected": true
+    },
+    {
+      "controlId": "82:309",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=59-28484",
+      "targetId": "59:28484",
+      "connected": true
+    },
+    {
+      "controlId": "82:311",
+      "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=82-246",
+      "targetId": "82:246",
+      "connected": true
+    }
+  ],
+  "counts": {
+    "links": 31
+  },
+  "texts": [
+    {
+      "id": "36:112",
+      "value": "59"
+    },
+    {
+      "id": "36:114",
+      "value": "기존48 + 추가11 · 소스 대응59/59"
+    },
+    {
+      "id": "36:128",
+      "value": "원본 범위: 경로41 · 모달29 · 보조면41 · 연구출처121 · 공통상태42 · 전이32. 최신확장: 부품59 · 고급기능12영역77상태"
+    }
+  ],
+  "recoveredAfterTimeout": true,
+  "runtimeVerified": false
+}

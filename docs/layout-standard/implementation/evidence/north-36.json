@@ -1,0 +1,136 @@
+{
+  "pageId": "7:71",
+  "createdNodeIds": [
+    "255:2707",
+    "255:2708",
+    "255:2709",
+    "255:2710",
+    "255:2711",
+    "255:2712",
+    "255:2713",
+    "255:2714",
+    "255:2715",
+    "255:2716",
+    "255:2717",
+    "255:2718"
+  ],
+  "mutatedNodeIds": [
+    "255:2707",
+    "255:2708",
+    "255:2709",
+    "28:9226",
+    "28:9227",
+    "28:9228",
+    "28:9229",
+    "28:9231",
+    "28:9232",
+    "28:9233",
+    "28:9234",
+    "28:9235",
+    "28:9236",
+    "28:9213",
+    "255:2710",
+    "255:2711",
+    "255:2712",
+    "28:9264",
+    "28:9265",
+    "28:9251",
+    "255:2713",
+    "255:2714",
+    "255:2715",
+    "28:9301",
+    "28:9302",
+    "28:9303",
+    "28:9304",
+    "28:9305",
+    "28:9306",
+    "28:9307",
+    "28:9309",
+    "28:9288",
+    "255:2716",
+    "255:2717",
+    "255:2718",
+    "28:9339",
+    "28:9340",
+    "28:9341",
+    "28:9342",
+    "28:9343",
+    "28:9344",
+    "28:9346",
+    "28:9326"
+  ],
+  "results": [
+    {
+      "id": "28:9213",
+      "name": "R28@ipad-landscape",
+      "pattern": "L193",
+      "scope": "screen",
+      "viewport": {
+        "width": 1376,
+        "height": 1032,
+        "overflow": "VERTICAL"
+      },
+      "preserved": true,
+      "scroll": "VERTICAL",
+      "sceneRatios": [
+        2.3999999138327235
+      ],
+      "structure": "255:2709",
+      "bodyHeight": 511
+    },
+    {
+      "id": "28:9251",
+      "name": "R29@ipad-landscape",
+      "pattern": "L193",
+      "scope": "screen",
+      "viewport": {
+        "width": 1376,
+        "height": 1032,
+        "overflow": "VERTICAL"
+      },
+      "preserved": true,
+      "scroll": "VERTICAL",
+      "sceneRatios": [
+        2.3999999138327235
+      ],
+      "structure": "255:2712",
+      "bodyHeight": 1161
+    },
+    {
+      "id": "28:9288",
+      "name": "R30@ipad-landscape",
+      "pattern": "L045",
+      "scope": "screen",
+      "viewport": {
+        "width": 1376,
+        "height": 1032,
+        "overflow": "VERTICAL"
+      },
+      "preserved": true,
+      "scroll": "VERTICAL",
+      "sceneRatios": [
+        2.3999999138327235
+      ],
+      "structure": "255:2715",
+      "bodyHeight": 494
+    },
+    {
+      "id": "28:9326",
+      "name": "R31@ipad-landscape",
+      "pattern": "L025",
+      "scope": "screen",
+      "viewport": {
+        "width": 1376,
+        "height": 1032,
+        "overflow": "VERTICAL"
+      },
+      "preserved": true,
+      "scroll": "VERTICAL",
+      "sceneRatios": [
+        2.3999999138327235
+      ],
+      "structure": "255:2718",
+      "bodyHeight": 455
+    }
+  ]
+}

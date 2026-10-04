@@ -1,0 +1,2916 @@
+{
+  "runId": "observatory-figma-20261002",
+  "scope": "full-app-design-system-and-flow-mapping",
+  "sourceThread": "01a0f756-99e0-77d0-920e-affc3f0caf32",
+  "fileKey": "YHmD1PpWWfR9JGTEs77JsX",
+  "fileUrl": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX",
+  "linearIssue": "MAN-19",
+  "step": "figma-design-mapping-complete",
+  "baseline": {
+    "path": "generation2/docs/observatory-experience-baseline.json",
+    "sha256": "cca2931b4b7c573cc72a604cf41e905ea9beb7427cae5bc21f9301483b7405c6"
+  },
+  "entities": {
+    "collections": {
+      "primitives": "VariableCollectionId:7:78",
+      "material": "VariableCollectionId:7:79",
+      "metrics": "VariableCollectionId:7:80"
+    },
+    "variables": {
+      "primitive/interior/canvas": {
+        "id": "VariableID:7:81",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/surface": {
+        "id": "VariableID:7:82",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/subtle": {
+        "id": "VariableID:7:83",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/text": {
+        "id": "VariableID:7:84",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/muted": {
+        "id": "VariableID:7:85",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/borderDecorative": {
+        "id": "VariableID:7:86",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/borderInteractive": {
+        "id": "VariableID:7:87",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/focus": {
+        "id": "VariableID:7:88",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/selected": {
+        "id": "VariableID:7:89",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/selectedText": {
+        "id": "VariableID:7:90",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/primary": {
+        "id": "VariableID:7:91",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/primaryHover": {
+        "id": "VariableID:7:92",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/primaryPressed": {
+        "id": "VariableID:7:93",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/onPrimary": {
+        "id": "VariableID:7:94",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/canvas": {
+        "id": "VariableID:7:95",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/surface": {
+        "id": "VariableID:7:96",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/subtle": {
+        "id": "VariableID:7:97",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/text": {
+        "id": "VariableID:7:98",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/muted": {
+        "id": "VariableID:7:99",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/borderDecorative": {
+        "id": "VariableID:7:100",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/borderInteractive": {
+        "id": "VariableID:7:101",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/focus": {
+        "id": "VariableID:7:102",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/selected": {
+        "id": "VariableID:7:103",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/selectedText": {
+        "id": "VariableID:7:104",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/primary": {
+        "id": "VariableID:7:105",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/primaryHover": {
+        "id": "VariableID:7:106",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/primaryPressed": {
+        "id": "VariableID:7:107",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/onPrimary": {
+        "id": "VariableID:7:108",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "material/canvas": {
+        "id": "VariableID:7:109",
+        "type": "COLOR",
+        "scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL"
+        ]
+      },
+      "material/surface": {
+        "id": "VariableID:7:110",
+        "type": "COLOR",
+        "scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL"
+        ]
+      },
+      "material/subtle": {
+        "id": "VariableID:7:111",
+        "type": "COLOR",
+        "scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL"
+        ]
+      },
+      "material/text": {
+        "id": "VariableID:7:112",
+        "type": "COLOR",
+        "scopes": [
+          "TEXT_FILL"
+        ]
+      },
+      "material/muted": {
+        "id": "VariableID:7:113",
+        "type": "COLOR",
+        "scopes": [
+          "TEXT_FILL"
+        ]
+      },
+      "material/borderDecorative": {
+        "id": "VariableID:7:114",
+        "type": "COLOR",
+        "scopes": [
+          "STROKE_COLOR"
+        ]
+      },
+      "material/borderInteractive": {
+        "id": "VariableID:7:115",
+        "type": "COLOR",
+        "scopes": [
+          "STROKE_COLOR"
+        ]
+      },
+      "material/focus": {
+        "id": "VariableID:7:116",
+        "type": "COLOR",
+        "scopes": [
+          "STROKE_COLOR"
+        ]
+      },
+      "material/selected": {
+        "id": "VariableID:7:117",
+        "type": "COLOR",
+        "scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL"
+        ]
+      },
+      "material/selectedText": {
+        "id": "VariableID:7:118",
+        "type": "COLOR",
+        "scopes": [
+          "TEXT_FILL"
+        ]
+      },
+      "material/primary": {
+        "id": "VariableID:7:119",
+        "type": "COLOR",
+        "scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL"
+        ]
+      },
+      "material/primaryHover": {
+        "id": "VariableID:7:120",
+        "type": "COLOR",
+        "scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL"
+        ]
+      },
+      "material/primaryPressed": {
+        "id": "VariableID:7:121",
+        "type": "COLOR",
+        "scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL"
+        ]
+      },
+      "material/onPrimary": {
+        "id": "VariableID:7:122",
+        "type": "COLOR",
+        "scopes": [
+          "TEXT_FILL"
+        ]
+      },
+      "space/0": {
+        "id": "VariableID:7:123",
+        "type": "FLOAT",
+        "scopes": [
+          "GAP"
+        ]
+      },
+      "space/4": {
+        "id": "VariableID:7:124",
+        "type": "FLOAT",
+        "scopes": [
+          "GAP"
+        ]
+      },
+      "space/8": {
+        "id": "VariableID:7:125",
+        "type": "FLOAT",
+        "scopes": [
+          "GAP"
+        ]
+      },
+      "space/12": {
+        "id": "VariableID:7:126",
+        "type": "FLOAT",
+        "scopes": [
+          "GAP"
+        ]
+      },
+      "space/16": {
+        "id": "VariableID:7:127",
+        "type": "FLOAT",
+        "scopes": [
+          "GAP"
+        ]
+      },
+      "space/24": {
+        "id": "VariableID:7:128",
+        "type": "FLOAT",
+        "scopes": [
+          "GAP"
+        ]
+      },
+      "space/32": {
+        "id": "VariableID:7:129",
+        "type": "FLOAT",
+        "scopes": [
+          "GAP"
+        ]
+      },
+      "space/48": {
+        "id": "VariableID:7:130",
+        "type": "FLOAT",
+        "scopes": [
+          "GAP"
+        ]
+      },
+      "space/64": {
+        "id": "VariableID:7:131",
+        "type": "FLOAT",
+        "scopes": [
+          "GAP"
+        ]
+      },
+      "control/height": {
+        "id": "VariableID:7:132",
+        "type": "FLOAT",
+        "scopes": [
+          "WIDTH_HEIGHT"
+        ]
+      },
+      "control/icon-target": {
+        "id": "VariableID:7:133",
+        "type": "FLOAT",
+        "scopes": [
+          "WIDTH_HEIGHT"
+        ]
+      },
+      "border/width": {
+        "id": "VariableID:7:134",
+        "type": "FLOAT",
+        "scopes": [
+          "STROKE_FLOAT"
+        ]
+      },
+      "focus/width": {
+        "id": "VariableID:7:135",
+        "type": "FLOAT",
+        "scopes": [
+          "STROKE_FLOAT"
+        ]
+      },
+      "radius/control": {
+        "id": "VariableID:7:136",
+        "type": "FLOAT",
+        "scopes": [
+          "CORNER_RADIUS"
+        ]
+      },
+      "radius/dialog": {
+        "id": "VariableID:7:137",
+        "type": "FLOAT",
+        "scopes": [
+          "CORNER_RADIUS"
+        ]
+      },
+      "motion/feedback": {
+        "id": "VariableID:7:138",
+        "type": "FLOAT",
+        "scopes": []
+      },
+      "motion/navigation": {
+        "id": "VariableID:7:139",
+        "type": "FLOAT",
+        "scopes": []
+      },
+      "motion/reduced": {
+        "id": "VariableID:7:140",
+        "type": "FLOAT",
+        "scopes": []
+      }
+    },
+    "pages": {
+      "index": "7:68",
+      "foundations": "7:69",
+      "components": "7:70",
+      "desk": "7:71",
+      "library": "7:72",
+      "workbench": "7:73",
+      "wall": "7:74",
+      "global": "7:75",
+      "states": "7:76",
+      "research": "7:77"
+    },
+    "components": {
+      "Button": {
+        "id": "UI01",
+        "name": "Button",
+        "ownerId": "16:140",
+        "defaultComponentId": "16:76",
+        "variantIds": [
+          "16:76",
+          "16:78",
+          "16:80",
+          "16:82",
+          "16:84",
+          "16:86",
+          "16:92",
+          "16:94",
+          "16:96",
+          "16:98",
+          "16:100",
+          "16:102",
+          "16:108",
+          "16:110",
+          "16:112",
+          "16:114",
+          "16:116",
+          "16:118",
+          "16:124",
+          "16:126",
+          "16:128",
+          "16:130",
+          "16:132",
+          "16:134"
+        ],
+        "variants": [
+          {
+            "id": "16:76",
+            "name": "Kind=primary, State=default",
+            "properties": {
+              "Kind": "primary",
+              "State": "default"
+            },
+            "width": 208,
+            "height": 48
+          },
+          {
+            "id": "16:78",
+            "name": "Kind=primary, State=hover",
+            "properties": {
+              "Kind": "primary",
+              "State": "hover"
+            },
+            "width": 208,
+            "height": 48
+          },
+          {
+            "id": "16:80",
+            "name": "Kind=primary, State=pressed",
+            "properties": {
+              "Kind": "primary",
+              "State": "pressed"
+            },
+            "width": 208,
+            "height": 48
+          },
+          {
+            "id": "16:82",
+            "name": "Kind=primary, State=focus",
+            "properties": {
+              "Kind": "primary",
+              "State": "focus"
+            },
+            "width": 208,
+            "height": 48
+          },
+          {
+            "id": "16:84",
+            "name": "Kind=primary, State=disabled",
+            "properties": {
+              "Kind": "primary",
+              "State": "disabled"
+            },
+            "width": 208,
+            "height": 48
+          },
+          {
+            "id": "16:86",
+            "name": "Kind=primary, State=busy",
+            "properties": {
+              "Kind": "primary",
+              "State": "busy"
+            },
+            "width": 208,
+            "height": 48
+          },
+          {
+            "id": "16:92",
+            "name": "Kind=secondary, State=default",
+            "properties": {
+              "Kind": "secondary",
+              "State": "default"
+            },
+            "width": 208,
+            "height": 48
+          },
+          {
+            "id": "16:94",
+            "name": "Kind=secondary, State=hover",
+            "properties": {
+              "Kind": "secondary",
+              "State": "hover"
+            },
+            "width": 208,
+            "height": 48
+          },
+          {
+            "id": "16:96",
+            "name": "Kind=secondary, State=pressed",
+            "properties": {
+              "Kind": "secondary",
+              "State": "pressed"
+            },
+            "width": 208,
+            "height": 48
+          },
+          {
+            "id": "16:98",
+            "name": "Kind=secondary, State=focus",
+            "properties": {
+              "Kind": "secondary",
+              "State": "focus"
+            },
+            "width": 208,
+            "height": 48
+          },
+          {
+            "id": "16:100",
+            "name": "Kind=secondary, State=disabled",
+            "properties": {
+              "Kind": "secondary",
+              "State": "disabled"
+            },
+            "width": 208,
+            "height": 48
+          },
+          {
+            "id": "16:102",
+            "name": "Kind=secondary, State=busy",
+            "properties": {
+              "Kind": "secondary",
+              "State": "busy"
+            },
+            "width": 208,
+            "height": 48
+          },
+          {
+            "id": "16:108",
+            "name": "Kind=quiet, State=default",
+            "properties": {
+              "Kind": "quiet",
+              "State": "default"
+            },
+            "width": 208,
+            "height": 48
+          },
+          {
+            "id": "16:110",
+            "name": "Kind=quiet, State=hover",
+            "properties": {
+              "Kind": "quiet",
+              "State": "hover"
+            },
+            "width": 208,
+            "height": 48
+          },
+          {
+            "id": "16:112",
+            "name": "Kind=quiet, State=pressed",
+            "properties": {
+              "Kind": "quiet",
+              "State": "pressed"
+            },
+            "width": 208,
+            "height": 48
+          },
+          {
+            "id": "16:114",
+            "name": "Kind=quiet, State=focus",
+            "properties": {
+              "Kind": "quiet",
+              "State": "focus"
+            },
+            "width": 208,
+            "height": 48
+          },
+          {
+            "id": "16:116",
+            "name": "Kind=quiet, State=disabled",
+            "properties": {
+              "Kind": "quiet",
+              "State": "disabled"
+            },
+            "width": 208,
+            "height": 48
+          },
+          {
+            "id": "16:118",
+            "name": "Kind=quiet, State=busy",
+            "properties": {
+              "Kind": "quiet",
+              "State": "busy"
+            },
+            "width": 208,
+            "height": 48
+          },
+          {
+            "id": "16:124",
+            "name": "Kind=danger, State=default",
+            "properties": {
+              "Kind": "danger",
+              "State": "default"
+            },
+            "width": 208,
+            "height": 48
+          },
+          {
+            "id": "16:126",
+            "name": "Kind=danger, State=hover",
+            "properties": {
+              "Kind": "danger",
+              "State": "hover"
+            },
+            "width": 208,
+            "height": 48
+          },
+          {
+            "id": "16:128",
+            "name": "Kind=danger, State=pressed",
+            "properties": {
+              "Kind": "danger",
+              "State": "pressed"
+            },
+            "width": 208,
+            "height": 48
+          },
+          {
+            "id": "16:130",
+            "name": "Kind=danger, State=focus",
+            "properties": {
+              "Kind": "danger",
+              "State": "focus"
+            },
+            "width": 208,
+            "height": 48
+          },
+          {
+            "id": "16:132",
+            "name": "Kind=danger, State=disabled",
+            "properties": {
+              "Kind": "danger",
+              "State": "disabled"
+            },
+            "width": 208,
+            "height": 48
+          },
+          {
+            "id": "16:134",
+            "name": "Kind=danger, State=busy",
+            "properties": {
+              "Kind": "danger",
+              "State": "busy"
+            },
+            "width": 208,
+            "height": 48
+          }
+        ],
+        "propertyIds": {
+          "Label": "Label#16:0",
+          "BusyLabel": "BusyLabel#16:25",
+          "DangerLabel": "DangerLabel#16:50"
+        },
+        "representation": "Existing native source-mapped component"
+      },
+      "IconButton": {
+        "id": "UI02",
+        "name": "IconButton",
+        "ownerId": "16:159",
+        "defaultComponentId": "16:141",
+        "variantIds": [
+          "16:141",
+          "16:144",
+          "16:147",
+          "16:150",
+          "16:153",
+          "16:156"
+        ],
+        "variants": [
+          {
+            "id": "16:141",
+            "name": "State=default",
+            "properties": {
+              "State": "default"
+            },
+            "width": 44,
+            "height": 48
+          },
+          {
+            "id": "16:144",
+            "name": "State=hover",
+            "properties": {
+              "State": "hover"
+            },
+            "width": 44,
+            "height": 48
+          },
+          {
+            "id": "16:147",
+            "name": "State=pressed",
+            "properties": {
+              "State": "pressed"
+            },
+            "width": 44,
+            "height": 48
+          },
+          {
+            "id": "16:150",
+            "name": "State=focus",
+            "properties": {
+              "State": "focus"
+            },
+            "width": 44,
+            "height": 48
+          },
+          {
+            "id": "16:153",
+            "name": "State=disabled",
+            "properties": {
+              "State": "disabled"
+            },
+            "width": 44,
+            "height": 48
+          },
+          {
+            "id": "16:156",
+            "name": "State=busy",
+            "properties": {
+              "State": "busy"
+            },
+            "width": 44,
+            "height": 48
+          }
+        ],
+        "propertyIds": {
+          "Icon": "Icon#16:75"
+        },
+        "representation": "Existing native source-mapped component"
+      },
+      "Input": {
+        "id": "UI03",
+        "name": "Input",
+        "ownerId": "16:190",
+        "defaultComponentId": "16:160",
+        "variantIds": [
+          "16:160",
+          "16:165",
+          "16:170",
+          "16:175",
+          "16:180",
+          "16:185"
+        ],
+        "variants": [
+          {
+            "id": "16:160",
+            "name": "State=empty",
+            "properties": {
+              "State": "empty"
+            },
+            "width": 336,
+            "height": 145
+          },
+          {
+            "id": "16:165",
+            "name": "State=default",
+            "properties": {
+              "State": "default"
+            },
+            "width": 336,
+            "height": 145
+          },
+          {
+            "id": "16:170",
+            "name": "State=focus",
+            "properties": {
+              "State": "focus"
+            },
+            "width": 336,
+            "height": 143
+          },
+          {
+            "id": "16:175",
+            "name": "State=disabled",
+            "properties": {
+              "State": "disabled"
+            },
+            "width": 336,
+            "height": 145
+          },
+          {
+            "id": "16:180",
+            "name": "State=invalid",
+            "properties": {
+              "State": "invalid"
+            },
+            "width": 336,
+            "height": 167
+          },
+          {
+            "id": "16:185",
+            "name": "State=readOnly",
+            "properties": {
+              "State": "readOnly"
+            },
+            "width": 336,
+            "height": 145
+          }
+        ],
+        "propertyIds": {
+          "Label": "Label#16:82",
+          "Placeholder": "Placeholder#16:89",
+          "Hint": "Hint#16:96",
+          "Value": "Value#16:103",
+          "Error": "Error#16:110",
+          "ReadOnlyNotice": "ReadOnlyNotice#16:117"
+        },
+        "representation": "Existing native source-mapped component"
+      },
+      "Textarea": {
+        "id": "UI04",
+        "name": "Textarea",
+        "ownerId": "16:221",
+        "defaultComponentId": "16:191",
+        "variantIds": [
+          "16:191",
+          "16:196",
+          "16:201",
+          "16:206",
+          "16:211",
+          "16:216"
+        ],
+        "variants": [
+          {
+            "id": "16:191",
+            "name": "State=empty",
+            "properties": {
+              "State": "empty"
+            },
+            "width": 336,
+            "height": 237
+          },
+          {
+            "id": "16:196",
+            "name": "State=default",
+            "properties": {
+              "State": "default"
+            },
+            "width": 336,
+            "height": 237
+          },
+          {
+            "id": "16:201",
+            "name": "State=focus",
+            "properties": {
+              "State": "focus"
+            },
+            "width": 336,
+            "height": 237
+          },
+          {
+            "id": "16:206",
+            "name": "State=disabled",
+            "properties": {
+              "State": "disabled"
+            },
+            "width": 336,
+            "height": 237
+          },
+          {
+            "id": "16:211",
+            "name": "State=invalid",
+            "properties": {
+              "State": "invalid"
+            },
+            "width": 336,
+            "height": 259
+          },
+          {
+            "id": "16:216",
+            "name": "State=readOnly",
+            "properties": {
+              "State": "readOnly"
+            },
+            "width": 336,
+            "height": 237
+          }
+        ],
+        "propertyIds": {
+          "Label": "Label#16:124",
+          "Placeholder": "Placeholder#16:131",
+          "Hint": "Hint#16:138",
+          "Value": "Value#16:145",
+          "Error": "Error#16:152",
+          "ReadOnlyNotice": "ReadOnlyNotice#16:159"
+        },
+        "representation": "Existing native source-mapped component"
+      },
+      "Select": {
+        "id": "UI05",
+        "name": "Select",
+        "ownerId": "16:250",
+        "defaultComponentId": "16:222",
+        "variantIds": [
+          "16:222",
+          "16:229",
+          "16:236",
+          "16:243"
+        ],
+        "variants": [
+          {
+            "id": "16:222",
+            "name": "State=default",
+            "properties": {
+              "State": "default"
+            },
+            "width": 336,
+            "height": 145
+          },
+          {
+            "id": "16:229",
+            "name": "State=focus",
+            "properties": {
+              "State": "focus"
+            },
+            "width": 336,
+            "height": 143
+          },
+          {
+            "id": "16:236",
+            "name": "State=disabled",
+            "properties": {
+              "State": "disabled"
+            },
+            "width": 336,
+            "height": 145
+          },
+          {
+            "id": "16:243",
+            "name": "State=invalid",
+            "properties": {
+              "State": "invalid"
+            },
+            "width": 336,
+            "height": 167
+          }
+        ],
+        "propertyIds": {
+          "Label": "Label#16:166",
+          "Value": "Value#16:171",
+          "Hint": "Hint#16:176",
+          "Error": "Error#16:181"
+        },
+        "representation": "Existing native source-mapped component"
+      },
+      "Checkbox": {
+        "id": "UI06",
+        "name": "Checkbox",
+        "ownerId": "16:287",
+        "defaultComponentId": "16:251",
+        "variantIds": [
+          "16:251",
+          "16:254",
+          "16:257",
+          "16:260",
+          "16:265",
+          "16:270",
+          "16:275",
+          "16:279",
+          "16:283"
+        ],
+        "variants": [
+          {
+            "id": "16:251",
+            "name": "Value=unchecked, State=default",
+            "properties": {
+              "Value": "unchecked",
+              "State": "default"
+            },
+            "width": 304,
+            "height": 48
+          },
+          {
+            "id": "16:254",
+            "name": "Value=unchecked, State=focus",
+            "properties": {
+              "Value": "unchecked",
+              "State": "focus"
+            },
+            "width": 304,
+            "height": 48
+          },
+          {
+            "id": "16:257",
+            "name": "Value=unchecked, State=disabled",
+            "properties": {
+              "Value": "unchecked",
+              "State": "disabled"
+            },
+            "width": 304,
+            "height": 48
+          },
+          {
+            "id": "16:260",
+            "name": "Value=checked, State=default",
+            "properties": {
+              "Value": "checked",
+              "State": "default"
+            },
+            "width": 304,
+            "height": 48
+          },
+          {
+            "id": "16:265",
+            "name": "Value=checked, State=focus",
+            "properties": {
+              "Value": "checked",
+              "State": "focus"
+            },
+            "width": 304,
+            "height": 48
+          },
+          {
+            "id": "16:270",
+            "name": "Value=checked, State=disabled",
+            "properties": {
+              "Value": "checked",
+              "State": "disabled"
+            },
+            "width": 304,
+            "height": 48
+          },
+          {
+            "id": "16:275",
+            "name": "Value=mixed, State=default",
+            "properties": {
+              "Value": "mixed",
+              "State": "default"
+            },
+            "width": 304,
+            "height": 48
+          },
+          {
+            "id": "16:279",
+            "name": "Value=mixed, State=focus",
+            "properties": {
+              "Value": "mixed",
+              "State": "focus"
+            },
+            "width": 304,
+            "height": 48
+          },
+          {
+            "id": "16:283",
+            "name": "Value=mixed, State=disabled",
+            "properties": {
+              "Value": "mixed",
+              "State": "disabled"
+            },
+            "width": 304,
+            "height": 48
+          }
+        ],
+        "propertyIds": {
+          "Label": "Label#16:186"
+        },
+        "representation": "Existing native source-mapped component"
+      },
+      "Radio": {
+        "id": "UI07",
+        "name": "Radio",
+        "ownerId": "16:309",
+        "defaultComponentId": "16:288",
+        "variantIds": [
+          "16:288",
+          "16:291",
+          "16:294",
+          "16:297",
+          "16:301",
+          "16:305"
+        ],
+        "variants": [
+          {
+            "id": "16:288",
+            "name": "Value=unchecked, State=default",
+            "properties": {
+              "Value": "unchecked",
+              "State": "default"
+            },
+            "width": 304,
+            "height": 48
+          },
+          {
+            "id": "16:291",
+            "name": "Value=unchecked, State=focus",
+            "properties": {
+              "Value": "unchecked",
+              "State": "focus"
+            },
+            "width": 304,
+            "height": 48
+          },
+          {
+            "id": "16:294",
+            "name": "Value=unchecked, State=disabled",
+            "properties": {
+              "Value": "unchecked",
+              "State": "disabled"
+            },
+            "width": 304,
+            "height": 48
+          },
+          {
+            "id": "16:297",
+            "name": "Value=checked, State=default",
+            "properties": {
+              "Value": "checked",
+              "State": "default"
+            },
+            "width": 304,
+            "height": 48
+          },
+          {
+            "id": "16:301",
+            "name": "Value=checked, State=focus",
+            "properties": {
+              "Value": "checked",
+              "State": "focus"
+            },
+            "width": 304,
+            "height": 48
+          },
+          {
+            "id": "16:305",
+            "name": "Value=checked, State=disabled",
+            "properties": {
+              "Value": "checked",
+              "State": "disabled"
+            },
+            "width": 304,
+            "height": 48
+          }
+        ],
+        "propertyIds": {
+          "Label": "Label#16:196"
+        },
+        "representation": "Existing native source-mapped component"
+      },
+      "Tabs": {
+        "id": "UI08",
+        "name": "Tabs",
+        "ownerId": "16:326",
+        "defaultComponentId": "16:310",
+        "variantIds": [
+          "16:310",
+          "16:318"
+        ],
+        "variants": [
+          {
+            "id": "16:310",
+            "name": "Selection=first",
+            "properties": {
+              "Selection": "first"
+            },
+            "width": 336,
+            "height": 56
+          },
+          {
+            "id": "16:318",
+            "name": "Selection=second",
+            "properties": {
+              "Selection": "second"
+            },
+            "width": 336,
+            "height": 56
+          }
+        ],
+        "propertyIds": {
+          "Item 1": "Item 1#16:203",
+          "Item 2": "Item 2#16:206",
+          "Item 3": "Item 3#16:209"
+        },
+        "representation": "Existing native source-mapped component"
+      },
+      "SegmentedControl": {
+        "id": "UI09",
+        "name": "SegmentedControl",
+        "ownerId": "17:95",
+        "defaultComponentId": "17:81",
+        "variantIds": [
+          "17:81",
+          "17:88"
+        ],
+        "variants": [
+          {
+            "id": "17:81",
+            "name": "Selection=first",
+            "properties": {
+              "Selection": "first"
+            },
+            "width": 336,
+            "height": 56
+          },
+          {
+            "id": "17:88",
+            "name": "Selection=second",
+            "properties": {
+              "Selection": "second"
+            },
+            "width": 336,
+            "height": 56
+          }
+        ],
+        "propertyIds": {
+          "Item 1": "Item 1#17:0",
+          "Item 2": "Item 2#17:3",
+          "Item 3": "Item 3#17:6"
+        },
+        "representation": "Existing native source-mapped component"
+      },
+      "Card": {
+        "id": "UI10",
+        "name": "Card",
+        "ownerId": "17:96",
+        "defaultComponentId": "17:96",
+        "variantIds": [
+          "17:96"
+        ],
+        "variants": [
+          {
+            "id": "17:96",
+            "name": "Observatory/v2/Containers/Card",
+            "properties": {},
+            "width": 336,
+            "height": 159
+          }
+        ],
+        "propertyIds": {
+          "Title": "Title#17:9",
+          "Body": "Body#17:10",
+          "Detail": "Detail#17:11"
+        },
+        "representation": "Existing native source-mapped component"
+      },
+      "ListItem": {
+        "id": "UI11",
+        "name": "ListItem",
+        "ownerId": "17:101",
+        "defaultComponentId": "17:101",
+        "variantIds": [
+          "17:101"
+        ],
+        "variants": [
+          {
+            "id": "17:101",
+            "name": "Observatory/v2/Containers/ListItem",
+            "properties": {},
+            "width": 308,
+            "height": 48
+          }
+        ],
+        "propertyIds": {
+          "Title": "Title#17:12",
+          "Detail": "Detail#17:13"
+        },
+        "representation": "Existing native source-mapped component"
+      },
+      "Modal": {
+        "id": "UI12",
+        "name": "Modal",
+        "ownerId": "17:106",
+        "defaultComponentId": "17:106",
+        "variantIds": [
+          "17:106"
+        ],
+        "variants": [
+          {
+            "id": "17:106",
+            "name": "Observatory/v2/Overlays/Modal",
+            "properties": {},
+            "width": 336,
+            "height": 179
+          }
+        ],
+        "propertyIds": {
+          "Title": "Title#17:14",
+          "Body": "Body#17:15"
+        },
+        "representation": "Existing native source-mapped component"
+      },
+      "Sheet": {
+        "id": "UI13",
+        "name": "Sheet",
+        "ownerId": "17:114",
+        "defaultComponentId": "17:114",
+        "variantIds": [
+          "17:114"
+        ],
+        "variants": [
+          {
+            "id": "17:114",
+            "name": "Observatory/v2/Overlays/Sheet",
+            "properties": {},
+            "width": 336,
+            "height": 245
+          }
+        ],
+        "propertyIds": {
+          "Title": "Title#17:16",
+          "Body": "Body#17:17"
+        },
+        "representation": "Existing native source-mapped component"
+      },
+      "Toast": {
+        "id": "UI14",
+        "name": "Toast",
+        "ownerId": "17:130",
+        "defaultComponentId": "17:124",
+        "variantIds": [
+          "17:124",
+          "17:127"
+        ],
+        "variants": [
+          {
+            "id": "17:124",
+            "name": "Action=close",
+            "properties": {
+              "Action": "close"
+            },
+            "width": 322,
+            "height": 48
+          },
+          {
+            "id": "17:127",
+            "name": "Action=undo",
+            "properties": {
+              "Action": "undo"
+            },
+            "width": 322,
+            "height": 48
+          }
+        ],
+        "propertyIds": {
+          "Message": "Message#17:18",
+          "CloseLabel": "CloseLabel#17:21",
+          "UndoLabel": "UndoLabel#17:24"
+        },
+        "representation": "Existing native source-mapped component"
+      },
+      "Breadcrumb": {
+        "id": "UI15",
+        "name": "Breadcrumb",
+        "ownerId": "17:131",
+        "defaultComponentId": "17:131",
+        "variantIds": [
+          "17:131"
+        ],
+        "variants": [
+          {
+            "id": "17:131",
+            "name": "Observatory/v2/Navigation/Breadcrumb",
+            "properties": {},
+            "width": 336,
+            "height": 48
+          }
+        ],
+        "propertyIds": {
+          "Crumb 0": "Crumb 0#17:27",
+          "Crumb 1": "Crumb 1#17:28",
+          "Crumb 2": "Crumb 2#17:29"
+        },
+        "representation": "Existing native source-mapped component"
+      },
+      "Search": {
+        "id": "UI16",
+        "name": "Search",
+        "ownerId": "17:169",
+        "defaultComponentId": "17:137",
+        "variantIds": [
+          "17:137",
+          "17:145",
+          "17:153",
+          "17:161"
+        ],
+        "variants": [
+          {
+            "id": "17:137",
+            "name": "State=empty",
+            "properties": {
+              "State": "empty"
+            },
+            "width": 336,
+            "height": 145
+          },
+          {
+            "id": "17:145",
+            "name": "State=default",
+            "properties": {
+              "State": "default"
+            },
+            "width": 336,
+            "height": 145
+          },
+          {
+            "id": "17:153",
+            "name": "State=focus",
+            "properties": {
+              "State": "focus"
+            },
+            "width": 336,
+            "height": 143
+          },
+          {
+            "id": "17:161",
+            "name": "State=invalid",
+            "properties": {
+              "State": "invalid"
+            },
+            "width": 336,
+            "height": 167
+          }
+        ],
+        "propertyIds": {
+          "Label": "Label#17:30",
+          "Placeholder": "Placeholder#17:35",
+          "Hint": "Hint#17:40",
+          "Value": "Value#17:45",
+          "Error": "Error#17:50"
+        },
+        "representation": "Existing native source-mapped component"
+      },
+      "EmptyState": {
+        "id": "UI17",
+        "name": "EmptyState",
+        "ownerId": "17:186",
+        "defaultComponentId": "17:170",
+        "variantIds": [
+          "17:170",
+          "17:178"
+        ],
+        "variants": [
+          {
+            "id": "17:170",
+            "name": "Scenario=initial",
+            "properties": {
+              "Scenario": "initial"
+            },
+            "width": 336,
+            "height": 204
+          },
+          {
+            "id": "17:178",
+            "name": "Scenario=filtered",
+            "properties": {
+              "Scenario": "filtered"
+            },
+            "width": 336,
+            "height": 178
+          }
+        ],
+        "propertyIds": {
+          "Title": "Title#17:55",
+          "Message": "Message#17:58",
+          "NoResultsTitle": "NoResultsTitle#17:61",
+          "NoResultsMessage": "NoResultsMessage#17:64"
+        },
+        "representation": "Existing native source-mapped component"
+      },
+      "LoadingState": {
+        "id": "UI18",
+        "name": "LoadingState",
+        "ownerId": "17:187",
+        "defaultComponentId": "17:187",
+        "variantIds": [
+          "17:187"
+        ],
+        "variants": [
+          {
+            "id": "17:187",
+            "name": "Observatory/v2/Feedback/LoadingState",
+            "properties": {},
+            "width": 336,
+            "height": 72
+          }
+        ],
+        "propertyIds": {
+          "Message": "Message#17:67"
+        },
+        "representation": "Existing native source-mapped component"
+      },
+      "ErrorState": {
+        "id": "UI19",
+        "name": "ErrorState",
+        "ownerId": "17:193",
+        "defaultComponentId": "17:193",
+        "variantIds": [
+          "17:193"
+        ],
+        "variants": [
+          {
+            "id": "17:193",
+            "name": "Observatory/v2/Feedback/ErrorState",
+            "properties": {},
+            "width": 336,
+            "height": 179
+          }
+        ],
+        "propertyIds": {
+          "Title": "Title#17:68",
+          "Message": "Message#17:69"
+        },
+        "representation": "Existing native source-mapped component"
+      },
+      "ScreenBoundary": {
+        "id": "UI20",
+        "name": "ScreenBoundary",
+        "ownerId": "17:198",
+        "defaultComponentId": "17:198",
+        "variantIds": [
+          "17:198"
+        ],
+        "variants": [
+          {
+            "id": "17:198",
+            "name": "Observatory/v2/Feedback/ScreenBoundary",
+            "properties": {},
+            "width": 336,
+            "height": 153
+          }
+        ],
+        "propertyIds": {
+          "Title": "Title#17:70",
+          "Message": "Message#17:71"
+        },
+        "representation": "Existing native source-mapped component"
+      },
+      "NavigationBar": {
+        "id": "UI21",
+        "name": "NavigationBar",
+        "ownerId": "17:223",
+        "defaultComponentId": "17:203",
+        "variantIds": [
+          "17:203",
+          "17:213"
+        ],
+        "variants": [
+          {
+            "id": "17:203",
+            "name": "Orientation=horizontal",
+            "properties": {
+              "Orientation": "horizontal"
+            },
+            "width": 352,
+            "height": 64
+          },
+          {
+            "id": "17:213",
+            "name": "Orientation=vertical",
+            "properties": {
+              "Orientation": "vertical"
+            },
+            "width": 336,
+            "height": 186
+          }
+        ],
+        "propertyIds": {
+          "Place 0": "Place 0#17:72",
+          "Place 1": "Place 1#17:75",
+          "Place 2": "Place 2#17:78",
+          "Place 3": "Place 3#17:81"
+        },
+        "representation": "Existing native source-mapped component"
+      },
+      "ContextMenu": {
+        "id": "UI22",
+        "name": "ContextMenu",
+        "ownerId": "17:224",
+        "defaultComponentId": "17:224",
+        "variantIds": [
+          "17:224"
+        ],
+        "variants": [
+          {
+            "id": "17:224",
+            "name": "Observatory/v2/Overlays/ContextMenu",
+            "properties": {},
+            "width": 336,
+            "height": 194
+          }
+        ],
+        "propertyIds": {
+          "Command 0": "Command 0#17:84",
+          "Command 1": "Command 1#17:85",
+          "Command 2": "Command 2#17:86"
+        },
+        "representation": "Existing native source-mapped component"
+      },
+      "StudyLandscapes": {
+        "id": "SC01",
+        "name": "StudyLandscapes",
+        "ownerId": "17:231",
+        "defaultComponentId": "17:231",
+        "variantIds": [
+          "17:231"
+        ],
+        "variants": [
+          {
+            "id": "17:231",
+            "name": "Observatory/v2/Observatory/StudyLandscapes",
+            "properties": {},
+            "width": 480,
+            "height": 313.66668701171875
+          }
+        ],
+        "propertyIds": {
+          "Purpose": "Purpose#17:87"
+        },
+        "representation": "Existing native source-mapped component"
+      },
+      "ObservatoryWorld": {
+        "id": "SC02",
+        "name": "ObservatoryWorld",
+        "ownerId": "17:1910",
+        "defaultComponentId": "17:1910",
+        "variantIds": [
+          "17:1910"
+        ],
+        "variants": [
+          {
+            "id": "17:1910",
+            "name": "Observatory/v2/Observatory/ObservatoryWorld",
+            "properties": {},
+            "width": 480,
+            "height": 252.6666717529297
+          }
+        ],
+        "propertyIds": {
+          "Purpose": "Purpose#17:88"
+        },
+        "representation": "Existing native source-mapped component"
+      },
+      "ObservatoryRoom": {
+        "id": "SC03",
+        "name": "ObservatoryRoom",
+        "ownerId": "20:4808",
+        "defaultComponentId": "20:4808",
+        "variantIds": [
+          "20:4808"
+        ],
+        "variants": [
+          {
+            "id": "20:4808",
+            "name": "Observatory/v2/Observatory/ObservatoryRoom",
+            "properties": {},
+            "width": 480,
+            "height": 282
+          }
+        ],
+        "propertyIds": {
+          "Purpose": "Purpose#20:0"
+        },
+        "representation": "Existing native source-mapped component"
+      },
+      "ObservatoryDesk": {
+        "id": "SC04",
+        "name": "ObservatoryDesk",
+        "ownerId": "20:6484",
+        "defaultComponentId": "20:6484",
+        "variantIds": [
+          "20:6484"
+        ],
+        "variants": [
+          {
+            "id": "20:6484",
+            "name": "Observatory/v2/Observatory/ObservatoryDesk",
+            "properties": {},
+            "width": 480,
+            "height": 186
+          }
+        ],
+        "propertyIds": {
+          "Role": "Role#20:1",
+          "Purpose": "Purpose#20:2"
+        },
+        "representation": "Native source-contract diagram only."
+      },
+      "ObservatoryAdvanced": {
+        "id": "SC05",
+        "name": "ObservatoryAdvanced",
+        "ownerId": "20:6496",
+        "defaultComponentId": "20:6496",
+        "variantIds": [
+          "20:6496"
+        ],
+        "variants": [
+          {
+            "id": "20:6496",
+            "name": "Observatory/v2/Observatory/ObservatoryAdvanced",
+            "properties": {},
+            "width": 480,
+            "height": 236
+          }
+        ],
+        "propertyIds": {
+          "Role": "Role#20:3",
+          "Purpose": "Purpose#20:4"
+        },
+        "representation": "Native source-contract diagram only."
+      },
+      "ObservatorySkyDetails": {
+        "id": "SC06",
+        "name": "ObservatorySkyDetails",
+        "ownerId": "20:6515",
+        "defaultComponentId": "20:6515",
+        "variantIds": [
+          "20:6515"
+        ],
+        "variants": [
+          {
+            "id": "20:6515",
+            "name": "Observatory/v2/Observatory/ObservatorySkyDetails",
+            "properties": {},
+            "width": 480,
+            "height": 186
+          }
+        ],
+        "propertyIds": {
+          "Role": "Role#20:5",
+          "Purpose": "Purpose#20:6"
+        },
+        "representation": "Native source-contract diagram only."
+      },
+      "ObservatoryStationDetails": {
+        "id": "SC07",
+        "name": "ObservatoryStationDetails",
+        "ownerId": "20:6527",
+        "defaultComponentId": "20:6527",
+        "variantIds": [
+          "20:6527"
+        ],
+        "variants": [
+          {
+            "id": "20:6527",
+            "name": "Observatory/v2/Observatory/ObservatoryStationDetails",
+            "properties": {},
+            "width": 480,
+            "height": 186
+          }
+        ],
+        "propertyIds": {
+          "Role": "Role#20:7",
+          "Purpose": "Purpose#20:8"
+        },
+        "representation": "Native source-contract diagram only."
+      },
+      "ObservatoryTimeSky": {
+        "id": "SC08",
+        "name": "ObservatoryTimeSky",
+        "ownerId": "20:6539",
+        "defaultComponentId": "20:6539",
+        "variantIds": [
+          "20:6539"
+        ],
+        "variants": [
+          {
+            "id": "20:6539",
+            "name": "Observatory/v2/Observatory/ObservatoryTimeSky",
+            "properties": {},
+            "width": 480,
+            "height": 236
+          }
+        ],
+        "propertyIds": {
+          "Role": "Role#20:9",
+          "Purpose": "Purpose#20:10"
+        },
+        "representation": "Native source-contract diagram only."
+      },
+      "ObservatoryTimeGround": {
+        "id": "SC09",
+        "name": "ObservatoryTimeGround",
+        "ownerId": "20:6560",
+        "defaultComponentId": "20:6560",
+        "variantIds": [
+          "20:6560"
+        ],
+        "variants": [
+          {
+            "id": "20:6560",
+            "name": "Observatory/v2/Observatory/ObservatoryTimeGround",
+            "properties": {},
+            "width": 480,
+            "height": 236
+          }
+        ],
+        "propertyIds": {
+          "Role": "Role#20:11",
+          "Purpose": "Purpose#20:12"
+        },
+        "representation": "Native source-contract diagram only."
+      },
+      "ObservatoryClouds": {
+        "id": "SC10",
+        "name": "ObservatoryClouds",
+        "ownerId": "20:6581",
+        "defaultComponentId": "20:6581",
+        "variantIds": [
+          "20:6581"
+        ],
+        "variants": [
+          {
+            "id": "20:6581",
+            "name": "Observatory/v2/Observatory/ObservatoryClouds",
+            "properties": {},
+            "width": 480,
+            "height": 186
+          }
+        ],
+        "propertyIds": {
+          "Role": "Role#20:13",
+          "Purpose": "Purpose#20:14"
+        },
+        "representation": "Native source-contract diagram only."
+      },
+      "ObservatoryGroundDetails": {
+        "id": "SC11",
+        "name": "ObservatoryGroundDetails",
+        "ownerId": "20:6593",
+        "defaultComponentId": "20:6593",
+        "variantIds": [
+          "20:6593"
+        ],
+        "variants": [
+          {
+            "id": "20:6593",
+            "name": "Observatory/v2/Observatory/ObservatoryGroundDetails",
+            "properties": {},
+            "width": 480,
+            "height": 186
+          }
+        ],
+        "propertyIds": {
+          "Role": "Role#20:15",
+          "Purpose": "Purpose#20:16"
+        },
+        "representation": "Native source-contract diagram only."
+      },
+      "ObservatoryDomeTiles": {
+        "id": "SC12",
+        "name": "ObservatoryDomeTiles",
+        "ownerId": "20:6605",
+        "defaultComponentId": "20:6605",
+        "variantIds": [
+          "20:6605"
+        ],
+        "variants": [
+          {
+            "id": "20:6605",
+            "name": "Observatory/v2/Observatory/ObservatoryDomeTiles",
+            "properties": {},
+            "width": 480,
+            "height": 186
+          }
+        ],
+        "propertyIds": {
+          "Role": "Role#20:17",
+          "Purpose": "Purpose#20:18"
+        },
+        "representation": "Native source-contract diagram only."
+      },
+      "ObservatoryShockwave": {
+        "id": "SC13",
+        "name": "ObservatoryShockwave",
+        "ownerId": "20:6617",
+        "defaultComponentId": "20:6617",
+        "variantIds": [
+          "20:6617"
+        ],
+        "variants": [
+          {
+            "id": "20:6617",
+            "name": "Observatory/v2/Observatory/ObservatoryShockwave",
+            "properties": {},
+            "width": 480,
+            "height": 186
+          }
+        ],
+        "propertyIds": {
+          "Role": "Role#20:19",
+          "Purpose": "Purpose#20:20"
+        },
+        "representation": "Native source-contract diagram only."
+      },
+      "ObservatoryStudySky": {
+        "id": "SC14",
+        "name": "ObservatoryStudySky",
+        "ownerId": "20:6629",
+        "defaultComponentId": "20:6629",
+        "variantIds": [
+          "20:6629"
+        ],
+        "variants": [
+          {
+            "id": "20:6629",
+            "name": "Observatory/v2/Observatory/ObservatoryStudySky",
+            "properties": {},
+            "width": 480,
+            "height": 186
+          }
+        ],
+        "propertyIds": {
+          "Role": "Role#20:21",
+          "Purpose": "Purpose#20:22"
+        },
+        "representation": "Native source-contract diagram only."
+      },
+      "ObservatoryStudyStation": {
+        "id": "SC15",
+        "name": "ObservatoryStudyStation",
+        "ownerId": "20:6641",
+        "defaultComponentId": "20:6641",
+        "variantIds": [
+          "20:6641"
+        ],
+        "variants": [
+          {
+            "id": "20:6641",
+            "name": "Observatory/v2/Observatory/ObservatoryStudyStation",
+            "properties": {},
+            "width": 480,
+            "height": 212
+          }
+        ],
+        "propertyIds": {
+          "Role": "Role#20:23",
+          "Purpose": "Purpose#20:24"
+        },
+        "representation": "Native source-contract diagram only."
+      },
+      "ObservatoryRadiance": {
+        "id": "SC16",
+        "name": "ObservatoryRadiance",
+        "ownerId": "20:6653",
+        "defaultComponentId": "20:6653",
+        "variantIds": [
+          "20:6653"
+        ],
+        "variants": [
+          {
+            "id": "20:6653",
+            "name": "Observatory/v2/Observatory/ObservatoryRadiance",
+            "properties": {},
+            "width": 480,
+            "height": 186
+          }
+        ],
+        "propertyIds": {
+          "Role": "Role#20:25",
+          "Purpose": "Purpose#20:26"
+        },
+        "representation": "Native source-contract diagram only."
+      },
+      "ObservatoryRadianceGround": {
+        "id": "SC17",
+        "name": "ObservatoryRadianceGround",
+        "ownerId": "20:6665",
+        "defaultComponentId": "20:6665",
+        "variantIds": [
+          "20:6665"
+        ],
+        "variants": [
+          {
+            "id": "20:6665",
+            "name": "Observatory/v2/Observatory/ObservatoryRadianceGround",
+            "properties": {},
+            "width": 480,
+            "height": 186
+          }
+        ],
+        "propertyIds": {
+          "Role": "Role#20:27",
+          "Purpose": "Purpose#20:28"
+        },
+        "representation": "Native source-contract diagram only."
+      },
+      "ObservatoryEvents": {
+        "id": "SC18",
+        "name": "ObservatoryEvents",
+        "ownerId": "20:6677",
+        "defaultComponentId": "20:6677",
+        "variantIds": [
+          "20:6677"
+        ],
+        "variants": [
+          {
+            "id": "20:6677",
+            "name": "Observatory/v2/Observatory/ObservatoryEvents",
+            "properties": {},
+            "width": 480,
+            "height": 186
+          }
+        ],
+        "propertyIds": {
+          "Role": "Role#20:29",
+          "Purpose": "Purpose#20:30"
+        },
+        "representation": "Native source-contract diagram only."
+      },
+      "ObservatoryEventVariationSymbol": {
+        "id": "SC19",
+        "name": "ObservatoryEventVariationSymbol",
+        "source": "src/ui/observatory-event-variations.tsx",
+        "ownerId": "21:5121",
+        "defaultComponentId": "21:5121",
+        "variantIds": [
+          "21:5121"
+        ],
+        "variants": [
+          {
+            "id": "21:5121",
+            "name": "Observatory/v2/Observatory/ObservatoryEventVariationSymbol",
+            "properties": {},
+            "width": 480,
+            "height": 238
+          }
+        ],
+        "propertyIds": {
+          "Role": "Role#21:0",
+          "Purpose": "Purpose#21:1"
+        },
+        "representation": "Existing source-mapped component reused; consult original property definitions."
+      },
+      "ObservatoryEventVariation": {
+        "id": "SC20",
+        "name": "ObservatoryEventVariation",
+        "source": "src/ui/observatory-event-variations.tsx",
+        "ownerId": "21:5138",
+        "defaultComponentId": "21:5138",
+        "variantIds": [
+          "21:5138"
+        ],
+        "variants": [
+          {
+            "id": "21:5138",
+            "name": "Observatory/v2/Observatory/ObservatoryEventVariation",
+            "properties": {},
+            "width": 480,
+            "height": 264
+          }
+        ],
+        "propertyIds": {
+          "Role": "Role#21:2",
+          "Purpose": "Purpose#21:3"
+        },
+        "representation": "Existing source-mapped component reused; consult original property definitions."
+      },
+      "BusyDots": {
+        "id": "MO01",
+        "name": "BusyDots",
+        "source": "src/ui/motion.tsx",
+        "ownerId": "21:5175",
+        "defaultComponentId": "21:5157",
+        "variantIds": [
+          "21:5157",
+          "21:5163",
+          "21:5169"
+        ],
+        "variants": [
+          {
+            "id": "21:5157",
+            "name": "State=rest",
+            "properties": {
+              "State": "rest"
+            },
+            "width": 280,
+            "height": 152
+          },
+          {
+            "id": "21:5163",
+            "name": "State=active",
+            "properties": {
+              "State": "active"
+            },
+            "width": 280,
+            "height": 152
+          },
+          {
+            "id": "21:5169",
+            "name": "State=reduced",
+            "properties": {
+              "State": "reduced"
+            },
+            "width": 280,
+            "height": 152
+          }
+        ],
+        "propertyIds": {
+          "Contract": "Contract#21:4"
+        },
+        "representation": "Existing source-mapped component reused; consult original property definitions."
+      },
+      "SavedMark": {
+        "id": "MO02",
+        "name": "SavedMark",
+        "source": "src/ui/motion.tsx",
+        "ownerId": "21:5194",
+        "defaultComponentId": "21:5176",
+        "variantIds": [
+          "21:5176",
+          "21:5182",
+          "21:5188"
+        ],
+        "variants": [
+          {
+            "id": "21:5176",
+            "name": "State=rest",
+            "properties": {
+              "State": "rest"
+            },
+            "width": 280,
+            "height": 152
+          },
+          {
+            "id": "21:5182",
+            "name": "State=active",
+            "properties": {
+              "State": "active"
+            },
+            "width": 280,
+            "height": 152
+          },
+          {
+            "id": "21:5188",
+            "name": "State=reduced",
+            "properties": {
+              "State": "reduced"
+            },
+            "width": 280,
+            "height": 152
+          }
+        ],
+        "propertyIds": {
+          "Contract": "Contract#21:8"
+        },
+        "representation": "Existing source-mapped component reused; consult original property definitions."
+      },
+      "SelectionBackground": {
+        "id": "MO03",
+        "name": "SelectionBackground",
+        "source": "src/ui/motion.tsx",
+        "ownerId": "21:5216",
+        "defaultComponentId": "21:5195",
+        "variantIds": [
+          "21:5195",
+          "21:5202",
+          "21:5209"
+        ],
+        "variants": [
+          {
+            "id": "21:5195",
+            "name": "State=rest",
+            "properties": {
+              "State": "rest"
+            },
+            "width": 280,
+            "height": 152
+          },
+          {
+            "id": "21:5202",
+            "name": "State=active",
+            "properties": {
+              "State": "active"
+            },
+            "width": 280,
+            "height": 152
+          },
+          {
+            "id": "21:5209",
+            "name": "State=reduced",
+            "properties": {
+              "State": "reduced"
+            },
+            "width": 280,
+            "height": 152
+          }
+        ],
+        "propertyIds": {
+          "Contract": "Contract#21:12"
+        },
+        "representation": "Existing source-mapped component reused; consult original property definitions."
+      },
+      "NoticeEntrance": {
+        "id": "MO04",
+        "name": "NoticeEntrance",
+        "source": "src/ui/motion.tsx",
+        "ownerId": "21:5229",
+        "defaultComponentId": "21:5217",
+        "variantIds": [
+          "21:5217",
+          "21:5221",
+          "21:5225"
+        ],
+        "variants": [
+          {
+            "id": "21:5217",
+            "name": "State=rest",
+            "properties": {
+              "State": "rest"
+            },
+            "width": 280,
+            "height": 152
+          },
+          {
+            "id": "21:5221",
+            "name": "State=active",
+            "properties": {
+              "State": "active"
+            },
+            "width": 280,
+            "height": 152
+          },
+          {
+            "id": "21:5225",
+            "name": "State=reduced",
+            "properties": {
+              "State": "reduced"
+            },
+            "width": 280,
+            "height": 152
+          }
+        ],
+        "propertyIds": {
+          "Contract": "Contract#21:16"
+        },
+        "representation": "Existing source-mapped component reused; consult original property definitions."
+      },
+      "FadeContent": {
+        "id": "MO05",
+        "name": "FadeContent",
+        "source": "src/ui/motion.tsx",
+        "ownerId": "21:5242",
+        "defaultComponentId": "21:5230",
+        "variantIds": [
+          "21:5230",
+          "21:5234",
+          "21:5238"
+        ],
+        "variants": [
+          {
+            "id": "21:5230",
+            "name": "State=rest",
+            "properties": {
+              "State": "rest"
+            },
+            "width": 280,
+            "height": 174
+          },
+          {
+            "id": "21:5234",
+            "name": "State=active",
+            "properties": {
+              "State": "active"
+            },
+            "width": 280,
+            "height": 174
+          },
+          {
+            "id": "21:5238",
+            "name": "State=reduced",
+            "properties": {
+              "State": "reduced"
+            },
+            "width": 280,
+            "height": 174
+          }
+        ],
+        "propertyIds": {
+          "Contract": "Contract#21:20"
+        },
+        "representation": "Existing source-mapped component reused; consult original property definitions."
+      },
+      "BrandWordmark": {
+        "id": "BR01",
+        "name": "BrandWordmark",
+        "source": "src/ui/brand-wordmark.tsx",
+        "ownerId": "21:5243",
+        "defaultComponentId": "21:5243",
+        "variantIds": [
+          "21:5243"
+        ],
+        "variants": [
+          {
+            "id": "21:5243",
+            "name": "Observatory/v2/Brand/Wordmark",
+            "properties": {},
+            "width": 420,
+            "height": 79.83590698242188
+          }
+        ],
+        "propertyIds": {},
+        "representation": "Existing source-mapped component reused; consult original property definitions."
+      }
+    },
+    "screens": {},
+    "textStyles": {
+      "Body": "S:0ed1e468a727e7f6b4cfe5df9fede5b786c93484,",
+      "Label": "S:57e137d821e57f2a65506aae778891f8769014bb,",
+      "Caption": "S:befdc25f9b2e8c63313b60a0d4aea208900d629a,",
+      "Heading": "S:a12f8ca10ba0d22e77eaf7ad3092a28a3779de86,",
+      "Title": "S:9c730b18d11b0b822b1b5cb4828120b4eb39915f,",
+      "TitleCompact": "S:8579bbbd27aef7f9309ddc31f958d7598925587a,",
+      "Code": "S:2dbd5754c8da299cad06f2184af84cc5101eb9b7,"
+    },
+    "sharedWorldAssetId": "10:68",
+    "research": {
+      "D01": "20:3646",
+      "D02": "20:3664",
+      "D03": "20:3682",
+      "D04": "20:3700",
+      "D05": "20:3718",
+      "D06": "20:3737",
+      "D07": "20:3755",
+      "D08": "20:3774",
+      "D09": "20:3793",
+      "D10": "20:3811",
+      "D11": "20:3830",
+      "D12": "20:3848",
+      "D13": "20:3866",
+      "D14": "20:3885",
+      "D15": "20:3903",
+      "D16": "20:3921",
+      "D17": "20:3939",
+      "D18": "20:3957",
+      "D19": "20:3975",
+      "D20": "20:3993",
+      "D21": "20:4011",
+      "D22": "20:4029",
+      "D23": "20:4047",
+      "D24": "20:4065",
+      "D25": "20:4083",
+      "D26": "20:4101",
+      "D27": "20:4119",
+      "D28": "20:4137",
+      "F01": "20:4188",
+      "F02": "20:4207",
+      "F03": "20:4226",
+      "F04": "20:4245",
+      "F05": "20:4265",
+      "F06": "20:4283",
+      "F07": "20:4301",
+      "F08": "20:4319",
+      "F09": "20:4337",
+      "F10": "20:4356",
+      "F11": "20:4374",
+      "F12": "20:4393",
+      "F13": "20:4411",
+      "F14": "20:4431",
+      "F15": "20:4449",
+      "F16": "20:4467",
+      "F17": "20:4485",
+      "F18": "20:4503",
+      "F19": "20:4521",
+      "F20": "20:4539",
+      "F21": "20:4558",
+      "F22": "20:4578",
+      "F23": "20:4598",
+      "F24": "20:4617",
+      "F25": "20:4637",
+      "F26": "20:4656",
+      "F27": "20:4674",
+      "F28": "20:4693",
+      "F29": "20:4711",
+      "F30": "20:4729",
+      "F31": "20:4747",
+      "Q01": "22:72",
+      "Q02": "22:90",
+      "Q03": "22:108",
+      "Q04": "22:126",
+      "Q05": "22:145",
+      "Q06": "22:164",
+      "Q07": "22:183",
+      "Q08": "22:202",
+      "Q09": "22:220",
+      "Q10": "22:238",
+      "Q11": "22:257",
+      "Q12": "22:276",
+      "Q13": "22:295",
+      "Q14": "22:314",
+      "Q15": "22:332",
+      "Q16": "22:351",
+      "Q17": "22:370",
+      "Q18": "22:388",
+      "Q19": "22:407",
+      "Q20": "22:426",
+      "Q21": "22:444",
+      "Q22": "22:462",
+      "Q23": "22:480",
+      "Q24": "22:498",
+      "Q25": "22:517",
+      "Q26": "22:536",
+      "Q27": "22:556",
+      "Q28": "22:576",
+      "S01": "22:633",
+      "S02": "22:651",
+      "S03": "22:669",
+      "S04": "22:687",
+      "S05": "22:705",
+      "S06": "22:723",
+      "S07": "22:742",
+      "S08": "22:760",
+      "S09": "22:778",
+      "S10": "22:796",
+      "S11": "22:814",
+      "S12": "22:832",
+      "S13": "22:850",
+      "S14": "22:868",
+      "S15": "22:886",
+      "S16": "22:904",
+      "S17": "22:922",
+      "S18": "22:941",
+      "S19": "22:960",
+      "S20": "22:979",
+      "S21": "22:998",
+      "S22": "22:1017",
+      "S23": "22:1035",
+      "S24": "22:1053",
+      "S25": "22:1072",
+      "S26": "22:1091",
+      "S27": "22:1109",
+      "S28": "22:1127",
+      "S29": "22:1145",
+      "S30": "22:1163",
+      "S31": "22:1181",
+      "S32": "22:1199",
+      "S33": "22:1218",
+      "S34": "22:1237"
+    },
+    "states": {
+      "SAVE-CHECKING": "14:73",
+      "SAVE-LOCAL-WRITING": "14:95",
+      "SAVE-PENDING": "14:115",
+      "SAVE-SAVING": "14:139",
+      "SAVE-SAVED": "14:161",
+      "SAVE-ERROR": "14:183",
+      "SAVE-LOCAL-ERROR": "14:205",
+      "SAVE-CONFLICT": "14:227",
+      "SAVE-ARCHIVING": "14:254",
+      "AUTH-CHECKING": "14:271",
+      "AUTH-SIGNED-OUT": "14:290",
+      "AUTH-PENDING": "14:312",
+      "AUTH-APPROVED": "14:331",
+      "AUTH-REJECTED": "14:348",
+      "AUTH-SUSPENDED": "14:365",
+      "AUTH-EXPIRED": "14:382",
+      "EDIT-DIRTY": "14:401",
+      "EDIT-OTHER-WINDOW": "14:422",
+      "EDIT-RESTORED-DRAFT": "14:444",
+      "BACKUP-COLLECTING": "14:466",
+      "BACKUP-PREPARED": "14:483",
+      "BACKUP-INVALID": "14:500",
+      "BACKUP-PREVIEW": "14:519",
+      "BACKUP-WAITING-RESTART": "14:543",
+      "BACKUP-RECOVERING": "14:560",
+      "BACKUP-RESTORED": "14:577",
+      "BACKUP-ROLLED-BACK": "14:596",
+      "BACKUP-MISSING-ORIGINAL": "14:615",
+      "BACKUP-OWNER-CHANGED": "14:634",
+      "AI-OWNER-READY": "14:651",
+      "AI-FORBIDDEN": "14:673",
+      "AI-GENERATING": "14:690",
+      "AI-PREVIEW": "14:710",
+      "AI-FAILED": "14:739",
+      "AI-LIMIT": "14:759",
+      "AI-UNCERTAIN": "14:779",
+      "CONTENT-EMPTY": "14:799",
+      "CONTENT-NO-RESULT": "14:816",
+      "CONTENT-ERROR": "14:838",
+      "CONTENT-UNAVAILABLE": "14:857",
+      "RENDER-FALLBACK": "14:874",
+      "RENDER-PAUSED": "14:893"
+    },
+    "worldAsset": "10:68",
+    "indexBoards": {
+      "overview": "36:92",
+      "coverage": "36:192",
+      "adopted": "36:723",
+      "stylesAndScene": "36:928"
+    },
+    "flowBoards": {
+      "F01": "35:11269",
+      "F02": "35:11313",
+      "F03": "35:11360",
+      "F04": "35:11406",
+      "F05": "35:11447",
+      "F06": "35:11484",
+      "F07": "35:11530",
+      "F08": "35:11580",
+      "F09": "35:11615",
+      "F10": "35:11653",
+      "F11": "35:11690",
+      "F12": "35:11720",
+      "F13": "35:11760",
+      "F14": "35:11811"
+    },
+    "variablesCount": 81,
+    "screenFrames": 155,
+    "directBlocks": 169,
+    "supplementalMemoState": "33:9138",
+    "navigation": {
+      "controls": 1164,
+      "linked": 1086,
+      "native": 314,
+      "url": 772,
+      "skipped": 78,
+      "unresolved": 0
+    },
+    "linkedControlInstances": 362
+  },
+  "completedSteps": [
+    "current-guidelines-read",
+    "source-inventory-started",
+    "figma-account-and-limit-confirmed",
+    "pro-full-access",
+    "existing-asset-discovery",
+    "font-load-weight-readback",
+    "foundations-write",
+    "library-discovery-confirmed",
+    "source-world-five-layer-reused",
+    "components-ui01-ui08",
+    "world-vector-import-visual-verified",
+    "48-components-120-variants",
+    "42-states-32-prototype-transitions",
+    "121-research-sources-20-domains",
+    "155-responsive-screen-frames",
+    "169-blocks-including-material-memo",
+    "155-screen-structure-readback-zero-overflow",
+    "14-flows-74-steps-62-references",
+    "1086-design-navigation-links-read-back",
+    "354-index-bindings-read-back",
+    "31-adopted-sources-and-8-styles",
+    "81-variables-and-10-pages-read-back",
+    "representative-native-screenshots-reviewed",
+    "362-native-input-textarea-checkbox-instances",
+    "155-screen-structure-after-controls-zero-overflow"
+  ],
+  "pendingValidations": [],
+  "blockedBy": null,
+  "pages": [
+    {
+      "key": "index",
+      "name": "00 안내 · 전수 대응"
+    },
+    {
+      "key": "foundations",
+      "name": "01 기초 · 천문대 정체성"
+    },
+    {
+      "key": "components",
+      "name": "02 공통 부품 · 상태"
+    },
+    {
+      "key": "desk",
+      "name": "03 정면 · 공부 책상"
+    },
+    {
+      "key": "library",
+      "name": "04 왼쪽 · 자료 책장"
+    },
+    {
+      "key": "workbench",
+      "name": "05 오른쪽 · 탐구 작업대"
+    },
+    {
+      "key": "wall",
+      "name": "06 뒤쪽 · 기록과 계획"
+    },
+    {
+      "key": "global",
+      "name": "07 계정 · 설정 · 복구"
+    },
+    {
+      "key": "states",
+      "name": "08 반응형 · 실패 · 복귀"
+    },
+    {
+      "key": "research",
+      "name": "09 기술 · 검증 · 출처"
+    }
+  ],
+  "access": {
+    "seat": "Full",
+    "tier": "pro",
+    "verified": "2026-10-02",
+    "readSucceeded": true,
+    "writeSucceeded": true
+  },
+  "currentTaskScope": {
+    "components": 48,
+    "routeMenus": 18,
+    "source": "existing prepared source inventory; materials v2; actual source map and conditional technical states",
+    "remoteStateObserved": "World and 42-state page were already present and reused; no foreign deletions.",
+    "routes": 41,
+    "modals": 29,
+    "surfaces": 41,
+    "sourceModules": 104,
+    "reachableModules": 103,
+    "directScreenEntities": 83,
+    "reusedSurfaces": 28,
+    "screens": 155,
+    "componentVariants": 120,
+    "states": 42,
+    "stateTransitions": 32,
+    "flows": 14,
+    "researchSources": 121,
+    "researchDomains": 20,
+    "originalInstagram": 31,
+    "designStyles": 8,
+    "runtimeAppWrites": 0,
+    "deployments": 0
+  },
+  "updatedAt": "2026-10-01T18:45:41.843544+00:00",
+  "separateRemaining": [
+    "실제 웹앱에 새 Figma 설계를 구현하고 서버 연결, 기기 조작, 배포하는 일은 이번 설계 대응과 별도이다.",
+    "Figma 장면은 전체 원본 SVG의 정적 견본이다. 시간, GPU, 음성, 실제 저장 상태를 실행하지 않는다.",
+    "Instagram L16/L25/L27 영상과 음성 및 캡션, L14 작은 본문, L01 외 캡션의 기존 읽기 잔여를 유지한다.",
+    "Pro 환경에서 published Code Connect는 실행하지 않았다. 소스 경로와 실제 Figma 노드는 대응표로 연결했다."
+  ],
+  "sourceDriftReview": {
+    "at": "2026-10-02",
+    "App.tsx": "104개 TSX 범위, 18개 메뉴, 모달 유지. R23 자료 곁 메모 누락 보완.",
+    "quick-memos.tsx": "MouseEvent import 및 편집기를 열기 전 focus({preventScroll:true}) 두 곳만 기준과 다름. 기존 O24 복귀 계약 범위이며 새 엔터티 없음."
+  },
+  "reconciliation20261002": {
+    "request": "피그마에 다대응시켜",
+    "sourceFrozenAt": "2026-10-02T02:37:30.526Z",
+    "indexNodeId": "82:246",
+    "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=82-246",
+    "report": "reconciliation-20261002/report.md",
+    "counts": {
+      "baseEntities": 111,
+      "baseFrames": 155,
+      "components": 59,
+      "variants": 168,
+      "taskFlows": 14,
+      "originalSteps": 74,
+      "prototypeStates": 128,
+      "prototypeEdges": 397,
+      "advancedAreas": 12,
+      "advancedStates": 77,
+      "sceneAssets": 15,
+      "entryLinks": 24
+    },
+    "sourceApiCatalogueNodeId": "71:10709",
+    "advancedComponentOwners": [
+      {
+        "id": "UI25",
+        "name": "WorkspaceCommands",
+        "ownerId": "74:72248",
+        "defaultComponentId": "74:72242",
+        "variants": [
+          {
+            "id": "74:72242",
+            "name": "Width=wide, State=representative",
+            "properties": {
+              "Width": "wide",
+              "State": "representative"
+            }
+          },
+          {
+            "id": "74:72245",
+            "name": "Width=narrow, State=representative",
+            "properties": {
+              "Width": "narrow",
+              "State": "representative"
+            }
+          }
+        ],
+        "source": "src/ui/workspace-commands.tsx",
+        "sourceSha256": "d312d8f41b6e5bffc6178c57642c893b853a618df9f83ea424eba48ec2884446",
+        "signature": "({ commands }: { commands: WorkspaceCommand[]; }): Element"
+      },
+      {
+        "id": "UI26",
+        "name": "StudyWorkspace",
+        "ownerId": "74:73677",
+        "defaultComponentId": "74:73526",
+        "variants": [
+          {
+            "id": "74:73526",
+            "name": "Width=wide, State=representative",
+            "properties": {
+              "Width": "wide",
+              "State": "representative"
+            }
+          },
+          {
+            "id": "74:73599",
+            "name": "Width=narrow, State=representative",
+            "properties": {
+              "Width": "narrow",
+              "State": "representative"
+            }
+          }
+        ],
+        "source": "src/ui/study-workspace.tsx",
+        "sourceSha256": "cdf3787c1d7b7fc7ac6dab52a21d53a67b7808b742841d1411636b82accdc33f",
+        "signature": "({ controller, source, renderTool, sourceTitle, }: { controller: { state: WorkState; layout: DeskLayout; setLayout: (next: DeskLayout) => boolean; openTool: (tool: \"code\" | \"math\" | \"memo\" | \"record\") => boolean; change: (next: WorkState) => boolean; error: string; reload: () => void; retry: () => boolean; key: string; }; source: ReactNode; renderTool: (tool: \"code\" | \"math\" | \"memo\" | \"record\") => ReactNode; sourceTitle: string; }): Element"
+      },
+      {
+        "id": "UI27",
+        "name": "SavedWorkspaces",
+        "ownerId": "74:74147",
+        "defaultComponentId": "74:74087",
+        "variants": [
+          {
+            "id": "74:74087",
+            "name": "Width=wide, State=representative",
+            "properties": {
+              "Width": "wide",
+              "State": "representative"
+            }
+          },
+          {
+            "id": "74:74117",
+            "name": "Width=narrow, State=representative",
+            "properties": {
+              "Width": "narrow",
+              "State": "representative"
+            }
+          }
+        ],
+        "source": "src/ui/study-workspace.tsx",
+        "sourceSha256": "cdf3787c1d7b7fc7ac6dab52a21d53a67b7808b742841d1411636b82accdc33f",
+        "signature": "({ controller, data, route, }: { controller: { state: WorkState; layout: DeskLayout; setLayout: (next: DeskLayout) => boolean; openTool: (tool: \"code\" | \"math\" | \"memo\" | \"record\") => boolean; change: (next: WorkState) => boolean; error: string; reload: () => void; retry: () => boolean; key: string; }; data: AppState; route: string; }): Element"
+      },
+      {
+        "id": "UI28",
+        "name": "WorkspaceStorageNotice",
+        "ownerId": "75:74396",
+        "defaultComponentId": "75:74374",
+        "variants": [
+          {
+            "id": "75:74374",
+            "name": "Width=wide, State=representative",
+            "properties": {
+              "Width": "wide",
+              "State": "representative"
+            }
+          },
+          {
+            "id": "75:74385",
+            "name": "Width=narrow, State=representative",
+            "properties": {
+              "Width": "narrow",
+              "State": "representative"
+            }
+          }
+        ],
+        "source": "src/ui/study-workspace.tsx",
+        "sourceSha256": "cdf3787c1d7b7fc7ac6dab52a21d53a67b7808b742841d1411636b82accdc33f",
+        "signature": "({ controller }: { controller: { state: WorkState; layout: DeskLayout; setLayout: (next: DeskLayout) => boolean; openTool: (tool: \"code\" | \"math\" | \"memo\" | \"record\") => boolean; change: (next: WorkState) => boolean; error: string; reload: () => void; retry: () => boolean; key: string; }; }): Element | null"
+      },
+      {
+        "id": "UI30",
+        "name": "UiPerformanceAccess",
+        "ownerId": "75:74869",
+        "defaultComponentId": "75:74863",
+        "variants": [
+          {
+            "id": "75:74863",
+            "name": "Width=wide, State=representative",
+            "properties": {
+              "Width": "wide",
+              "State": "representative"
+            }
+          },
+          {
+            "id": "75:74866",
+            "name": "Width=narrow, State=representative",
+            "properties": {
+              "Width": "narrow",
+              "State": "representative"
+            }
+          }
+        ],
+        "source": "src/ui/ui-performance-access.tsx",
+        "sourceSha256": "0621aea7f4b2c2403a90601a1190bf9896f970a133ede0583ea011d318b4a7d8",
+        "signature": "(): Element"
+      },
+      {
+        "id": "UI31",
+        "name": "UiPerformancePanel",
+        "ownerId": "75:74923",
+        "defaultComponentId": "75:74873",
+        "variants": [
+          {
+            "id": "75:74873",
+            "name": "Width=wide, State=representative",
+            "properties": {
+              "Width": "wide",
+              "State": "representative"
+            }
+          },
+          {
+            "id": "75:74898",
+            "name": "Width=narrow, State=representative",
+            "properties": {
+              "Width": "narrow",
+              "State": "representative"
+            }
+          }
+        ],
+        "source": "src/ui/ui-performance-panel.tsx",
+        "sourceSha256": "cbc48f58630a4a498ed2d086a37468102716bd4080091f48aa969ad699167a02",
+        "signature": "(): Element"
+      },
+      {
+        "id": "UI29",
+        "name": "ProgressiveHistory",
+        "ownerId": "75:79609",
+        "defaultComponentId": "75:79353",
+        "variants": [
+          {
+            "id": "75:79353",
+            "name": "Width=wide, State=representative",
+            "properties": {
+              "Width": "wide",
+              "State": "representative"
+            }
+          },
+          {
+            "id": "75:79481",
+            "name": "Width=narrow, State=representative",
+            "properties": {
+              "Width": "narrow",
+              "State": "representative"
+            }
+          }
+        ],
+        "source": "src/ui/progressive-history.tsx",
+        "sourceSha256": "93609c7e6d310b8b770f10a227b9b257d0c9b33403594d50e7d0c862a023fd77",
+        "signature": "({ data, name, total, label, children, collapsible }: Props): Element"
+      },
+      {
+        "id": "UI32",
+        "name": "MathComparison",
+        "ownerId": "75:80544",
+        "defaultComponentId": "75:80416",
+        "variants": [
+          {
+            "id": "75:80416",
+            "name": "Width=wide, State=representative",
+            "properties": {
+              "Width": "wide",
+              "State": "representative"
+            }
+          },
+          {
+            "id": "75:80480",
+            "name": "Width=narrow, State=representative",
+            "properties": {
+              "Width": "narrow",
+              "State": "representative"
+            }
+          }
+        ],
+        "source": "src/ui/math-comparison.tsx",
+        "sourceSha256": "107602daa6b3d11cebe4f9429c6561e2508d741b745a27956e5ae9fa2543bfd3",
+        "signature": "({ ownerKey, scene, result }: { ownerKey: string; scene: MathScene; result: { points: (Vec3 | null)[]; sample: (value: number) => Vec3 | null; sampleKey: string; point: Vec3 | null; at: number; min: number; max: number; tex: string; vectors: { reason: string; T?: undefined; N?: undefined; B?: undefined; curvature?: undefined; } | { T: Vec3; reason: string; N?: undefined; B?: undefined; curvature?: undefined; } | { T: Vec3; N: Vec3; B: Vec3; curvature: number; reason: string; } | null; frameError: string; missing: number; breakBefore: boolean[]; } | null | undefined; }): Element"
+      },
+      {
+        "id": "UI33",
+        "name": "ConceptText",
+        "ownerId": "75:84056",
+        "defaultComponentId": "75:84052",
+        "variants": [
+          {
+            "id": "75:84052",
+            "name": "Width=wide, State=representative",
+            "properties": {
+              "Width": "wide",
+              "State": "representative"
+            }
+          },
+          {
+            "id": "75:84054",
+            "name": "Width=narrow, State=representative",
+            "properties": {
+              "Width": "narrow",
+              "State": "representative"
+            }
+          }
+        ],
+        "source": "src/ui/concept-text.tsx",
+        "sourceSha256": "29b388dccfa693e17f15e5d6adf6dd71d20995d2a5b6997ebca752a31f59d3b2",
+        "signature": "({ text }: { text: string; }): Element"
+      }
+    ],
+    "nativeCodeConnectPublished": false,
+    "runtimeVerified": false,
+    "productionDeployed": false,
+    "evidenceComplete": true
+  }
+}

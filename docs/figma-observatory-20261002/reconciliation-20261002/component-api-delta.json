@@ -1,0 +1,394 @@
+{
+  "sourceFrozenAt": "2026-10-02T02:37:30.526Z",
+  "rows": [
+    {
+      "id": "UI25",
+      "name": "WorkspaceCommands",
+      "figma": {
+        "ownerId": "74:72248",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=74-72248",
+        "representation": "Native editable representative wide/narrow component composed from existing common components. Width/State are design fixture conditions, not React props."
+      },
+      "code": {
+        "source": "src/ui/workspace-commands.tsx",
+        "line": 11,
+        "sha256": "d312d8f41b6e5bffc6178c57642c893b853a618df9f83ea424eba48ec2884446",
+        "customProperties": [
+          {
+            "name": "commands",
+            "optional": false,
+            "type": "WorkspaceCommand[]"
+          }
+        ],
+        "usageCount": 1,
+        "usages": [
+          {
+            "source": "src/App.tsx",
+            "line": 1011
+          }
+        ]
+      },
+      "storybook": {
+        "stories": []
+      }
+    },
+    {
+      "id": "UI26",
+      "name": "StudyWorkspace",
+      "figma": {
+        "ownerId": "74:73677",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=74-73677",
+        "representation": "Native editable representative wide/narrow component composed from existing common components. Width/State are design fixture conditions, not React props."
+      },
+      "code": {
+        "source": "src/ui/study-workspace.tsx",
+        "line": 74,
+        "sha256": "cdf3787c1d7b7fc7ac6dab52a21d53a67b7808b742841d1411636b82accdc33f",
+        "customProperties": [
+          {
+            "name": "controller",
+            "optional": false,
+            "type": "{ state: WorkState; layout: DeskLayout; setLayout: (next: DeskLayout) => boolean; openTool: (tool: \"code\" | \"math\" | \"memo\" | \"record\") => boolean; change: (next: WorkState) => boolean; error: string; reload: () => void; retry: () => boolean; key: string; }"
+          },
+          {
+            "name": "source",
+            "optional": false,
+            "type": "ReactNode"
+          },
+          {
+            "name": "renderTool",
+            "optional": false,
+            "type": "(tool: \"code\" | \"math\" | \"memo\" | \"record\") => ReactNode"
+          },
+          {
+            "name": "sourceTitle",
+            "optional": false,
+            "type": "string"
+          }
+        ],
+        "usageCount": 1,
+        "usages": [
+          {
+            "source": "src/App.tsx",
+            "line": 1646
+          }
+        ]
+      },
+      "storybook": {
+        "stories": []
+      }
+    },
+    {
+      "id": "UI27",
+      "name": "SavedWorkspaces",
+      "figma": {
+        "ownerId": "74:74147",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=74-74147",
+        "representation": "Native editable representative wide/narrow component composed from existing common components. Width/State are design fixture conditions, not React props."
+      },
+      "code": {
+        "source": "src/ui/study-workspace.tsx",
+        "line": 189,
+        "sha256": "cdf3787c1d7b7fc7ac6dab52a21d53a67b7808b742841d1411636b82accdc33f",
+        "customProperties": [
+          {
+            "name": "controller",
+            "optional": false,
+            "type": "{ state: WorkState; layout: DeskLayout; setLayout: (next: DeskLayout) => boolean; openTool: (tool: \"code\" | \"math\" | \"memo\" | \"record\") => boolean; change: (next: WorkState) => boolean; error: string; reload: () => void; retry: () => boolean; key: string; }"
+          },
+          {
+            "name": "data",
+            "optional": false,
+            "type": "AppState"
+          },
+          {
+            "name": "route",
+            "optional": false,
+            "type": "string"
+          }
+        ],
+        "usageCount": 1,
+        "usages": [
+          {
+            "source": "src/App.tsx",
+            "line": 1012
+          }
+        ]
+      },
+      "storybook": {
+        "stories": []
+      }
+    },
+    {
+      "id": "UI28",
+      "name": "WorkspaceStorageNotice",
+      "figma": {
+        "ownerId": "75:74396",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=75-74396",
+        "representation": "Native editable representative wide/narrow component composed from existing common components. Width/State are design fixture conditions, not React props."
+      },
+      "code": {
+        "source": "src/ui/study-workspace.tsx",
+        "line": 346,
+        "sha256": "cdf3787c1d7b7fc7ac6dab52a21d53a67b7808b742841d1411636b82accdc33f",
+        "customProperties": [
+          {
+            "name": "controller",
+            "optional": false,
+            "type": "{ state: WorkState; layout: DeskLayout; setLayout: (next: DeskLayout) => boolean; openTool: (tool: \"code\" | \"math\" | \"memo\" | \"record\") => boolean; change: (next: WorkState) => boolean; error: string; reload: () => void; retry: () => boolean; key: string; }"
+          }
+        ],
+        "usageCount": 2,
+        "usages": [
+          {
+            "source": "src/ui/study-workspace.tsx",
+            "line": 217
+          },
+          {
+            "source": "src/App.tsx",
+            "line": 1015
+          }
+        ]
+      },
+      "storybook": {
+        "stories": []
+      }
+    },
+    {
+      "id": "UI29",
+      "name": "ProgressiveHistory",
+      "figma": {
+        "ownerId": "75:79609",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=75-79609",
+        "representation": "Native editable representative wide/narrow component composed from existing common components. Width/State are design fixture conditions, not React props."
+      },
+      "code": {
+        "source": "src/ui/progressive-history.tsx",
+        "line": 9,
+        "sha256": "93609c7e6d310b8b770f10a227b9b257d0c9b33403594d50e7d0c862a023fd77",
+        "customProperties": [
+          {
+            "name": "data",
+            "optional": false,
+            "type": "Pick<AppState, \"namespace\" | \"userId\">"
+          },
+          {
+            "name": "name",
+            "optional": false,
+            "type": "string"
+          },
+          {
+            "name": "total",
+            "optional": false,
+            "type": "number"
+          },
+          {
+            "name": "label",
+            "optional": false,
+            "type": "string"
+          },
+          {
+            "name": "children",
+            "optional": false,
+            "type": "(limit: number) => ReactNode"
+          },
+          {
+            "name": "collapsible",
+            "optional": true,
+            "type": "boolean | undefined"
+          }
+        ],
+        "usageCount": 3,
+        "usages": [
+          {
+            "source": "src/ui/topic-recall.tsx",
+            "line": 243
+          },
+          {
+            "source": "src/ui/topic-recall.tsx",
+            "line": 245
+          },
+          {
+            "source": "src/App.tsx",
+            "line": 1492
+          }
+        ]
+      },
+      "storybook": {
+        "stories": []
+      }
+    },
+    {
+      "id": "UI30",
+      "name": "UiPerformanceAccess",
+      "figma": {
+        "ownerId": "75:74869",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=75-74869",
+        "representation": "Native editable representative wide/narrow component composed from existing common components. Width/State are design fixture conditions, not React props."
+      },
+      "code": {
+        "source": "src/ui/ui-performance-access.tsx",
+        "line": 4,
+        "sha256": "0621aea7f4b2c2403a90601a1190bf9896f970a133ede0583ea011d318b4a7d8",
+        "customProperties": [],
+        "usageCount": 1,
+        "usages": [
+          {
+            "source": "src/App.tsx",
+            "line": 1013
+          }
+        ]
+      },
+      "storybook": {
+        "stories": []
+      }
+    },
+    {
+      "id": "UI31",
+      "name": "UiPerformancePanel",
+      "figma": {
+        "ownerId": "75:74923",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=75-74923",
+        "representation": "Native editable representative wide/narrow component composed from existing common components. Width/State are design fixture conditions, not React props."
+      },
+      "code": {
+        "source": "src/ui/ui-performance-panel.tsx",
+        "line": 12,
+        "sha256": "cbc48f58630a4a498ed2d086a37468102716bd4080091f48aa969ad699167a02",
+        "customProperties": [],
+        "usageCount": 1,
+        "usages": [
+          {
+            "source": "src/ui/ui-performance-access.tsx",
+            "line": 12
+          }
+        ]
+      },
+      "storybook": {
+        "stories": []
+      }
+    },
+    {
+      "id": "UI32",
+      "name": "MathComparison",
+      "figma": {
+        "ownerId": "75:80544",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=75-80544",
+        "representation": "Native editable representative wide/narrow component composed from existing common components. Width/State are design fixture conditions, not React props."
+      },
+      "code": {
+        "source": "src/ui/math-comparison.tsx",
+        "line": 12,
+        "sha256": "107602daa6b3d11cebe4f9429c6561e2508d741b745a27956e5ae9fa2543bfd3",
+        "customProperties": [
+          {
+            "name": "ownerKey",
+            "optional": false,
+            "type": "string"
+          },
+          {
+            "name": "scene",
+            "optional": false,
+            "type": "MathScene"
+          },
+          {
+            "name": "result",
+            "optional": false,
+            "type": "{ points: (Vec3 | null)[]; sample: (value: number) => Vec3 | null; sampleKey: string; point: Vec3 | null; at: number; min: number; max: number; tex: string; vectors: { reason: string; T?: undefined; N?: undefined; B?: undefined; curvature?: undefined; } | { T: Vec3; reason: string; N?: undefined; B?: undefined; curvature?: undefined; } | { T: Vec3; N: Vec3; B: Vec3; curvature: number; reason: string; } | null; frameError: string; missing: number; breakBefore: boolean[]; } | null | undefined"
+          }
+        ],
+        "usageCount": 1,
+        "usages": [
+          {
+            "source": "src/ui/math-explorer.tsx",
+            "line": 502
+          }
+        ]
+      },
+      "storybook": {
+        "stories": []
+      }
+    },
+    {
+      "id": "UI33",
+      "name": "ConceptText",
+      "figma": {
+        "ownerId": "75:84056",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=75-84056",
+        "representation": "Native editable representative wide/narrow component composed from existing common components. Width/State are design fixture conditions, not React props."
+      },
+      "code": {
+        "source": "src/ui/concept-text.tsx",
+        "line": 56,
+        "sha256": "29b388dccfa693e17f15e5d6adf6dd71d20995d2a5b6997ebca752a31f59d3b2",
+        "customProperties": [
+          {
+            "name": "text",
+            "optional": false,
+            "type": "string"
+          }
+        ],
+        "usageCount": 13,
+        "usages": [
+          {
+            "source": "src/ui/concept-figure.tsx",
+            "line": 137
+          },
+          {
+            "source": "src/ui/concept-figure.tsx",
+            "line": 208
+          },
+          {
+            "source": "src/ui/concept-figure.tsx",
+            "line": 212
+          },
+          {
+            "source": "src/ui/concept-library.tsx",
+            "line": 1126
+          },
+          {
+            "source": "src/ui/concept-library.tsx",
+            "line": 1130
+          },
+          {
+            "source": "src/ui/concept-library.tsx",
+            "line": 1132
+          },
+          {
+            "source": "src/ui/concept-library.tsx",
+            "line": 1133
+          },
+          {
+            "source": "src/ui/concept-library.tsx",
+            "line": 1169
+          },
+          {
+            "source": "src/ui/concept-library.tsx",
+            "line": 1176
+          },
+          {
+            "source": "src/ui/concept-library.tsx",
+            "line": 1177
+          },
+          {
+            "source": "src/ui/concept-library.tsx",
+            "line": 1185
+          },
+          {
+            "source": "src/ui/concept-library.tsx",
+            "line": 1187
+          },
+          {
+            "source": "src/ui/concept-library.tsx",
+            "line": 1188
+          }
+        ]
+      },
+      "storybook": {
+        "stories": []
+      }
+    }
+  ],
+  "nativePublished": false,
+  "totalWithExisting50": 59
+}

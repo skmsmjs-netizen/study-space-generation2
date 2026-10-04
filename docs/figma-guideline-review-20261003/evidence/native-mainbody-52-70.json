@@ -1,0 +1,120 @@
+{
+  "type": "result",
+  "result": {
+    "task": "mainbody",
+    "pageId": "52:70",
+    "convertedCount": 10,
+    "sourcePreserved": true,
+    "styleIds": [
+      "S:ee5b536b1b285a9f491514f91d5c4a30dc9cde3a,",
+      "S:6a995bce8c99cb7522d5b2d50d4e97f63f8b186d,",
+      "S:dcd92b8ddb0b86c2c2f10b0cbe6ec0b019fb1c96,",
+      "S:1848d68d3855d7afc05321b29104af2daca9d4ff,"
+    ],
+    "sources": [
+      {
+        "id": "56:29726",
+        "font": "ManSeekSong Paper",
+        "width": 1342,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "56:29822",
+        "font": "ManSeekSong Paper",
+        "width": 1342,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "56:29918",
+        "font": "ManSeekSong Paper",
+        "width": 1342,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "56:30014",
+        "font": "ManSeekSong Paper",
+        "width": 419,
+        "size": 16,
+        "sourcePreserved": true
+      },
+      {
+        "id": "56:30110",
+        "font": "ManSeekSong Paper",
+        "width": 304,
+        "size": 16,
+        "sourcePreserved": true
+      },
+      {
+        "id": "56:30286",
+        "font": "ManSeekSong Paper",
+        "width": 1342,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "178:31787",
+        "font": "ManSeekSong Paper",
+        "width": 1040,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "178:31788",
+        "font": "ManSeekSong Paper",
+        "width": 1040,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "178:31789",
+        "font": "ManSeekSong Paper",
+        "width": 1040,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "178:31790",
+        "font": "ManSeekSong Paper",
+        "width": 1040,
+        "size": 18,
+        "sourcePreserved": true
+      }
+    ],
+    "createdNodeIds": [],
+    "mutatedNodeIds": [
+      "350:35728",
+      "56:29726",
+      "350:35725",
+      "350:35732",
+      "56:29822",
+      "350:35729",
+      "350:35736",
+      "56:29918",
+      "350:35733",
+      "350:35740",
+      "56:30014",
+      "350:35737",
+      "350:35744",
+      "56:30110",
+      "350:35741",
+      "350:35748",
+      "56:30286",
+      "350:35745",
+      "350:35752",
+      "178:31787",
+      "350:35749",
+      "350:35756",
+      "178:31788",
+      "350:35753",
+      "350:35760",
+      "178:31789",
+      "350:35757",
+      "350:35764",
+      "178:31790",
+      "350:35761"
+    ]
+  }
+}

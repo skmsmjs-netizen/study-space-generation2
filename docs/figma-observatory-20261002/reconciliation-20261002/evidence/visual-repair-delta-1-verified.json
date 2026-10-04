@@ -1,0 +1,147 @@
+{
+  "pageId": "7:75",
+  "createdNodeIds": [],
+  "mutatedNodeIds": [
+    "I74:71900;17:109",
+    "I74:71998;17:109",
+    "I74:72106;17:109",
+    "I74:74119;17:109",
+    "I74:73884;17:109",
+    "I74:73963;17:109",
+    "I74:74027;17:109"
+  ],
+  "patched": [
+    {
+      "id": "I74:71900;17:109",
+      "before": {
+        "width": 268,
+        "height": 49,
+        "name": "Actions"
+      },
+      "after": {
+        "width": 268,
+        "height": 49,
+        "name": "Actions"
+      }
+    },
+    {
+      "id": "I74:71998;17:109",
+      "before": {
+        "width": 268,
+        "height": 49,
+        "name": "Actions"
+      },
+      "after": {
+        "width": 268,
+        "height": 49,
+        "name": "Actions"
+      }
+    },
+    {
+      "id": "I74:72106;17:109",
+      "before": {
+        "width": 268,
+        "height": 49,
+        "name": "Actions"
+      },
+      "after": {
+        "width": 268,
+        "height": 49,
+        "name": "Actions"
+      }
+    },
+    {
+      "id": "I74:74119;17:109",
+      "before": {
+        "width": 268,
+        "height": 49,
+        "name": "Actions"
+      },
+      "after": {
+        "width": 268,
+        "height": 49,
+        "name": "Actions"
+      }
+    },
+    {
+      "id": "I74:73884;17:109",
+      "before": {
+        "width": 268,
+        "height": 49,
+        "name": "Actions"
+      },
+      "after": {
+        "width": 268,
+        "height": 49,
+        "name": "Actions"
+      }
+    },
+    {
+      "id": "I74:73963;17:109",
+      "before": {
+        "width": 268,
+        "height": 49,
+        "name": "Actions"
+      },
+      "after": {
+        "width": 268,
+        "height": 49,
+        "name": "Actions"
+      }
+    },
+    {
+      "id": "I74:74027;17:109",
+      "before": {
+        "width": 268,
+        "height": 49,
+        "name": "Actions"
+      },
+      "after": {
+        "width": 268,
+        "height": 49,
+        "name": "Actions"
+      }
+    }
+  ],
+  "rootIds": [
+    "74:71870",
+    "74:71889",
+    "74:71897",
+    "74:71968",
+    "74:71995",
+    "74:72026",
+    "74:72103",
+    "74:72810",
+    "74:72837",
+    "74:72874",
+    "74:72952",
+    "74:73044",
+    "74:73118",
+    "74:73213",
+    "74:73274",
+    "74:73329",
+    "74:73393",
+    "74:73449",
+    "74:73829",
+    "74:73848",
+    "74:73881",
+    "74:73916",
+    "74:73960",
+    "74:73988",
+    "74:74024",
+    "75:74316",
+    "75:74329",
+    "75:74336",
+    "75:74352"
+  ],
+  "counts": {
+    "roots": 29,
+    "patched": 7,
+    "horizontalOverflow": 0,
+    "collapsedTexts": 0,
+    "wrongTextMode": 0,
+    "paperModeMismatch": 0
+  },
+  "issues": [],
+  "scope": "Only seven instance Actions child frames set to FILL; previous text, IDs, prototype links and external source geometry preserved. Paper explicit or resolved mode accepted."
+}

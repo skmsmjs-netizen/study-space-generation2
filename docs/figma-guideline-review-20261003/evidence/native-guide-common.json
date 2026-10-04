@@ -1,0 +1,17 @@
+{
+  "type": "result",
+  "result": {
+    "task": "guide",
+    "pageId": "3:70",
+    "convertedCount": 6,
+    "createdNodeIds": [],
+    "mutatedNodeIds": [
+      "4:24",
+      "4:25",
+      "4:26",
+      "4:28",
+      "4:30",
+      "4:32"
+    ]
+  }
+}

@@ -1,0 +1,302 @@
+{
+  "pageId": "7:76",
+  "createdNodeIds": [],
+  "mutatedNodeIds": [],
+  "observedNodeCount": 64,
+  "counts": {
+    "flows": 1,
+    "steps": 4,
+    "edges": 33,
+    "issues": 0
+  },
+  "issues": [],
+  "flows": [
+    {
+      "id": "F11",
+      "startNodeId": "68:75985",
+      "originalSteps": {
+        "encoding": "columnar-v1",
+        "columns": [
+          "nodeId",
+          "originalIndex",
+          "exact"
+        ],
+        "rows": [
+          [
+            "68:75985",
+            0,
+            true
+          ],
+          [
+            "68:76087",
+            1,
+            true
+          ],
+          [
+            "68:76185",
+            2,
+            true
+          ],
+          [
+            "68:76286",
+            3,
+            true
+          ]
+        ]
+      },
+      "edgeProof": {
+        "encoding": "columnar-v1",
+        "columns": [
+          "controlId",
+          "toFrameId",
+          "matched",
+          "visible",
+          "bindingLocation"
+        ],
+        "rows": [
+          [
+            "68:77062",
+            "68:76087",
+            true,
+            true,
+            "prototype-panel"
+          ],
+          [
+            "I68:75986;63:13333",
+            "68:76087",
+            true,
+            true,
+            "screen-instance"
+          ],
+          [
+            "68:77066",
+            "68:76185",
+            true,
+            true,
+            "prototype-panel"
+          ],
+          [
+            "I68:76088;63:13324",
+            "68:76185",
+            true,
+            true,
+            "screen-instance"
+          ],
+          [
+            "68:77070",
+            "68:76286",
+            true,
+            true,
+            "prototype-panel"
+          ],
+          [
+            "I68:76186;63:13580;53:13188",
+            "68:76286",
+            true,
+            true,
+            "screen-instance"
+          ],
+          [
+            "68:77074",
+            "68:75985",
+            true,
+            true,
+            "prototype-panel"
+          ],
+          [
+            "68:77077",
+            "68:76384",
+            true,
+            true,
+            "prototype-panel"
+          ],
+          [
+            "68:77080",
+            "68:76185",
+            true,
+            true,
+            "prototype-panel"
+          ],
+          [
+            "68:77083",
+            "68:76484",
+            true,
+            true,
+            "prototype-panel"
+          ],
+          [
+            "68:77086",
+            "68:76185",
+            true,
+            true,
+            "prototype-panel"
+          ],
+          [
+            "68:77089",
+            "68:76584",
+            true,
+            true,
+            "prototype-panel"
+          ],
+          [
+            "68:77092",
+            "68:76185",
+            true,
+            true,
+            "prototype-panel"
+          ],
+          [
+            "68:77095",
+            "68:76684",
+            true,
+            true,
+            "prototype-panel"
+          ],
+          [
+            "68:77098",
+            "68:76781",
+            true,
+            true,
+            "prototype-panel"
+          ],
+          [
+            "I68:76685;63:13325",
+            "68:76781",
+            true,
+            true,
+            "screen-instance"
+          ],
+          [
+            "68:77102",
+            "68:76684",
+            true,
+            true,
+            "prototype-panel"
+          ],
+          [
+            "I68:76782;63:13787;53:13206",
+            "68:76684",
+            true,
+            true,
+            "screen-instance"
+          ],
+          [
+            "68:77106",
+            "68:76886",
+            true,
+            true,
+            "prototype-panel"
+          ],
+          [
+            "68:77109",
+            "68:76983",
+            true,
+            true,
+            "prototype-panel"
+          ],
+          [
+            "I68:76887;63:13326",
+            "68:76983",
+            true,
+            true,
+            "screen-instance"
+          ],
+          [
+            "68:77113",
+            "68:76886",
+            true,
+            true,
+            "prototype-panel"
+          ],
+          [
+            "I68:76984;63:13670;53:13182",
+            "68:76886",
+            true,
+            true,
+            "screen-instance"
+          ],
+          [
+            "68:77117",
+            "68:76087",
+            true,
+            true,
+            "prototype-panel"
+          ],
+          [
+            "I68:76385;63:13580;53:13188",
+            "68:76087",
+            true,
+            true,
+            "screen-instance"
+          ],
+          [
+            "68:77121",
+            "68:76087",
+            true,
+            true,
+            "prototype-panel"
+          ],
+          [
+            "I68:76485;63:13580;53:13188",
+            "68:76087",
+            true,
+            true,
+            "screen-instance"
+          ],
+          [
+            "68:77125",
+            "68:76087",
+            true,
+            true,
+            "prototype-panel"
+          ],
+          [
+            "I68:76585;63:13580;53:13188",
+            "68:76087",
+            true,
+            true,
+            "screen-instance"
+          ],
+          [
+            "68:77129",
+            "68:76684",
+            true,
+            true,
+            "prototype-panel"
+          ],
+          [
+            "I68:76782;63:13787;53:13206",
+            "68:76684",
+            true,
+            true,
+            "screen-instance"
+          ],
+          [
+            "68:77133",
+            "68:76886",
+            true,
+            true,
+            "prototype-panel"
+          ],
+          [
+            "I68:76984;63:13670;53:13182",
+            "68:76886",
+            true,
+            true,
+            "screen-instance"
+          ]
+        ]
+      },
+      "counts": {
+        "steps": 4,
+        "edges": 33,
+        "linkedInstances": 11,
+        "taskReturnContexts": 11,
+        "reachableFrames": 11,
+        "issues": 0
+      }
+    }
+  ],
+  "prototypeConnectionsVerified": true,
+  "runtimeVerified": false
+}

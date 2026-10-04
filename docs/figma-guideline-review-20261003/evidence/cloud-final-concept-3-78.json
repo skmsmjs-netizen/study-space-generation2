@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"pageId\":\"3:78\",\"name\":\"전집 · 관점형\",\"rootCount\":82,\"publicationCount\":82,\"nativeParagraphCount\":235,\"richParagraphCount\":31,\"renderedNative95TextCount\":247,\"problems\":[],\"representativeRoots\":[{\"id\":\"46:3324\",\"name\":\"OS판본 · 01-054 · 759b300c3be3\",\"width\":768,\"height\":699},{\"id\":\"46:3343\",\"name\":\"OS판본 · 07-109 · fff16fb05aa7\",\"width\":768,\"height\":846},{\"id\":\"46:3361\",\"name\":\"OS판본 · 08-002 · 7f6b9d1129d8\",\"width\":1584,\"height\":727}],\"createdNodeIds\":[],\"mutatedNodeIds\":[]}"
+    }
+  ],
+  "isError": false
+}

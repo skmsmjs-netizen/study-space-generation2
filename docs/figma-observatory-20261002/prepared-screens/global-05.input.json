@@ -1,0 +1,887 @@
+{
+  "pageId": "7:75",
+  "pageKey": "global",
+  "foundations": {
+    "collections": {
+      "primitives": "VariableCollectionId:7:78",
+      "material": "VariableCollectionId:7:79",
+      "metrics": "VariableCollectionId:7:80"
+    },
+    "modes": [
+      {
+        "name": "Interior",
+        "modeId": "7:1"
+      },
+      {
+        "name": "Paper",
+        "modeId": "7:2"
+      }
+    ],
+    "variables": {
+      "primitive/interior/canvas": {
+        "id": "VariableID:7:81",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/surface": {
+        "id": "VariableID:7:82",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/subtle": {
+        "id": "VariableID:7:83",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/text": {
+        "id": "VariableID:7:84",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/muted": {
+        "id": "VariableID:7:85",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/borderDecorative": {
+        "id": "VariableID:7:86",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/borderInteractive": {
+        "id": "VariableID:7:87",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/focus": {
+        "id": "VariableID:7:88",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/selected": {
+        "id": "VariableID:7:89",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/selectedText": {
+        "id": "VariableID:7:90",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/primary": {
+        "id": "VariableID:7:91",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/primaryHover": {
+        "id": "VariableID:7:92",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/primaryPressed": {
+        "id": "VariableID:7:93",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/onPrimary": {
+        "id": "VariableID:7:94",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/canvas": {
+        "id": "VariableID:7:95",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/surface": {
+        "id": "VariableID:7:96",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/subtle": {
+        "id": "VariableID:7:97",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/text": {
+        "id": "VariableID:7:98",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/muted": {
+        "id": "VariableID:7:99",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/borderDecorative": {
+        "id": "VariableID:7:100",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/borderInteractive": {
+        "id": "VariableID:7:101",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/focus": {
+        "id": "VariableID:7:102",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/selected": {
+        "id": "VariableID:7:103",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/selectedText": {
+        "id": "VariableID:7:104",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/primary": {
+        "id": "VariableID:7:105",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/primaryHover": {
+        "id": "VariableID:7:106",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/primaryPressed": {
+        "id": "VariableID:7:107",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/onPrimary": {
+        "id": "VariableID:7:108",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "material/canvas": {
+        "id": "VariableID:7:109",
+        "type": "COLOR",
+        "scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL"
+        ]
+      },
+      "material/surface": {
+        "id": "VariableID:7:110",
+        "type": "COLOR",
+        "scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL"
+        ]
+      },
+      "material/subtle": {
+        "id": "VariableID:7:111",
+        "type": "COLOR",
+        "scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL"
+        ]
+      },
+      "material/text": {
+        "id": "VariableID:7:112",
+        "type": "COLOR",
+        "scopes": [
+          "TEXT_FILL"
+        ]
+      },
+      "material/muted": {
+        "id": "VariableID:7:113",
+        "type": "COLOR",
+        "scopes": [
+          "TEXT_FILL"
+        ]
+      },
+      "material/borderDecorative": {
+        "id": "VariableID:7:114",
+        "type": "COLOR",
+        "scopes": [
+          "STROKE_COLOR"
+        ]
+      },
+      "material/borderInteractive": {
+        "id": "VariableID:7:115",
+        "type": "COLOR",
+        "scopes": [
+          "STROKE_COLOR"
+        ]
+      },
+      "material/focus": {
+        "id": "VariableID:7:116",
+        "type": "COLOR",
+        "scopes": [
+          "STROKE_COLOR"
+        ]
+      },
+      "material/selected": {
+        "id": "VariableID:7:117",
+        "type": "COLOR",
+        "scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL"
+        ]
+      },
+      "material/selectedText": {
+        "id": "VariableID:7:118",
+        "type": "COLOR",
+        "scopes": [
+          "TEXT_FILL"
+        ]
+      },
+      "material/primary": {
+        "id": "VariableID:7:119",
+        "type": "COLOR",
+        "scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL"
+        ]
+      },
+      "material/primaryHover": {
+        "id": "VariableID:7:120",
+        "type": "COLOR",
+        "scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL"
+        ]
+      },
+      "material/primaryPressed": {
+        "id": "VariableID:7:121",
+        "type": "COLOR",
+        "scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL"
+        ]
+      },
+      "material/onPrimary": {
+        "id": "VariableID:7:122",
+        "type": "COLOR",
+        "scopes": [
+          "TEXT_FILL"
+        ]
+      },
+      "space/0": {
+        "id": "VariableID:7:123",
+        "type": "FLOAT",
+        "scopes": [
+          "GAP"
+        ]
+      },
+      "space/4": {
+        "id": "VariableID:7:124",
+        "type": "FLOAT",
+        "scopes": [
+          "GAP"
+        ]
+      },
+      "space/8": {
+        "id": "VariableID:7:125",
+        "type": "FLOAT",
+        "scopes": [
+          "GAP"
+        ]
+      },
+      "space/12": {
+        "id": "VariableID:7:126",
+        "type": "FLOAT",
+        "scopes": [
+          "GAP"
+        ]
+      },
+      "space/16": {
+        "id": "VariableID:7:127",
+        "type": "FLOAT",
+        "scopes": [
+          "GAP"
+        ]
+      },
+      "space/24": {
+        "id": "VariableID:7:128",
+        "type": "FLOAT",
+        "scopes": [
+          "GAP"
+        ]
+      },
+      "space/32": {
+        "id": "VariableID:7:129",
+        "type": "FLOAT",
+        "scopes": [
+          "GAP"
+        ]
+      },
+      "space/48": {
+        "id": "VariableID:7:130",
+        "type": "FLOAT",
+        "scopes": [
+          "GAP"
+        ]
+      },
+      "space/64": {
+        "id": "VariableID:7:131",
+        "type": "FLOAT",
+        "scopes": [
+          "GAP"
+        ]
+      },
+      "control/height": {
+        "id": "VariableID:7:132",
+        "type": "FLOAT",
+        "scopes": [
+          "WIDTH_HEIGHT"
+        ]
+      },
+      "control/icon-target": {
+        "id": "VariableID:7:133",
+        "type": "FLOAT",
+        "scopes": [
+          "WIDTH_HEIGHT"
+        ]
+      },
+      "border/width": {
+        "id": "VariableID:7:134",
+        "type": "FLOAT",
+        "scopes": [
+          "STROKE_FLOAT"
+        ]
+      },
+      "focus/width": {
+        "id": "VariableID:7:135",
+        "type": "FLOAT",
+        "scopes": [
+          "STROKE_FLOAT"
+        ]
+      },
+      "radius/control": {
+        "id": "VariableID:7:136",
+        "type": "FLOAT",
+        "scopes": [
+          "CORNER_RADIUS"
+        ]
+      },
+      "radius/dialog": {
+        "id": "VariableID:7:137",
+        "type": "FLOAT",
+        "scopes": [
+          "CORNER_RADIUS"
+        ]
+      },
+      "motion/feedback": {
+        "id": "VariableID:7:138",
+        "type": "FLOAT",
+        "scopes": []
+      },
+      "motion/navigation": {
+        "id": "VariableID:7:139",
+        "type": "FLOAT",
+        "scopes": []
+      },
+      "motion/reduced": {
+        "id": "VariableID:7:140",
+        "type": "FLOAT",
+        "scopes": []
+      }
+    },
+    "textStyles": {
+      "Body": "S:0ed1e468a727e7f6b4cfe5df9fede5b786c93484,",
+      "Label": "S:57e137d821e57f2a65506aae778891f8769014bb,",
+      "Caption": "S:befdc25f9b2e8c63313b60a0d4aea208900d629a,",
+      "Heading": "S:a12f8ca10ba0d22e77eaf7ad3092a28a3779de86,",
+      "Title": "S:9c730b18d11b0b822b1b5cb4828120b4eb39915f,",
+      "TitleCompact": "S:8579bbbd27aef7f9309ddc31f958d7598925587a,",
+      "Code": "S:2dbd5754c8da299cad06f2184af84cc5101eb9b7,"
+    },
+    "fonts": {
+      "font": {
+        "family": "Noto Sans KR",
+        "style": "Regular"
+      },
+      "boldFont": {
+        "family": "Noto Sans KR",
+        "style": "Regular",
+        "variationSettings": {
+          "wght": 600
+        }
+      },
+      "axes": [
+        "wght"
+      ]
+    }
+  },
+  "materials": {
+    "interior": {
+      "canvas": "#1F1E1B",
+      "surface": "#282722",
+      "subtle": "#33312D",
+      "text": "#E8E3D7",
+      "muted": "#B7B0A2",
+      "borderDecorative": "#514A42",
+      "borderInteractive": "#8B8071",
+      "focus": "#D7B477",
+      "selected": "#33312D",
+      "selectedText": "#E8E3D7",
+      "primary": "#D7B477",
+      "primaryHover": "#E5C890",
+      "primaryPressed": "#C2A062",
+      "onPrimary": "#1F1E1B"
+    },
+    "paper": {
+      "canvas": "#E4DCCD",
+      "surface": "#E4DCCD",
+      "subtle": "#D7CBB4",
+      "text": "#34312B",
+      "muted": "#5B5448",
+      "borderDecorative": "#B4A891",
+      "borderInteractive": "#796D5D",
+      "focus": "#725425",
+      "selected": "#D7CBB4",
+      "selectedText": "#34312B",
+      "primary": "#554530",
+      "primaryHover": "#473924",
+      "primaryPressed": "#3B3022",
+      "onPrimary": "#E4DCCD"
+    }
+  },
+  "reusable": {
+    "buttonPrimary": "16:76",
+    "buttonQuiet": "16:108",
+    "world": "10:68"
+  },
+  "profiles": [
+    {
+      "key": "ipad-landscape",
+      "label": "iPad Pro 13인치 가로",
+      "width": 1376,
+      "height": 1032,
+      "scale": 2
+    },
+    {
+      "key": "iphone-portrait",
+      "label": "iPhone 17 Pro 세로",
+      "width": 402,
+      "height": 681,
+      "scale": 3
+    },
+    {
+      "key": "iphone-landscape",
+      "label": "iPhone 17 Pro 가로",
+      "width": 756,
+      "height": 352,
+      "scale": 3
+    },
+    {
+      "key": "ipad-portrait",
+      "label": "iPad Pro 13인치 세로",
+      "width": 1032,
+      "height": 1376,
+      "scale": 2
+    },
+    {
+      "key": "ipad-narrow",
+      "label": "iPad Pro 13인치 좁은 창",
+      "width": 517,
+      "height": 1200,
+      "scale": 2
+    }
+  ],
+  "homeId": "R01",
+  "screens": [
+    {
+      "id": "O15",
+      "title": "움직임 위젯",
+      "route": null,
+      "primary": false,
+      "kind": "modal",
+      "homePlace": "common",
+      "pageKey": "global",
+      "layoutFamily": "dialog-form",
+      "source": "src/ui/motion-widgets.tsx:17 · MotionWidgets",
+      "sourceRefs": [
+        {
+          "path": "src/ui/motion-widgets.tsx",
+          "export": "MotionWidgets",
+          "line": 17
+        }
+      ],
+      "states": [
+        "열림",
+        "조작 중",
+        "저장·읽기 오류가 있을 때 오류/재시도"
+      ],
+      "actions": [
+        "탭 선택",
+        "동작 줄이기",
+        "닫기"
+      ],
+      "returnContract": "실제 호출한 버튼·편집기와 선택 위치로 복귀",
+      "placeVariants": [],
+      "blocks": [
+        {
+          "label": "움직임 위젯",
+          "type": "modal",
+          "content": "쉬어가기·선형 아이콘·인터랙티브 카드·화면 동작·동작 감소",
+          "actions": [
+            "탭 선택",
+            "동작 줄이기",
+            "닫기"
+          ],
+          "source": "src/ui/motion-widgets.tsx:17 · MotionWidgets",
+          "contentPolicy": "기능 설명·합성 예시만, 실제 개인 원문 없음",
+          "id": "O15-B01",
+          "ui": {
+            "fields": [],
+            "rows": [
+              "쉬어가기"
+            ],
+            "tabs": [
+              "쉬어가기",
+              "선형 아이콘",
+              "인터랙티브 카드",
+              "화면 동작"
+            ],
+            "checks": [
+              [
+                "동작 줄이기",
+                true
+              ]
+            ],
+            "actions": [
+              "닫기"
+            ]
+          }
+        }
+      ],
+      "statePlan": [
+        "열림",
+        "조작 중",
+        "저장·읽기 오류가 있을 때 오류/재시도"
+      ]
+    },
+    {
+      "id": "O21",
+      "title": "내 기록의 저장 상태",
+      "route": null,
+      "primary": false,
+      "kind": "modal",
+      "homePlace": "common",
+      "pageKey": "global",
+      "layoutFamily": "dialog-form",
+      "source": "src/ui/personal-space.tsx:189 · PersonalSpace",
+      "sourceRefs": [
+        {
+          "path": "src/ui/personal-space.tsx",
+          "export": "PersonalSpace",
+          "line": 189
+        }
+      ],
+      "states": [
+        "열림",
+        "조작 중",
+        "저장·읽기 오류가 있을 때 오류/재시도"
+      ],
+      "actions": [
+        "다시 전송",
+        "새로 확인",
+        "보존본 내려받기",
+        "로그아웃"
+      ],
+      "returnContract": "실제 호출한 버튼·편집기와 선택 위치로 복귀",
+      "placeVariants": [],
+      "blocks": [
+        {
+          "label": "내 기록의 저장 상태",
+          "type": "modal",
+          "content": "미전송·서버 연결·기기 초안·충돌·보존 사본",
+          "actions": [
+            "다시 전송",
+            "새로 확인",
+            "보존본 내려받기",
+            "로그아웃"
+          ],
+          "source": "src/ui/personal-space.tsx:189 · PersonalSpace",
+          "contentPolicy": "기능 설명·합성 예시만, 실제 개인 원문 없음",
+          "id": "O21-B01",
+          "ui": {
+            "fields": [],
+            "rows": [
+              "서버 전송 대기 · 1개",
+              "이 기기에 남아 있는 초안은 계속 보관합니다."
+            ],
+            "actions": [
+              "다시 전송",
+              "새로 확인",
+              "보존본 내려받기"
+            ]
+          }
+        }
+      ],
+      "statePlan": [
+        "열림",
+        "조작 중",
+        "저장·읽기 오류가 있을 때 오류/재시도"
+      ]
+    },
+    {
+      "id": "U01",
+      "title": "앱 내비게이션·범위·테마",
+      "route": null,
+      "primary": false,
+      "kind": "non-route-surface",
+      "homePlace": "common",
+      "pageKey": "global",
+      "layoutFamily": "auxiliary-paper",
+      "source": "src/App.tsx:188 · Workspace / src/ui/navigation-bar.tsx:1 · NavigationBar / src/ui/observatory-navigation.tsx:1 · ObservatoryNavigation",
+      "sourceRefs": [
+        {
+          "path": "src/App.tsx",
+          "export": "Workspace",
+          "line": 188
+        },
+        {
+          "path": "src/ui/navigation-bar.tsx",
+          "export": "NavigationBar",
+          "line": 1
+        },
+        {
+          "path": "src/ui/observatory-navigation.tsx",
+          "export": "ObservatoryNavigation",
+          "line": 1
+        }
+      ],
+      "states": [
+        "기본",
+        "해당 기능의 선택·진행",
+        "실패·복구"
+      ],
+      "actions": [
+        "메뉴 이동",
+        "학기 추가",
+        "범위·테마 선택",
+        "공부 책상",
+        "자료 책장",
+        "탐구 작업대",
+        "기록·계획 벽",
+        "이 자리의 기능",
+        "어디서나 찾기",
+        "하던 과업으로 돌아가기"
+      ],
+      "returnContract": "실제 호출한 버튼·편집기·시점; 없으면 관련 목록",
+      "placeVariants": [],
+      "blocks": [
+        {
+          "label": "앱 내비게이션·범위·테마",
+          "type": "auxiliary-paper",
+          "content": "18개 메뉴 · 범위 · 보관함·화면 설정 · 계정 · breadcrumb",
+          "actions": [
+            "메뉴 이동",
+            "학기 추가",
+            "범위·테마 선택"
+          ],
+          "source": "src/App.tsx:188 · Workspace",
+          "contentPolicy": "기능 설명·합성 예시만, 실제 개인 원문 없음",
+          "id": "U01-B01",
+          "ui": {
+            "fields": [
+              {
+                "label": "공부 범위",
+                "value": "2026 가을",
+                "kind": "select"
+              }
+            ],
+            "rows": [
+              "공부 책상 · 오늘"
+            ],
+            "actions": [
+              "이 자리의 기능",
+              {
+                "label": "어디서나 찾기",
+                "to": "R18"
+              },
+              "보관함·화면 설정"
+            ]
+          }
+        },
+        {
+          "id": "U01-B02",
+          "label": "천문대의 현재 자리",
+          "type": "spatial-navigation",
+          "content": "네 장소 직접 이동·현재 자리·이 자리의 기능·어디서나 찾기. 주제·자료에서 실제 호출 과업으로 돌아가기, 수식/코드 펼치기, 이어서 기록하기.",
+          "actions": [
+            "공부 책상",
+            "자료 책장",
+            "탐구 작업대",
+            "기록·계획 벽",
+            "이 자리의 기능",
+            "어디서나 찾기",
+            "하던 과업으로 돌아가기"
+          ],
+          "source": "src/ui/observatory-navigation.tsx:112 · ObservatoryNavigation / ObservatoryTaskReturn",
+          "ui": {
+            "fields": [
+              {
+                "label": "공부 범위",
+                "value": "2026 가을",
+                "kind": "select"
+              }
+            ],
+            "rows": [
+              "공부 책상 · 오늘"
+            ],
+            "actions": [
+              "이 자리의 기능",
+              {
+                "label": "어디서나 찾기",
+                "to": "R18"
+              },
+              "보관함·화면 설정"
+            ]
+          }
+        }
+      ],
+      "statePlan": [
+        "기본",
+        "해당 기능의 선택·진행",
+        "실패·복구"
+      ]
+    },
+    {
+      "id": "U02",
+      "title": "개인 공간 진입·인증",
+      "route": null,
+      "primary": false,
+      "kind": "non-route-surface",
+      "homePlace": "common",
+      "pageKey": "global",
+      "layoutFamily": "auxiliary-paper",
+      "source": "src/ui/personal-space.tsx:27 · PersonalSpace",
+      "sourceRefs": [
+        {
+          "path": "src/ui/personal-space.tsx",
+          "export": "PersonalSpace",
+          "line": 27
+        }
+      ],
+      "states": [
+        "기본",
+        "해당 기능의 선택·진행",
+        "실패·복구"
+      ],
+      "actions": [
+        "다시 시도",
+        "다시 로그인",
+        "보존 기록 내려받기"
+      ],
+      "returnContract": "실제 호출한 버튼·편집기·시점; 없으면 관련 목록",
+      "placeVariants": [],
+      "blocks": [
+        {
+          "label": "개인 공간 진입·인증",
+          "type": "auxiliary-paper",
+          "content": "연결·인증·자료 여는 상태 · 기기 정리",
+          "actions": [
+            "다시 시도",
+            "다시 로그인",
+            "보존 기록 내려받기"
+          ],
+          "source": "src/ui/personal-space.tsx:27 · PersonalSpace",
+          "contentPolicy": "기능 설명·합성 예시만, 실제 개인 원문 없음",
+          "id": "U02-B01",
+          "ui": {
+            "fields": [],
+            "rows": [
+              "내 기록을 여는 중입니다."
+            ],
+            "actions": [
+              "다시 시도"
+            ]
+          }
+        }
+      ],
+      "statePlan": [
+        "기본",
+        "해당 기능의 선택·진행",
+        "실패·복구"
+      ]
+    },
+    {
+      "id": "U03",
+      "title": "로그인·가입",
+      "route": null,
+      "primary": false,
+      "kind": "non-route-surface",
+      "homePlace": "common",
+      "pageKey": "global",
+      "layoutFamily": "auxiliary-paper",
+      "source": "src/ui/personal-space.tsx:137 · SignIn",
+      "sourceRefs": [
+        {
+          "path": "src/ui/personal-space.tsx",
+          "export": "SignIn",
+          "line": 137
+        }
+      ],
+      "states": [
+        "기본",
+        "해당 기능의 선택·진행",
+        "실패·복구"
+      ],
+      "actions": [
+        "로그인",
+        "계정 만들기",
+        "전환"
+      ],
+      "returnContract": "실제 호출한 버튼·편집기·시점; 없으면 관련 목록",
+      "placeVariants": [],
+      "blocks": [
+        {
+          "label": "로그인·가입",
+          "type": "auxiliary-paper",
+          "content": "이메일·비밀번호 · 가입 이름 · 로그인 유지",
+          "actions": [
+            "로그인",
+            "계정 만들기",
+            "전환"
+          ],
+          "source": "src/ui/personal-space.tsx:137 · SignIn",
+          "contentPolicy": "기능 설명·합성 예시만, 실제 개인 원문 없음",
+          "id": "U03-B01",
+          "ui": {
+            "fields": [
+              {
+                "label": "이메일",
+                "value": "study@example.com",
+                "kind": "input"
+              },
+              {
+                "label": "비밀번호",
+                "value": "••••••••",
+                "kind": "input"
+              }
+            ],
+            "rows": [],
+            "checks": [
+              [
+                "로그인 유지",
+                false
+              ]
+            ],
+            "actions": [
+              "로그인",
+              "계정 만들기"
+            ]
+          }
+        }
+      ],
+      "statePlan": [
+        "기본",
+        "해당 기능의 선택·진행",
+        "실패·복구"
+      ]
+    }
+  ],
+  "startY": 38500,
+  "batchId": "global-05",
+  "contentPolicy": "합성 설계 설명만. 실제 개인 원문 없음. 루트 빌더는 의미 없는 행·임의 학습 통계를 추가하지 않아야 함."
+}

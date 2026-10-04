@@ -1,0 +1,1471 @@
+{
+  "pageId": "7:68",
+  "boards": {
+    "overview": "36:92",
+    "coverage": "36:192",
+    "adopted": "36:723",
+    "stylesAndScene": "36:928"
+  },
+  "createdNodeIds": {
+    "encoding": "figma-id-ranges-v1",
+    "count": 976,
+    "groups": [
+      [
+        "36:",
+        [
+          [
+            92,
+            738
+          ],
+          744,
+          [
+            750,
+            751
+          ],
+          757,
+          763,
+          [
+            769,
+            770
+          ],
+          776,
+          782,
+          [
+            788,
+            789
+          ],
+          795,
+          801,
+          [
+            807,
+            808
+          ],
+          814,
+          820,
+          [
+            826,
+            827
+          ],
+          833,
+          839,
+          [
+            845,
+            846
+          ],
+          852,
+          858,
+          [
+            864,
+            865
+          ],
+          871,
+          877,
+          [
+            883,
+            884
+          ],
+          890,
+          896,
+          [
+            902,
+            903
+          ],
+          909,
+          915,
+          [
+            921,
+            922
+          ],
+          [
+            928,
+            938
+          ],
+          [
+            943,
+            944
+          ],
+          949,
+          [
+            954,
+            955
+          ],
+          960,
+          [
+            965,
+            966
+          ],
+          971,
+          [
+            976,
+            978
+          ],
+          [
+            980,
+            984
+          ],
+          [
+            986,
+            990
+          ],
+          [
+            992,
+            996
+          ],
+          [
+            998,
+            1003
+          ],
+          [
+            1005,
+            1009
+          ],
+          [
+            1011,
+            1015
+          ],
+          [
+            1017,
+            1021
+          ],
+          [
+            1023,
+            1028
+          ],
+          [
+            1030,
+            1034
+          ],
+          [
+            1036,
+            1040
+          ],
+          [
+            1042,
+            1046
+          ],
+          [
+            1048,
+            1053
+          ],
+          [
+            1055,
+            1059
+          ],
+          [
+            1061,
+            1065
+          ],
+          [
+            1067,
+            1071
+          ],
+          [
+            1073,
+            1083
+          ]
+        ]
+      ],
+      [
+        "I36:738;36:",
+        [
+          [
+            733,
+            737
+          ]
+        ]
+      ],
+      [
+        "I36:744;36:",
+        [
+          [
+            733,
+            737
+          ]
+        ]
+      ],
+      [
+        "I36:751;36:",
+        [
+          [
+            733,
+            737
+          ]
+        ]
+      ],
+      [
+        "I36:757;36:",
+        [
+          [
+            733,
+            737
+          ]
+        ]
+      ],
+      [
+        "I36:763;36:",
+        [
+          [
+            733,
+            737
+          ]
+        ]
+      ],
+      [
+        "I36:770;36:",
+        [
+          [
+            733,
+            737
+          ]
+        ]
+      ],
+      [
+        "I36:776;36:",
+        [
+          [
+            733,
+            737
+          ]
+        ]
+      ],
+      [
+        "I36:782;36:",
+        [
+          [
+            733,
+            737
+          ]
+        ]
+      ],
+      [
+        "I36:789;36:",
+        [
+          [
+            733,
+            737
+          ]
+        ]
+      ],
+      [
+        "I36:795;36:",
+        [
+          [
+            733,
+            737
+          ]
+        ]
+      ],
+      [
+        "I36:801;36:",
+        [
+          [
+            733,
+            737
+          ]
+        ]
+      ],
+      [
+        "I36:808;36:",
+        [
+          [
+            733,
+            737
+          ]
+        ]
+      ],
+      [
+        "I36:814;36:",
+        [
+          [
+            733,
+            737
+          ]
+        ]
+      ],
+      [
+        "I36:820;36:",
+        [
+          [
+            733,
+            737
+          ]
+        ]
+      ],
+      [
+        "I36:827;36:",
+        [
+          [
+            733,
+            737
+          ]
+        ]
+      ],
+      [
+        "I36:833;36:",
+        [
+          [
+            733,
+            737
+          ]
+        ]
+      ],
+      [
+        "I36:839;36:",
+        [
+          [
+            733,
+            737
+          ]
+        ]
+      ],
+      [
+        "I36:846;36:",
+        [
+          [
+            733,
+            737
+          ]
+        ]
+      ],
+      [
+        "I36:852;36:",
+        [
+          [
+            733,
+            737
+          ]
+        ]
+      ],
+      [
+        "I36:858;36:",
+        [
+          [
+            733,
+            737
+          ]
+        ]
+      ],
+      [
+        "I36:865;36:",
+        [
+          [
+            733,
+            737
+          ]
+        ]
+      ],
+      [
+        "I36:871;36:",
+        [
+          [
+            733,
+            737
+          ]
+        ]
+      ],
+      [
+        "I36:877;36:",
+        [
+          [
+            733,
+            737
+          ]
+        ]
+      ],
+      [
+        "I36:884;36:",
+        [
+          [
+            733,
+            737
+          ]
+        ]
+      ],
+      [
+        "I36:890;36:",
+        [
+          [
+            733,
+            737
+          ]
+        ]
+      ],
+      [
+        "I36:896;36:",
+        [
+          [
+            733,
+            737
+          ]
+        ]
+      ],
+      [
+        "I36:903;36:",
+        [
+          [
+            733,
+            737
+          ]
+        ]
+      ],
+      [
+        "I36:909;36:",
+        [
+          [
+            733,
+            737
+          ]
+        ]
+      ],
+      [
+        "I36:915;36:",
+        [
+          [
+            733,
+            737
+          ]
+        ]
+      ],
+      [
+        "I36:922;36:",
+        [
+          [
+            733,
+            737
+          ]
+        ]
+      ],
+      [
+        "I36:938;36:",
+        [
+          [
+            934,
+            937
+          ]
+        ]
+      ],
+      [
+        "I36:944;36:",
+        [
+          [
+            934,
+            937
+          ]
+        ]
+      ],
+      [
+        "I36:949;36:",
+        [
+          [
+            934,
+            937
+          ]
+        ]
+      ],
+      [
+        "I36:955;36:",
+        [
+          [
+            934,
+            937
+          ]
+        ]
+      ],
+      [
+        "I36:960;36:",
+        [
+          [
+            934,
+            937
+          ]
+        ]
+      ],
+      [
+        "I36:966;36:",
+        [
+          [
+            934,
+            937
+          ]
+        ]
+      ],
+      [
+        "I36:971;36:",
+        [
+          [
+            934,
+            937
+          ]
+        ]
+      ]
+    ],
+    "literal": []
+  },
+  "mutatedNodeIds": {
+    "encoding": "figma-id-ranges-v1",
+    "count": 1,
+    "groups": [
+      [
+        "7:",
+        [
+          68
+        ]
+      ]
+    ],
+    "literal": []
+  },
+  "createdVariableIds": [
+    "VariableID:36:979",
+    "VariableID:36:985",
+    "VariableID:36:991",
+    "VariableID:36:997",
+    "VariableID:36:1004",
+    "VariableID:36:1010",
+    "VariableID:36:1016",
+    "VariableID:36:1022",
+    "VariableID:36:1029",
+    "VariableID:36:1035",
+    "VariableID:36:1041",
+    "VariableID:36:1047",
+    "VariableID:36:1054",
+    "VariableID:36:1060",
+    "VariableID:36:1066",
+    "VariableID:36:1072"
+  ],
+  "updatedVariableIds": [],
+  "coverage": {
+    "routes": {
+      "expected": 41,
+      "connected": 41,
+      "unlinked": 0,
+      "invalid": [],
+      "missingIds": [],
+      "status": "provided-node-links-present",
+      "inventorySha256": "bb55c29fb059aef1ffbf1791e0ce18f4874a668674e40a6a4d467aa2d498afa6"
+    },
+    "modals": {
+      "expected": 29,
+      "connected": 29,
+      "unlinked": 0,
+      "invalid": [],
+      "missingIds": [],
+      "status": "provided-node-links-present",
+      "inventorySha256": "4b5ff50e30bf98bd2a43d5cfa64e765ac26b17c53808e76d82ab8fd4244ec73e"
+    },
+    "surfaces": {
+      "expected": 41,
+      "connected": 41,
+      "unlinked": 0,
+      "invalid": [],
+      "missingIds": [],
+      "status": "provided-node-links-present",
+      "inventorySha256": "93874866fc96cd6c6b5d10aef5e43efd82c5bd93183bee81edcb45f5545b9be5"
+    },
+    "components": {
+      "expected": 48,
+      "connected": 48,
+      "unlinked": 0,
+      "invalid": [],
+      "missingIds": [],
+      "status": "provided-node-links-present",
+      "inventorySha256": "7167cd03eaac3fbf0a821d8e1b050621d1cb2b9e6d66468075ff68cac9c10201"
+    },
+    "sources": {
+      "expected": 121,
+      "connected": 121,
+      "unlinked": 0,
+      "invalid": [],
+      "missingIds": [],
+      "status": "provided-node-links-present",
+      "inventorySha256": "c1e3c9979ae2bccbf592c632cc4c2c045b0062ee2df9d7b19b6eea8cbfeff015"
+    },
+    "states": {
+      "expected": 42,
+      "connected": 42,
+      "unlinked": 0,
+      "invalid": [],
+      "missingIds": [],
+      "status": "provided-node-links-present",
+      "inventorySha256": "a0f667df4bca266fd8653098854d81425cb15fa7db2b20584f34be586dc4bf54"
+    },
+    "transitions": {
+      "expected": 32,
+      "connected": 32,
+      "unlinked": 0,
+      "invalid": [],
+      "missingIds": [],
+      "status": "provided-node-links-present",
+      "inventorySha256": "29b942b9fff476ae080f31efbd0616d1cf3e8e5df4393c3134bdf1ee45211e26"
+    }
+  },
+  "coverageRows": {
+    "routes": {
+      "boardId": "36:197",
+      "items": {
+        "R01": "36:204",
+        "R02": "36:205",
+        "R03": "36:206",
+        "R04": "36:208",
+        "R05": "36:209",
+        "R06": "36:210",
+        "R07": "36:212",
+        "R08": "36:213",
+        "R09": "36:214",
+        "R10": "36:216",
+        "R11": "36:217",
+        "R12": "36:218",
+        "R13": "36:220",
+        "R14": "36:221",
+        "R15": "36:222",
+        "R16": "36:224",
+        "R17": "36:225",
+        "R18": "36:226",
+        "R19": "36:228",
+        "R20": "36:229",
+        "R21": "36:230",
+        "R22": "36:232",
+        "R23": "36:233",
+        "R24": "36:234",
+        "R25": "36:236",
+        "R26": "36:237",
+        "R27": "36:238",
+        "R28": "36:240",
+        "R29": "36:241",
+        "R30": "36:242",
+        "R31": "36:244",
+        "R32": "36:245",
+        "R33": "36:246",
+        "R34": "36:248",
+        "R35": "36:249",
+        "R36": "36:250",
+        "R37": "36:252",
+        "R38": "36:253",
+        "R39": "36:254",
+        "R40": "36:256",
+        "R41": "36:257"
+      }
+    },
+    "modals": {
+      "boardId": "36:258",
+      "items": {
+        "O01": "36:265",
+        "O02": "36:266",
+        "O03": "36:267",
+        "O04": "36:269",
+        "O05": "36:270",
+        "O06": "36:271",
+        "O07": "36:273",
+        "O08": "36:274",
+        "O09": "36:275",
+        "O10": "36:277",
+        "O11": "36:278",
+        "O12": "36:279",
+        "O13": "36:281",
+        "O14": "36:282",
+        "O15": "36:283",
+        "O16": "36:285",
+        "O17": "36:286",
+        "O18": "36:287",
+        "O19": "36:289",
+        "O20": "36:290",
+        "O21": "36:291",
+        "O22": "36:293",
+        "O23": "36:294",
+        "O24": "36:295",
+        "O25": "36:297",
+        "O26": "36:298",
+        "O27": "36:299",
+        "O28": "36:301",
+        "O29": "36:302"
+      }
+    },
+    "surfaces": {
+      "boardId": "36:304",
+      "items": {
+        "U01": "36:311",
+        "U02": "36:312",
+        "U03": "36:313",
+        "U04": "36:315",
+        "U05": "36:316",
+        "U06": "36:317",
+        "U07": "36:319",
+        "U08": "36:320",
+        "U09": "36:321",
+        "U10": "36:323",
+        "U11": "36:324",
+        "U12": "36:325",
+        "U13": "36:327",
+        "U14": "36:328",
+        "U15": "36:329",
+        "U16": "36:331",
+        "U17": "36:332",
+        "U18": "36:333",
+        "U19": "36:335",
+        "U20": "36:336",
+        "U21": "36:337",
+        "U22": "36:339",
+        "U23": "36:340",
+        "U24": "36:341",
+        "U25": "36:343",
+        "U26": "36:344",
+        "U27": "36:345",
+        "U28": "36:347",
+        "U29": "36:348",
+        "U30": "36:349",
+        "U31": "36:351",
+        "U32": "36:352",
+        "U33": "36:353",
+        "U34": "36:355",
+        "U35": "36:356",
+        "U36": "36:357",
+        "U37": "36:359",
+        "U38": "36:360",
+        "U39": "36:361",
+        "U40": "36:363",
+        "U41": "36:364"
+      }
+    },
+    "components": {
+      "boardId": "36:365",
+      "items": {
+        "UI01": "36:372",
+        "UI02": "36:373",
+        "UI03": "36:374",
+        "UI04": "36:376",
+        "UI05": "36:377",
+        "UI06": "36:378",
+        "UI07": "36:380",
+        "UI08": "36:381",
+        "UI09": "36:382",
+        "UI10": "36:384",
+        "UI11": "36:385",
+        "UI12": "36:386",
+        "UI13": "36:388",
+        "UI14": "36:389",
+        "UI15": "36:390",
+        "UI16": "36:392",
+        "UI17": "36:393",
+        "UI18": "36:394",
+        "UI19": "36:396",
+        "UI20": "36:397",
+        "UI21": "36:398",
+        "UI22": "36:400",
+        "SC01": "36:401",
+        "SC02": "36:402",
+        "SC03": "36:404",
+        "SC04": "36:405",
+        "SC05": "36:406",
+        "SC06": "36:408",
+        "SC07": "36:409",
+        "SC08": "36:410",
+        "SC09": "36:412",
+        "SC10": "36:413",
+        "SC11": "36:414",
+        "SC12": "36:416",
+        "SC13": "36:417",
+        "SC14": "36:418",
+        "SC15": "36:420",
+        "SC16": "36:421",
+        "SC17": "36:422",
+        "SC18": "36:424",
+        "SC19": "36:425",
+        "SC20": "36:426",
+        "MO01": "36:428",
+        "MO02": "36:429",
+        "MO03": "36:430",
+        "MO04": "36:432",
+        "MO05": "36:433",
+        "BR01": "36:434"
+      }
+    },
+    "sources": {
+      "boardId": "36:436",
+      "items": {
+        "D01": "36:443",
+        "D02": "36:444",
+        "D03": "36:445",
+        "D04": "36:447",
+        "D05": "36:448",
+        "D06": "36:449",
+        "D07": "36:451",
+        "D08": "36:452",
+        "D09": "36:453",
+        "D10": "36:455",
+        "D11": "36:456",
+        "D12": "36:457",
+        "D13": "36:459",
+        "D14": "36:460",
+        "D15": "36:461",
+        "D16": "36:463",
+        "D17": "36:464",
+        "D18": "36:465",
+        "D19": "36:467",
+        "D20": "36:468",
+        "D21": "36:469",
+        "D22": "36:471",
+        "D23": "36:472",
+        "D24": "36:473",
+        "D25": "36:475",
+        "D26": "36:476",
+        "D27": "36:477",
+        "D28": "36:479",
+        "F01": "36:480",
+        "F02": "36:481",
+        "F03": "36:483",
+        "F04": "36:484",
+        "F05": "36:485",
+        "F06": "36:487",
+        "F07": "36:488",
+        "F08": "36:489",
+        "F09": "36:491",
+        "F10": "36:492",
+        "F11": "36:493",
+        "F12": "36:495",
+        "F13": "36:496",
+        "F14": "36:497",
+        "F15": "36:499",
+        "F16": "36:500",
+        "F17": "36:501",
+        "F18": "36:503",
+        "F19": "36:504",
+        "F20": "36:505",
+        "F21": "36:507",
+        "F22": "36:508",
+        "F23": "36:509",
+        "F24": "36:511",
+        "F25": "36:512",
+        "F26": "36:513",
+        "F27": "36:515",
+        "F28": "36:516",
+        "F29": "36:517",
+        "F30": "36:519",
+        "F31": "36:520",
+        "Q01": "36:521",
+        "Q02": "36:523",
+        "Q03": "36:524",
+        "Q04": "36:525",
+        "Q05": "36:527",
+        "Q06": "36:528",
+        "Q07": "36:529",
+        "Q08": "36:531",
+        "Q09": "36:532",
+        "Q10": "36:533",
+        "Q11": "36:535",
+        "Q12": "36:536",
+        "Q13": "36:537",
+        "Q14": "36:539",
+        "Q15": "36:540",
+        "Q16": "36:541",
+        "Q17": "36:543",
+        "Q18": "36:544",
+        "Q19": "36:545",
+        "Q20": "36:547",
+        "Q21": "36:548",
+        "Q22": "36:549",
+        "Q23": "36:551",
+        "Q24": "36:552",
+        "Q25": "36:553",
+        "Q26": "36:555",
+        "Q27": "36:556",
+        "Q28": "36:557",
+        "S01": "36:559",
+        "S02": "36:560",
+        "S03": "36:561",
+        "S04": "36:563",
+        "S05": "36:564",
+        "S06": "36:565",
+        "S07": "36:567",
+        "S08": "36:568",
+        "S09": "36:569",
+        "S10": "36:571",
+        "S11": "36:572",
+        "S12": "36:573",
+        "S13": "36:575",
+        "S14": "36:576",
+        "S15": "36:577",
+        "S16": "36:579",
+        "S17": "36:580",
+        "S18": "36:581",
+        "S19": "36:583",
+        "S20": "36:584",
+        "S21": "36:585",
+        "S22": "36:587",
+        "S23": "36:588",
+        "S24": "36:589",
+        "S25": "36:591",
+        "S26": "36:592",
+        "S27": "36:593",
+        "S28": "36:595",
+        "S29": "36:596",
+        "S30": "36:597",
+        "S31": "36:599",
+        "S32": "36:600",
+        "S33": "36:601",
+        "S34": "36:603"
+      }
+    },
+    "states": {
+      "boardId": "36:604",
+      "items": {
+        "SAVE-CHECKING": "36:611",
+        "SAVE-LOCAL-WRITING": "36:612",
+        "SAVE-PENDING": "36:613",
+        "SAVE-SAVING": "36:615",
+        "SAVE-SAVED": "36:616",
+        "SAVE-ERROR": "36:617",
+        "SAVE-LOCAL-ERROR": "36:619",
+        "SAVE-CONFLICT": "36:620",
+        "SAVE-ARCHIVING": "36:621",
+        "AUTH-CHECKING": "36:623",
+        "AUTH-SIGNED-OUT": "36:624",
+        "AUTH-PENDING": "36:625",
+        "AUTH-APPROVED": "36:627",
+        "AUTH-REJECTED": "36:628",
+        "AUTH-SUSPENDED": "36:629",
+        "AUTH-EXPIRED": "36:631",
+        "EDIT-DIRTY": "36:632",
+        "EDIT-OTHER-WINDOW": "36:633",
+        "EDIT-RESTORED-DRAFT": "36:635",
+        "BACKUP-COLLECTING": "36:636",
+        "BACKUP-PREPARED": "36:637",
+        "BACKUP-INVALID": "36:639",
+        "BACKUP-PREVIEW": "36:640",
+        "BACKUP-WAITING-RESTART": "36:641",
+        "BACKUP-RECOVERING": "36:643",
+        "BACKUP-RESTORED": "36:644",
+        "BACKUP-ROLLED-BACK": "36:645",
+        "BACKUP-MISSING-ORIGINAL": "36:647",
+        "BACKUP-OWNER-CHANGED": "36:648",
+        "AI-OWNER-READY": "36:649",
+        "AI-FORBIDDEN": "36:651",
+        "AI-GENERATING": "36:652",
+        "AI-PREVIEW": "36:653",
+        "AI-FAILED": "36:655",
+        "AI-LIMIT": "36:656",
+        "AI-UNCERTAIN": "36:657",
+        "CONTENT-EMPTY": "36:659",
+        "CONTENT-NO-RESULT": "36:660",
+        "CONTENT-ERROR": "36:661",
+        "CONTENT-UNAVAILABLE": "36:663",
+        "RENDER-FALLBACK": "36:664",
+        "RENDER-PAUSED": "36:665"
+      }
+    },
+    "transitions": {
+      "boardId": "36:667",
+      "items": {
+        "T01": "36:674",
+        "T02": "36:675",
+        "T03": "36:676",
+        "T04": "36:678",
+        "T05": "36:679",
+        "T06": "36:680",
+        "T07": "36:682",
+        "T08": "36:683",
+        "T09": "36:684",
+        "T10": "36:686",
+        "T11": "36:687",
+        "T12": "36:688",
+        "T13": "36:690",
+        "T14": "36:691",
+        "T15": "36:692",
+        "T16": "36:694",
+        "T17": "36:695",
+        "T18": "36:696",
+        "T19": "36:698",
+        "T20": "36:699",
+        "T21": "36:700",
+        "T22": "36:702",
+        "T23": "36:703",
+        "T24": "36:704",
+        "T25": "36:706",
+        "T26": "36:707",
+        "T27": "36:708",
+        "T28": "36:710",
+        "T29": "36:711",
+        "T30": "36:712",
+        "T31": "36:714",
+        "T32": "36:715"
+      }
+    }
+  },
+  "sourceMap": {
+    "L01": {
+      "nodeId": "36:732",
+      "url": "https://www.instagram.com/p/DdtcfHOt20t/",
+      "pageIds": [
+        "7:71",
+        "7:74"
+      ],
+      "imageCount": 1
+    },
+    "L02": {
+      "nodeId": "36:738",
+      "url": "https://www.instagram.com/p/Dd8UhAWDcyb/",
+      "pageIds": [
+        "7:76",
+        "7:75"
+      ],
+      "imageCount": 5
+    },
+    "L03": {
+      "nodeId": "36:744",
+      "url": "https://www.instagram.com/p/Ddj66j-NwGK/",
+      "pageIds": [
+        "7:68"
+      ],
+      "imageCount": 1
+    },
+    "L04": {
+      "nodeId": "36:751",
+      "url": "https://www.instagram.com/p/DdVuSbJtTRI/",
+      "pageIds": [
+        "7:69"
+      ],
+      "imageCount": 1
+    },
+    "L05": {
+      "nodeId": "36:757",
+      "url": "https://www.instagram.com/p/DdM6HYEtuCZ/",
+      "pageIds": [
+        "7:77"
+      ],
+      "imageCount": 1
+    },
+    "L06": {
+      "nodeId": "36:763",
+      "url": "https://www.instagram.com/p/DdIrmSPt2qb/",
+      "pageIds": [
+        "7:70",
+        "7:76"
+      ],
+      "imageCount": 1
+    },
+    "L07": {
+      "nodeId": "36:770",
+      "url": "https://www.instagram.com/p/Dc9QtBBtDyU/",
+      "pageIds": [
+        "7:70",
+        "7:76"
+      ],
+      "imageCount": 1
+    },
+    "L08": {
+      "nodeId": "36:776",
+      "url": "https://www.instagram.com/p/Dc5f-KLDZr3/",
+      "pageIds": [
+        "7:69"
+      ],
+      "imageCount": 4
+    },
+    "L09": {
+      "nodeId": "36:782",
+      "url": "https://www.instagram.com/p/Dcvq-p2k1a9/",
+      "pageIds": [
+        "7:69"
+      ],
+      "imageCount": 2
+    },
+    "L10": {
+      "nodeId": "36:789",
+      "url": "https://www.instagram.com/p/DctnOwVNz9h/",
+      "pageIds": [
+        "7:71",
+        "7:77"
+      ],
+      "imageCount": 1
+    },
+    "L11": {
+      "nodeId": "36:795",
+      "url": "https://www.instagram.com/p/Dcn0oWFmnEG/",
+      "pageIds": [
+        "7:77"
+      ],
+      "imageCount": 9
+    },
+    "L12": {
+      "nodeId": "36:801",
+      "url": "https://www.instagram.com/p/DcgchxyDQmG/",
+      "pageIds": [
+        "7:77"
+      ],
+      "imageCount": 6
+    },
+    "L13": {
+      "nodeId": "36:808",
+      "url": "https://www.instagram.com/p/DcZFmkKtOIs/",
+      "pageIds": [
+        "7:70",
+        "7:76"
+      ],
+      "imageCount": 1
+    },
+    "L14": {
+      "nodeId": "36:814",
+      "url": "https://www.instagram.com/p/DcNoVfpN7uA/",
+      "pageIds": [
+        "7:70"
+      ],
+      "imageCount": 1
+    },
+    "L15": {
+      "nodeId": "36:820",
+      "url": "https://www.instagram.com/p/DcDXaMeDTMG/",
+      "pageIds": [
+        "7:69",
+        "7:76"
+      ],
+      "imageCount": 10
+    },
+    "L16": {
+      "nodeId": "36:827",
+      "url": "https://www.instagram.com/reel/Db5Xa69NJ_m/",
+      "pageIds": [
+        "7:77"
+      ],
+      "imageCount": 0
+    },
+    "L17": {
+      "nodeId": "36:833",
+      "url": "https://www.instagram.com/p/DbxSWitjRdt/",
+      "pageIds": [
+        "7:75",
+        "7:71"
+      ],
+      "imageCount": 3
+    },
+    "L18": {
+      "nodeId": "36:839",
+      "url": "https://www.instagram.com/p/DbpqoeytycH/",
+      "pageIds": [
+        "7:77"
+      ],
+      "imageCount": 1
+    },
+    "L19": {
+      "nodeId": "36:846",
+      "url": "https://www.instagram.com/p/Dbn5P_fDf2o/",
+      "pageIds": [
+        "7:71",
+        "7:76"
+      ],
+      "imageCount": 6
+    },
+    "L20": {
+      "nodeId": "36:852",
+      "url": "https://www.instagram.com/p/Dbhq9mkjHRD/",
+      "pageIds": [
+        "7:70"
+      ],
+      "imageCount": 5
+    },
+    "L21": {
+      "nodeId": "36:858",
+      "url": "https://www.instagram.com/p/DbfRRUMtioq/",
+      "pageIds": [
+        "7:77",
+        "7:71"
+      ],
+      "imageCount": 1
+    },
+    "L22": {
+      "nodeId": "36:865",
+      "url": "https://www.instagram.com/p/Dbc2zz4Dfhn/",
+      "pageIds": [
+        "7:69"
+      ],
+      "imageCount": 4
+    },
+    "L23": {
+      "nodeId": "36:871",
+      "url": "https://www.instagram.com/p/Da7DcOlDe4D/",
+      "pageIds": [
+        "7:69"
+      ],
+      "imageCount": 6
+    },
+    "L24": {
+      "nodeId": "36:877",
+      "url": "https://www.instagram.com/p/DadKtwGk-fy/",
+      "pageIds": [
+        "7:69"
+      ],
+      "imageCount": 10
+    },
+    "L25": {
+      "nodeId": "36:884",
+      "url": "https://www.instagram.com/reel/DaNTTflTUxF/",
+      "pageIds": [
+        "7:77"
+      ],
+      "imageCount": 0
+    },
+    "L26": {
+      "nodeId": "36:890",
+      "url": "https://www.instagram.com/p/DaLEY7FEzNe/",
+      "pageIds": [
+        "7:69"
+      ],
+      "imageCount": 3
+    },
+    "L27": {
+      "nodeId": "36:896",
+      "url": "https://www.instagram.com/reel/DaClNCDzYd9/",
+      "pageIds": [
+        "7:77"
+      ],
+      "imageCount": 0
+    },
+    "L28": {
+      "nodeId": "36:903",
+      "url": "https://www.instagram.com/p/DZriVAPk4pq/",
+      "pageIds": [
+        "7:69"
+      ],
+      "imageCount": 6
+    },
+    "L29": {
+      "nodeId": "36:909",
+      "url": "https://www.instagram.com/p/DZiB65bDXK8/",
+      "pageIds": [
+        "7:77"
+      ],
+      "imageCount": 8
+    },
+    "L30": {
+      "nodeId": "36:915",
+      "url": "https://www.instagram.com/p/DZPYI4EDb3i/",
+      "pageIds": [
+        "7:77"
+      ],
+      "imageCount": 7
+    },
+    "L31": {
+      "nodeId": "36:922",
+      "url": "https://www.instagram.com/p/DYuZzrTDcEM/",
+      "pageIds": [
+        "7:69",
+        "7:70"
+      ],
+      "imageCount": 9
+    }
+  },
+  "styleMap": {
+    "D01": {
+      "nodeId": "36:933",
+      "pageIds": [
+        "7:69",
+        "7:71"
+      ]
+    },
+    "D02": {
+      "nodeId": "36:938",
+      "pageIds": [
+        "7:69",
+        "7:70"
+      ]
+    },
+    "D03": {
+      "nodeId": "36:944",
+      "pageIds": [
+        "7:70",
+        "7:73"
+      ]
+    },
+    "D04": {
+      "nodeId": "36:949",
+      "pageIds": [
+        "7:69",
+        "7:70"
+      ]
+    },
+    "D05": {
+      "nodeId": "36:955",
+      "pageIds": [
+        "7:70",
+        "7:72"
+      ]
+    },
+    "D06": {
+      "nodeId": "36:960",
+      "pageIds": [
+        "7:69",
+        "7:70",
+        "7:76"
+      ]
+    },
+    "D07": {
+      "nodeId": "36:966",
+      "pageIds": [
+        "7:71",
+        "7:74",
+        "7:76"
+      ]
+    },
+    "D08": {
+      "nodeId": "36:971",
+      "pageIds": [
+        "7:72",
+        "7:73",
+        "7:74"
+      ]
+    }
+  },
+  "sceneMap": {
+    "observatory/scene/night-950": {
+      "variableId": "VariableID:36:979",
+      "nodeId": "36:980",
+      "swatchId": "36:981",
+      "hex": "#110F29",
+      "cssSyntaxBound": false
+    },
+    "observatory/scene/night-800": {
+      "variableId": "VariableID:36:985",
+      "nodeId": "36:986",
+      "swatchId": "36:987",
+      "hex": "#1E1B4B",
+      "cssSyntaxBound": false
+    },
+    "observatory/scene/night-650": {
+      "variableId": "VariableID:36:991",
+      "nodeId": "36:992",
+      "swatchId": "36:993",
+      "hex": "#312E81",
+      "cssSyntaxBound": false
+    },
+    "observatory/scene/night-450": {
+      "variableId": "VariableID:36:997",
+      "nodeId": "36:998",
+      "swatchId": "36:999",
+      "hex": "#1E3A8A",
+      "cssSyntaxBound": false
+    },
+    "observatory/scene/warm-500": {
+      "variableId": "VariableID:36:1004",
+      "nodeId": "36:1005",
+      "swatchId": "36:1006",
+      "hex": "#F66623",
+      "cssSyntaxBound": false
+    },
+    "observatory/scene/warm-850": {
+      "variableId": "VariableID:36:1010",
+      "nodeId": "36:1011",
+      "swatchId": "36:1012",
+      "hex": "#612D27",
+      "cssSyntaxBound": false
+    },
+    "observatory/scene/warm-700": {
+      "variableId": "VariableID:36:1016",
+      "nodeId": "36:1017",
+      "swatchId": "36:1018",
+      "hex": "#7C2D12",
+      "cssSyntaxBound": false
+    },
+    "observatory/scene/warm-400": {
+      "variableId": "VariableID:36:1022",
+      "nodeId": "36:1023",
+      "swatchId": "36:1024",
+      "hex": "#F97316",
+      "cssSyntaxBound": false
+    },
+    "observatory/scene/warm-250": {
+      "variableId": "VariableID:36:1029",
+      "nodeId": "36:1030",
+      "swatchId": "36:1031",
+      "hex": "#FCB67F",
+      "cssSyntaxBound": false
+    },
+    "observatory/scene/warm-100": {
+      "variableId": "VariableID:36:1035",
+      "nodeId": "36:1036",
+      "swatchId": "36:1037",
+      "hex": "#FBBA9C",
+      "cssSyntaxBound": false
+    },
+    "observatory/scene/warm-050": {
+      "variableId": "VariableID:36:1041",
+      "nodeId": "36:1042",
+      "swatchId": "36:1043",
+      "hex": "#FEE5D2",
+      "cssSyntaxBound": false
+    },
+    "observatory/scene/cool-500": {
+      "variableId": "VariableID:36:1047",
+      "nodeId": "36:1048",
+      "swatchId": "36:1049",
+      "hex": "#80AEF9",
+      "cssSyntaxBound": false
+    },
+    "observatory/scene/cool-350": {
+      "variableId": "VariableID:36:1054",
+      "nodeId": "36:1055",
+      "swatchId": "36:1056",
+      "hex": "#51BAAC",
+      "cssSyntaxBound": false
+    },
+    "observatory/scene/cool-400": {
+      "variableId": "VariableID:36:1060",
+      "nodeId": "36:1061",
+      "swatchId": "36:1062",
+      "hex": "#818CF8",
+      "cssSyntaxBound": false
+    },
+    "observatory/scene/cool-850": {
+      "variableId": "VariableID:36:1066",
+      "nodeId": "36:1067",
+      "swatchId": "36:1068",
+      "hex": "#14532D",
+      "cssSyntaxBound": false
+    },
+    "observatory/scene/star-050": {
+      "variableId": "VariableID:36:1072",
+      "nodeId": "36:1073",
+      "swatchId": "36:1074",
+      "hex": "#FFFFFF",
+      "cssSyntaxBound": false
+    }
+  },
+  "pageLinkNodes": {
+    "index": "36:135",
+    "foundations": "36:138",
+    "components": "36:142",
+    "desk": "36:145",
+    "library": "36:149",
+    "workbench": "36:152",
+    "wall": "36:156",
+    "global": "36:159",
+    "states": "36:163",
+    "research": "36:166"
+  },
+  "documentComponents": {
+    "adoptedSource": {
+      "id": "36:732",
+      "propertyIds": {
+        "Title": "Title#36:0",
+        "Takeaway": "Takeaway#36:1",
+        "ReadStatus": "ReadStatus#36:2",
+        "Source": "Source#36:3",
+        "Destination": "Destination#36:4"
+      }
+    },
+    "styleApplication": {
+      "id": "36:933",
+      "propertyIds": {
+        "Title": "Title#36:5",
+        "Principle": "Principle#36:6",
+        "Application": "Application#36:7",
+        "Destination": "Destination#36:8"
+      }
+    }
+  },
+  "counts": {
+    "pages": 10,
+    "instagram": 31,
+    "styles": 8,
+    "sceneVariables": 16,
+    "originalInputs": 39,
+    "previouslyReadImages": 114
+  },
+  "runtimeVerified": false,
+  "warnings": []
+}

@@ -1,0 +1,153 @@
+{
+  "scope": "Existing Figma prototype correspondence and native navigation only. No production app code or runtime persistence/authentication verification.",
+  "counts": {
+    "originalFlows": 14,
+    "originalSteps": 74,
+    "originalScreenReferences": 62,
+    "stageViewports": 128,
+    "initialNativeEdges": 371,
+    "actualControlRepairs": 22,
+    "scenarioLabelCorrections": 1,
+    "actualRecoveryEdges": 4,
+    "finalNativeEdgesExpected": 397,
+    "readbackFlows": 14,
+    "readbackEdges": 397,
+    "readbackIssues": 0,
+    "fieldRepairs": 27,
+    "fieldMismatches": 0,
+    "stageFitChecked": 128,
+    "sourceGuideOverlaps": 0
+  },
+  "pendingReadbacks": [],
+  "issues": [],
+  "flows": [
+    {
+      "id": "F01",
+      "steps": 6,
+      "edges": 52,
+      "issues": 0,
+      "nativeVerified": true,
+      "evidence": "evidence/readback-F01.json",
+      "sha256": "88e6a06e4f96b61c2081af6e1282a7fb95403ef2ae811995154875ceaa7292ca"
+    },
+    {
+      "id": "F02",
+      "steps": 5,
+      "edges": 25,
+      "issues": 0,
+      "nativeVerified": true,
+      "evidence": "evidence/readback-F02.json",
+      "sha256": "aa9662c1833ab94cf9586c8e0e0632686ea9d0e79b93980febbcfd1520deac92"
+    },
+    {
+      "id": "F03",
+      "steps": 6,
+      "edges": 33,
+      "issues": 0,
+      "nativeVerified": true,
+      "evidence": "evidence/readback-F03.json",
+      "sha256": "d164bfba09c50b63413a5b9f5563722a5bcc14a62455e2465b28ee7cebde98e6"
+    },
+    {
+      "id": "F04",
+      "steps": 5,
+      "edges": 40,
+      "issues": 0,
+      "nativeVerified": true,
+      "evidence": "evidence/readback-F04.json",
+      "sha256": "82047396f0ef9cac3872c36e201d9dd122fc02dfe7c0093390764893e50de6e0"
+    },
+    {
+      "id": "F05",
+      "steps": 5,
+      "edges": 15,
+      "issues": 0,
+      "nativeVerified": true,
+      "evidence": "evidence/readback-F05.json",
+      "sha256": "a9917503b8c2aa131cbb7acff1d4efc5e45bbe5989d12ed40beb3837862618a9"
+    },
+    {
+      "id": "F06",
+      "steps": 7,
+      "edges": 18,
+      "issues": 0,
+      "nativeVerified": true,
+      "evidence": "evidence/readback-F06.json",
+      "sha256": "50b2a866e082f20b818f01d31e9d321c1f000c30bdd1c5feeece8eab34486d89"
+    },
+    {
+      "id": "F07",
+      "steps": 7,
+      "edges": 35,
+      "issues": 0,
+      "nativeVerified": true,
+      "evidence": "evidence/readback-F07.json",
+      "sha256": "98fce08b1e8c10e78c104045a1990926b491c63acc1bfa744633a1c8df13993d"
+    },
+    {
+      "id": "F08",
+      "steps": 5,
+      "edges": 13,
+      "issues": 0,
+      "nativeVerified": true,
+      "evidence": "evidence/readback-F08.json",
+      "sha256": "c63d71c481dc08c63f1c08196a63c91dd002bbf2afeba89540bce9d68a2d3088"
+    },
+    {
+      "id": "F09",
+      "steps": 4,
+      "edges": 22,
+      "issues": 0,
+      "nativeVerified": true,
+      "evidence": "evidence/readback-F09.json",
+      "sha256": "8dd23aefbc458e30ecb46dbf4378e1db886c116943f98ac6a8ef626b613aa3c9"
+    },
+    {
+      "id": "F10",
+      "steps": 5,
+      "edges": 15,
+      "issues": 0,
+      "nativeVerified": true,
+      "evidence": "evidence/readback-F10.json",
+      "sha256": "9d07dff2ebd05397d423868780eac269759de8d437eea48db547f21b8f78cd24"
+    },
+    {
+      "id": "F11",
+      "steps": 4,
+      "edges": 33,
+      "issues": 0,
+      "nativeVerified": true,
+      "evidence": "evidence/readback-F11.json",
+      "sha256": "887ee73f563bed1035b92fef0abd28d5d1f99f83fe4b79944caa20f282ec7def"
+    },
+    {
+      "id": "F12",
+      "steps": 5,
+      "edges": 31,
+      "issues": 0,
+      "nativeVerified": true,
+      "evidence": "evidence/readback-F12.json",
+      "sha256": "ea8d8a3e0fcb36969484914c26cda56f2c304711a61ba4ab4674ad83ff243e17"
+    },
+    {
+      "id": "F13",
+      "steps": 6,
+      "edges": 31,
+      "issues": 0,
+      "nativeVerified": true,
+      "evidence": "evidence/readback-F13.json",
+      "sha256": "244e0e81d2ee47e3db9f6ffb3d34207013291da78870bd772dda50b03a6efd01"
+    },
+    {
+      "id": "F14",
+      "steps": 4,
+      "edges": 34,
+      "issues": 0,
+      "nativeVerified": true,
+      "evidence": "evidence/readback-F14.json",
+      "sha256": "5da827a4309f10de47256b9be2a20c393d38a4a0dd94b8d441676424b05d790a"
+    }
+  ],
+  "completeWithinScope": true,
+  "runtimeVerified": false
+}

@@ -1,3 +1,5 @@
+> **2026-10-04 개발 인계:** [DEVELOPER-HANDOFF.md](DEVELOPER-HANDOFF.md)에서 현재 소스·공통 지침·미통합 로컬 변경·전체 파일 목록·실행 방법을 확인합니다. 아래 과거 실행 기록은 당시의 확인 범위입니다.
+
 # 학습 공간 · 2세대
 
 **2026-09-30 최신실행(d2e3164):** [인계](docs/resume-handoff.md), [Phase·CORE45](docs/phase-report-continuation-20260930.md), [실제 실행](docs/validation/continuation-ui-20260930.md). 다운로드 실수신/200%브라우저확대 확인, 선택글ID·펼침/메뉴초점/검색빈결과/기록필터 복귀 수정.227검사·타입·Pages빌드통과, 성능1미실행. 원장1374행. 전체Prototype·온라인·물리·1.0 완료가 아닙니다. 아래 이전기록은 역사적 증거입니다.

@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>천문대 OS · Figma 대응 설계</title>
+<link rel="stylesheet" href="assets/observatory-source.css">
+<link rel="stylesheet" href="preview.css">
+</head>
+<body>
+<header class="review-header"><div><strong>ManSeekSong OS</strong><span>천문대 · Figma 대응 설계</span></div><p>로컬 설계 검토본 · 합성 예시 · Figma 반영 상태는 별도 기록</p></header>
+<div class="review-shell">
+<aside class="catalog" aria-label="설계 목록"><label for="filter">화면·기준 찾기</label><input id="filter" type="search" placeholder="기록, 수식, 저장…"><nav id="catalog"></nav></aside>
+<main>
+<div class="review-toolbar"><div class="review-tabs"><button data-mode="screens" aria-pressed="true">화면</button><button data-mode="foundations">기초·부품</button><button data-mode="states">실패·복귀</button><button data-mode="research">121개 기준</button></div><label>검토 폭 <select id="device"><option value="1376">1376 · iPad 가로</option><option value="1032">1032 · iPad 세로</option><option value="517">517 · 좁은 창</option><option value="402">402 · iPhone 세로</option><option value="756">756 · iPhone 가로</option></select></label></div>
+<div class="canvas"><section id="screen" class="app-screen" aria-label="선택한 화면"></section></div>
+<aside id="notes" class="notes" aria-label="설계 대응 근거"></aside>
+</main>
+</div>
+<script type="module" src="preview.js"></script>
+</body></html>

@@ -1,0 +1,2926 @@
+{
+  "count": 59,
+  "rows": [
+    {
+      "id": "UI01",
+      "name": "Button",
+      "roleLabel": "버튼",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-03457805e962"
+      ],
+      "figma": {
+        "ownerId": "16:140",
+        "defaultComponentId": "16:76",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=16-140",
+        "variantIds": [
+          "16:76",
+          "16:78",
+          "16:80",
+          "16:82",
+          "16:84",
+          "16:86",
+          "16:92",
+          "16:94",
+          "16:96",
+          "16:98",
+          "16:100",
+          "16:102",
+          "16:108",
+          "16:110",
+          "16:112",
+          "16:114",
+          "16:116",
+          "16:118",
+          "16:124",
+          "16:126",
+          "16:128",
+          "16:130",
+          "16:132",
+          "16:134"
+        ],
+        "variantOptions": {
+          "Kind": [
+            "primary",
+            "secondary",
+            "quiet",
+            "danger"
+          ],
+          "State": [
+            "default",
+            "hover",
+            "pressed",
+            "focus",
+            "disabled",
+            "busy"
+          ]
+        },
+        "propertyIds": {
+          "Label": "Label#16:0",
+          "BusyLabel": "BusyLabel#16:25",
+          "DangerLabel": "DangerLabel#16:50"
+        },
+        "representation": "Existing native source-mapped component"
+      },
+      "code": {
+        "source": "src/ui/index.tsx",
+        "line": 11,
+        "props": [
+          {
+            "name": "variant",
+            "optional": true,
+            "type": "\"primary\" | \"secondary\" | \"quiet\" | \"danger\" | undefined",
+            "origin": "src/ui/index.tsx"
+          },
+          {
+            "name": "busy",
+            "optional": true,
+            "type": "boolean | undefined",
+            "origin": "src/ui/index.tsx"
+          }
+        ],
+        "capturedSha256": "faf9fcbdc7c2e20741e99976f374153f0a4a112896d7d003f96366215e76f792",
+        "currentSha256": "b8e44e4134c38f2d1fac1604ae74f255edfc47e968e2e70c3cb519b49bfa5ea0",
+        "matchesCapturedSource": false
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "UI02",
+      "name": "IconButton",
+      "roleLabel": "아이콘 버튼",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-0cc4e196179c"
+      ],
+      "figma": {
+        "ownerId": "16:159",
+        "defaultComponentId": "16:141",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=16-159",
+        "variantIds": [
+          "16:141",
+          "16:144",
+          "16:147",
+          "16:150",
+          "16:153",
+          "16:156"
+        ],
+        "variantOptions": {
+          "State": [
+            "default",
+            "hover",
+            "pressed",
+            "focus",
+            "disabled",
+            "busy"
+          ]
+        },
+        "propertyIds": {
+          "Icon": "Icon#16:75"
+        },
+        "representation": "Existing native source-mapped component"
+      },
+      "code": {
+        "source": "src/ui/index.tsx",
+        "line": 14,
+        "props": [
+          {
+            "name": "variant",
+            "optional": true,
+            "type": "\"primary\" | \"secondary\" | \"quiet\" | \"danger\" | undefined",
+            "origin": "src/ui/index.tsx"
+          },
+          {
+            "name": "busy",
+            "optional": true,
+            "type": "boolean | undefined",
+            "origin": "src/ui/index.tsx"
+          },
+          {
+            "name": "label",
+            "optional": false,
+            "type": "string",
+            "origin": "src/ui/index.tsx"
+          }
+        ],
+        "capturedSha256": "faf9fcbdc7c2e20741e99976f374153f0a4a112896d7d003f96366215e76f792",
+        "currentSha256": "b8e44e4134c38f2d1fac1604ae74f255edfc47e968e2e70c3cb519b49bfa5ea0",
+        "matchesCapturedSource": false
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "UI03",
+      "name": "Input",
+      "roleLabel": "한 줄 입력 필드",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-24c330bc4e33"
+      ],
+      "figma": {
+        "ownerId": "16:190",
+        "defaultComponentId": "16:160",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=16-190",
+        "variantIds": [
+          "16:160",
+          "16:165",
+          "16:170",
+          "16:175",
+          "16:180",
+          "16:185"
+        ],
+        "variantOptions": {
+          "State": [
+            "empty",
+            "default",
+            "focus",
+            "disabled",
+            "invalid",
+            "readOnly"
+          ]
+        },
+        "propertyIds": {
+          "Label": "Label#16:82",
+          "Placeholder": "Placeholder#16:89",
+          "Hint": "Hint#16:96",
+          "Value": "Value#16:103",
+          "Error": "Error#16:110",
+          "ReadOnlyNotice": "ReadOnlyNotice#16:117"
+        },
+        "representation": "Existing native source-mapped component"
+      },
+      "code": {
+        "source": "src/ui/index.tsx",
+        "line": 24,
+        "props": [
+          {
+            "name": "label",
+            "optional": false,
+            "type": "string",
+            "origin": "src/ui/index.tsx"
+          },
+          {
+            "name": "hint",
+            "optional": true,
+            "type": "string | undefined",
+            "origin": "src/ui/index.tsx"
+          },
+          {
+            "name": "error",
+            "optional": true,
+            "type": "string | undefined",
+            "origin": "src/ui/index.tsx"
+          }
+        ],
+        "capturedSha256": "faf9fcbdc7c2e20741e99976f374153f0a4a112896d7d003f96366215e76f792",
+        "currentSha256": "b8e44e4134c38f2d1fac1604ae74f255edfc47e968e2e70c3cb519b49bfa5ea0",
+        "matchesCapturedSource": false
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "UI04",
+      "name": "Textarea",
+      "roleLabel": "여러 줄 입력 필드",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-24c330bc4e33"
+      ],
+      "figma": {
+        "ownerId": "16:221",
+        "defaultComponentId": "16:191",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=16-221",
+        "variantIds": [
+          "16:191",
+          "16:196",
+          "16:201",
+          "16:206",
+          "16:211",
+          "16:216"
+        ],
+        "variantOptions": {
+          "State": [
+            "empty",
+            "default",
+            "focus",
+            "disabled",
+            "invalid",
+            "readOnly"
+          ]
+        },
+        "propertyIds": {
+          "Label": "Label#16:124",
+          "Placeholder": "Placeholder#16:131",
+          "Hint": "Hint#16:138",
+          "Value": "Value#16:145",
+          "Error": "Error#16:152",
+          "ReadOnlyNotice": "ReadOnlyNotice#16:159"
+        },
+        "representation": "Existing native source-mapped component"
+      },
+      "code": {
+        "source": "src/ui/index.tsx",
+        "line": 28,
+        "props": [
+          {
+            "name": "label",
+            "optional": false,
+            "type": "string",
+            "origin": "src/ui/index.tsx"
+          },
+          {
+            "name": "hint",
+            "optional": true,
+            "type": "string | undefined",
+            "origin": "src/ui/index.tsx"
+          },
+          {
+            "name": "error",
+            "optional": true,
+            "type": "string | undefined",
+            "origin": "src/ui/index.tsx"
+          }
+        ],
+        "capturedSha256": "faf9fcbdc7c2e20741e99976f374153f0a4a112896d7d003f96366215e76f792",
+        "currentSha256": "b8e44e4134c38f2d1fac1604ae74f255edfc47e968e2e70c3cb519b49bfa5ea0",
+        "matchesCapturedSource": false
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "UI05",
+      "name": "Select",
+      "roleLabel": "셀렉트",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-d5a87d39c86f"
+      ],
+      "figma": {
+        "ownerId": "16:250",
+        "defaultComponentId": "16:222",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=16-250",
+        "variantIds": [
+          "16:222",
+          "16:229",
+          "16:236",
+          "16:243"
+        ],
+        "variantOptions": {
+          "State": [
+            "default",
+            "focus",
+            "disabled",
+            "invalid"
+          ]
+        },
+        "propertyIds": {
+          "Label": "Label#16:166",
+          "Value": "Value#16:171",
+          "Hint": "Hint#16:176",
+          "Error": "Error#16:181"
+        },
+        "representation": "Existing native source-mapped component"
+      },
+      "code": {
+        "source": "src/ui/index.tsx",
+        "line": 32,
+        "props": [
+          {
+            "name": "label",
+            "optional": false,
+            "type": "string",
+            "origin": "src/ui/index.tsx"
+          },
+          {
+            "name": "hint",
+            "optional": true,
+            "type": "string | undefined",
+            "origin": "src/ui/index.tsx"
+          },
+          {
+            "name": "error",
+            "optional": true,
+            "type": "string | undefined",
+            "origin": "src/ui/index.tsx"
+          }
+        ],
+        "capturedSha256": "faf9fcbdc7c2e20741e99976f374153f0a4a112896d7d003f96366215e76f792",
+        "currentSha256": "b8e44e4134c38f2d1fac1604ae74f255edfc47e968e2e70c3cb519b49bfa5ea0",
+        "matchesCapturedSource": false
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "UI06",
+      "name": "Checkbox",
+      "roleLabel": "체크박스",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-800fa8a274e6"
+      ],
+      "figma": {
+        "ownerId": "16:287",
+        "defaultComponentId": "16:251",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=16-287",
+        "variantIds": [
+          "16:251",
+          "16:254",
+          "16:257",
+          "16:260",
+          "16:265",
+          "16:270",
+          "16:275",
+          "16:279",
+          "16:283"
+        ],
+        "variantOptions": {
+          "Value": [
+            "unchecked",
+            "checked",
+            "mixed"
+          ],
+          "State": [
+            "default",
+            "focus",
+            "disabled"
+          ]
+        },
+        "propertyIds": {
+          "Label": "Label#16:186"
+        },
+        "representation": "Existing native source-mapped component"
+      },
+      "code": {
+        "source": "src/ui/index.tsx",
+        "line": 37,
+        "props": [
+          {
+            "name": "label",
+            "optional": false,
+            "type": "ReactNode",
+            "origin": "src/ui/index.tsx"
+          },
+          {
+            "name": "indeterminate",
+            "optional": true,
+            "type": "boolean | undefined",
+            "origin": "src/ui/index.tsx"
+          }
+        ],
+        "capturedSha256": "faf9fcbdc7c2e20741e99976f374153f0a4a112896d7d003f96366215e76f792",
+        "currentSha256": "b8e44e4134c38f2d1fac1604ae74f255edfc47e968e2e70c3cb519b49bfa5ea0",
+        "matchesCapturedSource": false
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "UI07",
+      "name": "Radio",
+      "roleLabel": "라디오 버튼",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-b0717f9513b9"
+      ],
+      "figma": {
+        "ownerId": "16:309",
+        "defaultComponentId": "16:288",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=16-309",
+        "variantIds": [
+          "16:288",
+          "16:291",
+          "16:294",
+          "16:297",
+          "16:301",
+          "16:305"
+        ],
+        "variantOptions": {
+          "Value": [
+            "unchecked",
+            "checked"
+          ],
+          "State": [
+            "default",
+            "focus",
+            "disabled"
+          ]
+        },
+        "propertyIds": {
+          "Label": "Label#16:196"
+        },
+        "representation": "Existing native source-mapped component"
+      },
+      "code": {
+        "source": "src/ui/index.tsx",
+        "line": 42,
+        "props": [
+          {
+            "name": "label",
+            "optional": false,
+            "type": "ReactNode",
+            "origin": "src/ui/index.tsx"
+          }
+        ],
+        "capturedSha256": "faf9fcbdc7c2e20741e99976f374153f0a4a112896d7d003f96366215e76f792",
+        "currentSha256": "b8e44e4134c38f2d1fac1604ae74f255edfc47e968e2e70c3cb519b49bfa5ea0",
+        "matchesCapturedSource": false
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "UI08",
+      "name": "Tabs",
+      "roleLabel": "탭",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-f7a0155279f2"
+      ],
+      "figma": {
+        "ownerId": "16:326",
+        "defaultComponentId": "16:310",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=16-326",
+        "variantIds": [
+          "16:310",
+          "16:318"
+        ],
+        "variantOptions": {
+          "Selection": [
+            "first",
+            "second"
+          ]
+        },
+        "propertyIds": {
+          "Item 1": "Item 1#16:203",
+          "Item 2": "Item 2#16:206",
+          "Item 3": "Item 3#16:209"
+        },
+        "representation": "Existing native source-mapped component"
+      },
+      "code": {
+        "source": "src/ui/index.tsx",
+        "line": 46,
+        "props": [
+          {
+            "name": "items",
+            "optional": false,
+            "type": "TabItem[]",
+            "origin": "src/ui/index.tsx"
+          },
+          {
+            "name": "value",
+            "optional": false,
+            "type": "string",
+            "origin": "src/ui/index.tsx"
+          },
+          {
+            "name": "onChange",
+            "optional": false,
+            "type": "(id: string) => void",
+            "origin": "src/ui/index.tsx"
+          },
+          {
+            "name": "label",
+            "optional": true,
+            "type": "string | undefined",
+            "origin": "src/ui/index.tsx"
+          },
+          {
+            "name": "className",
+            "optional": true,
+            "type": "string | undefined",
+            "origin": "src/ui/index.tsx"
+          }
+        ],
+        "capturedSha256": "faf9fcbdc7c2e20741e99976f374153f0a4a112896d7d003f96366215e76f792",
+        "currentSha256": "b8e44e4134c38f2d1fac1604ae74f255edfc47e968e2e70c3cb519b49bfa5ea0",
+        "matchesCapturedSource": false
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "UI09",
+      "name": "SegmentedControl",
+      "roleLabel": "분할 선택 컨트롤",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-88cfc495c578"
+      ],
+      "figma": {
+        "ownerId": "17:95",
+        "defaultComponentId": "17:81",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=17-95",
+        "variantIds": [
+          "17:81",
+          "17:88"
+        ],
+        "variantOptions": {
+          "Selection": [
+            "first",
+            "second"
+          ]
+        },
+        "propertyIds": {
+          "Item 1": "Item 1#17:0",
+          "Item 2": "Item 2#17:3",
+          "Item 3": "Item 3#17:6"
+        },
+        "representation": "Existing native source-mapped component"
+      },
+      "code": {
+        "source": "src/ui/index.tsx",
+        "line": 58,
+        "props": [
+          {
+            "name": "items",
+            "optional": false,
+            "type": "TabItem[]",
+            "origin": "src/ui/index.tsx"
+          },
+          {
+            "name": "value",
+            "optional": false,
+            "type": "string",
+            "origin": "src/ui/index.tsx"
+          },
+          {
+            "name": "onChange",
+            "optional": false,
+            "type": "(id: string) => void",
+            "origin": "src/ui/index.tsx"
+          },
+          {
+            "name": "label",
+            "optional": true,
+            "type": "string | undefined",
+            "origin": "src/ui/index.tsx"
+          },
+          {
+            "name": "className",
+            "optional": true,
+            "type": "string | undefined",
+            "origin": "src/ui/index.tsx"
+          }
+        ],
+        "capturedSha256": "faf9fcbdc7c2e20741e99976f374153f0a4a112896d7d003f96366215e76f792",
+        "currentSha256": "b8e44e4134c38f2d1fac1604ae74f255edfc47e968e2e70c3cb519b49bfa5ea0",
+        "matchesCapturedSource": false
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "UI10",
+      "name": "Card",
+      "roleLabel": "카드",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-7108d9a25211"
+      ],
+      "figma": {
+        "ownerId": "17:96",
+        "defaultComponentId": "17:96",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=17-96",
+        "variantIds": [
+          "17:96"
+        ],
+        "variantOptions": {},
+        "propertyIds": {
+          "Title": "Title#17:9",
+          "Body": "Body#17:10",
+          "Detail": "Detail#17:11"
+        },
+        "representation": "Existing native source-mapped component"
+      },
+      "code": {
+        "source": "src/ui/index.tsx",
+        "line": 62,
+        "props": [],
+        "capturedSha256": "faf9fcbdc7c2e20741e99976f374153f0a4a112896d7d003f96366215e76f792",
+        "currentSha256": "b8e44e4134c38f2d1fac1604ae74f255edfc47e968e2e70c3cb519b49bfa5ea0",
+        "matchesCapturedSource": false
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "UI11",
+      "name": "ListItem",
+      "roleLabel": "목록 항목",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-08956e86bbbe"
+      ],
+      "figma": {
+        "ownerId": "17:101",
+        "defaultComponentId": "17:101",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=17-101",
+        "variantIds": [
+          "17:101"
+        ],
+        "variantOptions": {},
+        "propertyIds": {
+          "Title": "Title#17:12",
+          "Detail": "Detail#17:13"
+        },
+        "representation": "Existing native source-mapped component"
+      },
+      "code": {
+        "source": "src/ui/index.tsx",
+        "line": 63,
+        "props": [],
+        "capturedSha256": "faf9fcbdc7c2e20741e99976f374153f0a4a112896d7d003f96366215e76f792",
+        "currentSha256": "b8e44e4134c38f2d1fac1604ae74f255edfc47e968e2e70c3cb519b49bfa5ea0",
+        "matchesCapturedSource": false
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "UI12",
+      "name": "Modal",
+      "roleLabel": "모달 대화상자",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-c9fcfdb17054"
+      ],
+      "figma": {
+        "ownerId": "17:106",
+        "defaultComponentId": "17:106",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=17-106",
+        "variantIds": [
+          "17:106"
+        ],
+        "variantOptions": {},
+        "propertyIds": {
+          "Title": "Title#17:14",
+          "Body": "Body#17:15"
+        },
+        "representation": "Existing native source-mapped component"
+      },
+      "code": {
+        "source": "src/ui/index.tsx",
+        "line": 67,
+        "props": [
+          {
+            "name": "open",
+            "optional": false,
+            "type": "boolean",
+            "origin": "src/ui/index.tsx"
+          },
+          {
+            "name": "title",
+            "optional": false,
+            "type": "string",
+            "origin": "src/ui/index.tsx"
+          },
+          {
+            "name": "onClose",
+            "optional": false,
+            "type": "() => void",
+            "origin": "src/ui/index.tsx"
+          },
+          {
+            "name": "children",
+            "optional": false,
+            "type": "ReactNode",
+            "origin": "src/ui/index.tsx"
+          },
+          {
+            "name": "className",
+            "optional": true,
+            "type": "string | undefined",
+            "origin": "src/ui/index.tsx"
+          }
+        ],
+        "capturedSha256": "faf9fcbdc7c2e20741e99976f374153f0a4a112896d7d003f96366215e76f792",
+        "currentSha256": "b8e44e4134c38f2d1fac1604ae74f255edfc47e968e2e70c3cb519b49bfa5ea0",
+        "matchesCapturedSource": false
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "UI13",
+      "name": "Sheet",
+      "roleLabel": "바텀 시트",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-76a6703625a9"
+      ],
+      "figma": {
+        "ownerId": "17:114",
+        "defaultComponentId": "17:114",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=17-114",
+        "variantIds": [
+          "17:114"
+        ],
+        "variantOptions": {},
+        "propertyIds": {
+          "Title": "Title#17:16",
+          "Body": "Body#17:17"
+        },
+        "representation": "Existing native source-mapped component"
+      },
+      "code": {
+        "source": "src/ui/index.tsx",
+        "line": 170,
+        "props": [
+          {
+            "name": "open",
+            "optional": false,
+            "type": "boolean",
+            "origin": "src/ui/index.tsx"
+          },
+          {
+            "name": "title",
+            "optional": false,
+            "type": "string",
+            "origin": "src/ui/index.tsx"
+          },
+          {
+            "name": "onClose",
+            "optional": false,
+            "type": "() => void",
+            "origin": "src/ui/index.tsx"
+          },
+          {
+            "name": "children",
+            "optional": false,
+            "type": "ReactNode",
+            "origin": "src/ui/index.tsx"
+          },
+          {
+            "name": "className",
+            "optional": true,
+            "type": "string | undefined",
+            "origin": "src/ui/index.tsx"
+          }
+        ],
+        "capturedSha256": "faf9fcbdc7c2e20741e99976f374153f0a4a112896d7d003f96366215e76f792",
+        "currentSha256": "b8e44e4134c38f2d1fac1604ae74f255edfc47e968e2e70c3cb519b49bfa5ea0",
+        "matchesCapturedSource": false
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "UI14",
+      "name": "Toast",
+      "roleLabel": "토스트",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-f90365631c0e"
+      ],
+      "figma": {
+        "ownerId": "17:130",
+        "defaultComponentId": "17:124",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=17-130",
+        "variantIds": [
+          "17:124",
+          "17:127"
+        ],
+        "variantOptions": {
+          "Action": [
+            "close",
+            "undo"
+          ]
+        },
+        "propertyIds": {
+          "Message": "Message#17:18",
+          "CloseLabel": "CloseLabel#17:21",
+          "UndoLabel": "UndoLabel#17:24"
+        },
+        "representation": "Existing native source-mapped component"
+      },
+      "code": {
+        "source": "src/ui/index.tsx",
+        "line": 171,
+        "props": [
+          {
+            "name": "message",
+            "optional": false,
+            "type": "string",
+            "origin": "src/ui/index.tsx"
+          },
+          {
+            "name": "onUndo",
+            "optional": true,
+            "type": "(() => void) | undefined",
+            "origin": "src/ui/index.tsx"
+          },
+          {
+            "name": "onClose",
+            "optional": true,
+            "type": "(() => void) | undefined",
+            "origin": "src/ui/index.tsx"
+          }
+        ],
+        "capturedSha256": "faf9fcbdc7c2e20741e99976f374153f0a4a112896d7d003f96366215e76f792",
+        "currentSha256": "b8e44e4134c38f2d1fac1604ae74f255edfc47e968e2e70c3cb519b49bfa5ea0",
+        "matchesCapturedSource": false
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "UI15",
+      "name": "Breadcrumb",
+      "roleLabel": "브레드크럼",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-354796678d96"
+      ],
+      "figma": {
+        "ownerId": "17:131",
+        "defaultComponentId": "17:131",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=17-131",
+        "variantIds": [
+          "17:131"
+        ],
+        "variantOptions": {},
+        "propertyIds": {
+          "Crumb 0": "Crumb 0#17:27",
+          "Crumb 1": "Crumb 1#17:28",
+          "Crumb 2": "Crumb 2#17:29"
+        },
+        "representation": "Existing native source-mapped component"
+      },
+      "code": {
+        "source": "src/ui/index.tsx",
+        "line": 175,
+        "props": [
+          {
+            "name": "items",
+            "optional": false,
+            "type": "BreadcrumbItem[]",
+            "origin": "src/ui/index.tsx"
+          }
+        ],
+        "capturedSha256": "faf9fcbdc7c2e20741e99976f374153f0a4a112896d7d003f96366215e76f792",
+        "currentSha256": "b8e44e4134c38f2d1fac1604ae74f255edfc47e968e2e70c3cb519b49bfa5ea0",
+        "matchesCapturedSource": false
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "UI16",
+      "name": "Search",
+      "roleLabel": "검색 입력·결과",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-b0d097a110b8"
+      ],
+      "figma": {
+        "ownerId": "17:169",
+        "defaultComponentId": "17:137",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=17-169",
+        "variantIds": [
+          "17:137",
+          "17:145",
+          "17:153",
+          "17:161"
+        ],
+        "variantOptions": {
+          "State": [
+            "empty",
+            "default",
+            "focus",
+            "invalid"
+          ]
+        },
+        "propertyIds": {
+          "Label": "Label#17:30",
+          "Placeholder": "Placeholder#17:35",
+          "Hint": "Hint#17:40",
+          "Value": "Value#17:45",
+          "Error": "Error#17:50"
+        },
+        "representation": "Existing native source-mapped component"
+      },
+      "code": {
+        "source": "src/ui/index.tsx",
+        "line": 178,
+        "props": [
+          {
+            "name": "label",
+            "optional": false,
+            "type": "string",
+            "origin": "src/ui/index.tsx"
+          },
+          {
+            "name": "hint",
+            "optional": true,
+            "type": "string | undefined",
+            "origin": "src/ui/index.tsx"
+          },
+          {
+            "name": "error",
+            "optional": true,
+            "type": "string | undefined",
+            "origin": "src/ui/index.tsx"
+          },
+          {
+            "name": "onQueryChange",
+            "optional": true,
+            "type": "((value: string) => void) | undefined",
+            "origin": "src/ui/index.tsx"
+          }
+        ],
+        "capturedSha256": "faf9fcbdc7c2e20741e99976f374153f0a4a112896d7d003f96366215e76f792",
+        "currentSha256": "b8e44e4134c38f2d1fac1604ae74f255edfc47e968e2e70c3cb519b49bfa5ea0",
+        "matchesCapturedSource": false
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "UI17",
+      "name": "EmptyState",
+      "roleLabel": "빈 상태 안내",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-9cbd99672e14"
+      ],
+      "figma": {
+        "ownerId": "17:186",
+        "defaultComponentId": "17:170",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=17-186",
+        "variantIds": [
+          "17:170",
+          "17:178"
+        ],
+        "variantOptions": {
+          "Scenario": [
+            "initial",
+            "filtered"
+          ]
+        },
+        "propertyIds": {
+          "Title": "Title#17:55",
+          "Message": "Message#17:58",
+          "NoResultsTitle": "NoResultsTitle#17:61",
+          "NoResultsMessage": "NoResultsMessage#17:64"
+        },
+        "representation": "Existing native source-mapped component"
+      },
+      "code": {
+        "source": "src/ui/index.tsx",
+        "line": 184,
+        "props": [
+          {
+            "name": "title",
+            "optional": false,
+            "type": "string",
+            "origin": "src/ui/index.tsx"
+          },
+          {
+            "name": "message",
+            "optional": true,
+            "type": "string | undefined",
+            "origin": "src/ui/index.tsx"
+          },
+          {
+            "name": "children",
+            "optional": true,
+            "type": "ReactNode",
+            "origin": "src/ui/index.tsx"
+          }
+        ],
+        "capturedSha256": "faf9fcbdc7c2e20741e99976f374153f0a4a112896d7d003f96366215e76f792",
+        "currentSha256": "b8e44e4134c38f2d1fac1604ae74f255edfc47e968e2e70c3cb519b49bfa5ea0",
+        "matchesCapturedSource": false
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "UI18",
+      "name": "LoadingState",
+      "roleLabel": "로딩 상태 안내",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-7798c073957b"
+      ],
+      "figma": {
+        "ownerId": "17:187",
+        "defaultComponentId": "17:187",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=17-187",
+        "variantIds": [
+          "17:187"
+        ],
+        "variantOptions": {},
+        "propertyIds": {
+          "Message": "Message#17:67"
+        },
+        "representation": "Existing native source-mapped component"
+      },
+      "code": {
+        "source": "src/ui/index.tsx",
+        "line": 187,
+        "props": [
+          {
+            "name": "message",
+            "optional": true,
+            "type": "string | undefined",
+            "origin": "src/ui/index.tsx"
+          }
+        ],
+        "capturedSha256": "faf9fcbdc7c2e20741e99976f374153f0a4a112896d7d003f96366215e76f792",
+        "currentSha256": "b8e44e4134c38f2d1fac1604ae74f255edfc47e968e2e70c3cb519b49bfa5ea0",
+        "matchesCapturedSource": false
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "UI19",
+      "name": "ErrorState",
+      "roleLabel": "오류 상태 안내",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-58fece489082"
+      ],
+      "figma": {
+        "ownerId": "17:193",
+        "defaultComponentId": "17:193",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=17-193",
+        "variantIds": [
+          "17:193"
+        ],
+        "variantOptions": {},
+        "propertyIds": {
+          "Title": "Title#17:68",
+          "Message": "Message#17:69"
+        },
+        "representation": "Existing native source-mapped component"
+      },
+      "code": {
+        "source": "src/ui/index.tsx",
+        "line": 188,
+        "props": [
+          {
+            "name": "title",
+            "optional": true,
+            "type": "string | undefined",
+            "origin": "src/ui/index.tsx"
+          },
+          {
+            "name": "message",
+            "optional": false,
+            "type": "string",
+            "origin": "src/ui/index.tsx"
+          },
+          {
+            "name": "onRetry",
+            "optional": true,
+            "type": "(() => void) | undefined",
+            "origin": "src/ui/index.tsx"
+          }
+        ],
+        "capturedSha256": "faf9fcbdc7c2e20741e99976f374153f0a4a112896d7d003f96366215e76f792",
+        "currentSha256": "b8e44e4134c38f2d1fac1604ae74f255edfc47e968e2e70c3cb519b49bfa5ea0",
+        "matchesCapturedSource": false
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "UI20",
+      "name": "ScreenBoundary",
+      "roleLabel": "화면 렌더링 오류 경계",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-58fece489082"
+      ],
+      "figma": {
+        "ownerId": "17:198",
+        "defaultComponentId": "17:198",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=17-198",
+        "variantIds": [
+          "17:198"
+        ],
+        "variantOptions": {},
+        "propertyIds": {
+          "Title": "Title#17:70",
+          "Message": "Message#17:71"
+        },
+        "representation": "Existing native source-mapped component"
+      },
+      "code": {
+        "source": "src/ui/index.tsx",
+        "line": 193,
+        "props": [
+          {
+            "name": "children",
+            "optional": false,
+            "type": "ReactNode",
+            "origin": "src/ui/index.tsx"
+          },
+          {
+            "name": "onRetry",
+            "optional": true,
+            "type": "(() => void) | undefined",
+            "origin": "src/ui/index.tsx"
+          }
+        ],
+        "capturedSha256": "faf9fcbdc7c2e20741e99976f374153f0a4a112896d7d003f96366215e76f792",
+        "currentSha256": "b8e44e4134c38f2d1fac1604ae74f255edfc47e968e2e70c3cb519b49bfa5ea0",
+        "matchesCapturedSource": false
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "UI21",
+      "name": "NavigationBar",
+      "roleLabel": "탐색 막대",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-f3bc5ae9e5a4"
+      ],
+      "figma": {
+        "ownerId": "17:223",
+        "defaultComponentId": "17:203",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=17-223",
+        "variantIds": [
+          "17:203",
+          "17:213"
+        ],
+        "variantOptions": {
+          "Orientation": [
+            "horizontal",
+            "vertical"
+          ]
+        },
+        "propertyIds": {
+          "Place 0": "Place 0#17:72",
+          "Place 1": "Place 1#17:75",
+          "Place 2": "Place 2#17:78",
+          "Place 3": "Place 3#17:81"
+        },
+        "representation": "Existing native source-mapped component"
+      },
+      "code": {
+        "source": "src/ui/navigation-bar.tsx",
+        "line": 12,
+        "props": [
+          {
+            "name": "label",
+            "optional": false,
+            "type": "string",
+            "origin": "src/ui/navigation-bar.tsx"
+          },
+          {
+            "name": "items",
+            "optional": false,
+            "type": "NavigationItem[]",
+            "origin": "src/ui/navigation-bar.tsx"
+          },
+          {
+            "name": "orientation",
+            "optional": true,
+            "type": "\"horizontal\" | \"vertical\" | undefined",
+            "origin": "src/ui/navigation-bar.tsx"
+          },
+          {
+            "name": "className",
+            "optional": true,
+            "type": "string | undefined",
+            "origin": "src/ui/navigation-bar.tsx"
+          }
+        ],
+        "capturedSha256": "25e505880a81c79087f17515617ed30c07d78853531b597b7c045320e53f9b2a",
+        "currentSha256": "5671aa9d87b6b137abbb6de654df8341f69aa5405c1c44e72696d97812af53f7",
+        "matchesCapturedSource": false
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "UI22",
+      "name": "ContextMenu",
+      "roleLabel": "컨텍스트 메뉴",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-9a1a3df5dcbb"
+      ],
+      "figma": {
+        "ownerId": "17:224",
+        "defaultComponentId": "17:224",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=17-224",
+        "variantIds": [
+          "17:224"
+        ],
+        "variantOptions": {},
+        "propertyIds": {
+          "Command 0": "Command 0#17:84",
+          "Command 1": "Command 1#17:85",
+          "Command 2": "Command 2#17:86"
+        },
+        "representation": "Existing native source-mapped component"
+      },
+      "code": {
+        "source": "src/ui/context-menu.tsx",
+        "line": 9,
+        "props": [
+          {
+            "name": "targetLabel",
+            "optional": false,
+            "type": "string",
+            "origin": "src/ui/context-menu.tsx"
+          },
+          {
+            "name": "label",
+            "optional": true,
+            "type": "string | undefined",
+            "origin": "src/ui/context-menu.tsx"
+          },
+          {
+            "name": "items",
+            "optional": false,
+            "type": "ContextMenuItem[]",
+            "origin": "src/ui/context-menu.tsx"
+          },
+          {
+            "name": "disabled",
+            "optional": true,
+            "type": "boolean | undefined",
+            "origin": "src/ui/context-menu.tsx"
+          }
+        ],
+        "capturedSha256": "4c902ee84c931310bc95111b215d8ceaf0c9596ce46027b4a4107f2299257f37",
+        "currentSha256": "4c902ee84c931310bc95111b215d8ceaf0c9596ce46027b4a4107f2299257f37",
+        "matchesCapturedSource": true
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "SC01",
+      "name": "StudyLandscapes",
+      "roleLabel": "공부 공간 장면",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-ac5284bd3e11"
+      ],
+      "figma": {
+        "ownerId": "17:231",
+        "defaultComponentId": "17:231",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=17-231",
+        "variantIds": [
+          "17:231"
+        ],
+        "variantOptions": {},
+        "propertyIds": {
+          "Purpose": "Purpose#17:87"
+        },
+        "representation": "Existing native source-mapped component"
+      },
+      "code": {
+        "source": "src/ui/study-landscapes.tsx",
+        "line": 51,
+        "props": [
+          {
+            "name": "data",
+            "optional": false,
+            "type": "AppState",
+            "origin": "src/ui/study-landscapes.tsx"
+          },
+          {
+            "name": "subjectIds",
+            "optional": true,
+            "type": "readonly string[] | undefined",
+            "origin": "src/ui/study-landscapes.tsx"
+          },
+          {
+            "name": "referenceDay",
+            "optional": true,
+            "type": "number | undefined",
+            "origin": "src/ui/study-landscapes.tsx"
+          },
+          {
+            "name": "referenceTime",
+            "optional": true,
+            "type": "number | undefined",
+            "origin": "src/ui/study-landscapes.tsx"
+          },
+          {
+            "name": "referenceEvent",
+            "optional": true,
+            "type": "number | undefined",
+            "origin": "src/ui/study-landscapes.tsx"
+          },
+          {
+            "name": "referenceVariant",
+            "optional": true,
+            "type": "number | undefined",
+            "origin": "src/ui/study-landscapes.tsx"
+          }
+        ],
+        "capturedSha256": "5edc579586a99bd3f902a7a64ea43af053e2d6ddd3c26e2af434341765f53fe2",
+        "currentSha256": "5edc579586a99bd3f902a7a64ea43af053e2d6ddd3c26e2af434341765f53fe2",
+        "matchesCapturedSource": true
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "SC02",
+      "name": "ObservatoryWorld",
+      "roleLabel": "천문대 전체 장면",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-da8d80de5300"
+      ],
+      "figma": {
+        "ownerId": "17:1910",
+        "defaultComponentId": "17:1910",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=17-1910",
+        "variantIds": [
+          "17:1910"
+        ],
+        "variantOptions": {},
+        "propertyIds": {
+          "Purpose": "Purpose#17:88"
+        },
+        "representation": "Existing native source-mapped component"
+      },
+      "code": {
+        "source": "src/ui/pixel-worlds.tsx",
+        "line": 95,
+        "props": [
+          {
+            "name": "world",
+            "optional": false,
+            "type": "StudyLandscape",
+            "origin": "src/ui/pixel-worlds.tsx"
+          },
+          {
+            "name": "visible",
+            "optional": false,
+            "type": "readonly string[]",
+            "origin": "src/ui/pixel-worlds.tsx"
+          },
+          {
+            "name": "sky",
+            "optional": true,
+            "type": "ObservatorySky | undefined",
+            "origin": "src/ui/pixel-worlds.tsx"
+          },
+          {
+            "name": "events",
+            "optional": true,
+            "type": "readonly ObservatoryEvent[] | undefined",
+            "origin": "src/ui/pixel-worlds.tsx"
+          },
+          {
+            "name": "thumbnail",
+            "optional": true,
+            "type": "boolean | undefined",
+            "origin": "src/ui/pixel-worlds.tsx"
+          }
+        ],
+        "capturedSha256": "17dfdfde374dc7e3cf66a770d4a0fa6540d20042ed13a3ce1386828966fc5749",
+        "currentSha256": "17dfdfde374dc7e3cf66a770d4a0fa6540d20042ed13a3ce1386828966fc5749",
+        "matchesCapturedSource": true
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "SC03",
+      "name": "ObservatoryRoom",
+      "roleLabel": "천문대 실내 장면",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-da8d80de5300"
+      ],
+      "figma": {
+        "ownerId": "20:4808",
+        "defaultComponentId": "20:4808",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=20-4808",
+        "variantIds": [
+          "20:4808"
+        ],
+        "variantOptions": {},
+        "propertyIds": {
+          "Purpose": "Purpose#20:0"
+        },
+        "representation": "Existing native source-mapped component"
+      },
+      "code": {
+        "source": "src/ui/observatory-room.tsx",
+        "line": 9,
+        "props": [
+          {
+            "name": "children",
+            "optional": false,
+            "type": "ReactNode",
+            "origin": "src/ui/observatory-room.tsx"
+          },
+          {
+            "name": "activity",
+            "optional": false,
+            "type": "number",
+            "origin": "src/ui/observatory-room.tsx"
+          }
+        ],
+        "capturedSha256": "c66ba2f27063aa80e3b03dd46330d80d5235d0b87e915e867c5e377397d3445e",
+        "currentSha256": "c66ba2f27063aa80e3b03dd46330d80d5235d0b87e915e867c5e377397d3445e",
+        "matchesCapturedSource": true
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "SC04",
+      "name": "ObservatoryDesk",
+      "roleLabel": "공부 책상 장면",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-da8d80de5300"
+      ],
+      "figma": {
+        "ownerId": "20:6484",
+        "defaultComponentId": "20:6484",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=20-6484",
+        "variantIds": [
+          "20:6484"
+        ],
+        "variantOptions": {},
+        "propertyIds": {
+          "Role": "Role#20:1",
+          "Purpose": "Purpose#20:2"
+        },
+        "representation": "Existing source-contract component preserved; linked side-by-side with one editable asset generated from the actual React source using synthetic static props."
+      },
+      "code": {
+        "source": "src/ui/observatory-desk.tsx",
+        "line": 2,
+        "props": [],
+        "capturedSha256": "f59d54213464cd16d5d548f59df859903b01dcce82605e16bd78d17840dae9dc",
+        "currentSha256": "f59d54213464cd16d5d548f59df859903b01dcce82605e16bd78d17840dae9dc",
+        "matchesCapturedSource": true
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "SC05",
+      "name": "ObservatoryAdvanced",
+      "roleLabel": "천문대 고급 표현",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-da8d80de5300"
+      ],
+      "figma": {
+        "ownerId": "20:6496",
+        "defaultComponentId": "20:6496",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=20-6496",
+        "variantIds": [
+          "20:6496"
+        ],
+        "variantOptions": {},
+        "propertyIds": {
+          "Role": "Role#20:3",
+          "Purpose": "Purpose#20:4"
+        },
+        "representation": "Existing source-contract component preserved; linked side-by-side with one editable asset generated from the actual React source using synthetic static props."
+      },
+      "code": {
+        "source": "src/ui/observatory-advanced.tsx",
+        "line": 41,
+        "props": [
+          {
+            "name": "world",
+            "optional": false,
+            "type": "StudyLandscape",
+            "origin": "src/ui/observatory-advanced.tsx"
+          },
+          {
+            "name": "night",
+            "optional": false,
+            "type": "number",
+            "origin": "src/ui/observatory-advanced.tsx"
+          }
+        ],
+        "capturedSha256": "d06df4fc10add0aa87d1e00dff31ce507a6d640b0f00d864cd07b0f1c078d2da",
+        "currentSha256": "d06df4fc10add0aa87d1e00dff31ce507a6d640b0f00d864cd07b0f1c078d2da",
+        "matchesCapturedSource": true
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "SC06",
+      "name": "ObservatorySkyDetails",
+      "roleLabel": "하늘 세부 표현",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-da8d80de5300"
+      ],
+      "figma": {
+        "ownerId": "20:6515",
+        "defaultComponentId": "20:6515",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=20-6515",
+        "variantIds": [
+          "20:6515"
+        ],
+        "variantOptions": {},
+        "propertyIds": {
+          "Role": "Role#20:5",
+          "Purpose": "Purpose#20:6"
+        },
+        "representation": "Existing source-contract component preserved; linked side-by-side with one editable asset generated from the actual React source using synthetic static props."
+      },
+      "code": {
+        "source": "src/ui/observatory-details.tsx",
+        "line": 15,
+        "props": [
+          {
+            "name": "evolution",
+            "optional": false,
+            "type": "ObservatoryEvolution",
+            "origin": "src/ui/observatory-details.tsx"
+          }
+        ],
+        "capturedSha256": "0fefda416eb56562f595bc1b80323ace0fe08aea14291439eb0cb90573d3be24",
+        "currentSha256": "0fefda416eb56562f595bc1b80323ace0fe08aea14291439eb0cb90573d3be24",
+        "matchesCapturedSource": true
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "SC07",
+      "name": "ObservatoryStationDetails",
+      "roleLabel": "관측 장소 세부 표현",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-da8d80de5300"
+      ],
+      "figma": {
+        "ownerId": "20:6527",
+        "defaultComponentId": "20:6527",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=20-6527",
+        "variantIds": [
+          "20:6527"
+        ],
+        "variantOptions": {},
+        "propertyIds": {
+          "Role": "Role#20:7",
+          "Purpose": "Purpose#20:8"
+        },
+        "representation": "Existing source-contract component preserved; linked side-by-side with one editable asset generated from the actual React source using synthetic static props."
+      },
+      "code": {
+        "source": "src/ui/observatory-details.tsx",
+        "line": 111,
+        "props": [
+          {
+            "name": "evolution",
+            "optional": false,
+            "type": "ObservatoryEvolution",
+            "origin": "src/ui/observatory-details.tsx"
+          }
+        ],
+        "capturedSha256": "0fefda416eb56562f595bc1b80323ace0fe08aea14291439eb0cb90573d3be24",
+        "currentSha256": "0fefda416eb56562f595bc1b80323ace0fe08aea14291439eb0cb90573d3be24",
+        "matchesCapturedSource": true
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "SC08",
+      "name": "ObservatoryTimeSky",
+      "roleLabel": "시간에 따른 하늘 표현",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-da8d80de5300"
+      ],
+      "figma": {
+        "ownerId": "20:6539",
+        "defaultComponentId": "20:6539",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=20-6539",
+        "variantIds": [
+          "20:6539"
+        ],
+        "variantOptions": {},
+        "propertyIds": {
+          "Role": "Role#20:9",
+          "Purpose": "Purpose#20:10"
+        },
+        "representation": "Existing source-contract component preserved; linked side-by-side with one editable asset generated from the actual React source using synthetic static props."
+      },
+      "code": {
+        "source": "src/ui/observatory-time-sky.tsx",
+        "line": 26,
+        "props": [
+          {
+            "name": "sky",
+            "optional": false,
+            "type": "ObservatorySky",
+            "origin": "src/ui/observatory-time-sky.tsx"
+          },
+          {
+            "name": "detail",
+            "optional": false,
+            "type": "number",
+            "origin": "src/ui/observatory-time-sky.tsx"
+          }
+        ],
+        "capturedSha256": "42a720a7e8a21879568f319d938b433b86931ce7a71209cfbea1653b04828a40",
+        "currentSha256": "42a720a7e8a21879568f319d938b433b86931ce7a71209cfbea1653b04828a40",
+        "matchesCapturedSource": true
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "SC09",
+      "name": "ObservatoryTimeGround",
+      "roleLabel": "시간에 따른 지면 표현",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-da8d80de5300"
+      ],
+      "figma": {
+        "ownerId": "20:6560",
+        "defaultComponentId": "20:6560",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=20-6560",
+        "variantIds": [
+          "20:6560"
+        ],
+        "variantOptions": {},
+        "propertyIds": {
+          "Role": "Role#20:11",
+          "Purpose": "Purpose#20:12"
+        },
+        "representation": "Existing source-contract component preserved; linked side-by-side with one editable asset generated from the actual React source using synthetic static props."
+      },
+      "code": {
+        "source": "src/ui/observatory-time-sky.tsx",
+        "line": 106,
+        "props": [
+          {
+            "name": "sky",
+            "optional": false,
+            "type": "ObservatorySky",
+            "origin": "src/ui/observatory-time-sky.tsx"
+          }
+        ],
+        "capturedSha256": "42a720a7e8a21879568f319d938b433b86931ce7a71209cfbea1653b04828a40",
+        "currentSha256": "42a720a7e8a21879568f319d938b433b86931ce7a71209cfbea1653b04828a40",
+        "matchesCapturedSource": true
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "SC10",
+      "name": "ObservatoryClouds",
+      "roleLabel": "구름 표현",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-da8d80de5300"
+      ],
+      "figma": {
+        "ownerId": "20:6581",
+        "defaultComponentId": "20:6581",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=20-6581",
+        "variantIds": [
+          "20:6581"
+        ],
+        "variantOptions": {},
+        "propertyIds": {
+          "Role": "Role#20:13",
+          "Purpose": "Purpose#20:14"
+        },
+        "representation": "Existing source-contract component preserved; linked side-by-side with one editable asset generated from the actual React source using synthetic static props."
+      },
+      "code": {
+        "source": "src/ui/observatory-atmosphere.tsx",
+        "line": 82,
+        "props": [
+          {
+            "name": "evolution",
+            "optional": false,
+            "type": "ObservatoryEvolution",
+            "origin": "src/ui/observatory-atmosphere.tsx"
+          }
+        ],
+        "capturedSha256": "f4f61f28fd31716d1c9fb1268a220e6a46b413306509331a6cbf832b151f6577",
+        "currentSha256": "f4f61f28fd31716d1c9fb1268a220e6a46b413306509331a6cbf832b151f6577",
+        "matchesCapturedSource": true
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "SC11",
+      "name": "ObservatoryGroundDetails",
+      "roleLabel": "지면 세부 표현",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-da8d80de5300"
+      ],
+      "figma": {
+        "ownerId": "20:6593",
+        "defaultComponentId": "20:6593",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=20-6593",
+        "variantIds": [
+          "20:6593"
+        ],
+        "variantOptions": {},
+        "propertyIds": {
+          "Role": "Role#20:15",
+          "Purpose": "Purpose#20:16"
+        },
+        "representation": "Existing source-contract component preserved; linked side-by-side with one editable asset generated from the actual React source using synthetic static props."
+      },
+      "code": {
+        "source": "src/ui/observatory-atmosphere.tsx",
+        "line": 107,
+        "props": [],
+        "capturedSha256": "f4f61f28fd31716d1c9fb1268a220e6a46b413306509331a6cbf832b151f6577",
+        "currentSha256": "f4f61f28fd31716d1c9fb1268a220e6a46b413306509331a6cbf832b151f6577",
+        "matchesCapturedSource": true
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "SC12",
+      "name": "ObservatoryDomeTiles",
+      "roleLabel": "돔 타일 표현",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-da8d80de5300"
+      ],
+      "figma": {
+        "ownerId": "20:6605",
+        "defaultComponentId": "20:6605",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=20-6605",
+        "variantIds": [
+          "20:6605"
+        ],
+        "variantOptions": {},
+        "propertyIds": {
+          "Role": "Role#20:17",
+          "Purpose": "Purpose#20:18"
+        },
+        "representation": "Existing source-contract component preserved; linked side-by-side with one editable asset generated from the actual React source using synthetic static props."
+      },
+      "code": {
+        "source": "src/ui/observatory-atmosphere.tsx",
+        "line": 110,
+        "props": [],
+        "capturedSha256": "f4f61f28fd31716d1c9fb1268a220e6a46b413306509331a6cbf832b151f6577",
+        "currentSha256": "f4f61f28fd31716d1c9fb1268a220e6a46b413306509331a6cbf832b151f6577",
+        "matchesCapturedSource": true
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "SC13",
+      "name": "ObservatoryShockwave",
+      "roleLabel": "파동 효과",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-1b2299032e22"
+      ],
+      "figma": {
+        "ownerId": "20:6617",
+        "defaultComponentId": "20:6617",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=20-6617",
+        "variantIds": [
+          "20:6617"
+        ],
+        "variantOptions": {},
+        "propertyIds": {
+          "Role": "Role#20:19",
+          "Purpose": "Purpose#20:20"
+        },
+        "representation": "Existing source-contract component preserved; linked side-by-side with one editable asset generated from the actual React source using synthetic static props."
+      },
+      "code": {
+        "source": "src/ui/observatory-atmosphere.tsx",
+        "line": 114,
+        "props": [
+          {
+            "name": "echo",
+            "optional": false,
+            "type": "boolean",
+            "origin": "src/ui/observatory-atmosphere.tsx"
+          }
+        ],
+        "capturedSha256": "f4f61f28fd31716d1c9fb1268a220e6a46b413306509331a6cbf832b151f6577",
+        "currentSha256": "f4f61f28fd31716d1c9fb1268a220e6a46b413306509331a6cbf832b151f6577",
+        "matchesCapturedSource": true
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "SC14",
+      "name": "ObservatoryStudySky",
+      "roleLabel": "공부 하늘 표현",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-da8d80de5300"
+      ],
+      "figma": {
+        "ownerId": "20:6629",
+        "defaultComponentId": "20:6629",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=20-6629",
+        "variantIds": [
+          "20:6629"
+        ],
+        "variantOptions": {},
+        "propertyIds": {
+          "Role": "Role#20:21",
+          "Purpose": "Purpose#20:22"
+        },
+        "representation": "Existing source-contract component preserved; linked side-by-side with one editable asset generated from the actual React source using synthetic static props."
+      },
+      "code": {
+        "source": "src/ui/observatory-reactivity.tsx",
+        "line": 18,
+        "props": [
+          {
+            "name": "world",
+            "optional": false,
+            "type": "StudyLandscape",
+            "origin": "src/ui/observatory-reactivity.tsx"
+          }
+        ],
+        "capturedSha256": "7ffacca0ed1305557648a350938d4b6fd06c4743ac57bfc37ad02f7f85b65d63",
+        "currentSha256": "7ffacca0ed1305557648a350938d4b6fd06c4743ac57bfc37ad02f7f85b65d63",
+        "matchesCapturedSource": true
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "SC15",
+      "name": "ObservatoryStudyStation",
+      "roleLabel": "공부 관측 장소 표현",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-da8d80de5300"
+      ],
+      "figma": {
+        "ownerId": "20:6641",
+        "defaultComponentId": "20:6641",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=20-6641",
+        "variantIds": [
+          "20:6641"
+        ],
+        "variantOptions": {},
+        "propertyIds": {
+          "Role": "Role#20:23",
+          "Purpose": "Purpose#20:24"
+        },
+        "representation": "Existing source-contract component preserved; linked side-by-side with one editable asset generated from the actual React source using synthetic static props."
+      },
+      "code": {
+        "source": "src/ui/observatory-reactivity.tsx",
+        "line": 61,
+        "props": [
+          {
+            "name": "world",
+            "optional": false,
+            "type": "StudyLandscape",
+            "origin": "src/ui/observatory-reactivity.tsx"
+          }
+        ],
+        "capturedSha256": "7ffacca0ed1305557648a350938d4b6fd06c4743ac57bfc37ad02f7f85b65d63",
+        "currentSha256": "7ffacca0ed1305557648a350938d4b6fd06c4743ac57bfc37ad02f7f85b65d63",
+        "matchesCapturedSource": true
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "SC16",
+      "name": "ObservatoryRadiance",
+      "roleLabel": "하늘 빛 표현",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-da8d80de5300"
+      ],
+      "figma": {
+        "ownerId": "20:6653",
+        "defaultComponentId": "20:6653",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=20-6653",
+        "variantIds": [
+          "20:6653"
+        ],
+        "variantOptions": {},
+        "propertyIds": {
+          "Role": "Role#20:25",
+          "Purpose": "Purpose#20:26"
+        },
+        "representation": "Existing source-contract component preserved; linked side-by-side with one editable asset generated from the actual React source using synthetic static props."
+      },
+      "code": {
+        "source": "src/ui/observatory-radiance.tsx",
+        "line": 84,
+        "props": [
+          {
+            "name": "world",
+            "optional": false,
+            "type": "StudyLandscape",
+            "origin": "src/ui/observatory-radiance.tsx"
+          }
+        ],
+        "capturedSha256": "85d81f6836b4807122039bf6f028d389204171456305ba39b077a70214ee4999",
+        "currentSha256": "85d81f6836b4807122039bf6f028d389204171456305ba39b077a70214ee4999",
+        "matchesCapturedSource": true
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "SC17",
+      "name": "ObservatoryRadianceGround",
+      "roleLabel": "지면 빛 표현",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-da8d80de5300"
+      ],
+      "figma": {
+        "ownerId": "20:6665",
+        "defaultComponentId": "20:6665",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=20-6665",
+        "variantIds": [
+          "20:6665"
+        ],
+        "variantOptions": {},
+        "propertyIds": {
+          "Role": "Role#20:27",
+          "Purpose": "Purpose#20:28"
+        },
+        "representation": "Existing source-contract component preserved; linked side-by-side with one editable asset generated from the actual React source using synthetic static props."
+      },
+      "code": {
+        "source": "src/ui/observatory-radiance.tsx",
+        "line": 183,
+        "props": [
+          {
+            "name": "world",
+            "optional": false,
+            "type": "StudyLandscape",
+            "origin": "src/ui/observatory-radiance.tsx"
+          }
+        ],
+        "capturedSha256": "85d81f6836b4807122039bf6f028d389204171456305ba39b077a70214ee4999",
+        "currentSha256": "85d81f6836b4807122039bf6f028d389204171456305ba39b077a70214ee4999",
+        "matchesCapturedSource": true
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "SC18",
+      "name": "ObservatoryEvents",
+      "roleLabel": "장면 사건 표현",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-da8d80de5300"
+      ],
+      "figma": {
+        "ownerId": "20:6677",
+        "defaultComponentId": "20:6677",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=20-6677",
+        "variantIds": [
+          "20:6677"
+        ],
+        "variantOptions": {},
+        "propertyIds": {
+          "Role": "Role#20:29",
+          "Purpose": "Purpose#20:30"
+        },
+        "representation": "Existing source-contract component preserved; linked side-by-side with one editable asset generated from the actual React source using synthetic static props."
+      },
+      "code": {
+        "source": "src/ui/observatory-events.tsx",
+        "line": 406,
+        "props": [
+          {
+            "name": "events",
+            "optional": false,
+            "type": "readonly ObservatoryEvent[]",
+            "origin": "src/ui/observatory-events.tsx"
+          },
+          {
+            "name": "sky",
+            "optional": false,
+            "type": "ObservatorySky",
+            "origin": "src/ui/observatory-events.tsx"
+          },
+          {
+            "name": "ground",
+            "optional": true,
+            "type": "boolean | undefined",
+            "origin": "src/ui/observatory-events.tsx"
+          }
+        ],
+        "capturedSha256": "85ef8256eb7674fc357797481c81769e82dc8b0188b52ab3eff325eabd1db782",
+        "currentSha256": "85ef8256eb7674fc357797481c81769e82dc8b0188b52ab3eff325eabd1db782",
+        "matchesCapturedSource": true
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "SC19",
+      "name": "ObservatoryEventVariationSymbol",
+      "roleLabel": "장면 사건 변형 기호",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-09767030d621"
+      ],
+      "figma": {
+        "ownerId": "21:5121",
+        "defaultComponentId": "21:5121",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=21-5121",
+        "variantIds": [
+          "21:5121"
+        ],
+        "variantOptions": {},
+        "propertyIds": {
+          "Role": "Role#21:0",
+          "Purpose": "Purpose#21:1"
+        },
+        "representation": "Existing source-mapped component reused; consult original property definitions."
+      },
+      "code": {
+        "source": "src/ui/observatory-event-variations.tsx",
+        "line": 322,
+        "props": [
+          {
+            "name": "event",
+            "optional": false,
+            "type": "ObservatoryEvent",
+            "origin": "src/ui/observatory-event-variations.tsx"
+          },
+          {
+            "name": "children",
+            "optional": false,
+            "type": "ReactNode",
+            "origin": "src/ui/observatory-event-variations.tsx"
+          }
+        ],
+        "capturedSha256": "fe332b9043727338e3cbde1657f11e98dee04c3e6d56ea434a21cb69b3425bf4",
+        "currentSha256": "fe332b9043727338e3cbde1657f11e98dee04c3e6d56ea434a21cb69b3425bf4",
+        "matchesCapturedSource": true
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "SC20",
+      "name": "ObservatoryEventVariation",
+      "roleLabel": "장면 사건의 표현 변형",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-09767030d621"
+      ],
+      "figma": {
+        "ownerId": "21:5138",
+        "defaultComponentId": "21:5138",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=21-5138",
+        "variantIds": [
+          "21:5138"
+        ],
+        "variantOptions": {},
+        "propertyIds": {
+          "Role": "Role#21:2",
+          "Purpose": "Purpose#21:3"
+        },
+        "representation": "Existing source-mapped component reused; consult original property definitions."
+      },
+      "code": {
+        "source": "src/ui/observatory-event-variations.tsx",
+        "line": 345,
+        "props": [
+          {
+            "name": "event",
+            "optional": false,
+            "type": "ObservatoryEvent",
+            "origin": "src/ui/observatory-event-variations.tsx"
+          },
+          {
+            "name": "index",
+            "optional": false,
+            "type": "number",
+            "origin": "src/ui/observatory-event-variations.tsx"
+          },
+          {
+            "name": "symbolId",
+            "optional": false,
+            "type": "string",
+            "origin": "src/ui/observatory-event-variations.tsx"
+          }
+        ],
+        "capturedSha256": "fe332b9043727338e3cbde1657f11e98dee04c3e6d56ea434a21cb69b3425bf4",
+        "currentSha256": "fe332b9043727338e3cbde1657f11e98dee04c3e6d56ea434a21cb69b3425bf4",
+        "matchesCapturedSource": true
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "MO01",
+      "name": "BusyDots",
+      "roleLabel": "처리 중 점 표시",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-7798c073957b"
+      ],
+      "figma": {
+        "ownerId": "21:5175",
+        "defaultComponentId": "21:5157",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=21-5175",
+        "variantIds": [
+          "21:5157",
+          "21:5163",
+          "21:5169"
+        ],
+        "variantOptions": {
+          "State": [
+            "rest",
+            "active",
+            "reduced"
+          ]
+        },
+        "propertyIds": {
+          "Contract": "Contract#21:4"
+        },
+        "representation": "Existing source-mapped component reused; consult original property definitions."
+      },
+      "code": {
+        "source": "src/ui/motion.tsx",
+        "line": 46,
+        "props": [],
+        "capturedSha256": "48db1e780ef005bea06b9f9996df286eacc0cfe0f9ef3897f02c3db07cbeecb1",
+        "currentSha256": "48db1e780ef005bea06b9f9996df286eacc0cfe0f9ef3897f02c3db07cbeecb1",
+        "matchesCapturedSource": true
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "MO02",
+      "name": "SavedMark",
+      "roleLabel": "저장 확인 표시",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-ebc3cee36f70"
+      ],
+      "figma": {
+        "ownerId": "21:5194",
+        "defaultComponentId": "21:5176",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=21-5194",
+        "variantIds": [
+          "21:5176",
+          "21:5182",
+          "21:5188"
+        ],
+        "variantOptions": {
+          "State": [
+            "rest",
+            "active",
+            "reduced"
+          ]
+        },
+        "propertyIds": {
+          "Contract": "Contract#21:8"
+        },
+        "representation": "Existing source-mapped component reused; consult original property definitions."
+      },
+      "code": {
+        "source": "src/ui/motion.tsx",
+        "line": 55,
+        "props": [],
+        "capturedSha256": "48db1e780ef005bea06b9f9996df286eacc0cfe0f9ef3897f02c3db07cbeecb1",
+        "currentSha256": "48db1e780ef005bea06b9f9996df286eacc0cfe0f9ef3897f02c3db07cbeecb1",
+        "matchesCapturedSource": true
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "MO03",
+      "name": "SelectionBackground",
+      "roleLabel": "선택 배경",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-86ae4f2de162"
+      ],
+      "figma": {
+        "ownerId": "21:5216",
+        "defaultComponentId": "21:5195",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=21-5216",
+        "variantIds": [
+          "21:5195",
+          "21:5202",
+          "21:5209"
+        ],
+        "variantOptions": {
+          "State": [
+            "rest",
+            "active",
+            "reduced"
+          ]
+        },
+        "propertyIds": {
+          "Contract": "Contract#21:12"
+        },
+        "representation": "Existing source-mapped component reused; consult original property definitions."
+      },
+      "code": {
+        "source": "src/ui/motion.tsx",
+        "line": 65,
+        "props": [
+          {
+            "name": "id",
+            "optional": false,
+            "type": "string",
+            "origin": "src/ui/motion.tsx"
+          }
+        ],
+        "capturedSha256": "48db1e780ef005bea06b9f9996df286eacc0cfe0f9ef3897f02c3db07cbeecb1",
+        "currentSha256": "48db1e780ef005bea06b9f9996df286eacc0cfe0f9ef3897f02c3db07cbeecb1",
+        "matchesCapturedSource": true
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "MO04",
+      "name": "NoticeEntrance",
+      "roleLabel": "안내 등장 동작",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-1b2299032e22"
+      ],
+      "figma": {
+        "ownerId": "21:5229",
+        "defaultComponentId": "21:5217",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=21-5229",
+        "variantIds": [
+          "21:5217",
+          "21:5221",
+          "21:5225"
+        ],
+        "variantOptions": {
+          "State": [
+            "rest",
+            "active",
+            "reduced"
+          ]
+        },
+        "propertyIds": {
+          "Contract": "Contract#21:16"
+        },
+        "representation": "Existing source-mapped component reused; consult original property definitions."
+      },
+      "code": {
+        "source": "src/ui/motion.tsx",
+        "line": 71,
+        "props": [
+          {
+            "name": "children",
+            "optional": false,
+            "type": "ReactNode",
+            "origin": "src/ui/motion.tsx"
+          },
+          {
+            "name": "className",
+            "optional": true,
+            "type": "string | undefined",
+            "origin": "src/ui/motion.tsx"
+          }
+        ],
+        "capturedSha256": "48db1e780ef005bea06b9f9996df286eacc0cfe0f9ef3897f02c3db07cbeecb1",
+        "currentSha256": "48db1e780ef005bea06b9f9996df286eacc0cfe0f9ef3897f02c3db07cbeecb1",
+        "matchesCapturedSource": true
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "MO05",
+      "name": "FadeContent",
+      "roleLabel": "콘텐츠 페이드 전환",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-0a62c3b66c4d"
+      ],
+      "figma": {
+        "ownerId": "21:5242",
+        "defaultComponentId": "21:5230",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=21-5242",
+        "variantIds": [
+          "21:5230",
+          "21:5234",
+          "21:5238"
+        ],
+        "variantOptions": {
+          "State": [
+            "rest",
+            "active",
+            "reduced"
+          ]
+        },
+        "propertyIds": {
+          "Contract": "Contract#21:20"
+        },
+        "representation": "Existing source-mapped component reused; consult original property definitions."
+      },
+      "code": {
+        "source": "src/ui/motion.tsx",
+        "line": 77,
+        "props": [
+          {
+            "name": "children",
+            "optional": false,
+            "type": "ReactNode",
+            "origin": "src/ui/motion.tsx"
+          }
+        ],
+        "capturedSha256": "48db1e780ef005bea06b9f9996df286eacc0cfe0f9ef3897f02c3db07cbeecb1",
+        "currentSha256": "48db1e780ef005bea06b9f9996df286eacc0cfe0f9ef3897f02c3db07cbeecb1",
+        "matchesCapturedSource": true
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "BR01",
+      "name": "BrandWordmark",
+      "roleLabel": "브랜드 글자 표식",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-0228a1176204"
+      ],
+      "figma": {
+        "ownerId": "21:5243",
+        "defaultComponentId": "21:5243",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=21-5243",
+        "variantIds": [
+          "21:5243"
+        ],
+        "variantOptions": {},
+        "propertyIds": {},
+        "representation": "Existing source-mapped component reused; consult original property definitions."
+      },
+      "code": {
+        "source": "src/ui/brand-wordmark.tsx",
+        "line": 5,
+        "props": [],
+        "capturedSha256": "5305046cbd8dee5c34d4aa2a4c894672019350e7753ca447f493cce42a4de016",
+        "currentSha256": "3b2b112eb80578c929bc2b53016f9e85eb78a0c7125dd42eb0098d0020b088ea",
+        "matchesCapturedSource": false
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "UI23",
+      "name": "ObservatoryNavigation",
+      "roleLabel": "천문대 장소 탐색",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-f3bc5ae9e5a4"
+      ],
+      "figma": {
+        "ownerId": "53:13178",
+        "defaultComponentId": "53:12794",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=53-13178",
+        "variantIds": [
+          "53:12794",
+          "53:12814",
+          "53:12841",
+          "53:12861",
+          "53:12888",
+          "53:12908",
+          "53:12937",
+          "53:12957",
+          "53:12986",
+          "53:13006",
+          "53:13033",
+          "53:13053",
+          "53:13080",
+          "53:13100",
+          "53:13129",
+          "53:13149"
+        ],
+        "variantOptions": {
+          "place": [
+            "front",
+            "left",
+            "right",
+            "back"
+          ],
+          "width": [
+            "wide",
+            "narrow"
+          ],
+          "shortcuts": [
+            "collapsed",
+            "expanded"
+          ]
+        },
+        "propertyIds": {},
+        "representation": "Native editable source-mapped component"
+      },
+      "code": {
+        "source": "src/ui/observatory-navigation.tsx",
+        "line": 134,
+        "props": [
+          {
+            "name": "data",
+            "optional": false,
+            "type": "AppState",
+            "origin": "src/ui/observatory-navigation.tsx"
+          },
+          {
+            "name": "route",
+            "optional": false,
+            "type": "string",
+            "origin": "src/ui/observatory-navigation.tsx"
+          },
+          {
+            "name": "journey",
+            "optional": false,
+            "type": "ObservatoryJourney",
+            "origin": "src/ui/observatory-navigation.tsx"
+          },
+          {
+            "name": "global",
+            "optional": false,
+            "type": "boolean",
+            "origin": "src/ui/observatory-navigation.tsx"
+          }
+        ],
+        "capturedSha256": "82c56082f3c98db9a591b431f21743e7034995657f1bac6ff457bd5c7ff360b9",
+        "currentSha256": "b8674d5e2776eb021fb283a3578eb40f52d5d0c02f4abbeab8202b1fb234ce55",
+        "matchesCapturedSource": false
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "UI24",
+      "name": "ObservatoryTaskReturn",
+      "roleLabel": "원래 과업으로 복귀",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-55cee4c15bfd"
+      ],
+      "figma": {
+        "ownerId": "53:13281",
+        "defaultComponentId": "53:13179",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=53-13281",
+        "variantIds": [
+          "53:13179",
+          "53:13180",
+          "53:13181",
+          "53:13184",
+          "53:13187",
+          "53:13196",
+          "53:13205",
+          "53:13216",
+          "53:13227",
+          "53:13236",
+          "53:13245",
+          "53:13254",
+          "53:13263",
+          "53:13272"
+        ],
+        "variantOptions": {
+          "context": [
+            "none",
+            "caller",
+            "topic",
+            "material",
+            "math",
+            "code",
+            "record"
+          ],
+          "width": [
+            "wide",
+            "narrow"
+          ]
+        },
+        "propertyIds": {},
+        "representation": "Native editable source-mapped component"
+      },
+      "code": {
+        "source": "src/ui/observatory-navigation.tsx",
+        "line": 204,
+        "props": [
+          {
+            "name": "data",
+            "optional": false,
+            "type": "AppState",
+            "origin": "src/ui/observatory-navigation.tsx"
+          },
+          {
+            "name": "route",
+            "optional": false,
+            "type": "string",
+            "origin": "src/ui/observatory-navigation.tsx"
+          },
+          {
+            "name": "caller",
+            "optional": true,
+            "type": "{ route: string; } | undefined",
+            "origin": "src/ui/observatory-navigation.tsx"
+          },
+          {
+            "name": "studySource",
+            "optional": true,
+            "type": "{ route: string; } | undefined",
+            "origin": "src/ui/observatory-navigation.tsx"
+          }
+        ],
+        "capturedSha256": "82c56082f3c98db9a591b431f21743e7034995657f1bac6ff457bd5c7ff360b9",
+        "currentSha256": "b8674d5e2776eb021fb283a3578eb40f52d5d0c02f4abbeab8202b1fb234ce55",
+        "matchesCapturedSource": false
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "UI25",
+      "name": "WorkspaceCommands",
+      "roleLabel": "작업 공간 명령",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-650662bd7fa8"
+      ],
+      "figma": {
+        "ownerId": "74:72248",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=74-72248",
+        "representation": "Native editable representative wide/narrow component composed from existing common components. Width/State are design fixture conditions, not React props."
+      },
+      "code": {
+        "source": "src/ui/workspace-commands.tsx",
+        "line": 11,
+        "props": [
+          {
+            "name": "commands",
+            "optional": false,
+            "type": "WorkspaceCommand[]"
+          }
+        ],
+        "capturedSha256": "d312d8f41b6e5bffc6178c57642c893b853a618df9f83ea424eba48ec2884446",
+        "currentSha256": "d312d8f41b6e5bffc6178c57642c893b853a618df9f83ea424eba48ec2884446",
+        "matchesCapturedSource": true
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "UI26",
+      "name": "StudyWorkspace",
+      "roleLabel": "공부 작업 공간",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-ac5284bd3e11"
+      ],
+      "figma": {
+        "ownerId": "74:73677",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=74-73677",
+        "representation": "Native editable representative wide/narrow component composed from existing common components. Width/State are design fixture conditions, not React props."
+      },
+      "code": {
+        "source": "src/ui/study-workspace.tsx",
+        "line": 74,
+        "props": [
+          {
+            "name": "controller",
+            "optional": false,
+            "type": "{ state: WorkState; layout: DeskLayout; setLayout: (next: DeskLayout) => boolean; openTool: (tool: \"code\" | \"math\" | \"memo\" | \"record\") => boolean; change: (next: WorkState) => boolean; error: string; reload: () => void; retry: () => boolean; key: string; }"
+          },
+          {
+            "name": "source",
+            "optional": false,
+            "type": "ReactNode"
+          },
+          {
+            "name": "renderTool",
+            "optional": false,
+            "type": "(tool: \"code\" | \"math\" | \"memo\" | \"record\") => ReactNode"
+          },
+          {
+            "name": "sourceTitle",
+            "optional": false,
+            "type": "string"
+          }
+        ],
+        "capturedSha256": "cdf3787c1d7b7fc7ac6dab52a21d53a67b7808b742841d1411636b82accdc33f",
+        "currentSha256": "66b4a6856d448b975d124ffbbf283920053f0714733e82cccc8c98eaa29cde19",
+        "matchesCapturedSource": false
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "UI27",
+      "name": "SavedWorkspaces",
+      "roleLabel": "저장한 작업 공간",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-06630dfc0e2e"
+      ],
+      "figma": {
+        "ownerId": "74:74147",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=74-74147",
+        "representation": "Native editable representative wide/narrow component composed from existing common components. Width/State are design fixture conditions, not React props."
+      },
+      "code": {
+        "source": "src/ui/study-workspace.tsx",
+        "line": 189,
+        "props": [
+          {
+            "name": "controller",
+            "optional": false,
+            "type": "{ state: WorkState; layout: DeskLayout; setLayout: (next: DeskLayout) => boolean; openTool: (tool: \"code\" | \"math\" | \"memo\" | \"record\") => boolean; change: (next: WorkState) => boolean; error: string; reload: () => void; retry: () => boolean; key: string; }"
+          },
+          {
+            "name": "data",
+            "optional": false,
+            "type": "AppState"
+          },
+          {
+            "name": "route",
+            "optional": false,
+            "type": "string"
+          }
+        ],
+        "capturedSha256": "cdf3787c1d7b7fc7ac6dab52a21d53a67b7808b742841d1411636b82accdc33f",
+        "currentSha256": "66b4a6856d448b975d124ffbbf283920053f0714733e82cccc8c98eaa29cde19",
+        "matchesCapturedSource": false
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "UI28",
+      "name": "WorkspaceStorageNotice",
+      "roleLabel": "작업 공간 저장 안내",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-ebc3cee36f70"
+      ],
+      "figma": {
+        "ownerId": "75:74396",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=75-74396",
+        "representation": "Native editable representative wide/narrow component composed from existing common components. Width/State are design fixture conditions, not React props."
+      },
+      "code": {
+        "source": "src/ui/study-workspace.tsx",
+        "line": 346,
+        "props": [
+          {
+            "name": "controller",
+            "optional": false,
+            "type": "{ state: WorkState; layout: DeskLayout; setLayout: (next: DeskLayout) => boolean; openTool: (tool: \"code\" | \"math\" | \"memo\" | \"record\") => boolean; change: (next: WorkState) => boolean; error: string; reload: () => void; retry: () => boolean; key: string; }"
+          }
+        ],
+        "capturedSha256": "cdf3787c1d7b7fc7ac6dab52a21d53a67b7808b742841d1411636b82accdc33f",
+        "currentSha256": "66b4a6856d448b975d124ffbbf283920053f0714733e82cccc8c98eaa29cde19",
+        "matchesCapturedSource": false
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "UI29",
+      "name": "ProgressiveHistory",
+      "roleLabel": "기록 이력의 점진적 표시",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-dc18999622db"
+      ],
+      "figma": {
+        "ownerId": "75:79609",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=75-79609",
+        "representation": "Native editable representative wide/narrow component composed from existing common components. Width/State are design fixture conditions, not React props."
+      },
+      "code": {
+        "source": "src/ui/progressive-history.tsx",
+        "line": 9,
+        "props": [
+          {
+            "name": "data",
+            "optional": false,
+            "type": "Pick<AppState, \"namespace\" | \"userId\">"
+          },
+          {
+            "name": "name",
+            "optional": false,
+            "type": "string"
+          },
+          {
+            "name": "total",
+            "optional": false,
+            "type": "number"
+          },
+          {
+            "name": "label",
+            "optional": false,
+            "type": "string"
+          },
+          {
+            "name": "children",
+            "optional": false,
+            "type": "(limit: number) => ReactNode"
+          },
+          {
+            "name": "collapsible",
+            "optional": true,
+            "type": "boolean | undefined"
+          }
+        ],
+        "capturedSha256": "93609c7e6d310b8b770f10a227b9b257d0c9b33403594d50e7d0c862a023fd77",
+        "currentSha256": "c55d71b275c6615f79a57e2dee5720208db2edc6f78c258df067ea960657cb8b",
+        "matchesCapturedSource": false
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "UI30",
+      "name": "UiPerformanceAccess",
+      "roleLabel": "화면 성능 도구 진입",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-e22830fe5b6a"
+      ],
+      "figma": {
+        "ownerId": "75:74869",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=75-74869",
+        "representation": "Native editable representative wide/narrow component composed from existing common components. Width/State are design fixture conditions, not React props."
+      },
+      "code": {
+        "source": "src/ui/ui-performance-access.tsx",
+        "line": 4,
+        "props": [],
+        "capturedSha256": "0621aea7f4b2c2403a90601a1190bf9896f970a133ede0583ea011d318b4a7d8",
+        "currentSha256": "0621aea7f4b2c2403a90601a1190bf9896f970a133ede0583ea011d318b4a7d8",
+        "matchesCapturedSource": true
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "UI31",
+      "name": "UiPerformancePanel",
+      "roleLabel": "화면 성능 도구 패널",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-e22830fe5b6a"
+      ],
+      "figma": {
+        "ownerId": "75:74923",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=75-74923",
+        "representation": "Native editable representative wide/narrow component composed from existing common components. Width/State are design fixture conditions, not React props."
+      },
+      "code": {
+        "source": "src/ui/ui-performance-panel.tsx",
+        "line": 12,
+        "props": [],
+        "capturedSha256": "cbc48f58630a4a498ed2d086a37468102716bd4080091f48aa969ad699167a02",
+        "currentSha256": "44b22a3c480198ce6bf061c0258dfafd6fe705f84456b3d3c63d3eec8a2422be",
+        "matchesCapturedSource": false
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "UI32",
+      "name": "MathComparison",
+      "roleLabel": "수학 관측 비교",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-da8d80de5300"
+      ],
+      "figma": {
+        "ownerId": "75:80544",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=75-80544",
+        "representation": "Native editable representative wide/narrow component composed from existing common components. Width/State are design fixture conditions, not React props."
+      },
+      "code": {
+        "source": "src/ui/math-comparison.tsx",
+        "line": 12,
+        "props": [
+          {
+            "name": "ownerKey",
+            "optional": false,
+            "type": "string"
+          },
+          {
+            "name": "scene",
+            "optional": false,
+            "type": "MathScene"
+          },
+          {
+            "name": "result",
+            "optional": false,
+            "type": "{ points: (Vec3 | null)[]; sample: (value: number) => Vec3 | null; sampleKey: string; point: Vec3 | null; at: number; min: number; max: number; tex: string; vectors: { reason: string; T?: undefined; N?: undefined; B?: undefined; curvature?: undefined; } | { T: Vec3; reason: string; N?: undefined; B?: undefined; curvature?: undefined; } | { T: Vec3; N: Vec3; B: Vec3; curvature: number; reason: string; } | null; frameError: string; missing: number; breakBefore: boolean[]; } | null | undefined"
+          }
+        ],
+        "capturedSha256": "107602daa6b3d11cebe4f9429c6561e2508d741b745a27956e5ae9fa2543bfd3",
+        "currentSha256": "c017f16ed12a357b7250ea3e3a464cfc9b02db9959b668d78f15a181a79845c7",
+        "matchesCapturedSource": false
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    },
+    {
+      "id": "UI33",
+      "name": "ConceptText",
+      "roleLabel": "개념 본문",
+      "roleStatus": "verified-project-role",
+      "termIds": [
+        "term-0228a1176204"
+      ],
+      "figma": {
+        "ownerId": "75:84056",
+        "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=75-84056",
+        "representation": "Native editable representative wide/narrow component composed from existing common components. Width/State are design fixture conditions, not React props."
+      },
+      "code": {
+        "source": "src/ui/concept-text.tsx",
+        "line": 56,
+        "props": [
+          {
+            "name": "text",
+            "optional": false,
+            "type": "string"
+          }
+        ],
+        "capturedSha256": "29b388dccfa693e17f15e5d6adf6dd71d20995d2a5b6997ebca752a31f59d3b2",
+        "currentSha256": "49bb4535934af4dd1ddb16e364d7faee04ddf6d3cf2d5048ab865f22d70832e5",
+        "matchesCapturedSource": false
+      },
+      "scope": "actual existing source identifiers preserved; Figma representation and runtime behavior are separate"
+    }
+  ],
+  "responsibilities": [
+    {
+      "path": "src/ui",
+      "terms": [
+        "사용자 인터페이스",
+        "상호작용 설계",
+        "컴포넌트",
+        "접근성"
+      ]
+    },
+    {
+      "path": "src/domain",
+      "terms": [
+        "도메인 데이터",
+        "제약 조건",
+        "유효성 검사"
+      ]
+    },
+    {
+      "path": "src/data",
+      "terms": [
+        "영속성",
+        "브라우저 저장소",
+        "초안",
+        "동기화",
+        "충돌",
+        "복구"
+      ]
+    },
+    {
+      "path": "src/server",
+      "terms": [
+        "서버 상태",
+        "인증",
+        "인가",
+        "서버 검증",
+        "객체 수준 권한"
+      ]
+    },
+    {
+      "path": "tools/tests",
+      "terms": [
+        "인수 기준",
+        "회귀 테스트",
+        "검증 증거"
+      ]
+    },
+    {
+      "path": "docs",
+      "terms": [
+        "정보 구조",
+        "명명 체계",
+        "개발 전달",
+        "인계 문서"
+      ]
+    }
+  ],
+  "note": "Directory responsibilities are educational scope labels. No claim of exhaustive semantic annotation of every source symbol."
+}

@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"pageId\":\"74:400\",\"createdNodeIds\":[\"350:37357\",\"350:37360\",\"350:37361\",\"350:37364\",\"350:37365\",\"350:37368\",\"350:37369\",\"350:37372\"],\"mutatedNodeIds\":[\"178:31822\",\"178:31819\",\"178:31823\",\"178:31824\",\"178:31825\"],\"updatedCount\":4,\"results\":[{\"sourceId\":\"178:31822\",\"wrapperId\":\"350:37357\",\"outlineId\":\"350:37360\",\"role\":\"body\",\"font\":{\"family\":\"NanumMyeongjo\",\"style\":\"Bold\"},\"size\":18,\"alignment\":\"JUSTIFIED\",\"scale\":0.9499999832049388,\"sourcePreserved\":true,\"width\":1040,\"height\":36},{\"sourceId\":\"178:31823\",\"wrapperId\":\"350:37361\",\"outlineId\":\"350:37364\",\"role\":\"body\",\"font\":{\"family\":\"NanumMyeongjo\",\"style\":\"Bold\"},\"size\":18,\"alignment\":\"JUSTIFIED\",\"scale\":0.9500000223299917,\"sourcePreserved\":true,\"width\":1040,\"height\":72},{\"sourceId\":\"178:31824\",\"wrapperId\":\"350:37365\",\"outlineId\":\"350:37368\",\"role\":\"body\",\"font\":{\"family\":\"NanumMyeongjo\",\"style\":\"Bold\"},\"size\":18,\"alignment\":\"JUSTIFIED\",\"scale\":0.9499999552659373,\"sourcePreserved\":true,\"width\":1040,\"height\":72},{\"sourceId\":\"178:31825\",\"wrapperId\":\"350:37369\",\"outlineId\":\"350:37372\",\"role\":\"body\",\"font\":{\"family\":\"NanumMyeongjo\",\"style\":\"Bold\"},\"size\":18,\"alignment\":\"JUSTIFIED\",\"scale\":0.949999979666385,\"sourcePreserved\":true,\"width\":1040,\"height\":36}],\"allSourcesPreserved\":true,\"allGlyphScalesPass\":true,\"skipped\":[],\"clipFixedIds\":[]}"
+    }
+  ],
+  "isError": false
+}

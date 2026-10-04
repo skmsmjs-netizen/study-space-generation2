@@ -1,0 +1,309 @@
+{
+  "pageId": "7:70",
+  "foundations": {
+    "collections": {
+      "primitives": "VariableCollectionId:7:78",
+      "material": "VariableCollectionId:7:79",
+      "metrics": "VariableCollectionId:7:80"
+    },
+    "modes": [
+      {
+        "name": "Interior",
+        "modeId": "7:1"
+      },
+      {
+        "name": "Paper",
+        "modeId": "7:2"
+      }
+    ],
+    "variables": {
+      "primitive/interior/canvas": {
+        "id": "VariableID:7:81"
+      },
+      "primitive/interior/surface": {
+        "id": "VariableID:7:82"
+      },
+      "primitive/interior/subtle": {
+        "id": "VariableID:7:83"
+      },
+      "primitive/interior/text": {
+        "id": "VariableID:7:84"
+      },
+      "primitive/interior/muted": {
+        "id": "VariableID:7:85"
+      },
+      "primitive/interior/borderDecorative": {
+        "id": "VariableID:7:86"
+      },
+      "primitive/interior/borderInteractive": {
+        "id": "VariableID:7:87"
+      },
+      "primitive/interior/focus": {
+        "id": "VariableID:7:88"
+      },
+      "primitive/interior/selected": {
+        "id": "VariableID:7:89"
+      },
+      "primitive/interior/selectedText": {
+        "id": "VariableID:7:90"
+      },
+      "primitive/interior/primary": {
+        "id": "VariableID:7:91"
+      },
+      "primitive/interior/primaryHover": {
+        "id": "VariableID:7:92"
+      },
+      "primitive/interior/primaryPressed": {
+        "id": "VariableID:7:93"
+      },
+      "primitive/interior/onPrimary": {
+        "id": "VariableID:7:94"
+      },
+      "primitive/paper/canvas": {
+        "id": "VariableID:7:95"
+      },
+      "primitive/paper/surface": {
+        "id": "VariableID:7:96"
+      },
+      "primitive/paper/subtle": {
+        "id": "VariableID:7:97"
+      },
+      "primitive/paper/text": {
+        "id": "VariableID:7:98"
+      },
+      "primitive/paper/muted": {
+        "id": "VariableID:7:99"
+      },
+      "primitive/paper/borderDecorative": {
+        "id": "VariableID:7:100"
+      },
+      "primitive/paper/borderInteractive": {
+        "id": "VariableID:7:101"
+      },
+      "primitive/paper/focus": {
+        "id": "VariableID:7:102"
+      },
+      "primitive/paper/selected": {
+        "id": "VariableID:7:103"
+      },
+      "primitive/paper/selectedText": {
+        "id": "VariableID:7:104"
+      },
+      "primitive/paper/primary": {
+        "id": "VariableID:7:105"
+      },
+      "primitive/paper/primaryHover": {
+        "id": "VariableID:7:106"
+      },
+      "primitive/paper/primaryPressed": {
+        "id": "VariableID:7:107"
+      },
+      "primitive/paper/onPrimary": {
+        "id": "VariableID:7:108"
+      },
+      "material/canvas": {
+        "id": "VariableID:7:109"
+      },
+      "material/surface": {
+        "id": "VariableID:7:110"
+      },
+      "material/subtle": {
+        "id": "VariableID:7:111"
+      },
+      "material/text": {
+        "id": "VariableID:7:112"
+      },
+      "material/muted": {
+        "id": "VariableID:7:113"
+      },
+      "material/borderDecorative": {
+        "id": "VariableID:7:114"
+      },
+      "material/borderInteractive": {
+        "id": "VariableID:7:115"
+      },
+      "material/focus": {
+        "id": "VariableID:7:116"
+      },
+      "material/selected": {
+        "id": "VariableID:7:117"
+      },
+      "material/selectedText": {
+        "id": "VariableID:7:118"
+      },
+      "material/primary": {
+        "id": "VariableID:7:119"
+      },
+      "material/primaryHover": {
+        "id": "VariableID:7:120"
+      },
+      "material/primaryPressed": {
+        "id": "VariableID:7:121"
+      },
+      "material/onPrimary": {
+        "id": "VariableID:7:122"
+      },
+      "space/0": {
+        "id": "VariableID:7:123"
+      },
+      "space/4": {
+        "id": "VariableID:7:124"
+      },
+      "space/8": {
+        "id": "VariableID:7:125"
+      },
+      "space/12": {
+        "id": "VariableID:7:126"
+      },
+      "space/16": {
+        "id": "VariableID:7:127"
+      },
+      "space/24": {
+        "id": "VariableID:7:128"
+      },
+      "space/32": {
+        "id": "VariableID:7:129"
+      },
+      "space/48": {
+        "id": "VariableID:7:130"
+      },
+      "space/64": {
+        "id": "VariableID:7:131"
+      },
+      "control/height": {
+        "id": "VariableID:7:132"
+      },
+      "control/icon-target": {
+        "id": "VariableID:7:133"
+      },
+      "border/width": {
+        "id": "VariableID:7:134"
+      },
+      "focus/width": {
+        "id": "VariableID:7:135"
+      },
+      "radius/control": {
+        "id": "VariableID:7:136"
+      },
+      "radius/dialog": {
+        "id": "VariableID:7:137"
+      },
+      "motion/feedback": {
+        "id": "VariableID:7:138"
+      },
+      "motion/navigation": {
+        "id": "VariableID:7:139"
+      },
+      "motion/reduced": {
+        "id": "VariableID:7:140"
+      }
+    },
+    "textStyles": {
+      "Body": "S:0ed1e468a727e7f6b4cfe5df9fede5b786c93484,",
+      "Label": "S:57e137d821e57f2a65506aae778891f8769014bb,",
+      "Caption": "S:befdc25f9b2e8c63313b60a0d4aea208900d629a,",
+      "Heading": "S:a12f8ca10ba0d22e77eaf7ad3092a28a3779de86,",
+      "Title": "S:9c730b18d11b0b822b1b5cb4828120b4eb39915f,",
+      "TitleCompact": "S:8579bbbd27aef7f9309ddc31f958d7598925587a,",
+      "Code": "S:2dbd5754c8da299cad06f2184af84cc5101eb9b7,"
+    },
+    "fonts": {
+      "font": {
+        "family": "Noto Sans KR",
+        "style": "Regular"
+      },
+      "boldFont": {
+        "family": "Noto Sans KR",
+        "style": "Regular",
+        "variationSettings": {
+          "wght": 600
+        }
+      }
+    }
+  },
+  "registry": [
+    {
+      "id": "SC03",
+      "name": "ObservatoryRoom",
+      "figmaName": "Observatory/ObservatoryRoom",
+      "category": "observatory-scene",
+      "source": "src/ui/observatory-room.tsx",
+      "role": "전체 위젯 외부 창틀·창턱·책상 배치",
+      "props": "children, activity",
+      "states": "wide8px/compact4px external frame; no crop; current updated consumer"
+    },
+    {
+      "id": "SC04",
+      "name": "ObservatoryDesk",
+      "figmaName": "Observatory/ObservatoryDesk",
+      "category": "observatory-scene",
+      "source": "src/ui/observatory-desk.tsx",
+      "role": "정적인 책상 소품 벡터",
+      "props": "none",
+      "states": "decorative, pointer-events none via desk wrapper"
+    },
+    {
+      "id": "SC05",
+      "name": "ObservatoryAdvanced",
+      "figmaName": "Observatory/ObservatoryAdvanced",
+      "category": "observatory-scene",
+      "source": "src/ui/observatory-advanced.tsx",
+      "role": "고급 WebGL/SVG·확대 세부 표현",
+      "props": "world, night",
+      "states": "visible/hidden; runtime GPU/static SVG fallback; camera LOD independent of learning stage"
+    },
+    {
+      "id": "SC06",
+      "name": "ObservatorySkyDetails",
+      "figmaName": "Observatory/ObservatorySkyDetails",
+      "category": "observatory-scene",
+      "source": "src/ui/observatory-details.tsx",
+      "role": "하늘 세부 표현",
+      "props": "evolution",
+      "states": "renderer-owned evolution"
+    },
+    {
+      "id": "SC07",
+      "name": "ObservatoryStationDetails",
+      "figmaName": "Observatory/ObservatoryStationDetails",
+      "category": "observatory-scene",
+      "source": "src/ui/observatory-details.tsx",
+      "role": "천문대 건물 세부 표현",
+      "props": "evolution",
+      "states": "renderer-owned evolution"
+    },
+    {
+      "id": "SC08",
+      "name": "ObservatoryTimeSky",
+      "figmaName": "Observatory/ObservatoryTimeSky",
+      "category": "observatory-scene",
+      "source": "src/ui/observatory-time-sky.tsx",
+      "role": "시간에 따른 장식 하늘",
+      "props": "sky, detail",
+      "states": "morning/day/sunset/night/late-night/dawn; no real astronomy claim"
+    },
+    {
+      "id": "SC09",
+      "name": "ObservatoryTimeGround",
+      "figmaName": "Observatory/ObservatoryTimeGround",
+      "category": "observatory-scene",
+      "source": "src/ui/observatory-time-sky.tsx",
+      "role": "시간에 따른 장식 지면",
+      "props": "sky",
+      "states": "same time palette; no paper/text theme autochange"
+    },
+    {
+      "id": "SC10",
+      "name": "ObservatoryClouds",
+      "figmaName": "Observatory/ObservatoryClouds",
+      "category": "observatory-scene",
+      "source": "src/ui/observatory-atmosphere.tsx",
+      "role": "픽셀 구름",
+      "props": "evolution",
+      "states": "renderer-owned density and movement"
+    }
+  ],
+  "assets": {
+    "worldAssetId": "10:68"
+  }
+}

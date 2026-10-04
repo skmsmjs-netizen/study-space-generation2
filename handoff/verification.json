@@ -1,0 +1,30 @@
+{
+  "base_commit": "7cf429da823a8dcd89d90b3d8ab665698abe5e1d",
+  "files_reviewed": 2949,
+  "summary": {
+    "local-only": 1784,
+    "differs-from-main": 121,
+    "identical-to-main": 1042,
+    "excluded-private-or-local-metadata": 2
+  },
+  "project_context_files": 34,
+  "preserved_sha256_mismatches": [],
+  "active_runtime_differences_from_main": [],
+  "additional_secret_pattern_file_hits": [],
+  "new_documentation_and_tool_paths": 1675,
+  "test_discovery_excludes_handoff": true,
+  "public_deployment_performed": false,
+  "production_server_changes": false,
+  "entrypoint_link_check": {
+    "checked": [
+      "AGENTS.md",
+      "DEVELOPER-HANDOFF.md",
+      "handoff/project-context/AGENTS.md",
+      "handoff/project-context/docs/프로젝트 문서 안내.md"
+    ],
+    "missing": []
+  },
+  "git_index_inventory_missing": [],
+  "git_index_file_count": 3128,
+  "path_encoding": "Remote path names normalized to NFC to match Git index names. Source file payloads preserved byte for byte."
+}

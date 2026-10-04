@@ -1,0 +1,9 @@
+<meta charset="utf-8"><style>body{font:14px system-ui;padding:12px}textarea{width:100%;box-sizing:border-box}button{padding:8px;margin:8px 8px 8px 0}#status{white-space:pre-wrap}</style>
+<label for="input">작업 입력</label><textarea id="input" rows="4">{"task":"read","pageId":"3:74","rootIds":["46:1314"]}</textarea><button id="run">실행</button><button id="next" disabled>다음 결과 부분</button><div id="status">읽기 준비</div><label for="output">실행 결과</label><textarea id="output" rows="14" readonly></textarea>
+<script>
+let serial='',index=0,total=0;const statusEl=document.getElementById('status');
+function show(){output.value=JSON.stringify({chunkIndex:index,totalChunks:total,data:serial.slice(index*2500,(index+1)*2500)});next.disabled=index>=total-1;}
+run.onclick=()=>{run.disabled=true;statusEl.textContent='실행 중';parent.postMessage({pluginMessage:{type:'run',input:input.value}},'*');};
+onmessage=({data})=>{const m=data.pluginMessage;if(!m)return;if(m.type==='progress'){statusEl.textContent=m.text;return;}run.disabled=false;serial=JSON.stringify(m);index=0;total=Math.ceil(serial.length/2500);statusEl.textContent=m.type==='error'?m.error:'완료 · '+JSON.stringify({...m.result,roots:undefined,pages:undefined,fonts:undefined,results:undefined,sources:undefined,createdNodeIds:undefined,mutatedNodeIds:undefined,failures:m.result.failures?.length});show();};
+next.onclick=()=>{index++;show();};
+</script>

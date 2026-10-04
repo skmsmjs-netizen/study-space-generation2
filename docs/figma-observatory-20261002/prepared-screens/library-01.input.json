@@ -1,0 +1,961 @@
+{
+  "pageId": "7:72",
+  "pageKey": "library",
+  "foundations": {
+    "collections": {
+      "primitives": "VariableCollectionId:7:78",
+      "material": "VariableCollectionId:7:79",
+      "metrics": "VariableCollectionId:7:80"
+    },
+    "modes": [
+      {
+        "name": "Interior",
+        "modeId": "7:1"
+      },
+      {
+        "name": "Paper",
+        "modeId": "7:2"
+      }
+    ],
+    "variables": {
+      "primitive/interior/canvas": {
+        "id": "VariableID:7:81",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/surface": {
+        "id": "VariableID:7:82",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/subtle": {
+        "id": "VariableID:7:83",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/text": {
+        "id": "VariableID:7:84",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/muted": {
+        "id": "VariableID:7:85",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/borderDecorative": {
+        "id": "VariableID:7:86",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/borderInteractive": {
+        "id": "VariableID:7:87",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/focus": {
+        "id": "VariableID:7:88",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/selected": {
+        "id": "VariableID:7:89",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/selectedText": {
+        "id": "VariableID:7:90",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/primary": {
+        "id": "VariableID:7:91",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/primaryHover": {
+        "id": "VariableID:7:92",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/primaryPressed": {
+        "id": "VariableID:7:93",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/onPrimary": {
+        "id": "VariableID:7:94",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/canvas": {
+        "id": "VariableID:7:95",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/surface": {
+        "id": "VariableID:7:96",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/subtle": {
+        "id": "VariableID:7:97",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/text": {
+        "id": "VariableID:7:98",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/muted": {
+        "id": "VariableID:7:99",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/borderDecorative": {
+        "id": "VariableID:7:100",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/borderInteractive": {
+        "id": "VariableID:7:101",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/focus": {
+        "id": "VariableID:7:102",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/selected": {
+        "id": "VariableID:7:103",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/selectedText": {
+        "id": "VariableID:7:104",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/primary": {
+        "id": "VariableID:7:105",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/primaryHover": {
+        "id": "VariableID:7:106",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/primaryPressed": {
+        "id": "VariableID:7:107",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/onPrimary": {
+        "id": "VariableID:7:108",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "material/canvas": {
+        "id": "VariableID:7:109",
+        "type": "COLOR",
+        "scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL"
+        ]
+      },
+      "material/surface": {
+        "id": "VariableID:7:110",
+        "type": "COLOR",
+        "scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL"
+        ]
+      },
+      "material/subtle": {
+        "id": "VariableID:7:111",
+        "type": "COLOR",
+        "scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL"
+        ]
+      },
+      "material/text": {
+        "id": "VariableID:7:112",
+        "type": "COLOR",
+        "scopes": [
+          "TEXT_FILL"
+        ]
+      },
+      "material/muted": {
+        "id": "VariableID:7:113",
+        "type": "COLOR",
+        "scopes": [
+          "TEXT_FILL"
+        ]
+      },
+      "material/borderDecorative": {
+        "id": "VariableID:7:114",
+        "type": "COLOR",
+        "scopes": [
+          "STROKE_COLOR"
+        ]
+      },
+      "material/borderInteractive": {
+        "id": "VariableID:7:115",
+        "type": "COLOR",
+        "scopes": [
+          "STROKE_COLOR"
+        ]
+      },
+      "material/focus": {
+        "id": "VariableID:7:116",
+        "type": "COLOR",
+        "scopes": [
+          "STROKE_COLOR"
+        ]
+      },
+      "material/selected": {
+        "id": "VariableID:7:117",
+        "type": "COLOR",
+        "scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL"
+        ]
+      },
+      "material/selectedText": {
+        "id": "VariableID:7:118",
+        "type": "COLOR",
+        "scopes": [
+          "TEXT_FILL"
+        ]
+      },
+      "material/primary": {
+        "id": "VariableID:7:119",
+        "type": "COLOR",
+        "scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL"
+        ]
+      },
+      "material/primaryHover": {
+        "id": "VariableID:7:120",
+        "type": "COLOR",
+        "scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL"
+        ]
+      },
+      "material/primaryPressed": {
+        "id": "VariableID:7:121",
+        "type": "COLOR",
+        "scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL"
+        ]
+      },
+      "material/onPrimary": {
+        "id": "VariableID:7:122",
+        "type": "COLOR",
+        "scopes": [
+          "TEXT_FILL"
+        ]
+      },
+      "space/0": {
+        "id": "VariableID:7:123",
+        "type": "FLOAT",
+        "scopes": [
+          "GAP"
+        ]
+      },
+      "space/4": {
+        "id": "VariableID:7:124",
+        "type": "FLOAT",
+        "scopes": [
+          "GAP"
+        ]
+      },
+      "space/8": {
+        "id": "VariableID:7:125",
+        "type": "FLOAT",
+        "scopes": [
+          "GAP"
+        ]
+      },
+      "space/12": {
+        "id": "VariableID:7:126",
+        "type": "FLOAT",
+        "scopes": [
+          "GAP"
+        ]
+      },
+      "space/16": {
+        "id": "VariableID:7:127",
+        "type": "FLOAT",
+        "scopes": [
+          "GAP"
+        ]
+      },
+      "space/24": {
+        "id": "VariableID:7:128",
+        "type": "FLOAT",
+        "scopes": [
+          "GAP"
+        ]
+      },
+      "space/32": {
+        "id": "VariableID:7:129",
+        "type": "FLOAT",
+        "scopes": [
+          "GAP"
+        ]
+      },
+      "space/48": {
+        "id": "VariableID:7:130",
+        "type": "FLOAT",
+        "scopes": [
+          "GAP"
+        ]
+      },
+      "space/64": {
+        "id": "VariableID:7:131",
+        "type": "FLOAT",
+        "scopes": [
+          "GAP"
+        ]
+      },
+      "control/height": {
+        "id": "VariableID:7:132",
+        "type": "FLOAT",
+        "scopes": [
+          "WIDTH_HEIGHT"
+        ]
+      },
+      "control/icon-target": {
+        "id": "VariableID:7:133",
+        "type": "FLOAT",
+        "scopes": [
+          "WIDTH_HEIGHT"
+        ]
+      },
+      "border/width": {
+        "id": "VariableID:7:134",
+        "type": "FLOAT",
+        "scopes": [
+          "STROKE_FLOAT"
+        ]
+      },
+      "focus/width": {
+        "id": "VariableID:7:135",
+        "type": "FLOAT",
+        "scopes": [
+          "STROKE_FLOAT"
+        ]
+      },
+      "radius/control": {
+        "id": "VariableID:7:136",
+        "type": "FLOAT",
+        "scopes": [
+          "CORNER_RADIUS"
+        ]
+      },
+      "radius/dialog": {
+        "id": "VariableID:7:137",
+        "type": "FLOAT",
+        "scopes": [
+          "CORNER_RADIUS"
+        ]
+      },
+      "motion/feedback": {
+        "id": "VariableID:7:138",
+        "type": "FLOAT",
+        "scopes": []
+      },
+      "motion/navigation": {
+        "id": "VariableID:7:139",
+        "type": "FLOAT",
+        "scopes": []
+      },
+      "motion/reduced": {
+        "id": "VariableID:7:140",
+        "type": "FLOAT",
+        "scopes": []
+      }
+    },
+    "textStyles": {
+      "Body": "S:0ed1e468a727e7f6b4cfe5df9fede5b786c93484,",
+      "Label": "S:57e137d821e57f2a65506aae778891f8769014bb,",
+      "Caption": "S:befdc25f9b2e8c63313b60a0d4aea208900d629a,",
+      "Heading": "S:a12f8ca10ba0d22e77eaf7ad3092a28a3779de86,",
+      "Title": "S:9c730b18d11b0b822b1b5cb4828120b4eb39915f,",
+      "TitleCompact": "S:8579bbbd27aef7f9309ddc31f958d7598925587a,",
+      "Code": "S:2dbd5754c8da299cad06f2184af84cc5101eb9b7,"
+    },
+    "fonts": {
+      "font": {
+        "family": "Noto Sans KR",
+        "style": "Regular"
+      },
+      "boldFont": {
+        "family": "Noto Sans KR",
+        "style": "Regular",
+        "variationSettings": {
+          "wght": 600
+        }
+      },
+      "axes": [
+        "wght"
+      ]
+    }
+  },
+  "materials": {
+    "interior": {
+      "canvas": "#1F1E1B",
+      "surface": "#282722",
+      "subtle": "#33312D",
+      "text": "#E8E3D7",
+      "muted": "#B7B0A2",
+      "borderDecorative": "#514A42",
+      "borderInteractive": "#8B8071",
+      "focus": "#D7B477",
+      "selected": "#33312D",
+      "selectedText": "#E8E3D7",
+      "primary": "#D7B477",
+      "primaryHover": "#E5C890",
+      "primaryPressed": "#C2A062",
+      "onPrimary": "#1F1E1B"
+    },
+    "paper": {
+      "canvas": "#E4DCCD",
+      "surface": "#E4DCCD",
+      "subtle": "#D7CBB4",
+      "text": "#34312B",
+      "muted": "#5B5448",
+      "borderDecorative": "#B4A891",
+      "borderInteractive": "#796D5D",
+      "focus": "#725425",
+      "selected": "#D7CBB4",
+      "selectedText": "#34312B",
+      "primary": "#554530",
+      "primaryHover": "#473924",
+      "primaryPressed": "#3B3022",
+      "onPrimary": "#E4DCCD"
+    }
+  },
+  "reusable": {
+    "buttonPrimary": "16:76",
+    "buttonQuiet": "16:108",
+    "world": "10:68"
+  },
+  "profiles": [
+    {
+      "key": "ipad-landscape",
+      "label": "iPad Pro 13인치 가로",
+      "width": 1376,
+      "height": 1032,
+      "scale": 2
+    },
+    {
+      "key": "iphone-portrait",
+      "label": "iPhone 17 Pro 세로",
+      "width": 402,
+      "height": 681,
+      "scale": 3
+    },
+    {
+      "key": "iphone-landscape",
+      "label": "iPhone 17 Pro 가로",
+      "width": 756,
+      "height": 352,
+      "scale": 3
+    },
+    {
+      "key": "ipad-portrait",
+      "label": "iPad Pro 13인치 세로",
+      "width": 1032,
+      "height": 1376,
+      "scale": 2
+    },
+    {
+      "key": "ipad-narrow",
+      "label": "iPad Pro 13인치 좁은 창",
+      "width": 517,
+      "height": 1200,
+      "scale": 2
+    }
+  ],
+  "homeId": "R01",
+  "screens": [
+    {
+      "id": "R04",
+      "title": "과목",
+      "route": "/subjects",
+      "primary": true,
+      "kind": "main",
+      "homePlace": "shelf",
+      "pageKey": "library",
+      "layoutFamily": "library-grid-paper",
+      "source": "src/App.tsx:188 · Workspace",
+      "sourceRefs": [
+        {
+          "path": "src/App.tsx",
+          "export": "Workspace",
+          "line": 188
+        }
+      ],
+      "states": [
+        "과목 있음",
+        "빈 범위",
+        "표 초안",
+        "저장 실패"
+      ],
+      "actions": [
+        "공부 범위 선택",
+        "학기 추가",
+        "과목 추가",
+        "공부할 목차 만들기",
+        {
+          "label": "과목 열기",
+          "to": "R19"
+        },
+        "행 추가",
+        "미리보기",
+        "목차 저장",
+        "되돌리기"
+      ],
+      "returnContract": "과목 상세에서 목록·선택 범위로 복귀",
+      "placeVariants": [],
+      "blocks": [
+        {
+          "label": "공부 범위",
+          "type": "scope-control",
+          "content": "전체·학기·독립 공부·학기 미지정. 새 과목은 선택 범위에 추가.",
+          "actions": [
+            "공부 범위 선택",
+            "학기 추가"
+          ],
+          "source": "src/App.tsx:188 · Workspace",
+          "contentPolicy": "기능 설명·합성 예시만, 실제 개인 원문 없음",
+          "id": "R04-B01",
+          "ui": {
+            "fields": [
+              {
+                "label": "공부 범위",
+                "value": "2026 가을",
+                "kind": "select"
+              }
+            ],
+            "rows": [],
+            "actions": [
+              "학기 추가"
+            ]
+          }
+        },
+        {
+          "label": "과목 추가와 목차 표",
+          "type": "creation-toolbar",
+          "content": "단일 과목과 표로 과목·단원·주제 입력의 별도 흐름.",
+          "actions": [
+            "과목 추가",
+            "공부할 목차 만들기"
+          ],
+          "source": "src/ui/outline-table-editor.tsx:18 · module",
+          "contentPolicy": "기능 설명·합성 예시만, 실제 개인 원문 없음",
+          "id": "R04-B02",
+          "ui": {
+            "fields": [],
+            "rows": [],
+            "actions": [
+              {
+                "label": "과목 추가",
+                "to": "O02"
+              },
+              {
+                "label": "공부할 목차 만들기",
+                "to": "O19"
+              }
+            ]
+          }
+        },
+        {
+          "label": "과목 목록",
+          "type": "subject-grid",
+          "content": "과목명·소속·주제 수. 합성 예: 2026 가을 / 미적분 / 12개 주제.",
+          "actions": [
+            {
+              "label": "과목 열기",
+              "to": "R19"
+            }
+          ],
+          "source": "src/App.tsx:188 · Workspace",
+          "contentPolicy": "기능 설명·합성 예시만, 실제 개인 원문 없음",
+          "id": "R04-B03",
+          "ui": {
+            "fields": [],
+            "rows": [
+              "미적분 · 2026 가을 · 주제 12개",
+              "선형대수 · 2026 가을 · 주제 8개"
+            ],
+            "actions": [
+              {
+                "label": "과목 열기",
+                "to": "R19"
+              }
+            ]
+          }
+        },
+        {
+          "label": "목차 만들기",
+          "type": "outline-table-preview",
+          "content": "과목·단원·주제 행과 생성 미리보기·중복 처리·되돌리기.",
+          "actions": [
+            "행 추가",
+            "미리보기",
+            "목차 저장",
+            "되돌리기"
+          ],
+          "source": "src/ui/outline-table-editor.tsx:18 · module",
+          "contentPolicy": "기능 설명·합성 예시만, 실제 개인 원문 없음",
+          "id": "R04-B04",
+          "ui": {
+            "fields": [],
+            "rows": [
+              "과목             단원                 주제",
+              "미적분          급수                 비교 판정",
+              "미적분          급수                 적분 판정"
+            ],
+            "actions": [
+              "행 추가",
+              "미리보기",
+              "목차 저장"
+            ]
+          }
+        }
+      ],
+      "statePlan": [
+        "과목 있음",
+        "빈 범위",
+        "표 초안",
+        "저장 실패"
+      ]
+    },
+    {
+      "id": "R07",
+      "title": "강의 자료",
+      "route": "/materials",
+      "primary": true,
+      "kind": "main",
+      "homePlace": "shelf",
+      "pageKey": "library",
+      "layoutFamily": "source-processing-paper",
+      "source": "src/ui/study-materials.tsx:76 · StudyMaterials",
+      "sourceRefs": [
+        {
+          "path": "src/ui/study-materials.tsx",
+          "export": "StudyMaterials",
+          "line": 76
+        }
+      ],
+      "states": [
+        "목록",
+        "id=new",
+        "상세",
+        "휴지통",
+        "전사문 입력·이전 녹음 복구",
+        "처리 중",
+        "소유자/일반 계정",
+        "실패"
+      ],
+      "actions": [
+        "강의 자료 추가",
+        "강의 자료 찾기",
+        "자료 열기",
+        "더 보기",
+        "자료 제목",
+        "과목",
+        "연결할 주제",
+        "강의 내용·필기",
+        "파일 추가",
+        "녹음",
+        "이전에 중단한 녹음 내려받기",
+        "원본 파일 서버 보관",
+        "GPT 연결",
+        "GPT 작업",
+        "처리할 원문 범위",
+        "정리 중단",
+        "생성 결과",
+        "자료 보기",
+        "원문 확인",
+        "결과 수정",
+        "카드 질문",
+        "카드 답",
+        "답 확인",
+        "암기 항목에 등록",
+        "퀴즈",
+        "저장",
+        "초안 내보내기",
+        "Markdown 내보내기",
+        {
+          "label": "자료 목록",
+          "to": "R07"
+        }
+      ],
+      "returnContract": "강의 자료 목록; 펼친 원자료의 호출 위치 보존",
+      "placeVariants": [],
+      "blocks": [
+        {
+          "label": "강의 자료 목록",
+          "type": "searchable-library",
+          "content": "제목·과목·검색·더 보기. 새 자료는 /materials/new. 합성 예: 급수 강의 3.",
+          "actions": [
+            "강의 자료 추가",
+            "강의 자료 찾기",
+            "자료 열기",
+            "더 보기"
+          ],
+          "source": "src/ui/study-materials.tsx:76 · StudyMaterials",
+          "contentPolicy": "기능 설명·합성 예시만, 실제 개인 원문 없음",
+          "id": "R07-B01",
+          "ui": {
+            "fields": [
+              {
+                "label": "강의 자료 찾기",
+                "value": "",
+                "kind": "search"
+              }
+            ],
+            "rows": [
+              "급수 강의 3 · 미적분 · 10월 2일",
+              "선형변환 필기 · 선형대수 · 10월 1일"
+            ],
+            "actions": [
+              "강의 자료 추가",
+              {
+                "label": "자료 열기",
+                "to": "R23"
+              }
+            ]
+          }
+        },
+        {
+          "label": "자료와 연결 범위",
+          "type": "form-header",
+          "content": "자료 제목·과목·선택 주제·강의 내용/필기.",
+          "actions": [
+            "자료 제목",
+            "과목",
+            "연결할 주제",
+            "강의 내용·필기"
+          ],
+          "source": "src/ui/study-materials.tsx:76 · StudyMaterials",
+          "contentPolicy": "기능 설명·합성 예시만, 실제 개인 원문 없음",
+          "id": "R07-B02",
+          "ui": {
+            "fields": [
+              {
+                "label": "자료 제목",
+                "value": "급수 강의 3",
+                "kind": "input"
+              },
+              {
+                "label": "과목",
+                "value": "미적분",
+                "kind": "select"
+              },
+              {
+                "label": "연결할 주제 · 선택",
+                "value": "비교 판정",
+                "kind": "select"
+              },
+              {
+                "label": "강의 내용·필기",
+                "value": "비교 판정을 적용하기 전에 항의 부호와 비교 방향을 확인한다.",
+                "kind": "textarea"
+              }
+            ],
+            "rows": [],
+            "actions": []
+          }
+        },
+        {
+          "label": "전사문·파일·기존 음성",
+          "type": "source-ingestion",
+          "content": "클로바노트에서 녹음·전사한 글을 붙여 넣거나 전사문/PDF/문서/이미지 파일과 원문 구간을 가져온다. 앱은 새 녹음을 요청하지 않는다. 기존 음성의 재생·내려받기·이전 중단 녹음 회복과 비공개 원본 서버 보관 선택을 보존한다.",
+          "actions": [
+            "클로바노트 열기",
+            "강의 내용·필기",
+            "파일 가져오기",
+            "이전에 중단한 녹음 내려받기",
+            "자료 저장할 때 원본 파일도 비공개 서버에 보관"
+          ],
+          "source": "src/ui/material-sources.tsx:9 · module",
+          "contentPolicy": "기능 설명·합성 예시만, 실제 개인 원문 없음",
+          "id": "R07-B03",
+          "ui": {
+            "fields": [
+              {
+                "label": "강의 내용·필기",
+                "value": "전사문이나 강의 필기를 붙여 넣어 주세요.",
+                "kind": "textarea"
+              }
+            ],
+            "rows": [
+              "선택 파일: 급수 강의 3.pdf · 4쪽"
+            ],
+            "checks": [
+              [
+                "원본 파일도 비공개 서버에 보관",
+                false
+              ]
+            ],
+            "actions": [
+              "클로바노트 열기",
+              "파일 가져오기"
+            ]
+          }
+        },
+        {
+          "label": "선택 범위의 GPT 작업",
+          "type": "owner-ai-controls",
+          "content": "민석 전용. 작업·카드 수·원문 범위·도움 수준·실제 문제/풀이/판단 기준. 일반 계정 수동 저장 유지.",
+          "actions": [
+            "GPT 연결",
+            "GPT 작업",
+            "처리할 원문 범위",
+            "정리 중단"
+          ],
+          "source": "src/ui/study-materials.tsx:76 · StudyMaterials",
+          "contentPolicy": "기능 설명·합성 예시만, 실제 개인 원문 없음",
+          "id": "R07-B04",
+          "ui": {
+            "fields": [
+              {
+                "label": "GPT 작업",
+                "value": "정리·카드·퀴즈",
+                "kind": "select"
+              },
+              {
+                "label": "처리할 원문 범위",
+                "value": "직접 선택한 구간",
+                "kind": "select"
+              },
+              {
+                "label": "카드·퀴즈 개수",
+                "value": "5개",
+                "kind": "select"
+              }
+            ],
+            "rows": [
+              "선택한 원문과 필기만 전송합니다."
+            ],
+            "actions": [
+              "GPT 연결",
+              "정리하기"
+            ]
+          }
+        },
+        {
+          "label": "자료 보기와 생성 결과",
+          "type": "result-tabs",
+          "content": "현재/과거 정리 글·카드·퀴즈·관계·질문 답변. 원문·수정 전 내용 유지.",
+          "actions": [
+            "생성 결과",
+            "자료 보기",
+            "원문 확인",
+            "결과 수정"
+          ],
+          "source": "src/ui/study-materials.tsx:76 · StudyMaterials",
+          "contentPolicy": "기능 설명·합성 예시만, 실제 개인 원문 없음",
+          "id": "R07-B05",
+          "ui": {
+            "fields": [],
+            "rows": [
+              "비교 판정",
+              "두 급수의 항이 음수가 아니며, 충분히 큰 n에서 항의 크기를 비교할 수 있어야 한다."
+            ],
+            "tabs": [
+              "정리",
+              "카드",
+              "퀴즈",
+              "관계",
+              "원문"
+            ],
+            "actions": [
+              "원문 확인",
+              "결과 수정"
+            ]
+          }
+        },
+        {
+          "label": "카드와 퀴즈",
+          "type": "study-output",
+          "content": "질문·답을 대조한 뒤 공개/평가·제외·암기 등록을 구분.",
+          "actions": [
+            "카드 질문",
+            "카드 답",
+            "답 확인",
+            "암기 항목에 등록",
+            "퀴즈"
+          ],
+          "source": "src/ui/material-quiz.tsx:6 · module",
+          "contentPolicy": "기능 설명·합성 예시만, 실제 개인 원문 없음",
+          "id": "R07-B06",
+          "ui": {
+            "fields": [],
+            "rows": [
+              "질문 1 / 5",
+              "비교 판정을 적용하기 전에 무엇을 확인해야 하나요?"
+            ],
+            "actions": [
+              "답 확인",
+              "암기 항목에 등록"
+            ]
+          }
+        },
+        {
+          "label": "보관과 내보내기",
+          "type": "save-and-export",
+          "content": "저장·초안 보관·Markdown·중단 복귀.",
+          "actions": [
+            "저장",
+            "초안 내보내기",
+            "Markdown 내보내기",
+            {
+              "label": "자료 목록",
+              "to": "R07"
+            }
+          ],
+          "source": "src/ui/study-materials.tsx:76 · StudyMaterials",
+          "contentPolicy": "기능 설명·합성 예시만, 실제 개인 원문 없음",
+          "id": "R07-B07",
+          "ui": {
+            "fields": [],
+            "rows": [
+              "변경 내용을 보관할 수 있습니다."
+            ],
+            "actions": [
+              "저장",
+              "초안 내보내기",
+              "Markdown 내보내기"
+            ]
+          }
+        }
+      ],
+      "statePlan": [
+        "목록",
+        "id=new",
+        "상세",
+        "휴지통",
+        "전사문 입력·이전 녹음 복구",
+        "처리 중",
+        "소유자/일반 계정",
+        "실패"
+      ]
+    }
+  ],
+  "startY": 100,
+  "batchId": "library-01",
+  "contentPolicy": "합성 설계 설명만. 실제 개인 원문 없음. 루트 빌더는 의미 없는 행·임의 학습 통계를 추가하지 않아야 함."
+}

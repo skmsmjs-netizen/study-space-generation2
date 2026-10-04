@@ -1,0 +1,73 @@
+{
+  "pageId": "49:10972",
+  "createdNodeIds": [
+    "263:33419",
+    "263:33420",
+    "263:33421",
+    "263:33422"
+  ],
+  "mutatedNodeIds": [
+    "263:33419",
+    "79:82061",
+    "79:80217",
+    "263:33420",
+    "79:84455",
+    "79:82541",
+    "263:33421",
+    "79:86520",
+    "79:84587",
+    "263:33422",
+    "79:88459",
+    "79:86598"
+  ],
+  "results": [
+    {
+      "id": "79:80217",
+      "name": "펼쳐 읽기 / 공간과 벡터 대수",
+      "pattern": "L190",
+      "structure": "263:33419",
+      "preserved": true,
+      "viewport": {
+        "width": 1376,
+        "height": 1024,
+        "overflow": "NONE"
+      }
+    },
+    {
+      "id": "79:82541",
+      "name": "펼쳐 읽기 / 내적",
+      "pattern": "L190",
+      "structure": "263:33420",
+      "preserved": true,
+      "viewport": {
+        "width": 1376,
+        "height": 1024,
+        "overflow": "NONE"
+      }
+    },
+    {
+      "id": "79:84587",
+      "name": "펼쳐 읽기 / 외적·직선·평면",
+      "pattern": "L190",
+      "structure": "263:33421",
+      "preserved": true,
+      "viewport": {
+        "width": 1376,
+        "height": 1024,
+        "overflow": "NONE"
+      }
+    },
+    {
+      "id": "79:86598",
+      "name": "펼쳐 읽기 / 곡면과 좌표",
+      "pattern": "L190",
+      "structure": "263:33422",
+      "preserved": true,
+      "viewport": {
+        "width": 1376,
+        "height": 1024,
+        "overflow": "NONE"
+      }
+    }
+  ]
+}

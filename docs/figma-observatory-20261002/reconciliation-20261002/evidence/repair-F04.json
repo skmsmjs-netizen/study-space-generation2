@@ -1,0 +1,55 @@
+{
+  "pageId": "7:76",
+  "flowId": "F04",
+  "createdNodeIds": [],
+  "mutatedNodeIds": [
+    "I68:61576;16:109",
+    "68:61576",
+    "I68:60515;74:67590",
+    "I68:61579;16:109",
+    "68:61579",
+    "I68:60587;74:67599"
+  ],
+  "repaired": [
+    {
+      "fromKey": "F04-S03",
+      "oldLabel": "연습 기록 남기기",
+      "label": "연습 기록 남기기",
+      "kind": "Button",
+      "sourceId": "R26",
+      "fromFrameId": "68:60514",
+      "instanceId": "68:60515",
+      "toFrameId": "68:60586",
+      "toRouteId": "R22",
+      "prototypeControlId": "68:61576",
+      "branch": "primary",
+      "screenControlId": "I68:60515;74:67590",
+      "bindingLocation": "screen-instance",
+      "conditionOnly": false
+    },
+    {
+      "fromKey": "F04-S04",
+      "oldLabel": "수행 결과 남기기",
+      "label": "이 답안으로 수행 결과 남기기",
+      "kind": "Button",
+      "sourceId": "R22",
+      "fromFrameId": "68:60586",
+      "instanceId": "68:60587",
+      "toFrameId": "68:60671",
+      "toRouteId": "O20",
+      "prototypeControlId": "68:61579",
+      "branch": "primary",
+      "screenControlId": "I68:60587;74:67599",
+      "bindingLocation": "screen-instance",
+      "conditionOnly": false
+    }
+  ],
+  "phaseChanges": [],
+  "issues": [],
+  "counts": {
+    "repaired": 2,
+    "actualBindings": 2,
+    "scenarioConditions": 0
+  },
+  "runtimeVerified": false
+}

@@ -1,0 +1,56 @@
+{
+  "pageId": "7:76",
+  "flowId": "F14",
+  "createdNodeIds": [],
+  "mutatedNodeIds": [
+    "I68:83762;16:109",
+    "68:83762",
+    "I68:78947;63:2115;53:12799",
+    "I68:80793;63:4509",
+    "I68:83765;16:109",
+    "68:83765",
+    "I68:80793;63:4509;53:12931"
+  ],
+  "repaired": [
+    {
+      "fromKey": "F14-S01",
+      "oldLabel": "왼쪽 · 자료 책장",
+      "label": "왼쪽 · 자료 책장",
+      "kind": "Place",
+      "sourceId": "R01",
+      "fromFrameId": "68:78946",
+      "instanceId": "68:78947",
+      "toFrameId": "68:80792",
+      "toRouteId": "R04",
+      "prototypeControlId": "68:83762",
+      "branch": "primary",
+      "screenControlId": "I68:78947;63:2115;53:12799",
+      "bindingLocation": "screen-instance",
+      "conditionOnly": false
+    },
+    {
+      "fromKey": "F14-S02",
+      "oldLabel": "강의 자료",
+      "label": "강의 자료",
+      "kind": "Nav",
+      "sourceId": "R04",
+      "fromFrameId": "68:80792",
+      "instanceId": "68:80793",
+      "toFrameId": "68:80899",
+      "toRouteId": "R23",
+      "prototypeControlId": "68:83765",
+      "branch": "primary",
+      "screenControlId": "I68:80793;63:4509;53:12931",
+      "bindingLocation": "screen-instance",
+      "conditionOnly": false
+    }
+  ],
+  "phaseChanges": [],
+  "issues": [],
+  "counts": {
+    "repaired": 2,
+    "actualBindings": 2,
+    "scenarioConditions": 0
+  },
+  "runtimeVerified": false
+}

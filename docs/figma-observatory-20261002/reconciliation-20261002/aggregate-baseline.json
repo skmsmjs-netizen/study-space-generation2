@@ -1,0 +1,4121 @@
+{
+  "capturedAt": "2026-10-02T02:53:03.962Z",
+  "scope": "Original registered IDs, frame/owner bindings, source text and contracts at this reconciliation; not a remote snapshot",
+  "base": {
+    "entities": 111,
+    "screenFrames": 155,
+    "components": 48,
+    "variants": 120,
+    "variables": 81,
+    "states": 42,
+    "stateTransitions": 32,
+    "flows": 14,
+    "steps": 74,
+    "sourceReferences": 121,
+    "adoptedInstagram": 31,
+    "styles": 8,
+    "linkedInputs": 362
+  },
+  "snapshot": {
+    "entities": [
+      {
+        "id": "R01",
+        "name": "오늘"
+      },
+      {
+        "id": "R02",
+        "name": "통계"
+      },
+      {
+        "id": "R03",
+        "name": "일정·과제"
+      },
+      {
+        "id": "R04",
+        "name": "과목"
+      },
+      {
+        "id": "R05",
+        "name": "기록"
+      },
+      {
+        "id": "R06",
+        "name": "메모"
+      },
+      {
+        "id": "R07",
+        "name": "강의 자료"
+      },
+      {
+        "id": "R08",
+        "name": "코딩 연습"
+      },
+      {
+        "id": "R09",
+        "name": "수식 탐색"
+      },
+      {
+        "id": "R10",
+        "name": "시험 연습"
+      },
+      {
+        "id": "R11",
+        "name": "암기시험"
+      },
+      {
+        "id": "R12",
+        "name": "자료 카드"
+      },
+      {
+        "id": "R13",
+        "name": "개념 전집"
+      },
+      {
+        "id": "R14",
+        "name": "주제 카드"
+      },
+      {
+        "id": "R15",
+        "name": "Canvas"
+      },
+      {
+        "id": "R16",
+        "name": "그래프뷰"
+      },
+      {
+        "id": "R17",
+        "name": "칸반보드"
+      },
+      {
+        "id": "R18",
+        "name": "찾기"
+      },
+      {
+        "id": "R19",
+        "name": "과목 상세"
+      },
+      {
+        "id": "R20",
+        "name": "단원·주제 상세"
+      },
+      {
+        "id": "R21",
+        "name": "선택 주제 기록"
+      },
+      {
+        "id": "R22",
+        "name": "메모 상세"
+      },
+      {
+        "id": "R23",
+        "name": "자료 상세·새 자료"
+      },
+      {
+        "id": "R24",
+        "name": "강의 자료 휴지통"
+      },
+      {
+        "id": "R25",
+        "name": "코드 예제 상세"
+      },
+      {
+        "id": "R26",
+        "name": "주제 지정 시험 연습"
+      },
+      {
+        "id": "R27",
+        "name": "주제 지정 암기시험"
+      },
+      {
+        "id": "R28",
+        "name": "암기시험 결과"
+      },
+      {
+        "id": "R29",
+        "name": "예약 복습"
+      },
+      {
+        "id": "R30",
+        "name": "자유 기록 목록·기본 글"
+      },
+      {
+        "id": "R31",
+        "name": "새 자유 기록"
+      },
+      {
+        "id": "R32",
+        "name": "자유 기록 상세"
+      },
+      {
+        "id": "R33",
+        "name": "전체 백업·복구"
+      },
+      {
+        "id": "R34",
+        "name": "휴지통"
+      },
+      {
+        "id": "R35",
+        "name": "초안 보관본"
+      },
+      {
+        "id": "R36",
+        "name": "내 생각"
+      },
+      {
+        "id": "R37",
+        "name": "도움말·문제 메모"
+      },
+      {
+        "id": "R38",
+        "name": "소개"
+      },
+      {
+        "id": "R39",
+        "name": "기존 구독 링크"
+      },
+      {
+        "id": "R40",
+        "name": "기존 계정 링크"
+      },
+      {
+        "id": "R41",
+        "name": "찾을 수 없는 항목"
+      },
+      {
+        "id": "O01",
+        "name": "학기 추가"
+      },
+      {
+        "id": "O02",
+        "name": "과목 추가"
+      },
+      {
+        "id": "O03",
+        "name": "목차 추가"
+      },
+      {
+        "id": "O04",
+        "name": "여러 목차 추가"
+      },
+      {
+        "id": "O05",
+        "name": "휴지통으로 옮길까요?"
+      },
+      {
+        "id": "O06",
+        "name": "이름 수정"
+      },
+      {
+        "id": "O07",
+        "name": "목차 위치 옮기기"
+      },
+      {
+        "id": "O08",
+        "name": "가입 계정 관리"
+      },
+      {
+        "id": "O09",
+        "name": "내 계정"
+      },
+      {
+        "id": "O10",
+        "name": "다음에 펼칠 곳을 남겨둘까요?"
+      },
+      {
+        "id": "O11",
+        "name": "공부 기준 조정"
+      },
+      {
+        "id": "O12",
+        "name": "이어가기 설정 복구"
+      },
+      {
+        "id": "O13",
+        "name": "시험·과제·강의 일정"
+      },
+      {
+        "id": "O14",
+        "name": "수식 탐색 전체 화면"
+      },
+      {
+        "id": "O15",
+        "name": "움직임 위젯"
+      },
+      {
+        "id": "O16",
+        "name": "다음에 확인할 내용"
+      },
+      {
+        "id": "O17",
+        "name": "학기 기간"
+      },
+      {
+        "id": "O18",
+        "name": "지금 확인한 결과"
+      },
+      {
+        "id": "O19",
+        "name": "공부할 목차 만들기"
+      },
+      {
+        "id": "O20",
+        "name": "답안에서 수행 결과 남기기"
+      },
+      {
+        "id": "O21",
+        "name": "내 기록의 저장 상태"
+      },
+      {
+        "id": "O22",
+        "name": "사진으로 목차·내용 가져오기"
+      },
+      {
+        "id": "O23",
+        "name": "메모를 휴지통으로 옮길까요?"
+      },
+      {
+        "id": "O24",
+        "name": "작은 메모"
+      },
+      {
+        "id": "O25",
+        "name": "강의 주차 만들기"
+      },
+      {
+        "id": "O26",
+        "name": "통계의 원기록"
+      },
+      {
+        "id": "O27",
+        "name": "카드 추가·편집"
+      },
+      {
+        "id": "O28",
+        "name": "보드 열"
+      },
+      {
+        "id": "O29",
+        "name": "이 주제부터 해볼까요?"
+      },
+      {
+        "id": "U01",
+        "name": "앱 내비게이션·범위·테마"
+      },
+      {
+        "id": "U02",
+        "name": "개인 공간 진입·인증"
+      },
+      {
+        "id": "U03",
+        "name": "로그인·가입"
+      },
+      {
+        "id": "U04",
+        "name": "가입 승인 대기·제한"
+      },
+      {
+        "id": "U05",
+        "name": "내 계정·탈퇴"
+      },
+      {
+        "id": "U06",
+        "name": "가입 계정 관리"
+      },
+      {
+        "id": "U07",
+        "name": "내 기록의 저장 상태"
+      },
+      {
+        "id": "U08",
+        "name": "전체 복구 진입"
+      },
+      {
+        "id": "U09",
+        "name": "이어가기와 다음 위치"
+      },
+      {
+        "id": "U10",
+        "name": "읽기 폭·이어가기 복구"
+      },
+      {
+        "id": "U11",
+        "name": "천문대 원본 위젯"
+      },
+      {
+        "id": "U12",
+        "name": "천문대 세부 렌더러"
+      },
+      {
+        "id": "U13",
+        "name": "작은 도구와 시계"
+      },
+      {
+        "id": "U14",
+        "name": "오늘·한 주 공부"
+      },
+      {
+        "id": "U15",
+        "name": "공부 시작 제안"
+      },
+      {
+        "id": "U16",
+        "name": "목차와 항목 관리"
+      },
+      {
+        "id": "U17",
+        "name": "표·사진 목차 만들기"
+      },
+      {
+        "id": "U18",
+        "name": "학기·강의 주차"
+      },
+      {
+        "id": "U19",
+        "name": "공부 기준·TRACE"
+      },
+      {
+        "id": "U20",
+        "name": "답안에서 수행 결과"
+      },
+      {
+        "id": "U21",
+        "name": "일정 편집"
+      },
+      {
+        "id": "U22",
+        "name": "다음 공부 기준·결과"
+      },
+      {
+        "id": "U23",
+        "name": "자료 출처·PDF 구간"
+      },
+      {
+        "id": "U24",
+        "name": "자료 퀴즈·관계·대화"
+      },
+      {
+        "id": "U25",
+        "name": "카드·코드 주제 연결"
+      },
+      {
+        "id": "U26",
+        "name": "덱·카드·Anki 가져오기"
+      },
+      {
+        "id": "U27",
+        "name": "복습 설정·최적화"
+      },
+      {
+        "id": "U28",
+        "name": "암기 항목 생성"
+      },
+      {
+        "id": "U29",
+        "name": "펜·OCR·PDF 배경"
+      },
+      {
+        "id": "U30",
+        "name": "코드 편집·구문·터미널"
+      },
+      {
+        "id": "U31",
+        "name": "수식·그래프·카메라"
+      },
+      {
+        "id": "U32",
+        "name": "수식 유형·전체 화면"
+      },
+      {
+        "id": "U33",
+        "name": "급수·개념 도해"
+      },
+      {
+        "id": "U34",
+        "name": "Canvas 편집·이관"
+      },
+      {
+        "id": "U35",
+        "name": "Canvas·그래프 보기"
+      },
+      {
+        "id": "U36",
+        "name": "통계 여러 그래프·값"
+      },
+      {
+        "id": "U37",
+        "name": "GPT 연결·문맥·사용량"
+      },
+      {
+        "id": "U38",
+        "name": "움직임 위젯"
+      },
+      {
+        "id": "U39",
+        "name": "브랜드·관련 생각"
+      },
+      {
+        "id": "U40",
+        "name": "공통 부품·오류·포커스"
+      },
+      {
+        "id": "U41",
+        "name": "장문 원문·기록 수정"
+      }
+    ],
+    "blocks": [
+      "R01-B01",
+      "R01-B02",
+      "R01-B03",
+      "R01-B04",
+      "R01-B05",
+      "R01-B06",
+      "R01-B07",
+      "R01-B08",
+      "R02-B01",
+      "R02-B02",
+      "R02-B03",
+      "R02-B04",
+      "R02-B05",
+      "R02-B06",
+      "R03-B01",
+      "R03-B02",
+      "R03-B03",
+      "R03-B04",
+      "R03-B05",
+      "R03-B06",
+      "R04-B01",
+      "R04-B02",
+      "R04-B03",
+      "R04-B04",
+      "R05-B01",
+      "R05-B02",
+      "R05-B03",
+      "R05-B04",
+      "R05-B05",
+      "R06-B01",
+      "R06-B02",
+      "R06-B03",
+      "R06-B04",
+      "R06-B05",
+      "R07-B01",
+      "R07-B02",
+      "R07-B03",
+      "R07-B04",
+      "R07-B05",
+      "R07-B06",
+      "R07-B07",
+      "R08-B01",
+      "R08-B02",
+      "R08-B03",
+      "R08-B04",
+      "R08-B05",
+      "R08-B06",
+      "R09-B01",
+      "R09-B02",
+      "R09-B03",
+      "R09-B04",
+      "R09-B05",
+      "R09-B06",
+      "R09-B07",
+      "R10-B01",
+      "R10-B02",
+      "R10-B03",
+      "R10-B04",
+      "R10-B05",
+      "R11-B01",
+      "R11-B02",
+      "R11-B03",
+      "R11-B04",
+      "R11-B05",
+      "R11-B06",
+      "R12-B01",
+      "R12-B02",
+      "R12-B03",
+      "R12-B04",
+      "R12-B05",
+      "R13-B01",
+      "R13-B02",
+      "R13-B03",
+      "R13-B04",
+      "R13-B05",
+      "R14-B01",
+      "R14-B02",
+      "R14-B03",
+      "R14-B04",
+      "R14-B05",
+      "R14-B06",
+      "R15-B01",
+      "R15-B02",
+      "R15-B03",
+      "R15-B04",
+      "R15-B05",
+      "R15-B06",
+      "R16-B01",
+      "R16-B02",
+      "R16-B03",
+      "R16-B04",
+      "R16-B05",
+      "R17-B01",
+      "R17-B02",
+      "R17-B03",
+      "R17-B04",
+      "R17-B05",
+      "R17-B06",
+      "R18-B01",
+      "R18-B02",
+      "R18-B03",
+      "R18-B04",
+      "R19-B01",
+      "R20-B01",
+      "R21-B01",
+      "R22-B01",
+      "R23-B01",
+      "R23-B02",
+      "R24-B01",
+      "R25-B01",
+      "R26-B01",
+      "R27-B01",
+      "R28-B01",
+      "R29-B01",
+      "R30-B01",
+      "R31-B01",
+      "R32-B01",
+      "R33-B01",
+      "R34-B01",
+      "R35-B01",
+      "R36-B01",
+      "R37-B01",
+      "R38-B01",
+      "R39-B01",
+      "R40-B01",
+      "R41-B01",
+      "O01-B01",
+      "O02-B01",
+      "O03-B01",
+      "O04-B01",
+      "O05-B01",
+      "O06-B01",
+      "O07-B01",
+      "O08-B01",
+      "O09-B01",
+      "O10-B01",
+      "O11-B01",
+      "O12-B01",
+      "O13-B01",
+      "O14-B01",
+      "O15-B01",
+      "O16-B01",
+      "O17-B01",
+      "O18-B01",
+      "O19-B01",
+      "O20-B01",
+      "O21-B01",
+      "O22-B01",
+      "O23-B01",
+      "O24-B01",
+      "O25-B01",
+      "O26-B01",
+      "O27-B01",
+      "O28-B01",
+      "O29-B01",
+      "U01-B01",
+      "U01-B02",
+      "U02-B01",
+      "U03-B01",
+      "U04-B01",
+      "U05-B01",
+      "U06-B01",
+      "U07-B01",
+      "U08-B01",
+      "U09-B01",
+      "U10-B01",
+      "U11-B01",
+      "U12-B01",
+      "U13-B01",
+      "U14-B01",
+      "U15-B01",
+      "U16-B01",
+      "U17-B01",
+      "U18-B01",
+      "U19-B01",
+      "U20-B01",
+      "U21-B01",
+      "U22-B01",
+      "U23-B01",
+      "U24-B01",
+      "U25-B01",
+      "U26-B01",
+      "U27-B01",
+      "U28-B01",
+      "U29-B01",
+      "U30-B01",
+      "U31-B01",
+      "U32-B01",
+      "U33-B01",
+      "U34-B01",
+      "U35-B01",
+      "U36-B01",
+      "U37-B01",
+      "U38-B01",
+      "U39-B01",
+      "U40-B01",
+      "U41-B01"
+    ],
+    "screens": {
+      "O20@ipad-landscape": "28:9561",
+      "O23@ipad-landscape": "28:9602",
+      "O24@ipad-landscape": "28:9636",
+      "O29@ipad-landscape": "28:9671",
+      "U14@ipad-landscape": "28:9705",
+      "R18@ipad-landscape": "29:4495",
+      "R18@iphone-portrait": "29:4560",
+      "R18@iphone-landscape": "29:4625",
+      "R18@ipad-portrait": "29:4690",
+      "R18@ipad-narrow": "29:4755",
+      "R32@ipad-landscape": "28:9361",
+      "O11@ipad-landscape": "28:9398",
+      "O16@ipad-landscape": "28:9437",
+      "O17@ipad-landscape": "28:9477",
+      "O18@ipad-landscape": "28:9516",
+      "R04@ipad-landscape": "28:9818",
+      "R04@iphone-portrait": "28:9888",
+      "R04@iphone-landscape": "28:9953",
+      "R04@ipad-portrait": "28:10023",
+      "R04@ipad-narrow": "28:10093",
+      "R07@ipad-landscape": "28:10158",
+      "R07@iphone-portrait": "28:10299",
+      "R07@iphone-landscape": "28:10435",
+      "R07@ipad-portrait": "28:10576",
+      "R07@ipad-narrow": "28:10717",
+      "R02@ipad-landscape": "29:347",
+      "R02@iphone-portrait": "29:566",
+      "R02@iphone-landscape": "29:780",
+      "R02@ipad-portrait": "29:999",
+      "R02@ipad-narrow": "29:1218",
+      "R03@ipad-landscape": "29:1432",
+      "R03@iphone-portrait": "29:1643",
+      "R03@iphone-landscape": "29:1849",
+      "R03@ipad-portrait": "29:2060",
+      "R03@ipad-narrow": "29:2271",
+      "U39@ipad-landscape": "29:5709",
+      "R01@ipad-landscape": "26:68",
+      "R01@iphone-portrait": "26:1877",
+      "R01@iphone-landscape": "26:3681",
+      "R01@ipad-portrait": "26:5490",
+      "R01@ipad-narrow": "26:7299",
+      "R05@ipad-landscape": "26:9103",
+      "R05@iphone-portrait": "26:9203",
+      "R05@iphone-landscape": "26:9298",
+      "R05@ipad-portrait": "26:9398",
+      "R05@ipad-narrow": "26:9498",
+      "U04@ipad-landscape": "29:5533",
+      "U08@ipad-landscape": "29:5565",
+      "U09@ipad-landscape": "29:5597",
+      "U10@ipad-landscape": "29:5631",
+      "U37@ipad-landscape": "29:5664",
+      "R25@ipad-landscape": "29:260",
+      "O14@ipad-landscape": "29:295",
+      "O15@ipad-landscape": "29:5331",
+      "O21@ipad-landscape": "29:5374",
+      "U01@ipad-landscape": "29:5410",
+      "U02@ipad-landscape": "29:5463",
+      "U03@ipad-landscape": "29:5493",
+      "R08@ipad-landscape": "28:12179",
+      "R08@iphone-portrait": "28:12295",
+      "R08@iphone-landscape": "28:12406",
+      "R08@ipad-portrait": "28:12522",
+      "R08@ipad-narrow": "28:12638",
+      "R09@ipad-landscape": "28:12749",
+      "R09@iphone-portrait": "28:12906",
+      "R09@iphone-landscape": "28:13058",
+      "R09@ipad-portrait": "28:13215",
+      "R09@ipad-narrow": "28:13372",
+      "R17@ipad-landscape": "29:3652",
+      "R17@iphone-portrait": "29:3773",
+      "R17@iphone-landscape": "29:3894",
+      "R17@ipad-portrait": "29:4015",
+      "R17@ipad-narrow": "29:4136",
+      "R11@ipad-landscape": "27:19997",
+      "R11@iphone-portrait": "27:20120",
+      "R11@iphone-landscape": "27:20238",
+      "R11@ipad-portrait": "27:20361",
+      "R11@ipad-narrow": "27:20484",
+      "R14@ipad-landscape": "27:20602",
+      "R14@iphone-portrait": "27:20718",
+      "R14@iphone-landscape": "27:20829",
+      "R14@ipad-portrait": "27:20945",
+      "R14@ipad-narrow": "27:21061",
+      "O07@ipad-landscape": "28:12027",
+      "O19@ipad-landscape": "28:12060",
+      "O22@ipad-landscape": "28:12098",
+      "U24@ipad-landscape": "28:12134",
+      "R06@ipad-landscape": "27:19087",
+      "R06@iphone-portrait": "27:19179",
+      "R06@iphone-landscape": "27:19266",
+      "R06@ipad-portrait": "27:19358",
+      "R06@ipad-narrow": "27:19450",
+      "R10@ipad-landscape": "27:19537",
+      "R10@iphone-portrait": "27:19629",
+      "R10@iphone-landscape": "27:19716",
+      "R10@ipad-portrait": "27:19808",
+      "R10@ipad-narrow": "27:19900",
+      "R15@ipad-landscape": "29:2487",
+      "R15@iphone-portrait": "29:2614",
+      "R15@iphone-landscape": "29:2736",
+      "R15@ipad-portrait": "29:2863",
+      "R15@ipad-narrow": "29:2990",
+      "R16@ipad-landscape": "29:3112",
+      "R16@iphone-portrait": "29:3220",
+      "R16@iphone-landscape": "29:3323",
+      "R16@ipad-portrait": "29:3431",
+      "R16@ipad-narrow": "29:3539",
+      "O05@ipad-landscape": "29:5158",
+      "O08@ipad-landscape": "29:5192",
+      "O09@ipad-landscape": "29:5226",
+      "O10@ipad-landscape": "29:5262",
+      "O12@ipad-landscape": "29:5297",
+      "R27@ipad-landscape": "28:9172",
+      "R28@ipad-landscape": "28:9213",
+      "R29@ipad-landscape": "28:9251",
+      "R30@ipad-landscape": "28:9288",
+      "R31@ipad-landscape": "28:9326",
+      "R12@ipad-landscape": "28:10863",
+      "R12@iphone-portrait": "28:10943",
+      "R12@iphone-landscape": "28:11018",
+      "R12@ipad-portrait": "28:11098",
+      "R12@ipad-narrow": "28:11178",
+      "R13@ipad-landscape": "28:11253",
+      "R13@iphone-portrait": "28:11372",
+      "R13@iphone-landscape": "28:11486",
+      "R13@ipad-portrait": "28:11605",
+      "R13@ipad-narrow": "28:11724",
+      "R38@ipad-landscape": "29:5002",
+      "R39@ipad-landscape": "29:5033",
+      "R40@ipad-landscape": "29:5063",
+      "R41@ipad-landscape": "29:5093",
+      "O01@ipad-landscape": "29:5125",
+      "O28@ipad-landscape": "29:4461",
+      "R36@ipad-landscape": "29:4257",
+      "O13@ipad-landscape": "29:4293",
+      "O25@ipad-landscape": "29:4342",
+      "O26@ipad-landscape": "29:4383",
+      "O27@ipad-landscape": "29:4417",
+      "U26@ipad-landscape": "28:9739",
+      "U27@ipad-landscape": "28:9781",
+      "R24@ipad-landscape": "29:4824",
+      "R33@ipad-landscape": "29:4858",
+      "R34@ipad-landscape": "29:4894",
+      "R35@ipad-landscape": "29:4926",
+      "R37@ipad-landscape": "29:4964",
+      "R19@ipad-landscape": "28:11848",
+      "O02@ipad-landscape": "28:11892",
+      "O03@ipad-landscape": "28:11924",
+      "O04@ipad-landscape": "28:11960",
+      "O06@ipad-landscape": "28:11995",
+      "R20@ipad-landscape": "28:8964",
+      "R21@ipad-landscape": "28:9012",
+      "R22@ipad-landscape": "28:9054",
+      "R23@ipad-landscape": "28:9093",
+      "R26@ipad-landscape": "28:9134"
+    },
+    "components": [
+      {
+        "id": "UI01",
+        "name": "Button",
+        "ownerId": "16:140",
+        "variantIds": [
+          "16:76",
+          "16:78",
+          "16:80",
+          "16:82",
+          "16:84",
+          "16:86",
+          "16:92",
+          "16:94",
+          "16:96",
+          "16:98",
+          "16:100",
+          "16:102",
+          "16:108",
+          "16:110",
+          "16:112",
+          "16:114",
+          "16:116",
+          "16:118",
+          "16:124",
+          "16:126",
+          "16:128",
+          "16:130",
+          "16:132",
+          "16:134"
+        ]
+      },
+      {
+        "id": "UI02",
+        "name": "IconButton",
+        "ownerId": "16:159",
+        "variantIds": [
+          "16:141",
+          "16:144",
+          "16:147",
+          "16:150",
+          "16:153",
+          "16:156"
+        ]
+      },
+      {
+        "id": "UI03",
+        "name": "Input",
+        "ownerId": "16:190",
+        "variantIds": [
+          "16:160",
+          "16:165",
+          "16:170",
+          "16:175",
+          "16:180",
+          "16:185"
+        ]
+      },
+      {
+        "id": "UI04",
+        "name": "Textarea",
+        "ownerId": "16:221",
+        "variantIds": [
+          "16:191",
+          "16:196",
+          "16:201",
+          "16:206",
+          "16:211",
+          "16:216"
+        ]
+      },
+      {
+        "id": "UI05",
+        "name": "Select",
+        "ownerId": "16:250",
+        "variantIds": [
+          "16:222",
+          "16:229",
+          "16:236",
+          "16:243"
+        ]
+      },
+      {
+        "id": "UI06",
+        "name": "Checkbox",
+        "ownerId": "16:287",
+        "variantIds": [
+          "16:251",
+          "16:254",
+          "16:257",
+          "16:260",
+          "16:265",
+          "16:270",
+          "16:275",
+          "16:279",
+          "16:283"
+        ]
+      },
+      {
+        "id": "UI07",
+        "name": "Radio",
+        "ownerId": "16:309",
+        "variantIds": [
+          "16:288",
+          "16:291",
+          "16:294",
+          "16:297",
+          "16:301",
+          "16:305"
+        ]
+      },
+      {
+        "id": "UI08",
+        "name": "Tabs",
+        "ownerId": "16:326",
+        "variantIds": [
+          "16:310",
+          "16:318"
+        ]
+      },
+      {
+        "id": "UI09",
+        "name": "SegmentedControl",
+        "ownerId": "17:95",
+        "variantIds": [
+          "17:81",
+          "17:88"
+        ]
+      },
+      {
+        "id": "UI10",
+        "name": "Card",
+        "ownerId": "17:96",
+        "variantIds": [
+          "17:96"
+        ]
+      },
+      {
+        "id": "UI11",
+        "name": "ListItem",
+        "ownerId": "17:101",
+        "variantIds": [
+          "17:101"
+        ]
+      },
+      {
+        "id": "UI12",
+        "name": "Modal",
+        "ownerId": "17:106",
+        "variantIds": [
+          "17:106"
+        ]
+      },
+      {
+        "id": "UI13",
+        "name": "Sheet",
+        "ownerId": "17:114",
+        "variantIds": [
+          "17:114"
+        ]
+      },
+      {
+        "id": "UI14",
+        "name": "Toast",
+        "ownerId": "17:130",
+        "variantIds": [
+          "17:124",
+          "17:127"
+        ]
+      },
+      {
+        "id": "UI15",
+        "name": "Breadcrumb",
+        "ownerId": "17:131",
+        "variantIds": [
+          "17:131"
+        ]
+      },
+      {
+        "id": "UI16",
+        "name": "Search",
+        "ownerId": "17:169",
+        "variantIds": [
+          "17:137",
+          "17:145",
+          "17:153",
+          "17:161"
+        ]
+      },
+      {
+        "id": "UI17",
+        "name": "EmptyState",
+        "ownerId": "17:186",
+        "variantIds": [
+          "17:170",
+          "17:178"
+        ]
+      },
+      {
+        "id": "UI18",
+        "name": "LoadingState",
+        "ownerId": "17:187",
+        "variantIds": [
+          "17:187"
+        ]
+      },
+      {
+        "id": "UI19",
+        "name": "ErrorState",
+        "ownerId": "17:193",
+        "variantIds": [
+          "17:193"
+        ]
+      },
+      {
+        "id": "UI20",
+        "name": "ScreenBoundary",
+        "ownerId": "17:198",
+        "variantIds": [
+          "17:198"
+        ]
+      },
+      {
+        "id": "UI21",
+        "name": "NavigationBar",
+        "ownerId": "17:223",
+        "variantIds": [
+          "17:203",
+          "17:213"
+        ]
+      },
+      {
+        "id": "UI22",
+        "name": "ContextMenu",
+        "ownerId": "17:224",
+        "variantIds": [
+          "17:224"
+        ]
+      },
+      {
+        "id": "SC01",
+        "name": "StudyLandscapes",
+        "ownerId": "17:231",
+        "variantIds": [
+          "17:231"
+        ]
+      },
+      {
+        "id": "SC02",
+        "name": "ObservatoryWorld",
+        "ownerId": "17:1910",
+        "variantIds": [
+          "17:1910"
+        ]
+      },
+      {
+        "id": "SC03",
+        "name": "ObservatoryRoom",
+        "ownerId": "20:4808",
+        "variantIds": [
+          "20:4808"
+        ]
+      },
+      {
+        "id": "SC04",
+        "name": "ObservatoryDesk",
+        "ownerId": "20:6484",
+        "variantIds": [
+          "20:6484"
+        ]
+      },
+      {
+        "id": "SC05",
+        "name": "ObservatoryAdvanced",
+        "ownerId": "20:6496",
+        "variantIds": [
+          "20:6496"
+        ]
+      },
+      {
+        "id": "SC06",
+        "name": "ObservatorySkyDetails",
+        "ownerId": "20:6515",
+        "variantIds": [
+          "20:6515"
+        ]
+      },
+      {
+        "id": "SC07",
+        "name": "ObservatoryStationDetails",
+        "ownerId": "20:6527",
+        "variantIds": [
+          "20:6527"
+        ]
+      },
+      {
+        "id": "SC08",
+        "name": "ObservatoryTimeSky",
+        "ownerId": "20:6539",
+        "variantIds": [
+          "20:6539"
+        ]
+      },
+      {
+        "id": "SC09",
+        "name": "ObservatoryTimeGround",
+        "ownerId": "20:6560",
+        "variantIds": [
+          "20:6560"
+        ]
+      },
+      {
+        "id": "SC10",
+        "name": "ObservatoryClouds",
+        "ownerId": "20:6581",
+        "variantIds": [
+          "20:6581"
+        ]
+      },
+      {
+        "id": "SC11",
+        "name": "ObservatoryGroundDetails",
+        "ownerId": "20:6593",
+        "variantIds": [
+          "20:6593"
+        ]
+      },
+      {
+        "id": "SC12",
+        "name": "ObservatoryDomeTiles",
+        "ownerId": "20:6605",
+        "variantIds": [
+          "20:6605"
+        ]
+      },
+      {
+        "id": "SC13",
+        "name": "ObservatoryShockwave",
+        "ownerId": "20:6617",
+        "variantIds": [
+          "20:6617"
+        ]
+      },
+      {
+        "id": "SC14",
+        "name": "ObservatoryStudySky",
+        "ownerId": "20:6629",
+        "variantIds": [
+          "20:6629"
+        ]
+      },
+      {
+        "id": "SC15",
+        "name": "ObservatoryStudyStation",
+        "ownerId": "20:6641",
+        "variantIds": [
+          "20:6641"
+        ]
+      },
+      {
+        "id": "SC16",
+        "name": "ObservatoryRadiance",
+        "ownerId": "20:6653",
+        "variantIds": [
+          "20:6653"
+        ]
+      },
+      {
+        "id": "SC17",
+        "name": "ObservatoryRadianceGround",
+        "ownerId": "20:6665",
+        "variantIds": [
+          "20:6665"
+        ]
+      },
+      {
+        "id": "SC18",
+        "name": "ObservatoryEvents",
+        "ownerId": "20:6677",
+        "variantIds": [
+          "20:6677"
+        ]
+      },
+      {
+        "id": "SC19",
+        "name": "ObservatoryEventVariationSymbol",
+        "ownerId": "21:5121",
+        "variantIds": [
+          "21:5121"
+        ]
+      },
+      {
+        "id": "SC20",
+        "name": "ObservatoryEventVariation",
+        "ownerId": "21:5138",
+        "variantIds": [
+          "21:5138"
+        ]
+      },
+      {
+        "id": "MO01",
+        "name": "BusyDots",
+        "ownerId": "21:5175",
+        "variantIds": [
+          "21:5157",
+          "21:5163",
+          "21:5169"
+        ]
+      },
+      {
+        "id": "MO02",
+        "name": "SavedMark",
+        "ownerId": "21:5194",
+        "variantIds": [
+          "21:5176",
+          "21:5182",
+          "21:5188"
+        ]
+      },
+      {
+        "id": "MO03",
+        "name": "SelectionBackground",
+        "ownerId": "21:5216",
+        "variantIds": [
+          "21:5195",
+          "21:5202",
+          "21:5209"
+        ]
+      },
+      {
+        "id": "MO04",
+        "name": "NoticeEntrance",
+        "ownerId": "21:5229",
+        "variantIds": [
+          "21:5217",
+          "21:5221",
+          "21:5225"
+        ]
+      },
+      {
+        "id": "MO05",
+        "name": "FadeContent",
+        "ownerId": "21:5242",
+        "variantIds": [
+          "21:5230",
+          "21:5234",
+          "21:5238"
+        ]
+      },
+      {
+        "id": "BR01",
+        "name": "BrandWordmark",
+        "ownerId": "21:5243",
+        "variantIds": [
+          "21:5243"
+        ]
+      }
+    ],
+    "states": [
+      {
+        "id": "SAVE-CHECKING",
+        "title": "서버 확인 중",
+        "representative_copy": "이 기기의 기록을 표시하고 있습니다 · 서버 확인 중",
+        "invariant": "기기 자료가 보인다는 이유로 서버 최신 자료라 표시하지 않는다.",
+        "nodeId": "14:73"
+      },
+      {
+        "id": "SAVE-LOCAL-WRITING",
+        "title": "기기에 보관 중",
+        "representative_copy": "기기에 보관 중 · 서버 전송 대기",
+        "invariant": "실제 durable commit 전에는 기기에 저장 완료로 표시하지 않는다.",
+        "nodeId": "14:95"
+      },
+      {
+        "id": "SAVE-PENDING",
+        "title": "기기 보관·미전송",
+        "representative_copy": "이 기기에 저장됨 · 서버 전송 대기",
+        "invariant": "미전송 원문·명령·owner를 보존하고 서버 완료 장식은 사용하지 않는다.",
+        "nodeId": "14:115"
+      },
+      {
+        "id": "SAVE-SAVING",
+        "title": "서버에 저장 중",
+        "representative_copy": "이 기기에 저장됨 · 서버에 저장 중",
+        "invariant": "응답을 기다리는 동안 원문·명령을 보존하고 중복 클릭을 중복 사건으로 만들지 않는다.",
+        "nodeId": "14:139"
+      },
+      {
+        "id": "SAVE-SAVED",
+        "title": "서버 반영 확인",
+        "representative_copy": "서버에 저장됨",
+        "invariant": "서버 응답의 해당 버전/명령 승인이 있어야 하며 다른 기기의 수신까지 뜻하지 않는다.",
+        "nodeId": "14:161"
+      },
+      {
+        "id": "SAVE-ERROR",
+        "title": "서버 저장 실패",
+        "representative_copy": "서버에 저장하지 못했습니다. 이 기기의 원문은 남아 있습니다.",
+        "invariant": "실제로 보존된 위치에 맞는 안내만 사용하고 같은 opId 재시도를 중복 적용하지 않는다.",
+        "nodeId": "14:183"
+      },
+      {
+        "id": "SAVE-LOCAL-ERROR",
+        "title": "기기 보관 실패",
+        "representative_copy": "이 기기에 보관하지 못했습니다. 작성한 내용을 확인해 주세요.",
+        "invariant": "메모리·기기·서버 중 실제 남은 위치를 확인하기 전에는 원문이 안전하다고 단정하지 않는다.",
+        "nodeId": "14:205"
+      },
+      {
+        "id": "SAVE-CONFLICT",
+        "title": "두 자료 확인",
+        "representative_copy": "다른 기기의 변경과 이 기기의 글을 모두 보존했습니다.",
+        "invariant": "local/base/pending/server와 원문을 모두 유지하며 자동 덮어쓰기·임의 병합하지 않는다.",
+        "nodeId": "14:227"
+      },
+      {
+        "id": "SAVE-ARCHIVING",
+        "title": "전환 전 양본 보관",
+        "representative_copy": "이 기기의 글과 서버 자료를 함께 보관하고 있습니다…",
+        "invariant": "보관 성공 뒤에만 서버 자료로 전환한다. 실패 시 두 자료와 현재 화면을 유지한다.",
+        "nodeId": "14:254"
+      },
+      {
+        "id": "AUTH-CHECKING",
+        "title": "이용 권한 확인",
+        "representative_copy": "내 공부 공간을 확인하고 있습니다…",
+        "invariant": "확인되지 않은 owner의 기록/초안을 노출하거나 작성 잠금을 먼저 열지 않는다.",
+        "nodeId": "14:271"
+      },
+      {
+        "id": "AUTH-SIGNED-OUT",
+        "title": "로그인 전",
+        "representative_copy": "내 공부 공간에 로그인해 주세요.",
+        "invariant": "이전 계정의 원문·설정·백업 파일을 새 계정 입력 화면에 노출하지 않는다.",
+        "nodeId": "14:290"
+      },
+      {
+        "id": "AUTH-PENDING",
+        "title": "가입 승인 대기",
+        "representative_copy": "가입 승인을 기다리고 있습니다.",
+        "invariant": "대기를 일반 작성 권한이나 AI 권한으로 취급하지 않는다.",
+        "nodeId": "14:312"
+      },
+      {
+        "id": "AUTH-APPROVED",
+        "title": "이용 허용",
+        "representative_copy": "내 공부 공간을 열었습니다.",
+        "invariant": "공부 기록 사용 권한과 민석 전용 AI 권한을 따로 적용한다.",
+        "nodeId": "14:331"
+      },
+      {
+        "id": "AUTH-REJECTED",
+        "title": "가입 거절",
+        "representative_copy": "현재 계정으로 공부 공간을 열 수 없습니다.",
+        "invariant": "서버가 허용하지 않은 원장/자료를 보여 주지 않는다.",
+        "nodeId": "14:348"
+      },
+      {
+        "id": "AUTH-SUSPENDED",
+        "title": "이용 중지",
+        "representative_copy": "현재 계정의 이용이 중지되어 있습니다.",
+        "invariant": "기존 기록을 권한 거부를 이유로 자동 삭제하지 않는다.",
+        "nodeId": "14:365"
+      },
+      {
+        "id": "AUTH-EXPIRED",
+        "title": "세션 확인 필요",
+        "representative_copy": "로그인을 다시 확인해 주세요.",
+        "invariant": "세션 실패에서 원문·미전송 명령을 유지하고 다른 계정에 자동 적용하지 않는다.",
+        "nodeId": "14:382"
+      },
+      {
+        "id": "EDIT-DIRTY",
+        "title": "작성 중 초안",
+        "representative_copy": "작성 중인 내용",
+        "invariant": "공백·줄바꿈·커서·선택·원 ID와 기존 수정 이력을 유지한다.",
+        "nodeId": "14:401"
+      },
+      {
+        "id": "EDIT-OTHER-WINDOW",
+        "title": "다른 창 작성 중",
+        "representative_copy": "다른 공부 창에서 사용 중입니다.",
+        "invariant": "다른 창의 잠금·초안을 강제로 지우거나 덮어쓰지 않는다.",
+        "nodeId": "14:422"
+      },
+      {
+        "id": "EDIT-RESTORED-DRAFT",
+        "title": "다른 세션의 보관 초안",
+        "representative_copy": "보관된 초안을 확인할 수 있습니다.",
+        "invariant": "다른 세션의 글을 현재 입력창에 자동으로 덮어쓰지 않는다.",
+        "nodeId": "14:444"
+      },
+      {
+        "id": "BACKUP-COLLECTING",
+        "title": "백업 준비 중",
+        "representative_copy": "자료를 확인하고 보관하고 있습니다…",
+        "invariant": "원장·초안·첨부가 변경되면 실제 수집 계약대로 재확인하고 인증정보를 넣지 않는다.",
+        "nodeId": "14:466"
+      },
+      {
+        "id": "BACKUP-PREPARED",
+        "title": "백업 파일 준비됨",
+        "representative_copy": "백업 파일을 준비했습니다.",
+        "invariant": "다운로드 요청과 실제 디스크 파일 저장을 구분하고 같은 준비 파일의 재시도 경로를 유지한다.",
+        "nodeId": "14:483"
+      },
+      {
+        "id": "BACKUP-INVALID",
+        "title": "복원 파일 거부",
+        "representative_copy": "이 백업 파일을 복원할 수 없습니다.",
+        "invariant": "손상/다른 owner/참조 원본 누락을 거부하며 기존 자료를 변경하지 않는다.",
+        "nodeId": "14:500"
+      },
+      {
+        "id": "BACKUP-PREVIEW",
+        "title": "복원 내용 확인",
+        "representative_copy": "현재 계정·공간의 백업 내용을 확인해 주세요.",
+        "invariant": "원장 되돌림·복원 전 사본·별도 첨부/초안 보존 범위를 보여 준다.",
+        "nodeId": "14:519"
+      },
+      {
+        "id": "BACKUP-WAITING-RESTART",
+        "title": "다시 열어 복원",
+        "representative_copy": "복원 요청을 보관했습니다.",
+        "invariant": "복원 요청 보관을 실제 복원 완료로 표시하지 않는다.",
+        "nodeId": "14:543"
+      },
+      {
+        "id": "BACKUP-RECOVERING",
+        "title": "복원·중단 복구 중",
+        "representative_copy": "보관 자료를 확인하고 있습니다…",
+        "invariant": "앱 저장소를 열기 전에 복구하며 잠금/복원 전 사본 없이 기존 자료를 바꾸지 않는다.",
+        "nodeId": "14:560"
+      },
+      {
+        "id": "BACKUP-RESTORED",
+        "title": "기기 복원 후 확인",
+        "representative_copy": "복원한 기기 자료를 확인해 주세요.",
+        "invariant": "서버와 다르면 양본 충돌로 연결하고 자동 업로드하지 않는다.",
+        "nodeId": "14:577"
+      },
+      {
+        "id": "BACKUP-ROLLED-BACK",
+        "title": "복구 실패·기존 자료 유지",
+        "representative_copy": "백업 복원·복구를 마치지 못했습니다.",
+        "invariant": "rollback 실제 결과와 남은 복구 상태를 따로 확인하고 복원 성공으로 표시하지 않는다.",
+        "nodeId": "14:596"
+      },
+      {
+        "id": "BACKUP-MISSING-ORIGINAL",
+        "title": "기기에 없는 원본",
+        "representative_copy": "백업에 필요한 원본을 이 기기에 받은 뒤 다시 시도해 주세요.",
+        "invariant": "첨부 참조만 들어 있는 파일을 전체 백업 성공으로 만들지 않는다.",
+        "nodeId": "14:615"
+      },
+      {
+        "id": "BACKUP-OWNER-CHANGED",
+        "title": "계정 변경",
+        "representative_copy": "현재 계정의 백업을 선택해 주세요.",
+        "invariant": "준비된 이전 계정 파일을 숨기고 URL을 정리하며 자동 다운로드하지 않는다.",
+        "nodeId": "14:634"
+      },
+      {
+        "id": "AI-OWNER-READY",
+        "title": "민석 전용 AI 준비",
+        "representative_copy": "필요한 자료를 선택해 생성할 수 있습니다.",
+        "invariant": "민석의 기존 확인된 personal 계정·승인·현재 세션을 서버에서 확인한다.",
+        "nodeId": "14:651"
+      },
+      {
+        "id": "AI-FORBIDDEN",
+        "title": "AI 권한 없음",
+        "representative_copy": "이 계정에서는 AI 기능을 사용할 수 없습니다.",
+        "invariant": "화면 숨김과 별개로 서버가 거부하고 공급자 호출/차감을 하지 않는다. 관리자도 자동 허용하지 않는다.",
+        "nodeId": "14:673"
+      },
+      {
+        "id": "AI-GENERATING",
+        "title": "AI 생성 중",
+        "representative_copy": "선택한 자료로 정리하고 있습니다…",
+        "invariant": "호출 전 예약·동시 호출 제한과 원문 보존을 유지한다. 중단을 무료 처리로 단정하지 않는다.",
+        "nodeId": "14:690"
+      },
+      {
+        "id": "AI-PREVIEW",
+        "title": "생성 초안 검토",
+        "representative_copy": "생성한 내용을 원문과 함께 확인해 주세요.",
+        "invariant": "정형 JSON·그림·자동 요약을 정답·완료·숙달로 표시하지 않는다.",
+        "nodeId": "14:710"
+      },
+      {
+        "id": "AI-FAILED",
+        "title": "생성 실패",
+        "representative_copy": "생성 결과를 마치지 못했습니다. 원문을 확인할 수 있습니다.",
+        "invariant": "부분 응답·형식 오류에서도 원문과 이전 결과를 보존하며 자동 고가 재호출하지 않는다.",
+        "nodeId": "14:739"
+      },
+      {
+        "id": "AI-LIMIT",
+        "title": "AI 상한/호출 제한",
+        "representative_copy": "현재 설정한 한도에서 새 요청을 시작할 수 없습니다.",
+        "invariant": "수동 기록·자료 읽기를 막지 않으며 임의 결제나 상한 변경을 하지 않는다.",
+        "nodeId": "14:759"
+      },
+      {
+        "id": "AI-UNCERTAIN",
+        "title": "응답·비용 확인 중",
+        "representative_copy": "이전 요청의 결과를 확인하고 있습니다.",
+        "invariant": "응답 유실/usage 미확인의 예약을 성공·0원·취소 완료로 바꾸지 않는다.",
+        "nodeId": "14:779"
+      },
+      {
+        "id": "CONTENT-EMPTY",
+        "title": "자료 없음",
+        "representative_copy": "첫 기록을 남길 수 있습니다.",
+        "invariant": "빈 자료를 실패·0점·숙달 부족으로 판단하지 않는다.",
+        "nodeId": "14:799"
+      },
+      {
+        "id": "CONTENT-NO-RESULT",
+        "title": "찾은 결과 없음",
+        "representative_copy": "조건에 맞는 결과가 없습니다.",
+        "invariant": "원래 자료·선택·필터 변경 이력을 의도치 않게 초기화하지 않는다.",
+        "nodeId": "14:816"
+      },
+      {
+        "id": "CONTENT-ERROR",
+        "title": "불러오기 실패",
+        "representative_copy": "자료를 불러오지 못했습니다.",
+        "invariant": "실패 화면이 기존 원문·초안·스크롤 위치를 지우지 않는다.",
+        "nodeId": "14:838"
+      },
+      {
+        "id": "CONTENT-UNAVAILABLE",
+        "title": "환경에서 사용할 수 없음",
+        "representative_copy": "현재 환경에서 이 동작을 사용할 수 없습니다.",
+        "invariant": "기능 지원을 화면 이름이나 모사 기기명으로 추정하지 않고 실제 API·권한 조건으로 설명한다.",
+        "nodeId": "14:857"
+      },
+      {
+        "id": "RENDER-FALLBACK",
+        "title": "천문대 표현 복구",
+        "representative_copy": "천문대 표현을 다시 열 수 있습니다.",
+        "invariant": "GPU/자산 오류에서 공부 기록·입력·원래 위치를 유지한다.",
+        "nodeId": "14:874"
+      },
+      {
+        "id": "RENDER-PAUSED",
+        "title": "움직임 정지/감소",
+        "representative_copy": "움직임을 멈췄습니다.",
+        "invariant": "사용자 정지/OS 감소 선택은 탭 복귀 때 덮어쓰지 않고 의미 정보는 정지 상태에도 제공한다.",
+        "nodeId": "14:893"
+      }
+    ],
+    "transitions": [
+      {
+        "id": "T01",
+        "from": "EDIT-DIRTY",
+        "event": "저장 명령",
+        "to": "SAVE-LOCAL-WRITING",
+        "guard": "원문·owner·ID 검증",
+        "nodeId": "14:915"
+      },
+      {
+        "id": "T02",
+        "from": "SAVE-LOCAL-WRITING",
+        "event": "기기 commit 완료",
+        "to": "SAVE-PENDING",
+        "guard": "실제 보관 완료; 메모리 상태만으로 승격 금지",
+        "nodeId": "14:926"
+      },
+      {
+        "id": "T03",
+        "from": "SAVE-LOCAL-WRITING",
+        "event": "기기 보관 실패",
+        "to": "SAVE-LOCAL-ERROR",
+        "guard": "현재 원문·기존 durable 자료 보존",
+        "nodeId": "14:937"
+      },
+      {
+        "id": "T04",
+        "from": "SAVE-PENDING",
+        "event": "전송 시작",
+        "to": "SAVE-SAVING",
+        "guard": "권한·기기 commit·중복 요청 계약 충족",
+        "nodeId": "14:948"
+      },
+      {
+        "id": "T05",
+        "from": "SAVE-SAVING",
+        "event": "해당 명령 서버 승인",
+        "to": "SAVE-SAVED",
+        "guard": "인증/버전/receipt 일치; 남은 pending은 따로 표시",
+        "nodeId": "14:959"
+      },
+      {
+        "id": "T06",
+        "from": "SAVE-SAVING",
+        "event": "통신/서버 실패",
+        "to": "SAVE-ERROR",
+        "guard": "미전송 원문/명령 유지",
+        "nodeId": "14:970"
+      },
+      {
+        "id": "T07",
+        "from": "SAVE-ERROR",
+        "event": "명시 또는 허용 재시도",
+        "to": "SAVE-SAVING",
+        "guard": "같은 요청 ID·원문; 자동 학습 회차 증가 금지",
+        "nodeId": "14:981"
+      },
+      {
+        "id": "T08",
+        "from": "SAVE-SAVING",
+        "event": "서버 버전 충돌",
+        "to": "SAVE-CONFLICT",
+        "guard": "local/base/pending/server 보존",
+        "nodeId": "14:992"
+      },
+      {
+        "id": "T09",
+        "from": "SAVE-CONFLICT",
+        "event": "서버 자료 열기 선택",
+        "to": "SAVE-ARCHIVING",
+        "guard": "사용자가 양본 보관 뒤 전환을 명시 선택",
+        "nodeId": "14:1003"
+      },
+      {
+        "id": "T10",
+        "from": "SAVE-ARCHIVING",
+        "event": "보관 commit 성공",
+        "to": "SAVE-SAVED",
+        "guard": "이전 글이 보관본에 남은 뒤 서버 자료 열기",
+        "nodeId": "14:1014"
+      },
+      {
+        "id": "T11",
+        "from": "SAVE-ARCHIVING",
+        "event": "보관 실패",
+        "to": "SAVE-ERROR",
+        "guard": "전환하지 않고 양본과 기존 conflict 유지",
+        "nodeId": "14:1025"
+      },
+      {
+        "id": "T12",
+        "from": "SAVE-CHECKING",
+        "event": "서버 상태 일치",
+        "to": "SAVE-SAVED",
+        "guard": "응답 owner/namespace/request identity 일치",
+        "nodeId": "14:1036"
+      },
+      {
+        "id": "T13",
+        "from": "SAVE-CHECKING",
+        "event": "서버와 복원 자료 다름",
+        "to": "SAVE-CONFLICT",
+        "guard": "복원 원문 자동 교체 금지",
+        "nodeId": "14:1047"
+      },
+      {
+        "id": "T14",
+        "from": "AUTH-SIGNED-OUT",
+        "event": "로그인",
+        "to": "AUTH-CHECKING",
+        "guard": "서버 Auth 확인",
+        "nodeId": "14:1058"
+      },
+      {
+        "id": "T15",
+        "from": "AUTH-CHECKING",
+        "event": "승인 상태 조회",
+        "to": "AUTH-PENDING",
+        "guard": "서버 상태 pending",
+        "nodeId": "14:1069"
+      },
+      {
+        "id": "T16",
+        "from": "AUTH-CHECKING",
+        "event": "승인 상태 조회",
+        "to": "AUTH-APPROVED",
+        "guard": "서버 상태 approved",
+        "nodeId": "14:1080"
+      },
+      {
+        "id": "T17",
+        "from": "AUTH-CHECKING",
+        "event": "승인 상태 조회",
+        "to": "AUTH-REJECTED",
+        "guard": "서버 상태 rejected",
+        "nodeId": "14:1091"
+      },
+      {
+        "id": "T18",
+        "from": "AUTH-CHECKING",
+        "event": "승인 상태 조회",
+        "to": "AUTH-SUSPENDED",
+        "guard": "서버 상태 suspended",
+        "nodeId": "14:1102"
+      },
+      {
+        "id": "T19",
+        "from": "AUTH-APPROVED",
+        "event": "세션 만료/거부",
+        "to": "AUTH-EXPIRED",
+        "guard": "원문과 미전송 자료 유지",
+        "nodeId": "14:1113"
+      },
+      {
+        "id": "T20",
+        "from": "BACKUP-COLLECTING",
+        "event": "ZIP 생성 완료",
+        "to": "BACKUP-PREPARED",
+        "guard": "원장·첨부·초안 대조 완료; 실제 다운로드 완료 아님",
+        "nodeId": "14:1124"
+      },
+      {
+        "id": "T21",
+        "from": "BACKUP-PREPARED",
+        "event": "계정 전환",
+        "to": "BACKUP-OWNER-CHANGED",
+        "guard": "이전 owner URL 숨김/정리",
+        "nodeId": "14:1135"
+      },
+      {
+        "id": "T22",
+        "from": "BACKUP-PREVIEW",
+        "event": "명시 확인 후 복원 예약",
+        "to": "BACKUP-WAITING-RESTART",
+        "guard": "owner·무결성·참조 bytes·범위 확인",
+        "nodeId": "14:1146"
+      },
+      {
+        "id": "T23",
+        "from": "BACKUP-WAITING-RESTART",
+        "event": "재시작",
+        "to": "BACKUP-RECOVERING",
+        "guard": "잠금 확보·기존 자료 사본·gate 이전 실행",
+        "nodeId": "14:1157"
+      },
+      {
+        "id": "T24",
+        "from": "BACKUP-RECOVERING",
+        "event": "적용 완료",
+        "to": "BACKUP-RESTORED",
+        "guard": "원문·ID·첨부·초안·설정 확인",
+        "nodeId": "14:1168"
+      },
+      {
+        "id": "T25",
+        "from": "BACKUP-RECOVERING",
+        "event": "적용/복구 실패",
+        "to": "BACKUP-ROLLED-BACK",
+        "guard": "가능한 rollback과 남은 복구 상태 표시",
+        "nodeId": "14:1179"
+      },
+      {
+        "id": "T26",
+        "from": "BACKUP-RESTORED",
+        "event": "서버와 차이 발견",
+        "to": "SAVE-CONFLICT",
+        "guard": "복원본·서버본 유지; 자동 업로드 금지",
+        "nodeId": "14:1190"
+      },
+      {
+        "id": "T27",
+        "from": "AI-OWNER-READY",
+        "event": "생성 시작",
+        "to": "AI-GENERATING",
+        "guard": "서버 owner/승인/세션·예산 예약 확인",
+        "nodeId": "14:1201"
+      },
+      {
+        "id": "T28",
+        "from": "AI-OWNER-READY",
+        "event": "상한/진행 중 요청",
+        "to": "AI-LIMIT",
+        "guard": "공급자 호출 전 차단",
+        "nodeId": "14:1212"
+      },
+      {
+        "id": "T29",
+        "from": "AI-GENERATING",
+        "event": "응답/스키마 수신",
+        "to": "AI-PREVIEW",
+        "guard": "정형 결과는 초안; 근거와 원문 연결",
+        "nodeId": "14:1223"
+      },
+      {
+        "id": "T30",
+        "from": "AI-GENERATING",
+        "event": "응답 실패",
+        "to": "AI-FAILED",
+        "guard": "원문·이전 결과 보존",
+        "nodeId": "14:1234"
+      },
+      {
+        "id": "T31",
+        "from": "AI-GENERATING",
+        "event": "응답/usage 불명",
+        "to": "AI-UNCERTAIN",
+        "guard": "미확인 예약 보존",
+        "nodeId": "14:1245"
+      },
+      {
+        "id": "T32",
+        "from": "AI-OWNER-READY",
+        "event": "다른 계정 전환",
+        "to": "AI-FORBIDDEN",
+        "guard": "계정별 화면 분리와 서버 권한 거부",
+        "nodeId": "14:1256"
+      }
+    ],
+    "flows": [
+      {
+        "id": "F01",
+        "name": "공부하고 여러 주제 기록",
+        "steps": [
+          "R01",
+          "R05",
+          "주제 여러 개 선택",
+          "공부함·선택 메모·TRACE",
+          "저장",
+          "현재 주제/자료 출발지 또는 R01"
+        ],
+        "preservation": "원문/날짜 불확실/반복을 유지; 성공과 실패/초안 상태 구별",
+        "nodeId": "35:11269"
+      },
+      {
+        "id": "F02",
+        "name": "과목과 실제 범위 만들기",
+        "steps": [
+          "R04",
+          "O02/U17",
+          "R19",
+          "목차 추가·주차",
+          "R20"
+        ],
+        "preservation": "ID·계층·기존 연결 보존; 생성/중복 미리보기",
+        "nodeId": "35:11313"
+      },
+      {
+        "id": "F03",
+        "name": "자료를 펼쳐 다음 공부로",
+        "steps": [
+          "R07",
+          "R23",
+          "전사문 붙여넣기/파일·기존 음성",
+          "선택 범위 정리",
+          "R12",
+          "R11"
+        ],
+        "preservation": "원문·수정 전·등록 당시 출처, 소유자 AI 권한 유지",
+        "nodeId": "35:11360"
+      },
+      {
+        "id": "F04",
+        "name": "시험처럼 풀고 복기",
+        "steps": [
+          "R20",
+          "R26",
+          "설정·진행·복기",
+          "R22",
+          "U20"
+        ],
+        "preservation": "시간 초과는 실패 아님; 응답과 실제 수행 결과 구별",
+        "nodeId": "35:11406"
+      },
+      {
+        "id": "F05",
+        "name": "암기시험을 직접 비교",
+        "steps": [
+          "R11",
+          "항목 선택",
+          "글·필기 답안",
+          "비교",
+          "R28"
+        ],
+        "preservation": "내 답안·기준·그림·미확인·직접 판단 유지",
+        "nodeId": "35:11447"
+      },
+      {
+        "id": "F06",
+        "name": "예약 복습과 되돌리기",
+        "steps": [
+          "R29",
+          "범위/덱",
+          "글·필기",
+          "설명 공개",
+          "자기 평가",
+          "다음 카드",
+          "평가 되돌리기"
+        ],
+        "preservation": "메모 저장·자기 평가·독립 수행은 별개; 원 답안 보존",
+        "nodeId": "35:11484"
+      },
+      {
+        "id": "F07",
+        "name": "코드와 주제 연결",
+        "steps": [
+          "R08",
+          "R25",
+          "편집·입력",
+          "실행·터미널",
+          "결과",
+          "주제 연결",
+          "R20"
+        ],
+        "preservation": "구문/실행/학습 성과 구분; 코드·초안·커서 보존",
+        "nodeId": "35:11530"
+      },
+      {
+        "id": "F08",
+        "name": "수식과 개념 탐구",
+        "steps": [
+          "R09",
+          "유형/조건",
+          "그래프·좌표 조작",
+          "관찰·저장",
+          "저장 탐색 재열기"
+        ],
+        "preservation": "계산·정의 불가·축/단위 유지; 임의 엔진값 변경 금지",
+        "nodeId": "35:11580"
+      },
+      {
+        "id": "F09",
+        "name": "관계와 원문 왕복",
+        "steps": [
+          "R15/R16",
+          "카드·관계 선택",
+          "R20/R13",
+          "실제 이전 시점"
+        ],
+        "preservation": "Canvas 사용자 좌표 보존; 그래프 배치와 의미 관계 구별",
+        "nodeId": "35:11615"
+      },
+      {
+        "id": "F10",
+        "name": "계획의 자료 누적",
+        "steps": [
+          "R03",
+          "O13",
+          "일정 목록/달력",
+          "단계별 상태",
+          "이력/복원"
+        ],
+        "preservation": "보관·공지 확인·실제 제출/출석/학습 구별",
+        "nodeId": "35:11653"
+      },
+      {
+        "id": "F11",
+        "name": "찾고 돌아오기",
+        "steps": [
+          "R18",
+          "검색·범위",
+          "실제 결과 딥링크",
+          "브라우저 뒤로"
+        ],
+        "preservation": "검색어·필터·스크롤·포커스 복원; 가짜 호출 이력 금지",
+        "nodeId": "35:11690"
+      },
+      {
+        "id": "F12",
+        "name": "저장 실패와 복구",
+        "steps": [
+          "편집",
+          "U07 오류/미전송",
+          "재시도/사본",
+          "R33 또는 R35",
+          "원 과업"
+        ],
+        "preservation": "서버/기기/초안/파일 증거를 구별; 자동 덮어쓰기 금지",
+        "nodeId": "35:11720"
+      },
+      {
+        "id": "F13",
+        "name": "계정 진입과 제한",
+        "steps": [
+          "U03",
+          "메일 확인",
+          "U04 승인",
+          "U02",
+          "U01",
+          "U05/U06"
+        ],
+        "preservation": "관리자·승인과 민석 전용 AI 권한 구별",
+        "nodeId": "35:11760"
+      },
+      {
+        "id": "F14",
+        "name": "네 장소와 현재 과업",
+        "steps": [
+          "18개 직접 메뉴",
+          "고정 장소",
+          "보조 자료 펼치기",
+          "호출한 과업"
+        ],
+        "preservation": "현재 소스에 네 장소·실제 호출자·공부 원자료 복귀가 연결됨. 이번 조사는 런타임·배포 검증을 하지 않았음.",
+        "nodeId": "35:11811"
+      }
+    ],
+    "research": [
+      {
+        "id": "D01",
+        "name": "WCAG 2.2",
+        "url": "https://www.w3.org/TR/WCAG22/",
+        "status": "기존 유지",
+        "limits": "일부 대비나 자동검사 통과를 전체 적합성으로 확대하지 않는다. 픽셀 미감 자체를 정하지 않는다.",
+        "nodes": [
+          "20:3646"
+        ]
+      },
+      {
+        "id": "D02",
+        "name": "WAI-ARIA Authoring Practices Guide",
+        "url": "https://www.w3.org/WAI/ARIA/apg/",
+        "status": "기본 권고",
+        "limits": "APG 예제는 제품 완성품이나 WCAG 인증이 아니다. 네이티브 HTML을 먼저 검토하고 실제 브라우저/입력으로 확인한다.",
+        "nodes": [
+          "20:3664"
+        ]
+      },
+      {
+        "id": "D03",
+        "name": "Design Tokens Format Module 2025.10",
+        "url": "https://www.designtokens.org/tr/2025.10/format/",
+        "status": "기본 권고",
+        "limits": "DTCG가 안정된 구현용 명세로 발표했지만 W3C Standard도 W3C Standards Track도 아니다. 형식 채택이 자동 동기화를 만들지는 않는다.",
+        "nodes": [
+          "20:3682"
+        ]
+      },
+      {
+        "id": "D04",
+        "name": "ISO 9241-210:2019",
+        "url": "https://www.iso.org/standard/77520.html",
+        "status": "기본 권고",
+        "limits": "유료 본문을 읽거나 적합성을 감사하지 않았다. 공개 개요 자체도 개별 기법 전체나 모든 프로젝트 관리를 제공하지 않는다고 설명한다.",
+        "nodes": [
+          "20:3700"
+        ]
+      },
+      {
+        "id": "D05",
+        "name": "ISO 9241-110:2020",
+        "url": "https://www.iso.org/standard/75258.html",
+        "status": "기본 권고",
+        "limits": "유료 본문 미열람. 공식 개요가 미감·마케팅·기업 정체성을 다루지 않는다고 명시하므로 천문대 미감의 정답으로 사용하지 않는다.",
+        "nodes": [
+          "20:3718"
+        ]
+      },
+      {
+        "id": "D06",
+        "name": "Design Council Double Diamond",
+        "url": "https://www.designcouncil.org.uk/resources/the-double-diamond/",
+        "status": "기본 권고",
+        "limits": "국제표준이나 품질 보증이 아니다. 기존 조사와 합의가 있는데 매번 전체 프로젝트를 처음부터 조사하는 절차로 만들지 않는다.",
+        "nodes": [
+          "20:3737"
+        ]
+      },
+      {
+        "id": "D07",
+        "name": "Nielsen Norman Group 10 Usability Heuristics",
+        "url": "https://www.nngroup.com/articles/ten-usability-heuristics/",
+        "status": "기본 권고",
+        "limits": "원문 스스로 구체 규격이 아닌 넓은 경험칙이라고 설명한다. 실제 사용자 관찰을 대체하지 않고 법칙별 효과를 앱의 학습 효과로 옮기지 않는다.",
+        "nodes": [
+          "20:3755"
+        ]
+      },
+      {
+        "id": "D08",
+        "name": "GOV.UK Creating an experience map",
+        "url": "https://www.gov.uk/service-manual/user-research/creating-an-experience-map",
+        "status": "기본 권고",
+        "limits": "공공 서비스 맥락의 방법이므로 현재 개인 공부 도구에 필요한 수준으로 축소한다. 실제로 관찰하지 않은 감정과 행동을 사실로 채우지 않는다.",
+        "nodes": [
+          "20:3774"
+        ]
+      },
+      {
+        "id": "D09",
+        "name": "Material Design 3 Foundations",
+        "url": "https://m3.material.io/foundations/",
+        "status": "참고",
+        "limits": "동적 상세 페이지의 전 본문은 읽지 않았다. M3의 외형·둥근 모서리·플랫폼 관행을 픽셀 정체성보다 우선하거나 관련 라이브러리를 자동 도입하지 않는다.",
+        "nodes": [
+          "20:3793"
+        ]
+      },
+      {
+        "id": "D10",
+        "name": "Apple Human Interface Guidelines — Motion",
+        "url": "https://developer.apple.com/design/human-interface-guidelines/motion",
+        "status": "참고",
+        "limits": "일반 HIG 페이지는 동적 본문 추출이 제한됐다. Apple 플랫폼 고유 외형이나 Liquid Glass가 웹앱의 목표 미감이 되는 것은 아니다.",
+        "nodes": [
+          "20:3811"
+        ]
+      },
+      {
+        "id": "D11",
+        "name": "IBM Carbon Themes",
+        "url": "https://www.carbondesignsystem.com/building-blocks/foundations/themes/overview",
+        "status": "참고",
+        "limits": "Carbon 전체 외형·밀도·패키지를 가져오는 권고가 아니다. 천문대 원본과 기존 사용자 설정의 역할을 유지한다.",
+        "nodes": [
+          "20:3830"
+        ]
+      },
+      {
+        "id": "D12",
+        "name": "Adobe Spectrum Design Data — Tokens",
+        "url": "https://opensource.adobe.com/spectrum-design-data/tokens/",
+        "status": "참고",
+        "limits": "Spectrum 외형 복제나 전체 React Spectrum 설치 권고가 아니다. 이전 Spectrum 페이지 일부는 오류가 있어 현재 공식 데이터 문서를 함께 확인했다.",
+        "nodes": [
+          "20:3848"
+        ]
+      },
+      {
+        "id": "D13",
+        "name": "Figma variables, collections and modes",
+        "url": "https://help.figma.com/hc/en-us/articles/14506821864087-Overview-of-variables-collections-and-modes",
+        "status": "기본 권고",
+        "limits": "모드 수는 요금제에 의존한다. 로컬 앱 JSON과 자동 양방향 동기화된다는 뜻이 아니며 연결 코드를 별도로 검증해야 한다.",
+        "nodes": [
+          "20:3866"
+        ]
+      },
+      {
+        "id": "D14",
+        "name": "Figma variants",
+        "url": "https://help.figma.com/hc/en-us/articles/360056440594-Create-and-use-variants",
+        "status": "기본 권고",
+        "limits": "파일 편집 권한이 필요하고 라이브러리 발행은 유료 요금제 조건이 있다. 아이콘 종류마다 변형을 불리는 방식 대신 교체 속성을 검토한다.",
+        "nodes": [
+          "20:3885"
+        ]
+      },
+      {
+        "id": "D15",
+        "name": "Figma Code Connect",
+        "url": "https://developers.figma.com/docs/code-connect/",
+        "status": "조건부",
+        "limits": "Organization/Enterprise의 Dev 또는 Full seat가 필요하다. 전체 앱 자동 복원·양방향 동기화·백엔드 구현이 아니다. 사용 가능 조건 전에는 노드/코드/Storybook URL 대응표로 충분하다.",
+        "nodes": [
+          "20:3903"
+        ]
+      },
+      {
+        "id": "D16",
+        "name": "Storybook design integrations",
+        "url": "https://storybook.js.org/docs/sharing/design-integrations",
+        "status": "기존 유지",
+        "limits": "Figma 안에 Storybook을 임베드하는 Connect 플러그인은 Chromatic 발행이 필요하다. 로컬 비교와 별도 외부 발행/요금/접근 권한을 구별한다.",
+        "nodes": [
+          "20:3921"
+        ]
+      },
+      {
+        "id": "D17",
+        "name": "Figma MCP rate limits and access",
+        "url": "https://developers.figma.com/docs/figma-mcp-server/rate-limits-access/",
+        "status": "조건부",
+        "limits": "한도는 변경 가능하다. REST API의 Starter 파일 월6회 예시와 혼동하지 않는다. 현재 계정의 실제 잔여/권한은 이번 연구에서 조회하지 않았다.",
+        "nodes": [
+          "20:3939"
+        ]
+      },
+      {
+        "id": "D18",
+        "name": "W3C Korean Layout Requirements",
+        "url": "https://www.w3.org/TR/klreq/",
+        "status": "기본 권고",
+        "limits": "W3C Recommendation이 아니고 진행 중인 Group Note Draft이다. 브라우저 구현 해법이나 IME 실제 동작의 보증이 아니며 영문판이 권위 있는 판본이다.",
+        "nodes": [
+          "20:3957"
+        ]
+      },
+      {
+        "id": "D19",
+        "name": "CSS Color Module Level 4",
+        "url": "https://www.w3.org/TR/css-color-4/",
+        "status": "조건부",
+        "limits": "최종 Recommendation이라고 부르지 않는다. 색 공간 선택만으로 WCAG 대비가 충족되지 않으며 실제 브라우저·색역과 대체값을 확인해야 한다.",
+        "nodes": [
+          "20:3975"
+        ]
+      },
+      {
+        "id": "D20",
+        "name": "Pretendard",
+        "url": "https://github.com/orioncactus/pretendard",
+        "status": "조건부",
+        "limits": "기존 사용자 서체를 강제로 교체하지 않는다. 실제 배포 파일·subset/용량·수식/코드 fallback·라이선스 의무를 선택 전에 확인한다.",
+        "nodes": [
+          "20:3993"
+        ]
+      },
+      {
+        "id": "D21",
+        "name": "Laws of UX",
+        "url": "https://lawsofux.com/",
+        "status": "참고",
+        "limits": "묶인 항목의 근거와 지위는 서로 다르다. Miller 7±2를 메뉴 수 상한으로, 모든 선택 감소를 사용성 향상으로 일반화하지 않는다. 핵심 결정은 원 연구/공식 기준을 추가 확인한다.",
+        "nodes": [
+          "20:4011"
+        ]
+      },
+      {
+        "id": "D22",
+        "name": "Awwwards",
+        "url": "https://www.awwwards.com/",
+        "status": "참고",
+        "limits": "홈과 공식 PDF 직접 열기는 오류/시간초과였다. 이번에 수상작 전수/직접 조작을 확인하지 않았다. 수상은 공부 앱의 장기 사용성과 접근성 통과 증거가 아니다.",
+        "nodes": [
+          "20:4029"
+        ]
+      },
+      {
+        "id": "D23",
+        "name": "Mobbin",
+        "url": "https://mobbin.com/",
+        "status": "참고",
+        "limits": "로그인 뒤 전체 라이브러리·유료 범위·개별 앱의 실제 사용성을 확인하지 않았다. 화면 캡처는 실패/저장/접근성 동작 증거가 아니다.",
+        "nodes": [
+          "20:4047"
+        ]
+      },
+      {
+        "id": "D24",
+        "name": "NASA Eyes",
+        "url": "https://science.nasa.gov/eyes/",
+        "status": "참고",
+        "limits": "이번에 3D 런타임을 직접 조작하지 않았다. 천문대 장식 엔진을 NASA 데이터/천체 물리 시뮬레이션으로 포장하거나 전 앱을 3D로 바꾸지 않는다.",
+        "nodes": [
+          "20:4065"
+        ]
+      },
+      {
+        "id": "D25",
+        "name": "Bruno Simon portfolio",
+        "url": "https://bruno-simon.com/",
+        "status": "참고",
+        "limits": "이번에 렌더링 성능/실제 조작을 직접 시험하지 않았다. 자동차 조작 같은 포트폴리오의 진입 비용을 반복 공부 입력에 강제하지 않는다. 자산별 사용 권리를 별도 확인한다.",
+        "nodes": [
+          "20:4083"
+        ]
+      },
+      {
+        "id": "D26",
+        "name": "Fitts 법칙의 HCI 적용 연구",
+        "url": "https://www.yorku.ca/mack/hci1992.html",
+        "status": "기본 권고",
+        "limits": "모든 버튼을 크게 만들라는 규칙이 아니다. 입력 기기·정확도·인접 목표·실제 과업이 다르면 계수와 적용을 확인해야 한다. 1954 원 논문의 서지와 1992 HCI 논문을 구별한다.",
+        "nodes": [
+          "20:4101"
+        ]
+      },
+      {
+        "id": "D27",
+        "name": "Hick 1952 선택 반응 연구",
+        "url": "https://journals.sagepub.com/doi/pdf/10.1080/17470215208416600",
+        "status": "기본 권고",
+        "limits": "유료 논문 본문은 읽지 않았다. 메뉴 항목을 무조건 삭제하거나 깊숙이 숨기라는 결론이 아니다. 숙련·의미·검색·선택 빈도에 따라 실제 결정 시간을 확인한다.",
+        "nodes": [
+          "20:4119"
+        ]
+      },
+      {
+        "id": "D28",
+        "name": "Palmer 1992 공통 영역 지각 연구",
+        "url": "https://www.sciencedirect.com/science/article/pii/001002859290014S",
+        "status": "기본 권고",
+        "limits": "유료 본문 미열람. 게슈탈트 전체를 이 한 연구로 검증하지 않으며 모든 구역에 두꺼운 픽셀 카드를 둘 이유로 사용하지 않는다. 원문상의 실제 의미 관계와 시각 묶음을 대조한다.",
+        "nodes": [
+          "20:4137"
+        ]
+      },
+      {
+        "id": "F01",
+        "name": "React 상태 설계",
+        "url": "https://react.dev/learn/managing-state",
+        "status": "기존 유지",
+        "limits": "학습 원장과 서버 권한을 컴포넌트 상태로 대체하지 않는다.",
+        "nodes": [
+          "20:4188"
+        ]
+      },
+      {
+        "id": "F02",
+        "name": "HTML dialog",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dialog",
+        "status": "기본 권고",
+        "limits": "기존 Modal의 초안/초점 복귀를 확인한 뒤 변경한다. 기본 요소 사용만으로 전체 접근성이 보장되지 않는다.",
+        "nodes": [
+          "20:4207"
+        ]
+      },
+      {
+        "id": "F03",
+        "name": "Popover API",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/Popover_API",
+        "status": "기본 권고",
+        "limits": "모달과 혼동하지 않는다. 최신 세부 기능은 대상 브라우저에서 확인한다.",
+        "nodes": [
+          "20:4226"
+        ]
+      },
+      {
+        "id": "F04",
+        "name": "CSS Container Queries",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Containment/Container_queries",
+        "status": "기본 권고",
+        "limits": "containment의 크기 계산 영향과 미지원 대체 배치를 확인한다.",
+        "nodes": [
+          "20:4245"
+        ]
+      },
+      {
+        "id": "F05",
+        "name": "React Aria",
+        "url": "https://react-aria.adobe.com/",
+        "status": "조건부",
+        "limits": "날짜/콤보박스 등 필요한 부품만 후보로 삼고 기존 스타일·상태와 중복하지 않는다.",
+        "nodes": [
+          "20:4265"
+        ]
+      },
+      {
+        "id": "F06",
+        "name": "Radix Primitives",
+        "url": "https://www.radix-ui.com/primitives/docs/overview/introduction",
+        "status": "조건부",
+        "limits": "React Aria와 같은 역할의 부품을 무조건 중복 도입하지 않는다. 앱 조합의 접근성 검증은 별도다.",
+        "nodes": [
+          "20:4283"
+        ]
+      },
+      {
+        "id": "F07",
+        "name": "shadcn/ui",
+        "url": "https://ui.shadcn.com/docs",
+        "status": "참고",
+        "limits": "완성 외형을 천문대 기본값으로 복제하지 않는다. 가져온 코드 유지보수와 기존 CSS/토큰 호환성을 부담한다.",
+        "nodes": [
+          "20:4301"
+        ]
+      },
+      {
+        "id": "F08",
+        "name": "Floating UI",
+        "url": "https://floating-ui.com/docs/getting-started",
+        "status": "조건부",
+        "limits": "단순 팝오버는 native API 우선. positions-only 패키지는 완성 메뉴/콤보박스를 대신하지 않는다.",
+        "nodes": [
+          "20:4319"
+        ]
+      },
+      {
+        "id": "F09",
+        "name": "TanStack Query",
+        "url": "https://tanstack.com/query/latest/docs/framework/react/overview",
+        "status": "조건부",
+        "limits": "기존 repository/outbox/CAS와 초안의 단일 책임을 정한 뒤 검토한다. durable 저장/충돌 해결 자체를 보장하지 않는다.",
+        "nodes": [
+          "20:4337"
+        ]
+      },
+      {
+        "id": "F10",
+        "name": "TanStack Virtual",
+        "url": "https://tanstack.com/virtual/latest/docs/introduction",
+        "status": "조건부",
+        "limits": "누적 목록의 실제 병목이 있을 때 도입한다. 포커스·브라우저 찾기·높이 변화·스크롤 복귀를 검증한다.",
+        "nodes": [
+          "20:4356"
+        ]
+      },
+      {
+        "id": "F11",
+        "name": "XState",
+        "url": "https://stately.ai/docs/xstate",
+        "status": "조건부",
+        "limits": "단순 열기/닫기에 강제하지 않는다. 현재 문서의 alpha 안내와 안정 버전 문서를 구분하고 실제 도입 때 버전을 고정한다.",
+        "nodes": [
+          "20:4374"
+        ]
+      },
+      {
+        "id": "F12",
+        "name": "Zustand",
+        "url": "https://zustand.docs.pmnd.rs/learn/getting-started/introduction",
+        "status": "조건부",
+        "limits": "원장/초안/권한의 두 번째 저장 원본을 만들지 않는다. 기존 reducer/context로 충분하면 추가하지 않는다.",
+        "nodes": [
+          "20:4393"
+        ]
+      },
+      {
+        "id": "F13",
+        "name": "Motion 접근성",
+        "url": "https://motion.dev/docs/react-accessibility",
+        "status": "기존 유지",
+        "limits": "기존 motion 패키지와 토큰을 유지한다. core API와 유료 Motion+ 자료/기능은 구분한다.",
+        "nodes": [
+          "20:4411"
+        ]
+      },
+      {
+        "id": "F14",
+        "name": "GSAP context",
+        "url": "https://gsap.com/docs/v3/GSAP/gsap.context()/",
+        "status": "기존 유지",
+        "limits": "Motion/CSS와 같은 속성을 동시에 제어하지 않는다. context는 재생 제어용 timeline과 역할이 다르다.",
+        "nodes": [
+          "20:4431"
+        ]
+      },
+      {
+        "id": "F15",
+        "name": "GSAP Standard No Charge License",
+        "url": "https://gsap.com/community/standard-license/",
+        "status": "참고",
+        "limits": "MIT와 동일한 라이선스로 표기하지 않는다. 금지 용도 등 현행 조건과 고지를 보존한다.",
+        "nodes": [
+          "20:4449"
+        ]
+      },
+      {
+        "id": "F16",
+        "name": "Rive React runtime",
+        "url": "https://rive.app/docs/runtimes/react/react",
+        "status": "기존 유지",
+        "limits": "현재 설치는 react-canvas이며 공식 quick start는 react-webgl2다. 예제 패키지를 그대로 복제하여 렌더러를 교체하지 않는다.",
+        "nodes": [
+          "20:4467"
+        ]
+      },
+      {
+        "id": "F17",
+        "name": "dotLottie React",
+        "url": "https://docs.lottiefiles.com/en/runtimes/distributions/react/v0.x",
+        "status": "기존 유지",
+        "limits": "플레이어와 마켓 작품의 라이선스는 별개다. 기존 지연 로드·정지·실패 복귀·로컬 에셋 제공을 보존한다.",
+        "nodes": [
+          "20:4485"
+        ]
+      },
+      {
+        "id": "F18",
+        "name": "PixiJS 성능 지침",
+        "url": "https://pixijs.com/8.x/guides/concepts/performance-tips",
+        "status": "조건부",
+        "limits": "다수 2D 장면/스프라이트 관리가 기존 WebGL2+SVG보다 이득일 때만 비교한다. culling이 항상 빨라지는 것은 아니다.",
+        "nodes": [
+          "20:4503"
+        ]
+      },
+      {
+        "id": "F19",
+        "name": "Three.js GPU 자원 정리",
+        "url": "https://threejs.org/manual/pages/cleanup.html",
+        "status": "조건부",
+        "limits": "입체 장면·모델·광원 요구가 생길 때 후보로 삼는다. 현재 2D 천문대를 전면 이관할 근거는 없다.",
+        "nodes": [
+          "20:4521"
+        ]
+      },
+      {
+        "id": "F20",
+        "name": "React Three Fiber 성능 확장",
+        "url": "https://github.com/pmndrs/react-three-fiber/blob/master/docs/advanced/scaling-performance.mdx",
+        "status": "조건부",
+        "limits": "Three.js를 채택할 때 검토한다. 문서 예시의 물체 수·FPS를 이 앱의 성능 보장이나 고정 예산으로 옮기지 않는다.",
+        "nodes": [
+          "20:4539"
+        ]
+      },
+      {
+        "id": "F21",
+        "name": "Khronos WebGL",
+        "url": "https://www.khronos.org/webgl/",
+        "status": "기존 유지",
+        "limits": "표준 존재와 개별 기기 GPU 가용성은 다르다. 현재 SVG fallback과 context 복구를 유지한다.",
+        "nodes": [
+          "20:4558"
+        ]
+      },
+      {
+        "id": "F22",
+        "name": "WebGPU API",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/WebGPU_API",
+        "status": "조건부",
+        "limits": "확인 시점 MDN은 Limited availability로 안내한다. GPU 계산 병목과 실제 대상 기기 이득이 입증될 때 선택 경로로 검토한다.",
+        "nodes": [
+          "20:4578"
+        ]
+      },
+      {
+        "id": "F23",
+        "name": "OffscreenCanvas",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvas",
+        "status": "조건부",
+        "limits": "메시지 전달 비용·포인터 동기화·해당 렌더러 지원·종료/복구를 포함해 비교한다. DOM과 사용자 입력의 책임은 별도다.",
+        "nodes": [
+          "20:4598"
+        ]
+      },
+      {
+        "id": "F24",
+        "name": "WebGL best practices",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API/WebGL_best_practices",
+        "status": "기본 권고",
+        "limits": "CPU 제출 시간만으로 GPU 시간/FPS를 단정하지 않는다. 실제 장면/브라우저의 측정 결과로 조정한다.",
+        "nodes": [
+          "20:4617"
+        ]
+      },
+      {
+        "id": "F25",
+        "name": "Page Visibility API",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API",
+        "status": "기본 권고",
+        "limits": "문서의 visibility와 요소가 화면 안에 있는지는 별개다. 사용자 수동 정지 선택을 복귀 때 덮지 않는다.",
+        "nodes": [
+          "20:4637"
+        ]
+      },
+      {
+        "id": "F26",
+        "name": "React Profiler",
+        "url": "https://react.dev/reference/react/Profiler",
+        "status": "기본 권고",
+        "limits": "측정 자체의 비용이 있고 일반 production build에서 기본 비활성이다. GPU·네트워크·실물 배터리 측정을 대신하지 않는다.",
+        "nodes": [
+          "20:4656"
+        ]
+      },
+      {
+        "id": "F27",
+        "name": "W3C Web Animations",
+        "url": "https://www.w3.org/TR/web-animations-1/",
+        "status": "기존 유지",
+        "limits": "현재 CSS/GPU 공통 시계에 적용한다. 규격의 상태와 각 API 지원은 별도로 확인한다.",
+        "nodes": [
+          "20:4674"
+        ]
+      },
+      {
+        "id": "F28",
+        "name": "Rive 편집기 요금과 내보내기",
+        "url": "https://rive.app/pricing",
+        "status": "참고",
+        "limits": "기존 런타임 사용과 새 에셋 제작 조건을 구분한다. 가격/계획은 구매 시 재확인하며 조사로 구매를 실행하지 않는다.",
+        "nodes": [
+          "20:4693"
+        ]
+      },
+      {
+        "id": "F29",
+        "name": "Aseprite Sprite Sheet",
+        "url": "https://www.aseprite.org/docs/sprite-sheet/",
+        "status": "조건부",
+        "limits": "실제 픽셀 원본 제작이 필요할 때 검토한다. 편집기 사용 조건과 가져오는 외부 자산의 권리는 별개다. 설치·구매하지 않았다.",
+        "nodes": [
+          "20:4711"
+        ]
+      },
+      {
+        "id": "F30",
+        "name": "Piskel",
+        "url": "https://github.com/piskelapp/piskel",
+        "status": "조건부",
+        "limits": "공식 README는 모바일 미지원이라고 명시한다. iPad 중심 제작 도구로 가정하지 않는다. 공개 작품의 재사용 권리는 편집기 코드 라이선스와 별개다.",
+        "nodes": [
+          "20:4729"
+        ]
+      },
+      {
+        "id": "F31",
+        "name": "CSS image-rendering",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/image-rendering",
+        "status": "기본 권고",
+        "limits": "pixelated는 비정수 배율에서 최근접 정수 확대 뒤 보간될 수 있다. DPR·배율·필터·좌표 정렬을 실제로 확인하며 사진·일반 본문에 일괄 적용하지 않는다.",
+        "nodes": [
+          "20:4747"
+        ]
+      },
+      {
+        "id": "Q01",
+        "name": "Vitest",
+        "url": "https://vitest.dev/guide/",
+        "status": "기존 유지",
+        "limits": "설치 선언과 실제 테스트 통과는 다르다. DOM 모사 결과로 브라우저·서버·기기 동작을 보증하지 않는다.",
+        "nodes": [
+          "22:72"
+        ]
+      },
+      {
+        "id": "Q02",
+        "name": "Testing Library",
+        "url": "https://testing-library.com/docs/guiding-principles/",
+        "status": "기존 유지",
+        "limits": "자체 문서도 모사 환경과 실제 사용의 차이를 인정한다. 기존 @testing-library 패키지를 재사용한다.",
+        "nodes": [
+          "22:90"
+        ]
+      },
+      {
+        "id": "Q03",
+        "name": "Playwright",
+        "url": "https://playwright.dev/docs/best-practices",
+        "status": "기존 유지",
+        "limits": "Chromium·Firefox·WebKit 실행과 기기 모사는 물리 iPhone/iPad·OS 한글 조합·실제 Sync 증거를 대신하지 않는다.",
+        "nodes": [
+          "22:108"
+        ]
+      },
+      {
+        "id": "Q04",
+        "name": "axe-core",
+        "url": "https://github.com/dequelabs/axe-core",
+        "status": "기존 유지",
+        "limits": "자동 검출의 위반 0개가 전체 접근성 준수는 아니다. 관련 초점·키보드·확대·터치 조작을 직접 확인한다.",
+        "nodes": [
+          "22:126"
+        ]
+      },
+      {
+        "id": "Q05",
+        "name": "Lighthouse",
+        "url": "https://developer.chrome.com/docs/lighthouse/overview/",
+        "status": "기존 유지",
+        "limits": "개발용 Storybook 점수는 제품 전체 성능이 아니다. 인증된 제품 빌드와 정한 조건에서 비교하며 현장 사용자 측정과 구별한다.",
+        "nodes": [
+          "22:145"
+        ]
+      },
+      {
+        "id": "Q06",
+        "name": "Core Web Vitals",
+        "url": "https://web.dev/articles/vitals",
+        "status": "기본 권고",
+        "limits": "모바일/데스크톱 구분과 실제 이용의 75백분위 기준이다. 합성 단일 실행이나 전체 UX·학습 효과의 점수가 아니다.",
+        "nodes": [
+          "22:164"
+        ]
+      },
+      {
+        "id": "Q07",
+        "name": "OWASP ASVS 5.0.0",
+        "url": "https://owasp.org/projects/asvs",
+        "status": "기본 권고",
+        "limits": "해당 앱의 인증·권한·입력·세션·자료 보호 범위에 요구 ID를 연결한다. 조사만으로 준수 인증이나 전체 감사 완료를 주장하지 않는다.",
+        "nodes": [
+          "22:183"
+        ]
+      },
+      {
+        "id": "Q08",
+        "name": "OWASP Top 10:2025",
+        "url": "https://top10.owasp.org/2025/",
+        "status": "참고",
+        "limits": "위험 분류와 ASVS의 검증 요구는 역할이 다르다. 열 가지를 읽는 것으로 앱 보안을 검증할 수 없다.",
+        "nodes": [
+          "22:202"
+        ]
+      },
+      {
+        "id": "Q09",
+        "name": "CSP / Trusted Types",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP",
+        "status": "기본 권고",
+        "limits": "CSP는 안전한 렌더링/정화를 대체하지 않는다. Trusted Types는 MDN Baseline 2026이나 기존 브라우저·라이브러리와 호환 검증이 필요하다.",
+        "nodes": [
+          "22:220"
+        ]
+      },
+      {
+        "id": "Q10",
+        "name": "Supabase Auth / JWT",
+        "url": "https://supabase.com/docs/guides/auth/jwts",
+        "status": "기존 유지",
+        "limits": "JWT 디코딩만으로 인증을 확정하지 않는다. 만료·서명·허용 발급자와 실제 세션 정책을 확인하고 비밀키를 프론트에 넣지 않는다.",
+        "nodes": [
+          "22:238"
+        ]
+      },
+      {
+        "id": "Q11",
+        "name": "Supabase RLS / Data API grants",
+        "url": "https://supabase.com/docs/guides/database/postgres/row-level-security",
+        "status": "기존 유지",
+        "limits": "로그인한 역할이라는 이유만으로 모든 행을 허용하지 않는다. 보기·RPC·Storage·AI 전용 권한도 실제 경로에 맞춰 검토한다.",
+        "nodes": [
+          "22:257"
+        ]
+      },
+      {
+        "id": "Q12",
+        "name": "PostgreSQL transactions / isolation",
+        "url": "https://www.postgresql.org/docs/current/transaction-iso.html",
+        "status": "기존 유지",
+        "limits": "현재 앱의 opId/payloadHash/expectedVersion 계약을 실제 DB 원자적 연산에 연결해야 한다. 브라우저 잠금만으로 다기기 중복·충돌을 보장하지 않는다.",
+        "nodes": [
+          "22:276"
+        ]
+      },
+      {
+        "id": "Q13",
+        "name": "IndexedDB",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API",
+        "status": "기존 유지",
+        "limits": "현재 일부 첨부 경로 사용과 전체 원장/outbox 전환은 다르다. 원본·초안·미전송 자료는 캐시와 분리하고 서버 저장으로 표시하지 않는다.",
+        "nodes": [
+          "22:295"
+        ]
+      },
+      {
+        "id": "Q14",
+        "name": "Dexie.js",
+        "url": "https://dexie.org/docs/Tutorial/Design",
+        "status": "조건부",
+        "limits": "전체 로컬 자료 계층을 정비할 때 후보이며 기존 래퍼로 충분하면 추가하지 않는다. Dexie Cloud 도입·계정·자료 전송은 별도 결정이다.",
+        "nodes": [
+          "22:314"
+        ]
+      },
+      {
+        "id": "Q15",
+        "name": "Origin Private File System",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/File_System_API/Origin_private_file_system",
+        "status": "조건부",
+        "limits": "파일이 사용자의 일반 폴더에 보이는 내보내기가 아니다. 용량 제한·삭제·백업·호환성·마이그레이션 비용을 별도로 다룬다.",
+        "nodes": [
+          "22:332"
+        ]
+      },
+      {
+        "id": "Q16",
+        "name": "WebKit Storage Policy / Storage API",
+        "url": "https://webkit.org/blog/14403/updates-to-storage-policy/",
+        "status": "기본 권고",
+        "limits": "persist 요청과 quota 상한은 영구 보관이나 쓰기 성공 보증이 아니다. 원문 보존·내보내기·복원과 QuotaExceededError 대응이 필요하다.",
+        "nodes": [
+          "22:351"
+        ]
+      },
+      {
+        "id": "Q17",
+        "name": "Service Worker / Workbox",
+        "url": "https://developer.chrome.com/docs/workbox/",
+        "status": "조건부",
+        "limits": "정상 온라인 저장 검증 이후 필요 범위에 도입한다. 인증 API 무차별 캐시, 강제 새로고침에 따른 초안 손실, 백그라운드 재시도 보장을 피한다.",
+        "nodes": [
+          "22:370"
+        ]
+      },
+      {
+        "id": "Q18",
+        "name": "Yjs",
+        "url": "https://docs.yjs.dev/",
+        "status": "조건부",
+        "limits": "동시에 같은 문서를 편집할 실제 요구가 있을 때 비교한다. 인증·서버 권한·자료 의미·보존 이력·백업을 대체하지 않는다.",
+        "nodes": [
+          "22:388"
+        ]
+      },
+      {
+        "id": "Q19",
+        "name": "Automerge / Automerge Repo",
+        "url": "https://automerge.org/docs/reference/repositories/",
+        "status": "조건부",
+        "limits": "전체 자료 모델 전환 비용이 크다. Yjs와 같은 목적의 후보로 비교하고 기존 원장을 자동 대체하지 않는다.",
+        "nodes": [
+          "22:407"
+        ]
+      },
+      {
+        "id": "Q20",
+        "name": "GitHub Actions Secure Use",
+        "url": "https://docs.github.com/en/actions/reference/security/secure-use",
+        "status": "기본 권고",
+        "limits": "고정 자체로 코드 안전을 보증하지 않는다. 검증된 공식 출처·업데이트 검토·배포 권한 분리와 함께 유지한다.",
+        "nodes": [
+          "22:426"
+        ]
+      },
+      {
+        "id": "Q21",
+        "name": "GitHub Dependency Review",
+        "url": "https://docs.github.com/en/code-security/concepts/supply-chain-security/dependency-review",
+        "status": "기본 권고",
+        "limits": "저장소 공개 여부와 보안 상품에 따라 사용 조건이 다르다. 알려지지 않은 취약점·전체 라이선스 적합성을 자동 보증하지 않는다.",
+        "nodes": [
+          "22:444"
+        ]
+      },
+      {
+        "id": "Q22",
+        "name": "OpenTelemetry JavaScript",
+        "url": "https://opentelemetry.io/docs/languages/js/",
+        "status": "조건부",
+        "limits": "공식 문서는 브라우저 계측을 experimental로 명시한다. 수집기·보관·전송·운영 비용 및 개인정보 최소화가 필요하다.",
+        "nodes": [
+          "22:462"
+        ]
+      },
+      {
+        "id": "Q23",
+        "name": "Sentry JavaScript SDK",
+        "url": "https://github.com/getsentry/sentry-javascript",
+        "status": "조건부",
+        "limits": "문서 웹 조회가 text/markdown 형식 오류로 실패해 개인정보 설정·가격은 이번에 확정하지 않았다. 본문·토큰·개인정보 전송 없는 설계를 확인한 뒤에만 도입한다.",
+        "nodes": [
+          "22:480"
+        ]
+      },
+      {
+        "id": "Q24",
+        "name": "Mock Service Worker",
+        "url": "https://mswjs.io/docs/",
+        "status": "조건부",
+        "limits": "기존 Playwright route나 repository fake로 충분하면 추가하지 않는다. 모의 서버 통과와 실제 인증·저장·권한 통과를 구별한다.",
+        "nodes": [
+          "22:498"
+        ]
+      },
+      {
+        "id": "Q25",
+        "name": "fast-check",
+        "url": "https://fast-check.dev/docs/introduction/",
+        "status": "조건부",
+        "limits": "ID·이력·중복 요청·복원의 불변조건처럼 조합이 많은 순수 로직에 적합하다. 명세·입력 생성기가 틀리면 시험도 제한된다.",
+        "nodes": [
+          "22:517"
+        ]
+      },
+      {
+        "id": "Q26",
+        "name": "Supabase Database Backups",
+        "url": "https://supabase.com/docs/guides/platform/backups",
+        "status": "기본 권고",
+        "limits": "앱 내보내기·첨부·로컬 미전송 자료를 따로 보관해야 한다. 현재 요금제·복원 가능 시점·운영 복원 성공은 조회하지 않았다.",
+        "nodes": [
+          "22:536"
+        ]
+      },
+      {
+        "id": "Q27",
+        "name": "Supabase Realtime Postgres Changes",
+        "url": "https://supabase.com/docs/guides/realtime/postgres-changes",
+        "status": "조건부",
+        "limits": "현재 아키텍처의 변경 알림 보조로 사용하며 누락 없는 동기화 원장으로 간주하지 않는다. 재접속 후 기준 상태 재조회·버전 대조가 필요하다.",
+        "nodes": [
+          "22:556"
+        ]
+      },
+      {
+        "id": "Q28",
+        "name": "Web Workers",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers",
+        "status": "조건부",
+        "limits": "OCR·큰 그래프 배치·파싱의 병목을 측정한 뒤 사용한다. 자료 복사·전송 비용, 취소, 오래된 결과 무시, 오류 복구를 설계한다.",
+        "nodes": [
+          "22:576"
+        ]
+      },
+      {
+        "id": "S01",
+        "name": "Plotly.js",
+        "url": "https://plotly.com/javascript/",
+        "status": "기존 유지",
+        "limits": "현재 통계·수식 렌더러를 유지하고 과업별 차트와 값 목록을 연결한다. 큰 번들·WebGL 자원·시점 보존을 점검한다.",
+        "nodes": [
+          "22:633"
+        ]
+      },
+      {
+        "id": "S02",
+        "name": "Vega-Lite",
+        "url": "https://vega.github.io/vega-lite/",
+        "status": "조건부",
+        "limits": "여러 분석 뷰를 규격으로 생성해야 할 때 비교한다. 현재 Plotly와 역할이 겹치므로 기본 추가하지 않는다.",
+        "nodes": [
+          "22:651"
+        ]
+      },
+      {
+        "id": "S03",
+        "name": "Apache ECharts",
+        "url": "https://echarts.apache.org/en/index.html",
+        "status": "조건부",
+        "limits": "현재 차트로 해결되지 않는 실측 요구가 있을 때 비교한다. 자동으로 더 빠르거나 더 정확하다고 가정하지 않는다.",
+        "nodes": [
+          "22:669"
+        ]
+      },
+      {
+        "id": "S04",
+        "name": "Observable Plot",
+        "url": "https://observablehq.github.io/plot/",
+        "status": "참고",
+        "limits": "자료 탐색·소규모 다중 차트 설계 참고. Observable 유료 서비스와 라이브러리를 구별한다.",
+        "nodes": [
+          "22:687"
+        ]
+      },
+      {
+        "id": "S05",
+        "name": "From Data to Viz",
+        "url": "https://www.data-to-viz.com/",
+        "status": "참고",
+        "limits": "차트 선택 후보를 찾는 데 활용한다. 공식 표준이나 모든 상황의 최적 차트를 증명하는 자료는 아니다.",
+        "nodes": [
+          "22:705"
+        ]
+      },
+      {
+        "id": "S06",
+        "name": "Visualization Analysis and Design — 저자 자료",
+        "url": "https://www.cs.ubc.ca/~tmm/vadbook/",
+        "status": "기본 권고",
+        "limits": "무엇을 보여 주는지·왜 보는지·어떻게 표현하는지 구분하는 설계에 참고한다. 유료 책 전체를 이번에 읽은 것은 아니다.",
+        "nodes": [
+          "22:723"
+        ]
+      },
+      {
+        "id": "S07",
+        "name": "React Flow layouting",
+        "url": "https://reactflow.dev/learn/layouting/layouting",
+        "status": "기존 유지",
+        "limits": "현재 Canvas 유지. 저장된 개인 배치와 자동 탐색 배치를 구별하며 라이브러리가 저장/권한까지 보장한다고 하지 않는다.",
+        "nodes": [
+          "22:742"
+        ]
+      },
+      {
+        "id": "S08",
+        "name": "D3 force",
+        "url": "https://d3js.org/d3-force",
+        "status": "기존 유지",
+        "limits": "연결 탐색의 자동 배치에 재사용한다. 힘 모형을 학습 의미·인과관계·보편적 최적 배치로 해석하지 않는다.",
+        "nodes": [
+          "22:760"
+        ]
+      },
+      {
+        "id": "S09",
+        "name": "ELK.js",
+        "url": "https://github.com/kieler/elkjs",
+        "status": "조건부",
+        "limits": "복잡한 계층·포트·교차선 문제에 비교한다. 단순 DAG에는 이미 선언된 Dagre를 우선 검토하고 수동 좌표를 보존한다.",
+        "nodes": [
+          "22:778"
+        ]
+      },
+      {
+        "id": "S10",
+        "name": "tldraw SDK 라이선스",
+        "url": "https://tldraw.dev/community/license",
+        "status": "조건부",
+        "limits": "개발 도구로 쓰는 것과 제품 안에 SDK를 배포하는 것을 구별한다. 공개 소스 열람을 무제한 무료 배포 허용으로 보지 않는다.",
+        "nodes": [
+          "22:796"
+        ]
+      },
+      {
+        "id": "S11",
+        "name": "Excalidraw",
+        "url": "https://github.com/excalidraw/excalidraw",
+        "status": "조건부",
+        "limits": "독립적인 자유 도해 수요가 있을 때 비교한다. 현재 React Flow의 ID·좌표·연결·이력 이전 비용과 중복 UI를 계산한다.",
+        "nodes": [
+          "22:814"
+        ]
+      },
+      {
+        "id": "S12",
+        "name": "perfect-freehand",
+        "url": "https://github.com/steveruizok/perfect-freehand",
+        "status": "기존 유지",
+        "limits": "현재 벡터 원본 점을 보존하고 표시를 재생성한다. 필압 표시가 필기 인식이나 학습 평가를 의미하지 않는다.",
+        "nodes": [
+          "22:832"
+        ]
+      },
+      {
+        "id": "S13",
+        "name": "KaTeX 옵션",
+        "url": "https://katex.org/docs/options",
+        "status": "기존 유지",
+        "limits": "기존 수식 원문과 표시를 분리하고 trust:false 정책을 유지한다. 지원하지 않는 식의 원문을 버리지 않는다.",
+        "nodes": [
+          "22:850"
+        ]
+      },
+      {
+        "id": "S14",
+        "name": "math.js 보안",
+        "url": "https://mathjs.org/docs/expressions/security.html",
+        "status": "기존 유지",
+        "limits": "허용 연산/함수와 자원 한도를 정한다. 파서 사용만으로 임의 식 실행의 안전성과 수학적 정확성이 보장되지 않는다.",
+        "nodes": [
+          "22:868"
+        ]
+      },
+      {
+        "id": "S15",
+        "name": "GeoGebra 라이선스",
+        "url": "https://www.geogebra.org/license",
+        "status": "조건부",
+        "limits": "현재 연결의 용도와 배포 형태에 맞춰 조건을 확인한다. 비상업 사용과 전체 제품/소스 파생물의 조건을 하나로 합치지 않는다.",
+        "nodes": [
+          "22:886"
+        ]
+      },
+      {
+        "id": "S16",
+        "name": "Desmos API",
+        "url": "https://www.desmos.com/api/v1.11/docs/index.html",
+        "status": "조건부",
+        "limits": "학습자가 식을 직접 탐색하는 별도 과업에 비교한다. API key·자체 호스팅 자격·이용 조건 확인 없이 기본 렌더러를 교체하지 않는다.",
+        "nodes": [
+          "22:904"
+        ]
+      },
+      {
+        "id": "S17",
+        "name": "CodeMirror 개발 저장소",
+        "url": "https://github.com/codemirror/dev",
+        "status": "기존 유지",
+        "limits": "현재 편집 경로를 재사용하고 모바일·한글 조합·선택·undo를 실제 기기에서 확인한다. 공식 guide URL은 이번 조회에서 403이었다.",
+        "nodes": [
+          "22:922"
+        ]
+      },
+      {
+        "id": "S18",
+        "name": "Monaco Editor",
+        "url": "https://github.com/microsoft/monaco-editor",
+        "status": "기존 유지",
+        "limits": "데스크톱 고급 코드 편집에 유지한다. 모바일 기본 편집기로 무조건 확대하지 않으며 VS Code 확장을 모두 실행한다고 보지 않는다.",
+        "nodes": [
+          "22:941"
+        ]
+      },
+      {
+        "id": "S19",
+        "name": "Tiptap",
+        "url": "https://tiptap.dev/docs/editor/getting-started/overview",
+        "status": "조건부",
+        "limits": "구조화 편집이 실제 필요할 때만 도입한다. 기존 평문/Markdown·수식·커서·이력 이전과 유료 확장/서비스 비용을 따로 검토한다.",
+        "nodes": [
+          "22:960"
+        ]
+      },
+      {
+        "id": "S20",
+        "name": "Lexical",
+        "url": "https://lexical.dev/docs/intro",
+        "status": "조건부",
+        "limits": "복잡한 자체 편집 UX의 대안이다. 저장 형식과 플러그인/한글 조합 검증 부담이 있어 즉시 교체하지 않는다.",
+        "nodes": [
+          "22:979"
+        ]
+      },
+      {
+        "id": "S21",
+        "name": "PDF.js",
+        "url": "https://mozilla.github.io/pdf.js/",
+        "status": "기존 유지",
+        "limits": "현재 자료 보기 경로를 유지하고 worker·페이지 지연 렌더링·취소·파일 오류를 다룬다. 스캔 이미지의 글자 인식을 PDF 렌더링과 구별한다.",
+        "nodes": [
+          "22:998"
+        ]
+      },
+      {
+        "id": "S22",
+        "name": "Tesseract.js",
+        "url": "https://github.com/naptha/tesseract.js",
+        "status": "기존 유지",
+        "limits": "기존 허용된 OCR 용도만 유지한다. 사용자 결정으로 제거한 사진→목차 OCR 경로를 복원하지 않는다. 인식 결과는 수정 가능한 초안으로 처리한다.",
+        "nodes": [
+          "22:1017"
+        ]
+      },
+      {
+        "id": "S23",
+        "name": "Mermaid 설정·보안",
+        "url": "https://mermaid.js.org/config/schema-docs/config.html",
+        "status": "조건부",
+        "limits": "설계·문서의 간결한 도해에 활용한다. 사용자/AI 도해에서 HTML·클릭 권한과 크기 한도를 통제하며 실제 Canvas를 대체하지 않는다.",
+        "nodes": [
+          "22:1035"
+        ]
+      },
+      {
+        "id": "S24",
+        "name": "Pyodide",
+        "url": "https://pyodide.org/en/stable/",
+        "status": "조건부",
+        "limits": "향후 Python 과업에 실제 필요할 때 비교한다. 현재 C/C++/C# 실행 경로의 대체가 아니며 로드·메모리·취소·파일 접근을 설계한다.",
+        "nodes": [
+          "22:1053"
+        ]
+      },
+      {
+        "id": "S25",
+        "name": "Transformers.js",
+        "url": "https://huggingface.co/docs/transformers.js/index",
+        "status": "조건부",
+        "limits": "package에 이미 선언돼 있으나 전 기능 사용/성능 확인과 구별한다. 모델 크기·라이선스·기기 메모리·정확성·AI 소유자 권한을 검토한다.",
+        "nodes": [
+          "22:1072"
+        ]
+      },
+      {
+        "id": "S26",
+        "name": "Agent Skills 명세",
+        "url": "https://agentskills.io/specification",
+        "status": "기본 권고",
+        "limits": "발동 조건과 필요한 절차를 좁혀 유지한다. 형식 호환이 품질·신뢰·도구 권한을 보증하지 않는다.",
+        "nodes": [
+          "22:1091"
+        ]
+      },
+      {
+        "id": "S27",
+        "name": "OpenAI Build skills",
+        "url": "https://developers.openai.com/plugins/build/skills",
+        "status": "기본 권고",
+        "limits": "설계/구현/검증의 반복 절차에 적용한다. 외부 스킬의 행동 지시는 사용자 권한이나 프로젝트 보존 계약을 확장하지 않는다.",
+        "nodes": [
+          "22:1109"
+        ]
+      },
+      {
+        "id": "S28",
+        "name": "Anthropic frontend-design 스킬",
+        "url": "https://raw.githubusercontent.com/anthropics/skills/main/skills/frontend-design/SKILL.md",
+        "status": "참고",
+        "limits": "정체성을 구체화하는 작업 방식만 참고한다. 천문대를 임의의 새로운 스타일로 재해석하거나 모든 조판 조언을 보편 표준으로 만들지 않는다.",
+        "nodes": [
+          "22:1127"
+        ]
+      },
+      {
+        "id": "S29",
+        "name": "Vercel React Best Practices 공개 스킬",
+        "url": "https://raw.githubusercontent.com/vercel-labs/agent-skills/main/skills/react-best-practices/SKILL.md",
+        "status": "기본 권고",
+        "limits": "현재 Vite/React에 맞는 규칙만 적용한다. Next.js·RSC·서버 액션 전용 예시를 현재 앱의 의무로 이식하지 않는다.",
+        "nodes": [
+          "22:1145"
+        ]
+      },
+      {
+        "id": "S30",
+        "name": "Model Context Protocol",
+        "url": "https://modelcontextprotocol.io/specification/2026-07-28",
+        "status": "참고",
+        "limits": "이미 연결된 Figma/GitHub/Linear의 필요한 기능을 사용한다. 프로토콜 연결이 계정 권한·공유·운영 변경 승인을 뜻하지 않는다.",
+        "nodes": [
+          "22:1163"
+        ]
+      },
+      {
+        "id": "S31",
+        "name": "Context7",
+        "url": "https://github.com/upstash/context7",
+        "status": "조건부",
+        "limits": "라이브러리별 최신 문서 검색이 반복 병목일 때 비교한다. 기존 공식 검색과 중복 여부, 버전 일치·계정 조건·전송 내용을 먼저 확인한다.",
+        "nodes": [
+          "22:1181"
+        ]
+      },
+      {
+        "id": "S32",
+        "name": "OpenAI Structured Outputs",
+        "url": "https://developers.openai.com/api/docs/guides/structured-outputs",
+        "status": "기존 유지",
+        "limits": "기존 AI 생성 결과를 자료 계약으로 검사하고 원문과 분리한다. 정형 JSON을 정답·완료·학습 효과로 승격하지 않는다.",
+        "nodes": [
+          "22:1199"
+        ]
+      },
+      {
+        "id": "S33",
+        "name": "OpenAI 평가 설계 권고",
+        "url": "https://developers.openai.com/api/docs/guides/evaluation-best-practices",
+        "status": "기본 권고",
+        "limits": "기존 사례와 자체 실행기로 평가 원칙을 사용한다. Evals 플랫폼은 2026-10-31 읽기 전용, 11-30 종료 예정 안내가 있어 새 핵심 의존으로 채택하지 않는다.",
+        "nodes": [
+          "22:1218"
+        ]
+      },
+      {
+        "id": "S34",
+        "name": "MathLive",
+        "url": "https://github.com/arnog/mathlive",
+        "status": "조건부",
+        "limits": "수식 입력 부담이 실제 문제일 때 후보로 삼는다. 한국어/일반 키보드/모바일 포커스·LaTeX 원문·기존 KaTeX 역할을 확인한다.",
+        "nodes": [
+          "22:1237"
+        ]
+      }
+    ],
+    "adopted": [
+      "| D01 | 미니멀리즘 | 과업에 불필요한 내용·장식을 덜고 중요한 정보·행동을 드러낸다. 필요한 기능·자유 글·예외를 숨기지 않는다. |",
+      "| D02 | 뉴몰피즘 | 같은 표면에서 올라오거나 눌린 모습과 밝고 어두운 그림자로 재질·상태를 표현하는 후보. 낮은 대비와 경계 불명확을 보완하며 그림자만으로 조작을 설명하지 않는다. |",
+      "| D03 | 브루탈리즘 | 덜 꾸민 구조, 직접적인 글자·링크·격자를 표현 후보로 삼는다. 혼란을 만드는 안티디자인과 구별한다. |",
+      "| D04 | 네오브루탈리즘 | 두꺼운 경계, 강한 색 블록, 큰 글자, 단단한 어긋난 그림자를 목적에 맞게 사용한다. 읽기·탐색·일관성을 유지한다. |",
+      "| D05 | 플랫 디자인 | 불필요한 실물 질감·입체 장식을 줄인다. 눌러야 할 요소의 경계·밑줄·상태 등 조작 신호는 유지한다. 미니멀리즘과 같은 개념으로 보지 않는다. |",
+      "| D06 | 머테리얼 디자인 | 표면/높이 관계와 공통 토큰·부품·상태·배치·움직임·접근성의 연결을 참고한다. 외형 또는 전체 라이브러리 강제 이식으로 읽지 않는다. |",
+      "| D07 | 벤투 UI | 서로 다른 크기의 구역을 격자로 조합해 내용 관계와 중요도를 드러낸다. 모든 목록을 카드화하지 않고 좁은 화면의 읽는 순서를 유지한다. |",
+      "| D08 | 에디토리얼 디자인 | 제목·본문·사진·캡션·인용·보조 설명과 격자·여백으로 읽는 순서와 리듬을 만든다. 큰 세리프 글자 하나로 충족했다고 하지 않는다. |",
+      "| L01 | [대시보드 일곱 원칙](https://www.instagram.com/p/DdtcfHOt20t/) | 1 | 3.2–3.3; 최초 전체 캡션 확인 |",
+      "| L02 | [웹사이트 재설계 징후](https://www.instagram.com/p/Dd8UhAWDcyb/) | 5 | 3.9/6.2; 표지+상세4개, 캡션 확인 잔여 |",
+      "| L03 | [소개 페이지 순서](https://www.instagram.com/p/Ddj66j-NwGK/) | 1 | 6.1; 열 구역, 캡션 확인 잔여 |",
+      "| L04 | [60–30–10](https://www.instagram.com/p/DdVuSbJtTRI/) | 1 | 3.7; 역할 비중, 캡션 확인 잔여 |",
+      "| L05 | [아이디어에서 실제 앱](https://www.instagram.com/p/DdM6HYEtuCZ/) | 1 | 3.1/3.4/6.3; 캡션 확인 잔여 |",
+      "| L06 | [UX 다섯 법칙](https://www.instagram.com/p/DdIrmSPt2qb/) | 1 | 3.2/3.8; 조건부 적용, 캡션 확인 잔여 |",
+      "| L07 | [UI 일곱 점검](https://www.instagram.com/p/Dc9QtBBtDyU/) | 1 | 3.2/3.4–3.6/3.8–3.9; 캡션 확인 잔여 |",
+      "| L08 | [튜브 빛 효과](https://www.instagram.com/p/Dc5f-KLDZr3/) | 4 | 5.2; 재현 예시, 캡션 확인 잔여 |",
+      "| L09 | [그림자 비교](https://www.instagram.com/p/Dcvq-p2k1a9/) | 2 | 5.1; 스타일별 목적, 캡션 확인 잔여 |",
+      "| L10 | [과정과 최종 UI](https://www.instagram.com/p/DctnOwVNz9h/) | 1 | 3.4; 구조→표현, 캡션 확인 잔여 |",
+      "| L11 | [자료 50개](https://www.instagram.com/p/Dcn0oWFmnEG/) | 9 | 7.1; 번호1–50 전부, Godly 중복, 장수 표시11과 차이, 캡션 확인 잔여 |",
+      "| L12 | [플러그인 50개](https://www.instagram.com/p/DcgchxyDQmG/) | 6 | 7.2; 번호1–50 전부, 중복2개·식별 필요, 캡션 확인 잔여 |",
+      "| L13 | [버튼 열 기준](https://www.instagram.com/p/DcZFmkKtOIs/) | 1 | 3.8; WCAG 등급 정정, 캡션 확인 잔여 |",
+      "| L14 | [환자 건강 앱](https://www.instagram.com/p/DcNoVfpN7uA/) | 1 | 6.2; 1225×1272 원본 확대/OCR로도 작은 본문 판독 실패, 캡션·더 큰 원본 확인 잔여 |",
+      "| L15 | [8pt 격자](https://www.instagram.com/p/DcDXaMeDTMG/) | 10 | 3.2/3.5/3.9; 예외4/12/20 보존, 캡션 확인 잔여 |",
+      "| L16 | [디자인 시스템 릴스](https://www.instagram.com/reel/Db5Xa69NJ_m/) | 0 | 자료집에 포함; 제목만 확인, 영상/음성/전체 캡션 직접 확인 후 보완 |",
+      "| L17 | [IT 사이트 재설계](https://www.instagram.com/p/DbxSWitjRdt/) | 3 | 3.3/6.2; 위계/탐색/서비스 설명, 캡션 확인 잔여 |",
+      "| L18 | [와이어프레임과 목업](https://www.instagram.com/p/DbpqoeytycH/) | 1 | 3.4; 목적/구체성/색/글자/이미지/브랜드/관심7쌍, 캡션 확인 잔여 |",
+      "| L19 | [제품 경험](https://www.instagram.com/p/Dbn5P_fDf2o/) | 6 | 3.1/3.3/3.9; 수치 근거 미확인·장수 표시7과 차이, 캡션 확인 잔여 |",
+      "| L20 | [UI 실수](https://www.instagram.com/p/Dbhq9mkjHRD/) | 5 | 3.2/3.5; 상세비교3개+마무리5항목, 캡션 확인 잔여 |",
+      "| L21 | [UI와 UX](https://www.instagram.com/p/DbfRRUMtioq/) | 1 | 3.1/3.4; 양쪽7영역, 캡션 확인 잔여 |",
+      "| L22 | [글꼴 세 가지](https://www.instagram.com/p/Dbc2zz4Dfhn/) | 4 | 3.6; 용도/지원/라이선스, 캡션 확인 잔여 |",
+      "| L23 | [색 이론](https://www.instagram.com/p/Da7DcOlDe4D/) | 6 | 3.7; 색 모델·연상·조합·코드·표기 오류, 캡션 확인 잔여 |",
+      "| L24 | [부드러운 빛 요소](https://www.instagram.com/p/DadKtwGk-fy/) | 10 | 5.3; 제작10장·설정/비교/완성, 캡션 확인 잔여 |",
+      "| L25 | [웹 UI 영감 릴스](https://www.instagram.com/reel/DaNTTflTUxF/) | 0 | 자료집에 포함; 제목만 확인, 영상/음성/전체 캡션 직접 확인 후 보완 |",
+      "| L26 | [글자 구조](https://www.instagram.com/p/DaLEY7FEzNe/) | 3 | 3.6; 기준선/구조/개별글자/용도, 캡션 확인 잔여 |",
+      "| L27 | [디자인 원칙 릴스](https://www.instagram.com/reel/DaClNCDzYd9/) | 0 | 자료집에 포함; L31과 동일하다고 추정하지 않음, 영상/음성/전체 캡션 확인 후 보완 |",
+      "| L28 | [색상 짝 여섯](https://www.instagram.com/p/DZriVAPk4pq/) | 6 | 3.7; 12코드 보존, 캡션 확인 잔여 |",
+      "| L29 | [Higgsfield](https://www.instagram.com/p/DZiB65bDXK8/) | 8 | 7.3; 네 기능·작업 흐름·홍보/실제 사용 구별, 캡션 확인 잔여 |",
+      "| L30 | [UI·UX 학습 경로](https://www.instagram.com/p/DZPYI4EDb3i/) | 7 | 3.1/3.4/3.6–3.7/6.3; 여섯 단계·색 모델 오류 정정, 캡션 확인 잔여 |",
+      "| L31 | [디자인 아홉 원칙](https://www.instagram.com/p/DYuZzrTDcEM/) | 9 | 3.2; 아홉 원칙 전체, 캡션 확인 잔여 |"
+    ],
+    "worldId": "10:68",
+    "linkedInputs": 362,
+    "originalCheckSums": {
+      "inventory": {
+        "orderedIds": [
+          "R01",
+          "R02",
+          "R03",
+          "R04",
+          "R05",
+          "R06",
+          "R07",
+          "R08",
+          "R09",
+          "R10",
+          "R11",
+          "R12",
+          "R13",
+          "R14",
+          "R15",
+          "R16",
+          "R17",
+          "R18",
+          "R19",
+          "R20",
+          "R21",
+          "R22",
+          "R23",
+          "R24",
+          "R25",
+          "R26",
+          "R27",
+          "R28",
+          "R29",
+          "R30",
+          "R31",
+          "R32",
+          "R33",
+          "R34",
+          "R35",
+          "R36",
+          "R37",
+          "R38",
+          "R39",
+          "R40",
+          "R41",
+          "O01",
+          "O02",
+          "O03",
+          "O04",
+          "O05",
+          "O06",
+          "O07",
+          "O08",
+          "O09",
+          "O10",
+          "O11",
+          "O12",
+          "O13",
+          "O14",
+          "O15",
+          "O16",
+          "O17",
+          "O18",
+          "O19",
+          "O20",
+          "O21",
+          "O22",
+          "O23",
+          "O24",
+          "O25",
+          "O26",
+          "O27",
+          "O28",
+          "O29",
+          "U01",
+          "U02",
+          "U03",
+          "U04",
+          "U05",
+          "U06",
+          "U07",
+          "U08",
+          "U09",
+          "U10",
+          "U11",
+          "U12",
+          "U13",
+          "U14",
+          "U15",
+          "U16",
+          "U17",
+          "U18",
+          "U19",
+          "U20",
+          "U21",
+          "U22",
+          "U23",
+          "U24",
+          "U25",
+          "U26",
+          "U27",
+          "U28",
+          "U29",
+          "U30",
+          "U31",
+          "U32",
+          "U33",
+          "U34",
+          "U35",
+          "U36",
+          "U37",
+          "U38",
+          "U39",
+          "U40",
+          "U41"
+        ],
+        "sha256": "021b404efa6167794989dccdef900d9f48108f59e9d48145b49d51476637d723"
+      },
+      "routes": {
+        "orderedIds": [
+          "R01",
+          "R02",
+          "R03",
+          "R04",
+          "R05",
+          "R06",
+          "R07",
+          "R08",
+          "R09",
+          "R10",
+          "R11",
+          "R12",
+          "R13",
+          "R14",
+          "R15",
+          "R16",
+          "R17",
+          "R18",
+          "R19",
+          "R20",
+          "R21",
+          "R22",
+          "R23",
+          "R24",
+          "R25",
+          "R26",
+          "R27",
+          "R28",
+          "R29",
+          "R30",
+          "R31",
+          "R32",
+          "R33",
+          "R34",
+          "R35",
+          "R36",
+          "R37",
+          "R38",
+          "R39",
+          "R40",
+          "R41"
+        ],
+        "sha256": "2e7c58e1e01152c85d2a6b4d63c9004ced56b506f9b171479c0bbcad4b88b425"
+      },
+      "overlays": {
+        "orderedIds": [
+          "O01",
+          "O02",
+          "O03",
+          "O04",
+          "O05",
+          "O06",
+          "O07",
+          "O08",
+          "O09",
+          "O10",
+          "O11",
+          "O12",
+          "O13",
+          "O14",
+          "O15",
+          "O16",
+          "O17",
+          "O18",
+          "O19",
+          "O20",
+          "O21",
+          "O22",
+          "O23",
+          "O24",
+          "O25",
+          "O26",
+          "O27",
+          "O28",
+          "O29"
+        ],
+        "sha256": "f97613113e72d34320539b7af595e8826184e0ebafc493b365750196003fc9cf"
+      },
+      "surfaces": {
+        "orderedIds": [
+          "U01",
+          "U02",
+          "U03",
+          "U04",
+          "U05",
+          "U06",
+          "U07",
+          "U08",
+          "U09",
+          "U10",
+          "U11",
+          "U12",
+          "U13",
+          "U14",
+          "U15",
+          "U16",
+          "U17",
+          "U18",
+          "U19",
+          "U20",
+          "U21",
+          "U22",
+          "U23",
+          "U24",
+          "U25",
+          "U26",
+          "U27",
+          "U28",
+          "U29",
+          "U30",
+          "U31",
+          "U32",
+          "U33",
+          "U34",
+          "U35",
+          "U36",
+          "U37",
+          "U38",
+          "U39",
+          "U40",
+          "U41"
+        ],
+        "sha256": "6ce4df952242ad2adf69d5d60d354e5fbd21b1555ed034de7cd83ac1f2efe7a6"
+      },
+      "declaredBlocks": {
+        "orderedIds": [
+          "R01-B01",
+          "R01-B02",
+          "R01-B03",
+          "R01-B04",
+          "R01-B05",
+          "R01-B06",
+          "R01-B07",
+          "R01-B08",
+          "R02-B01",
+          "R02-B02",
+          "R02-B03",
+          "R02-B04",
+          "R02-B05",
+          "R02-B06",
+          "R03-B01",
+          "R03-B02",
+          "R03-B03",
+          "R03-B04",
+          "R03-B05",
+          "R03-B06",
+          "R04-B01",
+          "R04-B02",
+          "R04-B03",
+          "R04-B04",
+          "R05-B01",
+          "R05-B02",
+          "R05-B03",
+          "R05-B04",
+          "R05-B05",
+          "R06-B01",
+          "R06-B02",
+          "R06-B03",
+          "R06-B04",
+          "R06-B05",
+          "R07-B01",
+          "R07-B02",
+          "R07-B03",
+          "R07-B04",
+          "R07-B05",
+          "R07-B06",
+          "R07-B07",
+          "R08-B01",
+          "R08-B02",
+          "R08-B03",
+          "R08-B04",
+          "R08-B05",
+          "R08-B06",
+          "R09-B01",
+          "R09-B02",
+          "R09-B03",
+          "R09-B04",
+          "R09-B05",
+          "R09-B06",
+          "R09-B07",
+          "R10-B01",
+          "R10-B02",
+          "R10-B03",
+          "R10-B04",
+          "R10-B05",
+          "R11-B01",
+          "R11-B02",
+          "R11-B03",
+          "R11-B04",
+          "R11-B05",
+          "R11-B06",
+          "R12-B01",
+          "R12-B02",
+          "R12-B03",
+          "R12-B04",
+          "R12-B05",
+          "R13-B01",
+          "R13-B02",
+          "R13-B03",
+          "R13-B04",
+          "R13-B05",
+          "R14-B01",
+          "R14-B02",
+          "R14-B03",
+          "R14-B04",
+          "R14-B05",
+          "R14-B06",
+          "R15-B01",
+          "R15-B02",
+          "R15-B03",
+          "R15-B04",
+          "R15-B05",
+          "R15-B06",
+          "R16-B01",
+          "R16-B02",
+          "R16-B03",
+          "R16-B04",
+          "R16-B05",
+          "R17-B01",
+          "R17-B02",
+          "R17-B03",
+          "R17-B04",
+          "R17-B05",
+          "R17-B06",
+          "R18-B01",
+          "R18-B02",
+          "R18-B03",
+          "R18-B04",
+          "R19-B01",
+          "R20-B01",
+          "R21-B01",
+          "R22-B01",
+          "R23-B01",
+          "R23-B02",
+          "R24-B01",
+          "R25-B01",
+          "R26-B01",
+          "R27-B01",
+          "R28-B01",
+          "R29-B01",
+          "R30-B01",
+          "R31-B01",
+          "R32-B01",
+          "R33-B01",
+          "R34-B01",
+          "R35-B01",
+          "R36-B01",
+          "R37-B01",
+          "R38-B01",
+          "R39-B01",
+          "R40-B01",
+          "R41-B01",
+          "O01-B01",
+          "O02-B01",
+          "O03-B01",
+          "O04-B01",
+          "O05-B01",
+          "O06-B01",
+          "O07-B01",
+          "O08-B01",
+          "O09-B01",
+          "O10-B01",
+          "O11-B01",
+          "O12-B01",
+          "O13-B01",
+          "O14-B01",
+          "O15-B01",
+          "O16-B01",
+          "O17-B01",
+          "O18-B01",
+          "O19-B01",
+          "O20-B01",
+          "O21-B01",
+          "O22-B01",
+          "O23-B01",
+          "O24-B01",
+          "O25-B01",
+          "O26-B01",
+          "O27-B01",
+          "O28-B01",
+          "O29-B01",
+          "U01-B01",
+          "U01-B02",
+          "U02-B01",
+          "U03-B01",
+          "U04-B01",
+          "U05-B01",
+          "U06-B01",
+          "U07-B01",
+          "U08-B01",
+          "U09-B01",
+          "U10-B01",
+          "U11-B01",
+          "U12-B01",
+          "U13-B01",
+          "U14-B01",
+          "U15-B01",
+          "U16-B01",
+          "U17-B01",
+          "U18-B01",
+          "U19-B01",
+          "U20-B01",
+          "U21-B01",
+          "U22-B01",
+          "U23-B01",
+          "U24-B01",
+          "U25-B01",
+          "U26-B01",
+          "U27-B01",
+          "U28-B01",
+          "U29-B01",
+          "U30-B01",
+          "U31-B01",
+          "U32-B01",
+          "U33-B01",
+          "U34-B01",
+          "U35-B01",
+          "U36-B01",
+          "U37-B01",
+          "U38-B01",
+          "U39-B01",
+          "U40-B01",
+          "U41-B01"
+        ],
+        "sha256": "87b4891bdf2b30aab3031c06c6956352c8ac3550dc05208670bb40a5809e6cf0"
+      },
+      "components": {
+        "orderedIds": [
+          "UI01",
+          "UI02",
+          "UI03",
+          "UI04",
+          "UI05",
+          "UI06",
+          "UI07",
+          "UI08",
+          "UI09",
+          "UI10",
+          "UI11",
+          "UI12",
+          "UI13",
+          "UI14",
+          "UI15",
+          "UI16",
+          "UI17",
+          "UI18",
+          "UI19",
+          "UI20",
+          "UI21",
+          "UI22",
+          "SC01",
+          "SC02",
+          "SC03",
+          "SC04",
+          "SC05",
+          "SC06",
+          "SC07",
+          "SC08",
+          "SC09",
+          "SC10",
+          "SC11",
+          "SC12",
+          "SC13",
+          "SC14",
+          "SC15",
+          "SC16",
+          "SC17",
+          "SC18",
+          "SC19",
+          "SC20",
+          "MO01",
+          "MO02",
+          "MO03",
+          "MO04",
+          "MO05",
+          "BR01"
+        ],
+        "sha256": "a0faf15ee3573a41de88c1ce2bb11055e314165a8e0d402fee814768ef031b30"
+      },
+      "research": {
+        "orderedIds": [
+          "D01",
+          "D02",
+          "D03",
+          "D04",
+          "D05",
+          "D06",
+          "D07",
+          "D08",
+          "D09",
+          "D10",
+          "D11",
+          "D12",
+          "D13",
+          "D14",
+          "D15",
+          "D16",
+          "D17",
+          "D18",
+          "D19",
+          "D20",
+          "D21",
+          "D22",
+          "D23",
+          "D24",
+          "D25",
+          "D26",
+          "D27",
+          "D28",
+          "F01",
+          "F02",
+          "F03",
+          "F04",
+          "F05",
+          "F06",
+          "F07",
+          "F08",
+          "F09",
+          "F10",
+          "F11",
+          "F12",
+          "F13",
+          "F14",
+          "F15",
+          "F16",
+          "F17",
+          "F18",
+          "F19",
+          "F20",
+          "F21",
+          "F22",
+          "F23",
+          "F24",
+          "F25",
+          "F26",
+          "F27",
+          "F28",
+          "F29",
+          "F30",
+          "F31",
+          "Q01",
+          "Q02",
+          "Q03",
+          "Q04",
+          "Q05",
+          "Q06",
+          "Q07",
+          "Q08",
+          "Q09",
+          "Q10",
+          "Q11",
+          "Q12",
+          "Q13",
+          "Q14",
+          "Q15",
+          "Q16",
+          "Q17",
+          "Q18",
+          "Q19",
+          "Q20",
+          "Q21",
+          "Q22",
+          "Q23",
+          "Q24",
+          "Q25",
+          "Q26",
+          "Q27",
+          "Q28",
+          "S01",
+          "S02",
+          "S03",
+          "S04",
+          "S05",
+          "S06",
+          "S07",
+          "S08",
+          "S09",
+          "S10",
+          "S11",
+          "S12",
+          "S13",
+          "S14",
+          "S15",
+          "S16",
+          "S17",
+          "S18",
+          "S19",
+          "S20",
+          "S21",
+          "S22",
+          "S23",
+          "S24",
+          "S25",
+          "S26",
+          "S27",
+          "S28",
+          "S29",
+          "S30",
+          "S31",
+          "S32",
+          "S33",
+          "S34"
+        ],
+        "sha256": "96985db8b0e8d9b6d1db5a537947b8d3707000cecfc54d37d9f5821298d9c624"
+      },
+      "domains": {
+        "orderedIds": [
+          "C01",
+          "C02",
+          "C03",
+          "C04",
+          "C05",
+          "C06",
+          "C07",
+          "C08",
+          "C09",
+          "C10",
+          "C11",
+          "C12",
+          "C13",
+          "C14",
+          "C15",
+          "C16",
+          "C17",
+          "C18",
+          "C19",
+          "C20"
+        ],
+        "sha256": "e90ad4f122b2f221dce358c3507c4b5b3dcf470696f8b0f8f5bc45a0c0e8092b"
+      },
+      "states": {
+        "orderedIds": [
+          "SAVE-CHECKING",
+          "SAVE-LOCAL-WRITING",
+          "SAVE-PENDING",
+          "SAVE-SAVING",
+          "SAVE-SAVED",
+          "SAVE-ERROR",
+          "SAVE-LOCAL-ERROR",
+          "SAVE-CONFLICT",
+          "SAVE-ARCHIVING",
+          "AUTH-CHECKING",
+          "AUTH-SIGNED-OUT",
+          "AUTH-PENDING",
+          "AUTH-APPROVED",
+          "AUTH-REJECTED",
+          "AUTH-SUSPENDED",
+          "AUTH-EXPIRED",
+          "EDIT-DIRTY",
+          "EDIT-OTHER-WINDOW",
+          "EDIT-RESTORED-DRAFT",
+          "BACKUP-COLLECTING",
+          "BACKUP-PREPARED",
+          "BACKUP-INVALID",
+          "BACKUP-PREVIEW",
+          "BACKUP-WAITING-RESTART",
+          "BACKUP-RECOVERING",
+          "BACKUP-RESTORED",
+          "BACKUP-ROLLED-BACK",
+          "BACKUP-MISSING-ORIGINAL",
+          "BACKUP-OWNER-CHANGED",
+          "AI-OWNER-READY",
+          "AI-FORBIDDEN",
+          "AI-GENERATING",
+          "AI-PREVIEW",
+          "AI-FAILED",
+          "AI-LIMIT",
+          "AI-UNCERTAIN",
+          "CONTENT-EMPTY",
+          "CONTENT-NO-RESULT",
+          "CONTENT-ERROR",
+          "CONTENT-UNAVAILABLE",
+          "RENDER-FALLBACK",
+          "RENDER-PAUSED"
+        ],
+        "sha256": "c5b23e446bdacf9230df458bb75e1403b95ee176e244d3660254f93deb477616"
+      },
+      "transitions": {
+        "orderedIds": [
+          "T01",
+          "T02",
+          "T03",
+          "T04",
+          "T05",
+          "T06",
+          "T07",
+          "T08",
+          "T09",
+          "T10",
+          "T11",
+          "T12",
+          "T13",
+          "T14",
+          "T15",
+          "T16",
+          "T17",
+          "T18",
+          "T19",
+          "T20",
+          "T21",
+          "T22",
+          "T23",
+          "T24",
+          "T25",
+          "T26",
+          "T27",
+          "T28",
+          "T29",
+          "T30",
+          "T31",
+          "T32"
+        ],
+        "sha256": "a7fcc6cdebb172c866d053beccb7fda433427a88b96673ecd10d2294997c749b"
+      },
+      "modules": {
+        "orderedIds": [
+          "M001",
+          "M002",
+          "M003",
+          "M004",
+          "M005",
+          "M006",
+          "M007",
+          "M008",
+          "M009",
+          "M010",
+          "M011",
+          "M012",
+          "M013",
+          "M014",
+          "M015",
+          "M016",
+          "M017",
+          "M018",
+          "M019",
+          "M020",
+          "M021",
+          "M022",
+          "M023",
+          "M024",
+          "M025",
+          "M026",
+          "M027",
+          "M028",
+          "M029",
+          "M030",
+          "M031",
+          "M032",
+          "M033",
+          "M034",
+          "M035",
+          "M036",
+          "M037",
+          "M038",
+          "M039",
+          "M040",
+          "M041",
+          "M042",
+          "M043",
+          "M044",
+          "M045",
+          "M046",
+          "M047",
+          "M048",
+          "M049",
+          "M050",
+          "M051",
+          "M052",
+          "M053",
+          "M054",
+          "M055",
+          "M056",
+          "M057",
+          "M058",
+          "M059",
+          "M060",
+          "M061",
+          "M062",
+          "M063",
+          "M064",
+          "M065",
+          "M066",
+          "M067",
+          "M068",
+          "M069",
+          "M070",
+          "M071",
+          "M072",
+          "M073",
+          "M074",
+          "M075",
+          "M076",
+          "M077",
+          "M078",
+          "M079",
+          "M080",
+          "M081",
+          "M082",
+          "M083",
+          "M084",
+          "M085",
+          "M086",
+          "M087",
+          "M088",
+          "M089",
+          "M090",
+          "M091",
+          "M092",
+          "M093",
+          "M094",
+          "M095",
+          "M096",
+          "M097",
+          "M098",
+          "M099",
+          "M100",
+          "M101",
+          "M102",
+          "M103",
+          "M104"
+        ],
+        "sha256": "f3a00f1e0588b1e6c94df26f45b8ec8814c6e759300350cfa894c650c570a310"
+      }
+    }
+  }
+}

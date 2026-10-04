@@ -1,0 +1,151 @@
+{
+  "version": "1.0.0",
+  "names": {
+    "takeaway": {
+      "label": "핵심 요점 문구",
+      "termId": "term-9671c6013b82",
+      "mappingKind": "project-context-label"
+    },
+    "readstatus": {
+      "label": "출처 확인 상태",
+      "termId": "term-6416ed0a2aba",
+      "mappingKind": "project-context-label"
+    },
+    "source": {
+      "label": "원문 출처 링크",
+      "termId": "term-f857d5c6f38a",
+      "mappingKind": "project-context-label"
+    },
+    "destination": {
+      "label": "설계 연결 대상",
+      "termId": "term-55cee4c15bfd",
+      "mappingKind": "project-context-label"
+    },
+    "principle": {
+      "label": "채택한 설계 원칙",
+      "termId": "term-3ef69c0c0ced",
+      "mappingKind": "project-context-label"
+    },
+    "application": {
+      "label": "제품 적용 설명",
+      "termId": "term-bcf1004d965b",
+      "mappingKind": "project-context-label"
+    },
+    "detail": {
+      "label": "보충 설명 문구",
+      "termId": "term-9671c6013b82",
+      "mappingKind": "project-context-label"
+    },
+    "command": {
+      "label": "실행 명령 이름",
+      "termId": "term-fe7de585e1fc",
+      "mappingKind": "project-context-label"
+    },
+    "noresultstitle": {
+      "label": "검색 결과 없음 제목",
+      "termId": "term-73639d4f8da5",
+      "mappingKind": "project-context-label"
+    },
+    "noresultsmessage": {
+      "label": "검색 결과 없음 안내",
+      "termId": "term-1b748727a739",
+      "mappingKind": "project-context-label"
+    },
+    "purpose": {
+      "label": "부품의 용도·과업 설명",
+      "termId": "term-e703d72b62a7",
+      "mappingKind": "project-context-label"
+    },
+    "role": {
+      "label": "부품·내용의 역할 설명",
+      "termId": "term-9671c6013b82",
+      "mappingKind": "project-context-label"
+    },
+    "contract": {
+      "label": "부품 동작·보존 계약",
+      "termId": "term-3ef69c0c0ced",
+      "mappingKind": "project-context-label"
+    },
+    "angle": {
+      "label": "관측각도 θ · 변형 선택",
+      "termId": "term-09767030d621",
+      "mappingKind": "project-context-label"
+    },
+    "range": {
+      "label": "입력 범위와 직접 입력 안내",
+      "termId": "term-6506b7690629",
+      "mappingKind": "project-context-label"
+    },
+    "exception": {
+      "label": "적용 조건의 예외 설명",
+      "termId": "term-6506b7690629",
+      "mappingKind": "project-context-label"
+    },
+    "concepts": {
+      "label": "관련 개념 목록",
+      "termId": "term-e17402e03210",
+      "mappingKind": "project-context-label"
+    },
+    "time": {
+      "label": "관측의 매개시간 t 표시",
+      "termId": "term-9671c6013b82",
+      "mappingKind": "project-context-label"
+    },
+    "unit": {
+      "label": "값의 단위 표기",
+      "termId": "term-a36f9c2cd6d0",
+      "mappingKind": "project-context-label"
+    },
+    "body": {
+      "label": "본문 문구",
+      "termId": "term-9671c6013b82",
+      "mappingKind": "project-context-label"
+    },
+    "value": {
+      "label": "현재 표시 값",
+      "termId": "term-9671c6013b82",
+      "mappingKind": "project-context-label"
+    },
+    "question": {
+      "label": "질문 문구",
+      "termId": "term-9671c6013b82",
+      "mappingKind": "project-context-label"
+    },
+    "state": {
+      "label": "상태 변형",
+      "termId": "term-8eb3af9017cf",
+      "mappingKind": "project-context-label"
+    },
+    "size": {
+      "label": "크기 변형",
+      "termId": "term-09767030d621",
+      "mappingKind": "project-context-label"
+    },
+    "shortcuts": {
+      "label": "단축키 표시 여부",
+      "termId": "term-dc18999622db",
+      "mappingKind": "project-context-label"
+    },
+    "readonlynotice": {
+      "label": "읽기 전용 안내 문구",
+      "termId": "term-545b7e927e4b",
+      "mappingKind": "project-context-label"
+    },
+    "busylabel": {
+      "label": "처리 중 레이블",
+      "termId": "term-7798c073957b",
+      "mappingKind": "project-context-label"
+    },
+    "closelabel": {
+      "label": "닫기 레이블",
+      "termId": "term-fe7de585e1fc",
+      "mappingKind": "project-context-label"
+    },
+    "undolabel": {
+      "label": "되돌리기 레이블",
+      "termId": "term-4250f6006fdc",
+      "mappingKind": "project-context-label"
+    }
+  },
+  "scope": "Actual property keys/default values verified; contextual Korean labels, not new universal standard vocabulary."
+}

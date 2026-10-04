@@ -1,0 +1,1302 @@
+{
+  "schemaVersion": 1,
+  "createdAtUtc": "2026-10-02T04:02:57.817024+00:00",
+  "policy": "widget-policy.json",
+  "webAppSourceFilesChanged": false,
+  "functionsRemoved": 0,
+  "scope": "20 source-mapped observatory components plus 9 complex runtime regions; source/owner evidence only, remote repair evidence is separate",
+  "implementationBinding": "Figma mockup is a design specimen. The current runtime implementations remain in the webapp and render dynamic state; no feature is removed or substituted by an image in src/ui.",
+  "componentIdPreservation": "Existing owner/shared master/instance IDs are preserved. Any visual-subtree replacement is logged separately with readback evidence.",
+  "contracts": [
+    {
+      "id": "SC01",
+      "name": "StudyLandscapes",
+      "source": {
+        "file": "src/ui/study-landscapes.tsx",
+        "symbol": "StudyLandscapes",
+        "line": 51,
+        "sha256": "5edc579586a99bd3f902a7a64ea43af053e2d6ddd3c26e2af434341765f53fe2",
+        "verification": "export exists in current source; runtime behavior was not re-executed in this task"
+      },
+      "region": "전체 풍경·표시/정지/설정",
+      "figmaOwnerId": "17:231",
+      "figmaSharedWorldAssetId": "10:68",
+      "figmaOwnerEvidence": "docs/figma-observatory-20261002/evidence/components-review.json",
+      "figmaRepresentation": "existing component IDs preserved; complex scene decoration uses image mockup",
+      "actualImplementation": "current src/ui component remains the runtime owner",
+      "actualEntry": {
+        "appFile": "src/App.tsx",
+        "appLine": 597,
+        "appRoutes": [
+          "#/",
+          "#/record",
+          "#/memos",
+          "#/practice",
+          "#/memory-test",
+          "#/recall"
+        ],
+        "renderCondition": "ObservatoryCover place === front; routes follow the current observatory-place mapping",
+        "renderer": "App → ObservatoryCover → StudyLandscapes → ObservatoryRoom → ObservatoryWorld",
+        "entrySource": "src/ui/observatory-cover.tsx"
+      },
+      "keepNativeInFigma": [
+        "whole widget bounds and outer frame",
+        "layout, control labels, source contract and important state/prototype links"
+      ],
+      "preserveAtRuntime": [
+        "current renderer, source SVG/GPU effects, props and current feature behavior",
+        "display/stop/preferences and return paths where owned",
+        "original records/drafts/IDs/history/user settings; synthetic preview is not real study"
+      ],
+      "replacementBoundary": "Only the Figma visual subtree; no src/ui or storage behavior is replaced or removed",
+      "generatorBinding": {
+        "entryPoint": "docs/figma-observatory-20261002/scripts/build-components.js",
+        "requiredPath": "shared whole-world image master; per-scene mockups/SVGs rejected before generation",
+        "retainedNativeWrapper": [
+          "풍경 멈추기",
+          "풍경 설정"
+        ],
+        "reuseGuard": "verified original named component/page/ID; complete 960x400; same-file image hash and pixel aspect; at most one image descendant"
+      }
+    },
+    {
+      "id": "SC02",
+      "name": "ObservatoryWorld",
+      "source": {
+        "file": "src/ui/pixel-worlds.tsx",
+        "symbol": "ObservatoryWorld",
+        "line": 95,
+        "sha256": "17dfdfde374dc7e3cf66a770d4a0fa6540d20042ed13a3ce1386828966fc5749",
+        "verification": "export exists in current source; runtime behavior was not re-executed in this task"
+      },
+      "region": "원본 하늘·천문대 전체·시간·현상 합성",
+      "figmaOwnerId": "17:1910",
+      "figmaSharedWorldAssetId": "10:68",
+      "figmaOwnerEvidence": "docs/figma-observatory-20261002/evidence/components-review.json",
+      "figmaRepresentation": "existing component IDs preserved; complex scene decoration uses image mockup",
+      "actualImplementation": "current src/ui component remains the runtime owner",
+      "actualEntry": {
+        "appFile": "src/App.tsx",
+        "appLine": 597,
+        "appRoutes": [
+          "#/",
+          "#/record",
+          "#/memos",
+          "#/practice",
+          "#/memory-test",
+          "#/recall"
+        ],
+        "renderCondition": "ObservatoryCover place === front; routes follow the current observatory-place mapping",
+        "renderer": "App → ObservatoryCover → StudyLandscapes → ObservatoryRoom → ObservatoryWorld",
+        "entrySource": "src/ui/observatory-cover.tsx"
+      },
+      "keepNativeInFigma": [
+        "whole widget bounds and outer frame",
+        "layout, control labels, source contract and important state/prototype links"
+      ],
+      "preserveAtRuntime": [
+        "current renderer, source SVG/GPU effects, props and current feature behavior",
+        "display/stop/preferences and return paths where owned",
+        "original records/drafts/IDs/history/user settings; synthetic preview is not real study"
+      ],
+      "replacementBoundary": "Only the Figma visual subtree; no src/ui or storage behavior is replaced or removed",
+      "generatorBinding": {
+        "entryPoint": "docs/figma-observatory-20261002/scripts/build-components.js",
+        "requiredPath": "shared whole-world image master; per-scene mockups/SVGs rejected before generation",
+        "retainedNativeWrapper": [
+          "complete original whole-world component instance"
+        ],
+        "reuseGuard": "verified original named component/page/ID; complete 960x400; same-file image hash and pixel aspect; at most one image descendant"
+      }
+    },
+    {
+      "id": "SC03",
+      "name": "ObservatoryRoom",
+      "source": {
+        "file": "src/ui/observatory-room.tsx",
+        "symbol": "ObservatoryRoom",
+        "line": 9,
+        "sha256": "c66ba2f27063aa80e3b03dd46330d80d5235d0b87e915e867c5e377397d3445e",
+        "verification": "export exists in current source; runtime behavior was not re-executed in this task"
+      },
+      "region": "원본 위젯 바깥 창틀/창턱·책상",
+      "figmaOwnerId": "20:4808",
+      "figmaSharedWorldAssetId": "10:68",
+      "figmaOwnerEvidence": "docs/figma-observatory-20261002/evidence/components-review.json",
+      "figmaRepresentation": "existing component IDs preserved; complex scene decoration uses image mockup",
+      "actualImplementation": "current src/ui component remains the runtime owner",
+      "actualEntry": {
+        "appFile": "src/App.tsx",
+        "appLine": 597,
+        "appRoutes": [
+          "#/",
+          "#/record",
+          "#/memos",
+          "#/practice",
+          "#/memory-test",
+          "#/recall"
+        ],
+        "renderCondition": "ObservatoryCover place === front; routes follow the current observatory-place mapping",
+        "renderer": "App → ObservatoryCover → StudyLandscapes → ObservatoryRoom → ObservatoryWorld",
+        "entrySource": "src/ui/observatory-cover.tsx"
+      },
+      "keepNativeInFigma": [
+        "whole widget bounds and outer frame",
+        "layout, control labels, source contract and important state/prototype links"
+      ],
+      "preserveAtRuntime": [
+        "current renderer, source SVG/GPU effects, props and current feature behavior",
+        "display/stop/preferences and return paths where owned",
+        "original records/drafts/IDs/history/user settings; synthetic preview is not real study"
+      ],
+      "replacementBoundary": "Only the Figma visual subtree; no src/ui or storage behavior is replaced or removed",
+      "generatorBinding": {
+        "entryPoint": "docs/figma-observatory-20261002/scripts/build-components.js",
+        "requiredPath": "shared whole-world image master; per-scene mockups/SVGs rejected before generation",
+        "retainedNativeWrapper": [
+          "External frame — no crop",
+          "External sill"
+        ],
+        "reuseGuard": "verified original named component/page/ID; complete 960x400; same-file image hash and pixel aspect; at most one image descendant"
+      }
+    },
+    {
+      "id": "SC04",
+      "name": "ObservatoryDesk",
+      "source": {
+        "file": "src/ui/observatory-desk.tsx",
+        "symbol": "ObservatoryDesk",
+        "line": 2,
+        "sha256": "f59d54213464cd16d5d548f59df859903b01dcce82605e16bd78d17840dae9dc",
+        "verification": "export exists in current source; runtime behavior was not re-executed in this task"
+      },
+      "region": "종이/책/조명 정적 책상",
+      "figmaOwnerId": "20:6484",
+      "figmaSharedWorldAssetId": "10:68",
+      "figmaOwnerEvidence": "docs/figma-observatory-20261002/evidence/components-review.json",
+      "figmaRepresentation": "existing component IDs preserved; complex scene decoration uses image mockup",
+      "actualImplementation": "current src/ui component remains the runtime owner",
+      "actualEntry": {
+        "appFile": "src/App.tsx",
+        "appLine": 597,
+        "appRoutes": [
+          "#/",
+          "#/record",
+          "#/memos",
+          "#/practice",
+          "#/memory-test",
+          "#/recall"
+        ],
+        "renderCondition": "ObservatoryCover place === front; routes follow the current observatory-place mapping",
+        "renderer": "App → ObservatoryCover → StudyLandscapes → ObservatoryRoom → ObservatoryWorld",
+        "entrySource": "src/ui/observatory-cover.tsx"
+      },
+      "keepNativeInFigma": [
+        "whole widget bounds and outer frame",
+        "layout, control labels, source contract and important state/prototype links"
+      ],
+      "preserveAtRuntime": [
+        "current renderer, source SVG/GPU effects, props and current feature behavior",
+        "display/stop/preferences and return paths where owned",
+        "original records/drafts/IDs/history/user settings; synthetic preview is not real study"
+      ],
+      "replacementBoundary": "Only the Figma visual subtree; no src/ui or storage behavior is replaced or removed",
+      "sourceSvgEvidence": {
+        "manifest": "work/figma-reconcile-20261002/scene-assets/manifest.json",
+        "file": "work/figma-reconcile-20261002/scene-assets/SC04.figma.svg",
+        "sha256": "8cfe74ceef38463d2f1b6b70e94b1908444c6844cbe113d67536d1bde535e56e",
+        "captureSynthetic": true,
+        "viewBox": "0 0 960 68",
+        "captureSourceSha256": "f59d54213464cd16d5d548f59df859903b01dcce82605e16bd78d17840dae9dc",
+        "note": "Capture source SHA and current source SHA are distinct snapshots; verify drift before a new capture."
+      }
+    },
+    {
+      "id": "SC05",
+      "name": "ObservatoryAdvanced",
+      "source": {
+        "file": "src/ui/observatory-advanced.tsx",
+        "symbol": "ObservatoryAdvanced",
+        "line": 41,
+        "sha256": "d06df4fc10add0aa87d1e00dff31ce507a6d640b0f00d864cd07b0f1c078d2da",
+        "verification": "export exists in current source; runtime behavior was not re-executed in this task"
+      },
+      "region": "GPU/정적 SVG 대체·확대 LOD·보이지 않을 때 해제",
+      "figmaOwnerId": "20:6496",
+      "figmaSharedWorldAssetId": "10:68",
+      "figmaOwnerEvidence": "docs/figma-observatory-20261002/evidence/components-review.json",
+      "figmaRepresentation": "existing component IDs preserved; complex scene decoration uses image mockup",
+      "actualImplementation": "current src/ui component remains the runtime owner",
+      "actualEntry": {
+        "appFile": "src/App.tsx",
+        "appLine": 597,
+        "appRoutes": [
+          "#/",
+          "#/record",
+          "#/memos",
+          "#/practice",
+          "#/memory-test",
+          "#/recall"
+        ],
+        "renderCondition": "ObservatoryCover place === front; routes follow the current observatory-place mapping",
+        "renderer": "App → ObservatoryCover → StudyLandscapes → ObservatoryRoom → ObservatoryWorld",
+        "entrySource": "src/ui/observatory-cover.tsx"
+      },
+      "keepNativeInFigma": [
+        "whole widget bounds and outer frame",
+        "layout, control labels, source contract and important state/prototype links"
+      ],
+      "preserveAtRuntime": [
+        "current renderer, source SVG/GPU effects, props and current feature behavior",
+        "display/stop/preferences and return paths where owned",
+        "original records/drafts/IDs/history/user settings; synthetic preview is not real study"
+      ],
+      "replacementBoundary": "Only the Figma visual subtree; no src/ui or storage behavior is replaced or removed",
+      "sourceSvgEvidence": {
+        "manifest": "work/figma-reconcile-20261002/scene-assets/manifest.json",
+        "file": "work/figma-reconcile-20261002/scene-assets/SC05.figma.svg",
+        "sha256": "cbceab7e7b189fae67b10b17704df329890f292f89d1ff388eb8fab98ea216e9",
+        "captureSynthetic": true,
+        "viewBox": "0 -100 960 400",
+        "captureSourceSha256": "d06df4fc10add0aa87d1e00dff31ce507a6d640b0f00d864cd07b0f1c078d2da",
+        "note": "Capture source SHA and current source SHA are distinct snapshots; verify drift before a new capture."
+      }
+    },
+    {
+      "id": "SC06",
+      "name": "ObservatorySkyDetails",
+      "source": {
+        "file": "src/ui/observatory-details.tsx",
+        "symbol": "ObservatorySkyDetails",
+        "line": 15,
+        "sha256": "0fefda416eb56562f595bc1b80323ace0fe08aea14291439eb0cb90573d3be24",
+        "verification": "export exists in current source; runtime behavior was not re-executed in this task"
+      },
+      "region": "하늘의 위성/행성/식/세부 표현",
+      "figmaOwnerId": "20:6515",
+      "figmaSharedWorldAssetId": "10:68",
+      "figmaOwnerEvidence": "docs/figma-observatory-20261002/evidence/components-review.json",
+      "figmaRepresentation": "existing component IDs preserved; complex scene decoration uses image mockup",
+      "actualImplementation": "current src/ui component remains the runtime owner",
+      "actualEntry": {
+        "appFile": "src/App.tsx",
+        "appLine": 597,
+        "appRoutes": [
+          "#/",
+          "#/record",
+          "#/memos",
+          "#/practice",
+          "#/memory-test",
+          "#/recall"
+        ],
+        "renderCondition": "ObservatoryCover place === front; routes follow the current observatory-place mapping",
+        "renderer": "App → ObservatoryCover → StudyLandscapes → ObservatoryRoom → ObservatoryWorld",
+        "entrySource": "src/ui/observatory-cover.tsx"
+      },
+      "keepNativeInFigma": [
+        "whole widget bounds and outer frame",
+        "layout, control labels, source contract and important state/prototype links"
+      ],
+      "preserveAtRuntime": [
+        "current renderer, source SVG/GPU effects, props and current feature behavior",
+        "display/stop/preferences and return paths where owned",
+        "original records/drafts/IDs/history/user settings; synthetic preview is not real study"
+      ],
+      "replacementBoundary": "Only the Figma visual subtree; no src/ui or storage behavior is replaced or removed",
+      "sourceSvgEvidence": {
+        "manifest": "work/figma-reconcile-20261002/scene-assets/manifest.json",
+        "file": "work/figma-reconcile-20261002/scene-assets/SC06.figma.svg",
+        "sha256": "b1287646f7dc71a68d229b2b2df02493ea7df994e63cdd9bea40227f7054a16d",
+        "captureSynthetic": true,
+        "viewBox": "-140 -30 480 240",
+        "captureSourceSha256": "0fefda416eb56562f595bc1b80323ace0fe08aea14291439eb0cb90573d3be24",
+        "note": "Capture source SHA and current source SHA are distinct snapshots; verify drift before a new capture."
+      }
+    },
+    {
+      "id": "SC07",
+      "name": "ObservatoryStationDetails",
+      "source": {
+        "file": "src/ui/observatory-details.tsx",
+        "symbol": "ObservatoryStationDetails",
+        "line": 111,
+        "sha256": "0fefda416eb56562f595bc1b80323ace0fe08aea14291439eb0cb90573d3be24",
+        "verification": "export exists in current source; runtime behavior was not re-executed in this task"
+      },
+      "region": "천문대 건물 세부 표현",
+      "figmaOwnerId": "20:6527",
+      "figmaSharedWorldAssetId": "10:68",
+      "figmaOwnerEvidence": "docs/figma-observatory-20261002/evidence/components-review.json",
+      "figmaRepresentation": "existing component IDs preserved; complex scene decoration uses image mockup",
+      "actualImplementation": "current src/ui component remains the runtime owner",
+      "actualEntry": {
+        "appFile": "src/App.tsx",
+        "appLine": 597,
+        "appRoutes": [
+          "#/",
+          "#/record",
+          "#/memos",
+          "#/practice",
+          "#/memory-test",
+          "#/recall"
+        ],
+        "renderCondition": "ObservatoryCover place === front; routes follow the current observatory-place mapping",
+        "renderer": "App → ObservatoryCover → StudyLandscapes → ObservatoryRoom → ObservatoryWorld",
+        "entrySource": "src/ui/observatory-cover.tsx"
+      },
+      "keepNativeInFigma": [
+        "whole widget bounds and outer frame",
+        "layout, control labels, source contract and important state/prototype links"
+      ],
+      "preserveAtRuntime": [
+        "current renderer, source SVG/GPU effects, props and current feature behavior",
+        "display/stop/preferences and return paths where owned",
+        "original records/drafts/IDs/history/user settings; synthetic preview is not real study"
+      ],
+      "replacementBoundary": "Only the Figma visual subtree; no src/ui or storage behavior is replaced or removed",
+      "sourceSvgEvidence": {
+        "manifest": "work/figma-reconcile-20261002/scene-assets/manifest.json",
+        "file": "work/figma-reconcile-20261002/scene-assets/SC07.figma.svg",
+        "sha256": "4655d6de3d374927476702db895cc9b55a53ad02df9be66b066ea4de0074b2db",
+        "captureSynthetic": true,
+        "viewBox": "-32 -32 112 112",
+        "captureSourceSha256": "0fefda416eb56562f595bc1b80323ace0fe08aea14291439eb0cb90573d3be24",
+        "note": "Capture source SHA and current source SHA are distinct snapshots; verify drift before a new capture."
+      }
+    },
+    {
+      "id": "SC08",
+      "name": "ObservatoryTimeSky",
+      "source": {
+        "file": "src/ui/observatory-time-sky.tsx",
+        "symbol": "ObservatoryTimeSky",
+        "line": 26,
+        "sha256": "42a720a7e8a21879568f319d938b433b86931ce7a71209cfbea1653b04828a40",
+        "verification": "export exists in current source; runtime behavior was not re-executed in this task"
+      },
+      "region": "시간별 하늘·태양/달/구름",
+      "figmaOwnerId": "20:6539",
+      "figmaSharedWorldAssetId": "10:68",
+      "figmaOwnerEvidence": "docs/figma-observatory-20261002/evidence/components-review.json",
+      "figmaRepresentation": "existing component IDs preserved; complex scene decoration uses image mockup",
+      "actualImplementation": "current src/ui component remains the runtime owner",
+      "actualEntry": {
+        "appFile": "src/App.tsx",
+        "appLine": 597,
+        "appRoutes": [
+          "#/",
+          "#/record",
+          "#/memos",
+          "#/practice",
+          "#/memory-test",
+          "#/recall"
+        ],
+        "renderCondition": "ObservatoryCover place === front; routes follow the current observatory-place mapping",
+        "renderer": "App → ObservatoryCover → StudyLandscapes → ObservatoryRoom → ObservatoryWorld",
+        "entrySource": "src/ui/observatory-cover.tsx"
+      },
+      "keepNativeInFigma": [
+        "whole widget bounds and outer frame",
+        "layout, control labels, source contract and important state/prototype links"
+      ],
+      "preserveAtRuntime": [
+        "current renderer, source SVG/GPU effects, props and current feature behavior",
+        "display/stop/preferences and return paths where owned",
+        "original records/drafts/IDs/history/user settings; synthetic preview is not real study"
+      ],
+      "replacementBoundary": "Only the Figma visual subtree; no src/ui or storage behavior is replaced or removed",
+      "sourceSvgEvidence": {
+        "manifest": "work/figma-reconcile-20261002/scene-assets/manifest.json",
+        "file": "work/figma-reconcile-20261002/scene-assets/SC08.figma.svg",
+        "sha256": "6182517ebb575f044d11ac48c079b365416ffa9521376165a3344fb19caf92b5",
+        "captureSynthetic": true,
+        "viewBox": "0 -100 960 400",
+        "captureSourceSha256": "42a720a7e8a21879568f319d938b433b86931ce7a71209cfbea1653b04828a40",
+        "note": "Capture source SHA and current source SHA are distinct snapshots; verify drift before a new capture."
+      }
+    },
+    {
+      "id": "SC09",
+      "name": "ObservatoryTimeGround",
+      "source": {
+        "file": "src/ui/observatory-time-sky.tsx",
+        "symbol": "ObservatoryTimeGround",
+        "line": 106,
+        "sha256": "42a720a7e8a21879568f319d938b433b86931ce7a71209cfbea1653b04828a40",
+        "verification": "export exists in current source; runtime behavior was not re-executed in this task"
+      },
+      "region": "같은 시간의 지면·그림자/이슬",
+      "figmaOwnerId": "20:6560",
+      "figmaSharedWorldAssetId": "10:68",
+      "figmaOwnerEvidence": "docs/figma-observatory-20261002/evidence/components-review.json",
+      "figmaRepresentation": "existing component IDs preserved; complex scene decoration uses image mockup",
+      "actualImplementation": "current src/ui component remains the runtime owner",
+      "actualEntry": {
+        "appFile": "src/App.tsx",
+        "appLine": 597,
+        "appRoutes": [
+          "#/",
+          "#/record",
+          "#/memos",
+          "#/practice",
+          "#/memory-test",
+          "#/recall"
+        ],
+        "renderCondition": "ObservatoryCover place === front; routes follow the current observatory-place mapping",
+        "renderer": "App → ObservatoryCover → StudyLandscapes → ObservatoryRoom → ObservatoryWorld",
+        "entrySource": "src/ui/observatory-cover.tsx"
+      },
+      "keepNativeInFigma": [
+        "whole widget bounds and outer frame",
+        "layout, control labels, source contract and important state/prototype links"
+      ],
+      "preserveAtRuntime": [
+        "current renderer, source SVG/GPU effects, props and current feature behavior",
+        "display/stop/preferences and return paths where owned",
+        "original records/drafts/IDs/history/user settings; synthetic preview is not real study"
+      ],
+      "replacementBoundary": "Only the Figma visual subtree; no src/ui or storage behavior is replaced or removed",
+      "sourceSvgEvidence": {
+        "manifest": "work/figma-reconcile-20261002/scene-assets/manifest.json",
+        "file": "work/figma-reconcile-20261002/scene-assets/SC09.figma.svg",
+        "sha256": "864f39266b93795ecf2af53b31fdfe7ec5a58d96357f2bc30343d751775b2227",
+        "captureSynthetic": true,
+        "viewBox": "0 -100 960 400",
+        "captureSourceSha256": "42a720a7e8a21879568f319d938b433b86931ce7a71209cfbea1653b04828a40",
+        "note": "Capture source SHA and current source SHA are distinct snapshots; verify drift before a new capture."
+      }
+    },
+    {
+      "id": "SC10",
+      "name": "ObservatoryClouds",
+      "source": {
+        "file": "src/ui/observatory-atmosphere.tsx",
+        "symbol": "ObservatoryClouds",
+        "line": 82,
+        "sha256": "f4f61f28fd31716d1c9fb1268a220e6a46b413306509331a6cbf832b151f6577",
+        "verification": "export exists in current source; runtime behavior was not re-executed in this task"
+      },
+      "region": "원본 픽셀 구름",
+      "figmaOwnerId": "20:6581",
+      "figmaSharedWorldAssetId": "10:68",
+      "figmaOwnerEvidence": "docs/figma-observatory-20261002/evidence/components-review.json",
+      "figmaRepresentation": "existing component IDs preserved; complex scene decoration uses image mockup",
+      "actualImplementation": "current src/ui component remains the runtime owner",
+      "actualEntry": {
+        "appFile": "src/App.tsx",
+        "appLine": 597,
+        "appRoutes": [
+          "#/",
+          "#/record",
+          "#/memos",
+          "#/practice",
+          "#/memory-test",
+          "#/recall"
+        ],
+        "renderCondition": "ObservatoryCover place === front; routes follow the current observatory-place mapping",
+        "renderer": "App → ObservatoryCover → StudyLandscapes → ObservatoryRoom → ObservatoryWorld",
+        "entrySource": "src/ui/observatory-cover.tsx"
+      },
+      "keepNativeInFigma": [
+        "whole widget bounds and outer frame",
+        "layout, control labels, source contract and important state/prototype links"
+      ],
+      "preserveAtRuntime": [
+        "current renderer, source SVG/GPU effects, props and current feature behavior",
+        "display/stop/preferences and return paths where owned",
+        "original records/drafts/IDs/history/user settings; synthetic preview is not real study"
+      ],
+      "replacementBoundary": "Only the Figma visual subtree; no src/ui or storage behavior is replaced or removed",
+      "sourceSvgEvidence": {
+        "manifest": "work/figma-reconcile-20261002/scene-assets/manifest.json",
+        "file": "work/figma-reconcile-20261002/scene-assets/SC10.figma.svg",
+        "sha256": "ecdb8a4334eec0749452809653359c4d0b4e681d5b25da520ef045252c2423da",
+        "captureSynthetic": true,
+        "viewBox": "0 -100 960 400",
+        "captureSourceSha256": "f4f61f28fd31716d1c9fb1268a220e6a46b413306509331a6cbf832b151f6577",
+        "note": "Capture source SHA and current source SHA are distinct snapshots; verify drift before a new capture."
+      }
+    },
+    {
+      "id": "SC11",
+      "name": "ObservatoryGroundDetails",
+      "source": {
+        "file": "src/ui/observatory-atmosphere.tsx",
+        "symbol": "ObservatoryGroundDetails",
+        "line": 107,
+        "sha256": "f4f61f28fd31716d1c9fb1268a220e6a46b413306509331a6cbf832b151f6577",
+        "verification": "export exists in current source; runtime behavior was not re-executed in this task"
+      },
+      "region": "지면 장식 세부",
+      "figmaOwnerId": "20:6593",
+      "figmaSharedWorldAssetId": "10:68",
+      "figmaOwnerEvidence": "docs/figma-observatory-20261002/evidence/components-review.json",
+      "figmaRepresentation": "existing component IDs preserved; complex scene decoration uses image mockup",
+      "actualImplementation": "current src/ui component remains the runtime owner",
+      "actualEntry": {
+        "appFile": "src/App.tsx",
+        "appLine": 597,
+        "appRoutes": [
+          "#/",
+          "#/record",
+          "#/memos",
+          "#/practice",
+          "#/memory-test",
+          "#/recall"
+        ],
+        "renderCondition": "ObservatoryCover place === front; routes follow the current observatory-place mapping",
+        "renderer": "App → ObservatoryCover → StudyLandscapes → ObservatoryRoom → ObservatoryWorld",
+        "entrySource": "src/ui/observatory-cover.tsx"
+      },
+      "keepNativeInFigma": [
+        "whole widget bounds and outer frame",
+        "layout, control labels, source contract and important state/prototype links"
+      ],
+      "preserveAtRuntime": [
+        "current renderer, source SVG/GPU effects, props and current feature behavior",
+        "display/stop/preferences and return paths where owned",
+        "original records/drafts/IDs/history/user settings; synthetic preview is not real study"
+      ],
+      "replacementBoundary": "Only the Figma visual subtree; no src/ui or storage behavior is replaced or removed",
+      "sourceSvgEvidence": {
+        "manifest": "work/figma-reconcile-20261002/scene-assets/manifest.json",
+        "file": "work/figma-reconcile-20261002/scene-assets/SC11.figma.svg",
+        "sha256": "ff68156292dec724f212f6f81796ed9ad26292436749d5c60b444b72eeab90e8",
+        "captureSynthetic": true,
+        "viewBox": "0 -100 960 400",
+        "captureSourceSha256": "f4f61f28fd31716d1c9fb1268a220e6a46b413306509331a6cbf832b151f6577",
+        "note": "Capture source SHA and current source SHA are distinct snapshots; verify drift before a new capture."
+      }
+    },
+    {
+      "id": "SC12",
+      "name": "ObservatoryDomeTiles",
+      "source": {
+        "file": "src/ui/observatory-atmosphere.tsx",
+        "symbol": "ObservatoryDomeTiles",
+        "line": 110,
+        "sha256": "f4f61f28fd31716d1c9fb1268a220e6a46b413306509331a6cbf832b151f6577",
+        "verification": "export exists in current source; runtime behavior was not re-executed in this task"
+      },
+      "region": "건물 돔 타일",
+      "figmaOwnerId": "20:6605",
+      "figmaSharedWorldAssetId": "10:68",
+      "figmaOwnerEvidence": "docs/figma-observatory-20261002/evidence/components-review.json",
+      "figmaRepresentation": "existing component IDs preserved; complex scene decoration uses image mockup",
+      "actualImplementation": "current src/ui component remains the runtime owner",
+      "actualEntry": {
+        "appFile": "src/App.tsx",
+        "appLine": 597,
+        "appRoutes": [
+          "#/",
+          "#/record",
+          "#/memos",
+          "#/practice",
+          "#/memory-test",
+          "#/recall"
+        ],
+        "renderCondition": "ObservatoryCover place === front; routes follow the current observatory-place mapping",
+        "renderer": "App → ObservatoryCover → StudyLandscapes → ObservatoryRoom → ObservatoryWorld",
+        "entrySource": "src/ui/observatory-cover.tsx"
+      },
+      "keepNativeInFigma": [
+        "whole widget bounds and outer frame",
+        "layout, control labels, source contract and important state/prototype links"
+      ],
+      "preserveAtRuntime": [
+        "current renderer, source SVG/GPU effects, props and current feature behavior",
+        "display/stop/preferences and return paths where owned",
+        "original records/drafts/IDs/history/user settings; synthetic preview is not real study"
+      ],
+      "replacementBoundary": "Only the Figma visual subtree; no src/ui or storage behavior is replaced or removed",
+      "sourceSvgEvidence": {
+        "manifest": "work/figma-reconcile-20261002/scene-assets/manifest.json",
+        "file": "work/figma-reconcile-20261002/scene-assets/SC12.figma.svg",
+        "sha256": "25c509ce1b3bb2f74999f37ffee8d442b055684d5824160b725aa7914835e224",
+        "captureSynthetic": true,
+        "viewBox": "0 0 64 42",
+        "captureSourceSha256": "f4f61f28fd31716d1c9fb1268a220e6a46b413306509331a6cbf832b151f6577",
+        "note": "Capture source SHA and current source SHA are distinct snapshots; verify drift before a new capture."
+      }
+    },
+    {
+      "id": "SC13",
+      "name": "ObservatoryShockwave",
+      "source": {
+        "file": "src/ui/observatory-atmosphere.tsx",
+        "symbol": "ObservatoryShockwave",
+        "line": 114,
+        "sha256": "f4f61f28fd31716d1c9fb1268a220e6a46b413306509331a6cbf832b151f6577",
+        "verification": "export exists in current source; runtime behavior was not re-executed in this task"
+      },
+      "region": "기존 반응 파동·원본 큰 반경",
+      "figmaOwnerId": "20:6617",
+      "figmaSharedWorldAssetId": "10:68",
+      "figmaOwnerEvidence": "docs/figma-observatory-20261002/evidence/components-review.json",
+      "figmaRepresentation": "existing component IDs preserved; complex scene decoration uses image mockup",
+      "actualImplementation": "current src/ui component remains the runtime owner",
+      "actualEntry": {
+        "appFile": "src/App.tsx",
+        "appLine": 597,
+        "appRoutes": [
+          "#/",
+          "#/record",
+          "#/memos",
+          "#/practice",
+          "#/memory-test",
+          "#/recall"
+        ],
+        "renderCondition": "ObservatoryCover place === front; routes follow the current observatory-place mapping",
+        "renderer": "App → ObservatoryCover → StudyLandscapes → ObservatoryRoom → ObservatoryWorld",
+        "entrySource": "src/ui/observatory-cover.tsx"
+      },
+      "keepNativeInFigma": [
+        "whole widget bounds and outer frame",
+        "layout, control labels, source contract and important state/prototype links"
+      ],
+      "preserveAtRuntime": [
+        "current renderer, source SVG/GPU effects, props and current feature behavior",
+        "display/stop/preferences and return paths where owned",
+        "original records/drafts/IDs/history/user settings; synthetic preview is not real study"
+      ],
+      "replacementBoundary": "Only the Figma visual subtree; no src/ui or storage behavior is replaced or removed",
+      "sourceSvgEvidence": {
+        "manifest": "work/figma-reconcile-20261002/scene-assets/manifest.json",
+        "file": "work/figma-reconcile-20261002/scene-assets/SC13.figma.svg",
+        "sha256": "ff104ad5560fcc0243c745f1e8126e56815d07213183d02c5feffdda587e5afb",
+        "captureSynthetic": true,
+        "viewBox": "-680 -680 1360 1360",
+        "captureSourceSha256": "f4f61f28fd31716d1c9fb1268a220e6a46b413306509331a6cbf832b151f6577",
+        "note": "Capture source SHA and current source SHA are distinct snapshots; verify drift before a new capture."
+      }
+    },
+    {
+      "id": "SC14",
+      "name": "ObservatoryStudySky",
+      "source": {
+        "file": "src/ui/observatory-reactivity.tsx",
+        "symbol": "ObservatoryStudySky",
+        "line": 18,
+        "sha256": "7ffacca0ed1305557648a350938d4b6fd06c4743ac57bfc37ad02f7f85b65d63",
+        "verification": "export exists in current source; runtime behavior was not re-executed in this task"
+      },
+      "region": "관측 활동에 따른 하늘 장식 반응",
+      "figmaOwnerId": "20:6629",
+      "figmaSharedWorldAssetId": "10:68",
+      "figmaOwnerEvidence": "docs/figma-observatory-20261002/evidence/components-review.json",
+      "figmaRepresentation": "existing component IDs preserved; complex scene decoration uses image mockup",
+      "actualImplementation": "current src/ui component remains the runtime owner",
+      "actualEntry": {
+        "appFile": "src/App.tsx",
+        "appLine": 597,
+        "appRoutes": [
+          "#/",
+          "#/record",
+          "#/memos",
+          "#/practice",
+          "#/memory-test",
+          "#/recall"
+        ],
+        "renderCondition": "ObservatoryCover place === front; routes follow the current observatory-place mapping",
+        "renderer": "App → ObservatoryCover → StudyLandscapes → ObservatoryRoom → ObservatoryWorld",
+        "entrySource": "src/ui/observatory-cover.tsx"
+      },
+      "keepNativeInFigma": [
+        "whole widget bounds and outer frame",
+        "layout, control labels, source contract and important state/prototype links"
+      ],
+      "preserveAtRuntime": [
+        "current renderer, source SVG/GPU effects, props and current feature behavior",
+        "display/stop/preferences and return paths where owned",
+        "original records/drafts/IDs/history/user settings; synthetic preview is not real study"
+      ],
+      "replacementBoundary": "Only the Figma visual subtree; no src/ui or storage behavior is replaced or removed",
+      "sourceSvgEvidence": {
+        "manifest": "work/figma-reconcile-20261002/scene-assets/manifest.json",
+        "file": "work/figma-reconcile-20261002/scene-assets/SC14.figma.svg",
+        "sha256": "8e9434ea31c565a92487437bdc12ea57011c3e4262becccf5b80d0511e8fcc07",
+        "captureSynthetic": true,
+        "viewBox": "0 -100 960 400",
+        "captureSourceSha256": "7ffacca0ed1305557648a350938d4b6fd06c4743ac57bfc37ad02f7f85b65d63",
+        "note": "Capture source SHA and current source SHA are distinct snapshots; verify drift before a new capture."
+      }
+    },
+    {
+      "id": "SC15",
+      "name": "ObservatoryStudyStation",
+      "source": {
+        "file": "src/ui/observatory-reactivity.tsx",
+        "symbol": "ObservatoryStudyStation",
+        "line": 61,
+        "sha256": "7ffacca0ed1305557648a350938d4b6fd06c4743ac57bfc37ad02f7f85b65d63",
+        "verification": "export exists in current source; runtime behavior was not re-executed in this task"
+      },
+      "region": "관측 활동에 따른 건물 장식 반응",
+      "figmaOwnerId": "20:6641",
+      "figmaSharedWorldAssetId": "10:68",
+      "figmaOwnerEvidence": "docs/figma-observatory-20261002/evidence/components-review.json",
+      "figmaRepresentation": "existing component IDs preserved; complex scene decoration uses image mockup",
+      "actualImplementation": "current src/ui component remains the runtime owner",
+      "actualEntry": {
+        "appFile": "src/App.tsx",
+        "appLine": 597,
+        "appRoutes": [
+          "#/",
+          "#/record",
+          "#/memos",
+          "#/practice",
+          "#/memory-test",
+          "#/recall"
+        ],
+        "renderCondition": "ObservatoryCover place === front; routes follow the current observatory-place mapping",
+        "renderer": "App → ObservatoryCover → StudyLandscapes → ObservatoryRoom → ObservatoryWorld",
+        "entrySource": "src/ui/observatory-cover.tsx"
+      },
+      "keepNativeInFigma": [
+        "whole widget bounds and outer frame",
+        "layout, control labels, source contract and important state/prototype links"
+      ],
+      "preserveAtRuntime": [
+        "current renderer, source SVG/GPU effects, props and current feature behavior",
+        "display/stop/preferences and return paths where owned",
+        "original records/drafts/IDs/history/user settings; synthetic preview is not real study"
+      ],
+      "replacementBoundary": "Only the Figma visual subtree; no src/ui or storage behavior is replaced or removed",
+      "sourceSvgEvidence": {
+        "manifest": "work/figma-reconcile-20261002/scene-assets/manifest.json",
+        "file": "work/figma-reconcile-20261002/scene-assets/SC15.figma.svg",
+        "sha256": "9b2b6db29c72773396014072ad1f2b9c2417109f80560d4f4007e2960702b6f2",
+        "captureSynthetic": true,
+        "viewBox": "-10 0 90 80",
+        "captureSourceSha256": "7ffacca0ed1305557648a350938d4b6fd06c4743ac57bfc37ad02f7f85b65d63",
+        "note": "Capture source SHA and current source SHA are distinct snapshots; verify drift before a new capture."
+      }
+    },
+    {
+      "id": "SC16",
+      "name": "ObservatoryRadiance",
+      "source": {
+        "file": "src/ui/observatory-radiance.tsx",
+        "symbol": "ObservatoryRadiance",
+        "line": 84,
+        "sha256": "85d81f6836b4807122039bf6f028d389204171456305ba39b077a70214ee4999",
+        "verification": "export exists in current source; runtime behavior was not re-executed in this task"
+      },
+      "region": "하늘 광원·빛",
+      "figmaOwnerId": "20:6653",
+      "figmaSharedWorldAssetId": "10:68",
+      "figmaOwnerEvidence": "docs/figma-observatory-20261002/evidence/components-review.json",
+      "figmaRepresentation": "existing component IDs preserved; complex scene decoration uses image mockup",
+      "actualImplementation": "current src/ui component remains the runtime owner",
+      "actualEntry": {
+        "appFile": "src/App.tsx",
+        "appLine": 597,
+        "appRoutes": [
+          "#/",
+          "#/record",
+          "#/memos",
+          "#/practice",
+          "#/memory-test",
+          "#/recall"
+        ],
+        "renderCondition": "ObservatoryCover place === front; routes follow the current observatory-place mapping",
+        "renderer": "App → ObservatoryCover → StudyLandscapes → ObservatoryRoom → ObservatoryWorld",
+        "entrySource": "src/ui/observatory-cover.tsx"
+      },
+      "keepNativeInFigma": [
+        "whole widget bounds and outer frame",
+        "layout, control labels, source contract and important state/prototype links"
+      ],
+      "preserveAtRuntime": [
+        "current renderer, source SVG/GPU effects, props and current feature behavior",
+        "display/stop/preferences and return paths where owned",
+        "original records/drafts/IDs/history/user settings; synthetic preview is not real study"
+      ],
+      "replacementBoundary": "Only the Figma visual subtree; no src/ui or storage behavior is replaced or removed",
+      "sourceSvgEvidence": {
+        "manifest": "work/figma-reconcile-20261002/scene-assets/manifest.json",
+        "file": "work/figma-reconcile-20261002/scene-assets/SC16.figma.svg",
+        "sha256": "ee63d46b3548d0b7f9a302484278d6c7127697ea10f0d1d0c16903632be638e9",
+        "captureSynthetic": true,
+        "viewBox": "0 -100 960 400",
+        "captureSourceSha256": "85d81f6836b4807122039bf6f028d389204171456305ba39b077a70214ee4999",
+        "note": "Capture source SHA and current source SHA are distinct snapshots; verify drift before a new capture."
+      }
+    },
+    {
+      "id": "SC17",
+      "name": "ObservatoryRadianceGround",
+      "source": {
+        "file": "src/ui/observatory-radiance.tsx",
+        "symbol": "ObservatoryRadianceGround",
+        "line": 183,
+        "sha256": "85d81f6836b4807122039bf6f028d389204171456305ba39b077a70214ee4999",
+        "verification": "export exists in current source; runtime behavior was not re-executed in this task"
+      },
+      "region": "지면 반응광",
+      "figmaOwnerId": "20:6665",
+      "figmaSharedWorldAssetId": "10:68",
+      "figmaOwnerEvidence": "docs/figma-observatory-20261002/evidence/components-review.json",
+      "figmaRepresentation": "existing component IDs preserved; complex scene decoration uses image mockup",
+      "actualImplementation": "current src/ui component remains the runtime owner",
+      "actualEntry": {
+        "appFile": "src/App.tsx",
+        "appLine": 597,
+        "appRoutes": [
+          "#/",
+          "#/record",
+          "#/memos",
+          "#/practice",
+          "#/memory-test",
+          "#/recall"
+        ],
+        "renderCondition": "ObservatoryCover place === front; routes follow the current observatory-place mapping",
+        "renderer": "App → ObservatoryCover → StudyLandscapes → ObservatoryRoom → ObservatoryWorld",
+        "entrySource": "src/ui/observatory-cover.tsx"
+      },
+      "keepNativeInFigma": [
+        "whole widget bounds and outer frame",
+        "layout, control labels, source contract and important state/prototype links"
+      ],
+      "preserveAtRuntime": [
+        "current renderer, source SVG/GPU effects, props and current feature behavior",
+        "display/stop/preferences and return paths where owned",
+        "original records/drafts/IDs/history/user settings; synthetic preview is not real study"
+      ],
+      "replacementBoundary": "Only the Figma visual subtree; no src/ui or storage behavior is replaced or removed",
+      "sourceSvgEvidence": {
+        "manifest": "work/figma-reconcile-20261002/scene-assets/manifest.json",
+        "file": "work/figma-reconcile-20261002/scene-assets/SC17.figma.svg",
+        "sha256": "a4bd6c149c75870f665e82ce2e0f28fcdf6fde53f4e515af7973a10fc5b2f4a2",
+        "captureSynthetic": true,
+        "viewBox": "0 -100 960 400",
+        "captureSourceSha256": "85d81f6836b4807122039bf6f028d389204171456305ba39b077a70214ee4999",
+        "note": "Capture source SHA and current source SHA are distinct snapshots; verify drift before a new capture."
+      }
+    },
+    {
+      "id": "SC18",
+      "name": "ObservatoryEvents",
+      "source": {
+        "file": "src/ui/observatory-events.tsx",
+        "symbol": "ObservatoryEvents",
+        "line": 406,
+        "sha256": "85ef8256eb7674fc357797481c81769e82dc8b0188b52ab3eff325eabd1db782",
+        "verification": "export exists in current source; runtime behavior was not re-executed in this task"
+      },
+      "region": "선택된 하늘/지면 장식 현상",
+      "figmaOwnerId": "20:6677",
+      "figmaSharedWorldAssetId": "10:68",
+      "figmaOwnerEvidence": "docs/figma-observatory-20261002/evidence/components-review.json",
+      "figmaRepresentation": "existing component IDs preserved; complex scene decoration uses image mockup",
+      "actualImplementation": "current src/ui component remains the runtime owner",
+      "actualEntry": {
+        "appFile": "src/App.tsx",
+        "appLine": 597,
+        "appRoutes": [
+          "#/",
+          "#/record",
+          "#/memos",
+          "#/practice",
+          "#/memory-test",
+          "#/recall"
+        ],
+        "renderCondition": "ObservatoryCover place === front; routes follow the current observatory-place mapping",
+        "renderer": "App → ObservatoryCover → StudyLandscapes → ObservatoryRoom → ObservatoryWorld",
+        "entrySource": "src/ui/observatory-cover.tsx"
+      },
+      "keepNativeInFigma": [
+        "whole widget bounds and outer frame",
+        "layout, control labels, source contract and important state/prototype links"
+      ],
+      "preserveAtRuntime": [
+        "current renderer, source SVG/GPU effects, props and current feature behavior",
+        "display/stop/preferences and return paths where owned",
+        "original records/drafts/IDs/history/user settings; synthetic preview is not real study"
+      ],
+      "replacementBoundary": "Only the Figma visual subtree; no src/ui or storage behavior is replaced or removed",
+      "sourceSvgEvidence": {
+        "manifest": "work/figma-reconcile-20261002/scene-assets/manifest.json",
+        "file": "work/figma-reconcile-20261002/scene-assets/SC18.figma.svg",
+        "sha256": "7478c8f5620072ba88a5e92d6b2f05a5030a89b276fcf684dd21356bbf1a3ddd",
+        "captureSynthetic": true,
+        "viewBox": "0 -100 960 400",
+        "captureSourceSha256": "85ef8256eb7674fc357797481c81769e82dc8b0188b52ab3eff325eabd1db782",
+        "note": "Capture source SHA and current source SHA are distinct snapshots; verify drift before a new capture."
+      }
+    },
+    {
+      "id": "SC19",
+      "name": "ObservatoryEventVariationSymbol",
+      "source": {
+        "file": "src/ui/observatory-event-variations.tsx",
+        "symbol": "ObservatoryEventVariationSymbol",
+        "line": 322,
+        "sha256": "fe332b9043727338e3cbde1657f11e98dee04c3e6d56ea434a21cb69b3425bf4",
+        "verification": "export exists in current source; runtime behavior was not re-executed in this task"
+      },
+      "region": "현상 공용 SVG symbol",
+      "figmaOwnerId": "21:5121",
+      "figmaSharedWorldAssetId": "10:68",
+      "figmaOwnerEvidence": "docs/figma-observatory-20261002/evidence/components-review.json",
+      "figmaRepresentation": "existing component IDs preserved; complex scene decoration uses image mockup",
+      "actualImplementation": "current src/ui component remains the runtime owner",
+      "actualEntry": {
+        "appFile": "src/App.tsx",
+        "appLine": 597,
+        "appRoutes": [
+          "#/",
+          "#/record",
+          "#/memos",
+          "#/practice",
+          "#/memory-test",
+          "#/recall"
+        ],
+        "renderCondition": "ObservatoryCover place === front; routes follow the current observatory-place mapping",
+        "renderer": "App → ObservatoryCover → StudyLandscapes → ObservatoryRoom → ObservatoryWorld",
+        "entrySource": "src/ui/observatory-cover.tsx"
+      },
+      "keepNativeInFigma": [
+        "whole widget bounds and outer frame",
+        "layout, control labels, source contract and important state/prototype links"
+      ],
+      "preserveAtRuntime": [
+        "current renderer, source SVG/GPU effects, props and current feature behavior",
+        "display/stop/preferences and return paths where owned",
+        "original records/drafts/IDs/history/user settings; synthetic preview is not real study"
+      ],
+      "replacementBoundary": "Only the Figma visual subtree; no src/ui or storage behavior is replaced or removed"
+    },
+    {
+      "id": "SC20",
+      "name": "ObservatoryEventVariation",
+      "source": {
+        "file": "src/ui/observatory-event-variations.tsx",
+        "symbol": "ObservatoryEventVariation",
+        "line": 345,
+        "sha256": "fe332b9043727338e3cbde1657f11e98dee04c3e6d56ea434a21cb69b3425bf4",
+        "verification": "export exists in current source; runtime behavior was not re-executed in this task"
+      },
+      "region": "현상 variant·use 인스턴스",
+      "figmaOwnerId": "21:5138",
+      "figmaSharedWorldAssetId": "10:68",
+      "figmaOwnerEvidence": "docs/figma-observatory-20261002/evidence/components-review.json",
+      "figmaRepresentation": "existing component IDs preserved; complex scene decoration uses image mockup",
+      "actualImplementation": "current src/ui component remains the runtime owner",
+      "actualEntry": {
+        "appFile": "src/App.tsx",
+        "appLine": 597,
+        "appRoutes": [
+          "#/",
+          "#/record",
+          "#/memos",
+          "#/practice",
+          "#/memory-test",
+          "#/recall"
+        ],
+        "renderCondition": "ObservatoryCover place === front; routes follow the current observatory-place mapping",
+        "renderer": "App → ObservatoryCover → StudyLandscapes → ObservatoryRoom → ObservatoryWorld",
+        "entrySource": "src/ui/observatory-cover.tsx"
+      },
+      "keepNativeInFigma": [
+        "whole widget bounds and outer frame",
+        "layout, control labels, source contract and important state/prototype links"
+      ],
+      "preserveAtRuntime": [
+        "current renderer, source SVG/GPU effects, props and current feature behavior",
+        "display/stop/preferences and return paths where owned",
+        "original records/drafts/IDs/history/user settings; synthetic preview is not real study"
+      ],
+      "replacementBoundary": "Only the Figma visual subtree; no src/ui or storage behavior is replaced or removed"
+    },
+    {
+      "id": "RUNTIME-ObservatoryPlaceArt",
+      "name": "ObservatoryPlaceArt",
+      "source": {
+        "file": "src/ui/observatory-place-art.tsx",
+        "symbol": "ObservatoryPlaceArt",
+        "line": 645,
+        "sha256": "0c76dca0a49f8a820076fda2e897992f1260dd8bfa09aae764c4958c9815f865",
+        "verification": "export exists in current source; runtime behavior was not re-executed in this task"
+      },
+      "region": "책장/탐구 작업대/기록·계획 벽/천장 그림",
+      "relatedImplementation": {
+        "name": "ObservatoryPlaceScene",
+        "file": "src/ui/observatory-place-scene.tsx"
+      },
+      "figmaOwnerId": null,
+      "figmaOwnerStatus": "not identified or changed by this local generator task",
+      "actualEntry": {
+        "appFile": "src/App.tsx",
+        "appRoutes": [
+          "#/subjects",
+          "#/materials",
+          "#/math",
+          "#/statistics",
+          "#/schedules",
+          "#/search"
+        ]
+      },
+      "figmaRepresentation": "future/current complex rendering keeps a static image specimen and editable surrounding controls",
+      "replacementBoundary": "place scene art only; keep location/route/collapse/return controls",
+      "actualImplementation": "retain current source implementation; this mapping does not assert a new runtime deployment",
+      "preserveAtRuntime": [
+        "original content/IDs/drafts/history/personal layout",
+        "current render, input, save, undo and return contracts; real dynamic behavior belongs to the webapp"
+      ]
+    },
+    {
+      "id": "RUNTIME-MathExplorer",
+      "name": "MathExplorer",
+      "source": {
+        "file": "src/ui/math-explorer.tsx",
+        "symbol": "MathExplorer",
+        "line": 175,
+        "sha256": "fac70aa4c57e4552802bd587c450d1c02ed7ed58e6a0bbe7ef9c23d3c7066cf5",
+        "verification": "export exists in current source; runtime behavior was not re-executed in this task"
+      },
+      "region": "수식 탐색·Plot/GeoGebra·A/B 비교",
+      "relatedImplementation": {
+        "name": "MathGeoGebra",
+        "file": "src/ui/math-geogebra.tsx"
+      },
+      "figmaOwnerId": null,
+      "figmaOwnerStatus": "not identified or changed by this local generator task",
+      "actualEntry": {
+        "appFile": "src/App.tsx",
+        "appRoutes": [
+          "#/math"
+        ]
+      },
+      "figmaRepresentation": "future/current complex rendering keeps a static image specimen and editable surrounding controls",
+      "replacementBoundary": "plot picture only; keep formula input, variables, comparison selection, reset and accessible value/source controls",
+      "actualImplementation": "retain current source implementation; this mapping does not assert a new runtime deployment",
+      "preserveAtRuntime": [
+        "original content/IDs/drafts/history/personal layout",
+        "current render, input, save, undo and return contracts; real dynamic behavior belongs to the webapp"
+      ]
+    },
+    {
+      "id": "RUNTIME-ConceptInteractives",
+      "name": "ConceptInteractives",
+      "source": {
+        "file": "src/ui/concept-interactives.tsx",
+        "symbol": "ConceptInteractives",
+        "line": 12,
+        "sha256": "44fb84c9a4ee02b761b1c8e851c373854e10e1d69d2f1eef835c02a28bd508b5",
+        "verification": "export exists in current source; runtime behavior was not re-executed in this task"
+      },
+      "region": "iframe 개념 탐구실·저장된 보기",
+      "relatedImplementation": {
+        "name": "ConceptInteractives",
+        "file": "src/ui/concept-interactives.tsx"
+      },
+      "figmaOwnerId": null,
+      "figmaOwnerStatus": "not identified or changed by this local generator task",
+      "actualEntry": {
+        "appFile": "src/App.tsx",
+        "appRoutes": [
+          "#/math"
+        ]
+      },
+      "figmaRepresentation": "future/current complex rendering keeps a static image specimen and editable surrounding controls",
+      "replacementBoundary": "interactive illustration only; keep selection/view controls, loading/error/retry and restored view contract",
+      "actualImplementation": "retain current source implementation; this mapping does not assert a new runtime deployment",
+      "preserveAtRuntime": [
+        "original content/IDs/drafts/history/personal layout",
+        "current render, input, save, undo and return contracts; real dynamic behavior belongs to the webapp"
+      ]
+    },
+    {
+      "id": "RUNTIME-StudyStatistics",
+      "name": "StudyStatistics",
+      "source": {
+        "file": "src/ui/statistics.tsx",
+        "symbol": "StudyStatistics",
+        "line": 39,
+        "sha256": "989fe8b8d2d06da9a90da5d4515bc61c610a038f6a97e6795acf8029eb24ddfa",
+        "verification": "export exists in current source; runtime behavior was not re-executed in this task"
+      },
+      "region": "다양한 통계 그래프·원기록·값 목록",
+      "relatedImplementation": {
+        "name": "StatisticsPlot",
+        "file": "src/ui/statistics-plot.tsx"
+      },
+      "figmaOwnerId": null,
+      "figmaOwnerStatus": "not identified or changed by this local generator task",
+      "actualEntry": {
+        "appFile": "src/App.tsx",
+        "appRoutes": [
+          "#/statistics"
+        ]
+      },
+      "figmaRepresentation": "future/current complex rendering keeps a static image specimen and editable surrounding controls",
+      "replacementBoundary": "chart drawing only; keep metric, units, denominator, chart choice, value lists and source access",
+      "actualImplementation": "retain current source implementation; this mapping does not assert a new runtime deployment",
+      "preserveAtRuntime": [
+        "original content/IDs/drafts/history/personal layout",
+        "current render, input, save, undo and return contracts; real dynamic behavior belongs to the webapp"
+      ]
+    },
+    {
+      "id": "RUNTIME-StudyGraph",
+      "name": "StudyGraph",
+      "source": {
+        "file": "src/ui/study-graph.tsx",
+        "symbol": "StudyGraph",
+        "line": 155,
+        "sha256": "1d6165de075b92da4c82d5c49c4837f888e8662b42090c7a8111b263f0100d21",
+        "verification": "export exists in current source; runtime behavior was not re-executed in this task"
+      },
+      "region": "그래프 노드/간선·자동 배치",
+      "relatedImplementation": {
+        "name": "StudyGraph",
+        "file": "src/ui/study-graph.tsx"
+      },
+      "figmaOwnerId": null,
+      "figmaOwnerStatus": "not identified or changed by this local generator task",
+      "actualEntry": {
+        "appFile": "src/App.tsx",
+        "appRoutes": [
+          "#/graph"
+        ]
+      },
+      "figmaRepresentation": "future/current complex rendering keeps a static image specimen and editable surrounding controls",
+      "replacementBoundary": "dense graph drawing only; keep find/filter/open/keyboard/value controls and current node IDs",
+      "actualImplementation": "retain current source implementation; this mapping does not assert a new runtime deployment",
+      "preserveAtRuntime": [
+        "original content/IDs/drafts/history/personal layout",
+        "current render, input, save, undo and return contracts; real dynamic behavior belongs to the webapp"
+      ]
+    },
+    {
+      "id": "RUNTIME-StudyCanvas",
+      "name": "StudyCanvas",
+      "source": {
+        "file": "src/ui/study-canvas.tsx",
+        "symbol": "StudyCanvas",
+        "line": 211,
+        "sha256": "59c4b08b930b29ec83af92f081a82dbc4b922a377df6a14c4e8a177ced5fef58",
+        "verification": "export exists in current source; runtime behavior was not re-executed in this task"
+      },
+      "region": "개인 Canvas·노드/연결·필기",
+      "relatedImplementation": {
+        "name": "StudyCanvas",
+        "file": "src/ui/study-canvas.tsx"
+      },
+      "figmaOwnerId": null,
+      "figmaOwnerStatus": "not identified or changed by this local generator task",
+      "actualEntry": {
+        "appFile": "src/App.tsx",
+        "appRoutes": [
+          "#/canvas"
+        ]
+      },
+      "figmaRepresentation": "future/current complex rendering keeps a static image specimen and editable surrounding controls",
+      "replacementBoundary": "static canvas specimen only; keep editing/selecting/source/undo/restore controls and personal positions/links",
+      "actualImplementation": "retain current source implementation; this mapping does not assert a new runtime deployment",
+      "preserveAtRuntime": [
+        "original content/IDs/drafts/history/personal layout",
+        "current render, input, save, undo and return contracts; real dynamic behavior belongs to the webapp"
+      ]
+    },
+    {
+      "id": "RUNTIME-MemoInkPad",
+      "name": "MemoInkPad",
+      "source": {
+        "file": "src/ui/memo-ink-pad.tsx",
+        "symbol": "MemoInkPad",
+        "line": 54,
+        "sha256": "c14be4719fbdd01e735486d9a53d2e2f1ee156f9879527f5ac79f6b37cbb635b",
+        "verification": "export exists in current source; runtime behavior was not re-executed in this task"
+      },
+      "region": "펜 필기·획/배경/도구",
+      "relatedImplementation": {
+        "name": "InkDrawing",
+        "file": "src/ui/ink-drawing.tsx"
+      },
+      "figmaOwnerId": null,
+      "figmaOwnerStatus": "not identified or changed by this local generator task",
+      "actualEntry": {
+        "appFile": "src/App.tsx",
+        "appRoutes": [
+          "#/memos"
+        ]
+      },
+      "figmaRepresentation": "future/current complex rendering keeps a static image specimen and editable surrounding controls",
+      "replacementBoundary": "synthetic handwriting surface only; keep native tool/undo/color/input controls and original ink strokes",
+      "actualImplementation": "retain current source implementation; this mapping does not assert a new runtime deployment",
+      "preserveAtRuntime": [
+        "original content/IDs/drafts/history/personal layout",
+        "current render, input, save, undo and return contracts; real dynamic behavior belongs to the webapp"
+      ]
+    },
+    {
+      "id": "RUNTIME-CodePractice",
+      "name": "CodePractice",
+      "source": {
+        "file": "src/ui/code-practice.tsx",
+        "symbol": "CodePractice",
+        "line": 78,
+        "sha256": "f3d8bf9e9c847038f4784f2e4b50fba8311ca3ee10f088b0b92f30287e6cc5e9",
+        "verification": "export exists in current source; runtime behavior was not re-executed in this task"
+      },
+      "region": "코드 편집·실행/터미널",
+      "relatedImplementation": {
+        "name": "CodeTerminal",
+        "file": "src/ui/code-terminal.tsx"
+      },
+      "figmaOwnerId": null,
+      "figmaOwnerStatus": "not identified or changed by this local generator task",
+      "actualEntry": {
+        "appFile": "src/App.tsx",
+        "appRoutes": [
+          "#/code"
+        ]
+      },
+      "figmaRepresentation": "future/current complex rendering keeps a static image specimen and editable surrounding controls",
+      "replacementBoundary": "editor/output picture only; keep inputs/run/status/source links and actual executor permissions",
+      "actualImplementation": "retain current source implementation; this mapping does not assert a new runtime deployment",
+      "preserveAtRuntime": [
+        "original content/IDs/drafts/history/personal layout",
+        "current render, input, save, undo and return contracts; real dynamic behavior belongs to the webapp"
+      ]
+    },
+    {
+      "id": "RUNTIME-ConceptFigureView",
+      "name": "ConceptFigureView",
+      "source": {
+        "file": "src/ui/concept-figure.tsx",
+        "symbol": "ConceptFigureView",
+        "line": 103,
+        "sha256": "94c7945dbb53fba67873cd91b61ef083e3128ab75113c895b34e2601a2af6d7c",
+        "verification": "export exists in current source; runtime behavior was not re-executed in this task"
+      },
+      "region": "개념 도해·라벨·확대/이동",
+      "relatedImplementation": {
+        "name": "ConceptFigureView",
+        "file": "src/ui/concept-figure.tsx"
+      },
+      "figmaOwnerId": null,
+      "figmaOwnerStatus": "not identified or changed by this local generator task",
+      "actualEntry": {
+        "appFile": "src/App.tsx",
+        "appRoutes": [
+          "#/canvas"
+        ]
+      },
+      "figmaRepresentation": "future/current complex rendering keeps a static image specimen and editable surrounding controls",
+      "replacementBoundary": "diagram drawing only; keep source text, labels needed for understanding and actual zoom/pan/edit controls",
+      "actualImplementation": "retain current source implementation; this mapping does not assert a new runtime deployment",
+      "preserveAtRuntime": [
+        "original content/IDs/drafts/history/personal layout",
+        "current render, input, save, undo and return contracts; real dynamic behavior belongs to the webapp"
+      ]
+    }
+  ],
+  "limits": [
+    "source hashes are current capture snapshots; later concurrent edits require a focused refresh before rendering",
+    "historical source SVG/hash inputs are preserved and not claimed to represent current props/runtime",
+    "Figma/prototype links and source presence do not prove all runtime states, physical devices or learning effects"
+  ]
+}

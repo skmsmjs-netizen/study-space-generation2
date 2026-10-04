@@ -1,0 +1,1227 @@
+[
+  {
+    "pageId": "74:399",
+    "targets": [
+      {
+        "id": "84:30895",
+        "name": "종이책 · 관계와 조건 · 2차원 운동",
+        "pattern": "L190"
+      },
+      {
+        "id": "84:31043",
+        "name": "종이책 · 내용과 연결 · 2차원 운동",
+        "pattern": "L190"
+      },
+      {
+        "id": "84:31068",
+        "name": "종이책 · 관계와 조건 · 힘과 운동",
+        "pattern": "L190"
+      },
+      {
+        "id": "84:31147",
+        "name": "종이책 · 내용과 연결 · 힘과 운동",
+        "pattern": "L190"
+      },
+      {
+        "id": "84:31170",
+        "name": "종이책 · 관계와 조건 · 일·에너지·일률",
+        "pattern": "L190"
+      },
+      {
+        "id": "84:31317",
+        "name": "종이책 · 내용과 연결 · 일·에너지·일률",
+        "pattern": "L190"
+      },
+      {
+        "id": "84:31345",
+        "name": "종이책 · 관계와 조건 · 선운동량·충돌·질량중심",
+        "pattern": "L190"
+      },
+      {
+        "id": "84:31442",
+        "name": "종이책 · 내용과 연결 · 선운동량·충돌·질량중심",
+        "pattern": "L190"
+      },
+      {
+        "id": "84:108307",
+        "name": "종이책 · 관계와 조건 · 회전 운동",
+        "pattern": "L190"
+      },
+      {
+        "id": "84:108499",
+        "name": "종이책 · 내용과 연결 · 회전 운동",
+        "pattern": "L190"
+      },
+      {
+        "id": "84:108528",
+        "name": "종이책 · 관계와 조건 · 각운동량",
+        "pattern": "L190"
+      },
+      {
+        "id": "84:108625",
+        "name": "종이책 · 내용과 연결 · 각운동량",
+        "pattern": "L190"
+      },
+      {
+        "id": "84:108648",
+        "name": "종이책 · 관계와 조건 · 물질의 역학적 성질",
+        "pattern": "L190"
+      },
+      {
+        "id": "84:108768",
+        "name": "종이책 · 내용과 연결 · 물질의 역학적 성질",
+        "pattern": "L190"
+      },
+      {
+        "id": "84:108793",
+        "name": "종이책 · 관계와 조건 · 물질의 열적 성질",
+        "pattern": "L190"
+      },
+      {
+        "id": "84:108893",
+        "name": "종이책 · 내용과 연결 · 물질의 열적 성질",
+        "pattern": "L190"
+      },
+      {
+        "id": "84:108916",
+        "name": "종이책 · 관계와 조건 · 열과 열역학 제1법칙",
+        "pattern": "L190"
+      },
+      {
+        "id": "84:109053",
+        "name": "종이책 · 내용과 연결 · 열과 열역학 제1법칙",
+        "pattern": "L190"
+      },
+      {
+        "id": "84:109078",
+        "name": "종이책 · 관계와 조건 · 기체 운동론",
+        "pattern": "L190"
+      },
+      {
+        "id": "84:109195",
+        "name": "종이책 · 내용과 연결 · 기체 운동론",
+        "pattern": "L190"
+      },
+      {
+        "id": "84:109219",
+        "name": "종이책 · 관계와 조건 · 진동과 파동 운동",
+        "pattern": "L190"
+      },
+      {
+        "id": "84:109386",
+        "name": "종이책 · 내용과 연결 · 진동과 파동 운동",
+        "pattern": "L190"
+      },
+      {
+        "id": "84:109540",
+        "name": "종이책 · 관계와 조건 · 음파",
+        "pattern": "L190"
+      },
+      {
+        "id": "84:109652",
+        "name": "종이책 · 내용과 연결 · 음파",
+        "pattern": "L190"
+      },
+      {
+        "id": "84:109679",
+        "name": "종이책 · 관계와 조건 · 음파의 중첩",
+        "pattern": "L190"
+      },
+      {
+        "id": "84:109795",
+        "name": "종이책 · 내용과 연결 · 음파의 중첩",
+        "pattern": "L190"
+      },
+      {
+        "id": "84:109820",
+        "name": "종이책 · 관계와 조건 · 광파와 광학",
+        "pattern": "L190"
+      },
+      {
+        "id": "84:109949",
+        "name": "종이책 · 내용과 연결 · 광파와 광학",
+        "pattern": "L190"
+      },
+      {
+        "id": "84:109975",
+        "name": "종이책 · 관계와 조건 · 빛의 간섭·회절·편광",
+        "pattern": "L190"
+      },
+      {
+        "id": "84:110094",
+        "name": "종이책 · 내용과 연결 · 빛의 간섭·회절·편광",
+        "pattern": "L190"
+      },
+      {
+        "id": "84:110120",
+        "name": "종이책 · 관계와 조건 · 전기력",
+        "pattern": "L190"
+      },
+      {
+        "id": "84:110199",
+        "name": "종이책 · 내용과 연결 · 전기력",
+        "pattern": "L190"
+      },
+      {
+        "id": "84:110222",
+        "name": "종이책 · 관계와 조건 · 전기장",
+        "pattern": "L190"
+      },
+      {
+        "id": "84:110328",
+        "name": "종이책 · 내용과 연결 · 전기장",
+        "pattern": "L190"
+      },
+      {
+        "id": "84:110354",
+        "name": "종이책 · 관계와 조건 · 가우스 법칙",
+        "pattern": "L190"
+      },
+      {
+        "id": "84:110486",
+        "name": "종이책 · 내용과 연결 · 가우스 법칙",
+        "pattern": "L190"
+      },
+      {
+        "id": "84:110670",
+        "name": "종이책 · 관계와 조건 · 전위",
+        "pattern": "L190"
+      },
+      {
+        "id": "84:110771",
+        "name": "종이책 · 내용과 연결 · 전위",
+        "pattern": "L190"
+      },
+      {
+        "id": "84:110806",
+        "name": "종이책 · 관계와 조건 · 축전기와 정전용량",
+        "pattern": "L190"
+      },
+      {
+        "id": "84:110953",
+        "name": "종이책 · 내용과 연결 · 축전기와 정전용량",
+        "pattern": "L190"
+      },
+      {
+        "id": "84:110978",
+        "name": "종이책 · 관계와 조건 · 전기 회로",
+        "pattern": "L190"
+      },
+      {
+        "id": "84:111061",
+        "name": "종이책 · 내용과 연결 · 전기 회로",
+        "pattern": "L190"
+      },
+      {
+        "id": "84:111088",
+        "name": "종이책 · 관계와 조건 · 자기장",
+        "pattern": "L190"
+      },
+      {
+        "id": "84:111209",
+        "name": "종이책 · 내용과 연결 · 자기장",
+        "pattern": "L190"
+      },
+      {
+        "id": "84:111235",
+        "name": "종이책 · 관계와 조건 · 자기장의 원천",
+        "pattern": "L190"
+      },
+      {
+        "id": "84:111374",
+        "name": "종이책 · 내용과 연결 · 자기장의 원천",
+        "pattern": "L190"
+      },
+      {
+        "id": "84:111404",
+        "name": "종이책 · 관계와 조건 · 패러데이 법칙·교류·맥스웰 방정식",
+        "pattern": "L190"
+      },
+      {
+        "id": "84:111519",
+        "name": "종이책 · 내용과 연결 · 패러데이 법칙·교류·맥스웰 방정식",
+        "pattern": "L190"
+      },
+      {
+        "id": "84:111546",
+        "name": "종이책 · 관계와 조건 · 인덕턴스·진동 회로·교류 회로",
+        "pattern": "L190"
+      },
+      {
+        "id": "84:111762",
+        "name": "종이책 · 내용과 연결 · 인덕턴스·진동 회로·교류 회로",
+        "pattern": "L190"
+      },
+      {
+        "id": "86:107154",
+        "name": "종이책 · 관측실의 책을 꺼내기",
+        "pattern": "L190"
+      },
+      {
+        "id": "86:108846",
+        "name": "종이책 · 교재 책갈피 1",
+        "pattern": "L190"
+      },
+      {
+        "id": "86:108879",
+        "name": "종이책 · 교재 책갈피 2",
+        "pattern": "L190"
+      },
+      {
+        "id": "86:108912",
+        "name": "종이책 · 교재 책갈피 3",
+        "pattern": "L190"
+      },
+      {
+        "id": "86:108945",
+        "name": "종이책 · 교재 책갈피 4",
+        "pattern": "L190"
+      },
+      {
+        "id": "86:108978",
+        "name": "종이책 · 가속도 변경 후",
+        "pattern": "L190"
+      },
+      {
+        "id": "86:109074",
+        "name": "종이책 · 파동의 시간 위치",
+        "pattern": "L190"
+      },
+      {
+        "id": "86:109169",
+        "name": "종이책 · saved",
+        "pattern": "L190"
+      },
+      {
+        "id": "86:109179",
+        "name": "종이책 · save-error",
+        "pattern": "L190"
+      },
+      {
+        "id": "88:6415",
+        "name": "종이책 · 펼친 연결도 · 책 전체의 연결",
+        "pattern": "L190"
+      },
+      {
+        "id": "88:6524",
+        "name": "종이책 · 펼친 연결도 · 운동의 기술에서 힘과 보존으로",
+        "pattern": "L190"
+      },
+      {
+        "id": "88:6673",
+        "name": "종이책 · 펼친 연결도 · 물질의 반응에서 열과 분자 운동으로",
+        "pattern": "L190"
+      },
+      {
+        "id": "88:6826",
+        "name": "종이책 · 펼친 연결도 · 진동에서 파동과 소리로",
+        "pattern": "L190"
+      },
+      {
+        "id": "88:6935",
+        "name": "종이책 · 펼친 연결도 · 파동을 빛의 진행과 무늬에 적용하기",
+        "pattern": "L190"
+      },
+      {
+        "id": "88:7024",
+        "name": "종이책 · 펼친 연결도 · 전하의 힘에서 장·전위·회로로",
+        "pattern": "L190"
+      },
+      {
+        "id": "88:7193",
+        "name": "종이책 · 펼친 연결도 · 자기력에서 장의 원천과 전자기 유도로",
+        "pattern": "L190"
+      },
+      {
+        "id": "88:7334",
+        "name": "종이책 · 펼친 연결도 · 앞의 개념들이 진동 회로와 교류에서 만나는 곳",
+        "pattern": "L190"
+      },
+      {
+        "id": "95:15329",
+        "name": "종이책 · 가속도 변경의 관측 도구",
+        "pattern": "L190"
+      },
+      {
+        "id": "95:15357",
+        "name": "종이책 · 진폭 변경의 관측 도구",
+        "pattern": "L190"
+      },
+      {
+        "id": "95:15464",
+        "name": "종이책 · 현상 관측 보관 후",
+        "pattern": "L190"
+      },
+      {
+        "id": "95:15478",
+        "name": "종이책 · 가속도 변경 보관 후",
+        "pattern": "L190"
+      },
+      {
+        "id": "95:15493",
+        "name": "종이책 · 진폭 변경 보관 후",
+        "pattern": "L190"
+      }
+    ]
+  },
+  {
+    "pageId": "52:72",
+    "targets": [
+      {
+        "id": "67:68",
+        "name": "책 전체의 연결",
+        "pattern": "L196"
+      },
+      {
+        "id": "67:177",
+        "name": "운동의 기술에서 힘과 보존으로",
+        "pattern": "L196"
+      },
+      {
+        "id": "67:326",
+        "name": "물질의 반응에서 열과 분자 운동으로",
+        "pattern": "L196"
+      },
+      {
+        "id": "67:479",
+        "name": "진동에서 파동과 소리로",
+        "pattern": "L196"
+      },
+      {
+        "id": "67:11161",
+        "name": "파동을 빛의 진행과 무늬에 적용하기",
+        "pattern": "L196"
+      },
+      {
+        "id": "67:11250",
+        "name": "전하의 힘에서 장·전위·회로로",
+        "pattern": "L196"
+      },
+      {
+        "id": "67:11435",
+        "name": "자기력에서 장의 원천과 전자기 유도로",
+        "pattern": "L196"
+      },
+      {
+        "id": "67:11576",
+        "name": "앞의 개념들이 진동 회로와 교류에서 만나는 곳",
+        "pattern": "L196"
+      },
+      {
+        "id": "67:11768",
+        "name": "관측 기본틀 · 차원과 단위",
+        "pattern": "L194"
+      },
+      {
+        "id": "67:11788",
+        "name": "관측 기본틀 · 벡터",
+        "pattern": "L194"
+      },
+      {
+        "id": "67:11808",
+        "name": "관측 기본틀 · 1차원 운동",
+        "pattern": "L194"
+      },
+      {
+        "id": "67:11828",
+        "name": "관측 기본틀 · 2차원 운동",
+        "pattern": "L194"
+      },
+      {
+        "id": "67:11848",
+        "name": "관측 기본틀 · 힘과 운동",
+        "pattern": "L194"
+      },
+      {
+        "id": "67:11868",
+        "name": "관측 기본틀 · 일·에너지·일률",
+        "pattern": "L194"
+      },
+      {
+        "id": "67:11888",
+        "name": "관측 기본틀 · 선운동량·충돌·질량중심",
+        "pattern": "L194"
+      },
+      {
+        "id": "67:11908",
+        "name": "관측 기본틀 · 회전 운동",
+        "pattern": "L194"
+      },
+      {
+        "id": "67:11928",
+        "name": "관측 기본틀 · 각운동량",
+        "pattern": "L194"
+      },
+      {
+        "id": "67:11948",
+        "name": "관측 기본틀 · 물질의 역학적 성질",
+        "pattern": "L194"
+      },
+      {
+        "id": "67:11968",
+        "name": "관측 기본틀 · 물질의 열적 성질",
+        "pattern": "L194"
+      },
+      {
+        "id": "67:11988",
+        "name": "관측 기본틀 · 열과 열역학 제1법칙",
+        "pattern": "L194"
+      },
+      {
+        "id": "67:12008",
+        "name": "관측 기본틀 · 기체 운동론",
+        "pattern": "L194"
+      },
+      {
+        "id": "67:12028",
+        "name": "관측 기본틀 · 진동과 파동 운동",
+        "pattern": "L194"
+      },
+      {
+        "id": "67:12048",
+        "name": "관측 기본틀 · 음파",
+        "pattern": "L194"
+      },
+      {
+        "id": "67:12068",
+        "name": "관측 기본틀 · 음파의 중첩",
+        "pattern": "L194"
+      },
+      {
+        "id": "67:12088",
+        "name": "관측 기본틀 · 광파와 광학",
+        "pattern": "L194"
+      },
+      {
+        "id": "67:12108",
+        "name": "관측 기본틀 · 빛의 간섭·회절·편광",
+        "pattern": "L194"
+      },
+      {
+        "id": "67:12128",
+        "name": "관측 기본틀 · 전기력",
+        "pattern": "L194"
+      },
+      {
+        "id": "67:12148",
+        "name": "관측 기본틀 · 전기장",
+        "pattern": "L194"
+      },
+      {
+        "id": "67:12168",
+        "name": "관측 기본틀 · 가우스 법칙",
+        "pattern": "L194"
+      },
+      {
+        "id": "67:12188",
+        "name": "관측 기본틀 · 전위",
+        "pattern": "L194"
+      },
+      {
+        "id": "67:12208",
+        "name": "관측 기본틀 · 축전기와 정전용량",
+        "pattern": "L194"
+      },
+      {
+        "id": "67:12228",
+        "name": "관측 기본틀 · 전기 회로",
+        "pattern": "L194"
+      },
+      {
+        "id": "67:12248",
+        "name": "관측 기본틀 · 자기장",
+        "pattern": "L194"
+      },
+      {
+        "id": "67:12268",
+        "name": "관측 기본틀 · 자기장의 원천",
+        "pattern": "L194"
+      },
+      {
+        "id": "67:12288",
+        "name": "관측 기본틀 · 패러데이 법칙·교류·맥스웰 방정식",
+        "pattern": "L194"
+      },
+      {
+        "id": "67:12308",
+        "name": "관측 기본틀 · 인덕턴스·진동 회로·교류 회로",
+        "pattern": "L194"
+      }
+    ]
+  },
+  {
+    "pageId": "52:68",
+    "targets": [
+      {
+        "id": "63:6210",
+        "name": "천문대에서 두 관측실이 맡는 일",
+        "pattern": "L194"
+      },
+      {
+        "id": "63:9593",
+        "name": "정체성이 드러나는 수학관측실",
+        "pattern": "L194"
+      },
+      {
+        "id": "63:11348",
+        "name": "정체성이 드러나는 인터랙티브관측실",
+        "pattern": "L194"
+      }
+    ]
+  },
+  {
+    "pageId": "52:71",
+    "targets": [
+      {
+        "id": "68:25095",
+        "name": "관측 상태 · empty",
+        "pattern": "L198"
+      },
+      {
+        "id": "68:25105",
+        "name": "관측 상태 · loading",
+        "pattern": "L198"
+      },
+      {
+        "id": "68:25115",
+        "name": "관측 상태 · render-error",
+        "pattern": "L198"
+      },
+      {
+        "id": "68:25125",
+        "name": "관측 상태 · invalid",
+        "pattern": "L198"
+      },
+      {
+        "id": "68:25135",
+        "name": "관측 상태 · saving",
+        "pattern": "L198"
+      },
+      {
+        "id": "68:25145",
+        "name": "관측 상태 · saved",
+        "pattern": "L198"
+      },
+      {
+        "id": "68:25157",
+        "name": "관측 상태 · save-error",
+        "pattern": "L198"
+      },
+      {
+        "id": "68:25167",
+        "name": "관측 상태 · restored",
+        "pattern": "L198"
+      },
+      {
+        "id": "68:25177",
+        "name": "관측 상태 · readonly",
+        "pattern": "L198"
+      }
+    ]
+  },
+  {
+    "pageId": "7:75",
+    "targets": [
+      {
+        "id": "74:71889",
+        "name": "XD01 / 01 / ipad-landscape / 닫힘",
+        "pattern": "L192"
+      },
+      {
+        "id": "74:71897",
+        "name": "XD01 / 02 / iphone-portrait / 24명령 목록",
+        "pattern": "L192"
+      },
+      {
+        "id": "74:71968",
+        "name": "XD01 / 03 / ipad-landscape / 검색 일치",
+        "pattern": "L192"
+      },
+      {
+        "id": "74:71995",
+        "name": "XD01 / 04 / iphone-portrait / 일치 없음",
+        "pattern": "L192"
+      },
+      {
+        "id": "74:72026",
+        "name": "XD01 / 05 / ipad-landscape / 자료/주제 미선택으로 일부 명령 disabled+사유",
+        "pattern": "L192"
+      },
+      {
+        "id": "74:72103",
+        "name": "XD01 / 06 / iphone-portrait / 결과 키보드 초점",
+        "pattern": "L192"
+      },
+      {
+        "id": "74:72837",
+        "name": "XD02 / 01 / ipad-landscape / 접힘",
+        "pattern": "L187"
+      },
+      {
+        "id": "74:72874",
+        "name": "XD02 / 02 / ipad-landscape / wide 메모",
+        "pattern": "L187"
+      },
+      {
+        "id": "74:72952",
+        "name": "XD02 / 03 / ipad-landscape / wide 수식",
+        "pattern": "L187"
+      },
+      {
+        "id": "74:73044",
+        "name": "XD02 / 04 / ipad-landscape / wide 코드",
+        "pattern": "L187"
+      },
+      {
+        "id": "74:73118",
+        "name": "XD02 / 05 / ipad-landscape / wide 기록",
+        "pattern": "L187"
+      },
+      {
+        "id": "74:73213",
+        "name": "XD02 / 06 / iphone-portrait / narrow 자료",
+        "pattern": "L187"
+      },
+      {
+        "id": "74:73274",
+        "name": "XD02 / 07 / iphone-portrait / narrow 도구",
+        "pattern": "L187"
+      },
+      {
+        "id": "74:73329",
+        "name": "XD02 / 08 / ipad-landscape / 툴 지연 로딩",
+        "pattern": "L187"
+      },
+      {
+        "id": "74:73393",
+        "name": "XD02 / 09 / ipad-landscape / 자료만 크게",
+        "pattern": "L187"
+      },
+      {
+        "id": "74:73449",
+        "name": "XD02 / 10 / ipad-landscape / 도구만 크게",
+        "pattern": "L187"
+      },
+      {
+        "id": "74:73848",
+        "name": "XD03 / 01 / ipad-landscape / 빈 보관함",
+        "pattern": "L043"
+      },
+      {
+        "id": "74:73881",
+        "name": "XD03 / 02 / iphone-portrait / 기존 구성이 있음",
+        "pattern": "L043"
+      },
+      {
+        "id": "74:73916",
+        "name": "XD03 / 03 / ipad-landscape / 이름 수정 중",
+        "pattern": "L043"
+      },
+      {
+        "id": "74:73960",
+        "name": "XD03 / 04 / iphone-portrait / 삭제 후 되돌리기",
+        "pattern": "L043"
+      },
+      {
+        "id": "74:73988",
+        "name": "XD03 / 05 / ipad-landscape / 대상 자료 없음",
+        "pattern": "L043"
+      },
+      {
+        "id": "74:74024",
+        "name": "XD03 / 06 / iphone-portrait / 저장 실패 안내",
+        "pattern": "L043"
+      },
+      {
+        "id": "75:74329",
+        "name": "XD04 / 01 / ipad-landscape / 정상 숨김",
+        "pattern": "L198"
+      },
+      {
+        "id": "75:74336",
+        "name": "XD04 / 02 / iphone-portrait / 읽기 실패",
+        "pattern": "L198"
+      },
+      {
+        "id": "75:74352",
+        "name": "XD04 / 03 / ipad-landscape / 쓰기 실패·현재 화면 유지",
+        "pattern": "L198"
+      },
+      {
+        "id": "75:74577",
+        "name": "XD05 / 01 / ipad-landscape / 측정 없음",
+        "pattern": "L198"
+      },
+      {
+        "id": "75:74618",
+        "name": "XD05 / 02 / iphone-portrait / 세션 측정 있음",
+        "pattern": "L198"
+      },
+      {
+        "id": "75:74659",
+        "name": "XD05 / 03 / ipad-landscape / 요청 측정 펼침",
+        "pattern": "L198"
+      },
+      {
+        "id": "75:74716",
+        "name": "XD05 / 04 / iphone-portrait / 내려받기 요청됨",
+        "pattern": "L198"
+      },
+      {
+        "id": "75:74758",
+        "name": "XD05 / 05 / ipad-landscape / 파일 생성 실패",
+        "pattern": "L198"
+      },
+      {
+        "id": "75:74800",
+        "name": "XD05 / 06 / iphone-portrait / 측정 비움",
+        "pattern": "L198"
+      },
+      {
+        "id": "75:77795",
+        "name": "XD06 / 01 / ipad-landscape / 40개 이하",
+        "pattern": "L043"
+      },
+      {
+        "id": "75:77812",
+        "name": "XD06 / 02 / ipad-landscape / 처음40개",
+        "pattern": "L043"
+      },
+      {
+        "id": "75:77945",
+        "name": "XD06 / 03 / ipad-landscape / 80개 등40개단위 확장",
+        "pattern": "L043"
+      },
+      {
+        "id": "75:78198",
+        "name": "XD06 / 04 / ipad-landscape / 전체펼침",
+        "pattern": "L043"
+      },
+      {
+        "id": "75:78566",
+        "name": "XD06 / 05 / iphone-portrait / 접힘",
+        "pattern": "L043"
+      },
+      {
+        "id": "75:78574",
+        "name": "XD06 / 06 / iphone-portrait / 접힘해제",
+        "pattern": "L043"
+      },
+      {
+        "id": "75:78709",
+        "name": "XD06 / 07 / iphone-portrait / 자기평가80개",
+        "pattern": "L043"
+      },
+      {
+        "id": "75:78964",
+        "name": "XD06 / 08 / iphone-portrait / 자기평가전체120개",
+        "pattern": "L043"
+      },
+      {
+        "id": "75:79989",
+        "name": "XD07 / 01 / ipad-landscape / A없음",
+        "pattern": "L194"
+      },
+      {
+        "id": "75:79999",
+        "name": "XD07 / 02 / iphone-portrait / 함수 A/B 같은축",
+        "pattern": "L194"
+      },
+      {
+        "id": "75:80068",
+        "name": "XD07 / 03 / ipad-landscape / 3차원곡선 xy/xz/yz정사영",
+        "pattern": "L194"
+      },
+      {
+        "id": "75:80148",
+        "name": "XD07 / 04 / iphone-portrait / 다른종류여서겹치지않음",
+        "pattern": "L194"
+      },
+      {
+        "id": "75:80195",
+        "name": "XD07 / 05 / ipad-landscape / B계산불가",
+        "pattern": "L194"
+      },
+      {
+        "id": "75:80241",
+        "name": "XD07 / 06 / iphone-portrait / 복원내용손상",
+        "pattern": "L194"
+      },
+      {
+        "id": "75:80258",
+        "name": "XD07 / 07 / ipad-landscape / 탭보관실패",
+        "pattern": "L194"
+      },
+      {
+        "id": "75:80328",
+        "name": "XD07 / 08 / iphone-portrait / 확대및범위고정",
+        "pattern": "L194"
+      },
+      {
+        "id": "75:80868",
+        "name": "XD08 / 01 / ipad-landscape / 검색어없음",
+        "pattern": "L055"
+      },
+      {
+        "id": "75:80905",
+        "name": "XD08 / 02 / iphone-portrait / 결과대기",
+        "pattern": "L055"
+      },
+      {
+        "id": "75:80937",
+        "name": "XD08 / 03 / ipad-landscape / 일치이유순",
+        "pattern": "L055"
+      },
+      {
+        "id": "75:80976",
+        "name": "XD08 / 04 / iphone-portrait / 원래목록순",
+        "pattern": "L055"
+      },
+      {
+        "id": "75:81015",
+        "name": "XD08 / 05 / ipad-landscape / 종류필터",
+        "pattern": "L055"
+      },
+      {
+        "id": "75:81054",
+        "name": "XD08 / 06 / iphone-portrait / 결과없음",
+        "pattern": "L055"
+      },
+      {
+        "id": "75:81098",
+        "name": "XD08 / 07 / ipad-landscape / 검색실패",
+        "pattern": "L055"
+      },
+      {
+        "id": "75:81136",
+        "name": "XD08 / 08 / iphone-portrait / 40개넘음",
+        "pattern": "L055"
+      },
+      {
+        "id": "75:81372",
+        "name": "XD08 / 09 / iphone-portrait / 검색결과80개모두표시",
+        "pattern": "L055"
+      },
+      {
+        "id": "75:81846",
+        "name": "XD09 / 01 / ipad-landscape / 선택없음",
+        "pattern": "L195"
+      },
+      {
+        "id": "75:81972",
+        "name": "XD09 / 02 / iphone-portrait / 날짜선택",
+        "pattern": "L195"
+      },
+      {
+        "id": "75:82098",
+        "name": "XD09 / 03 / ipad-landscape / 과목선택",
+        "pattern": "L195"
+      },
+      {
+        "id": "75:82224",
+        "name": "XD09 / 04 / iphone-portrait / 값행선택",
+        "pattern": "L195"
+      },
+      {
+        "id": "75:82350",
+        "name": "XD09 / 05 / ipad-landscape / 원기록선택",
+        "pattern": "L195"
+      },
+      {
+        "id": "75:82492",
+        "name": "XD09 / 06 / iphone-portrait / 선택유효근거없음",
+        "pattern": "L195"
+      },
+      {
+        "id": "75:82618",
+        "name": "XD09 / 07 / ipad-landscape / 해제",
+        "pattern": "L195"
+      },
+      {
+        "id": "75:83312",
+        "name": "XD10 / 01 / ipad-landscape / 본문도해",
+        "pattern": "L196"
+      },
+      {
+        "id": "75:83322",
+        "name": "XD10 / 02 / iphone-portrait / 확대모달",
+        "pattern": "L196"
+      },
+      {
+        "id": "75:83352",
+        "name": "XD10 / 03 / ipad-landscape / pan/zoom변경",
+        "pattern": "L196"
+      },
+      {
+        "id": "75:83382",
+        "name": "XD10 / 04 / iphone-portrait / 설명펼침",
+        "pattern": "L196"
+      },
+      {
+        "id": "75:83420",
+        "name": "XD10 / 05 / ipad-landscape / 보존viewport로다시열기",
+        "pattern": "L196"
+      },
+      {
+        "id": "75:83948",
+        "name": "XD11 / 01 / ipad-landscape / 목록",
+        "pattern": "L189"
+      },
+      {
+        "id": "75:83978",
+        "name": "XD11 / 02 / iphone-portrait / 상세읽기",
+        "pattern": "L189"
+      },
+      {
+        "id": "75:83990",
+        "name": "XD11 / 03 / ipad-landscape / 수식포함본문",
+        "pattern": "L189"
+      },
+      {
+        "id": "75:84002",
+        "name": "XD11 / 04 / iphone-portrait / 아래첨자도해label",
+        "pattern": "L189"
+      },
+      {
+        "id": "75:84015",
+        "name": "XD11 / 05 / ipad-landscape / 기존목록위치복귀",
+        "pattern": "L189"
+      },
+      {
+        "id": "75:85526",
+        "name": "XD12 / 01 / ipad-landscape / 정지",
+        "pattern": "L064"
+      },
+      {
+        "id": "75:85562",
+        "name": "XD12 / 02 / iphone-portrait / 장소변경0.18초",
+        "pattern": "L064"
+      },
+      {
+        "id": "75:85598",
+        "name": "XD12 / 03 / ipad-landscape / 움직임줄이기0초",
+        "pattern": "L064"
+      },
+      {
+        "id": "75:85634",
+        "name": "XD12 / 04 / iphone-portrait / 같은장소내이동",
+        "pattern": "L064"
+      }
+    ]
+  },
+  {
+    "pageId": "7:76",
+    "targets": [
+      {
+        "id": "14:73",
+        "name": "상태 SAVE-CHECKING · 서버 확인 중",
+        "pattern": "L198"
+      },
+      {
+        "id": "14:95",
+        "name": "상태 SAVE-LOCAL-WRITING · 기기에 보관 중",
+        "pattern": "L198"
+      },
+      {
+        "id": "14:115",
+        "name": "상태 SAVE-PENDING · 기기 보관·미전송",
+        "pattern": "L198"
+      },
+      {
+        "id": "14:139",
+        "name": "상태 SAVE-SAVING · 서버에 저장 중",
+        "pattern": "L198"
+      },
+      {
+        "id": "14:161",
+        "name": "상태 SAVE-SAVED · 서버 반영 확인",
+        "pattern": "L198"
+      },
+      {
+        "id": "14:183",
+        "name": "상태 SAVE-ERROR · 서버 저장 실패",
+        "pattern": "L198"
+      },
+      {
+        "id": "14:205",
+        "name": "상태 SAVE-LOCAL-ERROR · 기기 보관 실패",
+        "pattern": "L198"
+      },
+      {
+        "id": "14:227",
+        "name": "상태 SAVE-CONFLICT · 두 자료 확인",
+        "pattern": "L198"
+      },
+      {
+        "id": "14:254",
+        "name": "상태 SAVE-ARCHIVING · 전환 전 양본 보관",
+        "pattern": "L198"
+      },
+      {
+        "id": "14:271",
+        "name": "상태 AUTH-CHECKING · 이용 권한 확인",
+        "pattern": "L198"
+      },
+      {
+        "id": "14:290",
+        "name": "상태 AUTH-SIGNED-OUT · 로그인 전",
+        "pattern": "L198"
+      },
+      {
+        "id": "14:312",
+        "name": "상태 AUTH-PENDING · 가입 승인 대기",
+        "pattern": "L198"
+      },
+      {
+        "id": "14:331",
+        "name": "상태 AUTH-APPROVED · 이용 허용",
+        "pattern": "L198"
+      },
+      {
+        "id": "14:348",
+        "name": "상태 AUTH-REJECTED · 가입 거절",
+        "pattern": "L198"
+      },
+      {
+        "id": "14:365",
+        "name": "상태 AUTH-SUSPENDED · 이용 중지",
+        "pattern": "L198"
+      },
+      {
+        "id": "14:382",
+        "name": "상태 AUTH-EXPIRED · 세션 확인 필요",
+        "pattern": "L198"
+      },
+      {
+        "id": "14:401",
+        "name": "상태 EDIT-DIRTY · 작성 중 초안",
+        "pattern": "L198"
+      },
+      {
+        "id": "14:422",
+        "name": "상태 EDIT-OTHER-WINDOW · 다른 창 작성 중",
+        "pattern": "L198"
+      },
+      {
+        "id": "14:444",
+        "name": "상태 EDIT-RESTORED-DRAFT · 다른 세션의 보관 초안",
+        "pattern": "L198"
+      },
+      {
+        "id": "14:466",
+        "name": "상태 BACKUP-COLLECTING · 백업 준비 중",
+        "pattern": "L198"
+      },
+      {
+        "id": "14:483",
+        "name": "상태 BACKUP-PREPARED · 백업 파일 준비됨",
+        "pattern": "L198"
+      },
+      {
+        "id": "14:500",
+        "name": "상태 BACKUP-INVALID · 복원 파일 거부",
+        "pattern": "L198"
+      },
+      {
+        "id": "14:519",
+        "name": "상태 BACKUP-PREVIEW · 복원 내용 확인",
+        "pattern": "L198"
+      },
+      {
+        "id": "14:543",
+        "name": "상태 BACKUP-WAITING-RESTART · 다시 열어 복원",
+        "pattern": "L198"
+      },
+      {
+        "id": "14:560",
+        "name": "상태 BACKUP-RECOVERING · 복원·중단 복구 중",
+        "pattern": "L198"
+      },
+      {
+        "id": "14:577",
+        "name": "상태 BACKUP-RESTORED · 기기 복원 후 확인",
+        "pattern": "L198"
+      },
+      {
+        "id": "14:596",
+        "name": "상태 BACKUP-ROLLED-BACK · 복구 실패·기존 자료 유지",
+        "pattern": "L198"
+      },
+      {
+        "id": "14:615",
+        "name": "상태 BACKUP-MISSING-ORIGINAL · 기기에 없는 원본",
+        "pattern": "L198"
+      },
+      {
+        "id": "14:634",
+        "name": "상태 BACKUP-OWNER-CHANGED · 계정 변경",
+        "pattern": "L198"
+      },
+      {
+        "id": "14:651",
+        "name": "상태 AI-OWNER-READY · 민석 전용 AI 준비",
+        "pattern": "L198"
+      },
+      {
+        "id": "14:673",
+        "name": "상태 AI-FORBIDDEN · AI 권한 없음",
+        "pattern": "L198"
+      },
+      {
+        "id": "14:690",
+        "name": "상태 AI-GENERATING · AI 생성 중",
+        "pattern": "L198"
+      },
+      {
+        "id": "14:710",
+        "name": "상태 AI-PREVIEW · 생성 초안 검토",
+        "pattern": "L198"
+      },
+      {
+        "id": "14:739",
+        "name": "상태 AI-FAILED · 생성 실패",
+        "pattern": "L198"
+      },
+      {
+        "id": "14:759",
+        "name": "상태 AI-LIMIT · AI 상한/호출 제한",
+        "pattern": "L198"
+      },
+      {
+        "id": "14:779",
+        "name": "상태 AI-UNCERTAIN · 응답·비용 확인 중",
+        "pattern": "L198"
+      },
+      {
+        "id": "14:799",
+        "name": "상태 CONTENT-EMPTY · 자료 없음",
+        "pattern": "L198"
+      },
+      {
+        "id": "14:816",
+        "name": "상태 CONTENT-NO-RESULT · 찾은 결과 없음",
+        "pattern": "L198"
+      },
+      {
+        "id": "14:838",
+        "name": "상태 CONTENT-ERROR · 불러오기 실패",
+        "pattern": "L198"
+      },
+      {
+        "id": "14:857",
+        "name": "상태 CONTENT-UNAVAILABLE · 환경에서 사용할 수 없음",
+        "pattern": "L198"
+      },
+      {
+        "id": "14:874",
+        "name": "상태 RENDER-FALLBACK · 천문대 표현 복구",
+        "pattern": "L198"
+      },
+      {
+        "id": "14:893",
+        "name": "상태 RENDER-PAUSED · 움직임 정지/감소",
+        "pattern": "L198"
+      }
+    ]
+  }
+]

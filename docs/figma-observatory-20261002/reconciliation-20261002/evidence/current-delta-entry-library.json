@@ -1,0 +1,351 @@
+{
+  "pageId": "7:72",
+  "entryLinks": [
+    {
+      "feature": "XD02",
+      "label": "곁 도구 펼치기",
+      "sourceId": "28:10158",
+      "targetId": "74:72837",
+      "profile": "ipad-landscape",
+      "profileLabel": "넓은 상태",
+      "targetState": "접힘",
+      "controlId": "83:100539",
+      "connected": true,
+      "connection": "figma-node-url",
+      "presentation": "figma-review-panel",
+      "panelId": "83:100533",
+      "sourcePreserved": true
+    },
+    {
+      "feature": "XD02",
+      "label": "곁 도구 펼치기",
+      "sourceId": "28:10299",
+      "targetId": "74:73213",
+      "profile": "iphone-portrait",
+      "profileLabel": "좁은 상태",
+      "targetState": "narrow 자료",
+      "controlId": "83:100548",
+      "connected": true,
+      "connection": "figma-node-url",
+      "presentation": "figma-review-panel",
+      "panelId": "83:100542",
+      "sourcePreserved": true
+    },
+    {
+      "feature": "XD10",
+      "label": "도해 크게 보기",
+      "sourceId": "28:11253",
+      "targetId": "75:83312",
+      "profile": "ipad-landscape",
+      "profileLabel": "넓은 상태",
+      "targetState": "본문도해",
+      "controlId": "83:100557",
+      "connected": true,
+      "connection": "figma-node-url",
+      "presentation": "figma-review-panel",
+      "panelId": "83:100551",
+      "sourcePreserved": true
+    },
+    {
+      "feature": "XD11",
+      "label": "개념 선택",
+      "sourceId": "28:11253",
+      "targetId": "75:83948",
+      "profile": "ipad-landscape",
+      "profileLabel": "넓은 상태",
+      "targetState": "목록",
+      "controlId": "83:100562",
+      "connected": true,
+      "connection": "figma-node-url",
+      "presentation": "figma-review-panel",
+      "panelId": "83:100551",
+      "sourcePreserved": true
+    },
+    {
+      "feature": "XD10",
+      "label": "도해 크게 보기",
+      "sourceId": "28:11372",
+      "targetId": "75:83322",
+      "profile": "iphone-portrait",
+      "profileLabel": "좁은 상태",
+      "targetState": "확대모달",
+      "controlId": "83:100571",
+      "connected": true,
+      "connection": "figma-node-url",
+      "presentation": "figma-review-panel",
+      "panelId": "83:100565",
+      "sourcePreserved": true
+    },
+    {
+      "feature": "XD11",
+      "label": "개념 선택",
+      "sourceId": "28:11372",
+      "targetId": "75:83978",
+      "profile": "iphone-portrait",
+      "profileLabel": "좁은 상태",
+      "targetState": "상세읽기",
+      "controlId": "83:100576",
+      "connected": true,
+      "connection": "figma-node-url",
+      "presentation": "figma-review-panel",
+      "panelId": "83:100565",
+      "sourcePreserved": true
+    }
+  ],
+  "sources": [
+    {
+      "sourceId": "28:10158",
+      "before": {
+        "x": 100,
+        "y": 2087,
+        "width": 1376,
+        "height": 1032,
+        "parentId": "7:72",
+        "childIds": [
+          "28:10159",
+          "28:10162",
+          "56:27104",
+          "28:10171"
+        ]
+      },
+      "after": {
+        "x": 100,
+        "y": 2087,
+        "width": 1376,
+        "height": 1032,
+        "parentId": "7:72",
+        "childIds": [
+          "28:10159",
+          "28:10162",
+          "56:27104",
+          "28:10171"
+        ]
+      },
+      "geometryPreserved": true
+    },
+    {
+      "sourceId": "28:10299",
+      "before": {
+        "x": 1572,
+        "y": 2087,
+        "width": 402,
+        "height": 681,
+        "parentId": "7:72",
+        "childIds": [
+          "28:10300",
+          "28:10303",
+          "56:27129",
+          "28:10312"
+        ]
+      },
+      "after": {
+        "x": 1572,
+        "y": 2087,
+        "width": 402,
+        "height": 681,
+        "parentId": "7:72",
+        "childIds": [
+          "28:10300",
+          "28:10303",
+          "56:27129",
+          "28:10312"
+        ]
+      },
+      "geometryPreserved": true
+    },
+    {
+      "sourceId": "28:11253",
+      "before": {
+        "x": 100,
+        "y": 6969,
+        "width": 1376,
+        "height": 1032,
+        "parentId": "7:72",
+        "childIds": [
+          "28:11254",
+          "28:11257",
+          "56:27454",
+          "28:11266"
+        ]
+      },
+      "after": {
+        "x": 100,
+        "y": 6969,
+        "width": 1376,
+        "height": 1032,
+        "parentId": "7:72",
+        "childIds": [
+          "28:11254",
+          "28:11257",
+          "56:27454",
+          "28:11266"
+        ]
+      },
+      "geometryPreserved": true
+    },
+    {
+      "sourceId": "28:11372",
+      "before": {
+        "x": 1572,
+        "y": 6969,
+        "width": 402,
+        "height": 681,
+        "parentId": "7:72",
+        "childIds": [
+          "28:11373",
+          "28:11376",
+          "56:27479",
+          "28:11385"
+        ]
+      },
+      "after": {
+        "x": 1572,
+        "y": 6969,
+        "width": 402,
+        "height": 681,
+        "parentId": "7:72",
+        "childIds": [
+          "28:11373",
+          "28:11376",
+          "56:27479",
+          "28:11385"
+        ]
+      },
+      "geometryPreserved": true
+    }
+  ],
+  "panels": [
+    {
+      "sourceId": "28:10158",
+      "panelId": "83:100533",
+      "x": 1524,
+      "y": 1895,
+      "width": 360,
+      "height": 130,
+      "overlapCount": 0
+    },
+    {
+      "sourceId": "28:10299",
+      "panelId": "83:100542",
+      "x": 2022,
+      "y": 1895,
+      "width": 360,
+      "height": 130,
+      "overlapCount": 0
+    },
+    {
+      "sourceId": "28:11253",
+      "panelId": "83:100551",
+      "x": 1540,
+      "y": 6722,
+      "width": 360,
+      "height": 199,
+      "overlapCount": 0
+    },
+    {
+      "sourceId": "28:11372",
+      "panelId": "83:100565",
+      "x": 2052,
+      "y": 6722,
+      "width": 360,
+      "height": 199,
+      "overlapCount": 0
+    }
+  ],
+  "decisions": [
+    {
+      "sourceId": "28:10158",
+      "feature": "XD02",
+      "profile": "ipad-landscape",
+      "reason": "No unambiguous existing product button with this literal label."
+    },
+    {
+      "sourceId": "28:10299",
+      "feature": "XD02",
+      "profile": "iphone-portrait",
+      "reason": "No unambiguous existing product button with this literal label."
+    },
+    {
+      "sourceId": "28:11253",
+      "feature": "XD10",
+      "profile": "ipad-landscape",
+      "reason": "No unambiguous existing product button with this literal label."
+    },
+    {
+      "sourceId": "28:11253",
+      "feature": "XD11",
+      "profile": "ipad-landscape",
+      "reason": "No unambiguous existing product button with this literal label."
+    },
+    {
+      "sourceId": "28:11372",
+      "feature": "XD10",
+      "profile": "iphone-portrait",
+      "reason": "No unambiguous existing product button with this literal label."
+    },
+    {
+      "sourceId": "28:11372",
+      "feature": "XD11",
+      "profile": "iphone-portrait",
+      "reason": "No unambiguous existing product button with this literal label."
+    }
+  ],
+  "createdNodeIds": [
+    "83:100533",
+    "83:100534",
+    "83:100535",
+    "83:100536",
+    "83:100537",
+    "83:100538",
+    "83:100539",
+    "I83:100539;16:109",
+    "83:100542",
+    "83:100543",
+    "83:100544",
+    "83:100545",
+    "83:100546",
+    "83:100547",
+    "83:100548",
+    "I83:100548;16:109",
+    "83:100551",
+    "83:100552",
+    "83:100553",
+    "83:100554",
+    "83:100555",
+    "83:100556",
+    "83:100557",
+    "I83:100557;16:109",
+    "83:100560",
+    "83:100561",
+    "83:100562",
+    "I83:100562;16:109",
+    "83:100565",
+    "83:100566",
+    "83:100567",
+    "83:100568",
+    "83:100569",
+    "83:100570",
+    "83:100571",
+    "I83:100571;16:109",
+    "83:100574",
+    "83:100575",
+    "83:100576",
+    "I83:100576;16:109"
+  ],
+  "mutatedNodeIds": [
+    "83:100539",
+    "83:100548",
+    "83:100557",
+    "83:100562",
+    "83:100571",
+    "83:100576"
+  ],
+  "counts": {
+    "requests": 6,
+    "connected": 6,
+    "productControls": 0,
+    "reviewControls": 6,
+    "panels": 4
+  },
+  "sourceFrozenAt": "2026-10-02T02:37:30.526Z"
+}

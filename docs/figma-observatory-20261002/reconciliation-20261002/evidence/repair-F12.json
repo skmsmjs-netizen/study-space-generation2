@@ -1,0 +1,55 @@
+{
+  "pageId": "7:76",
+  "flowId": "F12",
+  "createdNodeIds": [],
+  "mutatedNodeIds": [
+    "I68:78068;16:109",
+    "68:78068",
+    "I68:77327;74:67620",
+    "I68:78071;16:109",
+    "68:78071",
+    "I68:77401;74:67626"
+  ],
+  "repaired": [
+    {
+      "fromKey": "F12-S02",
+      "oldLabel": "서버 저장 다시 시도",
+      "label": "서버 저장 다시 시도",
+      "kind": "Button",
+      "sourceId": "O21",
+      "fromFrameId": "68:77326",
+      "instanceId": "68:77327",
+      "toFrameId": "68:77400",
+      "toRouteId": "O21",
+      "prototypeControlId": "68:78068",
+      "branch": "primary",
+      "screenControlId": "I68:77327;74:67620",
+      "bindingLocation": "screen-instance",
+      "conditionOnly": false
+    },
+    {
+      "fromKey": "F12-S03",
+      "oldLabel": "이 기기의 기록·보관본 내려받기",
+      "label": "이 기기의 기록·보관본 내려받기",
+      "kind": "Button",
+      "sourceId": "O21",
+      "fromFrameId": "68:77400",
+      "instanceId": "68:77401",
+      "toFrameId": "68:77470",
+      "toRouteId": "R33",
+      "prototypeControlId": "68:78071",
+      "branch": "primary",
+      "screenControlId": "I68:77401;74:67626",
+      "bindingLocation": "screen-instance",
+      "conditionOnly": false
+    }
+  ],
+  "phaseChanges": [],
+  "issues": [],
+  "counts": {
+    "repaired": 2,
+    "actualBindings": 2,
+    "scenarioConditions": 0
+  },
+  "runtimeVerified": false
+}

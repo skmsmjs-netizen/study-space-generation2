@@ -1,0 +1,30 @@
+{
+  "style": {
+    "--pixel-night-visibility": 0.9299999999999999,
+    "--pixel-lamp-visibility": 0.9405,
+    "--obs-time-top": "color-mix(in oklch, color-mix(in oklch, var(--observatory-night-950) 80%, var(--observatory-night-450)) 50%, var(--observatory-night-950))",
+    "--obs-time-bottom": "color-mix(in oklch, color-mix(in oklch, var(--observatory-night-450) 57%, var(--observatory-night-950)) 50%, color-mix(in oklch, var(--obs-horizon) 56%, var(--observatory-night-950)))",
+    "--obs-time-far": "color-mix(in oklch, color-mix(in oklch, var(--observatory-night-450) 38%, var(--observatory-night-950)) 50%, color-mix(in oklch, var(--observatory-night-950) 86%, var(--observatory-night-450)))",
+    "--obs-time-near": "color-mix(in oklch, color-mix(in oklch, var(--observatory-night-950) 78%, var(--observatory-cool-500)) 50%, color-mix(in oklch, var(--observatory-night-950) 92%, var(--observatory-cool-500)))",
+    "--obs-time-ground": "color-mix(in oklch, color-mix(in oklch, var(--observatory-night-950) 90%, var(--observatory-cool-500)) 50%, var(--observatory-night-950))",
+    "--obs-time-roof": "color-mix(in oklch, color-mix(in oklch, var(--observatory-cool-500) 58%, var(--observatory-warm-050)) 50%, color-mix(in oklch, var(--obs-accent) 55%, var(--observatory-warm-050)))",
+    "--obs-time-wall": "color-mix(in oklch, color-mix(in oklch, var(--observatory-night-950) 76%, var(--observatory-cool-500)) 50%, color-mix(in oklch, var(--obs-accent) 25%, var(--observatory-night-950)))",
+    "--obs-time-light": "color-mix(in oklch, var(--observatory-warm-250) 50%, var(--observatory-warm-250))",
+    "--pixel-wind-period": "20s",
+    "--pixel-wave-period": "7s",
+    "--pixel-wave-travel": "4px",
+    "--pixel-boat-bob": "1px",
+    "--pixel-walk-period": "32s",
+    "--pixel-step-period": "0.9s",
+    "--pixel-sway-period": "5s",
+    "--pixel-orbit-tilt": "-10deg",
+    "--pixel-color-bloom": "100%",
+    "--pixel-stage-period": "28s",
+    "--pixel-response": 0.5
+  },
+  "stage": 7,
+  "viewBox": "0 -100 960 400",
+  "synthetic": true,
+  "thumbnail": false,
+  "note": "원본 SVG 표현의 합성·정지 참조. 원본 전체 SVG의 정지 참조이며 WebGL·CSS 애니메이션의 시간 동작은 별도 구현 검증 대상이다."
+}

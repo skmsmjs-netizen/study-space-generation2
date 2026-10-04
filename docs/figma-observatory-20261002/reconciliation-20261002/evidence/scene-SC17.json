@@ -1,0 +1,73 @@
+{
+  "boardId": "60:10519",
+  "rows": [
+    {
+      "id": "SC17",
+      "name": "ObservatoryRadianceGround",
+      "ownerId": "20:6665",
+      "rowId": "68:10808",
+      "assetId": "68:10821",
+      "ownerInstanceId": "68:10809",
+      "svgSha256": "a4bd6c149c75870f665e82ce2e0f28fcdf6fde53f4e515af7973a10fc5b2f4a2",
+      "vectorNodes": 74,
+      "ownerPreserved": true,
+      "representation": "Existing source-contract component preserved; linked side-by-side with one editable asset generated from the actual React source using synthetic static props."
+    }
+  ],
+  "count": 1,
+  "createdNodeIds": {
+    "encoding": "figma-id-ranges-v1",
+    "count": 88,
+    "groups": [
+      [
+        "68:",
+        [
+          [
+            10808,
+            10809
+          ],
+          [
+            10821,
+            10895
+          ]
+        ]
+      ],
+      [
+        "I68:10809;20:",
+        [
+          [
+            6666,
+            6671
+          ],
+          [
+            6673,
+            6676
+          ]
+        ]
+      ],
+      [
+        "I68:10809;20:6671;15:",
+        [
+          74
+        ]
+      ]
+    ],
+    "literal": []
+  },
+  "mutatedNodeIds": {
+    "encoding": "figma-id-ranges-v1",
+    "count": 1,
+    "groups": [
+      [
+        "60:",
+        [
+          10519
+        ]
+      ]
+    ],
+    "literal": []
+  },
+  "originalOwnersPreserved": true,
+  "originalWorldPreserved": true,
+  "layout": "Separate auto-layout board beyond existing rightmost node; existing cards not moved or resized."
+}

@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "sourceId": "learning-life-dynamics-v2.0-provisional",
+  "title": "학습·생활 자기조절 동역학 — 통합 이론 명세 v2.0 잠정판",
+  "receivedDate": "2026-09-11",
+  "destinationProject": "학습 시스템 설계 프로젝트",
+  "status": "reference-received-not-adopted",
+  "userRequest": "자 이 최종통합이론명세를 지금 \"학습 시스템 설계 프로젝트\"라는 프로젝트에 첨부해서 해당 프로젝트 내에서 진행중인 작업에 참고가 될 소스로 제공하게끔 할 수 있어?",
+  "delivery": {
+    "method": "local-project-reference-files",
+    "nativeSourcesAttachment": "not-performed",
+    "activeThreadMessage": "not-delivered",
+    "activeThreadRead": "not-verified",
+    "reason": "현재 연결의 프로젝트·대화 전달 도구가 사용 불가를 반환했고 Codex 앱 화면 조작은 안전상 차단되었습니다."
+  },
+  "files": [
+    {
+      "name": "학습생활_통합이론명세_v2.0_잠정.md",
+      "originalPath": "/Users/manseeksong/Library/Mobile Documents/com~apple~CloudDocs/현재진행/학습 동역학 모델/docs/학습생활_통합이론명세_v2.0_잠정.md",
+      "bytes": 85863,
+      "sha256": "54a39d041e751ec2d5f2e1c8858702f383ab30b43f4f7ce0b0e73efc2d9af4ac",
+      "preservedVerbatim": true
+    },
+    {
+      "name": "학습생활_v2.0_검토기록.md",
+      "originalPath": "/Users/manseeksong/Library/Mobile Documents/com~apple~CloudDocs/현재진행/학습 동역학 모델/docs/학습생활_v2.0_검토기록.md",
+      "bytes": 7697,
+      "sha256": "28b8baef19326525195a703e0d125e7ae6da1e32f549677868d5d8130fb745d1",
+      "preservedVerbatim": true
+    }
+  ],
+  "scope": {
+    "referenceOnly": true,
+    "existingTheoryReplaced": false,
+    "inputRequirementsAdopted": false,
+    "parametersAdopted": false,
+    "applicationCodeChanged": false
+  },
+  "originalAnchors": [
+    {
+      "name": "AGENTS.md",
+      "sha256": "0f570e4621ef888acce3f7e555ff47f8c6db40b0b5bb4e626076d36f294e904c"
+    },
+    {
+      "name": "간단 인계.md",
+      "sha256": "aa4f2cbeac5987c541d02827e97c4c445ab553efe94f47270e9187f9e5602e2a"
+    },
+    {
+      "name": "outputs/20260911-mathematical-theory/이론 검토안.md",
+      "sha256": "b6433c320beae5975f04ccabe01d7b5af263b980537d2036aa65f2ee93b5f9c9"
+    },
+    {
+      "name": "outputs/20260911-theory-depth-audit/수학적 충분성과 고도화 검토.md",
+      "sha256": "80fc4d25acbcab26b75cd4a84a4649042561057f5099b9de03e1dfd277ebc8be"
+    },
+    {
+      "name": "docs/학습 시스템 설계 기본 지침.md",
+      "sha256": "bc7c3d246416a971f3538b35131cca06bdf7ef0b85dba7fac2353cca42196ba6"
+    }
+  ]
+}

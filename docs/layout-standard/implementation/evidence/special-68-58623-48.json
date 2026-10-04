@@ -1,0 +1,77 @@
+{
+  "pageId": "68:58623",
+  "createdNodeIds": [
+    "263:33488",
+    "263:33489",
+    "263:33490",
+    "263:33491"
+  ],
+  "mutatedNodeIds": [
+    "263:33488",
+    "68:71114",
+    "68:71117",
+    "68:71105",
+    "263:33489",
+    "68:71134",
+    "68:71137",
+    "68:71125",
+    "263:33490",
+    "68:71154",
+    "68:71157",
+    "68:71145",
+    "263:33491",
+    "68:71174",
+    "68:71177",
+    "68:71165"
+  ],
+  "results": [
+    {
+      "id": "68:71105",
+      "name": "관측 기본틀 · 기체 운동론",
+      "pattern": "L194",
+      "structure": "263:33488",
+      "preserved": true,
+      "viewport": {
+        "width": 640,
+        "height": 744,
+        "overflow": "NONE"
+      }
+    },
+    {
+      "id": "68:71125",
+      "name": "관측 기본틀 · 진동과 파동 운동",
+      "pattern": "L194",
+      "structure": "263:33489",
+      "preserved": true,
+      "viewport": {
+        "width": 640,
+        "height": 744,
+        "overflow": "NONE"
+      }
+    },
+    {
+      "id": "68:71145",
+      "name": "관측 기본틀 · 음파",
+      "pattern": "L194",
+      "structure": "263:33490",
+      "preserved": true,
+      "viewport": {
+        "width": 640,
+        "height": 744,
+        "overflow": "NONE"
+      }
+    },
+    {
+      "id": "68:71165",
+      "name": "관측 기본틀 · 음파의 중첩",
+      "pattern": "L194",
+      "structure": "263:33491",
+      "preserved": true,
+      "viewport": {
+        "width": 640,
+        "height": 744,
+        "overflow": "NONE"
+      }
+    }
+  ]
+}

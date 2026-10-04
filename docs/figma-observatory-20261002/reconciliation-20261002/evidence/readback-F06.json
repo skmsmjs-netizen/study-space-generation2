@@ -1,0 +1,212 @@
+{
+  "pageId": "7:76",
+  "createdNodeIds": [],
+  "mutatedNodeIds": [],
+  "observedNodeCount": 45,
+  "counts": {
+    "flows": 1,
+    "steps": 7,
+    "edges": 18,
+    "issues": 0
+  },
+  "issues": [],
+  "flows": [
+    {
+      "id": "F06",
+      "startNodeId": "68:62802",
+      "originalSteps": {
+        "encoding": "columnar-v1",
+        "columns": [
+          "nodeId",
+          "originalIndex",
+          "exact"
+        ],
+        "rows": [
+          [
+            "68:62802",
+            0,
+            true
+          ],
+          [
+            "68:62882",
+            1,
+            true
+          ],
+          [
+            "68:62958",
+            2,
+            true
+          ],
+          [
+            "68:63034",
+            3,
+            true
+          ],
+          [
+            "68:63110",
+            4,
+            true
+          ],
+          [
+            "68:63186",
+            5,
+            true
+          ],
+          [
+            "68:63262",
+            6,
+            true
+          ]
+        ]
+      },
+      "edgeProof": {
+        "encoding": "columnar-v1",
+        "columns": [
+          "controlId",
+          "toFrameId",
+          "matched",
+          "visible",
+          "bindingLocation"
+        ],
+        "rows": [
+          [
+            "68:63537",
+            "68:62882",
+            true,
+            true,
+            "prototype-panel"
+          ],
+          [
+            "68:63540",
+            "68:62958",
+            true,
+            true,
+            "prototype-panel"
+          ],
+          [
+            "68:63543",
+            "68:63034",
+            true,
+            true,
+            "prototype-panel"
+          ],
+          [
+            "68:63546",
+            "68:63110",
+            true,
+            true,
+            "prototype-panel"
+          ],
+          [
+            "68:63549",
+            "68:63186",
+            true,
+            true,
+            "prototype-panel"
+          ],
+          [
+            "68:63552",
+            "68:63262",
+            true,
+            true,
+            "prototype-panel"
+          ],
+          [
+            "68:63555",
+            "68:62802",
+            true,
+            true,
+            "prototype-panel"
+          ],
+          [
+            "68:63558",
+            "68:63338",
+            true,
+            true,
+            "prototype-panel"
+          ],
+          [
+            "68:63561",
+            "68:62958",
+            true,
+            true,
+            "prototype-panel"
+          ],
+          [
+            "68:63564",
+            "68:63437",
+            true,
+            true,
+            "prototype-panel"
+          ],
+          [
+            "68:63567",
+            "68:62958",
+            true,
+            true,
+            "prototype-panel"
+          ],
+          [
+            "I68:62803;74:67336",
+            "68:62882",
+            true,
+            true,
+            "screen-instance"
+          ],
+          [
+            "I68:62883;74:67361",
+            "68:62958",
+            true,
+            true,
+            "screen-instance"
+          ],
+          [
+            "I68:62959;74:67384",
+            "68:63034",
+            true,
+            true,
+            "screen-instance"
+          ],
+          [
+            "I68:63035;74:67397",
+            "68:63110",
+            true,
+            true,
+            "screen-instance"
+          ],
+          [
+            "I68:63187;74:67405",
+            "68:63262",
+            true,
+            true,
+            "screen-instance"
+          ],
+          [
+            "I68:63438;74:67410",
+            "68:63110",
+            true,
+            true,
+            "screen-instance"
+          ],
+          [
+            "I68:63438;74:67413",
+            "68:62958",
+            true,
+            true,
+            "screen-instance"
+          ]
+        ]
+      },
+      "counts": {
+        "steps": 7,
+        "edges": 18,
+        "linkedInstances": 9,
+        "taskReturnContexts": 9,
+        "reachableFrames": 9,
+        "issues": 0
+      }
+    }
+  ],
+  "prototypeConnectionsVerified": true,
+  "runtimeVerified": false
+}

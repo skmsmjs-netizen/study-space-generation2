@@ -1,0 +1,1457 @@
+{
+  "schemaVersion": 1,
+  "checked": "2026-10-02",
+  "inventory": "screen-inventory.json",
+  "profileSource": "docs/device-environments.md + e2e/devices/environments.ts",
+  "profiles": [
+    {
+      "key": "ipad-landscape",
+      "label": "iPad Pro 13인치 가로",
+      "width": 1376,
+      "height": 1032,
+      "scale": 2
+    },
+    {
+      "key": "iphone-portrait",
+      "label": "iPhone 17 Pro 세로",
+      "width": 402,
+      "height": 681,
+      "scale": 3
+    },
+    {
+      "key": "iphone-landscape",
+      "label": "iPhone 17 Pro 가로",
+      "width": 756,
+      "height": 352,
+      "scale": 3
+    },
+    {
+      "key": "ipad-portrait",
+      "label": "iPad Pro 13인치 세로",
+      "width": 1032,
+      "height": 1376,
+      "scale": 2
+    },
+    {
+      "key": "ipad-narrow",
+      "label": "iPad Pro 13인치 좁은 창",
+      "width": 517,
+      "height": 1200,
+      "scale": 2
+    }
+  ],
+  "pages": {
+    "desk": "7:71",
+    "library": "7:72",
+    "workbench": "7:73",
+    "wall": "7:74",
+    "global": "7:75"
+  },
+  "reusable": {
+    "buttonPrimary": "16:76",
+    "buttonQuiet": "16:108",
+    "world": "10:68"
+  },
+  "counts": {
+    "routes": 41,
+    "overlays": 29,
+    "surfaces": 41,
+    "distinctScreenEntities": 83,
+    "linkedSurfaceEntities": 28,
+    "primaryFrames": 90,
+    "wideOnlyFrames": 65,
+    "expectedFrames": 155,
+    "semanticBatches": 26
+  },
+  "coverageLinks": [
+    {
+      "inventoryId": "U05",
+      "name": "내 계정·탈퇴",
+      "rendering": "reuse-linked-surface",
+      "links": [
+        {
+          "modal": "내 계정",
+          "target": "O09"
+        }
+      ],
+      "source": "src/ui/account-settings.tsx:5 · AccountSettings",
+      "figmaNodeIds": []
+    },
+    {
+      "inventoryId": "U06",
+      "name": "가입 계정 관리",
+      "rendering": "reuse-linked-surface",
+      "links": [
+        {
+          "modal": "가입 계정 관리",
+          "target": "O08"
+        }
+      ],
+      "source": "src/ui/account-administration.tsx:6 · AccountAdministration",
+      "figmaNodeIds": []
+    },
+    {
+      "inventoryId": "U07",
+      "name": "내 기록의 저장 상태",
+      "rendering": "reuse-linked-surface",
+      "links": [
+        {
+          "modal": "내 기록의 저장 상태",
+          "target": "O21"
+        }
+      ],
+      "source": "src/ui/personal-space.tsx:167 · ServerStatus",
+      "figmaNodeIds": []
+    },
+    {
+      "inventoryId": "U11",
+      "name": "천문대 원본 위젯",
+      "rendering": "reuse-linked-surface",
+      "links": [
+        {
+          "target": "R01-B01"
+        }
+      ],
+      "source": "src/ui/study-landscapes.tsx:51 · StudyLandscapes / src/ui/pixel-worlds.tsx:95 · ObservatoryWorld / src/ui/observatory-room.tsx:9 · ObservatoryRoom / src/ui/observatory-desk.tsx:2 · ObservatoryDesk",
+      "figmaNodeIds": []
+    },
+    {
+      "inventoryId": "U12",
+      "name": "천문대 세부 렌더러",
+      "rendering": "reuse-linked-surface",
+      "links": [
+        {
+          "target": "U11",
+          "reason": "풍경 안의 렌더러 부품; 독립 과업 화면이 아님"
+        }
+      ],
+      "source": "src/ui/observatory-advanced.tsx:41 · ObservatoryAdvanced / src/ui/observatory-atmosphere.tsx:82 · ObservatoryClouds / src/ui/observatory-details.tsx:15 · ObservatorySkyDetails / src/ui/observatory-event-variations.tsx:322 · ObservatoryEventVariationSymbol / src/ui/observatory-events.tsx:406 · ObservatoryEvents / src/ui/observatory-radiance.tsx:84 · ObservatoryRadiance / src/ui/observatory-reactivity.tsx:18 · ObservatoryStudySky / src/ui/observatory-time-sky.tsx:26 · ObservatoryTimeSky",
+      "figmaNodeIds": []
+    },
+    {
+      "inventoryId": "U13",
+      "name": "작은 도구와 시계",
+      "rendering": "reuse-linked-surface",
+      "links": [
+        {
+          "target": "R01-B02"
+        }
+      ],
+      "source": "src/ui/home-tools.tsx:41 · HomeTools",
+      "figmaNodeIds": []
+    },
+    {
+      "inventoryId": "U15",
+      "name": "공부 시작 제안",
+      "rendering": "reuse-linked-surface",
+      "links": [
+        {
+          "modal": "이 주제부터 해볼까요?",
+          "target": "O29"
+        }
+      ],
+      "source": "src/ui/study-launch.tsx:14 · StudyLaunch",
+      "figmaNodeIds": []
+    },
+    {
+      "inventoryId": "U16",
+      "name": "목차와 항목 관리",
+      "rendering": "reuse-linked-surface",
+      "links": [
+        {
+          "target": "R19-B01"
+        },
+        {
+          "target": "R20-B01"
+        }
+      ],
+      "source": "src/ui/outline-tree.tsx:8 · OutlineTree / src/ui/context-menu.tsx:9 · ContextMenu",
+      "figmaNodeIds": []
+    },
+    {
+      "inventoryId": "U17",
+      "name": "표·사진 목차 만들기",
+      "rendering": "reuse-linked-surface",
+      "links": [
+        {
+          "modal": "공부할 목차 만들기",
+          "target": "O19"
+        },
+        {
+          "modal": "사진으로 목차·내용 가져오기",
+          "target": "O22"
+        }
+      ],
+      "source": "src/ui/outline-table-editor.tsx:61 · OutlineTableEditor / src/ui/photo-outline-import.tsx:105 · PhotoOutlineImport",
+      "figmaNodeIds": []
+    },
+    {
+      "inventoryId": "U18",
+      "name": "학기·강의 주차",
+      "rendering": "reuse-linked-surface",
+      "links": [
+        {
+          "modal": "강의 주차 만들기",
+          "target": "O25"
+        }
+      ],
+      "source": "src/ui/semester-weeks.tsx:11 · SubjectWeeks",
+      "figmaNodeIds": []
+    },
+    {
+      "inventoryId": "U19",
+      "name": "공부 기준·TRACE",
+      "rendering": "reuse-linked-surface",
+      "links": [
+        {
+          "modal": "공부 기준 조정",
+          "target": "O11"
+        },
+        {
+          "target": "R05-B03"
+        }
+      ],
+      "source": "src/ui/criteria-editor.tsx:38 · CriteriaEditor / src/ui/trace-editor.tsx:26 · TraceEditor",
+      "figmaNodeIds": []
+    },
+    {
+      "inventoryId": "U20",
+      "name": "답안에서 수행 결과",
+      "rendering": "reuse-linked-surface",
+      "links": [
+        {
+          "modal": "답안에서 수행 결과 남기기",
+          "target": "O20"
+        }
+      ],
+      "source": "src/ui/performance-from-source.tsx:15 · PerformanceFromSource / src/ui/performance-evidence.tsx:9 · PerformanceEvidence",
+      "figmaNodeIds": []
+    },
+    {
+      "inventoryId": "U21",
+      "name": "일정 편집",
+      "rendering": "reuse-linked-surface",
+      "links": [
+        {
+          "modal": "시험·과제·강의 일정",
+          "target": "O13"
+        }
+      ],
+      "source": "src/ui/learning-schedule.tsx:14 · LearningScheduleEditor / src/ui/schedule-dashboard.tsx:11 · ScheduleDashboard / src/ui/schedule-notifications.tsx:7 · ScheduleNotifications",
+      "figmaNodeIds": []
+    },
+    {
+      "inventoryId": "U22",
+      "name": "다음 공부 기준·결과",
+      "rendering": "reuse-linked-surface",
+      "links": [
+        {
+          "modal": "다음에 확인할 내용",
+          "target": "O16"
+        },
+        {
+          "modal": "학기 기간",
+          "target": "O17"
+        },
+        {
+          "modal": "지금 확인한 결과",
+          "target": "O18"
+        }
+      ],
+      "source": "src/ui/next-study.tsx:24 · NextStudy",
+      "figmaNodeIds": []
+    },
+    {
+      "inventoryId": "U23",
+      "name": "자료 출처·PDF 구간",
+      "rendering": "reuse-linked-surface",
+      "links": [
+        {
+          "target": "R07-B03"
+        }
+      ],
+      "source": "src/ui/material-sources.tsx:9 · MaterialSources",
+      "figmaNodeIds": []
+    },
+    {
+      "inventoryId": "U25",
+      "name": "카드·코드 주제 연결",
+      "rendering": "reuse-linked-surface",
+      "links": [
+        {
+          "target": "R12-B04"
+        },
+        {
+          "target": "R08-B06"
+        }
+      ],
+      "source": "src/ui/learning-links.tsx:11 · UseMaterialCard / src/ui/material-card-library.tsx:12 · MaterialCardLibrary",
+      "figmaNodeIds": []
+    },
+    {
+      "inventoryId": "U28",
+      "name": "암기 항목 생성",
+      "rendering": "reuse-linked-surface",
+      "links": [
+        {
+          "target": "R11-B03"
+        }
+      ],
+      "source": "src/ui/topic-memory-generator.tsx:12 · TopicMemoryGenerator",
+      "figmaNodeIds": []
+    },
+    {
+      "inventoryId": "U29",
+      "name": "펜·OCR·PDF 배경",
+      "rendering": "reuse-linked-surface",
+      "links": [
+        {
+          "target": "R06-B03"
+        },
+        {
+          "target": "R11-B04"
+        },
+        {
+          "target": "R14-B04"
+        }
+      ],
+      "source": "src/ui/memo-ink-pad.tsx:53 · MemoInkPad / src/ui/ink-drawing.tsx:12 · InkStroke / src/ui/ink-ocr.tsx:8 · InkOCR / src/ui/ink-pdf-background.tsx:4 · InkPDFBackground",
+      "figmaNodeIds": []
+    },
+    {
+      "inventoryId": "U30",
+      "name": "코드 편집·구문·터미널",
+      "rendering": "reuse-linked-surface",
+      "links": [
+        {
+          "target": "R08-B02"
+        },
+        {
+          "target": "R08-B04"
+        }
+      ],
+      "source": "src/ui/source-editor.tsx:28 · SourceEditor / src/ui/monaco-source-editor.tsx:55 · MonacoSourceEditor / src/ui/touch-source-editor.tsx:38 · TouchSourceEditor / src/ui/code-syntax-status.tsx:66 · CodeSyntaxStatus / src/ui/code-terminal.tsx:13 · CodeTerminal",
+      "figmaNodeIds": []
+    },
+    {
+      "inventoryId": "U31",
+      "name": "수식·그래프·카메라",
+      "rendering": "reuse-linked-surface",
+      "links": [
+        {
+          "target": "R09-B03"
+        }
+      ],
+      "source": "src/ui/math-explorer-plot.tsx:28 · MathExplorerPlot / src/ui/math-formula.tsx:8 · MathFormula / src/ui/math-geogebra.tsx:83 · MathGeoGebra / src/ui/math-plot-camera.tsx:158 · MathCameraControls / src/ui/math-template-plot.tsx:30 · MathTemplatePlot",
+      "figmaNodeIds": []
+    },
+    {
+      "inventoryId": "U32",
+      "name": "수식 유형·전체 화면",
+      "rendering": "reuse-linked-surface",
+      "links": [
+        {
+          "target": "R09-B04"
+        },
+        {
+          "modal": "수식 탐색 전체 화면",
+          "target": "O14"
+        }
+      ],
+      "source": "src/ui/math-templates.tsx:93 · MathTemplates",
+      "figmaNodeIds": []
+    },
+    {
+      "inventoryId": "U33",
+      "name": "급수·개념 도해",
+      "rendering": "reuse-linked-surface",
+      "links": [
+        {
+          "target": "R09-B05"
+        },
+        {
+          "target": "R13-B04"
+        }
+      ],
+      "source": "src/ui/integral-reasoning.tsx:19 · IntegralReasoning / src/ui/concept-figure.tsx:4 · ConceptFigureView / src/ui/concept-interactives.tsx:12 · ConceptInteractives",
+      "figmaNodeIds": []
+    },
+    {
+      "inventoryId": "U34",
+      "name": "Canvas 편집·이관",
+      "rendering": "reuse-linked-surface",
+      "links": [
+        {
+          "target": "R15-B03"
+        },
+        {
+          "target": "R15-B06"
+        }
+      ],
+      "source": "src/ui/canvas-transfer.tsx:16 · CanvasTransfer / src/ui/canvas-concept-editor.tsx:17 · CanvasConceptEditor",
+      "figmaNodeIds": []
+    },
+    {
+      "inventoryId": "U35",
+      "name": "Canvas·그래프 보기",
+      "rendering": "reuse-linked-surface",
+      "links": [
+        {
+          "target": "R15-B05"
+        },
+        {
+          "target": "R16-B05"
+        }
+      ],
+      "source": "src/ui/flow-controls.tsx:8 · FlowControls / src/ui/flow-experience.tsx:34 · FlowExperience",
+      "figmaNodeIds": []
+    },
+    {
+      "inventoryId": "U36",
+      "name": "통계 여러 그래프·값",
+      "rendering": "reuse-linked-surface",
+      "links": [
+        {
+          "target": "R02-B02"
+        },
+        {
+          "target": "R02-B04"
+        },
+        {
+          "target": "R02-B05"
+        },
+        {
+          "target": "R02-B06"
+        }
+      ],
+      "source": "src/ui/statistics-gallery.tsx:101 · StatisticsGallery / src/ui/statistics-plot.tsx:6 · StatisticsPlot / src/ui/statistics-trend.tsx:4 · StatisticsTrend / src/ui/month-summary.tsx:13 · MonthSummary",
+      "figmaNodeIds": []
+    },
+    {
+      "inventoryId": "U38",
+      "name": "움직임 위젯",
+      "rendering": "reuse-linked-surface",
+      "links": [
+        {
+          "modal": "움직임 위젯",
+          "target": "O15"
+        }
+      ],
+      "source": "src/ui/motion-widgets.tsx:12 · MotionWidgets / src/ui/motion-lottie.tsx:1 · module / src/ui/motion-lordicon.tsx:1 · module / src/ui/motion-rive.tsx:1 · module / src/ui/motion.tsx:46 · BusyDots",
+      "figmaNodeIds": []
+    },
+    {
+      "inventoryId": "U40",
+      "name": "공통 부품·오류·포커스",
+      "rendering": "reuse-linked-surface",
+      "links": [
+        {
+          "pageId": "7:70",
+          "reason": "공통 부품·상태 페이지와 foundations/componentRegistry를 재사용; 각 부품 실제 노드 검증은 별도"
+        }
+      ],
+      "source": "src/ui/index.tsx:67 · Modal / src/ui/study-result-text.tsx:65 · StudyResultText",
+      "figmaNodeIds": []
+    },
+    {
+      "inventoryId": "U41",
+      "name": "장문 원문·기록 수정",
+      "rendering": "reuse-linked-surface",
+      "links": [
+        {
+          "target": "R20-B01"
+        },
+        {
+          "target": "R30-B01"
+        },
+        {
+          "target": "R31-B01"
+        },
+        {
+          "target": "R32-B01"
+        }
+      ],
+      "source": "src/App.tsx:1258 · NarrativeEditor",
+      "figmaNodeIds": []
+    }
+  ],
+  "moduleSourceChecks": [
+    {
+      "path": "src/App.tsx",
+      "exists": true,
+      "snapshotMatches": false,
+      "sha256": "bdb3a0c548ab5a67fff33112166db7b5a12e1af3eea9cbcc1900b9299f58210a"
+    },
+    {
+      "path": "src/main.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "0d07cd82233a1a3e3b01ecd80f540bc793f06a2d4b91e2ae351d30a3db4a81d1"
+    },
+    {
+      "path": "src/ui/account-administration.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "b55b3b7e8c2d9c7b9e36f02973bbb27a75f5e034571f5e7e72accc0e9d1ad38b"
+    },
+    {
+      "path": "src/ui/account-settings.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "2f4e874f64427c78dd4f2b14b3f0a81c14c643f0aafeac93fb00dccca78d2a72"
+    },
+    {
+      "path": "src/ui/api-budget-summary.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "53d02a0891216f063387831f67a1da76e1a6074e73044ab6217798584dac6075"
+    },
+    {
+      "path": "src/ui/brand-copyright.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "1f02cdeb567a8c46653c8b5f38e89981eec613945a9373b0c2d7641b056d8eed"
+    },
+    {
+      "path": "src/ui/brand-experience.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "ce47d1996fc6983e483afb06675a72b314920eaa59534dd73a6733170e0c690c"
+    },
+    {
+      "path": "src/ui/brand-wordmark.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "5305046cbd8dee5c34d4aa2a4c894672019350e7753ca447f493cce42a4de016"
+    },
+    {
+      "path": "src/ui/canvas-concept-editor.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "2a66ebe15e9eac158d4f73f7a744f8be7cf54c711f0eebf410da88f9d33f1307"
+    },
+    {
+      "path": "src/ui/canvas-transfer.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "276ec9562162f9e1ddb0bea36cedb9213753ea0789d925a9659098662e82ba4e"
+    },
+    {
+      "path": "src/ui/code-practice.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "95f83c1f7cd26c8b0955cc7146c83ff0b397e8764cf70d414a2284bff4751b86"
+    },
+    {
+      "path": "src/ui/code-syntax-status.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "c497df5ed1cbcee7dd0fd3c90d08c0cffcc6e213b3870a709fe4e938f20ce68f"
+    },
+    {
+      "path": "src/ui/code-terminal.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "1a000038de7814234642f5d44db96b876f255a4d1416f05b77c5b215848ad5a2"
+    },
+    {
+      "path": "src/ui/concept-figure.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "76dc23631e049ee3ce4a80e3a5946ee88f4c11c2ea662fa52956c5eca0e6d270"
+    },
+    {
+      "path": "src/ui/concept-interactives.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "44fb84c9a4ee02b761b1c8e851c373854e10e1d69d2f1eef835c02a28bd508b5"
+    },
+    {
+      "path": "src/ui/concept-library.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "633139969dbf2bf5eb3d99b66d71e487666767151ed9f91b2aa10e1d4f4fe5ef"
+    },
+    {
+      "path": "src/ui/context-menu.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "4c902ee84c931310bc95111b215d8ceaf0c9596ce46027b4a4107f2299257f37"
+    },
+    {
+      "path": "src/ui/criteria-editor.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "bfd4b4ea800125fb8c56cc69a73fe2d4a8d753082d66f0ee60c1f8736737e8b8"
+    },
+    {
+      "path": "src/ui/draft-archives.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "9352ff93416d062896a99618bcf0771ee04178d2ee91cbe8bff9a72a69529f44"
+    },
+    {
+      "path": "src/ui/exam-practice.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "899ce4759332322df662cb4667b03245ad456d73d20d004e4d20e1bc2988fd8d"
+    },
+    {
+      "path": "src/ui/experience-recovery.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "30a145e48e8236486f90228b3771055472d20169ec7a8e1baaf9e0c3845f9d64"
+    },
+    {
+      "path": "src/ui/flow-controls.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "5d03262588d59bdcb5b40e056db71767b256c8c79ef428d221fcac110f22552b"
+    },
+    {
+      "path": "src/ui/flow-experience.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "fb001356b6c5f07ea10c7a9d64e0961227272d7329917f31cfd5713b913bd8f4"
+    },
+    {
+      "path": "src/ui/full-backup.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "c7812042d5757e3bf585778a9561e88726467c69cf5d9926084f5f580e8c98d1"
+    },
+    {
+      "path": "src/ui/gpt-connection-panel.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "4c1e9ae7d22f5611566e01eaf0458af53993f108f0130d63eae4ab2a1551684a"
+    },
+    {
+      "path": "src/ui/home-tools.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "64df4348c60c5bd09c64c636debdc4b3167e1a083d1597269e934bceecf3e967"
+    },
+    {
+      "path": "src/ui/index.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "faf9fcbdc7c2e20741e99976f374153f0a4a112896d7d003f96366215e76f792"
+    },
+    {
+      "path": "src/ui/ink-drawing.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "c0bc2e1bca8e328cee2f60cfdbceb65ccb5db8ac7926e335cce676435a751675"
+    },
+    {
+      "path": "src/ui/ink-ocr.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "3a708d5048f818220c4e5a30dcafc816fc555fc400f15b857b26cf341b6163cb"
+    },
+    {
+      "path": "src/ui/ink-pdf-background.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "c148bf5be10a311b35fdb0827cadd3c4e9c1796f8b258b260bc11b14758b57fd"
+    },
+    {
+      "path": "src/ui/integral-reasoning.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "02ed36171453d4d148b6503b01d65169577c6be39ab508ec2f17649f44b5433f"
+    },
+    {
+      "path": "src/ui/learning-links.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "f82c0537d1ca5e3386cb4a595aa9b55d025062c88fed941847829c057c0af107"
+    },
+    {
+      "path": "src/ui/learning-schedule.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "bf1fbe0f27d28f77a5f8ee1e4f7d5583ca76aa521e9a5b8d41c14dafc271b8e8"
+    },
+    {
+      "path": "src/ui/material-card-library.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "1084ad2f5f5d826ba5b88b6847be48ffed38555795b5347bb53fdd91fdb33178"
+    },
+    {
+      "path": "src/ui/material-map.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "4c343102bb4f927f582246b67c29c6bca36c3aea29dda04503752274dc93a54a"
+    },
+    {
+      "path": "src/ui/material-quiz.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "cc7a53e046932d6a75edc5bd7a0e05c0a4bd65fbc7b6141914b91aaffd922dfb"
+    },
+    {
+      "path": "src/ui/material-sources.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "336e61215498d5d6e4ff7fbb27befcb1093fcc172e12cc5622f1425ce6373331"
+    },
+    {
+      "path": "src/ui/material-transcription.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "71d52efd4bb99c80eb51d8cb6e7f437cf2677a9dc3d962bc44e2756102020f73"
+    },
+    {
+      "path": "src/ui/material-tutor.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "52d48afb4d2ee4ae2d96d4bc394f01af3dc143b01d46448f025cfd2f4f4903a7"
+    },
+    {
+      "path": "src/ui/math-explorer-plot.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "01e1622cff0931f520efb4a0a635122206c0811c32208ff1c3fd14645b4ec6fc"
+    },
+    {
+      "path": "src/ui/math-explorer.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "cc45c6742bbee2107f03aaae49703b6a0b14723f06f16fb96783fdc32d70c111"
+    },
+    {
+      "path": "src/ui/math-formula.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "867c4d76641150371e7a2b2376fc9b283f84363a6124fce41c919fab2786ae54"
+    },
+    {
+      "path": "src/ui/math-geogebra.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "0289afe9f92a0879bf0de3823432c603b426f945c9569ed2a40da728f733e36d"
+    },
+    {
+      "path": "src/ui/math-plot-camera.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "f44eaf78453610a8dfebb54755560b8ad9c1c927b317e63122a5bc8a21ed1ec0"
+    },
+    {
+      "path": "src/ui/math-template-plot.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "b00da67f206d57a316a448fcd9a31cc6ae34aa109f61346775755090ba575414"
+    },
+    {
+      "path": "src/ui/math-templates.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "f7a45b1eabb174d287bdb656bda69ee34fa27ac882cfca5de5c11dbe8f1dd6b2"
+    },
+    {
+      "path": "src/ui/memo-ink-pad.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "e4d5307d80525b4a9120dca859124864a651b7465879e79b092002c291b2ce41"
+    },
+    {
+      "path": "src/ui/memory-test.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "648bfe15ce3df6347e55c1261880f00771e5a97aa9b90a78b18b83b3fb12c54e"
+    },
+    {
+      "path": "src/ui/monaco-source-editor.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "503148a490dfde49db0c901ccabc58e2990031a6ff2dbc0bd9c046ee3c27be66"
+    },
+    {
+      "path": "src/ui/month-summary.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "bd13265459a9277f622c45609ab71f7d9973b410e0ea94fcff1a43429bd0fbba"
+    },
+    {
+      "path": "src/ui/motion-lordicon.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "59c30e44bdf9e864d0d9d00cf601f6855604c7f46cc112c0096236bedc01bdec"
+    },
+    {
+      "path": "src/ui/motion-lottie.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "786281465e6ec1e27721e51c2fd5a6437e0598862e91a4acb2cd9d0cf442bf26"
+    },
+    {
+      "path": "src/ui/motion-rive.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "569f4d3676691b7c5868a3e956f379f7917ac97b73f66caac675da7f95037da0"
+    },
+    {
+      "path": "src/ui/motion-widgets.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "a94b183e3af479902f5f0f386f504e0acefb17e581b36a79fb0c2d57ac9c77d2"
+    },
+    {
+      "path": "src/ui/motion.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "48db1e780ef005bea06b9f9996df286eacc0cfe0f9ef3897f02c3db07cbeecb1"
+    },
+    {
+      "path": "src/ui/navigation-bar.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "25e505880a81c79087f17515617ed30c07d78853531b597b7c045320e53f9b2a"
+    },
+    {
+      "path": "src/ui/next-study.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "40e9d62184b605bb83cd6ef5d824dc0a661aa27a7090c9b895b86063988dcbf6"
+    },
+    {
+      "path": "src/ui/observatory-advanced.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "d06df4fc10add0aa87d1e00dff31ce507a6d640b0f00d864cd07b0f1c078d2da"
+    },
+    {
+      "path": "src/ui/observatory-atmosphere.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "f4f61f28fd31716d1c9fb1268a220e6a46b413306509331a6cbf832b151f6577"
+    },
+    {
+      "path": "src/ui/observatory-desk.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "f59d54213464cd16d5d548f59df859903b01dcce82605e16bd78d17840dae9dc"
+    },
+    {
+      "path": "src/ui/observatory-details.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "0fefda416eb56562f595bc1b80323ace0fe08aea14291439eb0cb90573d3be24"
+    },
+    {
+      "path": "src/ui/observatory-event-variations.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "fe332b9043727338e3cbde1657f11e98dee04c3e6d56ea434a21cb69b3425bf4"
+    },
+    {
+      "path": "src/ui/observatory-events.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "85ef8256eb7674fc357797481c81769e82dc8b0188b52ab3eff325eabd1db782"
+    },
+    {
+      "path": "src/ui/observatory-navigation.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "e97319e06d421ca25a2cfbde5419a6a1ea29e362c9a1c4d2f4f6954b7c79bd83"
+    },
+    {
+      "path": "src/ui/observatory-radiance.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "85d81f6836b4807122039bf6f028d389204171456305ba39b077a70214ee4999"
+    },
+    {
+      "path": "src/ui/observatory-reactivity.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "7ffacca0ed1305557648a350938d4b6fd06c4743ac57bfc37ad02f7f85b65d63"
+    },
+    {
+      "path": "src/ui/observatory-room.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "c66ba2f27063aa80e3b03dd46330d80d5235d0b87e915e867c5e377397d3445e"
+    },
+    {
+      "path": "src/ui/observatory-time-sky.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "42a720a7e8a21879568f319d938b433b86931ce7a71209cfbea1653b04828a40"
+    },
+    {
+      "path": "src/ui/outline-table-editor.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "f61c72b702d8fbd26f2363505c108aeade5c16b1bad3788820bd23e611d56bd7"
+    },
+    {
+      "path": "src/ui/outline-tree.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "7806e6c4ab6d28fe14be482d8fd161ebc4cf67e883b9ef6b1d5472ccf7dc409c"
+    },
+    {
+      "path": "src/ui/performance-evidence.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "b242bb6ce429001660fd1ee7293594c8832619ced688a72ca9d01b07f4851c58"
+    },
+    {
+      "path": "src/ui/performance-from-source.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "9252f154f4fb23b540e0f911bd29e316d2135c8854e01f83767830e06ec8ec05"
+    },
+    {
+      "path": "src/ui/personal-space.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "65090cc8db79ca415a5a8961a6c0fc57ad03e16ce1162361946dac94d0fe4a49"
+    },
+    {
+      "path": "src/ui/photo-outline-import.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "73de499bf67a70e29d823e783d84e42f832d82a1bd1217d1a1b00523d55da4e5"
+    },
+    {
+      "path": "src/ui/pixel-worlds.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "17dfdfde374dc7e3cf66a770d4a0fa6540d20042ed13a3ce1386828966fc5749"
+    },
+    {
+      "path": "src/ui/quick-memos.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "3b63390b4a969a2af5bdad2347e1d18cb5a47bdce09300388913cee13591b3ac"
+    },
+    {
+      "path": "src/ui/recall-card-editor.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "ee5d26036d554f8165909ab2916c2e81c409e196802c5c26c6e8713d200b8ebc"
+    },
+    {
+      "path": "src/ui/recall-decks.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "a1f0443fd805cffc7d140d841d1d3e0ba6bb3fd1b67cfb63d4f243eda00dba63"
+    },
+    {
+      "path": "src/ui/recall-import.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "80c10e171feb4e1ab73b07c96f8b39894c553782bfc068b5847070bac24583bb"
+    },
+    {
+      "path": "src/ui/recall-optimization.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "46041df19dbddc4c2706983255a9682eee20fe99ae868fe8793639e2e2b2c092"
+    },
+    {
+      "path": "src/ui/recall-settings.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "9a3c4f9ea725e68e37fc5c0dece950575711d4d94457e8d7248beb6ce7e92c55"
+    },
+    {
+      "path": "src/ui/schedule-dashboard.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "984cd4a56deffc326cc7f3807507290409c1df8168bc9a13cf5262977acab714"
+    },
+    {
+      "path": "src/ui/schedule-notifications.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "5c964eaa573c0a7d3b1f410be5f6701619183ad5bcf372bd06ce3ba48c0f3b56"
+    },
+    {
+      "path": "src/ui/semester-weeks.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "eb46d19f6ac9dd303943097e1bbb38013d3e6f0040db2337cbd9883a2a4579a3"
+    },
+    {
+      "path": "src/ui/source-editor.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "7a5e9ee974fd0422ca531a1065d9d43147bc8878f4e5bf72a5788fcfd549dfd5"
+    },
+    {
+      "path": "src/ui/statistics-gallery.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "abc0947439d2b38436a94c66dcdce0cd8b818688021c68f19716942974589712"
+    },
+    {
+      "path": "src/ui/statistics-plot.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "e4a714e5b4f2ca61b0a5f65c2aa136c2a211533ea619f6b2a869c9dfcf09ab53"
+    },
+    {
+      "path": "src/ui/statistics-trend.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "5f0f3f62002a82fb2fe2c641571dd79e0e043fa7c2c080ba544bcdb4148167f0"
+    },
+    {
+      "path": "src/ui/statistics.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "904ac17e1f0337d5dba646d80cb3a76df201eb4327b216b8d78cfa8689c3d16f"
+    },
+    {
+      "path": "src/ui/study-ai-context-picker.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "608b834a3a28fbd7b0b80f796810fda069e9295fc8b1ed3629d1fac9f7b87d2f"
+    },
+    {
+      "path": "src/ui/study-board.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "99ea3802f950a65f34069f1402223eddd3febac6b28dcc9662f9d2ed4a6a51e3"
+    },
+    {
+      "path": "src/ui/study-canvas.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "59c4b08b930b29ec83af92f081a82dbc4b922a377df6a14c4e8a177ced5fef58"
+    },
+    {
+      "path": "src/ui/study-graph.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "1d6165de075b92da4c82d5c49c4837f888e8662b42090c7a8111b263f0100d21"
+    },
+    {
+      "path": "src/ui/study-landscapes.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "5edc579586a99bd3f902a7a64ea43af053e2d6ddd3c26e2af434341765f53fe2"
+    },
+    {
+      "path": "src/ui/study-launch.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "8a882fe33f52ac87b6c752af3863e5e6f02fee4aa585995d4658929c89d1556d"
+    },
+    {
+      "path": "src/ui/study-materials.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "2174a20fcb75bd459a6eff09eb54194402856c5bb24fb5f9f4a3e07547dac683"
+    },
+    {
+      "path": "src/ui/study-result-text.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "d482ad54ea99787b498bea9ca5f202762f4ce8028efd40c5c82be9450c184851"
+    },
+    {
+      "path": "src/ui/today-study.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "45dbcdcdd3bc67e3f3464cc347ddec735bb6618b8ba7e6042455e1080b453d02"
+    },
+    {
+      "path": "src/ui/topic-memory-generator.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "64bd2e83454983748453e596497567ae9ec0bc5bfff219eea56df2bd07efc51e"
+    },
+    {
+      "path": "src/ui/topic-recall.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "195a6143853175f41af576541eee56200fa65bf415bec2e7f77f34d6acfbc245"
+    },
+    {
+      "path": "src/ui/touch-source-editor.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "beaa3d95d1096b63c2bcdbde8f887300674c691dca2602bfcf07c6c2b217e5ba"
+    },
+    {
+      "path": "src/ui/trace-editor.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "11d9140307a48c188a2b6d73bc90ffe4dd576f38eec3238533240f3828ec3d49"
+    },
+    {
+      "path": "src/ui/week-overview.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "3a9530a549646780348f2cc0c5c57278167131e957b3e8959468781aca916450"
+    },
+    {
+      "path": "src/ui/workspace-search.tsx",
+      "exists": true,
+      "snapshotMatches": true,
+      "sha256": "a6f852081bd3c9639d6a19fb06b58a7f1950a4cdbdbb70a8bfcc1a6b403dd4c1"
+    }
+  ],
+  "pending": [
+    "Figma 호출 실행",
+    "노드 readback",
+    "대표 화면 스크린샷",
+    "실제 프로토타입 연결",
+    "변경된 소스가 있으면 범위 재대조"
+  ],
+  "layoutContract": "여러 호출을 같은 페이지에 실행하면 build-screens.js는 INPUT.startY를 반영하거나 기존 형제 프레임 아래에 배치해야 함.",
+  "batches": [
+    {
+      "id": "desk-01",
+      "pageKey": "desk",
+      "frameCount": 10,
+      "screenIds": [
+        "R01",
+        "R05"
+      ],
+      "startY": 100,
+      "inputFile": "desk-01.input.json",
+      "callFile": "desk-01.call.json"
+    },
+    {
+      "id": "desk-02",
+      "pageKey": "desk",
+      "frameCount": 10,
+      "screenIds": [
+        "R06",
+        "R10"
+      ],
+      "startY": 4900,
+      "inputFile": "desk-02.input.json",
+      "callFile": "desk-02.call.json"
+    },
+    {
+      "id": "desk-03",
+      "pageKey": "desk",
+      "frameCount": 10,
+      "screenIds": [
+        "R11",
+        "R14"
+      ],
+      "startY": 9700,
+      "inputFile": "desk-03.input.json",
+      "callFile": "desk-03.call.json"
+    },
+    {
+      "id": "desk-04",
+      "pageKey": "desk",
+      "frameCount": 5,
+      "screenIds": [
+        "R20",
+        "R21",
+        "R22",
+        "R23",
+        "R26"
+      ],
+      "startY": 14500,
+      "inputFile": "desk-04.input.json",
+      "callFile": "desk-04.call.json"
+    },
+    {
+      "id": "desk-05",
+      "pageKey": "desk",
+      "frameCount": 5,
+      "screenIds": [
+        "R27",
+        "R28",
+        "R29",
+        "R30",
+        "R31"
+      ],
+      "startY": 26500,
+      "inputFile": "desk-05.input.json",
+      "callFile": "desk-05.call.json"
+    },
+    {
+      "id": "desk-06",
+      "pageKey": "desk",
+      "frameCount": 5,
+      "screenIds": [
+        "R32",
+        "O11",
+        "O16",
+        "O17",
+        "O18"
+      ],
+      "startY": 38500,
+      "inputFile": "desk-06.input.json",
+      "callFile": "desk-06.call.json"
+    },
+    {
+      "id": "desk-07",
+      "pageKey": "desk",
+      "frameCount": 5,
+      "screenIds": [
+        "O20",
+        "O23",
+        "O24",
+        "O29",
+        "U14"
+      ],
+      "startY": 50500,
+      "inputFile": "desk-07.input.json",
+      "callFile": "desk-07.call.json"
+    },
+    {
+      "id": "desk-08",
+      "pageKey": "desk",
+      "frameCount": 2,
+      "screenIds": [
+        "U26",
+        "U27"
+      ],
+      "startY": 62500,
+      "inputFile": "desk-08.input.json",
+      "callFile": "desk-08.call.json"
+    },
+    {
+      "id": "library-01",
+      "pageKey": "library",
+      "frameCount": 10,
+      "screenIds": [
+        "R04",
+        "R07"
+      ],
+      "startY": 100,
+      "inputFile": "library-01.input.json",
+      "callFile": "library-01.call.json"
+    },
+    {
+      "id": "library-02",
+      "pageKey": "library",
+      "frameCount": 10,
+      "screenIds": [
+        "R12",
+        "R13"
+      ],
+      "startY": 4900,
+      "inputFile": "library-02.input.json",
+      "callFile": "library-02.call.json"
+    },
+    {
+      "id": "library-03",
+      "pageKey": "library",
+      "frameCount": 5,
+      "screenIds": [
+        "R19",
+        "O02",
+        "O03",
+        "O04",
+        "O06"
+      ],
+      "startY": 9700,
+      "inputFile": "library-03.input.json",
+      "callFile": "library-03.call.json"
+    },
+    {
+      "id": "library-04",
+      "pageKey": "library",
+      "frameCount": 4,
+      "screenIds": [
+        "O07",
+        "O19",
+        "O22",
+        "U24"
+      ],
+      "startY": 21700,
+      "inputFile": "library-04.input.json",
+      "callFile": "library-04.call.json"
+    },
+    {
+      "id": "workbench-01",
+      "pageKey": "workbench",
+      "frameCount": 10,
+      "screenIds": [
+        "R08",
+        "R09"
+      ],
+      "startY": 100,
+      "inputFile": "workbench-01.input.json",
+      "callFile": "workbench-01.call.json"
+    },
+    {
+      "id": "workbench-02",
+      "pageKey": "workbench",
+      "frameCount": 2,
+      "screenIds": [
+        "R25",
+        "O14"
+      ],
+      "startY": 4900,
+      "inputFile": "workbench-02.input.json",
+      "callFile": "workbench-02.call.json"
+    },
+    {
+      "id": "wall-01",
+      "pageKey": "wall",
+      "frameCount": 10,
+      "screenIds": [
+        "R02",
+        "R03"
+      ],
+      "startY": 100,
+      "inputFile": "wall-01.input.json",
+      "callFile": "wall-01.call.json"
+    },
+    {
+      "id": "wall-02",
+      "pageKey": "wall",
+      "frameCount": 10,
+      "screenIds": [
+        "R15",
+        "R16"
+      ],
+      "startY": 4900,
+      "inputFile": "wall-02.input.json",
+      "callFile": "wall-02.call.json"
+    },
+    {
+      "id": "wall-03",
+      "pageKey": "wall",
+      "frameCount": 5,
+      "screenIds": [
+        "R17"
+      ],
+      "startY": 9700,
+      "inputFile": "wall-03.input.json",
+      "callFile": "wall-03.call.json"
+    },
+    {
+      "id": "wall-04",
+      "pageKey": "wall",
+      "frameCount": 5,
+      "screenIds": [
+        "R36",
+        "O13",
+        "O25",
+        "O26",
+        "O27"
+      ],
+      "startY": 12100,
+      "inputFile": "wall-04.input.json",
+      "callFile": "wall-04.call.json"
+    },
+    {
+      "id": "wall-05",
+      "pageKey": "wall",
+      "frameCount": 1,
+      "screenIds": [
+        "O28"
+      ],
+      "startY": 24100,
+      "inputFile": "wall-05.input.json",
+      "callFile": "wall-05.call.json"
+    },
+    {
+      "id": "global-01",
+      "pageKey": "global",
+      "frameCount": 5,
+      "screenIds": [
+        "R18"
+      ],
+      "startY": 100,
+      "inputFile": "global-01.input.json",
+      "callFile": "global-01.call.json"
+    },
+    {
+      "id": "global-02",
+      "pageKey": "global",
+      "frameCount": 5,
+      "screenIds": [
+        "R24",
+        "R33",
+        "R34",
+        "R35",
+        "R37"
+      ],
+      "startY": 2500,
+      "inputFile": "global-02.input.json",
+      "callFile": "global-02.call.json"
+    },
+    {
+      "id": "global-03",
+      "pageKey": "global",
+      "frameCount": 5,
+      "screenIds": [
+        "R38",
+        "R39",
+        "R40",
+        "R41",
+        "O01"
+      ],
+      "startY": 14500,
+      "inputFile": "global-03.input.json",
+      "callFile": "global-03.call.json"
+    },
+    {
+      "id": "global-04",
+      "pageKey": "global",
+      "frameCount": 5,
+      "screenIds": [
+        "O05",
+        "O08",
+        "O09",
+        "O10",
+        "O12"
+      ],
+      "startY": 26500,
+      "inputFile": "global-04.input.json",
+      "callFile": "global-04.call.json"
+    },
+    {
+      "id": "global-05",
+      "pageKey": "global",
+      "frameCount": 5,
+      "screenIds": [
+        "O15",
+        "O21",
+        "U01",
+        "U02",
+        "U03"
+      ],
+      "startY": 38500,
+      "inputFile": "global-05.input.json",
+      "callFile": "global-05.call.json"
+    },
+    {
+      "id": "global-06",
+      "pageKey": "global",
+      "frameCount": 5,
+      "screenIds": [
+        "U04",
+        "U08",
+        "U09",
+        "U10",
+        "U37"
+      ],
+      "startY": 50500,
+      "inputFile": "global-06.input.json",
+      "callFile": "global-06.call.json"
+    },
+    {
+      "id": "global-07",
+      "pageKey": "global",
+      "frameCount": 1,
+      "screenIds": [
+        "U39"
+      ],
+      "startY": 62500,
+      "inputFile": "global-07.input.json",
+      "callFile": "global-07.call.json"
+    }
+  ]
+}

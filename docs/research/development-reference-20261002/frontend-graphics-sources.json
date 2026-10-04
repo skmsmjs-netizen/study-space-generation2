@@ -1,0 +1,312 @@
+[
+  {
+    "id": "F01",
+    "name": "React 상태 설계",
+    "category": "프론트엔드 구조",
+    "status": "기존 유지",
+    "url": "https://react.dev/learn/managing-state",
+    "checked": "2026-10-02",
+    "evidence": "중복 상태를 줄이고 상태 소유권·상태 보존/초기화·reducer/context 경계를 설명한다.",
+    "limits": "학습 원장과 서버 권한을 컴포넌트 상태로 대체하지 않는다."
+  },
+  {
+    "id": "F02",
+    "name": "HTML dialog",
+    "category": "브라우저 기본 UI",
+    "status": "기본 권고",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dialog",
+    "checked": "2026-10-02",
+    "evidence": "모달과 비모달 대화상자의 기본 요소와 접근성·초점 동작을 설명한다.",
+    "limits": "기존 Modal의 초안/초점 복귀를 확인한 뒤 변경한다. 기본 요소 사용만으로 전체 접근성이 보장되지 않는다."
+  },
+  {
+    "id": "F03",
+    "name": "Popover API",
+    "category": "브라우저 기본 UI",
+    "status": "기본 권고",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/Popover_API",
+    "checked": "2026-10-02",
+    "evidence": "HTML/JS에서 팝오버를 표시하며 Popover API 자체는 비모달이다.",
+    "limits": "모달과 혼동하지 않는다. 최신 세부 기능은 대상 브라우저에서 확인한다."
+  },
+  {
+    "id": "F04",
+    "name": "CSS Container Queries",
+    "category": "반응형 부품",
+    "status": "기본 권고",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Containment/Container_queries",
+    "checked": "2026-10-02",
+    "evidence": "viewport 대신 컨테이너 크기에 따라 재사용 부품의 표현을 바꾼다.",
+    "limits": "containment의 크기 계산 영향과 미지원 대체 배치를 확인한다."
+  },
+  {
+    "id": "F05",
+    "name": "React Aria",
+    "category": "접근 가능한 무스타일 부품",
+    "status": "조건부",
+    "url": "https://react-aria.adobe.com/",
+    "checked": "2026-10-02",
+    "evidence": "외형을 직접 구성하면서 키보드·터치·국제화·복잡한 입력 패턴을 제공한다.",
+    "limits": "날짜/콤보박스 등 필요한 부품만 후보로 삼고 기존 스타일·상태와 중복하지 않는다."
+  },
+  {
+    "id": "F06",
+    "name": "Radix Primitives",
+    "category": "접근 가능한 무스타일 부품",
+    "status": "조건부",
+    "url": "https://www.radix-ui.com/primitives/docs/overview/introduction",
+    "checked": "2026-10-02",
+    "evidence": "무스타일 부품과 조합형 API, 초점·키보드·ARIA 동작을 제공한다.",
+    "limits": "React Aria와 같은 역할의 부품을 무조건 중복 도입하지 않는다. 앱 조합의 접근성 검증은 별도다."
+  },
+  {
+    "id": "F07",
+    "name": "shadcn/ui",
+    "category": "부품 코드 배포",
+    "status": "참고",
+    "url": "https://ui.shadcn.com/docs",
+    "checked": "2026-10-02",
+    "evidence": "수정 가능한 실제 부품 코드를 프로젝트에 가져오는 배포 방식이다.",
+    "limits": "완성 외형을 천문대 기본값으로 복제하지 않는다. 가져온 코드 유지보수와 기존 CSS/토큰 호환성을 부담한다."
+  },
+  {
+    "id": "F08",
+    "name": "Floating UI",
+    "category": "팝오버 위치와 상호작용",
+    "status": "조건부",
+    "url": "https://floating-ui.com/docs/getting-started",
+    "checked": "2026-10-02",
+    "evidence": "기준 요소를 따르는 위치와 화면 경계 충돌 회피, React 상호작용 도구를 제공한다.",
+    "limits": "단순 팝오버는 native API 우선. positions-only 패키지는 완성 메뉴/콤보박스를 대신하지 않는다."
+  },
+  {
+    "id": "F09",
+    "name": "TanStack Query",
+    "category": "서버 상태",
+    "status": "조건부",
+    "url": "https://tanstack.com/query/latest/docs/framework/react/overview",
+    "checked": "2026-10-02",
+    "evidence": "서버 데이터 읽기·캐시·동기화·갱신·중복 요청 관리에 특화한다.",
+    "limits": "기존 repository/outbox/CAS와 초안의 단일 책임을 정한 뒤 검토한다. durable 저장/충돌 해결 자체를 보장하지 않는다."
+  },
+  {
+    "id": "F10",
+    "name": "TanStack Virtual",
+    "category": "긴 목록 가상화",
+    "status": "조건부",
+    "url": "https://tanstack.com/virtual/latest/docs/introduction",
+    "checked": "2026-10-02",
+    "evidence": "마크업과 스타일을 강제하지 않고 필요한 구간의 목록/격자를 렌더하도록 지원한다.",
+    "limits": "누적 목록의 실제 병목이 있을 때 도입한다. 포커스·브라우저 찾기·높이 변화·스크롤 복귀를 검증한다."
+  },
+  {
+    "id": "F11",
+    "name": "XState",
+    "category": "복잡한 전이와 워크플로",
+    "status": "조건부",
+    "url": "https://stately.ai/docs/xstate",
+    "checked": "2026-10-02",
+    "evidence": "이벤트·statechart·actor를 이용해 상태 전이와 복잡한 흐름을 표현한다.",
+    "limits": "단순 열기/닫기에 강제하지 않는다. 현재 문서의 alpha 안내와 안정 버전 문서를 구분하고 실제 도입 때 버전을 고정한다."
+  },
+  {
+    "id": "F12",
+    "name": "Zustand",
+    "category": "클라이언트 공유 상태",
+    "status": "조건부",
+    "url": "https://zustand.docs.pmnd.rs/learn/getting-started/introduction",
+    "checked": "2026-10-02",
+    "evidence": "선택 구독 기반의 외부 상태 저장소와 React hook API를 제공한다.",
+    "limits": "원장/초안/권한의 두 번째 저장 원본을 만들지 않는다. 기존 reducer/context로 충분하면 추가하지 않는다."
+  },
+  {
+    "id": "F13",
+    "name": "Motion 접근성",
+    "category": "React 모션",
+    "status": "기존 유지",
+    "url": "https://motion.dev/docs/react-accessibility",
+    "checked": "2026-10-02",
+    "evidence": "reducedMotion과 useReducedMotion으로 이동/크기 변화와 자동 재생을 조정한다.",
+    "limits": "기존 motion 패키지와 토큰을 유지한다. core API와 유료 Motion+ 자료/기능은 구분한다."
+  },
+  {
+    "id": "F14",
+    "name": "GSAP context",
+    "category": "시퀀스 모션의 수명",
+    "status": "기존 유지",
+    "url": "https://gsap.com/docs/v3/GSAP/gsap.context()/",
+    "checked": "2026-10-02",
+    "evidence": "context에 모은 애니메이션을 revert하여 정리하고 컴포넌트 범위를 제한할 수 있다.",
+    "limits": "Motion/CSS와 같은 속성을 동시에 제어하지 않는다. context는 재생 제어용 timeline과 역할이 다르다."
+  },
+  {
+    "id": "F15",
+    "name": "GSAP Standard No Charge License",
+    "category": "라이선스",
+    "status": "참고",
+    "url": "https://gsap.com/community/standard-license/",
+    "checked": "2026-10-02",
+    "evidence": "공식 Standard No Charge License는 상업 사용과 이전 회원용 플러그인 사용을 무상 허용한다고 설명한다.",
+    "limits": "MIT와 동일한 라이선스로 표기하지 않는다. 금지 용도 등 현행 조건과 고지를 보존한다."
+  },
+  {
+    "id": "F16",
+    "name": "Rive React runtime",
+    "category": "입력에 반응하는 벡터 애니메이션",
+    "status": "기존 유지",
+    "url": "https://rive.app/docs/runtimes/react/react",
+    "checked": "2026-10-02",
+    "evidence": "hooks·component·imperative runtime으로 RIV 재생, state machine, data binding, 이벤트와 cleanup을 제어한다.",
+    "limits": "현재 설치는 react-canvas이며 공식 quick start는 react-webgl2다. 예제 패키지를 그대로 복제하여 렌더러를 교체하지 않는다."
+  },
+  {
+    "id": "F17",
+    "name": "dotLottie React",
+    "category": "벡터 타임라인 재생",
+    "status": "기존 유지",
+    "url": "https://docs.lottiefiles.com/en/runtimes/distributions/react/v0.x",
+    "checked": "2026-10-02",
+    "evidence": "React에서 lottie/json 애니메이션을 재생하며 웹 플레이어와 연계한다.",
+    "limits": "플레이어와 마켓 작품의 라이선스는 별개다. 기존 지연 로드·정지·실패 복귀·로컬 에셋 제공을 보존한다."
+  },
+  {
+    "id": "F18",
+    "name": "PixiJS 성능 지침",
+    "category": "2D 장면 엔진",
+    "status": "조건부",
+    "url": "https://pixijs.com/8.x/guides/concepts/performance-tips",
+    "checked": "2026-10-02",
+    "evidence": "sprite batching·spritesheet·텍스처 정리·필터 비용·GPU/CPU 병목에 따른 culling 선택을 설명한다.",
+    "limits": "다수 2D 장면/스프라이트 관리가 기존 WebGL2+SVG보다 이득일 때만 비교한다. culling이 항상 빨라지는 것은 아니다."
+  },
+  {
+    "id": "F19",
+    "name": "Three.js GPU 자원 정리",
+    "category": "3D 장면 엔진",
+    "status": "조건부",
+    "url": "https://threejs.org/manual/pages/cleanup.html",
+    "checked": "2026-10-02",
+    "evidence": "geometry·material·texture의 dispose 등 GPU 자원 수명을 명시적으로 관리해야 한다.",
+    "limits": "입체 장면·모델·광원 요구가 생길 때 후보로 삼는다. 현재 2D 천문대를 전면 이관할 근거는 없다."
+  },
+  {
+    "id": "F20",
+    "name": "React Three Fiber 성능 확장",
+    "category": "React와 3D 통합",
+    "status": "조건부",
+    "url": "https://github.com/pmndrs/react-three-fiber/blob/master/docs/advanced/scaling-performance.mdx",
+    "checked": "2026-10-02",
+    "evidence": "on-demand rendering·재사용·instancing·LOD·적응 해상도 등의 구현을 설명한다.",
+    "limits": "Three.js를 채택할 때 검토한다. 문서 예시의 물체 수·FPS를 이 앱의 성능 보장이나 고정 예산으로 옮기지 않는다."
+  },
+  {
+    "id": "F21",
+    "name": "Khronos WebGL",
+    "category": "GPU 웹 표준",
+    "status": "기존 유지",
+    "url": "https://www.khronos.org/webgl/",
+    "checked": "2026-10-02",
+    "evidence": "WebGL은 OpenGL ES 기반의 웹 그래픽 표준이며 WebGL2는 ES3 기능 집합을 노출한다.",
+    "limits": "표준 존재와 개별 기기 GPU 가용성은 다르다. 현재 SVG fallback과 context 복구를 유지한다."
+  },
+  {
+    "id": "F22",
+    "name": "WebGPU API",
+    "category": "고급 GPU 계산과 렌더링",
+    "status": "조건부",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/WebGPU_API",
+    "checked": "2026-10-02",
+    "evidence": "GPU 렌더링과 일반 계산 pipeline을 제공하며 HTTPS와 지원 환경이 필요하다.",
+    "limits": "확인 시점 MDN은 Limited availability로 안내한다. GPU 계산 병목과 실제 대상 기기 이득이 입증될 때 선택 경로로 검토한다."
+  },
+  {
+    "id": "F23",
+    "name": "OffscreenCanvas",
+    "category": "메인 스레드 밖의 렌더링",
+    "status": "조건부",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvas",
+    "checked": "2026-10-02",
+    "evidence": "canvas 제어를 worker로 옮겨 렌더링할 수 있다.",
+    "limits": "메시지 전달 비용·포인터 동기화·해당 렌더러 지원·종료/복구를 포함해 비교한다. DOM과 사용자 입력의 책임은 별도다."
+  },
+  {
+    "id": "F24",
+    "name": "WebGL best practices",
+    "category": "GPU 운용과 성능",
+    "status": "기본 권고",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API/WebGL_best_practices",
+    "checked": "2026-10-02",
+    "evidence": "자원 삭제·컨텍스트 종료·batching·해상도와 메모리 등 브라우저 GPU 비용을 관리하는 지침이다.",
+    "limits": "CPU 제출 시간만으로 GPU 시간/FPS를 단정하지 않는다. 실제 장면/브라우저의 측정 결과로 조정한다."
+  },
+  {
+    "id": "F25",
+    "name": "Page Visibility API",
+    "category": "탭 생명주기",
+    "status": "기본 권고",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API",
+    "checked": "2026-10-02",
+    "evidence": "문서의 보임/숨김 상태 변화에 따라 불필요한 작업을 멈출 수 있다.",
+    "limits": "문서의 visibility와 요소가 화면 안에 있는지는 별개다. 사용자 수동 정지 선택을 복귀 때 덮지 않는다."
+  },
+  {
+    "id": "F26",
+    "name": "React Profiler",
+    "category": "렌더링 측정",
+    "status": "기본 권고",
+    "url": "https://react.dev/reference/react/Profiler",
+    "checked": "2026-10-02",
+    "evidence": "컴포넌트 트리의 render 비용을 측정하며 DevTools 프로파일러와 연계한다.",
+    "limits": "측정 자체의 비용이 있고 일반 production build에서 기본 비활성이다. GPU·네트워크·실물 배터리 측정을 대신하지 않는다."
+  },
+  {
+    "id": "F27",
+    "name": "W3C Web Animations",
+    "category": "애니메이션 시간과 재생 제어",
+    "status": "기존 유지",
+    "url": "https://www.w3.org/TR/web-animations-1/",
+    "checked": "2026-10-02",
+    "evidence": "타임라인·재생 상태·효과의 시간 관계를 정의하는 규격이다.",
+    "limits": "현재 CSS/GPU 공통 시계에 적용한다. 규격의 상태와 각 API 지원은 별도로 확인한다."
+  },
+  {
+    "id": "F28",
+    "name": "Rive 편집기 요금과 내보내기",
+    "category": "제작 도구 비용",
+    "status": "참고",
+    "url": "https://rive.app/pricing",
+    "checked": "2026-10-02",
+    "evidence": "확인 시점 Free의 RIV export에는 splash screen, Cadet에는 splash 없는 export를 안내한다.",
+    "limits": "기존 런타임 사용과 새 에셋 제작 조건을 구분한다. 가격/계획은 구매 시 재확인하며 조사로 구매를 실행하지 않는다."
+  },
+  {
+    "id": "F29",
+    "name": "Aseprite Sprite Sheet",
+    "category": "픽셀 자산 제작",
+    "status": "조건부",
+    "url": "https://www.aseprite.org/docs/sprite-sheet/",
+    "checked": "2026-10-02",
+    "evidence": "픽셀 애니메이션의 프레임·레이어·태그를 sprite sheet로 내보내고 atlas로 묶는 제작 경로를 제공한다.",
+    "limits": "실제 픽셀 원본 제작이 필요할 때 검토한다. 편집기 사용 조건과 가져오는 외부 자산의 권리는 별개다. 설치·구매하지 않았다."
+  },
+  {
+    "id": "F30",
+    "name": "Piskel",
+    "category": "픽셀 자산 제작",
+    "status": "조건부",
+    "url": "https://github.com/piskelapp/piskel",
+    "checked": "2026-10-02",
+    "evidence": "브라우저 기반 sprite·픽셀아트·애니메이션 편집기이며 공식 저장소는 Apache-2.0을 표시한다.",
+    "limits": "공식 README는 모바일 미지원이라고 명시한다. iPad 중심 제작 도구로 가정하지 않는다. 공개 작품의 재사용 권리는 편집기 코드 라이선스와 별개다."
+  },
+  {
+    "id": "F31",
+    "name": "CSS image-rendering",
+    "category": "픽셀 윤곽 유지",
+    "status": "기본 권고",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/image-rendering",
+    "checked": "2026-10-02",
+    "evidence": "crisp-edges와 pixelated 등 확대 알고리즘을 선택해 픽셀 윤곽을 유지하도록 한다.",
+    "limits": "pixelated는 비정수 배율에서 최근접 정수 확대 뒤 보간될 수 있다. DPR·배율·필터·좌표 정렬을 실제로 확인하며 사진·일반 본문에 일괄 적용하지 않는다."
+  }
+]

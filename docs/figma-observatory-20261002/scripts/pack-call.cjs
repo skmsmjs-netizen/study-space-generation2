@@ -1,0 +1,10 @@
+const fs=require('fs'),path=require('path'),lz=require('lz-string'),esbuild=require('esbuild');
+const [inputFile,bodyFile,outFile]=process.argv.slice(2);
+const input=JSON.parse(fs.readFileSync(inputFile,'utf8')),body=fs.readFileSync(bodyFile,'utf8');
+const decoder=fs.readFileSync(require.resolve('lz-string').replace('lz-string.js','lz-string.min.js'),'utf8');
+const compressed=lz.compressToBase64(JSON.stringify(input));
+if(lz.decompressFromBase64(compressed)!==JSON.stringify(input))throw Error('Lossless packing failed');
+const compact=esbuild.transformSync('async function build(){'+body+'}\n',{minify:true,target:'es2022',charset:'utf8'}).code;
+const code=decoder+'\nconst INPUT=JSON.parse(LZString.decompressFromBase64('+JSON.stringify(compressed)+'));\n'+compact+'\nfunction compactIds(v){if(Array.isArray(v)){if(v.length>100&&v.every(x=>typeof x==="string"&&x.includes(":"))){let prev="";return {encoding:"front-coded-ids-v1",entries:v.slice().sort().map(id=>{let n=0;while(n<prev.length&&n<id.length&&prev[n]===id[n])n++;const out=[n,id.slice(n)];prev=id;return out;})};}return v.map(compactIds);}if(v&&typeof v==="object")return Object.fromEntries(Object.entries(v).map(([k,x])=>[k,compactIds(x)]));return v;}\nreturn {encoding: "lz-string-base64-json", data:LZString.compressToBase64(JSON.stringify(compactIds(await build())))};';
+if(code.length>50000)throw Error('Split semantic batch: '+code.length+' chars');
+fs.writeFileSync(outFile,JSON.stringify({code,codeLength:code.length}));console.log(outFile,code.length);

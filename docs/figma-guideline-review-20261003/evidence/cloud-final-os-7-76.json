@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"pageId\":\"7:76\",\"name\":\"20 UX · 상태·실패·복귀\",\"rootCount\":275,\"wrappers\":407,\"sizes\":{\"14\":12,\"16\":145,\"18\":250},\"problemCount\":0,\"problems\":[],\"forms\":[{\"id\":\"407:18423\",\"close\":1,\"width\":336,\"height\":600},{\"id\":\"407:18481\",\"close\":1,\"width\":336,\"height\":528},{\"id\":\"407:18504\",\"close\":1,\"width\":336,\"height\":591},{\"id\":\"407:18531\",\"close\":1,\"width\":336,\"height\":528},{\"id\":\"407:18554\",\"close\":1,\"width\":336,\"height\":600},{\"id\":\"407:18621\",\"close\":1,\"width\":336,\"height\":600}],\"hubActions\":[{\"id\":\"390:18750\",\"actions\":[{\"type\":\"NODE\",\"destinationId\":\"407:18423\",\"navigation\":\"SWAP\",\"transition\":null,\"resetVideoPosition\":false,\"resetScrollPosition\":false}]},{\"id\":\"390:18752\",\"actions\":[{\"type\":\"NODE\",\"destinationId\":\"407:18481\",\"navigation\":\"SWAP\",\"transition\":null,\"resetVideoPosition\":false,\"resetScrollPosition\":false}]},{\"id\":\"390:18754\",\"actions\":[{\"type\":\"NODE\",\"destinationId\":\"407:18504\",\"navigation\":\"SWAP\",\"transition\":null,\"resetVideoPosition\":false,\"resetScrollPosition\":false}]},{\"id\":\"390:18756\",\"actions\":[{\"type\":\"NODE\",\"destinationId\":\"407:18531\",\"navigation\":\"SWAP\",\"transition\":null,\"resetVideoPosition\":false,\"resetScrollPosition\":false}]},{\"id\":\"390:18758\",\"actions\":[{\"type\":\"NODE\",\"destinationId\":\"407:18554\",\"navigation\":\"SWAP\",\"transition\":null,\"resetVideoPosition\":false,\"resetScrollPosition\":false}]},{\"id\":\"390:18760\",\"actions\":[{\"type\":\"NODE\",\"destinationId\":\"407:18621\",\"navigation\":\"SWAP\",\"transition\":null,\"resetVideoPosition\":false,\"resetScrollPosition\":false}]}],\"sourcePreserved\":true,\"mathPreserved\":true,\"removedDerivedVectorCount\":0,\"createdNodeIds\":[],\"mutatedNodeIds\":[],\"removedNodeIds\":[]}"
+    }
+  ],
+  "isError": false
+}

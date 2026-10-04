@@ -1,0 +1,73 @@
+{
+  "boardId": "60:10519",
+  "rows": [
+    {
+      "id": "SC10",
+      "name": "ObservatoryClouds",
+      "ownerId": "20:6581",
+      "rowId": "67:11130",
+      "assetId": "67:11143",
+      "ownerInstanceId": "67:11131",
+      "svgSha256": "ecdb8a4334eec0749452809653359c4d0b4e681d5b25da520ef045252c2423da",
+      "vectorNodes": 17,
+      "ownerPreserved": true,
+      "representation": "Existing source-contract component preserved; linked side-by-side with one editable asset generated from the actual React source using synthetic static props."
+    }
+  ],
+  "count": 1,
+  "createdNodeIds": {
+    "encoding": "figma-id-ranges-v1",
+    "count": 31,
+    "groups": [
+      [
+        "67:",
+        [
+          [
+            11130,
+            11131
+          ],
+          [
+            11143,
+            11160
+          ]
+        ]
+      ],
+      [
+        "I67:11131;20:",
+        [
+          [
+            6582,
+            6587
+          ],
+          [
+            6589,
+            6592
+          ]
+        ]
+      ],
+      [
+        "I67:11131;20:6587;15:",
+        [
+          74
+        ]
+      ]
+    ],
+    "literal": []
+  },
+  "mutatedNodeIds": {
+    "encoding": "figma-id-ranges-v1",
+    "count": 1,
+    "groups": [
+      [
+        "60:",
+        [
+          10519
+        ]
+      ]
+    ],
+    "literal": []
+  },
+  "originalOwnersPreserved": true,
+  "originalWorldPreserved": true,
+  "layout": "Separate auto-layout board beyond existing rightmost node; existing cards not moved or resized."
+}

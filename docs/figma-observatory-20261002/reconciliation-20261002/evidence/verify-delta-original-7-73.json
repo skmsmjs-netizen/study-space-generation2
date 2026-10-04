@@ -1,0 +1,267 @@
+{
+  "schema": "figma-reconcile-readback-v1",
+  "batchId": "original-7-73",
+  "pageId": "7:73",
+  "createdNodeIds": [],
+  "mutatedNodeIds": [],
+  "observedNodeIds": [
+    "29:260",
+    "56:27704",
+    "29:295",
+    "56:27729",
+    "28:12179",
+    "56:27754",
+    "28:12295",
+    "56:27779",
+    "28:12406",
+    "56:27804",
+    "28:12522",
+    "56:27829",
+    "28:12638",
+    "56:27854",
+    "28:12749",
+    "56:27879",
+    "28:12906",
+    "56:27903",
+    "28:13058",
+    "56:27927",
+    "28:13215",
+    "56:27951",
+    "28:13372",
+    "56:27975",
+    "83:100585",
+    "75:79989",
+    "83:100594",
+    "75:79999"
+  ],
+  "frameColumns": [
+    "key",
+    "id",
+    "pageId",
+    "topLevelId",
+    "name",
+    "width",
+    "height",
+    "visibleTitleId",
+    "navigationMainId",
+    "taskReturnMainId",
+    "stateIndex"
+  ],
+  "frameResults": [
+    [
+      "R25@ipad-landscape",
+      "29:260",
+      "7:73",
+      "29:260",
+      "R25@ipad-landscape",
+      1376,
+      1032,
+      "29:263",
+      "53:12986",
+      null,
+      null
+    ],
+    [
+      "O14@ipad-landscape",
+      "29:295",
+      "7:73",
+      "29:295",
+      "O14@ipad-landscape",
+      1376,
+      1032,
+      "29:298",
+      "53:12986",
+      null,
+      null
+    ],
+    [
+      "R08@ipad-landscape",
+      "28:12179",
+      "7:73",
+      "28:12179",
+      "R08@ipad-landscape",
+      1376,
+      1032,
+      "28:12182",
+      "53:12986",
+      null,
+      null
+    ],
+    [
+      "R08@iphone-portrait",
+      "28:12295",
+      "7:73",
+      "28:12295",
+      "R08@iphone-portrait",
+      402,
+      681,
+      "28:12298",
+      "53:13033",
+      null,
+      null
+    ],
+    [
+      "R08@iphone-landscape",
+      "28:12406",
+      "7:73",
+      "28:12406",
+      "R08@iphone-landscape",
+      756,
+      352,
+      "28:12409",
+      "53:12986",
+      null,
+      null
+    ],
+    [
+      "R08@ipad-portrait",
+      "28:12522",
+      "7:73",
+      "28:12522",
+      "R08@ipad-portrait",
+      1032,
+      1376,
+      "28:12525",
+      "53:12986",
+      null,
+      null
+    ],
+    [
+      "R08@ipad-narrow",
+      "28:12638",
+      "7:73",
+      "28:12638",
+      "R08@ipad-narrow",
+      517,
+      1200,
+      "28:12641",
+      "53:13033",
+      null,
+      null
+    ],
+    [
+      "R09@ipad-landscape",
+      "28:12749",
+      "7:73",
+      "28:12749",
+      "R09@ipad-landscape",
+      1376,
+      1032,
+      "28:12752",
+      "53:12986",
+      null,
+      null
+    ],
+    [
+      "R09@iphone-portrait",
+      "28:12906",
+      "7:73",
+      "28:12906",
+      "R09@iphone-portrait",
+      402,
+      681,
+      "28:12909",
+      "53:13033",
+      null,
+      null
+    ],
+    [
+      "R09@iphone-landscape",
+      "28:13058",
+      "7:73",
+      "28:13058",
+      "R09@iphone-landscape",
+      756,
+      352,
+      "28:13061",
+      "53:12986",
+      null,
+      null
+    ],
+    [
+      "R09@ipad-portrait",
+      "28:13215",
+      "7:73",
+      "28:13215",
+      "R09@ipad-portrait",
+      1032,
+      1376,
+      "28:13218",
+      "53:12986",
+      null,
+      null
+    ],
+    [
+      "R09@ipad-narrow",
+      "28:13372",
+      "7:73",
+      "28:13372",
+      "R09@ipad-narrow",
+      517,
+      1200,
+      "28:13375",
+      "53:13033",
+      null,
+      null
+    ]
+  ],
+  "componentColumns": [
+    "registryId",
+    "ownerId",
+    "sourceFound",
+    "shaFound",
+    "apiFound",
+    "variants",
+    "apiDisplayEscaped",
+    "entityDecodePasses"
+  ],
+  "componentResults": [],
+  "linkColumns": [
+    "controlId",
+    "targetId",
+    "connection",
+    "matched",
+    "visibleLabel",
+    "actualActions"
+  ],
+  "linkResults": [
+    [
+      "83:100585",
+      "75:79989",
+      "figma-node-url",
+      true,
+      "현재 조건을 A로 고정",
+      [
+        [
+          "URL",
+          "75:79989",
+          "YHmD1PpWWfR9JGTEs77JsX"
+        ]
+      ]
+    ],
+    [
+      "83:100594",
+      "75:79999",
+      "figma-node-url",
+      true,
+      "현재 조건을 A로 고정",
+      [
+        [
+          "URL",
+          "75:79999",
+          "YHmD1PpWWfR9JGTEs77JsX"
+        ]
+      ]
+    ]
+  ],
+  "counts": {
+    "frames": 12,
+    "components": 0,
+    "links": 2,
+    "issues": 0
+  },
+  "issues": [],
+  "structuralReadbackPassed": true,
+  "runtimeVerified": false,
+  "visualPixelIdentityVerified": false
+}

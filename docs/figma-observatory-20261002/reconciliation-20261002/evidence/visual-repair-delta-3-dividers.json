@@ -1,0 +1,39 @@
+{
+  "mutatedNodeIds": [
+    "75:83953",
+    "75:83955",
+    "75:84020",
+    "75:84022"
+  ],
+  "proof": [
+    {
+      "id": "75:83953",
+      "width": 926,
+      "x": 25,
+      "parentWidth": 976,
+      "within": true
+    },
+    {
+      "id": "75:83955",
+      "width": 926,
+      "x": 25,
+      "parentWidth": 976,
+      "within": true
+    },
+    {
+      "id": "75:84020",
+      "width": 926,
+      "x": 25,
+      "parentWidth": 976,
+      "within": true
+    },
+    {
+      "id": "75:84022",
+      "width": 926,
+      "x": 25,
+      "parentWidth": 976,
+      "within": true
+    }
+  ],
+  "issues": []
+}

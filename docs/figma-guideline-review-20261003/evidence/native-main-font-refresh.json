@@ -1,0 +1,257 @@
+{
+  "type": "result",
+  "result": {
+    "task": "read",
+    "pageId": "7:70",
+    "pages": [
+      {
+        "id": "7:68",
+        "name": "00 안내 · 기준과 전체 목차"
+      },
+      {
+        "id": "7:69",
+        "name": "01 기초 · 색·글자·간격"
+      },
+      {
+        "id": "7:70",
+        "name": "02 부품 · 속성·상태·코드"
+      },
+      {
+        "id": "154:68",
+        "name": "03 기준 운영 · 조건과 검증"
+      },
+      {
+        "id": "170:180",
+        "name": "04 교육 · 구조·명명·어휘"
+      },
+      {
+        "id": "227:180",
+        "name": "05 레이아웃 · 패턴·전환·복귀"
+      },
+      {
+        "id": "250:180",
+        "name": "06 레이아웃 · 재사용 템플릿"
+      },
+      {
+        "id": "7:71",
+        "name": "10 북쪽 · 공부 책상"
+      },
+      {
+        "id": "7:72",
+        "name": "11 서쪽 · 자료 책장"
+      },
+      {
+        "id": "7:73",
+        "name": "12 동쪽 · 탐구 작업대"
+      },
+      {
+        "id": "7:74",
+        "name": "13 남쪽 · 기록·계획 벽"
+      },
+      {
+        "id": "7:75",
+        "name": "14 위쪽 · 공통 도구"
+      },
+      {
+        "id": "7:76",
+        "name": "20 UX · 상태·실패·복귀"
+      },
+      {
+        "id": "73:68",
+        "name": "21 UX · 전체 경우·경로"
+      },
+      {
+        "id": "61:10753",
+        "name": "30 수학 · 정체성·디자인"
+      },
+      {
+        "id": "49:10972",
+        "name": "31 수학 · 관측실"
+      },
+      {
+        "id": "49:10973",
+        "name": "32 수학 · 인터랙티브"
+      },
+      {
+        "id": "49:10974",
+        "name": "33 수학 · 부품·콘텐츠"
+      },
+      {
+        "id": "52:68",
+        "name": "40 물리 · 시작"
+      },
+      {
+        "id": "52:69",
+        "name": "41 물리 · 관측실"
+      },
+      {
+        "id": "52:70",
+        "name": "42 물리 · 인터랙티브"
+      },
+      {
+        "id": "52:71",
+        "name": "43 물리 · 부품·상태"
+      },
+      {
+        "id": "52:72",
+        "name": "44 물리 · 개념 연결"
+      },
+      {
+        "id": "68:58623",
+        "name": "50 통합 · 이동 프로토타입"
+      },
+      {
+        "id": "74:399",
+        "name": "51 통합 · 종이책 읽기"
+      },
+      {
+        "id": "74:400",
+        "name": "52 통합 · LaTeX 수식"
+      },
+      {
+        "id": "7:77",
+        "name": "80 근거 · 연구·기술·출처"
+      },
+      {
+        "id": "0:1",
+        "name": "90 초기 설계 · 공부 기록 iPad"
+      }
+    ],
+    "fonts": [
+      {
+        "fontName": {
+          "family": "ManSeekSong Paper",
+          "style": "Bold"
+        }
+      },
+      {
+        "fontName": {
+          "family": "ManSeekSong Paper",
+          "style": "ExtraBold"
+        }
+      },
+      {
+        "fontName": {
+          "family": "ManSeekSong Paper",
+          "style": "Regular"
+        }
+      },
+      {
+        "fontName": {
+          "family": "Nanum Brush Script",
+          "style": "Regular"
+        }
+      },
+      {
+        "fontName": {
+          "family": "Nanum Gothic",
+          "style": "Bold"
+        }
+      },
+      {
+        "fontName": {
+          "family": "Nanum Gothic",
+          "style": "ExtraBold"
+        }
+      },
+      {
+        "fontName": {
+          "family": "Nanum Gothic",
+          "style": "Regular"
+        }
+      },
+      {
+        "fontName": {
+          "family": "Nanum Myeongjo",
+          "style": "Bold"
+        }
+      },
+      {
+        "fontName": {
+          "family": "Nanum Myeongjo",
+          "style": "ExtraBold"
+        }
+      },
+      {
+        "fontName": {
+          "family": "Nanum Myeongjo",
+          "style": "Regular"
+        }
+      },
+      {
+        "fontName": {
+          "family": "Nanum Pen",
+          "style": "Regular"
+        }
+      },
+      {
+        "fontName": {
+          "family": "Nanum Pen Script",
+          "style": "Regular"
+        }
+      },
+      {
+        "fontName": {
+          "family": "NanumGothic",
+          "style": "Bold"
+        }
+      },
+      {
+        "fontName": {
+          "family": "NanumGothic",
+          "style": "ExtraBold"
+        }
+      },
+      {
+        "fontName": {
+          "family": "NanumGothic",
+          "style": "Regular"
+        }
+      },
+      {
+        "fontName": {
+          "family": "NanumGothicCoding",
+          "style": "Bold"
+        }
+      },
+      {
+        "fontName": {
+          "family": "NanumGothicCoding",
+          "style": "Regular"
+        }
+      },
+      {
+        "fontName": {
+          "family": "NanumMyeongjo",
+          "style": "Bold"
+        }
+      },
+      {
+        "fontName": {
+          "family": "NanumMyeongjo",
+          "style": "ExtraBold"
+        }
+      },
+      {
+        "fontName": {
+          "family": "NanumMyeongjo",
+          "style": "Regular"
+        }
+      }
+    ],
+    "roots": [
+      {
+        "id": "17:96",
+        "name": "Observatory/v2/Containers/Card",
+        "type": "COMPONENT",
+        "width": 336,
+        "height": 167,
+        "sourceHash": "c1bc561d",
+        "mathHash": "71b3ac9e",
+        "paragraphs": []
+      }
+    ],
+    "createdNodeIds": [],
+    "mutatedNodeIds": []
+  }
+}

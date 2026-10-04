@@ -1,0 +1,16 @@
+{
+  "verifiedAt": "2026-10-02",
+  "account": "school account",
+  "plan": "starter",
+  "seat": "View",
+  "teamKey": "team::1687318260958508483",
+  "fileKey": "YHmD1PpWWfR9JGTEs77JsX",
+  "failedTools": [
+    "get_metadata",
+    "get_libraries",
+    "use_figma"
+  ],
+  "error": "Figma MCP tool call limit on the Starter plan",
+  "remoteWrites": 0,
+  "officialLimitsUrl": "https://developers.figma.com/docs/figma-mcp-server/rate-limits-access/"
+}

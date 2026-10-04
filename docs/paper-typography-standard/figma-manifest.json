@@ -1,0 +1,540 @@
+{
+  "pageId": "7:69",
+  "rootId": "241:202",
+  "createdNodeIds": [
+    "241:202",
+    "241:203",
+    "241:204",
+    "241:205",
+    "241:206",
+    "241:207",
+    "241:208",
+    "241:209",
+    "241:210",
+    "241:211",
+    "241:212",
+    "241:215",
+    "241:216",
+    "241:217",
+    "241:218",
+    "241:219",
+    "241:220",
+    "241:223",
+    "241:224",
+    "241:225",
+    "241:226",
+    "241:227",
+    "241:228",
+    "241:229",
+    "241:232",
+    "241:233",
+    "241:234",
+    "241:235",
+    "241:236",
+    "241:237",
+    "241:240",
+    "241:241",
+    "241:242",
+    "241:243",
+    "241:244",
+    "241:245",
+    "241:246",
+    "241:249",
+    "241:250",
+    "241:251",
+    "241:252",
+    "241:253",
+    "241:254",
+    "241:257",
+    "241:258",
+    "241:259",
+    "241:260",
+    "241:261",
+    "241:262",
+    "241:263",
+    "241:266",
+    "241:267",
+    "241:268",
+    "241:269",
+    "241:270",
+    "241:271",
+    "241:274",
+    "241:275"
+  ],
+  "variableIds": [
+    "VariableID:241:180",
+    "VariableID:241:181",
+    "VariableID:241:182",
+    "VariableID:241:183",
+    "VariableID:241:184",
+    "VariableID:241:185",
+    "VariableID:241:186",
+    "VariableID:241:187",
+    "VariableID:241:189",
+    "VariableID:241:190",
+    "VariableID:241:191",
+    "VariableID:241:193",
+    "VariableID:241:194",
+    "VariableID:241:195",
+    "VariableID:241:197",
+    "VariableID:241:198",
+    "VariableID:241:199"
+  ],
+  "styleIds": [
+    "S:ee5b536b1b285a9f491514f91d5c4a30dc9cde3a,",
+    "S:6a995bce8c99cb7522d5b2d50d4e97f63f8b186d,",
+    "S:dcd92b8ddb0b86c2c2f10b0cbe6ec0b019fb1c96,",
+    "S:1848d68d3855d7afc05321b29104af2daca9d4ff,",
+    "S:a679d1ce062a7fdc27f3f78e0279d8026b982470,"
+  ],
+  "specimens": [
+    {
+      "key": "body",
+      "language": "ko",
+      "panelId": "241:208",
+      "sourceId": "241:212",
+      "outlineId": "241:215",
+      "textStyleId": "S:ee5b536b1b285a9f491514f91d5c4a30dc9cde3a,",
+      "font": {
+        "family": "NanumMyeongjo",
+        "style": "Bold"
+      },
+      "size": 18,
+      "line": {
+        "unit": "PIXELS",
+        "value": 36
+      },
+      "tracking": {
+        "unit": "PIXELS",
+        "value": -0.8999999761581421
+      },
+      "align": "JUSTIFIED",
+      "widthBefore": 599.1422119140625,
+      "widthAfter": 569.1851196289062,
+      "scaleX": 0.9500000305612699,
+      "textPreserved": true
+    },
+    {
+      "key": "body",
+      "language": "en",
+      "panelId": "241:216",
+      "sourceId": "241:220",
+      "outlineId": "241:223",
+      "textStyleId": "S:ee5b536b1b285a9f491514f91d5c4a30dc9cde3a,",
+      "font": {
+        "family": "NanumMyeongjo",
+        "style": "Bold"
+      },
+      "size": 18,
+      "line": {
+        "unit": "PIXELS",
+        "value": 36
+      },
+      "tracking": {
+        "unit": "PIXELS",
+        "value": -0.8999999761581421
+      },
+      "align": "JUSTIFIED",
+      "widthBefore": 600.3374633789062,
+      "widthAfter": 570.3206176757812,
+      "scaleX": 0.9500000457506352,
+      "textPreserved": true
+    },
+    {
+      "key": "compact",
+      "language": "ko",
+      "panelId": "241:225",
+      "sourceId": "241:229",
+      "outlineId": "241:232",
+      "textStyleId": "S:6a995bce8c99cb7522d5b2d50d4e97f63f8b186d,",
+      "font": {
+        "family": "NanumMyeongjo",
+        "style": "Bold"
+      },
+      "size": 16,
+      "line": {
+        "unit": "PIXELS",
+        "value": 29.600000381469727
+      },
+      "tracking": {
+        "unit": "PIXELS",
+        "value": -0.4000000059604645
+      },
+      "align": "JUSTIFIED",
+      "widthBefore": 352.0562744140625,
+      "widthAfter": 334.4534606933594,
+      "scaleX": 0.95,
+      "textPreserved": true
+    },
+    {
+      "key": "compact",
+      "language": "en",
+      "panelId": "241:233",
+      "sourceId": "241:237",
+      "outlineId": "241:240",
+      "textStyleId": "S:6a995bce8c99cb7522d5b2d50d4e97f63f8b186d,",
+      "font": {
+        "family": "NanumMyeongjo",
+        "style": "Bold"
+      },
+      "size": 16,
+      "line": {
+        "unit": "PIXELS",
+        "value": 29.600000381469727
+      },
+      "tracking": {
+        "unit": "PIXELS",
+        "value": -0.4000000059604645
+      },
+      "align": "JUSTIFIED",
+      "widthBefore": 351.8218688964844,
+      "widthAfter": 334.23077392578125,
+      "scaleX": 0.9499999956629219,
+      "textPreserved": true
+    },
+    {
+      "key": "preview",
+      "language": "ko",
+      "panelId": "241:242",
+      "sourceId": "241:246",
+      "outlineId": "241:249",
+      "textStyleId": "S:dcd92b8ddb0b86c2c2f10b0cbe6ec0b019fb1c96,",
+      "font": {
+        "family": "NanumMyeongjo",
+        "style": "Bold"
+      },
+      "size": 14,
+      "line": {
+        "unit": "PIXELS",
+        "value": 25.899999618530273
+      },
+      "tracking": {
+        "unit": "PIXELS",
+        "value": -0.3499999940395355
+      },
+      "align": "JUSTIFIED",
+      "widthBefore": 352.1722412109375,
+      "widthAfter": 334.5636291503906,
+      "scaleX": 0.95,
+      "textPreserved": true
+    },
+    {
+      "key": "preview",
+      "language": "en",
+      "panelId": "241:250",
+      "sourceId": "241:254",
+      "outlineId": "241:257",
+      "textStyleId": "S:dcd92b8ddb0b86c2c2f10b0cbe6ec0b019fb1c96,",
+      "font": {
+        "family": "NanumMyeongjo",
+        "style": "Bold"
+      },
+      "size": 14,
+      "line": {
+        "unit": "PIXELS",
+        "value": 25.899999618530273
+      },
+      "tracking": {
+        "unit": "PIXELS",
+        "value": -0.3499999940395355
+      },
+      "align": "JUSTIFIED",
+      "widthBefore": 352.0902404785156,
+      "widthAfter": 334.4857177734375,
+      "scaleX": 0.9499999696635943,
+      "textPreserved": true
+    },
+    {
+      "key": "memo",
+      "language": "ko",
+      "panelId": "241:259",
+      "sourceId": "241:263",
+      "outlineId": "241:266",
+      "textStyleId": "S:1848d68d3855d7afc05321b29104af2daca9d4ff,",
+      "font": {
+        "family": "NanumMyeongjo",
+        "style": "Bold"
+      },
+      "size": 16,
+      "line": {
+        "unit": "PIXELS",
+        "value": 29.600000381469727
+      },
+      "tracking": {
+        "unit": "PIXELS",
+        "value": -0.4000000059604645
+      },
+      "align": "JUSTIFIED",
+      "widthBefore": 351.40625,
+      "widthAfter": 333.8359375,
+      "scaleX": 0.95,
+      "textPreserved": true
+    },
+    {
+      "key": "memo",
+      "language": "en",
+      "panelId": "241:267",
+      "sourceId": "241:271",
+      "outlineId": "241:274",
+      "textStyleId": "S:1848d68d3855d7afc05321b29104af2daca9d4ff,",
+      "font": {
+        "family": "NanumMyeongjo",
+        "style": "Bold"
+      },
+      "size": 16,
+      "line": {
+        "unit": "PIXELS",
+        "value": 29.600000381469727
+      },
+      "tracking": {
+        "unit": "PIXELS",
+        "value": -0.4000000059604645
+      },
+      "align": "JUSTIFIED",
+      "widthBefore": 351.8843994140625,
+      "widthAfter": 334.2901916503906,
+      "scaleX": 0.9500000346904588,
+      "textPreserved": true
+    }
+  ],
+  "bounds": {
+    "x": 2948,
+    "y": 0,
+    "width": 1440,
+    "height": 1701.34375
+  },
+  "existingPageChildrenPreserved": [
+    {
+      "id": "7:148",
+      "name": "Foundations / v2"
+    },
+    {
+      "id": "178:187",
+      "name": "교육 / page-7-69 / 페이지 해설 · 01 기초 · 색·글자·간격"
+    }
+  ],
+  "initialBounds": {
+    "x": 2948,
+    "y": 0,
+    "width": 1440,
+    "height": 98
+  },
+  "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=241-202",
+  "variables": [
+    {
+      "id": "VariableID:241:180",
+      "name": "paper/type/weight",
+      "scopes": [
+        "FONT_WEIGHT"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--observatory-paper-body-weight)"
+      },
+      "values": {
+        "7:3": 700
+      }
+    },
+    {
+      "id": "VariableID:241:181",
+      "name": "paper/type/family",
+      "scopes": [
+        "FONT_FAMILY"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--font-reading)"
+      },
+      "values": {
+        "7:3": "NanumMyeongjo"
+      }
+    },
+    {
+      "id": "VariableID:241:182",
+      "name": "paper/type/glyph-scale-x",
+      "scopes": [],
+      "codeSyntax": {
+        "WEB": "var(--paper-body-glyph-scale-x)"
+      },
+      "values": {
+        "7:3": 0.949999988079071
+      }
+    },
+    {
+      "id": "VariableID:241:183",
+      "name": "paper/type/text-align",
+      "scopes": [],
+      "codeSyntax": {
+        "WEB": "var(--paper-body-text-align)"
+      },
+      "values": {
+        "7:3": "justify"
+      }
+    },
+    {
+      "id": "VariableID:241:184",
+      "name": "paper/type/last-line",
+      "scopes": [],
+      "codeSyntax": {
+        "WEB": "var(--paper-body-last-line)"
+      },
+      "values": {
+        "7:3": "start"
+      }
+    },
+    {
+      "id": "VariableID:241:185",
+      "name": "paper/type/body/size",
+      "scopes": [
+        "FONT_SIZE"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--type-subheading-size)"
+      },
+      "values": {
+        "7:3": 18
+      }
+    },
+    {
+      "id": "VariableID:241:186",
+      "name": "paper/type/body/line-px",
+      "scopes": [
+        "LINE_HEIGHT"
+      ],
+      "codeSyntax": {
+        "WEB": "calc(var(--type-subheading-size) * var(--observatory-paper-body-line))"
+      },
+      "values": {
+        "7:3": 36
+      }
+    },
+    {
+      "id": "VariableID:241:187",
+      "name": "paper/type/body/tracking-px",
+      "scopes": [
+        "LETTER_SPACING"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--observatory-paper-body-tracking)"
+      },
+      "values": {
+        "7:3": -0.8999999761581421
+      }
+    },
+    {
+      "id": "VariableID:241:189",
+      "name": "paper/type/compact/size",
+      "scopes": [
+        "FONT_SIZE"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--input-font-size)"
+      },
+      "values": {
+        "7:3": 16
+      }
+    },
+    {
+      "id": "VariableID:241:190",
+      "name": "paper/type/compact/line-px",
+      "scopes": [
+        "LINE_HEIGHT"
+      ],
+      "codeSyntax": {
+        "WEB": "calc(var(--input-font-size) * var(--observatory-paper-body-compact-line))"
+      },
+      "values": {
+        "7:3": 29.600000381469727
+      }
+    },
+    {
+      "id": "VariableID:241:191",
+      "name": "paper/type/compact/tracking-px",
+      "scopes": [
+        "LETTER_SPACING"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--observatory-paper-body-compact-tracking)"
+      },
+      "values": {
+        "7:3": -0.4000000059604645
+      }
+    },
+    {
+      "id": "VariableID:241:193",
+      "name": "paper/type/preview/size",
+      "scopes": [
+        "FONT_SIZE"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--type-caption-size)"
+      },
+      "values": {
+        "7:3": 14
+      }
+    },
+    {
+      "id": "VariableID:241:194",
+      "name": "paper/type/preview/line-px",
+      "scopes": [
+        "LINE_HEIGHT"
+      ],
+      "codeSyntax": {
+        "WEB": "calc(var(--type-caption-size) * var(--observatory-paper-body-compact-line))"
+      },
+      "values": {
+        "7:3": 25.899999618530273
+      }
+    },
+    {
+      "id": "VariableID:241:195",
+      "name": "paper/type/preview/tracking-px",
+      "scopes": [
+        "LETTER_SPACING"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--observatory-paper-body-compact-tracking)"
+      },
+      "values": {
+        "7:3": -0.3499999940395355
+      }
+    },
+    {
+      "id": "VariableID:241:197",
+      "name": "paper/type/memo/size",
+      "scopes": [
+        "FONT_SIZE"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--input-font-size)"
+      },
+      "values": {
+        "7:3": 16
+      }
+    },
+    {
+      "id": "VariableID:241:198",
+      "name": "paper/type/memo/line-px",
+      "scopes": [
+        "LINE_HEIGHT"
+      ],
+      "codeSyntax": {
+        "WEB": "calc(var(--input-font-size) * var(--observatory-paper-body-compact-line))"
+      },
+      "values": {
+        "7:3": 29.600000381469727
+      }
+    },
+    {
+      "id": "VariableID:241:199",
+      "name": "paper/type/memo/tracking-px",
+      "scopes": [
+        "LETTER_SPACING"
+      ],
+      "codeSyntax": {
+        "WEB": "var(--observatory-paper-body-compact-tracking)"
+      },
+      "values": {
+        "7:3": -0.4000000059604645
+      }
+    }
+  ]
+}

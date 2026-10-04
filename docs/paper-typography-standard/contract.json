@@ -1,0 +1,109 @@
+{
+  "version": "1.1.0",
+  "decisionDate": "2026-10-02",
+  "status": "approved-design/local-app-applied",
+  "font": {
+    "family": "Nanum Myeongjo",
+    "figmaFamily": "NanumMyeongjo",
+    "style": "Bold",
+    "weight": 700,
+    "languages": [
+      "ko",
+      "en"
+    ],
+    "glyphScaleX": 0.95
+  },
+  "alignment": {
+    "textAlign": "justify",
+    "lastLine": "start",
+    "justification": "inter-word",
+    "preserveExplicitBreaks": true
+  },
+  "roles": [
+    {
+      "id": "body",
+      "label": "개념·지식 설명 / 펼친 paper",
+      "sizePx": 18,
+      "lineHeight": 2,
+      "trackingEm": -0.05,
+      "exampleWidthPx": 600
+    },
+    {
+      "id": "compact",
+      "label": "좁은 본문 / paper",
+      "sizePx": 16,
+      "lineHeight": 1.85,
+      "trackingEm": -0.025,
+      "exampleWidthPx": 352
+    },
+    {
+      "id": "preview",
+      "label": "미리보기 / 접힌 메모",
+      "sizePx": 14,
+      "lineHeight": 1.85,
+      "trackingEm": -0.025,
+      "exampleWidthPx": 352
+    },
+    {
+      "id": "memo",
+      "label": "직접 쓰는 메모 / 자유 글",
+      "sizePx": 16,
+      "lineHeight": 1.85,
+      "trackingEm": -0.025,
+      "exampleWidthPx": 352
+    }
+  ],
+  "excludedRoles": [
+    "제목",
+    "버튼·탐색·조작 라벨",
+    "표·축",
+    "수식",
+    "코드"
+  ],
+  "heading": {
+    "englishFamily": "Inter",
+    "style": "Semi Bold",
+    "weight": 600,
+    "englishBodyRemainsMyeongjo": true
+  },
+  "preservation": [
+    "원문",
+    "명시적 줄바꿈",
+    "강조",
+    "개인 서체·크기·읽기 폭",
+    "입력 중 커서·선택·한국어 조합",
+    "ID·초안·저장 키·이력",
+    "개인 배치"
+  ],
+  "figma": {
+    "fileKey": "YHmD1PpWWfR9JGTEs77JsX",
+    "pageId": "7:69",
+    "boardName": "Paper Typography / 700 · 95% · 한글·영문",
+    "widthRepresentation": "95% outline reference plus retained editable source text; text style itself does not encode horizontal glyph scaling",
+    "boardId": "241:202",
+    "url": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX?node-id=241-202"
+  },
+  "runtime": {
+    "status": "implemented-local",
+    "currentBaselinePath": "../observatory-experience-baseline.json",
+    "currentWeight": 700,
+    "currentGlyphScaleX": 0.95,
+    "baselineGeneratorCssEditedByThisTask": true,
+    "implementationFamily": "ManSeekSong Paper",
+    "fontManifest": "../../assets/paper/font-width-manifest.json",
+    "fontBuild": "../../scripts/build-paper-typeface.py",
+    "implementationCss": [
+      "../../src/ui/paper-typography.css",
+      "../../src/ui/paper-typeface.css"
+    ],
+    "verification": "runtime-verification.json",
+    "deploymentPerformedByThisTask": false,
+    "approval": "2026-10-02 사용자 반영하라: 앱 적용 대기 해제",
+    "scope": "Existing parallel baseline/generator/role CSS reused; native-width full font faces and focused runtime checks owned by this task. Stored source/IDs/history are unchanged."
+  },
+  "sources": [
+    "https://raw.githubusercontent.com/google/fonts/main/ofl/nanummyeongjo/METADATA.pb",
+    "https://developers.figma.com/docs/plugins/api/TextStyle/",
+    "https://developers.figma.com/docs/plugins/api/properties/nodes-relativetransform/"
+  ]
+}

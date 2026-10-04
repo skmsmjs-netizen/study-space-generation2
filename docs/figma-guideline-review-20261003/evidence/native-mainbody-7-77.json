@@ -1,0 +1,80 @@
+{
+  "type": "result",
+  "result": {
+    "task": "mainbody",
+    "pageId": "7:77",
+    "convertedCount": 6,
+    "sourcePreserved": true,
+    "styleIds": [
+      "S:ee5b536b1b285a9f491514f91d5c4a30dc9cde3a,",
+      "S:6a995bce8c99cb7522d5b2d50d4e97f63f8b186d,",
+      "S:dcd92b8ddb0b86c2c2f10b0cbe6ec0b019fb1c96,",
+      "S:1848d68d3855d7afc05321b29104af2daca9d4ff,"
+    ],
+    "sources": [
+      {
+        "id": "20:3600",
+        "font": "ManSeekSong Paper",
+        "width": 532,
+        "size": 16,
+        "sourcePreserved": true
+      },
+      {
+        "id": "20:3769",
+        "font": "ManSeekSong Paper",
+        "width": 764,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "178:31801",
+        "font": "ManSeekSong Paper",
+        "width": 1040,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "178:31802",
+        "font": "ManSeekSong Paper",
+        "width": 1040,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "178:31803",
+        "font": "ManSeekSong Paper",
+        "width": 1040,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "178:31804",
+        "font": "ManSeekSong Paper",
+        "width": 1040,
+        "size": 18,
+        "sourcePreserved": true
+      }
+    ],
+    "createdNodeIds": [],
+    "mutatedNodeIds": [
+      "350:37376",
+      "20:3600",
+      "350:37373",
+      "350:37380",
+      "20:3769",
+      "350:37377",
+      "350:37384",
+      "178:31801",
+      "350:37381",
+      "350:37388",
+      "178:31802",
+      "350:37385",
+      "350:37392",
+      "178:31803",
+      "350:37389",
+      "350:37396",
+      "178:31804",
+      "350:37393"
+    ]
+  }
+}

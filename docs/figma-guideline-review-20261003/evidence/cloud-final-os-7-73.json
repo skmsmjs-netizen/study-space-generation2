@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"pageId\":\"7:73\",\"name\":\"12 동쪽 · 탐구 작업대\",\"rootCount\":34,\"wrappers\":37,\"sizes\":{\"16\":27,\"18\":10},\"problemCount\":0,\"problems\":[],\"forms\":[{\"id\":\"403:972\",\"close\":1,\"width\":336,\"height\":600},{\"id\":\"403:1030\",\"close\":1,\"width\":336,\"height\":528},{\"id\":\"403:1053\",\"close\":1,\"width\":336,\"height\":591},{\"id\":\"403:1080\",\"close\":1,\"width\":336,\"height\":528},{\"id\":\"403:1103\",\"close\":1,\"width\":336,\"height\":600},{\"id\":\"403:1170\",\"close\":1,\"width\":336,\"height\":600}],\"hubActions\":[{\"id\":\"390:36774\",\"actions\":[{\"type\":\"NODE\",\"destinationId\":\"403:972\",\"navigation\":\"SWAP\",\"transition\":null,\"resetVideoPosition\":false,\"resetScrollPosition\":false}]},{\"id\":\"390:36776\",\"actions\":[{\"type\":\"NODE\",\"destinationId\":\"403:1030\",\"navigation\":\"SWAP\",\"transition\":null,\"resetVideoPosition\":false,\"resetScrollPosition\":false}]},{\"id\":\"390:36778\",\"actions\":[{\"type\":\"NODE\",\"destinationId\":\"403:1053\",\"navigation\":\"SWAP\",\"transition\":null,\"resetVideoPosition\":false,\"resetScrollPosition\":false}]},{\"id\":\"390:36780\",\"actions\":[{\"type\":\"NODE\",\"destinationId\":\"403:1080\",\"navigation\":\"SWAP\",\"transition\":null,\"resetVideoPosition\":false,\"resetScrollPosition\":false}]},{\"id\":\"390:36782\",\"actions\":[{\"type\":\"NODE\",\"destinationId\":\"403:1103\",\"navigation\":\"SWAP\",\"transition\":null,\"resetVideoPosition\":false,\"resetScrollPosition\":false}]},{\"id\":\"390:36784\",\"actions\":[{\"type\":\"NODE\",\"destinationId\":\"403:1170\",\"navigation\":\"SWAP\",\"transition\":null,\"resetVideoPosition\":false,\"resetScrollPosition\":false}]}],\"sourcePreserved\":true,\"mathPreserved\":true,\"removedDerivedVectorCount\":0,\"createdNodeIds\":[],\"mutatedNodeIds\":[],\"removedNodeIds\":[]}"
+    }
+  ],
+  "isError": false
+}

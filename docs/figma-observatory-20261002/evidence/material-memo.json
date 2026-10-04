@@ -1,0 +1,1189 @@
+{
+  "createdNodeIds": [
+    "33:9135",
+    "33:9136",
+    "I33:9136;16:109",
+    "33:9138",
+    "33:9139",
+    "33:9140",
+    "33:9141",
+    "33:9142",
+    "33:9143",
+    "I33:9143;16:109",
+    "33:9146",
+    "I33:9146;16:77",
+    "33:9149",
+    "33:9150",
+    "33:9151",
+    "33:9152",
+    "I33:9152;16:109",
+    "33:9155",
+    "33:9156",
+    "33:9157"
+  ],
+  "mutatedNodeIds": [
+    "28:9106"
+  ],
+  "pageId": "7:71",
+  "blockMap": {
+    "O20": {
+      "O20-B01": {
+        "ipad-landscape": "28:9575"
+      }
+    },
+    "O23": {
+      "O23-B01": {
+        "ipad-landscape": "28:9616"
+      }
+    },
+    "O24": {
+      "O24-B01": {
+        "ipad-landscape": "28:9650"
+      }
+    },
+    "O29": {
+      "O29-B01": {
+        "ipad-landscape": "28:9685"
+      }
+    },
+    "U14": {
+      "U14-B01": {
+        "ipad-landscape": "28:9719"
+      }
+    },
+    "R18": {
+      "R18-B01": {
+        "ipad-landscape": "29:4509",
+        "iphone-portrait": "29:4574",
+        "iphone-landscape": "29:4639",
+        "ipad-portrait": "29:4704",
+        "ipad-narrow": "29:4769"
+      },
+      "R18-B02": {
+        "ipad-landscape": "29:4517",
+        "iphone-portrait": "29:4582",
+        "iphone-landscape": "29:4647",
+        "ipad-portrait": "29:4712",
+        "ipad-narrow": "29:4777"
+      },
+      "R18-B03": {
+        "ipad-landscape": "29:4533",
+        "iphone-portrait": "29:4598",
+        "iphone-landscape": "29:4663",
+        "ipad-portrait": "29:4728",
+        "ipad-narrow": "29:4793"
+      },
+      "R18-B04": {
+        "ipad-landscape": "29:4541",
+        "iphone-portrait": "29:4606",
+        "iphone-landscape": "29:4671",
+        "ipad-portrait": "29:4736",
+        "ipad-narrow": "29:4801"
+      }
+    },
+    "R32": {
+      "R32-B01": {
+        "ipad-landscape": "28:9375"
+      }
+    },
+    "O11": {
+      "O11-B01": {
+        "ipad-landscape": "28:9412"
+      }
+    },
+    "O16": {
+      "O16-B01": {
+        "ipad-landscape": "28:9451"
+      }
+    },
+    "O17": {
+      "O17-B01": {
+        "ipad-landscape": "28:9491"
+      }
+    },
+    "O18": {
+      "O18-B01": {
+        "ipad-landscape": "28:9530"
+      }
+    },
+    "R04": {
+      "R04-B01": {
+        "ipad-landscape": "28:9837",
+        "iphone-portrait": "28:9902",
+        "iphone-landscape": "28:9972",
+        "ipad-portrait": "28:10042",
+        "ipad-narrow": "28:10107"
+      },
+      "R04-B02": {
+        "ipad-landscape": "28:9846",
+        "iphone-portrait": "28:9911",
+        "iphone-landscape": "28:9981",
+        "ipad-portrait": "28:10051",
+        "ipad-narrow": "28:10116"
+      },
+      "R04-B03": {
+        "ipad-landscape": "28:9853",
+        "iphone-portrait": "28:9918",
+        "iphone-landscape": "28:9988",
+        "ipad-portrait": "28:10058",
+        "ipad-narrow": "28:10123"
+      },
+      "R04-B04": {
+        "ipad-landscape": "28:9861",
+        "iphone-portrait": "28:9926",
+        "iphone-landscape": "28:9996",
+        "ipad-portrait": "28:10066",
+        "ipad-narrow": "28:10131"
+      }
+    },
+    "R07": {
+      "R07-B01": {
+        "ipad-landscape": "28:10177",
+        "iphone-portrait": "28:10313",
+        "iphone-landscape": "28:10454",
+        "ipad-portrait": "28:10595",
+        "ipad-narrow": "28:10731"
+      },
+      "R07-B02": {
+        "ipad-landscape": "28:10190",
+        "iphone-portrait": "28:10326",
+        "iphone-landscape": "28:10467",
+        "ipad-portrait": "28:10608",
+        "ipad-narrow": "28:10744"
+      },
+      "R07-B03": {
+        "ipad-landscape": "28:10207",
+        "iphone-portrait": "28:10343",
+        "iphone-landscape": "28:10484",
+        "ipad-portrait": "28:10625",
+        "ipad-narrow": "28:10761"
+      },
+      "R07-B04": {
+        "ipad-landscape": "28:10222",
+        "iphone-portrait": "28:10358",
+        "iphone-landscape": "28:10499",
+        "ipad-portrait": "28:10640",
+        "ipad-narrow": "28:10776"
+      },
+      "R07-B05": {
+        "ipad-landscape": "28:10242",
+        "iphone-portrait": "28:10378",
+        "iphone-landscape": "28:10519",
+        "ipad-portrait": "28:10660",
+        "ipad-narrow": "28:10796"
+      },
+      "R07-B06": {
+        "ipad-landscape": "28:10263",
+        "iphone-portrait": "28:10399",
+        "iphone-landscape": "28:10540",
+        "ipad-portrait": "28:10681",
+        "ipad-narrow": "28:10817"
+      },
+      "R07-B07": {
+        "ipad-landscape": "28:10273",
+        "iphone-portrait": "28:10409",
+        "iphone-landscape": "28:10550",
+        "ipad-portrait": "28:10691",
+        "ipad-narrow": "28:10827"
+      }
+    },
+    "R02": {
+      "R02-B01": {
+        "ipad-landscape": "29:366",
+        "iphone-portrait": "29:580",
+        "iphone-landscape": "29:799",
+        "ipad-portrait": "29:1018",
+        "ipad-narrow": "29:1232"
+      },
+      "R02-B02": {
+        "ipad-landscape": "29:385",
+        "iphone-portrait": "29:599",
+        "iphone-landscape": "29:818",
+        "ipad-portrait": "29:1037",
+        "ipad-narrow": "29:1251"
+      },
+      "R02-B03": {
+        "ipad-landscape": "29:461",
+        "iphone-portrait": "29:675",
+        "iphone-landscape": "29:894",
+        "ipad-portrait": "29:1113",
+        "ipad-narrow": "29:1327"
+      },
+      "R02-B04": {
+        "ipad-landscape": "29:506",
+        "iphone-portrait": "29:720",
+        "iphone-landscape": "29:939",
+        "ipad-portrait": "29:1158",
+        "ipad-narrow": "29:1372"
+      },
+      "R02-B05": {
+        "ipad-landscape": "29:531",
+        "iphone-portrait": "29:745",
+        "iphone-landscape": "29:964",
+        "ipad-portrait": "29:1183",
+        "ipad-narrow": "29:1397"
+      },
+      "R02-B06": {
+        "ipad-landscape": "29:541",
+        "iphone-portrait": "29:755",
+        "iphone-landscape": "29:974",
+        "ipad-portrait": "29:1193",
+        "ipad-narrow": "29:1407"
+      }
+    },
+    "R03": {
+      "R03-B01": {
+        "ipad-landscape": "29:1451",
+        "iphone-portrait": "29:1657",
+        "iphone-landscape": "29:1868",
+        "ipad-portrait": "29:2079",
+        "ipad-narrow": "29:2285"
+      },
+      "R03-B02": {
+        "ipad-landscape": "29:1469",
+        "iphone-portrait": "29:1675",
+        "iphone-landscape": "29:1886",
+        "ipad-portrait": "29:2097",
+        "ipad-narrow": "29:2303"
+      },
+      "R03-B03": {
+        "ipad-landscape": "29:1479",
+        "iphone-portrait": "29:1685",
+        "iphone-landscape": "29:1896",
+        "ipad-portrait": "29:2107",
+        "ipad-narrow": "29:2313"
+      },
+      "R03-B04": {
+        "ipad-landscape": "29:1492",
+        "iphone-portrait": "29:1698",
+        "iphone-landscape": "29:1909",
+        "ipad-portrait": "29:2120",
+        "ipad-narrow": "29:2326"
+      },
+      "R03-B05": {
+        "ipad-landscape": "29:1597",
+        "iphone-portrait": "29:1803",
+        "iphone-landscape": "29:2014",
+        "ipad-portrait": "29:2225",
+        "ipad-narrow": "29:2431"
+      },
+      "R03-B06": {
+        "ipad-landscape": "29:1617",
+        "iphone-portrait": "29:1823",
+        "iphone-landscape": "29:2034",
+        "ipad-portrait": "29:2245",
+        "ipad-narrow": "29:2451"
+      }
+    },
+    "U39": {
+      "U39-B01": {
+        "ipad-landscape": "29:5723"
+      }
+    },
+    "R01": {
+      "R01-B01": {
+        "ipad-landscape": "26:87",
+        "iphone-portrait": "26:1891",
+        "iphone-landscape": "26:3700",
+        "ipad-portrait": "26:5509",
+        "ipad-narrow": "26:7313"
+      },
+      "R01-B02": {
+        "ipad-landscape": "26:1766",
+        "iphone-portrait": "26:3570",
+        "iphone-landscape": "26:5379",
+        "ipad-portrait": "26:7188",
+        "ipad-narrow": "26:8992"
+      },
+      "R01-B03": {
+        "ipad-landscape": "26:1778",
+        "iphone-portrait": "26:3582",
+        "iphone-landscape": "26:5391",
+        "ipad-portrait": "26:7200",
+        "ipad-narrow": "26:9004"
+      },
+      "R01-B04": {
+        "ipad-landscape": "26:1788",
+        "iphone-portrait": "26:3592",
+        "iphone-landscape": "26:5401",
+        "ipad-portrait": "26:7210",
+        "ipad-narrow": "26:9014"
+      },
+      "R01-B05": {
+        "ipad-landscape": "26:1797",
+        "iphone-portrait": "26:3601",
+        "iphone-landscape": "26:5410",
+        "ipad-portrait": "26:7219",
+        "ipad-narrow": "26:9023"
+      },
+      "R01-B06": {
+        "ipad-landscape": "26:1814",
+        "iphone-portrait": "26:3618",
+        "iphone-landscape": "26:5427",
+        "ipad-portrait": "26:7236",
+        "ipad-narrow": "26:9040"
+      },
+      "R01-B07": {
+        "ipad-landscape": "26:1839",
+        "iphone-portrait": "26:3643",
+        "iphone-landscape": "26:5452",
+        "ipad-portrait": "26:7261",
+        "ipad-narrow": "26:9065"
+      },
+      "R01-B08": {
+        "ipad-landscape": "26:1851",
+        "iphone-portrait": "26:3655",
+        "iphone-landscape": "26:5464",
+        "ipad-portrait": "26:7273",
+        "ipad-narrow": "26:9077"
+      }
+    },
+    "R05": {
+      "R05-B01": {
+        "ipad-landscape": "26:9122",
+        "iphone-portrait": "26:9217",
+        "iphone-landscape": "26:9317",
+        "ipad-portrait": "26:9417",
+        "ipad-narrow": "26:9512"
+      },
+      "R05-B02": {
+        "ipad-landscape": "26:9141",
+        "iphone-portrait": "26:9236",
+        "iphone-landscape": "26:9336",
+        "ipad-portrait": "26:9436",
+        "ipad-narrow": "26:9531"
+      },
+      "R05-B03": {
+        "ipad-landscape": "26:9159",
+        "iphone-portrait": "26:9254",
+        "iphone-landscape": "26:9354",
+        "ipad-portrait": "26:9454",
+        "ipad-narrow": "26:9549"
+      },
+      "R05-B04": {
+        "ipad-landscape": "26:9174",
+        "iphone-portrait": "26:9269",
+        "iphone-landscape": "26:9369",
+        "ipad-portrait": "26:9469",
+        "ipad-narrow": "26:9564"
+      },
+      "R05-B05": {
+        "ipad-landscape": "26:9183",
+        "iphone-portrait": "26:9278",
+        "iphone-landscape": "26:9378",
+        "ipad-portrait": "26:9478",
+        "ipad-narrow": "26:9573"
+      }
+    },
+    "U04": {
+      "U04-B01": {
+        "ipad-landscape": "29:5547"
+      }
+    },
+    "U08": {
+      "U08-B01": {
+        "ipad-landscape": "29:5579"
+      }
+    },
+    "U09": {
+      "U09-B01": {
+        "ipad-landscape": "29:5611"
+      }
+    },
+    "U10": {
+      "U10-B01": {
+        "ipad-landscape": "29:5645"
+      }
+    },
+    "U37": {
+      "U37-B01": {
+        "ipad-landscape": "29:5678"
+      }
+    },
+    "R25": {
+      "R25-B01": {
+        "ipad-landscape": "29:274"
+      }
+    },
+    "O14": {
+      "O14-B01": {
+        "ipad-landscape": "29:309"
+      }
+    },
+    "O15": {
+      "O15-B01": {
+        "ipad-landscape": "29:5345"
+      }
+    },
+    "O21": {
+      "O21-B01": {
+        "ipad-landscape": "29:5388"
+      }
+    },
+    "U01": {
+      "U01-B01": {
+        "ipad-landscape": "29:5424"
+      },
+      "U01-B02": {
+        "ipad-landscape": "29:5438"
+      }
+    },
+    "U02": {
+      "U02-B01": {
+        "ipad-landscape": "29:5477"
+      }
+    },
+    "U03": {
+      "U03-B01": {
+        "ipad-landscape": "29:5507"
+      }
+    },
+    "R08": {
+      "R08-B01": {
+        "ipad-landscape": "28:12198",
+        "iphone-portrait": "28:12309",
+        "iphone-landscape": "28:12425",
+        "ipad-portrait": "28:12541",
+        "ipad-narrow": "28:12652"
+      },
+      "R08-B02": {
+        "ipad-landscape": "28:12215",
+        "iphone-portrait": "28:12326",
+        "iphone-landscape": "28:12442",
+        "ipad-portrait": "28:12558",
+        "ipad-narrow": "28:12669"
+      },
+      "R08-B03": {
+        "ipad-landscape": "28:12226",
+        "iphone-portrait": "28:12337",
+        "iphone-landscape": "28:12453",
+        "ipad-portrait": "28:12569",
+        "ipad-narrow": "28:12680"
+      },
+      "R08-B04": {
+        "ipad-landscape": "28:12243",
+        "iphone-portrait": "28:12354",
+        "iphone-landscape": "28:12470",
+        "ipad-portrait": "28:12586",
+        "ipad-narrow": "28:12697"
+      },
+      "R08-B05": {
+        "ipad-landscape": "28:12253",
+        "iphone-portrait": "28:12364",
+        "iphone-landscape": "28:12480",
+        "ipad-portrait": "28:12596",
+        "ipad-narrow": "28:12707"
+      },
+      "R08-B06": {
+        "ipad-landscape": "28:12263",
+        "iphone-portrait": "28:12374",
+        "iphone-landscape": "28:12490",
+        "ipad-portrait": "28:12606",
+        "ipad-narrow": "28:12717"
+      }
+    },
+    "R09": {
+      "R09-B01": {
+        "ipad-landscape": "28:12768",
+        "iphone-portrait": "28:12920",
+        "iphone-landscape": "28:13077",
+        "ipad-portrait": "28:13234",
+        "ipad-narrow": "28:13386"
+      },
+      "R09-B02": {
+        "ipad-landscape": "28:12774",
+        "iphone-portrait": "28:12926",
+        "iphone-landscape": "28:13083",
+        "ipad-portrait": "28:13240",
+        "ipad-narrow": "28:13392"
+      },
+      "R09-B03": {
+        "ipad-landscape": "28:12793",
+        "iphone-portrait": "28:12945",
+        "iphone-landscape": "28:13102",
+        "ipad-portrait": "28:13259",
+        "ipad-narrow": "28:13411"
+      },
+      "R09-B04": {
+        "ipad-landscape": "28:12830",
+        "iphone-portrait": "28:12982",
+        "iphone-landscape": "28:13139",
+        "ipad-portrait": "28:13296",
+        "ipad-narrow": "28:13448"
+      },
+      "R09-B05": {
+        "ipad-landscape": "28:12849",
+        "iphone-portrait": "28:13001",
+        "iphone-landscape": "28:13158",
+        "ipad-portrait": "28:13315",
+        "ipad-narrow": "28:13467"
+      },
+      "R09-B06": {
+        "ipad-landscape": "28:12861",
+        "iphone-portrait": "28:13013",
+        "iphone-landscape": "28:13170",
+        "ipad-portrait": "28:13327",
+        "ipad-narrow": "28:13479"
+      },
+      "R09-B07": {
+        "ipad-landscape": "28:12873",
+        "iphone-portrait": "28:13025",
+        "iphone-landscape": "28:13182",
+        "ipad-portrait": "28:13339",
+        "ipad-narrow": "28:13491"
+      }
+    },
+    "R17": {
+      "R17-B01": {
+        "ipad-landscape": "29:3666",
+        "iphone-portrait": "29:3787",
+        "iphone-landscape": "29:3908",
+        "ipad-portrait": "29:4029",
+        "ipad-narrow": "29:4150"
+      },
+      "R17-B02": {
+        "ipad-landscape": "29:3680",
+        "iphone-portrait": "29:3801",
+        "iphone-landscape": "29:3922",
+        "ipad-portrait": "29:4043",
+        "ipad-narrow": "29:4164"
+      },
+      "R17-B03": {
+        "ipad-landscape": "29:3701",
+        "iphone-portrait": "29:3822",
+        "iphone-landscape": "29:3943",
+        "ipad-portrait": "29:4064",
+        "ipad-narrow": "29:4185"
+      },
+      "R17-B04": {
+        "ipad-landscape": "29:3715",
+        "iphone-portrait": "29:3836",
+        "iphone-landscape": "29:3957",
+        "ipad-portrait": "29:4078",
+        "ipad-narrow": "29:4199"
+      },
+      "R17-B05": {
+        "ipad-landscape": "29:3728",
+        "iphone-portrait": "29:3849",
+        "iphone-landscape": "29:3970",
+        "ipad-portrait": "29:4091",
+        "ipad-narrow": "29:4212"
+      },
+      "R17-B06": {
+        "ipad-landscape": "29:3750",
+        "iphone-portrait": "29:3871",
+        "iphone-landscape": "29:3992",
+        "ipad-portrait": "29:4113",
+        "ipad-narrow": "29:4234"
+      }
+    },
+    "R11": {
+      "R11-B01": {
+        "ipad-landscape": "27:20016",
+        "iphone-portrait": "27:20134",
+        "iphone-landscape": "27:20257",
+        "ipad-portrait": "27:20380",
+        "ipad-narrow": "27:20498"
+      },
+      "R11-B02": {
+        "ipad-landscape": "27:20033",
+        "iphone-portrait": "27:20151",
+        "iphone-landscape": "27:20274",
+        "ipad-portrait": "27:20397",
+        "ipad-narrow": "27:20515"
+      },
+      "R11-B03": {
+        "ipad-landscape": "27:20048",
+        "iphone-portrait": "27:20166",
+        "iphone-landscape": "27:20289",
+        "ipad-portrait": "27:20412",
+        "ipad-narrow": "27:20530"
+      },
+      "R11-B04": {
+        "ipad-landscape": "27:20065",
+        "iphone-portrait": "27:20183",
+        "iphone-landscape": "27:20306",
+        "ipad-portrait": "27:20429",
+        "ipad-narrow": "27:20547"
+      },
+      "R11-B05": {
+        "ipad-landscape": "27:20081",
+        "iphone-portrait": "27:20199",
+        "iphone-landscape": "27:20322",
+        "ipad-portrait": "27:20445",
+        "ipad-narrow": "27:20563"
+      },
+      "R11-B06": {
+        "ipad-landscape": "27:20095",
+        "iphone-portrait": "27:20213",
+        "iphone-landscape": "27:20336",
+        "ipad-portrait": "27:20459",
+        "ipad-narrow": "27:20577"
+      }
+    },
+    "R14": {
+      "R14-B01": {
+        "ipad-landscape": "27:20621",
+        "iphone-portrait": "27:20732",
+        "iphone-landscape": "27:20848",
+        "ipad-portrait": "27:20964",
+        "ipad-narrow": "27:21075"
+      },
+      "R14-B02": {
+        "ipad-landscape": "27:20632",
+        "iphone-portrait": "27:20743",
+        "iphone-landscape": "27:20859",
+        "ipad-portrait": "27:20975",
+        "ipad-narrow": "27:21086"
+      },
+      "R14-B03": {
+        "ipad-landscape": "27:20649",
+        "iphone-portrait": "27:20760",
+        "iphone-landscape": "27:20876",
+        "ipad-portrait": "27:20992",
+        "ipad-narrow": "27:21103"
+      },
+      "R14-B04": {
+        "ipad-landscape": "27:20656",
+        "iphone-portrait": "27:20767",
+        "iphone-landscape": "27:20883",
+        "ipad-portrait": "27:20999",
+        "ipad-narrow": "27:21110"
+      },
+      "R14-B05": {
+        "ipad-landscape": "27:20669",
+        "iphone-portrait": "27:20780",
+        "iphone-landscape": "27:20896",
+        "ipad-portrait": "27:21012",
+        "ipad-narrow": "27:21123"
+      },
+      "R14-B06": {
+        "ipad-landscape": "27:20683",
+        "iphone-portrait": "27:20794",
+        "iphone-landscape": "27:20910",
+        "ipad-portrait": "27:21026",
+        "ipad-narrow": "27:21137"
+      }
+    },
+    "O07": {
+      "O07-B01": {
+        "ipad-landscape": "28:12041"
+      }
+    },
+    "O19": {
+      "O19-B01": {
+        "ipad-landscape": "28:12074"
+      }
+    },
+    "O22": {
+      "O22-B01": {
+        "ipad-landscape": "28:12112"
+      }
+    },
+    "U24": {
+      "U24-B01": {
+        "ipad-landscape": "28:12148"
+      }
+    },
+    "R06": {
+      "R06-B01": {
+        "ipad-landscape": "27:19106",
+        "iphone-portrait": "27:19193",
+        "iphone-landscape": "27:19285",
+        "ipad-portrait": "27:19377",
+        "ipad-narrow": "27:19464"
+      },
+      "R06-B02": {
+        "ipad-landscape": "27:19119",
+        "iphone-portrait": "27:19206",
+        "iphone-landscape": "27:19298",
+        "ipad-portrait": "27:19390",
+        "ipad-narrow": "27:19477"
+      },
+      "R06-B03": {
+        "ipad-landscape": "27:19134",
+        "iphone-portrait": "27:19221",
+        "iphone-landscape": "27:19313",
+        "ipad-portrait": "27:19405",
+        "ipad-narrow": "27:19492"
+      },
+      "R06-B04": {
+        "ipad-landscape": "27:19147",
+        "iphone-portrait": "27:19234",
+        "iphone-landscape": "27:19326",
+        "ipad-portrait": "27:19418",
+        "ipad-narrow": "27:19505"
+      },
+      "R06-B05": {
+        "ipad-landscape": "27:19157",
+        "iphone-portrait": "27:19244",
+        "iphone-landscape": "27:19336",
+        "ipad-portrait": "27:19428",
+        "ipad-narrow": "27:19515"
+      }
+    },
+    "R10": {
+      "R10-B01": {
+        "ipad-landscape": "27:19556",
+        "iphone-portrait": "27:19643",
+        "iphone-landscape": "27:19735",
+        "ipad-portrait": "27:19827",
+        "ipad-narrow": "27:19914"
+      },
+      "R10-B02": {
+        "ipad-landscape": "27:19570",
+        "iphone-portrait": "27:19657",
+        "iphone-landscape": "27:19749",
+        "ipad-portrait": "27:19841",
+        "ipad-narrow": "27:19928"
+      },
+      "R10-B03": {
+        "ipad-landscape": "27:19578",
+        "iphone-portrait": "27:19665",
+        "iphone-landscape": "27:19757",
+        "ipad-portrait": "27:19849",
+        "ipad-narrow": "27:19936"
+      },
+      "R10-B04": {
+        "ipad-landscape": "27:19590",
+        "iphone-portrait": "27:19677",
+        "iphone-landscape": "27:19769",
+        "ipad-portrait": "27:19861",
+        "ipad-narrow": "27:19948"
+      },
+      "R10-B05": {
+        "ipad-landscape": "27:19607",
+        "iphone-portrait": "27:19694",
+        "iphone-landscape": "27:19786",
+        "ipad-portrait": "27:19878",
+        "ipad-narrow": "27:19965"
+      }
+    },
+    "R15": {
+      "R15-B01": {
+        "ipad-landscape": "29:2506",
+        "iphone-portrait": "29:2628",
+        "iphone-landscape": "29:2755",
+        "ipad-portrait": "29:2882",
+        "ipad-narrow": "29:3004"
+      },
+      "R15-B02": {
+        "ipad-landscape": "29:2519",
+        "iphone-portrait": "29:2641",
+        "iphone-landscape": "29:2768",
+        "ipad-portrait": "29:2895",
+        "ipad-narrow": "29:3017"
+      },
+      "R15-B03": {
+        "ipad-landscape": "29:2537",
+        "iphone-portrait": "29:2659",
+        "iphone-landscape": "29:2786",
+        "ipad-portrait": "29:2913",
+        "ipad-narrow": "29:3035"
+      },
+      "R15-B04": {
+        "ipad-landscape": "29:2551",
+        "iphone-portrait": "29:2673",
+        "iphone-landscape": "29:2800",
+        "ipad-portrait": "29:2927",
+        "ipad-narrow": "29:3049"
+      },
+      "R15-B05": {
+        "ipad-landscape": "29:2569",
+        "iphone-portrait": "29:2691",
+        "iphone-landscape": "29:2818",
+        "ipad-portrait": "29:2945",
+        "ipad-narrow": "29:3067"
+      },
+      "R15-B06": {
+        "ipad-landscape": "29:2589",
+        "iphone-portrait": "29:2711",
+        "iphone-landscape": "29:2838",
+        "ipad-portrait": "29:2965",
+        "ipad-narrow": "29:3087"
+      }
+    },
+    "R16": {
+      "R16-B01": {
+        "ipad-landscape": "29:3131",
+        "iphone-portrait": "29:3234",
+        "iphone-landscape": "29:3342",
+        "ipad-portrait": "29:3450",
+        "ipad-narrow": "29:3553"
+      },
+      "R16-B02": {
+        "ipad-landscape": "29:3148",
+        "iphone-portrait": "29:3251",
+        "iphone-landscape": "29:3359",
+        "ipad-portrait": "29:3467",
+        "ipad-narrow": "29:3570"
+      },
+      "R16-B03": {
+        "ipad-landscape": "29:3165",
+        "iphone-portrait": "29:3268",
+        "iphone-landscape": "29:3376",
+        "ipad-portrait": "29:3484",
+        "ipad-narrow": "29:3587"
+      },
+      "R16-B04": {
+        "ipad-landscape": "29:3183",
+        "iphone-portrait": "29:3286",
+        "iphone-landscape": "29:3394",
+        "ipad-portrait": "29:3502",
+        "ipad-narrow": "29:3605"
+      },
+      "R16-B05": {
+        "ipad-landscape": "29:3197",
+        "iphone-portrait": "29:3300",
+        "iphone-landscape": "29:3408",
+        "ipad-portrait": "29:3516",
+        "ipad-narrow": "29:3619"
+      }
+    },
+    "O05": {
+      "O05-B01": {
+        "ipad-landscape": "29:5172"
+      }
+    },
+    "O08": {
+      "O08-B01": {
+        "ipad-landscape": "29:5206"
+      }
+    },
+    "O09": {
+      "O09-B01": {
+        "ipad-landscape": "29:5240"
+      }
+    },
+    "O10": {
+      "O10-B01": {
+        "ipad-landscape": "29:5276"
+      }
+    },
+    "O12": {
+      "O12-B01": {
+        "ipad-landscape": "29:5311"
+      }
+    },
+    "R27": {
+      "R27-B01": {
+        "ipad-landscape": "28:9186"
+      }
+    },
+    "R28": {
+      "R28-B01": {
+        "ipad-landscape": "28:9227"
+      }
+    },
+    "R29": {
+      "R29-B01": {
+        "ipad-landscape": "28:9265"
+      }
+    },
+    "R30": {
+      "R30-B01": {
+        "ipad-landscape": "28:9302"
+      }
+    },
+    "R31": {
+      "R31-B01": {
+        "ipad-landscape": "28:9340"
+      }
+    },
+    "R12": {
+      "R12-B01": {
+        "ipad-landscape": "28:10882",
+        "iphone-portrait": "28:10957",
+        "iphone-landscape": "28:11037",
+        "ipad-portrait": "28:11117",
+        "ipad-narrow": "28:11192"
+      },
+      "R12-B02": {
+        "ipad-landscape": "28:10890",
+        "iphone-portrait": "28:10965",
+        "iphone-landscape": "28:11045",
+        "ipad-portrait": "28:11125",
+        "ipad-narrow": "28:11200"
+      },
+      "R12-B03": {
+        "ipad-landscape": "28:10902",
+        "iphone-portrait": "28:10977",
+        "iphone-landscape": "28:11057",
+        "ipad-portrait": "28:11137",
+        "ipad-narrow": "28:11212"
+      },
+      "R12-B04": {
+        "ipad-landscape": "28:10912",
+        "iphone-portrait": "28:10987",
+        "iphone-landscape": "28:11067",
+        "ipad-portrait": "28:11147",
+        "ipad-narrow": "28:11222"
+      },
+      "R12-B05": {
+        "ipad-landscape": "28:10921",
+        "iphone-portrait": "28:10996",
+        "iphone-landscape": "28:11076",
+        "ipad-portrait": "28:11156",
+        "ipad-narrow": "28:11231"
+      }
+    },
+    "R13": {
+      "R13-B01": {
+        "ipad-landscape": "28:11272",
+        "iphone-portrait": "28:11386",
+        "iphone-landscape": "28:11505",
+        "ipad-portrait": "28:11624",
+        "ipad-narrow": "28:11738"
+      },
+      "R13-B02": {
+        "ipad-landscape": "28:11289",
+        "iphone-portrait": "28:11403",
+        "iphone-landscape": "28:11522",
+        "ipad-portrait": "28:11641",
+        "ipad-narrow": "28:11755"
+      },
+      "R13-B03": {
+        "ipad-landscape": "28:11301",
+        "iphone-portrait": "28:11415",
+        "iphone-landscape": "28:11534",
+        "ipad-portrait": "28:11653",
+        "ipad-narrow": "28:11767"
+      },
+      "R13-B04": {
+        "ipad-landscape": "28:11315",
+        "iphone-portrait": "28:11429",
+        "iphone-landscape": "28:11548",
+        "ipad-portrait": "28:11667",
+        "ipad-narrow": "28:11781"
+      },
+      "R13-B05": {
+        "ipad-landscape": "28:11342",
+        "iphone-portrait": "28:11456",
+        "iphone-landscape": "28:11575",
+        "ipad-portrait": "28:11694",
+        "ipad-narrow": "28:11808"
+      }
+    },
+    "R38": {
+      "R38-B01": {
+        "ipad-landscape": "29:5016"
+      }
+    },
+    "R39": {
+      "R39-B01": {
+        "ipad-landscape": "29:5047"
+      }
+    },
+    "R40": {
+      "R40-B01": {
+        "ipad-landscape": "29:5077"
+      }
+    },
+    "R41": {
+      "R41-B01": {
+        "ipad-landscape": "29:5107"
+      }
+    },
+    "O01": {
+      "O01-B01": {
+        "ipad-landscape": "29:5139"
+      }
+    },
+    "O28": {
+      "O28-B01": {
+        "ipad-landscape": "29:4475"
+      }
+    },
+    "R36": {
+      "R36-B01": {
+        "ipad-landscape": "29:4271"
+      }
+    },
+    "O13": {
+      "O13-B01": {
+        "ipad-landscape": "29:4307"
+      }
+    },
+    "O25": {
+      "O25-B01": {
+        "ipad-landscape": "29:4356"
+      }
+    },
+    "O26": {
+      "O26-B01": {
+        "ipad-landscape": "29:4397"
+      }
+    },
+    "O27": {
+      "O27-B01": {
+        "ipad-landscape": "29:4431"
+      }
+    },
+    "U26": {
+      "U26-B01": {
+        "ipad-landscape": "28:9753"
+      }
+    },
+    "U27": {
+      "U27-B01": {
+        "ipad-landscape": "28:9795"
+      }
+    },
+    "R24": {
+      "R24-B01": {
+        "ipad-landscape": "29:4838"
+      }
+    },
+    "R33": {
+      "R33-B01": {
+        "ipad-landscape": "29:4872"
+      }
+    },
+    "R34": {
+      "R34-B01": {
+        "ipad-landscape": "29:4908"
+      }
+    },
+    "R35": {
+      "R35-B01": {
+        "ipad-landscape": "29:4940"
+      }
+    },
+    "R37": {
+      "R37-B01": {
+        "ipad-landscape": "29:4978"
+      }
+    },
+    "R19": {
+      "R19-B01": {
+        "ipad-landscape": "28:11862"
+      }
+    },
+    "O02": {
+      "O02-B01": {
+        "ipad-landscape": "28:11906"
+      }
+    },
+    "O03": {
+      "O03-B01": {
+        "ipad-landscape": "28:11938"
+      }
+    },
+    "O04": {
+      "O04-B01": {
+        "ipad-landscape": "28:11974"
+      }
+    },
+    "O06": {
+      "O06-B01": {
+        "ipad-landscape": "28:12009"
+      }
+    },
+    "R20": {
+      "R20-B01": {
+        "ipad-landscape": "28:8978"
+      }
+    },
+    "R21": {
+      "R21-B01": {
+        "ipad-landscape": "28:9026"
+      }
+    },
+    "R22": {
+      "R22-B01": {
+        "ipad-landscape": "28:9068"
+      }
+    },
+    "R23": {
+      "R23-B01": {
+        "ipad-landscape": "28:9107"
+      },
+      "R23-B02": {
+        "ipad-landscape": "33:9135"
+      }
+    },
+    "R26": {
+      "R26-B01": {
+        "ipad-landscape": "28:9148"
+      }
+    }
+  },
+  "expandedStateNodes": {
+    "ipad-landscape": {
+      "id": "33:9138",
+      "routeId": "R23",
+      "blockId": "R23-B02",
+      "state": "expanded",
+      "countsAsViewport": false,
+      "countsAsSupplementalStateReference": true,
+      "defaultStateNodeId": "33:9135"
+    }
+  },
+  "stateReferenceAnnotations": {
+    "ipad-landscape": "33:9155"
+  },
+  "controlMap": [
+    {
+      "nodeId": "33:9143",
+      "target": "R06",
+      "routeId": "R23",
+      "blockId": "R23-B02",
+      "profile": "ipad-landscape",
+      "fromState": "expanded",
+      "returnContext": "R23-B02-expanded",
+      "destinationId": "27:19087"
+    },
+    {
+      "nodeId": "33:9146",
+      "target": "O24",
+      "routeId": "R23",
+      "blockId": "R23-B02",
+      "profile": "ipad-landscape",
+      "fromState": "expanded",
+      "returnContext": "R23-B02-expanded",
+      "destinationId": "28:9636"
+    },
+    {
+      "nodeId": "33:9152",
+      "target": "O24",
+      "routeId": "R23",
+      "blockId": "R23-B02",
+      "profile": "ipad-landscape",
+      "fromState": "expanded",
+      "returnContext": "R23-B02-expanded",
+      "destinationId": "28:9636"
+    },
+    {
+      "nodeId": "33:9136",
+      "target": "R23-B02-expanded",
+      "destinationId": "33:9138",
+      "routeId": "R23",
+      "blockId": "R23-B02",
+      "profile": "ipad-landscape",
+      "referenceOnly": true,
+      "appBehavior": "native details inline toggle"
+    }
+  ],
+  "preservation": [
+    {
+      "frameId": "28:9093",
+      "profile": "ipad-landscape",
+      "preservedExistingChildren": 2,
+      "shiftedExistingNodeIds": [],
+      "viewportChangedProperties": [],
+      "addedBlockId": "33:9135"
+    }
+  ],
+  "counts": {
+    "addedViewportFrames": 0,
+    "existingViewportCountUnchanged": true,
+    "supplementalStateReferences": 1
+  },
+  "notes": [
+    "Source mapping correction, not a new application feature.",
+    "Expanded reference is separate from the 155 existing viewport frames.",
+    "Default summary is appended without moving earlier R23 content; source order remains documented in R23-B02.",
+    "No existing prototype reactions or text were edited.",
+    "Reference-only summary links are returned, not installed as fake inline disclosure interactions."
+  ]
+}

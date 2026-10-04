@@ -1,0 +1,110 @@
+{
+  "type": "result",
+  "result": {
+    "task": "mainbody",
+    "pageId": "0:1",
+    "convertedCount": 9,
+    "sourcePreserved": true,
+    "styleIds": [
+      "S:ee5b536b1b285a9f491514f91d5c4a30dc9cde3a,",
+      "S:6a995bce8c99cb7522d5b2d50d4e97f63f8b186d,",
+      "S:dcd92b8ddb0b86c2c2f10b0cbe6ec0b019fb1c96,",
+      "S:1848d68d3855d7afc05321b29104af2daca9d4ff,"
+    ],
+    "sources": [
+      {
+        "id": "1:326",
+        "font": "ManSeekSong Paper",
+        "width": 470,
+        "size": 16,
+        "sourcePreserved": true
+      },
+      {
+        "id": "1:327",
+        "font": "ManSeekSong Paper",
+        "width": 518,
+        "size": 16,
+        "sourcePreserved": true
+      },
+      {
+        "id": "1:449",
+        "font": "ManSeekSong Paper",
+        "width": 492,
+        "size": 16,
+        "sourcePreserved": true
+      },
+      {
+        "id": "1:467",
+        "font": "ManSeekSong Paper",
+        "width": 492,
+        "size": 16,
+        "sourcePreserved": true
+      },
+      {
+        "id": "1:470",
+        "font": "ManSeekSong Paper",
+        "width": 518,
+        "size": 16,
+        "sourcePreserved": true
+      },
+      {
+        "id": "178:31815",
+        "font": "ManSeekSong Paper",
+        "width": 1040,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "178:31816",
+        "font": "ManSeekSong Paper",
+        "width": 1040,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "178:31817",
+        "font": "ManSeekSong Paper",
+        "width": 1040,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "178:31818",
+        "font": "ManSeekSong Paper",
+        "width": 1040,
+        "size": 18,
+        "sourcePreserved": true
+      }
+    ],
+    "createdNodeIds": [],
+    "mutatedNodeIds": [
+      "350:37400",
+      "1:326",
+      "350:37397",
+      "350:37404",
+      "1:327",
+      "350:37401",
+      "350:37408",
+      "1:449",
+      "350:37405",
+      "350:37412",
+      "1:467",
+      "350:37409",
+      "350:37416",
+      "1:470",
+      "350:37413",
+      "350:37420",
+      "178:31815",
+      "350:37417",
+      "350:37424",
+      "178:31816",
+      "350:37421",
+      "350:37428",
+      "178:31817",
+      "350:37425",
+      "350:37432",
+      "178:31818",
+      "350:37429"
+    ]
+  }
+}

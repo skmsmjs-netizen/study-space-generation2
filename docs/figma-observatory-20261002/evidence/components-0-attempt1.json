@@ -1,0 +1,22 @@
+{
+  "status": "partial-error",
+  "error": "Error: in set_vectorPaths: Failed to convert path. Invalid command at A6",
+  "createdNodeIds": [
+    "15:73",
+    "15:74",
+    "15:75",
+    "15:76"
+  ],
+  "mutatedNodeIds": [],
+  "createdVariableIds": [
+    "VariableID:15:68",
+    "VariableID:15:69",
+    "VariableID:15:70",
+    "VariableID:15:71",
+    "VariableID:15:72"
+  ],
+  "registryMap": {},
+  "reviewId": null,
+  "warnings": [],
+  "recovery": "Read the returned nodes before retry. Existing exact component names are reused; partial unnamed variants require inspection, never blind deletion."
+}

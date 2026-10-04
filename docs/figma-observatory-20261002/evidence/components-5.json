@@ -1,0 +1,332 @@
+{
+  "status": "created",
+  "createdNodeIds": {
+    "encoding": "figma-id-ranges-v1",
+    "count": 0,
+    "groups": [],
+    "literal": []
+  },
+  "mutatedNodeIds": {
+    "encoding": "figma-id-ranges-v1",
+    "count": 0,
+    "groups": [],
+    "literal": []
+  },
+  "createdVariableIds": [],
+  "registryMap": {
+    "ObservatoryEventVariationSymbol": {
+      "id": "SC19",
+      "name": "ObservatoryEventVariationSymbol",
+      "source": "src/ui/observatory-event-variations.tsx",
+      "ownerId": "21:5121",
+      "defaultComponentId": "21:5121",
+      "variantIds": [
+        "21:5121"
+      ],
+      "variants": [
+        {
+          "id": "21:5121",
+          "name": "Observatory/v2/Observatory/ObservatoryEventVariationSymbol",
+          "properties": {},
+          "width": 480,
+          "height": 238
+        }
+      ],
+      "propertyIds": {
+        "Role": "Role#21:0",
+        "Purpose": "Purpose#21:1"
+      },
+      "representation": "Existing source-mapped component reused; consult original property definitions."
+    },
+    "ObservatoryEventVariation": {
+      "id": "SC20",
+      "name": "ObservatoryEventVariation",
+      "source": "src/ui/observatory-event-variations.tsx",
+      "ownerId": "21:5138",
+      "defaultComponentId": "21:5138",
+      "variantIds": [
+        "21:5138"
+      ],
+      "variants": [
+        {
+          "id": "21:5138",
+          "name": "Observatory/v2/Observatory/ObservatoryEventVariation",
+          "properties": {},
+          "width": 480,
+          "height": 264
+        }
+      ],
+      "propertyIds": {
+        "Role": "Role#21:2",
+        "Purpose": "Purpose#21:3"
+      },
+      "representation": "Existing source-mapped component reused; consult original property definitions."
+    },
+    "BusyDots": {
+      "id": "MO01",
+      "name": "BusyDots",
+      "source": "src/ui/motion.tsx",
+      "ownerId": "21:5175",
+      "defaultComponentId": "21:5157",
+      "variantIds": [
+        "21:5157",
+        "21:5163",
+        "21:5169"
+      ],
+      "variants": [
+        {
+          "id": "21:5157",
+          "name": "State=rest",
+          "properties": {
+            "State": "rest"
+          },
+          "width": 280,
+          "height": 152
+        },
+        {
+          "id": "21:5163",
+          "name": "State=active",
+          "properties": {
+            "State": "active"
+          },
+          "width": 280,
+          "height": 152
+        },
+        {
+          "id": "21:5169",
+          "name": "State=reduced",
+          "properties": {
+            "State": "reduced"
+          },
+          "width": 280,
+          "height": 152
+        }
+      ],
+      "propertyIds": {
+        "Contract": "Contract#21:4"
+      },
+      "representation": "Existing source-mapped component reused; consult original property definitions."
+    },
+    "SavedMark": {
+      "id": "MO02",
+      "name": "SavedMark",
+      "source": "src/ui/motion.tsx",
+      "ownerId": "21:5194",
+      "defaultComponentId": "21:5176",
+      "variantIds": [
+        "21:5176",
+        "21:5182",
+        "21:5188"
+      ],
+      "variants": [
+        {
+          "id": "21:5176",
+          "name": "State=rest",
+          "properties": {
+            "State": "rest"
+          },
+          "width": 280,
+          "height": 152
+        },
+        {
+          "id": "21:5182",
+          "name": "State=active",
+          "properties": {
+            "State": "active"
+          },
+          "width": 280,
+          "height": 152
+        },
+        {
+          "id": "21:5188",
+          "name": "State=reduced",
+          "properties": {
+            "State": "reduced"
+          },
+          "width": 280,
+          "height": 152
+        }
+      ],
+      "propertyIds": {
+        "Contract": "Contract#21:8"
+      },
+      "representation": "Existing source-mapped component reused; consult original property definitions."
+    },
+    "SelectionBackground": {
+      "id": "MO03",
+      "name": "SelectionBackground",
+      "source": "src/ui/motion.tsx",
+      "ownerId": "21:5216",
+      "defaultComponentId": "21:5195",
+      "variantIds": [
+        "21:5195",
+        "21:5202",
+        "21:5209"
+      ],
+      "variants": [
+        {
+          "id": "21:5195",
+          "name": "State=rest",
+          "properties": {
+            "State": "rest"
+          },
+          "width": 280,
+          "height": 152
+        },
+        {
+          "id": "21:5202",
+          "name": "State=active",
+          "properties": {
+            "State": "active"
+          },
+          "width": 280,
+          "height": 152
+        },
+        {
+          "id": "21:5209",
+          "name": "State=reduced",
+          "properties": {
+            "State": "reduced"
+          },
+          "width": 280,
+          "height": 152
+        }
+      ],
+      "propertyIds": {
+        "Contract": "Contract#21:12"
+      },
+      "representation": "Existing source-mapped component reused; consult original property definitions."
+    },
+    "NoticeEntrance": {
+      "id": "MO04",
+      "name": "NoticeEntrance",
+      "source": "src/ui/motion.tsx",
+      "ownerId": "21:5229",
+      "defaultComponentId": "21:5217",
+      "variantIds": [
+        "21:5217",
+        "21:5221",
+        "21:5225"
+      ],
+      "variants": [
+        {
+          "id": "21:5217",
+          "name": "State=rest",
+          "properties": {
+            "State": "rest"
+          },
+          "width": 280,
+          "height": 152
+        },
+        {
+          "id": "21:5221",
+          "name": "State=active",
+          "properties": {
+            "State": "active"
+          },
+          "width": 280,
+          "height": 152
+        },
+        {
+          "id": "21:5225",
+          "name": "State=reduced",
+          "properties": {
+            "State": "reduced"
+          },
+          "width": 280,
+          "height": 152
+        }
+      ],
+      "propertyIds": {
+        "Contract": "Contract#21:16"
+      },
+      "representation": "Existing source-mapped component reused; consult original property definitions."
+    },
+    "FadeContent": {
+      "id": "MO05",
+      "name": "FadeContent",
+      "source": "src/ui/motion.tsx",
+      "ownerId": "21:5242",
+      "defaultComponentId": "21:5230",
+      "variantIds": [
+        "21:5230",
+        "21:5234",
+        "21:5238"
+      ],
+      "variants": [
+        {
+          "id": "21:5230",
+          "name": "State=rest",
+          "properties": {
+            "State": "rest"
+          },
+          "width": 280,
+          "height": 174
+        },
+        {
+          "id": "21:5234",
+          "name": "State=active",
+          "properties": {
+            "State": "active"
+          },
+          "width": 280,
+          "height": 174
+        },
+        {
+          "id": "21:5238",
+          "name": "State=reduced",
+          "properties": {
+            "State": "reduced"
+          },
+          "width": 280,
+          "height": 174
+        }
+      ],
+      "propertyIds": {
+        "Contract": "Contract#21:20"
+      },
+      "representation": "Existing source-mapped component reused; consult original property definitions."
+    },
+    "BrandWordmark": {
+      "id": "BR01",
+      "name": "BrandWordmark",
+      "source": "src/ui/brand-wordmark.tsx",
+      "ownerId": "21:5243",
+      "defaultComponentId": "21:5243",
+      "variantIds": [
+        "21:5243"
+      ],
+      "variants": [
+        {
+          "id": "21:5243",
+          "name": "Observatory/v2/Brand/Wordmark",
+          "properties": {},
+          "width": 420,
+          "height": 79.83590698242188
+        }
+      ],
+      "propertyIds": {},
+      "representation": "Existing source-mapped component reused; consult original property definitions."
+    }
+  },
+  "usable": {
+    "wordmark": "21:5243"
+  },
+  "icons": {
+    "arrow": "15:73",
+    "search": "15:75",
+    "check": "16:70",
+    "close": "16:72",
+    "more": "16:74"
+  },
+  "sharedWorldAssetId": "10:68",
+  "review": null,
+  "counts": {
+    "registry": 8,
+    "common": 0,
+    "variants": 18
+  },
+  "warnings": [],
+  "finalizedReview": false,
+  "scope": "Native component/state and source-contract representation; root validates rendered review and records downstream prototype behavior."
+}

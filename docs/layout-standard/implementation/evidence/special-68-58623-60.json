@@ -1,0 +1,77 @@
+{
+  "pageId": "68:58623",
+  "createdNodeIds": [
+    "263:33500",
+    "263:33501",
+    "263:33502",
+    "263:33503"
+  ],
+  "mutatedNodeIds": [
+    "263:33500",
+    "68:71354",
+    "68:71357",
+    "68:71345",
+    "263:33501",
+    "68:71374",
+    "68:71377",
+    "68:71365",
+    "263:33502",
+    "68:71394",
+    "68:71397",
+    "68:71385",
+    "263:33503",
+    "68:71414",
+    "68:71417",
+    "68:71405"
+  ],
+  "results": [
+    {
+      "id": "68:71345",
+      "name": "관측 기본틀 · 자기장",
+      "pattern": "L194",
+      "structure": "263:33500",
+      "preserved": true,
+      "viewport": {
+        "width": 640,
+        "height": 744,
+        "overflow": "NONE"
+      }
+    },
+    {
+      "id": "68:71365",
+      "name": "관측 기본틀 · 자기장의 원천",
+      "pattern": "L194",
+      "structure": "263:33501",
+      "preserved": true,
+      "viewport": {
+        "width": 640,
+        "height": 744,
+        "overflow": "NONE"
+      }
+    },
+    {
+      "id": "68:71385",
+      "name": "관측 기본틀 · 패러데이 법칙·교류·맥스웰 방정식",
+      "pattern": "L194",
+      "structure": "263:33502",
+      "preserved": true,
+      "viewport": {
+        "width": 640,
+        "height": 744,
+        "overflow": "NONE"
+      }
+    },
+    {
+      "id": "68:71405",
+      "name": "관측 기본틀 · 인덕턴스·진동 회로·교류 회로",
+      "pattern": "L194",
+      "structure": "263:33503",
+      "preserved": true,
+      "viewport": {
+        "width": 640,
+        "height": 744,
+        "overflow": "NONE"
+      }
+    }
+  ]
+}

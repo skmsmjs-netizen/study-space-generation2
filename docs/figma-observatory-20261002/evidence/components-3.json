@@ -1,0 +1,390 @@
+{
+  "status": "created",
+  "createdNodeIds": {
+    "encoding": "figma-id-ranges-v1",
+    "count": 1785,
+    "groups": [
+      [
+        "20:",
+        [
+          [
+            4808,
+            4810
+          ],
+          [
+            6482,
+            6490
+          ],
+          [
+            6492,
+            6502
+          ],
+          [
+            6504,
+            6521
+          ],
+          [
+            6523,
+            6533
+          ],
+          [
+            6535,
+            6545
+          ],
+          [
+            6547,
+            6566
+          ],
+          [
+            6568,
+            6587
+          ],
+          [
+            6589,
+            6592
+          ]
+        ]
+      ],
+      [
+        "I20:4810;10:",
+        [
+          [
+            69,
+            103
+          ],
+          [
+            105,
+            107
+          ]
+        ]
+      ],
+      [
+        "I20:4810;11:",
+        [
+          [
+            68,
+            558
+          ]
+        ]
+      ],
+      [
+        "I20:4810;12:",
+        [
+          [
+            68,
+            870
+          ],
+          [
+            872,
+            985
+          ],
+          [
+            987,
+            994
+          ]
+        ]
+      ],
+      [
+        "I20:4810;13:",
+        [
+          [
+            68,
+            284
+          ]
+        ]
+      ],
+      [
+        "I20:6490;15:",
+        [
+          74
+        ]
+      ],
+      [
+        "I20:6502;15:",
+        [
+          74
+        ]
+      ],
+      [
+        "I20:6521;15:",
+        [
+          74
+        ]
+      ],
+      [
+        "I20:6533;15:",
+        [
+          74
+        ]
+      ],
+      [
+        "I20:6545;15:",
+        [
+          74
+        ]
+      ],
+      [
+        "I20:6566;15:",
+        [
+          74
+        ]
+      ],
+      [
+        "I20:6587;15:",
+        [
+          74
+        ]
+      ]
+    ],
+    "literal": []
+  },
+  "mutatedNodeIds": {
+    "encoding": "figma-id-ranges-v1",
+    "count": 0,
+    "groups": [],
+    "literal": []
+  },
+  "createdVariableIds": [],
+  "registryMap": {
+    "ObservatoryRoom": {
+      "id": "SC03",
+      "name": "ObservatoryRoom",
+      "source": "src/ui/observatory-room.tsx",
+      "ownerId": "20:4808",
+      "defaultComponentId": "20:4808",
+      "variantIds": [
+        "20:4808"
+      ],
+      "variants": [
+        {
+          "id": "20:4808",
+          "name": "Observatory/v2/Observatory/ObservatoryRoom",
+          "properties": {},
+          "width": 480,
+          "height": 282
+        }
+      ],
+      "propertyIds": {
+        "Purpose": "Purpose#20:0"
+      },
+      "representation": "Original complete world SVG reused; static source reference. Functional controls represented separately."
+    },
+    "ObservatoryDesk": {
+      "id": "SC04",
+      "name": "ObservatoryDesk",
+      "source": "src/ui/observatory-desk.tsx",
+      "ownerId": "20:6484",
+      "defaultComponentId": "20:6484",
+      "variantIds": [
+        "20:6484"
+      ],
+      "variants": [
+        {
+          "id": "20:6484",
+          "name": "Observatory/v2/Observatory/ObservatoryDesk",
+          "properties": {},
+          "width": 480,
+          "height": 186
+        }
+      ],
+      "propertyIds": {
+        "Role": "Role#20:1",
+        "Purpose": "Purpose#20:2"
+      },
+      "representation": "Native source-contract diagram only; individual source SVG not supplied. This is not a replacement rendering."
+    },
+    "ObservatoryAdvanced": {
+      "id": "SC05",
+      "name": "ObservatoryAdvanced",
+      "source": "src/ui/observatory-advanced.tsx",
+      "ownerId": "20:6496",
+      "defaultComponentId": "20:6496",
+      "variantIds": [
+        "20:6496"
+      ],
+      "variants": [
+        {
+          "id": "20:6496",
+          "name": "Observatory/v2/Observatory/ObservatoryAdvanced",
+          "properties": {},
+          "width": 480,
+          "height": 236
+        }
+      ],
+      "propertyIds": {
+        "Role": "Role#20:3",
+        "Purpose": "Purpose#20:4"
+      },
+      "representation": "Native source-contract diagram only; individual source SVG not supplied. This is not a replacement rendering."
+    },
+    "ObservatorySkyDetails": {
+      "id": "SC06",
+      "name": "ObservatorySkyDetails",
+      "source": "src/ui/observatory-details.tsx",
+      "ownerId": "20:6515",
+      "defaultComponentId": "20:6515",
+      "variantIds": [
+        "20:6515"
+      ],
+      "variants": [
+        {
+          "id": "20:6515",
+          "name": "Observatory/v2/Observatory/ObservatorySkyDetails",
+          "properties": {},
+          "width": 480,
+          "height": 186
+        }
+      ],
+      "propertyIds": {
+        "Role": "Role#20:5",
+        "Purpose": "Purpose#20:6"
+      },
+      "representation": "Native source-contract diagram only; individual source SVG not supplied. This is not a replacement rendering."
+    },
+    "ObservatoryStationDetails": {
+      "id": "SC07",
+      "name": "ObservatoryStationDetails",
+      "source": "src/ui/observatory-details.tsx",
+      "ownerId": "20:6527",
+      "defaultComponentId": "20:6527",
+      "variantIds": [
+        "20:6527"
+      ],
+      "variants": [
+        {
+          "id": "20:6527",
+          "name": "Observatory/v2/Observatory/ObservatoryStationDetails",
+          "properties": {},
+          "width": 480,
+          "height": 186
+        }
+      ],
+      "propertyIds": {
+        "Role": "Role#20:7",
+        "Purpose": "Purpose#20:8"
+      },
+      "representation": "Native source-contract diagram only; individual source SVG not supplied. This is not a replacement rendering."
+    },
+    "ObservatoryTimeSky": {
+      "id": "SC08",
+      "name": "ObservatoryTimeSky",
+      "source": "src/ui/observatory-time-sky.tsx",
+      "ownerId": "20:6539",
+      "defaultComponentId": "20:6539",
+      "variantIds": [
+        "20:6539"
+      ],
+      "variants": [
+        {
+          "id": "20:6539",
+          "name": "Observatory/v2/Observatory/ObservatoryTimeSky",
+          "properties": {},
+          "width": 480,
+          "height": 236
+        }
+      ],
+      "propertyIds": {
+        "Role": "Role#20:9",
+        "Purpose": "Purpose#20:10"
+      },
+      "representation": "Native source-contract diagram only; individual source SVG not supplied. This is not a replacement rendering."
+    },
+    "ObservatoryTimeGround": {
+      "id": "SC09",
+      "name": "ObservatoryTimeGround",
+      "source": "src/ui/observatory-time-sky.tsx",
+      "ownerId": "20:6560",
+      "defaultComponentId": "20:6560",
+      "variantIds": [
+        "20:6560"
+      ],
+      "variants": [
+        {
+          "id": "20:6560",
+          "name": "Observatory/v2/Observatory/ObservatoryTimeGround",
+          "properties": {},
+          "width": 480,
+          "height": 236
+        }
+      ],
+      "propertyIds": {
+        "Role": "Role#20:11",
+        "Purpose": "Purpose#20:12"
+      },
+      "representation": "Native source-contract diagram only; individual source SVG not supplied. This is not a replacement rendering."
+    },
+    "ObservatoryClouds": {
+      "id": "SC10",
+      "name": "ObservatoryClouds",
+      "source": "src/ui/observatory-atmosphere.tsx",
+      "ownerId": "20:6581",
+      "defaultComponentId": "20:6581",
+      "variantIds": [
+        "20:6581"
+      ],
+      "variants": [
+        {
+          "id": "20:6581",
+          "name": "Observatory/v2/Observatory/ObservatoryClouds",
+          "properties": {},
+          "width": 480,
+          "height": 186
+        }
+      ],
+      "propertyIds": {
+        "Role": "Role#20:13",
+        "Purpose": "Purpose#20:14"
+      },
+      "representation": "Native source-contract diagram only; individual source SVG not supplied. This is not a replacement rendering."
+    }
+  },
+  "usable": {
+    "room": "20:4808"
+  },
+  "icons": {
+    "arrow": "15:73",
+    "search": "15:75",
+    "check": "16:70",
+    "close": "16:72",
+    "more": "16:74"
+  },
+  "sharedWorldAssetId": "10:68",
+  "review": null,
+  "counts": {
+    "registry": 8,
+    "common": 0,
+    "variants": 8
+  },
+  "warnings": [
+    {
+      "name": "ObservatoryDesk",
+      "limitation": "Individual scene SVG absent; source contract diagram supplied."
+    },
+    {
+      "name": "ObservatoryAdvanced",
+      "limitation": "Individual scene SVG absent; source contract diagram supplied."
+    },
+    {
+      "name": "ObservatorySkyDetails",
+      "limitation": "Individual scene SVG absent; source contract diagram supplied."
+    },
+    {
+      "name": "ObservatoryStationDetails",
+      "limitation": "Individual scene SVG absent; source contract diagram supplied."
+    },
+    {
+      "name": "ObservatoryTimeSky",
+      "limitation": "Individual scene SVG absent; source contract diagram supplied."
+    },
+    {
+      "name": "ObservatoryTimeGround",
+      "limitation": "Individual scene SVG absent; source contract diagram supplied."
+    },
+    {
+      "name": "ObservatoryClouds",
+      "limitation": "Individual scene SVG absent; source contract diagram supplied."
+    }
+  ],
+  "finalizedReview": false,
+  "scope": "Native component/state and source-contract representation; root validates rendered review and records downstream prototype behavior."
+}

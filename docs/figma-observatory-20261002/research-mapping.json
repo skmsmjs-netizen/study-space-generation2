@@ -1,0 +1,6133 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-02",
+  "identity": "ManSeekSong OS / 살아 움직이는 픽셀 천문대",
+  "scope": "앞 조사 121개 출처·20개 영역 전체의 Figma 설계 대응; 조건부 도입 조건과 현재 보존/권한 계약 유지",
+  "counts": {
+    "source_entries": 121,
+    "domains": 20,
+    "artifacts": 20,
+    "state_contracts": 42,
+    "state_transitions": 32,
+    "statuses": {
+      "기존 유지": 29,
+      "기본 권고": 32,
+      "참고": 17,
+      "조건부": 43
+    },
+    "planned_figma_pages": 10
+  },
+  "source_manifest_sha256": {
+    "design-ux-sources.json": "9d729232eda5d38f38c37a81a99dcee7f1b272dc0cd0129029931737e8cd7201",
+    "frontend-graphics-sources.json": "54c65d9644cea818b0309109a5ee80ccad66c67a12c2a26492052a69e6bcb534",
+    "quality-storage-sources.json": "7603aa02977a49ba2ebde3455f6cdb228df985f860fc3daf3a62a6e808a9963f",
+    "specialized-sources.json": "8121deff294335f1021ec92ecd23e0dd573722d253f0e750a9333879754c1f98"
+  },
+  "status_boundary": "121개 출처 카드와 20개 영역 보드의 실제 Figma 노드 생성·연결을 저장된 원격 증거로 확인했다. 설계 대응은 라이브러리 도입·앱 구현·서버 적용·실행 시험 완료를 뜻하지 않는다.",
+  "domains": [
+    {
+      "id": "C01",
+      "title": "사용자 연구·문제 정의·사용성 평가",
+      "source_ids": [
+        "D04",
+        "D06",
+        "D07"
+      ],
+      "artifact_id": "ART-C01",
+      "figma_node_id": "20:3442",
+      "figma_status": "편집 가능한 설계 영역 보드와 출처 링크 생성 완료",
+      "completion_evidence": "evidence/research-s.json#/domainNodes/C01"
+    },
+    {
+      "id": "C02",
+      "title": "정보 구조·사용 흐름·콘텐츠",
+      "source_ids": [
+        "D05",
+        "D08",
+        "D21",
+        "D22",
+        "D23",
+        "D24",
+        "D25",
+        "D26",
+        "D27",
+        "D28"
+      ],
+      "artifact_id": "ART-C02",
+      "figma_node_id": "20:3452",
+      "figma_status": "편집 가능한 설계 영역 보드와 출처 링크 생성 완료",
+      "completion_evidence": "evidence/research-s.json#/domainNodes/C02"
+    },
+    {
+      "id": "C03",
+      "title": "디자인 시스템·토큰·정체성",
+      "source_ids": [
+        "D03",
+        "D09",
+        "D11",
+        "D12",
+        "D13"
+      ],
+      "artifact_id": "ART-C03",
+      "figma_node_id": "20:3462",
+      "figma_status": "편집 가능한 설계 영역 보드와 출처 링크 생성 완료",
+      "completion_evidence": "evidence/research-s.json#/domainNodes/C03"
+    },
+    {
+      "id": "C04",
+      "title": "한글 조판·색·반응형",
+      "source_ids": [
+        "D18",
+        "D19",
+        "D20",
+        "F04",
+        "F31"
+      ],
+      "artifact_id": "ART-C04",
+      "figma_node_id": "20:3472",
+      "figma_status": "편집 가능한 설계 영역 보드와 출처 링크 생성 완료",
+      "completion_evidence": "evidence/research-s.json#/domainNodes/C04"
+    },
+    {
+      "id": "C05",
+      "title": "접근성·키보드·터치·모션",
+      "source_ids": [
+        "D01",
+        "D02",
+        "D10",
+        "F13",
+        "Q04"
+      ],
+      "artifact_id": "ART-C05",
+      "figma_node_id": "20:3482",
+      "figma_status": "편집 가능한 설계 영역 보드와 출처 링크 생성 완료",
+      "completion_evidence": "evidence/research-s.json#/domainNodes/C05"
+    },
+    {
+      "id": "C06",
+      "title": "Figma·컴포넌트·코드 연결",
+      "source_ids": [
+        "D13",
+        "D14",
+        "D15",
+        "D16",
+        "D17"
+      ],
+      "artifact_id": "ART-C06",
+      "figma_node_id": "20:3492",
+      "figma_status": "편집 가능한 설계 영역 보드와 출처 링크 생성 완료",
+      "completion_evidence": "evidence/research-s.json#/domainNodes/C06"
+    },
+    {
+      "id": "C07",
+      "title": "프론트엔드 구조·웹 플랫폼",
+      "source_ids": [
+        "F01",
+        "F02",
+        "F03",
+        "F04"
+      ],
+      "artifact_id": "ART-C07",
+      "figma_node_id": "20:3502",
+      "figma_status": "편집 가능한 설계 영역 보드와 출처 링크 생성 완료",
+      "completion_evidence": "evidence/research-s.json#/domainNodes/C07"
+    },
+    {
+      "id": "C08",
+      "title": "공통 조작·폼·입력",
+      "source_ids": [
+        "F02",
+        "F03",
+        "F04",
+        "F05",
+        "F06",
+        "F07",
+        "F08"
+      ],
+      "artifact_id": "ART-C08",
+      "figma_node_id": "20:3512",
+      "figma_status": "편집 가능한 설계 영역 보드와 출처 링크 생성 완료",
+      "completion_evidence": "evidence/research-s.json#/domainNodes/C08"
+    },
+    {
+      "id": "C09",
+      "title": "상태·비동기·복잡한 전이",
+      "source_ids": [
+        "F09",
+        "F11",
+        "F12"
+      ],
+      "artifact_id": "ART-C09",
+      "figma_node_id": "20:3522",
+      "figma_status": "편집 가능한 설계 영역 보드와 출처 링크 생성 완료",
+      "completion_evidence": "evidence/research-s.json#/domainNodes/C09"
+    },
+    {
+      "id": "C10",
+      "title": "모션·픽셀 자산·상호작용",
+      "source_ids": [
+        "F13",
+        "F14",
+        "F15",
+        "F16",
+        "F17",
+        "F27",
+        "F28",
+        "F29",
+        "F30",
+        "F31"
+      ],
+      "artifact_id": "ART-C10",
+      "figma_node_id": "20:3532",
+      "figma_status": "편집 가능한 설계 영역 보드와 출처 링크 생성 완료",
+      "completion_evidence": "evidence/research-s.json#/domainNodes/C10"
+    },
+    {
+      "id": "C11",
+      "title": "GPU·Canvas·WebGL·WebGPU",
+      "source_ids": [
+        "F18",
+        "F19",
+        "F20",
+        "F21",
+        "F22",
+        "F23",
+        "F24"
+      ],
+      "artifact_id": "ART-C11",
+      "figma_node_id": "20:3542",
+      "figma_status": "편집 가능한 설계 영역 보드와 출처 링크 생성 완료",
+      "completion_evidence": "evidence/research-s.json#/domainNodes/C11"
+    },
+    {
+      "id": "C12",
+      "title": "성능·누적·작업 분산·기기",
+      "source_ids": [
+        "F10",
+        "F20",
+        "F21",
+        "F22",
+        "F23",
+        "F24",
+        "F25",
+        "F26",
+        "Q05",
+        "Q06",
+        "Q28"
+      ],
+      "artifact_id": "ART-C12",
+      "figma_node_id": "20:3552",
+      "figma_status": "편집 가능한 설계 영역 보드와 출처 링크 생성 완료",
+      "completion_evidence": "evidence/research-s.json#/domainNodes/C12"
+    },
+    {
+      "id": "C13",
+      "title": "통계·과학 시각화",
+      "source_ids": [
+        "S01",
+        "S02",
+        "S03",
+        "S04",
+        "S05",
+        "S06"
+      ],
+      "artifact_id": "ART-C13",
+      "figma_node_id": "20:3562",
+      "figma_status": "편집 가능한 설계 영역 보드와 출처 링크 생성 완료",
+      "completion_evidence": "evidence/research-s.json#/domainNodes/C13"
+    },
+    {
+      "id": "C14",
+      "title": "그래프·Canvas·필기",
+      "source_ids": [
+        "S07",
+        "S08",
+        "S09",
+        "S10",
+        "S11",
+        "S12",
+        "S23"
+      ],
+      "artifact_id": "ART-C14",
+      "figma_node_id": "20:3572",
+      "figma_status": "편집 가능한 설계 영역 보드와 출처 링크 생성 완료",
+      "completion_evidence": "evidence/research-s.json#/domainNodes/C14"
+    },
+    {
+      "id": "C15",
+      "title": "수식·수학 인터랙티브",
+      "source_ids": [
+        "S13",
+        "S14",
+        "S15",
+        "S16",
+        "S34"
+      ],
+      "artifact_id": "ART-C15",
+      "figma_node_id": "20:3582",
+      "figma_status": "편집 가능한 설계 영역 보드와 출처 링크 생성 완료",
+      "completion_evidence": "evidence/research-s.json#/domainNodes/C15"
+    },
+    {
+      "id": "C16",
+      "title": "편집·자료·파일·로컬 실행",
+      "source_ids": [
+        "S17",
+        "S18",
+        "S19",
+        "S20",
+        "S21",
+        "S22",
+        "S24"
+      ],
+      "artifact_id": "ART-C16",
+      "figma_node_id": "20:3592",
+      "figma_status": "편집 가능한 설계 영역 보드와 출처 링크 생성 완료",
+      "completion_evidence": "evidence/research-s.json#/domainNodes/C16"
+    },
+    {
+      "id": "C17",
+      "title": "저장·오프라인·동기화·복구",
+      "source_ids": [
+        "Q13",
+        "Q14",
+        "Q15",
+        "Q16",
+        "Q17",
+        "Q18",
+        "Q19",
+        "Q26",
+        "Q27"
+      ],
+      "artifact_id": "ART-C17",
+      "figma_node_id": "20:3602",
+      "figma_status": "편집 가능한 설계 영역 보드와 출처 링크 생성 완료",
+      "completion_evidence": "evidence/research-s.json#/domainNodes/C17"
+    },
+    {
+      "id": "C18",
+      "title": "인증·권한·서버·보안",
+      "source_ids": [
+        "Q07",
+        "Q08",
+        "Q09",
+        "Q10",
+        "Q11",
+        "Q12"
+      ],
+      "artifact_id": "ART-C18",
+      "figma_node_id": "20:3612",
+      "figma_status": "편집 가능한 설계 영역 보드와 출처 링크 생성 완료",
+      "completion_evidence": "evidence/research-s.json#/domainNodes/C18"
+    },
+    {
+      "id": "C19",
+      "title": "검증·CI·관측·유지보수",
+      "source_ids": [
+        "Q01",
+        "Q02",
+        "Q03",
+        "Q04",
+        "Q05",
+        "Q06",
+        "Q20",
+        "Q21",
+        "Q22",
+        "Q23",
+        "Q24",
+        "Q25",
+        "Q26",
+        "Q27",
+        "Q28"
+      ],
+      "artifact_id": "ART-C19",
+      "figma_node_id": "20:3622",
+      "figma_status": "편집 가능한 설계 영역 보드와 출처 링크 생성 완료",
+      "completion_evidence": "evidence/research-s.json#/domainNodes/C19"
+    },
+    {
+      "id": "C20",
+      "title": "AI·에이전트·스킬·평가",
+      "source_ids": [
+        "S25",
+        "S26",
+        "S27",
+        "S28",
+        "S29",
+        "S30",
+        "S31",
+        "S32",
+        "S33"
+      ],
+      "artifact_id": "ART-C20",
+      "figma_node_id": "20:3632",
+      "figma_status": "편집 가능한 설계 영역 보드와 출처 링크 생성 완료",
+      "completion_evidence": "evidence/research-s.json#/domainNodes/C20"
+    }
+  ],
+  "figma_artifacts": [
+    {
+      "id": "ART-C01",
+      "domain_id": "C01",
+      "title": "과업·관찰·평가 보드",
+      "deliverable": "현재 사용 과업, 관찰한 문제, 가설, 검증할 행동을 연결한다.",
+      "guardrail": "실제 관찰하지 않은 감정·행동은 가설로 표시한다.",
+      "figma_node_id": "20:3442",
+      "figma_status": "설계 산출물·보존 조건의 편집 가능한 영역 보드 생성 및 출처 연결 완료",
+      "completion_evidence": "evidence/research-s.json#/artifactNodes/ART-C01",
+      "figma_page_keys": [
+        "00",
+        "03",
+        "08"
+      ]
+    },
+    {
+      "id": "ART-C02",
+      "domain_id": "C02",
+      "title": "전체 정보구조·사용 흐름",
+      "deliverable": "진입·기록·찾기·수정·중단·복귀를 전체 화면 목록에 연결한다.",
+      "guardrail": "화면 수 대신 과업의 시작과 끝·취소·복귀를 확인한다.",
+      "figma_node_id": "20:3452",
+      "figma_status": "설계 산출물·보존 조건의 편집 가능한 영역 보드 생성 및 출처 연결 완료",
+      "completion_evidence": "evidence/research-s.json#/artifactNodes/ART-C02",
+      "figma_page_keys": [
+        "00",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08"
+      ]
+    },
+    {
+      "id": "ART-C03",
+      "domain_id": "C03",
+      "title": "천문대 기초·역할 토큰",
+      "deliverable": "현 천문대의 표면·글자·상태색·간격·픽셀 윤곽을 역할별 토큰으로 정리한다.",
+      "guardrail": "다른 회사의 외형을 천문대 기본값으로 복제하지 않는다.",
+      "figma_node_id": "20:3462",
+      "figma_status": "설계 산출물·보존 조건의 편집 가능한 영역 보드 생성 및 출처 연결 완료",
+      "completion_evidence": "evidence/research-s.json#/artifactNodes/ART-C03",
+      "figma_page_keys": [
+        "01",
+        "02"
+      ]
+    },
+    {
+      "id": "ART-C04",
+      "domain_id": "C04",
+      "title": "한글 조판·색·반응형 규칙",
+      "deliverable": "긴 한글/혼합 수식·숫자·코드, 좁은 패널, 색역/대비와 fallback을 보여준다.",
+      "guardrail": "사용자 글꼴·글자 크기·개인 배치를 보존한다.",
+      "figma_node_id": "20:3472",
+      "figma_status": "설계 산출물·보존 조건의 편집 가능한 영역 보드 생성 및 출처 연결 완료",
+      "completion_evidence": "evidence/research-s.json#/artifactNodes/ART-C04",
+      "figma_page_keys": [
+        "01",
+        "08"
+      ]
+    },
+    {
+      "id": "ART-C05",
+      "domain_id": "C05",
+      "title": "읽기·키보드·터치·모션 제어",
+      "deliverable": "초점·순서·이름·대비·타깃 크기·모션 감소의 대표 상태를 만든다.",
+      "guardrail": "자동 검사·그림만으로 접근성 준수나 물리 기기 통과를 주장하지 않는다.",
+      "figma_node_id": "20:3482",
+      "figma_status": "설계 산출물·보존 조건의 편집 가능한 영역 보드 생성 및 출처 연결 완료",
+      "completion_evidence": "evidence/research-s.json#/artifactNodes/ART-C05",
+      "figma_page_keys": [
+        "02",
+        "08"
+      ]
+    },
+    {
+      "id": "ART-C06",
+      "domain_id": "C06",
+      "title": "부품·코드·출처 대응",
+      "deliverable": "Figma 부품과 실제 코드/Storybook/출처 ID를 대응한다.",
+      "guardrail": "파일 편집·플랜 권한과 실제 코드 연결을 따로 확인한다.",
+      "figma_node_id": "20:3492",
+      "figma_status": "설계 산출물·보존 조건의 편집 가능한 영역 보드 생성 및 출처 연결 완료",
+      "completion_evidence": "evidence/research-s.json#/artifactNodes/ART-C06",
+      "figma_page_keys": [
+        "00",
+        "02",
+        "09"
+      ]
+    },
+    {
+      "id": "ART-C07",
+      "domain_id": "C07",
+      "title": "프론트 구조 기술주석",
+      "deliverable": "화면·domain·data·서버 경계와 네이티브 웹 부품 재사용 범위를 그린다.",
+      "guardrail": "아키텍처 그림을 코드 분리 완료로 표시하지 않는다.",
+      "figma_node_id": "20:3502",
+      "figma_status": "설계 산출물·보존 조건의 편집 가능한 영역 보드 생성 및 출처 연결 완료",
+      "completion_evidence": "evidence/research-s.json#/artifactNodes/ART-C07",
+      "figma_page_keys": [
+        "09"
+      ]
+    },
+    {
+      "id": "ART-C08",
+      "domain_id": "C08",
+      "title": "공통 조작 부품 상태",
+      "deliverable": "버튼·입력·선택·탭·창·메뉴의 기본/초점/오류/비활성/진행 상태를 표현한다.",
+      "guardrail": "상태를 색만으로 구분하지 않고 초안·초점 복귀를 보존한다.",
+      "figma_node_id": "20:3512",
+      "figma_status": "설계 산출물·보존 조건의 편집 가능한 영역 보드 생성 및 출처 연결 완료",
+      "completion_evidence": "evidence/research-s.json#/artifactNodes/ART-C08",
+      "figma_page_keys": [
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07"
+      ]
+    },
+    {
+      "id": "ART-C09",
+      "domain_id": "C09",
+      "title": "비동기·저장 상태 전이",
+      "deliverable": "작성 중·기기 보관·서버 전송·실패·충돌·다시 열기를 조건과 함께 연결한다.",
+      "guardrail": "낙관적 화면 반응과 서버 승인 시점을 구분한다.",
+      "figma_node_id": "20:3522",
+      "figma_status": "설계 산출물·보존 조건의 편집 가능한 영역 보드 생성 및 출처 연결 완료",
+      "completion_evidence": "evidence/research-s.json#/artifactNodes/ART-C09",
+      "figma_page_keys": [
+        "02",
+        "07",
+        "08"
+      ]
+    },
+    {
+      "id": "ART-C10",
+      "domain_id": "C10",
+      "title": "천문대 모션·픽셀 자산 명세",
+      "deliverable": "현재 장면, 포인터 반응, 일시정지·모션 감소·재개와 자산 원본을 연결한다.",
+      "guardrail": "Figma 대표 장면과 실제 시뮬레이션/렌더 구현을 구분한다.",
+      "figma_node_id": "20:3532",
+      "figma_status": "설계 산출물·보존 조건의 편집 가능한 영역 보드 생성 및 출처 연결 완료",
+      "completion_evidence": "evidence/research-s.json#/artifactNodes/ART-C10",
+      "figma_page_keys": [
+        "01",
+        "03",
+        "09"
+      ]
+    },
+    {
+      "id": "ART-C11",
+      "domain_id": "C11",
+      "title": "렌더 층·GPU 기술주석",
+      "deliverable": "SVG/WebGL 층, GPU 실패·대체 표현·자원 해제와 조건부 후보를 표시한다.",
+      "guardrail": "WebGPU·3D·새 엔진을 조사만으로 기본 도입하지 않는다.",
+      "figma_node_id": "20:3542",
+      "figma_status": "설계 산출물·보존 조건의 편집 가능한 영역 보드 생성 및 출처 연결 완료",
+      "completion_evidence": "evidence/research-s.json#/artifactNodes/ART-C11",
+      "figma_page_keys": [
+        "01",
+        "09"
+      ]
+    },
+    {
+      "id": "ART-C12",
+      "domain_id": "C12",
+      "title": "누적·기기·성능 검증판",
+      "deliverable": "합의 다섯 모사 환경, 긴 내용/자료 증가·계산 지연·복귀 조건을 연결한다.",
+      "guardrail": "목표와 측정값을 구분하고 모사를 물리 기기로 승격하지 않는다.",
+      "figma_node_id": "20:3552",
+      "figma_status": "설계 산출물·보존 조건의 편집 가능한 영역 보드 생성 및 출처 연결 완료",
+      "completion_evidence": "evidence/research-s.json#/artifactNodes/ART-C12",
+      "figma_page_keys": [
+        "08",
+        "09"
+      ]
+    },
+    {
+      "id": "ART-C13",
+      "domain_id": "C13",
+      "title": "차트·값·원기록 패턴",
+      "deliverable": "비교/추세/분포/관계/구성/흐름 질문과 실제 변수·값 목록·원기록을 연결한다.",
+      "guardrail": "없는 목표·숙달률·관계·이동량을 그리지 않는다.",
+      "figma_node_id": "20:3562",
+      "figma_status": "설계 산출물·보존 조건의 편집 가능한 영역 보드 생성 및 출처 연결 완료",
+      "completion_evidence": "evidence/research-s.json#/artifactNodes/ART-C13",
+      "figma_page_keys": [
+        "05",
+        "06"
+      ]
+    },
+    {
+      "id": "ART-C14",
+      "domain_id": "C14",
+      "title": "그래프·Canvas·필기 패턴",
+      "deliverable": "ID 기반 연결·자동/수동 배치·필기 원문과 선택/수정/복귀 상태를 연결한다.",
+      "guardrail": "개인 좌표와 의미 관계를 장식 배치로 덮어쓰지 않는다.",
+      "figma_node_id": "20:3572",
+      "figma_status": "설계 산출물·보존 조건의 편집 가능한 영역 보드 생성 및 출처 연결 완료",
+      "completion_evidence": "evidence/research-s.json#/artifactNodes/ART-C14",
+      "figma_page_keys": [
+        "05"
+      ]
+    },
+    {
+      "id": "ART-C15",
+      "domain_id": "C15",
+      "title": "수식·수학 탐색 패턴",
+      "deliverable": "식의 원문·조건·단위·도해·조작·결과/실패를 한 과업에 연결한다.",
+      "guardrail": "예제 시각화를 실제 계산·학습 효과로 표시하지 않는다.",
+      "figma_node_id": "20:3582",
+      "figma_status": "설계 산출물·보존 조건의 편집 가능한 영역 보드 생성 및 출처 연결 완료",
+      "completion_evidence": "evidence/research-s.json#/artifactNodes/ART-C15",
+      "figma_page_keys": [
+        "05"
+      ]
+    },
+    {
+      "id": "ART-C16",
+      "domain_id": "C16",
+      "title": "편집·자료·파일 패턴",
+      "deliverable": "한글/코드 편집·PDF·OCR·첨부 원본·추출 초안·실행 결과 상태를 연결한다.",
+      "guardrail": "원문·커서·undo·첨부 bytes를 보존하고 제거한 사진→목차 OCR을 되살리지 않는다.",
+      "figma_node_id": "20:3592",
+      "figma_status": "설계 산출물·보존 조건의 편집 가능한 영역 보드 생성 및 출처 연결 완료",
+      "completion_evidence": "evidence/research-s.json#/artifactNodes/ART-C16",
+      "figma_page_keys": [
+        "03",
+        "04",
+        "05"
+      ]
+    },
+    {
+      "id": "ART-C17",
+      "domain_id": "C17",
+      "title": "저장·오프라인·복구 계약",
+      "deliverable": "기기 보관/미전송/서버 승인·충돌 양본·백업 준비/복원/중단 복구를 표현한다.",
+      "guardrail": "로컬 저장·실제 파일 다운로드·서버 복원을 각각 구분한다.",
+      "figma_node_id": "20:3602",
+      "figma_status": "설계 산출물·보존 조건의 편집 가능한 영역 보드 생성 및 출처 연결 완료",
+      "completion_evidence": "evidence/research-s.json#/artifactNodes/ART-C17",
+      "figma_page_keys": [
+        "07",
+        "08"
+      ]
+    },
+    {
+      "id": "ART-C18",
+      "domain_id": "C18",
+      "title": "계정·권한·보안 계약",
+      "deliverable": "로그인·가입 승인/거절/중지·소유자 분리·서버 거부와 안전한 입력 경계를 표현한다.",
+      "guardrail": "서버 정책/RLS가 그림으로 구현되지 않으며 별도 허용/거부 시험이 필요하다.",
+      "figma_node_id": "20:3612",
+      "figma_status": "설계 산출물·보존 조건의 편집 가능한 영역 보드 생성 및 출처 연결 완료",
+      "completion_evidence": "evidence/research-s.json#/artifactNodes/ART-C18",
+      "figma_page_keys": [
+        "07",
+        "09"
+      ]
+    },
+    {
+      "id": "ART-C19",
+      "domain_id": "C19",
+      "title": "검증·CI·운영 주석",
+      "deliverable": "단위/부품/브라우저/서버/배포/물리 기기의 증거와 미검증을 분리한다.",
+      "guardrail": "조사·설계·코드·검사·배포가 서로 완료를 대신하지 않는다.",
+      "figma_node_id": "20:3622",
+      "figma_status": "설계 산출물·보존 조건의 편집 가능한 영역 보드 생성 및 출처 연결 완료",
+      "completion_evidence": "evidence/research-s.json#/artifactNodes/ART-C19",
+      "figma_page_keys": [
+        "08",
+        "09"
+      ]
+    },
+    {
+      "id": "ART-C20",
+      "domain_id": "C20",
+      "title": "AI·스킬·도구 계약",
+      "deliverable": "민석 전용 AI, 원문/생성 초안/근거/예산/실패, 스킬의 발동·권한을 연결한다.",
+      "guardrail": "일반 계정·관리자 지정이 AI 권한을 주지 않으며 외부 전송·설치를 자동 실행하지 않는다.",
+      "figma_node_id": "20:3632",
+      "figma_status": "설계 산출물·보존 조건의 편집 가능한 영역 보드 생성 및 출처 연결 완료",
+      "completion_evidence": "evidence/research-s.json#/artifactNodes/ART-C20",
+      "figma_page_keys": [
+        "04",
+        "05",
+        "07",
+        "09"
+      ]
+    }
+  ],
+  "entries": [
+    {
+      "source_id": "D01",
+      "name": "WCAG 2.2",
+      "source_category": "W3C Recommendation",
+      "source_status": "기존 유지",
+      "source_url": "https://www.w3.org/TR/WCAG22/",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "design-ux-sources.json",
+      "source_evidence": "웹 접근성의 시험 가능한 성공 기준과 A/AA/AAA 등급을 제공한다. 천문대에서도 읽기·키보드·초점·색 의미·모션·오류 복구를 판단하는 기준으로 유지한다.",
+      "preserved_limits": "일부 대비나 자동검사 통과를 전체 적합성으로 확대하지 않는다. 픽셀 미감 자체를 정하지 않는다.",
+      "domain_ids": [
+        "C05"
+      ],
+      "figma_artifact_ids": [
+        "ART-C05"
+      ],
+      "representation": [
+        "기초/부품/과업 표현",
+        "기술·검증 주석"
+      ],
+      "design_application": "대비/타깃/초점/오류 식별 주석과 키보드·터치 상태를 연결한다.",
+      "state_contract_ids": [],
+      "selection": "현재 구현·부품 우선 재사용",
+      "figma_nodes": [
+        "20:3646"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "02",
+        "08"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-d.json",
+        "node_id": "20:3646",
+        "official_link_node_id": "20:3661",
+        "domain_link_node_ids": [
+          "20:3663"
+        ]
+      }
+    },
+    {
+      "source_id": "D02",
+      "name": "WAI-ARIA Authoring Practices Guide",
+      "source_category": "공식 비규범적 구현 지침",
+      "source_status": "기본 권고",
+      "source_url": "https://www.w3.org/WAI/ARIA/apg/",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "design-ux-sources.json",
+      "source_evidence": "탭·대화상자·콤보박스 등 위젯의 역할·상태·키보드 조작 패턴을 제공한다. 픽셀 외형 아래의 익숙한 조작을 설계하는 데 적합하다.",
+      "preserved_limits": "APG 예제는 제품 완성품이나 WCAG 인증이 아니다. 네이티브 HTML을 먼저 검토하고 실제 브라우저/입력으로 확인한다.",
+      "domain_ids": [
+        "C05"
+      ],
+      "figma_artifact_ids": [
+        "ART-C05"
+      ],
+      "representation": [
+        "기초/부품/과업 표현",
+        "기술·검증 주석"
+      ],
+      "design_application": "모달·탭·메뉴의 초점 진입/이동/닫기/원래 위치 복귀를 부품 주석으로 그린다.",
+      "state_contract_ids": [],
+      "selection": "관련 설계 판단과 검증 요구에 우선 적용",
+      "figma_nodes": [
+        "20:3664"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "02",
+        "08"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-d.json",
+        "node_id": "20:3664",
+        "official_link_node_id": "20:3679",
+        "domain_link_node_ids": [
+          "20:3681"
+        ]
+      }
+    },
+    {
+      "source_id": "D03",
+      "name": "Design Tokens Format Module 2025.10",
+      "source_category": "안정된 커뮤니티 기술 명세",
+      "source_status": "기본 권고",
+      "source_url": "https://www.designtokens.org/tr/2025.10/format/",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "design-ux-sources.json",
+      "source_evidence": "도구 사이에서 토큰 값·유형·참조를 교환하는 형식을 정의한다. 기존 CSS/JSON 원본과 Figma 변수 사이의 변환 경계를 정하는 데 사용한다.",
+      "preserved_limits": "DTCG가 안정된 구현용 명세로 발표했지만 W3C Standard도 W3C Standards Track도 아니다. 형식 채택이 자동 동기화를 만들지는 않는다.",
+      "domain_ids": [
+        "C03"
+      ],
+      "figma_artifact_ids": [
+        "ART-C03"
+      ],
+      "representation": [
+        "기초/부품/과업 표현",
+        "기술·검증 주석"
+      ],
+      "design_application": "역할 토큰 이름·값·유형·참조와 코드 담당 원본을 연결한다.",
+      "state_contract_ids": [],
+      "selection": "관련 설계 판단과 검증 요구에 우선 적용",
+      "figma_nodes": [
+        "20:3682"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "01",
+        "02"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-d.json",
+        "node_id": "20:3682",
+        "official_link_node_id": "20:3697",
+        "domain_link_node_ids": [
+          "20:3699"
+        ]
+      }
+    },
+    {
+      "source_id": "D04",
+      "name": "ISO 9241-210:2019",
+      "source_category": "인간중심설계 국제표준 공개 개요",
+      "source_status": "기본 권고",
+      "source_url": "https://www.iso.org/standard/77520.html",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "design-ux-sources.json",
+      "source_evidence": "공식 공개 개요는 상호작용 시스템 생애주기의 인간중심설계 원칙과 활동을 다룬다. 2025 재확인된 현행판임을 확인했다.",
+      "preserved_limits": "유료 본문을 읽거나 적합성을 감사하지 않았다. 공개 개요 자체도 개별 기법 전체나 모든 프로젝트 관리를 제공하지 않는다고 설명한다.",
+      "domain_ids": [
+        "C01"
+      ],
+      "figma_artifact_ids": [
+        "ART-C01"
+      ],
+      "representation": [
+        "설계 판단 주석"
+      ],
+      "design_application": "사용 맥락·현재 과업·관찰/가설·평가 목적을 과업 카드에 남긴다.",
+      "state_contract_ids": [],
+      "selection": "관련 설계 판단과 검증 요구에 우선 적용",
+      "figma_nodes": [
+        "20:3700"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "00",
+        "03",
+        "08"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-d.json",
+        "node_id": "20:3700",
+        "official_link_node_id": "20:3715",
+        "domain_link_node_ids": [
+          "20:3717"
+        ]
+      }
+    },
+    {
+      "source_id": "D05",
+      "name": "ISO 9241-110:2020",
+      "source_category": "상호작용 원칙 국제표준 공개 개요",
+      "source_status": "기본 권고",
+      "source_url": "https://www.iso.org/standard/75258.html",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "design-ux-sources.json",
+      "source_evidence": "일반적인 사용자-시스템 상호작용 원칙을 적용하는 틀을 제공한다. 2025 재확인된 현행판임을 확인했다.",
+      "preserved_limits": "유료 본문 미열람. 공식 개요가 미감·마케팅·기업 정체성을 다루지 않는다고 명시하므로 천문대 미감의 정답으로 사용하지 않는다.",
+      "domain_ids": [
+        "C02"
+      ],
+      "figma_artifact_ids": [
+        "ART-C02"
+      ],
+      "representation": [
+        "설계 판단 주석"
+      ],
+      "design_application": "과업 적합성·통제·오류 회복을 흐름별 판단 주석으로 남긴다.",
+      "state_contract_ids": [
+        "CONTENT-NO-RESULT"
+      ],
+      "selection": "관련 설계 판단과 검증 요구에 우선 적용",
+      "figma_nodes": [
+        "20:3718"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "00",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-d.json",
+        "node_id": "20:3718",
+        "official_link_node_id": "20:3733",
+        "domain_link_node_ids": [
+          "20:3735"
+        ]
+      }
+    },
+    {
+      "source_id": "D06",
+      "name": "Design Council Double Diamond",
+      "source_category": "설계 방법 프레임워크",
+      "source_status": "기본 권고",
+      "source_url": "https://www.designcouncil.org.uk/resources/the-double-diamond/",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "design-ux-sources.json",
+      "source_evidence": "발견·정의·개발·전달을 통해 문제의 이해와 대안 탐색/작은 시험을 연결한다. 현재 앱에서 실패·혼란이 있는 과업을 좁혀 개선하는 방법으로 쓴다.",
+      "preserved_limits": "국제표준이나 품질 보증이 아니다. 기존 조사와 합의가 있는데 매번 전체 프로젝트를 처음부터 조사하는 절차로 만들지 않는다.",
+      "domain_ids": [
+        "C01"
+      ],
+      "figma_artifact_ids": [
+        "ART-C01"
+      ],
+      "representation": [
+        "설계 판단 주석"
+      ],
+      "design_application": "확인된 요구→대안→시험할 흐름→선정 이유를 설계 변경 카드에 남긴다.",
+      "state_contract_ids": [],
+      "selection": "관련 설계 판단과 검증 요구에 우선 적용",
+      "figma_nodes": [
+        "20:3737"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "00",
+        "03",
+        "08"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-d.json",
+        "node_id": "20:3737",
+        "official_link_node_id": "20:3752",
+        "domain_link_node_ids": [
+          "20:3754"
+        ]
+      }
+    },
+    {
+      "source_id": "D07",
+      "name": "Nielsen Norman Group 10 Usability Heuristics",
+      "source_category": "전문가 사용성 휴리스틱",
+      "source_status": "기본 권고",
+      "source_url": "https://www.nngroup.com/articles/ten-usability-heuristics/",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "design-ux-sources.json",
+      "source_evidence": "상태의 가시성·사용자 통제·일관성·오류 방지/복구 등을 점검한다. 저장 대기/실패, 돌아가기, 익숙한 한국어 행동명을 평가한다.",
+      "preserved_limits": "원문 스스로 구체 규격이 아닌 넓은 경험칙이라고 설명한다. 실제 사용자 관찰을 대체하지 않고 법칙별 효과를 앱의 학습 효과로 옮기지 않는다.",
+      "domain_ids": [
+        "C01"
+      ],
+      "figma_artifact_ids": [
+        "ART-C01"
+      ],
+      "representation": [
+        "설계 판단 주석"
+      ],
+      "design_application": "시스템 상태·일관성·되돌리기·회복을 대표 과업과 오류 상태에 연결한다.",
+      "state_contract_ids": [
+        "CONTENT-EMPTY",
+        "CONTENT-NO-RESULT"
+      ],
+      "selection": "관련 설계 판단과 검증 요구에 우선 적용",
+      "figma_nodes": [
+        "20:3755"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "00",
+        "03",
+        "08"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-d.json",
+        "node_id": "20:3755",
+        "official_link_node_id": "20:3770",
+        "domain_link_node_ids": [
+          "20:3772"
+        ]
+      }
+    },
+    {
+      "source_id": "D08",
+      "name": "GOV.UK Creating an experience map",
+      "source_category": "정부 서비스 설계 실무 지침",
+      "source_status": "기본 권고",
+      "source_url": "https://www.gov.uk/service-manual/user-research/creating-an-experience-map",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "design-ux-sources.json",
+      "source_evidence": "시간에 따른 사용자 행동과 서비스 접점을 정리한다. 진입→공부→기록→중단→복귀와 화면 뒤 저장을 연결할 때 사용한다.",
+      "preserved_limits": "공공 서비스 맥락의 방법이므로 현재 개인 공부 도구에 필요한 수준으로 축소한다. 실제로 관찰하지 않은 감정과 행동을 사실로 채우지 않는다.",
+      "domain_ids": [
+        "C02"
+      ],
+      "figma_artifact_ids": [
+        "ART-C02"
+      ],
+      "representation": [
+        "설계 판단 주석"
+      ],
+      "design_application": "공부 뒤 기록부터 재방문까지 시작/행동/장애/복귀를 경험 지도로 연결한다.",
+      "state_contract_ids": [
+        "CONTENT-EMPTY"
+      ],
+      "selection": "관련 설계 판단과 검증 요구에 우선 적용",
+      "figma_nodes": [
+        "20:3774"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "00",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-d.json",
+        "node_id": "20:3774",
+        "official_link_node_id": "20:3789",
+        "domain_link_node_ids": [
+          "20:3791"
+        ]
+      }
+    },
+    {
+      "source_id": "D09",
+      "name": "Material Design 3 Foundations",
+      "source_category": "기업 공식 디자인 시스템",
+      "source_status": "참고",
+      "source_url": "https://m3.material.io/foundations/",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "design-ux-sources.json",
+      "source_evidence": "공식 색인에서 토큰·상태·배치·접근성·브랜드 맞춤 기초를 확인했다. 공통 부품의 상태와 역할을 빠뜨리지 않는 참고가 된다.",
+      "preserved_limits": "동적 상세 페이지의 전 본문은 읽지 않았다. M3의 외형·둥근 모서리·플랫폼 관행을 픽셀 정체성보다 우선하거나 관련 라이브러리를 자동 도입하지 않는다.",
+      "domain_ids": [
+        "C03"
+      ],
+      "figma_artifact_ids": [
+        "ART-C03"
+      ],
+      "representation": [
+        "참고·라이선스·비교 주석"
+      ],
+      "design_application": "정보 위계와 부품 상태 운영만 비교 참고로 붙이고 M3 외형을 이식하지 않는다.",
+      "state_contract_ids": [],
+      "selection": "관찰/비교의 참고; 외형/제품/도구 자동 도입 아님",
+      "figma_nodes": [
+        "20:3793"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "01",
+        "02",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-d.json",
+        "node_id": "20:3793",
+        "official_link_node_id": "20:3808",
+        "domain_link_node_ids": [
+          "20:3810"
+        ]
+      }
+    },
+    {
+      "source_id": "D10",
+      "name": "Apple Human Interface Guidelines — Motion",
+      "source_category": "플랫폼 공식 디자인 지침",
+      "source_status": "참고",
+      "source_url": "https://developer.apple.com/design/human-interface-guidelines/motion",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "design-ux-sources.json",
+      "source_evidence": "공식 검색 본문에서 모션의 상태 전달·피드백 역할과 입력/접근성 설정에 따른 조정을 확인했다. 천문대의 세계 표현과 즉각적인 조작 반응을 나누는 데 참고한다.",
+      "preserved_limits": "일반 HIG 페이지는 동적 본문 추출이 제한됐다. Apple 플랫폼 고유 외형이나 Liquid Glass가 웹앱의 목표 미감이 되는 것은 아니다.",
+      "domain_ids": [
+        "C05"
+      ],
+      "figma_artifact_ids": [
+        "ART-C05"
+      ],
+      "representation": [
+        "참고·라이선스·비교 주석"
+      ],
+      "design_application": "움직임 목적·정지·감소·재개 규칙을 천문대 모션 스토리보드에 연결한다.",
+      "state_contract_ids": [
+        "RENDER-PAUSED"
+      ],
+      "selection": "관찰/비교의 참고; 외형/제품/도구 자동 도입 아님",
+      "figma_nodes": [
+        "20:3811"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "02",
+        "08",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-d.json",
+        "node_id": "20:3811",
+        "official_link_node_id": "20:3826",
+        "domain_link_node_ids": [
+          "20:3828"
+        ]
+      }
+    },
+    {
+      "source_id": "D11",
+      "name": "IBM Carbon Themes",
+      "source_category": "기업 공식 디자인 시스템",
+      "source_status": "참고",
+      "source_url": "https://www.carbondesignsystem.com/building-blocks/foundations/themes/overview",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "design-ux-sources.json",
+      "source_evidence": "테마에 따라 값이 바뀌어도 역할과 사용 의미를 유지하는 운영 방식을 참고한다. 따뜻한 종이/밤 작업면의 같은 버튼과 입력 상태를 연결한다.",
+      "preserved_limits": "Carbon 전체 외형·밀도·패키지를 가져오는 권고가 아니다. 천문대 원본과 기존 사용자 설정의 역할을 유지한다.",
+      "domain_ids": [
+        "C03"
+      ],
+      "figma_artifact_ids": [
+        "ART-C03"
+      ],
+      "representation": [
+        "참고·라이선스·비교 주석"
+      ],
+      "design_application": "표면/글자/선택/경고 등 역할 기반 테마 구조를 토큰 주석에 비교한다.",
+      "state_contract_ids": [],
+      "selection": "관찰/비교의 참고; 외형/제품/도구 자동 도입 아님",
+      "figma_nodes": [
+        "20:3830"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "01",
+        "02",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-d.json",
+        "node_id": "20:3830",
+        "official_link_node_id": "20:3845",
+        "domain_link_node_ids": [
+          "20:3847"
+        ]
+      }
+    },
+    {
+      "source_id": "D12",
+      "name": "Adobe Spectrum Design Data — Tokens",
+      "source_category": "기업 공식 디자인 데이터/운영 사례",
+      "source_status": "참고",
+      "source_url": "https://opensource.adobe.com/spectrum-design-data/tokens/",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "design-ux-sources.json",
+      "source_evidence": "색 팔레트·의미 별칭·컴포넌트별 색·조판·레이아웃 데이터가 분리된 공식 목록을 확인했다. 역할→부품→상태로 토큰을 조직하는 비교 기준이다.",
+      "preserved_limits": "Spectrum 외형 복제나 전체 React Spectrum 설치 권고가 아니다. 이전 Spectrum 페이지 일부는 오류가 있어 현재 공식 데이터 문서를 함께 확인했다.",
+      "domain_ids": [
+        "C03"
+      ],
+      "figma_artifact_ids": [
+        "ART-C03"
+      ],
+      "representation": [
+        "참고·라이선스·비교 주석"
+      ],
+      "design_application": "토큰명·상태·버전·코드 연결 관리의 참고 사례를 기초 보드에 남긴다.",
+      "state_contract_ids": [],
+      "selection": "관찰/비교의 참고; 외형/제품/도구 자동 도입 아님",
+      "figma_nodes": [
+        "20:3848"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "01",
+        "02",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-d.json",
+        "node_id": "20:3848",
+        "official_link_node_id": "20:3863",
+        "domain_link_node_ids": [
+          "20:3865"
+        ]
+      }
+    },
+    {
+      "source_id": "D13",
+      "name": "Figma variables, collections and modes",
+      "source_category": "제품 공식 기능 문서",
+      "source_status": "기본 권고",
+      "source_url": "https://help.figma.com/hc/en-us/articles/14506821864087-Overview-of-variables-collections-and-modes",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "design-ux-sources.json",
+      "source_evidence": "변수·별칭·모드로 공통 값과 밝음/어두움 같은 문맥을 관리한다. 천문대 토큰을 개별 화면마다 다시 입력하지 않는 설계 기반이다.",
+      "preserved_limits": "모드 수는 요금제에 의존한다. 로컬 앱 JSON과 자동 양방향 동기화된다는 뜻이 아니며 연결 코드를 별도로 검증해야 한다.",
+      "domain_ids": [
+        "C03",
+        "C06"
+      ],
+      "figma_artifact_ids": [
+        "ART-C03",
+        "ART-C06"
+      ],
+      "representation": [
+        "기초/부품/과업 표현",
+        "기술·검증 주석"
+      ],
+      "design_application": "Figma 변수/컬렉션/모드와 실제 천문대 토큰의 대응을 만든다.",
+      "state_contract_ids": [],
+      "selection": "관련 설계 판단과 검증 요구에 우선 적용",
+      "figma_nodes": [
+        "20:3866"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "00",
+        "01",
+        "02",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-d.json",
+        "node_id": "20:3866",
+        "official_link_node_id": "20:3881",
+        "domain_link_node_ids": [
+          "20:3883",
+          "20:3884"
+        ]
+      }
+    },
+    {
+      "source_id": "D14",
+      "name": "Figma variants",
+      "source_category": "제품 공식 기능 문서",
+      "source_status": "기본 권고",
+      "source_url": "https://help.figma.com/hc/en-us/articles/360056440594-Create-and-use-variants",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "design-ux-sources.json",
+      "source_evidence": "부품의 크기·상태 등을 속성으로 묶고 코드 속성과 대응한다. 모든 이론적 조합의 변형을 만들 필요는 없다는 공식 설명을 확인했다.",
+      "preserved_limits": "파일 편집 권한이 필요하고 라이브러리 발행은 유료 요금제 조건이 있다. 아이콘 종류마다 변형을 불리는 방식 대신 교체 속성을 검토한다.",
+      "domain_ids": [
+        "C06"
+      ],
+      "figma_artifact_ids": [
+        "ART-C06"
+      ],
+      "representation": [
+        "기초/부품/과업 표현",
+        "기술·검증 주석"
+      ],
+      "design_application": "기본/초점/진행/오류/비활성 변형과 교체 가능한 아이콘 속성을 구성한다.",
+      "state_contract_ids": [],
+      "selection": "관련 설계 판단과 검증 요구에 우선 적용",
+      "figma_nodes": [
+        "20:3885"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "00",
+        "02",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-d.json",
+        "node_id": "20:3885",
+        "official_link_node_id": "20:3900",
+        "domain_link_node_ids": [
+          "20:3902"
+        ]
+      }
+    },
+    {
+      "source_id": "D15",
+      "name": "Figma Code Connect",
+      "source_category": "제품 공식 코드-디자인 연결 도구",
+      "source_status": "조건부",
+      "source_url": "https://developers.figma.com/docs/code-connect/",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "design-ux-sources.json",
+      "source_evidence": "Figma 부품을 실제 저장소 부품/사용 코드에 연결한다. 현재 공식 권장 CLI 방식은 프레임워크 독립 템플릿 파일이다.",
+      "preserved_limits": "Organization/Enterprise의 Dev 또는 Full seat가 필요하다. 전체 앱 자동 복원·양방향 동기화·백엔드 구현이 아니다. 사용 가능 조건 전에는 노드/코드/Storybook URL 대응표로 충분하다.",
+      "domain_ids": [
+        "C06"
+      ],
+      "figma_artifact_ids": [
+        "ART-C06"
+      ],
+      "representation": [
+        "조건부 후보·도입 조건 카드",
+        "관련 상태/검증 주석"
+      ],
+      "design_application": "가능하면 Code Connect, 자격 미충족 시 실제 파일/노드/Storybook URL 대응표를 사용한다.",
+      "state_contract_ids": [],
+      "selection": "필요 조건 확인 전 도입하지 않음",
+      "figma_nodes": [
+        "20:3903"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "00",
+        "02",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-d.json",
+        "node_id": "20:3903",
+        "official_link_node_id": "20:3918",
+        "domain_link_node_ids": [
+          "20:3920"
+        ]
+      }
+    },
+    {
+      "source_id": "D16",
+      "name": "Storybook design integrations",
+      "source_category": "개발 도구 공식 워크플로",
+      "source_status": "기존 유지",
+      "source_url": "https://storybook.js.org/docs/sharing/design-integrations",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "design-ux-sources.json",
+      "source_evidence": "Figma와 실제 동작하는 컴포넌트 stories를 비교하여 기존 부품 재사용과 시각 차이 발견에 연결한다. 현재 프로젝트 지침의 Storybook 사용 경로를 유지한다.",
+      "preserved_limits": "Figma 안에 Storybook을 임베드하는 Connect 플러그인은 Chromatic 발행이 필요하다. 로컬 비교와 별도 외부 발행/요금/접근 권한을 구별한다.",
+      "domain_ids": [
+        "C06"
+      ],
+      "figma_artifact_ids": [
+        "ART-C06"
+      ],
+      "representation": [
+        "기초/부품/과업 표현",
+        "기술·검증 주석"
+      ],
+      "design_application": "공통 부품에 실제 Storybook 상태·코드 경로·Figma variant 대응을 붙인다.",
+      "state_contract_ids": [],
+      "selection": "현재 구현·부품 우선 재사용",
+      "figma_nodes": [
+        "20:3921"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "00",
+        "02",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-d.json",
+        "node_id": "20:3921",
+        "official_link_node_id": "20:3936",
+        "domain_link_node_ids": [
+          "20:3938"
+        ]
+      }
+    },
+    {
+      "source_id": "D17",
+      "name": "Figma MCP rate limits and access",
+      "source_category": "제품 공식 접근/사용량 조건",
+      "source_status": "조건부",
+      "source_url": "https://developers.figma.com/docs/figma-mcp-server/rate-limits-access/",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "design-ux-sources.json",
+      "source_evidence": "읽기 도구에 요금제/seat별 호출 한도가 있고 기존 파일의 보기/편집 권한 범위에서만 접근한다. 확인일 기준 Starter 안내는 월20회이다.",
+      "preserved_limits": "한도는 변경 가능하다. REST API의 Starter 파일 월6회 예시와 혼동하지 않는다. 현재 계정의 실제 잔여/권한은 이번 연구에서 조회하지 않았다.",
+      "domain_ids": [
+        "C06"
+      ],
+      "figma_artifact_ids": [
+        "ART-C06"
+      ],
+      "representation": [
+        "조건부 후보·도입 조건 카드",
+        "관련 상태/검증 주석"
+      ],
+      "design_application": "Figma 파일 접근/노드 기록/요청 한도를 제작 운영 주석으로 관리한다.",
+      "state_contract_ids": [],
+      "selection": "필요 조건 확인 전 도입하지 않음",
+      "figma_nodes": [
+        "20:3939"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "00",
+        "02",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-d.json",
+        "node_id": "20:3939",
+        "official_link_node_id": "20:3954",
+        "domain_link_node_ids": [
+          "20:3956"
+        ]
+      }
+    },
+    {
+      "source_id": "D18",
+      "name": "W3C Korean Layout Requirements",
+      "source_category": "Group Note Draft",
+      "source_status": "기본 권고",
+      "source_url": "https://www.w3.org/TR/klreq/",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "design-ux-sources.json",
+      "source_evidence": "한글 조판·줄 나눔·문자 배열의 언어적 차이를 설명하는 전문 자료이다. 긴 한글+수식+영문 코드가 섞이는 실제 예시의 표시 판단에 사용한다.",
+      "preserved_limits": "W3C Recommendation이 아니고 진행 중인 Group Note Draft이다. 브라우저 구현 해법이나 IME 실제 동작의 보증이 아니며 영문판이 권위 있는 판본이다.",
+      "domain_ids": [
+        "C04"
+      ],
+      "figma_artifact_ids": [
+        "ART-C04"
+      ],
+      "representation": [
+        "기초/부품/과업 표현",
+        "기술·검증 주석"
+      ],
+      "design_application": "긴 한글·혼합 수식·문장부호·줄바꿈·숫자 표본을 조판 frame에 넣는다.",
+      "state_contract_ids": [],
+      "selection": "관련 설계 판단과 검증 요구에 우선 적용",
+      "figma_nodes": [
+        "20:3957"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "01",
+        "08"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-d.json",
+        "node_id": "20:3957",
+        "official_link_node_id": "20:3972",
+        "domain_link_node_ids": [
+          "20:3974"
+        ]
+      }
+    },
+    {
+      "source_id": "D19",
+      "name": "CSS Color Module Level 4",
+      "source_category": "W3C Candidate Recommendation Draft",
+      "source_status": "조건부",
+      "source_url": "https://www.w3.org/TR/css-color-4/",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "design-ux-sources.json",
+      "source_evidence": "현대 색 공간과 색 표현의 기술 근거로 사용한다. OKLCH 등으로 천문대 빛/역할색을 조정할 때 실제 출력색·범위·대비를 확인한다.",
+      "preserved_limits": "최종 Recommendation이라고 부르지 않는다. 색 공간 선택만으로 WCAG 대비가 충족되지 않으며 실제 브라우저·색역과 대체값을 확인해야 한다.",
+      "domain_ids": [
+        "C04"
+      ],
+      "figma_artifact_ids": [
+        "ART-C04"
+      ],
+      "representation": [
+        "조건부 후보·도입 조건 카드",
+        "관련 상태/검증 주석"
+      ],
+      "design_application": "역할색의 실제 대비·색역·sRGB 대체값을 비교 주석으로 둔다.",
+      "state_contract_ids": [],
+      "selection": "필요 조건 확인 전 도입하지 않음",
+      "figma_nodes": [
+        "20:3975"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "01",
+        "08",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-d.json",
+        "node_id": "20:3975",
+        "official_link_node_id": "20:3990",
+        "domain_link_node_ids": [
+          "20:3992"
+        ]
+      }
+    },
+    {
+      "source_id": "D20",
+      "name": "Pretendard",
+      "source_category": "한국어 글꼴 프로젝트 공식 저장소",
+      "source_status": "조건부",
+      "source_url": "https://github.com/orioncactus/pretendard",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "design-ux-sources.json",
+      "source_evidence": "한국어와 영문을 함께 다루는 system-ui 대체 글꼴 후보이며 공식 저장소와 라이선스 파일을 확인했다. 본문·입력의 가독성 후보로 평가한다.",
+      "preserved_limits": "기존 사용자 서체를 강제로 교체하지 않는다. 실제 배포 파일·subset/용량·수식/코드 fallback·라이선스 의무를 선택 전에 확인한다.",
+      "domain_ids": [
+        "C04"
+      ],
+      "figma_artifact_ids": [
+        "ART-C04"
+      ],
+      "representation": [
+        "조건부 후보·도입 조건 카드",
+        "관련 상태/검증 주석"
+      ],
+      "design_application": "기존 서체를 유지한 상태에서 한글 표본·크기·fallback·배포 조건을 비교한다.",
+      "state_contract_ids": [],
+      "selection": "필요 조건 확인 전 도입하지 않음",
+      "figma_nodes": [
+        "20:3993"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "01",
+        "08",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-d.json",
+        "node_id": "20:3993",
+        "official_link_node_id": "20:4008",
+        "domain_link_node_ids": [
+          "20:4010"
+        ]
+      }
+    },
+    {
+      "source_id": "D21",
+      "name": "Laws of UX",
+      "source_category": "원저자 운영 큐레이션/교육 자료",
+      "source_status": "참고",
+      "source_url": "https://lawsofux.com/",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "design-ux-sources.json",
+      "source_evidence": "지각·기억·선택에 관한 여러 개념을 찾아보는 색인으로 활용한다. 근접성/공통 영역 등 관찰 가설을 만드는 출발점이다.",
+      "preserved_limits": "묶인 항목의 근거와 지위는 서로 다르다. Miller 7±2를 메뉴 수 상한으로, 모든 선택 감소를 사용성 향상으로 일반화하지 않는다. 핵심 결정은 원 연구/공식 기준을 추가 확인한다.",
+      "domain_ids": [
+        "C02"
+      ],
+      "figma_artifact_ids": [
+        "ART-C02"
+      ],
+      "representation": [
+        "참고·라이선스·비교 주석"
+      ],
+      "design_application": "경험칙 이름보다 실제 선택·인지·탐색 문제와 적용 한계를 주석으로 남긴다.",
+      "state_contract_ids": [],
+      "selection": "관찰/비교의 참고; 외형/제품/도구 자동 도입 아님",
+      "figma_nodes": [
+        "20:4011"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "00",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-d.json",
+        "node_id": "20:4011",
+        "official_link_node_id": "20:4026",
+        "domain_link_node_ids": [
+          "20:4028"
+        ]
+      }
+    },
+    {
+      "source_id": "D22",
+      "name": "Awwwards",
+      "source_category": "시각/인터랙션 사례 큐레이션",
+      "source_status": "참고",
+      "source_url": "https://www.awwwards.com/",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "design-ux-sources.json",
+      "source_evidence": "시각 표현과 인터랙션 사례를 찾는 후보이다. 공식 Mobile Excellence 문서의 검색 본문에서는 사용성·성능·수동 평가 항목을 확인했다.",
+      "preserved_limits": "홈과 공식 PDF 직접 열기는 오류/시간초과였다. 이번에 수상작 전수/직접 조작을 확인하지 않았다. 수상은 공부 앱의 장기 사용성과 접근성 통과 증거가 아니다.",
+      "domain_ids": [
+        "C02"
+      ],
+      "figma_artifact_ids": [
+        "ART-C02"
+      ],
+      "representation": [
+        "참고·라이선스·비교 주석"
+      ],
+      "design_application": "외형/인터랙션 참고 링크와 선정 요소를 표시하되 성능·사용성 검증 근거로 사용하지 않는다.",
+      "state_contract_ids": [],
+      "selection": "관찰/비교의 참고; 외형/제품/도구 자동 도입 아님",
+      "figma_nodes": [
+        "20:4029"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "00",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-d.json",
+        "node_id": "20:4029",
+        "official_link_node_id": "20:4044",
+        "domain_link_node_ids": [
+          "20:4046"
+        ]
+      }
+    },
+    {
+      "source_id": "D23",
+      "name": "Mobbin",
+      "source_category": "상용 UI/흐름 사례 라이브러리",
+      "source_status": "참고",
+      "source_url": "https://mobbin.com/",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "design-ux-sources.json",
+      "source_evidence": "모바일·웹 앱의 화면과 UX 흐름을 탐색하는 서비스의 공개 소개를 확인했다. 검색/편집/설정 같은 익숙한 흐름 비교 후보이다.",
+      "preserved_limits": "로그인 뒤 전체 라이브러리·유료 범위·개별 앱의 실제 사용성을 확인하지 않았다. 화면 캡처는 실패/저장/접근성 동작 증거가 아니다.",
+      "domain_ids": [
+        "C02"
+      ],
+      "figma_artifact_ids": [
+        "ART-C02"
+      ],
+      "representation": [
+        "참고·라이선스·비교 주석"
+      ],
+      "design_application": "참고할 흐름 패턴을 명시하고 실제 저장/실패 동작이 확인된 것과 구분한다.",
+      "state_contract_ids": [],
+      "selection": "관찰/비교의 참고; 외형/제품/도구 자동 도입 아님",
+      "figma_nodes": [
+        "20:4047"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "00",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-d.json",
+        "node_id": "20:4047",
+        "official_link_node_id": "20:4062",
+        "domain_link_node_ids": [
+          "20:4064"
+        ]
+      }
+    },
+    {
+      "source_id": "D24",
+      "name": "NASA Eyes",
+      "source_category": "공식 우주 탐색/데이터 시각화 사례",
+      "source_status": "참고",
+      "source_url": "https://science.nasa.gov/eyes/",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "design-ux-sources.json",
+      "source_evidence": "실제 NASA 자료를 탐색하는 브라우저 기반 3D 앱의 공식 설명을 확인했다. 전체/상세 이동·시간 탐색·관측 도구의 표현을 연구할 사례이다.",
+      "preserved_limits": "이번에 3D 런타임을 직접 조작하지 않았다. 천문대 장식 엔진을 NASA 데이터/천체 물리 시뮬레이션으로 포장하거나 전 앱을 3D로 바꾸지 않는다.",
+      "domain_ids": [
+        "C02"
+      ],
+      "figma_artifact_ids": [
+        "ART-C02"
+      ],
+      "representation": [
+        "참고·라이선스·비교 주석"
+      ],
+      "design_application": "우주 표현의 깊이·탐색 참고를 천문대 장면에 주석으로 연결한다.",
+      "state_contract_ids": [],
+      "selection": "관찰/비교의 참고; 외형/제품/도구 자동 도입 아님",
+      "figma_nodes": [
+        "20:4065"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "00",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-d.json",
+        "node_id": "20:4065",
+        "official_link_node_id": "20:4080",
+        "domain_link_node_ids": [
+          "20:4082"
+        ]
+      }
+    },
+    {
+      "source_id": "D25",
+      "name": "Bruno Simon portfolio",
+      "source_category": "제작자 공식 인터랙티브 웹 사례",
+      "source_status": "참고",
+      "source_url": "https://bruno-simon.com/",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "design-ux-sources.json",
+      "source_evidence": "제작자 페이지에서 공간 탐색, 여러 입력 방식, 효과 품질 조절, 복귀/초기화와 공개 코드 안내를 확인했다. 살아 있는 세계의 조작 반응을 연구할 사례이다.",
+      "preserved_limits": "이번에 렌더링 성능/실제 조작을 직접 시험하지 않았다. 자동차 조작 같은 포트폴리오의 진입 비용을 반복 공부 입력에 강제하지 않는다. 자산별 사용 권리를 별도 확인한다.",
+      "domain_ids": [
+        "C02"
+      ],
+      "figma_artifact_ids": [
+        "ART-C02"
+      ],
+      "representation": [
+        "참고·라이선스·비교 주석"
+      ],
+      "design_application": "몰입/상호작용 참고와 반복 기록의 진입 비용을 비교 주석으로 남긴다.",
+      "state_contract_ids": [],
+      "selection": "관찰/비교의 참고; 외형/제품/도구 자동 도입 아님",
+      "figma_nodes": [
+        "20:4083"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "00",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-d.json",
+        "node_id": "20:4083",
+        "official_link_node_id": "20:4098",
+        "domain_link_node_ids": [
+          "20:4100"
+        ]
+      }
+    },
+    {
+      "source_id": "D26",
+      "name": "Fitts 법칙의 HCI 적용 연구",
+      "source_category": "연구 논문/조건 있는 운동 시간 모형",
+      "source_status": "기본 권고",
+      "source_url": "https://www.yorku.ca/mack/hci1992.html",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "design-ux-sources.json",
+      "source_evidence": "저자 공개 논문에서 목표까지의 거리와 목표 폭에 따른 획득 시간의 관계 및 적용 조건을 확인했다. 자주 쓰는 작은 조작의 실제 누를 수 있는 영역·거리·오조작을 검토한다.",
+      "preserved_limits": "모든 버튼을 크게 만들라는 규칙이 아니다. 입력 기기·정확도·인접 목표·실제 과업이 다르면 계수와 적용을 확인해야 한다. 1954 원 논문의 서지와 1992 HCI 논문을 구별한다.",
+      "domain_ids": [
+        "C02"
+      ],
+      "figma_artifact_ids": [
+        "ART-C02"
+      ],
+      "representation": [
+        "설계 판단 주석"
+      ],
+      "design_application": "자주 누르는 실제 목표·간격·인접 오조작을 터치/포인터 frame으로 비교한다.",
+      "state_contract_ids": [],
+      "selection": "관련 설계 판단과 검증 요구에 우선 적용",
+      "figma_nodes": [
+        "20:4101"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "00",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-d.json",
+        "node_id": "20:4101",
+        "official_link_node_id": "20:4116",
+        "domain_link_node_ids": [
+          "20:4118"
+        ]
+      }
+    },
+    {
+      "source_id": "D27",
+      "name": "Hick 1952 선택 반응 연구",
+      "source_category": "원 연구 공개 초록",
+      "source_status": "기본 권고",
+      "source_url": "https://journals.sagepub.com/doi/pdf/10.1080/17470215208416600",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "design-ux-sources.json",
+      "source_evidence": "원 연구 공개 초록은 선택 반응 실험에서 대안 수·오류 허용·불확실성과 시간의 관계를 다룬다. 첫 화면의 우선 행동과 낯선 선택지의 분류를 평가하는 가설로 사용한다.",
+      "preserved_limits": "유료 논문 본문은 읽지 않았다. 메뉴 항목을 무조건 삭제하거나 깊숙이 숨기라는 결론이 아니다. 숙련·의미·검색·선택 빈도에 따라 실제 결정 시간을 확인한다.",
+      "domain_ids": [
+        "C02"
+      ],
+      "figma_artifact_ids": [
+        "ART-C02"
+      ],
+      "representation": [
+        "설계 판단 주석"
+      ],
+      "design_application": "선택량보다 탐색·의미·빈도·검색을 비교하고 필요한 옵션을 보존한다.",
+      "state_contract_ids": [],
+      "selection": "관련 설계 판단과 검증 요구에 우선 적용",
+      "figma_nodes": [
+        "20:4119"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "00",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-d.json",
+        "node_id": "20:4119",
+        "official_link_node_id": "20:4134",
+        "domain_link_node_ids": [
+          "20:4136"
+        ]
+      }
+    },
+    {
+      "source_id": "D28",
+      "name": "Palmer 1992 공통 영역 지각 연구",
+      "source_category": "원 연구 공개 초록",
+      "source_status": "기본 권고",
+      "source_url": "https://www.sciencedirect.com/science/article/pii/001002859290014S",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "design-ux-sources.json",
+      "source_evidence": "공개 초록에서 같은 경계 안의 요소가 묶여 보이며 근접성·유사성과 상호작용할 수 있음을 확인했다. 천문대 작업면의 범위·입력·관련 버튼을 관계에 맞게 묶는 데 적용한다.",
+      "preserved_limits": "유료 본문 미열람. 게슈탈트 전체를 이 한 연구로 검증하지 않으며 모든 구역에 두꺼운 픽셀 카드를 둘 이유로 사용하지 않는다. 원문상의 실제 의미 관계와 시각 묶음을 대조한다.",
+      "domain_ids": [
+        "C02"
+      ],
+      "figma_artifact_ids": [
+        "ART-C02"
+      ],
+      "representation": [
+        "설계 판단 주석"
+      ],
+      "design_application": "실제 의미 관계에 맞는 묶음·간격·구획을 화면에 표시한다.",
+      "state_contract_ids": [],
+      "selection": "관련 설계 판단과 검증 요구에 우선 적용",
+      "figma_nodes": [
+        "20:4137"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "00",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-d.json",
+        "node_id": "20:4137",
+        "official_link_node_id": "20:4152",
+        "domain_link_node_ids": [
+          "20:4154"
+        ]
+      }
+    },
+    {
+      "source_id": "F01",
+      "name": "React 상태 설계",
+      "source_category": "프론트엔드 구조",
+      "source_status": "기존 유지",
+      "source_url": "https://react.dev/learn/managing-state",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "frontend-graphics-sources.json",
+      "source_evidence": "중복 상태를 줄이고 상태 소유권·상태 보존/초기화·reducer/context 경계를 설명한다.",
+      "preserved_limits": "학습 원장과 서버 권한을 컴포넌트 상태로 대체하지 않는다.",
+      "domain_ids": [
+        "C07"
+      ],
+      "figma_artifact_ids": [
+        "ART-C07"
+      ],
+      "representation": [
+        "설계 판단 주석"
+      ],
+      "design_application": "화면/초안/서버 상태 소유권과 재렌더 때 선택·커서 보존 조건을 그린다.",
+      "state_contract_ids": [
+        "EDIT-DIRTY"
+      ],
+      "selection": "현재 구현·부품 우선 재사용",
+      "figma_nodes": [
+        "20:4188"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-f.json",
+        "node_id": "20:4188",
+        "official_link_node_id": "20:4203",
+        "domain_link_node_ids": [
+          "20:4205"
+        ]
+      }
+    },
+    {
+      "source_id": "F02",
+      "name": "HTML dialog",
+      "source_category": "브라우저 기본 UI",
+      "source_status": "기본 권고",
+      "source_url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dialog",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "frontend-graphics-sources.json",
+      "source_evidence": "모달과 비모달 대화상자의 기본 요소와 접근성·초점 동작을 설명한다.",
+      "preserved_limits": "기존 Modal의 초안/초점 복귀를 확인한 뒤 변경한다. 기본 요소 사용만으로 전체 접근성이 보장되지 않는다.",
+      "domain_ids": [
+        "C07",
+        "C08"
+      ],
+      "figma_artifact_ids": [
+        "ART-C07",
+        "ART-C08"
+      ],
+      "representation": [
+        "기초/부품/과업 표현",
+        "기술·검증 주석"
+      ],
+      "design_application": "창의 모달 여부·배경 비활성·초점·닫기/복귀 규칙을 표현한다.",
+      "state_contract_ids": [],
+      "selection": "관련 설계 판단과 검증 요구에 우선 적용",
+      "figma_nodes": [
+        "20:4207"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-f.json",
+        "node_id": "20:4207",
+        "official_link_node_id": "20:4222",
+        "domain_link_node_ids": [
+          "20:4224",
+          "20:4225"
+        ]
+      }
+    },
+    {
+      "source_id": "F03",
+      "name": "Popover API",
+      "source_category": "브라우저 기본 UI",
+      "source_status": "기본 권고",
+      "source_url": "https://developer.mozilla.org/en-US/docs/Web/API/Popover_API",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "frontend-graphics-sources.json",
+      "source_evidence": "HTML/JS에서 팝오버를 표시하며 Popover API 자체는 비모달이다.",
+      "preserved_limits": "모달과 혼동하지 않는다. 최신 세부 기능은 대상 브라우저에서 확인한다.",
+      "domain_ids": [
+        "C07",
+        "C08"
+      ],
+      "figma_artifact_ids": [
+        "ART-C07",
+        "ART-C08"
+      ],
+      "representation": [
+        "기초/부품/과업 표현",
+        "기술·검증 주석"
+      ],
+      "design_application": "비모달 도움/메뉴의 진입·바깥 클릭·키보드 닫기·겹침 상태를 표현한다.",
+      "state_contract_ids": [],
+      "selection": "관련 설계 판단과 검증 요구에 우선 적용",
+      "figma_nodes": [
+        "20:4226"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-f.json",
+        "node_id": "20:4226",
+        "official_link_node_id": "20:4241",
+        "domain_link_node_ids": [
+          "20:4243",
+          "20:4244"
+        ]
+      }
+    },
+    {
+      "source_id": "F04",
+      "name": "CSS Container Queries",
+      "source_category": "반응형 부품",
+      "source_status": "기본 권고",
+      "source_url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Containment/Container_queries",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "frontend-graphics-sources.json",
+      "source_evidence": "viewport 대신 컨테이너 크기에 따라 재사용 부품의 표현을 바꾼다.",
+      "preserved_limits": "containment의 크기 계산 영향과 미지원 대체 배치를 확인한다.",
+      "domain_ids": [
+        "C04",
+        "C07",
+        "C08"
+      ],
+      "figma_artifact_ids": [
+        "ART-C04",
+        "ART-C07",
+        "ART-C08"
+      ],
+      "representation": [
+        "기초/부품/과업 표현",
+        "기술·검증 주석"
+      ],
+      "design_application": "전체 기기 폭과 패널 가용 폭에 따른 동일 부품의 재배치를 표현한다.",
+      "state_contract_ids": [],
+      "selection": "관련 설계 판단과 검증 요구에 우선 적용",
+      "figma_nodes": [
+        "20:4245"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-f.json",
+        "node_id": "20:4245",
+        "official_link_node_id": "20:4260",
+        "domain_link_node_ids": [
+          "20:4262",
+          "20:4263",
+          "20:4264"
+        ]
+      }
+    },
+    {
+      "source_id": "F05",
+      "name": "React Aria",
+      "source_category": "접근 가능한 무스타일 부품",
+      "source_status": "조건부",
+      "source_url": "https://react-aria.adobe.com/",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "frontend-graphics-sources.json",
+      "source_evidence": "외형을 직접 구성하면서 키보드·터치·국제화·복잡한 입력 패턴을 제공한다.",
+      "preserved_limits": "날짜/콤보박스 등 필요한 부품만 후보로 삼고 기존 스타일·상태와 중복하지 않는다.",
+      "domain_ids": [
+        "C08"
+      ],
+      "figma_artifact_ids": [
+        "ART-C08"
+      ],
+      "representation": [
+        "조건부 후보·도입 조건 카드",
+        "관련 상태/검증 주석"
+      ],
+      "design_application": "복잡한 선택/날짜 입력에 부족한 조작이 있을 때 비교할 조건부 부품 후보 카드로 둔다.",
+      "state_contract_ids": [],
+      "selection": "필요 조건 확인 전 도입하지 않음",
+      "figma_nodes": [
+        "20:4265"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-f.json",
+        "node_id": "20:4265",
+        "official_link_node_id": "20:4280",
+        "domain_link_node_ids": [
+          "20:4282"
+        ]
+      }
+    },
+    {
+      "source_id": "F06",
+      "name": "Radix Primitives",
+      "source_category": "접근 가능한 무스타일 부품",
+      "source_status": "조건부",
+      "source_url": "https://www.radix-ui.com/primitives/docs/overview/introduction",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "frontend-graphics-sources.json",
+      "source_evidence": "무스타일 부품과 조합형 API, 초점·키보드·ARIA 동작을 제공한다.",
+      "preserved_limits": "React Aria와 같은 역할의 부품을 무조건 중복 도입하지 않는다. 앱 조합의 접근성 검증은 별도다.",
+      "domain_ids": [
+        "C08"
+      ],
+      "figma_artifact_ids": [
+        "ART-C08"
+      ],
+      "representation": [
+        "조건부 후보·도입 조건 카드",
+        "관련 상태/검증 주석"
+      ],
+      "design_application": "무스타일 primitive 후보를 같은 기능의 기존 부품과 비교 주석으로 둔다.",
+      "state_contract_ids": [],
+      "selection": "필요 조건 확인 전 도입하지 않음",
+      "figma_nodes": [
+        "20:4283"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-f.json",
+        "node_id": "20:4283",
+        "official_link_node_id": "20:4298",
+        "domain_link_node_ids": [
+          "20:4300"
+        ]
+      }
+    },
+    {
+      "source_id": "F07",
+      "name": "shadcn/ui",
+      "source_category": "부품 코드 배포",
+      "source_status": "참고",
+      "source_url": "https://ui.shadcn.com/docs",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "frontend-graphics-sources.json",
+      "source_evidence": "수정 가능한 실제 부품 코드를 프로젝트에 가져오는 배포 방식이다.",
+      "preserved_limits": "완성 외형을 천문대 기본값으로 복제하지 않는다. 가져온 코드 유지보수와 기존 CSS/토큰 호환성을 부담한다.",
+      "domain_ids": [
+        "C08"
+      ],
+      "figma_artifact_ids": [
+        "ART-C08"
+      ],
+      "representation": [
+        "참고·라이선스·비교 주석"
+      ],
+      "design_application": "필요한 조작 구조만 참고하고 천문대 토큰/외형과 코드 유지 책임을 명시한다.",
+      "state_contract_ids": [],
+      "selection": "관찰/비교의 참고; 외형/제품/도구 자동 도입 아님",
+      "figma_nodes": [
+        "20:4301"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-f.json",
+        "node_id": "20:4301",
+        "official_link_node_id": "20:4316",
+        "domain_link_node_ids": [
+          "20:4318"
+        ]
+      }
+    },
+    {
+      "source_id": "F08",
+      "name": "Floating UI",
+      "source_category": "팝오버 위치와 상호작용",
+      "source_status": "조건부",
+      "source_url": "https://floating-ui.com/docs/getting-started",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "frontend-graphics-sources.json",
+      "source_evidence": "기준 요소를 따르는 위치와 화면 경계 충돌 회피, React 상호작용 도구를 제공한다.",
+      "preserved_limits": "단순 팝오버는 native API 우선. positions-only 패키지는 완성 메뉴/콤보박스를 대신하지 않는다.",
+      "domain_ids": [
+        "C08"
+      ],
+      "figma_artifact_ids": [
+        "ART-C08"
+      ],
+      "representation": [
+        "조건부 후보·도입 조건 카드",
+        "관련 상태/검증 주석"
+      ],
+      "design_application": "팝오버 잘림·경계 회피·스크롤/resize 때 위치 규칙을 설계 주석으로 둔다.",
+      "state_contract_ids": [],
+      "selection": "필요 조건 확인 전 도입하지 않음",
+      "figma_nodes": [
+        "20:4319"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-f.json",
+        "node_id": "20:4319",
+        "official_link_node_id": "20:4334",
+        "domain_link_node_ids": [
+          "20:4336"
+        ]
+      }
+    },
+    {
+      "source_id": "F09",
+      "name": "TanStack Query",
+      "source_category": "서버 상태",
+      "source_status": "조건부",
+      "source_url": "https://tanstack.com/query/latest/docs/framework/react/overview",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "frontend-graphics-sources.json",
+      "source_evidence": "서버 데이터 읽기·캐시·동기화·갱신·중복 요청 관리에 특화한다.",
+      "preserved_limits": "기존 repository/outbox/CAS와 초안의 단일 책임을 정한 뒤 검토한다. durable 저장/충돌 해결 자체를 보장하지 않는다.",
+      "domain_ids": [
+        "C09"
+      ],
+      "figma_artifact_ids": [
+        "ART-C09"
+      ],
+      "representation": [
+        "조건부 후보·도입 조건 카드",
+        "관련 상태/검증 주석"
+      ],
+      "design_application": "조회 캐시/재시도/무효화와 기록 원장/초안/outbox 경계를 그린다.",
+      "state_contract_ids": [
+        "SAVE-SAVING"
+      ],
+      "selection": "필요 조건 확인 전 도입하지 않음",
+      "figma_nodes": [
+        "20:4337"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "02",
+        "07",
+        "08",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-f.json",
+        "node_id": "20:4337",
+        "official_link_node_id": "20:4352",
+        "domain_link_node_ids": [
+          "20:4354"
+        ]
+      }
+    },
+    {
+      "source_id": "F10",
+      "name": "TanStack Virtual",
+      "source_category": "긴 목록 가상화",
+      "source_status": "조건부",
+      "source_url": "https://tanstack.com/virtual/latest/docs/introduction",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "frontend-graphics-sources.json",
+      "source_evidence": "마크업과 스타일을 강제하지 않고 필요한 구간의 목록/격자를 렌더하도록 지원한다.",
+      "preserved_limits": "누적 목록의 실제 병목이 있을 때 도입한다. 포커스·브라우저 찾기·높이 변화·스크롤 복귀를 검증한다.",
+      "domain_ids": [
+        "C12"
+      ],
+      "figma_artifact_ids": [
+        "ART-C12"
+      ],
+      "representation": [
+        "조건부 후보·도입 조건 카드",
+        "관련 상태/검증 주석"
+      ],
+      "design_application": "긴 목록에서 편집 항목·초점·찾기·스크롤 복귀를 유지하는 조건을 둔다.",
+      "state_contract_ids": [],
+      "selection": "필요 조건 확인 전 도입하지 않음",
+      "figma_nodes": [
+        "20:4356"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "08",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-f.json",
+        "node_id": "20:4356",
+        "official_link_node_id": "20:4371",
+        "domain_link_node_ids": [
+          "20:4373"
+        ]
+      }
+    },
+    {
+      "source_id": "F11",
+      "name": "XState",
+      "source_category": "복잡한 전이와 워크플로",
+      "source_status": "조건부",
+      "source_url": "https://stately.ai/docs/xstate",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "frontend-graphics-sources.json",
+      "source_evidence": "이벤트·statechart·actor를 이용해 상태 전이와 복잡한 흐름을 표현한다.",
+      "preserved_limits": "단순 열기/닫기에 강제하지 않는다. 현재 문서의 alpha 안내와 안정 버전 문서를 구분하고 실제 도입 때 버전을 고정한다.",
+      "domain_ids": [
+        "C09"
+      ],
+      "figma_artifact_ids": [
+        "ART-C09"
+      ],
+      "representation": [
+        "조건부 후보·도입 조건 카드",
+        "관련 상태/검증 주석"
+      ],
+      "design_application": "저장/취소/충돌/복원/AI의 허용 전이와 guard를 상태도로 표현한다.",
+      "state_contract_ids": [
+        "SAVE-SAVING",
+        "AI-GENERATING"
+      ],
+      "selection": "필요 조건 확인 전 도입하지 않음",
+      "figma_nodes": [
+        "20:4374"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "02",
+        "07",
+        "08",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-f.json",
+        "node_id": "20:4374",
+        "official_link_node_id": "20:4389",
+        "domain_link_node_ids": [
+          "20:4391"
+        ]
+      }
+    },
+    {
+      "source_id": "F12",
+      "name": "Zustand",
+      "source_category": "클라이언트 공유 상태",
+      "source_status": "조건부",
+      "source_url": "https://zustand.docs.pmnd.rs/learn/getting-started/introduction",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "frontend-graphics-sources.json",
+      "source_evidence": "선택 구독 기반의 외부 상태 저장소와 React hook API를 제공한다.",
+      "preserved_limits": "원장/초안/권한의 두 번째 저장 원본을 만들지 않는다. 기존 reducer/context로 충분하면 추가하지 않는다.",
+      "domain_ids": [
+        "C09"
+      ],
+      "figma_artifact_ids": [
+        "ART-C09"
+      ],
+      "representation": [
+        "조건부 후보·도입 조건 카드",
+        "관련 상태/검증 주석"
+      ],
+      "design_application": "공유 UI 상태와 영속 원본의 경계 및 owner 전환 reset 범위를 그린다.",
+      "state_contract_ids": [],
+      "selection": "필요 조건 확인 전 도입하지 않음",
+      "figma_nodes": [
+        "20:4393"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "02",
+        "07",
+        "08",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-f.json",
+        "node_id": "20:4393",
+        "official_link_node_id": "20:4408",
+        "domain_link_node_ids": [
+          "20:4410"
+        ]
+      }
+    },
+    {
+      "source_id": "F13",
+      "name": "Motion 접근성",
+      "source_category": "React 모션",
+      "source_status": "기존 유지",
+      "source_url": "https://motion.dev/docs/react-accessibility",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "frontend-graphics-sources.json",
+      "source_evidence": "reducedMotion과 useReducedMotion으로 이동/크기 변화와 자동 재생을 조정한다.",
+      "preserved_limits": "기존 motion 패키지와 토큰을 유지한다. core API와 유료 Motion+ 자료/기능은 구분한다.",
+      "domain_ids": [
+        "C05",
+        "C10"
+      ],
+      "figma_artifact_ids": [
+        "ART-C05",
+        "ART-C10"
+      ],
+      "representation": [
+        "기초/부품/과업 표현",
+        "기술·검증 주석"
+      ],
+      "design_application": "천문대 모션의 기본·감소·정지·재개와 포인터/터치 반응을 표현한다.",
+      "state_contract_ids": [
+        "RENDER-PAUSED"
+      ],
+      "selection": "현재 구현·부품 우선 재사용",
+      "figma_nodes": [
+        "20:4411"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "01",
+        "02",
+        "03",
+        "08",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-f.json",
+        "node_id": "20:4411",
+        "official_link_node_id": "20:4426",
+        "domain_link_node_ids": [
+          "20:4428",
+          "20:4429"
+        ]
+      }
+    },
+    {
+      "source_id": "F14",
+      "name": "GSAP context",
+      "source_category": "시퀀스 모션의 수명",
+      "source_status": "기존 유지",
+      "source_url": "https://gsap.com/docs/v3/GSAP/gsap.context()/",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "frontend-graphics-sources.json",
+      "source_evidence": "context에 모은 애니메이션을 revert하여 정리하고 컴포넌트 범위를 제한할 수 있다.",
+      "preserved_limits": "Motion/CSS와 같은 속성을 동시에 제어하지 않는다. context는 재생 제어용 timeline과 역할이 다르다.",
+      "domain_ids": [
+        "C10"
+      ],
+      "figma_artifact_ids": [
+        "ART-C10"
+      ],
+      "representation": [
+        "기초/부품/과업 표현",
+        "기술·검증 주석"
+      ],
+      "design_application": "장면 진입/해제·중복 제어 금지·재진입 시퀀스를 기술주석으로 둔다.",
+      "state_contract_ids": [],
+      "selection": "현재 구현·부품 우선 재사용",
+      "figma_nodes": [
+        "20:4431"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "01",
+        "03",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-f.json",
+        "node_id": "20:4431",
+        "official_link_node_id": "20:4446",
+        "domain_link_node_ids": [
+          "20:4448"
+        ]
+      }
+    },
+    {
+      "source_id": "F15",
+      "name": "GSAP Standard No Charge License",
+      "source_category": "라이선스",
+      "source_status": "참고",
+      "source_url": "https://gsap.com/community/standard-license/",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "frontend-graphics-sources.json",
+      "source_evidence": "공식 Standard No Charge License는 상업 사용과 이전 회원용 플러그인 사용을 무상 허용한다고 설명한다.",
+      "preserved_limits": "MIT와 동일한 라이선스로 표기하지 않는다. 금지 용도 등 현행 조건과 고지를 보존한다.",
+      "domain_ids": [
+        "C10"
+      ],
+      "figma_artifact_ids": [
+        "ART-C10"
+      ],
+      "representation": [
+        "참고·라이선스·비교 주석"
+      ],
+      "design_application": "GSAP 역할과 라이선스 확인 조건을 자산/기술 기록에 남긴다.",
+      "state_contract_ids": [],
+      "selection": "관찰/비교의 참고; 외형/제품/도구 자동 도입 아님",
+      "figma_nodes": [
+        "20:4449"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "01",
+        "03",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-f.json",
+        "node_id": "20:4449",
+        "official_link_node_id": "20:4464",
+        "domain_link_node_ids": [
+          "20:4466"
+        ]
+      }
+    },
+    {
+      "source_id": "F16",
+      "name": "Rive React runtime",
+      "source_category": "입력에 반응하는 벡터 애니메이션",
+      "source_status": "기존 유지",
+      "source_url": "https://rive.app/docs/runtimes/react/react",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "frontend-graphics-sources.json",
+      "source_evidence": "hooks·component·imperative runtime으로 RIV 재생, state machine, data binding, 이벤트와 cleanup을 제어한다.",
+      "preserved_limits": "현재 설치는 react-canvas이며 공식 quick start는 react-webgl2다. 예제 패키지를 그대로 복제하여 렌더러를 교체하지 않는다.",
+      "domain_ids": [
+        "C10"
+      ],
+      "figma_artifact_ids": [
+        "ART-C10"
+      ],
+      "representation": [
+        "기초/부품/과업 표현",
+        "기술·검증 주석"
+      ],
+      "design_application": "현재 Rive runtime과 인터랙티브 자산 입력/재생/실패 상태를 연결한다.",
+      "state_contract_ids": [],
+      "selection": "현재 구현·부품 우선 재사용",
+      "figma_nodes": [
+        "20:4467"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "01",
+        "03",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-f.json",
+        "node_id": "20:4467",
+        "official_link_node_id": "20:4482",
+        "domain_link_node_ids": [
+          "20:4484"
+        ]
+      }
+    },
+    {
+      "source_id": "F17",
+      "name": "dotLottie React",
+      "source_category": "벡터 타임라인 재생",
+      "source_status": "기존 유지",
+      "source_url": "https://docs.lottiefiles.com/en/runtimes/distributions/react/v0.x",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "frontend-graphics-sources.json",
+      "source_evidence": "React에서 lottie/json 애니메이션을 재생하며 웹 플레이어와 연계한다.",
+      "preserved_limits": "플레이어와 마켓 작품의 라이선스는 별개다. 기존 지연 로드·정지·실패 복귀·로컬 에셋 제공을 보존한다.",
+      "domain_ids": [
+        "C10"
+      ],
+      "figma_artifact_ids": [
+        "ART-C10"
+      ],
+      "representation": [
+        "기초/부품/과업 표현",
+        "기술·검증 주석"
+      ],
+      "design_application": "Lottie 자산 로드/정지/실패·대체 표시와 배포 자산 권리를 주석으로 둔다.",
+      "state_contract_ids": [],
+      "selection": "현재 구현·부품 우선 재사용",
+      "figma_nodes": [
+        "20:4485"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "01",
+        "03",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-f.json",
+        "node_id": "20:4485",
+        "official_link_node_id": "20:4500",
+        "domain_link_node_ids": [
+          "20:4502"
+        ]
+      }
+    },
+    {
+      "source_id": "F18",
+      "name": "PixiJS 성능 지침",
+      "source_category": "2D 장면 엔진",
+      "source_status": "조건부",
+      "source_url": "https://pixijs.com/8.x/guides/concepts/performance-tips",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "frontend-graphics-sources.json",
+      "source_evidence": "sprite batching·spritesheet·텍스처 정리·필터 비용·GPU/CPU 병목에 따른 culling 선택을 설명한다.",
+      "preserved_limits": "다수 2D 장면/스프라이트 관리가 기존 WebGL2+SVG보다 이득일 때만 비교한다. culling이 항상 빨라지는 것은 아니다.",
+      "domain_ids": [
+        "C11"
+      ],
+      "figma_artifact_ids": [
+        "ART-C11"
+      ],
+      "representation": [
+        "조건부 후보·도입 조건 카드",
+        "관련 상태/검증 주석"
+      ],
+      "design_application": "장면/스프라이트 수요와 기존 SVG/WebGL 대비 전환 조건을 기술 카드로 둔다.",
+      "state_contract_ids": [],
+      "selection": "필요 조건 확인 전 도입하지 않음",
+      "figma_nodes": [
+        "20:4503"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "01",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-f.json",
+        "node_id": "20:4503",
+        "official_link_node_id": "20:4518",
+        "domain_link_node_ids": [
+          "20:4520"
+        ]
+      }
+    },
+    {
+      "source_id": "F19",
+      "name": "Three.js GPU 자원 정리",
+      "source_category": "3D 장면 엔진",
+      "source_status": "조건부",
+      "source_url": "https://threejs.org/manual/pages/cleanup.html",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "frontend-graphics-sources.json",
+      "source_evidence": "geometry·material·texture의 dispose 등 GPU 자원 수명을 명시적으로 관리해야 한다.",
+      "preserved_limits": "입체 장면·모델·광원 요구가 생길 때 후보로 삼는다. 현재 2D 천문대를 전면 이관할 근거는 없다.",
+      "domain_ids": [
+        "C11"
+      ],
+      "figma_artifact_ids": [
+        "ART-C11"
+      ],
+      "representation": [
+        "조건부 후보·도입 조건 카드",
+        "관련 상태/검증 주석"
+      ],
+      "design_application": "실제 3D 요구가 있을 때의 카메라/자원/해제 조건을 기술 카드로 둔다.",
+      "state_contract_ids": [],
+      "selection": "필요 조건 확인 전 도입하지 않음",
+      "figma_nodes": [
+        "20:4521"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "01",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-f.json",
+        "node_id": "20:4521",
+        "official_link_node_id": "20:4536",
+        "domain_link_node_ids": [
+          "20:4538"
+        ]
+      }
+    },
+    {
+      "source_id": "F20",
+      "name": "React Three Fiber 성능 확장",
+      "source_category": "React와 3D 통합",
+      "source_status": "조건부",
+      "source_url": "https://github.com/pmndrs/react-three-fiber/blob/master/docs/advanced/scaling-performance.mdx",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "frontend-graphics-sources.json",
+      "source_evidence": "on-demand rendering·재사용·instancing·LOD·적응 해상도 등의 구현을 설명한다.",
+      "preserved_limits": "Three.js를 채택할 때 검토한다. 문서 예시의 물체 수·FPS를 이 앱의 성능 보장이나 고정 예산으로 옮기지 않는다.",
+      "domain_ids": [
+        "C11",
+        "C12"
+      ],
+      "figma_artifact_ids": [
+        "ART-C11",
+        "ART-C12"
+      ],
+      "representation": [
+        "조건부 후보·도입 조건 카드",
+        "관련 상태/검증 주석"
+      ],
+      "design_application": "Three 채택 선행 조건과 LOD/품질 단계의 비교 측정 요구를 남긴다.",
+      "state_contract_ids": [],
+      "selection": "필요 조건 확인 전 도입하지 않음",
+      "figma_nodes": [
+        "20:4539"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "01",
+        "08",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-f.json",
+        "node_id": "20:4539",
+        "official_link_node_id": "20:4554",
+        "domain_link_node_ids": [
+          "20:4556",
+          "20:4557"
+        ]
+      }
+    },
+    {
+      "source_id": "F21",
+      "name": "Khronos WebGL",
+      "source_category": "GPU 웹 표준",
+      "source_status": "기존 유지",
+      "source_url": "https://www.khronos.org/webgl/",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "frontend-graphics-sources.json",
+      "source_evidence": "WebGL은 OpenGL ES 기반의 웹 그래픽 표준이며 WebGL2는 ES3 기능 집합을 노출한다.",
+      "preserved_limits": "표준 존재와 개별 기기 GPU 가용성은 다르다. 현재 SVG fallback과 context 복구를 유지한다.",
+      "domain_ids": [
+        "C11",
+        "C12"
+      ],
+      "figma_artifact_ids": [
+        "ART-C11",
+        "ART-C12"
+      ],
+      "representation": [
+        "설계 판단 주석"
+      ],
+      "design_application": "현재 WebGL+SVG 역할·context loss·대체 표현·입력 유지 상태를 표현한다.",
+      "state_contract_ids": [
+        "RENDER-FALLBACK"
+      ],
+      "selection": "현재 구현·부품 우선 재사용",
+      "figma_nodes": [
+        "20:4558"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "01",
+        "08",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-f.json",
+        "node_id": "20:4558",
+        "official_link_node_id": "20:4573",
+        "domain_link_node_ids": [
+          "20:4575",
+          "20:4576"
+        ]
+      }
+    },
+    {
+      "source_id": "F22",
+      "name": "WebGPU API",
+      "source_category": "고급 GPU 계산과 렌더링",
+      "source_status": "조건부",
+      "source_url": "https://developer.mozilla.org/en-US/docs/Web/API/WebGPU_API",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "frontend-graphics-sources.json",
+      "source_evidence": "GPU 렌더링과 일반 계산 pipeline을 제공하며 HTTPS와 지원 환경이 필요하다.",
+      "preserved_limits": "확인 시점 MDN은 Limited availability로 안내한다. GPU 계산 병목과 실제 대상 기기 이득이 입증될 때 선택 경로로 검토한다.",
+      "domain_ids": [
+        "C11",
+        "C12"
+      ],
+      "figma_artifact_ids": [
+        "ART-C11",
+        "ART-C12"
+      ],
+      "representation": [
+        "조건부 후보·도입 조건 카드",
+        "관련 상태/검증 주석"
+      ],
+      "design_application": "지원 기기 조건·기존 renderer 대체·실측 도입 기준을 기술주석으로 둔다.",
+      "state_contract_ids": [
+        "CONTENT-UNAVAILABLE"
+      ],
+      "selection": "필요 조건 확인 전 도입하지 않음",
+      "figma_nodes": [
+        "20:4578"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "01",
+        "08",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-f.json",
+        "node_id": "20:4578",
+        "official_link_node_id": "20:4593",
+        "domain_link_node_ids": [
+          "20:4595",
+          "20:4596"
+        ]
+      }
+    },
+    {
+      "source_id": "F23",
+      "name": "OffscreenCanvas",
+      "source_category": "메인 스레드 밖의 렌더링",
+      "source_status": "조건부",
+      "source_url": "https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvas",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "frontend-graphics-sources.json",
+      "source_evidence": "canvas 제어를 worker로 옮겨 렌더링할 수 있다.",
+      "preserved_limits": "메시지 전달 비용·포인터 동기화·해당 렌더러 지원·종료/복구를 포함해 비교한다. DOM과 사용자 입력의 책임은 별도다.",
+      "domain_ids": [
+        "C11",
+        "C12"
+      ],
+      "figma_artifact_ids": [
+        "ART-C11",
+        "ART-C12"
+      ],
+      "representation": [
+        "조건부 후보·도입 조건 카드",
+        "관련 상태/검증 주석"
+      ],
+      "design_application": "렌더 worker와 DOM 입력의 책임·메시지/취소·복구 조건을 표현한다.",
+      "state_contract_ids": [],
+      "selection": "필요 조건 확인 전 도입하지 않음",
+      "figma_nodes": [
+        "20:4598"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "01",
+        "08",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-f.json",
+        "node_id": "20:4598",
+        "official_link_node_id": "20:4613",
+        "domain_link_node_ids": [
+          "20:4615",
+          "20:4616"
+        ]
+      }
+    },
+    {
+      "source_id": "F24",
+      "name": "WebGL best practices",
+      "source_category": "GPU 운용과 성능",
+      "source_status": "기본 권고",
+      "source_url": "https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API/WebGL_best_practices",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "frontend-graphics-sources.json",
+      "source_evidence": "자원 삭제·컨텍스트 종료·batching·해상도와 메모리 등 브라우저 GPU 비용을 관리하는 지침이다.",
+      "preserved_limits": "CPU 제출 시간만으로 GPU 시간/FPS를 단정하지 않는다. 실제 장면/브라우저의 측정 결과로 조정한다.",
+      "domain_ids": [
+        "C11",
+        "C12"
+      ],
+      "figma_artifact_ids": [
+        "ART-C11",
+        "ART-C12"
+      ],
+      "representation": [
+        "설계 판단 주석"
+      ],
+      "design_application": "GPU 자원·해상도·복구·실제 측정 범위를 렌더 보드에 연결한다.",
+      "state_contract_ids": [
+        "RENDER-FALLBACK"
+      ],
+      "selection": "관련 설계 판단과 검증 요구에 우선 적용",
+      "figma_nodes": [
+        "20:4617"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "01",
+        "08",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-f.json",
+        "node_id": "20:4617",
+        "official_link_node_id": "20:4632",
+        "domain_link_node_ids": [
+          "20:4634",
+          "20:4635"
+        ]
+      }
+    },
+    {
+      "source_id": "F25",
+      "name": "Page Visibility API",
+      "source_category": "탭 생명주기",
+      "source_status": "기본 권고",
+      "source_url": "https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "frontend-graphics-sources.json",
+      "source_evidence": "문서의 보임/숨김 상태 변화에 따라 불필요한 작업을 멈출 수 있다.",
+      "preserved_limits": "문서의 visibility와 요소가 화면 안에 있는지는 별개다. 사용자 수동 정지 선택을 복귀 때 덮지 않는다.",
+      "domain_ids": [
+        "C12"
+      ],
+      "figma_artifact_ids": [
+        "ART-C12"
+      ],
+      "representation": [
+        "설계 판단 주석"
+      ],
+      "design_application": "숨김 탭/화면 밖·복귀·사용자 수동 정지의 우선순위를 표현한다.",
+      "state_contract_ids": [
+        "RENDER-PAUSED"
+      ],
+      "selection": "관련 설계 판단과 검증 요구에 우선 적용",
+      "figma_nodes": [
+        "20:4637"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "08",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-f.json",
+        "node_id": "20:4637",
+        "official_link_node_id": "20:4652",
+        "domain_link_node_ids": [
+          "20:4654"
+        ]
+      }
+    },
+    {
+      "source_id": "F26",
+      "name": "React Profiler",
+      "source_category": "렌더링 측정",
+      "source_status": "기본 권고",
+      "source_url": "https://react.dev/reference/react/Profiler",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "frontend-graphics-sources.json",
+      "source_evidence": "컴포넌트 트리의 render 비용을 측정하며 DevTools 프로파일러와 연계한다.",
+      "preserved_limits": "측정 자체의 비용이 있고 일반 production build에서 기본 비활성이다. GPU·네트워크·실물 배터리 측정을 대신하지 않는다.",
+      "domain_ids": [
+        "C12"
+      ],
+      "figma_artifact_ids": [
+        "ART-C12"
+      ],
+      "representation": [
+        "설계 판단 주석"
+      ],
+      "design_application": "렌더 원인 측정과 목표/측정값·제품 build 조건을 검증 카드로 둔다.",
+      "state_contract_ids": [],
+      "selection": "관련 설계 판단과 검증 요구에 우선 적용",
+      "figma_nodes": [
+        "20:4656"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "08",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-f.json",
+        "node_id": "20:4656",
+        "official_link_node_id": "20:4671",
+        "domain_link_node_ids": [
+          "20:4673"
+        ]
+      }
+    },
+    {
+      "source_id": "F27",
+      "name": "W3C Web Animations",
+      "source_category": "애니메이션 시간과 재생 제어",
+      "source_status": "기존 유지",
+      "source_url": "https://www.w3.org/TR/web-animations-1/",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "frontend-graphics-sources.json",
+      "source_evidence": "타임라인·재생 상태·효과의 시간 관계를 정의하는 규격이다.",
+      "preserved_limits": "현재 CSS/GPU 공통 시계에 적용한다. 규격의 상태와 각 API 지원은 별도로 확인한다.",
+      "domain_ids": [
+        "C10"
+      ],
+      "figma_artifact_ids": [
+        "ART-C10"
+      ],
+      "representation": [
+        "기초/부품/과업 표현",
+        "기술·검증 주석"
+      ],
+      "design_application": "천문대 공통 시간·재생/정지·수명·동일 속성 담당을 명시한다.",
+      "state_contract_ids": [
+        "RENDER-PAUSED"
+      ],
+      "selection": "현재 구현·부품 우선 재사용",
+      "figma_nodes": [
+        "20:4674"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "01",
+        "03",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-f.json",
+        "node_id": "20:4674",
+        "official_link_node_id": "20:4689",
+        "domain_link_node_ids": [
+          "20:4691"
+        ]
+      }
+    },
+    {
+      "source_id": "F28",
+      "name": "Rive 편집기 요금과 내보내기",
+      "source_category": "제작 도구 비용",
+      "source_status": "참고",
+      "source_url": "https://rive.app/pricing",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "frontend-graphics-sources.json",
+      "source_evidence": "확인 시점 Free의 RIV export에는 splash screen, Cadet에는 splash 없는 export를 안내한다.",
+      "preserved_limits": "기존 런타임 사용과 새 에셋 제작 조건을 구분한다. 가격/계획은 구매 시 재확인하며 조사로 구매를 실행하지 않는다.",
+      "domain_ids": [
+        "C10"
+      ],
+      "figma_artifact_ids": [
+        "ART-C10"
+      ],
+      "representation": [
+        "참고·라이선스·비교 주석"
+      ],
+      "design_application": "Rive 기존 runtime 사용과 새 자산 제작/내보내기 조건을 분리 기록한다.",
+      "state_contract_ids": [],
+      "selection": "관찰/비교의 참고; 외형/제품/도구 자동 도입 아님",
+      "figma_nodes": [
+        "20:4693"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "01",
+        "03",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-f.json",
+        "node_id": "20:4693",
+        "official_link_node_id": "20:4708",
+        "domain_link_node_ids": [
+          "20:4710"
+        ]
+      }
+    },
+    {
+      "source_id": "F29",
+      "name": "Aseprite Sprite Sheet",
+      "source_category": "픽셀 자산 제작",
+      "source_status": "조건부",
+      "source_url": "https://www.aseprite.org/docs/sprite-sheet/",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "frontend-graphics-sources.json",
+      "source_evidence": "픽셀 애니메이션의 프레임·레이어·태그를 sprite sheet로 내보내고 atlas로 묶는 제작 경로를 제공한다.",
+      "preserved_limits": "실제 픽셀 원본 제작이 필요할 때 검토한다. 편집기 사용 조건과 가져오는 외부 자산의 권리는 별개다. 설치·구매하지 않았다.",
+      "domain_ids": [
+        "C10"
+      ],
+      "figma_artifact_ids": [
+        "ART-C10"
+      ],
+      "representation": [
+        "조건부 후보·도입 조건 카드",
+        "관련 상태/검증 주석"
+      ],
+      "design_application": "픽셀 원본·sprite sheet·atlas·크기/DPR·권리 확인을 자산 보드에 둔다.",
+      "state_contract_ids": [],
+      "selection": "필요 조건 확인 전 도입하지 않음",
+      "figma_nodes": [
+        "20:4711"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "01",
+        "03",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-f.json",
+        "node_id": "20:4711",
+        "official_link_node_id": "20:4726",
+        "domain_link_node_ids": [
+          "20:4728"
+        ]
+      }
+    },
+    {
+      "source_id": "F30",
+      "name": "Piskel",
+      "source_category": "픽셀 자산 제작",
+      "source_status": "조건부",
+      "source_url": "https://github.com/piskelapp/piskel",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "frontend-graphics-sources.json",
+      "source_evidence": "브라우저 기반 sprite·픽셀아트·애니메이션 편집기이며 공식 저장소는 Apache-2.0을 표시한다.",
+      "preserved_limits": "공식 README는 모바일 미지원이라고 명시한다. iPad 중심 제작 도구로 가정하지 않는다. 공개 작품의 재사용 권리는 편집기 코드 라이선스와 별개다.",
+      "domain_ids": [
+        "C10"
+      ],
+      "figma_artifact_ids": [
+        "ART-C10"
+      ],
+      "representation": [
+        "조건부 후보·도입 조건 카드",
+        "관련 상태/검증 주석"
+      ],
+      "design_application": "Piskel의 실제 제작 환경 조건과 모바일 미지원·자산 권리를 주석으로 둔다.",
+      "state_contract_ids": [],
+      "selection": "필요 조건 확인 전 도입하지 않음",
+      "figma_nodes": [
+        "20:4729"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "01",
+        "03",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-f.json",
+        "node_id": "20:4729",
+        "official_link_node_id": "20:4744",
+        "domain_link_node_ids": [
+          "20:4746"
+        ]
+      }
+    },
+    {
+      "source_id": "F31",
+      "name": "CSS image-rendering",
+      "source_category": "픽셀 윤곽 유지",
+      "source_status": "기본 권고",
+      "source_url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/image-rendering",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "frontend-graphics-sources.json",
+      "source_evidence": "crisp-edges와 pixelated 등 확대 알고리즘을 선택해 픽셀 윤곽을 유지하도록 한다.",
+      "preserved_limits": "pixelated는 비정수 배율에서 최근접 정수 확대 뒤 보간될 수 있다. DPR·배율·필터·좌표 정렬을 실제로 확인하며 사진·일반 본문에 일괄 적용하지 않는다.",
+      "domain_ids": [
+        "C04",
+        "C10"
+      ],
+      "figma_artifact_ids": [
+        "ART-C04",
+        "ART-C10"
+      ],
+      "representation": [
+        "기초/부품/과업 표현",
+        "기술·검증 주석"
+      ],
+      "design_application": "정수/비정수 배율·DPR·선 정렬·글자와 장면의 서로 다른 렌더 규칙을 비교한다.",
+      "state_contract_ids": [],
+      "selection": "관련 설계 판단과 검증 요구에 우선 적용",
+      "figma_nodes": [
+        "20:4747"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "01",
+        "03",
+        "08",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-f.json",
+        "node_id": "20:4747",
+        "official_link_node_id": "20:4762",
+        "domain_link_node_ids": [
+          "20:4764",
+          "20:4765"
+        ]
+      }
+    },
+    {
+      "source_id": "Q01",
+      "name": "Vitest",
+      "source_category": "단위·통합 검사",
+      "source_status": "기존 유지",
+      "source_url": "https://vitest.dev/guide/",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "quality-storage-sources.json",
+      "source_evidence": "Vite와 연계하는 검사 도구이며 현재 package.json에 vitest가 선언되어 있다.",
+      "preserved_limits": "설치 선언과 실제 테스트 통과는 다르다. DOM 모사 결과로 브라우저·서버·기기 동작을 보증하지 않는다.",
+      "domain_ids": [
+        "C19"
+      ],
+      "figma_artifact_ids": [
+        "ART-C19"
+      ],
+      "representation": [
+        "상태·과업 연결",
+        "기술/검증 주석"
+      ],
+      "design_application": "도메인/어댑터 불변조건을 관련 과업·검사 연결 주석으로 둔다.",
+      "state_contract_ids": [],
+      "selection": "현재 구현·부품 우선 재사용",
+      "figma_nodes": [
+        "22:72"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "08",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-q.json",
+        "node_id": "22:72",
+        "official_link_node_id": "22:87",
+        "domain_link_node_ids": [
+          "22:89"
+        ]
+      }
+    },
+    {
+      "source_id": "Q02",
+      "name": "Testing Library",
+      "source_category": "사용자 행동 중심 컴포넌트 검사",
+      "source_status": "기존 유지",
+      "source_url": "https://testing-library.com/docs/guiding-principles/",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "quality-storage-sources.json",
+      "source_evidence": "구현 내부보다 사용자가 접하는 DOM과 상호작용을 중심으로 검사하는 원칙을 제공한다.",
+      "preserved_limits": "자체 문서도 모사 환경과 실제 사용의 차이를 인정한다. 기존 @testing-library 패키지를 재사용한다.",
+      "domain_ids": [
+        "C19"
+      ],
+      "figma_artifact_ids": [
+        "ART-C19"
+      ],
+      "representation": [
+        "설계 판단 주석"
+      ],
+      "design_application": "역할/이름/입력·취소·반응이 보이는 부품 검증 주석으로 둔다.",
+      "state_contract_ids": [],
+      "selection": "현재 구현·부품 우선 재사용",
+      "figma_nodes": [
+        "22:90"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "08",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-q.json",
+        "node_id": "22:90",
+        "official_link_node_id": "22:105",
+        "domain_link_node_ids": [
+          "22:107"
+        ]
+      }
+    },
+    {
+      "source_id": "Q03",
+      "name": "Playwright",
+      "source_category": "브라우저·시각 회귀",
+      "source_status": "기존 유지",
+      "source_url": "https://playwright.dev/docs/best-practices",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "quality-storage-sources.json",
+      "source_evidence": "실제 보이는 행동, 역할 기반 locator, 자동 대기, 독립된 테스트와 trace를 권한다.",
+      "preserved_limits": "Chromium·Firefox·WebKit 실행과 기기 모사는 물리 iPhone/iPad·OS 한글 조합·실제 Sync 증거를 대신하지 않는다.",
+      "domain_ids": [
+        "C19"
+      ],
+      "figma_artifact_ids": [
+        "ART-C19"
+      ],
+      "representation": [
+        "설계 판단 주석"
+      ],
+      "design_application": "실제 브라우저 저장·재접속·복귀 시나리오와 Figma 흐름을 연결한다.",
+      "state_contract_ids": [],
+      "selection": "현재 구현·부품 우선 재사용",
+      "figma_nodes": [
+        "22:108"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "08",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-q.json",
+        "node_id": "22:108",
+        "official_link_node_id": "22:123",
+        "domain_link_node_ids": [
+          "22:125"
+        ]
+      }
+    },
+    {
+      "source_id": "Q04",
+      "name": "axe-core",
+      "source_category": "자동 접근성 검사",
+      "source_status": "기존 유지",
+      "source_url": "https://github.com/dequelabs/axe-core",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "quality-storage-sources.json",
+      "source_evidence": "접근성 규칙을 자동 검사하는 엔진이며 @axe-core/playwright와 Storybook addon-a11y가 이미 선언되어 있다.",
+      "preserved_limits": "자동 검출의 위반 0개가 전체 접근성 준수는 아니다. 관련 초점·키보드·확대·터치 조작을 직접 확인한다.",
+      "domain_ids": [
+        "C05",
+        "C19"
+      ],
+      "figma_artifact_ids": [
+        "ART-C05",
+        "ART-C19"
+      ],
+      "representation": [
+        "기초/부품/과업 표현",
+        "기술·검증 주석"
+      ],
+      "design_application": "부품 자동 검사 대상과 직접 키보드/터치 확인 항목을 분리한다.",
+      "state_contract_ids": [],
+      "selection": "현재 구현·부품 우선 재사용",
+      "figma_nodes": [
+        "22:126"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "02",
+        "08",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-q.json",
+        "node_id": "22:126",
+        "official_link_node_id": "22:141",
+        "domain_link_node_ids": [
+          "22:143",
+          "22:144"
+        ]
+      }
+    },
+    {
+      "source_id": "Q05",
+      "name": "Lighthouse",
+      "source_category": "합성 성능·품질 진단",
+      "source_status": "기존 유지",
+      "source_url": "https://developer.chrome.com/docs/lighthouse/overview/",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "quality-storage-sources.json",
+      "source_evidence": "페이지에 자동 성능·접근성·모범 사례 감사를 실행하고 개선 지점을 보고한다.",
+      "preserved_limits": "개발용 Storybook 점수는 제품 전체 성능이 아니다. 인증된 제품 빌드와 정한 조건에서 비교하며 현장 사용자 측정과 구별한다.",
+      "domain_ids": [
+        "C12",
+        "C19"
+      ],
+      "figma_artifact_ids": [
+        "ART-C12",
+        "ART-C19"
+      ],
+      "representation": [
+        "상태·과업 연결",
+        "기술/검증 주석"
+      ],
+      "design_application": "제품 build·측정 조건·합성 지표를 성능 검증판에 기록한다.",
+      "state_contract_ids": [],
+      "selection": "현재 구현·부품 우선 재사용",
+      "figma_nodes": [
+        "22:145"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "08",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-q.json",
+        "node_id": "22:145",
+        "official_link_node_id": "22:160",
+        "domain_link_node_ids": [
+          "22:162",
+          "22:163"
+        ]
+      }
+    },
+    {
+      "source_id": "Q06",
+      "name": "Core Web Vitals",
+      "source_category": "사용 성능 지표·권고",
+      "source_status": "기본 권고",
+      "source_url": "https://web.dev/articles/vitals",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "quality-storage-sources.json",
+      "source_evidence": "LCP·INP·CLS를 로딩·반응·배치 안정성 지표로 정의하며 좋은 수준의 경계를 각각 2.5초·200ms·0.1로 안내한다.",
+      "preserved_limits": "모바일/데스크톱 구분과 실제 이용의 75백분위 기준이다. 합성 단일 실행이나 전체 UX·학습 효과의 점수가 아니다.",
+      "domain_ids": [
+        "C12",
+        "C19"
+      ],
+      "figma_artifact_ids": [
+        "ART-C12",
+        "ART-C19"
+      ],
+      "representation": [
+        "상태·과업 연결",
+        "기술/검증 주석"
+      ],
+      "design_application": "LCP/INP/CLS의 목표와 실제 측정·기기군/75백분위 조건을 분리한다.",
+      "state_contract_ids": [],
+      "selection": "관련 설계 판단과 검증 요구에 우선 적용",
+      "figma_nodes": [
+        "22:164"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "08",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-q.json",
+        "node_id": "22:164",
+        "official_link_node_id": "22:179",
+        "domain_link_node_ids": [
+          "22:181",
+          "22:182"
+        ]
+      }
+    },
+    {
+      "source_id": "Q07",
+      "name": "OWASP ASVS 5.0.0",
+      "source_category": "보안 검증 표준",
+      "source_status": "기본 권고",
+      "source_url": "https://owasp.org/projects/asvs",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "quality-storage-sources.json",
+      "source_evidence": "웹앱 보안 통제의 개발·검증 요구를 구체적인 항목으로 제공한다. 공식 페이지에서 5.0.0을 확인했다.",
+      "preserved_limits": "해당 앱의 인증·권한·입력·세션·자료 보호 범위에 요구 ID를 연결한다. 조사만으로 준수 인증이나 전체 감사 완료를 주장하지 않는다.",
+      "domain_ids": [
+        "C18"
+      ],
+      "figma_artifact_ids": [
+        "ART-C18"
+      ],
+      "representation": [
+        "상태·과업 연결",
+        "기술/검증 주석"
+      ],
+      "design_application": "인증/권한/입력/세션/원문 보호 요구를 관련 상태·검증 주석에 연결한다.",
+      "state_contract_ids": [
+        "BACKUP-INVALID"
+      ],
+      "selection": "관련 설계 판단과 검증 요구에 우선 적용",
+      "figma_nodes": [
+        "22:183"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "07",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-q.json",
+        "node_id": "22:183",
+        "official_link_node_id": "22:198",
+        "domain_link_node_ids": [
+          "22:200"
+        ]
+      }
+    },
+    {
+      "source_id": "Q08",
+      "name": "OWASP Top 10:2025",
+      "source_category": "보안 위험 인식 기준",
+      "source_status": "참고",
+      "source_url": "https://top10.owasp.org/2025/",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "quality-storage-sources.json",
+      "source_evidence": "접근 통제·공급망·설정·인증·예외 처리 등 대표 위험을 2025 목록으로 제공한다.",
+      "preserved_limits": "위험 분류와 ASVS의 검증 요구는 역할이 다르다. 열 가지를 읽는 것으로 앱 보안을 검증할 수 없다.",
+      "domain_ids": [
+        "C18"
+      ],
+      "figma_artifact_ids": [
+        "ART-C18"
+      ],
+      "representation": [
+        "상태·과업 연결",
+        "기술/검증 주석"
+      ],
+      "design_application": "주요 보안 위험을 서버/입력/오류/외부 도구의 누락 점검 주석으로 둔다.",
+      "state_contract_ids": [],
+      "selection": "관찰/비교의 참고; 외형/제품/도구 자동 도입 아님",
+      "figma_nodes": [
+        "22:202"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "07",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-q.json",
+        "node_id": "22:202",
+        "official_link_node_id": "22:217",
+        "domain_link_node_ids": [
+          "22:219"
+        ]
+      }
+    },
+    {
+      "source_id": "Q09",
+      "name": "CSP / Trusted Types",
+      "source_category": "브라우저 방어 기술",
+      "source_status": "기본 권고",
+      "source_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "quality-storage-sources.json",
+      "source_evidence": "CSP는 실행·로딩 출처를 제한하며 정적 사이트에는 hash 기반 정책을 검토할 수 있다. Trusted Types API 공식 MDN 페이지도 별도 확인했다.",
+      "preserved_limits": "CSP는 안전한 렌더링/정화를 대체하지 않는다. Trusted Types는 MDN Baseline 2026이나 기존 브라우저·라이브러리와 호환 검증이 필요하다.",
+      "domain_ids": [
+        "C18"
+      ],
+      "figma_artifact_ids": [
+        "ART-C18"
+      ],
+      "representation": [
+        "상태·과업 연결",
+        "기술/검증 주석"
+      ],
+      "design_application": "문서·수식·도해의 안전한 렌더링과 CSP/Trusted Types 기술 조건을 표시한다.",
+      "state_contract_ids": [],
+      "selection": "관련 설계 판단과 검증 요구에 우선 적용",
+      "figma_nodes": [
+        "22:220"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "07",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-q.json",
+        "node_id": "22:220",
+        "official_link_node_id": "22:235",
+        "domain_link_node_ids": [
+          "22:237"
+        ]
+      }
+    },
+    {
+      "source_id": "Q10",
+      "name": "Supabase Auth / JWT",
+      "source_category": "인증·세션",
+      "source_status": "기존 유지",
+      "source_url": "https://supabase.com/docs/guides/auth/jwts",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "quality-storage-sources.json",
+      "source_evidence": "Supabase의 JWT 구조와 검증 경로를 제공한다. 현재 앱은 Supabase Auth를 서버 소유권 확인과 연결하는 구조다.",
+      "preserved_limits": "JWT 디코딩만으로 인증을 확정하지 않는다. 만료·서명·허용 발급자와 실제 세션 정책을 확인하고 비밀키를 프론트에 넣지 않는다.",
+      "domain_ids": [
+        "C18"
+      ],
+      "figma_artifact_ids": [
+        "ART-C18"
+      ],
+      "representation": [
+        "상태·과업 연결",
+        "기술/검증 주석"
+      ],
+      "design_application": "로그인·세션 확인/만료·다시 로그인과 초안 보존 상태를 연결한다.",
+      "state_contract_ids": [
+        "SAVE-CHECKING",
+        "AUTH-CHECKING",
+        "AUTH-SIGNED-OUT",
+        "AUTH-PENDING",
+        "AUTH-APPROVED",
+        "AUTH-REJECTED",
+        "AUTH-SUSPENDED",
+        "AUTH-EXPIRED",
+        "AI-OWNER-READY"
+      ],
+      "selection": "현재 구현·부품 우선 재사용",
+      "figma_nodes": [
+        "22:238"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "07",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-q.json",
+        "node_id": "22:238",
+        "official_link_node_id": "22:253",
+        "domain_link_node_ids": [
+          "22:255"
+        ]
+      }
+    },
+    {
+      "source_id": "Q11",
+      "name": "Supabase RLS / Data API grants",
+      "source_category": "행 단위 권한",
+      "source_status": "기존 유지",
+      "source_url": "https://supabase.com/docs/guides/database/postgres/row-level-security",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "quality-storage-sources.json",
+      "source_evidence": "사용자 소유 행의 읽기·변경 제한을 DB에서 적용한다. 별도 공식 API 보안 문서는 GRANT와 RLS를 독립 계층으로 설명한다.",
+      "preserved_limits": "로그인한 역할이라는 이유만으로 모든 행을 허용하지 않는다. 보기·RPC·Storage·AI 전용 권한도 실제 경로에 맞춰 검토한다.",
+      "domain_ids": [
+        "C18"
+      ],
+      "figma_artifact_ids": [
+        "ART-C18"
+      ],
+      "representation": [
+        "상태·과업 연결",
+        "기술/검증 주석"
+      ],
+      "design_application": "소유자/승인/AI 전용 권한과 서버 거부 상태, GRANT/RLS 요구를 연결한다.",
+      "state_contract_ids": [
+        "AUTH-CHECKING",
+        "AUTH-SIGNED-OUT",
+        "AUTH-PENDING",
+        "AUTH-APPROVED",
+        "AUTH-REJECTED",
+        "AUTH-SUSPENDED",
+        "BACKUP-OWNER-CHANGED",
+        "AI-OWNER-READY",
+        "AI-FORBIDDEN",
+        "AI-LIMIT"
+      ],
+      "selection": "현재 구현·부품 우선 재사용",
+      "figma_nodes": [
+        "22:257"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "07",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-q.json",
+        "node_id": "22:257",
+        "official_link_node_id": "22:272",
+        "domain_link_node_ids": [
+          "22:274"
+        ]
+      }
+    },
+    {
+      "source_id": "Q12",
+      "name": "PostgreSQL transactions / isolation",
+      "source_category": "서버 원자성·동시 수정",
+      "source_status": "기존 유지",
+      "source_url": "https://www.postgresql.org/docs/current/transaction-iso.html",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "quality-storage-sources.json",
+      "source_evidence": "트랜잭션 격리 수준과 동시 쓰기의 관측·충돌·재시도 조건을 설명한다.",
+      "preserved_limits": "현재 앱의 opId/payloadHash/expectedVersion 계약을 실제 DB 원자적 연산에 연결해야 한다. 브라우저 잠금만으로 다기기 중복·충돌을 보장하지 않는다.",
+      "domain_ids": [
+        "C18"
+      ],
+      "figma_artifact_ids": [
+        "ART-C18"
+      ],
+      "representation": [
+        "상태·과업 연결",
+        "기술/검증 주석"
+      ],
+      "design_application": "opId/payloadHash/expectedVersion·승인·중복·충돌/양본보존 상태를 연결한다.",
+      "state_contract_ids": [
+        "SAVE-CHECKING",
+        "SAVE-PENDING",
+        "SAVE-SAVING",
+        "SAVE-SAVED",
+        "SAVE-ERROR",
+        "SAVE-CONFLICT",
+        "SAVE-ARCHIVING",
+        "AUTH-EXPIRED",
+        "BACKUP-RESTORED",
+        "AI-UNCERTAIN"
+      ],
+      "selection": "현재 구현·부품 우선 재사용",
+      "figma_nodes": [
+        "22:276"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "07",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-q.json",
+        "node_id": "22:276",
+        "official_link_node_id": "22:291",
+        "domain_link_node_ids": [
+          "22:293"
+        ]
+      }
+    },
+    {
+      "source_id": "Q13",
+      "name": "IndexedDB",
+      "source_category": "브라우저 구조화 자료 저장",
+      "source_status": "기존 유지",
+      "source_url": "https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "quality-storage-sources.json",
+      "source_evidence": "인덱스와 트랜잭션을 갖춘 비동기 브라우저 저장 API이며 Blob 등 구조화 자료를 보관한다.",
+      "preserved_limits": "현재 일부 첨부 경로 사용과 전체 원장/outbox 전환은 다르다. 원본·초안·미전송 자료는 캐시와 분리하고 서버 저장으로 표시하지 않는다.",
+      "domain_ids": [
+        "C17"
+      ],
+      "figma_artifact_ids": [
+        "ART-C17"
+      ],
+      "representation": [
+        "상태·과업 연결",
+        "기술/검증 주석"
+      ],
+      "design_application": "기기 보관 중/완료·미전송·재시작과 transaction 요구를 연결한다.",
+      "state_contract_ids": [
+        "SAVE-CHECKING",
+        "SAVE-LOCAL-WRITING",
+        "SAVE-PENDING",
+        "SAVE-LOCAL-ERROR",
+        "SAVE-ARCHIVING",
+        "EDIT-OTHER-WINDOW",
+        "EDIT-RESTORED-DRAFT",
+        "BACKUP-COLLECTING",
+        "BACKUP-WAITING-RESTART",
+        "BACKUP-RECOVERING",
+        "BACKUP-ROLLED-BACK"
+      ],
+      "selection": "현재 구현·부품 우선 재사용",
+      "figma_nodes": [
+        "22:295"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "07",
+        "08"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-q.json",
+        "node_id": "22:295",
+        "official_link_node_id": "22:310",
+        "domain_link_node_ids": [
+          "22:312"
+        ]
+      }
+    },
+    {
+      "source_id": "Q14",
+      "name": "Dexie.js",
+      "source_category": "IndexedDB 편의 라이브러리",
+      "source_status": "조건부",
+      "source_url": "https://dexie.org/docs/Tutorial/Design",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "quality-storage-sources.json",
+      "source_evidence": "IndexedDB의 스키마·질의·트랜잭션을 Promise 기반 API로 다루는 라이브러리다.",
+      "preserved_limits": "전체 로컬 자료 계층을 정비할 때 후보이며 기존 래퍼로 충분하면 추가하지 않는다. Dexie Cloud 도입·계정·자료 전송은 별도 결정이다.",
+      "domain_ids": [
+        "C17"
+      ],
+      "figma_artifact_ids": [
+        "ART-C17"
+      ],
+      "representation": [
+        "상태·과업 연결",
+        "기술/검증 주석"
+      ],
+      "design_application": "IndexedDB 계층 정비 필요가 생길 때의 도입 조건과 저장 상태 영향만 기록한다.",
+      "state_contract_ids": [],
+      "selection": "필요 조건 확인 전 도입하지 않음",
+      "figma_nodes": [
+        "22:314"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "07",
+        "08",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-q.json",
+        "node_id": "22:314",
+        "official_link_node_id": "22:329",
+        "domain_link_node_ids": [
+          "22:331"
+        ]
+      }
+    },
+    {
+      "source_id": "Q15",
+      "name": "Origin Private File System",
+      "source_category": "큰 파일·WASM 자료 저장",
+      "source_status": "조건부",
+      "source_url": "https://developer.mozilla.org/en-US/docs/Web/API/File_System_API/Origin_private_file_system",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "quality-storage-sources.json",
+      "source_evidence": "원점에 귀속되는 비공개 파일 저장 영역과 Worker에서 쓰는 동기 파일 접근을 설명한다.",
+      "preserved_limits": "파일이 사용자의 일반 폴더에 보이는 내보내기가 아니다. 용량 제한·삭제·백업·호환성·마이그레이션 비용을 별도로 다룬다.",
+      "domain_ids": [
+        "C17"
+      ],
+      "figma_artifact_ids": [
+        "ART-C17"
+      ],
+      "representation": [
+        "상태·과업 연결",
+        "기술/검증 주석"
+      ],
+      "design_application": "큰 첨부 원본·기기 보관·내보내기·실패의 조건을 기술주석으로 둔다.",
+      "state_contract_ids": [
+        "BACKUP-MISSING-ORIGINAL"
+      ],
+      "selection": "필요 조건 확인 전 도입하지 않음",
+      "figma_nodes": [
+        "22:332"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "07",
+        "08",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-q.json",
+        "node_id": "22:332",
+        "official_link_node_id": "22:347",
+        "domain_link_node_ids": [
+          "22:349"
+        ]
+      }
+    },
+    {
+      "source_id": "Q16",
+      "name": "WebKit Storage Policy / Storage API",
+      "source_category": "브라우저 보관·퇴거",
+      "source_status": "기본 권고",
+      "source_url": "https://webkit.org/blog/14403/updates-to-storage-policy/",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "quality-storage-sources.json",
+      "source_evidence": "브라우저 저장량 추정, persistent 요청과 용량·퇴거 정책을 WebKit이 설명한다.",
+      "preserved_limits": "persist 요청과 quota 상한은 영구 보관이나 쓰기 성공 보증이 아니다. 원문 보존·내보내기·복원과 QuotaExceededError 대응이 필요하다.",
+      "domain_ids": [
+        "C17"
+      ],
+      "figma_artifact_ids": [
+        "ART-C17"
+      ],
+      "representation": [
+        "상태·과업 연결",
+        "기술/검증 주석"
+      ],
+      "design_application": "quota 실패·persist 비보장·원문 구조/내보내기/복구 상태를 연결한다.",
+      "state_contract_ids": [
+        "SAVE-LOCAL-WRITING",
+        "SAVE-PENDING",
+        "SAVE-LOCAL-ERROR"
+      ],
+      "selection": "관련 설계 판단과 검증 요구에 우선 적용",
+      "figma_nodes": [
+        "22:351"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "07",
+        "08"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-q.json",
+        "node_id": "22:351",
+        "official_link_node_id": "22:366",
+        "domain_link_node_ids": [
+          "22:368"
+        ]
+      }
+    },
+    {
+      "source_id": "Q17",
+      "name": "Service Worker / Workbox",
+      "source_category": "앱 껍데기 캐시·오프라인",
+      "source_status": "조건부",
+      "source_url": "https://developer.chrome.com/docs/workbox/",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "quality-storage-sources.json",
+      "source_evidence": "Service Worker의 라우팅·캐시·오프라인 동작을 구성하는 도구 모음이다.",
+      "preserved_limits": "정상 온라인 저장 검증 이후 필요 범위에 도입한다. 인증 API 무차별 캐시, 강제 새로고침에 따른 초안 손실, 백그라운드 재시도 보장을 피한다.",
+      "domain_ids": [
+        "C17"
+      ],
+      "figma_artifact_ids": [
+        "ART-C17"
+      ],
+      "representation": [
+        "상태·과업 연결",
+        "기술/검증 주석"
+      ],
+      "design_application": "앱 갱신·캐시·오프라인 진입과 초안 보존, 도입 선행 조건을 표시한다.",
+      "state_contract_ids": [],
+      "selection": "필요 조건 확인 전 도입하지 않음",
+      "figma_nodes": [
+        "22:370"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "07",
+        "08",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-q.json",
+        "node_id": "22:370",
+        "official_link_node_id": "22:385",
+        "domain_link_node_ids": [
+          "22:387"
+        ]
+      }
+    },
+    {
+      "source_id": "Q18",
+      "name": "Yjs",
+      "source_category": "공동 편집 CRDT",
+      "source_status": "조건부",
+      "source_url": "https://docs.yjs.dev/",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "quality-storage-sources.json",
+      "source_evidence": "공유 자료형과 편집기·네트워크 어댑터를 제공하며 변경의 합류를 다룬다.",
+      "preserved_limits": "동시에 같은 문서를 편집할 실제 요구가 있을 때 비교한다. 인증·서버 권한·자료 의미·보존 이력·백업을 대체하지 않는다.",
+      "domain_ids": [
+        "C17"
+      ],
+      "figma_artifact_ids": [
+        "ART-C17"
+      ],
+      "representation": [
+        "상태·과업 연결",
+        "기술/검증 주석"
+      ],
+      "design_application": "동시 공동 편집 요구의 도입 조건과 권한/의미/보존 책임을 기록한다.",
+      "state_contract_ids": [
+        "SAVE-CONFLICT"
+      ],
+      "selection": "필요 조건 확인 전 도입하지 않음",
+      "figma_nodes": [
+        "22:388"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "07",
+        "08",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-q.json",
+        "node_id": "22:388",
+        "official_link_node_id": "22:403",
+        "domain_link_node_ids": [
+          "22:405"
+        ]
+      }
+    },
+    {
+      "source_id": "Q19",
+      "name": "Automerge / Automerge Repo",
+      "source_category": "문서 CRDT·로컬 우선 구조",
+      "source_status": "조건부",
+      "source_url": "https://automerge.org/docs/reference/repositories/",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "quality-storage-sources.json",
+      "source_evidence": "JSON 유사 CRDT·동기화 프로토콜과 저장/네트워크 연결용 Repo 계층을 설명한다.",
+      "preserved_limits": "전체 자료 모델 전환 비용이 크다. Yjs와 같은 목적의 후보로 비교하고 기존 원장을 자동 대체하지 않는다.",
+      "domain_ids": [
+        "C17"
+      ],
+      "figma_artifact_ids": [
+        "ART-C17"
+      ],
+      "representation": [
+        "상태·과업 연결",
+        "기술/검증 주석"
+      ],
+      "design_application": "문서 CRDT 이관 조건·현재 원장 호환·양본/권한 보존을 기록한다.",
+      "state_contract_ids": [
+        "SAVE-CONFLICT"
+      ],
+      "selection": "필요 조건 확인 전 도입하지 않음",
+      "figma_nodes": [
+        "22:407"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "07",
+        "08",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-q.json",
+        "node_id": "22:407",
+        "official_link_node_id": "22:422",
+        "domain_link_node_ids": [
+          "22:424"
+        ]
+      }
+    },
+    {
+      "source_id": "Q20",
+      "name": "GitHub Actions Secure Use",
+      "source_category": "CI·공급망 보안",
+      "source_status": "기본 권고",
+      "source_url": "https://docs.github.com/en/actions/reference/security/secure-use",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "quality-storage-sources.json",
+      "source_evidence": "최소 토큰 권한, 비밀 취급, 신뢰하지 않는 PR 입력 처리, action 전체 commit SHA 고정을 권한다.",
+      "preserved_limits": "고정 자체로 코드 안전을 보증하지 않는다. 검증된 공식 출처·업데이트 검토·배포 권한 분리와 함께 유지한다.",
+      "domain_ids": [
+        "C19"
+      ],
+      "figma_artifact_ids": [
+        "ART-C19"
+      ],
+      "representation": [
+        "상태·과업 연결",
+        "기술/검증 주석"
+      ],
+      "design_application": "검사·배포 token 최소권한·action SHA·비밀 제외를 검증 운영 주석으로 둔다.",
+      "state_contract_ids": [],
+      "selection": "관련 설계 판단과 검증 요구에 우선 적용",
+      "figma_nodes": [
+        "22:426"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "08",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-q.json",
+        "node_id": "22:426",
+        "official_link_node_id": "22:441",
+        "domain_link_node_ids": [
+          "22:443"
+        ]
+      }
+    },
+    {
+      "source_id": "Q21",
+      "name": "GitHub Dependency Review",
+      "source_category": "의존성 변화·취약점 검토",
+      "source_status": "기본 권고",
+      "source_url": "https://docs.github.com/en/code-security/concepts/supply-chain-security/dependency-review",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "quality-storage-sources.json",
+      "source_evidence": "manifest/lockfile 변경의 직접·간접 의존성과 알려진 취약점을 PR에서 검토하는 기능이다.",
+      "preserved_limits": "저장소 공개 여부와 보안 상품에 따라 사용 조건이 다르다. 알려지지 않은 취약점·전체 라이선스 적합성을 자동 보증하지 않는다.",
+      "domain_ids": [
+        "C19"
+      ],
+      "figma_artifact_ids": [
+        "ART-C19"
+      ],
+      "representation": [
+        "상태·과업 연결",
+        "기술/검증 주석"
+      ],
+      "design_application": "package/lock 변경·취약점·라이선스 조건을 유지보수 주석으로 둔다.",
+      "state_contract_ids": [],
+      "selection": "관련 설계 판단과 검증 요구에 우선 적용",
+      "figma_nodes": [
+        "22:444"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "08",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-q.json",
+        "node_id": "22:444",
+        "official_link_node_id": "22:459",
+        "domain_link_node_ids": [
+          "22:461"
+        ]
+      }
+    },
+    {
+      "source_id": "Q22",
+      "name": "OpenTelemetry JavaScript",
+      "source_category": "계측·관측 호환 체계",
+      "source_status": "조건부",
+      "source_url": "https://opentelemetry.io/docs/languages/js/",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "quality-storage-sources.json",
+      "source_evidence": "trace·metric·log의 공통 계측 API/SDK를 제공하며 JS 상태표를 공개한다.",
+      "preserved_limits": "공식 문서는 브라우저 계측을 experimental로 명시한다. 수집기·보관·전송·운영 비용 및 개인정보 최소화가 필요하다.",
+      "domain_ids": [
+        "C19"
+      ],
+      "figma_artifact_ids": [
+        "ART-C19"
+      ],
+      "representation": [
+        "상태·과업 연결",
+        "기술/검증 주석"
+      ],
+      "design_application": "오류/지연 관측의 필요·브라우저 experimental·개인정보/운영비 조건을 기록한다.",
+      "state_contract_ids": [],
+      "selection": "필요 조건 확인 전 도입하지 않음",
+      "figma_nodes": [
+        "22:462"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "08",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-q.json",
+        "node_id": "22:462",
+        "official_link_node_id": "22:477",
+        "domain_link_node_ids": [
+          "22:479"
+        ]
+      }
+    },
+    {
+      "source_id": "Q23",
+      "name": "Sentry JavaScript SDK",
+      "source_category": "오류·성능 관측",
+      "source_status": "조건부",
+      "source_url": "https://github.com/getsentry/sentry-javascript",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "quality-storage-sources.json",
+      "source_evidence": "공식 저장소에서 React·브라우저 SDK와 Session Replay 패키지 존재를 확인했다.",
+      "preserved_limits": "문서 웹 조회가 text/markdown 형식 오류로 실패해 개인정보 설정·가격은 이번에 확정하지 않았다. 본문·토큰·개인정보 전송 없는 설계를 확인한 뒤에만 도입한다.",
+      "domain_ids": [
+        "C19"
+      ],
+      "figma_artifact_ids": [
+        "ART-C19"
+      ],
+      "representation": [
+        "상태·과업 연결",
+        "기술/검증 주석"
+      ],
+      "design_application": "오류 관측 후보의 도입 조건과 미확정 설정/가격·외부 전송 경계를 기록한다.",
+      "state_contract_ids": [],
+      "selection": "필요 조건 확인 전 도입하지 않음",
+      "figma_nodes": [
+        "22:480"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "08",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-q.json",
+        "node_id": "22:480",
+        "official_link_node_id": "22:495",
+        "domain_link_node_ids": [
+          "22:497"
+        ]
+      }
+    },
+    {
+      "source_id": "Q24",
+      "name": "Mock Service Worker",
+      "source_category": "실패·지연 API 모사",
+      "source_status": "조건부",
+      "source_url": "https://mswjs.io/docs/",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "quality-storage-sources.json",
+      "source_evidence": "브라우저와 Node에서 요청·응답을 가로채 개발·테스트·Storybook 간 재사용하는 API 모사 계층이다.",
+      "preserved_limits": "기존 Playwright route나 repository fake로 충분하면 추가하지 않는다. 모의 서버 통과와 실제 인증·저장·권한 통과를 구별한다.",
+      "domain_ids": [
+        "C19"
+      ],
+      "figma_artifact_ids": [
+        "ART-C19"
+      ],
+      "representation": [
+        "조건부 후보·도입 조건 카드",
+        "관련 상태/검증 주석"
+      ],
+      "design_application": "저장 실패·지연·충돌·세션 거부의 mock 상태와 실제 서버 시험을 구분한다.",
+      "state_contract_ids": [
+        "SAVE-ERROR",
+        "SAVE-LOCAL-ERROR",
+        "AI-FAILED",
+        "CONTENT-ERROR"
+      ],
+      "selection": "필요 조건 확인 전 도입하지 않음",
+      "figma_nodes": [
+        "22:498"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "08",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-q.json",
+        "node_id": "22:498",
+        "official_link_node_id": "22:513",
+        "domain_link_node_ids": [
+          "22:515"
+        ]
+      }
+    },
+    {
+      "source_id": "Q25",
+      "name": "fast-check",
+      "source_category": "속성 기반 검사",
+      "source_status": "조건부",
+      "source_url": "https://fast-check.dev/docs/introduction/",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "quality-storage-sources.json",
+      "source_evidence": "여러 생성 입력에 대해 항상 유지되어야 할 속성을 검사하는 라이브러리다.",
+      "preserved_limits": "ID·이력·중복 요청·복원의 불변조건처럼 조합이 많은 순수 로직에 적합하다. 명세·입력 생성기가 틀리면 시험도 제한된다.",
+      "domain_ids": [
+        "C19"
+      ],
+      "figma_artifact_ids": [
+        "ART-C19"
+      ],
+      "representation": [
+        "상태·과업 연결",
+        "기술/검증 주석"
+      ],
+      "design_application": "ID/원문/중복/복원 속성이 명령 조합에서 유지되는 검증 조건을 연결한다.",
+      "state_contract_ids": [
+        "SAVE-ERROR"
+      ],
+      "selection": "필요 조건 확인 전 도입하지 않음",
+      "figma_nodes": [
+        "22:517"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "08",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-q.json",
+        "node_id": "22:517",
+        "official_link_node_id": "22:532",
+        "domain_link_node_ids": [
+          "22:534"
+        ]
+      }
+    },
+    {
+      "source_id": "Q26",
+      "name": "Supabase Database Backups",
+      "source_category": "백업·복원 운영",
+      "source_status": "기본 권고",
+      "source_url": "https://supabase.com/docs/guides/platform/backups",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "quality-storage-sources.json",
+      "source_evidence": "요금제별 일일 DB 백업과 PITR, 복원 절차를 설명하며 Storage 객체 bytes가 DB 백업에 포함되지 않음을 명시한다.",
+      "preserved_limits": "앱 내보내기·첨부·로컬 미전송 자료를 따로 보관해야 한다. 현재 요금제·복원 가능 시점·운영 복원 성공은 조회하지 않았다.",
+      "domain_ids": [
+        "C17",
+        "C19"
+      ],
+      "figma_artifact_ids": [
+        "ART-C17",
+        "ART-C19"
+      ],
+      "representation": [
+        "상태·과업 연결",
+        "기술/검증 주석"
+      ],
+      "design_application": "백업 준비/다운로드·미포함 원본·복원 전 사본·재시작·rollback을 연결한다.",
+      "state_contract_ids": [
+        "SAVE-ARCHIVING",
+        "EDIT-OTHER-WINDOW",
+        "EDIT-RESTORED-DRAFT",
+        "BACKUP-COLLECTING",
+        "BACKUP-PREPARED",
+        "BACKUP-INVALID",
+        "BACKUP-PREVIEW",
+        "BACKUP-WAITING-RESTART",
+        "BACKUP-RECOVERING",
+        "BACKUP-RESTORED",
+        "BACKUP-ROLLED-BACK",
+        "BACKUP-MISSING-ORIGINAL",
+        "BACKUP-OWNER-CHANGED"
+      ],
+      "selection": "관련 설계 판단과 검증 요구에 우선 적용",
+      "figma_nodes": [
+        "22:536"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "07",
+        "08",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-q.json",
+        "node_id": "22:536",
+        "official_link_node_id": "22:551",
+        "domain_link_node_ids": [
+          "22:553",
+          "22:554"
+        ]
+      }
+    },
+    {
+      "source_id": "Q27",
+      "name": "Supabase Realtime Postgres Changes",
+      "source_category": "변경 알림",
+      "source_status": "조건부",
+      "source_url": "https://supabase.com/docs/guides/realtime/postgres-changes",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "quality-storage-sources.json",
+      "source_evidence": "DB 이벤트 구독과 보안·성능 조건을 설명한다.",
+      "preserved_limits": "현재 아키텍처의 변경 알림 보조로 사용하며 누락 없는 동기화 원장으로 간주하지 않는다. 재접속 후 기준 상태 재조회·버전 대조가 필요하다.",
+      "domain_ids": [
+        "C17",
+        "C19"
+      ],
+      "figma_artifact_ids": [
+        "ART-C17",
+        "ART-C19"
+      ],
+      "representation": [
+        "상태·과업 연결",
+        "기술/검증 주석"
+      ],
+      "design_application": "변경 알림·재접속 재조회·버전 대조와 자동 Sync의 확인 범위를 구분한다.",
+      "state_contract_ids": [
+        "SAVE-CHECKING",
+        "SAVE-SAVED",
+        "SAVE-CONFLICT"
+      ],
+      "selection": "필요 조건 확인 전 도입하지 않음",
+      "figma_nodes": [
+        "22:556"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "07",
+        "08",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-q.json",
+        "node_id": "22:556",
+        "official_link_node_id": "22:571",
+        "domain_link_node_ids": [
+          "22:573",
+          "22:574"
+        ]
+      }
+    },
+    {
+      "source_id": "Q28",
+      "name": "Web Workers",
+      "source_category": "메인 스레드 외 계산",
+      "source_status": "조건부",
+      "source_url": "https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "quality-storage-sources.json",
+      "source_evidence": "Worker에서 별도 스레드 계산과 메시지 교환을 수행하며 DOM 직접 접근은 제한된다.",
+      "preserved_limits": "OCR·큰 그래프 배치·파싱의 병목을 측정한 뒤 사용한다. 자료 복사·전송 비용, 취소, 오래된 결과 무시, 오류 복구를 설계한다.",
+      "domain_ids": [
+        "C12",
+        "C19"
+      ],
+      "figma_artifact_ids": [
+        "ART-C12",
+        "ART-C19"
+      ],
+      "representation": [
+        "상태·과업 연결",
+        "기술/검증 주석"
+      ],
+      "design_application": "계산 중/취소/낡은 결과 무시·오류/복귀와 worker 분리 조건을 표현한다.",
+      "state_contract_ids": [],
+      "selection": "필요 조건 확인 전 도입하지 않음",
+      "figma_nodes": [
+        "22:576"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "08",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-q.json",
+        "node_id": "22:576",
+        "official_link_node_id": "22:591",
+        "domain_link_node_ids": [
+          "22:593",
+          "22:594"
+        ]
+      }
+    },
+    {
+      "source_id": "S01",
+      "name": "Plotly.js",
+      "source_category": "C13",
+      "source_status": "기존 유지",
+      "source_url": "https://plotly.com/javascript/",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "specialized-sources.json",
+      "source_evidence": "통계·과학·3D 차트와 상호작용 API를 제공한다.",
+      "preserved_limits": "현재 통계·수식 렌더러를 유지하고 과업별 차트와 값 목록을 연결한다. 큰 번들·WebGL 자원·시점 보존을 점검한다.",
+      "domain_ids": [
+        "C13"
+      ],
+      "figma_artifact_ids": [
+        "ART-C13"
+      ],
+      "representation": [
+        "기초/부품/과업 표현",
+        "기술·검증 주석"
+      ],
+      "design_application": "질문별 차트·값 목록·근거 원기록과 누적/빈 자료 상태를 구성한다.",
+      "state_contract_ids": [],
+      "selection": "현재 구현·부품 우선 재사용",
+      "figma_nodes": [
+        "22:633"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "05",
+        "06"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-s.json",
+        "node_id": "22:633",
+        "official_link_node_id": "22:648",
+        "domain_link_node_ids": [
+          "22:650"
+        ]
+      }
+    },
+    {
+      "source_id": "S02",
+      "name": "Vega-Lite",
+      "source_category": "C13",
+      "source_status": "조건부",
+      "source_url": "https://vega.github.io/vega-lite/",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "specialized-sources.json",
+      "source_evidence": "자료 필드와 시각적 속성을 선언적으로 연결하고 다중 보기·선택을 구성한다.",
+      "preserved_limits": "여러 분석 뷰를 규격으로 생성해야 할 때 비교한다. 현재 Plotly와 역할이 겹치므로 기본 추가하지 않는다.",
+      "domain_ids": [
+        "C13"
+      ],
+      "figma_artifact_ids": [
+        "ART-C13"
+      ],
+      "representation": [
+        "조건부 후보·도입 조건 카드",
+        "관련 상태/검증 주석"
+      ],
+      "design_application": "선언형 다중 분석 뷰의 구체적 필요가 있을 때만 대안 주석으로 둔다.",
+      "state_contract_ids": [],
+      "selection": "필요 조건 확인 전 도입하지 않음",
+      "figma_nodes": [
+        "22:651"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "05",
+        "06",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-s.json",
+        "node_id": "22:651",
+        "official_link_node_id": "22:666",
+        "domain_link_node_ids": [
+          "22:668"
+        ]
+      }
+    },
+    {
+      "source_id": "S03",
+      "name": "Apache ECharts",
+      "source_category": "C13",
+      "source_status": "조건부",
+      "source_url": "https://echarts.apache.org/en/index.html",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "specialized-sources.json",
+      "source_evidence": "다양한 웹 차트와 대시보드 표현을 제공하는 Apache 프로젝트다.",
+      "preserved_limits": "현재 차트로 해결되지 않는 실측 요구가 있을 때 비교한다. 자동으로 더 빠르거나 더 정확하다고 가정하지 않는다.",
+      "domain_ids": [
+        "C13"
+      ],
+      "figma_artifact_ids": [
+        "ART-C13"
+      ],
+      "representation": [
+        "조건부 후보·도입 조건 카드",
+        "관련 상태/검증 주석"
+      ],
+      "design_application": "현재 차트의 실측 한계를 해결하는 경우에만 대안 후보로 기록한다.",
+      "state_contract_ids": [],
+      "selection": "필요 조건 확인 전 도입하지 않음",
+      "figma_nodes": [
+        "22:669"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "05",
+        "06",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-s.json",
+        "node_id": "22:669",
+        "official_link_node_id": "22:684",
+        "domain_link_node_ids": [
+          "22:686"
+        ]
+      }
+    },
+    {
+      "source_id": "S04",
+      "name": "Observable Plot",
+      "source_category": "C13",
+      "source_status": "참고",
+      "source_url": "https://observablehq.github.io/plot/",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "specialized-sources.json",
+      "source_evidence": "marks·scales·transforms·facets를 조합하는 탐색적 시각화 라이브러리다.",
+      "preserved_limits": "자료 탐색·소규모 다중 차트 설계 참고. Observable 유료 서비스와 라이브러리를 구별한다.",
+      "domain_ids": [
+        "C13"
+      ],
+      "figma_artifact_ids": [
+        "ART-C13"
+      ],
+      "representation": [
+        "참고·라이선스·비교 주석"
+      ],
+      "design_application": "탐색·소규모 다중 차트의 비교 예시와 실제 제품 차트를 구분한다.",
+      "state_contract_ids": [],
+      "selection": "관찰/비교의 참고; 외형/제품/도구 자동 도입 아님",
+      "figma_nodes": [
+        "22:687"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "05",
+        "06",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-s.json",
+        "node_id": "22:687",
+        "official_link_node_id": "22:702",
+        "domain_link_node_ids": [
+          "22:704"
+        ]
+      }
+    },
+    {
+      "source_id": "S05",
+      "name": "From Data to Viz",
+      "source_category": "C13",
+      "source_status": "참고",
+      "source_url": "https://www.data-to-viz.com/",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "specialized-sources.json",
+      "source_evidence": "자료 형식별 차트 선택과 흔한 오해를 설명하는 저자 운영 자료다.",
+      "preserved_limits": "차트 선택 후보를 찾는 데 활용한다. 공식 표준이나 모든 상황의 최적 차트를 증명하는 자료는 아니다.",
+      "domain_ids": [
+        "C13"
+      ],
+      "figma_artifact_ids": [
+        "ART-C13"
+      ],
+      "representation": [
+        "참고·라이선스·비교 주석"
+      ],
+      "design_application": "질문·변수/분모/단위에 맞는 차트 선택 근거를 붙인다.",
+      "state_contract_ids": [],
+      "selection": "관찰/비교의 참고; 외형/제품/도구 자동 도입 아님",
+      "figma_nodes": [
+        "22:705"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "05",
+        "06",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-s.json",
+        "node_id": "22:705",
+        "official_link_node_id": "22:720",
+        "domain_link_node_ids": [
+          "22:722"
+        ]
+      }
+    },
+    {
+      "source_id": "S06",
+      "name": "Visualization Analysis and Design — 저자 자료",
+      "source_category": "C13",
+      "source_status": "기본 권고",
+      "source_url": "https://www.cs.ubc.ca/~tmm/vadbook/",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "specialized-sources.json",
+      "source_evidence": "시각화 분석·설계 교재의 저자 제공 설명과 보조 자료다.",
+      "preserved_limits": "무엇을 보여 주는지·왜 보는지·어떻게 표현하는지 구분하는 설계에 참고한다. 유료 책 전체를 이번에 읽은 것은 아니다.",
+      "domain_ids": [
+        "C13"
+      ],
+      "figma_artifact_ids": [
+        "ART-C13"
+      ],
+      "representation": [
+        "기초/부품/과업 표현",
+        "기술·검증 주석"
+      ],
+      "design_application": "무엇·왜·어떻게의 대응과 값/자료 근거를 차트 카드에 명시한다.",
+      "state_contract_ids": [
+        "CONTENT-EMPTY"
+      ],
+      "selection": "관련 설계 판단과 검증 요구에 우선 적용",
+      "figma_nodes": [
+        "22:723"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "05",
+        "06"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-s.json",
+        "node_id": "22:723",
+        "official_link_node_id": "22:738",
+        "domain_link_node_ids": [
+          "22:740"
+        ]
+      }
+    },
+    {
+      "source_id": "S07",
+      "name": "React Flow layouting",
+      "source_category": "C14",
+      "source_status": "기존 유지",
+      "source_url": "https://reactflow.dev/learn/layouting/layouting",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "specialized-sources.json",
+      "source_evidence": "노드 조작·렌더링과 외부 자동 배치 알고리즘의 결합을 설명한다.",
+      "preserved_limits": "현재 Canvas 유지. 저장된 개인 배치와 자동 탐색 배치를 구별하며 라이브러리가 저장/권한까지 보장한다고 하지 않는다.",
+      "domain_ids": [
+        "C14"
+      ],
+      "figma_artifact_ids": [
+        "ART-C14"
+      ],
+      "representation": [
+        "기초/부품/과업 표현",
+        "기술·검증 주석"
+      ],
+      "design_application": "원 ID·현재 선택·수동 좌표·자동 배치·복귀를 그래프 화면에 표현한다.",
+      "state_contract_ids": [],
+      "selection": "현재 구현·부품 우선 재사용",
+      "figma_nodes": [
+        "22:742"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "05"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-s.json",
+        "node_id": "22:742",
+        "official_link_node_id": "22:757",
+        "domain_link_node_ids": [
+          "22:759"
+        ]
+      }
+    },
+    {
+      "source_id": "S08",
+      "name": "D3 force",
+      "source_category": "C14",
+      "source_status": "기존 유지",
+      "source_url": "https://d3js.org/d3-force",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "specialized-sources.json",
+      "source_evidence": "노드에 여러 힘을 적용하는 시뮬레이션과 충돌·연결 배치를 제공한다.",
+      "preserved_limits": "연결 탐색의 자동 배치에 재사용한다. 힘 모형을 학습 의미·인과관계·보편적 최적 배치로 해석하지 않는다.",
+      "domain_ids": [
+        "C14"
+      ],
+      "figma_artifact_ids": [
+        "ART-C14"
+      ],
+      "representation": [
+        "기초/부품/과업 표현",
+        "기술·검증 주석"
+      ],
+      "design_application": "자동 탐색 배치의 파라미터/범위와 수동 전환·복귀를 연결한다.",
+      "state_contract_ids": [],
+      "selection": "현재 구현·부품 우선 재사용",
+      "figma_nodes": [
+        "22:760"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "05"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-s.json",
+        "node_id": "22:760",
+        "official_link_node_id": "22:775",
+        "domain_link_node_ids": [
+          "22:777"
+        ]
+      }
+    },
+    {
+      "source_id": "S09",
+      "name": "ELK.js",
+      "source_category": "C14",
+      "source_status": "조건부",
+      "source_url": "https://github.com/kieler/elkjs",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "specialized-sources.json",
+      "source_evidence": "복합 그래프·방향성 그래프의 자동 배치 엔진과 worker 사용을 제공한다.",
+      "preserved_limits": "복잡한 계층·포트·교차선 문제에 비교한다. 단순 DAG에는 이미 선언된 Dagre를 우선 검토하고 수동 좌표를 보존한다.",
+      "domain_ids": [
+        "C14"
+      ],
+      "figma_artifact_ids": [
+        "ART-C14"
+      ],
+      "representation": [
+        "조건부 후보·도입 조건 카드",
+        "관련 상태/검증 주석"
+      ],
+      "design_application": "계층·포트·교차선 문제가 생길 때의 비교 후보와 수동 배치 보존을 기록한다.",
+      "state_contract_ids": [],
+      "selection": "필요 조건 확인 전 도입하지 않음",
+      "figma_nodes": [
+        "22:778"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "05",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-s.json",
+        "node_id": "22:778",
+        "official_link_node_id": "22:793",
+        "domain_link_node_ids": [
+          "22:795"
+        ]
+      }
+    },
+    {
+      "source_id": "S10",
+      "name": "tldraw SDK 라이선스",
+      "source_category": "C14",
+      "source_status": "조건부",
+      "source_url": "https://tldraw.dev/community/license",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "specialized-sources.json",
+      "source_evidence": "SDK의 기본 허용 범위와 production용 trial/commercial/hobby 라이선스 키 조건을 명시한다.",
+      "preserved_limits": "개발 도구로 쓰는 것과 제품 안에 SDK를 배포하는 것을 구별한다. 공개 소스 열람을 무제한 무료 배포 허용으로 보지 않는다.",
+      "domain_ids": [
+        "C14"
+      ],
+      "figma_artifact_ids": [
+        "ART-C14"
+      ],
+      "representation": [
+        "조건부 후보·도입 조건 카드",
+        "관련 상태/검증 주석"
+      ],
+      "design_application": "편집 도구로의 사용과 제품 SDK 배포의 라이선스를 별도 주석으로 둔다.",
+      "state_contract_ids": [],
+      "selection": "필요 조건 확인 전 도입하지 않음",
+      "figma_nodes": [
+        "22:796"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "05",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-s.json",
+        "node_id": "22:796",
+        "official_link_node_id": "22:811",
+        "domain_link_node_ids": [
+          "22:813"
+        ]
+      }
+    },
+    {
+      "source_id": "S11",
+      "name": "Excalidraw",
+      "source_category": "C14",
+      "source_status": "조건부",
+      "source_url": "https://github.com/excalidraw/excalidraw",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "specialized-sources.json",
+      "source_evidence": "손그림 느낌의 화이트보드와 임베드 가능한 편집기 프로젝트다.",
+      "preserved_limits": "독립적인 자유 도해 수요가 있을 때 비교한다. 현재 React Flow의 ID·좌표·연결·이력 이전 비용과 중복 UI를 계산한다.",
+      "domain_ids": [
+        "C14"
+      ],
+      "figma_artifact_ids": [
+        "ART-C14"
+      ],
+      "representation": [
+        "조건부 후보·도입 조건 카드",
+        "관련 상태/검증 주석"
+      ],
+      "design_application": "자유 도해 수요·기존 Canvas와의 이관 비용을 조건부 후보로 기록한다.",
+      "state_contract_ids": [],
+      "selection": "필요 조건 확인 전 도입하지 않음",
+      "figma_nodes": [
+        "22:814"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "05",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-s.json",
+        "node_id": "22:814",
+        "official_link_node_id": "22:829",
+        "domain_link_node_ids": [
+          "22:831"
+        ]
+      }
+    },
+    {
+      "source_id": "S12",
+      "name": "perfect-freehand",
+      "source_category": "C14",
+      "source_status": "기존 유지",
+      "source_url": "https://github.com/steveruizok/perfect-freehand",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "specialized-sources.json",
+      "source_evidence": "입력 점과 압력에서 자유 필기 윤곽을 계산한다.",
+      "preserved_limits": "현재 벡터 원본 점을 보존하고 표시를 재생성한다. 필압 표시가 필기 인식이나 학습 평가를 의미하지 않는다.",
+      "domain_ids": [
+        "C14"
+      ],
+      "figma_artifact_ids": [
+        "ART-C14"
+      ],
+      "representation": [
+        "기초/부품/과업 표현",
+        "기술·검증 주석"
+      ],
+      "design_application": "원본 점/필압과 표시·되돌리기·페이지/펜 설정 상태를 연결한다.",
+      "state_contract_ids": [],
+      "selection": "현재 구현·부품 우선 재사용",
+      "figma_nodes": [
+        "22:832"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "05"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-s.json",
+        "node_id": "22:832",
+        "official_link_node_id": "22:847",
+        "domain_link_node_ids": [
+          "22:849"
+        ]
+      }
+    },
+    {
+      "source_id": "S13",
+      "name": "KaTeX 옵션",
+      "source_category": "C15",
+      "source_status": "기존 유지",
+      "source_url": "https://katex.org/docs/options",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "specialized-sources.json",
+      "source_evidence": "HTML+MathML 출력, 오류 처리와 trust 관련 옵션을 제공한다.",
+      "preserved_limits": "기존 수식 원문과 표시를 분리하고 trust:false 정책을 유지한다. 지원하지 않는 식의 원문을 버리지 않는다.",
+      "domain_ids": [
+        "C15"
+      ],
+      "figma_artifact_ids": [
+        "ART-C15"
+      ],
+      "representation": [
+        "기초/부품/과업 표현",
+        "기술·검증 주석"
+      ],
+      "design_application": "수식 원문·렌더 성공/미지원·안전한 표시·원문 복귀를 표현한다.",
+      "state_contract_ids": [],
+      "selection": "현재 구현·부품 우선 재사용",
+      "figma_nodes": [
+        "22:850"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "05"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-s.json",
+        "node_id": "22:850",
+        "official_link_node_id": "22:865",
+        "domain_link_node_ids": [
+          "22:867"
+        ]
+      }
+    },
+    {
+      "source_id": "S14",
+      "name": "math.js 보안",
+      "source_category": "C15",
+      "source_status": "기존 유지",
+      "source_url": "https://mathjs.org/docs/expressions/security.html",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "specialized-sources.json",
+      "source_evidence": "표현식 파서의 위험과 기능 제한·계산 부하를 다룬다.",
+      "preserved_limits": "허용 연산/함수와 자원 한도를 정한다. 파서 사용만으로 임의 식 실행의 안전성과 수학적 정확성이 보장되지 않는다.",
+      "domain_ids": [
+        "C15"
+      ],
+      "figma_artifact_ids": [
+        "ART-C15"
+      ],
+      "representation": [
+        "기초/부품/과업 표현",
+        "기술·검증 주석"
+      ],
+      "design_application": "식/조건·연산 제한·실행/취소·오류와 원문 보존을 연결한다.",
+      "state_contract_ids": [],
+      "selection": "현재 구현·부품 우선 재사용",
+      "figma_nodes": [
+        "22:868"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "05"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-s.json",
+        "node_id": "22:868",
+        "official_link_node_id": "22:883",
+        "domain_link_node_ids": [
+          "22:885"
+        ]
+      }
+    },
+    {
+      "source_id": "S15",
+      "name": "GeoGebra 라이선스",
+      "source_category": "C15",
+      "source_status": "조건부",
+      "source_url": "https://www.geogebra.org/license",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "specialized-sources.json",
+      "source_evidence": "전체 제품·자료·언어 파일과 소스 코드의 이용 조건이 다르다고 명시한다.",
+      "preserved_limits": "현재 연결의 용도와 배포 형태에 맞춰 조건을 확인한다. 비상업 사용과 전체 제품/소스 파생물의 조건을 하나로 합치지 않는다.",
+      "domain_ids": [
+        "C15"
+      ],
+      "figma_artifact_ids": [
+        "ART-C15"
+      ],
+      "representation": [
+        "조건부 후보·도입 조건 카드",
+        "관련 상태/검증 주석"
+      ],
+      "design_application": "현재 GeoGebra 용도·배포/라이선스 조건과 읽기 대체를 주석으로 둔다.",
+      "state_contract_ids": [],
+      "selection": "필요 조건 확인 전 도입하지 않음",
+      "figma_nodes": [
+        "22:886"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "05",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-s.json",
+        "node_id": "22:886",
+        "official_link_node_id": "22:901",
+        "domain_link_node_ids": [
+          "22:903"
+        ]
+      }
+    },
+    {
+      "source_id": "S16",
+      "name": "Desmos API",
+      "source_category": "C15",
+      "source_status": "조건부",
+      "source_url": "https://www.desmos.com/api/v1.11/docs/index.html",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "specialized-sources.json",
+      "source_evidence": "수학 계산기 임베드·상태·관찰 API와 API key 및 기능별 활성 조건을 안내한다.",
+      "preserved_limits": "학습자가 식을 직접 탐색하는 별도 과업에 비교한다. API key·자체 호스팅 자격·이용 조건 확인 없이 기본 렌더러를 교체하지 않는다.",
+      "domain_ids": [
+        "C15"
+      ],
+      "figma_artifact_ids": [
+        "ART-C15"
+      ],
+      "representation": [
+        "조건부 후보·도입 조건 카드",
+        "관련 상태/검증 주석"
+      ],
+      "design_application": "직접 식 탐색 과업의 대안 후보와 API/호스팅 조건을 기록한다.",
+      "state_contract_ids": [],
+      "selection": "필요 조건 확인 전 도입하지 않음",
+      "figma_nodes": [
+        "22:904"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "05",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-s.json",
+        "node_id": "22:904",
+        "official_link_node_id": "22:919",
+        "domain_link_node_ids": [
+          "22:921"
+        ]
+      }
+    },
+    {
+      "source_id": "S17",
+      "name": "CodeMirror 개발 저장소",
+      "source_category": "C16",
+      "source_status": "기존 유지",
+      "source_url": "https://github.com/codemirror/dev",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "specialized-sources.json",
+      "source_evidence": "공식 개발 저장소와 관련 패키지의 위치를 확인했다.",
+      "preserved_limits": "현재 편집 경로를 재사용하고 모바일·한글 조합·선택·undo를 실제 기기에서 확인한다. 공식 guide URL은 이번 조회에서 403이었다.",
+      "domain_ids": [
+        "C16"
+      ],
+      "figma_artifact_ids": [
+        "ART-C16"
+      ],
+      "representation": [
+        "기초/부품/과업 표현",
+        "기술·검증 주석"
+      ],
+      "design_application": "현재 편집기의 한글/선택/undo·커서 복귀와 실제 검증 조건을 표현한다.",
+      "state_contract_ids": [
+        "EDIT-DIRTY"
+      ],
+      "selection": "현재 구현·부품 우선 재사용",
+      "figma_nodes": [
+        "22:922"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "03",
+        "04",
+        "05"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-s.json",
+        "node_id": "22:922",
+        "official_link_node_id": "22:937",
+        "domain_link_node_ids": [
+          "22:939"
+        ]
+      }
+    },
+    {
+      "source_id": "S18",
+      "name": "Monaco Editor",
+      "source_category": "C16",
+      "source_status": "기존 유지",
+      "source_url": "https://github.com/microsoft/monaco-editor",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "specialized-sources.json",
+      "source_evidence": "코드 모델·편집기·자원 해제와 모바일 브라우저 미지원 사항을 설명한다.",
+      "preserved_limits": "데스크톱 고급 코드 편집에 유지한다. 모바일 기본 편집기로 무조건 확대하지 않으며 VS Code 확장을 모두 실행한다고 보지 않는다.",
+      "domain_ids": [
+        "C16"
+      ],
+      "figma_artifact_ids": [
+        "ART-C16"
+      ],
+      "representation": [
+        "기초/부품/과업 표현",
+        "기술·검증 주석"
+      ],
+      "design_application": "데스크톱 코드 편집과 모바일 가능한 대안·지원 한계를 구분한다.",
+      "state_contract_ids": [
+        "CONTENT-UNAVAILABLE"
+      ],
+      "selection": "현재 구현·부품 우선 재사용",
+      "figma_nodes": [
+        "22:941"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "03",
+        "04",
+        "05"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-s.json",
+        "node_id": "22:941",
+        "official_link_node_id": "22:956",
+        "domain_link_node_ids": [
+          "22:958"
+        ]
+      }
+    },
+    {
+      "source_id": "S19",
+      "name": "Tiptap",
+      "source_category": "C16",
+      "source_status": "조건부",
+      "source_url": "https://tiptap.dev/docs/editor/getting-started/overview",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "specialized-sources.json",
+      "source_evidence": "확장 가능한 리치 텍스트 편집기 구성과 관련 서비스를 제공한다.",
+      "preserved_limits": "구조화 편집이 실제 필요할 때만 도입한다. 기존 평문/Markdown·수식·커서·이력 이전과 유료 확장/서비스 비용을 따로 검토한다.",
+      "domain_ids": [
+        "C16"
+      ],
+      "figma_artifact_ids": [
+        "ART-C16"
+      ],
+      "representation": [
+        "조건부 후보·도입 조건 카드",
+        "관련 상태/검증 주석"
+      ],
+      "design_application": "구조화 편집 필요·원문/수식/커서/이력 이관을 조건부 후보로 기록한다.",
+      "state_contract_ids": [
+        "EDIT-DIRTY"
+      ],
+      "selection": "필요 조건 확인 전 도입하지 않음",
+      "figma_nodes": [
+        "22:960"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "03",
+        "04",
+        "05",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-s.json",
+        "node_id": "22:960",
+        "official_link_node_id": "22:975",
+        "domain_link_node_ids": [
+          "22:977"
+        ]
+      }
+    },
+    {
+      "source_id": "S20",
+      "name": "Lexical",
+      "source_category": "C16",
+      "source_status": "조건부",
+      "source_url": "https://lexical.dev/docs/intro",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "specialized-sources.json",
+      "source_evidence": "확장 가능한 텍스트 편집 프레임워크와 편집 상태 모델을 제공한다.",
+      "preserved_limits": "복잡한 자체 편집 UX의 대안이다. 저장 형식과 플러그인/한글 조합 검증 부담이 있어 즉시 교체하지 않는다.",
+      "domain_ids": [
+        "C16"
+      ],
+      "figma_artifact_ids": [
+        "ART-C16"
+      ],
+      "representation": [
+        "조건부 후보·도입 조건 카드",
+        "관련 상태/검증 주석"
+      ],
+      "design_application": "자체 편집 UX 요구와 저장 형식·플러그인/IME 비용을 기록한다.",
+      "state_contract_ids": [
+        "EDIT-DIRTY"
+      ],
+      "selection": "필요 조건 확인 전 도입하지 않음",
+      "figma_nodes": [
+        "22:979"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "03",
+        "04",
+        "05",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-s.json",
+        "node_id": "22:979",
+        "official_link_node_id": "22:994",
+        "domain_link_node_ids": [
+          "22:996"
+        ]
+      }
+    },
+    {
+      "source_id": "S21",
+      "name": "PDF.js",
+      "source_category": "C16",
+      "source_status": "기존 유지",
+      "source_url": "https://mozilla.github.io/pdf.js/",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "specialized-sources.json",
+      "source_evidence": "PDF 파싱·표시를 위한 Mozilla 프로젝트다.",
+      "preserved_limits": "현재 자료 보기 경로를 유지하고 worker·페이지 지연 렌더링·취소·파일 오류를 다룬다. 스캔 이미지의 글자 인식을 PDF 렌더링과 구별한다.",
+      "domain_ids": [
+        "C16"
+      ],
+      "figma_artifact_ids": [
+        "ART-C16"
+      ],
+      "representation": [
+        "기초/부품/과업 표현",
+        "기술·검증 주석"
+      ],
+      "design_application": "PDF 로드/쪽 이동/원문/주석·지연 렌더·취소/실패 상태를 연결한다.",
+      "state_contract_ids": [
+        "BACKUP-MISSING-ORIGINAL",
+        "CONTENT-ERROR"
+      ],
+      "selection": "현재 구현·부품 우선 재사용",
+      "figma_nodes": [
+        "22:998"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "03",
+        "04",
+        "05"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-s.json",
+        "node_id": "22:998",
+        "official_link_node_id": "22:1013",
+        "domain_link_node_ids": [
+          "22:1015"
+        ]
+      }
+    },
+    {
+      "source_id": "S22",
+      "name": "Tesseract.js",
+      "source_category": "C16",
+      "source_status": "기존 유지",
+      "source_url": "https://github.com/naptha/tesseract.js",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "specialized-sources.json",
+      "source_evidence": "WebAssembly를 이용한 OCR이며 PDF 파일 자체는 지원하지 않는다고 명시한다.",
+      "preserved_limits": "기존 허용된 OCR 용도만 유지한다. 사용자 결정으로 제거한 사진→목차 OCR 경로를 복원하지 않는다. 인식 결과는 수정 가능한 초안으로 처리한다.",
+      "domain_ids": [
+        "C16"
+      ],
+      "figma_artifact_ids": [
+        "ART-C16"
+      ],
+      "representation": [
+        "기초/부품/과업 표현",
+        "기술·검증 주석"
+      ],
+      "design_application": "허용된 OCR의 원본/추출 초안/수정·실패 상태를 연결한다.",
+      "state_contract_ids": [],
+      "selection": "현재 구현·부품 우선 재사용",
+      "figma_nodes": [
+        "22:1017"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "03",
+        "04",
+        "05"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-s.json",
+        "node_id": "22:1017",
+        "official_link_node_id": "22:1032",
+        "domain_link_node_ids": [
+          "22:1034"
+        ]
+      }
+    },
+    {
+      "source_id": "S23",
+      "name": "Mermaid 설정·보안",
+      "source_category": "C14",
+      "source_status": "조건부",
+      "source_url": "https://mermaid.js.org/config/schema-docs/config.html",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "specialized-sources.json",
+      "source_evidence": "문자 기반 관계 도해와 strict/sandbox 등 보안 설정을 제공한다.",
+      "preserved_limits": "설계·문서의 간결한 도해에 활용한다. 사용자/AI 도해에서 HTML·클릭 권한과 크기 한도를 통제하며 실제 Canvas를 대체하지 않는다.",
+      "domain_ids": [
+        "C14"
+      ],
+      "figma_artifact_ids": [
+        "ART-C14"
+      ],
+      "representation": [
+        "조건부 후보·도입 조건 카드",
+        "관련 상태/검증 주석"
+      ],
+      "design_application": "문서 도해의 구조·HTML/클릭 권한·큰 그래프 제한을 기술주석으로 둔다.",
+      "state_contract_ids": [],
+      "selection": "필요 조건 확인 전 도입하지 않음",
+      "figma_nodes": [
+        "22:1035"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "05",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-s.json",
+        "node_id": "22:1035",
+        "official_link_node_id": "22:1050",
+        "domain_link_node_ids": [
+          "22:1052"
+        ]
+      }
+    },
+    {
+      "source_id": "S24",
+      "name": "Pyodide",
+      "source_category": "C16",
+      "source_status": "조건부",
+      "source_url": "https://pyodide.org/en/stable/",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "specialized-sources.json",
+      "source_evidence": "브라우저 등에서 Python을 실행하는 WebAssembly 기반 환경이다.",
+      "preserved_limits": "향후 Python 과업에 실제 필요할 때 비교한다. 현재 C/C++/C# 실행 경로의 대체가 아니며 로드·메모리·취소·파일 접근을 설계한다.",
+      "domain_ids": [
+        "C16"
+      ],
+      "figma_artifact_ids": [
+        "ART-C16"
+      ],
+      "representation": [
+        "조건부 후보·도입 조건 카드",
+        "관련 상태/검증 주석"
+      ],
+      "design_application": "Python의 실제 과업 필요·로딩/메모리·취소·환경 미지원 조건을 기록한다.",
+      "state_contract_ids": [
+        "CONTENT-UNAVAILABLE"
+      ],
+      "selection": "필요 조건 확인 전 도입하지 않음",
+      "figma_nodes": [
+        "22:1053"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "03",
+        "04",
+        "05",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-s.json",
+        "node_id": "22:1053",
+        "official_link_node_id": "22:1068",
+        "domain_link_node_ids": [
+          "22:1070"
+        ]
+      }
+    },
+    {
+      "source_id": "S25",
+      "name": "Transformers.js",
+      "source_category": "C20",
+      "source_status": "조건부",
+      "source_url": "https://huggingface.co/docs/transformers.js/index",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "specialized-sources.json",
+      "source_evidence": "브라우저에서 모델 추론을 실행하는 라이브러리와 실행 방법을 제공한다.",
+      "preserved_limits": "package에 이미 선언돼 있으나 전 기능 사용/성능 확인과 구별한다. 모델 크기·라이선스·기기 메모리·정확성·AI 소유자 권한을 검토한다.",
+      "domain_ids": [
+        "C20"
+      ],
+      "figma_artifact_ids": [
+        "ART-C20"
+      ],
+      "representation": [
+        "조건부 후보·도입 조건 카드",
+        "관련 상태/검증 주석"
+      ],
+      "design_application": "로컬 모델의 필요·모델 크기/권리·정확성/기기·민석 전용 권한을 기록한다.",
+      "state_contract_ids": [
+        "AI-FORBIDDEN"
+      ],
+      "selection": "필요 조건 확인 전 도입하지 않음",
+      "figma_nodes": [
+        "22:1072"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "04",
+        "05",
+        "07",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-s.json",
+        "node_id": "22:1072",
+        "official_link_node_id": "22:1087",
+        "domain_link_node_ids": [
+          "22:1089"
+        ]
+      }
+    },
+    {
+      "source_id": "S26",
+      "name": "Agent Skills 명세",
+      "source_category": "C20",
+      "source_status": "기본 권고",
+      "source_url": "https://agentskills.io/specification",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "specialized-sources.json",
+      "source_evidence": "SKILL.md와 메타데이터·참고 파일로 재사용 작업을 표현하는 공개 명세다.",
+      "preserved_limits": "발동 조건과 필요한 절차를 좁혀 유지한다. 형식 호환이 품질·신뢰·도구 권한을 보증하지 않는다.",
+      "domain_ids": [
+        "C20"
+      ],
+      "figma_artifact_ids": [
+        "ART-C20"
+      ],
+      "representation": [
+        "설계 판단 주석"
+      ],
+      "design_application": "스킬의 목적·발동/비발동·산출물·권한/보존 조건을 제작 주석으로 둔다.",
+      "state_contract_ids": [],
+      "selection": "관련 설계 판단과 검증 요구에 우선 적용",
+      "figma_nodes": [
+        "22:1091"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "04",
+        "05",
+        "07",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-s.json",
+        "node_id": "22:1091",
+        "official_link_node_id": "22:1106",
+        "domain_link_node_ids": [
+          "22:1108"
+        ]
+      }
+    },
+    {
+      "source_id": "S27",
+      "name": "OpenAI Build skills",
+      "source_category": "C20",
+      "source_status": "기본 권고",
+      "source_url": "https://developers.openai.com/plugins/build/skills",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "specialized-sources.json",
+      "source_evidence": "스킬 작성과 활성화·비활성화·불완전 입력·경계 사례 시험을 설명한다.",
+      "preserved_limits": "설계/구현/검증의 반복 절차에 적용한다. 외부 스킬의 행동 지시는 사용자 권한이나 프로젝트 보존 계약을 확장하지 않는다.",
+      "domain_ids": [
+        "C20"
+      ],
+      "figma_artifact_ids": [
+        "ART-C20"
+      ],
+      "representation": [
+        "설계 판단 주석"
+      ],
+      "design_application": "설계→구현→검증 반복 절차와 실제 증거를 스킬 운영표에 연결한다.",
+      "state_contract_ids": [],
+      "selection": "관련 설계 판단과 검증 요구에 우선 적용",
+      "figma_nodes": [
+        "22:1109"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "04",
+        "05",
+        "07",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-s.json",
+        "node_id": "22:1109",
+        "official_link_node_id": "22:1124",
+        "domain_link_node_ids": [
+          "22:1126"
+        ]
+      }
+    },
+    {
+      "source_id": "S28",
+      "name": "Anthropic frontend-design 스킬",
+      "source_category": "C20",
+      "source_status": "참고",
+      "source_url": "https://raw.githubusercontent.com/anthropics/skills/main/skills/frontend-design/SKILL.md",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "specialized-sources.json",
+      "source_evidence": "브리프에 근거한 시각적 방향·타이포·구조와 자기 검토를 제안하는 공식 공개 스킬이다.",
+      "preserved_limits": "정체성을 구체화하는 작업 방식만 참고한다. 천문대를 임의의 새로운 스타일로 재해석하거나 모든 조판 조언을 보편 표준으로 만들지 않는다.",
+      "domain_ids": [
+        "C20"
+      ],
+      "figma_artifact_ids": [
+        "ART-C20"
+      ],
+      "representation": [
+        "참고·라이선스·비교 주석"
+      ],
+      "design_application": "천문대 원본을 유지하는 구체적 화면 제작 방법만 참고 주석으로 둔다.",
+      "state_contract_ids": [],
+      "selection": "관찰/비교의 참고; 외형/제품/도구 자동 도입 아님",
+      "figma_nodes": [
+        "22:1127"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "04",
+        "05",
+        "07",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-s.json",
+        "node_id": "22:1127",
+        "official_link_node_id": "22:1142",
+        "domain_link_node_ids": [
+          "22:1144"
+        ]
+      }
+    },
+    {
+      "source_id": "S29",
+      "name": "Vercel React Best Practices 공개 스킬",
+      "source_category": "C20",
+      "source_status": "기본 권고",
+      "source_url": "https://raw.githubusercontent.com/vercel-labs/agent-skills/main/skills/react-best-practices/SKILL.md",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "specialized-sources.json",
+      "source_evidence": "비동기 지연·번들·데이터 요청·재렌더·렌더링 성능 규칙을 우선순위로 제공한다.",
+      "preserved_limits": "현재 Vite/React에 맞는 규칙만 적용한다. Next.js·RSC·서버 액션 전용 예시를 현재 앱의 의무로 이식하지 않는다.",
+      "domain_ids": [
+        "C20"
+      ],
+      "figma_artifact_ids": [
+        "ART-C20"
+      ],
+      "representation": [
+        "설계 판단 주석"
+      ],
+      "design_application": "현재 Vite/React에 맞는 상태·성능 규칙과 검증 경로를 연결한다.",
+      "state_contract_ids": [],
+      "selection": "관련 설계 판단과 검증 요구에 우선 적용",
+      "figma_nodes": [
+        "22:1145"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "04",
+        "05",
+        "07",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-s.json",
+        "node_id": "22:1145",
+        "official_link_node_id": "22:1160",
+        "domain_link_node_ids": [
+          "22:1162"
+        ]
+      }
+    },
+    {
+      "source_id": "S30",
+      "name": "Model Context Protocol",
+      "source_category": "C20",
+      "source_status": "참고",
+      "source_url": "https://modelcontextprotocol.io/specification/2026-07-28",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "specialized-sources.json",
+      "source_evidence": "도구·리소스와 클라이언트를 연결하는 공개 프로토콜 명세다.",
+      "preserved_limits": "이미 연결된 Figma/GitHub/Linear의 필요한 기능을 사용한다. 프로토콜 연결이 계정 권한·공유·운영 변경 승인을 뜻하지 않는다.",
+      "domain_ids": [
+        "C20"
+      ],
+      "figma_artifact_ids": [
+        "ART-C20"
+      ],
+      "representation": [
+        "참고·라이선스·비교 주석"
+      ],
+      "design_application": "Figma/GitHub/Linear 연결의 역할·읽기/쓰기 권한·외부 전송 경계를 표현한다.",
+      "state_contract_ids": [],
+      "selection": "관찰/비교의 참고; 외형/제품/도구 자동 도입 아님",
+      "figma_nodes": [
+        "22:1163"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "04",
+        "05",
+        "07",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-s.json",
+        "node_id": "22:1163",
+        "official_link_node_id": "22:1178",
+        "domain_link_node_ids": [
+          "22:1180"
+        ]
+      }
+    },
+    {
+      "source_id": "S31",
+      "name": "Context7",
+      "source_category": "C20",
+      "source_status": "조건부",
+      "source_url": "https://github.com/upstash/context7",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "specialized-sources.json",
+      "source_evidence": "개발 문서를 에이전트 문맥으로 가져오는 프로젝트와 연결 방식을 제공한다.",
+      "preserved_limits": "라이브러리별 최신 문서 검색이 반복 병목일 때 비교한다. 기존 공식 검색과 중복 여부, 버전 일치·계정 조건·전송 내용을 먼저 확인한다.",
+      "domain_ids": [
+        "C20"
+      ],
+      "figma_artifact_ids": [
+        "ART-C20"
+      ],
+      "representation": [
+        "조건부 후보·도입 조건 카드",
+        "관련 상태/검증 주석"
+      ],
+      "design_application": "문서 검색 병목·버전 일치·전송 범위 조건이 충족될 때의 대안으로 기록한다.",
+      "state_contract_ids": [],
+      "selection": "필요 조건 확인 전 도입하지 않음",
+      "figma_nodes": [
+        "22:1181"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "04",
+        "05",
+        "07",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-s.json",
+        "node_id": "22:1181",
+        "official_link_node_id": "22:1196",
+        "domain_link_node_ids": [
+          "22:1198"
+        ]
+      }
+    },
+    {
+      "source_id": "S32",
+      "name": "OpenAI Structured Outputs",
+      "source_category": "C20",
+      "source_status": "기존 유지",
+      "source_url": "https://developers.openai.com/api/docs/guides/structured-outputs",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "specialized-sources.json",
+      "source_evidence": "출력 스키마 준수를 지원하지만 결과 내용의 실수 가능성은 남는다고 명시한다.",
+      "preserved_limits": "기존 AI 생성 결과를 자료 계약으로 검사하고 원문과 분리한다. 정형 JSON을 정답·완료·학습 효과로 승격하지 않는다.",
+      "domain_ids": [
+        "C20"
+      ],
+      "figma_artifact_ids": [
+        "ART-C20"
+      ],
+      "representation": [
+        "설계 판단 주석"
+      ],
+      "design_application": "원문→요청→스키마 결과→검토·수정→선택 저장과 권한/실패 상태를 연결한다.",
+      "state_contract_ids": [
+        "AUTH-APPROVED",
+        "AI-OWNER-READY",
+        "AI-FORBIDDEN",
+        "AI-GENERATING",
+        "AI-PREVIEW",
+        "AI-FAILED",
+        "AI-LIMIT",
+        "AI-UNCERTAIN"
+      ],
+      "selection": "현재 구현·부품 우선 재사용",
+      "figma_nodes": [
+        "22:1199"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "04",
+        "05",
+        "07",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-s.json",
+        "node_id": "22:1199",
+        "official_link_node_id": "22:1214",
+        "domain_link_node_ids": [
+          "22:1216"
+        ]
+      }
+    },
+    {
+      "source_id": "S33",
+      "name": "OpenAI 평가 설계 권고",
+      "source_category": "C20",
+      "source_status": "기본 권고",
+      "source_url": "https://developers.openai.com/api/docs/guides/evaluation-best-practices",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "specialized-sources.json",
+      "source_evidence": "과업별 평가 설계와 현행 Evals 서비스 종료 일정을 안내한다.",
+      "preserved_limits": "기존 사례와 자체 실행기로 평가 원칙을 사용한다. Evals 플랫폼은 2026-10-31 읽기 전용, 11-30 종료 예정 안내가 있어 새 핵심 의존으로 채택하지 않는다.",
+      "domain_ids": [
+        "C20"
+      ],
+      "figma_artifact_ids": [
+        "ART-C20"
+      ],
+      "representation": [
+        "설계 판단 주석"
+      ],
+      "design_application": "조건/예외/출처 누락을 실제 사례로 평가하고 플랫폼 종료 의존을 피하는 주석을 둔다.",
+      "state_contract_ids": [
+        "AI-GENERATING",
+        "AI-PREVIEW",
+        "AI-FAILED",
+        "AI-UNCERTAIN"
+      ],
+      "selection": "관련 설계 판단과 검증 요구에 우선 적용",
+      "figma_nodes": [
+        "22:1218"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "04",
+        "05",
+        "07",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-s.json",
+        "node_id": "22:1218",
+        "official_link_node_id": "22:1233",
+        "domain_link_node_ids": [
+          "22:1235"
+        ]
+      }
+    },
+    {
+      "source_id": "S34",
+      "name": "MathLive",
+      "source_category": "C15",
+      "source_status": "조건부",
+      "source_url": "https://github.com/arnog/mathlive",
+      "source_checked": "2026-10-02",
+      "source_registry_file": "specialized-sources.json",
+      "source_evidence": "수식 표시·입력을 위한 웹 컴포넌트와 수학 키보드를 제공한다.",
+      "preserved_limits": "수식 입력 부담이 실제 문제일 때 후보로 삼는다. 한국어/일반 키보드/모바일 포커스·LaTeX 원문·기존 KaTeX 역할을 확인한다.",
+      "domain_ids": [
+        "C15"
+      ],
+      "figma_artifact_ids": [
+        "ART-C15"
+      ],
+      "representation": [
+        "조건부 후보·도입 조건 카드",
+        "관련 상태/검증 주석"
+      ],
+      "design_application": "수식 입력 부품 필요·LaTeX 원문·모바일 초점·현재 표시 역할을 조건부로 기록한다.",
+      "state_contract_ids": [],
+      "selection": "필요 조건 확인 전 도입하지 않음",
+      "figma_nodes": [
+        "22:1237"
+      ],
+      "figma_status": "출처별 편집 가능한 설계 적용·선정 조건·한계 카드 생성 및 영역 노드 연결 완료",
+      "runtime_verification": "이번 Figma 작업에서 구현/실행 시험 완료로 주장하지 않음",
+      "figma_page_keys": [
+        "05",
+        "09"
+      ],
+      "figma_actual_page_id": "7:77",
+      "completion_evidence": {
+        "file": "evidence/research-s.json",
+        "node_id": "22:1237",
+        "official_link_node_id": "22:1252",
+        "domain_link_node_ids": [
+          "22:1254"
+        ]
+      }
+    }
+  ],
+  "figma_pages": [
+    {
+      "key": "00",
+      "name": "00 안내·전수대응",
+      "figma_page_id": "7:68",
+      "remote_status": "실제 Figma 페이지 생성 확인; 세부 내용 검증은 해당 증거와 구별"
+    },
+    {
+      "key": "01",
+      "name": "01 기초·정체성",
+      "figma_page_id": "7:69",
+      "remote_status": "실제 Figma 페이지 생성 확인; 세부 내용 검증은 해당 증거와 구별"
+    },
+    {
+      "key": "02",
+      "name": "02 공통 부품·상태",
+      "figma_page_id": "7:70",
+      "remote_status": "실제 Figma 페이지 생성 확인; 세부 내용 검증은 해당 증거와 구별"
+    },
+    {
+      "key": "03",
+      "name": "03 정면 공부 책상",
+      "figma_page_id": "7:71",
+      "remote_status": "실제 Figma 페이지 생성 확인; 세부 내용 검증은 해당 증거와 구별"
+    },
+    {
+      "key": "04",
+      "name": "04 왼쪽 자료 책장",
+      "figma_page_id": "7:72",
+      "remote_status": "실제 Figma 페이지 생성 확인; 세부 내용 검증은 해당 증거와 구별"
+    },
+    {
+      "key": "05",
+      "name": "05 오른쪽 탐구 작업대",
+      "figma_page_id": "7:73",
+      "remote_status": "실제 Figma 페이지 생성 확인; 세부 내용 검증은 해당 증거와 구별"
+    },
+    {
+      "key": "06",
+      "name": "06 뒤쪽 기록·계획 벽",
+      "figma_page_id": "7:74",
+      "remote_status": "실제 Figma 페이지 생성 확인; 세부 내용 검증은 해당 증거와 구별"
+    },
+    {
+      "key": "07",
+      "name": "07 계정·설정·복구",
+      "figma_page_id": "7:75",
+      "remote_status": "실제 Figma 페이지 생성 확인; 세부 내용 검증은 해당 증거와 구별"
+    },
+    {
+      "key": "08",
+      "name": "08 반응형·실패·복귀",
+      "figma_page_id": "7:76",
+      "remote_status": "실제 Figma 페이지 생성 확인; 세부 내용 검증은 해당 증거와 구별"
+    },
+    {
+      "key": "09",
+      "name": "09 기술·검증·121출처",
+      "figma_page_id": "7:77",
+      "remote_status": "실제 Figma 페이지 생성 확인; 세부 내용 검증은 해당 증거와 구별"
+    }
+  ],
+  "remote_status": "Pro/Full 접근 복구 후 연구 121개·영역 20개·산출물 20개의 실제 Figma 노드 생성 및 연결 완료"
+}

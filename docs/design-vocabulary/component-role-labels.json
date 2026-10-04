@@ -1,0 +1,356 @@
+{
+  "Button": {
+    "label": "버튼",
+    "termId": "term-03457805e962",
+    "mappingKind": "project-role-label",
+    "codeName": "Button"
+  },
+  "IconButton": {
+    "label": "아이콘 버튼",
+    "termId": "term-0cc4e196179c",
+    "mappingKind": "project-role-label",
+    "codeName": "IconButton"
+  },
+  "Input": {
+    "label": "한 줄 입력 필드",
+    "termId": "term-24c330bc4e33",
+    "mappingKind": "project-role-label",
+    "codeName": "Input"
+  },
+  "Textarea": {
+    "label": "여러 줄 입력 필드",
+    "termId": "term-24c330bc4e33",
+    "mappingKind": "project-role-label",
+    "codeName": "Textarea"
+  },
+  "Select": {
+    "label": "셀렉트",
+    "termId": "term-d5a87d39c86f",
+    "mappingKind": "project-role-label",
+    "codeName": "Select"
+  },
+  "Checkbox": {
+    "label": "체크박스",
+    "termId": "term-800fa8a274e6",
+    "mappingKind": "project-role-label",
+    "codeName": "Checkbox"
+  },
+  "Radio": {
+    "label": "라디오 버튼",
+    "termId": "term-b0717f9513b9",
+    "mappingKind": "project-role-label",
+    "codeName": "Radio"
+  },
+  "Tabs": {
+    "label": "탭",
+    "termId": "term-f7a0155279f2",
+    "mappingKind": "project-role-label",
+    "codeName": "Tabs"
+  },
+  "SegmentedControl": {
+    "label": "분할 선택 컨트롤",
+    "termId": "term-88cfc495c578",
+    "mappingKind": "project-role-label",
+    "codeName": "SegmentedControl"
+  },
+  "Card": {
+    "label": "카드",
+    "termId": "term-7108d9a25211",
+    "mappingKind": "project-role-label",
+    "codeName": "Card"
+  },
+  "ListItem": {
+    "label": "목록 항목",
+    "termId": "term-08956e86bbbe",
+    "mappingKind": "project-role-label",
+    "codeName": "ListItem"
+  },
+  "Modal": {
+    "label": "모달 대화상자",
+    "termId": "term-c9fcfdb17054",
+    "mappingKind": "project-role-label",
+    "codeName": "Modal"
+  },
+  "Sheet": {
+    "label": "바텀 시트",
+    "termId": "term-76a6703625a9",
+    "mappingKind": "project-role-label",
+    "codeName": "Sheet"
+  },
+  "Toast": {
+    "label": "토스트",
+    "termId": "term-f90365631c0e",
+    "mappingKind": "project-role-label",
+    "codeName": "Toast"
+  },
+  "Breadcrumb": {
+    "label": "브레드크럼",
+    "termId": "term-354796678d96",
+    "mappingKind": "project-role-label",
+    "codeName": "Breadcrumb"
+  },
+  "Search": {
+    "label": "검색 입력·결과",
+    "termId": "term-b0d097a110b8",
+    "mappingKind": "project-role-label",
+    "codeName": "Search"
+  },
+  "EmptyState": {
+    "label": "빈 상태 안내",
+    "termId": "term-9cbd99672e14",
+    "mappingKind": "project-role-label",
+    "codeName": "EmptyState"
+  },
+  "LoadingState": {
+    "label": "로딩 상태 안내",
+    "termId": "term-7798c073957b",
+    "mappingKind": "project-role-label",
+    "codeName": "LoadingState"
+  },
+  "ErrorState": {
+    "label": "오류 상태 안내",
+    "termId": "term-58fece489082",
+    "mappingKind": "project-role-label",
+    "codeName": "ErrorState"
+  },
+  "ScreenBoundary": {
+    "label": "화면 렌더링 오류 경계",
+    "termId": "term-58fece489082",
+    "mappingKind": "project-role-label",
+    "codeName": "ScreenBoundary"
+  },
+  "NavigationBar": {
+    "label": "탐색 막대",
+    "termId": "term-f3bc5ae9e5a4",
+    "mappingKind": "project-role-label",
+    "codeName": "NavigationBar"
+  },
+  "ContextMenu": {
+    "label": "컨텍스트 메뉴",
+    "termId": "term-9a1a3df5dcbb",
+    "mappingKind": "project-role-label",
+    "codeName": "ContextMenu"
+  },
+  "StudyLandscapes": {
+    "label": "공부 공간 장면",
+    "termId": "term-ac5284bd3e11",
+    "mappingKind": "project-role-label",
+    "codeName": "StudyLandscapes"
+  },
+  "ObservatoryWorld": {
+    "label": "천문대 전체 장면",
+    "termId": "term-da8d80de5300",
+    "mappingKind": "project-role-label",
+    "codeName": "ObservatoryWorld"
+  },
+  "ObservatoryRoom": {
+    "label": "천문대 실내 장면",
+    "termId": "term-da8d80de5300",
+    "mappingKind": "project-role-label",
+    "codeName": "ObservatoryRoom"
+  },
+  "ObservatoryDesk": {
+    "label": "공부 책상 장면",
+    "termId": "term-da8d80de5300",
+    "mappingKind": "project-role-label",
+    "codeName": "ObservatoryDesk"
+  },
+  "ObservatoryAdvanced": {
+    "label": "천문대 고급 표현",
+    "termId": "term-da8d80de5300",
+    "mappingKind": "project-role-label",
+    "codeName": "ObservatoryAdvanced"
+  },
+  "ObservatorySkyDetails": {
+    "label": "하늘 세부 표현",
+    "termId": "term-da8d80de5300",
+    "mappingKind": "project-role-label",
+    "codeName": "ObservatorySkyDetails"
+  },
+  "ObservatoryStationDetails": {
+    "label": "관측 장소 세부 표현",
+    "termId": "term-da8d80de5300",
+    "mappingKind": "project-role-label",
+    "codeName": "ObservatoryStationDetails"
+  },
+  "ObservatoryTimeSky": {
+    "label": "시간에 따른 하늘 표현",
+    "termId": "term-da8d80de5300",
+    "mappingKind": "project-role-label",
+    "codeName": "ObservatoryTimeSky"
+  },
+  "ObservatoryTimeGround": {
+    "label": "시간에 따른 지면 표현",
+    "termId": "term-da8d80de5300",
+    "mappingKind": "project-role-label",
+    "codeName": "ObservatoryTimeGround"
+  },
+  "ObservatoryClouds": {
+    "label": "구름 표현",
+    "termId": "term-da8d80de5300",
+    "mappingKind": "project-role-label",
+    "codeName": "ObservatoryClouds"
+  },
+  "ObservatoryGroundDetails": {
+    "label": "지면 세부 표현",
+    "termId": "term-da8d80de5300",
+    "mappingKind": "project-role-label",
+    "codeName": "ObservatoryGroundDetails"
+  },
+  "ObservatoryDomeTiles": {
+    "label": "돔 타일 표현",
+    "termId": "term-da8d80de5300",
+    "mappingKind": "project-role-label",
+    "codeName": "ObservatoryDomeTiles"
+  },
+  "ObservatoryShockwave": {
+    "label": "파동 효과",
+    "termId": "term-1b2299032e22",
+    "mappingKind": "project-role-label",
+    "codeName": "ObservatoryShockwave"
+  },
+  "ObservatoryStudySky": {
+    "label": "공부 하늘 표현",
+    "termId": "term-da8d80de5300",
+    "mappingKind": "project-role-label",
+    "codeName": "ObservatoryStudySky"
+  },
+  "ObservatoryStudyStation": {
+    "label": "공부 관측 장소 표현",
+    "termId": "term-da8d80de5300",
+    "mappingKind": "project-role-label",
+    "codeName": "ObservatoryStudyStation"
+  },
+  "ObservatoryRadiance": {
+    "label": "하늘 빛 표현",
+    "termId": "term-da8d80de5300",
+    "mappingKind": "project-role-label",
+    "codeName": "ObservatoryRadiance"
+  },
+  "ObservatoryRadianceGround": {
+    "label": "지면 빛 표현",
+    "termId": "term-da8d80de5300",
+    "mappingKind": "project-role-label",
+    "codeName": "ObservatoryRadianceGround"
+  },
+  "ObservatoryEvents": {
+    "label": "장면 사건 표현",
+    "termId": "term-da8d80de5300",
+    "mappingKind": "project-role-label",
+    "codeName": "ObservatoryEvents"
+  },
+  "ObservatoryEventVariationSymbol": {
+    "label": "장면 사건 변형 기호",
+    "termId": "term-09767030d621",
+    "mappingKind": "project-role-label",
+    "codeName": "ObservatoryEventVariationSymbol"
+  },
+  "ObservatoryEventVariation": {
+    "label": "장면 사건의 표현 변형",
+    "termId": "term-09767030d621",
+    "mappingKind": "project-role-label",
+    "codeName": "ObservatoryEventVariation"
+  },
+  "BusyDots": {
+    "label": "처리 중 점 표시",
+    "termId": "term-7798c073957b",
+    "mappingKind": "project-role-label",
+    "codeName": "BusyDots"
+  },
+  "SavedMark": {
+    "label": "저장 확인 표시",
+    "termId": "term-ebc3cee36f70",
+    "mappingKind": "project-role-label",
+    "codeName": "SavedMark"
+  },
+  "SelectionBackground": {
+    "label": "선택 배경",
+    "termId": "term-86ae4f2de162",
+    "mappingKind": "project-role-label",
+    "codeName": "SelectionBackground"
+  },
+  "NoticeEntrance": {
+    "label": "안내 등장 동작",
+    "termId": "term-1b2299032e22",
+    "mappingKind": "project-role-label",
+    "codeName": "NoticeEntrance"
+  },
+  "FadeContent": {
+    "label": "콘텐츠 페이드 전환",
+    "termId": "term-0a62c3b66c4d",
+    "mappingKind": "project-role-label",
+    "codeName": "FadeContent"
+  },
+  "BrandWordmark": {
+    "label": "브랜드 글자 표식",
+    "termId": "term-0228a1176204",
+    "mappingKind": "project-role-label",
+    "codeName": "BrandWordmark"
+  },
+  "ObservatoryNavigation": {
+    "label": "천문대 장소 탐색",
+    "termId": "term-f3bc5ae9e5a4",
+    "mappingKind": "project-role-label",
+    "codeName": "ObservatoryNavigation"
+  },
+  "ObservatoryTaskReturn": {
+    "label": "원래 과업으로 복귀",
+    "termId": "term-55cee4c15bfd",
+    "mappingKind": "project-role-label",
+    "codeName": "ObservatoryTaskReturn"
+  },
+  "WorkspaceCommands": {
+    "label": "작업 공간 명령",
+    "termId": "term-650662bd7fa8",
+    "mappingKind": "project-role-label",
+    "codeName": "WorkspaceCommands"
+  },
+  "StudyWorkspace": {
+    "label": "공부 작업 공간",
+    "termId": "term-ac5284bd3e11",
+    "mappingKind": "project-role-label",
+    "codeName": "StudyWorkspace"
+  },
+  "SavedWorkspaces": {
+    "label": "저장한 작업 공간",
+    "termId": "term-06630dfc0e2e",
+    "mappingKind": "project-role-label",
+    "codeName": "SavedWorkspaces"
+  },
+  "WorkspaceStorageNotice": {
+    "label": "작업 공간 저장 안내",
+    "termId": "term-ebc3cee36f70",
+    "mappingKind": "project-role-label",
+    "codeName": "WorkspaceStorageNotice"
+  },
+  "ProgressiveHistory": {
+    "label": "기록 이력의 점진적 표시",
+    "termId": "term-dc18999622db",
+    "mappingKind": "project-role-label",
+    "codeName": "ProgressiveHistory"
+  },
+  "UiPerformanceAccess": {
+    "label": "화면 성능 도구 진입",
+    "termId": "term-e22830fe5b6a",
+    "mappingKind": "project-role-label",
+    "codeName": "UiPerformanceAccess"
+  },
+  "UiPerformancePanel": {
+    "label": "화면 성능 도구 패널",
+    "termId": "term-e22830fe5b6a",
+    "mappingKind": "project-role-label",
+    "codeName": "UiPerformancePanel"
+  },
+  "MathComparison": {
+    "label": "수학 관측 비교",
+    "termId": "term-da8d80de5300",
+    "mappingKind": "project-role-label",
+    "codeName": "MathComparison"
+  },
+  "ConceptText": {
+    "label": "개념 본문",
+    "termId": "term-0228a1176204",
+    "mappingKind": "project-role-label",
+    "codeName": "ConceptText"
+  }
+}

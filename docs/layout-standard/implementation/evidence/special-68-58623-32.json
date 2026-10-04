@@ -1,0 +1,73 @@
+{
+  "pageId": "68:58623",
+  "createdNodeIds": [
+    "263:33472",
+    "263:33473",
+    "263:33474",
+    "263:33475"
+  ],
+  "mutatedNodeIds": [
+    "263:33472",
+    "68:70356",
+    "68:70353",
+    "263:33473",
+    "68:70445",
+    "68:70442",
+    "263:33474",
+    "68:70614",
+    "68:70611",
+    "263:33475",
+    "68:70755",
+    "68:70752"
+  ],
+  "results": [
+    {
+      "id": "68:70353",
+      "name": "파동을 빛의 진행과 무늬에 적용하기",
+      "pattern": "L194",
+      "structure": "263:33472",
+      "preserved": true,
+      "viewport": {
+        "width": 1538,
+        "height": 784,
+        "overflow": "NONE"
+      }
+    },
+    {
+      "id": "68:70442",
+      "name": "전하의 힘에서 장·전위·회로로",
+      "pattern": "L194",
+      "structure": "263:33473",
+      "preserved": true,
+      "viewport": {
+        "width": 2383,
+        "height": 1523,
+        "overflow": "NONE"
+      }
+    },
+    {
+      "id": "68:70611",
+      "name": "자기력에서 장의 원천과 전자기 유도로",
+      "pattern": "L194",
+      "structure": "263:33474",
+      "preserved": true,
+      "viewport": {
+        "width": 1799,
+        "height": 1244,
+        "overflow": "NONE"
+      }
+    },
+    {
+      "id": "68:70752",
+      "name": "앞의 개념들이 진동 회로와 교류에서 만나는 곳",
+      "pattern": "L194",
+      "structure": "263:33475",
+      "preserved": true,
+      "viewport": {
+        "width": 1865,
+        "height": 924,
+        "overflow": "NONE"
+      }
+    }
+  ]
+}

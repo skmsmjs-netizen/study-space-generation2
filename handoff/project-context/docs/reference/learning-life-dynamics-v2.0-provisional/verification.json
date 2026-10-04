@@ -1,0 +1,66 @@
+{
+  "date": "2026-09-11",
+  "files": [
+    {
+      "file": "학습생활_통합이론명세_v2.0_잠정.md",
+      "byteIdentical": true,
+      "sourceUnchanged": true,
+      "copiedSha256": "54a39d041e751ec2d5f2e1c8858702f383ab30b43f4f7ce0b0e73efc2d9af4ac",
+      "bytes": 85863,
+      "formulaCount": 62
+    },
+    {
+      "file": "학습생활_v2.0_검토기록.md",
+      "byteIdentical": true,
+      "sourceUnchanged": true,
+      "copiedSha256": "28b8baef19326525195a703e0d125e7ae6da1e32f549677868d5d8130fb745d1",
+      "bytes": 7697,
+      "formulaCount": null
+    }
+  ],
+  "anchors": [
+    {
+      "name": "AGENTS.md",
+      "currentSha256": "a2d22ca4e7bcbb7ea06882fdc51cc512ee6dde715ee209bbd96e43c20573dfe2",
+      "expectedUnchanged": false,
+      "beforeSha256": "0f570e4621ef888acce3f7e555ff47f8c6db40b0b5bb4e626076d36f294e904c"
+    },
+    {
+      "name": "간단 인계.md",
+      "currentSha256": "9ee5bcce70d82ed11c7d5892105daa60067c3dd6204fac07f5c84f70d65732f6",
+      "expectedUnchanged": false,
+      "beforeSha256": "aa4f2cbeac5987c541d02827e97c4c445ab553efe94f47270e9187f9e5602e2a"
+    },
+    {
+      "name": "outputs/20260911-mathematical-theory/이론 검토안.md",
+      "currentSha256": "b6433c320beae5975f04ccabe01d7b5af263b980537d2036aa65f2ee93b5f9c9",
+      "expectedUnchanged": true,
+      "beforeSha256": "b6433c320beae5975f04ccabe01d7b5af263b980537d2036aa65f2ee93b5f9c9"
+    },
+    {
+      "name": "outputs/20260911-theory-depth-audit/수학적 충분성과 고도화 검토.md",
+      "currentSha256": "80fc4d25acbcab26b75cd4a84a4649042561057f5099b9de03e1dfd277ebc8be",
+      "expectedUnchanged": true,
+      "beforeSha256": "80fc4d25acbcab26b75cd4a84a4649042561057f5099b9de03e1dfd277ebc8be"
+    },
+    {
+      "name": "docs/학습 시스템 설계 기본 지침.md",
+      "currentSha256": "bc7c3d246416a971f3538b35131cca06bdf7ef0b85dba7fac2353cca42196ba6",
+      "expectedUnchanged": true,
+      "beforeSha256": "bc7c3d246416a971f3538b35131cca06bdf7ef0b85dba7fac2353cca42196ba6"
+    }
+  ],
+  "badLocalLinks": [],
+  "originalContentPreserved": [
+    {
+      "name": "AGENTS.md",
+      "originalIsUnchangedPrefix": true
+    },
+    {
+      "name": "간단 인계.md",
+      "originalIsUnchangedPrefix": true
+    }
+  ],
+  "allPassed": true,
+  "scope": "Local reference copy and navigation links only; native upload, thread delivery and design adoption not verified."
+}

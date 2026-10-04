@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"pageId\":\"3:75\",\"name\":\"전집 · 구별형\",\"rootCount\":173,\"publicationCount\":173,\"nativeParagraphCount\":530,\"richParagraphCount\":140,\"renderedNative95TextCount\":570,\"problems\":[],\"representativeRoots\":[{\"id\":\"46:2599\",\"name\":\"OS판본 · 01-043 · 104ac176d02b\",\"width\":1584,\"height\":746},{\"id\":\"46:2642\",\"name\":\"OS판본 · 01-004 · f48f267b35b3\",\"width\":2400,\"height\":1653.7259521484375},{\"id\":\"46:3090\",\"name\":\"OS판본 · 01-015 · 32b84ea36037\",\"width\":2400,\"height\":710}],\"createdNodeIds\":[],\"mutatedNodeIds\":[]}"
+    }
+  ],
+  "isError": false
+}

@@ -1,0 +1,282 @@
+[
+  {
+    "id": "Q01",
+    "name": "Vitest",
+    "category": "단위·통합 검사",
+    "status": "기존 유지",
+    "url": "https://vitest.dev/guide/",
+    "checked": "2026-10-02",
+    "evidence": "Vite와 연계하는 검사 도구이며 현재 package.json에 vitest가 선언되어 있다.",
+    "limits": "설치 선언과 실제 테스트 통과는 다르다. DOM 모사 결과로 브라우저·서버·기기 동작을 보증하지 않는다."
+  },
+  {
+    "id": "Q02",
+    "name": "Testing Library",
+    "category": "사용자 행동 중심 컴포넌트 검사",
+    "status": "기존 유지",
+    "url": "https://testing-library.com/docs/guiding-principles/",
+    "checked": "2026-10-02",
+    "evidence": "구현 내부보다 사용자가 접하는 DOM과 상호작용을 중심으로 검사하는 원칙을 제공한다.",
+    "limits": "자체 문서도 모사 환경과 실제 사용의 차이를 인정한다. 기존 @testing-library 패키지를 재사용한다."
+  },
+  {
+    "id": "Q03",
+    "name": "Playwright",
+    "category": "브라우저·시각 회귀",
+    "status": "기존 유지",
+    "url": "https://playwright.dev/docs/best-practices",
+    "checked": "2026-10-02",
+    "evidence": "실제 보이는 행동, 역할 기반 locator, 자동 대기, 독립된 테스트와 trace를 권한다.",
+    "limits": "Chromium·Firefox·WebKit 실행과 기기 모사는 물리 iPhone/iPad·OS 한글 조합·실제 Sync 증거를 대신하지 않는다."
+  },
+  {
+    "id": "Q04",
+    "name": "axe-core",
+    "category": "자동 접근성 검사",
+    "status": "기존 유지",
+    "url": "https://github.com/dequelabs/axe-core",
+    "checked": "2026-10-02",
+    "evidence": "접근성 규칙을 자동 검사하는 엔진이며 @axe-core/playwright와 Storybook addon-a11y가 이미 선언되어 있다.",
+    "limits": "자동 검출의 위반 0개가 전체 접근성 준수는 아니다. 관련 초점·키보드·확대·터치 조작을 직접 확인한다."
+  },
+  {
+    "id": "Q05",
+    "name": "Lighthouse",
+    "category": "합성 성능·품질 진단",
+    "status": "기존 유지",
+    "url": "https://developer.chrome.com/docs/lighthouse/overview/",
+    "checked": "2026-10-02",
+    "evidence": "페이지에 자동 성능·접근성·모범 사례 감사를 실행하고 개선 지점을 보고한다.",
+    "limits": "개발용 Storybook 점수는 제품 전체 성능이 아니다. 인증된 제품 빌드와 정한 조건에서 비교하며 현장 사용자 측정과 구별한다."
+  },
+  {
+    "id": "Q06",
+    "name": "Core Web Vitals",
+    "category": "사용 성능 지표·권고",
+    "status": "기본 권고",
+    "url": "https://web.dev/articles/vitals",
+    "checked": "2026-10-02",
+    "evidence": "LCP·INP·CLS를 로딩·반응·배치 안정성 지표로 정의하며 좋은 수준의 경계를 각각 2.5초·200ms·0.1로 안내한다.",
+    "limits": "모바일/데스크톱 구분과 실제 이용의 75백분위 기준이다. 합성 단일 실행이나 전체 UX·학습 효과의 점수가 아니다."
+  },
+  {
+    "id": "Q07",
+    "name": "OWASP ASVS 5.0.0",
+    "category": "보안 검증 표준",
+    "status": "기본 권고",
+    "url": "https://owasp.org/projects/asvs",
+    "checked": "2026-10-02",
+    "evidence": "웹앱 보안 통제의 개발·검증 요구를 구체적인 항목으로 제공한다. 공식 페이지에서 5.0.0을 확인했다.",
+    "limits": "해당 앱의 인증·권한·입력·세션·자료 보호 범위에 요구 ID를 연결한다. 조사만으로 준수 인증이나 전체 감사 완료를 주장하지 않는다."
+  },
+  {
+    "id": "Q08",
+    "name": "OWASP Top 10:2025",
+    "category": "보안 위험 인식 기준",
+    "status": "참고",
+    "url": "https://top10.owasp.org/2025/",
+    "checked": "2026-10-02",
+    "evidence": "접근 통제·공급망·설정·인증·예외 처리 등 대표 위험을 2025 목록으로 제공한다.",
+    "limits": "위험 분류와 ASVS의 검증 요구는 역할이 다르다. 열 가지를 읽는 것으로 앱 보안을 검증할 수 없다."
+  },
+  {
+    "id": "Q09",
+    "name": "CSP / Trusted Types",
+    "category": "브라우저 방어 기술",
+    "status": "기본 권고",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP",
+    "checked": "2026-10-02",
+    "evidence": "CSP는 실행·로딩 출처를 제한하며 정적 사이트에는 hash 기반 정책을 검토할 수 있다. Trusted Types API 공식 MDN 페이지도 별도 확인했다.",
+    "limits": "CSP는 안전한 렌더링/정화를 대체하지 않는다. Trusted Types는 MDN Baseline 2026이나 기존 브라우저·라이브러리와 호환 검증이 필요하다."
+  },
+  {
+    "id": "Q10",
+    "name": "Supabase Auth / JWT",
+    "category": "인증·세션",
+    "status": "기존 유지",
+    "url": "https://supabase.com/docs/guides/auth/jwts",
+    "checked": "2026-10-02",
+    "evidence": "Supabase의 JWT 구조와 검증 경로를 제공한다. 현재 앱은 Supabase Auth를 서버 소유권 확인과 연결하는 구조다.",
+    "limits": "JWT 디코딩만으로 인증을 확정하지 않는다. 만료·서명·허용 발급자와 실제 세션 정책을 확인하고 비밀키를 프론트에 넣지 않는다."
+  },
+  {
+    "id": "Q11",
+    "name": "Supabase RLS / Data API grants",
+    "category": "행 단위 권한",
+    "status": "기존 유지",
+    "url": "https://supabase.com/docs/guides/database/postgres/row-level-security",
+    "checked": "2026-10-02",
+    "evidence": "사용자 소유 행의 읽기·변경 제한을 DB에서 적용한다. 별도 공식 API 보안 문서는 GRANT와 RLS를 독립 계층으로 설명한다.",
+    "limits": "로그인한 역할이라는 이유만으로 모든 행을 허용하지 않는다. 보기·RPC·Storage·AI 전용 권한도 실제 경로에 맞춰 검토한다."
+  },
+  {
+    "id": "Q12",
+    "name": "PostgreSQL transactions / isolation",
+    "category": "서버 원자성·동시 수정",
+    "status": "기존 유지",
+    "url": "https://www.postgresql.org/docs/current/transaction-iso.html",
+    "checked": "2026-10-02",
+    "evidence": "트랜잭션 격리 수준과 동시 쓰기의 관측·충돌·재시도 조건을 설명한다.",
+    "limits": "현재 앱의 opId/payloadHash/expectedVersion 계약을 실제 DB 원자적 연산에 연결해야 한다. 브라우저 잠금만으로 다기기 중복·충돌을 보장하지 않는다."
+  },
+  {
+    "id": "Q13",
+    "name": "IndexedDB",
+    "category": "브라우저 구조화 자료 저장",
+    "status": "기존 유지",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API",
+    "checked": "2026-10-02",
+    "evidence": "인덱스와 트랜잭션을 갖춘 비동기 브라우저 저장 API이며 Blob 등 구조화 자료를 보관한다.",
+    "limits": "현재 일부 첨부 경로 사용과 전체 원장/outbox 전환은 다르다. 원본·초안·미전송 자료는 캐시와 분리하고 서버 저장으로 표시하지 않는다."
+  },
+  {
+    "id": "Q14",
+    "name": "Dexie.js",
+    "category": "IndexedDB 편의 라이브러리",
+    "status": "조건부",
+    "url": "https://dexie.org/docs/Tutorial/Design",
+    "checked": "2026-10-02",
+    "evidence": "IndexedDB의 스키마·질의·트랜잭션을 Promise 기반 API로 다루는 라이브러리다.",
+    "limits": "전체 로컬 자료 계층을 정비할 때 후보이며 기존 래퍼로 충분하면 추가하지 않는다. Dexie Cloud 도입·계정·자료 전송은 별도 결정이다."
+  },
+  {
+    "id": "Q15",
+    "name": "Origin Private File System",
+    "category": "큰 파일·WASM 자료 저장",
+    "status": "조건부",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/File_System_API/Origin_private_file_system",
+    "checked": "2026-10-02",
+    "evidence": "원점에 귀속되는 비공개 파일 저장 영역과 Worker에서 쓰는 동기 파일 접근을 설명한다.",
+    "limits": "파일이 사용자의 일반 폴더에 보이는 내보내기가 아니다. 용량 제한·삭제·백업·호환성·마이그레이션 비용을 별도로 다룬다."
+  },
+  {
+    "id": "Q16",
+    "name": "WebKit Storage Policy / Storage API",
+    "category": "브라우저 보관·퇴거",
+    "status": "기본 권고",
+    "url": "https://webkit.org/blog/14403/updates-to-storage-policy/",
+    "checked": "2026-10-02",
+    "evidence": "브라우저 저장량 추정, persistent 요청과 용량·퇴거 정책을 WebKit이 설명한다.",
+    "limits": "persist 요청과 quota 상한은 영구 보관이나 쓰기 성공 보증이 아니다. 원문 보존·내보내기·복원과 QuotaExceededError 대응이 필요하다."
+  },
+  {
+    "id": "Q17",
+    "name": "Service Worker / Workbox",
+    "category": "앱 껍데기 캐시·오프라인",
+    "status": "조건부",
+    "url": "https://developer.chrome.com/docs/workbox/",
+    "checked": "2026-10-02",
+    "evidence": "Service Worker의 라우팅·캐시·오프라인 동작을 구성하는 도구 모음이다.",
+    "limits": "정상 온라인 저장 검증 이후 필요 범위에 도입한다. 인증 API 무차별 캐시, 강제 새로고침에 따른 초안 손실, 백그라운드 재시도 보장을 피한다."
+  },
+  {
+    "id": "Q18",
+    "name": "Yjs",
+    "category": "공동 편집 CRDT",
+    "status": "조건부",
+    "url": "https://docs.yjs.dev/",
+    "checked": "2026-10-02",
+    "evidence": "공유 자료형과 편집기·네트워크 어댑터를 제공하며 변경의 합류를 다룬다.",
+    "limits": "동시에 같은 문서를 편집할 실제 요구가 있을 때 비교한다. 인증·서버 권한·자료 의미·보존 이력·백업을 대체하지 않는다."
+  },
+  {
+    "id": "Q19",
+    "name": "Automerge / Automerge Repo",
+    "category": "문서 CRDT·로컬 우선 구조",
+    "status": "조건부",
+    "url": "https://automerge.org/docs/reference/repositories/",
+    "checked": "2026-10-02",
+    "evidence": "JSON 유사 CRDT·동기화 프로토콜과 저장/네트워크 연결용 Repo 계층을 설명한다.",
+    "limits": "전체 자료 모델 전환 비용이 크다. Yjs와 같은 목적의 후보로 비교하고 기존 원장을 자동 대체하지 않는다."
+  },
+  {
+    "id": "Q20",
+    "name": "GitHub Actions Secure Use",
+    "category": "CI·공급망 보안",
+    "status": "기본 권고",
+    "url": "https://docs.github.com/en/actions/reference/security/secure-use",
+    "checked": "2026-10-02",
+    "evidence": "최소 토큰 권한, 비밀 취급, 신뢰하지 않는 PR 입력 처리, action 전체 commit SHA 고정을 권한다.",
+    "limits": "고정 자체로 코드 안전을 보증하지 않는다. 검증된 공식 출처·업데이트 검토·배포 권한 분리와 함께 유지한다."
+  },
+  {
+    "id": "Q21",
+    "name": "GitHub Dependency Review",
+    "category": "의존성 변화·취약점 검토",
+    "status": "기본 권고",
+    "url": "https://docs.github.com/en/code-security/concepts/supply-chain-security/dependency-review",
+    "checked": "2026-10-02",
+    "evidence": "manifest/lockfile 변경의 직접·간접 의존성과 알려진 취약점을 PR에서 검토하는 기능이다.",
+    "limits": "저장소 공개 여부와 보안 상품에 따라 사용 조건이 다르다. 알려지지 않은 취약점·전체 라이선스 적합성을 자동 보증하지 않는다."
+  },
+  {
+    "id": "Q22",
+    "name": "OpenTelemetry JavaScript",
+    "category": "계측·관측 호환 체계",
+    "status": "조건부",
+    "url": "https://opentelemetry.io/docs/languages/js/",
+    "checked": "2026-10-02",
+    "evidence": "trace·metric·log의 공통 계측 API/SDK를 제공하며 JS 상태표를 공개한다.",
+    "limits": "공식 문서는 브라우저 계측을 experimental로 명시한다. 수집기·보관·전송·운영 비용 및 개인정보 최소화가 필요하다."
+  },
+  {
+    "id": "Q23",
+    "name": "Sentry JavaScript SDK",
+    "category": "오류·성능 관측",
+    "status": "조건부",
+    "url": "https://github.com/getsentry/sentry-javascript",
+    "checked": "2026-10-02",
+    "evidence": "공식 저장소에서 React·브라우저 SDK와 Session Replay 패키지 존재를 확인했다.",
+    "limits": "문서 웹 조회가 text/markdown 형식 오류로 실패해 개인정보 설정·가격은 이번에 확정하지 않았다. 본문·토큰·개인정보 전송 없는 설계를 확인한 뒤에만 도입한다."
+  },
+  {
+    "id": "Q24",
+    "name": "Mock Service Worker",
+    "category": "실패·지연 API 모사",
+    "status": "조건부",
+    "url": "https://mswjs.io/docs/",
+    "checked": "2026-10-02",
+    "evidence": "브라우저와 Node에서 요청·응답을 가로채 개발·테스트·Storybook 간 재사용하는 API 모사 계층이다.",
+    "limits": "기존 Playwright route나 repository fake로 충분하면 추가하지 않는다. 모의 서버 통과와 실제 인증·저장·권한 통과를 구별한다."
+  },
+  {
+    "id": "Q25",
+    "name": "fast-check",
+    "category": "속성 기반 검사",
+    "status": "조건부",
+    "url": "https://fast-check.dev/docs/introduction/",
+    "checked": "2026-10-02",
+    "evidence": "여러 생성 입력에 대해 항상 유지되어야 할 속성을 검사하는 라이브러리다.",
+    "limits": "ID·이력·중복 요청·복원의 불변조건처럼 조합이 많은 순수 로직에 적합하다. 명세·입력 생성기가 틀리면 시험도 제한된다."
+  },
+  {
+    "id": "Q26",
+    "name": "Supabase Database Backups",
+    "category": "백업·복원 운영",
+    "status": "기본 권고",
+    "url": "https://supabase.com/docs/guides/platform/backups",
+    "checked": "2026-10-02",
+    "evidence": "요금제별 일일 DB 백업과 PITR, 복원 절차를 설명하며 Storage 객체 bytes가 DB 백업에 포함되지 않음을 명시한다.",
+    "limits": "앱 내보내기·첨부·로컬 미전송 자료를 따로 보관해야 한다. 현재 요금제·복원 가능 시점·운영 복원 성공은 조회하지 않았다."
+  },
+  {
+    "id": "Q27",
+    "name": "Supabase Realtime Postgres Changes",
+    "category": "변경 알림",
+    "status": "조건부",
+    "url": "https://supabase.com/docs/guides/realtime/postgres-changes",
+    "checked": "2026-10-02",
+    "evidence": "DB 이벤트 구독과 보안·성능 조건을 설명한다.",
+    "limits": "현재 아키텍처의 변경 알림 보조로 사용하며 누락 없는 동기화 원장으로 간주하지 않는다. 재접속 후 기준 상태 재조회·버전 대조가 필요하다."
+  },
+  {
+    "id": "Q28",
+    "name": "Web Workers",
+    "category": "메인 스레드 외 계산",
+    "status": "조건부",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers",
+    "checked": "2026-10-02",
+    "evidence": "Worker에서 별도 스레드 계산과 메시지 교환을 수행하며 DOM 직접 접근은 제한된다.",
+    "limits": "OCR·큰 그래프 배치·파싱의 병목을 측정한 뒤 사용한다. 자료 복사·전송 비용, 취소, 오래된 결과 무시, 오류 복구를 설계한다."
+  }
+]

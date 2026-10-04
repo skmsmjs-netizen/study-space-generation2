@@ -1,0 +1,2871 @@
+{
+  "schemaVersion": 1,
+  "pageId": "7:68",
+  "fileKey": "YHmD1PpWWfR9JGTEs77JsX",
+  "fileUrl": "https://www.figma.com/design/YHmD1PpWWfR9JGTEs77JsX",
+  "runId": "observatory-figma-20261002",
+  "date": "2026-10-02",
+  "pages": [
+    {
+      "key": "index",
+      "id": "7:68",
+      "name": "00 안내 · 전수 대응",
+      "purpose": "범위·출처·진행 상태를 먼저 대조"
+    },
+    {
+      "key": "foundations",
+      "id": "7:69",
+      "name": "01 기초 · 정체성",
+      "purpose": "재질·색·글자·치수·천문대 정체성"
+    },
+    {
+      "key": "components",
+      "id": "7:70",
+      "name": "02 공통 부품 · 상태",
+      "purpose": "공통 22·천문대 20·모션 5·브랜드 1"
+    },
+    {
+      "key": "desk",
+      "id": "7:71",
+      "name": "03 정면 · 공부 책상",
+      "purpose": "오늘·빠른 기록·이어가기"
+    },
+    {
+      "key": "library",
+      "id": "7:72",
+      "name": "04 왼쪽 · 자료 책장",
+      "purpose": "주제·교재·자료·검색"
+    },
+    {
+      "key": "workbench",
+      "id": "7:73",
+      "name": "05 오른쪽 · 탐구 작업대",
+      "purpose": "자유 글·연결·수식·탐구"
+    },
+    {
+      "key": "wall",
+      "id": "7:74",
+      "name": "06 뒤쪽 · 기록과 계획",
+      "purpose": "일정·회고·통계·계획"
+    },
+    {
+      "key": "global",
+      "id": "7:75",
+      "name": "07 계정 · 설정 · 복구",
+      "purpose": "계정·설정·저장·복구·공통 보조면"
+    },
+    {
+      "key": "states",
+      "id": "7:76",
+      "name": "08 반응형 · 실패 · 복귀",
+      "purpose": "좁은 화면·실패·중단·돌아오기"
+    },
+    {
+      "key": "research",
+      "id": "7:77",
+      "name": "09 기술 · 검증 · 121출처",
+      "purpose": "20분야·121출처·기술 선택과 한계"
+    }
+  ],
+  "groups": [
+    {
+      "key": "routes",
+      "title": "경로",
+      "expected": 41,
+      "items": [
+        {
+          "id": "R01",
+          "label": "오늘",
+          "pageKey": "desk"
+        },
+        {
+          "id": "R02",
+          "label": "통계",
+          "pageKey": "wall"
+        },
+        {
+          "id": "R03",
+          "label": "일정·과제",
+          "pageKey": "wall"
+        },
+        {
+          "id": "R04",
+          "label": "과목",
+          "pageKey": "library"
+        },
+        {
+          "id": "R05",
+          "label": "기록",
+          "pageKey": "desk"
+        },
+        {
+          "id": "R06",
+          "label": "메모",
+          "pageKey": "desk"
+        },
+        {
+          "id": "R07",
+          "label": "강의 자료",
+          "pageKey": "library"
+        },
+        {
+          "id": "R08",
+          "label": "코딩 연습",
+          "pageKey": "workbench"
+        },
+        {
+          "id": "R09",
+          "label": "수식 탐색",
+          "pageKey": "workbench"
+        },
+        {
+          "id": "R10",
+          "label": "시험 연습",
+          "pageKey": "desk"
+        },
+        {
+          "id": "R11",
+          "label": "암기시험",
+          "pageKey": "desk"
+        },
+        {
+          "id": "R12",
+          "label": "자료 카드",
+          "pageKey": "library"
+        },
+        {
+          "id": "R13",
+          "label": "개념 전집",
+          "pageKey": "library"
+        },
+        {
+          "id": "R14",
+          "label": "주제 카드",
+          "pageKey": "desk"
+        },
+        {
+          "id": "R15",
+          "label": "Canvas",
+          "pageKey": "wall"
+        },
+        {
+          "id": "R16",
+          "label": "그래프뷰",
+          "pageKey": "wall"
+        },
+        {
+          "id": "R17",
+          "label": "칸반보드",
+          "pageKey": "wall"
+        },
+        {
+          "id": "R18",
+          "label": "찾기",
+          "pageKey": "global"
+        },
+        {
+          "id": "R19",
+          "label": "과목 상세",
+          "pageKey": "library"
+        },
+        {
+          "id": "R20",
+          "label": "단원·주제 상세",
+          "pageKey": "desk"
+        },
+        {
+          "id": "R21",
+          "label": "선택 주제 기록",
+          "pageKey": "desk"
+        },
+        {
+          "id": "R22",
+          "label": "메모 상세",
+          "pageKey": "desk"
+        },
+        {
+          "id": "R23",
+          "label": "자료 상세·새 자료",
+          "pageKey": "desk"
+        },
+        {
+          "id": "R24",
+          "label": "강의 자료 휴지통",
+          "pageKey": "global"
+        },
+        {
+          "id": "R25",
+          "label": "코드 예제 상세",
+          "pageKey": "workbench"
+        },
+        {
+          "id": "R26",
+          "label": "주제 지정 시험 연습",
+          "pageKey": "desk"
+        },
+        {
+          "id": "R27",
+          "label": "주제 지정 암기시험",
+          "pageKey": "desk"
+        },
+        {
+          "id": "R28",
+          "label": "암기시험 결과",
+          "pageKey": "desk"
+        },
+        {
+          "id": "R29",
+          "label": "예약 복습",
+          "pageKey": "desk"
+        },
+        {
+          "id": "R30",
+          "label": "자유 기록 목록·기본 글",
+          "pageKey": "desk"
+        },
+        {
+          "id": "R31",
+          "label": "새 자유 기록",
+          "pageKey": "desk"
+        },
+        {
+          "id": "R32",
+          "label": "자유 기록 상세",
+          "pageKey": "desk"
+        },
+        {
+          "id": "R33",
+          "label": "전체 백업·복구",
+          "pageKey": "global"
+        },
+        {
+          "id": "R34",
+          "label": "휴지통",
+          "pageKey": "global"
+        },
+        {
+          "id": "R35",
+          "label": "초안 보관본",
+          "pageKey": "global"
+        },
+        {
+          "id": "R36",
+          "label": "내 생각",
+          "pageKey": "wall"
+        },
+        {
+          "id": "R37",
+          "label": "도움말·문제 메모",
+          "pageKey": "global"
+        },
+        {
+          "id": "R38",
+          "label": "소개",
+          "pageKey": "global"
+        },
+        {
+          "id": "R39",
+          "label": "기존 구독 링크",
+          "pageKey": "global"
+        },
+        {
+          "id": "R40",
+          "label": "기존 계정 링크",
+          "pageKey": "global"
+        },
+        {
+          "id": "R41",
+          "label": "찾을 수 없는 항목",
+          "pageKey": "global"
+        }
+      ],
+      "source": "screen-inventory.json#/routes",
+      "pageKey": "desk",
+      "idsSha256": "bb55c29fb059aef1ffbf1791e0ce18f4874a668674e40a6a4d467aa2d498afa6"
+    },
+    {
+      "key": "modals",
+      "title": "모달 변형",
+      "expected": 29,
+      "items": [
+        {
+          "id": "O01",
+          "label": "학기 추가",
+          "pageKey": "global"
+        },
+        {
+          "id": "O02",
+          "label": "과목 추가",
+          "pageKey": "library"
+        },
+        {
+          "id": "O03",
+          "label": "목차 추가",
+          "pageKey": "library"
+        },
+        {
+          "id": "O04",
+          "label": "여러 목차 추가",
+          "pageKey": "library"
+        },
+        {
+          "id": "O05",
+          "label": "휴지통으로 옮길까요?",
+          "pageKey": "global"
+        },
+        {
+          "id": "O06",
+          "label": "이름 수정",
+          "pageKey": "library"
+        },
+        {
+          "id": "O07",
+          "label": "목차 위치 옮기기",
+          "pageKey": "library"
+        },
+        {
+          "id": "O08",
+          "label": "가입 계정 관리",
+          "pageKey": "global"
+        },
+        {
+          "id": "O09",
+          "label": "내 계정",
+          "pageKey": "global"
+        },
+        {
+          "id": "O10",
+          "label": "다음에 펼칠 곳을 남겨둘까요?",
+          "pageKey": "global"
+        },
+        {
+          "id": "O11",
+          "label": "공부 기준 조정",
+          "pageKey": "desk"
+        },
+        {
+          "id": "O12",
+          "label": "이어가기 설정 복구",
+          "pageKey": "global"
+        },
+        {
+          "id": "O13",
+          "label": "시험·과제·강의 일정",
+          "pageKey": "wall"
+        },
+        {
+          "id": "O14",
+          "label": "수식 탐색 전체 화면",
+          "pageKey": "workbench"
+        },
+        {
+          "id": "O15",
+          "label": "움직임 위젯",
+          "pageKey": "global"
+        },
+        {
+          "id": "O16",
+          "label": "다음에 확인할 내용",
+          "pageKey": "desk"
+        },
+        {
+          "id": "O17",
+          "label": "학기 기간",
+          "pageKey": "desk"
+        },
+        {
+          "id": "O18",
+          "label": "지금 확인한 결과",
+          "pageKey": "desk"
+        },
+        {
+          "id": "O19",
+          "label": "공부할 목차 만들기",
+          "pageKey": "library"
+        },
+        {
+          "id": "O20",
+          "label": "답안에서 수행 결과 남기기",
+          "pageKey": "desk"
+        },
+        {
+          "id": "O21",
+          "label": "내 기록의 저장 상태",
+          "pageKey": "global"
+        },
+        {
+          "id": "O22",
+          "label": "사진으로 목차·내용 가져오기",
+          "pageKey": "library"
+        },
+        {
+          "id": "O23",
+          "label": "메모를 휴지통으로 옮길까요?",
+          "pageKey": "desk"
+        },
+        {
+          "id": "O24",
+          "label": "작은 메모",
+          "pageKey": "desk"
+        },
+        {
+          "id": "O25",
+          "label": "강의 주차 만들기",
+          "pageKey": "wall"
+        },
+        {
+          "id": "O26",
+          "label": "통계의 원기록",
+          "pageKey": "wall"
+        },
+        {
+          "id": "O27",
+          "label": "카드 추가·편집",
+          "pageKey": "wall"
+        },
+        {
+          "id": "O28",
+          "label": "보드 열",
+          "pageKey": "wall"
+        },
+        {
+          "id": "O29",
+          "label": "이 주제부터 해볼까요?",
+          "pageKey": "desk"
+        }
+      ],
+      "source": "screen-inventory.json#/overlays",
+      "pageKey": "global",
+      "idsSha256": "4b5ff50e30bf98bd2a43d5cfa64e765ac26b17c53808e76d82ab8fd4244ec73e"
+    },
+    {
+      "key": "surfaces",
+      "title": "보조 작업면",
+      "expected": 41,
+      "items": [
+        {
+          "id": "U01",
+          "label": "앱 내비게이션·범위·테마",
+          "pageKey": "global"
+        },
+        {
+          "id": "U02",
+          "label": "개인 공간 진입·인증",
+          "pageKey": "global"
+        },
+        {
+          "id": "U03",
+          "label": "로그인·가입",
+          "pageKey": "global"
+        },
+        {
+          "id": "U04",
+          "label": "가입 승인 대기·제한",
+          "pageKey": "global"
+        },
+        {
+          "id": "U05",
+          "label": "내 계정·탈퇴",
+          "pageKey": "global"
+        },
+        {
+          "id": "U06",
+          "label": "가입 계정 관리",
+          "pageKey": "global"
+        },
+        {
+          "id": "U07",
+          "label": "내 기록의 저장 상태",
+          "pageKey": "global"
+        },
+        {
+          "id": "U08",
+          "label": "전체 복구 진입",
+          "pageKey": "global"
+        },
+        {
+          "id": "U09",
+          "label": "이어가기와 다음 위치",
+          "pageKey": "global"
+        },
+        {
+          "id": "U10",
+          "label": "읽기 폭·이어가기 복구",
+          "pageKey": "global"
+        },
+        {
+          "id": "U11",
+          "label": "천문대 원본 위젯",
+          "pageKey": "desk"
+        },
+        {
+          "id": "U12",
+          "label": "천문대 세부 렌더러",
+          "pageKey": "desk"
+        },
+        {
+          "id": "U13",
+          "label": "작은 도구와 시계",
+          "pageKey": "desk"
+        },
+        {
+          "id": "U14",
+          "label": "오늘·한 주 공부",
+          "pageKey": "desk"
+        },
+        {
+          "id": "U15",
+          "label": "공부 시작 제안",
+          "pageKey": "desk"
+        },
+        {
+          "id": "U16",
+          "label": "목차와 항목 관리",
+          "pageKey": "library"
+        },
+        {
+          "id": "U17",
+          "label": "표·사진 목차 만들기",
+          "pageKey": "library"
+        },
+        {
+          "id": "U18",
+          "label": "학기·강의 주차",
+          "pageKey": "wall"
+        },
+        {
+          "id": "U19",
+          "label": "공부 기준·TRACE",
+          "pageKey": "desk"
+        },
+        {
+          "id": "U20",
+          "label": "답안에서 수행 결과",
+          "pageKey": "desk"
+        },
+        {
+          "id": "U21",
+          "label": "일정 편집",
+          "pageKey": "wall"
+        },
+        {
+          "id": "U22",
+          "label": "다음 공부 기준·결과",
+          "pageKey": "desk"
+        },
+        {
+          "id": "U23",
+          "label": "자료 출처·PDF 구간",
+          "pageKey": "library"
+        },
+        {
+          "id": "U24",
+          "label": "자료 퀴즈·관계·대화",
+          "pageKey": "library"
+        },
+        {
+          "id": "U25",
+          "label": "카드·코드 주제 연결",
+          "pageKey": "library"
+        },
+        {
+          "id": "U26",
+          "label": "덱·카드·Anki 가져오기",
+          "pageKey": "desk"
+        },
+        {
+          "id": "U27",
+          "label": "복습 설정·최적화",
+          "pageKey": "desk"
+        },
+        {
+          "id": "U28",
+          "label": "암기 항목 생성",
+          "pageKey": "desk"
+        },
+        {
+          "id": "U29",
+          "label": "펜·OCR·PDF 배경",
+          "pageKey": "desk"
+        },
+        {
+          "id": "U30",
+          "label": "코드 편집·구문·터미널",
+          "pageKey": "workbench"
+        },
+        {
+          "id": "U31",
+          "label": "수식·그래프·카메라",
+          "pageKey": "workbench"
+        },
+        {
+          "id": "U32",
+          "label": "수식 유형·전체 화면",
+          "pageKey": "workbench"
+        },
+        {
+          "id": "U33",
+          "label": "급수·개념 도해",
+          "pageKey": "workbench"
+        },
+        {
+          "id": "U34",
+          "label": "Canvas 편집·이관",
+          "pageKey": "wall"
+        },
+        {
+          "id": "U35",
+          "label": "Canvas·그래프 보기",
+          "pageKey": "wall"
+        },
+        {
+          "id": "U36",
+          "label": "통계 여러 그래프·값",
+          "pageKey": "wall"
+        },
+        {
+          "id": "U37",
+          "label": "GPT 연결·문맥·사용량",
+          "pageKey": "global"
+        },
+        {
+          "id": "U38",
+          "label": "움직임 위젯",
+          "pageKey": "global"
+        },
+        {
+          "id": "U39",
+          "label": "브랜드·관련 생각",
+          "pageKey": "global"
+        },
+        {
+          "id": "U40",
+          "label": "공통 부품·오류·포커스",
+          "pageKey": "global"
+        },
+        {
+          "id": "U41",
+          "label": "장문 원문·기록 수정",
+          "pageKey": "desk"
+        }
+      ],
+      "source": "screen-inventory.json#/surfaces",
+      "pageKey": "global",
+      "idsSha256": "93874866fc96cd6c6b5d10aef5e43efd82c5bd93183bee81edcb45f5545b9be5"
+    },
+    {
+      "key": "components",
+      "title": "부품 레지스트리",
+      "expected": 48,
+      "items": [
+        {
+          "id": "UI01",
+          "label": "Button",
+          "pageKey": "components"
+        },
+        {
+          "id": "UI02",
+          "label": "IconButton",
+          "pageKey": "components"
+        },
+        {
+          "id": "UI03",
+          "label": "Input",
+          "pageKey": "components"
+        },
+        {
+          "id": "UI04",
+          "label": "Textarea",
+          "pageKey": "components"
+        },
+        {
+          "id": "UI05",
+          "label": "Select",
+          "pageKey": "components"
+        },
+        {
+          "id": "UI06",
+          "label": "Checkbox",
+          "pageKey": "components"
+        },
+        {
+          "id": "UI07",
+          "label": "Radio",
+          "pageKey": "components"
+        },
+        {
+          "id": "UI08",
+          "label": "Tabs",
+          "pageKey": "components"
+        },
+        {
+          "id": "UI09",
+          "label": "SegmentedControl",
+          "pageKey": "components"
+        },
+        {
+          "id": "UI10",
+          "label": "Card",
+          "pageKey": "components"
+        },
+        {
+          "id": "UI11",
+          "label": "ListItem",
+          "pageKey": "components"
+        },
+        {
+          "id": "UI12",
+          "label": "Modal",
+          "pageKey": "components"
+        },
+        {
+          "id": "UI13",
+          "label": "Sheet",
+          "pageKey": "components"
+        },
+        {
+          "id": "UI14",
+          "label": "Toast",
+          "pageKey": "components"
+        },
+        {
+          "id": "UI15",
+          "label": "Breadcrumb",
+          "pageKey": "components"
+        },
+        {
+          "id": "UI16",
+          "label": "Search",
+          "pageKey": "components"
+        },
+        {
+          "id": "UI17",
+          "label": "EmptyState",
+          "pageKey": "components"
+        },
+        {
+          "id": "UI18",
+          "label": "LoadingState",
+          "pageKey": "components"
+        },
+        {
+          "id": "UI19",
+          "label": "ErrorState",
+          "pageKey": "components"
+        },
+        {
+          "id": "UI20",
+          "label": "ScreenBoundary",
+          "pageKey": "components"
+        },
+        {
+          "id": "UI21",
+          "label": "NavigationBar",
+          "pageKey": "components"
+        },
+        {
+          "id": "UI22",
+          "label": "ContextMenu",
+          "pageKey": "components"
+        },
+        {
+          "id": "SC01",
+          "label": "StudyLandscapes",
+          "pageKey": "components"
+        },
+        {
+          "id": "SC02",
+          "label": "ObservatoryWorld",
+          "pageKey": "components"
+        },
+        {
+          "id": "SC03",
+          "label": "ObservatoryRoom",
+          "pageKey": "components"
+        },
+        {
+          "id": "SC04",
+          "label": "ObservatoryDesk",
+          "pageKey": "components"
+        },
+        {
+          "id": "SC05",
+          "label": "ObservatoryAdvanced",
+          "pageKey": "components"
+        },
+        {
+          "id": "SC06",
+          "label": "ObservatorySkyDetails",
+          "pageKey": "components"
+        },
+        {
+          "id": "SC07",
+          "label": "ObservatoryStationDetails",
+          "pageKey": "components"
+        },
+        {
+          "id": "SC08",
+          "label": "ObservatoryTimeSky",
+          "pageKey": "components"
+        },
+        {
+          "id": "SC09",
+          "label": "ObservatoryTimeGround",
+          "pageKey": "components"
+        },
+        {
+          "id": "SC10",
+          "label": "ObservatoryClouds",
+          "pageKey": "components"
+        },
+        {
+          "id": "SC11",
+          "label": "ObservatoryGroundDetails",
+          "pageKey": "components"
+        },
+        {
+          "id": "SC12",
+          "label": "ObservatoryDomeTiles",
+          "pageKey": "components"
+        },
+        {
+          "id": "SC13",
+          "label": "ObservatoryShockwave",
+          "pageKey": "components"
+        },
+        {
+          "id": "SC14",
+          "label": "ObservatoryStudySky",
+          "pageKey": "components"
+        },
+        {
+          "id": "SC15",
+          "label": "ObservatoryStudyStation",
+          "pageKey": "components"
+        },
+        {
+          "id": "SC16",
+          "label": "ObservatoryRadiance",
+          "pageKey": "components"
+        },
+        {
+          "id": "SC17",
+          "label": "ObservatoryRadianceGround",
+          "pageKey": "components"
+        },
+        {
+          "id": "SC18",
+          "label": "ObservatoryEvents",
+          "pageKey": "components"
+        },
+        {
+          "id": "SC19",
+          "label": "ObservatoryEventVariationSymbol",
+          "pageKey": "components"
+        },
+        {
+          "id": "SC20",
+          "label": "ObservatoryEventVariation",
+          "pageKey": "components"
+        },
+        {
+          "id": "MO01",
+          "label": "BusyDots",
+          "pageKey": "components"
+        },
+        {
+          "id": "MO02",
+          "label": "SavedMark",
+          "pageKey": "components"
+        },
+        {
+          "id": "MO03",
+          "label": "SelectionBackground",
+          "pageKey": "components"
+        },
+        {
+          "id": "MO04",
+          "label": "NoticeEntrance",
+          "pageKey": "components"
+        },
+        {
+          "id": "MO05",
+          "label": "FadeContent",
+          "pageKey": "components"
+        },
+        {
+          "id": "BR01",
+          "label": "BrandWordmark",
+          "pageKey": "components"
+        }
+      ],
+      "source": "design-foundations.json#/componentRegistry",
+      "pageKey": "components",
+      "idsSha256": "7167cd03eaac3fbf0a821d8e1b050621d1cb2b9e6d66468075ff68cac9c10201"
+    },
+    {
+      "key": "sources",
+      "title": "공식·전문 출처",
+      "expected": 121,
+      "items": [
+        {
+          "id": "D01",
+          "label": "WCAG 2.2",
+          "pageKey": "research"
+        },
+        {
+          "id": "D02",
+          "label": "WAI-ARIA Authoring Practices Guide",
+          "pageKey": "research"
+        },
+        {
+          "id": "D03",
+          "label": "Design Tokens Format Module 2025.10",
+          "pageKey": "research"
+        },
+        {
+          "id": "D04",
+          "label": "ISO 9241-210:2019",
+          "pageKey": "research"
+        },
+        {
+          "id": "D05",
+          "label": "ISO 9241-110:2020",
+          "pageKey": "research"
+        },
+        {
+          "id": "D06",
+          "label": "Design Council Double Diamond",
+          "pageKey": "research"
+        },
+        {
+          "id": "D07",
+          "label": "Nielsen Norman Group 10 Usability Heuristics",
+          "pageKey": "research"
+        },
+        {
+          "id": "D08",
+          "label": "GOV.UK Creating an experience map",
+          "pageKey": "research"
+        },
+        {
+          "id": "D09",
+          "label": "Material Design 3 Foundations",
+          "pageKey": "research"
+        },
+        {
+          "id": "D10",
+          "label": "Apple Human Interface Guidelines — Motion",
+          "pageKey": "research"
+        },
+        {
+          "id": "D11",
+          "label": "IBM Carbon Themes",
+          "pageKey": "research"
+        },
+        {
+          "id": "D12",
+          "label": "Adobe Spectrum Design Data — Tokens",
+          "pageKey": "research"
+        },
+        {
+          "id": "D13",
+          "label": "Figma variables, collections and modes",
+          "pageKey": "research"
+        },
+        {
+          "id": "D14",
+          "label": "Figma variants",
+          "pageKey": "research"
+        },
+        {
+          "id": "D15",
+          "label": "Figma Code Connect",
+          "pageKey": "research"
+        },
+        {
+          "id": "D16",
+          "label": "Storybook design integrations",
+          "pageKey": "research"
+        },
+        {
+          "id": "D17",
+          "label": "Figma MCP rate limits and access",
+          "pageKey": "research"
+        },
+        {
+          "id": "D18",
+          "label": "W3C Korean Layout Requirements",
+          "pageKey": "research"
+        },
+        {
+          "id": "D19",
+          "label": "CSS Color Module Level 4",
+          "pageKey": "research"
+        },
+        {
+          "id": "D20",
+          "label": "Pretendard",
+          "pageKey": "research"
+        },
+        {
+          "id": "D21",
+          "label": "Laws of UX",
+          "pageKey": "research"
+        },
+        {
+          "id": "D22",
+          "label": "Awwwards",
+          "pageKey": "research"
+        },
+        {
+          "id": "D23",
+          "label": "Mobbin",
+          "pageKey": "research"
+        },
+        {
+          "id": "D24",
+          "label": "NASA Eyes",
+          "pageKey": "research"
+        },
+        {
+          "id": "D25",
+          "label": "Bruno Simon portfolio",
+          "pageKey": "research"
+        },
+        {
+          "id": "D26",
+          "label": "Fitts 법칙의 HCI 적용 연구",
+          "pageKey": "research"
+        },
+        {
+          "id": "D27",
+          "label": "Hick 1952 선택 반응 연구",
+          "pageKey": "research"
+        },
+        {
+          "id": "D28",
+          "label": "Palmer 1992 공통 영역 지각 연구",
+          "pageKey": "research"
+        },
+        {
+          "id": "F01",
+          "label": "React 상태 설계",
+          "pageKey": "research"
+        },
+        {
+          "id": "F02",
+          "label": "HTML dialog",
+          "pageKey": "research"
+        },
+        {
+          "id": "F03",
+          "label": "Popover API",
+          "pageKey": "research"
+        },
+        {
+          "id": "F04",
+          "label": "CSS Container Queries",
+          "pageKey": "research"
+        },
+        {
+          "id": "F05",
+          "label": "React Aria",
+          "pageKey": "research"
+        },
+        {
+          "id": "F06",
+          "label": "Radix Primitives",
+          "pageKey": "research"
+        },
+        {
+          "id": "F07",
+          "label": "shadcn/ui",
+          "pageKey": "research"
+        },
+        {
+          "id": "F08",
+          "label": "Floating UI",
+          "pageKey": "research"
+        },
+        {
+          "id": "F09",
+          "label": "TanStack Query",
+          "pageKey": "research"
+        },
+        {
+          "id": "F10",
+          "label": "TanStack Virtual",
+          "pageKey": "research"
+        },
+        {
+          "id": "F11",
+          "label": "XState",
+          "pageKey": "research"
+        },
+        {
+          "id": "F12",
+          "label": "Zustand",
+          "pageKey": "research"
+        },
+        {
+          "id": "F13",
+          "label": "Motion 접근성",
+          "pageKey": "research"
+        },
+        {
+          "id": "F14",
+          "label": "GSAP context",
+          "pageKey": "research"
+        },
+        {
+          "id": "F15",
+          "label": "GSAP Standard No Charge License",
+          "pageKey": "research"
+        },
+        {
+          "id": "F16",
+          "label": "Rive React runtime",
+          "pageKey": "research"
+        },
+        {
+          "id": "F17",
+          "label": "dotLottie React",
+          "pageKey": "research"
+        },
+        {
+          "id": "F18",
+          "label": "PixiJS 성능 지침",
+          "pageKey": "research"
+        },
+        {
+          "id": "F19",
+          "label": "Three.js GPU 자원 정리",
+          "pageKey": "research"
+        },
+        {
+          "id": "F20",
+          "label": "React Three Fiber 성능 확장",
+          "pageKey": "research"
+        },
+        {
+          "id": "F21",
+          "label": "Khronos WebGL",
+          "pageKey": "research"
+        },
+        {
+          "id": "F22",
+          "label": "WebGPU API",
+          "pageKey": "research"
+        },
+        {
+          "id": "F23",
+          "label": "OffscreenCanvas",
+          "pageKey": "research"
+        },
+        {
+          "id": "F24",
+          "label": "WebGL best practices",
+          "pageKey": "research"
+        },
+        {
+          "id": "F25",
+          "label": "Page Visibility API",
+          "pageKey": "research"
+        },
+        {
+          "id": "F26",
+          "label": "React Profiler",
+          "pageKey": "research"
+        },
+        {
+          "id": "F27",
+          "label": "W3C Web Animations",
+          "pageKey": "research"
+        },
+        {
+          "id": "F28",
+          "label": "Rive 편집기 요금과 내보내기",
+          "pageKey": "research"
+        },
+        {
+          "id": "F29",
+          "label": "Aseprite Sprite Sheet",
+          "pageKey": "research"
+        },
+        {
+          "id": "F30",
+          "label": "Piskel",
+          "pageKey": "research"
+        },
+        {
+          "id": "F31",
+          "label": "CSS image-rendering",
+          "pageKey": "research"
+        },
+        {
+          "id": "Q01",
+          "label": "Vitest",
+          "pageKey": "research"
+        },
+        {
+          "id": "Q02",
+          "label": "Testing Library",
+          "pageKey": "research"
+        },
+        {
+          "id": "Q03",
+          "label": "Playwright",
+          "pageKey": "research"
+        },
+        {
+          "id": "Q04",
+          "label": "axe-core",
+          "pageKey": "research"
+        },
+        {
+          "id": "Q05",
+          "label": "Lighthouse",
+          "pageKey": "research"
+        },
+        {
+          "id": "Q06",
+          "label": "Core Web Vitals",
+          "pageKey": "research"
+        },
+        {
+          "id": "Q07",
+          "label": "OWASP ASVS 5.0.0",
+          "pageKey": "research"
+        },
+        {
+          "id": "Q08",
+          "label": "OWASP Top 10:2025",
+          "pageKey": "research"
+        },
+        {
+          "id": "Q09",
+          "label": "CSP / Trusted Types",
+          "pageKey": "research"
+        },
+        {
+          "id": "Q10",
+          "label": "Supabase Auth / JWT",
+          "pageKey": "research"
+        },
+        {
+          "id": "Q11",
+          "label": "Supabase RLS / Data API grants",
+          "pageKey": "research"
+        },
+        {
+          "id": "Q12",
+          "label": "PostgreSQL transactions / isolation",
+          "pageKey": "research"
+        },
+        {
+          "id": "Q13",
+          "label": "IndexedDB",
+          "pageKey": "research"
+        },
+        {
+          "id": "Q14",
+          "label": "Dexie.js",
+          "pageKey": "research"
+        },
+        {
+          "id": "Q15",
+          "label": "Origin Private File System",
+          "pageKey": "research"
+        },
+        {
+          "id": "Q16",
+          "label": "WebKit Storage Policy / Storage API",
+          "pageKey": "research"
+        },
+        {
+          "id": "Q17",
+          "label": "Service Worker / Workbox",
+          "pageKey": "research"
+        },
+        {
+          "id": "Q18",
+          "label": "Yjs",
+          "pageKey": "research"
+        },
+        {
+          "id": "Q19",
+          "label": "Automerge / Automerge Repo",
+          "pageKey": "research"
+        },
+        {
+          "id": "Q20",
+          "label": "GitHub Actions Secure Use",
+          "pageKey": "research"
+        },
+        {
+          "id": "Q21",
+          "label": "GitHub Dependency Review",
+          "pageKey": "research"
+        },
+        {
+          "id": "Q22",
+          "label": "OpenTelemetry JavaScript",
+          "pageKey": "research"
+        },
+        {
+          "id": "Q23",
+          "label": "Sentry JavaScript SDK",
+          "pageKey": "research"
+        },
+        {
+          "id": "Q24",
+          "label": "Mock Service Worker",
+          "pageKey": "research"
+        },
+        {
+          "id": "Q25",
+          "label": "fast-check",
+          "pageKey": "research"
+        },
+        {
+          "id": "Q26",
+          "label": "Supabase Database Backups",
+          "pageKey": "research"
+        },
+        {
+          "id": "Q27",
+          "label": "Supabase Realtime Postgres Changes",
+          "pageKey": "research"
+        },
+        {
+          "id": "Q28",
+          "label": "Web Workers",
+          "pageKey": "research"
+        },
+        {
+          "id": "S01",
+          "label": "Plotly.js",
+          "pageKey": "research"
+        },
+        {
+          "id": "S02",
+          "label": "Vega-Lite",
+          "pageKey": "research"
+        },
+        {
+          "id": "S03",
+          "label": "Apache ECharts",
+          "pageKey": "research"
+        },
+        {
+          "id": "S04",
+          "label": "Observable Plot",
+          "pageKey": "research"
+        },
+        {
+          "id": "S05",
+          "label": "From Data to Viz",
+          "pageKey": "research"
+        },
+        {
+          "id": "S06",
+          "label": "Visualization Analysis and Design — 저자 자료",
+          "pageKey": "research"
+        },
+        {
+          "id": "S07",
+          "label": "React Flow layouting",
+          "pageKey": "research"
+        },
+        {
+          "id": "S08",
+          "label": "D3 force",
+          "pageKey": "research"
+        },
+        {
+          "id": "S09",
+          "label": "ELK.js",
+          "pageKey": "research"
+        },
+        {
+          "id": "S10",
+          "label": "tldraw SDK 라이선스",
+          "pageKey": "research"
+        },
+        {
+          "id": "S11",
+          "label": "Excalidraw",
+          "pageKey": "research"
+        },
+        {
+          "id": "S12",
+          "label": "perfect-freehand",
+          "pageKey": "research"
+        },
+        {
+          "id": "S13",
+          "label": "KaTeX 옵션",
+          "pageKey": "research"
+        },
+        {
+          "id": "S14",
+          "label": "math.js 보안",
+          "pageKey": "research"
+        },
+        {
+          "id": "S15",
+          "label": "GeoGebra 라이선스",
+          "pageKey": "research"
+        },
+        {
+          "id": "S16",
+          "label": "Desmos API",
+          "pageKey": "research"
+        },
+        {
+          "id": "S17",
+          "label": "CodeMirror 개발 저장소",
+          "pageKey": "research"
+        },
+        {
+          "id": "S18",
+          "label": "Monaco Editor",
+          "pageKey": "research"
+        },
+        {
+          "id": "S19",
+          "label": "Tiptap",
+          "pageKey": "research"
+        },
+        {
+          "id": "S20",
+          "label": "Lexical",
+          "pageKey": "research"
+        },
+        {
+          "id": "S21",
+          "label": "PDF.js",
+          "pageKey": "research"
+        },
+        {
+          "id": "S22",
+          "label": "Tesseract.js",
+          "pageKey": "research"
+        },
+        {
+          "id": "S23",
+          "label": "Mermaid 설정·보안",
+          "pageKey": "research"
+        },
+        {
+          "id": "S24",
+          "label": "Pyodide",
+          "pageKey": "research"
+        },
+        {
+          "id": "S25",
+          "label": "Transformers.js",
+          "pageKey": "research"
+        },
+        {
+          "id": "S26",
+          "label": "Agent Skills 명세",
+          "pageKey": "research"
+        },
+        {
+          "id": "S27",
+          "label": "OpenAI Build skills",
+          "pageKey": "research"
+        },
+        {
+          "id": "S28",
+          "label": "Anthropic frontend-design 스킬",
+          "pageKey": "research"
+        },
+        {
+          "id": "S29",
+          "label": "Vercel React Best Practices 공개 스킬",
+          "pageKey": "research"
+        },
+        {
+          "id": "S30",
+          "label": "Model Context Protocol",
+          "pageKey": "research"
+        },
+        {
+          "id": "S31",
+          "label": "Context7",
+          "pageKey": "research"
+        },
+        {
+          "id": "S32",
+          "label": "OpenAI Structured Outputs",
+          "pageKey": "research"
+        },
+        {
+          "id": "S33",
+          "label": "OpenAI 평가 설계 권고",
+          "pageKey": "research"
+        },
+        {
+          "id": "S34",
+          "label": "MathLive",
+          "pageKey": "research"
+        }
+      ],
+      "source": "research-mapping.json#/entries",
+      "pageKey": "research",
+      "idsSha256": "c1e3c9979ae2bccbf592c632cc4c2c045b0062ee2df9d7b19b6eea8cbfeff015"
+    },
+    {
+      "key": "states",
+      "title": "상태 계약",
+      "expected": 42,
+      "items": [
+        {
+          "id": "SAVE-CHECKING",
+          "label": "서버 확인 중",
+          "pageKey": "states"
+        },
+        {
+          "id": "SAVE-LOCAL-WRITING",
+          "label": "기기에 보관 중",
+          "pageKey": "states"
+        },
+        {
+          "id": "SAVE-PENDING",
+          "label": "기기 보관·미전송",
+          "pageKey": "states"
+        },
+        {
+          "id": "SAVE-SAVING",
+          "label": "서버에 저장 중",
+          "pageKey": "states"
+        },
+        {
+          "id": "SAVE-SAVED",
+          "label": "서버 반영 확인",
+          "pageKey": "states"
+        },
+        {
+          "id": "SAVE-ERROR",
+          "label": "서버 저장 실패",
+          "pageKey": "states"
+        },
+        {
+          "id": "SAVE-LOCAL-ERROR",
+          "label": "기기 보관 실패",
+          "pageKey": "states"
+        },
+        {
+          "id": "SAVE-CONFLICT",
+          "label": "두 자료 확인",
+          "pageKey": "states"
+        },
+        {
+          "id": "SAVE-ARCHIVING",
+          "label": "전환 전 양본 보관",
+          "pageKey": "states"
+        },
+        {
+          "id": "AUTH-CHECKING",
+          "label": "이용 권한 확인",
+          "pageKey": "states"
+        },
+        {
+          "id": "AUTH-SIGNED-OUT",
+          "label": "로그인 전",
+          "pageKey": "states"
+        },
+        {
+          "id": "AUTH-PENDING",
+          "label": "가입 승인 대기",
+          "pageKey": "states"
+        },
+        {
+          "id": "AUTH-APPROVED",
+          "label": "이용 허용",
+          "pageKey": "states"
+        },
+        {
+          "id": "AUTH-REJECTED",
+          "label": "가입 거절",
+          "pageKey": "states"
+        },
+        {
+          "id": "AUTH-SUSPENDED",
+          "label": "이용 중지",
+          "pageKey": "states"
+        },
+        {
+          "id": "AUTH-EXPIRED",
+          "label": "세션 확인 필요",
+          "pageKey": "states"
+        },
+        {
+          "id": "EDIT-DIRTY",
+          "label": "작성 중 초안",
+          "pageKey": "states"
+        },
+        {
+          "id": "EDIT-OTHER-WINDOW",
+          "label": "다른 창 작성 중",
+          "pageKey": "states"
+        },
+        {
+          "id": "EDIT-RESTORED-DRAFT",
+          "label": "다른 세션의 보관 초안",
+          "pageKey": "states"
+        },
+        {
+          "id": "BACKUP-COLLECTING",
+          "label": "백업 준비 중",
+          "pageKey": "states"
+        },
+        {
+          "id": "BACKUP-PREPARED",
+          "label": "백업 파일 준비됨",
+          "pageKey": "states"
+        },
+        {
+          "id": "BACKUP-INVALID",
+          "label": "복원 파일 거부",
+          "pageKey": "states"
+        },
+        {
+          "id": "BACKUP-PREVIEW",
+          "label": "복원 내용 확인",
+          "pageKey": "states"
+        },
+        {
+          "id": "BACKUP-WAITING-RESTART",
+          "label": "다시 열어 복원",
+          "pageKey": "states"
+        },
+        {
+          "id": "BACKUP-RECOVERING",
+          "label": "복원·중단 복구 중",
+          "pageKey": "states"
+        },
+        {
+          "id": "BACKUP-RESTORED",
+          "label": "기기 복원 후 확인",
+          "pageKey": "states"
+        },
+        {
+          "id": "BACKUP-ROLLED-BACK",
+          "label": "복구 실패·기존 자료 유지",
+          "pageKey": "states"
+        },
+        {
+          "id": "BACKUP-MISSING-ORIGINAL",
+          "label": "기기에 없는 원본",
+          "pageKey": "states"
+        },
+        {
+          "id": "BACKUP-OWNER-CHANGED",
+          "label": "계정 변경",
+          "pageKey": "states"
+        },
+        {
+          "id": "AI-OWNER-READY",
+          "label": "민석 전용 AI 준비",
+          "pageKey": "states"
+        },
+        {
+          "id": "AI-FORBIDDEN",
+          "label": "AI 권한 없음",
+          "pageKey": "states"
+        },
+        {
+          "id": "AI-GENERATING",
+          "label": "AI 생성 중",
+          "pageKey": "states"
+        },
+        {
+          "id": "AI-PREVIEW",
+          "label": "생성 초안 검토",
+          "pageKey": "states"
+        },
+        {
+          "id": "AI-FAILED",
+          "label": "생성 실패",
+          "pageKey": "states"
+        },
+        {
+          "id": "AI-LIMIT",
+          "label": "AI 상한/호출 제한",
+          "pageKey": "states"
+        },
+        {
+          "id": "AI-UNCERTAIN",
+          "label": "응답·비용 확인 중",
+          "pageKey": "states"
+        },
+        {
+          "id": "CONTENT-EMPTY",
+          "label": "자료 없음",
+          "pageKey": "states"
+        },
+        {
+          "id": "CONTENT-NO-RESULT",
+          "label": "찾은 결과 없음",
+          "pageKey": "states"
+        },
+        {
+          "id": "CONTENT-ERROR",
+          "label": "불러오기 실패",
+          "pageKey": "states"
+        },
+        {
+          "id": "CONTENT-UNAVAILABLE",
+          "label": "환경에서 사용할 수 없음",
+          "pageKey": "states"
+        },
+        {
+          "id": "RENDER-FALLBACK",
+          "label": "천문대 표현 복구",
+          "pageKey": "states"
+        },
+        {
+          "id": "RENDER-PAUSED",
+          "label": "움직임 정지/감소",
+          "pageKey": "states"
+        }
+      ],
+      "source": "state-contracts.json#/states",
+      "pageKey": "states",
+      "idsSha256": "a0f667df4bca266fd8653098854d81425cb15fa7db2b20584f34be586dc4bf54"
+    },
+    {
+      "key": "transitions",
+      "title": "상태 전이",
+      "expected": 32,
+      "items": [
+        {
+          "id": "T01",
+          "label": "EDIT-DIRTY → SAVE-LOCAL-WRITING",
+          "event": "저장 명령",
+          "pageKey": "states",
+          "sourceIndex": 0
+        },
+        {
+          "id": "T02",
+          "label": "SAVE-LOCAL-WRITING → SAVE-PENDING",
+          "event": "기기 commit 완료",
+          "pageKey": "states",
+          "sourceIndex": 1
+        },
+        {
+          "id": "T03",
+          "label": "SAVE-LOCAL-WRITING → SAVE-LOCAL-ERROR",
+          "event": "기기 보관 실패",
+          "pageKey": "states",
+          "sourceIndex": 2
+        },
+        {
+          "id": "T04",
+          "label": "SAVE-PENDING → SAVE-SAVING",
+          "event": "전송 시작",
+          "pageKey": "states",
+          "sourceIndex": 3
+        },
+        {
+          "id": "T05",
+          "label": "SAVE-SAVING → SAVE-SAVED",
+          "event": "해당 명령 서버 승인",
+          "pageKey": "states",
+          "sourceIndex": 4
+        },
+        {
+          "id": "T06",
+          "label": "SAVE-SAVING → SAVE-ERROR",
+          "event": "통신/서버 실패",
+          "pageKey": "states",
+          "sourceIndex": 5
+        },
+        {
+          "id": "T07",
+          "label": "SAVE-ERROR → SAVE-SAVING",
+          "event": "명시 또는 허용 재시도",
+          "pageKey": "states",
+          "sourceIndex": 6
+        },
+        {
+          "id": "T08",
+          "label": "SAVE-SAVING → SAVE-CONFLICT",
+          "event": "서버 버전 충돌",
+          "pageKey": "states",
+          "sourceIndex": 7
+        },
+        {
+          "id": "T09",
+          "label": "SAVE-CONFLICT → SAVE-ARCHIVING",
+          "event": "서버 자료 열기 선택",
+          "pageKey": "states",
+          "sourceIndex": 8
+        },
+        {
+          "id": "T10",
+          "label": "SAVE-ARCHIVING → SAVE-SAVED",
+          "event": "보관 commit 성공",
+          "pageKey": "states",
+          "sourceIndex": 9
+        },
+        {
+          "id": "T11",
+          "label": "SAVE-ARCHIVING → SAVE-ERROR",
+          "event": "보관 실패",
+          "pageKey": "states",
+          "sourceIndex": 10
+        },
+        {
+          "id": "T12",
+          "label": "SAVE-CHECKING → SAVE-SAVED",
+          "event": "서버 상태 일치",
+          "pageKey": "states",
+          "sourceIndex": 11
+        },
+        {
+          "id": "T13",
+          "label": "SAVE-CHECKING → SAVE-CONFLICT",
+          "event": "서버와 복원 자료 다름",
+          "pageKey": "states",
+          "sourceIndex": 12
+        },
+        {
+          "id": "T14",
+          "label": "AUTH-SIGNED-OUT → AUTH-CHECKING",
+          "event": "로그인",
+          "pageKey": "states",
+          "sourceIndex": 13
+        },
+        {
+          "id": "T15",
+          "label": "AUTH-CHECKING → AUTH-PENDING",
+          "event": "승인 상태 조회",
+          "pageKey": "states",
+          "sourceIndex": 14
+        },
+        {
+          "id": "T16",
+          "label": "AUTH-CHECKING → AUTH-APPROVED",
+          "event": "승인 상태 조회",
+          "pageKey": "states",
+          "sourceIndex": 15
+        },
+        {
+          "id": "T17",
+          "label": "AUTH-CHECKING → AUTH-REJECTED",
+          "event": "승인 상태 조회",
+          "pageKey": "states",
+          "sourceIndex": 16
+        },
+        {
+          "id": "T18",
+          "label": "AUTH-CHECKING → AUTH-SUSPENDED",
+          "event": "승인 상태 조회",
+          "pageKey": "states",
+          "sourceIndex": 17
+        },
+        {
+          "id": "T19",
+          "label": "AUTH-APPROVED → AUTH-EXPIRED",
+          "event": "세션 만료/거부",
+          "pageKey": "states",
+          "sourceIndex": 18
+        },
+        {
+          "id": "T20",
+          "label": "BACKUP-COLLECTING → BACKUP-PREPARED",
+          "event": "ZIP 생성 완료",
+          "pageKey": "states",
+          "sourceIndex": 19
+        },
+        {
+          "id": "T21",
+          "label": "BACKUP-PREPARED → BACKUP-OWNER-CHANGED",
+          "event": "계정 전환",
+          "pageKey": "states",
+          "sourceIndex": 20
+        },
+        {
+          "id": "T22",
+          "label": "BACKUP-PREVIEW → BACKUP-WAITING-RESTART",
+          "event": "명시 확인 후 복원 예약",
+          "pageKey": "states",
+          "sourceIndex": 21
+        },
+        {
+          "id": "T23",
+          "label": "BACKUP-WAITING-RESTART → BACKUP-RECOVERING",
+          "event": "재시작",
+          "pageKey": "states",
+          "sourceIndex": 22
+        },
+        {
+          "id": "T24",
+          "label": "BACKUP-RECOVERING → BACKUP-RESTORED",
+          "event": "적용 완료",
+          "pageKey": "states",
+          "sourceIndex": 23
+        },
+        {
+          "id": "T25",
+          "label": "BACKUP-RECOVERING → BACKUP-ROLLED-BACK",
+          "event": "적용/복구 실패",
+          "pageKey": "states",
+          "sourceIndex": 24
+        },
+        {
+          "id": "T26",
+          "label": "BACKUP-RESTORED → SAVE-CONFLICT",
+          "event": "서버와 차이 발견",
+          "pageKey": "states",
+          "sourceIndex": 25
+        },
+        {
+          "id": "T27",
+          "label": "AI-OWNER-READY → AI-GENERATING",
+          "event": "생성 시작",
+          "pageKey": "states",
+          "sourceIndex": 26
+        },
+        {
+          "id": "T28",
+          "label": "AI-OWNER-READY → AI-LIMIT",
+          "event": "상한/진행 중 요청",
+          "pageKey": "states",
+          "sourceIndex": 27
+        },
+        {
+          "id": "T29",
+          "label": "AI-GENERATING → AI-PREVIEW",
+          "event": "응답/스키마 수신",
+          "pageKey": "states",
+          "sourceIndex": 28
+        },
+        {
+          "id": "T30",
+          "label": "AI-GENERATING → AI-FAILED",
+          "event": "응답 실패",
+          "pageKey": "states",
+          "sourceIndex": 29
+        },
+        {
+          "id": "T31",
+          "label": "AI-GENERATING → AI-UNCERTAIN",
+          "event": "응답/usage 불명",
+          "pageKey": "states",
+          "sourceIndex": 30
+        },
+        {
+          "id": "T32",
+          "label": "AI-OWNER-READY → AI-FORBIDDEN",
+          "event": "다른 계정 전환",
+          "pageKey": "states",
+          "sourceIndex": 31
+        }
+      ],
+      "source": "state-contracts.json#/transitions",
+      "pageKey": "states",
+      "idsSha256": "29b942b9fff476ae080f31efbd0616d1cf3e8e5df4393c3134bdf1ee45211e26"
+    }
+  ],
+  "coverageNodes": {},
+  "evidencePolicy": "실제 노드 ID를 대조해 존재하는 연결만 집계한다. 노드 존재는 설계 품질·앱 구현·저장·배포·학습 효과 검증이 아니다.",
+  "instagram": [
+    {
+      "id": "L01",
+      "title": "대시보드 일곱 원칙",
+      "url": "https://www.instagram.com/p/DdtcfHOt20t/",
+      "imageCount": 1,
+      "sourceCondition": "3.2–3.3; 최초 전체 캡션 확인",
+      "takeaway": "중요 정보부터 보여주고 관련 내용을 묶는다. 검색·필터·시간 변화·다음 행동은 실제 자료와 과업에 연결한다.",
+      "pageKeys": [
+        "desk",
+        "wall"
+      ],
+      "source": "docs/design-ui-ux-priority.md#9"
+    },
+    {
+      "id": "L02",
+      "title": "웹사이트 재설계 징후",
+      "url": "https://www.instagram.com/p/Dd8UhAWDcyb/",
+      "imageCount": 5,
+      "sourceCondition": "3.9/6.2; 표지+상세4개, 캡션 확인 잔여",
+      "takeaway": "정보 탐색·모바일 배치·다음 행동을 실제 화면에서 점검한다. 낡아 보인다는 인상만으로 전면 개편하지 않는다.",
+      "pageKeys": [
+        "states",
+        "global"
+      ],
+      "source": "docs/design-ui-ux-priority.md#9"
+    },
+    {
+      "id": "L03",
+      "title": "소개 페이지 순서",
+      "url": "https://www.instagram.com/p/Ddj66j-NwGK/",
+      "imageCount": 1,
+      "sourceCondition": "6.1; 열 구역, 캡션 확인 잔여",
+      "takeaway": "가치→문제→해결→기능→이용 과정의 설명 순서를 참고한다. 없는 후기·고객 수·가격/결제를 만들지 않는다.",
+      "pageKeys": [
+        "index"
+      ],
+      "source": "docs/design-ui-ux-priority.md#9"
+    },
+    {
+      "id": "L04",
+      "title": "60–30–10",
+      "url": "https://www.instagram.com/p/DdVuSbJtTRI/",
+      "imageCount": 1,
+      "sourceCondition": "3.7; 역할 비중, 캡션 확인 잔여",
+      "takeaway": "배경·보조·강조의 역할 비중을 조절하는 참고법이다. 60/30/10을 화면 픽셀의 의무 비율로 쓰지 않는다.",
+      "pageKeys": [
+        "foundations"
+      ],
+      "source": "docs/design-ui-ux-priority.md#9"
+    },
+    {
+      "id": "L05",
+      "title": "아이디어에서 실제 앱",
+      "url": "https://www.instagram.com/p/DdM6HYEtuCZ/",
+      "imageCount": 1,
+      "sourceCondition": "3.1/3.4/6.3; 캡션 확인 잔여",
+      "takeaway": "문제와 최소 범위에서 시작해 흐름·화면·프론트엔드·백엔드·검증·출시·개선을 연결한다.",
+      "pageKeys": [
+        "research"
+      ],
+      "source": "docs/design-ui-ux-priority.md#9"
+    },
+    {
+      "id": "L06",
+      "title": "UX 다섯 법칙",
+      "url": "https://www.instagram.com/p/DdIrmSPt2qb/",
+      "imageCount": 1,
+      "sourceCondition": "3.2/3.8; 조건부 적용, 캡션 확인 잔여",
+      "takeaway": "선택 부담·조작 거리·익숙한 관례·복잡성을 실제 과업 조건에서 판단한다. 모든 상황에 같은 법칙을 강제하지 않는다.",
+      "pageKeys": [
+        "components",
+        "states"
+      ],
+      "source": "docs/design-ui-ux-priority.md#9"
+    },
+    {
+      "id": "L07",
+      "title": "UI 일곱 점검",
+      "url": "https://www.instagram.com/p/Dc9QtBBtDyU/",
+      "imageCount": 1,
+      "sourceCondition": "3.2/3.4–3.6/3.8–3.9; 캡션 확인 잔여",
+      "takeaway": "위계·정렬·일관성·간격·글자·버튼·반응형을 공통 기초와 상태 표현에 함께 적용한다.",
+      "pageKeys": [
+        "components",
+        "states"
+      ],
+      "source": "docs/design-ui-ux-priority.md#9"
+    },
+    {
+      "id": "L08",
+      "title": "튜브 빛 효과",
+      "url": "https://www.instagram.com/p/Dc5f-KLDZr3/",
+      "imageCount": 4,
+      "sourceCondition": "5.2; 재현 예시, 캡션 확인 잔여",
+      "takeaway": "본체·가까운 번짐·넓은 주변 빛의 층을 분리한 조명 재현 예시다. 천문대 본문과 버튼의 기본 광원으로 강제하지 않는다.",
+      "pageKeys": [
+        "foundations"
+      ],
+      "source": "docs/design-ui-ux-priority.md#9"
+    },
+    {
+      "id": "L09",
+      "title": "그림자 비교",
+      "url": "https://www.instagram.com/p/Dcvq-p2k1a9/",
+      "imageCount": 2,
+      "sourceCondition": "5.1; 스타일별 목적, 캡션 확인 잔여",
+      "takeaway": "부드러운 카드 그림자와 단단한 그림자의 목적을 구별한다. 원문 X0/Y6/blur18 예시는 현재 천문대의 고정값이 아니다.",
+      "pageKeys": [
+        "foundations"
+      ],
+      "source": "docs/design-ui-ux-priority.md#9"
+    },
+    {
+      "id": "L10",
+      "title": "과정과 최종 UI",
+      "url": "https://www.instagram.com/p/DctnOwVNz9h/",
+      "imageCount": 1,
+      "sourceCondition": "3.4; 구조→표현, 캡션 확인 잔여",
+      "takeaway": "정보 구조와 과업 흐름을 먼저 정한 뒤 최종 색·글자·브랜드 표현으로 구체화한다.",
+      "pageKeys": [
+        "desk",
+        "research"
+      ],
+      "source": "docs/design-ui-ux-priority.md#9"
+    },
+    {
+      "id": "L11",
+      "title": "자료 50개",
+      "url": "https://www.instagram.com/p/Dcn0oWFmnEG/",
+      "imageCount": 9,
+      "sourceCondition": "7.1; 번호1–50 전부, Godly 중복, 장수 표시11과 차이, 캡션 확인 잔여",
+      "takeaway": "디자인 학습·사례·도구 후보 50개를 보존한다. 중복·장수 표시 차이와 이용 조건을 구별하며 설치 완료로 세지 않는다.",
+      "pageKeys": [
+        "research"
+      ],
+      "source": "docs/design-ui-ux-priority.md#9"
+    },
+    {
+      "id": "L12",
+      "title": "플러그인 50개",
+      "url": "https://www.instagram.com/p/DcgchxyDQmG/",
+      "imageCount": 6,
+      "sourceCondition": "7.2; 번호1–50 전부, 중복2개·식별 필요, 캡션 확인 잔여",
+      "takeaway": "플러그인 후보 50개(중복 제외 이름 48개)를 보존한다. 기존 도구부터 재사용하고 필요한 기능만 공식 경로로 확인한다.",
+      "pageKeys": [
+        "research"
+      ],
+      "source": "docs/design-ui-ux-priority.md#9"
+    },
+    {
+      "id": "L13",
+      "title": "버튼 열 기준",
+      "url": "https://www.instagram.com/p/DcZFmkKtOIs/",
+      "imageCount": 1,
+      "sourceCondition": "3.8; WCAG 등급 정정, 캡션 확인 잔여",
+      "takeaway": "버튼의 역할·크기·대비·이름·상태를 함께 설계한다. 앱 기본 48px와 WCAG AA/AAA 기준의 차이를 유지한다.",
+      "pageKeys": [
+        "components",
+        "states"
+      ],
+      "source": "docs/design-ui-ux-priority.md#9"
+    },
+    {
+      "id": "L14",
+      "title": "환자 건강 앱",
+      "url": "https://www.instagram.com/p/DcNoVfpN7uA/",
+      "imageCount": 1,
+      "sourceCondition": "6.2; 1225×1272 원본 확대/OCR로도 작은 본문 판독 실패, 캡션·더 큰 원본 확인 잔여",
+      "takeaway": "공통 색·폼·목록·차트를 여러 화면에 연결한 사례로만 참고한다. 판독되지 않은 의료 기능·필드·효과는 요구로 만들지 않는다.",
+      "pageKeys": [
+        "components"
+      ],
+      "source": "docs/design-ui-ux-priority.md#9"
+    },
+    {
+      "id": "L15",
+      "title": "8pt 격자",
+      "url": "https://www.instagram.com/p/DcDXaMeDTMG/",
+      "imageCount": 10,
+      "sourceCondition": "3.2/3.5/3.9; 예외4/12/20 보존, 캡션 확인 잔여",
+      "takeaway": "4px 기초와 8px 리듬을 활용하되 4/12/20px 예외를 보존한다. 정렬·내용 관계·좁은 화면에 맞춰 조절한다.",
+      "pageKeys": [
+        "foundations",
+        "states"
+      ],
+      "source": "docs/design-ui-ux-priority.md#9"
+    },
+    {
+      "id": "L16",
+      "title": "디자인 시스템 릴스",
+      "url": "https://www.instagram.com/reel/Db5Xa69NJ_m/",
+      "imageCount": 0,
+      "sourceCondition": "자료집에 포함; 제목만 확인, 영상/음성/전체 캡션 직접 확인 후 보완",
+      "takeaway": "제목만 확인된 디자인 시스템 참고다. 영상·음성·캡션 내용에 근거한 추가 원칙은 적용 보류다.",
+      "pageKeys": [
+        "research"
+      ],
+      "source": "docs/design-ui-ux-priority.md#9"
+    },
+    {
+      "id": "L17",
+      "title": "IT 사이트 재설계",
+      "url": "https://www.instagram.com/p/DbxSWitjRdt/",
+      "imageCount": 3,
+      "sourceCondition": "3.3/6.2; 위계/탐색/서비스 설명, 캡션 확인 잔여",
+      "takeaway": "제목·대표 영역·탐색·도구·서비스 설명의 위계를 정리한다. 현재 범위에서 제외한 문의 기능은 다시 도입하지 않는다.",
+      "pageKeys": [
+        "global",
+        "desk"
+      ],
+      "source": "docs/design-ui-ux-priority.md#9"
+    },
+    {
+      "id": "L18",
+      "title": "와이어프레임과 목업",
+      "url": "https://www.instagram.com/p/DbpqoeytycH/",
+      "imageCount": 1,
+      "sourceCondition": "3.4; 목적/구체성/색/글자/이미지/브랜드/관심7쌍, 캡션 확인 잔여",
+      "takeaway": "와이어프레임은 구조·흐름, 목업은 구체적인 시각 표현을 검토한다. 상호작용 시연과 실제 저장 구현은 구별한다.",
+      "pageKeys": [
+        "research"
+      ],
+      "source": "docs/design-ui-ux-priority.md#9"
+    },
+    {
+      "id": "L19",
+      "title": "제품 경험",
+      "url": "https://www.instagram.com/p/Dbn5P_fDf2o/",
+      "imageCount": 6,
+      "sourceCondition": "3.1/3.3/3.9; 수치 근거 미확인·장수 표시7과 차이, 캡션 확인 잔여",
+      "takeaway": "사용자의 이해·탐색·행동·반복 사용 흐름을 함께 점검한다. 게시물의 개선 배수·비율은 효과를 검증한 수치로 쓰지 않는다.",
+      "pageKeys": [
+        "desk",
+        "states"
+      ],
+      "source": "docs/design-ui-ux-priority.md#9"
+    },
+    {
+      "id": "L20",
+      "title": "UI 실수",
+      "url": "https://www.instagram.com/p/Dbhq9mkjHRD/",
+      "imageCount": 5,
+      "sourceCondition": "3.2/3.5; 상세비교3개+마무리5항목, 캡션 확인 잔여",
+      "takeaway": "정렬·간격·글자·관계·위계를 비교해 수정한다. 디자인을 이유로 필요한 기능·자유 입력·예외를 없애지 않는다.",
+      "pageKeys": [
+        "components"
+      ],
+      "source": "docs/design-ui-ux-priority.md#9"
+    },
+    {
+      "id": "L21",
+      "title": "UI와 UX",
+      "url": "https://www.instagram.com/p/DbfRRUMtioq/",
+      "imageCount": 1,
+      "sourceCondition": "3.1/3.4; 양쪽7영역, 캡션 확인 잔여",
+      "takeaway": "UX의 문제·구조·흐름·검증과 UI의 색·글자·부품·상태를 같은 과업에서 연결한다.",
+      "pageKeys": [
+        "research",
+        "desk"
+      ],
+      "source": "docs/design-ui-ux-priority.md#9"
+    },
+    {
+      "id": "L22",
+      "title": "글꼴 세 가지",
+      "url": "https://www.instagram.com/p/Dbc2zz4Dfhn/",
+      "imageCount": 4,
+      "sourceCondition": "3.6; 용도/지원/라이선스, 캡션 확인 잔여",
+      "takeaway": "Satoshi·General Sans·Cabinet Grotesk는 용도별 후보다. 한글 지원·라이선스·굵기·전달 비용을 확인하고 본문 서체를 보존한다.",
+      "pageKeys": [
+        "foundations"
+      ],
+      "source": "docs/design-ui-ux-priority.md#9"
+    },
+    {
+      "id": "L23",
+      "title": "색 이론",
+      "url": "https://www.instagram.com/p/Da7DcOlDe4D/",
+      "imageCount": 6,
+      "sourceCondition": "3.7; 색 모델·연상·조합·코드·표기 오류, 캡션 확인 잔여",
+      "takeaway": "색의 모델·역할·조합을 구별하고 원문의 표기 오류를 정정한다. 기존 학습 의미색과 개인 테마를 유지한다.",
+      "pageKeys": [
+        "foundations"
+      ],
+      "source": "docs/design-ui-ux-priority.md#9"
+    },
+    {
+      "id": "L24",
+      "title": "부드러운 빛 요소",
+      "url": "https://www.instagram.com/p/DadKtwGk-fy/",
+      "imageCount": 10,
+      "sourceCondition": "5.3; 제작10장·설정/비교/완성, 캡션 확인 잔여",
+      "takeaway": "원·그라디언트·흐림·광원 중첩의 제작 예시다. 글자·정확한 도형을 대신하거나 모든 표면의 기본 효과로 쓰지 않는다.",
+      "pageKeys": [
+        "foundations"
+      ],
+      "source": "docs/design-ui-ux-priority.md#9"
+    },
+    {
+      "id": "L25",
+      "title": "웹 UI 영감 릴스",
+      "url": "https://www.instagram.com/reel/DaNTTflTUxF/",
+      "imageCount": 0,
+      "sourceCondition": "자료집에 포함; 제목만 확인, 영상/음성/전체 캡션 직접 확인 후 보완",
+      "takeaway": "제목만 확인된 웹 UI 영감 참고다. 영상·음성·캡션의 구체적인 화면·기술은 확인한 것으로 표시하지 않는다.",
+      "pageKeys": [
+        "research"
+      ],
+      "source": "docs/design-ui-ux-priority.md#9"
+    },
+    {
+      "id": "L26",
+      "title": "글자 구조",
+      "url": "https://www.instagram.com/p/DaLEY7FEzNe/",
+      "imageCount": 3,
+      "sourceCondition": "3.6; 기준선/구조/개별글자/용도, 캡션 확인 잔여",
+      "takeaway": "기준선·글자의 구조·간격·용도 관계로 읽기 리듬을 조절한다. 긴 한국어와 사용자 서체에서 실제 읽기를 확인한다.",
+      "pageKeys": [
+        "foundations"
+      ],
+      "source": "docs/design-ui-ux-priority.md#9"
+    },
+    {
+      "id": "L27",
+      "title": "디자인 원칙 릴스",
+      "url": "https://www.instagram.com/reel/DaClNCDzYd9/",
+      "imageCount": 0,
+      "sourceCondition": "자료집에 포함; L31과 동일하다고 추정하지 않음, 영상/음성/전체 캡션 확인 후 보완",
+      "takeaway": "제목만 확인된 디자인 원칙 참고다. L31의 아홉 원칙과 같은 내용이라고 추정하지 않는다.",
+      "pageKeys": [
+        "research"
+      ],
+      "source": "docs/design-ui-ux-priority.md#9"
+    },
+    {
+      "id": "L28",
+      "title": "색상 짝 여섯",
+      "url": "https://www.instagram.com/p/DZriVAPk4pq/",
+      "imageCount": 6,
+      "sourceCondition": "3.7; 12코드 보존, 캡션 확인 잔여",
+      "takeaway": "여섯 색상 짝과 12개 코드는 참고 팔레트다. 현재 재질별 의미색·대비·장면 색 역할을 우선해 필요한 조합만 검토한다.",
+      "pageKeys": [
+        "foundations"
+      ],
+      "source": "docs/design-ui-ux-priority.md#9"
+    },
+    {
+      "id": "L29",
+      "title": "Higgsfield",
+      "url": "https://www.instagram.com/p/DZiB65bDXK8/",
+      "imageCount": 8,
+      "sourceCondition": "7.3; 네 기능·작업 흐름·홍보/실제 사용 구별, 캡션 확인 잔여",
+      "takeaway": "이미지 생성·조명·바깥 확장·각도 변경의 후보 기능과 작업 흐름을 보존한다. 계정·비용·권한·정확성을 별도로 확인한다.",
+      "pageKeys": [
+        "research"
+      ],
+      "source": "docs/design-ui-ux-priority.md#9"
+    },
+    {
+      "id": "L30",
+      "title": "UI·UX 학습 경로",
+      "url": "https://www.instagram.com/p/DZPYI4EDb3i/",
+      "imageCount": 7,
+      "sourceCondition": "3.1/3.4/3.6–3.7/6.3; 여섯 단계·색 모델 오류 정정, 캡션 확인 잔여",
+      "takeaway": "기초→디자인 시스템→위계·배치→프로토타입→조사→과정 설명을 참고한다. 필요한 지식을 실제 작업에 적용하고 색 모델 오류를 정정한다.",
+      "pageKeys": [
+        "research"
+      ],
+      "source": "docs/design-ui-ux-priority.md#9"
+    },
+    {
+      "id": "L31",
+      "title": "디자인 아홉 원칙",
+      "url": "https://www.instagram.com/p/DYuZzrTDcEM/",
+      "imageCount": 9,
+      "sourceCondition": "3.2; 아홉 원칙 전체, 캡션 확인 잔여",
+      "takeaway": "아홉 원칙으로 위계·대비·정렬·근접·반복·균형·여백·크기·일관성을 검토한다. 시선 흐름은 과업과 읽기 조건에 맞춘다.",
+      "pageKeys": [
+        "foundations",
+        "components"
+      ],
+      "source": "docs/design-ui-ux-priority.md#9"
+    }
+  ],
+  "styles": [
+    {
+      "id": "D01",
+      "title": "미니멀리즘",
+      "principle": "읽기·기록·다음 행동의 우선순위를 선명하게 한다.",
+      "application": "종이 작업면의 여백·위계에 적용한다. 필요한 기능·자유 글·조건·예외는 보존한다.",
+      "pageKeys": [
+        "foundations",
+        "desk"
+      ],
+      "source": "docs/design-ui-ux-priority.md#4"
+    },
+    {
+      "id": "D02",
+      "title": "뉴몰피즘",
+      "principle": "같은 표면의 밝고 어두운 그림자로 눌림·돌출을 표현한다.",
+      "application": "비교 참고다. 낮은 대비와 경계 모호함을 가져오지 않으며 현재 천문대의 단단한 픽셀 재질로 자동 이식하지 않는다.",
+      "pageKeys": [
+        "foundations",
+        "components"
+      ],
+      "source": "docs/design-ui-ux-priority.md#4"
+    },
+    {
+      "id": "D03",
+      "title": "브루탈리즘",
+      "principle": "노출된 구조·직접적인 글·링크·격자를 활용한다.",
+      "application": "기능 관계가 분명한 구조를 참고한다. 읽기와 일관된 조작을 훼손하는 거친 표현은 채택하지 않는다.",
+      "pageKeys": [
+        "components",
+        "workbench"
+      ],
+      "source": "docs/design-ui-ux-priority.md#4"
+    },
+    {
+      "id": "D04",
+      "title": "네오브루탈리즘",
+      "principle": "명확한 테두리·색 덩어리·단단한 그림자로 위계를 만든다.",
+      "application": "픽셀 작업 도구의 경계와 눌림 표현에 한정해 검토한다. 현재 v2 재질·대비·치수와 조화시킨다.",
+      "pageKeys": [
+        "foundations",
+        "components"
+      ],
+      "source": "docs/design-ui-ux-priority.md#4"
+    },
+    {
+      "id": "D05",
+      "title": "플랫 디자인",
+      "principle": "불필요한 입체·질감을 덜고 정보와 조작을 드러낸다.",
+      "application": "종이 위 입력·목록·기록의 기본 표현에 적용한다. 버튼 경계·링크·선택·오류 상태는 선명하게 남긴다.",
+      "pageKeys": [
+        "components",
+        "library"
+      ],
+      "source": "docs/design-ui-ux-priority.md#4"
+    },
+    {
+      "id": "D06",
+      "title": "머테리얼 디자인",
+      "principle": "표면·높이·토큰·부품·상태·모션·접근성을 연결하는 설계 체계다.",
+      "application": "체계와 관계를 참고한다. 전체 라이브러리나 외형을 이식하지 않고 천문대의 공통 기초를 사용한다.",
+      "pageKeys": [
+        "foundations",
+        "components",
+        "states"
+      ],
+      "source": "docs/design-ui-ux-priority.md#4"
+    },
+    {
+      "id": "D07",
+      "title": "벤투 UI",
+      "principle": "서로 다른 크기의 격자 구역으로 관계와 중요도를 표현한다.",
+      "application": "오늘·통계 개요에서 정보 묶음에 적용한다. 모든 목록을 카드화하지 않고 좁은 화면 읽기 순서를 지킨다.",
+      "pageKeys": [
+        "desk",
+        "wall",
+        "states"
+      ],
+      "source": "docs/design-ui-ux-priority.md#4"
+    },
+    {
+      "id": "D08",
+      "title": "에디토리얼 디자인",
+      "principle": "제목·본문·캡션·인용·보조 설명·격자로 읽는 순서를 만든다.",
+      "application": "긴 자유 글·자료·회고의 종이 작업면에 적용한다. 큰 글꼴 장식보다 한국어 본문의 읽기 리듬을 우선한다.",
+      "pageKeys": [
+        "library",
+        "workbench",
+        "wall"
+      ],
+      "source": "docs/design-ui-ux-priority.md#4"
+    }
+  ],
+  "adoptedManifestSha256": "b7c6e169cb328a259a92f6e606509f43dfdd60e62be5cc6baf89ed8791c4521a",
+  "sourceFiles": [
+    {
+      "name": "screen-inventory.json",
+      "sha256": "151056daf70d7345935546c7ce58c4e4a0de885734a7bc17b3924da461371ce5"
+    },
+    {
+      "name": "design-foundations.json",
+      "sha256": "c8f37bc39a5eafe3ed10020f5cd5432c2b5cf42f9add8926e744d6d4b626047e"
+    },
+    {
+      "name": "research-mapping.json",
+      "sha256": "7f15facef2240757abe812db31760cebbbee8e943041a42b74ba28cc3357b5ac"
+    },
+    {
+      "name": "state-contracts.json",
+      "sha256": "e944fbb41cc8b824a1e87fcd20a5c8839a10aeeb95b8ba1d1002c7b7733cd37a"
+    }
+  ],
+  "baselineVersion": "2.0.0",
+  "sceneVariables": [
+    {
+      "name": "observatory/scene/night-950",
+      "role": "밤 · 가장 깊은 하늘",
+      "hex": "#110F29",
+      "cssVariable": "--observatory-night-950",
+      "source": "docs/observatory-palette.json#/colors",
+      "condition": "Decorative scene only; snapshot does not freeze palette expansion or user overrides.",
+      "resolvedHex": null
+    },
+    {
+      "name": "observatory/scene/night-800",
+      "role": "밤 · 남색",
+      "hex": "#1E1B4B",
+      "cssVariable": "--observatory-night-800",
+      "source": "docs/observatory-palette.json#/colors",
+      "condition": "Decorative scene only; snapshot does not freeze palette expansion or user overrides.",
+      "resolvedHex": null
+    },
+    {
+      "name": "observatory/scene/night-650",
+      "role": "밤 · 먼 산",
+      "hex": "#312E81",
+      "cssVariable": "--observatory-night-650",
+      "source": "docs/observatory-palette.json#/colors",
+      "condition": "Decorative scene only; snapshot does not freeze palette expansion or user overrides.",
+      "resolvedHex": null
+    },
+    {
+      "name": "observatory/scene/night-450",
+      "role": "밤 · 푸른 대기",
+      "hex": "#1E3A8A",
+      "cssVariable": "--observatory-night-450",
+      "source": "docs/observatory-palette.json#/colors",
+      "condition": "Decorative scene only; snapshot does not freeze palette expansion or user overrides.",
+      "resolvedHex": null
+    },
+    {
+      "name": "observatory/scene/warm-500",
+      "role": "빛 · 다홍",
+      "hex": "#F66623",
+      "cssVariable": "--observatory-warm-500",
+      "source": "docs/observatory-palette.json#/colors",
+      "condition": "Decorative scene only; snapshot does not freeze palette expansion or user overrides.",
+      "resolvedHex": null
+    },
+    {
+      "name": "observatory/scene/warm-850",
+      "role": "빛 · 어두운 잔광",
+      "hex": "#612D27",
+      "cssVariable": "--observatory-warm-850",
+      "source": "docs/observatory-palette.json#/colors",
+      "condition": "Decorative scene only; snapshot does not freeze palette expansion or user overrides.",
+      "resolvedHex": null
+    },
+    {
+      "name": "observatory/scene/warm-700",
+      "role": "빛 · 주황 그림자",
+      "hex": "#7C2D12",
+      "cssVariable": "--observatory-warm-700",
+      "source": "docs/observatory-palette.json#/colors",
+      "condition": "Decorative scene only; snapshot does not freeze palette expansion or user overrides.",
+      "resolvedHex": null
+    },
+    {
+      "name": "observatory/scene/warm-400",
+      "role": "빛 · 호박색",
+      "hex": "#F97316",
+      "cssVariable": "--observatory-warm-400",
+      "source": "docs/observatory-palette.json#/colors",
+      "condition": "Decorative scene only; snapshot does not freeze palette expansion or user overrides.",
+      "resolvedHex": null
+    },
+    {
+      "name": "observatory/scene/warm-250",
+      "role": "빛 · 금빛",
+      "hex": "#FCB67F",
+      "cssVariable": "--observatory-warm-250",
+      "source": "docs/observatory-palette.json#/colors",
+      "condition": "Decorative scene only; snapshot does not freeze palette expansion or user overrides.",
+      "resolvedHex": null
+    },
+    {
+      "name": "observatory/scene/warm-100",
+      "role": "빛 · 살구",
+      "hex": "#FBBA9C",
+      "cssVariable": "--observatory-warm-100",
+      "source": "docs/observatory-palette.json#/colors",
+      "condition": "Decorative scene only; snapshot does not freeze palette expansion or user overrides.",
+      "resolvedHex": null
+    },
+    {
+      "name": "observatory/scene/warm-050",
+      "role": "빛 · 크림",
+      "hex": "#FEE5D2",
+      "cssVariable": "--observatory-warm-050",
+      "source": "docs/observatory-palette.json#/colors",
+      "condition": "Decorative scene only; snapshot does not freeze palette expansion or user overrides.",
+      "resolvedHex": null
+    },
+    {
+      "name": "observatory/scene/cool-500",
+      "role": "별 · 푸른빛",
+      "hex": "#80AEF9",
+      "cssVariable": "--observatory-cool-500",
+      "source": "docs/observatory-palette.json#/colors",
+      "condition": "Decorative scene only; snapshot does not freeze palette expansion or user overrides.",
+      "resolvedHex": null
+    },
+    {
+      "name": "observatory/scene/cool-350",
+      "role": "별 · 청록",
+      "hex": "#51BAAC",
+      "cssVariable": "--observatory-cool-350",
+      "source": "docs/observatory-palette.json#/colors",
+      "condition": "Decorative scene only; snapshot does not freeze palette expansion or user overrides.",
+      "resolvedHex": null
+    },
+    {
+      "name": "observatory/scene/cool-400",
+      "role": "성운 · 보랏빛",
+      "hex": "#818CF8",
+      "cssVariable": "--observatory-cool-400",
+      "source": "docs/observatory-palette.json#/colors",
+      "condition": "Decorative scene only; snapshot does not freeze palette expansion or user overrides.",
+      "resolvedHex": null
+    },
+    {
+      "name": "observatory/scene/cool-850",
+      "role": "오로라 · 그림자",
+      "hex": "#14532D",
+      "cssVariable": "--observatory-cool-850",
+      "source": "docs/observatory-palette.json#/colors",
+      "condition": "Decorative scene only; snapshot does not freeze palette expansion or user overrides.",
+      "resolvedHex": null
+    },
+    {
+      "name": "observatory/scene/star-050",
+      "role": "별 · 가장 밝은 점",
+      "hex": "#FFFFFF",
+      "cssVariable": "--observatory-star-050",
+      "source": "docs/observatory-palette.json#/colors",
+      "condition": "Decorative scene only; snapshot does not freeze palette expansion or user overrides.",
+      "resolvedHex": null
+    }
+  ],
+  "foundations": {
+    "collections": {
+      "primitives": "VariableCollectionId:7:78",
+      "material": "VariableCollectionId:7:79",
+      "metrics": "VariableCollectionId:7:80"
+    },
+    "modes": [
+      {
+        "name": "Interior",
+        "modeId": "7:1"
+      },
+      {
+        "name": "Paper",
+        "modeId": "7:2"
+      }
+    ],
+    "variables": {
+      "primitive/interior/canvas": {
+        "id": "VariableID:7:81"
+      },
+      "primitive/interior/surface": {
+        "id": "VariableID:7:82"
+      },
+      "primitive/interior/subtle": {
+        "id": "VariableID:7:83"
+      },
+      "primitive/interior/text": {
+        "id": "VariableID:7:84"
+      },
+      "primitive/interior/muted": {
+        "id": "VariableID:7:85"
+      },
+      "primitive/interior/borderDecorative": {
+        "id": "VariableID:7:86"
+      },
+      "primitive/interior/borderInteractive": {
+        "id": "VariableID:7:87"
+      },
+      "primitive/interior/focus": {
+        "id": "VariableID:7:88"
+      },
+      "primitive/interior/selected": {
+        "id": "VariableID:7:89"
+      },
+      "primitive/interior/selectedText": {
+        "id": "VariableID:7:90"
+      },
+      "primitive/interior/primary": {
+        "id": "VariableID:7:91"
+      },
+      "primitive/interior/primaryHover": {
+        "id": "VariableID:7:92"
+      },
+      "primitive/interior/primaryPressed": {
+        "id": "VariableID:7:93"
+      },
+      "primitive/interior/onPrimary": {
+        "id": "VariableID:7:94"
+      },
+      "primitive/paper/canvas": {
+        "id": "VariableID:7:95"
+      },
+      "primitive/paper/surface": {
+        "id": "VariableID:7:96"
+      },
+      "primitive/paper/subtle": {
+        "id": "VariableID:7:97"
+      },
+      "primitive/paper/text": {
+        "id": "VariableID:7:98"
+      },
+      "primitive/paper/muted": {
+        "id": "VariableID:7:99"
+      },
+      "primitive/paper/borderDecorative": {
+        "id": "VariableID:7:100"
+      },
+      "primitive/paper/borderInteractive": {
+        "id": "VariableID:7:101"
+      },
+      "primitive/paper/focus": {
+        "id": "VariableID:7:102"
+      },
+      "primitive/paper/selected": {
+        "id": "VariableID:7:103"
+      },
+      "primitive/paper/selectedText": {
+        "id": "VariableID:7:104"
+      },
+      "primitive/paper/primary": {
+        "id": "VariableID:7:105"
+      },
+      "primitive/paper/primaryHover": {
+        "id": "VariableID:7:106"
+      },
+      "primitive/paper/primaryPressed": {
+        "id": "VariableID:7:107"
+      },
+      "primitive/paper/onPrimary": {
+        "id": "VariableID:7:108"
+      },
+      "material/canvas": {
+        "id": "VariableID:7:109"
+      },
+      "material/surface": {
+        "id": "VariableID:7:110"
+      },
+      "material/subtle": {
+        "id": "VariableID:7:111"
+      },
+      "material/text": {
+        "id": "VariableID:7:112"
+      },
+      "material/muted": {
+        "id": "VariableID:7:113"
+      },
+      "material/borderDecorative": {
+        "id": "VariableID:7:114"
+      },
+      "material/borderInteractive": {
+        "id": "VariableID:7:115"
+      },
+      "material/focus": {
+        "id": "VariableID:7:116"
+      },
+      "material/selected": {
+        "id": "VariableID:7:117"
+      },
+      "material/selectedText": {
+        "id": "VariableID:7:118"
+      },
+      "material/primary": {
+        "id": "VariableID:7:119"
+      },
+      "material/primaryHover": {
+        "id": "VariableID:7:120"
+      },
+      "material/primaryPressed": {
+        "id": "VariableID:7:121"
+      },
+      "material/onPrimary": {
+        "id": "VariableID:7:122"
+      },
+      "space/0": {
+        "id": "VariableID:7:123"
+      },
+      "space/4": {
+        "id": "VariableID:7:124"
+      },
+      "space/8": {
+        "id": "VariableID:7:125"
+      },
+      "space/12": {
+        "id": "VariableID:7:126"
+      },
+      "space/16": {
+        "id": "VariableID:7:127"
+      },
+      "space/24": {
+        "id": "VariableID:7:128"
+      },
+      "space/32": {
+        "id": "VariableID:7:129"
+      },
+      "space/48": {
+        "id": "VariableID:7:130"
+      },
+      "space/64": {
+        "id": "VariableID:7:131"
+      },
+      "control/height": {
+        "id": "VariableID:7:132"
+      },
+      "control/icon-target": {
+        "id": "VariableID:7:133"
+      },
+      "border/width": {
+        "id": "VariableID:7:134"
+      },
+      "focus/width": {
+        "id": "VariableID:7:135"
+      },
+      "radius/control": {
+        "id": "VariableID:7:136"
+      },
+      "radius/dialog": {
+        "id": "VariableID:7:137"
+      },
+      "motion/feedback": {
+        "id": "VariableID:7:138"
+      },
+      "motion/navigation": {
+        "id": "VariableID:7:139"
+      },
+      "motion/reduced": {
+        "id": "VariableID:7:140"
+      }
+    },
+    "textStyles": {
+      "Body": "S:0ed1e468a727e7f6b4cfe5df9fede5b786c93484,",
+      "Label": "S:57e137d821e57f2a65506aae778891f8769014bb,",
+      "Caption": "S:befdc25f9b2e8c63313b60a0d4aea208900d629a,",
+      "Heading": "S:a12f8ca10ba0d22e77eaf7ad3092a28a3779de86,",
+      "Title": "S:9c730b18d11b0b822b1b5cb4828120b4eb39915f,",
+      "TitleCompact": "S:8579bbbd27aef7f9309ddc31f958d7598925587a,",
+      "Code": "S:2dbd5754c8da299cad06f2184af84cc5101eb9b7,"
+    },
+    "fonts": {
+      "font": {
+        "family": "Noto Sans KR",
+        "style": "Regular"
+      },
+      "boldFont": {
+        "family": "Noto Sans KR",
+        "style": "Regular",
+        "variationSettings": {
+          "wght": 600
+        }
+      },
+      "axes": [
+        "wght"
+      ]
+    }
+  },
+  "hierarchy": [
+    {
+      "title": "1 · 원본과 사용자의 권리",
+      "text": "원문·ID·초안·이력·개인 테마/서체/배치·학습 의미·저장과 권한을 보존한다."
+    },
+    {
+      "title": "2 · 살아 움직이는 픽셀 천문대",
+      "text": "어두운 실내·픽셀 하늘·창틀·종이 작업면과 네 고정 장소를 유지한다. 원본 위젯 전체와 바깥 테두리를 보존한다."
+    },
+    {
+      "title": "3 · v2 재질과 값의 담당 원본",
+      "text": "materials가 새 색의 원본이다. workSurfaceColors는 기존 수식 소비자의 호환값이다. 현재 값은 기술 표현의 상한이 아니다."
+    },
+    {
+      "title": "4 · 채택 원칙 → 실제 과업",
+      "text": "Instagram 31개와 스타일 8개의 관련 원칙을 기초·부품·흐름에 적용한다. 조정 이유·범위·실제 확인을 담당 원본과 소비 경로에 연결한다."
+    }
+  ],
+  "limits": [
+    "디자인 노드·설계 문서의 생성과 앱 코드 연결·런타임 조작·저장·배포는 별도이다.",
+    "합성 예시가 실제 기록·숙달·완료·서버 최신 상태를 증명하지 않는다.",
+    "Instagram 31개와 전문 출처 121개는 별도 목록이다. 단순 합산으로 고유 출처 수를 만들지 않는다.",
+    "114개 이미지 확인 기록을 유지한다. L16·L25·L27 영상/음성·캡션과 L14 작은 본문, L01 외 캡션은 확인 잔여이다.",
+    "장면 색 견본은 현재 소스 팔레트이며 v2 실내·종이 재질과 역할이 다르다. 가져온 SVG 전체의 색 바인딩을 완료했다는 뜻이 아니다."
+  ]
+}

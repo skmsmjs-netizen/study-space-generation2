@@ -1,0 +1,110 @@
+{
+  "pageId": "7:75",
+  "createdNodeIds": [
+    "256:6810",
+    "256:6811",
+    "256:6812",
+    "256:6813"
+  ],
+  "mutatedNodeIds": [
+    "256:6810",
+    "29:5205",
+    "29:5206",
+    "29:5207",
+    "29:5208",
+    "29:5209",
+    "29:5192",
+    "256:6811",
+    "29:5239",
+    "29:5240",
+    "29:5241",
+    "29:5242",
+    "29:5243",
+    "29:5244",
+    "29:5245",
+    "29:5226",
+    "256:6812",
+    "29:5275",
+    "29:5276",
+    "29:5277",
+    "29:5278",
+    "29:5279",
+    "29:5280",
+    "29:5282",
+    "29:5262",
+    "256:6813",
+    "29:5310",
+    "29:5311",
+    "29:5312",
+    "29:5313",
+    "29:5315",
+    "29:5316",
+    "29:5297"
+  ],
+  "results": [
+    {
+      "id": "29:5192",
+      "name": "O08@ipad-landscape",
+      "pattern": "L053",
+      "scope": "overlay",
+      "viewport": {
+        "width": 1376,
+        "height": 1032,
+        "overflow": "VERTICAL"
+      },
+      "preserved": true,
+      "scroll": "VERTICAL",
+      "sceneRatios": [],
+      "structure": "256:6810",
+      "bodyHeight": 309
+    },
+    {
+      "id": "29:5226",
+      "name": "O09@ipad-landscape",
+      "pattern": "L053",
+      "scope": "overlay",
+      "viewport": {
+        "width": 1376,
+        "height": 1032,
+        "overflow": "VERTICAL"
+      },
+      "preserved": true,
+      "scroll": "VERTICAL",
+      "sceneRatios": [],
+      "structure": "256:6811",
+      "bodyHeight": 377
+    },
+    {
+      "id": "29:5262",
+      "name": "O10@ipad-landscape",
+      "pattern": "L053",
+      "scope": "overlay",
+      "viewport": {
+        "width": 1376,
+        "height": 1032,
+        "overflow": "VERTICAL"
+      },
+      "preserved": true,
+      "scroll": "VERTICAL",
+      "sceneRatios": [],
+      "structure": "256:6812",
+      "bodyHeight": 455
+    },
+    {
+      "id": "29:5297",
+      "name": "O12@ipad-landscape",
+      "pattern": "L198",
+      "scope": "overlay",
+      "viewport": {
+        "width": 1376,
+        "height": 1032,
+        "overflow": "VERTICAL"
+      },
+      "preserved": true,
+      "scroll": "VERTICAL",
+      "sceneRatios": [],
+      "structure": "256:6813",
+      "bodyHeight": 368
+    }
+  ]
+}

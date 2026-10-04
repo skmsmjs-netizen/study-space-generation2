@@ -1,0 +1,35 @@
+{
+  "type": "result",
+  "result": {
+    "task": "native",
+    "pageId": "3:73",
+    "rootCount": 2,
+    "nativeCount": 3,
+    "results": [
+      {
+        "id": "70:13045",
+        "nativeCount": 1,
+        "sourcePreserved": true,
+        "mathPreserved": true
+      },
+      {
+        "id": "70:12685",
+        "nativeCount": 2,
+        "sourcePreserved": true,
+        "mathPreserved": true
+      }
+    ],
+    "createdNodeIds": [],
+    "mutatedNodeIds": [
+      "127:1845",
+      "I70:13279;4:30",
+      "70:13279",
+      "123:1940",
+      "I70:13040;4:30",
+      "70:13040",
+      "123:1945",
+      "I70:13042;4:30",
+      "70:13042"
+    ]
+  }
+}

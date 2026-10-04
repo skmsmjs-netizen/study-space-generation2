@@ -1,0 +1,30 @@
+{
+  "kind": "documentation-integrity-not-product-test",
+  "capturedAt": "2026-10-02T03:27:44.072Z",
+  "checkedAt": "2026-10-02T03:45:39.042Z",
+  "originalSurfaces": 111,
+  "extensions": 10,
+  "actions": 1462,
+  "mappedActions": 1462,
+  "unclassified": 0,
+  "pathTransitions": 6657,
+  "parseErrors": 0,
+  "errors": [],
+  "warnings": [],
+  "sourceDrift": [],
+  "originDrift": [],
+  "figmaInput": {
+    "surfaceCards": 121,
+    "actionCards": 1462,
+    "batches": 73,
+    "remoteExecutionVerified": true,
+    "remoteVerifiedAt": "2026-10-02T03:43:11.349Z",
+    "remoteEvidencePath": "work/frontend-opportunities-20261002/figma-validation-summary.json"
+  },
+  "checksums": {
+    "surfaceIds": "d175ecae11746923aca739d7734625ce910224f5a5da3281a460bb952197f54f",
+    "sourceFiles": "c080b1b82f58bf46d05fac967061f05dab35509e011193b6e812e44f783f8ebe",
+    "actionIds": "aaf2a8517653b4f5437d23918ce804461a613b194f1d95c57f518cba2c11ff42"
+  },
+  "runtimeTested": false
+}

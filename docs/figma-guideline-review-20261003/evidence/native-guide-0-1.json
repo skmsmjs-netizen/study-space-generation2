@@ -1,0 +1,14 @@
+{
+  "type": "result",
+  "result": {
+    "task": "guide",
+    "pageId": "0:1",
+    "convertedCount": 3,
+    "createdNodeIds": [],
+    "mutatedNodeIds": [
+      "3:65",
+      "3:66",
+      "3:67"
+    ]
+  }
+}

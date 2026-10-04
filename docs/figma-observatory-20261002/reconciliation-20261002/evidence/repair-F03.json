@@ -1,0 +1,74 @@
+{
+  "pageId": "7:76",
+  "flowId": "F03",
+  "createdNodeIds": [],
+  "mutatedNodeIds": [
+    "I68:58557;16:109",
+    "68:58557",
+    "I68:57540;74:67534",
+    "I68:58560;16:109",
+    "68:58560",
+    "I68:57648;74:67547",
+    "I68:58563;16:109",
+    "68:58563",
+    "I68:57756;74:67567"
+  ],
+  "repaired": [
+    {
+      "fromKey": "F03-S02",
+      "oldLabel": "파일 가져오기",
+      "label": "문서·사진·자막 가져오기",
+      "kind": "Button",
+      "sourceId": "R23",
+      "fromFrameId": "68:57539",
+      "instanceId": "68:57540",
+      "toFrameId": "68:57647",
+      "toRouteId": "R23",
+      "prototypeControlId": "68:58557",
+      "branch": "primary",
+      "screenControlId": "I68:57540;74:67534",
+      "bindingLocation": "screen-instance",
+      "conditionOnly": false
+    },
+    {
+      "fromKey": "F03-S03",
+      "oldLabel": "정리하기",
+      "label": "요약과 카드 만들기",
+      "kind": "Button",
+      "sourceId": "R23",
+      "fromFrameId": "68:57647",
+      "instanceId": "68:57648",
+      "toFrameId": "68:57755",
+      "toRouteId": "R23",
+      "prototypeControlId": "68:58560",
+      "branch": "primary",
+      "screenControlId": "I68:57648;74:67547",
+      "bindingLocation": "screen-instance",
+      "conditionOnly": false
+    },
+    {
+      "fromKey": "F03-S04",
+      "oldLabel": "암기 항목에 등록",
+      "label": "암기 항목으로 등록",
+      "kind": "Button",
+      "sourceId": "R23",
+      "fromFrameId": "68:57755",
+      "instanceId": "68:57756",
+      "toFrameId": "68:57863",
+      "toRouteId": "R12",
+      "prototypeControlId": "68:58563",
+      "branch": "primary",
+      "screenControlId": "I68:57756;74:67567",
+      "bindingLocation": "screen-instance",
+      "conditionOnly": false
+    }
+  ],
+  "phaseChanges": [],
+  "issues": [],
+  "counts": {
+    "repaired": 3,
+    "actualBindings": 3,
+    "scenarioConditions": 0
+  },
+  "runtimeVerified": false
+}

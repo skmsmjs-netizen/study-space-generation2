@@ -1,0 +1,24 @@
+{
+  "counts": {
+    "existingFrames": 166,
+    "existingEntities": 83,
+    "newEntityProjections": 28,
+    "specializedFrames": 113,
+    "changedExistingFrames": 279,
+    "currentEntityCoverage": 111,
+    "pendingSpecializedFrames": 239
+  },
+  "allPreservationChecksPassed": true,
+  "localCoverageChecksPassed": true,
+  "fullRemoteAuditPassed": false,
+  "sourceFiles": {
+    "payload.json": "23d0634ac7a8f427fc4c066016579a41442c6acc07f4fc0ecb9a892daf98b5ba",
+    "pattern-map.json": "fb7dd0890b7fdcb2c95e3aea521de1449cfda6604c51d70d55fd9ded47259c36",
+    "reconcile.js": "55bb35fdabf0169bd1cfd990e63647ed688e3da765fe4f93fab33f2014d74215",
+    "specialized.js": "b91d9a38518267f03babff844354b67152e982e4cf4dc4a44141b4871f4071b6",
+    "embedded.js": "de321a0f5b3ff8df2ffa076567db583751c360d5bbe368165e38c6953cf5c9df",
+    "templates.js": "a1aadd4c2562c551548b7e1c49c1fdfb45500ffb47c8b20138ce24d97bf42326"
+  },
+  "remoteBlocker": "Figma MCP tool call limit for Full seat on Professional plan",
+  "runtimeChanged": false
+}

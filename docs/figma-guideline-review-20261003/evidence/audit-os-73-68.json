@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"fileKey\":\"YHmD1PpWWfR9JGTEs77JsX\",\"pageId\":\"73:68\",\"pageName\":\"21 UX · 전체 경우·경로\",\"total\":9550,\"count\":{\"FRAME\":1605,\"TEXT\":7945},\"fontCounts\":{\"{\\\"family\\\":\\\"Noto Sans KR\\\",\\\"style\\\":\\\"Regular\\\",\\\"variationSettings\\\":{\\\"wght\\\":400}}\":7943,\"{\\\"family\\\":\\\"Noto Sans KR\\\",\\\"style\\\":\\\"Regular\\\",\\\"variationSettings\\\":{\\\"wght\\\":600}}\":2},\"styleCounts\":{\"(none/mixed)\":7939,\"Observatory/Title\":1,\"Observatory/Heading\":1,\"Observatory/Body\":4},\"roles\":{\"other\":6350,\"heading-label\":1591,\"documentation\":4},\"paperCount\":0,\"mismatchCount\":0,\"mismatchIds\":[],\"mismatchIdsTruncated\":false,\"samples\":[],\"roots\":[{\"id\":\"73:69\",\"name\":\"[UXPATH source-paths-20261002/overview]\",\"type\":\"FRAME\",\"w\":4576,\"h\":1562,\"layout\":\"HORIZONTAL\",\"clip\":false,\"children\":4},{\"id\":\"74:68\",\"name\":\"[UXPATH source-paths-20261002/surfaces]\",\"type\":\"FRAME\",\"w\":4576,\"h\":17711,\"layout\":\"HORIZONTAL\",\"clip\":false,\"children\":4},{\"id\":\"74:71007\",\"name\":\"[UXPATH source-paths-20261002/actions]\",\"type\":\"FRAME\",\"w\":4576,\"h\":206730,\"layout\":\"HORIZONTAL\",\"clip\":false,\"children\":4},{\"id\":\"178:31728\",\"name\":\"교육 / page-73-68 / 페이지 해설 · 21 UX · 전체 경우·경로\",\"type\":\"FRAME\",\"w\":1104,\"h\":340,\"layout\":\"VERTICAL\",\"clip\":true,\"children\":6}],\"rootCount\":4,\"clipSuspects\":[],\"clipSuspectCount\":0,\"textHash\":\"1101b760\",\"reactionHash\":\"741638a5\"}"
+    }
+  ],
+  "isError": false
+}

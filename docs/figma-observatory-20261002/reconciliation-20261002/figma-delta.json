@@ -1,0 +1,804 @@
+{
+  "observedAt": "2026-10-02T02:37:30.526Z",
+  "sourceSnapshot": "source-snapshot/",
+  "scope": "Prepared Figma delta for source that is already present and reachable; no production, canonical inventory, or remote edits performed",
+  "counts": {
+    "baselineProductionTsx": 104,
+    "currentProductionTsx": 111,
+    "newTsx": 7,
+    "changedTsx": 11,
+    "newExportedRenderedComponents": 9,
+    "newModalCalls": 4,
+    "currentMainNavigation": 18,
+    "newMainRoutes": 0,
+    "unknownRoutePredicates": 0,
+    "newModuleModalCalls": 3,
+    "featureDeltas": 12,
+    "proposedNewComponentMappings": 9
+  },
+  "features": [
+    {
+      "id": "XD01",
+      "name": "빠른 명령",
+      "classification": "실제 공유 소스에 구현·호출됨; 이 작업에서 런타임 미검증",
+      "source": [
+        "src/ui/workspace-commands.tsx",
+        "src/App.tsx"
+      ],
+      "existingInventoryRefs": [
+        "U40"
+      ],
+      "figmaPageId": "7:75",
+      "layout": "공통 상단 작업행에 빠른 명령 버튼. 기존 Modal 안에 명령 찾기 Input, 단축키 설명, 세로 결과 Button 목록. 기존18메뉴와 맥락명령6개를 그대로 사용.",
+      "actions": [
+        "빠른 명령",
+        "명령 찾기",
+        "선택 명령 실행",
+        "⌘/Ctrl+Shift+K",
+        "ArrowDown/ArrowUp/Home/End",
+        "Escape 닫기"
+      ],
+      "states": [
+        "닫힘",
+        "24명령 목록",
+        "검색 일치",
+        "일치 없음",
+        "자료/주제 미선택으로 일부 명령 disabled+사유",
+        "결과 키보드 초점"
+      ],
+      "preservation": "입력/IME/대화상자 안에서는 전역 단축키가 글쓰기와 충돌하지 않도록 생략. 명령은 기존 화면 및 호출자/자료로 이동하며 미확인 호출자를 생성하지 않음.",
+      "prototype": "트리거→명령 모달→메모/수식/기록/기존메뉴 또는 실제 caller로 이동. disabled 결과는 이동 없음; 닫으면 트리거 복귀.",
+      "nodeId": null
+    },
+    {
+      "id": "XD02",
+      "name": "자료와 곁 도구 작업면",
+      "classification": "실제 공유 소스에 구현·호출됨; 이 작업에서 런타임 미검증",
+      "source": [
+        "src/ui/study-workspace.tsx",
+        "src/data/study-workspace.ts",
+        "src/ui/study-workspace.css",
+        "src/App.tsx"
+      ],
+      "existingInventoryRefs": [
+        "R07",
+        "R23",
+        "R24",
+        "R09",
+        "R08",
+        "R05",
+        "R06"
+      ],
+      "figmaPageId": "7:72",
+      "layout": "자료 화면 외곽 StudyWorkspace. 위 toolbar; 왼쪽 기존 StudyMaterials, 오른쪽 선택한 메모/수식 탐색/코딩 연습/공부 기록. 기본 접힘, source52%, 폭30–70%. container760px이하에는 자료/도구를 전환하는 한 면.",
+      "actions": [
+        "곁 도구 펼치기",
+        "곁 도구 접기",
+        "곁에 놓을 도구",
+        "자료 폭 조절",
+        "기본 폭",
+        "자료 보기",
+        "도구 보기",
+        "작업면 표시"
+      ],
+      "states": [
+        "접힘",
+        "wide 메모",
+        "wide 수식",
+        "wide 코드",
+        "wide 기록",
+        "narrow 자료",
+        "narrow 도구",
+        "툴 지연 로딩",
+        "자료만 크게",
+        "도구만 크게"
+      ],
+      "preservation": "원자료와 방문한 도구의 기존 editor 인스턴스를 visibility/width 변경 중 보존. layout은 현재 계정·브라우저와 route별, 원문은 각 도구 저장 계약. 자료목록/자료휴지통에도 wrapper가 실제 연결됨; 자료가 없다는 이유로 존재하지 않는 topic을 만들지 않음.",
+      "prototype": "R23 원자료→곁 도구 펼치기→4도구 선택→접기/재열기. 좁은 화면은 자료 보기↔도구 보기; 글 초안은 같은 작업에서 유지.",
+      "nodeId": null
+    },
+    {
+      "id": "XD03",
+      "name": "작업 구성 보관함",
+      "classification": "실제 공유 소스에 구현·호출됨; 이 작업에서 런타임 미검증",
+      "source": [
+        "src/ui/study-workspace.tsx",
+        "src/data/study-workspace.ts",
+        "src/App.tsx"
+      ],
+      "existingInventoryRefs": [
+        "U40"
+      ],
+      "figmaPageId": "7:75",
+      "layout": "공통 상단 작업행의 작업 구성 버튼→작업 구성 보관함 Modal. 작업 이름Input+현재 작업 보관; 아래 항목명/대상화면/도구와 열기·이름 바꾸기·구성 삭제.",
+      "actions": [
+        "작업 구성",
+        "현재 작업 보관",
+        "이 작업 열기",
+        "이름 바꾸기",
+        "이름 저장",
+        "취소",
+        "구성 삭제",
+        "구성 삭제 되돌리기",
+        "휴지통"
+      ],
+      "states": [
+        "빈 보관함",
+        "기존 구성이 있음",
+        "이름 수정 중",
+        "삭제 후 되돌리기",
+        "대상 자료 없음",
+        "저장 실패 안내"
+      ],
+      "preservation": "보관물은 route와layout이며 공부 원문 복사본이 아님. 삭제는 구성만 삭제. 현재계정·브라우저 localStorage; 서버동기화로 표현하지 않음. 미발견 자료는 휴지통 복원 안내.",
+      "prototype": "작업 구성→현재 이름으로 보관→닫기→다시 열기→해당작업 열기. 이름취소/삭제되돌리기 별도 분기; 없는대상은 이동시키지 않음.",
+      "nodeId": null
+    },
+    {
+      "id": "XD04",
+      "name": "작업 구성 저장·읽기 오류",
+      "classification": "실제 공유 소스에 구현·호출됨; 이 작업에서 런타임 미검증",
+      "source": [
+        "src/ui/study-workspace.tsx",
+        "src/data/study-workspace.ts"
+      ],
+      "existingInventoryRefs": [
+        "U40"
+      ],
+      "figmaPageId": "7:76",
+      "layout": "공통 작업행 아래 WorkspaceStorageNotice: ErrorState와 저장 다시 시도/다시 읽기 버튼.",
+      "actions": [
+        "저장 다시 시도",
+        "다시 읽기"
+      ],
+      "states": [
+        "정상 숨김",
+        "읽기 실패",
+        "쓰기 실패·현재 화면 유지"
+      ],
+      "preservation": "읽기 실패 때 기존 저장값을 덮어쓰지 않음. 쓰기 실패 때 현재 화면 구성은 유지. 성공으로 표시하지 않음.",
+      "prototype": "쓰기 실패→다시 시도→오류없음; 읽기 실패→다시 읽기→복원 또는 오류유지. 설계 전이는 실제 저장성공 증거가 아님.",
+      "nodeId": null
+    },
+    {
+      "id": "XD05",
+      "name": "반응 속도 확인",
+      "classification": "실제 공유 소스에 구현·호출됨; 이 작업에서 런타임 미검증",
+      "source": [
+        "src/ui/ui-performance-access.tsx",
+        "src/ui/ui-performance-panel.tsx",
+        "src/data/ui-performance.ts",
+        "src/App.tsx"
+      ],
+      "existingInventoryRefs": [
+        "U40"
+      ],
+      "figmaPageId": "7:75",
+      "layout": "공통 작업행의 반응 속도 확인→Modal. 화면측정4종 요약 dl, 저장·불러오기5종 접기, 새로고침/JSON내려받기/비우기와 상태문구.",
+      "actions": [
+        "반응 속도 확인",
+        "저장·불러오기 요청 측정",
+        "측정값 새로고침",
+        "측정값 JSON 내려받기",
+        "측정값 비우기"
+      ],
+      "states": [
+        "측정 없음",
+        "세션 측정 있음",
+        "요청 측정 펼침",
+        "내려받기 요청됨",
+        "파일 생성 실패",
+        "측정 비움"
+      ],
+      "preservation": "UI와요청 각각최근120개를 현재탭메모리에만 보관. 개인 글/계정/자료명/URL포함없음,자동전송없음,새로고침초기화. 표준 INP/LCP/CLS나 실제기기전체속도로 주장하지 않음.",
+      "prototype": "확인버튼→모달→자세히 펼침/새로고침/내려받기/비우기→닫기. JSON은 실제 개인자료 없이 측정필드만.",
+      "nodeId": null
+    },
+    {
+      "id": "XD06",
+      "name": "누적 이력 단계별 펼치기",
+      "classification": "실제 공유 소스에 구현·호출됨; 이 작업에서 런타임 미검증",
+      "source": [
+        "src/ui/progressive-history.tsx",
+        "src/ui/topic-recall.tsx",
+        "src/App.tsx"
+      ],
+      "existingInventoryRefs": [
+        "R20",
+        "R14",
+        "U41"
+      ],
+      "figmaPageId": "7:74",
+      "layout": "주제 공부기록 및 주제카드 자기평가/이전메모를 ProgressiveHistory로 래핑. total중shown 표시, 더 보기·모두 펼치기. 주제카드는접힌 details, 주제기록은기본섹션.",
+      "actions": [
+        "공부 기록 더 보기",
+        "공부 기록 모두 펼치기",
+        "자기 평가 기록 더 보기",
+        "자기 평가 기록 모두 펼치기",
+        "이전 메모 더 보기",
+        "이전 메모 모두 펼치기"
+      ],
+      "states": [
+        "40개 이하",
+        "처음40개",
+        "80개 등40개단위 확장",
+        "전체펼침",
+        "접힘",
+        "접힘해제",
+        "자기평가80개",
+        "자기평가전체120개"
+      ],
+      "preservation": "표시 DOM만 줄이며 검색·백업의 전체 원기록 유지. limit/open은계정·namespace·항목별 viewContext에 보존. records가40개없으면빈자료기존처리.",
+      "prototype": "주제/카드→이력열기→더보기→모두펼치기→원기록/메모열기→돌아온표시상태. 합성120개fixture로40/80/120을보이며 실제사용자료량으로 주장하지 않음.",
+      "nodeId": null
+    },
+    {
+      "id": "XD07",
+      "name": "수식 조건 A와 B 비교",
+      "classification": "실제 공유 소스에 구현·호출됨; 이 작업에서 런타임 미검증",
+      "source": [
+        "src/ui/math-comparison.tsx",
+        "src/ui/math-comparison-model.ts",
+        "src/ui/math-comparison.css",
+        "src/ui/math-explorer.tsx"
+      ],
+      "existingInventoryRefs": [
+        "R09"
+      ],
+      "figmaPageId": "7:73",
+      "layout": "그래프도구선택아래 비교섹션. A고정 버튼, A점선/B실선 수식과 동일축SVG480x480, 비교평면/확대축소/전체맞춤/크게보기, 입력·선택위치표.",
+      "actions": [
+        "현재 조건을 A로 고정",
+        "현재 조건으로 A 다시 고정",
+        "비교 종료",
+        "비교 초기화",
+        "A와 B를 함께 볼 평면",
+        "비교 그래프 확대",
+        "비교 그래프 축소",
+        "두 조건 전체 맞춤",
+        "비교 크게 보기",
+        "비교 크기 되돌리기"
+      ],
+      "states": [
+        "A없음",
+        "함수 A/B 같은축",
+        "3차원곡선 xy/xz/yz정사영",
+        "다른종류여서겹치지않음",
+        "B계산불가",
+        "복원내용손상",
+        "탭보관실패",
+        "확대및범위고정"
+      ],
+      "preservation": "A는계산조건스냅샷이며sessionStorage현재탭에보관. B는기존편집·저장경로. 원래장면/메모보존. 없는물리단위를붙이지않고표본불연속보존. A확대는두번째GPU장면아님.",
+      "prototype": "R09→A고정→현재매개값B변경→동일좌표비교→전체맞춤/비교종료. 다른종류는안내만. 복원손상은초기화후재고정.",
+      "nodeId": null
+    },
+    {
+      "id": "XD08",
+      "name": "검색 종류·정렬·원문 문맥",
+      "classification": "실제 공유 소스에 구현·호출됨; 이 작업에서 런타임 미검증",
+      "source": [
+        "src/ui/workspace-search.tsx",
+        "src/data/workspace-search-client.ts",
+        "src/data/workspace-search-engine.ts",
+        "src/data/workspace-search.worker.ts"
+      ],
+      "existingInventoryRefs": [
+        "R18"
+      ],
+      "figmaPageId": "7:75",
+      "layout": "기존검색에 검색 자료 종류Select/검색 순서Select추가. 결과Card에 종류·일치이유·원문발췌와mark강조, 대기role=status/aria-busy.",
+      "actions": [
+        "검색 자료 종류",
+        "검색 순서",
+        "검색어 지우기",
+        "모든 종류에서 찾기",
+        "모든 공부에서 찾기",
+        "검색 결과 더 보기",
+        "다시 시도"
+      ],
+      "states": [
+        "검색어없음",
+        "결과대기",
+        "일치이유순",
+        "원래목록순",
+        "종류필터",
+        "결과없음",
+        "검색실패",
+        "40개넘음",
+        "검색결과80개모두표시"
+      ],
+      "preservation": "종류·정렬·페이지 보존. 발췌는실제원문, 관련순서=제목전체→제목부분→본문; 학습중요도나최근수정순으로추정하지않음. 비동기응답은owner/query서명일치때만표시.",
+      "prototype": "R18→검색→종류선택/정렬→원문발췌→실제항목열기→검색복귀. 대기중이전query결과를현재결과로표시하지않음.",
+      "nodeId": null
+    },
+    {
+      "id": "XD09",
+      "name": "통계와 원기록의 함께 선택",
+      "classification": "실제 공유 소스에 구현·호출됨; 이 작업에서 런타임 미검증",
+      "source": [
+        "src/ui/statistics.tsx",
+        "src/ui/statistics-gallery.tsx",
+        "src/ui/statistics-plot.tsx",
+        "src/ui/statistics-selection.ts"
+      ],
+      "existingInventoryRefs": [
+        "R02",
+        "U36",
+        "O26"
+      ],
+      "figmaPageId": "7:74",
+      "layout": "통계필터뒤 그래프와 원기록 함께 선택Card. 날짜/과목입력, 선택/해제버튼과근거수. 모든그래프·값목록·원기록모달의선택근거를같이강조.",
+      "actions": [
+        "함께 선택할 시작일",
+        "함께 선택할 종료일",
+        "함께 선택할 과목",
+        "날짜를 함께 선택",
+        "과목을 함께 선택",
+        "공유 선택 해제",
+        "선택한 원기록 보기",
+        "함께 선택",
+        "이 원기록들을 함께 선택",
+        "이 원기록 함께 선택"
+      ],
+      "states": [
+        "선택없음",
+        "날짜선택",
+        "과목선택",
+        "값행선택",
+        "원기록선택",
+        "선택유효근거없음",
+        "해제"
+      ],
+      "preservation": "선택은강조만하며전체값·비율분모·날짜미정기록을바꾸지않음. 정확한날짜선택과날짜미정직접선택구별. 현재통계화면을나가면공유선택해제.",
+      "prototype": "R02 날짜/과목/값행선택→여러그래프동시강조→O26원기록→개별근거선택→닫고같은강조→공유선택해제.",
+      "nodeId": null
+    },
+    {
+      "id": "XD10",
+      "name": "개념 도해 확대와 읽기값",
+      "classification": "실제 공유 소스에 구현·호출됨; 이 작업에서 런타임 미검증",
+      "source": [
+        "src/ui/concept-figure.tsx",
+        "src/ui/flow-controls.tsx"
+      ],
+      "existingInventoryRefs": [
+        "R13"
+      ],
+      "figmaPageId": "7:72",
+      "layout": "개념figure아래 도해 크게 보기Button. 기존Modal안에같은SVG를ReactFlow view로표시, 기본글자크기·공통FlowControls·설명과표시값details.",
+      "actions": [
+        "도해 크게 보기",
+        "기본 글자 크기로 보기",
+        "도해 보기 조절",
+        "방향키 이동",
+        "도해 설명과 표시값",
+        "닫기"
+      ],
+      "states": [
+        "본문도해",
+        "확대모달",
+        "pan/zoom변경",
+        "설명펼침",
+        "보존viewport로다시열기"
+      ],
+      "preservation": "기존도해marks와원문을유지하고보기변환만함. data/viewKey별viewport보존,0.1–3 zoom. 노드이동·연결·선택·삭제비활성. 문양수정용Canvas로오해하지않음.",
+      "prototype": "R13도해→크게보기→확대/이동→표시값읽기→닫기→다시열면저장viewport. 실제touchdevice성공은별도검증.",
+      "nodeId": null
+    },
+    {
+      "id": "XD11",
+      "name": "개념 수식 표기와 목록 복귀",
+      "classification": "실제 공유 소스에 구현·호출됨; 이 작업에서 런타임 미검증",
+      "source": [
+        "src/ui/concept-text.tsx",
+        "src/ui/concept-library.tsx",
+        "src/ui/concept-figure.tsx"
+      ],
+      "existingInventoryRefs": [
+        "R13"
+      ],
+      "figmaPageId": "7:72",
+      "layout": "읽기본문·캡션·관계설명안에서수식토큰을실제MathFormula로표시. SVG도해label은동일좌표nativeSVGtext. 개념목록헤더와선택카드→본문포커스,목록복귀초점/위치.",
+      "actions": [
+        "개념 선택",
+        "목록으로 돌아가기"
+      ],
+      "states": [
+        "목록",
+        "상세읽기",
+        "수식포함본문",
+        "아래첨자도해label",
+        "기존목록위치복귀"
+      ],
+      "preservation": "원문문자를data-concept-text/aria-label로보존. 기호조판은계산/법칙추론이아님. 읽기/편집모드별 목록위치보존; 기존ID·필터유지.",
+      "prototype": "R13긴목록카드선택→읽기제목초점→목록복귀→같은카드와위치. 화면의공식과원문대체텍스트를같이확인.",
+      "nodeId": null
+    },
+    {
+      "id": "XD12",
+      "name": "장소 이동의 국소 모션",
+      "classification": "실제 공유 소스에 구현·호출됨; 이 작업에서 런타임 미검증",
+      "source": [
+        "src/ui/observatory-navigation.tsx"
+      ],
+      "existingInventoryRefs": [
+        "U40"
+      ],
+      "figmaPageId": "7:70",
+      "layout": "현재자리텍스트만장소변경때이동. 좌우8px/뒤4px에서0으로0.18초. 전체페이지나창틀움직임으로확대하지않음.",
+      "actions": [
+        "네 장소 이동"
+      ],
+      "states": [
+        "정지",
+        "장소변경0.18초",
+        "움직임줄이기0초",
+        "같은장소내이동"
+      ],
+      "preservation": "motionEnabled와journey.trail의실제이전place를사용. reducedmotion/숨김에서애니메이션없음. sourceAPI UI23자체는동일.",
+      "prototype": "place변경에국한하여SmartAnimate0.18초(합성표현)와reduced즉시변형을같이남김.",
+      "nodeId": null
+    }
+  ],
+  "proposedComponentMappings": [
+    {
+      "name": "WorkspaceCommands",
+      "source": "src/ui/workspace-commands.tsx",
+      "line": 11,
+      "sourceSha256": "d312d8f41b6e5bffc6178c57642c893b853a618df9f83ea424eba48ec2884446",
+      "signature": "({ commands }: { commands: WorkspaceCommand[]; }): Element",
+      "props": [
+        {
+          "name": "commands",
+          "optional": false,
+          "type": "WorkspaceCommand[]"
+        }
+      ],
+      "calls": [
+        {
+          "path": "src/App.tsx",
+          "line": 1011,
+          "openingJsx": "<WorkspaceCommands commands={workspaceCommands} />"
+        }
+      ],
+      "reachableFromMain": true,
+      "existingFigmaNodeId": null,
+      "suggestedRegistryId": "UI25",
+      "registrationState": "proposal only; actual Figma owner ID not yet created"
+    },
+    {
+      "name": "StudyWorkspace",
+      "source": "src/ui/study-workspace.tsx",
+      "line": 74,
+      "sourceSha256": "cdf3787c1d7b7fc7ac6dab52a21d53a67b7808b742841d1411636b82accdc33f",
+      "signature": "({ controller, source, renderTool, sourceTitle, }: { controller: { state: WorkState; layout: DeskLayout; setLayout: (next: DeskLayout) => boolean; openTool: (tool: \"code\" | \"math\" | \"memo\" | \"record\") => boolean; change: (next: WorkState) => boolean; error: string; reload: () => void; retry: () => boolean; key: string; }; source: ReactNode; renderTool: (tool: \"code\" | \"math\" | \"memo\" | \"record\") => ReactNode; sourceTitle: string; }): Element",
+      "props": [
+        {
+          "name": "controller",
+          "optional": false,
+          "type": "{ state: WorkState; layout: DeskLayout; setLayout: (next: DeskLayout) => boolean; openTool: (tool: \"code\" | \"math\" | \"memo\" | \"record\") => boolean; change: (next: WorkState) => boolean; error: string; reload: () => void; retry: () => boolean; key: string; }"
+        },
+        {
+          "name": "source",
+          "optional": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "renderTool",
+          "optional": false,
+          "type": "(tool: \"code\" | \"math\" | \"memo\" | \"record\") => ReactNode"
+        },
+        {
+          "name": "sourceTitle",
+          "optional": false,
+          "type": "string"
+        }
+      ],
+      "calls": [
+        {
+          "path": "src/App.tsx",
+          "line": 1646,
+          "openingJsx": "<StudyWorkspace\n                key={`${data.namespace}:${data.userId}:${deskMaterial?.id ?? route}`}\n                controller={studyWorkspace}\n                sourceTitle={deskMaterial?.title ?? '강의 자료'}\n                source={\n                  <Suspense fallback={<LoadingState message=\"강의 자료를 여는 중입니다.\" />}>\n                    <StudyMaterials\n                      data={data}\n                      repository={repository}\n                      onSaved={setData}\n                      subjectIds={shownSubjects.map((item) => item.id)}\n                      materialId={\n                        route.startsWith('/materials/')\n                          ? decodeURIComponent(route.slice('/materials/'.length))\n                          : undefined\n                      }\n                      trash={route === '/materials/trash'}\n                    />\n                  </Suspense>\n                }\n                renderTool={(tool) => (\n                  <Suspense fallback={<LoadingState message=\"곁 도구를 여는 중입니다.\" />}>\n                    {tool === 'memo' ? (\n                      <QuickMemos\n                        data={data}\n                        repository={repository}\n                        onSaved={setData}\n                        ownerId={deskMaterial?.topicId ?? deskMaterial?.subjectId}\n                        compact\n                      />\n                    ) : tool === 'math' ? (\n                      <MathExplorer data={data} repository={repository} onSaved={setData} />\n                    ) : tool === 'code' ? (\n                      <CodePractice data={data} repository={repository} onSaved={setData} />\n                    ) : (\n                      <RecordForm\n                        data={data}\n                        subjectIds={shownSubjects.map((item) => item.id)}\n                        initialTarget={deskMaterial?.topicId ?? undefined}\n                        commit={commit}\n                        onSaved={(warning, cleanupKey) => {\n                          if (cleanupKey)\n                            setCleanupKeys((previous) =>\n                              previous.includes(cleanupKey) ? previous : [...previous, cleanupKey],\n                            );\n                          setNotice({ message: warning || '공부 기록을 저장했습니다.' });\n                        }}\n                      />\n                    )}\n                  </Suspense>\n                )}\n              />"
+        }
+      ],
+      "reachableFromMain": true,
+      "existingFigmaNodeId": null,
+      "suggestedRegistryId": "UI26",
+      "registrationState": "proposal only; actual Figma owner ID not yet created"
+    },
+    {
+      "name": "SavedWorkspaces",
+      "source": "src/ui/study-workspace.tsx",
+      "line": 189,
+      "sourceSha256": "cdf3787c1d7b7fc7ac6dab52a21d53a67b7808b742841d1411636b82accdc33f",
+      "signature": "({ controller, data, route, }: { controller: { state: WorkState; layout: DeskLayout; setLayout: (next: DeskLayout) => boolean; openTool: (tool: \"code\" | \"math\" | \"memo\" | \"record\") => boolean; change: (next: WorkState) => boolean; error: string; reload: () => void; retry: () => boolean; key: string; }; data: AppState; route: string; }): Element",
+      "props": [
+        {
+          "name": "controller",
+          "optional": false,
+          "type": "{ state: WorkState; layout: DeskLayout; setLayout: (next: DeskLayout) => boolean; openTool: (tool: \"code\" | \"math\" | \"memo\" | \"record\") => boolean; change: (next: WorkState) => boolean; error: string; reload: () => void; retry: () => boolean; key: string; }"
+        },
+        {
+          "name": "data",
+          "optional": false,
+          "type": "AppState"
+        },
+        {
+          "name": "route",
+          "optional": false,
+          "type": "string"
+        }
+      ],
+      "calls": [
+        {
+          "path": "src/App.tsx",
+          "line": 1012,
+          "openingJsx": "<SavedWorkspaces controller={studyWorkspace} data={data} route={route} />"
+        }
+      ],
+      "reachableFromMain": true,
+      "existingFigmaNodeId": null,
+      "suggestedRegistryId": "UI27",
+      "registrationState": "proposal only; actual Figma owner ID not yet created"
+    },
+    {
+      "name": "WorkspaceStorageNotice",
+      "source": "src/ui/study-workspace.tsx",
+      "line": 346,
+      "sourceSha256": "cdf3787c1d7b7fc7ac6dab52a21d53a67b7808b742841d1411636b82accdc33f",
+      "signature": "({ controller }: { controller: { state: WorkState; layout: DeskLayout; setLayout: (next: DeskLayout) => boolean; openTool: (tool: \"code\" | \"math\" | \"memo\" | \"record\") => boolean; change: (next: WorkState) => boolean; error: string; reload: () => void; retry: () => boolean; key: string; }; }): Element | null",
+      "props": [
+        {
+          "name": "controller",
+          "optional": false,
+          "type": "{ state: WorkState; layout: DeskLayout; setLayout: (next: DeskLayout) => boolean; openTool: (tool: \"code\" | \"math\" | \"memo\" | \"record\") => boolean; change: (next: WorkState) => boolean; error: string; reload: () => void; retry: () => boolean; key: string; }"
+        }
+      ],
+      "calls": [
+        {
+          "path": "src/ui/study-workspace.tsx",
+          "line": 217,
+          "openingJsx": "<WorkspaceStorageNotice controller={controller}/>"
+        },
+        {
+          "path": "src/App.tsx",
+          "line": 1015,
+          "openingJsx": "<WorkspaceStorageNotice controller={studyWorkspace} />"
+        }
+      ],
+      "reachableFromMain": true,
+      "existingFigmaNodeId": null,
+      "suggestedRegistryId": "UI28",
+      "registrationState": "proposal only; actual Figma owner ID not yet created"
+    },
+    {
+      "name": "ProgressiveHistory",
+      "source": "src/ui/progressive-history.tsx",
+      "line": 9,
+      "sourceSha256": "93609c7e6d310b8b770f10a227b9b257d0c9b33403594d50e7d0c862a023fd77",
+      "signature": "({ data, name, total, label, children, collapsible }: Props): Element",
+      "props": [
+        {
+          "name": "data",
+          "optional": false,
+          "type": "Pick<AppState, \"namespace\" | \"userId\">"
+        },
+        {
+          "name": "name",
+          "optional": false,
+          "type": "string"
+        },
+        {
+          "name": "total",
+          "optional": false,
+          "type": "number"
+        },
+        {
+          "name": "label",
+          "optional": false,
+          "type": "string"
+        },
+        {
+          "name": "children",
+          "optional": false,
+          "type": "(limit: number) => ReactNode"
+        },
+        {
+          "name": "collapsible",
+          "optional": true,
+          "type": "boolean | undefined"
+        }
+      ],
+      "calls": [
+        {
+          "path": "src/ui/topic-recall.tsx",
+          "line": 243,
+          "openingJsx": "<ProgressiveHistory data={data} name={`recall-reviews:${card.id}`} total={card.reviews.length} label=\"자기 평가 기록\" collapsible>"
+        },
+        {
+          "path": "src/ui/topic-recall.tsx",
+          "line": 245,
+          "openingJsx": "<ProgressiveHistory key={topic.id} data={data} name={`recall-memos:${topic.id}`} total={prior.length} label=\"이전 메모\" collapsible>"
+        },
+        {
+          "path": "src/App.tsx",
+          "line": 1492,
+          "openingJsx": "<ProgressiveHistory\n                      data={data}\n                      name={`records:${node.id}`}\n                      total={records.filter((r) => r.targetId === node.id).length}\n                      label=\"공부 기록\"\n                    >"
+        }
+      ],
+      "reachableFromMain": true,
+      "existingFigmaNodeId": null,
+      "suggestedRegistryId": "UI29",
+      "registrationState": "proposal only; actual Figma owner ID not yet created"
+    },
+    {
+      "name": "UiPerformanceAccess",
+      "source": "src/ui/ui-performance-access.tsx",
+      "line": 4,
+      "sourceSha256": "0621aea7f4b2c2403a90601a1190bf9896f970a133ede0583ea011d318b4a7d8",
+      "signature": "(): Element",
+      "props": [],
+      "calls": [
+        {
+          "path": "src/App.tsx",
+          "line": 1013,
+          "openingJsx": "<UiPerformanceAccess />"
+        }
+      ],
+      "reachableFromMain": true,
+      "existingFigmaNodeId": null,
+      "suggestedRegistryId": "UI30",
+      "registrationState": "proposal only; actual Figma owner ID not yet created"
+    },
+    {
+      "name": "UiPerformancePanel",
+      "source": "src/ui/ui-performance-panel.tsx",
+      "line": 12,
+      "sourceSha256": "cbc48f58630a4a498ed2d086a37468102716bd4080091f48aa969ad699167a02",
+      "signature": "(): Element",
+      "props": [],
+      "calls": [
+        {
+          "path": "src/ui/ui-performance-access.tsx",
+          "line": 12,
+          "openingJsx": "<UiPerformancePanel />"
+        }
+      ],
+      "reachableFromMain": true,
+      "existingFigmaNodeId": null,
+      "suggestedRegistryId": "UI31",
+      "registrationState": "proposal only; actual Figma owner ID not yet created"
+    },
+    {
+      "name": "MathComparison",
+      "source": "src/ui/math-comparison.tsx",
+      "line": 12,
+      "sourceSha256": "107602daa6b3d11cebe4f9429c6561e2508d741b745a27956e5ae9fa2543bfd3",
+      "signature": "({ ownerKey, scene, result }: { ownerKey: string; scene: MathScene; result: { points: (Vec3 | null)[]; sample: (value: number) => Vec3 | null; sampleKey: string; point: Vec3 | null; at: number; min: number; max: number; tex: string; vectors: { reason: string; T?: undefined; N?: undefined; B?: undefined; curvature?: undefined; } | { T: Vec3; reason: string; N?: undefined; B?: undefined; curvature?: undefined; } | { T: Vec3; N: Vec3; B: Vec3; curvature: number; reason: string; } | null; frameError: string; missing: number; breakBefore: boolean[]; } | null | undefined; }): Element",
+      "props": [
+        {
+          "name": "ownerKey",
+          "optional": false,
+          "type": "string"
+        },
+        {
+          "name": "scene",
+          "optional": false,
+          "type": "MathScene"
+        },
+        {
+          "name": "result",
+          "optional": false,
+          "type": "{ points: (Vec3 | null)[]; sample: (value: number) => Vec3 | null; sampleKey: string; point: Vec3 | null; at: number; min: number; max: number; tex: string; vectors: { reason: string; T?: undefined; N?: undefined; B?: undefined; curvature?: undefined; } | { T: Vec3; reason: string; N?: undefined; B?: undefined; curvature?: undefined; } | { T: Vec3; N: Vec3; B: Vec3; curvature: number; reason: string; } | null; frameError: string; missing: number; breakBefore: boolean[]; } | null | undefined"
+        }
+      ],
+      "calls": [
+        {
+          "path": "src/ui/math-explorer.tsx",
+          "line": 502,
+          "openingJsx": "<MathComparison key={key} ownerKey={key} scene={geometry} result={result} />"
+        }
+      ],
+      "reachableFromMain": true,
+      "existingFigmaNodeId": null,
+      "suggestedRegistryId": "UI32",
+      "registrationState": "proposal only; actual Figma owner ID not yet created"
+    },
+    {
+      "name": "ConceptText",
+      "source": "src/ui/concept-text.tsx",
+      "line": 56,
+      "sourceSha256": "29b388dccfa693e17f15e5d6adf6dd71d20995d2a5b6997ebca752a31f59d3b2",
+      "signature": "({ text }: { text: string; }): Element",
+      "props": [
+        {
+          "name": "text",
+          "optional": false,
+          "type": "string"
+        }
+      ],
+      "calls": [
+        {
+          "path": "src/ui/concept-figure.tsx",
+          "line": 137,
+          "openingJsx": "<ConceptText text={figure.caption ?? figure.description} />"
+        },
+        {
+          "path": "src/ui/concept-figure.tsx",
+          "line": 208,
+          "openingJsx": "<ConceptText text={figure.description} />"
+        },
+        {
+          "path": "src/ui/concept-figure.tsx",
+          "line": 212,
+          "openingJsx": "<ConceptText text={mark.text} />"
+        },
+        {
+          "path": "src/ui/concept-library.tsx",
+          "line": 1126,
+          "openingJsx": "<ConceptText text={s.body} />"
+        },
+        {
+          "path": "src/ui/concept-library.tsx",
+          "line": 1130,
+          "openingJsx": "<ConceptText text={s.math} />"
+        },
+        {
+          "path": "src/ui/concept-library.tsx",
+          "line": 1132,
+          "openingJsx": "<ConceptText text={s.caption} />"
+        },
+        {
+          "path": "src/ui/concept-library.tsx",
+          "line": 1133,
+          "openingJsx": "<ConceptText text={s.takeaway} />"
+        },
+        {
+          "path": "src/ui/concept-library.tsx",
+          "line": 1169,
+          "openingJsx": "<ConceptText text={visual.label} />"
+        },
+        {
+          "path": "src/ui/concept-library.tsx",
+          "line": 1176,
+          "openingJsx": "<ConceptText text={node.label} />"
+        },
+        {
+          "path": "src/ui/concept-library.tsx",
+          "line": 1177,
+          "openingJsx": "<ConceptText text={node.detail} />"
+        },
+        {
+          "path": "src/ui/concept-library.tsx",
+          "line": 1185,
+          "openingJsx": "<ConceptText text={names.get(r.from) ?? ''} />"
+        },
+        {
+          "path": "src/ui/concept-library.tsx",
+          "line": 1187,
+          "openingJsx": "<ConceptText text={names.get(r.to) ?? ''} />"
+        },
+        {
+          "path": "src/ui/concept-library.tsx",
+          "line": 1188,
+          "openingJsx": "<ConceptText text={r.label} />"
+        }
+      ],
+      "reachableFromMain": true,
+      "existingFigmaNodeId": null,
+      "suggestedRegistryId": "UI33",
+      "registrationState": "proposal only; actual Figma owner ID not yet created"
+    }
+  ],
+  "routeDecision": "No new URL route; enrich existing18 main menus/41 routepatterns, add4 overlay shapes and local task surfaces. Do not pretend the previous111entity/155frame ledger already covers this snapshot.",
+  "currentRuntimeVerified": false,
+  "preview5752CoversDelta": false,
+  "otherChangedFiles": [
+    {
+      "path": "src/ui/quick-memos.tsx",
+      "decision": "Current close/focus/compact3 and40more behavior verified in source. No byte-identical baseline located; do not count hash drift itself as a new UI. Reuse existingR06/O23/O24 and parent material-memo reconciliation."
+    }
+  ],
+  "proposedStateCount": 77
+}

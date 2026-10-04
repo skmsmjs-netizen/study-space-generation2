@@ -1,0 +1,77 @@
+{
+  "pageId": "68:58623",
+  "createdNodeIds": [
+    "263:33480",
+    "263:33481",
+    "263:33482",
+    "263:33483"
+  ],
+  "mutatedNodeIds": [
+    "263:33480",
+    "68:70954",
+    "68:70957",
+    "68:70945",
+    "263:33481",
+    "68:70974",
+    "68:70977",
+    "68:70965",
+    "263:33482",
+    "68:70994",
+    "68:70997",
+    "68:70985",
+    "263:33483",
+    "68:71014",
+    "68:71017",
+    "68:71005"
+  ],
+  "results": [
+    {
+      "id": "68:70945",
+      "name": "관측 기본틀 · 힘과 운동",
+      "pattern": "L194",
+      "structure": "263:33480",
+      "preserved": true,
+      "viewport": {
+        "width": 640,
+        "height": 744,
+        "overflow": "NONE"
+      }
+    },
+    {
+      "id": "68:70965",
+      "name": "관측 기본틀 · 일·에너지·일률",
+      "pattern": "L194",
+      "structure": "263:33481",
+      "preserved": true,
+      "viewport": {
+        "width": 640,
+        "height": 744,
+        "overflow": "NONE"
+      }
+    },
+    {
+      "id": "68:70985",
+      "name": "관측 기본틀 · 선운동량·충돌·질량중심",
+      "pattern": "L194",
+      "structure": "263:33482",
+      "preserved": true,
+      "viewport": {
+        "width": 640,
+        "height": 744,
+        "overflow": "NONE"
+      }
+    },
+    {
+      "id": "68:71005",
+      "name": "관측 기본틀 · 회전 운동",
+      "pattern": "L194",
+      "structure": "263:33483",
+      "preserved": true,
+      "viewport": {
+        "width": 640,
+        "height": 744,
+        "overflow": "NONE"
+      }
+    }
+  ]
+}

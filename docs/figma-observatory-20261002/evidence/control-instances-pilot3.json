@@ -1,0 +1,75 @@
+{
+  "pageId": "7:71",
+  "createdNodeIds": [
+    "41:9139",
+    "I41:9139;16:166",
+    "I41:9139;16:167",
+    "I41:9139;16:168",
+    "I41:9139;16:169"
+  ],
+  "removedNodeIds": [
+    "41:9139",
+    "I41:9139;16:167",
+    "I41:9139;16:168"
+  ],
+  "mutatedNodeIds": [
+    "26:9220",
+    "26:9221"
+  ],
+  "instances": {},
+  "replacements": [],
+  "reused": [],
+  "skipped": [
+    {
+      "nodeId": "26:9272",
+      "frameId": "26:9203",
+      "name": "입력 / 날짜 정밀도",
+      "reason": "Select: 선택 ▾ 표시와 원래 값·화살표를 보존; Input으로 변환하지 않음"
+    }
+  ],
+  "failed": [
+    {
+      "nodeId": "26:9220",
+      "frameId": "26:9203",
+      "kind": "Input",
+      "error": "Error: Value text or its original bounds changed.",
+      "rolledBack": true,
+      "rollbackDrift": [],
+      "createdThenRemovedNodeIds": [
+        "41:9139",
+        "I41:9139;16:166",
+        "I41:9139;16:167",
+        "I41:9139;16:168",
+        "I41:9139;16:169"
+      ]
+    }
+  ],
+  "preservation": [
+    {
+      "frameId": "26:9203",
+      "preservedOriginalNodeCount": 77,
+      "changedOriginalNodeIds": []
+    }
+  ],
+  "counts": {
+    "viewports": 1,
+    "viewportIdsChanged": 0,
+    "blockIdsChanged": 0,
+    "converted": 0,
+    "Input": 0,
+    "Textarea": 0,
+    "Checkbox": 0,
+    "reused": 0,
+    "skipped": 1,
+    "failed": 1,
+    "unprocessedAfterFailure": 10
+  },
+  "notes": [
+    "Only actual Input/Textarea/Checkbox builder shapes are converted. Select and uncertain structures remain visible and are reported.",
+    "Original node IDs, label/value text, width/height, coordinates and reactions are retained. Invisible source visuals retain layout participation.",
+    "Each new instance is explicitly Paper mode. Existing master components are never edited or detached.",
+    "Instance Label/Hint duplication is hidden; checkbox labels remain the original visible native text.",
+    "Paper field padding is represented by component Control; original 13px Value offsets and original multiline height override library defaults.",
+    "A failed individual conversion removes its new instance and restores source paint/opacity. Returned IDs include removed transient nodes."
+  ]
+}

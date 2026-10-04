@@ -1,0 +1,77 @@
+{
+  "pageId": "68:58623",
+  "createdNodeIds": [
+    "263:33476",
+    "263:33477",
+    "263:33478",
+    "263:33479"
+  ],
+  "mutatedNodeIds": [
+    "263:33476",
+    "68:70874",
+    "68:70877",
+    "68:70865",
+    "263:33477",
+    "68:70894",
+    "68:70897",
+    "68:70885",
+    "263:33478",
+    "68:70914",
+    "68:70917",
+    "68:70905",
+    "263:33479",
+    "68:70934",
+    "68:70937",
+    "68:70925"
+  ],
+  "results": [
+    {
+      "id": "68:70865",
+      "name": "관측 기본틀 · 차원과 단위",
+      "pattern": "L194",
+      "structure": "263:33476",
+      "preserved": true,
+      "viewport": {
+        "width": 640,
+        "height": 722,
+        "overflow": "NONE"
+      }
+    },
+    {
+      "id": "68:70885",
+      "name": "관측 기본틀 · 벡터",
+      "pattern": "L194",
+      "structure": "263:33477",
+      "preserved": true,
+      "viewport": {
+        "width": 640,
+        "height": 722,
+        "overflow": "NONE"
+      }
+    },
+    {
+      "id": "68:70905",
+      "name": "관측 기본틀 · 1차원 운동",
+      "pattern": "L194",
+      "structure": "263:33478",
+      "preserved": true,
+      "viewport": {
+        "width": 640,
+        "height": 722,
+        "overflow": "NONE"
+      }
+    },
+    {
+      "id": "68:70925",
+      "name": "관측 기본틀 · 2차원 운동",
+      "pattern": "L194",
+      "structure": "263:33479",
+      "preserved": true,
+      "viewport": {
+        "width": 640,
+        "height": 744,
+        "overflow": "NONE"
+      }
+    }
+  ]
+}

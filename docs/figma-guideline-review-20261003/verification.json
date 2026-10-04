@@ -1,0 +1,130 @@
+{
+  "date": "2026-10-03",
+  "status": "applied-with-one-native-editor-blocked-fix",
+  "scope": {
+    "osPages": 28,
+    "conceptPages": 11,
+    "initiallyInspectedPages": 39,
+    "initiallyInspectedNodes": 295136,
+    "visualInspection": "representative nodes only"
+  },
+  "os": {
+    "readBackPages": 28,
+    "directEditable95Conversions": 2737,
+    "paperWrapperReferences": 3875,
+    "roleSizeCounts": {
+      "16": 2144,
+      "18": 1702,
+      "14": 29
+    },
+    "propertyProblems": 0,
+    "commonForms": 36,
+    "closeContractsConfirmed": 36,
+    "commonHubSwapActionsConfirmed": 36,
+    "layoutTargetsPreviouslyConfirmed": 239,
+    "navigationButtonsPreviouslyConfirmed": 344,
+    "active95ReusableSourcesPreviouslyPending": 16,
+    "numericTolerance": 0.001
+  },
+  "concept": {
+    "readBackPages": 11,
+    "publicationFrameCount": 1169,
+    "nativeParagraphCount": 3189,
+    "richParagraphCount": 1020,
+    "paragraphPropertyProblems": 0,
+    "previousProcessBatches": "reconciled and completed, not current remaining work",
+    "stale500OrAppHoldGuidance": 0,
+    "sourceAndScientificGeometryPreservation": "passed before/after in seven native completion and all native cleanup/instance passes",
+    "allChangesAccepted": false
+  },
+  "memory": {
+    "conceptHiddenDerivedVectorsRemoved": 11673,
+    "osHiddenDerivedVectorsRemoved": 2737,
+    "originalTextOrScientificShapeRemovals": 0,
+    "actualMemoryExceededSeen": true,
+    "recoveryModeUsed": true,
+    "remoteReadRecovered": true,
+    "normalModeReopenVerified": false
+  },
+  "remainingRequiredFixes": [
+    {
+      "file": "FRPuAwx3q2Jka1VZOjuMil",
+      "pageId": "3:70",
+      "componentId": "4:29",
+      "textId": "4:30",
+      "operation": "HEIGHT + FILL/HUG, preserving chars and IDs",
+      "reason": "fixed640 child in narrower592 module",
+      "prepared": "pending-source-body-fill.js; native-plugin sourcefill",
+      "applied": false
+    }
+  ],
+  "verificationAfterFix": [
+    "long module text and width changes",
+    "generated paper height and frame spacing affected by wrapping",
+    "normal-mode reopen after recovery",
+    "representative actual prototype SWAP/CLOSE click"
+  ],
+  "limitations": [
+    "All39 pages received structural/final-property review; visual review used representatives, not every publication frame",
+    "Formula-rich prose keeps source plus derived outline; regenerating its display after source edit remains necessary",
+    "Actual prototype interaction was structurally verified, not clicked after the final change",
+    "Remote font mutation does not support local ManSeekSong Paper; native editing connection currently unavailable",
+    "No app, server, deployment, personal-study-data, commit or push changes"
+  ],
+  "screenshots": [
+    "evidence/final-native-book.png",
+    "evidence/final-native-ceiling-backup.png",
+    "evidence/final-native-common.png",
+    "evidence/final-native-definition.png",
+    "evidence/final-native-distinction.png",
+    "evidence/final-native-flow.png",
+    "evidence/final-native-guide.png",
+    "evidence/final-native-perspective.png",
+    "evidence/final-native-principle-full.png",
+    "evidence/final-native-principle.png",
+    "evidence/final-native-procedure.png",
+    "evidence/final-native-process.png",
+    "evidence/final-native-structure.png"
+  ],
+  "perPageEvidence": [
+    "evidence/cloud-final-os-49-10972.json",
+    "evidence/cloud-final-os-7-77.json",
+    "evidence/cloud-final-os-73-68.json",
+    "evidence/cloud-final-os-49-10973.json",
+    "evidence/cloud-final-os-7-76.json",
+    "evidence/cloud-final-os-52-70.json",
+    "evidence/cloud-final-os-49-10974.json",
+    "evidence/cloud-final-os-7-71.json",
+    "evidence/cloud-final-os-74-400.json",
+    "evidence/cloud-final-os-7-70.json",
+    "evidence/cloud-final-os-68-58623.json",
+    "evidence/cloud-final-os-52-71.json",
+    "evidence/cloud-final-os-7-73.json",
+    "evidence/cloud-final-os-154-68.json",
+    "evidence/cloud-final-os-52-72.json",
+    "evidence/cloud-final-os-74-399.json",
+    "evidence/cloud-final-os-52-68.json",
+    "evidence/cloud-final-os-7-69.json",
+    "evidence/cloud-final-os-170-180.json",
+    "evidence/cloud-final-os-7-68.json",
+    "evidence/cloud-final-os-52-69.json",
+    "evidence/cloud-final-os-7-72.json",
+    "evidence/cloud-final-os-7-75.json",
+    "evidence/cloud-final-os-7-74.json",
+    "evidence/cloud-final-os-61-10753.json",
+    "evidence/cloud-final-os-0-1.json",
+    "evidence/cloud-final-os-227-180.json",
+    "evidence/cloud-final-os-250-180.json",
+    "evidence/cloud-final-concept-3-77.json",
+    "evidence/cloud-final-concept-3-76.json",
+    "evidence/cloud-final-concept-3-71.json",
+    "evidence/cloud-final-concept-3-70.json",
+    "evidence/cloud-final-concept-3-73.json",
+    "evidence/cloud-final-concept-3-72.json",
+    "evidence/cloud-final-concept-3-75.json",
+    "evidence/cloud-final-concept-3-78.json",
+    "evidence/cloud-final-concept-3-74.json",
+    "evidence/cloud-final-concept-0-1.json",
+    "evidence/cloud-final-concept-35-2.json"
+  ]
+}

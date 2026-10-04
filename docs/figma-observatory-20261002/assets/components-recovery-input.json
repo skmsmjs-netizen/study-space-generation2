@@ -1,0 +1,53 @@
+{
+  "pageId": "7:70",
+  "registry": [
+    {
+      "id": "UI17",
+      "name": "EmptyState",
+      "figmaName": "Feedback/EmptyState",
+      "source": "src/ui/index.tsx"
+    },
+    {
+      "id": "UI18",
+      "name": "LoadingState",
+      "figmaName": "Feedback/LoadingState",
+      "source": "src/ui/index.tsx"
+    },
+    {
+      "id": "UI19",
+      "name": "ErrorState",
+      "figmaName": "Feedback/ErrorState",
+      "source": "src/ui/index.tsx"
+    },
+    {
+      "id": "UI20",
+      "name": "ScreenBoundary",
+      "figmaName": "Feedback/ScreenBoundary",
+      "source": "src/ui/index.tsx"
+    },
+    {
+      "id": "UI21",
+      "name": "NavigationBar",
+      "figmaName": "Navigation/NavigationBar",
+      "source": "src/ui/navigation-bar.tsx"
+    },
+    {
+      "id": "UI22",
+      "name": "ContextMenu",
+      "figmaName": "Overlays/ContextMenu",
+      "source": "src/ui/context-menu.tsx"
+    },
+    {
+      "id": "SC01",
+      "name": "StudyLandscapes",
+      "figmaName": "Observatory/StudyLandscapes",
+      "source": "src/ui/study-landscapes.tsx"
+    },
+    {
+      "id": "SC02",
+      "name": "ObservatoryWorld",
+      "figmaName": "Observatory/ObservatoryWorld",
+      "source": "src/ui/pixel-worlds.tsx"
+    }
+  ]
+}

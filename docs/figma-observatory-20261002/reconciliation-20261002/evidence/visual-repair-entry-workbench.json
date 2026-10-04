@@ -1,0 +1,74 @@
+{
+  "pageId": "7:73",
+  "rootIds": [
+    "83:100579",
+    "83:100588"
+  ],
+  "createdNodeIds": [],
+  "mutatedNodeIdsEncoded": {
+    "format": "prefix-plus-inclusive-ranges-v1",
+    "literal": [],
+    "groups": [
+      [
+        "83:",
+        [
+          [
+            100579,
+            100585
+          ],
+          [
+            100588,
+            100594
+          ]
+        ]
+      ],
+      [
+        "I83:100585;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ],
+      [
+        "I83:100594;16:",
+        [
+          [
+            109,
+            109
+          ]
+        ]
+      ]
+    ]
+  },
+  "counts": {
+    "roots": 2,
+    "texts": 10,
+    "mutated": 16,
+    "collapsedTexts": 0,
+    "horizontalOverflow": 0,
+    "wrongTextMode": 0,
+    "paperModeMismatch": 0,
+    "sourceTextChanges": 0,
+    "rootOverlaps": 0,
+    "sourceGeometryChanges": 0,
+    "svgRepairs": 0,
+    "absoluteSubtrees": 0
+  },
+  "svg": [],
+  "absoluteSubtrees": [],
+  "rootOverlaps": [],
+  "sourceGeometry": [
+    {
+      "id": "28:12749",
+      "preserved": true
+    },
+    {
+      "id": "28:12906",
+      "preserved": true
+    }
+  ],
+  "issues": [],
+  "scope": "Task-owned delta screens/variants/guideboards/review panels only. Existing155 canonical screens and common owners remain untouched. Paper colour bindings retained."
+}

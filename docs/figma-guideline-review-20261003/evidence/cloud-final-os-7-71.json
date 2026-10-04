@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"pageId\":\"7:71\",\"name\":\"10 북쪽 · 공부 책상\",\"rootCount\":122,\"wrappers\":206,\"sizes\":{\"14\":16,\"16\":135,\"18\":55},\"problemCount\":0,\"problems\":[],\"forms\":[{\"id\":\"401:2979\",\"close\":1,\"width\":336,\"height\":600},{\"id\":\"401:3037\",\"close\":1,\"width\":336,\"height\":528},{\"id\":\"401:3060\",\"close\":1,\"width\":336,\"height\":591},{\"id\":\"401:3087\",\"close\":1,\"width\":336,\"height\":528},{\"id\":\"401:3110\",\"close\":1,\"width\":336,\"height\":600},{\"id\":\"401:3177\",\"close\":1,\"width\":336,\"height\":600}],\"hubActions\":[{\"id\":\"388:2972\",\"actions\":[{\"type\":\"NODE\",\"destinationId\":\"401:2979\",\"navigation\":\"SWAP\",\"transition\":null,\"resetVideoPosition\":false,\"resetScrollPosition\":false}]},{\"id\":\"388:2974\",\"actions\":[{\"type\":\"NODE\",\"destinationId\":\"401:3037\",\"navigation\":\"SWAP\",\"transition\":null,\"resetVideoPosition\":false,\"resetScrollPosition\":false}]},{\"id\":\"388:2976\",\"actions\":[{\"type\":\"NODE\",\"destinationId\":\"401:3060\",\"navigation\":\"SWAP\",\"transition\":null,\"resetVideoPosition\":false,\"resetScrollPosition\":false}]},{\"id\":\"388:2978\",\"actions\":[{\"type\":\"NODE\",\"destinationId\":\"401:3087\",\"navigation\":\"SWAP\",\"transition\":null,\"resetVideoPosition\":false,\"resetScrollPosition\":false}]},{\"id\":\"388:2980\",\"actions\":[{\"type\":\"NODE\",\"destinationId\":\"401:3110\",\"navigation\":\"SWAP\",\"transition\":null,\"resetVideoPosition\":false,\"resetScrollPosition\":false}]},{\"id\":\"388:2982\",\"actions\":[{\"type\":\"NODE\",\"destinationId\":\"401:3177\",\"navigation\":\"SWAP\",\"transition\":null,\"resetVideoPosition\":false,\"resetScrollPosition\":false}]}],\"sourcePreserved\":true,\"mathPreserved\":true,\"removedDerivedVectorCount\":0,\"createdNodeIds\":[],\"mutatedNodeIds\":[],\"removedNodeIds\":[]}"
+    }
+  ],
+  "isError": false
+}

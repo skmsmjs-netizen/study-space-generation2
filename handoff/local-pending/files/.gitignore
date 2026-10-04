@@ -1,0 +1,25 @@
+node_modules/
+.local/
+dist/
+.env
+.env.*
+!.env.example
+*.local
+coverage/
+artifacts/
+.DS_Store
+storybook-static/
+playwright-report/
+test-results/
+
+/public/optimizer/vendor/
+
+/public/vendor/GeoGebra/
+
+# Built locally from pinned OCR dependencies and language sources
+/public/material-ocr/
+
+/public/tools/concept-interactives/
+
+# Private source corpus; Pages/CI uses only the reviewed published derivative.
+/src/data/concept-reading-pack.json

@@ -1,0 +1,1004 @@
+{
+  "pageId": "7:71",
+  "pageKey": "desk",
+  "foundations": {
+    "collections": {
+      "primitives": "VariableCollectionId:7:78",
+      "material": "VariableCollectionId:7:79",
+      "metrics": "VariableCollectionId:7:80"
+    },
+    "modes": [
+      {
+        "name": "Interior",
+        "modeId": "7:1"
+      },
+      {
+        "name": "Paper",
+        "modeId": "7:2"
+      }
+    ],
+    "variables": {
+      "primitive/interior/canvas": {
+        "id": "VariableID:7:81",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/surface": {
+        "id": "VariableID:7:82",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/subtle": {
+        "id": "VariableID:7:83",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/text": {
+        "id": "VariableID:7:84",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/muted": {
+        "id": "VariableID:7:85",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/borderDecorative": {
+        "id": "VariableID:7:86",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/borderInteractive": {
+        "id": "VariableID:7:87",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/focus": {
+        "id": "VariableID:7:88",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/selected": {
+        "id": "VariableID:7:89",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/selectedText": {
+        "id": "VariableID:7:90",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/primary": {
+        "id": "VariableID:7:91",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/primaryHover": {
+        "id": "VariableID:7:92",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/primaryPressed": {
+        "id": "VariableID:7:93",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/interior/onPrimary": {
+        "id": "VariableID:7:94",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/canvas": {
+        "id": "VariableID:7:95",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/surface": {
+        "id": "VariableID:7:96",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/subtle": {
+        "id": "VariableID:7:97",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/text": {
+        "id": "VariableID:7:98",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/muted": {
+        "id": "VariableID:7:99",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/borderDecorative": {
+        "id": "VariableID:7:100",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/borderInteractive": {
+        "id": "VariableID:7:101",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/focus": {
+        "id": "VariableID:7:102",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/selected": {
+        "id": "VariableID:7:103",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/selectedText": {
+        "id": "VariableID:7:104",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/primary": {
+        "id": "VariableID:7:105",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/primaryHover": {
+        "id": "VariableID:7:106",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/primaryPressed": {
+        "id": "VariableID:7:107",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "primitive/paper/onPrimary": {
+        "id": "VariableID:7:108",
+        "type": "COLOR",
+        "scopes": []
+      },
+      "material/canvas": {
+        "id": "VariableID:7:109",
+        "type": "COLOR",
+        "scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL"
+        ]
+      },
+      "material/surface": {
+        "id": "VariableID:7:110",
+        "type": "COLOR",
+        "scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL"
+        ]
+      },
+      "material/subtle": {
+        "id": "VariableID:7:111",
+        "type": "COLOR",
+        "scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL"
+        ]
+      },
+      "material/text": {
+        "id": "VariableID:7:112",
+        "type": "COLOR",
+        "scopes": [
+          "TEXT_FILL"
+        ]
+      },
+      "material/muted": {
+        "id": "VariableID:7:113",
+        "type": "COLOR",
+        "scopes": [
+          "TEXT_FILL"
+        ]
+      },
+      "material/borderDecorative": {
+        "id": "VariableID:7:114",
+        "type": "COLOR",
+        "scopes": [
+          "STROKE_COLOR"
+        ]
+      },
+      "material/borderInteractive": {
+        "id": "VariableID:7:115",
+        "type": "COLOR",
+        "scopes": [
+          "STROKE_COLOR"
+        ]
+      },
+      "material/focus": {
+        "id": "VariableID:7:116",
+        "type": "COLOR",
+        "scopes": [
+          "STROKE_COLOR"
+        ]
+      },
+      "material/selected": {
+        "id": "VariableID:7:117",
+        "type": "COLOR",
+        "scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL"
+        ]
+      },
+      "material/selectedText": {
+        "id": "VariableID:7:118",
+        "type": "COLOR",
+        "scopes": [
+          "TEXT_FILL"
+        ]
+      },
+      "material/primary": {
+        "id": "VariableID:7:119",
+        "type": "COLOR",
+        "scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL"
+        ]
+      },
+      "material/primaryHover": {
+        "id": "VariableID:7:120",
+        "type": "COLOR",
+        "scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL"
+        ]
+      },
+      "material/primaryPressed": {
+        "id": "VariableID:7:121",
+        "type": "COLOR",
+        "scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL"
+        ]
+      },
+      "material/onPrimary": {
+        "id": "VariableID:7:122",
+        "type": "COLOR",
+        "scopes": [
+          "TEXT_FILL"
+        ]
+      },
+      "space/0": {
+        "id": "VariableID:7:123",
+        "type": "FLOAT",
+        "scopes": [
+          "GAP"
+        ]
+      },
+      "space/4": {
+        "id": "VariableID:7:124",
+        "type": "FLOAT",
+        "scopes": [
+          "GAP"
+        ]
+      },
+      "space/8": {
+        "id": "VariableID:7:125",
+        "type": "FLOAT",
+        "scopes": [
+          "GAP"
+        ]
+      },
+      "space/12": {
+        "id": "VariableID:7:126",
+        "type": "FLOAT",
+        "scopes": [
+          "GAP"
+        ]
+      },
+      "space/16": {
+        "id": "VariableID:7:127",
+        "type": "FLOAT",
+        "scopes": [
+          "GAP"
+        ]
+      },
+      "space/24": {
+        "id": "VariableID:7:128",
+        "type": "FLOAT",
+        "scopes": [
+          "GAP"
+        ]
+      },
+      "space/32": {
+        "id": "VariableID:7:129",
+        "type": "FLOAT",
+        "scopes": [
+          "GAP"
+        ]
+      },
+      "space/48": {
+        "id": "VariableID:7:130",
+        "type": "FLOAT",
+        "scopes": [
+          "GAP"
+        ]
+      },
+      "space/64": {
+        "id": "VariableID:7:131",
+        "type": "FLOAT",
+        "scopes": [
+          "GAP"
+        ]
+      },
+      "control/height": {
+        "id": "VariableID:7:132",
+        "type": "FLOAT",
+        "scopes": [
+          "WIDTH_HEIGHT"
+        ]
+      },
+      "control/icon-target": {
+        "id": "VariableID:7:133",
+        "type": "FLOAT",
+        "scopes": [
+          "WIDTH_HEIGHT"
+        ]
+      },
+      "border/width": {
+        "id": "VariableID:7:134",
+        "type": "FLOAT",
+        "scopes": [
+          "STROKE_FLOAT"
+        ]
+      },
+      "focus/width": {
+        "id": "VariableID:7:135",
+        "type": "FLOAT",
+        "scopes": [
+          "STROKE_FLOAT"
+        ]
+      },
+      "radius/control": {
+        "id": "VariableID:7:136",
+        "type": "FLOAT",
+        "scopes": [
+          "CORNER_RADIUS"
+        ]
+      },
+      "radius/dialog": {
+        "id": "VariableID:7:137",
+        "type": "FLOAT",
+        "scopes": [
+          "CORNER_RADIUS"
+        ]
+      },
+      "motion/feedback": {
+        "id": "VariableID:7:138",
+        "type": "FLOAT",
+        "scopes": []
+      },
+      "motion/navigation": {
+        "id": "VariableID:7:139",
+        "type": "FLOAT",
+        "scopes": []
+      },
+      "motion/reduced": {
+        "id": "VariableID:7:140",
+        "type": "FLOAT",
+        "scopes": []
+      }
+    },
+    "textStyles": {
+      "Body": "S:0ed1e468a727e7f6b4cfe5df9fede5b786c93484,",
+      "Label": "S:57e137d821e57f2a65506aae778891f8769014bb,",
+      "Caption": "S:befdc25f9b2e8c63313b60a0d4aea208900d629a,",
+      "Heading": "S:a12f8ca10ba0d22e77eaf7ad3092a28a3779de86,",
+      "Title": "S:9c730b18d11b0b822b1b5cb4828120b4eb39915f,",
+      "TitleCompact": "S:8579bbbd27aef7f9309ddc31f958d7598925587a,",
+      "Code": "S:2dbd5754c8da299cad06f2184af84cc5101eb9b7,"
+    },
+    "fonts": {
+      "font": {
+        "family": "Noto Sans KR",
+        "style": "Regular"
+      },
+      "boldFont": {
+        "family": "Noto Sans KR",
+        "style": "Regular",
+        "variationSettings": {
+          "wght": 600
+        }
+      },
+      "axes": [
+        "wght"
+      ]
+    }
+  },
+  "materials": {
+    "interior": {
+      "canvas": "#1F1E1B",
+      "surface": "#282722",
+      "subtle": "#33312D",
+      "text": "#E8E3D7",
+      "muted": "#B7B0A2",
+      "borderDecorative": "#514A42",
+      "borderInteractive": "#8B8071",
+      "focus": "#D7B477",
+      "selected": "#33312D",
+      "selectedText": "#E8E3D7",
+      "primary": "#D7B477",
+      "primaryHover": "#E5C890",
+      "primaryPressed": "#C2A062",
+      "onPrimary": "#1F1E1B"
+    },
+    "paper": {
+      "canvas": "#E4DCCD",
+      "surface": "#E4DCCD",
+      "subtle": "#D7CBB4",
+      "text": "#34312B",
+      "muted": "#5B5448",
+      "borderDecorative": "#B4A891",
+      "borderInteractive": "#796D5D",
+      "focus": "#725425",
+      "selected": "#D7CBB4",
+      "selectedText": "#34312B",
+      "primary": "#554530",
+      "primaryHover": "#473924",
+      "primaryPressed": "#3B3022",
+      "onPrimary": "#E4DCCD"
+    }
+  },
+  "reusable": {
+    "buttonPrimary": "16:76",
+    "buttonQuiet": "16:108",
+    "world": "10:68"
+  },
+  "profiles": [
+    {
+      "key": "ipad-landscape",
+      "label": "iPad Pro 13인치 가로",
+      "width": 1376,
+      "height": 1032,
+      "scale": 2
+    },
+    {
+      "key": "iphone-portrait",
+      "label": "iPhone 17 Pro 세로",
+      "width": 402,
+      "height": 681,
+      "scale": 3
+    },
+    {
+      "key": "iphone-landscape",
+      "label": "iPhone 17 Pro 가로",
+      "width": 756,
+      "height": 352,
+      "scale": 3
+    },
+    {
+      "key": "ipad-portrait",
+      "label": "iPad Pro 13인치 세로",
+      "width": 1032,
+      "height": 1376,
+      "scale": 2
+    },
+    {
+      "key": "ipad-narrow",
+      "label": "iPad Pro 13인치 좁은 창",
+      "width": 517,
+      "height": 1200,
+      "scale": 2
+    }
+  ],
+  "homeId": "R01",
+  "screens": [
+    {
+      "id": "R20",
+      "title": "단원·주제 상세",
+      "route": "/node/:id",
+      "primary": false,
+      "kind": "supplemental",
+      "homePlace": "desk",
+      "pageKey": "desk",
+      "layoutFamily": "library-grid-paper",
+      "source": "src/App.tsx:188 · Workspace",
+      "sourceRefs": [
+        {
+          "path": "src/App.tsx",
+          "export": "Workspace",
+          "line": 188
+        }
+      ],
+      "states": [
+        "과목 있음",
+        "빈 범위",
+        "표 초안",
+        "저장 실패"
+      ],
+      "actions": [
+        "공부 기록하기",
+        "암기시험 만들기",
+        "시험처럼 풀어 보기",
+        "이름 수정",
+        "위치 옮기기",
+        "순서 위로",
+        "순서 아래로"
+      ],
+      "returnContract": "과목 상세에서 목록·선택 범위로 복귀",
+      "placeVariants": [
+        {
+          "when": "node.role === topic",
+          "homePlace": "desk"
+        },
+        {
+          "when": "node.role !== topic",
+          "homePlace": "shelf"
+        }
+      ],
+      "blocks": [
+        {
+          "label": "단원·주제 상세",
+          "type": "library-grid-paper",
+          "content": "서문·주제 메모 · 하위 목차 · 공부 기준 · 관련 코드·생각 · 공부 기록",
+          "actions": [
+            "공부 기록하기",
+            "암기시험 만들기",
+            "시험처럼 풀어 보기",
+            "이름 수정",
+            "위치 옮기기",
+            "순서 위로",
+            "순서 아래로"
+          ],
+          "source": "src/App.tsx:188 · Workspace",
+          "contentPolicy": "기능 설명·합성 예시만, 실제 개인 원문 없음",
+          "id": "R20-B01",
+          "ui": {
+            "fields": [
+              {
+                "label": "주제 메모",
+                "value": "비교할 급수를 고르기 전에 항의 부호를 확인한다.",
+                "kind": "textarea"
+              }
+            ],
+            "rows": [
+              "미적분 / 급수 / 비교 판정",
+              "최근 기록 · 조건을 먼저 써 보았다."
+            ],
+            "actions": [
+              "공부 기록하기",
+              "암기시험 만들기",
+              "시험처럼 풀어 보기",
+              "이름 수정",
+              "위치 옮기기",
+              "순서 위로",
+              "순서 아래로"
+            ]
+          }
+        }
+      ],
+      "statePlan": [
+        "과목 있음",
+        "빈 범위",
+        "표 초안",
+        "저장 실패"
+      ]
+    },
+    {
+      "id": "R21",
+      "title": "선택 주제 기록",
+      "route": "/record/:targetId",
+      "primary": false,
+      "kind": "supplemental",
+      "homePlace": "desk",
+      "pageKey": "desk",
+      "layoutFamily": "multi-topic-form-paper",
+      "source": "src/App.tsx:1443 · RecordForm",
+      "sourceRefs": [
+        {
+          "path": "src/App.tsx",
+          "export": "RecordForm",
+          "line": 1443
+        }
+      ],
+      "states": [
+        "선택 전",
+        "복수 주제",
+        "범위 밖 선택",
+        "초안",
+        "날짜 미정",
+        "저장 실패"
+      ],
+      "actions": [
+        "기록 저장"
+      ],
+      "returnContract": "저장 성공 뒤 현재 공부 과업의 실제 주제/자료 출발지로 복귀하며 출발지가 없으면 오늘. 저장 실패·초안 정리 실패는 원문과 입력을 보존한다.",
+      "placeVariants": [],
+      "blocks": [
+        {
+          "label": "선택 주제 기록",
+          "type": "multi-topic-form-paper",
+          "content": "선택 주제 · 메모·TRACE · 날짜",
+          "actions": [
+            "기록 저장"
+          ],
+          "source": "src/App.tsx:1443 · RecordForm",
+          "contentPolicy": "기능 설명·합성 예시만, 실제 개인 원문 없음",
+          "id": "R21-B01",
+          "ui": {
+            "fields": [
+              {
+                "label": "비교 판정 · 메모",
+                "value": "두 급수의 항이 음수가 아닌지 먼저 확인했다.",
+                "kind": "textarea"
+              },
+              {
+                "label": "적분 판정 · 메모",
+                "value": "감소 조건을 다시 살펴보기.",
+                "kind": "textarea"
+              }
+            ],
+            "rows": [],
+            "checks": [
+              [
+                "비교 판정 · 공부함",
+                true
+              ],
+              [
+                "적분 판정 · 공부함",
+                true
+              ]
+            ],
+            "actions": []
+          }
+        }
+      ],
+      "statePlan": [
+        "선택 전",
+        "복수 주제",
+        "범위 밖 선택",
+        "초안",
+        "날짜 미정",
+        "저장 실패"
+      ]
+    },
+    {
+      "id": "R22",
+      "title": "메모 상세",
+      "route": "/memos/:id",
+      "primary": false,
+      "kind": "supplemental",
+      "homePlace": "desk",
+      "pageKey": "desk",
+      "layoutFamily": "memo-list-and-editor",
+      "source": "src/ui/quick-memos.tsx:24 · QuickMemos",
+      "sourceRefs": [
+        {
+          "path": "src/ui/quick-memos.tsx",
+          "export": "QuickMemos",
+          "line": 24
+        }
+      ],
+      "states": [
+        "목록",
+        "새 메모",
+        "상세",
+        "필기·글",
+        "검색 없음",
+        "초안 오류"
+      ],
+      "actions": [
+        "수정",
+        "저장",
+        "휴지통"
+      ],
+      "returnContract": "실제 호출한 홈·주제·메모 목록으로 복귀",
+      "placeVariants": [],
+      "blocks": [
+        {
+          "label": "메모 상세",
+          "type": "memo-list-and-editor",
+          "content": "선택 메모 · 필기 · 연결·이력",
+          "actions": [
+            "수정",
+            "저장",
+            "휴지통"
+          ],
+          "source": "src/ui/quick-memos.tsx:24 · QuickMemos",
+          "contentPolicy": "기능 설명·합성 예시만, 실제 개인 원문 없음",
+          "id": "R22-B01",
+          "ui": {
+            "fields": [
+              {
+                "label": "연결할 주제",
+                "value": "비교 판정",
+                "kind": "select"
+              },
+              {
+                "label": "메모",
+                "value": "같은 결론이어도 판정에 필요한 조건은 다를 수 있다.",
+                "kind": "textarea"
+              }
+            ],
+            "rows": [],
+            "actions": [
+              "저장",
+              "닫기"
+            ]
+          }
+        }
+      ],
+      "statePlan": [
+        "목록",
+        "새 메모",
+        "상세",
+        "필기·글",
+        "검색 없음",
+        "초안 오류"
+      ]
+    },
+    {
+      "id": "R23",
+      "title": "자료 상세·새 자료",
+      "route": "/materials/:id",
+      "primary": false,
+      "kind": "supplemental",
+      "homePlace": "desk",
+      "pageKey": "desk",
+      "layoutFamily": "source-processing-paper",
+      "source": "src/ui/study-materials.tsx:76 · StudyMaterials",
+      "sourceRefs": [
+        {
+          "path": "src/ui/study-materials.tsx",
+          "export": "StudyMaterials",
+          "line": 76
+        }
+      ],
+      "states": [
+        "목록",
+        "id=new",
+        "상세",
+        "휴지통",
+        "녹음·중단 복구",
+        "처리 중",
+        "소유자/일반 계정",
+        "실패",
+        "자료 곁 메모 기본 닫힘",
+        "자료 곁 메모 펼침",
+        "작은 메모 편집 후 자료로 복귀"
+      ],
+      "actions": [
+        "저장",
+        "처리",
+        "내보내기",
+        "자료 곁에 메모 펼치기·접기",
+        "모두 보기",
+        "메모 추가",
+        "메모 열기"
+      ],
+      "returnContract": "강의 자료 목록 또는 실제 호출 위치로 복귀. 자료 곁 메모의 편집 모달을 닫으면 같은 자료 상세의 펼친 메모 영역을 유지한다.",
+      "placeVariants": [
+        {
+          "when": "id === new",
+          "homePlace": "shelf"
+        },
+        {
+          "when": "existing material id",
+          "homePlace": "desk"
+        }
+      ],
+      "blocks": [
+        {
+          "label": "자료 상세·새 자료",
+          "type": "source-processing-paper",
+          "content": "id=new 새 자료 · 원문·음성 · 결과·이력",
+          "actions": [
+            "저장",
+            "처리",
+            "내보내기"
+          ],
+          "source": "src/ui/study-materials.tsx:76 · StudyMaterials",
+          "contentPolicy": "기능 설명·합성 예시만, 실제 개인 원문 없음",
+          "id": "R23-B01",
+          "ui": {
+            "fields": [
+              {
+                "label": "자료 제목",
+                "value": "급수 강의 3",
+                "kind": "input"
+              },
+              {
+                "label": "과목",
+                "value": "미적분",
+                "kind": "select"
+              },
+              {
+                "label": "연결할 주제 · 선택",
+                "value": "비교 판정",
+                "kind": "select"
+              },
+              {
+                "label": "강의 내용·필기",
+                "value": "비교 판정을 적용하기 전에 항의 부호와 비교 방향을 확인한다.",
+                "kind": "textarea"
+              }
+            ],
+            "rows": [],
+            "actions": []
+          }
+        },
+        {
+          "id": "R23-B02",
+          "label": "자료 곁에 메모",
+          "type": "memo-disclosure",
+          "content": "기존 자료 상세에서만 표시되는 native details/summary. open 속성이 없어 기본 닫힘이며 펼치면 compact QuickMemos를 그대로 재사용한다. 연결은 자료.topicId 우선, 없으면 자료.subjectId이다. 원문 자료와 메모 원문·필기·이력·초안은 그대로 보존한다.",
+          "actions": [
+            "자료 곁에 메모 펼치기·접기",
+            "모두 보기",
+            "메모 추가",
+            "메모 열기"
+          ],
+          "source": "src/App.tsx:970 · Workspace",
+          "sources": [
+            {
+              "path": "src/App.tsx",
+              "export": "Workspace",
+              "line": 238
+            },
+            {
+              "path": "src/App.tsx",
+              "export": "Workspace",
+              "line": 970
+            },
+            {
+              "path": "src/ui/quick-memos.tsx",
+              "export": "QuickMemos",
+              "line": 24
+            }
+          ],
+          "contentPolicy": "기능 설명과 합성 예시만; 실제 개인 원문 없음",
+          "visibility": "existing active material id only; not id=new or trash",
+          "defaultState": "collapsed",
+          "expandedState": {
+            "component": "QuickMemos",
+            "compact": true,
+            "visibleMemoLimit": 3,
+            "queryControlVisible": false,
+            "ownerBinding": "deskMaterial.topicId ?? deskMaterial.subjectId",
+            "emptyState": "메모 카드가 없으면 안내·모두 보기·메모 추가를 유지; 별도 빈 결과 경고 없음",
+            "source": {
+              "path": "src/ui/quick-memos.tsx",
+              "export": "QuickMemos",
+              "line": 52
+            }
+          },
+          "reuseRefs": [
+            {
+              "id": "R06",
+              "relation": "모두 보기 → /memos; 기존 메모 목록 재사용"
+            },
+            {
+              "id": "O24",
+              "relation": "메모 추가/메모 카드 열기 → MemoEditor 모달; 닫으면 자료 상세 메모 영역으로 복귀"
+            }
+          ],
+          "ui": {
+            "fields": [],
+            "rows": [],
+            "actions": [],
+            "disclosure": {
+              "label": "자료 곁에 메모",
+              "defaultOpen": false,
+              "expandedLabel": "작은 메모",
+              "description": "떠오른 생각을 잠시 보관하세요. 짧은 글이나 그림으로 남길 수 있습니다.",
+              "syntheticMemo": "비교 조건을 다음에 다시 확인하기.",
+              "actions": [
+                {
+                  "label": "모두 보기",
+                  "to": "R06"
+                },
+                {
+                  "label": "메모 추가",
+                  "to": "O24"
+                },
+                {
+                  "label": "메모 열기",
+                  "to": "O24"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "statePlan": [
+        "목록",
+        "id=new",
+        "상세",
+        "휴지통",
+        "녹음·중단 복구",
+        "처리 중",
+        "소유자/일반 계정",
+        "실패",
+        "자료 곁 메모 기본 닫힘",
+        "자료 곁 메모 펼침",
+        "작은 메모 편집 후 자료로 복귀"
+      ]
+    },
+    {
+      "id": "R26",
+      "title": "주제 지정 시험 연습",
+      "route": "/practice/:topicId",
+      "primary": false,
+      "kind": "supplemental",
+      "homePlace": "desk",
+      "pageKey": "desk",
+      "layoutFamily": "timed-writing-paper",
+      "source": "src/ui/exam-practice.tsx:27 · ExamPractice",
+      "sourceRefs": [
+        {
+          "path": "src/ui/exam-practice.tsx",
+          "export": "ExamPractice",
+          "line": 27
+        }
+      ],
+      "states": [
+        "설정",
+        "진행",
+        "중지",
+        "시간 초과",
+        "복기",
+        "저장",
+        "초안 오류"
+      ],
+      "actions": [
+        "연습 시작",
+        "마치기",
+        "메모 저장"
+      ],
+      "returnContract": "결과 메모·주제 또는 이전 위치로 복귀",
+      "placeVariants": [],
+      "blocks": [
+        {
+          "label": "주제 지정 시험 연습",
+          "type": "timed-writing-paper",
+          "content": "선택 주제·시간 · 복기",
+          "actions": [
+            "연습 시작",
+            "마치기",
+            "메모 저장"
+          ],
+          "source": "src/ui/exam-practice.tsx:27 · ExamPractice",
+          "contentPolicy": "기능 설명·합성 예시만, 실제 개인 원문 없음",
+          "id": "R26-B01",
+          "ui": {
+            "fields": [
+              {
+                "label": "연습할 주제",
+                "value": "비교 판정",
+                "kind": "select"
+              },
+              {
+                "label": "연습 시간",
+                "value": "25분",
+                "kind": "select"
+              }
+            ],
+            "rows": [
+              "책이나 다른 앱의 문제를 보며 풀어 보세요."
+            ],
+            "actions": [
+              "연습 시작"
+            ]
+          }
+        }
+      ],
+      "statePlan": [
+        "설정",
+        "진행",
+        "중지",
+        "시간 초과",
+        "복기",
+        "저장",
+        "초안 오류"
+      ]
+    }
+  ],
+  "startY": 14500,
+  "batchId": "desk-04",
+  "contentPolicy": "합성 설계 설명만. 실제 개인 원문 없음. 루트 빌더는 의미 없는 행·임의 학습 통계를 추가하지 않아야 함."
+}

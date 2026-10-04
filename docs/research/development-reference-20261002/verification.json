@@ -1,0 +1,46 @@
+{
+  "date": "2026-10-02",
+  "passed": true,
+  "source_entries": 121,
+  "unique_source_ids": 121,
+  "unique_primary_urls": 121,
+  "repeated_primary_urls": {},
+  "source_groups": {
+    "design-ux": 28,
+    "frontend-graphics": 31,
+    "quality-storage": 28,
+    "specialized": 34
+  },
+  "statuses": {
+    "기존 유지": 29,
+    "기본 권고": 32,
+    "참고": 17,
+    "조건부": 43
+  },
+  "covered_domains": 20,
+  "covered_request_types": 6,
+  "all_source_ids_covered": true,
+  "local_links_checked": 71,
+  "linked_local_skills": 14,
+  "errors": [],
+  "file_sha256": {
+    "README.md": "492d92c0d28c7b7aff42a2c7ae162e11a720e03194421bfbb3141c33dd6ab348",
+    "coverage.json": "edbb4c9c4f0793b92720d8c7421beb0c903f026887f1e6ee5b7ed55c504be2b7",
+    "design-ux-sources.json": "9d729232eda5d38f38c37a81a99dcee7f1b272dc0cd0129029931737e8cd7201",
+    "design-ux.md": "54d8e05c1feabe530a7555e78004546240784a401efef0d60695bf6343b4c5d1",
+    "frontend-graphics-sources.json": "54c65d9644cea818b0309109a5ee80ccad66c67a12c2a26492052a69e6bcb534",
+    "frontend-graphics.md": "93c9658aebc1b6231c9d9037c40ed3d045f5ad919309f26b4626146813b662b7",
+    "quality-storage-sources.json": "7603aa02977a49ba2ebde3455f6cdb228df985f860fc3daf3a62a6e808a9963f",
+    "quality-storage.md": "04607a8c741d1ceb140776cf6934ceaec32cefb0d8b6a54f6e7e6fa615e316fe",
+    "specialized-sources.json": "8121deff294335f1021ec92ecd23e0dd573722d253f0e750a9333879754c1f98",
+    "specialized.md": "7dc0d1dd81a80424467576547f9f81aa6692b948f7674a099432991922d1ec1a",
+    "verify-research.py": "d1d6e78385537e62a081962ee8073ce46be1a69c870ffa914ee03395a09214d8"
+  },
+  "manifest_sha256": "f167e54b6ae98dd6dddb2f17c46f6bf91b9786e20d3efbb6bed516c5f1191ff1",
+  "hash_scope": "현재 폴더 파일 중 verification.json 자체를 제외한 파일. 정렬한 파일명 TAB SHA256 LF의 UTF-8 지문.",
+  "limits": [
+    "문서 연결과 완전성 검사이며 제품 검사/준수 인증이 아님",
+    "외부 자료 확인 범위와 접근 제한은 각 출처 evidence/limits 및 본문에 기록",
+    "공유 저장소의 다른 작업 파일은 검사/변경 범위에 포함하지 않음"
+  ]
+}

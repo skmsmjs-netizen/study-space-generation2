@@ -1,0 +1,73 @@
+{
+  "boardId": "60:10519",
+  "rows": [
+    {
+      "id": "SC09",
+      "name": "ObservatoryTimeGround",
+      "ownerId": "20:6560",
+      "rowId": "61:10754",
+      "assetId": "61:10776",
+      "ownerInstanceId": "61:10755",
+      "svgSha256": "864f39266b93795ecf2af53b31fdfe7ec5a58d96357f2bc30343d751775b2227",
+      "vectorNodes": 67,
+      "ownerPreserved": true,
+      "representation": "Existing source-contract component preserved; linked side-by-side with one editable asset generated from the actual React source using synthetic static props."
+    }
+  ],
+  "count": 1,
+  "createdNodeIds": {
+    "encoding": "figma-id-ranges-v1",
+    "count": 90,
+    "groups": [
+      [
+        "61:",
+        [
+          [
+            10754,
+            10755
+          ],
+          [
+            10776,
+            10843
+          ]
+        ]
+      ],
+      [
+        "I61:10755;20:",
+        [
+          [
+            6561,
+            6566
+          ],
+          [
+            6568,
+            6580
+          ]
+        ]
+      ],
+      [
+        "I61:10755;20:6566;15:",
+        [
+          74
+        ]
+      ]
+    ],
+    "literal": []
+  },
+  "mutatedNodeIds": {
+    "encoding": "figma-id-ranges-v1",
+    "count": 1,
+    "groups": [
+      [
+        "60:",
+        [
+          10519
+        ]
+      ]
+    ],
+    "literal": []
+  },
+  "originalOwnersPreserved": true,
+  "originalWorldPreserved": true,
+  "layout": "Separate auto-layout board beyond existing rightmost node; existing cards not moved or resized."
+}

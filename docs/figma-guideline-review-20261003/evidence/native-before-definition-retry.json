@@ -1,0 +1,189 @@
+{
+  "type": "result",
+  "result": {
+    "task": "read",
+    "pageId": "3:72",
+    "pages": [
+      {
+        "id": "0:1",
+        "name": "00 · 기준과 연결"
+      },
+      {
+        "id": "3:70",
+        "name": "01 · 공통 부품"
+      },
+      {
+        "id": "3:71",
+        "name": "02 · 사용 흐름"
+      },
+      {
+        "id": "3:72",
+        "name": "전집 · 정의형"
+      },
+      {
+        "id": "3:73",
+        "name": "전집 · 원리형"
+      },
+      {
+        "id": "3:74",
+        "name": "전집 · 절차형"
+      },
+      {
+        "id": "3:75",
+        "name": "전집 · 구별형"
+      },
+      {
+        "id": "3:76",
+        "name": "전집 · 구조형"
+      },
+      {
+        "id": "3:77",
+        "name": "전집 · 과정형"
+      },
+      {
+        "id": "3:78",
+        "name": "전집 · 관점형"
+      },
+      {
+        "id": "35:2",
+        "name": "03 · 수식 벡터"
+      }
+    ],
+    "fonts": [
+      {
+        "fontName": {
+          "family": "ManSeekSong Paper",
+          "style": "Bold"
+        }
+      },
+      {
+        "fontName": {
+          "family": "ManSeekSong Paper",
+          "style": "ExtraBold"
+        }
+      },
+      {
+        "fontName": {
+          "family": "ManSeekSong Paper",
+          "style": "Regular"
+        }
+      },
+      {
+        "fontName": {
+          "family": "Nanum Brush Script",
+          "style": "Regular"
+        }
+      },
+      {
+        "fontName": {
+          "family": "Nanum Gothic",
+          "style": "Bold"
+        }
+      },
+      {
+        "fontName": {
+          "family": "Nanum Gothic",
+          "style": "ExtraBold"
+        }
+      },
+      {
+        "fontName": {
+          "family": "Nanum Gothic",
+          "style": "Regular"
+        }
+      },
+      {
+        "fontName": {
+          "family": "Nanum Myeongjo",
+          "style": "Bold"
+        }
+      },
+      {
+        "fontName": {
+          "family": "Nanum Myeongjo",
+          "style": "ExtraBold"
+        }
+      },
+      {
+        "fontName": {
+          "family": "Nanum Myeongjo",
+          "style": "Regular"
+        }
+      },
+      {
+        "fontName": {
+          "family": "Nanum Pen",
+          "style": "Regular"
+        }
+      },
+      {
+        "fontName": {
+          "family": "Nanum Pen Script",
+          "style": "Regular"
+        }
+      },
+      {
+        "fontName": {
+          "family": "NanumGothic",
+          "style": "Bold"
+        }
+      },
+      {
+        "fontName": {
+          "family": "NanumGothic",
+          "style": "ExtraBold"
+        }
+      },
+      {
+        "fontName": {
+          "family": "NanumGothic",
+          "style": "Regular"
+        }
+      },
+      {
+        "fontName": {
+          "family": "NanumGothicCoding",
+          "style": "Bold"
+        }
+      },
+      {
+        "fontName": {
+          "family": "NanumGothicCoding",
+          "style": "Regular"
+        }
+      },
+      {
+        "fontName": {
+          "family": "NanumMyeongjo",
+          "style": "Bold"
+        }
+      },
+      {
+        "fontName": {
+          "family": "NanumMyeongjo",
+          "style": "ExtraBold"
+        }
+      },
+      {
+        "fontName": {
+          "family": "NanumMyeongjo",
+          "style": "Regular"
+        }
+      }
+    ],
+    "roots": [
+      {
+        "id": "46:1242",
+        "name": "본문 문단",
+        "type": "FRAME",
+        "width": 648,
+        "height": 36,
+        "sourceHash": "332713a8",
+        "mathHash": "4f09e052",
+        "paragraphs": []
+      }
+    ],
+    "createdNodeIds": [],
+    "mutatedNodeIds": []
+  }
+}

@@ -1,0 +1,1267 @@
+{
+  "pageId": "7:76",
+  "createdNodeIds": {
+    "encoding": "figma-factorized-id-ranges-v1",
+    "count": 181,
+    "ranges": [
+      [
+        "68:",
+        [
+          [
+            63570,
+            63571
+          ],
+          [
+            63730,
+            63747
+          ],
+          [
+            63810,
+            63827
+          ],
+          [
+            63886,
+            63903
+          ],
+          [
+            63962,
+            63979
+          ],
+          [
+            64038,
+            64055
+          ],
+          [
+            64114,
+            64131
+          ],
+          [
+            64218,
+            64235
+          ],
+          [
+            64294,
+            64298
+          ],
+          [
+            64323,
+            64335
+          ],
+          [
+            64394,
+            64398
+          ],
+          [
+            64422,
+            64433
+          ],
+          64437,
+          64440,
+          64443,
+          64446,
+          64449,
+          64452,
+          64455,
+          64458,
+          64461,
+          64464,
+          64467,
+          64471,
+          64475,
+          64479,
+          64483,
+          64487,
+          64491,
+          64495
+        ]
+      ]
+    ],
+    "literal": [],
+    "products": []
+  },
+  "mutatedNodeIds": {
+    "encoding": "figma-factorized-id-ranges-v1",
+    "count": 46,
+    "ranges": [
+      [
+        "68:",
+        [
+          64433,
+          64437,
+          64440,
+          64443,
+          64446,
+          64449,
+          64452,
+          64455,
+          64458,
+          64461,
+          64464,
+          64467,
+          64471,
+          64475,
+          64479,
+          64483,
+          64487,
+          64491,
+          64495
+        ]
+      ],
+      [
+        "7:",
+        [
+          76
+        ]
+      ]
+    ],
+    "literal": [],
+    "products": [
+      {
+        "prefixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 1,
+          "ranges": [
+            [
+              "I68:",
+              [
+                63571
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": []
+        },
+        "suffixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 2,
+          "ranges": [
+            [
+              "63:",
+              [
+                5117,
+                5234
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": []
+        }
+      },
+      {
+        "prefixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 7,
+          "ranges": [
+            [
+              "I68:",
+              [
+                63747,
+                63827,
+                63903,
+                63979,
+                64055,
+                64235,
+                64335
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": []
+        },
+        "suffixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 3,
+          "ranges": [
+            [
+              "63:",
+              [
+                13866
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": [
+            {
+              "prefixes": {
+                "encoding": "figma-factorized-id-ranges-v1",
+                "count": 1,
+                "ranges": [
+                  [
+                    "63:",
+                    [
+                      13866
+                    ]
+                  ]
+                ],
+                "literal": [],
+                "products": []
+              },
+              "suffixes": {
+                "encoding": "figma-factorized-id-ranges-v1",
+                "count": 2,
+                "ranges": [
+                  [
+                    "53:",
+                    [
+                      [
+                        13182,
+                        13183
+                      ]
+                    ]
+                  ]
+                ],
+                "literal": [],
+                "products": []
+              }
+            }
+          ]
+        }
+      },
+      {
+        "prefixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 1,
+          "ranges": [
+            [
+              "I68:",
+              [
+                64131
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": []
+        },
+        "suffixes": {
+          "encoding": "figma-factorized-id-ranges-v1",
+          "count": 3,
+          "ranges": [
+            [
+              "63:",
+              [
+                13580
+              ]
+            ]
+          ],
+          "literal": [],
+          "products": [
+            {
+              "prefixes": {
+                "encoding": "figma-factorized-id-ranges-v1",
+                "count": 1,
+                "ranges": [
+                  [
+                    "63:",
+                    [
+                      13580
+                    ]
+                  ]
+                ],
+                "literal": [],
+                "products": []
+              },
+              "suffixes": {
+                "encoding": "figma-factorized-id-ranges-v1",
+                "count": 2,
+                "ranges": [
+                  [
+                    "53:",
+                    [
+                      [
+                        13188,
+                        13189
+                      ]
+                    ]
+                  ]
+                ],
+                "literal": [],
+                "products": []
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "topLevelNodeIds": [
+    "68:63570",
+    "68:63746",
+    "68:63826",
+    "68:63902",
+    "68:63978",
+    "68:64054",
+    "68:64130",
+    "68:64234",
+    "68:64334"
+  ],
+  "instanceDescendantCounts": {
+    "encoding": "columnar-v1",
+    "columns": [
+      "id",
+      "count"
+    ],
+    "rows": [
+      [
+        "68:63571",
+        152
+      ],
+      [
+        "68:63747",
+        56
+      ],
+      [
+        "68:63827",
+        56
+      ],
+      [
+        "68:63903",
+        56
+      ],
+      [
+        "68:63979",
+        56
+      ],
+      [
+        "68:64055",
+        56
+      ],
+      [
+        "68:64131",
+        78
+      ],
+      [
+        "68:64235",
+        56
+      ],
+      [
+        "68:64298",
+        24
+      ],
+      [
+        "68:64335",
+        56
+      ],
+      [
+        "68:64398",
+        23
+      ],
+      [
+        "68:64433",
+        1
+      ],
+      [
+        "68:64437",
+        1
+      ],
+      [
+        "68:64440",
+        1
+      ],
+      [
+        "68:64443",
+        1
+      ],
+      [
+        "68:64446",
+        1
+      ],
+      [
+        "68:64449",
+        1
+      ],
+      [
+        "68:64452",
+        1
+      ],
+      [
+        "68:64455",
+        1
+      ],
+      [
+        "68:64458",
+        1
+      ],
+      [
+        "68:64461",
+        1
+      ],
+      [
+        "68:64464",
+        1
+      ],
+      [
+        "68:64467",
+        1
+      ],
+      [
+        "68:64471",
+        1
+      ],
+      [
+        "68:64475",
+        1
+      ],
+      [
+        "68:64479",
+        1
+      ],
+      [
+        "68:64483",
+        1
+      ],
+      [
+        "68:64487",
+        1
+      ],
+      [
+        "68:64491",
+        1
+      ],
+      [
+        "68:64495",
+        1
+      ]
+    ]
+  },
+  "flow": {
+    "id": "F07",
+    "startNodeId": "68:63570",
+    "originalStepCount": 7,
+    "stepNodes": [
+      {
+        "nodeId": "68:63570",
+        "originalIndex": 0,
+        "originalText": "R08"
+      },
+      {
+        "nodeId": "68:63746",
+        "originalIndex": 1,
+        "originalText": "R25"
+      },
+      {
+        "nodeId": "68:63826",
+        "originalIndex": 2,
+        "originalText": "편집·입력"
+      },
+      {
+        "nodeId": "68:63902",
+        "originalIndex": 3,
+        "originalText": "실행·터미널"
+      },
+      {
+        "nodeId": "68:63978",
+        "originalIndex": 4,
+        "originalText": "결과"
+      },
+      {
+        "nodeId": "68:64054",
+        "originalIndex": 5,
+        "originalText": "주제 연결"
+      },
+      {
+        "nodeId": "68:64130",
+        "originalIndex": 6,
+        "originalText": "R20"
+      }
+    ],
+    "edges": {
+      "encoding": "columnar-v1",
+      "columns": [
+        "controlId",
+        "fromFrameId",
+        "toFrameId",
+        "kind",
+        "branch",
+        "expectedReturn",
+        "callerIsHome",
+        "directEntryFallback",
+        "toRouteId",
+        "bindingLocation"
+      ],
+      "rows": [
+        [
+          "68:64433",
+          "68:63570",
+          "68:63746",
+          "NAVIGATE",
+          "primary",
+          false,
+          false,
+          null,
+          "R25",
+          "prototype-panel"
+        ],
+        [
+          "I68:63571;63:5117",
+          "68:63570",
+          "68:63746",
+          "NAVIGATE",
+          "primary",
+          false,
+          false,
+          null,
+          "R25",
+          "screen-instance"
+        ],
+        [
+          "68:64437",
+          "68:63746",
+          "68:63826",
+          "NAVIGATE",
+          "primary",
+          false,
+          false,
+          null,
+          "R25",
+          "prototype-panel"
+        ],
+        [
+          "68:64440",
+          "68:63826",
+          "68:63902",
+          "NAVIGATE",
+          "primary",
+          false,
+          false,
+          null,
+          "R25",
+          "prototype-panel"
+        ],
+        [
+          "68:64443",
+          "68:63902",
+          "68:63978",
+          "NAVIGATE",
+          "primary",
+          false,
+          false,
+          null,
+          "R25",
+          "prototype-panel"
+        ],
+        [
+          "68:64446",
+          "68:63978",
+          "68:64054",
+          "NAVIGATE",
+          "primary",
+          false,
+          false,
+          null,
+          "R25",
+          "prototype-panel"
+        ],
+        [
+          "68:64449",
+          "68:64054",
+          "68:64130",
+          "NAVIGATE",
+          "primary",
+          false,
+          false,
+          null,
+          "R20",
+          "prototype-panel"
+        ],
+        [
+          "68:64452",
+          "68:64130",
+          "68:63570",
+          "NAVIGATE",
+          "restart",
+          null,
+          null,
+          null,
+          "R08",
+          "prototype-panel"
+        ],
+        [
+          "68:64455",
+          "68:63826",
+          "68:64234",
+          "NAVIGATE",
+          "scenario",
+          null,
+          null,
+          null,
+          "R25",
+          "prototype-panel"
+        ],
+        [
+          "68:64458",
+          "68:64234",
+          "68:63826",
+          "NAVIGATE",
+          "return",
+          true,
+          null,
+          null,
+          "R25",
+          "prototype-panel"
+        ],
+        [
+          "68:64461",
+          "68:63826",
+          "68:64334",
+          "NAVIGATE",
+          "scenario",
+          null,
+          null,
+          null,
+          "R25",
+          "prototype-panel"
+        ],
+        [
+          "68:64464",
+          "68:64334",
+          "68:63826",
+          "NAVIGATE",
+          "return",
+          true,
+          null,
+          null,
+          "R25",
+          "prototype-panel"
+        ],
+        [
+          "68:64467",
+          "68:63746",
+          "68:63570",
+          "NAVIGATE",
+          "actual-caller-return",
+          true,
+          false,
+          null,
+          "R08",
+          "prototype-panel"
+        ],
+        [
+          "I68:63747;63:13866;53:13182",
+          "68:63746",
+          "68:63570",
+          "NAVIGATE",
+          "actual-caller-return",
+          true,
+          false,
+          null,
+          "R08",
+          "screen-instance"
+        ],
+        [
+          "68:64471",
+          "68:63826",
+          "68:63570",
+          "NAVIGATE",
+          "actual-caller-return",
+          true,
+          false,
+          null,
+          "R08",
+          "prototype-panel"
+        ],
+        [
+          "I68:63827;63:13866;53:13182",
+          "68:63826",
+          "68:63570",
+          "NAVIGATE",
+          "actual-caller-return",
+          true,
+          false,
+          null,
+          "R08",
+          "screen-instance"
+        ],
+        [
+          "68:64475",
+          "68:63902",
+          "68:63570",
+          "NAVIGATE",
+          "actual-caller-return",
+          true,
+          false,
+          null,
+          "R08",
+          "prototype-panel"
+        ],
+        [
+          "I68:63903;63:13866;53:13182",
+          "68:63902",
+          "68:63570",
+          "NAVIGATE",
+          "actual-caller-return",
+          true,
+          false,
+          null,
+          "R08",
+          "screen-instance"
+        ],
+        [
+          "68:64479",
+          "68:63978",
+          "68:63570",
+          "NAVIGATE",
+          "actual-caller-return",
+          true,
+          false,
+          null,
+          "R08",
+          "prototype-panel"
+        ],
+        [
+          "I68:63979;63:13866;53:13182",
+          "68:63978",
+          "68:63570",
+          "NAVIGATE",
+          "actual-caller-return",
+          true,
+          false,
+          null,
+          "R08",
+          "screen-instance"
+        ],
+        [
+          "68:64483",
+          "68:64054",
+          "68:63570",
+          "NAVIGATE",
+          "actual-caller-return",
+          true,
+          false,
+          null,
+          "R08",
+          "prototype-panel"
+        ],
+        [
+          "I68:64055;63:13866;53:13182",
+          "68:64054",
+          "68:63570",
+          "NAVIGATE",
+          "actual-caller-return",
+          true,
+          false,
+          null,
+          "R08",
+          "screen-instance"
+        ],
+        [
+          "68:64487",
+          "68:64130",
+          "68:64054",
+          "NAVIGATE",
+          "actual-caller-return",
+          true,
+          false,
+          null,
+          "R25",
+          "prototype-panel"
+        ],
+        [
+          "I68:64131;63:13580;53:13188",
+          "68:64130",
+          "68:64054",
+          "NAVIGATE",
+          "actual-caller-return",
+          true,
+          false,
+          null,
+          "R25",
+          "screen-instance"
+        ],
+        [
+          "68:64491",
+          "68:64234",
+          "68:63570",
+          "NAVIGATE",
+          "actual-caller-return",
+          true,
+          false,
+          null,
+          "R08",
+          "prototype-panel"
+        ],
+        [
+          "I68:64235;63:13866;53:13182",
+          "68:64234",
+          "68:63570",
+          "NAVIGATE",
+          "actual-caller-return",
+          true,
+          false,
+          null,
+          "R08",
+          "screen-instance"
+        ],
+        [
+          "68:64495",
+          "68:64334",
+          "68:63570",
+          "NAVIGATE",
+          "actual-caller-return",
+          true,
+          false,
+          null,
+          "R08",
+          "prototype-panel"
+        ],
+        [
+          "I68:64335;63:13866;53:13182",
+          "68:64334",
+          "68:63570",
+          "NAVIGATE",
+          "actual-caller-return",
+          true,
+          false,
+          null,
+          "R08",
+          "screen-instance"
+        ]
+      ]
+    },
+    "screenInstances": {
+      "encoding": "columnar-v1",
+      "columns": [
+        "nodeId",
+        "mainComponentId",
+        "sourceFrameId",
+        "stageKey"
+      ],
+      "rows": [
+        [
+          "68:63571",
+          "63:5235",
+          "28:12179",
+          "F07-S01"
+        ],
+        [
+          "68:63747",
+          "63:13867",
+          "29:260",
+          "F07-S02"
+        ],
+        [
+          "68:63827",
+          "63:13867",
+          "29:260",
+          "F07-S03"
+        ],
+        [
+          "68:63903",
+          "63:13867",
+          "29:260",
+          "F07-S04"
+        ],
+        [
+          "68:63979",
+          "63:13867",
+          "29:260",
+          "F07-S05"
+        ],
+        [
+          "68:64055",
+          "63:13867",
+          "29:260",
+          "F07-S06"
+        ],
+        [
+          "68:64131",
+          "63:13581",
+          "28:8964",
+          "F07-S07"
+        ],
+        [
+          "68:64235",
+          "63:13867",
+          "29:260",
+          "F07-B1"
+        ],
+        [
+          "68:64335",
+          "63:13867",
+          "29:260",
+          "F07-B2"
+        ]
+      ]
+    },
+    "taskReturnInstances": {
+      "encoding": "columnar-v1",
+      "columns": [
+        "stageKey",
+        "nodeId",
+        "componentId",
+        "context",
+        "callerStageKey",
+        "studySourceStageKey",
+        "visible",
+        "callerControlId"
+      ],
+      "rows": [
+        [
+          "F07-S01",
+          "I68:63571;63:5234",
+          "53:13179",
+          "none",
+          null,
+          null,
+          false,
+          null
+        ],
+        [
+          "F07-S02",
+          "I68:63747;63:13866",
+          "53:13181",
+          "caller",
+          "F07-S01",
+          null,
+          true,
+          "I68:63747;63:13866;53:13182"
+        ],
+        [
+          "F07-S03",
+          "I68:63827;63:13866",
+          "53:13181",
+          "caller",
+          "F07-S01",
+          null,
+          true,
+          "I68:63827;63:13866;53:13182"
+        ],
+        [
+          "F07-S04",
+          "I68:63903;63:13866",
+          "53:13181",
+          "caller",
+          "F07-S01",
+          null,
+          true,
+          "I68:63903;63:13866;53:13182"
+        ],
+        [
+          "F07-S05",
+          "I68:63979;63:13866",
+          "53:13181",
+          "caller",
+          "F07-S01",
+          null,
+          true,
+          "I68:63979;63:13866;53:13182"
+        ],
+        [
+          "F07-S06",
+          "I68:64055;63:13866",
+          "53:13181",
+          "caller",
+          "F07-S01",
+          null,
+          true,
+          "I68:64055;63:13866;53:13182"
+        ],
+        [
+          "F07-S07",
+          "I68:64131;63:13580",
+          "53:13187",
+          "topic",
+          "F07-S06",
+          "F07-S07",
+          true,
+          "I68:64131;63:13580;53:13188"
+        ],
+        [
+          "F07-B1",
+          "I68:64235;63:13866",
+          "53:13181",
+          "caller",
+          "F07-S01",
+          null,
+          true,
+          "I68:64235;63:13866;53:13182"
+        ],
+        [
+          "F07-B2",
+          "I68:64335;63:13866",
+          "53:13181",
+          "caller",
+          "F07-S01",
+          null,
+          true,
+          "I68:64335;63:13866;53:13182"
+        ]
+      ]
+    }
+  },
+  "stageMap": {
+    "encoding": "columnar-v1",
+    "columns": [
+      "key",
+      "id",
+      "instanceId",
+      "actionPanelId",
+      "sourceId",
+      "originalIndex"
+    ],
+    "rows": [
+      [
+        "F07-S01",
+        "68:63570",
+        "68:63571",
+        "68:63735",
+        "R08",
+        0
+      ],
+      [
+        "F07-S02",
+        "68:63746",
+        "68:63747",
+        "68:63815",
+        "R25",
+        1
+      ],
+      [
+        "F07-S03",
+        "68:63826",
+        "68:63827",
+        "68:63891",
+        "R25",
+        2
+      ],
+      [
+        "F07-S04",
+        "68:63902",
+        "68:63903",
+        "68:63967",
+        "R25",
+        3
+      ],
+      [
+        "F07-S05",
+        "68:63978",
+        "68:63979",
+        "68:64043",
+        "R25",
+        4
+      ],
+      [
+        "F07-S06",
+        "68:64054",
+        "68:64055",
+        "68:64119",
+        "R25",
+        5
+      ],
+      [
+        "F07-S07",
+        "68:64130",
+        "68:64131",
+        "68:64223",
+        "R20",
+        6
+      ],
+      [
+        "F07-B1",
+        "68:64234",
+        "68:64235",
+        "68:64323",
+        "R25",
+        null
+      ],
+      [
+        "F07-B2",
+        "68:64334",
+        "68:64335",
+        "68:64422",
+        "R25",
+        null
+      ]
+    ]
+  },
+  "bindings": {
+    "encoding": "columnar-v1",
+    "columns": [
+      "fromKey",
+      "label",
+      "screenControlId",
+      "prototypeControlId",
+      "toKey"
+    ],
+    "rows": [
+      [
+        "F07-S01",
+        "예제 열기",
+        "I68:63571;63:5117",
+        "68:64433",
+        "F07-S02"
+      ],
+      [
+        "F07-S02",
+        "실행",
+        null,
+        "68:64437",
+        "F07-S03"
+      ],
+      [
+        "F07-S03",
+        "실행",
+        null,
+        "68:64440",
+        "F07-S04"
+      ],
+      [
+        "F07-S04",
+        "입력 보내기",
+        null,
+        "68:64443",
+        "F07-S05"
+      ],
+      [
+        "F07-S05",
+        "저장",
+        null,
+        "68:64446",
+        "F07-S06"
+      ],
+      [
+        "F07-S06",
+        "연결 주제 열기",
+        null,
+        "68:64449",
+        "F07-S07"
+      ],
+      [
+        "F07-S07",
+        "과업 처음부터 다시 보기",
+        null,
+        "68:64452",
+        "F07-S01"
+      ],
+      [
+        "F07-S03",
+        "실행/환경 실패 조건 보기",
+        null,
+        "68:64455",
+        "F07-B1"
+      ],
+      [
+        "F07-B1",
+        "작성한 내용으로 돌아가기",
+        null,
+        "68:64458",
+        "F07-S03"
+      ],
+      [
+        "F07-S03",
+        "복귀 조건 보기",
+        null,
+        "68:64461",
+        "F07-B2"
+      ],
+      [
+        "F07-B2",
+        "호출한 과업으로 돌아가기",
+        null,
+        "68:64464",
+        "F07-S03"
+      ],
+      [
+        "F07-S02",
+        "돌아가기 · 이전 화면",
+        "I68:63747;63:13866;53:13182",
+        "68:64467",
+        "F07-S01"
+      ],
+      [
+        "F07-S03",
+        "돌아가기 · 이전 화면",
+        "I68:63827;63:13866;53:13182",
+        "68:64471",
+        "F07-S01"
+      ],
+      [
+        "F07-S04",
+        "돌아가기 · 이전 화면",
+        "I68:63903;63:13866;53:13182",
+        "68:64475",
+        "F07-S01"
+      ],
+      [
+        "F07-S05",
+        "돌아가기 · 이전 화면",
+        "I68:63979;63:13866;53:13182",
+        "68:64479",
+        "F07-S01"
+      ],
+      [
+        "F07-S06",
+        "돌아가기 · 이전 화면",
+        "I68:64055;63:13866;53:13182",
+        "68:64483",
+        "F07-S01"
+      ],
+      [
+        "F07-S07",
+        "돌아가기 · 코딩 연습",
+        "I68:64131;63:13580;53:13188",
+        "68:64487",
+        "F07-S06"
+      ],
+      [
+        "F07-B1",
+        "돌아가기 · 이전 화면",
+        "I68:64235;63:13866;53:13182",
+        "68:64491",
+        "F07-S01"
+      ],
+      [
+        "F07-B2",
+        "돌아가기 · 이전 화면",
+        "I68:64335;63:13866;53:13182",
+        "68:64495",
+        "F07-S01"
+      ]
+    ]
+  },
+  "missingSourceActions": {
+    "encoding": "columnar-v1",
+    "columns": [
+      "fromKey",
+      "label",
+      "sourceId"
+    ],
+    "rows": [
+      [
+        "F07-S02",
+        "실행",
+        "R25"
+      ],
+      [
+        "F07-S03",
+        "실행",
+        "R25"
+      ],
+      [
+        "F07-S04",
+        "입력 보내기",
+        "R25"
+      ],
+      [
+        "F07-S05",
+        "저장",
+        "R25"
+      ],
+      [
+        "F07-S06",
+        "연결 주제 열기",
+        "R25"
+      ]
+    ]
+  },
+  "counts": {
+    "originalSteps": 7,
+    "stages": 9,
+    "edges": 28,
+    "actualScreenBindings": 9,
+    "prototypePanelBindings": 19,
+    "taskReturnInstances": 9,
+    "visibleTaskReturns": 8,
+    "virtualInstanceDescendants": 688
+  },
+  "runtimeVerified": false
+}

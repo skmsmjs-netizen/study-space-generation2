@@ -1,0 +1,352 @@
+{
+  "version": "2.0.0",
+  "at": "2026-10-03T03:33:21.548085+00:00",
+  "overallStatus": "확인된 본문 범위의 개념 대응·구현·선택 검증 및 기존 Pages 실제 공개 반영 완료; 모든 원식 독립 검증·전 문항·외부 보충·물리 기기·개인 서버·학습효과는 별도",
+  "scope": {
+    "pdfPages": 611,
+    "mainSections": 55,
+    "appendices": 2,
+    "maps": 8,
+    "conceptOccurrences": 91,
+    "labelledRelations": 107,
+    "candidateMarks": 688,
+    "semanticItemReviewComplete": false,
+    "coreExpositionRead": true,
+    "expositionSections": 55,
+    "readAppendices": 2,
+    "sourceGroupingReviewed": true,
+    "sourceIndexRecords": 710,
+    "fragmentMarks": 37,
+    "allExercisesRead": false,
+    "externalSupplementBodiesRead": false
+  },
+  "structuralAudit": {
+    "duplicateConceptIds": 0,
+    "invalidEdges": [],
+    "invalidSources": [],
+    "unmappedSections": []
+  },
+  "classification": {
+    "기존 틀로 대응": 87,
+    "정적 설명 적합": 4
+  },
+  "unit": {
+    "total": 44,
+    "passed": 44,
+    "failed": 0,
+    "log": "compatibility-units.log"
+  },
+  "browser": {
+    "engine": "WebKit",
+    "profiles": 5,
+    "cases": 65,
+    "finalFailed": 0,
+    "uniqueComputationFrames": 34,
+    "frameVisits": 170,
+    "initialCases": {
+      "passed": 25,
+      "failed": 5,
+      "report": "device-results-before-reset.json"
+    },
+    "resolved": {
+      "oldQuestionSelector": 4,
+      "artifactFolderCollision": 1,
+      "coreRetry": {
+        "passed": 5,
+        "report": "core-retry-results.json"
+      },
+      "halfWindowRetry": {
+        "passed": 1,
+        "report": "half-retry-results.json"
+      }
+    },
+    "scope": [
+      "34틀·strict렌더·넘침",
+      "영상 원본/회색 표본/저계수/reload/실패에서 기존파일 유지",
+      "원문 인덱스 검색·관찰 전환·로그 정의역·함수 모드",
+      "확정값/초안/메모/시야/원문 읽기위치/사본 실패/재시도/초점 복귀",
+      "19개 기존대표와 정적읽기·곡면·개념연결도·틀린PDF 거부"
+    ],
+    "limits": [
+      "브라우저 모사는 물리 기기·보조기술·장기 사용 증거가 아니다.",
+      "개인 계정 서버/다기기 저장·학습효과는 미확인이다."
+    ],
+    "compatibility": {
+      "profiles": 5,
+      "passed": 5,
+      "failed": 0,
+      "log": "compatibility-five.log",
+      "coreFlowRecheck": {
+        "profiles": 5,
+        "passed": 5,
+        "failed": 0,
+        "log": "compatibility-core-five.log"
+      },
+      "scope": "marker-less previous inputs/memo/view preserved; current model kept in separate optional variants; selection and raw draft survive reload",
+      "reset": {
+        "occurrences": 58,
+        "resetButtons": 57,
+        "staticWithoutControls": 1,
+        "status": "passed",
+        "log": "compatibility-reset-resolved.log",
+        "firstFailure": "test expected a reset button on a static reading; test fixed to verify no control",
+        "profiles": 5,
+        "passed": 5,
+        "failed": 0,
+        "resetVisits": 285,
+        "staticReadingVisits": 5
+      },
+      "boundedBatches": {
+        "profiles": 5,
+        "passed": 35,
+        "failed": 0,
+        "batchSize": 10,
+        "batches": 6,
+        "preservedOccurrences": 58,
+        "log": "compatibility-batches-five.log"
+      }
+    },
+    "requiredCI": {
+      "run": 37091693073,
+      "profiles": 5,
+      "linearCases": 60,
+      "linearFailed": 0,
+      "linearRetried": 0,
+      "report": "final-ci-device-summary.json",
+      "allAppRetries": 5,
+      "allAppSkipped": 8,
+      "note": "다른 경로의 재시도 통과5건과 기기 조건 생략8건을 선형대수60무재시도 통과와 구별한다."
+    }
+  },
+  "build": {
+    "command": "CI=1 npm run build",
+    "typecheck": true,
+    "productionBundle": true,
+    "successful": true,
+    "exitCode": 0,
+    "log": "build-final.log"
+  },
+  "paperReadout": {
+    "environment": "Codex in-app browser · 1280×720 desktop",
+    "family": "ManSeekSong Paper / Nanum Myeongjo / serif",
+    "weight": 700,
+    "fontSizePx": 18,
+    "lineHeightPx": 36,
+    "letterSpacingPx": -0.9,
+    "alignment": "justify",
+    "lastLine": "start",
+    "native95Width": "기존 승인 파생 서체를 소비한다. 이번 관찰에서 새 서체를 만들지 않았다.",
+    "public": {
+      "fontFamily": "ManSeekSong Paper, Nanum Myeongjo, AppleMyungjo, serif",
+      "fontWeight": "700",
+      "fontSize": "18px",
+      "lineHeight": "36px",
+      "letterSpacing": "-0.9px",
+      "textAlign": "justify",
+      "textAlignLast": "start"
+    }
+  },
+  "preservation": {
+    "draft": "owner-prefix localStorage + existing rescue; unconfirmed raw input separate from committed numeric state",
+    "pdf": "original hash validation + existing IndexedDB; page/zoom/scroll metadata local",
+    "server": "existing saveMemo capability/flush/receipt adapter path wired; actual server flow not tested in this task",
+    "learningEvents": "none created by opening/adjusting/saving observation",
+    "previousModels": "modelVersion absent: preserve original readings; legacy kind/spec/reading snapshots from base6318aba, optional variants/modelChoices stored under same owner-key; no automatic conversion of old drafts"
+  },
+  "versions": "versions-and-consumers.json",
+  "notComplete": [
+    "모든 원식·가정·결론·논증의 독립 형식 검증",
+    "연습문제·정답 전 문항 독해와 문항별 대응",
+    "외부 보충자료8개 본문",
+    "실제 서버·다기기·물리 기기·보조기술·장기 사용·학습 효과"
+  ],
+  "historicalFailures": [
+    "원문 PDF 로딩의 loadingTask destroy 경로와 개발 읽기 스트림 종료를 수정했다.",
+    "원문 scroll 검사에서 자연 크기로 한 페이지가 다 보이는 환경을 잘못 가정했다. 확대 후 실제 스크롤 조건으로 확인했다.",
+    "초기19계열 검사에서 다른 과목의 숨겨진 그래프/수식까지 셌다. 지정 선형대수 region으로 제한하고 최종95방문을 확인했다.",
+    "중간 전체 빌드의 병행 vector-calculus-gesture 타입 오류는 이후 공유 수정으로 해결됐다. 해당 파일은 이 작업에서 수정하지 않았다."
+  ],
+  "previousVerification": {
+    "at": "2026-10-02T23:25:55.249Z",
+    "unit": {
+      "total": 23,
+      "passed": 23,
+      "failed": 0,
+      "success": true,
+      "report": "unit-results.json"
+    },
+    "browser": {
+      "engine": "WebKit",
+      "profiles": 5,
+      "representativeFlowCases": 5,
+      "all19FrameCases": 5,
+      "wrongPdfPreservationCases": 5,
+      "totalCases": 15,
+      "failed": 0,
+      "reports": [
+        {
+          "file": "device-flow-results.json",
+          "expected": 5,
+          "failed": 0,
+          "skipped": 0,
+          "durationMs": 70309.71
+        },
+        {
+          "file": "device-frames-portrait.json",
+          "expected": 1,
+          "failed": 0,
+          "skipped": 0,
+          "durationMs": 26714.066
+        },
+        {
+          "file": "device-frames-four.json",
+          "expected": 4,
+          "failed": 0,
+          "skipped": 0,
+          "durationMs": 102945.329
+        },
+        {
+          "file": "device-source-results.json",
+          "expected": 5,
+          "failed": 0,
+          "skipped": 0,
+          "durationMs": 27796.947
+        }
+      ],
+      "frameVisits": 95,
+      "claims": [
+        "核心 흐름의 demo 기기저장·오입력·reload·사본 실패/재시도·원문·스크롤 복원·닫기/Esc·호출 초점 복귀",
+        "19계열 각각의 실제 수식 렌더·초기 조건·2D/3D 준비·오류 없음·문서 넘침 없음",
+        "정적 읽기 빈 조절부 제외, 연결도 기본 zoom1·현재 개념 이동",
+        "틀린 PDF hash 거부 후 원본 렌더·쪽·오류 안내 유지"
+      ],
+      "limits": [
+        "iPhone17Pro는 Playwright iPhone16Pro 프로필의 크기/입력 근사이다.",
+        "실제 물리 기기·VoiceOver·IME·모든 개인 테마·서체 조합은 미확인이다.",
+        "서버의 현재 일반 저장 구현과 이번 관찰 경로의 실제 계정 왕복은 다른 증거다."
+      ]
+    },
+    "scope": {
+      "pdfPages": 611,
+      "mainSections": 55,
+      "appendices": 2,
+      "maps": 8,
+      "conceptOccurrences": 91,
+      "labelledRelations": 107,
+      "candidateMarks": 688,
+      "semanticItemReviewComplete": false,
+      "coreExpositionRead": true,
+      "expositionSections": 55,
+      "readAppendices": 2,
+      "sourceGroupingReviewed": true,
+      "sourceIndexRecords": 710,
+      "fragmentMarks": 37,
+      "allExercisesRead": false,
+      "externalSupplementBodiesRead": false
+    },
+    "overallStatus": "부분 구현; 기존 목록 전수 연결, 개별 원문 항목 전수 대응 미완료"
+  },
+  "candidateChecks": {
+    "base": "6318aba05e2d6d0b8d43fbe9ce5cc607559d42f7",
+    "typecheck": "included in successful npm run build",
+    "build": "compatibility-reset-build.log",
+    "backend": "release-backend.log",
+    "fullUnits": {
+      "passed": 1318,
+      "skipped": 1,
+      "log": "compatibility-all-unit.log"
+    },
+    "productionBrowser": {
+      "passed": 6,
+      "failed": 0,
+      "profile": "iPhone-17-Pro-portrait",
+      "log": "compatibility-production.log"
+    },
+    "productionReset": {
+      "passed": 1,
+      "failed": 0,
+      "profile": "iPhone-17-Pro-portrait",
+      "log": "compatibility-reset-production.log"
+    },
+    "productionBatches": {
+      "passed": 7,
+      "profile": "iPhone-17-Pro-portrait",
+      "log": "compatibility-batches-production.log"
+    },
+    "longTours": {
+      "passed": 2,
+      "profile": "iPad-Pro-13-landscape",
+      "log": "ci-long-tours-tablet.log",
+      "perTestTimeoutMs": 180000
+    },
+    "scrollCompletion": {
+      "passed": 1,
+      "profile": "iPhone-17-Pro-landscape",
+      "log": "os-scroll-settled.log",
+      "change": "test helper waits for real key-driven scrolling to stop before measuring; product code unchanged"
+    },
+    "finalCI": {
+      "unitPassed": 1318,
+      "unitSkipped": 1,
+      "typecheck": true,
+      "productionBuild": true,
+      "backendBuild": true,
+      "fiveDeviceJobs": true,
+      "deploy": true,
+      "log": "final-ci.log",
+      "metadata": "final-ci.json"
+    }
+  },
+  "deployment": {
+    "authorized": true,
+    "status": "success; actual Pages assets and six public flows verified",
+    "target": "https://skmsmjs-netizen.github.io/study-space-generation2/",
+    "privatePdfIncluded": false,
+    "cancelledRuns": [
+      {
+        "commit": "969cac70563cd4f55b5818f653d4a8059415237c",
+        "run": 37084941746,
+        "conclusion": "cancelled before deployment; compatibility omission corrected"
+      },
+      {
+        "commit": "e5acc32d0d1506f533b4417e3e790f7639f59a62",
+        "run": 37087090153,
+        "conclusion": "cancelled before deployment; selected legacy reset must use legacy spec defaults"
+      }
+    ],
+    "failedRuns": [
+      {
+        "commit": "3d59765d9c518940baed2bc92b548089597b6c79",
+        "run": 37088503968,
+        "conclusion": "failure; deploy skipped",
+        "report": "ci-3d59765-failure-summary.json",
+        "resolution": "preserve 58 resets in six bounded batches; allow measured long34/19 tours180seconds; wait for real keyboard scrolling to settle in shared test helper"
+      }
+    ],
+    "commit": "15feb2835a0f7edad05d32bda76937fe3d699191",
+    "run": 37091693073,
+    "url": "https://github.com/skmsmjs-netizen/study-space-generation2/actions/runs/37091693073",
+    "completedAt": "2026-10-03T03:33:21.548085+00:00",
+    "assetVerification": {
+      "checked": 112,
+      "failed": 0,
+      "report": "public-asset-verification.json"
+    },
+    "publicBrowser": {
+      "engine": "WebKit",
+      "profile": "iPad-Pro-13-landscape",
+      "passed": 6,
+      "failed": 0,
+      "report": "public-browser-results.json",
+      "log": "public-six-flows.log",
+      "scope": [
+        "34 fresh frames and strict formulas",
+        "image IndexedDB/reload/broken replacement preserves original",
+        "source index/modes and numeric condition errors",
+        "old/current drafts/memos/view/reset/reload",
+        "local-only original PDF hash/render/zoom/scroll return; no server upload",
+        "save failure/retry/context focus/small/full return/19 representatives/static reading/map"
+      ]
+    }
+  }
+}

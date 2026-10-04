@@ -1,0 +1,423 @@
+Window: "ManSeekSong OS · 자료 책장 · 개념 전집 1,168", App: Figma.
+0 표준 윈도우 ManSeekSong OS · 자료 책장 · 개념 전집 1,168, Secondary Actions: Raise
+	1 container ManSeekSong OS · 자료 책장 · 개념 전집 1,168
+		2 container
+			3 HTML 콘텐츠 Figma, URL: file:///Users/manseeksong/Applications/Figma.app/Contents/Resources/app.asar/shell.html
+				4 container
+					5 탭 그룹 탭 바
+						6 container
+							7 tab (settable, integer) Description: 홈, Value: 0
+							8 tab (settable, integer) Description: 학습 공간 · 적분판정법 사고 과정, Value: 0
+							9 tab (settable, integer) Description: 학습 입력 · iPad 화면 · 학교 계정, Value: 0
+							10 tab (settable, integer) Description: ManSeekSong OS · 선형대수 수학관측실 & 인터랙티브관측실, Value: 0
+							11 tab (selected) Description: ManSeekSong OS · 자료 책장 · 개념 전집 1,168, Value: 1
+								12 버튼 탭 닫기
+							13 버튼 새 파일
+						14 팝업 버튼 열린 탭 및 최근에 닫은 탭
+			15 HTML 콘텐츠 ManSeekSong OS · 자료 책장 · 개념 전집 1,168 – Figma, URL: figma.com/design/FRPuAwx3q2Jka1VZOjuMil/ManSeekSong-OS-%25C2%25B7-%25EC%259E%2590%25EB%25A3%258C-%25EC%25B1%2585%25EC%259E%25A5-%25C2%25B7-%25EA%25B0%259C%25EB%2585%2590-%25EC%25A0%2584%25EC%25A7%2591-1-168?node-id=3-74&p=f&recovery=true&viewport=404%2C-39%2C0.02&t=oaN7hhXejDWN8u9x-0
+				16 container
+					17 container
+						18 container
+						19 container
+						20 container 보드
+							21 container 전집 · 절차형
+								22 정의 목록
+									23 container 크기
+										24 텍스트 크기
+									25 텍스트 0    0
+								26 container OS판본 · 06-006 · d63dd4de1d03 디자인 프레임
+									27 정의 목록
+										28 container 크기
+											29 텍스트 크기
+										30 텍스트 1584 허그    678 허그
+						31 container 캔버스 댓글 영역
+							32 버튼 새 댓글 만들기
+						33 container 왼쪽 사이드바
+							34 툴바 탐색 표시줄
+								35 팝업 버튼 메인 메뉴
+									36 이미지
+								37 버튼 파일
+									38 이미지
+									39 텍스트 파일
+								40 버튼 에이전트
+									41 텍스트 에이전트
+								42 버튼 에셋
+									43 이미지
+									44 텍스트 에셋
+								45 버튼 도구
+									46 이미지
+									47 텍스트 도구
+								48 버튼 변수
+									49 이미지
+									50 텍스트 변수
+							51 container
+								52 버튼 ManSeekSong OS · 자료 책장 · 개념 전집 1,168, 파일 이름
+								53 텍스트 파일 이름
+								54 팝업 버튼 파일 편집 메뉴
+								55 버튼 UI 최소화
+								56 link Description: 초안, Value: figma.com/files/team/1687318260958508483/project/663434607
+								57 container
+									58 항목 페이지 찾기 새 페이지 추가, Value: 2
+										59 버튼 페이지
+										60 버튼 찾기
+										61 버튼 새 페이지 추가
+									62 container
+										63 container
+											64 표
+												65 row 00 · 기준과 연결
+													66 셀
+														67 버튼 00 · 기준과 연결
+												68 row 01 · 공통 부품
+													69 셀
+														70 버튼 01 · 공통 부품
+												71 row 02 · 사용 흐름
+													72 셀
+														73 버튼 02 · 사용 흐름
+												74 row 전집 · 정의형
+													75 셀
+														76 버튼 전집 · 정의형
+												77 row 전집 · 원리형
+													78 셀
+														79 버튼 전집 · 원리형
+												80 row 전집 · 절차형
+													81 셀
+														82 버튼 전집 · 절차형
+												83 row 전집 · 구별형
+													84 셀
+														85 버튼 전집 · 구별형
+												86 row 전집 · 구조형
+													87 셀
+														88 버튼 전집 · 구조형
+												89 row 전집 · 과정형
+													90 셀
+														91 버튼 전집 · 과정형
+												92 row 전집 · 관점형
+													93 셀
+														94 버튼 전집 · 관점형
+												95 row 03 · 수식 벡터
+													96 셀
+														97 버튼 03 · 수식 벡터
+										98 슬라이더 Description: 크기 조정 핸들, Value: 100, Details: 184픽셀, Secondary Actions: Increment, Decrement
+								99 container
+									100 항목 레이어, Value: 2
+										101 버튼 레이어
+									102 트리 격자
+										103 container
+											104 row OS판본 · 01-055 · 0659aea04ff7
+												105 container
+													106 셀
+														107 텍스트 OS판본 · 01-055 · 0659aea04ff7
+											108 row OS판본 · 01-099 · 6047f737aa3c
+												109 container
+													110 셀
+														111 텍스트 OS판본 · 01-099 · 6047f737aa3c
+											112 row OS판본 · 01-092 · 85183407a27c
+												113 container
+													114 셀
+														115 텍스트 OS판본 · 01-092 · 85183407a27c
+											116 row OS판본 · 06-066 · e099d37c4cde
+												117 container
+													118 셀
+														119 텍스트 OS판본 · 06-066 · e099d37c4cde
+											120 row OS판본 · 06-037 · 760d868f2a73
+												121 container
+													122 셀
+														123 텍스트 OS판본 · 06-037 · 760d868f2a73
+											124 row OS판본 · 06-033 · c49f1d75b017
+												125 container
+													126 셀
+														127 텍스트 OS판본 · 06-033 · c49f1d75b017
+											128 row OS판본 · 01-057 · b1bf0bd04012
+												129 container
+													130 셀
+														131 텍스트 OS판본 · 01-057 · b1bf0bd04012
+											132 row OS판본 · 01-047 · df33e04aae95
+												133 container
+													134 셀
+														135 텍스트 OS판본 · 01-047 · df33e04aae95
+											136 row OS판본 · 01-063 · ca5085360080
+												137 container
+													138 셀
+														139 텍스트 OS판본 · 01-063 · ca5085360080
+											140 row OS판본 · 04-100 · 464a1a0f11e6
+												141 container
+													142 셀
+														143 텍스트 OS판본 · 04-100 · 464a1a0f11e6
+											144 row OS판본 · 04-092 · ae2fbe367cd0
+												145 container
+													146 셀
+														147 텍스트 OS판본 · 04-092 · ae2fbe367cd0
+											148 row OS판본 · 04-091 · 4b892be29662
+												149 container
+													150 셀
+														151 텍스트 OS판본 · 04-091 · 4b892be29662
+											152 row OS판본 · 04-071 · 9aad07e8e94e
+												153 container
+													154 셀
+														155 텍스트 OS판본 · 04-071 · 9aad07e8e94e
+											156 row OS판본 · 01-118 · 0c4a5a5f086a
+												157 container
+													158 셀
+														159 텍스트 OS판본 · 01-118 · 0c4a5a5f086a
+											160 row OS판본 · 10-119 · 1b9c393a4a12
+												161 container
+													162 셀
+														163 텍스트 OS판본 · 10-119 · 1b9c393a4a12
+											164 row OS판본 · 04-066 · 815d5f9031f6
+												165 container
+													166 셀
+														167 텍스트 OS판본 · 04-066 · 815d5f9031f6
+											168 row OS판본 · 04-056 · 6bd59f2a5a94
+												169 container
+													170 셀
+														171 텍스트 OS판본 · 04-056 · 6bd59f2a5a94
+											172 row OS판본 · 04-047 · ea9dd9860198
+												173 container
+													174 셀
+														175 텍스트 OS판본 · 04-047 · ea9dd9860198
+											176 row OS판본 · 04-038 · 768e143023d2
+												177 container
+													178 셀
+														179 텍스트 OS판본 · 04-038 · 768e143023d2
+											180 row OS판본 · 10-103 · d1f80e051a15
+												181 container
+													182 셀
+														183 텍스트 OS판본 · 10-103 · d1f80e051a15
+											184 row OS판본 · 10-101 · 772b30e30889
+												185 container
+													186 셀
+														187 텍스트 OS판본 · 10-101 · 772b30e30889
+											188 row OS판본 · 10-088 · 88329674140e
+												189 container
+													190 셀
+														191 텍스트 OS판본 · 10-088 · 88329674140e
+											192 row OS판본 · 04-035 · d4b63bc6b618
+												193 container
+													194 셀
+														195 텍스트 OS판본 · 04-035 · d4b63bc6b618
+											196 row OS판본 · 04-027 · cada063fd736
+												197 container
+													198 셀
+														199 텍스트 OS판본 · 04-027 · cada063fd736
+											200 row OS판본 · 04-022 · 59b10e21425a
+												201 container
+													202 셀
+														203 텍스트 OS판본 · 04-022 · 59b10e21425a
+											204 row OS판본 · 04-014 · 624d6fbb8a87
+												205 container
+													206 셀
+														207 텍스트 OS판본 · 04-014 · 624d6fbb8a87
+											208 row OS판본 · 03-086 · 5b192fb02bad
+												209 container
+													210 셀
+														211 텍스트 OS판본 · 03-086 · 5b192fb02bad
+											212 row OS판본 · 03-059 · 0d177326d9aa
+												213 container
+													214 셀
+														215 텍스트 OS판본 · 03-059 · 0d177326d9aa
+											216 row OS판본 · 09-098 · 2af41c036393
+												217 container
+													218 셀
+														219 텍스트 OS판본 · 09-098 · 2af41c036393
+											220 row OS판본 · 09-088 · 14ecf3a1d91e
+												221 container
+													222 셀
+														223 텍스트 OS판본 · 09-088 · 14ecf3a1d91e
+											224 row OS판본 · 09-059 · e25fa04b98b7
+												225 container
+													226 셀
+														227 텍스트 OS판본 · 09-059 · e25fa04b98b7
+											228 row OS판본 · 09-052 · 80c2435c0e07
+												229 container
+													230 셀
+														231 텍스트 OS판본 · 09-052 · 80c2435c0e07
+											232 row OS판본 · 05-019 · 7c4fa095b79e
+												233 container
+													234 셀
+														235 텍스트 OS판본 · 05-019 · 7c4fa095b79e
+											236 row OS판본 · 09-033 · cdc72340cd97
+												237 container
+													238 셀
+														239 텍스트 OS판본 · 09-033 · cdc72340cd97
+											240 row OS판본 · 09-032 · 0b9e0c0b9459
+												241 container
+													242 셀
+														243 텍스트 OS판본 · 09-032 · 0b9e0c0b9459
+											244 row OS판본 · 09-017 · d8f1f3655a3b
+												245 container
+													246 셀
+														247 텍스트 OS판본 · 09-017 · d8f1f3655a3b
+											248 row OS판본 · 09-015 · a36070b20f72
+												249 container
+													250 셀
+														251 텍스트 OS판본 · 09-015 · a36070b20f72
+											252 row OS판본 · 02-098 · b065b3fa088f
+												253 container
+													254 셀
+														255 텍스트 OS판본 · 02-098 · b065b3fa088f
+											256 row OS판본 · 02-085 · e613244a063a
+												257 container
+													258 셀
+														259 텍스트 OS판본 · 02-085 · e613244a063a
+											260 row OS판본 · 08-111 · aca1331183fa
+												261 container
+													262 셀
+														263 텍스트 OS판본 · 08-111 · aca1331183fa
+											264 row OS판본 · 02-079 · 45d8d6b2a3dc
+												265 container
+													266 셀
+														267 텍스트 OS판본 · 02-079 · 45d8d6b2a3dc
+											268 row OS판본 · 08-052 · 5a389fa5d79b
+												269 container
+													270 셀
+														271 텍스트 OS판본 · 08-052 · 5a389fa5d79b
+											272 row OS판본 · 08-044 · a1055d14ff29
+												273 container
+													274 셀
+														275 텍스트 OS판본 · 08-044 · a1055d14ff29
+											276 row OS판본 · 08-013 · 561a22612857
+												277 container
+													278 셀
+														279 텍스트 OS판본 · 08-013 · 561a22612857
+											280 row OS판본 · 08-027 · 0ef87156d23d
+												281 container
+													282 셀
+														283 텍스트 OS판본 · 08-027 · 0ef87156d23d
+											284 row OS판본 · 01-127 · ddea4a2576eb
+												285 container
+													286 셀
+														287 텍스트 OS판본 · 01-127 · ddea4a2576eb
+											288 row OS판본 · 01-116 · fa3073be2b47
+												289 container
+													290 셀
+														291 텍스트 OS판본 · 01-116 · fa3073be2b47
+											292 row OS판본 · 01-090 · 571fc49edebe
+												293 container
+													294 셀
+														295 텍스트 OS판본 · 01-090 · 571fc49edebe
+											296 row OS판본 · 01-086 · 7c1bade5515e
+												297 container
+													298 셀
+														299 텍스트 OS판본 · 01-086 · 7c1bade5515e
+											300 row OS판본 · 01-065 · f3c4c0cddd61
+												301 container
+													302 셀
+														303 텍스트 OS판본 · 01-065 · f3c4c0cddd61
+											304 row OS판본 · 01-039 · ac24cb624cf0
+												305 container
+													306 셀
+														307 텍스트 OS판본 · 01-039 · ac24cb624cf0
+											308 row OS판본 · 01-030 · 032670384249
+												309 container
+													310 셀
+														311 텍스트 OS판본 · 01-030 · 032670384249
+											312 row OS판본 · 01-014 · e2841d890b3d
+												313 container
+													314 셀
+														315 텍스트 OS판본 · 01-014 · e2841d890b3d
+								316 슬라이더 Description: 크기 조정 핸들, Value: 240, Details: 240픽셀(최소), Secondary Actions: Increment, Decrement
+						317 container 오른쪽 사이드바
+							318 container
+								319 container
+									320 팝업 버튼 멀티플레이어 도구
+										321 이미지
+									322 container 프로토타입 보기
+										323 버튼 프레젠테이션
+										324 팝업 버튼 프로토타입 보기
+									325 버튼 공유하기
+									326 탭 그룹
+										327 tab (selected) 디자인, Value: 1
+										328 tab (settable, integer) 프로토타입, Value: 0
+									329 팝업 버튼 2%, 확대/축소 및 보기 옵션
+										330 텍스트 2%
+										331 이미지
+									332 container
+										333 텍스트 페이지
+										334 팝업 버튼 변수 모드 적용하기
+										335 버튼 단색 hex: F5F5F5
+										336 텍스트 필드 (settable) Description: 색상, Value: F5F5F5
+										337 container
+											338 텍스트 필드 (settable) %, Value: 100
+											339 텍스트 %
+										340 체크박스 표시 전환, Value: 1
+										341 텍스트 표시 전환
+										342 항목 스타일, Value: 2
+											343 텍스트 스타일
+										344 팝업 버튼 스타일 만들기
+										345 항목 텍스트 스타일, Value: 3
+											346 텍스트 텍스트 스타일
+										347 버튼 텍스트 스타일 만들기
+										348 윤곽체
+											349 row
+												350 셀
+													351 버튼 폴더 전환
+												352 셀
+													353 버튼 OS
+												354 셀
+													355 버튼 스타일 만들기
+											356 row
+												357 셀
+													358 버튼 폴더 전환
+												359 셀
+													360 버튼 Concept paper
+												361 셀
+													362 버튼 스타일 만들기
+										363 버튼 내보내기
+										364 버튼 내보내기 설정 추가
+								365 슬라이더 Description: 크기 조정 핸들, Value: 241, Details: 241픽셀(최소), Secondary Actions: Increment, Decrement
+					366 container 애플리케이션 도구 모음
+						367 툴바 편집기
+							368 container 이동
+								369 전환 버튼 Description: 이동, Value: 1
+									370 이미지
+								371 전환 버튼 Description: 이동 도구, Value: 0
+							372 container 프레임
+								373 전환 버튼 Description: 프레임, Value: 0
+									374 이미지
+								375 전환 버튼 Description: 영역 도구, Value: 0
+							376 container 직사각형
+								377 전환 버튼 Description: 직사각형, Value: 0
+									378 이미지
+								379 전환 버튼 Description: 모양 도구, Value: 0
+							380 container 펜
+								381 전환 버튼 Description: 펜, Value: 0
+									382 이미지
+								383 전환 버튼 Description: 창작 도구, Value: 0
+							384 container 텍스트
+								385 전환 버튼 Description: 텍스트, Value: 0
+									386 이미지
+								387 전환 버튼 Description: 문자 도구, Value: 0
+							388 container 댓글
+								389 전환 버튼 Description: 댓글, Value: 0
+									390 이미지
+								391 전환 버튼 Description: 댓글 도구, Value: 0
+							392 전환 버튼 Description: 작업, Value: 0
+								393 이미지
+							394 공구 벨트 모드
+								395 텍스트 공구 벨트 모드
+								396 라디오 버튼 그리기, Value: 0
+								397 라디오 버튼 디자인, Value: 1
+								398 라디오 버튼 모션, Value: 0
+								399 라디오 버튼 Dev Mode, Value: 0
+					400 container 도움말/확대/축소 도구 모음
+						401 툴바 도움말/확대/축소 도구 모음
+							402 팝업 버튼 도움말
+								403 이미지
+	404 닫기 버튼
+	405 전체 화면 버튼 Help: 이 버튼을 누르면 윈도우를 확대/축소합니다., Secondary Actions: 윈도우 확대/축소
+	406 최소화 버튼
+407 menu bar
+	408 Figma
+	409 파일
+	410 편집
+	411 보기
+	412 개체
+	413 텍스트
+	414 정렬
+	415 벡터
+	416 플러그인
+	417 위젯
+	418 창
+	419 도움말
+
+The focused UI element is 3 HTML 콘텐츠 Figma, URL: file:///Users/manseeksong/Applications/Figma.app/Contents/Resources/app.asar/shell.html

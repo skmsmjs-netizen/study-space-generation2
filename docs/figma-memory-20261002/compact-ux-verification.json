@@ -1,0 +1,21 @@
+{
+  "kind": "local-ux-projection-integrity-not-runtime",
+  "status": "passed",
+  "checkedAt": "2026-10-02T04:03:24.658Z",
+  "policy": "summary-reference-v1",
+  "sourceChecksum": "c080b1b82f58bf46d05fac967061f05dab35509e011193b6e812e44f783f8ebe",
+  "cards": 1585,
+  "actions": 1462,
+  "surfaces": 121,
+  "actionBindings": 6182,
+  "handlerBindings": 3399,
+  "fullDocumentsCompared": 326,
+  "compactBodyChars": 529230,
+  "maxCompactBodyChars": 650,
+  "legacyInputBodiesValidated": 1585,
+  "maxLegacyDisplayBodyChars": 1450,
+  "localOriginalsUnchanged": true,
+  "historicalFigmaInputsUnchanged": true,
+  "remoteExecuted": false,
+  "runtimeVerified": false
+}

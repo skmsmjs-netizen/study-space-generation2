@@ -1,0 +1,17 @@
+{
+  "type": "result",
+  "result": {
+    "task": "instancepass",
+    "pageId": "74:400",
+    "convertedCount": 4,
+    "sourcePreserved": true,
+    "mathPreserved": true,
+    "createdNodeIds": [],
+    "mutatedNodeIds": [
+      "178:31822",
+      "178:31823",
+      "178:31824",
+      "178:31825"
+    ]
+  }
+}

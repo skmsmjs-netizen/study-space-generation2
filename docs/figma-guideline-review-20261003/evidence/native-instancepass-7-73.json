@@ -1,0 +1,23 @@
+{
+  "type": "result",
+  "result": {
+    "task": "instancepass",
+    "pageId": "7:73",
+    "convertedCount": 10,
+    "sourcePreserved": true,
+    "mathPreserved": true,
+    "createdNodeIds": [],
+    "mutatedNodeIds": [
+      "I45:11888;16:199",
+      "I45:11913;16:199",
+      "I45:11938;16:199",
+      "I45:11963;16:199",
+      "I45:11988;16:199",
+      "I45:12023;16:199",
+      "I45:12058;16:199",
+      "I45:12093;16:199",
+      "I45:12128;16:199",
+      "I45:12163;16:199"
+    ]
+  }
+}

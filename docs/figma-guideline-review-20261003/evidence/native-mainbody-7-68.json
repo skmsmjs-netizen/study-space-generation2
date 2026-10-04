@@ -1,0 +1,990 @@
+{
+  "type": "result",
+  "result": {
+    "task": "mainbody",
+    "pageId": "7:68",
+    "convertedCount": 97,
+    "sourcePreserved": true,
+    "styleIds": [
+      "S:ee5b536b1b285a9f491514f91d5c4a30dc9cde3a,",
+      "S:6a995bce8c99cb7522d5b2d50d4e97f63f8b186d,",
+      "S:dcd92b8ddb0b86c2c2f10b0cbe6ec0b019fb1c96,",
+      "S:1848d68d3855d7afc05321b29104af2daca9d4ff,"
+    ],
+    "sources": [
+      {
+        "id": "36:173",
+        "font": "ManSeekSong Paper",
+        "width": 766,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "36:195",
+        "font": "ManSeekSong Paper",
+        "width": 1664,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "36:199",
+        "font": "ManSeekSong Paper",
+        "width": 766,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "36:260",
+        "font": "ManSeekSong Paper",
+        "width": 766,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "36:306",
+        "font": "ManSeekSong Paper",
+        "width": 766,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "36:367",
+        "font": "ManSeekSong Paper",
+        "width": 766,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "36:438",
+        "font": "ManSeekSong Paper",
+        "width": 766,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "36:606",
+        "font": "ManSeekSong Paper",
+        "width": 766,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "36:669",
+        "font": "ManSeekSong Paper",
+        "width": 766,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "36:726",
+        "font": "ManSeekSong Paper",
+        "width": 1664,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "36:729",
+        "font": "ManSeekSong Paper",
+        "width": 1614,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "36:734",
+        "font": "ManSeekSong Paper",
+        "width": 494,
+        "size": 16,
+        "sourcePreserved": true
+      },
+      {
+        "id": "36:931",
+        "font": "ManSeekSong Paper",
+        "width": 1664,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "36:935",
+        "font": "ManSeekSong Paper",
+        "width": 766,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "36:936",
+        "font": "ManSeekSong Paper",
+        "width": 766,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "36:977",
+        "font": "ManSeekSong Paper",
+        "width": 1664,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "36:983",
+        "font": "ManSeekSong Paper",
+        "width": 370,
+        "size": 16,
+        "sourcePreserved": true
+      },
+      {
+        "id": "36:989",
+        "font": "ManSeekSong Paper",
+        "width": 370,
+        "size": 16,
+        "sourcePreserved": true
+      },
+      {
+        "id": "36:995",
+        "font": "ManSeekSong Paper",
+        "width": 370,
+        "size": 16,
+        "sourcePreserved": true
+      },
+      {
+        "id": "36:1001",
+        "font": "ManSeekSong Paper",
+        "width": 370,
+        "size": 16,
+        "sourcePreserved": true
+      },
+      {
+        "id": "36:1008",
+        "font": "ManSeekSong Paper",
+        "width": 370,
+        "size": 16,
+        "sourcePreserved": true
+      },
+      {
+        "id": "36:1014",
+        "font": "ManSeekSong Paper",
+        "width": 370,
+        "size": 16,
+        "sourcePreserved": true
+      },
+      {
+        "id": "36:1020",
+        "font": "ManSeekSong Paper",
+        "width": 370,
+        "size": 16,
+        "sourcePreserved": true
+      },
+      {
+        "id": "36:1026",
+        "font": "ManSeekSong Paper",
+        "width": 370,
+        "size": 16,
+        "sourcePreserved": true
+      },
+      {
+        "id": "36:1033",
+        "font": "ManSeekSong Paper",
+        "width": 370,
+        "size": 16,
+        "sourcePreserved": true
+      },
+      {
+        "id": "36:1039",
+        "font": "ManSeekSong Paper",
+        "width": 370,
+        "size": 16,
+        "sourcePreserved": true
+      },
+      {
+        "id": "36:1045",
+        "font": "ManSeekSong Paper",
+        "width": 370,
+        "size": 16,
+        "sourcePreserved": true
+      },
+      {
+        "id": "36:1051",
+        "font": "ManSeekSong Paper",
+        "width": 370,
+        "size": 16,
+        "sourcePreserved": true
+      },
+      {
+        "id": "36:1058",
+        "font": "ManSeekSong Paper",
+        "width": 370,
+        "size": 16,
+        "sourcePreserved": true
+      },
+      {
+        "id": "36:1064",
+        "font": "ManSeekSong Paper",
+        "width": 370,
+        "size": 16,
+        "sourcePreserved": true
+      },
+      {
+        "id": "36:1070",
+        "font": "ManSeekSong Paper",
+        "width": 370,
+        "size": 16,
+        "sourcePreserved": true
+      },
+      {
+        "id": "36:1076",
+        "font": "ManSeekSong Paper",
+        "width": 370,
+        "size": 16,
+        "sourcePreserved": true
+      },
+      {
+        "id": "36:1081",
+        "font": "ManSeekSong Paper",
+        "width": 1614,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "82:248",
+        "font": "ManSeekSong Paper",
+        "width": 1104,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "82:249",
+        "font": "ManSeekSong Paper",
+        "width": 1104,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "82:250",
+        "font": "ManSeekSong Paper",
+        "width": 1104,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "102:31840",
+        "font": "ManSeekSong Paper",
+        "width": 1006,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "102:31841",
+        "font": "ManSeekSong Paper",
+        "width": 1006,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "102:31847",
+        "font": "ManSeekSong Paper",
+        "width": 1006,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "102:31848",
+        "font": "ManSeekSong Paper",
+        "width": 1006,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "102:31854",
+        "font": "ManSeekSong Paper",
+        "width": 1006,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "102:31855",
+        "font": "ManSeekSong Paper",
+        "width": 1006,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "102:31861",
+        "font": "ManSeekSong Paper",
+        "width": 1006,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "102:31862",
+        "font": "ManSeekSong Paper",
+        "width": 1006,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "102:31868",
+        "font": "ManSeekSong Paper",
+        "width": 1006,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "102:31869",
+        "font": "ManSeekSong Paper",
+        "width": 1006,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "102:31875",
+        "font": "ManSeekSong Paper",
+        "width": 1006,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "102:31876",
+        "font": "ManSeekSong Paper",
+        "width": 1006,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "102:31882",
+        "font": "ManSeekSong Paper",
+        "width": 1006,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "102:31883",
+        "font": "ManSeekSong Paper",
+        "width": 1006,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "102:31892",
+        "font": "ManSeekSong Paper",
+        "width": 1006,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "102:31893",
+        "font": "ManSeekSong Paper",
+        "width": 1006,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "102:31899",
+        "font": "ManSeekSong Paper",
+        "width": 1006,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "102:31900",
+        "font": "ManSeekSong Paper",
+        "width": 1006,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "102:31906",
+        "font": "ManSeekSong Paper",
+        "width": 1006,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "102:31907",
+        "font": "ManSeekSong Paper",
+        "width": 1006,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "102:31913",
+        "font": "ManSeekSong Paper",
+        "width": 1006,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "102:31914",
+        "font": "ManSeekSong Paper",
+        "width": 1006,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "102:31920",
+        "font": "ManSeekSong Paper",
+        "width": 1006,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "102:31921",
+        "font": "ManSeekSong Paper",
+        "width": 1006,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "102:31937",
+        "font": "ManSeekSong Paper",
+        "width": 1006,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "102:31938",
+        "font": "ManSeekSong Paper",
+        "width": 1006,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "102:31947",
+        "font": "ManSeekSong Paper",
+        "width": 1006,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "102:31948",
+        "font": "ManSeekSong Paper",
+        "width": 1006,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "102:31954",
+        "font": "ManSeekSong Paper",
+        "width": 1006,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "102:31955",
+        "font": "ManSeekSong Paper",
+        "width": 1006,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "102:31961",
+        "font": "ManSeekSong Paper",
+        "width": 1006,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "102:31962",
+        "font": "ManSeekSong Paper",
+        "width": 1006,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "102:31968",
+        "font": "ManSeekSong Paper",
+        "width": 1006,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "102:31969",
+        "font": "ManSeekSong Paper",
+        "width": 1006,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "102:31975",
+        "font": "ManSeekSong Paper",
+        "width": 1006,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "102:31976",
+        "font": "ManSeekSong Paper",
+        "width": 1006,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "102:31982",
+        "font": "ManSeekSong Paper",
+        "width": 1006,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "102:31983",
+        "font": "ManSeekSong Paper",
+        "width": 1006,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "102:31992",
+        "font": "ManSeekSong Paper",
+        "width": 1006,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "102:31993",
+        "font": "ManSeekSong Paper",
+        "width": 1006,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "102:31999",
+        "font": "ManSeekSong Paper",
+        "width": 1006,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "102:32000",
+        "font": "ManSeekSong Paper",
+        "width": 1006,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "102:32006",
+        "font": "ManSeekSong Paper",
+        "width": 1006,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "102:32007",
+        "font": "ManSeekSong Paper",
+        "width": 1006,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "102:32013",
+        "font": "ManSeekSong Paper",
+        "width": 1006,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "102:32014",
+        "font": "ManSeekSong Paper",
+        "width": 1006,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "102:32020",
+        "font": "ManSeekSong Paper",
+        "width": 1006,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "102:32021",
+        "font": "ManSeekSong Paper",
+        "width": 1006,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "109:3592",
+        "font": "ManSeekSong Paper",
+        "width": 1040,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "155:183",
+        "font": "ManSeekSong Paper",
+        "width": 1040,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "155:186",
+        "font": "ManSeekSong Paper",
+        "width": 992,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "155:190",
+        "font": "ManSeekSong Paper",
+        "width": 992,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "155:194",
+        "font": "ManSeekSong Paper",
+        "width": 992,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "155:198",
+        "font": "ManSeekSong Paper",
+        "width": 992,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "155:202",
+        "font": "ManSeekSong Paper",
+        "width": 992,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "155:206",
+        "font": "ManSeekSong Paper",
+        "width": 992,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "155:210",
+        "font": "ManSeekSong Paper",
+        "width": 992,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "178:183",
+        "font": "ManSeekSong Paper",
+        "width": 1040,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "178:184",
+        "font": "ManSeekSong Paper",
+        "width": 1040,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "178:185",
+        "font": "ManSeekSong Paper",
+        "width": 1040,
+        "size": 18,
+        "sourcePreserved": true
+      },
+      {
+        "id": "178:186",
+        "font": "ManSeekSong Paper",
+        "width": 1040,
+        "size": 18,
+        "sourcePreserved": true
+      }
+    ],
+    "createdNodeIds": [],
+    "mutatedNodeIds": [
+      "342:24459",
+      "36:173",
+      "342:24456",
+      "342:24463",
+      "36:195",
+      "342:24460",
+      "342:24467",
+      "36:199",
+      "342:24464",
+      "342:24471",
+      "36:260",
+      "342:24468",
+      "342:24475",
+      "36:306",
+      "342:24472",
+      "342:24479",
+      "36:367",
+      "342:24476",
+      "342:24483",
+      "36:438",
+      "342:24480",
+      "342:24487",
+      "36:606",
+      "342:24484",
+      "342:24491",
+      "36:669",
+      "342:24488",
+      "342:24495",
+      "36:726",
+      "342:24492",
+      "342:24499",
+      "36:729",
+      "342:24496",
+      "342:24503",
+      "36:734",
+      "342:24500",
+      "342:24507",
+      "36:931",
+      "342:24504",
+      "342:24511",
+      "36:935",
+      "342:24508",
+      "342:24515",
+      "36:936",
+      "342:24512",
+      "342:24519",
+      "36:977",
+      "342:24516",
+      "342:24523",
+      "36:983",
+      "342:24520",
+      "342:24527",
+      "36:989",
+      "342:24524",
+      "342:24531",
+      "36:995",
+      "342:24528",
+      "342:24535",
+      "36:1001",
+      "342:24532",
+      "342:24539",
+      "36:1008",
+      "342:24536",
+      "342:24543",
+      "36:1014",
+      "342:24540",
+      "342:24547",
+      "36:1020",
+      "342:24544",
+      "342:24551",
+      "36:1026",
+      "342:24548",
+      "342:24555",
+      "36:1033",
+      "342:24552",
+      "342:24559",
+      "36:1039",
+      "342:24556",
+      "342:24563",
+      "36:1045",
+      "342:24560",
+      "342:24567",
+      "36:1051",
+      "342:24564",
+      "342:24571",
+      "36:1058",
+      "342:24568",
+      "342:24575",
+      "36:1064",
+      "342:24572",
+      "342:24579",
+      "36:1070",
+      "342:24576",
+      "342:24583",
+      "36:1076",
+      "342:24580",
+      "342:24587",
+      "36:1081",
+      "342:24584",
+      "342:24591",
+      "82:248",
+      "342:24588",
+      "342:24595",
+      "82:249",
+      "342:24592",
+      "342:24599",
+      "82:250",
+      "342:24596",
+      "342:24603",
+      "102:31840",
+      "342:24600",
+      "342:24607",
+      "102:31841",
+      "342:24604",
+      "342:24611",
+      "102:31847",
+      "342:24608",
+      "342:24615",
+      "102:31848",
+      "342:24612",
+      "342:24619",
+      "102:31854",
+      "342:24616",
+      "342:24623",
+      "102:31855",
+      "342:24620",
+      "342:24627",
+      "102:31861",
+      "342:24624",
+      "342:24631",
+      "102:31862",
+      "342:24628",
+      "342:24635",
+      "102:31868",
+      "342:24632",
+      "342:24639",
+      "102:31869",
+      "342:24636",
+      "342:24643",
+      "102:31875",
+      "342:24640",
+      "342:24647",
+      "102:31876",
+      "342:24644",
+      "342:24651",
+      "102:31882",
+      "342:24648",
+      "342:24655",
+      "102:31883",
+      "342:24652",
+      "342:24659",
+      "102:31892",
+      "342:24656",
+      "342:24663",
+      "102:31893",
+      "342:24660",
+      "342:24667",
+      "102:31899",
+      "342:24664",
+      "342:24671",
+      "102:31900",
+      "342:24668",
+      "342:24675",
+      "102:31906",
+      "342:24672",
+      "342:24679",
+      "102:31907",
+      "342:24676",
+      "342:24683",
+      "102:31913",
+      "342:24680",
+      "342:24687",
+      "102:31914",
+      "342:24684",
+      "342:24691",
+      "102:31920",
+      "342:24688",
+      "342:24695",
+      "102:31921",
+      "342:24692",
+      "342:24699",
+      "102:31937",
+      "342:24696",
+      "342:24703",
+      "102:31938",
+      "342:24700",
+      "342:24707",
+      "102:31947",
+      "342:24704",
+      "342:24711",
+      "102:31948",
+      "342:24708",
+      "342:24715",
+      "102:31954",
+      "342:24712",
+      "342:24719",
+      "102:31955",
+      "342:24716",
+      "342:24723",
+      "102:31961",
+      "342:24720",
+      "342:24727",
+      "102:31962",
+      "342:24724",
+      "342:24731",
+      "102:31968",
+      "342:24728",
+      "342:24735",
+      "102:31969",
+      "342:24732",
+      "342:24739",
+      "102:31975",
+      "342:24736",
+      "342:24743",
+      "102:31976",
+      "342:24740",
+      "342:24747",
+      "102:31982",
+      "342:24744",
+      "342:24751",
+      "102:31983",
+      "342:24748",
+      "342:24755",
+      "102:31992",
+      "342:24752",
+      "342:24759",
+      "102:31993",
+      "342:24756",
+      "342:24763",
+      "102:31999",
+      "342:24760",
+      "342:24767",
+      "102:32000",
+      "342:24764",
+      "342:24771",
+      "102:32006",
+      "342:24768",
+      "342:24775",
+      "102:32007",
+      "342:24772",
+      "342:24779",
+      "102:32013",
+      "342:24776",
+      "342:24783",
+      "102:32014",
+      "342:24780",
+      "342:24787",
+      "102:32020",
+      "342:24784",
+      "342:24791",
+      "102:32021",
+      "342:24788",
+      "342:24795",
+      "109:3592",
+      "342:24792",
+      "342:24799",
+      "155:183",
+      "342:24796",
+      "342:24803",
+      "155:186",
+      "342:24800",
+      "342:24807",
+      "155:190",
+      "342:24804",
+      "342:24811",
+      "155:194",
+      "342:24808",
+      "342:24815",
+      "155:198",
+      "342:24812",
+      "342:24819",
+      "155:202",
+      "342:24816",
+      "342:24823",
+      "155:206",
+      "342:24820",
+      "342:24827",
+      "155:210",
+      "342:24824",
+      "342:24831",
+      "178:183",
+      "342:24828",
+      "342:24835",
+      "178:184",
+      "342:24832",
+      "342:24839",
+      "178:185",
+      "342:24836",
+      "342:24843",
+      "178:186",
+      "342:24840"
+    ]
+  }
+}

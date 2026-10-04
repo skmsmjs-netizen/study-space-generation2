@@ -1,0 +1,77 @@
+{
+  "pageId": "68:58623",
+  "createdNodeIds": [
+    "263:33492",
+    "263:33493",
+    "263:33494",
+    "263:33495"
+  ],
+  "mutatedNodeIds": [
+    "263:33492",
+    "68:71194",
+    "68:71197",
+    "68:71185",
+    "263:33493",
+    "68:71214",
+    "68:71217",
+    "68:71205",
+    "263:33494",
+    "68:71234",
+    "68:71237",
+    "68:71225",
+    "263:33495",
+    "68:71254",
+    "68:71257",
+    "68:71245"
+  ],
+  "results": [
+    {
+      "id": "68:71185",
+      "name": "관측 기본틀 · 광파와 광학",
+      "pattern": "L194",
+      "structure": "263:33492",
+      "preserved": true,
+      "viewport": {
+        "width": 640,
+        "height": 744,
+        "overflow": "NONE"
+      }
+    },
+    {
+      "id": "68:71205",
+      "name": "관측 기본틀 · 빛의 간섭·회절·편광",
+      "pattern": "L194",
+      "structure": "263:33493",
+      "preserved": true,
+      "viewport": {
+        "width": 640,
+        "height": 744,
+        "overflow": "NONE"
+      }
+    },
+    {
+      "id": "68:71225",
+      "name": "관측 기본틀 · 전기력",
+      "pattern": "L194",
+      "structure": "263:33494",
+      "preserved": true,
+      "viewport": {
+        "width": 640,
+        "height": 744,
+        "overflow": "NONE"
+      }
+    },
+    {
+      "id": "68:71245",
+      "name": "관측 기본틀 · 전기장",
+      "pattern": "L194",
+      "structure": "263:33495",
+      "preserved": true,
+      "viewport": {
+        "width": 640,
+        "height": 744,
+        "overflow": "NONE"
+      }
+    }
+  ]
+}

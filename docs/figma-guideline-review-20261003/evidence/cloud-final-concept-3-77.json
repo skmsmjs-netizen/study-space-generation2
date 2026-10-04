@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"pageId\":\"3:77\",\"name\":\"전집 · 과정형\",\"rootCount\":167,\"publicationCount\":167,\"nativeParagraphCount\":557,\"richParagraphCount\":142,\"renderedNative95TextCount\":706,\"problems\":[],\"representativeRoots\":[{\"id\":\"46:3558\",\"name\":\"OS판본 · 01-010 · 53a66b5b2297\",\"width\":2400,\"height\":1065.612060546875},{\"id\":\"46:7729\",\"name\":\"OS판본 · 01-011 · 8cd7e9379869\",\"width\":2400,\"height\":1435.8692626953125},{\"id\":\"47:3192\",\"name\":\"OS판본 · 01-026 · 7e4f016b71c1\",\"width\":2400,\"height\":1187.273193359375}],\"createdNodeIds\":[],\"mutatedNodeIds\":[]}"
+    }
+  ],
+  "isError": false
+}

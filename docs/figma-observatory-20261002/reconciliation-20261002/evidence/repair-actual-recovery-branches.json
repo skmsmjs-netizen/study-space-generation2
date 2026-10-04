@@ -1,0 +1,76 @@
+{
+  "pageId": "7:76",
+  "createdNodeIds": [],
+  "mutatedNodeIds": [
+    "I68:63438;74:67410",
+    "I68:63438;74:67413",
+    "I68:64235;74:67457",
+    "I68:63903;74:67480"
+  ],
+  "edges": [
+    {
+      "flowId": "F06",
+      "label": "자기 평가 저장 다시 시도",
+      "instanceId": "68:63438",
+      "fromFrameId": "68:63437",
+      "toFrameId": "68:63110",
+      "toRouteId": "R29",
+      "branch": "retry",
+      "expectedReturn": false,
+      "callerIsHome": false,
+      "directEntryFallback": false,
+      "controlId": "I68:63438;74:67410",
+      "kind": "NAVIGATE",
+      "bindingLocation": "screen-instance"
+    },
+    {
+      "flowId": "F06",
+      "label": "평가 취소하고 초안 유지",
+      "instanceId": "68:63438",
+      "fromFrameId": "68:63437",
+      "toFrameId": "68:62958",
+      "toRouteId": "R29",
+      "branch": "cancel",
+      "expectedReturn": true,
+      "callerIsHome": false,
+      "directEntryFallback": false,
+      "controlId": "I68:63438;74:67413",
+      "kind": "NAVIGATE",
+      "bindingLocation": "screen-instance"
+    },
+    {
+      "flowId": "F07",
+      "label": "실행",
+      "instanceId": "68:64235",
+      "fromFrameId": "68:64234",
+      "toFrameId": "68:63902",
+      "toRouteId": "R25",
+      "branch": "retry",
+      "expectedReturn": false,
+      "callerIsHome": false,
+      "directEntryFallback": false,
+      "controlId": "I68:64235;74:67457",
+      "kind": "NAVIGATE",
+      "bindingLocation": "screen-instance"
+    },
+    {
+      "flowId": "F07",
+      "label": "중지",
+      "instanceId": "68:63903",
+      "fromFrameId": "68:63902",
+      "toFrameId": "68:63826",
+      "toRouteId": "R25",
+      "branch": "stop",
+      "expectedReturn": true,
+      "callerIsHome": false,
+      "directEntryFallback": false,
+      "controlId": "I68:63903;74:67480",
+      "kind": "NAVIGATE",
+      "bindingLocation": "screen-instance"
+    }
+  ],
+  "counts": {
+    "actualRecoveryBindings": 4
+  },
+  "runtimeVerified": false
+}

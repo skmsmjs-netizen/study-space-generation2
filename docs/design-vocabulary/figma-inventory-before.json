@@ -1,0 +1,7836 @@
+{
+  "observedDate": "2026-10-02",
+  "fileKey": "YHmD1PpWWfR9JGTEs77JsX",
+  "pages": [
+    {
+      "pageId": "7:68",
+      "pageName": "00 안내 · 기준과 전체 목차",
+      "count": 1242,
+      "types": {
+        "FRAME": 251,
+        "TEXT": 936,
+        "COMPONENT": 2,
+        "INSTANCE": 37,
+        "RECTANGLE": 16
+      },
+      "annotations": 1242,
+      "instanceChildren": 178,
+      "genericCount": 0,
+      "genericSample": [],
+      "owners": [
+        {
+          "id": "36:732",
+          "name": "IndexDocument/AdoptedSource",
+          "props": {
+            "Title#36:0": {
+              "type": "TEXT",
+              "defaultValue": "L01 · 대시보드 일곱 원칙"
+            },
+            "Takeaway#36:1": {
+              "type": "TEXT",
+              "defaultValue": "중요 정보부터 보여주고 관련 내용을 묶는다. 검색·필터·시간 변화·다음 행동은 실제 자료와 과업에 연결한다."
+            },
+            "ReadStatus#36:2": {
+              "type": "TEXT",
+              "defaultValue": "3.2–3.3; 최초 전체 캡션 확인"
+            },
+            "Source#36:3": {
+              "type": "TEXT",
+              "defaultValue": "↗ Instagram 원문 열기"
+            },
+            "Destination#36:4": {
+              "type": "TEXT",
+              "defaultValue": "설계 연결 · 03 정면 · 공부 책상 / 06 뒤쪽 · 기록과 계획"
+            }
+          },
+          "desc": "Reusable editable documentation reference; not an additional application component in the 48-entry product registry."
+        },
+        {
+          "id": "36:933",
+          "name": "IndexDocument/StyleApplication",
+          "props": {
+            "Title#36:5": {
+              "type": "TEXT",
+              "defaultValue": "D01 · 미니멀리즘"
+            },
+            "Principle#36:6": {
+              "type": "TEXT",
+              "defaultValue": "읽기·기록·다음 행동의 우선순위를 선명하게 한다."
+            },
+            "Application#36:7": {
+              "type": "TEXT",
+              "defaultValue": "종이 작업면의 여백·위계에 적용한다. 필요한 기능·자유 글·조건·예외는 보존한다."
+            },
+            "Destination#36:8": {
+              "type": "TEXT",
+              "defaultValue": "설계 연결 · 01 기초 · 정체성 / 03 정면 · 공부 책상"
+            }
+          },
+          "desc": "Reusable editable documentation reference; not an additional application component in the 48-entry product registry."
+        }
+      ],
+      "roots": [
+        {
+          "id": "36:92",
+          "name": "00 · 범위와 이동",
+          "type": "FRAME",
+          "w": 1728,
+          "h": 2149,
+          "childCount": 15
+        },
+        {
+          "id": "36:192",
+          "name": "01 · 전수 연결 인덱스",
+          "type": "FRAME",
+          "w": 1728,
+          "h": 6360,
+          "childCount": 8
+        },
+        {
+          "id": "36:723",
+          "name": "02 · 채택 자료 31개",
+          "type": "FRAME",
+          "w": 1728,
+          "h": 3331,
+          "childCount": 15
+        },
+        {
+          "id": "36:928",
+          "name": "03 · 스타일 8개와 장면 색",
+          "type": "FRAME",
+          "w": 1728,
+          "h": 2394,
+          "childCount": 14
+        },
+        {
+          "id": "82:246",
+          "name": "최신 전체 대응 · 2026-10-02",
+          "type": "FRAME",
+          "w": 1200,
+          "h": 1988,
+          "childCount": 40
+        },
+        {
+          "id": "86:110000",
+          "name": "확정 기준 추가 · 천장 조명과 공통 도구",
+          "type": "FRAME",
+          "w": 1200,
+          "h": 881,
+          "childCount": 10
+        },
+        {
+          "id": "102:31835",
+          "name": "기능 정체성 정의 / desk",
+          "type": "FRAME",
+          "w": 1104,
+          "h": 2398,
+          "childCount": 9
+        },
+        {
+          "id": "102:31887",
+          "name": "기능 정체성 정의 / library",
+          "type": "FRAME",
+          "w": 1104,
+          "h": 1744,
+          "childCount": 7
+        },
+        {
+          "id": "102:31925",
+          "name": "기능 정체성 정의 / workbench",
+          "type": "FRAME",
+          "w": 1104,
+          "h": 802,
+          "childCount": 4
+        },
+        {
+          "id": "102:31942",
+          "name": "기능 정체성 정의 / wall",
+          "type": "FRAME",
+          "w": 1104,
+          "h": 2106,
+          "childCount": 8
+        },
+        {
+          "id": "102:31987",
+          "name": "기능 정체성 정의 / global",
+          "type": "FRAME",
+          "w": 1104,
+          "h": 2158,
+          "childCount": 8
+        },
+        {
+          "id": "155:180",
+          "name": "OS 기준 / 00-START / 천문대 OS · 설계 기준의 입구",
+          "type": "FRAME",
+          "w": 1104,
+          "h": 1379,
+          "childCount": 10
+        }
+      ]
+    },
+    {
+      "pageId": "7:69",
+      "pageName": "01 기초 · 색·글자·간격",
+      "count": 138,
+      "types": {
+        "FRAME": 41,
+        "TEXT": 69,
+        "RECTANGLE": 28
+      },
+      "annotations": 138,
+      "instanceChildren": 0,
+      "genericCount": 40,
+      "genericSample": [
+        {
+          "id": "7:153",
+          "type": "FRAME",
+          "name": "Frame",
+          "parent": "Material / interior",
+          "insideInstance": false
+        },
+        {
+          "id": "7:155",
+          "type": "RECTANGLE",
+          "name": "Rectangle",
+          "parent": "canvas",
+          "insideInstance": false
+        },
+        {
+          "id": "7:159",
+          "type": "RECTANGLE",
+          "name": "Rectangle",
+          "parent": "surface",
+          "insideInstance": false
+        },
+        {
+          "id": "7:163",
+          "type": "RECTANGLE",
+          "name": "Rectangle",
+          "parent": "subtle",
+          "insideInstance": false
+        },
+        {
+          "id": "7:166",
+          "type": "FRAME",
+          "name": "text",
+          "parent": "Frame",
+          "insideInstance": false
+        },
+        {
+          "id": "7:167",
+          "type": "RECTANGLE",
+          "name": "Rectangle",
+          "parent": "text",
+          "insideInstance": false
+        },
+        {
+          "id": "7:168",
+          "type": "TEXT",
+          "name": "text",
+          "parent": "text",
+          "insideInstance": false
+        },
+        {
+          "id": "7:170",
+          "type": "FRAME",
+          "name": "Frame",
+          "parent": "Material / interior",
+          "insideInstance": false
+        },
+        {
+          "id": "7:172",
+          "type": "RECTANGLE",
+          "name": "Rectangle",
+          "parent": "muted",
+          "insideInstance": false
+        },
+        {
+          "id": "7:176",
+          "type": "RECTANGLE",
+          "name": "Rectangle",
+          "parent": "borderDecorative",
+          "insideInstance": false
+        },
+        {
+          "id": "7:180",
+          "type": "RECTANGLE",
+          "name": "Rectangle",
+          "parent": "borderInteractive",
+          "insideInstance": false
+        },
+        {
+          "id": "7:184",
+          "type": "RECTANGLE",
+          "name": "Rectangle",
+          "parent": "focus",
+          "insideInstance": false
+        }
+      ],
+      "owners": [],
+      "roots": [
+        {
+          "id": "7:148",
+          "name": "Foundations / v2",
+          "type": "FRAME",
+          "w": 1424,
+          "h": 2293,
+          "childCount": 6
+        }
+      ]
+    },
+    {
+      "pageId": "7:70",
+      "pageName": "02 부품 · 속성·상태·코드",
+      "count": 3440,
+      "types": {
+        "SECTION": 9,
+        "COMPONENT": 171,
+        "VECTOR": 639,
+        "FRAME": 703,
+        "COMPONENT_SET": 20,
+        "TEXT": 1382,
+        "RECTANGLE": 55,
+        "INSTANCE": 145,
+        "ELLIPSE": 10,
+        "GROUP": 306
+      },
+      "instanceChildren": 615,
+      "genericCount": 848,
+      "owners": [
+        {
+          "id": "10:68",
+          "name": "Observatory/v2/__Asset/OriginalObservatory"
+        },
+        {
+          "id": "15:73",
+          "name": "Observatory/v2/__Icon/arrow"
+        },
+        {
+          "id": "15:75",
+          "name": "Observatory/v2/__Icon/search"
+        },
+        {
+          "id": "16:70",
+          "name": "Observatory/v2/__Icon/check"
+        },
+        {
+          "id": "16:72",
+          "name": "Observatory/v2/__Icon/close"
+        },
+        {
+          "id": "16:74",
+          "name": "Observatory/v2/__Icon/more"
+        },
+        {
+          "id": "16:140",
+          "name": "Observatory/v2/Controls/Button"
+        },
+        {
+          "id": "16:159",
+          "name": "Observatory/v2/Controls/IconButton"
+        },
+        {
+          "id": "16:287",
+          "name": "Observatory/v2/Controls/Checkbox"
+        },
+        {
+          "id": "16:309",
+          "name": "Observatory/v2/Controls/Radio"
+        },
+        {
+          "id": "17:95",
+          "name": "Observatory/v2/Controls/SegmentedControl"
+        },
+        {
+          "id": "16:190",
+          "name": "Observatory/v2/Fields/Input"
+        },
+        {
+          "id": "16:221",
+          "name": "Observatory/v2/Fields/Textarea"
+        },
+        {
+          "id": "16:250",
+          "name": "Observatory/v2/Fields/Select"
+        },
+        {
+          "id": "17:169",
+          "name": "Observatory/v2/Fields/Search"
+        },
+        {
+          "id": "16:326",
+          "name": "Observatory/v2/Navigation/Tabs"
+        },
+        {
+          "id": "17:131",
+          "name": "Observatory/v2/Navigation/Breadcrumb"
+        },
+        {
+          "id": "17:223",
+          "name": "Observatory/v2/Navigation/NavigationBar"
+        },
+        {
+          "id": "53:13178",
+          "name": "Observatory/v2/Navigation/ObservatoryNavigation"
+        },
+        {
+          "id": "53:13281",
+          "name": "Observatory/v2/Navigation/ObservatoryTaskReturn"
+        },
+        {
+          "id": "17:96",
+          "name": "Observatory/v2/Containers/Card"
+        },
+        {
+          "id": "17:101",
+          "name": "Observatory/v2/Containers/ListItem"
+        },
+        {
+          "id": "17:106",
+          "name": "Observatory/v2/Overlays/Modal"
+        },
+        {
+          "id": "17:114",
+          "name": "Observatory/v2/Overlays/Sheet"
+        },
+        {
+          "id": "17:224",
+          "name": "Observatory/v2/Overlays/ContextMenu"
+        },
+        {
+          "id": "17:130",
+          "name": "Observatory/v2/Feedback/Toast"
+        },
+        {
+          "id": "17:186",
+          "name": "Observatory/v2/Feedback/EmptyState"
+        },
+        {
+          "id": "17:187",
+          "name": "Observatory/v2/Feedback/LoadingState"
+        },
+        {
+          "id": "17:193",
+          "name": "Observatory/v2/Feedback/ErrorState"
+        },
+        {
+          "id": "17:198",
+          "name": "Observatory/v2/Feedback/ScreenBoundary"
+        },
+        {
+          "id": "17:231",
+          "name": "Observatory/v2/Observatory/StudyLandscapes"
+        },
+        {
+          "id": "17:1910",
+          "name": "Observatory/v2/Observatory/ObservatoryWorld"
+        },
+        {
+          "id": "20:4808",
+          "name": "Observatory/v2/Observatory/ObservatoryRoom"
+        },
+        {
+          "id": "20:6484",
+          "name": "Observatory/v2/Observatory/ObservatoryDesk"
+        },
+        {
+          "id": "20:6496",
+          "name": "Observatory/v2/Observatory/ObservatoryAdvanced"
+        },
+        {
+          "id": "20:6515",
+          "name": "Observatory/v2/Observatory/ObservatorySkyDetails"
+        },
+        {
+          "id": "20:6527",
+          "name": "Observatory/v2/Observatory/ObservatoryStationDetails"
+        },
+        {
+          "id": "20:6539",
+          "name": "Observatory/v2/Observatory/ObservatoryTimeSky"
+        },
+        {
+          "id": "20:6560",
+          "name": "Observatory/v2/Observatory/ObservatoryTimeGround"
+        },
+        {
+          "id": "20:6581",
+          "name": "Observatory/v2/Observatory/ObservatoryClouds"
+        },
+        {
+          "id": "20:6593",
+          "name": "Observatory/v2/Observatory/ObservatoryGroundDetails"
+        },
+        {
+          "id": "20:6605",
+          "name": "Observatory/v2/Observatory/ObservatoryDomeTiles"
+        },
+        {
+          "id": "20:6617",
+          "name": "Observatory/v2/Observatory/ObservatoryShockwave"
+        },
+        {
+          "id": "20:6629",
+          "name": "Observatory/v2/Observatory/ObservatoryStudySky"
+        },
+        {
+          "id": "20:6641",
+          "name": "Observatory/v2/Observatory/ObservatoryStudyStation"
+        },
+        {
+          "id": "20:6653",
+          "name": "Observatory/v2/Observatory/ObservatoryRadiance"
+        },
+        {
+          "id": "20:6665",
+          "name": "Observatory/v2/Observatory/ObservatoryRadianceGround"
+        },
+        {
+          "id": "20:6677",
+          "name": "Observatory/v2/Observatory/ObservatoryEvents"
+        },
+        {
+          "id": "21:5121",
+          "name": "Observatory/v2/Observatory/ObservatoryEventVariationSymbol"
+        },
+        {
+          "id": "21:5138",
+          "name": "Observatory/v2/Observatory/ObservatoryEventVariation"
+        },
+        {
+          "id": "21:5175",
+          "name": "Observatory/v2/Motion/BusyDots"
+        },
+        {
+          "id": "21:5194",
+          "name": "Observatory/v2/Motion/SavedMark"
+        },
+        {
+          "id": "21:5216",
+          "name": "Observatory/v2/Motion/SelectionBackground"
+        },
+        {
+          "id": "21:5229",
+          "name": "Observatory/v2/Motion/NoticeEntrance"
+        },
+        {
+          "id": "21:5242",
+          "name": "Observatory/v2/Motion/FadeContent"
+        },
+        {
+          "id": "21:5243",
+          "name": "Observatory/v2/Brand/Wordmark"
+        },
+        {
+          "id": "60:10533",
+          "name": "Observatory/v2/__Asset/SC04/SourceStatic"
+        },
+        {
+          "id": "60:10588",
+          "name": "Observatory/v2/__Asset/SC05/SourceStatic"
+        },
+        {
+          "id": "61:10561",
+          "name": "Observatory/v2/__Asset/SC06/SourceStatic"
+        },
+        {
+          "id": "61:10675",
+          "name": "Observatory/v2/__Asset/SC07/SourceStatic"
+        },
+        {
+          "id": "61:10719",
+          "name": "Observatory/v2/__Asset/SC08/SourceStatic"
+        },
+        {
+          "id": "61:10776",
+          "name": "Observatory/v2/__Asset/SC09/SourceStatic"
+        },
+        {
+          "id": "67:11143",
+          "name": "Observatory/v2/__Asset/SC10/SourceStatic"
+        },
+        {
+          "id": "67:11432",
+          "name": "Observatory/v2/__Asset/SC11/SourceStatic"
+        },
+        {
+          "id": "67:11702",
+          "name": "Observatory/v2/__Asset/SC12/SourceStatic"
+        },
+        {
+          "id": "67:11718",
+          "name": "Observatory/v2/__Asset/SC13/SourceStatic"
+        },
+        {
+          "id": "67:11740",
+          "name": "Observatory/v2/__Asset/SC14/SourceStatic"
+        },
+        {
+          "id": "68:10678",
+          "name": "Observatory/v2/__Asset/SC15/SourceStatic"
+        },
+        {
+          "id": "68:10701",
+          "name": "Observatory/v2/__Asset/SC16/SourceStatic"
+        },
+        {
+          "id": "68:10821",
+          "name": "Observatory/v2/__Asset/SC17/SourceStatic"
+        },
+        {
+          "id": "68:10909",
+          "name": "Observatory/v2/__Asset/SC18/SourceStatic"
+        }
+      ],
+      "rootCount": 9,
+      "roots": [
+        {
+          "id": "158:795",
+          "name": "00 原본 장면·아이콘",
+          "type": "SECTION",
+          "w": 5100,
+          "h": 528
+        },
+        {
+          "id": "158:796",
+          "name": "01 조작·선택",
+          "type": "SECTION",
+          "w": 5100,
+          "h": 584
+        },
+        {
+          "id": "158:797",
+          "name": "02 입력·검색",
+          "type": "SECTION",
+          "w": 5100,
+          "h": 718
+        },
+        {
+          "id": "158:798",
+          "name": "03 이동·복귀",
+          "type": "SECTION",
+          "w": 5100,
+          "h": 2650
+        },
+        {
+          "id": "158:799",
+          "name": "04 작업면·대화상자",
+          "type": "SECTION",
+          "w": 5100,
+          "h": 373
+        },
+        {
+          "id": "158:800",
+          "name": "05 피드백·오류",
+          "type": "SECTION",
+          "w": 5100,
+          "h": 380
+        },
+        {
+          "id": "158:801",
+          "name": "06 천문대·장면",
+          "type": "SECTION",
+          "w": 5100,
+          "h": 1077.666748046875
+        },
+        {
+          "id": "158:802",
+          "name": "07 모션·브랜드",
+          "type": "SECTION",
+          "w": 5100,
+          "h": 509.8359069824219
+        },
+        {
+          "id": "158:803",
+          "name": "08 사용 예·코드 대응",
+          "type": "SECTION",
+          "w": 5100,
+          "h": 6727
+        }
+      ]
+    },
+    {
+      "pageId": "154:68",
+      "pageName": "03 기준 운영 · 조건과 검증",
+      "count": 103,
+      "types": {
+        "FRAME": 27,
+        "TEXT": 76
+      },
+      "annotations": 103,
+      "instanceChildren": 0,
+      "genericCount": 0,
+      "genericSample": [],
+      "owners": [],
+      "roots": [
+        {
+          "id": "162:180",
+          "name": "OS 기준 / G00 / 기준을 채택하는 순서",
+          "type": "FRAME",
+          "w": 1104,
+          "h": 1223,
+          "childCount": 10
+        },
+        {
+          "id": "162:822",
+          "name": "OS 기준 / G01 / 기초값 · 역할과 적용 조건",
+          "type": "FRAME",
+          "w": 1104,
+          "h": 2474,
+          "childCount": 11
+        },
+        {
+          "id": "162:3288",
+          "name": "OS 기준 / G02 / 공통 부품 · 속성과 8상태",
+          "type": "FRAME",
+          "w": 1104,
+          "h": 1435,
+          "childCount": 12
+        }
+      ]
+    },
+    {
+      "pageId": "7:71",
+      "pageName": "10 북쪽 · 공부 책상",
+      "count": 6391,
+      "types": {
+        "FRAME": 1831,
+        "TEXT": 2912,
+        "INSTANCE": 1154,
+        "RECTANGLE": 321,
+        "VECTOR": 173
+      },
+      "annotations": 6391,
+      "instanceChildren": 2092,
+      "genericCount": 295,
+      "genericSample": [
+        {
+          "id": "26:1769",
+          "type": "RECTANGLE",
+          "name": "Rectangle",
+          "parent": "R01-B02 / 지금과 작은 도구",
+          "insideInstance": false
+        },
+        {
+          "id": "26:1781",
+          "type": "RECTANGLE",
+          "name": "Rectangle",
+          "parent": "R01-B03 / 최근 남긴 기록",
+          "insideInstance": false
+        },
+        {
+          "id": "26:1793",
+          "type": "RECTANGLE",
+          "name": "Rectangle",
+          "parent": "입력 / 메모",
+          "insideInstance": false
+        },
+        {
+          "id": "26:1800",
+          "type": "RECTANGLE",
+          "name": "Rectangle",
+          "parent": "R01-B05 / 이어서 볼 주제",
+          "insideInstance": false
+        },
+        {
+          "id": "26:1804",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "선택 / 급수",
+          "insideInstance": false
+        },
+        {
+          "id": "26:1807",
+          "type": "RECTANGLE",
+          "name": "Rectangle",
+          "parent": "선택 / 선형변환",
+          "insideInstance": false
+        },
+        {
+          "id": "26:1819",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "좌표·축·값",
+          "insideInstance": false
+        },
+        {
+          "id": "26:1821",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "좌표·축·값",
+          "insideInstance": false
+        },
+        {
+          "id": "26:1823",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "좌표·축·값",
+          "insideInstance": false
+        },
+        {
+          "id": "26:1825",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "좌표·축·값",
+          "insideInstance": false
+        },
+        {
+          "id": "26:1827",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "좌표·축·값",
+          "insideInstance": false
+        },
+        {
+          "id": "26:1829",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "좌표·축·값",
+          "insideInstance": false
+        }
+      ],
+      "owners": [],
+      "roots": [
+        {
+          "id": "26:68",
+          "name": "R01@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "26:1866",
+          "name": "설계 근거 / R01@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 771,
+          "childCount": 10
+        },
+        {
+          "id": "26:1877",
+          "name": "R01@iphone-portrait",
+          "type": "FRAME",
+          "w": 402,
+          "h": 681,
+          "childCount": 4
+        },
+        {
+          "id": "26:3670",
+          "name": "설계 근거 / R01@iphone-portrait",
+          "type": "FRAME",
+          "w": 402,
+          "h": 859,
+          "childCount": 10
+        },
+        {
+          "id": "26:3681",
+          "name": "R01@iphone-landscape",
+          "type": "FRAME",
+          "w": 756,
+          "h": 352,
+          "childCount": 4
+        },
+        {
+          "id": "26:5479",
+          "name": "설계 근거 / R01@iphone-landscape",
+          "type": "FRAME",
+          "w": 756,
+          "h": 771,
+          "childCount": 10
+        },
+        {
+          "id": "26:5490",
+          "name": "R01@ipad-portrait",
+          "type": "FRAME",
+          "w": 1032,
+          "h": 1376,
+          "childCount": 4
+        },
+        {
+          "id": "26:7288",
+          "name": "설계 근거 / R01@ipad-portrait",
+          "type": "FRAME",
+          "w": 1032,
+          "h": 771,
+          "childCount": 10
+        },
+        {
+          "id": "26:7299",
+          "name": "R01@ipad-narrow",
+          "type": "FRAME",
+          "w": 517,
+          "h": 1200,
+          "childCount": 4
+        },
+        {
+          "id": "26:9092",
+          "name": "설계 근거 / R01@ipad-narrow",
+          "type": "FRAME",
+          "w": 517,
+          "h": 815,
+          "childCount": 10
+        },
+        {
+          "id": "26:9103",
+          "name": "R05@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "26:9195",
+          "name": "설계 근거 / R05@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 525,
+          "childCount": 7
+        },
+        {
+          "id": "26:9203",
+          "name": "R05@iphone-portrait",
+          "type": "FRAME",
+          "w": 402,
+          "h": 681,
+          "childCount": 4
+        },
+        {
+          "id": "26:9290",
+          "name": "설계 근거 / R05@iphone-portrait",
+          "type": "FRAME",
+          "w": 402,
+          "h": 569,
+          "childCount": 7
+        },
+        {
+          "id": "26:9298",
+          "name": "R05@iphone-landscape",
+          "type": "FRAME",
+          "w": 756,
+          "h": 352,
+          "childCount": 4
+        },
+        {
+          "id": "26:9390",
+          "name": "설계 근거 / R05@iphone-landscape",
+          "type": "FRAME",
+          "w": 756,
+          "h": 525,
+          "childCount": 7
+        },
+        {
+          "id": "26:9398",
+          "name": "R05@ipad-portrait",
+          "type": "FRAME",
+          "w": 1032,
+          "h": 1376,
+          "childCount": 4
+        },
+        {
+          "id": "26:9490",
+          "name": "설계 근거 / R05@ipad-portrait",
+          "type": "FRAME",
+          "w": 1032,
+          "h": 525,
+          "childCount": 7
+        },
+        {
+          "id": "26:9498",
+          "name": "R05@ipad-narrow",
+          "type": "FRAME",
+          "w": 517,
+          "h": 1200,
+          "childCount": 4
+        },
+        {
+          "id": "26:9585",
+          "name": "설계 근거 / R05@ipad-narrow",
+          "type": "FRAME",
+          "w": 517,
+          "h": 547,
+          "childCount": 7
+        },
+        {
+          "id": "27:19087",
+          "name": "R06@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "27:19171",
+          "name": "설계 근거 / R06@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 525,
+          "childCount": 7
+        },
+        {
+          "id": "27:19179",
+          "name": "R06@iphone-portrait",
+          "type": "FRAME",
+          "w": 402,
+          "h": 681,
+          "childCount": 4
+        },
+        {
+          "id": "27:19258",
+          "name": "설계 근거 / R06@iphone-portrait",
+          "type": "FRAME",
+          "w": 402,
+          "h": 525,
+          "childCount": 7
+        },
+        {
+          "id": "27:19266",
+          "name": "R06@iphone-landscape",
+          "type": "FRAME",
+          "w": 756,
+          "h": 352,
+          "childCount": 4
+        },
+        {
+          "id": "27:19350",
+          "name": "설계 근거 / R06@iphone-landscape",
+          "type": "FRAME",
+          "w": 756,
+          "h": 525,
+          "childCount": 7
+        },
+        {
+          "id": "27:19358",
+          "name": "R06@ipad-portrait",
+          "type": "FRAME",
+          "w": 1032,
+          "h": 1376,
+          "childCount": 4
+        },
+        {
+          "id": "27:19442",
+          "name": "설계 근거 / R06@ipad-portrait",
+          "type": "FRAME",
+          "w": 1032,
+          "h": 525,
+          "childCount": 7
+        },
+        {
+          "id": "27:19450",
+          "name": "R06@ipad-narrow",
+          "type": "FRAME",
+          "w": 517,
+          "h": 1200,
+          "childCount": 4
+        },
+        {
+          "id": "27:19529",
+          "name": "설계 근거 / R06@ipad-narrow",
+          "type": "FRAME",
+          "w": 517,
+          "h": 525,
+          "childCount": 7
+        },
+        {
+          "id": "27:19537",
+          "name": "R10@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "27:19621",
+          "name": "설계 근거 / R10@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 525,
+          "childCount": 7
+        },
+        {
+          "id": "27:19629",
+          "name": "R10@iphone-portrait",
+          "type": "FRAME",
+          "w": 402,
+          "h": 681,
+          "childCount": 4
+        },
+        {
+          "id": "27:19708",
+          "name": "설계 근거 / R10@iphone-portrait",
+          "type": "FRAME",
+          "w": 402,
+          "h": 591,
+          "childCount": 7
+        },
+        {
+          "id": "27:19716",
+          "name": "R10@iphone-landscape",
+          "type": "FRAME",
+          "w": 756,
+          "h": 352,
+          "childCount": 4
+        },
+        {
+          "id": "27:19800",
+          "name": "설계 근거 / R10@iphone-landscape",
+          "type": "FRAME",
+          "w": 756,
+          "h": 525,
+          "childCount": 7
+        },
+        {
+          "id": "27:19808",
+          "name": "R10@ipad-portrait",
+          "type": "FRAME",
+          "w": 1032,
+          "h": 1376,
+          "childCount": 4
+        },
+        {
+          "id": "27:19892",
+          "name": "설계 근거 / R10@ipad-portrait",
+          "type": "FRAME",
+          "w": 1032,
+          "h": 525,
+          "childCount": 7
+        },
+        {
+          "id": "27:19900",
+          "name": "R10@ipad-narrow",
+          "type": "FRAME",
+          "w": 517,
+          "h": 1200,
+          "childCount": 4
+        },
+        {
+          "id": "27:19979",
+          "name": "설계 근거 / R10@ipad-narrow",
+          "type": "FRAME",
+          "w": 517,
+          "h": 525,
+          "childCount": 7
+        },
+        {
+          "id": "27:19997",
+          "name": "R11@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "27:20111",
+          "name": "설계 근거 / R11@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 607,
+          "childCount": 8
+        },
+        {
+          "id": "27:20120",
+          "name": "R11@iphone-portrait",
+          "type": "FRAME",
+          "w": 402,
+          "h": 681,
+          "childCount": 4
+        },
+        {
+          "id": "27:20229",
+          "name": "설계 근거 / R11@iphone-portrait",
+          "type": "FRAME",
+          "w": 402,
+          "h": 673,
+          "childCount": 8
+        },
+        {
+          "id": "27:20238",
+          "name": "R11@iphone-landscape",
+          "type": "FRAME",
+          "w": 756,
+          "h": 352,
+          "childCount": 4
+        },
+        {
+          "id": "27:20352",
+          "name": "설계 근거 / R11@iphone-landscape",
+          "type": "FRAME",
+          "w": 756,
+          "h": 607,
+          "childCount": 8
+        },
+        {
+          "id": "27:20361",
+          "name": "R11@ipad-portrait",
+          "type": "FRAME",
+          "w": 1032,
+          "h": 1376,
+          "childCount": 4
+        },
+        {
+          "id": "27:20475",
+          "name": "설계 근거 / R11@ipad-portrait",
+          "type": "FRAME",
+          "w": 1032,
+          "h": 607,
+          "childCount": 8
+        },
+        {
+          "id": "27:20484",
+          "name": "R11@ipad-narrow",
+          "type": "FRAME",
+          "w": 517,
+          "h": 1200,
+          "childCount": 4
+        },
+        {
+          "id": "27:20593",
+          "name": "설계 근거 / R11@ipad-narrow",
+          "type": "FRAME",
+          "w": 517,
+          "h": 607,
+          "childCount": 8
+        },
+        {
+          "id": "27:20602",
+          "name": "R14@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "27:20709",
+          "name": "설계 근거 / R14@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 607,
+          "childCount": 8
+        },
+        {
+          "id": "27:20718",
+          "name": "R14@iphone-portrait",
+          "type": "FRAME",
+          "w": 402,
+          "h": 681,
+          "childCount": 4
+        },
+        {
+          "id": "27:20820",
+          "name": "설계 근거 / R14@iphone-portrait",
+          "type": "FRAME",
+          "w": 402,
+          "h": 651,
+          "childCount": 8
+        },
+        {
+          "id": "27:20829",
+          "name": "R14@iphone-landscape",
+          "type": "FRAME",
+          "w": 756,
+          "h": 352,
+          "childCount": 4
+        },
+        {
+          "id": "27:20936",
+          "name": "설계 근거 / R14@iphone-landscape",
+          "type": "FRAME",
+          "w": 756,
+          "h": 607,
+          "childCount": 8
+        },
+        {
+          "id": "27:20945",
+          "name": "R14@ipad-portrait",
+          "type": "FRAME",
+          "w": 1032,
+          "h": 1376,
+          "childCount": 4
+        },
+        {
+          "id": "27:21052",
+          "name": "설계 근거 / R14@ipad-portrait",
+          "type": "FRAME",
+          "w": 1032,
+          "h": 607,
+          "childCount": 8
+        },
+        {
+          "id": "27:21061",
+          "name": "R14@ipad-narrow",
+          "type": "FRAME",
+          "w": 517,
+          "h": 1200,
+          "childCount": 4
+        },
+        {
+          "id": "27:21163",
+          "name": "설계 근거 / R14@ipad-narrow",
+          "type": "FRAME",
+          "w": 517,
+          "h": 629,
+          "childCount": 8
+        },
+        {
+          "id": "28:8964",
+          "name": "R20@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "28:9008",
+          "name": "설계 근거 / R20@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 197,
+          "childCount": 3
+        },
+        {
+          "id": "28:9012",
+          "name": "R21@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "28:9050",
+          "name": "설계 근거 / R21@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 197,
+          "childCount": 3
+        },
+        {
+          "id": "28:9054",
+          "name": "R22@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "28:9089",
+          "name": "설계 근거 / R22@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 197,
+          "childCount": 3
+        },
+        {
+          "id": "28:9093",
+          "name": "R23@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "28:9130",
+          "name": "설계 근거 / R23@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 197,
+          "childCount": 3
+        },
+        {
+          "id": "28:9134",
+          "name": "R26@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "28:9168",
+          "name": "설계 근거 / R26@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 197,
+          "childCount": 3
+        },
+        {
+          "id": "28:9172",
+          "name": "R27@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "28:9209",
+          "name": "설계 근거 / R27@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 197,
+          "childCount": 3
+        },
+        {
+          "id": "28:9213",
+          "name": "R28@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "28:9247",
+          "name": "설계 근거 / R28@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 197,
+          "childCount": 3
+        },
+        {
+          "id": "28:9251",
+          "name": "R29@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "28:9284",
+          "name": "설계 근거 / R29@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 197,
+          "childCount": 3
+        },
+        {
+          "id": "28:9288",
+          "name": "R30@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "28:9322",
+          "name": "설계 근거 / R30@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 197,
+          "childCount": 3
+        },
+        {
+          "id": "28:9326",
+          "name": "R31@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "28:9357",
+          "name": "설계 근거 / R31@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 197,
+          "childCount": 3
+        },
+        {
+          "id": "28:9361",
+          "name": "R32@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "28:9394",
+          "name": "설계 근거 / R32@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 197,
+          "childCount": 3
+        },
+        {
+          "id": "28:9398",
+          "name": "O11@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "28:9433",
+          "name": "설계 근거 / O11@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 197,
+          "childCount": 3
+        },
+        {
+          "id": "28:9437",
+          "name": "O16@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "28:9473",
+          "name": "설계 근거 / O16@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 197,
+          "childCount": 3
+        },
+        {
+          "id": "28:9477",
+          "name": "O17@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "28:9512",
+          "name": "설계 근거 / O17@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 197,
+          "childCount": 3
+        },
+        {
+          "id": "28:9516",
+          "name": "O18@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "28:9557",
+          "name": "설계 근거 / O18@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 197,
+          "childCount": 3
+        },
+        {
+          "id": "28:9561",
+          "name": "O20@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "28:9598",
+          "name": "설계 근거 / O20@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 197,
+          "childCount": 3
+        },
+        {
+          "id": "28:9602",
+          "name": "O23@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "28:9632",
+          "name": "설계 근거 / O23@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 197,
+          "childCount": 3
+        },
+        {
+          "id": "28:9636",
+          "name": "O24@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "28:9667",
+          "name": "설계 근거 / O24@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 197,
+          "childCount": 3
+        },
+        {
+          "id": "28:9671",
+          "name": "O29@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "28:9701",
+          "name": "설계 근거 / O29@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 197,
+          "childCount": 3
+        },
+        {
+          "id": "28:9705",
+          "name": "U14@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "28:9735",
+          "name": "설계 근거 / U14@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 197,
+          "childCount": 3
+        },
+        {
+          "id": "28:9739",
+          "name": "U26@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "28:9777",
+          "name": "설계 근거 / U26@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 197,
+          "childCount": 3
+        },
+        {
+          "id": "28:9781",
+          "name": "U27@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "28:9814",
+          "name": "설계 근거 / U27@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 197,
+          "childCount": 3
+        },
+        {
+          "id": "33:9138",
+          "name": "R23-B02@ipad-landscape / 펼침 상태 참조",
+          "type": "FRAME",
+          "w": 1312,
+          "h": 381,
+          "childCount": 5
+        },
+        {
+          "id": "33:9155",
+          "name": "설계 근거 / R23-B02@ipad-landscape",
+          "type": "FRAME",
+          "w": 1312,
+          "h": 111,
+          "childCount": 2
+        },
+        {
+          "id": "59:27556",
+          "name": "R05 날짜 펼침@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "59:27729",
+          "name": "R05 날짜 펼침@iphone-portrait",
+          "type": "FRAME",
+          "w": 402,
+          "h": 681,
+          "childCount": 4
+        },
+        {
+          "id": "59:27899",
+          "name": "R05 날짜 펼침@iphone-landscape",
+          "type": "FRAME",
+          "w": 756,
+          "h": 352,
+          "childCount": 4
+        },
+        {
+          "id": "59:28072",
+          "name": "R05 날짜 펼침@ipad-portrait",
+          "type": "FRAME",
+          "w": 1032,
+          "h": 1376,
+          "childCount": 4
+        },
+        {
+          "id": "59:28245",
+          "name": "R05 날짜 펼침@ipad-narrow",
+          "type": "FRAME",
+          "w": 517,
+          "h": 1200,
+          "childCount": 4
+        },
+        {
+          "id": "83:100461",
+          "name": "Figma 검토용 · 관련 고급 상태 / 26:68",
+          "type": "FRAME",
+          "w": 360,
+          "h": 576,
+          "childCount": 8
+        },
+        {
+          "id": "83:100490",
+          "name": "Figma 검토용 · 관련 고급 상태 / 26:1877",
+          "type": "FRAME",
+          "w": 360,
+          "h": 576,
+          "childCount": 8
+        },
+        {
+          "id": "83:100519",
+          "name": "Figma 검토용 · 관련 고급 상태 / 28:8964",
+          "type": "FRAME",
+          "w": 360,
+          "h": 318,
+          "childCount": 5
+        }
+      ]
+    },
+    {
+      "pageId": "7:72",
+      "pageName": "11 서쪽 · 자료 책장",
+      "count": 3747,
+      "types": {
+        "FRAME": 1038,
+        "TEXT": 1824,
+        "INSTANCE": 681,
+        "RECTANGLE": 124,
+        "VECTOR": 80
+      },
+      "annotations": 3747,
+      "instanceChildren": 1158,
+      "genericCount": 199,
+      "genericSample": [
+        {
+          "id": "28:9856",
+          "type": "RECTANGLE",
+          "name": "Rectangle",
+          "parent": "R04-B03 / 과목 목록",
+          "insideInstance": false
+        },
+        {
+          "id": "28:9864",
+          "type": "RECTANGLE",
+          "name": "Rectangle",
+          "parent": "R04-B04 / 목차 만들기",
+          "insideInstance": false
+        },
+        {
+          "id": "28:9866",
+          "type": "RECTANGLE",
+          "name": "Rectangle",
+          "parent": "R04-B04 / 목차 만들기",
+          "insideInstance": false
+        },
+        {
+          "id": "28:9921",
+          "type": "RECTANGLE",
+          "name": "Rectangle",
+          "parent": "R04-B03 / 과목 목록",
+          "insideInstance": false
+        },
+        {
+          "id": "28:9929",
+          "type": "RECTANGLE",
+          "name": "Rectangle",
+          "parent": "R04-B04 / 목차 만들기",
+          "insideInstance": false
+        },
+        {
+          "id": "28:9931",
+          "type": "RECTANGLE",
+          "name": "Rectangle",
+          "parent": "R04-B04 / 목차 만들기",
+          "insideInstance": false
+        },
+        {
+          "id": "28:9991",
+          "type": "RECTANGLE",
+          "name": "Rectangle",
+          "parent": "R04-B03 / 과목 목록",
+          "insideInstance": false
+        },
+        {
+          "id": "28:9999",
+          "type": "RECTANGLE",
+          "name": "Rectangle",
+          "parent": "R04-B04 / 목차 만들기",
+          "insideInstance": false
+        },
+        {
+          "id": "28:10001",
+          "type": "RECTANGLE",
+          "name": "Rectangle",
+          "parent": "R04-B04 / 목차 만들기",
+          "insideInstance": false
+        },
+        {
+          "id": "28:10061",
+          "type": "RECTANGLE",
+          "name": "Rectangle",
+          "parent": "R04-B03 / 과목 목록",
+          "insideInstance": false
+        },
+        {
+          "id": "28:10069",
+          "type": "RECTANGLE",
+          "name": "Rectangle",
+          "parent": "R04-B04 / 목차 만들기",
+          "insideInstance": false
+        },
+        {
+          "id": "28:10071",
+          "type": "RECTANGLE",
+          "name": "Rectangle",
+          "parent": "R04-B04 / 목차 만들기",
+          "insideInstance": false
+        }
+      ],
+      "owners": [],
+      "roots": [
+        {
+          "id": "28:9818",
+          "name": "R04@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "28:9881",
+          "name": "설계 근거 / R04@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 443,
+          "childCount": 6
+        },
+        {
+          "id": "28:9888",
+          "name": "R04@iphone-portrait",
+          "type": "FRAME",
+          "w": 402,
+          "h": 681,
+          "childCount": 4
+        },
+        {
+          "id": "28:9946",
+          "name": "설계 근거 / R04@iphone-portrait",
+          "type": "FRAME",
+          "w": 402,
+          "h": 443,
+          "childCount": 6
+        },
+        {
+          "id": "28:9953",
+          "name": "R04@iphone-landscape",
+          "type": "FRAME",
+          "w": 756,
+          "h": 352,
+          "childCount": 4
+        },
+        {
+          "id": "28:10016",
+          "name": "설계 근거 / R04@iphone-landscape",
+          "type": "FRAME",
+          "w": 756,
+          "h": 443,
+          "childCount": 6
+        },
+        {
+          "id": "28:10023",
+          "name": "R04@ipad-portrait",
+          "type": "FRAME",
+          "w": 1032,
+          "h": 1376,
+          "childCount": 4
+        },
+        {
+          "id": "28:10086",
+          "name": "설계 근거 / R04@ipad-portrait",
+          "type": "FRAME",
+          "w": 1032,
+          "h": 443,
+          "childCount": 6
+        },
+        {
+          "id": "28:10093",
+          "name": "R04@ipad-narrow",
+          "type": "FRAME",
+          "w": 517,
+          "h": 1200,
+          "childCount": 4
+        },
+        {
+          "id": "28:10151",
+          "name": "설계 근거 / R04@ipad-narrow",
+          "type": "FRAME",
+          "w": 517,
+          "h": 443,
+          "childCount": 6
+        },
+        {
+          "id": "28:10158",
+          "name": "R07@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "28:10289",
+          "name": "설계 근거 / R07@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 689,
+          "childCount": 9
+        },
+        {
+          "id": "28:10299",
+          "name": "R07@iphone-portrait",
+          "type": "FRAME",
+          "w": 402,
+          "h": 681,
+          "childCount": 4
+        },
+        {
+          "id": "28:10425",
+          "name": "설계 근거 / R07@iphone-portrait",
+          "type": "FRAME",
+          "w": 402,
+          "h": 865,
+          "childCount": 9
+        },
+        {
+          "id": "28:10435",
+          "name": "R07@iphone-landscape",
+          "type": "FRAME",
+          "w": 756,
+          "h": 352,
+          "childCount": 4
+        },
+        {
+          "id": "28:10566",
+          "name": "설계 근거 / R07@iphone-landscape",
+          "type": "FRAME",
+          "w": 756,
+          "h": 711,
+          "childCount": 9
+        },
+        {
+          "id": "28:10576",
+          "name": "R07@ipad-portrait",
+          "type": "FRAME",
+          "w": 1032,
+          "h": 1376,
+          "childCount": 4
+        },
+        {
+          "id": "28:10707",
+          "name": "설계 근거 / R07@ipad-portrait",
+          "type": "FRAME",
+          "w": 1032,
+          "h": 711,
+          "childCount": 9
+        },
+        {
+          "id": "28:10717",
+          "name": "R07@ipad-narrow",
+          "type": "FRAME",
+          "w": 517,
+          "h": 1200,
+          "childCount": 4
+        },
+        {
+          "id": "28:10843",
+          "name": "설계 근거 / R07@ipad-narrow",
+          "type": "FRAME",
+          "w": 517,
+          "h": 777,
+          "childCount": 9
+        },
+        {
+          "id": "28:10863",
+          "name": "R12@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "28:10935",
+          "name": "설계 근거 / R12@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 525,
+          "childCount": 7
+        },
+        {
+          "id": "28:10943",
+          "name": "R12@iphone-portrait",
+          "type": "FRAME",
+          "w": 402,
+          "h": 681,
+          "childCount": 4
+        },
+        {
+          "id": "28:11010",
+          "name": "설계 근거 / R12@iphone-portrait",
+          "type": "FRAME",
+          "w": 402,
+          "h": 591,
+          "childCount": 7
+        },
+        {
+          "id": "28:11018",
+          "name": "R12@iphone-landscape",
+          "type": "FRAME",
+          "w": 756,
+          "h": 352,
+          "childCount": 4
+        },
+        {
+          "id": "28:11090",
+          "name": "설계 근거 / R12@iphone-landscape",
+          "type": "FRAME",
+          "w": 756,
+          "h": 525,
+          "childCount": 7
+        },
+        {
+          "id": "28:11098",
+          "name": "R12@ipad-portrait",
+          "type": "FRAME",
+          "w": 1032,
+          "h": 1376,
+          "childCount": 4
+        },
+        {
+          "id": "28:11170",
+          "name": "설계 근거 / R12@ipad-portrait",
+          "type": "FRAME",
+          "w": 1032,
+          "h": 525,
+          "childCount": 7
+        },
+        {
+          "id": "28:11178",
+          "name": "R12@ipad-narrow",
+          "type": "FRAME",
+          "w": 517,
+          "h": 1200,
+          "childCount": 4
+        },
+        {
+          "id": "28:11245",
+          "name": "설계 근거 / R12@ipad-narrow",
+          "type": "FRAME",
+          "w": 517,
+          "h": 525,
+          "childCount": 7
+        },
+        {
+          "id": "28:11253",
+          "name": "R13@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "28:11364",
+          "name": "설계 근거 / R13@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 525,
+          "childCount": 7
+        },
+        {
+          "id": "28:11372",
+          "name": "R13@iphone-portrait",
+          "type": "FRAME",
+          "w": 402,
+          "h": 681,
+          "childCount": 4
+        },
+        {
+          "id": "28:11478",
+          "name": "설계 근거 / R13@iphone-portrait",
+          "type": "FRAME",
+          "w": 402,
+          "h": 547,
+          "childCount": 7
+        },
+        {
+          "id": "28:11486",
+          "name": "R13@iphone-landscape",
+          "type": "FRAME",
+          "w": 756,
+          "h": 352,
+          "childCount": 4
+        },
+        {
+          "id": "28:11597",
+          "name": "설계 근거 / R13@iphone-landscape",
+          "type": "FRAME",
+          "w": 756,
+          "h": 525,
+          "childCount": 7
+        },
+        {
+          "id": "28:11605",
+          "name": "R13@ipad-portrait",
+          "type": "FRAME",
+          "w": 1032,
+          "h": 1376,
+          "childCount": 4
+        },
+        {
+          "id": "28:11716",
+          "name": "설계 근거 / R13@ipad-portrait",
+          "type": "FRAME",
+          "w": 1032,
+          "h": 525,
+          "childCount": 7
+        },
+        {
+          "id": "28:11724",
+          "name": "R13@ipad-narrow",
+          "type": "FRAME",
+          "w": 517,
+          "h": 1200,
+          "childCount": 4
+        },
+        {
+          "id": "28:11830",
+          "name": "설계 근거 / R13@ipad-narrow",
+          "type": "FRAME",
+          "w": 517,
+          "h": 525,
+          "childCount": 7
+        },
+        {
+          "id": "28:11848",
+          "name": "R19@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "28:11888",
+          "name": "설계 근거 / R19@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 197,
+          "childCount": 3
+        },
+        {
+          "id": "28:11892",
+          "name": "O02@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "28:11920",
+          "name": "설계 근거 / O02@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 197,
+          "childCount": 3
+        },
+        {
+          "id": "28:11924",
+          "name": "O03@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "28:11956",
+          "name": "설계 근거 / O03@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 197,
+          "childCount": 3
+        },
+        {
+          "id": "28:11960",
+          "name": "O04@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "28:11991",
+          "name": "설계 근거 / O04@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 197,
+          "childCount": 3
+        },
+        {
+          "id": "28:11995",
+          "name": "O06@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "28:12023",
+          "name": "설계 근거 / O06@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 197,
+          "childCount": 3
+        },
+        {
+          "id": "28:12027",
+          "name": "O07@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "28:12056",
+          "name": "설계 근거 / O07@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 197,
+          "childCount": 3
+        },
+        {
+          "id": "28:12060",
+          "name": "O19@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "28:12094",
+          "name": "설계 근거 / O19@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 197,
+          "childCount": 3
+        },
+        {
+          "id": "28:12098",
+          "name": "O22@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "28:12130",
+          "name": "설계 근거 / O22@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 197,
+          "childCount": 3
+        },
+        {
+          "id": "28:12134",
+          "name": "U24@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "28:12175",
+          "name": "설계 근거 / U24@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 197,
+          "childCount": 3
+        },
+        {
+          "id": "59:28484",
+          "name": "R13 공개 호환형@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "59:28613",
+          "name": "R13 공개 호환형@iphone-portrait",
+          "type": "FRAME",
+          "w": 402,
+          "h": 681,
+          "childCount": 4
+        },
+        {
+          "id": "59:28739",
+          "name": "R13 공개 호환형@iphone-landscape",
+          "type": "FRAME",
+          "w": 756,
+          "h": 352,
+          "childCount": 4
+        },
+        {
+          "id": "59:28868",
+          "name": "R13 공개 호환형@ipad-portrait",
+          "type": "FRAME",
+          "w": 1032,
+          "h": 1376,
+          "childCount": 4
+        },
+        {
+          "id": "59:28997",
+          "name": "R13 공개 호환형@ipad-narrow",
+          "type": "FRAME",
+          "w": 517,
+          "h": 1200,
+          "childCount": 4
+        },
+        {
+          "id": "83:100533",
+          "name": "Figma 검토용 · 관련 고급 상태 / 28:10158",
+          "type": "FRAME",
+          "w": 360,
+          "h": 232,
+          "childCount": 4
+        },
+        {
+          "id": "83:100542",
+          "name": "Figma 검토용 · 관련 고급 상태 / 28:10299",
+          "type": "FRAME",
+          "w": 360,
+          "h": 232,
+          "childCount": 4
+        },
+        {
+          "id": "83:100551",
+          "name": "Figma 검토용 · 관련 고급 상태 / 28:11253",
+          "type": "FRAME",
+          "w": 360,
+          "h": 318,
+          "childCount": 5
+        },
+        {
+          "id": "83:100565",
+          "name": "Figma 검토용 · 관련 고급 상태 / 28:11372",
+          "type": "FRAME",
+          "w": 360,
+          "h": 318,
+          "childCount": 5
+        }
+      ]
+    },
+    {
+      "pageId": "7:73",
+      "pageName": "12 동쪽 · 탐구 작업대",
+      "count": 1911,
+      "types": {
+        "FRAME": 532,
+        "TEXT": 977,
+        "INSTANCE": 302,
+        "RECTANGLE": 50,
+        "VECTOR": 50
+      },
+      "annotations": 1911,
+      "instanceChildren": 523,
+      "genericCount": 98,
+      "genericSample": [
+        {
+          "id": "28:12201",
+          "type": "RECTANGLE",
+          "name": "Rectangle",
+          "parent": "R08-B01 / 예제 목록",
+          "insideInstance": false
+        },
+        {
+          "id": "28:12235",
+          "type": "RECTANGLE",
+          "name": "Rectangle",
+          "parent": "입력 / 실행에 사용할 입력값",
+          "insideInstance": false
+        },
+        {
+          "id": "28:12256",
+          "type": "RECTANGLE",
+          "name": "Rectangle",
+          "parent": "R08-B05 / 실행 결과",
+          "insideInstance": false
+        },
+        {
+          "id": "28:12258",
+          "type": "RECTANGLE",
+          "name": "Rectangle",
+          "parent": "R08-B05 / 실행 결과",
+          "insideInstance": false
+        },
+        {
+          "id": "28:12268",
+          "type": "RECTANGLE",
+          "name": "Rectangle",
+          "parent": "입력 / 내용·설명",
+          "insideInstance": false
+        },
+        {
+          "id": "28:12312",
+          "type": "RECTANGLE",
+          "name": "Rectangle",
+          "parent": "R08-B01 / 예제 목록",
+          "insideInstance": false
+        },
+        {
+          "id": "28:12346",
+          "type": "RECTANGLE",
+          "name": "Rectangle",
+          "parent": "입력 / 실행에 사용할 입력값",
+          "insideInstance": false
+        },
+        {
+          "id": "28:12367",
+          "type": "RECTANGLE",
+          "name": "Rectangle",
+          "parent": "R08-B05 / 실행 결과",
+          "insideInstance": false
+        },
+        {
+          "id": "28:12369",
+          "type": "RECTANGLE",
+          "name": "Rectangle",
+          "parent": "R08-B05 / 실행 결과",
+          "insideInstance": false
+        },
+        {
+          "id": "28:12379",
+          "type": "RECTANGLE",
+          "name": "Rectangle",
+          "parent": "입력 / 내용·설명",
+          "insideInstance": false
+        },
+        {
+          "id": "28:12428",
+          "type": "RECTANGLE",
+          "name": "Rectangle",
+          "parent": "R08-B01 / 예제 목록",
+          "insideInstance": false
+        },
+        {
+          "id": "28:12462",
+          "type": "RECTANGLE",
+          "name": "Rectangle",
+          "parent": "입력 / 실행에 사용할 입력값",
+          "insideInstance": false
+        }
+      ],
+      "owners": [],
+      "roots": [
+        {
+          "id": "28:12179",
+          "name": "R08@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "28:12286",
+          "name": "설계 근거 / R08@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 607,
+          "childCount": 8
+        },
+        {
+          "id": "28:12295",
+          "name": "R08@iphone-portrait",
+          "type": "FRAME",
+          "w": 402,
+          "h": 681,
+          "childCount": 4
+        },
+        {
+          "id": "28:12397",
+          "name": "설계 근거 / R08@iphone-portrait",
+          "type": "FRAME",
+          "w": 402,
+          "h": 651,
+          "childCount": 8
+        },
+        {
+          "id": "28:12406",
+          "name": "R08@iphone-landscape",
+          "type": "FRAME",
+          "w": 756,
+          "h": 352,
+          "childCount": 4
+        },
+        {
+          "id": "28:12513",
+          "name": "설계 근거 / R08@iphone-landscape",
+          "type": "FRAME",
+          "w": 756,
+          "h": 607,
+          "childCount": 8
+        },
+        {
+          "id": "28:12522",
+          "name": "R08@ipad-portrait",
+          "type": "FRAME",
+          "w": 1032,
+          "h": 1376,
+          "childCount": 4
+        },
+        {
+          "id": "28:12629",
+          "name": "설계 근거 / R08@ipad-portrait",
+          "type": "FRAME",
+          "w": 1032,
+          "h": 607,
+          "childCount": 8
+        },
+        {
+          "id": "28:12638",
+          "name": "R08@ipad-narrow",
+          "type": "FRAME",
+          "w": 517,
+          "h": 1200,
+          "childCount": 4
+        },
+        {
+          "id": "28:12740",
+          "name": "설계 근거 / R08@ipad-narrow",
+          "type": "FRAME",
+          "w": 517,
+          "h": 607,
+          "childCount": 8
+        },
+        {
+          "id": "28:12749",
+          "name": "R09@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "28:12896",
+          "name": "설계 근거 / R09@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 689,
+          "childCount": 9
+        },
+        {
+          "id": "28:12906",
+          "name": "R09@iphone-portrait",
+          "type": "FRAME",
+          "w": 402,
+          "h": 681,
+          "childCount": 4
+        },
+        {
+          "id": "28:13048",
+          "name": "설계 근거 / R09@iphone-portrait",
+          "type": "FRAME",
+          "w": 402,
+          "h": 799,
+          "childCount": 9
+        },
+        {
+          "id": "28:13058",
+          "name": "R09@iphone-landscape",
+          "type": "FRAME",
+          "w": 756,
+          "h": 352,
+          "childCount": 4
+        },
+        {
+          "id": "28:13205",
+          "name": "설계 근거 / R09@iphone-landscape",
+          "type": "FRAME",
+          "w": 756,
+          "h": 689,
+          "childCount": 9
+        },
+        {
+          "id": "28:13215",
+          "name": "R09@ipad-portrait",
+          "type": "FRAME",
+          "w": 1032,
+          "h": 1376,
+          "childCount": 4
+        },
+        {
+          "id": "28:13362",
+          "name": "설계 근거 / R09@ipad-portrait",
+          "type": "FRAME",
+          "w": 1032,
+          "h": 689,
+          "childCount": 9
+        },
+        {
+          "id": "28:13372",
+          "name": "R09@ipad-narrow",
+          "type": "FRAME",
+          "w": 517,
+          "h": 1200,
+          "childCount": 4
+        },
+        {
+          "id": "28:13514",
+          "name": "설계 근거 / R09@ipad-narrow",
+          "type": "FRAME",
+          "w": 517,
+          "h": 689,
+          "childCount": 9
+        },
+        {
+          "id": "29:260",
+          "name": "R25@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "29:291",
+          "name": "설계 근거 / R25@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 197,
+          "childCount": 3
+        },
+        {
+          "id": "29:295",
+          "name": "O14@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "29:343",
+          "name": "설계 근거 / O14@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 197,
+          "childCount": 3
+        },
+        {
+          "id": "83:100579",
+          "name": "Figma 검토용 · 관련 고급 상태 / 28:12749",
+          "type": "FRAME",
+          "w": 360,
+          "h": 232,
+          "childCount": 4
+        },
+        {
+          "id": "83:100588",
+          "name": "Figma 검토용 · 관련 고급 상태 / 28:12906",
+          "type": "FRAME",
+          "w": 360,
+          "h": 232,
+          "childCount": 4
+        }
+      ]
+    },
+    {
+      "pageId": "7:74",
+      "pageName": "13 남쪽 · 기록·계획 벽",
+      "count": 4899,
+      "types": {
+        "FRAME": 1435,
+        "TEXT": 2435,
+        "INSTANCE": 625,
+        "RECTANGLE": 134,
+        "VECTOR": 215,
+        "ELLIPSE": 55
+      },
+      "annotations": 4899,
+      "instanceChildren": 1104,
+      "genericCount": 379,
+      "genericSample": [
+        {
+          "id": "29:383",
+          "type": "RECTANGLE",
+          "name": "Rectangle",
+          "parent": "선택 / 같은 길이의 이전 기간과 비교",
+          "insideInstance": false
+        },
+        {
+          "id": "29:390",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "좌표·축·값",
+          "insideInstance": false
+        },
+        {
+          "id": "29:392",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "좌표·축·값",
+          "insideInstance": false
+        },
+        {
+          "id": "29:394",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "좌표·축·값",
+          "insideInstance": false
+        },
+        {
+          "id": "29:396",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "좌표·축·값",
+          "insideInstance": false
+        },
+        {
+          "id": "29:398",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "좌표·축·값",
+          "insideInstance": false
+        },
+        {
+          "id": "29:400",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "좌표·축·값",
+          "insideInstance": false
+        },
+        {
+          "id": "29:401",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "좌표·축·값",
+          "insideInstance": false
+        },
+        {
+          "id": "29:402",
+          "type": "RECTANGLE",
+          "name": "Rectangle",
+          "parent": "좌표·축·값",
+          "insideInstance": false
+        },
+        {
+          "id": "29:405",
+          "type": "RECTANGLE",
+          "name": "Rectangle",
+          "parent": "좌표·축·값",
+          "insideInstance": false
+        },
+        {
+          "id": "29:412",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "좌표·축·값",
+          "insideInstance": false
+        },
+        {
+          "id": "29:414",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "좌표·축·값",
+          "insideInstance": false
+        }
+      ],
+      "owners": [],
+      "roots": [
+        {
+          "id": "29:347",
+          "name": "R02@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "29:557",
+          "name": "설계 근거 / R02@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 607,
+          "childCount": 8
+        },
+        {
+          "id": "29:566",
+          "name": "R02@iphone-portrait",
+          "type": "FRAME",
+          "w": 402,
+          "h": 681,
+          "childCount": 4
+        },
+        {
+          "id": "29:771",
+          "name": "설계 근거 / R02@iphone-portrait",
+          "type": "FRAME",
+          "w": 402,
+          "h": 673,
+          "childCount": 8
+        },
+        {
+          "id": "29:780",
+          "name": "R02@iphone-landscape",
+          "type": "FRAME",
+          "w": 756,
+          "h": 352,
+          "childCount": 4
+        },
+        {
+          "id": "29:990",
+          "name": "설계 근거 / R02@iphone-landscape",
+          "type": "FRAME",
+          "w": 756,
+          "h": 607,
+          "childCount": 8
+        },
+        {
+          "id": "29:999",
+          "name": "R02@ipad-portrait",
+          "type": "FRAME",
+          "w": 1032,
+          "h": 1376,
+          "childCount": 4
+        },
+        {
+          "id": "29:1209",
+          "name": "설계 근거 / R02@ipad-portrait",
+          "type": "FRAME",
+          "w": 1032,
+          "h": 607,
+          "childCount": 8
+        },
+        {
+          "id": "29:1218",
+          "name": "R02@ipad-narrow",
+          "type": "FRAME",
+          "w": 517,
+          "h": 1200,
+          "childCount": 4
+        },
+        {
+          "id": "29:1423",
+          "name": "설계 근거 / R02@ipad-narrow",
+          "type": "FRAME",
+          "w": 517,
+          "h": 629,
+          "childCount": 8
+        },
+        {
+          "id": "29:1432",
+          "name": "R03@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "29:1634",
+          "name": "설계 근거 / R03@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 607,
+          "childCount": 8
+        },
+        {
+          "id": "29:1643",
+          "name": "R03@iphone-portrait",
+          "type": "FRAME",
+          "w": 402,
+          "h": 681,
+          "childCount": 4
+        },
+        {
+          "id": "29:1840",
+          "name": "설계 근거 / R03@iphone-portrait",
+          "type": "FRAME",
+          "w": 402,
+          "h": 695,
+          "childCount": 8
+        },
+        {
+          "id": "29:1849",
+          "name": "R03@iphone-landscape",
+          "type": "FRAME",
+          "w": 756,
+          "h": 352,
+          "childCount": 4
+        },
+        {
+          "id": "29:2051",
+          "name": "설계 근거 / R03@iphone-landscape",
+          "type": "FRAME",
+          "w": 756,
+          "h": 607,
+          "childCount": 8
+        },
+        {
+          "id": "29:2060",
+          "name": "R03@ipad-portrait",
+          "type": "FRAME",
+          "w": 1032,
+          "h": 1376,
+          "childCount": 4
+        },
+        {
+          "id": "29:2262",
+          "name": "설계 근거 / R03@ipad-portrait",
+          "type": "FRAME",
+          "w": 1032,
+          "h": 607,
+          "childCount": 8
+        },
+        {
+          "id": "29:2271",
+          "name": "R03@ipad-narrow",
+          "type": "FRAME",
+          "w": 517,
+          "h": 1200,
+          "childCount": 4
+        },
+        {
+          "id": "29:2468",
+          "name": "설계 근거 / R03@ipad-narrow",
+          "type": "FRAME",
+          "w": 517,
+          "h": 607,
+          "childCount": 8
+        },
+        {
+          "id": "29:2487",
+          "name": "R15@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "29:2605",
+          "name": "설계 근거 / R15@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 607,
+          "childCount": 8
+        },
+        {
+          "id": "29:2614",
+          "name": "R15@iphone-portrait",
+          "type": "FRAME",
+          "w": 402,
+          "h": 681,
+          "childCount": 4
+        },
+        {
+          "id": "29:2727",
+          "name": "설계 근거 / R15@iphone-portrait",
+          "type": "FRAME",
+          "w": 402,
+          "h": 651,
+          "childCount": 8
+        },
+        {
+          "id": "29:2736",
+          "name": "R15@iphone-landscape",
+          "type": "FRAME",
+          "w": 756,
+          "h": 352,
+          "childCount": 4
+        },
+        {
+          "id": "29:2854",
+          "name": "설계 근거 / R15@iphone-landscape",
+          "type": "FRAME",
+          "w": 756,
+          "h": 607,
+          "childCount": 8
+        },
+        {
+          "id": "29:2863",
+          "name": "R15@ipad-portrait",
+          "type": "FRAME",
+          "w": 1032,
+          "h": 1376,
+          "childCount": 4
+        },
+        {
+          "id": "29:2981",
+          "name": "설계 근거 / R15@ipad-portrait",
+          "type": "FRAME",
+          "w": 1032,
+          "h": 607,
+          "childCount": 8
+        },
+        {
+          "id": "29:2990",
+          "name": "R15@ipad-narrow",
+          "type": "FRAME",
+          "w": 517,
+          "h": 1200,
+          "childCount": 4
+        },
+        {
+          "id": "29:3103",
+          "name": "설계 근거 / R15@ipad-narrow",
+          "type": "FRAME",
+          "w": 517,
+          "h": 607,
+          "childCount": 8
+        },
+        {
+          "id": "29:3112",
+          "name": "R16@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "29:3212",
+          "name": "설계 근거 / R16@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 525,
+          "childCount": 7
+        },
+        {
+          "id": "29:3220",
+          "name": "R16@iphone-portrait",
+          "type": "FRAME",
+          "w": 402,
+          "h": 681,
+          "childCount": 4
+        },
+        {
+          "id": "29:3315",
+          "name": "설계 근거 / R16@iphone-portrait",
+          "type": "FRAME",
+          "w": 402,
+          "h": 547,
+          "childCount": 7
+        },
+        {
+          "id": "29:3323",
+          "name": "R16@iphone-landscape",
+          "type": "FRAME",
+          "w": 756,
+          "h": 352,
+          "childCount": 4
+        },
+        {
+          "id": "29:3423",
+          "name": "설계 근거 / R16@iphone-landscape",
+          "type": "FRAME",
+          "w": 756,
+          "h": 525,
+          "childCount": 7
+        },
+        {
+          "id": "29:3431",
+          "name": "R16@ipad-portrait",
+          "type": "FRAME",
+          "w": 1032,
+          "h": 1376,
+          "childCount": 4
+        },
+        {
+          "id": "29:3531",
+          "name": "설계 근거 / R16@ipad-portrait",
+          "type": "FRAME",
+          "w": 1032,
+          "h": 525,
+          "childCount": 7
+        },
+        {
+          "id": "29:3539",
+          "name": "R16@ipad-narrow",
+          "type": "FRAME",
+          "w": 517,
+          "h": 1200,
+          "childCount": 4
+        },
+        {
+          "id": "29:3634",
+          "name": "설계 근거 / R16@ipad-narrow",
+          "type": "FRAME",
+          "w": 517,
+          "h": 525,
+          "childCount": 7
+        },
+        {
+          "id": "29:3652",
+          "name": "R17@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "29:3764",
+          "name": "설계 근거 / R17@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 607,
+          "childCount": 8
+        },
+        {
+          "id": "29:3773",
+          "name": "R17@iphone-portrait",
+          "type": "FRAME",
+          "w": 402,
+          "h": 681,
+          "childCount": 4
+        },
+        {
+          "id": "29:3885",
+          "name": "설계 근거 / R17@iphone-portrait",
+          "type": "FRAME",
+          "w": 402,
+          "h": 629,
+          "childCount": 8
+        },
+        {
+          "id": "29:3894",
+          "name": "R17@iphone-landscape",
+          "type": "FRAME",
+          "w": 756,
+          "h": 352,
+          "childCount": 4
+        },
+        {
+          "id": "29:4006",
+          "name": "설계 근거 / R17@iphone-landscape",
+          "type": "FRAME",
+          "w": 756,
+          "h": 607,
+          "childCount": 8
+        },
+        {
+          "id": "29:4015",
+          "name": "R17@ipad-portrait",
+          "type": "FRAME",
+          "w": 1032,
+          "h": 1376,
+          "childCount": 4
+        },
+        {
+          "id": "29:4127",
+          "name": "설계 근거 / R17@ipad-portrait",
+          "type": "FRAME",
+          "w": 1032,
+          "h": 607,
+          "childCount": 8
+        },
+        {
+          "id": "29:4136",
+          "name": "R17@ipad-narrow",
+          "type": "FRAME",
+          "w": 517,
+          "h": 1200,
+          "childCount": 4
+        },
+        {
+          "id": "29:4248",
+          "name": "설계 근거 / R17@ipad-narrow",
+          "type": "FRAME",
+          "w": 517,
+          "h": 629,
+          "childCount": 8
+        },
+        {
+          "id": "29:4257",
+          "name": "R36@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "29:4289",
+          "name": "설계 근거 / R36@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 197,
+          "childCount": 3
+        },
+        {
+          "id": "29:4293",
+          "name": "O13@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "29:4338",
+          "name": "설계 근거 / O13@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 197,
+          "childCount": 3
+        },
+        {
+          "id": "29:4342",
+          "name": "O25@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "29:4379",
+          "name": "설계 근거 / O25@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 197,
+          "childCount": 3
+        },
+        {
+          "id": "29:4383",
+          "name": "O26@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "29:4413",
+          "name": "설계 근거 / O26@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 197,
+          "childCount": 3
+        },
+        {
+          "id": "29:4417",
+          "name": "O27@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "29:4457",
+          "name": "설계 근거 / O27@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 197,
+          "childCount": 3
+        },
+        {
+          "id": "29:4461",
+          "name": "O28@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032,
+          "childCount": 4
+        },
+        {
+          "id": "29:4491",
+          "name": "설계 근거 / O28@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 197,
+          "childCount": 3
+        },
+        {
+          "id": "83:100615",
+          "name": "Figma 검토용 · 관련 고급 상태 / 29:347",
+          "type": "FRAME",
+          "w": 360,
+          "h": 232,
+          "childCount": 4
+        },
+        {
+          "id": "83:100624",
+          "name": "Figma 검토용 · 관련 고급 상태 / 29:566",
+          "type": "FRAME",
+          "w": 360,
+          "h": 232,
+          "childCount": 4
+        }
+      ]
+    },
+    {
+      "pageId": "7:75",
+      "pageName": "14 위쪽 · 공통 도구",
+      "count": 8620,
+      "types": {
+        "FRAME": 2055,
+        "TEXT": 4712,
+        "INSTANCE": 1274,
+        "RECTANGLE": 216,
+        "VECTOR": 259,
+        "COMPONENT_SET": 9,
+        "COMPONENT": 18,
+        "ELLIPSE": 77
+      },
+      "instanceChildren": 3028,
+      "genericCount": 357,
+      "owners": [
+        {
+          "id": "74:72248",
+          "name": "Observatory/v2/Advanced/WorkspaceCommands"
+        },
+        {
+          "id": "74:73677",
+          "name": "Observatory/v2/Advanced/StudyWorkspace"
+        },
+        {
+          "id": "74:74147",
+          "name": "Observatory/v2/Advanced/SavedWorkspaces"
+        },
+        {
+          "id": "75:74396",
+          "name": "Observatory/v2/Advanced/WorkspaceStorageNotice"
+        },
+        {
+          "id": "75:74869",
+          "name": "Observatory/v2/Advanced/UiPerformanceAccess"
+        },
+        {
+          "id": "75:74923",
+          "name": "Observatory/v2/Advanced/UiPerformancePanel"
+        },
+        {
+          "id": "75:79609",
+          "name": "Observatory/v2/Advanced/ProgressiveHistory"
+        },
+        {
+          "id": "75:80544",
+          "name": "Observatory/v2/Advanced/MathComparison"
+        },
+        {
+          "id": "75:84056",
+          "name": "Observatory/v2/Advanced/ConceptText"
+        }
+      ],
+      "rootCount": 153,
+      "roots": [
+        {
+          "id": "29:4495",
+          "name": "R18@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032
+        },
+        {
+          "id": "29:4553",
+          "name": "설계 근거 / R18@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 443
+        },
+        {
+          "id": "29:4560",
+          "name": "R18@iphone-portrait",
+          "type": "FRAME",
+          "w": 402,
+          "h": 681
+        },
+        {
+          "id": "29:4618",
+          "name": "설계 근거 / R18@iphone-portrait",
+          "type": "FRAME",
+          "w": 402,
+          "h": 531
+        },
+        {
+          "id": "29:4625",
+          "name": "R18@iphone-landscape",
+          "type": "FRAME",
+          "w": 756,
+          "h": 352
+        },
+        {
+          "id": "29:4683",
+          "name": "설계 근거 / R18@iphone-landscape",
+          "type": "FRAME",
+          "w": 756,
+          "h": 443
+        },
+        {
+          "id": "29:4690",
+          "name": "R18@ipad-portrait",
+          "type": "FRAME",
+          "w": 1032,
+          "h": 1376
+        },
+        {
+          "id": "29:4748",
+          "name": "설계 근거 / R18@ipad-portrait",
+          "type": "FRAME",
+          "w": 1032,
+          "h": 443
+        },
+        {
+          "id": "29:4755",
+          "name": "R18@ipad-narrow",
+          "type": "FRAME",
+          "w": 517,
+          "h": 1200
+        },
+        {
+          "id": "29:4813",
+          "name": "설계 근거 / R18@ipad-narrow",
+          "type": "FRAME",
+          "w": 517,
+          "h": 443
+        },
+        {
+          "id": "29:4824",
+          "name": "R24@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032
+        },
+        {
+          "id": "29:4854",
+          "name": "설계 근거 / R24@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 197
+        },
+        {
+          "id": "29:4858",
+          "name": "R33@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032
+        },
+        {
+          "id": "29:4890",
+          "name": "설계 근거 / R33@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 197
+        },
+        {
+          "id": "29:4894",
+          "name": "R34@ipad-landscape",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1032
+        }
+      ]
+    },
+    {
+      "pageId": "7:76",
+      "pageName": "20 UX · 상태·실패·복귀",
+      "count": 23092,
+      "types": {
+        "FRAME": 6928,
+        "TEXT": 11752,
+        "COMPONENT": 74,
+        "INSTANCE": 3207,
+        "RECTANGLE": 622,
+        "VECTOR": 487,
+        "ELLIPSE": 22
+      },
+      "instanceChildren": 15782,
+      "genericCount": 758,
+      "owners": [
+        {
+          "id": "62:29943",
+          "name": "과업 시연 정본 / O02 / source 28:11892"
+        },
+        {
+          "id": "62:29998",
+          "name": "과업 시연 정본 / O03 / source 28:11924"
+        },
+        {
+          "id": "62:30052",
+          "name": "과업 시연 정본 / O04 / source 28:11960"
+        },
+        {
+          "id": "62:30100",
+          "name": "과업 시연 정본 / O08 / source 29:5192"
+        },
+        {
+          "id": "62:30155",
+          "name": "과업 시연 정본 / O09 / source 29:5226"
+        },
+        {
+          "id": "62:30233",
+          "name": "과업 시연 정본 / O13 / source 29:4293"
+        },
+        {
+          "id": "62:30304",
+          "name": "과업 시연 정본 / O14 / source 29:295"
+        },
+        {
+          "id": "62:30356",
+          "name": "과업 시연 정본 / O19 / source 28:12060"
+        },
+        {
+          "id": "62:30416",
+          "name": "과업 시연 정본 / O20 / source 28:9561"
+        },
+        {
+          "id": "62:30466",
+          "name": "과업 시연 정본 / O21 / source 29:5374"
+        },
+        {
+          "id": "62:30516",
+          "name": "과업 시연 정본 / O22 / source 28:12098"
+        },
+        {
+          "id": "62:30581",
+          "name": "과업 시연 정본 / O25 / source 29:4342"
+        },
+        {
+          "id": "63:3932",
+          "name": "과업 시연 정본 / R01 / source 26:68"
+        },
+        {
+          "id": "63:4207",
+          "name": "과업 시연 정본 / R02 / source 29:347"
+        },
+        {
+          "id": "63:4473",
+          "name": "과업 시연 정본 / R03 / source 29:1432"
+        },
+        {
+          "id": "63:4581",
+          "name": "과업 시연 정본 / R04 / source 28:9818"
+        },
+        {
+          "id": "63:4809",
+          "name": "과업 시연 정본 / R05 / source 26:9103"
+        },
+        {
+          "id": "63:5036",
+          "name": "과업 시연 정본 / R07 / source 28:10158"
+        },
+        {
+          "id": "63:5235",
+          "name": "과업 시연 정본 / R08 / source 28:12179"
+        },
+        {
+          "id": "63:5496",
+          "name": "과업 시연 정본 / R09 / source 28:12749"
+        },
+        {
+          "id": "63:5687",
+          "name": "과업 시연 정본 / R11 / source 27:19997"
+        },
+        {
+          "id": "63:5813",
+          "name": "과업 시연 정본 / R12 / source 28:10863"
+        },
+        {
+          "id": "63:6001",
+          "name": "과업 시연 정본 / R13 / source 28:11253"
+        },
+        {
+          "id": "63:6209",
+          "name": "과업 시연 정본 / R15 / source 29:2487"
+        },
+        {
+          "id": "63:13263",
+          "name": "과업 시연 정본 / R16 / source 29:3112"
+        },
+        {
+          "id": "63:13375",
+          "name": "과업 시연 정본 / R18 / source 29:4495"
+        },
+        {
+          "id": "63:13467",
+          "name": "과업 시연 정본 / R19 / source 28:11848"
+        },
+        {
+          "id": "63:13581",
+          "name": "과업 시연 정본 / R20 / source 28:8964"
+        },
+        {
+          "id": "63:13671",
+          "name": "과업 시연 정본 / R22 / source 28:9054"
+        },
+        {
+          "id": "63:13788",
+          "name": "과업 시연 정본 / R23 / source 28:9093"
+        },
+        {
+          "id": "63:13867",
+          "name": "과업 시연 정본 / R25 / source 29:260"
+        },
+        {
+          "id": "63:13941",
+          "name": "과업 시연 정본 / R26 / source 28:9134"
+        },
+        {
+          "id": "63:14018",
+          "name": "과업 시연 정본 / R27 / source 28:9172"
+        },
+        {
+          "id": "63:14093",
+          "name": "과업 시연 정본 / R28 / source 28:9213"
+        },
+        {
+          "id": "63:14176",
+          "name": "과업 시연 정본 / R29 / source 28:9251"
+        },
+        {
+          "id": "63:14250",
+          "name": "과업 시연 정본 / R33 / source 29:4858"
+        },
+        {
+          "id": "63:14326",
+          "name": "과업 시연 정본 / R35 / source 29:4926"
+        },
+        {
+          "id": "63:14473",
+          "name": "과업 시연 정본 / U01 / source 29:5410"
+        },
+        {
+          "id": "63:14539",
+          "name": "과업 시연 정본 / U02 / source 29:5463"
+        },
+        {
+          "id": "63:14639",
+          "name": "과업 시연 정본 / U03 / source 29:5493"
+        },
+        {
+          "id": "63:14708",
+          "name": "과업 시연 정본 / U04 / source 29:5533"
+        },
+        {
+          "id": "63:14802",
+          "name": "과업 시연 정본 / U24 / source 28:12134"
+        },
+        {
+          "id": "63:14908",
+          "name": "과업 시연 정본 / U26 / source 28:9739"
+        },
+        {
+          "id": "63:14990",
+          "name": "과업 시연 정본 / U27 / source 28:9781"
+        },
+        {
+          "id": "63:15011",
+          "name": "과업 시연 정본 / AI-FAILED / source 14:739"
+        },
+        {
+          "id": "63:15029",
+          "name": "과업 시연 정본 / AI-FORBIDDEN / source 14:673"
+        },
+        {
+          "id": "63:15059",
+          "name": "과업 시연 정본 / AI-GENERATING / source 14:690"
+        },
+        {
+          "id": "63:15091",
+          "name": "과업 시연 정본 / AI-OWNER-READY / source 14:651"
+        },
+        {
+          "id": "63:15121",
+          "name": "과업 시연 정본 / AI-PREVIEW / source 14:710"
+        },
+        {
+          "id": "63:15142",
+          "name": "과업 시연 정본 / AUTH-APPROVED / source 14:331"
+        },
+        {
+          "id": "63:15174",
+          "name": "과업 시연 정본 / AUTH-CHECKING / source 14:271"
+        },
+        {
+          "id": "63:15194",
+          "name": "과업 시연 정본 / AUTH-EXPIRED / source 14:382"
+        },
+        {
+          "id": "63:15214",
+          "name": "과업 시연 정본 / AUTH-PENDING / source 14:312"
+        },
+        {
+          "id": "63:15232",
+          "name": "과업 시연 정본 / AUTH-REJECTED / source 14:348"
+        },
+        {
+          "id": "63:15258",
+          "name": "과업 시연 정본 / AUTH-SIGNED-OUT / source 14:290"
+        },
+        {
+          "id": "63:15276",
+          "name": "과업 시연 정본 / AUTH-SUSPENDED / source 14:365"
+        },
+        {
+          "id": "63:15296",
+          "name": "과업 시연 정본 / BACKUP-INVALID / source 14:500"
+        },
+        {
+          "id": "63:15324",
+          "name": "과업 시연 정본 / BACKUP-PREVIEW / source 14:519"
+        },
+        {
+          "id": "63:15344",
+          "name": "과업 시연 정본 / BACKUP-ROLLED-BACK / source 14:596"
+        },
+        {
+          "id": "63:15362",
+          "name": "과업 시연 정본 / CONTENT-EMPTY / source 14:799"
+        },
+        {
+          "id": "63:15382",
+          "name": "과업 시연 정본 / CONTENT-ERROR / source 14:838"
+        },
+        {
+          "id": "63:15405",
+          "name": "과업 시연 정본 / CONTENT-NO-RESULT / source 14:816"
+        },
+        {
+          "id": "63:15423",
+          "name": "과업 시연 정본 / CONTENT-UNAVAILABLE / source 14:857"
+        },
+        {
+          "id": "63:15448",
+          "name": "과업 시연 정본 / EDIT-DIRTY / source 14:401"
+        },
+        {
+          "id": "63:15471",
+          "name": "과업 시연 정본 / EDIT-RESTORED-DRAFT / source 14:444"
+        },
+        {
+          "id": "63:15491",
+          "name": "과업 시연 정본 / RENDER-FALLBACK / source 14:874"
+        },
+        {
+          "id": "63:15511",
+          "name": "과업 시연 정본 / RENDER-PAUSED / source 14:893"
+        },
+        {
+          "id": "63:15535",
+          "name": "과업 시연 정본 / SAVE-ARCHIVING / source 14:254"
+        },
+        {
+          "id": "63:15566",
+          "name": "과업 시연 정본 / SAVE-CONFLICT / source 14:227"
+        },
+        {
+          "id": "63:15592",
+          "name": "과업 시연 정본 / SAVE-ERROR / source 14:183"
+        },
+        {
+          "id": "63:15615",
+          "name": "과업 시연 정본 / SAVE-LOCAL-ERROR / source 14:205"
+        },
+        {
+          "id": "63:15643",
+          "name": "과업 시연 정본 / SAVE-PENDING / source 14:115"
+        },
+        {
+          "id": "63:15666",
+          "name": "과업 시연 정본 / SAVE-SAVED / source 14:161"
+        },
+        {
+          "id": "63:15698",
+          "name": "과업 시연 정본 / SAVE-SAVING / source 14:139"
+        }
+      ],
+      "rootCount": 267,
+      "roots": [
+        {
+          "id": "14:68",
+          "name": "실패와 복귀 · 42상태 / 32전이",
+          "type": "FRAME",
+          "w": 1200,
+          "h": 352
+        },
+        {
+          "id": "14:73",
+          "name": "상태 SAVE-CHECKING · 서버 확인 중",
+          "type": "FRAME",
+          "w": 800,
+          "h": 1047
+        },
+        {
+          "id": "14:95",
+          "name": "상태 SAVE-LOCAL-WRITING · 기기에 보관 중",
+          "type": "FRAME",
+          "w": 800,
+          "h": 979
+        },
+        {
+          "id": "14:115",
+          "name": "상태 SAVE-PENDING · 기기 보관·미전송",
+          "type": "FRAME",
+          "w": 800,
+          "h": 1010
+        },
+        {
+          "id": "14:139",
+          "name": "상태 SAVE-SAVING · 서버에 저장 중",
+          "type": "FRAME",
+          "w": 800,
+          "h": 1152
+        },
+        {
+          "id": "14:161",
+          "name": "상태 SAVE-SAVED · 서버 반영 확인",
+          "type": "FRAME",
+          "w": 800,
+          "h": 837
+        },
+        {
+          "id": "14:183",
+          "name": "상태 SAVE-ERROR · 서버 저장 실패",
+          "type": "FRAME",
+          "w": 800,
+          "h": 942
+        },
+        {
+          "id": "14:205",
+          "name": "상태 SAVE-LOCAL-ERROR · 기기 보관 실패",
+          "type": "FRAME",
+          "w": 800,
+          "h": 837
+        },
+        {
+          "id": "14:227",
+          "name": "상태 SAVE-CONFLICT · 두 자료 확인",
+          "type": "FRAME",
+          "w": 800,
+          "h": 983
+        },
+        {
+          "id": "14:254",
+          "name": "상태 SAVE-ARCHIVING · 전환 전 양본 보관",
+          "type": "FRAME",
+          "w": 800,
+          "h": 908
+        },
+        {
+          "id": "14:271",
+          "name": "상태 AUTH-CHECKING · 이용 권한 확인",
+          "type": "FRAME",
+          "w": 800,
+          "h": 1143
+        },
+        {
+          "id": "14:290",
+          "name": "상태 AUTH-SIGNED-OUT · 로그인 전",
+          "type": "FRAME",
+          "w": 800,
+          "h": 886
+        },
+        {
+          "id": "14:312",
+          "name": "상태 AUTH-PENDING · 가입 승인 대기",
+          "type": "FRAME",
+          "w": 800,
+          "h": 723
+        },
+        {
+          "id": "14:331",
+          "name": "상태 AUTH-APPROVED · 이용 허용",
+          "type": "FRAME",
+          "w": 800,
+          "h": 760
+        },
+        {
+          "id": "14:348",
+          "name": "상태 AUTH-REJECTED · 가입 거절",
+          "type": "FRAME",
+          "w": 800,
+          "h": 655
+        }
+      ]
+    },
+    {
+      "pageId": "73:68",
+      "pageName": "21 UX · 전체 경우·경로",
+      "count": 9543,
+      "types": {
+        "FRAME": 1604,
+        "TEXT": 7939
+      },
+      "annotations": 9543,
+      "instanceChildren": 0,
+      "genericCount": 0,
+      "genericSample": [],
+      "owners": [],
+      "roots": [
+        {
+          "id": "73:69",
+          "name": "[UXPATH source-paths-20261002/overview]",
+          "type": "FRAME",
+          "w": 4576,
+          "h": 1562,
+          "childCount": 4
+        },
+        {
+          "id": "74:68",
+          "name": "[UXPATH source-paths-20261002/surfaces]",
+          "type": "FRAME",
+          "w": 4576,
+          "h": 17711,
+          "childCount": 4
+        },
+        {
+          "id": "74:71007",
+          "name": "[UXPATH source-paths-20261002/actions]",
+          "type": "FRAME",
+          "w": 4576,
+          "h": 206730,
+          "childCount": 4
+        }
+      ]
+    },
+    {
+      "pageId": "61:10753",
+      "pageName": "30 수학 · 정체성·디자인",
+      "count": 168,
+      "types": {
+        "FRAME": 36,
+        "TEXT": 63,
+        "INSTANCE": 12,
+        "GROUP": 29,
+        "VECTOR": 28
+      },
+      "annotations": 139,
+      "instanceChildren": 17,
+      "genericCount": 57,
+      "genericSample": [
+        {
+          "id": "88:12598",
+          "type": "GROUP",
+          "name": "Group",
+          "parent": "LaTeX / \\mathbf a\\cdot\\mathbf b=\\|\\mathbf a\\|\\|\\mathbf b\\|\\cos\\theta",
+          "insideInstance": false
+        },
+        {
+          "id": "88:12599",
+          "type": "GROUP",
+          "name": "Group",
+          "parent": "Group",
+          "insideInstance": false
+        },
+        {
+          "id": "88:12600",
+          "type": "GROUP",
+          "name": "Group",
+          "parent": "Group",
+          "insideInstance": false
+        },
+        {
+          "id": "88:12601",
+          "type": "GROUP",
+          "name": "Group",
+          "parent": "Group",
+          "insideInstance": false
+        },
+        {
+          "id": "88:12602",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "Group",
+          "insideInstance": false
+        },
+        {
+          "id": "88:12603",
+          "type": "GROUP",
+          "name": "Group",
+          "parent": "Group",
+          "insideInstance": false
+        },
+        {
+          "id": "88:12604",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "Group",
+          "insideInstance": false
+        },
+        {
+          "id": "88:12605",
+          "type": "GROUP",
+          "name": "Group",
+          "parent": "Group",
+          "insideInstance": false
+        },
+        {
+          "id": "88:12606",
+          "type": "GROUP",
+          "name": "Group",
+          "parent": "Group",
+          "insideInstance": false
+        },
+        {
+          "id": "88:12607",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "Group",
+          "insideInstance": false
+        },
+        {
+          "id": "88:12608",
+          "type": "GROUP",
+          "name": "Group",
+          "parent": "Group",
+          "insideInstance": false
+        },
+        {
+          "id": "88:12609",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "Group",
+          "insideInstance": false
+        }
+      ],
+      "owners": [],
+      "roots": [
+        {
+          "id": "61:10844",
+          "name": "정체성에서 디자인으로 · 벡터 관측실",
+          "type": "FRAME",
+          "w": 2700,
+          "h": 2499.2490234375,
+          "childCount": 6
+        }
+      ]
+    },
+    {
+      "pageId": "49:10972",
+      "pageName": "31 수학 · 관측실",
+      "count": 6828,
+      "types": {
+        "FRAME": 508,
+        "TEXT": 1048,
+        "INSTANCE": 174,
+        "GROUP": 2819,
+        "VECTOR": 2262,
+        "RECTANGLE": 17
+      },
+      "annotations": 4009,
+      "instanceChildren": 112,
+      "genericCount": 4950,
+      "genericSample": [
+        {
+          "id": "84:100238",
+          "type": "GROUP",
+          "name": "Group",
+          "parent": "조판된 수식 / B2-main",
+          "insideInstance": false
+        },
+        {
+          "id": "84:100239",
+          "type": "GROUP",
+          "name": "Group",
+          "parent": "Group",
+          "insideInstance": false
+        },
+        {
+          "id": "84:100240",
+          "type": "GROUP",
+          "name": "Group",
+          "parent": "Group",
+          "insideInstance": false
+        },
+        {
+          "id": "84:100241",
+          "type": "GROUP",
+          "name": "Group",
+          "parent": "Group",
+          "insideInstance": false
+        },
+        {
+          "id": "84:100242",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "Group",
+          "insideInstance": false
+        },
+        {
+          "id": "84:100243",
+          "type": "GROUP",
+          "name": "Group",
+          "parent": "Group",
+          "insideInstance": false
+        },
+        {
+          "id": "84:100244",
+          "type": "GROUP",
+          "name": "Group",
+          "parent": "Group",
+          "insideInstance": false
+        },
+        {
+          "id": "84:100245",
+          "type": "GROUP",
+          "name": "Group",
+          "parent": "Group",
+          "insideInstance": false
+        },
+        {
+          "id": "84:100246",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "Group",
+          "insideInstance": false
+        },
+        {
+          "id": "84:100247",
+          "type": "GROUP",
+          "name": "Group",
+          "parent": "Group",
+          "insideInstance": false
+        },
+        {
+          "id": "84:100248",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "Group",
+          "insideInstance": false
+        },
+        {
+          "id": "84:100249",
+          "type": "GROUP",
+          "name": "Group",
+          "parent": "Group",
+          "insideInstance": false
+        }
+      ],
+      "owners": [],
+      "roots": [
+        {
+          "id": "53:68",
+          "name": "수학관측실 · 전체 기본틀",
+          "type": "FRAME",
+          "w": 2500,
+          "h": 4604.16650390625,
+          "childCount": 6
+        },
+        {
+          "id": "79:80217",
+          "name": "펼쳐 읽기 / 공간과 벡터 대수",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1024,
+          "childCount": 3
+        },
+        {
+          "id": "79:82541",
+          "name": "펼쳐 읽기 / 내적",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1024,
+          "childCount": 3
+        },
+        {
+          "id": "79:84587",
+          "name": "펼쳐 읽기 / 외적·직선·평면",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1024,
+          "childCount": 3
+        },
+        {
+          "id": "79:86598",
+          "name": "펼쳐 읽기 / 곡면과 좌표",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1024,
+          "childCount": 3
+        },
+        {
+          "id": "79:88651",
+          "name": "펼쳐 읽기 / 벡터값 함수와 호의 길이",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1024,
+          "childCount": 3
+        },
+        {
+          "id": "79:90822",
+          "name": "펼쳐 읽기 / 다변수 함수와 편미분",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1024,
+          "childCount": 3
+        },
+        {
+          "id": "79:92687",
+          "name": "펼쳐 읽기 / 접평면과 그래디언트",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1024,
+          "childCount": 3
+        },
+        {
+          "id": "79:94653",
+          "name": "펼쳐 읽기 / 극값과 최적화",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1024,
+          "childCount": 3
+        },
+        {
+          "id": "79:96583",
+          "name": "펼쳐 읽기 / 이중·삼중적분",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1024,
+          "childCount": 3
+        },
+        {
+          "id": "79:98432",
+          "name": "펼쳐 읽기 / 몬테카를로 근사",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1024,
+          "childCount": 3
+        },
+        {
+          "id": "79:100285",
+          "name": "펼쳐 읽기 / 변수변환과 야코비안",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1024,
+          "childCount": 3
+        },
+        {
+          "id": "79:102255",
+          "name": "펼쳐 읽기 / 질량중심·확률·기댓값",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1024,
+          "childCount": 3
+        },
+        {
+          "id": "79:104207",
+          "name": "펼쳐 읽기 / 선적분과 퍼텐셜",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1024,
+          "childCount": 3
+        },
+        {
+          "id": "79:106174",
+          "name": "펼쳐 읽기 / 그린 정리",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1024,
+          "childCount": 3
+        },
+        {
+          "id": "80:25298",
+          "name": "펼쳐 읽기 / 면적분과 발산 정리",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1024,
+          "childCount": 3
+        },
+        {
+          "id": "82:27223",
+          "name": "펼쳐 읽기 / 스토크스 정리",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1024,
+          "childCount": 3
+        },
+        {
+          "id": "83:28658",
+          "name": "펼쳐 읽기 / 미분 연산자의 통합",
+          "type": "FRAME",
+          "w": 1376,
+          "h": 1024,
+          "childCount": 3
+        },
+        {
+          "id": "126:386",
+          "name": "펼쳐 보기 / 벡터 미적분 캔버스 연결도",
+          "type": "FRAME",
+          "w": 2810,
+          "h": 3033.43994140625,
+          "childCount": 4
+        }
+      ]
+    },
+    {
+      "pageId": "49:10973",
+      "pageName": "32 수학 · 인터랙티브",
+      "count": 1403,
+      "types": {
+        "FRAME": 173,
+        "TEXT": 326,
+        "INSTANCE": 108,
+        "RECTANGLE": 24,
+        "VECTOR": 402,
+        "GROUP": 370
+      },
+      "annotations": 1033,
+      "instanceChildren": 190,
+      "genericCount": 772,
+      "genericSample": [
+        {
+          "id": "I55:90;59:180",
+          "type": "RECTANGLE",
+          "name": "Rectangle",
+          "parent": "슬라이더 조절 영역",
+          "insideInstance": true
+        },
+        {
+          "id": "I55:90;59:181",
+          "type": "RECTANGLE",
+          "name": "Rectangle",
+          "parent": "슬라이더 조절 영역",
+          "insideInstance": true
+        },
+        {
+          "id": "55:120",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "축 · 벡터 a · 벡터 b · 투영",
+          "insideInstance": false
+        },
+        {
+          "id": "55:121",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "축 · 벡터 a · 벡터 b · 투영",
+          "insideInstance": false
+        },
+        {
+          "id": "55:122",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "축 · 벡터 a · 벡터 b · 투영",
+          "insideInstance": false
+        },
+        {
+          "id": "55:123",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "축 · 벡터 a · 벡터 b · 투영",
+          "insideInstance": false
+        },
+        {
+          "id": "55:124",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "축 · 벡터 a · 벡터 b · 투영",
+          "insideInstance": false
+        },
+        {
+          "id": "86:109195",
+          "type": "GROUP",
+          "name": "Group",
+          "parent": "조판된 수식 / vectors",
+          "insideInstance": false
+        },
+        {
+          "id": "86:109196",
+          "type": "GROUP",
+          "name": "Group",
+          "parent": "Group",
+          "insideInstance": false
+        },
+        {
+          "id": "86:109197",
+          "type": "GROUP",
+          "name": "Group",
+          "parent": "Group",
+          "insideInstance": false
+        },
+        {
+          "id": "86:109198",
+          "type": "GROUP",
+          "name": "Group",
+          "parent": "Group",
+          "insideInstance": false
+        },
+        {
+          "id": "86:109199",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "Group",
+          "insideInstance": false
+        }
+      ],
+      "owners": [],
+      "roots": [
+        {
+          "id": "55:68",
+          "name": "인터랙티브관측실 · 전체 기본틀",
+          "type": "FRAME",
+          "w": 2500,
+          "h": 6482.00146484375,
+          "childCount": 8
+        },
+        {
+          "id": "55:518",
+          "name": "프로토타입 / θ60",
+          "type": "FRAME",
+          "w": 1032,
+          "h": 1280,
+          "childCount": 4
+        },
+        {
+          "id": "55:585",
+          "name": "프로토타입 / θ90",
+          "type": "FRAME",
+          "w": 1032,
+          "h": 1280,
+          "childCount": 4
+        },
+        {
+          "id": "55:652",
+          "name": "프로토타입 / θ0",
+          "type": "FRAME",
+          "w": 1032,
+          "h": 1280,
+          "childCount": 4
+        }
+      ]
+    },
+    {
+      "pageId": "49:10974",
+      "pageName": "33 수학 · 부품·콘텐츠",
+      "count": 4649,
+      "types": {
+        "FRAME": 220,
+        "TEXT": 527,
+        "COMPONENT": 7,
+        "COMPONENT_SET": 2,
+        "RECTANGLE": 12,
+        "INSTANCE": 51,
+        "GROUP": 2190,
+        "VECTOR": 1640
+      },
+      "annotations": 2459,
+      "instanceChildren": 85,
+      "genericCount": 3844,
+      "genericSample": [
+        {
+          "id": "51:79",
+          "type": "RECTANGLE",
+          "name": "Rectangle",
+          "parent": "目盛 / ドラッグ領域",
+          "insideInstance": false
+        },
+        {
+          "id": "51:80",
+          "type": "RECTANGLE",
+          "name": "Rectangle",
+          "parent": "目盛 / ドラッグ領域",
+          "insideInstance": false
+        },
+        {
+          "id": "51:85",
+          "type": "RECTANGLE",
+          "name": "Rectangle",
+          "parent": "目盛 / ドラッグ領域",
+          "insideInstance": false
+        },
+        {
+          "id": "51:86",
+          "type": "RECTANGLE",
+          "name": "Rectangle",
+          "parent": "目盛 / ドラッグ領域",
+          "insideInstance": false
+        },
+        {
+          "id": "51:91",
+          "type": "RECTANGLE",
+          "name": "Rectangle",
+          "parent": "目盛 / ドラッグ領域",
+          "insideInstance": false
+        },
+        {
+          "id": "51:92",
+          "type": "RECTANGLE",
+          "name": "Rectangle",
+          "parent": "目盛 / ドラッグ領域",
+          "insideInstance": false
+        },
+        {
+          "id": "59:174",
+          "type": "RECTANGLE",
+          "name": "Rectangle",
+          "parent": "슬라이더 조절 영역",
+          "insideInstance": false
+        },
+        {
+          "id": "59:175",
+          "type": "RECTANGLE",
+          "name": "Rectangle",
+          "parent": "슬라이더 조절 영역",
+          "insideInstance": false
+        },
+        {
+          "id": "59:180",
+          "type": "RECTANGLE",
+          "name": "Rectangle",
+          "parent": "슬라이더 조절 영역",
+          "insideInstance": false
+        },
+        {
+          "id": "59:181",
+          "type": "RECTANGLE",
+          "name": "Rectangle",
+          "parent": "슬라이더 조절 영역",
+          "insideInstance": false
+        },
+        {
+          "id": "59:186",
+          "type": "RECTANGLE",
+          "name": "Rectangle",
+          "parent": "슬라이더 조절 영역",
+          "insideInstance": false
+        },
+        {
+          "id": "59:187",
+          "type": "RECTANGLE",
+          "name": "Rectangle",
+          "parent": "슬라이더 조절 영역",
+          "insideInstance": false
+        }
+      ],
+      "owners": [
+        {
+          "id": "51:71",
+          "name": "Observatory/VectorCalculus/ConceptTile",
+          "props": {
+            "Title#51:0": {
+              "type": "TEXT",
+              "defaultValue": "접평면과 그래디언트"
+            },
+            "Question#51:1": {
+              "type": "TEXT",
+              "defaultValue": "여러 방향의 변화율을 어떻게 묶을까?"
+            },
+            "Condition#51:2": {
+              "type": "TEXT",
+              "defaultValue": "미분 가능 · 단위 방향벡터"
+            }
+          },
+          "desc": "개념 질문·적용 조건·수학/인터랙티브 관측 연결. 체크나 숙달 상태를 의미하지 않는다."
+        },
+        {
+          "id": "51:94",
+          "name": "Observatory/VectorCalculus/ParameterSlider",
+          "props": {
+            "Label#51:9": {
+              "type": "TEXT",
+              "defaultValue": "방향 각도 θ"
+            },
+            "Value#51:10": {
+              "type": "TEXT",
+              "defaultValue": "60°"
+            },
+            "State": {
+              "type": "VARIANT",
+              "defaultValue": "default",
+              "variantOptions": [
+                "default",
+                "focus",
+                "disabled"
+              ]
+            }
+          },
+          "desc": "방향각 θ의 기본·초점·비활성 상태. 수치 입력·범위·초기값으로 복귀와 연결한다."
+        },
+        {
+          "id": "59:189",
+          "name": "Observatory/VectorCalculus/AngleSlider",
+          "props": {
+            "Angle": {
+              "type": "VARIANT",
+              "defaultValue": "0",
+              "variantOptions": [
+                "0",
+                "60",
+                "90"
+              ]
+            }
+          },
+          "desc": ""
+        }
+      ],
+      "roots": [
+        {
+          "id": "51:68",
+          "name": "관측실 전용 부품 · 재사용 원본",
+          "type": "FRAME",
+          "w": 1600,
+          "h": 672,
+          "childCount": 5
+        },
+        {
+          "id": "57:68",
+          "name": "17개 개념 · 수학/관측 기본틀 대조",
+          "type": "FRAME",
+          "w": 1624,
+          "h": 22629.65625,
+          "childCount": 19
+        }
+      ]
+    },
+    {
+      "pageId": "52:68",
+      "pageName": "40 물리 · 시작",
+      "count": 218,
+      "types": {
+        "FRAME": 41,
+        "TEXT": 115,
+        "INSTANCE": 33,
+        "VECTOR": 24,
+        "ELLIPSE": 1,
+        "RECTANGLE": 4
+      },
+      "annotations": 218,
+      "instanceChildren": 57,
+      "genericCount": 0,
+      "genericSample": [],
+      "owners": [],
+      "roots": [
+        {
+          "id": "63:6210",
+          "name": "천문대에서 두 관측실이 맡는 일",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1016.6666870117188,
+          "childCount": 2
+        },
+        {
+          "id": "63:9593",
+          "name": "정체성이 드러나는 수학관측실",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1396.666748046875,
+          "childCount": 2
+        },
+        {
+          "id": "63:11348",
+          "name": "정체성이 드러나는 인터랙티브관측실",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1396.666748046875,
+          "childCount": 2
+        }
+      ]
+    },
+    {
+      "pageId": "52:69",
+      "pageName": "41 물리 · 관측실",
+      "count": 822,
+      "types": {
+        "FRAME": 144,
+        "TEXT": 414,
+        "INSTANCE": 119,
+        "VECTOR": 108,
+        "ELLIPSE": 9,
+        "RECTANGLE": 28
+      },
+      "annotations": 822,
+      "instanceChildren": 263,
+      "genericCount": 0,
+      "genericSample": [],
+      "owners": [],
+      "roots": [
+        {
+          "id": "56:24881",
+          "name": "M01 수학관측실 · 넓은 화면",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1637,
+          "childCount": 3
+        },
+        {
+          "id": "56:24981",
+          "name": "M02 수학관측실 · 태블릿 세로",
+          "type": "FRAME",
+          "w": 1032,
+          "h": 1637,
+          "childCount": 3
+        },
+        {
+          "id": "56:25081",
+          "name": "M03 수학관측실 · 분할 화면",
+          "type": "FRAME",
+          "w": 517,
+          "h": 2467,
+          "childCount": 3
+        },
+        {
+          "id": "56:25181",
+          "name": "M04 수학관측실 · 휴대폰",
+          "type": "FRAME",
+          "w": 402,
+          "h": 2489,
+          "childCount": 3
+        },
+        {
+          "id": "56:25281",
+          "name": "M05 그래프 전체 보기",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1637,
+          "childCount": 3
+        },
+        {
+          "id": "56:25381",
+          "name": "M06 가속도 변경",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1637,
+          "childCount": 3
+        },
+        {
+          "id": "56:25481",
+          "name": "M07 입력을 적용하지 못한 상태",
+          "type": "FRAME",
+          "w": 1032,
+          "h": 1659,
+          "childCount": 3
+        },
+        {
+          "id": "56:25581",
+          "name": "M08 두 값 비교 · 같은 축과 단위",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1041,
+          "childCount": 3
+        }
+      ]
+    },
+    {
+      "pageId": "52:70",
+      "pageName": "42 물리 · 인터랙티브",
+      "count": 787,
+      "types": {
+        "FRAME": 128,
+        "TEXT": 413,
+        "INSTANCE": 140,
+        "VECTOR": 84,
+        "RECTANGLE": 22
+      },
+      "annotations": 787,
+      "instanceChildren": 303,
+      "genericCount": 0,
+      "genericSample": [],
+      "owners": [],
+      "roots": [
+        {
+          "id": "56:29539",
+          "name": "I01 교재 전체 · 관측할 현상 선택",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 2413,
+          "childCount": 3
+        },
+        {
+          "id": "56:29708",
+          "name": "I02 파동 · 기본 관측",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1414,
+          "childCount": 3
+        },
+        {
+          "id": "56:29804",
+          "name": "I03 파동 · 진폭 변경",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1414,
+          "childCount": 3
+        },
+        {
+          "id": "56:29900",
+          "name": "I04 파동 · 재생 위치",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1414,
+          "childCount": 3
+        },
+        {
+          "id": "56:29996",
+          "name": "I05 파동 · 분할 화면",
+          "type": "FRAME",
+          "w": 517,
+          "h": 2390,
+          "childCount": 3
+        },
+        {
+          "id": "56:30092",
+          "name": "I06 파동 · 휴대폰",
+          "type": "FRAME",
+          "w": 402,
+          "h": 2434,
+          "childCount": 3
+        },
+        {
+          "id": "56:30188",
+          "name": "I07 진폭 비교 · 같은 파장과 주파수",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 940,
+          "childCount": 3
+        },
+        {
+          "id": "56:30260",
+          "name": "I08 에너지 · 저장과 교환의 공통 틀",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 939,
+          "childCount": 3
+        }
+      ]
+    },
+    {
+      "pageId": "52:71",
+      "pageName": "43 물리 · 부품·상태",
+      "count": 283,
+      "types": {
+        "COMPONENT_SET": 5,
+        "COMPONENT": 14,
+        "TEXT": 156,
+        "FRAME": 51,
+        "RECTANGLE": 16,
+        "INSTANCE": 41
+      },
+      "annotations": 283,
+      "instanceChildren": 81,
+      "genericCount": 0,
+      "genericSample": [],
+      "owners": [
+        {
+          "id": "53:2156",
+          "name": "Physics observatories/Slider",
+          "props": {
+            "Label#53:0": {
+              "type": "TEXT",
+              "defaultValue": "가속도 a"
+            },
+            "Value#53:5": {
+              "type": "TEXT",
+              "defaultValue": "2.00 m/s²"
+            },
+            "Range#53:10": {
+              "type": "TEXT",
+              "defaultValue": "0–4 m/s² · 직접 입력 가능"
+            },
+            "State": {
+              "type": "VARIANT",
+              "defaultValue": "default",
+              "variantOptions": [
+                "default",
+                "focus",
+                "invalid",
+                "disabled"
+              ]
+            }
+          },
+          "desc": "변수 슬라이더. 교재 조건과 원문을 유지하며 같은 역할의 화면에서 인스턴스로 재사용한다."
+        },
+        {
+          "id": "53:2185",
+          "name": "Physics observatories/ConceptNode",
+          "props": {
+            "Title#53:15": {
+              "type": "TEXT",
+              "defaultValue": "힘과 운동"
+            },
+            "Role#53:19": {
+              "type": "TEXT",
+              "defaultValue": "합력으로 가속도를 설명"
+            },
+            "State": {
+              "type": "VARIANT",
+              "defaultValue": "default",
+              "variantOptions": [
+                "default",
+                "selected",
+                "linked"
+              ]
+            }
+          },
+          "desc": "개념 상자. 교재 조건과 원문을 유지하며 같은 역할의 화면에서 인스턴스로 재사용한다."
+        },
+        {
+          "id": "53:2195",
+          "name": "Physics observatories/Condition",
+          "props": {
+            "Title#53:23": {
+              "type": "TEXT",
+              "defaultValue": "적용 조건"
+            },
+            "Body#53:26": {
+              "type": "TEXT",
+              "defaultValue": "가속도가 일정한 구간"
+            },
+            "Exception#53:29": {
+              "type": "TEXT",
+              "defaultValue": "공기 저항과 변하는 힘을 포함하면 같은 식을 바로 적용할 수 없습니다."
+            },
+            "State": {
+              "type": "VARIANT",
+              "defaultValue": "collapsed",
+              "variantOptions": [
+                "collapsed",
+                "expanded"
+              ]
+            }
+          },
+          "desc": "적용 조건. 교재 조건과 원문을 유지하며 같은 역할의 화면에서 인스턴스로 재사용한다."
+        },
+        {
+          "id": "53:2203",
+          "name": "Physics observatories/Topic",
+          "props": {
+            "Title#53:32": {
+              "type": "TEXT",
+              "defaultValue": "진동과 파동 운동"
+            },
+            "Question#53:35": {
+              "type": "TEXT",
+              "defaultValue": "시간의 진동을 공간의 전달로 연결"
+            },
+            "Concepts#53:38": {
+              "type": "TEXT",
+              "defaultValue": "위상 · 변위 · 파동 속도"
+            },
+            "State": {
+              "type": "VARIANT",
+              "defaultValue": "default",
+              "variantOptions": [
+                "default",
+                "selected"
+              ]
+            }
+          },
+          "desc": "주제 선택. 교재 조건과 원문을 유지하며 같은 역할의 화면에서 인스턴스로 재사용한다."
+        },
+        {
+          "id": "53:2212",
+          "name": "Physics observatories/Transport",
+          "props": {
+            "Time#53:41": {
+              "type": "TEXT",
+              "defaultValue": "t = 0.00 s"
+            },
+            "State": {
+              "type": "VARIANT",
+              "defaultValue": "paused",
+              "variantOptions": [
+                "paused",
+                "playing"
+              ]
+            }
+          },
+          "desc": "재생 조작. 교재 조건과 원문을 유지하며 같은 역할의 화면에서 인스턴스로 재사용한다."
+        },
+        {
+          "id": "53:2225",
+          "name": "Physics observatories/Readout",
+          "props": {
+            "Label#53:44": {
+              "type": "TEXT",
+              "defaultValue": "현재 위치"
+            },
+            "Value#53:45": {
+              "type": "TEXT",
+              "defaultValue": "3.00"
+            },
+            "Unit#53:46": {
+              "type": "TEXT",
+              "defaultValue": "m · 표시값"
+            }
+          },
+          "desc": "관측값과 단위를 표시한다. 입력의 정확한 값과 화면 반올림은 별개이다."
+        }
+      ],
+      "roots": [
+        {
+          "id": "53:2156",
+          "name": "Physics observatories/Slider",
+          "type": "COMPONENT_SET",
+          "w": 1472,
+          "h": 234,
+          "childCount": 4
+        },
+        {
+          "id": "53:2185",
+          "name": "Physics observatories/ConceptNode",
+          "type": "COMPONENT_SET",
+          "w": 1024,
+          "h": 188,
+          "childCount": 3
+        },
+        {
+          "id": "53:2195",
+          "name": "Physics observatories/Condition",
+          "type": "COMPONENT_SET",
+          "w": 960,
+          "h": 260,
+          "childCount": 2
+        },
+        {
+          "id": "53:2203",
+          "name": "Physics observatories/Topic",
+          "type": "COMPONENT_SET",
+          "w": 960,
+          "h": 260,
+          "childCount": 2
+        },
+        {
+          "id": "53:2212",
+          "name": "Physics observatories/Transport",
+          "type": "COMPONENT_SET",
+          "w": 960,
+          "h": 176,
+          "childCount": 2
+        },
+        {
+          "id": "53:2225",
+          "name": "Physics observatories/Readout",
+          "type": "COMPONENT",
+          "w": 240,
+          "h": 116,
+          "childCount": 3
+        },
+        {
+          "id": "53:2229",
+          "name": "관측실 부품 · 상태 견본",
+          "type": "FRAME",
+          "w": 1184,
+          "h": 1907,
+          "childCount": 16
+        },
+        {
+          "id": "68:25095",
+          "name": "관측 상태 · empty",
+          "type": "FRAME",
+          "w": 544,
+          "h": 384,
+          "childCount": 3
+        },
+        {
+          "id": "68:25105",
+          "name": "관측 상태 · loading",
+          "type": "FRAME",
+          "w": 544,
+          "h": 384,
+          "childCount": 3
+        },
+        {
+          "id": "68:25115",
+          "name": "관측 상태 · render-error",
+          "type": "FRAME",
+          "w": 544,
+          "h": 384,
+          "childCount": 3
+        },
+        {
+          "id": "68:25125",
+          "name": "관측 상태 · invalid",
+          "type": "FRAME",
+          "w": 544,
+          "h": 384,
+          "childCount": 3
+        },
+        {
+          "id": "68:25135",
+          "name": "관측 상태 · saving",
+          "type": "FRAME",
+          "w": 544,
+          "h": 384,
+          "childCount": 3
+        },
+        {
+          "id": "68:25145",
+          "name": "관측 상태 · saved",
+          "type": "FRAME",
+          "w": 544,
+          "h": 448,
+          "childCount": 3
+        },
+        {
+          "id": "68:25157",
+          "name": "관측 상태 · save-error",
+          "type": "FRAME",
+          "w": 544,
+          "h": 384,
+          "childCount": 3
+        },
+        {
+          "id": "68:25167",
+          "name": "관측 상태 · restored",
+          "type": "FRAME",
+          "w": 544,
+          "h": 384,
+          "childCount": 3
+        },
+        {
+          "id": "68:25177",
+          "name": "관측 상태 · readonly",
+          "type": "FRAME",
+          "w": 544,
+          "h": 384,
+          "childCount": 3
+        }
+      ]
+    },
+    {
+      "pageId": "52:72",
+      "pageName": "44 물리 · 개념 연결",
+      "count": 1592,
+      "types": {
+        "FRAME": 108,
+        "TEXT": 772,
+        "GROUP": 248,
+        "VECTOR": 372,
+        "INSTANCE": 92
+      },
+      "annotations": 1344,
+      "instanceChildren": 92,
+      "genericCount": 372,
+      "genericSample": [
+        {
+          "id": "67:75",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "edge1",
+          "insideInstance": false
+        },
+        {
+          "id": "67:76",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "edge1",
+          "insideInstance": false
+        },
+        {
+          "id": "67:78",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "edge2",
+          "insideInstance": false
+        },
+        {
+          "id": "67:79",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "edge2",
+          "insideInstance": false
+        },
+        {
+          "id": "67:81",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "edge4",
+          "insideInstance": false
+        },
+        {
+          "id": "67:82",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "edge4",
+          "insideInstance": false
+        },
+        {
+          "id": "67:84",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "edge5",
+          "insideInstance": false
+        },
+        {
+          "id": "67:85",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "edge5",
+          "insideInstance": false
+        },
+        {
+          "id": "67:87",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "edge9",
+          "insideInstance": false
+        },
+        {
+          "id": "67:88",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "edge9",
+          "insideInstance": false
+        },
+        {
+          "id": "67:90",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "edge3",
+          "insideInstance": false
+        },
+        {
+          "id": "67:91",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "edge3",
+          "insideInstance": false
+        }
+      ],
+      "owners": [],
+      "roots": [
+        {
+          "id": "67:68",
+          "name": "책 전체의 연결",
+          "type": "FRAME",
+          "w": 1420,
+          "h": 1063,
+          "childCount": 5
+        },
+        {
+          "id": "67:177",
+          "name": "운동의 기술에서 힘과 보존으로",
+          "type": "FRAME",
+          "w": 1878,
+          "h": 1482,
+          "childCount": 5
+        },
+        {
+          "id": "67:326",
+          "name": "물질의 반응에서 열과 분자 운동으로",
+          "type": "FRAME",
+          "w": 2052,
+          "h": 1244,
+          "childCount": 5
+        },
+        {
+          "id": "67:479",
+          "name": "진동에서 파동과 소리로",
+          "type": "FRAME",
+          "w": 1396,
+          "h": 924,
+          "childCount": 5
+        },
+        {
+          "id": "67:11161",
+          "name": "파동을 빛의 진행과 무늬에 적용하기",
+          "type": "FRAME",
+          "w": 1538,
+          "h": 784,
+          "childCount": 5
+        },
+        {
+          "id": "67:11250",
+          "name": "전하의 힘에서 장·전위·회로로",
+          "type": "FRAME",
+          "w": 2383,
+          "h": 1523,
+          "childCount": 5
+        },
+        {
+          "id": "67:11435",
+          "name": "자기력에서 장의 원천과 전자기 유도로",
+          "type": "FRAME",
+          "w": 1799,
+          "h": 1244,
+          "childCount": 5
+        },
+        {
+          "id": "67:11576",
+          "name": "앞의 개념들이 진동 회로와 교류에서 만나는 곳",
+          "type": "FRAME",
+          "w": 1865,
+          "h": 924,
+          "childCount": 5
+        },
+        {
+          "id": "67:11768",
+          "name": "관측 기본틀 · 차원과 단위",
+          "type": "FRAME",
+          "w": 640,
+          "h": 722,
+          "childCount": 12
+        },
+        {
+          "id": "67:11788",
+          "name": "관측 기본틀 · 벡터",
+          "type": "FRAME",
+          "w": 640,
+          "h": 722,
+          "childCount": 12
+        },
+        {
+          "id": "67:11808",
+          "name": "관측 기본틀 · 1차원 운동",
+          "type": "FRAME",
+          "w": 640,
+          "h": 722,
+          "childCount": 12
+        },
+        {
+          "id": "67:11828",
+          "name": "관측 기본틀 · 2차원 운동",
+          "type": "FRAME",
+          "w": 640,
+          "h": 744,
+          "childCount": 12
+        },
+        {
+          "id": "67:11848",
+          "name": "관측 기본틀 · 힘과 운동",
+          "type": "FRAME",
+          "w": 640,
+          "h": 744,
+          "childCount": 12
+        },
+        {
+          "id": "67:11868",
+          "name": "관측 기본틀 · 일·에너지·일률",
+          "type": "FRAME",
+          "w": 640,
+          "h": 744,
+          "childCount": 12
+        },
+        {
+          "id": "67:11888",
+          "name": "관측 기본틀 · 선운동량·충돌·질량중심",
+          "type": "FRAME",
+          "w": 640,
+          "h": 744,
+          "childCount": 12
+        },
+        {
+          "id": "67:11908",
+          "name": "관측 기본틀 · 회전 운동",
+          "type": "FRAME",
+          "w": 640,
+          "h": 744,
+          "childCount": 12
+        },
+        {
+          "id": "67:11928",
+          "name": "관측 기본틀 · 각운동량",
+          "type": "FRAME",
+          "w": 640,
+          "h": 744,
+          "childCount": 12
+        },
+        {
+          "id": "67:11948",
+          "name": "관측 기본틀 · 물질의 역학적 성질",
+          "type": "FRAME",
+          "w": 640,
+          "h": 744,
+          "childCount": 12
+        },
+        {
+          "id": "67:11968",
+          "name": "관측 기본틀 · 물질의 열적 성질",
+          "type": "FRAME",
+          "w": 640,
+          "h": 744,
+          "childCount": 12
+        },
+        {
+          "id": "67:11988",
+          "name": "관측 기본틀 · 열과 열역학 제1법칙",
+          "type": "FRAME",
+          "w": 640,
+          "h": 744,
+          "childCount": 12
+        },
+        {
+          "id": "67:12008",
+          "name": "관측 기본틀 · 기체 운동론",
+          "type": "FRAME",
+          "w": 640,
+          "h": 744,
+          "childCount": 12
+        },
+        {
+          "id": "67:12028",
+          "name": "관측 기본틀 · 진동과 파동 운동",
+          "type": "FRAME",
+          "w": 640,
+          "h": 744,
+          "childCount": 12
+        },
+        {
+          "id": "67:12048",
+          "name": "관측 기본틀 · 음파",
+          "type": "FRAME",
+          "w": 640,
+          "h": 744,
+          "childCount": 12
+        },
+        {
+          "id": "67:12068",
+          "name": "관측 기본틀 · 음파의 중첩",
+          "type": "FRAME",
+          "w": 640,
+          "h": 744,
+          "childCount": 12
+        },
+        {
+          "id": "67:12088",
+          "name": "관측 기본틀 · 광파와 광학",
+          "type": "FRAME",
+          "w": 640,
+          "h": 744,
+          "childCount": 12
+        },
+        {
+          "id": "67:12108",
+          "name": "관측 기본틀 · 빛의 간섭·회절·편광",
+          "type": "FRAME",
+          "w": 640,
+          "h": 744,
+          "childCount": 12
+        },
+        {
+          "id": "67:12128",
+          "name": "관측 기본틀 · 전기력",
+          "type": "FRAME",
+          "w": 640,
+          "h": 744,
+          "childCount": 12
+        },
+        {
+          "id": "67:12148",
+          "name": "관측 기본틀 · 전기장",
+          "type": "FRAME",
+          "w": 640,
+          "h": 744,
+          "childCount": 12
+        },
+        {
+          "id": "67:12168",
+          "name": "관측 기본틀 · 가우스 법칙",
+          "type": "FRAME",
+          "w": 640,
+          "h": 744,
+          "childCount": 12
+        },
+        {
+          "id": "67:12188",
+          "name": "관측 기본틀 · 전위",
+          "type": "FRAME",
+          "w": 640,
+          "h": 744,
+          "childCount": 12
+        },
+        {
+          "id": "67:12208",
+          "name": "관측 기본틀 · 축전기와 정전용량",
+          "type": "FRAME",
+          "w": 640,
+          "h": 744,
+          "childCount": 12
+        },
+        {
+          "id": "67:12228",
+          "name": "관측 기본틀 · 전기 회로",
+          "type": "FRAME",
+          "w": 640,
+          "h": 744,
+          "childCount": 12
+        },
+        {
+          "id": "67:12248",
+          "name": "관측 기본틀 · 자기장",
+          "type": "FRAME",
+          "w": 640,
+          "h": 744,
+          "childCount": 12
+        },
+        {
+          "id": "67:12268",
+          "name": "관측 기본틀 · 자기장의 원천",
+          "type": "FRAME",
+          "w": 640,
+          "h": 744,
+          "childCount": 12
+        },
+        {
+          "id": "67:12288",
+          "name": "관측 기본틀 · 패러데이 법칙·교류·맥스웰 방정식",
+          "type": "FRAME",
+          "w": 640,
+          "h": 744,
+          "childCount": 12
+        },
+        {
+          "id": "67:12308",
+          "name": "관측 기본틀 · 인덕턴스·진동 회로·교류 회로",
+          "type": "FRAME",
+          "w": 640,
+          "h": 744,
+          "childCount": 12
+        }
+      ]
+    },
+    {
+      "pageId": "68:58623",
+      "pageName": "50 통합 · 이동 프로토타입",
+      "count": 3625,
+      "types": {
+        "FRAME": 466,
+        "TEXT": 1830,
+        "INSTANCE": 421,
+        "VECTOR": 588,
+        "ELLIPSE": 10,
+        "RECTANGLE": 62,
+        "GROUP": 248
+      },
+      "annotations": 3377,
+      "instanceChildren": 792,
+      "genericCount": 372,
+      "genericSample": [
+        {
+          "id": "68:69840",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "edge1",
+          "insideInstance": false
+        },
+        {
+          "id": "68:69841",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "edge1",
+          "insideInstance": false
+        },
+        {
+          "id": "68:69843",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "edge2",
+          "insideInstance": false
+        },
+        {
+          "id": "68:69844",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "edge2",
+          "insideInstance": false
+        },
+        {
+          "id": "68:69846",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "edge4",
+          "insideInstance": false
+        },
+        {
+          "id": "68:69847",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "edge4",
+          "insideInstance": false
+        },
+        {
+          "id": "68:69849",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "edge5",
+          "insideInstance": false
+        },
+        {
+          "id": "68:69850",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "edge5",
+          "insideInstance": false
+        },
+        {
+          "id": "68:69852",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "edge9",
+          "insideInstance": false
+        },
+        {
+          "id": "68:69853",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "edge9",
+          "insideInstance": false
+        },
+        {
+          "id": "68:69855",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "edge3",
+          "insideInstance": false
+        },
+        {
+          "id": "68:69856",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "edge3",
+          "insideInstance": false
+        }
+      ],
+      "owners": [],
+      "roots": [
+        {
+          "id": "68:58624",
+          "name": "천문대에서 두 관측실이 맡는 일",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1016.6666870117188,
+          "childCount": 2
+        },
+        {
+          "id": "68:64499",
+          "name": "정체성이 드러나는 수학관측실",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1396.666748046875,
+          "childCount": 2
+        },
+        {
+          "id": "68:66259",
+          "name": "정체성이 드러나는 인터랙티브관측실",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1396.666748046875,
+          "childCount": 2
+        },
+        {
+          "id": "68:68018",
+          "name": "M01 수학관측실 · 넓은 화면",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1637,
+          "childCount": 3
+        },
+        {
+          "id": "68:68123",
+          "name": "M02 수학관측실 · 태블릿 세로",
+          "type": "FRAME",
+          "w": 1032,
+          "h": 1637,
+          "childCount": 3
+        },
+        {
+          "id": "68:68228",
+          "name": "M03 수학관측실 · 분할 화면",
+          "type": "FRAME",
+          "w": 517,
+          "h": 2467,
+          "childCount": 3
+        },
+        {
+          "id": "68:68333",
+          "name": "M04 수학관측실 · 휴대폰",
+          "type": "FRAME",
+          "w": 402,
+          "h": 2489,
+          "childCount": 3
+        },
+        {
+          "id": "68:68438",
+          "name": "M05 그래프 전체 보기",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1637,
+          "childCount": 3
+        },
+        {
+          "id": "68:68543",
+          "name": "M06 가속도 변경",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1637,
+          "childCount": 3
+        },
+        {
+          "id": "68:68648",
+          "name": "M07 입력을 적용하지 못한 상태",
+          "type": "FRAME",
+          "w": 1032,
+          "h": 1659,
+          "childCount": 3
+        },
+        {
+          "id": "68:68753",
+          "name": "M08 두 값 비교 · 같은 축과 단위",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1041,
+          "childCount": 3
+        },
+        {
+          "id": "68:68840",
+          "name": "I01 교재 전체 · 관측할 현상 선택",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 2413,
+          "childCount": 3
+        },
+        {
+          "id": "68:69009",
+          "name": "I02 파동 · 기본 관측",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1414,
+          "childCount": 3
+        },
+        {
+          "id": "68:69110",
+          "name": "I03 파동 · 진폭 변경",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1414,
+          "childCount": 3
+        },
+        {
+          "id": "68:69211",
+          "name": "I04 파동 · 재생 위치",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1414,
+          "childCount": 3
+        },
+        {
+          "id": "68:69312",
+          "name": "I05 파동 · 분할 화면",
+          "type": "FRAME",
+          "w": 517,
+          "h": 2390,
+          "childCount": 3
+        },
+        {
+          "id": "68:69413",
+          "name": "I06 파동 · 휴대폰",
+          "type": "FRAME",
+          "w": 402,
+          "h": 2434,
+          "childCount": 3
+        },
+        {
+          "id": "68:69514",
+          "name": "I07 진폭 비교 · 같은 파장과 주파수",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 940,
+          "childCount": 3
+        },
+        {
+          "id": "68:69596",
+          "name": "I08 에너지 · 저장과 교환의 공통 틀",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 939,
+          "childCount": 3
+        },
+        {
+          "id": "68:69627",
+          "name": "관측실 부품 · 상태 견본",
+          "type": "FRAME",
+          "w": 1184,
+          "h": 1907,
+          "childCount": 16
+        },
+        {
+          "id": "68:69741",
+          "name": "관측 상태 · empty",
+          "type": "FRAME",
+          "w": 544,
+          "h": 384,
+          "childCount": 3
+        },
+        {
+          "id": "68:69751",
+          "name": "관측 상태 · loading",
+          "type": "FRAME",
+          "w": 544,
+          "h": 384,
+          "childCount": 3
+        },
+        {
+          "id": "68:69761",
+          "name": "관측 상태 · render-error",
+          "type": "FRAME",
+          "w": 544,
+          "h": 384,
+          "childCount": 3
+        },
+        {
+          "id": "68:69771",
+          "name": "관측 상태 · invalid",
+          "type": "FRAME",
+          "w": 544,
+          "h": 384,
+          "childCount": 3
+        },
+        {
+          "id": "68:69781",
+          "name": "관측 상태 · saving",
+          "type": "FRAME",
+          "w": 544,
+          "h": 384,
+          "childCount": 3
+        },
+        {
+          "id": "68:69791",
+          "name": "관측 상태 · saved",
+          "type": "FRAME",
+          "w": 544,
+          "h": 448,
+          "childCount": 3
+        },
+        {
+          "id": "68:69803",
+          "name": "관측 상태 · save-error",
+          "type": "FRAME",
+          "w": 544,
+          "h": 384,
+          "childCount": 3
+        },
+        {
+          "id": "68:69813",
+          "name": "관측 상태 · restored",
+          "type": "FRAME",
+          "w": 544,
+          "h": 384,
+          "childCount": 3
+        },
+        {
+          "id": "68:69823",
+          "name": "관측 상태 · readonly",
+          "type": "FRAME",
+          "w": 544,
+          "h": 384,
+          "childCount": 3
+        },
+        {
+          "id": "68:69833",
+          "name": "책 전체의 연결",
+          "type": "FRAME",
+          "w": 1420,
+          "h": 1063,
+          "childCount": 5
+        },
+        {
+          "id": "68:69942",
+          "name": "운동의 기술에서 힘과 보존으로",
+          "type": "FRAME",
+          "w": 1878,
+          "h": 1482,
+          "childCount": 5
+        },
+        {
+          "id": "68:70091",
+          "name": "물질의 반응에서 열과 분자 운동으로",
+          "type": "FRAME",
+          "w": 2052,
+          "h": 1244,
+          "childCount": 5
+        },
+        {
+          "id": "68:70244",
+          "name": "진동에서 파동과 소리로",
+          "type": "FRAME",
+          "w": 1396,
+          "h": 924,
+          "childCount": 5
+        },
+        {
+          "id": "68:70353",
+          "name": "파동을 빛의 진행과 무늬에 적용하기",
+          "type": "FRAME",
+          "w": 1538,
+          "h": 784,
+          "childCount": 5
+        },
+        {
+          "id": "68:70442",
+          "name": "전하의 힘에서 장·전위·회로로",
+          "type": "FRAME",
+          "w": 2383,
+          "h": 1523,
+          "childCount": 5
+        },
+        {
+          "id": "68:70611",
+          "name": "자기력에서 장의 원천과 전자기 유도로",
+          "type": "FRAME",
+          "w": 1799,
+          "h": 1244,
+          "childCount": 5
+        },
+        {
+          "id": "68:70752",
+          "name": "앞의 개념들이 진동 회로와 교류에서 만나는 곳",
+          "type": "FRAME",
+          "w": 1865,
+          "h": 924,
+          "childCount": 5
+        },
+        {
+          "id": "68:70865",
+          "name": "관측 기본틀 · 차원과 단위",
+          "type": "FRAME",
+          "w": 640,
+          "h": 722,
+          "childCount": 12
+        },
+        {
+          "id": "68:70885",
+          "name": "관측 기본틀 · 벡터",
+          "type": "FRAME",
+          "w": 640,
+          "h": 722,
+          "childCount": 12
+        },
+        {
+          "id": "68:70905",
+          "name": "관측 기본틀 · 1차원 운동",
+          "type": "FRAME",
+          "w": 640,
+          "h": 722,
+          "childCount": 12
+        },
+        {
+          "id": "68:70925",
+          "name": "관측 기본틀 · 2차원 운동",
+          "type": "FRAME",
+          "w": 640,
+          "h": 744,
+          "childCount": 12
+        },
+        {
+          "id": "68:70945",
+          "name": "관측 기본틀 · 힘과 운동",
+          "type": "FRAME",
+          "w": 640,
+          "h": 744,
+          "childCount": 12
+        },
+        {
+          "id": "68:70965",
+          "name": "관측 기본틀 · 일·에너지·일률",
+          "type": "FRAME",
+          "w": 640,
+          "h": 744,
+          "childCount": 12
+        },
+        {
+          "id": "68:70985",
+          "name": "관측 기본틀 · 선운동량·충돌·질량중심",
+          "type": "FRAME",
+          "w": 640,
+          "h": 744,
+          "childCount": 12
+        },
+        {
+          "id": "68:71005",
+          "name": "관측 기본틀 · 회전 운동",
+          "type": "FRAME",
+          "w": 640,
+          "h": 744,
+          "childCount": 12
+        },
+        {
+          "id": "68:71025",
+          "name": "관측 기본틀 · 각운동량",
+          "type": "FRAME",
+          "w": 640,
+          "h": 744,
+          "childCount": 12
+        },
+        {
+          "id": "68:71045",
+          "name": "관측 기본틀 · 물질의 역학적 성질",
+          "type": "FRAME",
+          "w": 640,
+          "h": 744,
+          "childCount": 12
+        },
+        {
+          "id": "68:71065",
+          "name": "관측 기본틀 · 물질의 열적 성질",
+          "type": "FRAME",
+          "w": 640,
+          "h": 744,
+          "childCount": 12
+        },
+        {
+          "id": "68:71085",
+          "name": "관측 기본틀 · 열과 열역학 제1법칙",
+          "type": "FRAME",
+          "w": 640,
+          "h": 744,
+          "childCount": 12
+        },
+        {
+          "id": "68:71105",
+          "name": "관측 기본틀 · 기체 운동론",
+          "type": "FRAME",
+          "w": 640,
+          "h": 744,
+          "childCount": 12
+        },
+        {
+          "id": "68:71125",
+          "name": "관측 기본틀 · 진동과 파동 운동",
+          "type": "FRAME",
+          "w": 640,
+          "h": 744,
+          "childCount": 12
+        },
+        {
+          "id": "68:71145",
+          "name": "관측 기본틀 · 음파",
+          "type": "FRAME",
+          "w": 640,
+          "h": 744,
+          "childCount": 12
+        },
+        {
+          "id": "68:71165",
+          "name": "관측 기본틀 · 음파의 중첩",
+          "type": "FRAME",
+          "w": 640,
+          "h": 744,
+          "childCount": 12
+        },
+        {
+          "id": "68:71185",
+          "name": "관측 기본틀 · 광파와 광학",
+          "type": "FRAME",
+          "w": 640,
+          "h": 744,
+          "childCount": 12
+        },
+        {
+          "id": "68:71205",
+          "name": "관측 기본틀 · 빛의 간섭·회절·편광",
+          "type": "FRAME",
+          "w": 640,
+          "h": 744,
+          "childCount": 12
+        },
+        {
+          "id": "68:71225",
+          "name": "관측 기본틀 · 전기력",
+          "type": "FRAME",
+          "w": 640,
+          "h": 744,
+          "childCount": 12
+        },
+        {
+          "id": "68:71245",
+          "name": "관측 기본틀 · 전기장",
+          "type": "FRAME",
+          "w": 640,
+          "h": 744,
+          "childCount": 12
+        },
+        {
+          "id": "68:71265",
+          "name": "관측 기본틀 · 가우스 법칙",
+          "type": "FRAME",
+          "w": 640,
+          "h": 744,
+          "childCount": 12
+        },
+        {
+          "id": "68:71285",
+          "name": "관측 기본틀 · 전위",
+          "type": "FRAME",
+          "w": 640,
+          "h": 744,
+          "childCount": 12
+        },
+        {
+          "id": "68:71305",
+          "name": "관측 기본틀 · 축전기와 정전용량",
+          "type": "FRAME",
+          "w": 640,
+          "h": 744,
+          "childCount": 12
+        },
+        {
+          "id": "68:71325",
+          "name": "관측 기본틀 · 전기 회로",
+          "type": "FRAME",
+          "w": 640,
+          "h": 744,
+          "childCount": 12
+        },
+        {
+          "id": "68:71345",
+          "name": "관측 기본틀 · 자기장",
+          "type": "FRAME",
+          "w": 640,
+          "h": 744,
+          "childCount": 12
+        },
+        {
+          "id": "68:71365",
+          "name": "관측 기본틀 · 자기장의 원천",
+          "type": "FRAME",
+          "w": 640,
+          "h": 744,
+          "childCount": 12
+        },
+        {
+          "id": "68:71385",
+          "name": "관측 기본틀 · 패러데이 법칙·교류·맥스웰 방정식",
+          "type": "FRAME",
+          "w": 640,
+          "h": 744,
+          "childCount": 12
+        },
+        {
+          "id": "68:71405",
+          "name": "관측 기본틀 · 인덕턴스·진동 회로·교류 회로",
+          "type": "FRAME",
+          "w": 640,
+          "h": 744,
+          "childCount": 12
+        }
+      ]
+    },
+    {
+      "pageId": "74:399",
+      "pageName": "51 통합 · 종이책 읽기",
+      "count": 5876,
+      "types": {
+        "FRAME": 895,
+        "TEXT": 1426,
+        "RECTANGLE": 156,
+        "INSTANCE": 306,
+        "GROUP": 1666,
+        "VECTOR": 1358,
+        "ELLIPSE": 3,
+        "LINE": 66
+      },
+      "annotations": 4210,
+      "instanceChildren": 2883,
+      "genericCount": 2954,
+      "genericSample": [
+        {
+          "id": "I75:84792;74:70788",
+          "type": "FRAME",
+          "name": "Frame",
+          "parent": "수식 · x=x_\\circ+v_\\circ t+\\frac{1}{2}at^2",
+          "insideInstance": true
+        },
+        {
+          "id": "I75:84792;74:70789",
+          "type": "GROUP",
+          "name": "Group",
+          "parent": "Frame",
+          "insideInstance": true
+        },
+        {
+          "id": "I75:84792;74:70790",
+          "type": "GROUP",
+          "name": "Group",
+          "parent": "Group",
+          "insideInstance": true
+        },
+        {
+          "id": "I75:84792;74:70791",
+          "type": "GROUP",
+          "name": "Group",
+          "parent": "Group",
+          "insideInstance": true
+        },
+        {
+          "id": "I75:84792;74:70792",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "Group",
+          "insideInstance": true
+        },
+        {
+          "id": "I75:84792;74:70793",
+          "type": "GROUP",
+          "name": "Group",
+          "parent": "Group",
+          "insideInstance": true
+        },
+        {
+          "id": "I75:84792;74:70794",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "Group",
+          "insideInstance": true
+        },
+        {
+          "id": "I75:84792;74:70795",
+          "type": "GROUP",
+          "name": "Group",
+          "parent": "Group",
+          "insideInstance": true
+        },
+        {
+          "id": "I75:84792;74:70796",
+          "type": "GROUP",
+          "name": "Group",
+          "parent": "Group",
+          "insideInstance": true
+        },
+        {
+          "id": "I75:84792;74:70797",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "Group",
+          "insideInstance": true
+        },
+        {
+          "id": "I75:84792;74:70798",
+          "type": "GROUP",
+          "name": "Group",
+          "parent": "Group",
+          "insideInstance": true
+        },
+        {
+          "id": "I75:84792;74:70799",
+          "type": "VECTOR",
+          "name": "Vector",
+          "parent": "Group",
+          "insideInstance": true
+        }
+      ],
+      "owners": [],
+      "roots": [
+        {
+          "id": "75:84784",
+          "name": "종이책 · 수학관측실",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1145.699951171875,
+          "childCount": 2
+        },
+        {
+          "id": "75:84861",
+          "name": "종이책 · 인터랙티브관측실",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1088,
+          "childCount": 2
+        },
+        {
+          "id": "75:84943",
+          "name": "종이책 · 수학 관측 도구",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 923.427490234375,
+          "childCount": 2
+        },
+        {
+          "id": "75:84989",
+          "name": "종이책 · 현상 관측 도구",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1089.4000244140625,
+          "childCount": 2
+        },
+        {
+          "id": "75:85070",
+          "name": "종이책 · 좁은 화면",
+          "type": "FRAME",
+          "w": 402,
+          "h": 1301.699951171875,
+          "childCount": 2
+        },
+        {
+          "id": "75:85147",
+          "name": "종이책 · 진폭 비교 후",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1088,
+          "childCount": 2
+        },
+        {
+          "id": "84:30633",
+          "name": "종이책 · 관계와 조건 · 차원과 단위",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 716,
+          "childCount": 2
+        },
+        {
+          "id": "84:30653",
+          "name": "종이책 · 내용과 연결 · 차원과 단위",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 805,
+          "childCount": 2
+        },
+        {
+          "id": "84:30676",
+          "name": "종이책 · 관계와 조건 · 벡터",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 801.66796875,
+          "childCount": 2
+        },
+        {
+          "id": "84:30761",
+          "name": "종이책 · 내용과 연결 · 벡터",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 857,
+          "childCount": 2
+        },
+        {
+          "id": "84:30785",
+          "name": "종이책 · 관계와 조건 · 1차원 운동",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 839.2160034179688,
+          "childCount": 2
+        },
+        {
+          "id": "84:30869",
+          "name": "종이책 · 내용과 연결 · 1차원 운동",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 929,
+          "childCount": 2
+        },
+        {
+          "id": "84:30895",
+          "name": "종이책 · 관계와 조건 · 2차원 운동",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 934.4995727539062,
+          "childCount": 2
+        },
+        {
+          "id": "84:31043",
+          "name": "종이책 · 내용과 연결 · 2차원 운동",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 877,
+          "childCount": 2
+        },
+        {
+          "id": "84:31068",
+          "name": "종이책 · 관계와 조건 · 힘과 운동",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 830.89599609375,
+          "childCount": 2
+        },
+        {
+          "id": "84:31147",
+          "name": "종이책 · 내용과 연결 · 힘과 운동",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 805,
+          "childCount": 2
+        },
+        {
+          "id": "84:31170",
+          "name": "종이책 · 관계와 조건 · 일·에너지·일률",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 993.7503662109375,
+          "childCount": 2
+        },
+        {
+          "id": "84:31317",
+          "name": "종이책 · 내용과 연결 · 일·에너지·일률",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1065,
+          "childCount": 2
+        },
+        {
+          "id": "84:31345",
+          "name": "종이책 · 관계와 조건 · 선운동량·충돌·질량중심",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 876.5440063476562,
+          "childCount": 2
+        },
+        {
+          "id": "84:31442",
+          "name": "종이책 · 내용과 연결 · 선운동량·충돌·질량중심",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 961,
+          "childCount": 2
+        },
+        {
+          "id": "84:108307",
+          "name": "종이책 · 관계와 조건 · 회전 운동",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1069.297607421875,
+          "childCount": 2
+        },
+        {
+          "id": "84:108499",
+          "name": "종이책 · 내용과 연결 · 회전 운동",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1117,
+          "childCount": 2
+        },
+        {
+          "id": "84:108528",
+          "name": "종이책 · 관계와 조건 · 각운동량",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 868.4000244140625,
+          "childCount": 2
+        },
+        {
+          "id": "84:108625",
+          "name": "종이책 · 내용과 연결 · 각운동량",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 805,
+          "childCount": 2
+        },
+        {
+          "id": "84:108648",
+          "name": "종이책 · 관계와 조건 · 물질의 역학적 성질",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 888.1176147460938,
+          "childCount": 2
+        },
+        {
+          "id": "84:108768",
+          "name": "종이책 · 내용과 연결 · 물질의 역학적 성질",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 909,
+          "childCount": 2
+        },
+        {
+          "id": "84:108793",
+          "name": "종이책 · 관계와 조건 · 물질의 열적 성질",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 845.2479858398438,
+          "childCount": 2
+        },
+        {
+          "id": "84:108893",
+          "name": "종이책 · 내용과 연결 · 물질의 열적 성질",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 805,
+          "childCount": 2
+        },
+        {
+          "id": "84:108916",
+          "name": "종이책 · 관계와 조건 · 열과 열역학 제1법칙",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 914.5599975585938,
+          "childCount": 2
+        },
+        {
+          "id": "84:109053",
+          "name": "종이책 · 내용과 연결 · 열과 열역학 제1법칙",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 877,
+          "childCount": 2
+        },
+        {
+          "id": "84:109078",
+          "name": "종이책 · 관계와 조건 · 기체 운동론",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 907.2160034179688,
+          "childCount": 2
+        },
+        {
+          "id": "84:109195",
+          "name": "종이책 · 내용과 연결 · 기체 운동론",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 889,
+          "childCount": 2
+        },
+        {
+          "id": "84:109219",
+          "name": "종이책 · 관계와 조건 · 진동과 파동 운동",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1061.753662109375,
+          "childCount": 2
+        },
+        {
+          "id": "84:109386",
+          "name": "종이책 · 내용과 연결 · 진동과 파동 운동",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1013,
+          "childCount": 2
+        },
+        {
+          "id": "84:109540",
+          "name": "종이책 · 관계와 조건 · 음파",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 929.4456176757812,
+          "childCount": 2
+        },
+        {
+          "id": "84:109652",
+          "name": "종이책 · 내용과 연결 · 음파",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 981,
+          "childCount": 2
+        },
+        {
+          "id": "84:109679",
+          "name": "종이책 · 관계와 조건 · 음파의 중첩",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 852.6400146484375,
+          "childCount": 2
+        },
+        {
+          "id": "84:109795",
+          "name": "종이책 · 내용과 연결 · 음파의 중첩",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 909,
+          "childCount": 2
+        },
+        {
+          "id": "84:109820",
+          "name": "종이책 · 관계와 조건 · 광파와 광학",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 976.5759887695312,
+          "childCount": 2
+        },
+        {
+          "id": "84:109949",
+          "name": "종이책 · 내용과 연결 · 광파와 광학",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 961,
+          "childCount": 2
+        },
+        {
+          "id": "84:109975",
+          "name": "종이책 · 관계와 조건 · 빛의 간섭·회절·편광",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 882.7680053710938,
+          "childCount": 2
+        },
+        {
+          "id": "84:110094",
+          "name": "종이책 · 내용과 연결 · 빛의 간섭·회절·편광",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 993,
+          "childCount": 2
+        },
+        {
+          "id": "84:110120",
+          "name": "종이책 · 관계와 조건 · 전기력",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 759.213623046875,
+          "childCount": 2
+        },
+        {
+          "id": "84:110199",
+          "name": "종이책 · 내용과 연결 · 전기력",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 805,
+          "childCount": 2
+        },
+        {
+          "id": "84:110222",
+          "name": "종이책 · 관계와 조건 · 전기장",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 899.968017578125,
+          "childCount": 2
+        },
+        {
+          "id": "84:110328",
+          "name": "종이책 · 내용과 연결 · 전기장",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 961,
+          "childCount": 2
+        },
+        {
+          "id": "84:110354",
+          "name": "종이책 · 관계와 조건 · 가우스 법칙",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 935.0960083007812,
+          "childCount": 2
+        },
+        {
+          "id": "84:110486",
+          "name": "종이책 · 내용과 연결 · 가우스 법칙",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 857,
+          "childCount": 2
+        },
+        {
+          "id": "84:110670",
+          "name": "종이책 · 관계와 조건 · 전위",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 919.2175903320312,
+          "childCount": 2
+        },
+        {
+          "id": "84:110771",
+          "name": "종이책 · 내용과 연결 · 전위",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1429,
+          "childCount": 2
+        },
+        {
+          "id": "84:110806",
+          "name": "종이책 · 관계와 조건 · 축전기와 정전용량",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 893.0800170898438,
+          "childCount": 2
+        },
+        {
+          "id": "84:110953",
+          "name": "종이책 · 내용과 연결 · 축전기와 정전용량",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 909,
+          "childCount": 2
+        },
+        {
+          "id": "84:110978",
+          "name": "종이책 · 관계와 조건 · 전기 회로",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 946.0400390625,
+          "childCount": 2
+        },
+        {
+          "id": "84:111061",
+          "name": "종이책 · 내용과 연결 · 전기 회로",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1013,
+          "childCount": 2
+        },
+        {
+          "id": "84:111088",
+          "name": "종이책 · 관계와 조건 · 자기장",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 833.968017578125,
+          "childCount": 2
+        },
+        {
+          "id": "84:111209",
+          "name": "종이책 · 내용과 연결 · 자기장",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 929,
+          "childCount": 2
+        },
+        {
+          "id": "84:111235",
+          "name": "종이책 · 관계와 조건 · 자기장의 원천",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 957.9199829101562,
+          "childCount": 2
+        },
+        {
+          "id": "84:111374",
+          "name": "종이책 · 내용과 연결 · 자기장의 원천",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1169,
+          "childCount": 2
+        },
+        {
+          "id": "84:111404",
+          "name": "종이책 · 관계와 조건 · 패러데이 법칙·교류·맥스웰 방정식",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 849.3280029296875,
+          "childCount": 2
+        },
+        {
+          "id": "84:111519",
+          "name": "종이책 · 내용과 연결 · 패러데이 법칙·교류·맥스웰 방정식",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1013,
+          "childCount": 2
+        },
+        {
+          "id": "84:111546",
+          "name": "종이책 · 관계와 조건 · 인덕턴스·진동 회로·교류 회로",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1376.6175537109375,
+          "childCount": 2
+        },
+        {
+          "id": "84:111762",
+          "name": "종이책 · 내용과 연결 · 인덕턴스·진동 회로·교류 회로",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1149,
+          "childCount": 2
+        },
+        {
+          "id": "86:107154",
+          "name": "종이책 · 관측실의 책을 꺼내기",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 974.6666870117188,
+          "childCount": 2
+        },
+        {
+          "id": "86:108846",
+          "name": "종이책 · 교재 책갈피 1",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1183,
+          "childCount": 2
+        },
+        {
+          "id": "86:108879",
+          "name": "종이책 · 교재 책갈피 2",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1183,
+          "childCount": 2
+        },
+        {
+          "id": "86:108912",
+          "name": "종이책 · 교재 책갈피 3",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1183,
+          "childCount": 2
+        },
+        {
+          "id": "86:108945",
+          "name": "종이책 · 교재 책갈피 4",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1183,
+          "childCount": 2
+        },
+        {
+          "id": "86:108978",
+          "name": "종이책 · 가속도 변경 후",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1145.699951171875,
+          "childCount": 2
+        },
+        {
+          "id": "86:109074",
+          "name": "종이책 · 파동의 시간 위치",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1088,
+          "childCount": 2
+        },
+        {
+          "id": "86:109169",
+          "name": "종이책 · saved",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 395,
+          "childCount": 2
+        },
+        {
+          "id": "86:109179",
+          "name": "종이책 · save-error",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 395,
+          "childCount": 2
+        },
+        {
+          "id": "88:6415",
+          "name": "종이책 · 펼친 연결도 · 책 전체의 연결",
+          "type": "FRAME",
+          "w": 1925.3333740234375,
+          "h": 1510,
+          "childCount": 2
+        },
+        {
+          "id": "88:6524",
+          "name": "종이책 · 펼친 연결도 · 운동의 기술에서 힘과 보존으로",
+          "type": "FRAME",
+          "w": 2536,
+          "h": 2068.66650390625,
+          "childCount": 2
+        },
+        {
+          "id": "88:6673",
+          "name": "종이책 · 펼친 연결도 · 물질의 반응에서 열과 분자 운동으로",
+          "type": "FRAME",
+          "w": 2768,
+          "h": 1751.3333740234375,
+          "childCount": 2
+        },
+        {
+          "id": "88:6826",
+          "name": "종이책 · 펼친 연결도 · 진동에서 파동과 소리로",
+          "type": "FRAME",
+          "w": 1893.3333740234375,
+          "h": 1324.666748046875,
+          "childCount": 2
+        },
+        {
+          "id": "88:6935",
+          "name": "종이책 · 펼친 연결도 · 파동을 빛의 진행과 무늬에 적용하기",
+          "type": "FRAME",
+          "w": 2082.66650390625,
+          "h": 1138,
+          "childCount": 2
+        },
+        {
+          "id": "88:7024",
+          "name": "종이책 · 펼친 연결도 · 전하의 힘에서 장·전위·회로로",
+          "type": "FRAME",
+          "w": 3209.333251953125,
+          "h": 2123.33349609375,
+          "childCount": 2
+        },
+        {
+          "id": "88:7193",
+          "name": "종이책 · 펼친 연결도 · 자기력에서 장의 원천과 전자기 유도로",
+          "type": "FRAME",
+          "w": 2430.666748046875,
+          "h": 1751.3333740234375,
+          "childCount": 2
+        },
+        {
+          "id": "88:7334",
+          "name": "종이책 · 펼친 연결도 · 앞의 개념들이 진동 회로와 교류에서 만나는 곳",
+          "type": "FRAME",
+          "w": 2518.666748046875,
+          "h": 1324.666748046875,
+          "childCount": 2
+        },
+        {
+          "id": "95:15329",
+          "name": "종이책 · 가속도 변경의 관측 도구",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 923.427490234375,
+          "childCount": 2
+        },
+        {
+          "id": "95:15357",
+          "name": "종이책 · 진폭 변경의 관측 도구",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 1089.4000244140625,
+          "childCount": 2
+        },
+        {
+          "id": "95:15464",
+          "name": "종이책 · 현상 관측 보관 후",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 395,
+          "childCount": 2
+        },
+        {
+          "id": "95:15478",
+          "name": "종이책 · 가속도 변경 보관 후",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 395,
+          "childCount": 2
+        },
+        {
+          "id": "95:15493",
+          "name": "종이책 · 진폭 변경 보관 후",
+          "type": "FRAME",
+          "w": 1440,
+          "h": 395,
+          "childCount": 2
+        }
+      ]
+    },
+    {
+      "pageId": "74:400",
+      "pageName": "52 통합 · LaTeX 수식",
+      "count": 2917,
+      "types": {
+        "COMPONENT": 138,
+        "FRAME": 139,
+        "GROUP": 1588,
+        "VECTOR": 1050,
+        "TEXT": 2
+      },
+      "instanceChildren": 0,
+      "genericCount": 2777,
+      "owners": [
+        {
+          "id": "74:70778",
+          "name": "LaTeX / motion"
+        },
+        {
+          "id": "74:70824",
+          "name": "LaTeX / velocity"
+        },
+        {
+          "id": "74:70849",
+          "name": "LaTeX / wave"
+        },
+        {
+          "id": "74:70902",
+          "name": "LaTeX / wave-speed"
+        },
+        {
+          "id": "74:70928",
+          "name": "LaTeX / wave-definition"
+        },
+        {
+          "id": "74:70967",
+          "name": "LaTeX / c2-law-0"
+        },
+        {
+          "id": "79:72802",
+          "name": "LaTeX / c2-law-1"
+        },
+        {
+          "id": "79:72847",
+          "name": "LaTeX · v=\\frac{dx}{dt}"
+        },
+        {
+          "id": "79:72875",
+          "name": "LaTeX · a=\\frac{dv}{dt}"
+        },
+        {
+          "id": "79:72907",
+          "name": "LaTeX / c3-law-2"
+        },
+        {
+          "id": "79:72918",
+          "name": "LaTeX / c3-condition-0"
+        },
+        {
+          "id": "79:72925",
+          "name": "LaTeX / c4-law-0"
+        },
+        {
+          "id": "79:72959",
+          "name": "LaTeX / c4-law-1"
+        },
+        {
+          "id": "79:72993",
+          "name": "LaTeX / c4-law-2"
+        },
+        {
+          "id": "79:73020",
+          "name": "LaTeX / c4-law-3"
+        },
+        {
+          "id": "79:73048",
+          "name": "LaTeX / c4-condition-0"
+        },
+        {
+          "id": "79:73091",
+          "name": "LaTeX / c5-law-0"
+        },
+        {
+          "id": "79:73119",
+          "name": "LaTeX / c5-law-1"
+        },
+        {
+          "id": "79:73142",
+          "name": "LaTeX / c5-law-2"
+        },
+        {
+          "id": "79:73165",
+          "name": "LaTeX / c6-law-0"
+        },
+        {
+          "id": "79:73199",
+          "name": "LaTeX / c6-law-1"
+        },
+        {
+          "id": "79:73225",
+          "name": "LaTeX / c6-law-2"
+        },
+        {
+          "id": "79:73253",
+          "name": "LaTeX / c6-law-3"
+        },
+        {
+          "id": "79:73272",
+          "name": "LaTeX / c6-law-4"
+        },
+        {
+          "id": "79:73291",
+          "name": "LaTeX / c6-law-5"
+        },
+        {
+          "id": "79:73323",
+          "name": "LaTeX / c6-condition-0"
+        },
+        {
+          "id": "79:73330",
+          "name": "LaTeX / c7-law-0"
+        },
+        {
+          "id": "79:73355",
+          "name": "LaTeX / c7-law-1"
+        },
+        {
+          "id": "79:73380",
+          "name": "LaTeX / c7-law-2"
+        },
+        {
+          "id": "79:73427",
+          "name": "LaTeX / c8-law-0"
+        },
+        {
+          "id": "79:73452",
+          "name": "LaTeX / c8-law-1"
+        },
+        {
+          "id": "79:73477",
+          "name": "LaTeX / c8-law-2"
+        },
+        {
+          "id": "79:73493",
+          "name": "LaTeX / c8-law-3"
+        },
+        {
+          "id": "79:73525",
+          "name": "LaTeX / c8-law-4"
+        },
+        {
+          "id": "79:73551",
+          "name": "LaTeX / c8-law-5"
+        },
+        {
+          "id": "79:73570",
+          "name": "LaTeX / c8-law-6"
+        },
+        {
+          "id": "79:73608",
+          "name": "LaTeX / c8-condition-0"
+        },
+        {
+          "id": "79:73618",
+          "name": "LaTeX / c8-condition-1"
+        },
+        {
+          "id": "79:73648",
+          "name": "LaTeX / c8-condition-2"
+        },
+        {
+          "id": "79:73672",
+          "name": "LaTeX / c9-law-0"
+        },
+        {
+          "id": "79:73704",
+          "name": "LaTeX / c9-law-1"
+        },
+        {
+          "id": "79:73751",
+          "name": "LaTeX / c9-condition-0"
+        },
+        {
+          "id": "79:73771",
+          "name": "LaTeX / c10-law-0"
+        },
+        {
+          "id": "79:73789",
+          "name": "LaTeX / c10-law-1"
+        },
+        {
+          "id": "79:73817",
+          "name": "LaTeX / c10-law-2"
+        },
+        {
+          "id": "79:73967",
+          "name": "LaTeX / c10-law-3"
+        },
+        {
+          "id": "79:74011",
+          "name": "LaTeX / c11-law-0"
+        },
+        {
+          "id": "79:74034",
+          "name": "LaTeX / c11-law-1"
+        },
+        {
+          "id": "79:74057",
+          "name": "LaTeX / c11-law-2"
+        },
+        {
+          "id": "79:74093",
+          "name": "LaTeX / c11-condition-0"
+        },
+        {
+          "id": "79:74100",
+          "name": "LaTeX / c11-condition-1"
+        },
+        {
+          "id": "79:74113",
+          "name": "LaTeX / c11-next-0"
+        },
+        {
+          "id": "79:74131",
+          "name": "LaTeX / c12-law-0"
+        },
+        {
+          "id": "79:74153",
+          "name": "LaTeX / c12-law-1"
+        },
+        {
+          "id": "79:74169",
+          "name": "LaTeX / c12-law-2"
+        },
+        {
+          "id": "79:74193",
+          "name": "LaTeX / c12-law-3"
+        },
+        {
+          "id": "79:74225",
+          "name": "LaTeX / c12-condition-0"
+        },
+        {
+          "id": "79:74238",
+          "name": "LaTeX / c12-condition-1"
+        },
+        {
+          "id": "79:74255",
+          "name": "LaTeX / c12-condition-2"
+        },
+        {
+          "id": "79:74273",
+          "name": "LaTeX / c12-condition-3"
+        },
+        {
+          "id": "79:74289",
+          "name": "LaTeX / c13-law-0"
+        },
+        {
+          "id": "79:74323",
+          "name": "LaTeX / c13-law-1"
+        },
+        {
+          "id": "79:74361",
+          "name": "LaTeX / c13-law-2"
+        },
+        {
+          "id": "79:74387",
+          "name": "LaTeX / c13-law-3"
+        },
+        {
+          "id": "79:74413",
+          "name": "LaTeX / c14-law-0"
+        },
+        {
+          "id": "79:74452",
+          "name": "LaTeX / c14-law-1"
+        },
+        {
+          "id": "79:74475",
+          "name": "LaTeX / c14-law-2"
+        },
+        {
+          "id": "79:74498",
+          "name": "LaTeX / c14-law-3"
+        },
+        {
+          "id": "79:74528",
+          "name": "LaTeX / c14-law-4"
+        },
+        {
+          "id": "79:74556",
+          "name": "LaTeX / c14-law-5"
+        },
+        {
+          "id": "79:74582",
+          "name": "LaTeX / c14-condition-0"
+        },
+        {
+          "id": "79:74609",
+          "name": "LaTeX / c15-law-0"
+        },
+        {
+          "id": "79:74635",
+          "name": "LaTeX / c15-law-1"
+        },
+        {
+          "id": "79:74661",
+          "name": "LaTeX / c15-law-2"
+        },
+        {
+          "id": "79:74668",
+          "name": "LaTeX / c15-law-3"
+        },
+        {
+          "id": "79:74727",
+          "name": "LaTeX / c15-prerequisite-0"
+        },
+        {
+          "id": "79:74745",
+          "name": "LaTeX / c16-law-0"
+        },
+        {
+          "id": "79:74780",
+          "name": "LaTeX / c16-law-1"
+        },
+        {
+          "id": "79:74815",
+          "name": "LaTeX / c16-law-2"
+        },
+        {
+          "id": "79:74844",
+          "name": "LaTeX / c16-law-3"
+        },
+        {
+          "id": "79:74869",
+          "name": "LaTeX / c17-law-0"
+        },
+        {
+          "id": "79:74889",
+          "name": "LaTeX / c17-law-1"
+        },
+        {
+          "id": "79:74933",
+          "name": "LaTeX · \\frac{1}{p}+\\frac{1}{i}=\\frac{1}{f}"
+        },
+        {
+          "id": "79:74969",
+          "name": "LaTeX · M=-\\frac{i}{p}"
+        },
+        {
+          "id": "79:74992",
+          "name": "LaTeX · \\theta_1>\\theta_c"
+        },
+        {
+          "id": "79:75006",
+          "name": "LaTeX / c18-law-0"
+        },
+        {
+          "id": "79:75033",
+          "name": "LaTeX / c18-law-1"
+        },
+        {
+          "id": "79:75050",
+          "name": "LaTeX / c18-law-2"
+        },
+        {
+          "id": "79:75093",
+          "name": "LaTeX / c18-law-3"
+        },
+        {
+          "id": "79:75124",
+          "name": "LaTeX / c18-condition-0"
+        },
+        {
+          "id": "79:75131",
+          "name": "LaTeX / c18-condition-1"
+        },
+        {
+          "id": "79:75142",
+          "name": "LaTeX / c19-law-0"
+        },
+        {
+          "id": "79:75183",
+          "name": "LaTeX / c19-law-1"
+        },
+        {
+          "id": "79:75219",
+          "name": "LaTeX / c20-law-0"
+        },
+        {
+          "id": "79:75252",
+          "name": "LaTeX / c20-law-1"
+        },
+        {
+          "id": "79:75305",
+          "name": "LaTeX / c20-law-2"
+        },
+        {
+          "id": "79:75330",
+          "name": "LaTeX / c21-law-0"
+        },
+        {
+          "id": "79:75367",
+          "name": "LaTeX / c21-law-1"
+        },
+        {
+          "id": "79:75420",
+          "name": "LaTeX / c21-condition-0"
+        },
+        {
+          "id": "79:75427",
+          "name": "LaTeX / c21-condition-1"
+        },
+        {
+          "id": "79:75448",
+          "name": "LaTeX / c21-condition-2"
+        },
+        {
+          "id": "79:75461",
+          "name": "LaTeX / c21-condition-3"
+        },
+        {
+          "id": "79:75474",
+          "name": "LaTeX / c22-law-0"
+        },
+        {
+          "id": "79:75535",
+          "name": "LaTeX / c22-law-1"
+        },
+        {
+          "id": "79:75558",
+          "name": "LaTeX / c22-condition-0"
+        },
+        {
+          "id": "79:75581",
+          "name": "LaTeX / c23-law-0"
+        },
+        {
+          "id": "79:75604",
+          "name": "LaTeX / c23-law-1"
+        },
+        {
+          "id": "79:75634",
+          "name": "LaTeX / c23-law-2"
+        },
+        {
+          "id": "79:75653",
+          "name": "LaTeX / c23-law-3"
+        },
+        {
+          "id": "79:75710",
+          "name": "LaTeX / c23-condition-0"
+        },
+        {
+          "id": "79:75726",
+          "name": "LaTeX / c23-condition-1"
+        },
+        {
+          "id": "79:75740",
+          "name": "LaTeX / c24-law-0"
+        },
+        {
+          "id": "79:75765",
+          "name": "LaTeX / c24-law-1"
+        },
+        {
+          "id": "79:75784",
+          "name": "LaTeX / c24-law-2"
+        },
+        {
+          "id": "79:75807",
+          "name": "LaTeX / c24-law-3"
+        },
+        {
+          "id": "79:75823",
+          "name": "LaTeX / c25-law-0"
+        },
+        {
+          "id": "79:75861",
+          "name": "LaTeX / c25-law-1"
+        },
+        {
+          "id": "79:75902",
+          "name": "LaTeX / c25-law-2"
+        },
+        {
+          "id": "79:75914",
+          "name": "LaTeX / c25-law-3"
+        },
+        {
+          "id": "79:75946",
+          "name": "LaTeX / c26-law-0"
+        },
+        {
+          "id": "79:76283",
+          "name": "LaTeX / c26-law-1"
+        },
+        {
+          "id": "79:76322",
+          "name": "LaTeX / c26-law-2"
+        },
+        {
+          "id": "79:76356",
+          "name": "LaTeX / c27-law-0"
+        },
+        {
+          "id": "79:76394",
+          "name": "LaTeX / c27-law-1"
+        },
+        {
+          "id": "79:76446",
+          "name": "LaTeX / c27-condition-0"
+        },
+        {
+          "id": "79:76459",
+          "name": "LaTeX / c27-condition-1"
+        },
+        {
+          "id": "79:76701",
+          "name": "LaTeX · \\mathcal E_L=-L\\frac{dI}{dt}"
+        },
+        {
+          "id": "79:76738",
+          "name": "LaTeX / c28-law-1"
+        },
+        {
+          "id": "79:76769",
+          "name": "LaTeX · \\tau=\\frac{L}{R}"
+        },
+        {
+          "id": "79:76789",
+          "name": "LaTeX · \\omega=\\frac{1}{\\sqrt{LC}}"
+        },
+        {
+          "id": "79:76818",
+          "name": "LaTeX / c28-law-4"
+        },
+        {
+          "id": "79:76837",
+          "name": "LaTeX · X_C=\\frac{1}{\\omega C}"
+        },
+        {
+          "id": "79:76869",
+          "name": "LaTeX · Z=\\sqrt{R^2+(X_L-X_C)^2}"
+        },
+        {
+          "id": "79:76876",
+          "name": "LaTeX / c28-condition-0"
+        },
+        {
+          "id": "79:76883",
+          "name": "LaTeX · \\omega_d=\\sqrt{\\frac{1}{LC}-\\frac{R^2}{4L^2}}"
+        },
+        {
+          "id": "79:76894",
+          "name": "LaTeX / c28-condition-2"
+        },
+        {
+          "id": "79:78509",
+          "name": "LaTeX · \\omega_\\circ=\\frac{1}{\\sqrt{LC}}"
+        },
+        {
+          "id": "79:78542",
+          "name": "LaTeX / c28-prerequisite-0"
+        }
+      ],
+      "rootCount": 138,
+      "roots": [
+        {
+          "id": "74:70778",
+          "name": "LaTeX / motion",
+          "type": "COMPONENT",
+          "w": 222.70249938964844,
+          "h": 50.70000076293945
+        },
+        {
+          "id": "74:70824",
+          "name": "LaTeX / velocity",
+          "type": "COMPONENT",
+          "w": 121.31500244140625,
+          "h": 18.427499771118164
+        },
+        {
+          "id": "74:70849",
+          "name": "LaTeX / wave",
+          "type": "COMPONENT",
+          "w": 255.00750732421875,
+          "h": 25
+        },
+        {
+          "id": "74:70902",
+          "name": "LaTeX / wave-speed",
+          "type": "COMPONENT",
+          "w": 133.67750549316406,
+          "h": 45.400001525878906
+        },
+        {
+          "id": "74:70928",
+          "name": "LaTeX / wave-definition",
+          "type": "COMPONENT",
+          "w": 209.6199951171875,
+          "h": 51
+        },
+        {
+          "id": "74:70967",
+          "name": "LaTeX / c2-law-0",
+          "type": "COMPONENT",
+          "w": 173.14320373535156,
+          "h": 28.823999404907227
+        },
+        {
+          "id": "79:72802",
+          "name": "LaTeX / c2-law-1",
+          "type": "COMPONENT",
+          "w": 195.84719848632812,
+          "h": 32.84400177001953
+        },
+        {
+          "id": "79:72847",
+          "name": "LaTeX · v=\\frac{dx}{dt}",
+          "type": "COMPONENT",
+          "w": 80.41439819335938,
+          "h": 49.608001708984375
+        },
+        {
+          "id": "79:72875",
+          "name": "LaTeX · a=\\frac{dv}{dt}",
+          "type": "COMPONENT",
+          "w": 79.38240051269531,
+          "h": 49.608001708984375
+        },
+        {
+          "id": "79:72907",
+          "name": "LaTeX / c3-law-2",
+          "type": "COMPONENT",
+          "w": 12.696000099182129,
+          "h": 10.824000358581543
+        },
+        {
+          "id": "79:72918",
+          "name": "LaTeX / c3-condition-0",
+          "type": "COMPONENT",
+          "w": 9.539999961853027,
+          "h": 12.9399995803833
+        },
+        {
+          "id": "79:72925",
+          "name": "LaTeX / c4-law-0",
+          "type": "COMPONENT",
+          "w": 100.09439849853516,
+          "h": 26.304000854492188
+        },
+        {
+          "id": "79:72959",
+          "name": "LaTeX / c4-law-1",
+          "type": "COMPONENT",
+          "w": 101.96640014648438,
+          "h": 26.304000854492188
+        },
+        {
+          "id": "79:72993",
+          "name": "LaTeX / c4-law-2",
+          "type": "COMPONENT",
+          "w": 99.28800201416016,
+          "h": 27.213600158691406
+        },
+        {
+          "id": "79:73020",
+          "name": "LaTeX / c4-law-3",
+          "type": "COMPONENT",
+          "w": 110.08319854736328,
+          "h": 24
+        }
+      ]
+    },
+    {
+      "pageId": "7:77",
+      "pageName": "80 근거 · 연구·기술·출처",
+      "count": 2594,
+      "types": {
+        "FRAME": 674,
+        "TEXT": 1920
+      },
+      "annotations": 2594,
+      "instanceChildren": 0,
+      "genericCount": 0,
+      "genericSample": [],
+      "owners": [],
+      "roots": [
+        {
+          "id": "20:3435",
+          "name": "연구 전수 대응 · 121출처 / 20영역",
+          "type": "FRAME",
+          "w": 1200,
+          "h": 444,
+          "childCount": 6
+        },
+        {
+          "id": "20:3442",
+          "name": "영역 C01 · 사용자 연구·문제 정의·사용성 평가",
+          "type": "FRAME",
+          "w": 580,
+          "h": 379,
+          "childCount": 8
+        },
+        {
+          "id": "20:3452",
+          "name": "영역 C02 · 정보 구조·사용 흐름·콘텐츠",
+          "type": "FRAME",
+          "w": 580,
+          "h": 617,
+          "childCount": 15
+        },
+        {
+          "id": "20:3462",
+          "name": "영역 C03 · 디자인 시스템·토큰·정체성",
+          "type": "FRAME",
+          "w": 580,
+          "h": 447,
+          "childCount": 10
+        },
+        {
+          "id": "20:3472",
+          "name": "영역 C04 · 한글 조판·색·반응형",
+          "type": "FRAME",
+          "w": 580,
+          "h": 447,
+          "childCount": 10
+        },
+        {
+          "id": "20:3482",
+          "name": "영역 C05 · 접근성·키보드·터치·모션",
+          "type": "FRAME",
+          "w": 580,
+          "h": 447,
+          "childCount": 10
+        },
+        {
+          "id": "20:3492",
+          "name": "영역 C06 · Figma·컴포넌트·코드 연결",
+          "type": "FRAME",
+          "w": 580,
+          "h": 447,
+          "childCount": 10
+        },
+        {
+          "id": "20:3502",
+          "name": "영역 C07 · 프론트엔드 구조·웹 플랫폼",
+          "type": "FRAME",
+          "w": 580,
+          "h": 413,
+          "childCount": 9
+        },
+        {
+          "id": "20:3512",
+          "name": "영역 C08 · 공통 조작·폼·입력",
+          "type": "FRAME",
+          "w": 580,
+          "h": 515,
+          "childCount": 12
+        },
+        {
+          "id": "20:3522",
+          "name": "영역 C09 · 상태·비동기·복잡한 전이",
+          "type": "FRAME",
+          "w": 580,
+          "h": 379,
+          "childCount": 8
+        },
+        {
+          "id": "20:3532",
+          "name": "영역 C10 · 모션·픽셀 자산·상호작용",
+          "type": "FRAME",
+          "w": 580,
+          "h": 617,
+          "childCount": 15
+        },
+        {
+          "id": "20:3542",
+          "name": "영역 C11 · GPU·Canvas·WebGL·WebGPU",
+          "type": "FRAME",
+          "w": 580,
+          "h": 515,
+          "childCount": 12
+        },
+        {
+          "id": "20:3552",
+          "name": "영역 C12 · 성능·누적·작업 분산·기기",
+          "type": "FRAME",
+          "w": 580,
+          "h": 651,
+          "childCount": 16
+        },
+        {
+          "id": "20:3562",
+          "name": "영역 C13 · 통계·과학 시각화",
+          "type": "FRAME",
+          "w": 580,
+          "h": 481,
+          "childCount": 11
+        },
+        {
+          "id": "20:3572",
+          "name": "영역 C14 · 그래프·Canvas·필기",
+          "type": "FRAME",
+          "w": 580,
+          "h": 515,
+          "childCount": 12
+        },
+        {
+          "id": "20:3582",
+          "name": "영역 C15 · 수식·수학 인터랙티브",
+          "type": "FRAME",
+          "w": 580,
+          "h": 447,
+          "childCount": 10
+        },
+        {
+          "id": "20:3592",
+          "name": "영역 C16 · 편집·자료·파일·로컬 실행",
+          "type": "FRAME",
+          "w": 580,
+          "h": 540,
+          "childCount": 12
+        },
+        {
+          "id": "20:3602",
+          "name": "영역 C17 · 저장·오프라인·동기화·복구",
+          "type": "FRAME",
+          "w": 580,
+          "h": 583,
+          "childCount": 14
+        },
+        {
+          "id": "20:3612",
+          "name": "영역 C18 · 인증·권한·서버·보안",
+          "type": "FRAME",
+          "w": 580,
+          "h": 506,
+          "childCount": 11
+        },
+        {
+          "id": "20:3622",
+          "name": "영역 C19 · 검증·CI·관측·유지보수",
+          "type": "FRAME",
+          "w": 580,
+          "h": 787,
+          "childCount": 20
+        },
+        {
+          "id": "20:3632",
+          "name": "영역 C20 · AI·에이전트·스킬·평가",
+          "type": "FRAME",
+          "w": 580,
+          "h": 608,
+          "childCount": 14
+        },
+        {
+          "id": "20:3642",
+          "name": "출처군 D · 디자인 · UX",
+          "type": "FRAME",
+          "w": 820,
+          "h": 15760,
+          "childCount": 29
+        },
+        {
+          "id": "20:4184",
+          "name": "출처군 F · 프론트엔드 · 표현 기술",
+          "type": "FRAME",
+          "w": 820,
+          "h": 16778,
+          "childCount": 32
+        },
+        {
+          "id": "22:68",
+          "name": "출처군 Q · 품질 · 저장 · 보안",
+          "type": "FRAME",
+          "w": 820,
+          "h": 15626,
+          "childCount": 29
+        },
+        {
+          "id": "22:629",
+          "name": "출처군 S · 사이트 · 설계 도구 · 스킬",
+          "type": "FRAME",
+          "w": 820,
+          "h": 18208,
+          "childCount": 35
+        }
+      ]
+    },
+    {
+      "pageId": "0:1",
+      "pageName": "90 초기 설계 · 공부 기록 iPad",
+      "count": 178,
+      "types": {
+        "FRAME": 67,
+        "TEXT": 78,
+        "INSTANCE": 19,
+        "RECTANGLE": 10,
+        "VECTOR": 4
+      },
+      "annotations": 178,
+      "instanceChildren": 39,
+      "genericCount": 2,
+      "genericSample": [
+        {
+          "id": "1:286",
+          "type": "TEXT",
+          "name": "Text",
+          "parent": "주제 찾기 / 범위 선택",
+          "insideInstance": false
+        },
+        {
+          "id": "1:387",
+          "type": "TEXT",
+          "name": "Text",
+          "parent": "주제 찾기 / 범위 선택",
+          "insideInstance": false
+        }
+      ],
+      "owners": [],
+      "roots": [
+        {
+          "id": "1:43",
+          "name": "01 · 공부 기록 · 주제 선택 전",
+          "type": "FRAME",
+          "w": 1024,
+          "h": 1366,
+          "childCount": 2
+        },
+        {
+          "id": "1:44",
+          "name": "02 · 공부 기록 · 두 주제 입력",
+          "type": "FRAME",
+          "w": 1024,
+          "h": 1366,
+          "childCount": 2
+        }
+      ]
+    }
+  ]
+}

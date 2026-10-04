@@ -1,0 +1,150 @@
+{
+  "schema": "figma-reconcile-readback-v1",
+  "batchId": "api-entity-correction",
+  "pageId": "7:75",
+  "createdNodeIds": [],
+  "mutatedNodeIds": [],
+  "observedNodeIds": [
+    "74:73677",
+    "74:73526",
+    "74:73599",
+    "74:74147",
+    "74:74087",
+    "74:74117",
+    "75:74396",
+    "75:74374",
+    "75:74385",
+    "75:80544",
+    "75:80416",
+    "75:80480"
+  ],
+  "frameColumns": [
+    "key",
+    "id",
+    "pageId",
+    "topLevelId",
+    "name",
+    "width",
+    "height",
+    "visibleTitleId",
+    "navigationMainId",
+    "taskReturnMainId",
+    "stateIndex"
+  ],
+  "frameResults": [],
+  "componentColumns": [
+    "registryId",
+    "ownerId",
+    "sourceFound",
+    "shaFound",
+    "apiFound",
+    "variants",
+    "apiDisplayEscaped",
+    "entityDecodePasses"
+  ],
+  "componentResults": [
+    [
+      "UI26",
+      "74:73677",
+      true,
+      true,
+      true,
+      [
+        [
+          "74:73526",
+          "Width=wide, State=representative",
+          "74:73677"
+        ],
+        [
+          "74:73599",
+          "Width=narrow, State=representative",
+          "74:73677"
+        ]
+      ],
+      true,
+      3
+    ],
+    [
+      "UI27",
+      "74:74147",
+      true,
+      true,
+      true,
+      [
+        [
+          "74:74087",
+          "Width=wide, State=representative",
+          "74:74147"
+        ],
+        [
+          "74:74117",
+          "Width=narrow, State=representative",
+          "74:74147"
+        ]
+      ],
+      true,
+      3
+    ],
+    [
+      "UI28",
+      "75:74396",
+      true,
+      true,
+      true,
+      [
+        [
+          "75:74374",
+          "Width=wide, State=representative",
+          "75:74396"
+        ],
+        [
+          "75:74385",
+          "Width=narrow, State=representative",
+          "75:74396"
+        ]
+      ],
+      true,
+      3
+    ],
+    [
+      "UI32",
+      "75:80544",
+      true,
+      true,
+      true,
+      [
+        [
+          "75:80416",
+          "Width=wide, State=representative",
+          "75:80544"
+        ],
+        [
+          "75:80480",
+          "Width=narrow, State=representative",
+          "75:80544"
+        ]
+      ],
+      true,
+      3
+    ]
+  ],
+  "linkColumns": [
+    "controlId",
+    "targetId",
+    "connection",
+    "matched",
+    "visibleLabel",
+    "actualActions"
+  ],
+  "linkResults": [],
+  "counts": {
+    "frames": 0,
+    "components": 4,
+    "links": 0,
+    "issues": 0
+  },
+  "issues": [],
+  "structuralReadbackPassed": true,
+  "runtimeVerified": false,
+  "visualPixelIdentityVerified": false
+}

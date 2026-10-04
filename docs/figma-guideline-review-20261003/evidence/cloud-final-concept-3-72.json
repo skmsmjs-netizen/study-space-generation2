@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"pageId\":\"3:72\",\"name\":\"전집 · 정의형\",\"rootCount\":250,\"publicationCount\":250,\"nativeParagraphCount\":576,\"richParagraphCount\":82,\"renderedNative95TextCount\":609,\"problems\":[],\"representativeRoots\":[{\"id\":\"46:3\",\"name\":\"OS판본 · 08-037 · 1efe09998fbc\",\"width\":768,\"height\":797},{\"id\":\"46:19\",\"name\":\"OS판본 · 01-009 · 1589d23580b9\",\"width\":768,\"height\":1067},{\"id\":\"46:53\",\"name\":\"OS판본 · 01-012 · 77a0b267db0e\",\"width\":768,\"height\":1432.3385009765625}],\"createdNodeIds\":[],\"mutatedNodeIds\":[]}"
+    }
+  ],
+  "isError": false
+}

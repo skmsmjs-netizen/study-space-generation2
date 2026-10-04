@@ -1,0 +1,93 @@
+{
+  "pageId": "7:75",
+  "createdNodeIds": [
+    "256:6822",
+    "256:6823",
+    "256:6824"
+  ],
+  "mutatedNodeIds": [
+    "256:6822",
+    "29:5644",
+    "29:5645",
+    "29:5646",
+    "29:5647",
+    "29:5648",
+    "29:5649",
+    "29:5650",
+    "29:5651",
+    "29:5631",
+    "256:6823",
+    "29:5677",
+    "29:5678",
+    "29:5679",
+    "29:5680",
+    "29:5681",
+    "29:5682",
+    "29:5683",
+    "29:5684",
+    "29:5685",
+    "29:5686",
+    "29:5687",
+    "29:5690",
+    "29:5664",
+    "256:6824",
+    "29:5722",
+    "29:5723",
+    "29:5724",
+    "29:5725",
+    "29:5727",
+    "29:5729",
+    "29:5730",
+    "29:5709"
+  ],
+  "results": [
+    {
+      "id": "29:5631",
+      "name": "U10@ipad-landscape",
+      "pattern": "L053",
+      "scope": "surface",
+      "viewport": {
+        "width": 1376,
+        "height": 1032,
+        "overflow": "VERTICAL"
+      },
+      "preserved": true,
+      "scroll": "VERTICAL",
+      "sceneRatios": [],
+      "structure": "256:6822",
+      "bodyHeight": 415
+    },
+    {
+      "id": "29:5664",
+      "name": "U37@ipad-landscape",
+      "pattern": "L198",
+      "scope": "surface",
+      "viewport": {
+        "width": 1376,
+        "height": 1032,
+        "overflow": "VERTICAL"
+      },
+      "preserved": true,
+      "scroll": "VERTICAL",
+      "sceneRatios": [],
+      "structure": "256:6823",
+      "bodyHeight": 565
+    },
+    {
+      "id": "29:5709",
+      "name": "U39@ipad-landscape",
+      "pattern": "L025",
+      "scope": "surface",
+      "viewport": {
+        "width": 1376,
+        "height": 1032,
+        "overflow": "VERTICAL"
+      },
+      "preserved": true,
+      "scroll": "VERTICAL",
+      "sceneRatios": [],
+      "structure": "256:6824",
+      "bodyHeight": 425
+    }
+  ]
+}

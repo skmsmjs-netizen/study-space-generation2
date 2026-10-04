@@ -1,0 +1,185 @@
+{
+  "date": "2026-10-02",
+  "status": "implemented-and-verified-local",
+  "approval": "반영하라",
+  "scope": [
+    "개념·지식 설명부",
+    "paper 본문",
+    "직접 쓰는 메모·자유 글",
+    "접힌 미리보기",
+    "기존 기록 수정"
+  ],
+  "typography": {
+    "sourceFamily": "Nanum Myeongjo",
+    "runtimeFamily": "ManSeekSong Paper",
+    "weight": 700,
+    "glyphScaleX": 0.95,
+    "bodyPx": 18,
+    "compactAndInputPx": 16,
+    "previewPx": 14,
+    "alignment": "justify/start",
+    "compactLine": 1.85,
+    "compactTrackingEm": -0.025
+  },
+  "fontVerification": {
+    "family": "ManSeekSong Paper",
+    "sourceFamily": "Nanum Myeongjo",
+    "glyphScaleX": 0.95,
+    "nativeHorizontalMetrics": true,
+    "cssTransformRequired": false,
+    "license": "public/fonts/paper/OFL.txt",
+    "sources": "https://github.com/google/fonts/tree/main/ofl/nanummyeongjo",
+    "faces": [
+      {
+        "style": "Regular",
+        "weight": 400,
+        "source": "assets/paper/NanumMyeongjo-Regular.ttf",
+        "target": "src/ui/fonts/paper/manseek-paper-regular-95.woff2",
+        "mappedCharacters": 11882,
+        "glyphs": 14695,
+        "bytes": 480592,
+        "sourceSha256": "7ed9e8653a8ed04285d51dc343ffea6eb3d9c73afc27383ea8929ee4ffd03205",
+        "targetSha256": "1aaf74d5903093e778c67df614fed4ad6f5631fb56c5e3db5cb934de03bbe0a2",
+        "fullCoveragePreserved": true,
+        "allOutlinesAndAdvancesVerified": true,
+        "verticalMetricsPreserved": true,
+        "kerningVerified": true
+      },
+      {
+        "style": "Bold",
+        "weight": 700,
+        "source": "assets/paper/NanumMyeongjo-Bold.ttf",
+        "target": "src/ui/fonts/paper/manseek-paper-bold-95.woff2",
+        "mappedCharacters": 11882,
+        "glyphs": 14695,
+        "bytes": 555800,
+        "sourceSha256": "bc9ed8e60d93fe6db054b8fb988481b625f2eef8cb2317ad0e9834681b8fe3f3",
+        "targetSha256": "382c42669a74c622f4a88eecfc1e607c03d9cbf4d04451d694af61c502a6d3a2",
+        "fullCoveragePreserved": true,
+        "allOutlinesAndAdvancesVerified": true,
+        "verticalMetricsPreserved": true,
+        "kerningVerified": true
+      },
+      {
+        "style": "ExtraBold",
+        "weight": 800,
+        "source": "assets/paper/NanumMyeongjo-ExtraBold.ttf",
+        "target": "src/ui/fonts/paper/manseek-paper-extrabold-95.woff2",
+        "mappedCharacters": 11884,
+        "glyphs": 14697,
+        "bytes": 647992,
+        "sourceSha256": "60c0077fce069ba90ae97c0a3679f6eb3712e0ca637bdd0c15b72d335ec46db7",
+        "targetSha256": "3364634b01e96330feac5cde9062785db98d21386b9f11de0d28bb305b4d538a",
+        "fullCoveragePreserved": true,
+        "allOutlinesAndAdvancesVerified": true,
+        "verticalMetricsPreserved": true,
+        "kerningVerified": true
+      }
+    ]
+  },
+  "checks": {
+    "typecheck": "passed",
+    "designTokens": {
+      "files": 60,
+      "errors": 0
+    },
+    "baselineRoleChecks": {
+      "passed": 4
+    },
+    "conceptTextAndReader": {
+      "passed": 6
+    },
+    "deviceRun": "../../work/device-runs/run-cX3KGx",
+    "deviceStats": {
+      "startTime": "2026-10-02T13:29:27.432Z",
+      "duration": 83806.99500000001,
+      "expected": 15,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "profiles": [
+      "iPhone-17-Pro-portrait",
+      "iPhone-17-Pro-landscape",
+      "iPad-Pro-13-portrait",
+      "iPad-Pro-13-landscape",
+      "iPad-Pro-13-half-window"
+    ],
+    "behaviors": [
+      "두 언어·긴 메모/중간 커서 삽입·선택",
+      "메모 저장·닫기·재접속/원문 공백·줄바꿈",
+      "14px 미리보기/16px 입력",
+      "개념의 실제 열 폭 기준18/16px·행간/자간",
+      "개인 Georgia/19px/400 오버라이드",
+      "KaTeX 서체와 명시적 수식·변수 보존",
+      "예시 체크의 학습 의미·기존 두 기록 보존"
+    ],
+    "productionBundle": {
+      "status": "passed",
+      "config": "../../work/paper-typography-20261002/vite.check.config.ts",
+      "output": "../../work/paper-typography-20261002/app",
+      "log": "../../work/paper-typography-20261002/source-build-final.log",
+      "fontAssetHashesMatch": true,
+      "publicDir": false
+    },
+    "fullPublicAssetBuild": {
+      "status": "interrupted",
+      "reason": "Existing public GeoGebra asset copy remained waiting on local file reads; source transformation completed. Only this task process was stopped."
+    }
+  },
+  "browser": {
+    "localUrl": "http://127.0.0.1:5779/?space=demo#/record",
+    "observedConceptWidthPx": 648,
+    "observedConceptSizePx": 18,
+    "observedWeight": 700,
+    "observedInputPx": 16,
+    "observedInputLinePx": 29.6,
+    "observedInputTrackingPx": -0.4,
+    "observedPreviewPx": 14,
+    "observedTransform": "none",
+    "sampleData": "isolated synthetic demo only",
+    "screenshots": [
+      "../../work/paper-typography-20261002/runtime-ko.jpg",
+      "../../work/paper-typography-20261002/runtime-en.jpg",
+      "../../work/paper-typography-20261002/runtime-concept-ko.jpg"
+    ]
+  },
+  "relatedFix": {
+    "problem": "English article a was interpreted as a mathematical variable by legacy ConceptText and changed its typeface.",
+    "result": "Plain article a/A stays prose; explicit $a$ and legacy a = 2/Korean variable notation retain math; complete original source retained."
+  },
+  "earlierRuns": [
+    {
+      "run": "run-pr44Ai",
+      "passed": 5,
+      "failed": 5,
+      "cause": "New automation toggled an already open memo details closed on reopening; test corrected to follow actual visibility."
+    },
+    {
+      "run": "run-I4eoxa",
+      "passed": 10,
+      "failed": 0
+    },
+    {
+      "run": "run-ofDcjU",
+      "failed": 5,
+      "cause": "English article a entered legacy math path; related parser defect repaired."
+    }
+  ],
+  "preservation": {
+    "storageSchemaChanged": false,
+    "sourceTextChanged": false,
+    "idsOrHistoryChanged": false,
+    "personalLayoutChanged": false,
+    "personalFontOverridesVerified": true,
+    "rootZoomDefaultsRemainRem": true
+  },
+  "boundaries": {
+    "deploymentPerformedByThisTask": false,
+    "serverChangedByThisTask": false,
+    "physicalDeviceIMEVerified": false,
+    "learningEffectClaimed": false,
+    "existingFigmaBoardChangedByThisTask": false
+  },
+  "parallelReuse": "Shared baseline/generator/paper-typography.css/tokens/main from webapp implementation reused; native complete font assets, paper-typeface.css, article fix and focused checks supplied by this task."
+}

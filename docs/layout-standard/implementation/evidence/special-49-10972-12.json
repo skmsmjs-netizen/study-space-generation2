@@ -1,0 +1,73 @@
+{
+  "pageId": "49:10972",
+  "createdNodeIds": [
+    "263:33431",
+    "263:33432",
+    "263:33433",
+    "263:33434"
+  ],
+  "mutatedNodeIds": [
+    "263:33431",
+    "79:106168",
+    "79:104207",
+    "263:33432",
+    "79:108062",
+    "79:106174",
+    "263:33433",
+    "80:27262",
+    "80:25298",
+    "263:33434",
+    "82:29055",
+    "82:27223"
+  ],
+  "results": [
+    {
+      "id": "79:104207",
+      "name": "펼쳐 읽기 / 선적분과 퍼텐셜",
+      "pattern": "L190",
+      "structure": "263:33431",
+      "preserved": true,
+      "viewport": {
+        "width": 1376,
+        "height": 1024,
+        "overflow": "NONE"
+      }
+    },
+    {
+      "id": "79:106174",
+      "name": "펼쳐 읽기 / 그린 정리",
+      "pattern": "L190",
+      "structure": "263:33432",
+      "preserved": true,
+      "viewport": {
+        "width": 1376,
+        "height": 1024,
+        "overflow": "NONE"
+      }
+    },
+    {
+      "id": "80:25298",
+      "name": "펼쳐 읽기 / 면적분과 발산 정리",
+      "pattern": "L190",
+      "structure": "263:33433",
+      "preserved": true,
+      "viewport": {
+        "width": 1376,
+        "height": 1024,
+        "overflow": "NONE"
+      }
+    },
+    {
+      "id": "82:27223",
+      "name": "펼쳐 읽기 / 스토크스 정리",
+      "pattern": "L190",
+      "structure": "263:33434",
+      "preserved": true,
+      "viewport": {
+        "width": 1376,
+        "height": 1024,
+        "overflow": "NONE"
+      }
+    }
+  ]
+}

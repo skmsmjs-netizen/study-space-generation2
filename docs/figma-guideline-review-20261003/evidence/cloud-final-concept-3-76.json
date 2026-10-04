@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"pageId\":\"3:76\",\"name\":\"전집 · 구조형\",\"rootCount\":86,\"publicationCount\":86,\"nativeParagraphCount\":210,\"richParagraphCount\":63,\"renderedNative95TextCount\":267,\"problems\":[],\"representativeRoots\":[{\"id\":\"46:2190\",\"name\":\"OS판본 · 09-020 · 8dda46409784\",\"width\":768,\"height\":947.4117431640625},{\"id\":\"46:2224\",\"name\":\"OS판본 · 01-007 · 23dabbebb211\",\"width\":1584,\"height\":1513.28564453125},{\"id\":\"46:2357\",\"name\":\"OS판본 · 01-027 · 51b499ad1e8b\",\"width\":1584,\"height\":1192.4000244140625}],\"createdNodeIds\":[],\"mutatedNodeIds\":[]}"
+    }
+  ],
+  "isError": false
+}

@@ -1,0 +1,18 @@
+const page=await figma.getNodeByIdAsync(PAGE_ID);await figma.setCurrentPageAsync(page);
+const hubs=page.children.filter(n=>n.name==='천장 공통 도구 · 현재 자리로 복귀');if(!hubs.length)return {pageId:page.id,skipped:true,createdNodeIds:[],mutatedNodeIds:[]};
+const specs=[['찾기','29:4573','29:4495'],['전체 백업·복구','29:4871','29:4858'],['초안 보관본','29:4939','29:4926'],['내 기록의 저장 상태','29:5387','29:5374'],['설정','29:5423','29:5410'],['도움말·문제 메모','29:4977','29:4964']];
+const originals=await Promise.all(specs.map(s=>figma.getNodeByIdAsync(s[1]))),fonts=new Map();for(const n of originals)for(const t of n.findAllWithCriteria({types:['TEXT']}))for(const s of t.getStyledTextSegments(['fontName']))fonts.set(JSON.stringify(s.fontName),s.fontName);await Promise.all([...fonts.values()].map(f=>figma.loadFontAsync(f)));
+const created=[],mutated=new Set(),forms=[];let x=Math.max(0,...page.children.map(n=>n.x+n.width))+96;
+for(let i=0;i<specs.length;i++){
+ const label=specs[i][0];let form=page.children.find(n=>n.name==='천장 기능 / '+label+' · 원래 자리로 복귀');
+ if(!form){form=originals[i].clone();page.appendChild(form);form.name='천장 기능 / '+label+' · 원래 자리로 복귀';form.x=x;form.y=48;x+=432;created.push(form.id,...form.findAll().map(n=>n.id));}
+ const frames=[form,...form.findAll(n=>n.type==='FRAME'&&n.layoutMode!=='NONE')];
+ for(const f of frames){if(f.layoutPositioning==='ABSOLUTE'||f.name.startsWith('Paper95')||f.name.includes('장면')||f.name.includes('위젯'))continue;const max=f===form?336:Math.max(80,(f.parent.width||336)-(f.parent.paddingLeft||0)-(f.parent.paddingRight||0));if(f.width>max){f.resize(max,f.height);if(f.parent.layoutMode&&f.parent.layoutMode!=='NONE')f.layoutSizingHorizontal='FILL';mutated.add(f.id);}if(f.layoutMode==='VERTICAL')f.primaryAxisSizingMode='AUTO';if(f.layoutMode==='HORIZONTAL'){f.layoutWrap='WRAP';f.counterAxisSizingMode='AUTO';}f.clipsContent=false;}
+ form.resize(336,Math.min(600,form.height));form.primaryAxisSizingMode='FIXED';form.clipsContent=true;form.overflowDirection='VERTICAL';mutated.add(form.id);
+ for(const b of form.findAll(n=>n.name==='행동 / 오늘로')){for(const t of b.findAllWithCriteria({types:['TEXT']})){t.characters='하던 일로 돌아가기';mutated.add(t.id);}await b.setReactionsAsync([{trigger:{type:'ON_CLICK'},actions:[{type:'CLOSE'}]}]);mutated.add(b.id);}
+ forms.push({label,id:form.id,source:originals[i].id,sourceScreen:specs[i][2]});
+}
+const map=new Map(forms.map(f=>[f.sourceScreen,f.id]));
+for(const form of forms){const node=await figma.getNodeByIdAsync(form.id);for(const b of node.findAll(n=>n.reactions?.length)){const actions=b.reactions.flatMap(r=>r.actions||[]);const dest=actions.find(a=>a.type==='NODE'&&map.has(a.destinationId));if(dest){await b.setReactionsAsync([{trigger:{type:'ON_CLICK'},actions:[{type:'NODE',destinationId:map.get(dest.destinationId),navigation:'SWAP',transition:null,resetScrollPosition:false}]}]);mutated.add(b.id);}else if(b.name==='행동 / 공통 도구 · 천장'){await b.setReactionsAsync([{trigger:{type:'ON_CLICK'},actions:[{type:'NODE',destinationId:hubs[0].id,navigation:'SWAP',transition:null,resetScrollPosition:false}]}]);mutated.add(b.id);}}}
+for(const hub of hubs)for(const b of hub.children.filter(n=>n.name.startsWith('공통 도구 / '))){const form=forms.find(f=>f.label===b.name.split(' / ')[1]);if(!form)throw Error('Unmapped common tool');await b.setReactionsAsync([{trigger:{type:'ON_CLICK'},actions:[{type:'NODE',destinationId:form.id,navigation:'SWAP',transition:null,resetScrollPosition:false}]}]);mutated.add(b.id);}
+return {pageId:page.id,hubCount:hubs.length,forms,createdCount:created.length,mutatedCount:mutated.size,createdNodeIds:created,mutatedNodeIds:[...mutated]};
