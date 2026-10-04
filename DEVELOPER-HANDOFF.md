@@ -113,6 +113,8 @@ Figma·Linear·Supabase 링크는 현재 담당 문서와 소스에 기록된 �
 
 선택 근거는 기존 프로젝트 보존·배포 계약, [Git의 gitignore 문서](https://git-scm.com/docs/gitignore), [GitHub의 민감 정보 취급 지침](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository)이다. 파일별 보존 확인은 파일 목록과 SHA-256 대조로 수행한다. 코드·문서 원격 보존을 앱 전체 동작·새 배포·운영 서버 검증으로 표현하지 않는다.
 
+이번 인계에서는 파일별 SHA-256·Git 인덱스 포함 여부·주요 진입 문서 링크와 비밀키 패턴을 확인했다. 실행 소스는 기준 main과 동일하게 보존했다. 격리 복제본에서 기존 로컬 의존성으로 시작한 타입 검사는 실행이 완료되지 않아 중단했으며 통과로 판정하지 않았다. 전체 생산 빌드·기기 모사 검사·운영 서버 검사를 이번 파일 인계에서 다시 실행한 것은 아니다. 상세 결과는 [인계 확인 기록](handoff/verification.json)에 있다.
+
 ## 8. 친구에게 전달할 시작 요청
 
 > ManSeekSong OS 개발을 이어받아 주세요. 저장소 https://github.com/skmsmjs-netizen/study-space-generation2 의 `codex/developer-handoff-20261004` 브랜치를 받아 `DEVELOPER-HANDOFF.md`, 공통·웹앱 AGENTS.md와 최신 인계를 읽어 주세요. 저장소 루트는 2026-10-04의 최신 main 실행 소스이며, `handoff/local-pending/files/`에는 미통합 로컬 변경이 있습니다. 파일별 대조 목록을 보고 기존 main 변경을 보존하며 필요한 것만 통합해 주세요. 원문·ID·초안·이력·개인 설정·배치·권한은 유지하고, 운영 서버 변경이나 공개 배포는 해당 승인 범위를 먼저 확인해 주세요. 첫 실행은 Node 24에서 `npm ci`, `npm run dev`로 확인하고, 맡을 구체적인 작업에 필요한 검사와 저장·복귀 확인을 진행해 주세요.

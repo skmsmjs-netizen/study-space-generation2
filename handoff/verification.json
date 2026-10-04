@@ -26,5 +26,7 @@
   },
   "git_index_inventory_missing": [],
   "git_index_file_count": 3128,
-  "path_encoding": "Remote path names normalized to NFC to match Git index names. Source file payloads preserved byte for byte."
+  "path_encoding": "Remote path names normalized to NFC to match Git index names. Source file payloads preserved byte for byte.",
+  "typecheck_this_handoff": "Started npm run typecheck in the isolated clone using existing local dependencies; stopped after execution did not complete. No pass claimed. No active runtime source changes.",
+  "full_build_and_device_suite_this_handoff": "Not rerun; this handoff preserves the latest main runtime and verifies file hashes, index coverage and entrypoint links."
 }
