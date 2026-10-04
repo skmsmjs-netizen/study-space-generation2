@@ -1,0 +1,49 @@
+name: Publish verified build
+on:
+  workflow_dispatch:
+    inputs:
+      verified_run_id:
+        description: Completed build job from the Pages verification run to publish
+        required: true
+        type: string
+permissions:
+  contents: read
+  actions: read
+  pages: write
+  id-token: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Confirm successful build and repository
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERIFIED_RUN: ${{ inputs.verified_run_id }}
+        run: |
+          node - <<'NODE'
+          const { execFileSync } = require('node:child_process');
+          const id = process.env.VERIFIED_RUN;
+          if (!/^\d+$/.test(id)) throw Error('Invalid run ID');
+          const repo = process.env.GITHUB_REPOSITORY;
+          const run = JSON.parse(execFileSync('gh', ['api', `repos/${repo}/actions/runs/${id}`], { encoding: 'utf8' }));
+          if (run.repository.full_name !== repo || run.head_branch !== 'main' || run.name !== 'Verify and deploy Pages') throw Error('Expected the existing main Pages build');
+          const jobs = JSON.parse(execFileSync('gh', ['api', `repos/${repo}/actions/runs/${id}/jobs`], { encoding: 'utf8' }));
+          if (!jobs.jobs.some(job => job.name === 'build' && job.conclusion === 'success')) throw Error('Build has not succeeded');
+          console.log(`Publishing immutable verified-build from ${run.head_sha}; remaining device checks stay in run ${id}.`);
+          NODE
+      - uses: actions/download-artifact@v4
+        with:
+          name: verified-build
+          run-id: ${{ inputs.verified_run_id }}
+          github-token: ${{ github.token }}
+          path: dist
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+      - name: Deploy checked artifact
+        id: deployment
+        uses: actions/deploy-pages@v4
