@@ -324,6 +324,8 @@ export function CodeExampleEditor({
   const run = useRef<CodeExecution | null>(null),
     alive = useRef(true);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const draftTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const draftDeadline = useRef<ReturnType<typeof setTimeout> | null>(null);
   const callback = useRef(onSaved);
   callback.current = onSaved;
   const draft = (): CodeExampleDraft => ({
@@ -334,6 +336,9 @@ export function CodeExampleEditor({
       : current.current,
   });
   const saveDraft = () => {
+    if (draftTimer.current) clearTimeout(draftTimer.current);
+    if (draftDeadline.current) clearTimeout(draftDeadline.current);
+    draftTimer.current = draftDeadline.current = null;
     try {
       writeCodeDraft(key, draft());
       return true;
@@ -348,7 +353,11 @@ export function CodeExampleEditor({
     if (timer.current) clearTimeout(timer.current);
     timer.current = null;
     if (blocked.current) return false;
-    if (sameCodeContent(current.current, saved.current)) return true;
+    if (sameCodeContent(current.current, saved.current)) {
+      // Undo can return to the saved content before the pending checkpoint fires.
+      if (draftHasUnstoredText(key)) saveDraft();
+      return true;
+    }
     saveDraft();
     try {
       if (!canSave(repository, data))
@@ -385,7 +394,11 @@ export function CodeExampleEditor({
     setContent(next);
     setStatus('저장 중…');
     retainCodeDraft(key, draft());
-    saveDraft();
+    // Retain the latest text synchronously, but keep disk writes off each keystroke.
+    // A pause saves after 250 ms; continuous typing checkpoints at least every second.
+    if (draftTimer.current) clearTimeout(draftTimer.current);
+    draftTimer.current = setTimeout(saveDraft, 250);
+    if (!draftDeadline.current) draftDeadline.current = setTimeout(saveDraft, 1000);
     if (timer.current) clearTimeout(timer.current);
     timer.current = setTimeout(flush, 800);
   };
@@ -429,7 +442,10 @@ export function CodeExampleEditor({
       }
     };
     window.addEventListener('pagehide', save);
-    window.addEventListener('beforeunload', unload);
+    // Flush before the shared unsaved-draft guard decides whether leaving needs a warning.
+    window.addEventListener('beforeunload', unload, true);
+    const hidden = () => { if (document.visibilityState === 'hidden') save(); };
+    document.addEventListener('visibilitychange', hidden);
     if (!sameCodeContent(current.current, saved.current) && !blocked.current)
       timer.current = setTimeout(save, 800);
     return () => {
@@ -437,7 +453,8 @@ export function CodeExampleEditor({
       run.current?.cancel();
       save();
       window.removeEventListener('pagehide', save);
-      window.removeEventListener('beforeunload', unload);
+      window.removeEventListener('beforeunload', unload, true);
+      document.removeEventListener('visibilitychange', hidden);
     };
   }, []);
   useEffect(() => { if (!active) run.current?.cancel(); }, [active]);

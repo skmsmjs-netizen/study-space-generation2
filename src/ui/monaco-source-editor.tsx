@@ -79,6 +79,7 @@ export function MonacoSourceEditor({
   const checker = useRef<Worker | null>(null),
     checkId = useRef(0);
   const checkUnavailable = useRef(false);
+  const markersPresent = useRef(false);
   const [syntax, setSyntax] = useState<'empty' | 'checking' | 'ready' | 'unavailable'>('empty');
   const [diagnostics, setDiagnostics] = useState<SyntaxDiagnostic[]>([]);
   const [retry, setRetry] = useState(0);
@@ -108,7 +109,7 @@ export function MonacoSourceEditor({
         wordWrap: 'off',
         readOnly,
         fixedOverflowWidgets: true,
-        accessibilitySupport: 'on',
+        accessibilitySupport: 'auto',
         editContext: false,
         quickSuggestions: true,
         snippetSuggestions: 'top',
@@ -198,6 +199,7 @@ export function MonacoSourceEditor({
             source: '문법 검사',
           })),
         );
+      markersPresent.current = Boolean(model && issues.length);
     };
     worker.onerror = () => {
       checkUnavailable.current = true;
@@ -212,8 +214,11 @@ export function MonacoSourceEditor({
   useEffect(() => {
     const id = ++checkId.current;
     const model = editor.current?.getModel();
-    if (model) monaco.editor.setModelMarkers(model, 'study-syntax', []);
-    setDiagnostics([]);
+    if (model && markersPresent.current) {
+      monaco.editor.setModelMarkers(model, 'study-syntax', []);
+      markersPresent.current = false;
+    }
+    setDiagnostics((previous) => previous.length ? [] : previous);
     setSyntax(value.trim() ? (checkUnavailable.current ? 'unavailable' : 'checking') : 'empty');
     if (!value.trim() || checkUnavailable.current) return;
     const timer = setTimeout(() => {

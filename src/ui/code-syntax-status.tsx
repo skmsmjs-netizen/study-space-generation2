@@ -48,7 +48,7 @@ export function useCodeSyntax(value: string, language: CodeLanguage) {
   // biome-ignore lint/correctness/useExhaustiveDependencies(retry): An explicit retry recreates the external resource without changing the retained draft.
   useEffect(() => {
     const request = ++id.current;
-    setDiagnostics([]);
+    setDiagnostics((previous) => previous.length ? [] : previous);
     setStatus(value.trim() ? (unavailable.current ? 'unavailable' : 'checking') : 'empty');
     if (!value.trim() || unavailable.current) return;
     const timer = setTimeout(() => {

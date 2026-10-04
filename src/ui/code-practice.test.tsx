@@ -1,7 +1,7 @@
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import { DemoRepository } from '../data/demo-repository';
-import { codeDraftKey, writeCodeDraft } from '../data/code-example-draft';
+import { codeDraftKey, readCodeDraft, writeCodeDraft } from '../data/code-example-draft';
 import type { CodeRun } from '../domain/model';
 import { CodeExampleEditor } from './code-practice';
 const execution = vi.hoisted(() => ({
@@ -66,6 +66,69 @@ function open() {
     />,
   );
 }
+it('keeps rapid typing off synchronous storage and checkpoints the exact latest draft', () => {
+  vi.useFakeTimers();
+  const view = open();
+  const data = repo.getSnapshot();
+  const key = codeDraftKey(data, 'test-example');
+  const writes = vi.spyOn(Storage.prototype, 'setItem');
+  for (let i = 0; i < 20; i++) {
+    fireEvent.change(screen.getByLabelText('소스 코드 테스트'), {
+      target: { value: `// 한글 원문 ${i}\nint main(void) { return ${i}; }` },
+    });
+  }
+  expect(writes.mock.calls.filter(([name]) => name === key)).toHaveLength(0);
+  expect(readCodeDraft(key, 'test-example')?.content.code).toContain('return 19');
+  act(() => vi.advanceTimersByTime(250));
+  expect(writes.mock.calls.filter(([name]) => name === key)).toHaveLength(1);
+  fireEvent.change(screen.getByLabelText('소스 코드 테스트'), {
+    target: { value: '// 중단 직전\nint main(void) { return 20; }' },
+  });
+  view.unmount();
+  expect(repo.getSnapshot().codeExamples![0].code).toBe('// 중단 직전\nint main(void) { return 20; }');
+  writes.mockRestore();
+});
+it('checkpoints during uninterrupted typing and preserves text when storage fails', () => {
+  vi.useFakeTimers();
+  const view = open();
+  const key = codeDraftKey(repo.getSnapshot(), 'test-example');
+  for (let i = 0; i < 11; i++) {
+    fireEvent.change(screen.getByLabelText('소스 코드 테스트'), { target: { value: `// 원문 ${i}` } });
+    act(() => vi.advanceTimersByTime(100));
+  }
+  expect(JSON.parse(localStorage.getItem(key)!).content.code).toBe('// 원문 9');
+  const writes = vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => {
+    throw new DOMException('full', 'QuotaExceededError');
+  });
+  fireEvent.change(screen.getByLabelText('소스 코드 테스트'), { target: { value: '// 최신 실패 원문' } });
+  act(() => vi.advanceTimersByTime(250));
+  expect(readCodeDraft(key, 'test-example')?.content.code).toBe('// 최신 실패 원문');
+  expect(screen.getByLabelText('소스 코드 테스트')).toHaveValue('// 최신 실패 원문');
+  writes.mockRestore();
+  fireEvent(document, new Event('visibilitychange'));
+  view.unmount();
+});
+it('leaves no delayed write after undo returns to saved source and the editor closes', () => {
+  vi.useFakeTimers();
+  const view = open();
+  fireEvent.change(screen.getByLabelText('소스 코드 테스트'), { target: { value: '// temporary' } });
+  fireEvent.change(screen.getByLabelText('소스 코드 테스트'), { target: { value: 'int main(void) {}' } });
+  view.unmount();
+  const writes = vi.spyOn(Storage.prototype, 'setItem');
+  act(() => vi.advanceTimersByTime(1000));
+  expect(writes.mock.calls.filter(([key]) => key.includes(':code-example-draft:'))).toHaveLength(0);
+  writes.mockRestore();
+});
+it('flushes immediate reload before the shared unsaved-draft warning', () => {
+  vi.useFakeTimers();
+  const view = open();
+  fireEvent.change(screen.getByLabelText('소스 코드 테스트'), { target: { value: '// 바로 재접속' } });
+  const event = new Event('beforeunload', { cancelable: true });
+  window.dispatchEvent(event);
+  expect(event.defaultPrevented).toBe(false);
+  expect(repo.getSnapshot().codeExamples![0].code).toBe('// 바로 재접속');
+  view.unmount();
+});
 it('saves the latest code and Korean explanation before leaving the editor', () => {
   vi.useFakeTimers();
   const view = open();
