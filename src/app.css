@@ -802,3 +802,16 @@ nav a[aria-current="page"] {
   .record-layout { grid-template-columns: minmax(0, 1fr); }
   .topic-picker { position: static; max-block-size: none; overflow: visible; }
 }
+
+/* Keep course switching reachable above a long first course's outline. */
+.record-picker-controls { position: sticky; top: 0; z-index: 1; background: var(--color-surface); padding-block-end: var(--space-2); }
+.record-picker-controls h2 { margin-block-start: 0; }
+.record-picker-controls .ui-field { margin-block-end: var(--space-2); }
+.record-picker-status, .record-picker-hint { margin-block: var(--space-2); font-size: var(--type-caption-size); }
+
+@media (min-width: 50.01rem) {
+  .record-layout > .topic-picker { top: calc(var(--icon-target) + var(--space-2) + var(--space-2)); max-block-size: calc(100dvh - var(--icon-target) - var(--space-2) - var(--space-4)); }
+}
+@media (max-width: 50rem) {
+  .record-picker-controls { top: calc(var(--icon-target) + var(--space-2)); }
+}

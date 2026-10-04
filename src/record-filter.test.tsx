@@ -1,8 +1,9 @@
-import { decodeStoredText } from './data/storage-codec';
+import { encodeStoredText, decodeStoredText } from './data/storage-codec';
 import { act, cleanup, fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import App from './App';
+import { createDemoState } from './domain/fixtures';
 import { DEMO_KEY, readDraft } from './data/demo-repository';
 
 const first = 'demo-topic-function', second = 'demo-topic-graph';
@@ -28,6 +29,54 @@ async function navigate(path: string) {
 }
 
 describe('record topic filter context', () => {
+  it('switches directly past a long first course and saves writing from both courses after reload', async () => {
+    const data = createDemoState();
+    const topic = data.nodes.find(node => node.id === first)!;
+    for (let index = 0; index < 90; index++) data.nodes.push({ ...topic, id: `long-topic-${index}`, name: `긴 첫 과목 주제 ${index}`, order: index + 2 });
+    localStorage.setItem(DEMO_KEY, encodeStoredText(JSON.stringify({ sequence: 0, data })));
+    const user = userEvent.setup(), view = await open();
+    expect(screen.getByRole('option', { name: '수학의 기초 · 92개 주제' })).toBeInTheDocument();
+    await user.click(screen.getByRole('checkbox', { name: '함수는 어떤 관계일까?' }));
+    fireEvent.change(screen.getByRole('textbox', { name: '메모' }), { target: { value: '  첫 과목 원문\n' } });
+    await user.selectOptions(screen.getByRole('combobox', { name: '기록할 과목' }), 'demo-subject-science');
+    expect(screen.queryByRole('checkbox', { name: '함수는 어떤 관계일까?' })).toBeNull();
+    await user.click(screen.getByRole('checkbox', { name: '힘과 움직임' }));
+    fireEvent.change(screen.getAllByRole('textbox', { name: '메모' })[1], { target: { value: '두 번째 과목 원문' } });
+    const draft = readDraft(localStorage, 'multiple');
+    view.unmount(); await Promise.resolve(); await open();
+    expect(screen.getByRole('combobox', { name: '기록할 과목' })).toHaveValue('demo-subject-science');
+    expect(screen.getByRole('checkbox', { name: '힘과 움직임' })).toBeChecked();
+    expect(readDraft(localStorage, 'multiple')).toEqual(draft);
+    expect(screen.getAllByRole('textbox', { name: '메모' })[0]).toHaveValue('  첫 과목 원문\n');
+    await user.click(screen.getByRole('button', { name: '2개 주제 기록 저장' }));
+    const saved = JSON.parse(decodeStoredText(localStorage.getItem(DEMO_KEY)!)).data;
+    expect(saved.records).toHaveLength(2);
+    expect(saved.records.map((record: { subjectId: string }) => record.subjectId)).toEqual(['demo-subject-math', 'demo-subject-science']);
+    expect(saved.records.map((record: { sessionId: string }) => record.sessionId)).toEqual([draft!.sessionId, draft!.sessionId]);
+  });
+
+  it('lists empty courses with zero topics and a route to add topics rather than hiding them', async () => {
+    await open();
+    expect(screen.getByRole('option', { name: '스스로 고른 공부 · 0개 주제' })).toBeInTheDocument();
+    fireEvent.change(screen.getByRole('combobox', { name: '기록할 과목' }), { target: { value: 'demo-subject-independent' } });
+    expect(screen.getByRole('link', { name: '과목에서 주제 추가' })).toHaveAttribute('href', '#/subject/demo-subject-independent');
+    expect(screen.queryByRole('checkbox', { name: '함수는 어떤 관계일까?' })).toBeNull();
+  });
+
+  it('searches by course name and falls back to all visible courses when the study scope excludes the chosen course', async () => {
+    const user = userEvent.setup(); await open();
+    fireEvent.change(screen.getByRole('searchbox'), { target: { value: '과학 탐구' } });
+    expect(screen.getByRole('checkbox', { name: '힘과 움직임' })).toBeVisible();
+    expect(screen.queryByRole('checkbox', { name: '함수는 어떤 관계일까?' })).toBeNull();
+    fireEvent.change(screen.getByRole('searchbox'), { target: { value: '' } });
+    await user.selectOptions(screen.getByRole('combobox', { name: '기록할 과목' }), 'demo-subject-science');
+    await user.selectOptions(screen.getByRole('combobox', { name: '공부 범위' }), 'independent');
+    expect(screen.getByRole('combobox', { name: '기록할 과목' })).toHaveValue('all');
+    expect(screen.getByRole('option', { name: '스스로 고른 공부 · 0개 주제' })).toBeInTheDocument();
+    await user.selectOptions(screen.getByRole('combobox', { name: '공부 범위' }), 'all');
+    expect(screen.getByRole('combobox', { name: '기록할 과목' })).toHaveValue('demo-subject-science');
+  });
+
   it('explains quota failure and retries the same study without losing or duplicating the original', async () => {
     const user = userEvent.setup(); await open();
     await user.click(screen.getByRole('checkbox', { name: '함수는 어떤 관계일까?' }));

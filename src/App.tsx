@@ -1654,13 +1654,22 @@ function RecordForm({
   const [filter, setFilter] = useState(() => readPreference(`record-filter:${key}`, "", storagePrefix(data)));
   const recordStoragePrefix = storagePrefix(data);
   useEffect(() => { writePreference(`record-filter:${key}`, filter, recordStoragePrefix); }, [key, filter, recordStoragePrefix]);
+  const [recordSubject, setRecordSubject] = useState(() => readPreference(`record-subject:${key}`, "all", storagePrefix(data)));
+  useEffect(() => { writePreference(`record-subject:${key}`, recordSubject, recordStoragePrefix); }, [key, recordSubject, recordStoragePrefix]);
+  const pickerRef = useRef<HTMLElement>(null);
   const guard = useRef(false);
   const nodes = active(data.nodes).filter(
     (n) => n.role === "topic" || n.id === initialTarget,
   );
   const pickerSubjects = active(data.subjects).filter(subject => subjectIds.includes(subject.id));
   const pickerNodes = nodes.filter(node => subjectIds.includes(node.subjectId));
-  const hasMatches = pickerNodes.some(node => node.name.includes(filter));
+  const visibleSubject = pickerSubjects.some(subject => subject.id === recordSubject) ? recordSubject : "all";
+  const visibleSubjects = pickerSubjects.filter(subject => visibleSubject === "all" || subject.id === visibleSubject);
+  const matchingNodes = pickerNodes.filter(node =>
+    (visibleSubject === "all" || node.subjectId === visibleSubject) &&
+    (node.name.includes(filter) || pickerSubjects.find(subject => subject.id === node.subjectId)?.name.includes(filter)),
+  );
+  const hasMatches = matchingNodes.length > 0;
   const selectedOutsideScope = form.selectedIds.some(id => !pickerNodes.some(node => node.id === id));
   const change = (next: FormDraft) => {
     currentForm.current = next;
@@ -1713,11 +1722,24 @@ function RecordForm({
   };
   return (
     <div className="record-layout">
-      <section className="topic-picker">
-        <h2>공부한 주제</h2>
-        <Search label="주제 찾기" defaultValue={filter} onQueryChange={setFilter} />
-        {pickerSubjects.map(subject => {
-          const matching = pickerNodes.filter(node => node.subjectId === subject.id && node.name.includes(filter));
+      <section className="topic-picker" ref={pickerRef}>
+        <div className="record-picker-controls">
+          <h2>공부한 주제</h2>
+          <Select label="기록할 과목" value={visibleSubject} onChange={event => {
+            setRecordSubject(event.target.value);
+            if (pickerRef.current) pickerRef.current.scrollTop = 0;
+          }}>
+            <option value="all">모든 과목 · {pickerSubjects.length}개</option>
+            {pickerSubjects.map(subject => <option key={subject.id} value={subject.id}>
+              {subject.name} · {pickerNodes.filter(node => node.subjectId === subject.id).length}개 주제
+            </option>)}
+          </Select>
+          <Search label="주제 찾기" defaultValue={filter} onQueryChange={setFilter} />
+          <p className="muted record-picker-status" role="status">{visibleSubject === "all" ? `${pickerSubjects.length}개 과목` : visibleSubjects[0]?.name} · {matchingNodes.length}개 주제{filter ? " 검색됨" : ""}</p>
+          <p className="muted record-picker-hint">과목을 골라 바로 찾을 수 있습니다. 다른 과목에서 고른 주제도 함께 기록합니다.</p>
+        </div>
+        {visibleSubjects.map(subject => {
+          const matching = matchingNodes.filter(node => node.subjectId === subject.id);
           if (!matching.length) return null;
           const groups = [...new Set(matching.map(node => node.parentId))];
           return <fieldset className="record-topic-group" key={subject.id}><legend>{subject.name}</legend>{groups.map(parentId => <div key={parentId ?? 'root'}>
@@ -1726,13 +1748,14 @@ function RecordForm({
           </div>)}</fieldset>;
         })}
         {!hasMatches && <EmptyState
-          title={filter ? "검색어에 맞는 주제가 없습니다" : "이 공부 범위에는 기록할 주제가 없습니다"}
+          title={filter ? "검색어에 맞는 주제가 없습니다" : visibleSubject !== "all" ? "이 과목에는 등록된 주제가 없습니다" : "이 공부 범위에는 기록할 주제가 없습니다"}
           message={filter ? "검색어를 바꾸거나 상단의 공부 범위를 확인해 주세요. 작성 중인 내용은 유지합니다." : "상단에서 다른 공부 범위를 고르거나 과목에서 주제를 추가해 주세요."}
         />}
+        {!hasMatches && !filter && visibleSubject !== "all" && <a href={`#/subject/${visibleSubject}`}>과목에서 주제 추가</a>}
       </section>
       <section className="record-compose">
         {form.selectedIds.length > 0 && <p className="muted record-help">일부만 했거나 막혔어도 남겨 주세요. 글은 선택입니다.</p>}
-        {selectedOutsideScope && <p className="muted">범위를 바꾸기 전에 고른 주제도 아래에 유지했습니다. 함께 저장할 수 있습니다.</p>}
+        {(selectedOutsideScope || form.selectedIds.some(id => !matchingNodes.some(node => node.id === id))) && <p className="muted">목록에서 보이지 않는 선택 주제도 아래에 유지했습니다. 함께 저장할 수 있습니다.</p>}
         {form.selectedIds.length > 1 && (
           <Button
             onClick={() =>
