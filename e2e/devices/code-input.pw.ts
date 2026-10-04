@@ -23,26 +23,36 @@ test('rapid source input batches draft writes and preserves Korean text on immed
   await source.waitFor();
   const modifier = await page.evaluate(() => /Macintosh|Mac OS X|iPhone|iPad|iPod/.test(navigator.userAgent) ? 'Meta' : 'Control');
   const replace = async (value: string) => {
+    await source.focus();
+    await expect(source).toBeFocused();
     await source.press(`${modifier}+a`);
-    if (value) await page.keyboard.insertText(value);
+    if (value) await page.keyboard.type(value);
     else await source.press('Backspace');
   };
   const large = Array.from({ length: 600 }, (_, i) => `// 원문 ${i}`).join('\n');
   await replace(large);
   await page.getByRole('button', { name: '지금 저장', exact: true }).click();
   await expect(page.locator('.code-save-bar')).toContainText('이 기기에 저장됨');
+  await source.focus();
+  await expect(source).toBeFocused();
   await source.press(`${modifier}+End`);
   const before = await page.evaluate(() => (window as unknown as { codeInputProbe: { writes: number } }).codeInputProbe.writes);
   const text = 'abcdefghijklmnopqrstuvwx'.repeat(5);
   const start = Date.now();
+  await source.focus();
   await source.pressSequentially(text);
   const elapsedMs = Date.now() - start;
   const probe = await page.evaluate(() => (window as unknown as { codeInputProbe: { writes: number; timings: number[] } }).codeInputProbe);
   const writes = probe.writes - before;
   await info.attach('input-measurement', { body: JSON.stringify({ characters: text.length, lines: 600, elapsedMs, draftWrites: writes, maxKeyToFrameMs: Math.max(...probe.timings), meanKeyToFrameMs: probe.timings.reduce((a,b)=>a+b,0)/probe.timings.length }), contentType: 'application/json' });
   if (!process.env.CODE_INPUT_BASELINE) expect(writes).toBeLessThan(text.length / 10);
+  // Monaco virtualizes rendered lines; select the source to verify the actual input.
+  await source.press(`${modifier}+a`);
+  if (await touch.count()) await expect(source).toContainText(text);
+  else await expect(source).toHaveValue(new RegExp(text));
   // Reload while the trailing save is pending: pagehide/beforeunload must commit the newest text.
   await replace('// 한글 주석·공백 보존\nint main(void) { return 7; }');
+  await expect(page.locator('.code-editor-shell')).toContainText('한글 주석·공백 보존');
   await page.reload();
   await expect(page.getByLabel('예제 제목', { exact: true })).toHaveValue('입력 지연 회귀');
   await expect(page.locator('.code-editor-shell')).toContainText('한글 주석·공백 보존');
