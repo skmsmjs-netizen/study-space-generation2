@@ -9,3 +9,11 @@
 변경: src/App.tsx RecordForm, src/app.css의 목록 상단, src/record-filter.test.tsx, e2e/devices/record-course-picker.pw.ts. 격리 사본 /tmp/study-record-picker-20261004에서 최신 공개 소스3848645를 기준으로 작업했으며 공유 checkout/index와 병행 변경을 보존한다. 추적 MAN-32.
 
 로컬 확인: 관련 Vitest9통과, 타입/Pages 생산빌드와68CSS 검사0오류. 92개 첫 과목→다른 과목 선택→두 글 작성→새로고침 복원→0개 과목 안내→과목명 검색→두 과목 한 회차 저장·공백/줄바꿈 보존을 다섯 WebKit 환경에서5/5첫 통과했다. 기기 근거 work/device-runs/run-4EYIlY. 공개 적용·CI 결과는 배포 후 같은 문서에 추가한다. 물리기기/IME/개인 계정 Sync·학습효과는 별도다.
+
+## 2026-10-07 낮은 가로 화면 보완
+
+이전 전체CI37197467435는 build/4환경success, iPhone가로failure였다. 고정 record-picker-controls가 낮은 viewport에서 checkbox를 가려 기록/복원 등24경로의 클릭을 막았다. 초기 로컬5통과와 전체CI실패를 별도로 보존한다. 실제 공개는 수동37197856590의success로 게시된 상태였다.
+
+32rem 이하 높이에서는 목록과 상단의position을static으로 두고 목록의높이제한/내부스크롤을해제했다. 이 값은iPhone가로화면의실측가림을해결하기위한프로젝트조건이며표준수치가아니다. 더높은화면의기존고정/과목선택과모든원문/선택/초안/ID·저장명령을유지한다. 낮은화면에서긴목록하단뒤과목선택으로스크롤복귀하는조건도회귀에반영했다. 생산/타입/68CSS오류0, 직접다섯WebKit5/5통과(run-O0VEWi). 이전실패24경로를동일생산빌드의iPhone가로환경에서선택확인중이다. 최종배포와결과는확인후추가한다.
+
+보완 결과: 이전 실패24개 경로는 같은 생산빌드의 iPhone가로 환경에서24/24첫통과, 재시도/생략/최종실패0(run-eFCnwu). 새5기기 직접회귀도5/5첫통과했다. 이전 전체CI의4기기success·iPhone가로failure·자동deploy생략은 당시결과로보존하며수동공개성공과구별한다. 보완수정의공개빌드/게시결과는게시후추가한다.

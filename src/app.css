@@ -815,3 +815,9 @@ nav a[aria-current="page"] {
 @media (max-width: 50rem) {
   .record-picker-controls { top: calc(var(--icon-target) + var(--space-2)); }
 }
+
+/* A short landscape viewport needs room for the selectable rows below the controls. */
+@media (max-height: 32rem) {
+  .record-layout > .topic-picker { position: static; max-block-size: none; overflow: visible; }
+  .record-picker-controls { position: static; }
+}

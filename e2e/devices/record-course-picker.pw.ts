@@ -19,6 +19,8 @@ test('switches past a long first course, keeps both drafts on reload and saves o
   const original = '  첫 과목 원문\n조건과 예외  ';
   await page.getByRole('textbox', { name: '메모', exact: true }).fill(original);
   await page.getByRole('checkbox', { name: '긴 첫 과목 주제 80', exact: true }).scrollIntoViewIfNeeded();
+  // On short screens the controls scroll normally so they cannot cover the rows.
+  if (page.viewportSize()!.height <= 512) await course.scrollIntoViewIfNeeded();
   const courseBox = await course.boundingBox();
   const navBox = await page.locator('.navigation-history-bar').boundingBox();
   expect(courseBox!.y).toBeGreaterThanOrEqual(navBox!.y + navBox!.height - 1);
