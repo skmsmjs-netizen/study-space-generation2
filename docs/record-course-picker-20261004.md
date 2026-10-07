@@ -17,3 +17,11 @@
 32rem 이하 높이에서는 목록과 상단의position을static으로 두고 목록의높이제한/내부스크롤을해제했다. 이 값은iPhone가로화면의실측가림을해결하기위한프로젝트조건이며표준수치가아니다. 더높은화면의기존고정/과목선택과모든원문/선택/초안/ID·저장명령을유지한다. 낮은화면에서긴목록하단뒤과목선택으로스크롤복귀하는조건도회귀에반영했다. 생산/타입/68CSS오류0, 직접다섯WebKit5/5통과(run-O0VEWi). 이전실패24경로를동일생산빌드의iPhone가로환경에서선택확인중이다. 최종배포와결과는확인후추가한다.
 
 보완 결과: 이전 실패24개 경로는 같은 생산빌드의 iPhone가로 환경에서24/24첫통과, 재시도/생략/최종실패0(run-eFCnwu). 새5기기 직접회귀도5/5첫통과했다. 이전 전체CI의4기기success·iPhone가로failure·자동deploy생략은 당시결과로보존하며수동공개성공과구별한다. 보완수정의공개빌드/게시결과는게시후추가한다.
+
+## 최종 공개 반영 · 2026-10-07
+
+앱c7f0fc644e83e3cd003f9e5b5a4eb512ac57e423의빌드37570445859에서전체단위1410통과/1생략·백엔드번들/타입/생산빌드성공. 같은verified-build를기존수동게시[37570873897](https://github.com/skmsmjs-netizen/study-space-generation2/actions/runs/37570873897)로게시하고success확인. 새로운전체5환경회귀는[37570445859](https://github.com/skmsmjs-netizen/study-space-generation2/actions/runs/37570445859)에서별도진행중이며전체통과로보고하지않는다.
+
+공개HTML/JS/CSS/manifest/icon8파일HTTP200·CI산출물과byte/SHA256전부일치. 공개주소에서새격리합성WebKit5/5첫통과(92개첫과목·과목전환/빈과목/검색/두글/reload/한회차저장·원문공백보존),재시도/생략/실패0. 실제개인공개화면읽기전용확인에서7개과목/171개주제와C프로그래밍7주제전환확인·확인뒤모든과목보기복귀. 개인공부기록시험쓰기/운영서버변경0. 물리기기/IME/개인Sync는이번증거밖이다.
+
+근거정본:work/record-course-picker-20261004/의ci-build-20261007.log·failed-paths-20261007.log·five-20261007.log·public-five-20261007.log·public-assets-20261007.json·public-device-results-20261007.json·public-record-picker-final-20261007.png·verification.json,MAN-32. 이전실패/초기공개성공과범위검증을보존한다.
